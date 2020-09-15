@@ -85,7 +85,6 @@ void ActsMediaCameraTest::TearDown(void)
 }
 
 namespace OHOS::Media {
-// 设置保存拍照
 void TestSaveCapture(char *p, uint32_t size)
 {
     cout << "Start saving picture" << endl;
@@ -100,7 +99,7 @@ void TestSaveCapture(char *p, uint32_t size)
     pic.write(p, size);
     cout << "Saving picture end" << endl;
 }
-// 实现framestate callback
+
 class TestFrameStateCallback : public FrameStateCallback {
     void OnFrameCompleted(Camera &camera, FrameConfig &frameConfig, FrameResult frameResult) override
     {
@@ -129,7 +128,6 @@ class TestFrameStateCallback : public FrameStateCallback {
     }
 };
 
-// 实现IBufferConsumerListener回调
 class TestConsumer : public IBufferConsumerListener {
     void OnBufferAvailable() override
     {
@@ -137,7 +135,6 @@ class TestConsumer : public IBufferConsumerListener {
     }
 };
 
-// 实现CameraStateCallback,进行预览相关操作
 class TestPreviewCameraStateCallback : public CameraStateCallback {
 public:
     TestPreviewCameraStateCallback() : camera_(nullptr), fsc_(nullptr), surface_(nullptr) {}
@@ -150,14 +147,14 @@ public:
             delete fsc_;
         }
     }
-    // 创建surface并注册
+
     void GenSurface()
     {
         surface_ = Surface::CreateSurface();
         auto consumer = new TestConsumer;
         surface_->RegisterConsumerListener(*consumer);
     }
-    // 相机创建成功，设置surface相关参数
+
     void OnCreated(Camera &c) override
     {
         fsc_ = new TestFrameStateCallback;
@@ -173,13 +170,13 @@ public:
         surface_->SetWidthAndHeight(1920, 1080);
         camera_ = &c;
     }
-    // 相机创建失败
+
     void OnCreateFailed(std::string cameraId, int32_t errorCode) override
     {
         CameraFlag::g_onCreateFailedFlag = FLAG1;
         printf("OnCreateFailed\n");
     }
-    // 相机释放
+
     void OnReleased(Camera &c) override
     {
         CameraFlag::g_onReleasedFlag = FLAG1;
@@ -190,7 +187,6 @@ public:
     FrameStateCallback *fsc_;
 };
 
-// 实现CameraStateCallback,进行录像相关操作
 class TestCameraStateCallback : public CameraStateCallback {
 public:
     TestCameraStateCallback() : camera_(nullptr), fsc_(nullptr), surface_(nullptr)
@@ -282,13 +278,13 @@ public:
         c.Configure(cc);
         camera_ = &c;
     }
-    // 相机创建失败
+
     void OnCreateFailed(std::string cameraId, int32_t errorCode) override
     {
         CameraFlag::g_onCreateFailedFlag = FLAG1;
         printf("OnCreateFailed\n");
     }
-    // 相机释放
+
     void OnReleased(Camera &c) override
     {
         CameraFlag::g_onReleasedFlag = FLAG1;
