@@ -15,7 +15,6 @@
 
 #include <log.h>
 #include <semaphore.h>
-
 #include "gtest/gtest.h"
 #include "securec.h"
 
