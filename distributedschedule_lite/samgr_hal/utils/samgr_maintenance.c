@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include "service_impl.h"
 #include "samgr_lite_inner.h"
+#include "time_adapter.h"
 
 void SAMGR_PrintServices(void)
 {
@@ -57,6 +58,41 @@ void SAMGR_PrintServices(void)
             name = feature->feature->GetName(feature->feature);
             printf("[hctest][Feature:%d]<name:%s, api:%p>\n", j, name, feature->iUnknown);
         }
+        MUTEX_Lock(samgr->mutex);
+    }
+    MUTEX_Unlock(samgr->mutex);
+}
+
+void SAMGR_PrintOperations(void)
+{
+    SamgrLiteImpl *samgr = GET_OBJECT(SAMGR_GetInstance(), SamgrLiteImpl, vtbl);
+    int16 num = VECTOR_Num(&samgr->services);
+    printf("[hctest][Maintenance]Print Services(%d) Information:\n", num);
+    if (num == 0) {
+        return;
+    }
+
+    uint32 now = SAMGR_GetProcessTime();
+    MUTEX_Lock(samgr->mutex);
+    int16 size = VECTOR_Size(&(samgr->services));
+    int i;
+    for (i = 0; i < size; ++i) {
+        ServiceImpl *impl = VECTOR_At(&(samgr->services), i);
+        if (impl == NULL) {
+            continue;
+        }
+        MUTEX_Unlock(samgr->mutex);
+        const char *name = impl->service->GetName(impl->service);
+        uint8 abnormal = impl->ops.abnormal;
+        if (impl->inited == SVC_BUSY) {
+            if (GET_INTERVAL(impl->ops.timestamp, now) > MSG_PROC_THRESHOLD) {
+                abnormal = abnormal + 1;
+            }
+        }
+
+        MQueueId queueId = ((impl->taskPool == NULL) ? NULL : impl->taskPool->queueId);
+        printf("[hctest][Qid:%p] <status:%d, name:%s, abnormal:%d, total:%d, time:%ums>",
+                   queueId, impl->inited, name, abnormal, impl->ops.messages, impl->ops.timestamp);
         MUTEX_Lock(samgr->mutex);
     }
     MUTEX_Unlock(samgr->mutex);
