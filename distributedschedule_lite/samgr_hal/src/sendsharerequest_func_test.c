@@ -158,7 +158,24 @@ static BOOL FEATURE_OnMessage02(Feature *feature, Request *request)
     int32 returnCode = 0;
     DemoFeature *demoFeature = (DemoFeature *)feature;
     demoFeature->featureCalledCount++;
-    demoFeature->latestRequest = (char *)request->data;
+
+    if (demoFeature->latestRequest != NULL) {
+        free(demoFeature->latestRequest);
+    }
+    int requestLen;
+    if (request->len > 0) {
+        requestLen = request->len;
+    } else {
+        requestLen = strlen((char *)request->data) + 1;
+    }
+    demoFeature->latestRequest = (char *)malloc(requestLen * sizeof(char));
+    if (demoFeature->latestRequest == NULL) {
+        TEST_FAIL();
+    }
+    errno_t error = strcpy_s(demoFeature->latestRequest, requestLen, (char *)request->data);
+    if (error != EOK) {
+        TEST_FAIL();
+    }
 
     switch (request->msgId) {
         case MSG_NO:
@@ -188,7 +205,24 @@ static BOOL FEATURE_OnMessage03(Feature *feature, Request *request)
     int32 returnCode = 0;
     DemoFeature *demoFeature = (DemoFeature *)feature;
     demoFeature->featureCalledCount++;
-    demoFeature->latestRequest = (char *)request->data;
+
+    if (demoFeature->latestRequest != NULL) {
+        free(demoFeature->latestRequest);
+    }
+    int requestLen;
+    if (request->len > 0) {
+        requestLen = request->len;
+    } else {
+        requestLen = strlen((char *)request->data) + 1;
+    }
+    demoFeature->latestRequest = (char *)malloc(requestLen * sizeof(char));
+    if (demoFeature->latestRequest == NULL) {
+        TEST_FAIL();
+    }
+    errno_t error = strcpy_s(demoFeature->latestRequest, requestLen, (char *)request->data);
+    if (error != EOK) {
+        TEST_FAIL();
+    }
 
     switch (request->msgId) {
         case MSG_NO:
@@ -334,13 +368,10 @@ static BOOL SendSharedRequestTestSuiteTearDown(void)
 
 /**
  * @tc.number    : DMSLite_SAMGR_SendSharedRequest_0010
- * @tc.name      : Feature sends a response to a specified feature after processing the original request.
+ * @tc.name      : Feature can send a message by SendSharedRequest
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 2
  */
-LITE_TEST_CASE(SendSharedRequestTestSuite, testSendSharedRequest0010, LEVEL2)
+LITE_TEST_CASE(SendSharedRequestTestSuite, testSendSharedRequest0010, Function | MediumTest | Level2)
 {
     DemoApi *demoApi = GetIUnknown("S_sendShareReq", "feature02");
     if (demoApi == NULL) {
@@ -374,13 +405,10 @@ LITE_TEST_CASE(SendSharedRequestTestSuite, testSendSharedRequest0010, LEVEL2)
 
 /**
  * @tc.number    : DMSLite_SAMGR_SendSharedDirectRequest_0010
- * @tc.name      : Sends a request and response of a caller to the feature thread
+ * @tc.name      : Feature can send a message by SendSharedDirectRequest
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 2
  */
-LITE_TEST_CASE(SendSharedRequestTestSuite, testSendSharedDirectRequest0010, LEVEL2)
+LITE_TEST_CASE(SendSharedRequestTestSuite, testSendSharedDirectRequest0010, Function | MediumTest | Level2)
 {
     DemoApi *demoApi = GetIUnknown("S_sendShareReq", "feature02");
     if (demoApi == NULL) {

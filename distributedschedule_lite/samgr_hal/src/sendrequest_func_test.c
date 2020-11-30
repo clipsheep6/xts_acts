@@ -150,7 +150,24 @@ static BOOL FEATURE_OnMessage(Feature *feature, Request *request)
     int32 returnCode = 0;;
     DemoFeature *demoFeature = (DemoFeature *)feature;
     demoFeature->featureCalledCount++;
-    demoFeature->latestRequest = (char *)request->data;
+
+    if (demoFeature->latestRequest != NULL) {
+        free(demoFeature->latestRequest);
+    }
+    int requestLen;
+    if (request->len > 0) {
+        requestLen = request->len;
+    } else {
+        requestLen = strlen((char *)request->data) + 1;
+    }
+    demoFeature->latestRequest = (char *)malloc(requestLen * sizeof(char));
+    if (demoFeature->latestRequest == NULL) {
+        TEST_FAIL();
+    }
+    errno_t error = strcpy_s(demoFeature->latestRequest, requestLen, (char *)request->data);
+    if (error != EOK) {
+        TEST_FAIL();
+    }
 
     switch (request->msgId) {
         case MSG_NO:
@@ -180,7 +197,24 @@ static BOOL FEATURE_OnMessage02(Feature *feature, Request *request)
     int32 returnCode = 0;
     DemoFeature *demoFeature = (DemoFeature *)feature;
     demoFeature->featureCalledCount++;
-    demoFeature->latestRequest = (char *)request->data;
+
+    if (demoFeature->latestRequest != NULL) {
+        free(demoFeature->latestRequest);
+    }
+    int requestLen;
+    if (request->len > 0) {
+        requestLen = request->len;
+    } else {
+        requestLen = strlen((char *)request->data) + 1;
+    }
+    demoFeature->latestRequest = (char *)malloc(requestLen * sizeof(char));
+    if (demoFeature->latestRequest == NULL) {
+        TEST_FAIL();
+    }
+    errno_t error = strcpy_s(demoFeature->latestRequest, requestLen, (char *)request->data);
+    if (error != EOK) {
+        TEST_FAIL();
+    }
 
     switch (request->msgId) {
         case MSG_NO:
@@ -210,8 +244,25 @@ static BOOL FEATURE_OnMessage03(Feature *feature, Request *request)
     int32 returnCode = 0;
     DemoFeature *demoFeature = (DemoFeature *)feature;
     demoFeature->featureCalledCount++;
-    demoFeature->latestRequest = (char *)request->data;
 
+    if (demoFeature->latestRequest != NULL) {
+        free(demoFeature->latestRequest);
+    }
+    int requestLen;
+    if (request->len > 0) {
+        requestLen = request->len;
+    } else {
+        requestLen = strlen((char *)request->data) + 1;
+    }
+    demoFeature->latestRequest = (char *)malloc(requestLen * sizeof(char));
+    if (demoFeature->latestRequest == NULL) {
+        TEST_FAIL();
+    }
+    errno_t error = strcpy_s(demoFeature->latestRequest, requestLen, (char *)request->data);
+    if (error != EOK) {
+        TEST_FAIL();
+    }
+    
     switch (request->msgId) {
         case MSG_NO:
             returnCode = 0;
@@ -358,11 +409,8 @@ static BOOL SendRequestTestSuiteTearDown(void)
  * @tc.number    : DMSLite_SAMGR_SyncCall_0010
  * @tc.name      : Samgr support synchronous call 
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 1
  */
-LITE_TEST_CASE(SendRequestTestSuite, testSyncCall0010, LEVEL1)
+LITE_TEST_CASE(SendRequestTestSuite, testSyncCall0010, Function | MediumTest | Level1)
 {
     DemoApi *demoApi = GetIUnknown("serviceName501", "featureName502");
     if (demoApi == NULL) {
@@ -389,11 +437,8 @@ LITE_TEST_CASE(SendRequestTestSuite, testSyncCall0010, LEVEL1)
  * @tc.number    : DMSLite_SAMGR_SendRequest_0010
  * @tc.name      : Samgr support asynchronous call
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 1
  */
-LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0010, LEVEL1)
+LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0010, Function | MediumTest | Level1)
 {
     DemoApi *demoApi = GetIUnknown("serviceName501", "featureName502");
     if (demoApi == NULL) {
@@ -429,11 +474,8 @@ LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0010, LEVEL1)
  * @tc.number    : DMSLite_SAMGR_SendRequest_0020
  * @tc.name      : Feature can send an asynchronous message to itself
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 2
  */
-LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0020, LEVEL2)
+LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0020, Function | MediumTest | Level2)
 {
     DemoApi *demoApi = GetIUnknown("serviceName501", "featureName502");
     if (demoApi == NULL) {
@@ -469,11 +511,8 @@ LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0020, LEVEL2)
  * @tc.number    : DMSLite_SAMGR_SendRequest_0030
  * @tc.name      : Feature failed to send an asynchronous message if the specified identity does not exist
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 2
  */
-LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0030, LEVEL2)
+LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0030, Function | MediumTest | Level2)
 {
     DemoApi *demoApi = GetIUnknown("serviceName501", "featureName502");
     if (demoApi == NULL) {
@@ -501,11 +540,8 @@ LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0030, LEVEL2)
  * @tc.number    : DMSLite_SAMGR_SendRequest_0040
  * @tc.name      : Feature can send an asynchronous message with length is 0 
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 2
  */
-LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0040, LEVEL2)
+LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0040, Function | MediumTest | Level2)
 {
     DemoApi *demoApi = GetIUnknown("serviceName501", "featureName502");
     if (demoApi == NULL) {
@@ -513,7 +549,7 @@ LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0040, LEVEL2)
     }
     Request request = {.msgId = MSG_RT, .msgValue = 0};
     request.len = 0;
-    request.data = NULL;
+    request.data = "I wanna async call good result!";
 
     IUnknown *iUnknown = SAMGR_GetInstance()->GetFeatureApi("serviceName501", "featureName503");
     DemoFeature *feature = GET_OBJECT(iUnknown, DemoFeature, iUnknown);
@@ -532,11 +568,8 @@ LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0040, LEVEL2)
  * @tc.number    : DMSLite_SAMGR_SendRequest_0050
  * @tc.name      : Feature failed to send an asynchronous message if id or request is NULL 
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 2
  */
-LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0050, LEVEL2)
+LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0050, Function | MediumTest | Level2)
 {
     DemoApi *demoApi = GetIUnknown("serviceName501", "featureName502");
     if (demoApi == NULL) {
@@ -569,11 +602,8 @@ LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0050, LEVEL2)
  * @tc.number    : DMSLite_SAMGR_SendRequest_0060
  * @tc.name      : Samgr will not check the matching relationship between len and data 
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 2
  */
-LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0060, LEVEL2)
+LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0060, Function | MediumTest | Level2)
 {
     DemoApi *demoApi = GetIUnknown("serviceName501", "featureName502");
     if (demoApi == NULL) {
@@ -582,7 +612,7 @@ LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0060, LEVEL2)
     Request request = {.msgId = MSG_NO, .msgValue = 0};
     char *body = "I wanna async call good result!";
     request.len = 0;
-    request.data = NULL;
+    request.data = "I wanna async call good result!";
     IUnknown *iUnknown = SAMGR_GetInstance()->GetFeatureApi("serviceName501", "featureName503");
     if (iUnknown == NULL) {
         TEST_FAIL();
@@ -610,11 +640,8 @@ LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0060, LEVEL2)
  * @tc.number    : DMSLite_SAMGR_SendRequest_0070
  * @tc.name      : Feature send an asynchronous message and register handler then can receive response 
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 2
  */
-LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0070, LEVEL2)
+LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0070, Function | MediumTest | Level2)
 {
     DemoApi *demoApi = GetIUnknown("serviceName501", "featureName502");
     if (demoApi == NULL) {
@@ -646,11 +673,8 @@ LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0070, LEVEL2)
  * @tc.number    : DMSLite_SAMGR_SendRequest_0080
  * @tc.name      : Feature send an asynchronous message repeatedly, no memory leak 
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 2
  */
-LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0080, LEVEL2)
+LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0080, Function | MediumTest | Level2)
 {
     for (int i = 0; i < PRESSURE_BASE; i++) {
         DemoApi *demoApi = GetIUnknown("serviceName501", "featureName502");
@@ -684,11 +708,8 @@ LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0080, LEVEL2)
  * @tc.number    : DMSLite_SAMGR_SendRequest_0090
  * @tc.name      : Feature send an asynchronous message with 0 len repeatedly, no memory leak 
  * @tc.desc      : [C- SOFTWARE -0200]
- * @tc.size      : MEDIUM
- * @tc.type      : FUNC
- * @tc.level     : Level 2
  */
-LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0090, LEVEL2)
+LITE_TEST_CASE(SendRequestTestSuite, testSendRequest0090, Function | MediumTest | Level2)
 {
     for (int i = 0; i < PRESSURE_BASE; i++) {
         DemoApi *demoApi = GetIUnknown("serviceName501", "featureName502");
