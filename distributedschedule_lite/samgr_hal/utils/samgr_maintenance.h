@@ -21,6 +21,7 @@ extern "C" {
 #endif
 #endif
 void SAMGR_PrintServices(void);
+void SAMGR_PrintOperations(void);
 #ifdef __cplusplus
 #if __cplusplus
 }
