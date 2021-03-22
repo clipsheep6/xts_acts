@@ -222,12 +222,10 @@ static BOOL FEATURE_OnMessage03(Feature *feature, Request *request)
                 .data = (char*)"Yes, you did!",
                 .len = 0,
                 };
-            for (int i = 0; i < PRESSURE_L0; i++) {
-                int tempCode = SAMGR_SendResponse(request, &response);
-                if (tempCode != 0) {
-                    printf("[hctest]E failed to SendResponse occurs: %d rt: %d \n", i, tempCode);
-                    returnCode++;
-                }
+            int tempCode = SAMGR_SendResponse(request, &response);
+            if (tempCode != 0) {
+                printf("[hctest]E failed to SendResponse rt: %d \n", tempCode);
+                returnCode++;
             }
         }
     }
