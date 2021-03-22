@@ -35,7 +35,7 @@ static int8_t RunTest(const uint8_t *buffer, uint16_t bufferLen, const TlvParseC
     interInfo.payloadLength = bufferLen;
     interInfo.payload = buffer;
 
-    return DmsLiteProcessCommuMsg(&interInfo, &dmsFeatureCallback);
+    return DmsLiteProcessCommuMsg(&interInfo, &dmsFeatureCallback); 
 }
 
 class MsgParserFuncTest : public testing::Test {
