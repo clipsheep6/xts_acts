@@ -19,6 +19,7 @@
 #include <signal.h>
 #include <gtest/gtest.h>
 
+const int ACCURACY_ERROR = 8;
 class AlarmTest : public testing::Test {
 public:
     void SetUp()
