@@ -31,7 +31,7 @@ hcpptest_suite("ActsDMSTest") {
     "//foundation/communication/ipc_lite/interfaces/kits",
     "//foundation/distributedschedule/samgr_lite/interfaces/kits/registry",
     "//foundation/distributedschedule/samgr_lite/interfaces/kits/samgr",
-    "//foundation/distributedschedule/services/dtbschedmgr_lite/include",
+    "//foundation/distributedschedule/dmsfwk_lite/include",
     "//foundation/distributedschedule/samgr_lite/interfaces/innerkits",
 
     "${aafwk_lite_path}/interfaces/innerkits/abilitymgr_lite",
