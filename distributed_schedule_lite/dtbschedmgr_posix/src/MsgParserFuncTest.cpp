@@ -40,13 +40,13 @@ static int8_t RunTest(const uint8_t *buffer, uint16_t bufferLen, const TlvParseC
 
 class MsgParserFuncTest : public testing::Test {
 protected:
-    // SetUpTestCase: Testsuit setup, run before 1st testcase
+    // SetUpTestCase: run before 1st testcase
     static void SetUpTestCase(void)
     {
         SystemInitProxy();
         InstallHap();
     }
-    // TearDownTestCase: Testsuit teardown, run after last testcase
+    // TearDownTestCase: run after last testcase
     static void TearDownTestCase(void)
     {
     }
