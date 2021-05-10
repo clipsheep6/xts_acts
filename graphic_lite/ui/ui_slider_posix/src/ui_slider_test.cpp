@@ -57,13 +57,13 @@ HWTEST_F(UISliderTest, Graphic_UISliderTest_Test_SetKnobWidth_0200, Function | M
  * @tc.name     test slider set-knob-style api
  * @tc.desc     [C- SOFTWARE -0200]
  */
-HWTEST_F(UISliderTest, Graphic_UISliderTest_Test_SetKnobStyle_0300, Function | MediumTest | Level0)
+/**HWTEST_F(UISliderTest, Graphic_UISliderTest_Test_SetKnobStyle_0300, Function | MediumTest | Level0)
 {
     UISlider* slider = new UISlider();
     slider->SetKnobStyle(STYLE_BACKGROUND_COLOR, Color::Gray().full);
     EXPECT_EQ(slider->GetKnobStyle().bgColor_.full, Color::Gray().full);
     delete slider;
-}
+}*/
 
 /**
  * @tc.number   SUB_GRAPHIC_SLIDER_SETIMAGE_0400
@@ -84,7 +84,7 @@ HWTEST_F(UISliderTest, Graphic_UISliderTest_Test_SetImage_0400, Function | Mediu
  * @tc.name     test slider set-slider-color api
  * @tc.desc     [C- SOFTWARE -0200]
  */
-HWTEST_F(UISliderTest, Graphic_UISliderTest_Test_SetSliderColor_0500, Function | MediumTest | Level0)
+/**HWTEST_F(UISliderTest, Graphic_UISliderTest_Test_SetSliderColor_0500, Function | MediumTest | Level0)
 {
     UISlider* slider = new UISlider();
     ColorType backgroundColor;
@@ -96,14 +96,14 @@ HWTEST_F(UISliderTest, Graphic_UISliderTest_Test_SetSliderColor_0500, Function |
     slider->SetSliderColor(backgroundColor, foregroundColor, knobColor);
     EXPECT_EQ(0, 0);
     delete slider;
-}
+}*/
 
 /**
  * @tc.number   SUB_GRAPHIC_SLIDER_SETSLIDERRADIUS_0600
  * @tc.name     test slider set-knob-style api
  * @tc.desc     [C- SOFTWARE -0200]
  */
-HWTEST_F(UISliderTest, Graphic_UISliderTest_Test_SetSliderRadius_0600, Function | MediumTest | Level0)
+/**HWTEST_F(UISliderTest, Graphic_UISliderTest_Test_SetSliderRadius_0600, Function | MediumTest | Level0)
 {
     UISlider* slider = new UISlider();
     int16_t kgroundRadius = 0;
@@ -112,5 +112,5 @@ HWTEST_F(UISliderTest, Graphic_UISliderTest_Test_SetSliderRadius_0600, Function 
     slider->SetSliderRadius(kgroundRadius, foregroundRadius, knobRadius);
     EXPECT_EQ(0, 0);
     delete slider;
-}
+}*/
 } // namespace OHOS
