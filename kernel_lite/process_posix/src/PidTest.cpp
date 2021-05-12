@@ -115,7 +115,6 @@ HWTEST_F(PidTest, testOrphanProcess, Function | MediumTest | Level1)
     shmdt(shared);
     shmctl(shmID, IPC_RMID, nullptr);
 }
-
 /**
  * @tc.number SUB_KERNEL_PM_PID_SetGetPgrp_0100
  * @tc.name   setpgrp and getpgrp test
