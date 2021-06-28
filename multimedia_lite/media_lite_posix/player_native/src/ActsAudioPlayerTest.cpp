@@ -180,6 +180,7 @@ void SetSchParam(void)
 
 const char *g_audioFileName = "Audiochannel_001.aac";
 const char *g_audioFileName1 = "Audiochannel_002.m4a";
+const char *g_audioFileName2 = "Audiochannel_003.mp3";
 
 class ActsAudioPlayerTest : public testing::Test {
 protected:
@@ -317,6 +318,29 @@ HWTEST_F(ActsAudioPlayerTest, Test_SetSource02, Function | MediumTest | Level0)
     sleep(5);
     EXPECT_EQ(HI_SUCCESS, ret);
     bool flag = g_tagTestSample.adaptr->IsPlaying();  
+    EXPECT_EQ(true, flag);
+}
+
+/* *
+ * @tc.number    : SUB_MEDIA_PLAYER_DIFFERENT_FORMAT_0300
+ * @tc.name      : Set Audio Source 03
+ * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.size      : MEDIUM
+ * @tc.type      : FUNC
+ * @tc.level     : Level 0
+ */
+HWTEST_F(ActsAudioPlayerTest, Test_SetSource03, Function | MediumTest | Level0)
+{
+    int32_t ret = FileCheck2(g_audioFileName2);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = CreateAndSetAudioSource1();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Prepare();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    sleep(5);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    bool flag = g_tagTestSample.adaptr->IsPlaying();
     EXPECT_EQ(true, flag);
 }
 
