@@ -37,7 +37,7 @@ protected:
     static void TearDownTestCase(void) {}
 };
 
-void SensorDataCallbackImpl(SensorEvent *event)
+void SensorDataCallbackImpl(const SensorEvent *event)
 {
     HILOG_DEBUG(HILOG_MODULE_APP, "SensorDataCallbackImpl called");
     if (event == NULLPTR) {
