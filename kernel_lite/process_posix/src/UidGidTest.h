@@ -62,15 +62,21 @@ protected:
         }
         groupNum = getgroups(0, groupsArry);
         EXPECT_NE(groupNum, -1);
+        int rt = getgroups(groupNum, groupsArry);
+        EXPECT_EQ(rt, groupNum);
     }
     void TearDown()
     {
         LOG("TearDown: reset uid and gid");
+        gid_t groupIds[groupNum];
+        for (int i = 0; i < groupNum; i++ ) {
+            groupIds[i] = groupsArry[i];
+        }
         setuid(SHELL_UID);
         setgid(SHELL_GID);
         AssertAllUid(SHELL_UID);
         AssertAllGid(SHELL_GID);
-        int rt = setgroups(groupNum, groupsArry);
+        int rt = setgroups(groupNum, groupIds);
         EXPECT_EQ(rt, 0);
     }
 };
