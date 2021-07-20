@@ -85,7 +85,6 @@ HWTEST_F(UidGidTest, testSetuidFail, Function | MediumTest | Level3)
  */
 HWTEST_F(UidGidTest, testSetGetgid, Function | MediumTest | Level1)
 {
-    AssertAllGid(SHELL_GID);
     gid_t gid = getgid();
     ASSERT_EQ(gid, SHELL_GID);
 
@@ -203,8 +202,6 @@ HWTEST_F(UidGidTest, testSeteuidFail, Function | MediumTest | Level3)
  */
 HWTEST_F(UidGidTest, testSetGetegid, Function | MediumTest | Level1)
 {
-    AssertAllGid(SHELL_GID);
-
     uid_t newEgid = GetRandID();
     LOG("new egid = %d", newEgid);
     int rt = setegid(newEgid);
@@ -343,8 +340,6 @@ HWTEST_F(UidGidTest, testSetreuidFail, Function | MediumTest | Level2)
  */
 HWTEST_F(UidGidTest, testSetregid, Function | MediumTest | Level1)
 {
-    AssertAllGid(SHELL_GID);
-
     int newGid = GetRandID();
     LOG("new gid1 = %d", newGid);
     int rt = setregid(newGid, newGid);
@@ -380,8 +375,6 @@ HWTEST_F(UidGidTest, testSetregid, Function | MediumTest | Level1)
  */
 HWTEST_F(UidGidTest, testSetregidFail, Function | MediumTest | Level2)
 {
-    AssertAllGid(SHELL_GID);
-
     int newGid = GetRandID();
     LOG("new gid = %d", -newGid);
     int rt = setregid(-newGid, -newGid);
@@ -530,8 +523,6 @@ HWTEST_F(UidGidTest, testSetresuidFail, Function | MediumTest | Level2)
  */
 HWTEST_F(UidGidTest, testSetGetresgid, Function | MediumTest | Level1)
 {
-    AssertAllGid(SHELL_GID);
-
     int newGid = GetRandID();
     LOG("new gid1 = %d", newGid);
     int rt = setresgid(newGid, newGid, newGid);
@@ -593,8 +584,6 @@ HWTEST_F(UidGidTest, testSetGetresgid, Function | MediumTest | Level1)
  */
 HWTEST_F(UidGidTest, testSetresgidFail, Function | MediumTest | Level2)
 {
-    AssertAllGid(SHELL_GID);
-
     int newGid = GetRandID();
     int newGid2 = GetRandID();
     LOG("new gid = %d, new gid2 = %d", newGid, newGid2);
