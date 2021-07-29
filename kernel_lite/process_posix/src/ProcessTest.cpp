@@ -195,7 +195,10 @@ HWTEST_F(ProcessTest, testLineExitFlush, Function | MediumTest | Level3)
 
     // read
     FILE *fp = fopen(testFile, "r+");
-    ASSERT_NE(fp, nullptr) << "> fopen errno = " << errno;
+    if (!fp) {
+        LOG("fopen errno = %d\n", errno);\
+        FAIL();
+    }
     EXPECT_EQ(fread(readBuf, sizeof(writeBuf), 1, fp), 0);
     EXPECT_STRNE(writeBuf, readBuf) << "> writeBuf = " << writeBuf\
                                     << "\n> readBuf = " << readBuf;
@@ -230,7 +233,10 @@ HWTEST_F(ProcessTest, testLineExitAtexit, Function | MediumTest | Level3)
 {
     const int memSize = 1024;
     g_shmid1 = shmget(IPC_PRIVATE, memSize, 0666 | IPC_CREAT);
-    ASSERT_NE(g_shmid1, -1) << "> parent: shmid errno = " << errno;
+    if (g_shmid1 < 0) {
+        LOG("shmget create errno = %d\n", errno);
+        FAIL();
+    }
     pid_t pid = fork();
     ASSERT_TRUE(pid >= 0) << "> parent: fork errno = " << errno;
     if (pid == 0) {
@@ -398,7 +404,10 @@ HWTEST_F(ProcessTest, testAtexit, Function | MediumTest | Level3)
 {
     const int memSize = 1024;
     g_shmid = shmget(IPC_PRIVATE, memSize, 0666 | IPC_CREAT);
-    ASSERT_NE(g_shmid, -1) << "> parent: shmid errno = " << errno;
+    if (g_shmid < 0) {
+        LOG("shmget errno =%d\n", errno);
+        FAIL();
+    }
     pid_t pid = fork();
     ASSERT_TRUE(pid >= 0) << "> parent: fork errno = " << errno;
     if (pid == 0) {

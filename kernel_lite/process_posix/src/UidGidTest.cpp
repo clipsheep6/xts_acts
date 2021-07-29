@@ -640,6 +640,10 @@ HWTEST_F(UidGidTest, testGetgroups, Function | MediumTest | Level1)
     const int testSize = 10;
     gid_t gidList[testSize] = {0};
     int n = getgroups(0, gidList);
+    if (n < 0) {
+        LOG("getgroups errno =%d\n", errno);
+        FAIL();
+    }
     ASSERT_EQ(n, 2);
     int rt = getgroups(n, gidList);
     ASSERT_EQ(gidList[0], SHELL_GID);
@@ -729,6 +733,10 @@ HWTEST_F(UidGidTest, testSetgroups2, Function | MediumTest | Level1)
     rt = setgroups(0, NULL);
     EXPECT_EQ(rt, 0);
     n = getgroups(0, gidListOut);
+    if (n < 0) {
+        LOG("getgroups errno = %d\n", errno);
+        FAIL();
+    }
     EXPECT_EQ(n, 1);
     rt = getgroups(n, gidListOut);
     EXPECT_EQ(rt, n);

@@ -204,7 +204,9 @@ HWTEST_F(TimeUtilsTest, testGmtimeR, Function | MediumTest | Level3)
 {
     struct tm res = {0};
     struct tm *stm = gmtime_r(&g_time, &res);
-    ASSERT_NE(nullptr, stm);
+    if (stm == nullptr) {
+        FAIL();
+    }
     EXPECT_EQ(stm->tm_hour, 05) << "gmtime_r return error!";
     EXPECT_STREQ(asctime(stm), "Thu Jan  1 05:14:40 1970\n") << "gmtime_r return error!";
     EXPECT_TRUE(stm == &res) << "gmtime_r returns not equal";
@@ -253,7 +255,7 @@ HWTEST_F(TimeUtilsTest, testStrftime, Function | MediumTest | Level3)
     char buffer[80] = {0};
     time_t mtime = 18880;
     struct tm *localTime = localtime(&mtime);
-    if (localTime == nullptr) {
+    if (!localTime) {
         LOG("localtime errno ");
         ADD_FAILURE();
     }
