@@ -64,7 +64,10 @@ HWTEST_F(PidTest, testOrphanProcess, Function | MediumTest | Level1)
     const int retFail = 2;
     const int memSize = 32;
     int shmID = shmget(IPC_PRIVATE, memSize, 0666 | IPC_CREAT);
-    ASSERT_NE(shmID, -1) << "get share mem fail, errno = " << errno;
+    if (shmID < 0) {
+        LOG("shmget errno = %d\n", errno);
+        FAIL();
+    }
     int *shared = (int*)(shmat(shmID, nullptr, 0));
     ASSERT_NE(shared, reinterpret_cast<int*>(-1)) << "shmat fail, errno = " << errno;
     shared[0] = retPass;

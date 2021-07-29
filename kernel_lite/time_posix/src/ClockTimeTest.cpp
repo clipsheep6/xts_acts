@@ -377,7 +377,9 @@ HWTEST_F(ClockTimeTest, testGetdateBasic, Function | MediumTest | Level1) {
     FILE *fp = nullptr;
     char mask[20] = "%Y-%m-%d %H:%M:%S";
     fp = fopen(DATEMSK_FILE, "w+");
-    ASSERT_NE(nullptr, fp);
+    if (fp == nullptr) {
+        FAIL();
+    }
     int ret = fwrite(mask, sizeof(mask), 1, fp);
     EXPECT_TRUE(ret > 0);
     ret = setenv("DATEMSK", DATEMSK_FILE, 1);

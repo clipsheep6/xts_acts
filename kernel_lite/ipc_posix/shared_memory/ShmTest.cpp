@@ -48,7 +48,7 @@ HWTEST_F(ShmTest, testShmBasic, Function | MediumTest | Level0)
     char *shared = nullptr;
 
     shmid = shmget(static_cast<key_t> IPC_PRIVATE, memSize, 0666 | IPC_CREAT);
-    if (shmid == -1) {
+    if (shmid < 0) {
         LOG("shmget errno ,errno = %d", errno);
         ADD_FAILURE();
     }
@@ -105,7 +105,7 @@ HWTEST_F(ShmTest, testShmSingleProcess, Function | MediumTest | Level1)
     char *shared = nullptr;
 
     int shmid = shmget(static_cast<key_t> IPC_PRIVATE, memSize, 0666 | IPC_CREAT);
-    if (shmid == -1) {
+    if (shmid < 0) {
         LOG("shmget errno ,errno = %d", errno);
         ADD_FAILURE();
     }
@@ -181,13 +181,13 @@ HWTEST_F(ShmTest, testShmatSHM_REMAP, Function | MediumTest | Level1)
     char *shared = nullptr;
 
     shmid = shmget(static_cast<key_t> IPC_PRIVATE, memSize, 0666 | IPC_CREAT);
-    if (shmid == -1) {
+    if (shmid < 0) {
         LOG("shmget errno ,errno = %d", errno);
         ADD_FAILURE();
     }
 
     pid_t pid = fork();
-    if (shmid < 0) {
+    if (pid < 0) {
         LOG("fork errno ,errno = %d", errno);
         ADD_FAILURE();
     }
@@ -245,7 +245,7 @@ HWTEST_F(ShmTest, testShmatSHM_RDONLY, Function | MediumTest | Level0)
     char *shared = nullptr;
 
     shmid = shmget(IPC_PRIVATE, memSize, 0666 | IPC_CREAT);
-    if (shmid == -1) {
+    if (shmid < 0) {
         LOG("shmget errno ,errno = %d", errno);
         ADD_FAILURE();
     }
@@ -300,7 +300,7 @@ HWTEST_F(ShmTest, testShmatSHM_RND, Function | MediumTest | Level0)
 
     Msleep(10);
     shmid = shmget(IPC_PRIVATE, memSize, 0666 | IPC_CREAT);
-    if (shmid == -1) {
+    if (shmid < 0) {
         LOG("shmget failed+++");
         ADD_FAILURE();  
     }
@@ -340,7 +340,7 @@ HWTEST_F(ShmTest, testShmctl, Function | MediumTest | Level1)
 
     Msleep(10);
     shmid = shmget(IPC_PRIVATE, memSize, 0666 | IPC_CREAT);
-    if (shmid == -1) {
+    if (shmid < 0) {
         LOG("shmget errno = %d \n",errno);
         ADD_FAILURE();
     }

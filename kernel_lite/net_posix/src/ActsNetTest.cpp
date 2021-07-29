@@ -359,7 +359,6 @@ static void* SampleTcpClientTask(void *p)
 static void *TcpServerLoopTask(void *p)
 {
     int srvFd = CommInitTcpServer(STACK_PORT);
-    EXPECT_NE(-1, srvFd);
     if (srvFd == -1)
     {
         LOG("CommInitTcpServer errno = %d\n", errno);
