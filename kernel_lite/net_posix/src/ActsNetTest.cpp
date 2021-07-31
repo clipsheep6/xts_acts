@@ -236,7 +236,7 @@ static void* SampleTcpServerTask(void *p)
 
     WAIT();
     static char bufrec[BUF_SIZE + 1] = {0};
-    memset_s(bufrec, BUF_SIZE, 0, BUF_SIZE);
+    memset_s(bufrec, sizeof(bufrec), 0, BUF_SIZE);
     memset_s(&msg, sizeof(msg), 0, sizeof(msg));
     msg.msg_name = &clnAddr;
     msg.msg_namelen = sizeof(clnAddr);
@@ -331,7 +331,7 @@ static void* SampleTcpClientTask(void *p)
 
     WAIT();
     static char bufrec[BUF_SIZE + 1] = {0};
-    memset_s(bufrec, BUF_SIZE, 0, BUF_SIZE);
+    memset_s(bufrec, sizeof(bufrec), 0, BUF_SIZE);
     memset_s(&msg, sizeof(msg), 0, sizeof(msg));
     msg.msg_name = &clnAddr;
     msg.msg_namelen = sizeof(clnAddr);
@@ -340,7 +340,7 @@ static void* SampleTcpClientTask(void *p)
     iov[0].iov_base = bufrec;
     iov[0].iov_len = sizeof(bufrec);
     ret = recvmsg(clnFd, &msg, 0);
-    if (len * strlen(g_srvMsg) == (unsigned int)ret) {
+    if (len * strlen(g_srvMsg) == (unsigned int)ret && ret >= 0) {
         bufrec[ret] = 0;
         printf("[tcp client]recvmsg, ret=%d, msg[%s]\n", ret, bufrec);
     } else {
@@ -356,18 +356,24 @@ static void* SampleTcpClientTask(void *p)
     return nullptr;
 }
 
-static void* TcpServerLoopTask(void *p)
+static void *TcpServerLoopTask(void *p)
 {
     int srvFd = CommInitTcpServer(STACK_PORT);
     EXPECT_NE(-1, srvFd);
+    if (srvFd == -1)
+    {
+        LOG("CommInitTcpServer errno = %d\n", errno);
+        ADD_FAILURE();
+    }
     int i = 0;
     int clientFds[36];
     struct sockaddr_in clnAddr = {0};
     socklen_t clnAddrLen = sizeof(clnAddr);
-    while (i < 30) {
-        clientFds[i] = accept(srvFd, (struct sockaddr*)&clnAddr, &clnAddrLen);
+    while (i < 30)
+    {
+        clientFds[i] = accept(srvFd, (struct sockaddr *)&clnAddr, &clnAddrLen);
         printf("[***---][tcp server loop]accept <%s:%d>, fd[%d]i[%d]\n", inet_ntoa(clnAddr.sin_addr),
-            ntohs(clnAddr.sin_port), clientFds[i], i);
+               ntohs(clnAddr.sin_port), clientFds[i], i);
         EXPECT_NE(-1, clientFds[i]);
         i++;
     }
