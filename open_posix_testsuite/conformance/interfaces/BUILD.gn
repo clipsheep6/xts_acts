@@ -613,7 +613,7 @@ open_source_suite("ActsOpenPosixTest") {
     "sigprocmask/sigprocmask_8-2.run-test",
     "sigprocmask/sigprocmask_8-3.run-test",
     "sigprocmask/sigprocmask_9-1.run-test",
-    "sigqueue/sigqueue_9-1.run-test",
+    #"sigqueue/sigqueue_9-1.run-test",
     "sigrelse/sigrelse_1-1.run-test",
     "sigrelse/sigrelse_2-1.run-test",
     "sigrelse/sigrelse_3-1.run-test",
