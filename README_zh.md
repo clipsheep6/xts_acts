@@ -256,7 +256,7 @@ OpenHarmony支持如下几种系统类型：
 
 当前使用的测试框架是hctest，hctest测试框架支持使用C语言编写测试用例，是在开源测试框架unity的基础上进行增强和适配。
 
-1.  用例目录规范：测试用例存储到test/xts/acts仓中
+1.  用例目录规范：测试用例存储到test/xts/acts仓中。
 
     ```
     ├── acts
