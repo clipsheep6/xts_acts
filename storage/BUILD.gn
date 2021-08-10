@@ -15,8 +15,6 @@ import("//test/xts/tools/build/suite.gni")
 group("storage") {
   testonly = true
   if (is_standard_system) {
-     deps = [
-        "storagefileiojstest:storagefileio_js_test"
-     ]
+    deps = [ "storagefileiojstest:storagefileio_js_test" ]
   }
 }
