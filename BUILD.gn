@@ -12,6 +12,7 @@
 # limitations under the License.
 
 #import("//hit/build/suite.gni")
+#test_packages
 import("test_packages.gni")
 ohos_test_suite("acts") {
   deps = selected_packages
