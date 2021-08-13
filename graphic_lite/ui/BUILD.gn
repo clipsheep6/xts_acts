@@ -47,7 +47,6 @@ group("uikit_test3") {
     "//test/xts/acts/graphic_lite/ui/ui_repeat_button_posix:ActsUIRepeatButtonTest",
     "//test/xts/acts/graphic_lite/ui/ui_screenshot_posix:ActsUIScreenshotTest",
     "//test/xts/acts/graphic_lite/ui/ui_scroll_view_posix:ActsUIScrollViewTest",
-    "//test/xts/acts/graphic_lite/ui/ui_slider_posix:ActsUISliderTest",
     "//test/xts/acts/graphic_lite/ui/ui_surface_view_posix:ActsUISurfaceViewTest",
     "//test/xts/acts/graphic_lite/ui/ui_swipe_view_posix:ActsUISwipeViewTest",
     "//test/xts/acts/graphic_lite/ui/ui_text_posix:ActsUITextTest",
