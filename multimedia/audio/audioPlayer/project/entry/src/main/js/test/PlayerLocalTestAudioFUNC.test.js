@@ -113,6 +113,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
                 break;
         }
     }
+	//zhushi
     var setCallback = function(mySteps, done) {
         console.info(`case setCallback`);
         audioPlayer.on('dataLoad', () => {
