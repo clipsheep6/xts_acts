@@ -544,7 +544,7 @@ HWTEST_F(ActsMediaRecorderNDKTest, Test_SetAudioSource03, Function | MediumTest 
         int32_t tempSourceId = i;
         int32_t ret = recorder->SetAudioSource(AUDIO_MIC, tempSourceId);
         cout << i << endl;
-        EXPECT_EQ(RET_OK, ret);
+        EXPECT_EQ(RET_OK, ret) ;
     }
     int32_t ret = recorder->SetAudioSource(AUDIO_MIC, g_recoderSourceMaxCount) ;
     EXPECT_EQ(ERR_NOFREE_CHANNEL, ret) ;
