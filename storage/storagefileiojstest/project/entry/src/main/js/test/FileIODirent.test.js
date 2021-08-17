@@ -14,8 +14,18 @@
  */
 
 import fileio from '@system.fileio'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
-import { FILE_CONTENT, prepareFile, nextFileName } from './Common'
+import {
+  describe,
+  it,
+  expect
+}
+from 'deccjsunit/index'
+import {
+  FILE_CONTENT,
+  prepareFile,
+  nextFileName
+}
+from './Common'
 
 describe('fileIOTestDirent', function () {
 
@@ -26,21 +36,21 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_name_000', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_name_000') + 'd'
-    let fpath = dpath + '/f1'
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      let dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent.name !== null).assertTrue()
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-    } catch (e) {
-      console.log("fileio_test_dirent_name_000 has failed for " + e)
-      expect(null).assertFail()
-    }
+      let fpath = dpath + '/f1'
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        let dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent.name !== null).assertTrue()
+          expect(dd.closeSync() !== null)
+          expect(fileio.unlinkSync(fpath) !== null)
+          expect(fileio.rmdirSync(dpath) !== null)
+      } catch (e) {
+        console.log("fileio_test_dirent_name_000 has failed for " + e)
+        expect(null).assertFail()
+      }
   })
 
   /**
@@ -50,23 +60,23 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_block_device_000', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_block_device_000') + 'd'
-    let fpath = dpath + '/f1'
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      let dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      expect(dirent.isBlockDevice() !== null)
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-      return
-    } catch (e) {
-      console.log("fileio_test_dirent_is_block_device_000 has failed for " + e)
-      expect(null).assertFail()
-    }
+      let fpath = dpath + '/f1'
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        let dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          expect(dirent.isBlockDevice() !== null)
+          expect(dd.closeSync() !== null)
+          expect(fileio.unlinkSync(fpath) !== null)
+          expect(fileio.rmdirSync(dpath) !== null)
+          return
+      } catch (e) {
+        console.log("fileio_test_dirent_is_block_device_000 has failed for " + e)
+        expect(null).assertFail()
+      }
   })
 
   /**
@@ -76,23 +86,23 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_block_device_001', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_block_device_001') + 'd'
-    let fpath = dpath + '/f1'
-    let dd
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      dirent.isBlockDevice(-1)
-      expect(null).assertFail()
-    } catch (e) {
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-      console.log("fileio_test_dirent_is_block_device_001 has failed for " + e)
-    }
+      let fpath = dpath + '/f1'
+      let dd
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          dirent.isBlockDevice(-1)
+          expect(null).assertFail()
+      } catch (e) {
+        expect(dd.closeSync() !== null)
+        expect(fileio.unlinkSync(fpath) !== null)
+        expect(fileio.rmdirSync(dpath) !== null)
+        console.log("fileio_test_dirent_is_block_device_001 has failed for " + e)
+      }
   })
 
   /**
@@ -102,22 +112,22 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_character_device_000', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_character_device_000') + 'd'
-    let fpath = dpath + '/f1'
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      let dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      expect(dirent.isCharacterDevice() !== null)
-      expect(dd.closeSync() !== null !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-    } catch (e) {
-      console.log("fileio_test_dirent_is_character_device_000 has failed for " + e)
-      expect(null).assertFail()
-    }
+      let fpath = dpath + '/f1'
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        let dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          expect(dirent.isCharacterDevice() !== null)
+          expect(dd.closeSync() !== null !== null)
+          expect(fileio.unlinkSync(fpath) !== null)
+          expect(fileio.rmdirSync(dpath) !== null)
+      } catch (e) {
+        console.log("fileio_test_dirent_is_character_device_000 has failed for " + e)
+        expect(null).assertFail()
+      }
   })
 
   /**
@@ -127,23 +137,23 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_character_device_001', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_character_device_001') + 'd'
-    let fpath = dpath + '/f1'
-    let dd
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      dirent.isCharacterDevice(-1)
-      expect(null).assertFail()
-    } catch (e) {
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-      console.log("fileio_test_dirent_is_character_device_001 has failed for " + e)
-    }
+      let fpath = dpath + '/f1'
+      let dd
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          dirent.isCharacterDevice(-1)
+          expect(null).assertFail()
+      } catch (e) {
+        expect(dd.closeSync() !== null)
+        expect(fileio.unlinkSync(fpath) !== null)
+        expect(fileio.rmdirSync(dpath) !== null)
+        console.log("fileio_test_dirent_is_character_device_001 has failed for " + e)
+      }
   })
 
   /**
@@ -153,22 +163,22 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_directory_000', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_directory_000') + 'd'
-    let fpath = dpath + '/f1'
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      let dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      expect(dirent.isDirectory() !== null)
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-    } catch (e) {
-      console.log("fileio_test_dirent_is_directory_000 has failed for " + e)
-      expect(null).assertFail()
-    }
+      let fpath = dpath + '/f1'
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        let dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          expect(dirent.isDirectory() !== null)
+          expect(dd.closeSync() !== null)
+          expect(fileio.unlinkSync(fpath) !== null)
+          expect(fileio.rmdirSync(dpath) !== null)
+      } catch (e) {
+        console.log("fileio_test_dirent_is_directory_000 has failed for " + e)
+        expect(null).assertFail()
+      }
   })
 
   /**
@@ -178,23 +188,23 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_directory_001', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_directory_001') + 'd'
-    let fpath = dpath + '/f1'
-    let dd
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      dirent.isDirectory(-1)
-      expect(null).assertFail()
-    } catch (e) {
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-      console.log("fileio_test_dirent_is_directory_001 has failed for " + e)
-    }
+      let fpath = dpath + '/f1'
+      let dd
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          dirent.isDirectory(-1)
+          expect(null).assertFail()
+      } catch (e) {
+        expect(dd.closeSync() !== null)
+        expect(fileio.unlinkSync(fpath) !== null)
+        expect(fileio.rmdirSync(dpath) !== null)
+        console.log("fileio_test_dirent_is_directory_001 has failed for " + e)
+      }
   })
 
   /**
@@ -204,22 +214,22 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_fifo_000', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_fifo_000') + 'd'
-    let fpath = dpath + '/f1'
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      let dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      expect(dirent.isFIFO() !== null)
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-    } catch (e) {
-      console.log("fileio_test_dirent_is_fifo_000 has failed for " + e)
-      expect(null).assertFail()
-    }
+      let fpath = dpath + '/f1'
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        let dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          expect(dirent.isFIFO() !== null)
+          expect(dd.closeSync() !== null)
+          expect(fileio.unlinkSync(fpath) !== null)
+          expect(fileio.rmdirSync(dpath) !== null)
+      } catch (e) {
+        console.log("fileio_test_dirent_is_fifo_000 has failed for " + e)
+        expect(null).assertFail()
+      }
   })
 
   /**
@@ -229,23 +239,23 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_fifo_001', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_fifo_001') + 'd'
-    let fpath = dpath + '/f1'
-    let dd
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      dirent.isFIFO(-1)
-      expect(null).assertFail()
-    } catch (e) {
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-      console.log("fileio_test_dirent_is_fifo_001 has failed for " + e)
-    }
+      let fpath = dpath + '/f1'
+      let dd
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          dirent.isFIFO(-1)
+          expect(null).assertFail()
+      } catch (e) {
+        expect(dd.closeSync() !== null)
+        expect(fileio.unlinkSync(fpath) !== null)
+        expect(fileio.rmdirSync(dpath) !== null)
+        console.log("fileio_test_dirent_is_fifo_001 has failed for " + e)
+      }
   })
 
   /**
@@ -255,22 +265,22 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_file_000', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_file_000') + 'd'
-    let fpath = dpath + '/f1'
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      let dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      expect(dirent.isFile() !== null)
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-    } catch (e) {
-      console.log("fileio_test_dirent_is_file_000 has failed for " + e)
-      expect(null).assertFail()
-    }
+      let fpath = dpath + '/f1'
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        let dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          expect(dirent.isFile() !== null)
+          expect(dd.closeSync() !== null)
+          expect(fileio.unlinkSync(fpath) !== null)
+          expect(fileio.rmdirSync(dpath) !== null)
+      } catch (e) {
+        console.log("fileio_test_dirent_is_file_000 has failed for " + e)
+        expect(null).assertFail()
+      }
   })
 
   /**
@@ -280,23 +290,23 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_file_001', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_file_001') + 'd'
-    let fpath = dpath + '/f1'
-    let dd
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      dirent.isFile(-1)
-      expect(null).assertFail()
-    } catch (e) {
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-      console.log("fileio_test_dirent_is_file_001 has failed for " + e)
-    }
+      let fpath = dpath + '/f1'
+      let dd
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          dirent.isFile(-1)
+          expect(null).assertFail()
+      } catch (e) {
+        expect(dd.closeSync() !== null)
+        expect(fileio.unlinkSync(fpath) !== null)
+        expect(fileio.rmdirSync(dpath) !== null)
+        console.log("fileio_test_dirent_is_file_001 has failed for " + e)
+      }
   })
 
   /**
@@ -306,22 +316,22 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_socket_000', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_socket_000') + 'd'
-    let fpath = dpath + '/f1'
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      let dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      expect(dirent.isSocket() !== null)
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-    } catch (e) {
-      console.log("fileio_test_dirent_is_socket_000 has failed for " + e)
-      expect(null).assertFail()
-    }
+      let fpath = dpath + '/f1'
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        let dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          expect(dirent.isSocket() !== null)
+          expect(dd.closeSync() !== null)
+          expect(fileio.unlinkSync(fpath) !== null)
+          expect(fileio.rmdirSync(dpath) !== null)
+      } catch (e) {
+        console.log("fileio_test_dirent_is_socket_000 has failed for " + e)
+        expect(null).assertFail()
+      }
   })
 
   /**
@@ -331,23 +341,23 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_socket_001', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_socket_001') + 'd'
-    let fpath = dpath + '/f1'
-    let dd
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      dirent.isSocket(-1)
-      expect(null).assertFail()
-    } catch (e) {
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-      console.log("fileio_test_dirent_is_socket_001 has failed for " + e)
-    }
+      let fpath = dpath + '/f1'
+      let dd
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          dirent.isSocket(-1)
+          expect(null).assertFail()
+      } catch (e) {
+        expect(dd.closeSync() !== null)
+        expect(fileio.unlinkSync(fpath) !== null)
+        expect(fileio.rmdirSync(dpath) !== null)
+        console.log("fileio_test_dirent_is_socket_001 has failed for " + e)
+      }
   })
 
   /**
@@ -357,22 +367,22 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_symbolic_link_000', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_symbolic_link_000') + 'd'
-    let fpath = dpath + '/f1'
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      let dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      expect(dirent.isSymbolicLink() !== null)
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-    } catch (e) {
-      console.log("fileio_test_dirent_is_symbolic_link_000 has failed for " + e)
-      expect(null).assertFail()
-    }
+      let fpath = dpath + '/f1'
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        let dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          expect(dirent.isSymbolicLink() !== null)
+          expect(dd.closeSync() !== null)
+          expect(fileio.unlinkSync(fpath) !== null)
+          expect(fileio.rmdirSync(dpath) !== null)
+      } catch (e) {
+        console.log("fileio_test_dirent_is_symbolic_link_000 has failed for " + e)
+        expect(null).assertFail()
+      }
   })
 
   /**
@@ -382,22 +392,23 @@ describe('fileIOTestDirent', function () {
    */
   it('fileio_test_dirent_is_symbolic_link_001', 0, function () {
     let dpath = nextFileName('fileio_test_dirent_is_symbolic_link_001') + 'd'
-    let fpath = dpath + '/f1'
-    let dd
-    try {
-      expect(fileio.mkdirSync(dpath) !== null)
-      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
-      dd = fileio.opendirSync(dpath)
-      expect(dd !== null).assertTrue()
-      let dirent = dd.readSync()
-      expect(dirent !== null).assertTrue()
-      dirent.isSymbolicLink(-1)
-      expect(null).assertFail()
-    } catch (e) {
-      expect(dd.closeSync() !== null)
-      expect(fileio.unlinkSync(fpath) !== null)
-      expect(fileio.rmdirSync(dpath) !== null)
-      console.log("fileio_test_dirent_is_symbolic_link_001 has failed for " + e)
-    }
+      let fpath = dpath + '/f1'
+      let dd
+      try {
+        expect(fileio.mkdirSync(dpath) !== null)
+        expect(prepareFile(fpath, FILE_CONTENT)).assertTrue()
+        dd = fileio.opendirSync(dpath)
+          expect(dd !== null).assertTrue()
+          let dirent = dd.readSync()
+          expect(dirent !== null).assertTrue()
+          dirent.isSymbolicLink(-1)
+          expect(null).assertFail()
+      } catch (e) {
+        expect(dd.closeSync() !== null)
+        expect(fileio.unlinkSync(fpath) !== null)
+        expect(fileio.rmdirSync(dpath) !== null)
+        console.log("fileio_test_dirent_is_symbolic_link_001 has failed for " + e)
+      }
   })
+
 })
