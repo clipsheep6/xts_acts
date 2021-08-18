@@ -1,0 +1,302 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import fileio from '@system.fileio'
+import bundle_mgr from '@ohos.bundle_mgr'
+import file from '@system.file';
+import {
+  describe,
+  it,
+  expect
+}
+from 'deccjsunit/index'
+import {
+  FILE_CONTENT,
+  prepareFile,
+  nextFileName,
+  differentFileName,
+  sleep
+}
+from './Common'
+
+describe('fileStability', function () {
+
+  /**
+   * @tc.number SUB_STORAGE_FileReliability`
+   * @tc.name FileReliability
+   * @tc.desc Function of API, Interface execution 100000 times.
+   */
+  it('fileStability', 0, async function (done) {
+    for (let i = 0; i < 100000; i++) {
+      let promise_mkdir = new Promise(function (resolve, reject) {
+          file.mkdir({
+            uri: 'internal://app/fileStability' + i,
+            success: function () {
+              console.log(i + 'call mkdir success.');
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call mkdir fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          })
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_mkdir.then(function () {
+        console.log("success");
+      })
+
+      let promise_writeText = new Promise(function (resolve, reject) {
+          file.writeText({
+            uri: 'internal://app/fileStability' + i + '/fileStability01' + i,
+            text: 'Text that just for test.',
+            success: function () {
+              console.log(i + 'call writeText success.');
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call writeText fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          });
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_writeText.then(function () {
+        console.log("success");
+      })
+
+      let promise_readText = new Promise(function (resolve, reject) {
+          file.readText({
+            uri: 'internal://app/fileStability' + i + '/fileStability01' + i,
+            success: function (data) {
+              console.log(i + 'call readText success: ' + data.text);
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call readText fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          });
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_readText.then(function () {
+        console.log("success");
+      })
+
+      let promise_access = new Promise(function (resolve, reject) {
+          file.access({
+            uri: 'internal://app/fileStability' + i + '/fileStability01' + i,
+            success: function () {
+              console.log(i + 'call access success.');
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call access fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          });
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_access.then(function () {
+        console.log("success");
+      })
+
+      let promise_get = new Promise(function (resolve, reject) {
+          file.get({
+            uri: 'internal://app/fileStability' + i + '/fileStability01' + i,
+            success: function (data) {
+              console.log(i + 'call readText success: ' + data.uri);
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call callback fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          });
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_get.then(function () {
+        console.log("success");
+      })
+
+      let promise_list = new Promise(function (resolve, reject) {
+          file.list({
+            uri: 'internal://app/fileStability' + i,
+            success: function (data) {
+              console.log(i + 'call readText success: ' + data.fileList);
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call fail callback fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          });
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_list.then(function () {
+        console.log("success");
+      })
+
+      let promise_copy = new Promise(function (resolve, reject) {
+          file.copy({
+            srcUri: 'internal://app/fileStability' + i + '/fileStability01' + i,
+            dstUri: 'internal://app/fileStability' + i + '/fileStability02' + i,
+            success: function (uri) {
+              console.log(i + 'call success copy success uri: ' + uri);
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call fail copy fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          });
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_copy.then(function () {
+        console.log("success");
+      })
+
+      let promise_move = new Promise(function (resolve, reject) {
+          file.move({
+            srcUri: 'internal://app/fileStability' + i + '/fileStability01' + i,
+            dstUri: 'internal://app/fileStability01' + i,
+            success: function (uri) {
+              console.log(i + 'call success move success. uri: ' + uri);
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call fail move fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          });
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_move.then(function () {
+        console.log("success");
+      })
+      file.delete({
+        uri: 'internal://app/fileStability01' + i,
+        success: function () {
+          console.log(i + 'call delete success.');
+          done();
+        },
+        fail: function (data, code) {
+          console.log(i + 'call fail delete fail, code: ' + code + ', data: ' + data);
+          expect(null).assertFail();
+        },
+      });
+      file.delete({
+        uri: 'internal://app/fileStability' + i + '/fileStability02' + i,
+        success: function () {
+          console.log(i + 'call delete success.');
+          done();
+        },
+        fail: function (data, code) {
+          console.log(i + 'call fail delete fail, code: ' + code + ', data: ' + data);
+          expect(null).assertFail();
+        },
+      });
+
+      let promise_writeArrayBuffer = new Promise(function (resolve, reject) {
+          let buf = new Uint8Array([48, 49, 50, 51, 65, 66, 67, 68, 32, 33]);
+          file.writeArrayBuffer({
+            uri: 'internal://app/fileStability' + i + '/fileStability02' + i,
+            buffer: buf,
+            success: function () {
+              console.log(i + 'call writeArrayBuffer success.');
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call fail writeArrayBuffer fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          });
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_writeArrayBuffer.then(function () {
+        console.log("success");
+      })
+
+      let promise_readArrayBuffer = new Promise(function (resolve, reject) {
+          file.readArrayBuffer({
+            uri: 'internal://app/fileStability' + i + '/fileStability02' + i,
+            success: function (data) {
+              console.log(i + 'call readArrayBuffer success: ' + data.buffer);
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call fail readArrayBuffer fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          });
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_readArrayBuffer.then(function () {
+        console.log("success");
+      })
+      file.delete({
+        uri: 'internal://app/fileStability' + i + '/fileStability02' + i,
+        success: function () {
+          console.log(i + 'call delete success.');
+          done();
+        },
+        fail: function (data, code) {
+          console.log(i + 'call fail delete fail, code: ' + code + ', data: ' + data);
+          expect(null).assertFail();
+        },
+      });
+      let promise_rmdir = new Promise(function (resolve, reject) {
+          file.rmdir({
+            uri: 'internal://app/fileStability' + i,
+            recursive: true,
+            success: function () {
+              console.log(i + 'call rmdir success.');
+              done();
+            },
+            fail: function (data, code) {
+              console.log(i + 'call fail rmdir fail, code: ' + code + ', data: ' + data);
+              expect(null).assertFail();
+            },
+          });
+          setTimeout(function () {
+            resolve("success!");
+          }, 250);
+        });
+      promise_rmdir.then(function () {
+        console.log("success");
+      })
+
+    }
+  })
+})

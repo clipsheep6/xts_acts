@@ -12,15 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import fileio from '@system.fileio';
+import bundle_mgr from '@ohos.bundle_mgr'
 import file from '@system.file';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import {
-  FILE_CONTENT, prepareFile, fileName, randomString, sleep,
-  cacheFileName, prepareEmptyFile, nextFileName
-} from './Common'
-
+  describe,
+  beforeAll,
+  beforeEach,
+  afterEach,
+  afterAll,
+  it,
+  expect
+}
+from 'deccjsunit/index'
+import {
+  FILE_CONTENT,
+  prepareFile,
+  fileName,
+  randomString,
+  cacheFileName,
+  prepareEmptyFile,
+  nextFileName
+}
+from './Common'
 
 describe('fileTest', function () {
 
@@ -31,19 +45,19 @@ describe('fileTest', function () {
    */
   it('File_Delete_001', 0, async function (done) {
     let fpath = fileName("File_Delete_001")
-    prepareFile(fpath, "hello")
-    file.delete({
-      uri: 'internal://app/File_Delete_001',
-      success: function () {
-        console.log('File_Delete_001 call delete success');
-        done();
-      },
-      fail: function (data, code) {
-        console.log('File_Delete_001 call delete fail, code: ' + code + ', data: ' + data);
-        expect(null).assertFail();
-        done();
-      },
-    });
+      prepareFile(fpath, "hello")
+      file.delete({
+        uri: 'internal://app/File_Delete_001',
+        success: function () {
+          console.log('File_Delete_001 call delete success');
+          done();
+        },
+        fail: function (data, code) {
+          console.log('File_Delete_001 call delete fail, code: ' + code + ', data: ' + data);
+          expect(null).assertFail();
+          done();
+        },
+      });
   })
 
   /**
@@ -94,6 +108,7 @@ describe('fileTest', function () {
         done();
       },
     });
+
   })
 
   /**
@@ -334,19 +349,19 @@ describe('fileTest', function () {
    * @tc.desc Different types of strings for text.
    */
   it('File_writeText_003', 0, async function (done) {
-    let txt = 'hello 你好 مرحبا こんにちは 안녕하세요.'
-    file.writeText({
-      uri: 'internal://app/File_writeText_003',
-      text: txt,
-      success: function () {
-        console.log('File_writeText_003 call writeText success.');
-        done();
-      },
-      fail: function (data, code) {
-        console.log('File_writeText_003 call writeText fail, code: ' + code + ', data: ' + data);
-        expect(null).assertFail();
-      },
-    });
+    let txt = 'hello 你好 ????? こんにちは ?????.'
+      file.writeText({
+        uri: 'internal://app/File_writeText_003',
+        text: txt,
+        success: function () {
+          console.log('File_writeText_003 call writeText success.');
+          done();
+        },
+        fail: function (data, code) {
+          console.log('File_writeText_003 call writeText fail, code: ' + code + ', data: ' + data);
+          expect(null).assertFail();
+        },
+      });
     file.readText({
       uri: 'internal://app/File_writeText_003',
       success: function (data) {
@@ -669,6 +684,7 @@ describe('fileTest', function () {
         done();
       },
     });
+
   })
 
   /**
@@ -989,18 +1005,18 @@ describe('fileTest', function () {
    */
   it('File_writeArrayBuffer_009', 0, async function (done) {
     let buf = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8])
-    file.writeArrayBuffer({
-      uri: 'internal://app/File_writeArrayBuffer_009',
-      buffer: buf,
-      success: function () {
-        console.log('File_writeArrayBuffer_009 call success');
-        done();
-      },
-      fail: function (data, code) {
-        console.log('File_writeArrayBuffer_009 fail');
-        expect(null).assertFail();
-      },
-    });
+      file.writeArrayBuffer({
+        uri: 'internal://app/File_writeArrayBuffer_009',
+        buffer: buf,
+        success: function () {
+          console.log('File_writeArrayBuffer_009 call success');
+          done();
+        },
+        fail: function (data, code) {
+          console.log('File_writeArrayBuffer_009 fail');
+          expect(null).assertFail();
+        },
+      });
     file.readArrayBuffer({
       uri: 'internal://app/File_writeArrayBuffer_009',
       success: function (data) {
@@ -1377,20 +1393,20 @@ describe('fileTest', function () {
    */
   it('File_read_array_buffer_004', 0, async function (done) {
     let fpath = fileName('File_read_array_buffer_004')
-    prepareFile(fpath, FILE_CONTENT)
-    file.readArrayBuffer({
-      uri: fpath,
-      position: 100,
-      success: function (data) {
-        console.log('File_read_array_buffer_004 call readArrayBuffer success: ' + data.buffer);
-        expect(null).assertFail();
-      },
-      fail: function (data, code) {
-        console.log('File_read_array_buffer_004 , code: ' + code + ', data: ' + data);
-        expect(code == 202).assertTrue();
-        done();
-      },
-    });
+      prepareFile(fpath, FILE_CONTENT)
+      file.readArrayBuffer({
+        uri: fpath,
+        position: 100,
+        success: function (data) {
+          console.log('File_read_array_buffer_004 call readArrayBuffer success: ' + data.buffer);
+          expect(null).assertFail();
+        },
+        fail: function (data, code) {
+          console.log('File_read_array_buffer_004 , code: ' + code + ', data: ' + data);
+          expect(code == 202).assertTrue();
+          done();
+        },
+      });
   })
 
   /**
@@ -1400,20 +1416,20 @@ describe('fileTest', function () {
    */
   it('File_read_array_buffer_005', 0, async function (done) {
     let fpath = fileName('File_read_array_buffer_005')
-    prepareFile(fpath, FILE_CONTENT)
-    file.readArrayBuffer({
-      uri: fpath,
-      length: -1,
-      success: function (data) {
-        console.log('File_read_array_buffer_005 call readArrayBuffer success: ' + data.buffer);
-        expect(null).assertFail();
-      },
-      fail: function (data, code) {
-        console.log('File_read_array_buffer_005 , code: ' + code + ', data: ' + data);
-        expect(code == 202).assertTrue();
-        done();
-      },
-    })
+      prepareFile(fpath, FILE_CONTENT)
+      file.readArrayBuffer({
+        uri: fpath,
+        length: -1,
+        success: function (data) {
+          console.log('File_read_array_buffer_005 call readArrayBuffer success: ' + data.buffer);
+          expect(null).assertFail();
+        },
+        fail: function (data, code) {
+          console.log('File_read_array_buffer_005 , code: ' + code + ', data: ' + data);
+          expect(code == 202).assertTrue();
+          done();
+        },
+      })
   })
 
   /**
@@ -1463,29 +1479,29 @@ describe('fileTest', function () {
    */
   it('File_read_array_buffer_008', 0, async function (done) {
     let buf = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8])
-    file.writeArrayBuffer({
-      uri: 'internal://app/File_read_array_buffer_008',
-      buffer: buf,
-      success: function () {
-        console.log('File_read_array_buffer_008 call success');
-        done();
-      },
-      fail: function (data, code) {
-        console.log('File_read_array_buffer_008 fail, code: ' + code + ', data: ' + data);
-        expect(null).assertFail();
-      },
-    })
-    file.readArrayBuffer({
-      uri: 'internal://app/File_read_array_buffer_008',
-      success: function (data) {
-        console.log('File_read_array_buffer_008 call success ' + data.buffer);
-        done();
-      },
-      fail: function (data, code) {
-        console.log('File_read_array_buffer_008 fail');
-        expect(null).assertFail();
-      },
-    });
+      file.writeArrayBuffer({
+        uri: 'internal://app/File_read_array_buffer_008',
+        buffer: buf,
+        success: function () {
+          console.log('File_read_array_buffer_008 call success');
+          done();
+        },
+        fail: function (data, code) {
+          console.log('File_read_array_buffer_008 fail, code: ' + code + ', data: ' + data);
+          expect(null).assertFail();
+        },
+      })
+      file.readArrayBuffer({
+        uri: 'internal://app/File_read_array_buffer_008',
+        success: function (data) {
+          console.log('File_read_array_buffer_008 call success ' + data.buffer);
+          done();
+        },
+        fail: function (data, code) {
+          console.log('File_read_array_buffer_008 fail');
+          expect(null).assertFail();
+        },
+      });
     file.delete({
       uri: 'internal://app/File_read_array_buffer_008',
       success: function () {
@@ -1626,18 +1642,18 @@ describe('fileTest', function () {
    */
   it('File_access_003', 0, async function (done) {
     let fpath = fileName('File_access_003')
-    file.access({
-      uri: fpath,
-      success: function () {
-        console.log('File_access_003 call access success.');
-        expect(null).assertFail();
-      },
-      fail: function (data, code) {
-        console.log('File_access_003 , code: ' + code + ', data: ' + data);
-        expect(code == 202).assertTrue();
-        done();
-      },
-    });
+      file.access({
+        uri: fpath,
+        success: function () {
+          console.log('File_access_003 call access success.');
+          expect(null).assertFail();
+        },
+        fail: function (data, code) {
+          console.log('File_access_003 , code: ' + code + ', data: ' + data);
+          expect(code == 202).assertTrue();
+          done();
+        },
+      });
   })
 
   /**
@@ -1708,6 +1724,7 @@ describe('fileTest', function () {
         done();
       },
     });
+
   })
 
   /**
@@ -2075,14 +2092,38 @@ describe('fileTest', function () {
    */
   it('File_rmdir_003', 0, async function (done) {
     file.mkdir({
-      uri: 'internal://app/test/File_rmdir_003',
+      uri: 'internal://app/test/File_rmdir_003/File_rmdir_003_1/File_rmdir_003_2',
       recursive: true,
       success: function () {
         console.log('File_rmdir_003 mkdir success.');
         done();
       },
       fail: function (data, code) {
-        console.log('File_rmdir_003 fail');
+        console.log('File_rmdir_003 fail, code: ' + code + ', data: ' + data);
+        expect(null).assertFail();
+      },
+    });
+    file.mkdir({
+      uri: 'internal://app/test/File_rmdir_003_1/File_rmdir_003_1/File_rmdir_003_2',
+      recursive: true,
+      success: function () {
+        console.log('File_rmdir_003 mkdir success.');
+        done();
+      },
+      fail: function (data, code) {
+        console.log('File_rmdir_003 fail, code: ' + code + ', data: ' + data);
+        expect(null).assertFail();
+      },
+    });
+    file.mkdir({
+      uri: 'internal://app/test/File_rmdir_003_2/File_rmdir_003_1/File_rmdir_003_2',
+      recursive: true,
+      success: function () {
+        console.log('File_rmdir_003 mkdir success.');
+        done();
+      },
+      fail: function (data, code) {
+        console.log('File_rmdir_003 fail, code: ' + code + ', data: ' + data);
         expect(null).assertFail();
       },
     });
@@ -2192,7 +2233,7 @@ describe('fileTest', function () {
     file.rmdir({
       uri: 'internal://cache/File_rmdir_007d',
       success: function () {
-        console.log('File_rmdir_007 mkdir success');
+        console.log('File_rmdir_007 rmdir success');
         done();
       },
       fail: function (data, code) {
@@ -2322,19 +2363,19 @@ describe('fileTest', function () {
     expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
     let dstFpath = cacheFileName('File_Move_003');
     let srcUri = 'internal://app/File_Move_003'
-    let dstUri = 'internal://app/cache/File_Move_003'
-    file.move({
-      srcUri: srcUri,
-      dstUri: dstUri,
-      success: function () {
-        console.log('File_Move_003 call move success.');
-        done();
-      },
-      fail: function (data, code) {
-        console.log('File_Move_003 , code: ' + code + ', data: ' + data);
-        expect(null).assertFail();
-      },
-    });
+      let dstUri = 'internal://app/cache/File_Move_003'
+      file.move({
+        srcUri: srcUri,
+        dstUri: dstUri,
+        success: function () {
+          console.log('File_Move_003 call move success.');
+          done();
+        },
+        fail: function (data, code) {
+          console.log('File_Move_003 , code: ' + code + ', data: ' + data);
+          expect(null).assertFail();
+        },
+      });
   })
 
   /**
@@ -2367,20 +2408,20 @@ describe('fileTest', function () {
    */
   it('File_Move_005', 0, async function (done) {
     let srcDpath = fileName('File_Move_005d')
-    expect(fileio.mkdirSync(srcDpath) !== null).assertTrue()
-    file.move({
-      srcUri: 'internal://app/File_Move_005d',
-      dstUri: 'internal://app/cache/File_Move_005d',
-      success: function () {
-        console.log('File_Move_005 call move success.');
-        expect(null).assertFail();
-      },
-      fail: function (data, code) {
-        console.log('File_Move_005 , code: ' + code + ', data: ' + data);
-        expect(code == 300).assertTrue();
-        done();
-      },
-    });
+      expect(fileio.mkdirSync(srcDpath) !== null).assertTrue()
+      file.move({
+        srcUri: 'internal://app/File_Move_005d',
+        dstUri: 'internal://app/cache/File_Move_005d',
+        success: function () {
+          console.log('File_Move_005 call move success.');
+          expect(null).assertFail();
+        },
+        fail: function (data, code) {
+          console.log('File_Move_005 , code: ' + code + ', data: ' + data);
+          expect(code == 300).assertTrue();
+          done();
+        },
+      });
   })
 
   /**
@@ -2606,7 +2647,6 @@ describe('fileTest', function () {
     let srcFpath = fileName('File_Copy_001');
     let dstFpath = cacheFileName('File_Copy_001');
     expect(prepareFile(srcFpath, 'test.') !== null).assertTrue();
-    sleep(10);
     file.copy({
       srcUri: 'internal://app/File_Copy_001',
       dstUri: 'internal://app/cache/File_Copy_001',
@@ -2866,10 +2906,10 @@ describe('fileTest', function () {
    * @tc.number SUB_STORAGE_File_Copy_0900
    * @tc.name File_Copy_009
    * @tc.desc Function of API, same path.
-    */
+   */
   it('File_Copy_009', 0, async function (done) {
     let srcFpath = fileName('File_Copy_009')
-    expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
+      expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
     file.copy({
       srcUri: 'internal://app/File_Copy_009',
       dstUri: 'internal://app/File_Copy_009',
@@ -3156,18 +3196,18 @@ describe('fileTest', function () {
    */
   it('File_List_006', 0, async function (done) {
     let dpath = fileName('File_List_006') + 'd'
-    file.list({
-      uri: dpath,
-      success: function (data) {
-        console.log('File_List_006 call list success.' + data.fileList);
-        expect(null).assertFail();
-      },
-      fail: function (data, code) {
-        console.log('File_List_006 , code: ' + code + ', data: ' + data);
-        expect(code == 202).assertTrue();
-        done();
-      },
-    });
+      file.list({
+        uri: dpath,
+        success: function (data) {
+          console.log('File_List_006 call list success.' + data.fileList);
+          expect(null).assertFail();
+        },
+        fail: function (data, code) {
+          console.log('File_List_006 , code: ' + code + ', data: ' + data);
+          expect(code == 202).assertTrue();
+          done();
+        },
+      });
   })
 
   /**
@@ -3414,10 +3454,10 @@ describe('fileTest', function () {
    */
   it('File_Get_004', 0, async function (done) {
     let dpath = fileName('File_Get_004d')
-    let ddpath = dpath + '/File_Get_004dd'
-    let fpath = dpath + '/File_Get_004f'
-    let ffpath = ddpath + '/File_Get_004ff'
-    expect(fileio.mkdirSync(dpath) !== null).assertTrue();
+      let ddpath = dpath + '/File_Get_004dd'
+      let fpath = dpath + '/File_Get_004f'
+      let ffpath = ddpath + '/File_Get_004ff'
+      expect(fileio.mkdirSync(dpath) !== null).assertTrue();
     expect(fileio.mkdirSync(ddpath) !== null).assertTrue();
     expect(prepareFile(fpath, FILE_CONTENT) !== null).assertTrue();
     expect(prepareFile(ffpath, FILE_CONTENT) !== null).assertTrue();
