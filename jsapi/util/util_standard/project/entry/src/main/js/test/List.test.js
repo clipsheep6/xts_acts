@@ -1,0 +1,1 @@
+require('./TestEncoder.test.js')
