@@ -4,7 +4,7 @@
 本套测试代码，提供了3个用例
 
 标题 | 用例名称 | 测试步骤 | 预期结果
--- | -- | -- | -- | --
+-- | -- | -- | -- 
 用例1 | 接口基本功能测试 | 按默认条件编译出一个版本，刷机上电运行，检查日志 | 用例全部通过。并检查是否可搜到关键字：this is the first run of test after flash
 用例2 | 数据重启可用测试 | 用例1执行完后，重启设备，检查日志 | 用例全部通过。并检查是否可搜到关键字：this is not the first run of test after flash
 用例3 | token持久化测试 | 打开 TOKEN_PERSIST_TEST 宏（去注释BUILD.gn里面第37行defines）进行编译，重新刷机上电运行，检查日志 | 用例全部通过。并检查是否可搜到关键字：this is the first run of test after flash
