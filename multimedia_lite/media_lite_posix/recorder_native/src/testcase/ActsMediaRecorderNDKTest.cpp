@@ -143,12 +143,12 @@ HWTEST_F(ActsMediaRecorderNDKTest, Test_SetVideoSource03, Function | MediumTest 
  */
 HWTEST_F(ActsMediaRecorderNDKTest, Test_SetVideoSource04, Function | MediumTest | Level0)
 {
-    cout << "Test_SetVideoSource01 starting..." << endl;
+    cout << "Test_SetVideoSource04 starting..." << endl;
     Recorder *recorder = new Recorder();
     int32_t sourceId = 0;
     int32_t ret = recorder->SetVideoSource(VIDEO_SOURCE_BUTT, sourceId);
     EXPECT_EQ(ERR_INVALID_PARAM, ret);
-    cout << "Test_SetVideoSource01 ending..." << endl;
+    cout << "Test_SetVideoSource04 ending..." << endl;
     delete recorder;
     recorder = NULL;
 }
@@ -160,7 +160,7 @@ HWTEST_F(ActsMediaRecorderNDKTest, Test_SetVideoSource04, Function | MediumTest 
  */
 HWTEST_F(ActsMediaRecorderNDKTest, Test_SetVideoSource05, Function | MediumTest | Level0)
 {
-    cout << "Test_SetVideoSource01 starting..." << endl;
+    cout << "Test_SetVideoSource05 starting..." << endl;
     Recorder *recorder = new Recorder();
     for (int32_t i = 0; i < g_recoderSourceMaxCount; i++) {
         int32_t temp = i;
@@ -169,7 +169,7 @@ HWTEST_F(ActsMediaRecorderNDKTest, Test_SetVideoSource05, Function | MediumTest 
     }
     int32_t ret = recorder->SetVideoSource(VIDEO_SOURCE_SURFACE_ES, g_recoderSourceMaxCount);
     EXPECT_EQ(ERR_NOFREE_CHANNEL, ret);
-    cout << "Test_SetVideoSource01 ending..." << endl;
+    cout << "Test_SetVideoSource05 ending..." << endl;
     delete recorder;
     recorder = NULL;
 }
