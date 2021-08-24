@@ -38,9 +38,8 @@
 ## 编译说明
 
 ### 第一步
-打开当前路径BUILD.gn，修改第33行为oem_auth_config.h和oem_auth_result_storage.h 实际所在路径。
-默认为：`"//vendor/kitframework/include/"`，asr、bl等芯片平台适用。
-
+打开当前路径BUILD.gn，修改第33行为oem_auth_config.h和oem_auth_result_storage.h 实际所在路径。  
+默认为：`"//vendor/kitframework/include/"`，asr、bl等芯片平台适用。  
 Hi3861芯片平台可能需要修改为：`"//vendor/hisilicon/hi3861/hals/utils/token/include"`
 
 ### 第二步
@@ -66,12 +65,12 @@ Hi3861芯片平台可能需要修改为：`"//vendor/hisilicon/hi3861/hals/utils
 ```
 
 ### 第三步
-按常规XTS测试的执行方式，修改当前芯片平台的链接方式，确保 **ActsKitFwkApiTest** 这个静态库会链接进最终刷机镜像里。这一步，不同芯片平台方法完全不一样，需自行处理
-
-如果是Hi3861，无需额外配置
-
-如果是asr平台，需在 device/asr/asr582x/BUILD.gn 里面配置：搜索`asr582x_xts_enable`，在ldflags里面增加一行： `"-lmodule_ActsKitFwkApiTest"`
-
+按常规XTS测试的执行方式，修改当前芯片平台的链接方式，确保 **ActsKitFwkApiTest** 这个静态库会链接进最终刷机镜像里。这一步，不同芯片平台方法不同。  
+如果是Hi3861，默认工程配置已添加所有XTS lib库，无需额外配置。  
+如果是asr平台，需修改device/asr/asr582x/BUILD.gn：搜索`asr582x_xts_enable`，在`ldflags`里面增加一行： `"-lmodule_ActsKitFwkApiTest"`
 
 ### 第四步
+请确保这个提交已合入当前工程：[https://gitee.com/openharmony/xts_tools/commit/b41caca330471816a18ac24a49f955ad761b2e23](https://gitee.com/openharmony/xts_tools/commit/b41caca330471816a18ac24a49f955ad761b2e23)
+
+### 第五步
 编译，刷机，运行看日志
