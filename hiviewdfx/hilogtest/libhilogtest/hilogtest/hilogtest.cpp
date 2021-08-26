@@ -1518,3 +1518,80 @@ HWTEST_F(hilogtest, log_clear_illegal2, Function|MediumTest|Level4)
     expect = "clear log operation error!\n";
     EXPECT_STREQ(result.c_str(), expect.c_str());
 }
+/*
+ * @tc.name none_compress compression
+ * @tc.number DFX_DFT_HilogCPP_2041
+ * @tc.desc none_compress compression
+*/
+HWTEST_F(hilogtest, Persister_none_compress_persist0, Function|MediumTest|Level2)
+{
+    string cmdResult;
+    CleanCmd();
+    CmdRun("rm /data/log/hilog/hilog*", cmdResult);
+
+    std::string startCmd = gHilogtoolExecutable + "-w start -l 66k -m none";
+    int i = 0; 
+    LogType type = LOG_APP;
+    CmdRun(startCmd, cmdResult);
+    cout << cmdResult << endl;
+    while (i++ < 1000) {
+        usleep(100);
+        HILOG_DEBUG(type, g_logContent.c_str(), i, 1.00001, 2.333333, "sse", 'a');
+    }
+    sleep(30); 
+    string persisterStopCmd = gHilogtoolExecutable + "-w stop";
+    CmdRun(persisterStopCmd, cmdResult);
+    cout << cmdResult << endl;
+    CmdRun("ls -l  /data/log/hilog/", cmdResult);
+    cout << cmdResult << endl;
+    char saveFile[] = "hilog_data_none_persist.txt";
+    CmdRun("cat /data/log/hilog/hilog.* > hilog_data_none_persist.txt", cmdResult);
+    string hilogInfo = ReadFile(saveFile);
+    bool result = false;
+    std::vector<std::string> expect = {g_commonContent};
+    if (hilogInfo != "") {
+        result = CheckInfo(expect, hilogInfo);
+    } else {
+        std::cout << "Hilogtool_persist error";
+    }
+    ASSERT_TRUE(true == result);
+}
+/*
+ * @tc.name zlib stream compression
+ * @tc.number DFX_DFT_HilogCPP_2041
+ * @tc.desc zlib stream compression
+*/
+HWTEST_F(hilogtest, Persister_zlib_persist0, Function|MediumTest|Level2)
+{
+    string cmdResult;
+    CleanCmd();
+    CmdRun("rm /data/log/hilog/hilog*", cmdResult);
+
+    std::string startCmd = gHilogtoolExecutable + "-w start -l 66k";
+    int i = 0; 
+    LogType type = LOG_APP;
+    CmdRun(startCmd, cmdResult);
+    cout << cmdResult << endl;
+    while (i++ < 1000) {
+        usleep(100);
+        HILOG_DEBUG(type, g_logContent.c_str(), i, 1.00001, 2.333333, "sse", 'a');
+    }
+    sleep(30); 
+    string persisterStopCmd = gHilogtoolExecutable + "-w stop";
+    CmdRun(persisterStopCmd, cmdResult);
+    cout << cmdResult << endl;
+    CmdRun("ls -l  /data/log/hilog/", cmdResult);
+    cout << cmdResult << endl;
+    char saveFile[] = "hilog_data_zlib_persist.txt";
+    CmdRun("gunzip /data/log/hilog/hilog.*.gz", cmdResult);
+    CmdRun("cat /data/log/hilog/hilog.* > hilog_data_zlib_persist.txt", cmdResult);
+    string hilogInfo = ReadFile(saveFile);
+    bool result = false;
+    std::vector<std::string> expect = {g_commonContent};
+    if (hilogInfo != "") {
+        result = CheckInfo(expect, hilogInfo);
+    } else {
+        std::cout << "Hilogtool_persist error";
+    }
+    ASSERT_TRUE(true == result);
+}
