@@ -51,20 +51,20 @@ describe('AudioManager.test.js', async function () {
     })
 	
 	/* *
-                * @tc.number    : SUB_AUDIO_MANAGER_GetManager_001
-                * @tc.name      : GetManager - Media - Promise
-                * @tc.desc      : GetManager isNull
+                * @tc.number    : SUB_AUDIO_MANAGER_getAudioManager_001
+                * @tc.name      : getAudioManager
+                * @tc.desc      : GetManager is not null
                 * @tc.size      : MEDIUM
                 * @tc.type      : Function
                 * @tc.level     : Level 0
             */
-    it('SUB_AUDIO_MANAGER_GetManager_001', 0, function (done) {
+    it('SUB_AUDIO_MANAGER_getAudioManager_001', 0, function (done) {
 		if(audioManager!=null){
-		   console.log('AudioManagerTest: audio.getAudioManager Promise: PASS :');
+		   console.log('AudioManagerTest: audio.getAudioManager: PASS');
            expect(true).assertTrue();
 		}
 		if(audioManager==null){
-		   console.log('AudioManagerTest: audio.getAudioManager Promise: FAIL :');
+		   console.log('AudioManagerTest: audio.getAudioManager: FAIL');
            expect(false).assertTrue();
 		}
         done();
