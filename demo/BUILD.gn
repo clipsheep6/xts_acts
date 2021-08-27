@@ -17,7 +17,7 @@ group("demo") {
   testonly = true
   if (is_standard_system) {
      deps = [
-        "hjsunit_sample:hjs_demo_test",
+        "hjsunit_sample:hjs_demo_test1",
      ]
   }
 }
