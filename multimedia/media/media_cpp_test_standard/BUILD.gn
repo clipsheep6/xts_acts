@@ -33,6 +33,7 @@ ohos_moduletest_suite("ActsMediaCppStandardTest") {
     "player/src/function/ActsPlayerFuncAsyncTest.cpp",
     "player/src/function/ActsPlayerStateTest.cpp",
     "player/src/function/ActsPlayerStateAsyncTest.cpp",
+    "player/src/api/ActsPlayerAPITest.cpp",
   ]
   include_dirs = [
       "include",
