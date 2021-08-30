@@ -259,6 +259,8 @@ describe('appInfoTest', function () {
      */
     it('brightness_test', 0, function () {
         brightness.setValue(10);
+        brightness.setValue(0);
+        brightness.setValue(255);
         expect(0).assertEqual('0')
     })
 })
