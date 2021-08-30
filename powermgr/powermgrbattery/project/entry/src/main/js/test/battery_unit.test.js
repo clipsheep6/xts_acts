@@ -32,7 +32,7 @@ describe('appInfoTest', function () {
         expect(batterySoc >= -1 && batterySoc <= 100).assertTrue()
     })
 
-    06-+5/**
+  /**
      * @tc.number battery_manager_js_0200
      * @tc.name charging_status_test
      * @tc.desc Battery charging kit
@@ -66,7 +66,7 @@ describe('appInfoTest', function () {
     })
 
     /**
-     * @t🐎c.number battery_manager_js_0500
+     * @tc.number battery_manager_js_0500
      * @tc.name voltage_test
      * @tc.desc Obtaining the Voltage Interface KIT
      */
