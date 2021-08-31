@@ -1,5 +1,7 @@
 <div class="container">
-    <text class="title">
-        {{ $t('strings.hello') }} {{ title }}
-    </text>
+<!--    <body style="background-color:black;"></body>-->
+    <text class="title" style="color:black">Audio FW</text>
+    
+    <input type ="button" value ="JS Test Script" style ="width: 400px; margin-right: 200px;"
+           onclick ="jstestsuite()" ></input>
 </div>
