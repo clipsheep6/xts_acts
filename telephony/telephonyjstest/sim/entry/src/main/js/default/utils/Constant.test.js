@@ -1,0 +1,62 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+export const OTHER_ABNORMAL = -2
+export const OPERATOR_NUM_LENGTH = 5
+
+export const timesValue = {
+    TIME_SPAN : 5,
+    TEST_RUN_TIME : 10
+}
+
+export const simSlotId = {
+    SLOTID_0 : 0,
+    SLOTID_1 : 1,
+    SLOTID_2 : 2,
+    SLOTID_3 : 3,
+    SLOTID_4 : 4
+}
+
+export const lockSwitch = {
+    CLOSE : 0,
+    OPEN : 1
+}
+
+export const remainValue = {
+    REMAIN_0 : 0,
+    REMAIN_1 : 1,
+    REMAIN_2 : 2,
+    REMAIN_3 : 3,
+    REMAIN_4 : 4,
+    REMAIN_5 : 5,
+    REMAIN_6 : 6,
+    REMAIN_7 : 7,
+    REMAIN_8 : 8,
+    REMAIN_9 : 9,
+    REMAIN_10 : 10
+}
+
+export const operatorCode = {
+    MOBILE_CODE_1 : "46000",
+    MOBILE_CODE_2 : "46002",
+    MOBILE_CODE_3 : "46004",
+    MOBILE_CODE_4 : "46007",
+    UNICOM_CODE_1 : "46004",
+    UNICOM_CODE_2 : "46006",
+    UNICOM_CODE_3 : "46009",
+    TELECOM_CODE_1 : "46003",
+    TELECOM_CODE_2 : "46005",
+    TELECOM_CODE_3 : "46011",
+}
