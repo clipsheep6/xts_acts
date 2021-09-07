@@ -19,7 +19,7 @@
         }
     ],
     "driver": {
-        "type": "CppTestLite",
+        "type": "CppTestLite", 
         "execute": "/test_root/graphic/ActsGraphicInterfaceTest.bin"
     }
 }
