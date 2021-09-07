@@ -15,10 +15,9 @@
 import Subscriber from '@ohos.commonevent'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
-describe('ActsSubscriberOrderedTest', function () {
-    console.info("===========ActsSubscriberOrderedTest start====================>");
-    var num = 0, num2 = 0, num3 = 0;
-    var CommonEventSubscriber;
+describe('ActsSubscriberTestOrder', function () {
+    console.info("===========ActsSubscriberTestOrder start====================>");
+    var num = 0, num2 = 0;
     var CommonEventSubscriber0100;
     var CommonEventSubscriber0101;
     var CommonEventSubscriber0200_1;
@@ -28,46 +27,13 @@ describe('ActsSubscriberOrderedTest', function () {
     var CommonEventSubscriber0400_1;
     var CommonEventSubscriber0400_2;
 
+    async function Unsubscriber2_()
+    {
+        await Subscriber.unsubscribe(CommonEventSubscriber0200_1,unsubscribeCallback);
+    }
+
     function PublishCallback(err) {
         console.info("==========================>PublishCallback=======================>");
-    }
-
-    function setCodeCallBack(err) {
-        console.info("==========================>setCodeCallBack=======================>");
-    }
-
-    function setDataCallBack(err) {
-        console.info("==========================>setDataCallBack=======================>");
-    }
-
-    function finishCommonEventCallBack(err) {
-        console.info("==========================>finishCommonEventCallBack=======================>");
-    }
-
-    function abortCommonEventCallback(err) {
-        console.info("==========================>abortCommonEventCallback=======================>");
-    }
-
-    function clearAbortCommonEventCallback(err) {
-        console.info("==========================>clearAbortCommonEventCallback=======================>");
-    }
-
-    function getAbortCommonEventCallback(err, data) {
-        console.info("==========================>getAbortCommonEventCallback=======================> abort = " + data);
-    }
-
-    function setCodeAndDataCallback(err) {
-        console.info("==========================>setCodeAndDataCallback=======================>");
-    }
-
-    function isOrderedCommonEventCallback(err,data) {
-        console.info("==========================>isOrderedCommonEventCallback=======================> isordered = " + data);
-        expect(data).assertEqual(1);
-    }
-
-    function isStickyCommonEventCallback(err,data) {
-        console.info("==========================>isStickyCommonEventCallback=======================> issticky = " + data);
-        expect(data).assertEqual(0);
     }
 
     function unsubscribeCallback(err) {
@@ -88,40 +54,59 @@ describe('ActsSubscriberOrderedTest', function () {
         expect(data.bundleName).assertEqual("publish_event0100_bundleName");
         console.info("==========================>SubscriberCallBack0100=========4==============>");
         console.info("==========================>SubscriberCallBack0100=========CommonEventSubscriber0100==============>" + CommonEventSubscriber0100);
-        console.info("===============SubscriberCallBack0100=======>before AbortCommonEventCallback============");
-        await CommonEventSubscriber0100.abortCommonEvent(abortCommonEventCallback);
+        console.info("===============SubscriberCallBack0100=======>before AbmonEventCallback===ortCom=========");
         console.info("===============SubscriberCallBack0100=======>after AbortCommonEventCallback============");
-        await CommonEventSubscriber0100.setCode(2, setCodeCallBack);
-        console.info("==========================>SubscriberCallBack0100=========5==============>");
-        await CommonEventSubscriber0100.setData("publish_event1001_change", setDataCallBack);
-        await CommonEventSubscriber0100.setCodeAndData(2, "publish_event1001_change", setCodeAndDataCallback);
-        console.info("==========================>SubscriberCallBack0100=========6==============>");
-        console.info("===============SubscriberCallBack0100=======>before clearabortCommonEvent============");
-        await CommonEventSubscriber0100.getAbortCommonEvent(getAbortCommonEventCallback);
-        await CommonEventSubscriber0100.clearAbortCommonEvent(clearAbortCommonEventCallback);
-        await CommonEventSubscriber0100.getAbortCommonEvent(getAbortCommonEventCallback);
-        await CommonEventSubscriber0100.isOrderedCommonEvent(isOrderedCommonEventCallback);
-        await CommonEventSubscriber0100.isStickyCommonEvent(isStickyCommonEventCallback);
-        await Subscriber.unsubscribe(CommonEventSubscriber0100,unsubscribeCallback);
-        await CommonEventSubscriber0100.finishCommonEvent(finishCommonEventCallBack);
-        console.info("==========================>SubscriberCallBack0100=========7==============>");
+
+        CommonEventSubscriber0100.setCode(2).then(()=>{
+            console.info("==========================>SubscriberCallBack0100 setCodeCallBack promise=======================>");
+        })
+
+        CommonEventSubscriber0100.setData("publish_event1001_change").then(()=>{
+            console.info("==========================>SubscriberCallBack0100 setDataCallBack promise=======================>");
+        })
+
+        CommonEventSubscriber0100.setCodeAndData(2, "publish_event1001_change").then(()=>{
+            console.info("==========================>SubscriberCallBack0100 setCodeAndDataCallback promise=======================>");
+        })
+
+        CommonEventSubscriber0100.getAbortCommonEvent().then((data)=>{
+            console.info("==========================>SubscriberCallBack0100 getAbortCommonEventCallback1 promise=======================> abort = " + data);
+        })
+
+        CommonEventSubscriber0100.clearAbortCommonEvent().then(()=>{
+            console.info("==========================>SubscriberCallBack0100 clearAbortCommonEventCallback promise=======================>");
+        })
+
+        CommonEventSubscriber0100.getAbortCommonEvent().then((data)=>{
+            console.info("==========================>SubscriberCallBack0100 getAbortCommonEventCallback2 promise=======================> abort = " + data);
+        })
+
+        await CommonEventSubscriber0100.finishCommonEvent().then(()=>{
+            console.info("==========================>SubscriberCallBack0100 finishCommonEvent promise=======================>");
+        })
+        console.info("==========================>SubscriberCallBack0100=========end ==============>");
     }
 
     async function SubscriberCallBack0101(err, data) {
+        console.info("==========================>SubscriberCallBack0101========code===============>" + err.code);
         console.info("==========================>SubscriberCallBack0101========event===============>" + data.event);
         console.info("==========================>SubscriberCallBack0101========bundleName===============>" + data.bundleName);
         console.info("==========================>SubscriberCallBack0101=========code==============>" + data.code);
         console.info("==========================>SubscriberCallBack0101=========data==============>" + data.data);
         expect(data.event).assertEqual("publish_event0100");
-        console.info("==========================>SubscriberCallBack0101=========1==============>");
+        console.info("==========================>SubscriberCallBack0101=========1 code:==============>"+ data.code);
         expect(data.code).assertEqual(2);
-        console.info("==========================>SubscriberCallBack0101=========2==============>");
+        CommonEventSubscriber0101.getCode().then((data)=>{
+            console.info("==========================>SubscriberCallBack0101 getCodeCallBack promise code:=======================>"+ data);
+        })
         expect(data.data).assertEqual("publish_event1001_change");
-        console.info("==========================>SubscriberCallBack0101=========3==============>");
+        CommonEventSubscriber0100.getData().then((data)=>{
+            console.info("==========================>SubscriberCallBack0100 getDataCallBack promise data=======================>"+ data);
+        })
         expect(data.bundleName).assertEqual("publish_event0100_bundleName");
-        console.info("==========================>SubscriberCallBack0101=========4==============>");
-        await CommonEventSubscriber0101.finishCommonEvent(finishCommonEventCallBack);
-        console.info("==========================>SubscriberCallBack0101=========5==============>");
+        await CommonEventSubscriber0101.finishCommonEvent().then(()=>{
+            console.info("==========================>SubscriberCallBack0101 finishCommonEvent promise=======================>");
+        })
     }
 
     async function SubscriberCallBack0200_1(err, data) {
@@ -133,26 +118,20 @@ describe('ActsSubscriberOrderedTest', function () {
         if (num2 == 0) {
             num2++;
             expect(data.event).assertEqual("publish_event0200");
-            console.info("==========================>SubscriberCallBack0200_1=========1==============>");
+            console.info("==========================>SubscriberCallBack0200_1=====num2:0====code==============>" + data.code);
             expect(data.code).assertEqual(1);
-            console.info("==========================>SubscriberCallBack0200_1=========2==============>");
             expect(data.data).assertEqual("publish_event0200_init");
-            console.info("==========================>SubscriberCallBack0200_1=========3==============>");
             expect(data.bundleName).assertEqual("publish_event0200_bundleName");
-            console.info("==========================>SubscriberCallBack0200_1=========4==============>");
-            console.info("==========================>SubscriberCallBack0200_1=========CommonEventSubscriber0200_1==============>" + CommonEventSubscriber0200_1);
-            console.info("==========================>SubscriberCallBack0200_1=========5==============>");
         }else {
             num2 = 0;
             expect(data.event).assertEqual("publish_event0201");
-            console.info("==========================>SubscriberCallBack0200_1=========1==============>");
+            console.info("==========================>SubscriberCallBack0200_1=====num2:1====code==============>" + data.code);
             expect(data.code).assertEqual(1);
-            console.info("==========================>SubscriberCallBack0200_1=========2==============>");
             expect(data.data).assertEqual("publish_event0201_init");
-            console.info("==========================>SubscriberCallBack0200_1=========3==============>");
             expect(data.bundleName).assertEqual("publish_event0201_bundleName");
-            await CommonEventSubscriber0200_1.finishCommonEvent(finishCommonEventCallBack);
-            console.info("==========================>SubscriberCallBack0200_1=========4=============>");
+            await CommonEventSubscriber0200_1.finishCommonEvent().then(()=>{
+                console.info("==========================>SubscriberCallBack0200_1:num:1:finishCommonEventCallBack=======================>");
+            })
         }
     }
 
@@ -163,14 +142,13 @@ describe('ActsSubscriberOrderedTest', function () {
         console.info("==========================>SubscriberCallBack0200_2=========data==============>" + data.data);
 
         expect(data.event).assertEqual("publish_event0201");
-        console.info("==========================>SubscriberCallBack0200_2=========1==============>");
+        console.info("==========================>SubscriberCallBack0200_2=========code==============>" + data.code);
         expect(data.code).assertEqual(1);
-        console.info("==========================>SubscriberCallBack0200_2=========2==============>");
         expect(data.data).assertEqual("publish_event0201_init");
-        console.info("==========================>SubscriberCallBack0200_2=========3==============>");
         expect(data.bundleName).assertEqual("publish_event0201_bundleName");
-        await CommonEventSubscriber0200_2.finishCommonEvent(finishCommonEventCallBack);
-        console.info("==========================>SubscriberCallBack0200_2=========4=============>");
+        await CommonEventSubscriber0200_2.finishCommonEvent().then(()=>{
+            console.info("==========================>SubscriberCallBack0200_2:finishCommonEventCallBack=======================>");
+        })
     }
 
     async function SubscriberCallBack0300_1(err, data) {
@@ -178,31 +156,18 @@ describe('ActsSubscriberOrderedTest', function () {
         console.info("==========================>SubscriberCallBack0300_1========bundleName===============>" + data.bundleName);
         console.info("==========================>SubscriberCallBack0300_1=========code==============>" + data.code);
         console.info("==========================>SubscriberCallBack0300_1=========data==============>" + data.data);
-        console.info("==========================>SubscriberCallBack0300_1=========num3==============>" + num3);
-        if (num3 == 0) {
-            num3++;
-            expect(data.event).assertEqual("publish_event0300");
-            console.info("==========================>SubscriberCallBack0300_1=========1==============>");
-            expect(data.code).assertEqual(1);
-            console.info("==========================>SubscriberCallBack0300_1=========2==============>");
-            expect(data.data).assertEqual("publish_event0300_init");
-            console.info("==========================>SubscriberCallBack0300_1=========3==============>");
-            expect(data.bundleName).assertEqual("publish_event0300_bundleName");
-            console.info("==========================>SubscriberCallBack0300_1=========4==============>");
-            console.info("==========================>SubscriberCallBack0300_1=========CommonEventSubscriber0300_1==============>" + CommonEventSubscriber0300_1);
-            console.info("==========================>SubscriberCallBack0300_1=========5==============>");
-        }else {
-            num3 = 0;
-            expect(data.event).assertEqual("publish_event0301");
-            console.info("==========================>SubscriberCallBack0300_1=========1==============>");
-            expect(data.code).assertEqual(1);
-            console.info("==========================>SubscriberCallBack0300_1=========2==============>");
-            expect(data.data).assertEqual("publish_event0301_init");
-            console.info("==========================>SubscriberCallBack0300_1=========3==============>");
-            expect(data.bundleName).assertEqual("publish_event0301_bundleName");
-            await CommonEventSubscriber0300_1.finishCommonEvent(finishCommonEventCallBack);
-            console.info("==========================>SubscriberCallBack0300_1=========4=============>");
-        }
+
+        expect(data.event).assertEqual("publish_event0301");
+        expect(data.code).assertEqual(1);
+        expect(data.data).assertEqual("publish_event0301_init");
+        expect(data.bundleName).assertEqual("publish_event0301_bundleName");
+        await CommonEventSubscriber0300_1.isOrderedCommonEvent().then((data)=>{
+            console.info("==========================>SubscriberCallBack0300_1 publish_event0301 isOrderedCommonEvent promise======================= >" + data);
+            expect(data).assertEqual(1);
+        })
+        await CommonEventSubscriber0300_1.finishCommonEvent().then(()=>{
+            console.info("==========================>SubscriberCallBack0300_1 publish_event0301 finishCommonEventCallBack=======================>");
+        })
     }
 
     async function SubscriberCallBack0300_2(err, data) {
@@ -212,100 +177,72 @@ describe('ActsSubscriberOrderedTest', function () {
         console.info("==========================>SubscriberCallBack0300_2=========data==============>" + data.data);
 
         expect(data.event).assertEqual("publish_event0301");
-        console.info("==========================>SubscriberCallBack0300_2=========1==============>");
         expect(data.code).assertEqual(1);
-        console.info("==========================>SubscriberCallBack0300_2=========2==============>");
         expect(data.data).assertEqual("publish_event0301_init");
-        console.info("==========================>SubscriberCallBack0300_2=========3==============>");
         expect(data.bundleName).assertEqual("publish_event0301_bundleName");
-        await CommonEventSubscriber0300_2.finishCommonEvent(finishCommonEventCallBack);
-        console.info("==========================>SubscriberCallBack0300_2=========4=============>");
+        await CommonEventSubscriber0300_2.isOrderedCommonEvent().then((data)=>{
+            console.info("==========================>SubscriberCallBack0300_2 isOrderedCommonEvent promise======================= >" + data);
+            expect(data).assertEqual(1);
+        })
+        await CommonEventSubscriber0300_2.finishCommonEvent().then(()=>{
+            console.info("==========================>SubscriberCallBack0300_2 publish_event0301 finishCommonEventCallBack=======================>");
+        })
     }
 
-	async function SubscriberCallBack0400_1(err, data) {
+    async function SubscriberCallBack0400_1(err, data) {
         console.info("==========================>SubscriberPromise0400_1========event===============>" + data.event);
-		console.info("==========================>SubscriberPromise0400_1========bundleName===============>" + data.bundleName);
-		console.info("==========================>SubscriberPromise0400_1=========code==============>" + data.code);
-		console.info("==========================>SubscriberPromise0400_1=========data==============>" + data.data);
-		expect(data.event).assertEqual("publish_event0400");
-		console.info("==========================>SubscriberPromise0400_1=========1==============>");
-		expect(data.code).assertEqual(1);
-		console.info("==========================>SubscriberPromise0400_1=========2==============>");
-		expect(data.data).assertEqual("publish_event0400_init");
-		console.info("==========================>SubscriberPromise0400_1=========3==============>");
-		expect(data.bundleName).assertEqual("publish_event0400_bundleName");
-		console.info("==========================>SubscriberPromise0400_1=========4==============>");
-		console.info("==========================>SubscriberPromise0400_1=========CommonEventSubscriber0400_1==============>" + CommonEventSubscriber0400_1);
-		console.info("===============SubscriberPromise0400_1=======>before AbortCommonEventPromise============");
-		CommonEventSubscriber0400_1.abortCommonEvent().then(() =>{
-			console.info("==========================>abortCommonEventPromise0400_1=======================>");
-		});
-		console.info("==========================>SubscriberCallBack0400_1=========5==============>");
-		console.info("==========================>SubscriberPromise0400_1=========6==============>");
-		console.info("===============SubscriberPromise0400_1=======>before abortCommonEvent============");
-		CommonEventSubscriber0400_1.getAbortCommonEvent().then((data) => {
-			console.info("==========================>getAbortCommonEventPromise0400_1=======================> abort = " + data);
-			expect(data).assertEqual(1);
-		});
-		CommonEventSubscriber0400_1.getAbortCommonEvent().then((data) => {
-			console.info("==========================>getAbortCommonEventPromise0400_1=======================> abort = " + data);
-		});
-		CommonEventSubscriber0400_1.isOrderedCommonEvent().then((data) => {
-			console.info("==========================>isOrderedCommonEventPromise0400_1=======================> isabort = " + data);
-			expect(data).assertEqual(1);
-		});
-		CommonEventSubscriber0400_1.isStickyCommonEvent().then((data) => {
-			console.info("==========================>isStickyCommonEventPromise0400_1=======================> isSticky = " + data);
-			expect(data).assertEqual(0);
-		});
-		Subscriber.unsubscribe(CommonEventSubscriber0400_1,unsubscribeCallback);
-		CommonEventSubscriber0400_1.finishCommonEvent().then(() => {
-			console.info("==========================>finishCommonEventPromise0400_1=======================>");
-		});
-		console.info("==========================>SubscriberCallBack0400_1=========7==============>");
+        console.info("==========================>SubscriberPromise0400_1========bundleName===============>" + data.bundleName);
+        console.info("==========================>SubscriberPromise0400_1=========code==============>" + data.code);
+        console.info("==========================>SubscriberPromise0400_1=========data==============>" + data.data);
+        expect(data.event).assertEqual("publish_event0400");
+        expect(data.code).assertEqual(1);
+        expect(data.data).assertEqual("publish_event0400_init");
+        expect(data.bundleName).assertEqual("publish_event0400_bundleName");
+        console.info("==========================>SubscriberPromise0400_1=========CommonEventSubscriber0400_1==============>" + CommonEventSubscriber0400_1);
+        CommonEventSubscriber0400_1.getAbortCommonEvent().then((data) => {
+            console.info("====================SubscriberPromise0400_1======>getAbortCommonEventPromise0400_1:1=======================> abort2 = " + data);
+        });
+        await CommonEventSubscriber0400_1.isOrderedCommonEvent().then((data) => {
+            console.info("===================SubscriberPromise0400_1=======>isOrderedCommonEventPromise0400_1=======================> isordered = " + data);
+            expect(data).assertEqual(1);
+        });
+        await CommonEventSubscriber0400_1.isStickyCommonEvent().then((data) => {
+            console.info("=================SubscriberPromise0400_1=========>isStickyCommonEventPromise0400_1=======================> isSticky = " + data);
+            expect(data).assertEqual(1);
+        });
+        CommonEventSubscriber0400_1.abortCommonEvent().then(() => {
+            console.info("=================SubscriberPromise0400_1=========>AbortCommonEventPromise0400_1=======================>");
+        });
+        CommonEventSubscriber0400_1.getAbortCommonEvent().then((data) => {
+            console.info("===============SubscriberPromise0400_1===========>getAbortCommonEventPromise0400_1:2=======================> abort2 = " + data);
+        });
+        CommonEventSubscriber0400_1.finishCommonEvent().then(() => {
+            console.info("================SubscriberPromise0400_1==========>finishCommonEventPromise0400_1=======================>");
+        });
     }
-	
-	async function SubscriberCallBack0400_2(err, data) {
+
+    async function SubscriberCallBack0400_2(err, data) {
         console.info("==========================>SubscriberPromise0400_2========event===============>" + data.event);
-		console.info("==========================>SubscriberPromise0400_2========bundleName===============>" + data.bundleName);
-		console.info("==========================>SubscriberPromise0400_2=========code==============>" + data.code);
-		console.info("==========================>SubscriberPromise0400_2=========data==============>" + data.data);
-		expect(data.event).assertEqual("publish_event0400");
-		console.info("==========================>SubscriberPromise0400_2=========1==============>");
-		expect(data.code).assertEqual(1);
-		console.info("==========================>SubscriberPromise0400_2=========2==============>");
-		expect(data.data).assertEqual("publish_event0400_init");
-		console.info("==========================>SubscriberPromise0400_2=========3==============>");
-		expect(data.bundleName).assertEqual("publish_event0400_bundleName");
-		console.info("==========================>SubscriberPromise0400_2=========4==============>");
-		console.info("==========================>SubscriberPromise0400_2=========CommonEventSubscriber0400_2==============>" + CommonEventSubscriber0400_2);
-		CommonEventSubscriber0400_2.finishCommonEvent().then(() => {
-			console.info("==========================>finishCommonEventPromise0400_2=======================>");
-		});
-		console.info("==========================>SubscriberCallBack0400_2=========5==============>");
     }
-	
-    async function GetSubscribeInfoCallBack(err, data) {
+
+    async function GetSubscribeInfoCallBack(data) {
         console.info("==========================>GetSubscribeInfoCallBack event = " + data.events[0]);
         switch (data.events[0]) {
             case "publish_event0100":
-                console.info("=====ActsSubscriber_test_0100====GetSubscribeInfoCallBack===========");
+                console.info("=====ActsSubscriberTestOrder_0100====GetSubscribeInfoCallBack===========");
                 expect(data.events[0]).assertEqual("publish_event0100");
                 if (num == 0) {
                     num = 1;
                     console.info("======GetSubscribeInfoCallBack=====num " + num);
                     console.info("======test_0100====GetSubscribeInfoCallBack=====num " + num);
-                    CommonEventSubscriber0100 = CommonEventSubscriber;
-                    await Subscriber.subscribe(CommonEventSubscriber, SubscriberCallBack0100);
+                    await Subscriber.subscribe(CommonEventSubscriber0100, SubscriberCallBack0100);
                     console.info("======test_0100====GetSubscribeInfoCallBack=====after call subscribe");
                 } else {
                     console.info("======test_0101====GetSubscribeInfoCallBack=====num " + num);
-                    CommonEventSubscriber0101 = CommonEventSubscriber;
-                    await Subscriber.subscribe(CommonEventSubscriber, SubscriberCallBack0101);
+                    await Subscriber.subscribe(CommonEventSubscriber0101, SubscriberCallBack0101);
                     console.info("======test_0101====GetSubscribeInfoCallBack2=====after call subscribe");
                     num = 0;
                 }
-
                 break;
 
             default:
@@ -313,7 +250,7 @@ describe('ActsSubscriberOrderedTest', function () {
         }
     }
 
-    async function GetSubscribeInfoCallBack0200_1(err, data) {
+    async function GetSubscribeInfoCallBack0200_1(data) {
         console.info("==========================>GetSubscribeInfoCallBack0200_1 data.events[0] = " + data.events[0]);
         console.info("==========================>GetSubscribeInfoCallBack0200_1 data.events[1] = " + data.events[1]);
         expect(data.events[0]).assertEqual("publish_event0200");
@@ -322,77 +259,32 @@ describe('ActsSubscriberOrderedTest', function () {
         console.info("==========================>GetSubscribeInfoCallBack0200_1 end=========================");
     }
 
-    async function GetSubscribeInfoCallBack0200_2(err, data) {
+    async function GetSubscribeInfoCallBack0200_2(data) {
         console.info("==========================>GetSubscribeInfoCallBack0200_2 data.events[0] = " + data.events[0]);
         expect(data.events[0]).assertEqual("publish_event0201");
         await Subscriber.subscribe(CommonEventSubscriber0200_2, SubscriberCallBack0200_2);
         console.info("==========================>GetSubscribeInfoCallBack0200_2 end=========================");
     }
 
-    async function GetSubscribeInfoCallBack0300_1(err, data) {
+    async function GetSubscribeInfoCallBack0300_1(data) {
         console.info("==========================>GetSubscribeInfoCallBack0300_1 data.events[0] = " + data.events[0]);
-        console.info("==========================>GetSubscribeInfoCallBack0300_1 data.events[1] = " + data.events[1]);
-        expect(data.events[0]).assertEqual("publish_event0300");
-        expect(data.events[1]).assertEqual("publish_event0301");
+        expect(data.events[0]).assertEqual("publish_event0301");
         await Subscriber.subscribe(CommonEventSubscriber0300_1, SubscriberCallBack0300_1);
         console.info("==========================>GetSubscribeInfoCallBack0300_1 end=========================");
     }
 
-    async function GetSubscribeInfoCallBack0300_2(err, data) {
+    async function GetSubscribeInfoCallBack0300_2(data) {
         console.info("==========================>GetSubscribeInfoCallBack0300_2 data.events[0] = " + data.events[0]);
         expect(data.events[0]).assertEqual("publish_event0301");
         await Subscriber.subscribe(CommonEventSubscriber0300_2, SubscriberCallBack0300_2);
         console.info("==========================>GetSubscribeInfoCallBack0300_2 end=========================");
     }
 
-	async function GetSubscribeInfoCallBack0400_2(err, data) {
-        console.info("==========================>GetSubscribeInfoCallBack0400_2 data.events[0] = " + data.events[0]);
-        expect(data.events[0]).assertEqual("publish_event0400");
-        await Subscriber.subscribe(CommonEventSubscriber0400_2, SubscriberCallBack0400_2);
-        console.info("==========================>GetSubscribeInfoCallBack0400_2 end=========================");
-    }
-
-    async function CreateSubscriberCallBack(err, data) {
-        console.info("==========================>CreateSubscriberCallBack=======================>");
-        CommonEventSubscriber = data;
-        await data.getSubscribeInfo(GetSubscribeInfoCallBack);
-    }
-
-    async function CreateSubscriberCallBack0200_1(err, data) {
-        console.info("==========================>CreateSubscriberCallBack0200_1=======================>");
-        CommonEventSubscriber0200_1 = data;
-        await data.getSubscribeInfo(GetSubscribeInfoCallBack0200_1);
-    }
-
-    async function CreateSubscriberCallBack0200_2(err, data) {
-        console.info("==========================>CreateSubscriberCallBack0200_2=======================>");
-        CommonEventSubscriber0200_2 = data;
-        await data.getSubscribeInfo(GetSubscribeInfoCallBack0200_2);
-    }
-
-    async function CreateSubscriberCallBack0300_1(err, data) {
-        console.info("==========================>CreateSubscriberCallBack0300_1=======================>");
-        CommonEventSubscriber0300_1 = data;
-        await data.getSubscribeInfo(GetSubscribeInfoCallBack0300_1);
-    }
-
-    async function CreateSubscriberCallBack0300_2(err, data) {
-        console.info("==========================>CreateSubscriberCallBack0300_2=======================>");
-        CommonEventSubscriber0300_2 = data;
-        await data.getSubscribeInfo(GetSubscribeInfoCallBack0300_2);
-    }
-
-	async function CreateSubscriberCallBack0400_2(err, data) {
-        console.info("==========================>createSubscriberPromise0400_2=======================>");
-        CommonEventSubscriber0400_2 = data;
-        await data.getSubscribeInfo(GetSubscribeInfoCallBack0400_2);
-    }
-	
-    //  @tc.number: ActsSubscriber_test_0100
+    //  @tc.number: ActsSubscriberTestOrder_0100
     //  @tc.name: verify subscribe and publish : Check subscribe same event and publish common ordered event
-    //  @tc.desc: Check the subscriber can receive event "publish_event0100" type of the interface (by CallBack)
-    it('ActsSubscriber_test_0100', 0, async function (done) {
-        console.info("===============ActsSubscriber_test_0100==========================>");
+    //  @tc.desc: Check the subscriber can receive event "publish_event0100" type of the interface (by Promise)
+    it('ActsSubscriberTestOrder_0100', 0, async function (done) {
+        console.info("===============ActsSubscriberTestOrder_0100==========================>");
 
         var CommonEventSubscribeInfo_1 = {
             events: ["publish_event0100"],
@@ -405,14 +297,28 @@ describe('ActsSubscriberOrderedTest', function () {
         };
 
         await Subscriber.createSubscriber(
-            CommonEventSubscribeInfo_1,
-            CreateSubscriberCallBack
-        )
+            CommonEventSubscribeInfo_1
+        ).then(async (data)=>{
+            console.info("===============ActsSubscriberTestOrder_0100==========createSubscriber promise1================>");
+            CommonEventSubscriber0100 = data;
+            await CommonEventSubscriber0100.getSubscribeInfo().then(async (data)=>{
+                console.info("===============ActsSubscriberTestOrder_0100=========getSubscribeInfo promise1==========================>");
+                await GetSubscribeInfoCallBack(data);
+            });
+        })
 
+
+        console.info("===============ActsSubscriberTestOrder_0100========111111111111==================>");
         await Subscriber.createSubscriber(
-            CommonEventSubscribeInfo_2,
-            CreateSubscriberCallBack
-        )
+            CommonEventSubscribeInfo_2
+        ).then(async (data)=>{
+            console.info("===============ActsSubscriberTestOrder_0100==========createSubscriber promise2================>");
+            CommonEventSubscriber0101 = data;
+            await CommonEventSubscriber0100.getSubscribeInfo().then(async (data)=>{
+                console.info("===============ActsSubscriberTestOrder_0100=========getSubscribeInfo promise2==========================>");
+                await GetSubscribeInfoCallBack(data);
+            });
+        })
 
         var CommonEventPublishData = {
             bundleName: "publish_event0100_bundleName",
@@ -421,15 +327,17 @@ describe('ActsSubscriberOrderedTest', function () {
             isOrdered: true,
             isSticky: false,
         }
-        await Subscriber.publish("publish_event0100", CommonEventPublishData, PublishCallback);
+
+        Subscriber.publish("publish_event0100", CommonEventPublishData, PublishCallback);
+
         done();
     })
 
-    //  @tc.number: ActsSubscriber_test_0200
-    //  @tc.name: verify subscribe and publish : Check subscribe different event and publish common ordered event
-    //  @tc.desc: Check the subscriber can receive event "publish_event0200" type of the interface (by CallBack)
-    it('ActsSubscriber_test_0200', 0, async function (done) {
-        console.info("===============ActsSubscriber_test_0200==========================>");
+    //  @tc.number: ActsSubscriberTestOrder_0200
+    //  @tc.name: verify subscribe and publish : Check subscribe different event and twice publish common ordered event and check unsubscribe event
+    //  @tc.desc: Check the subscriber can receive event "publish_event0200" type of the interface (by Promise)
+    it ('ActsSubscriberTestOrder_0200', 0, async function (done) {
+        console.info("===============ActsSubscriberTestOrder_0200==========================>");
 
         var CommonEventSubscribeInfo_1 = {
             events: ["publish_event0200",
@@ -444,13 +352,25 @@ describe('ActsSubscriberOrderedTest', function () {
 
         await Subscriber.createSubscriber(
             CommonEventSubscribeInfo_1,
-            CreateSubscriberCallBack0200_1
-        )
+        ).then(async (data)=>{
+            console.info("===============ActsSubscriberTestOrder_0200==========createSubscriber promise1================>");
+            CommonEventSubscriber0200_1 = data;
+            await data.getSubscribeInfo().then(async (data)=>{
+                console.info("===============ActsSubscriberTestOrder_0200=========getSubscribeInfo promise1==========================>");
+                await GetSubscribeInfoCallBack0200_1(data);
+            });
+        })
 
         await Subscriber.createSubscriber(
             CommonEventSubscribeInfo_2,
-            CreateSubscriberCallBack0200_2
-        )
+        ).then(async (data)=>{
+            console.info("===============ActsSubscriberTestOrder_0200==========createSubscriber promise2================>");
+            CommonEventSubscriber0200_2 = data;
+            await data.getSubscribeInfo().then(async (data)=>{
+                console.info("===============ActsSubscriberTestOrder_0200=========getSubscribeInfo promise2==========================>");
+                await GetSubscribeInfoCallBack0200_2(data);
+            });
+        })
 
         var CommonEventPublishData1 = {
             bundleName: "publish_event0200_bundleName",
@@ -468,45 +388,51 @@ describe('ActsSubscriberOrderedTest', function () {
             isSticky: false,
         }
 
-        await Subscriber.publish("publish_event0200", CommonEventPublishData1, PublishCallback);
-        await Subscriber.publish("publish_event0201", CommonEventPublishData2, PublishCallback);
+        await Unsubscriber2_();
+
+        Subscriber.publish("publish_event0200", CommonEventPublishData1, PublishCallback);
+        Subscriber.publish("publish_event0201", CommonEventPublishData2, PublishCallback);
+
         done();
     })
 
-    //  @tc.number: ActsSubscriber_test_0300
-    //  @tc.name: verify subscribe and publish : Check subscribe different events and publish common ordered events
-    //  @tc.desc: Check the subscriber can receive event "publish_event0300" type of the interface (by CallBack)
-    it('ActsSubscriber_test_0300', 0, async function (done) {
-        console.info("===============ActsSubscriber_test_0300==========================>");
+    //  @tc.number: ActsSubscriberTestOrder_0300
+    //  @tc.name: verify subscribe and publish : Check subscribe different events and some publish common ordered events
+    //  @tc.desc: Check the subscriber can receive event "publish_event0301" type of the interface (by Promise)
+    it ('ActsSubscriberTestOrder_0300', 0, async function (done) {
+        console.info("===============ActsSubscriberTestOrder_0300==========================>");
 
         var CommonEventSubscribeInfo_1 = {
-            events: ["publish_event0300",
-                "publish_event0301"],
-            priority: 10
-        };
-
-        var CommonEventSubscribeInfo_2 = {
             events: ["publish_event0301"],
             priority: 9
         };
 
+        var CommonEventSubscribeInfo_2 = {
+            events: ["publish_event0301"],
+            priority: 10
+        };
+
         await Subscriber.createSubscriber(
             CommonEventSubscribeInfo_1,
-            CreateSubscriberCallBack0300_1
-        )
+        ).then(async (data)=>{
+            console.info("===============ActsSubscriberTestOrder_0300==========createSubscriber promise1================>");
+            CommonEventSubscriber0300_1 = data;
+            await data.getSubscribeInfo().then(async (data)=>{
+                console.info("===============ActsSubscriberTestOrder_0300=========getSubscribeInfo promise1==========================>");
+                await GetSubscribeInfoCallBack0300_1(data);
+            });
+        })
 
         await Subscriber.createSubscriber(
             CommonEventSubscribeInfo_2,
-            CreateSubscriberCallBack0300_2
-        )
-
-        var CommonEventPublishData1 = {
-            bundleName: "publish_event0300_bundleName",
-            code: 1,
-            data: "publish_event0300_init",
-            isOrdered: false,
-            isSticky: false,
-        }
+        ).then(async (data)=>{
+            console.info("===============ActsSubscriberTestOrder_0300==========createSubscriber promise2================>");
+            CommonEventSubscriber0300_2 = data;
+            await data.getSubscribeInfo().then(async (data)=>{
+                console.info("===============ActsSubscriberTestOrder_0300=========getSubscribeInfo promise2==========================>");
+                await GetSubscribeInfoCallBack0300_2(data);
+            });
+        })
 
         var CommonEventPublishData2 = {
             bundleName: "publish_event0301_bundleName",
@@ -517,17 +443,17 @@ describe('ActsSubscriberOrderedTest', function () {
         }
         var numindex = 0;
         for (; numindex < 3; ++numindex) {
-            await Subscriber.publish("publish_event0300", CommonEventPublishData1, PublishCallback);
-            await Subscriber.publish("publish_event0301", CommonEventPublishData2, PublishCallback);
+            Subscriber.publish("publish_event0301", CommonEventPublishData2, PublishCallback);
         }
         done();
+
     })
 
-    //  @tc.number: ActsSubscriber_test_0400
-    //  @tc.name: verify subscribe and publish : Check subscribe same events and publish common ordered events
+    //  @tc.number: ActsSubscriberTestOrder_0400
+    //  @tc.name: verify subscribe and publish : Check subscribe same events and publish common sticky ordered events and check abort event
     //  @tc.desc: Check the subscriber can receive event "publish_event0400" type of the interface (by promise)
-    it('ActsSubscriber_test_0400', 0, async function (done) {
-        console.info("===============ActsSubscriber_test_0400==========================>");
+    it ('ActsSubscriberTestOrder_0400', 0, async function (done) {
+        console.info("===============ActsSubscriberTestOrder_0400==========================>");
 
         var CommonEventSubscribeInfo_1 = {
             events: ["publish_event0400"],
@@ -541,29 +467,36 @@ describe('ActsSubscriberOrderedTest', function () {
 
         await Subscriber.createSubscriber(
             CommonEventSubscribeInfo_1
-        ).then((data) => {
-            console.info("==========================>createSubscriberPromise0400_1=======================>");
+        ).then(async (data) => {
+            console.info("===============ActsSubscriberTestOrder_0400===========>createSubscriberPromise0400_1:1=======================>");
             CommonEventSubscriber0400_1 = data;
-            data.getSubscribeInfo().then((data)=>{
-                console.info("==========================>GetSubscribeInfoPromisek0400_1 data.events[0] = " + data.events[0]);
+            await data.getSubscribeInfo().then(async (data)=>{
+                console.info("=============ActsSubscriberTestOrder_0400=============>GetSubscribeInfoPromisek0400_1 data.events[0] = " + data.events[0]);
                 expect(data.events[0]).assertEqual("publish_event0400");
-                Subscriber.subscribe(CommonEventSubscriber0400_1, SubscriberCallBack0400_1);
+                await Subscriber.subscribe(CommonEventSubscriber0400_1, SubscriberCallBack0400_1);
             })
         })
 
         await Subscriber.createSubscriber(
-            CommonEventSubscribeInfo_2,
-			CreateSubscriberCallBack0400_2
-        );
+            CommonEventSubscribeInfo_2
+        ).then(async (data) => {
+            console.info("==================ActsSubscriberTestOrder_0400========>createSubscriberPromise0400_1:2=======================>");
+            CommonEventSubscriber0400_2 = data;
+            await data.getSubscribeInfo().then(async (data)=>{
+                console.info("==============ActsSubscriberTestOrder_0400============>GetSubscribeInfoPromisek0400_1 data.events[0] = " + data.events[0]);
+                expect(data.events[0]).assertEqual("publish_event0400");
+                await Subscriber.subscribe(CommonEventSubscriber0400_2, SubscriberCallBack0400_2);
+            })
+        })
 
         var CommonEventPublishData = {
             bundleName: "publish_event0400_bundleName",
             code: 1,
             data: "publish_event0400_init",
             isOrdered: true,
-            isSticky: false,
+            isSticky: true,
         }
-        await Subscriber.publish("publish_event0400", CommonEventPublishData, PublishCallback);
+        Subscriber.publish("publish_event0400", CommonEventPublishData, PublishCallback);
         done();
     })
 })
