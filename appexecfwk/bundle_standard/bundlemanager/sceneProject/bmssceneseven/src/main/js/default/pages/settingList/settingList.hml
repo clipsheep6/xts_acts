@@ -1,0 +1,9 @@
+<div class="container">
+    <list class="todo-wraper">
+        <list-item for="{{todolist}}" class="todo-item" on:click="Onclick($item.index)">
+            <text class="todo-title">{{$item.title}}</text>
+            <text class="todo-title">{{$item.date}}</text>
+            <text class="todo-title">{{$item.depict}}</text>
+        </list-item>
+    </list>
+</div>
