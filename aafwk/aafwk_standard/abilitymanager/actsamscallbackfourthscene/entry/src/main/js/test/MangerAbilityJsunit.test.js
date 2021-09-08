@@ -28,47 +28,57 @@ var WeightReasonCode =  {
     WEIGHT_CACHED : 400,
     WEIGHT_GONE : 1000
 }
+
+var abilityNameList = [
+    "com.ohos.launcher.MainAbility",
+    "com.example.SimulateFeatureAbilityFir",
+    "com.example.VerifyActThirdAbility",
+    "com.example.VerifyIoThirdAbility",
+    "com.example.SimulateEntryAbilityFir",
+    "com.example.actsamscallbackfourthscene.MainAbility"
+]
+
+var bundleNameList = [
+    "com.ohos.launcher",
+    "com.ohos.systemui",
+    "com.ix.simulate.feature",
+    "com.ix.verify.io",
+    "com.ix.simulate.entry",
+    "com.ix.verify.act",
+    "com.example.actsamscallbackfourthscene"
+]
+
 describe('ActsAmsCallBackFourthScene', function () {
     console.info('----ActsAmsCallBackFourthScene----');
-
-    it('startlauncher_callbackscene4_01', 0, async function (done) {
-        var callback = featureAbility.startAbility(
+    beforeAll(function(){
+    featureAbility.startAbility(
+        {
+            want:
             {
-                want:
-                {
-                    deviceId: "",
-                    bundleName: "com.ohos.launcher",
-                    abilityName: "com.ohos.launcher.MainAbility",
-                    action: "action1",
-                    parameters:
-                    {},
-                },
+                deviceId: "",
+                bundleName: "com.ohos.launcher",
+                abilityName: "com.ohos.launcher.MainAbility",
+                action: "action1",
+                parameters:
+                {},
             },
-            (err, data) => {
-                done();
-            }
-        );
-    })
+        },
+    );
 
-    it('removeMission_callback_04', 0, async function (done) {
-        var maxnum = 20,flag = 1;
-        abilitymanager.queryRecentAbilityMissionInfos(maxnum,flag,
-            (info) => {
-                console.info('==================== queryRecentAbilityMissionInfos data  ' + JSON.stringify(info) );
-                for (var i = 0; i < info.length; i++) {
-                    if(info[i].baseAbility.bundleName != 'com.example.callbackscene004'&& info[i].topAbility.bundleName != 'com.example.callbackscene004'){
-                        abilitymanager.removeMission(info[i].id,
-                            (info) => {
-                                console.info('============== removeMission data  [' + info + ']' );
-                            });
-                    }
+    var maxnum = 20,flag = 1;
+        abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag, data => {
+            console.info('==================== queryRecentAbilityMissionInfos data  ' + JSON.stringify(data) );
+            for (var i = 0; i < data.length; i++) {
+                if(data[i].baseAbility.bundleName != 'com.example.actsamscallbackfourthscene'&& data[i].topAbility.bundleName != 'com.example.actsamscallbackfourthscene'){
+                    abilitymanager.removeMission(data[i].id,
+                        (info) => {
+                            console.info('============== removeMission data  [' + info + ']' );
+                        });
                 }
-                done();
-            })
-    })
+            }
+        });
 
-    it('startAbility_callbackscene4_01', 0, async function (done) {
-        var callback = featureAbility.startAbility(
+        featureAbility.startAbility(
             {
                 want:
                 {
@@ -80,14 +90,9 @@ describe('ActsAmsCallBackFourthScene', function () {
                     {},
                 },
             },
-            (err, data) => {
-                done();
-            }
         );
-    })
 
-    it('startAbility_callbackscene4_02', 0, async function (done) {
-        var callback = featureAbility.startAbility(
+        featureAbility.startAbility(
             {
                 want:
                 {
@@ -99,14 +104,9 @@ describe('ActsAmsCallBackFourthScene', function () {
                     {},
                 },
             },
-            (err, data) => {
-                done();
-            }
         );
-    })
 
-    it('startAbility_callbackscene4_03', 0, async function (done) {
-        var callback = featureAbility.startAbility(
+        featureAbility.startAbility(
             {
                 want:
                 {
@@ -118,14 +118,9 @@ describe('ActsAmsCallBackFourthScene', function () {
                     {},
                 },
             },
-            (err, data) => {
-                done();
-            }
         );
-    })
 
-    it('startAbility_callbackscene4_04', 0, async function (done) {
-        var callback = featureAbility.startAbility(
+        featureAbility.startAbility(
             {
                 want:
                 {
@@ -136,51 +131,84 @@ describe('ActsAmsCallBackFourthScene', function () {
                     parameters:
                     {},
                 },
-            },
-            (err, data) => {
-                done();
             }
         );
-    })
+    });
 
+    afterAll(function(){
+        featureAbility.startAbility(
+            {
+                want:
+                {
+                    deviceId: "",
+                    bundleName: "com.ohos.launcher",
+                    abilityName: "com.ohos.launcher.MainAbility",
+                    action: "action1",
+                    entities: ["entity1"],
+                    type: "MIMETYPE",
+                    uri: "key={true,true,false}",
+                    options:
+                    {},
+                    parameters:
+                    {},
+                },
+            },
+        );
+
+        abilitymanager.clearMissions();
+    });
+/*
+ * @tc.number    : Acts_Ams_test_5000
+ * @tc.name      : getAllRunningProcesses : Get All Running Processes Info
+ * @tc.desc      : Get All Running Processes Info(by CallBack)
+ */
     it('Acts_Ams_test_5000', 0, async function (done) {
-        abilitymanager.getAllRunningProcesses(
-            (error,info) => {
-                console.info('getAllRunningProcesses error.code ' + error.code + ', data length [' + info.length + ']' );
-                console.info('==================== getAllRunningProcesses JSON String:  ' + JSON.stringify(info) );
-                expect(Array.isArray(info)).assertEqual(true);
-                for (var i = 0; i < info.length; i++) {
-                    expect(typeof(info[i].pid)).assertEqual("number");
-                    expect(info[i].pid).assertLarger(0);
+            setTimeout(function(){
+                abilitymanager.getAllRunningProcesses(
+                    (error,info) => {
+                        console.info('getAllRunningProcesses error.code ' + error.code + ', data length [' + info.length + ']' );
+                        console.info('==================== getAllRunningProcesses JSON String:  ' + JSON.stringify(info) );
+                        expect(Array.isArray(info)).assertEqual(true);
+                        expect(info.length).assertEqual(6);
+                        for (var i = 0; i < info.length; i++) {
+                            expect(typeof(info[i].pid)).assertEqual("number");
+                            expect(info[i].pid).assertLarger(0);
 
-                    expect(typeof(info[i].processName)).assertEqual("string");
-                    expect(info[i].processName.length).assertLarger(0);
+                            expect(typeof(info[i].processName)).assertEqual("string");
+                            expect(info[i].processName.length).assertLarger(0);
+                            expect(bundleNameList.indexOf(info[i].processName)).assertLarger(-1);
 
-                    expect(Array.isArray(info[i].pkgList)).assertEqual(true);
-                    expect(info[i].pkgList.length).assertEqual(0);
+                            expect(Array.isArray(info[i].pkgList)).assertEqual(true);
+                            expect(info[i].pkgList.length).assertEqual(0);
 
-                    expect(typeof(info[i].uid)).assertEqual("number");
-                    expect(info[i].uid).assertLarger(0);
+                            expect(typeof(info[i].uid)).assertEqual("number");
+                            expect(info[i].uid).assertLarger(0);
 
-                    expect(typeof(info[i].lastMemoryLevel)).assertEqual("number");
-                    expect(info[i].lastMemoryLevel).assertEqual(-1);
+                            expect(typeof(info[i].lastMemoryLevel)).assertEqual("number");
+                            expect(info[i].lastMemoryLevel).assertEqual(-1);
 
-                    expect(typeof(info[i].weight)).assertEqual("number");
-                    expect(info[i].weight).assertEqual(-1);
+                            expect(typeof(info[i].weight)).assertEqual("number");
+                            expect(info[i].weight).assertEqual(-1);
 
-                    expect(typeof(info[i].weightReasonCode)).assertEqual("number");
-                    expect(info[i].weightReasonCode).assertEqual(WeightReasonCode.REASON_UNKNOWN);
-                }
-            });
-        done();
+                            expect(typeof(info[i].weightReasonCode)).assertEqual("number");
+                            expect(info[i].weightReasonCode).assertEqual(WeightReasonCode.REASON_UNKNOWN);
+                        }
+                    });
+                done();
+            },5000);
     })
-
+/*
+ * @tc.number    : Acts_Ams_test_5400
+ * @tc.name      : queryRecentAbilityMissionInfos : Query Recent Ability Mission Infos
+ * @tc.desc      : Query Recent Ability Mission Infos(by CallBack)
+ */
     it('Acts_Ams_test_5400', 0, async function (done) {
         var maxnum = 100,flag = 1;
         abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag,
             (error,data) => {
                 console.info('queryRecentAbilityMissionInfos error.code :' + error.code + ',data length [' + data.length + ']' );
                 expect(Array.isArray(data)).assertEqual(true);
+                expect(data.length).assertEqual(4);
                 for (var i = 0; i < data.length; i++) {
                     console.info('queryRecentAbilityMissionInfos  id: ' + data[i].id + ' baseAbility.deviceId: ' + data[i].baseAbility.deviceId +
                     ' baseAbility.bundleName: ' + data[i].baseAbility.bundleName + ' baseAbility.abilityName: ' + data[i].baseAbility.abilityName +
@@ -193,17 +221,23 @@ describe('ActsAmsCallBackFourthScene', function () {
 
                     expect(typeof (data[i].baseAbility)).assertEqual("object");
                     expect(typeof (data[i].baseAbility.deviceId)).assertEqual("string");
+                    expect(data[i].baseAbility.deviceId.length).assertEqual(0);
                     expect(typeof (data[i].baseAbility.bundleName)).assertEqual("string");
                     expect(data[i].baseAbility.bundleName.length).assertLarger(0);
+                    expect(bundleNameList.indexOf(data[i].baseAbility.bundleName)).assertLarger(-1);
                     expect(typeof (data[i].baseAbility.abilityName)).assertEqual("string");
                     expect(data[i].baseAbility.abilityName.length).assertLarger(0);
+                    expect(abilityNameList.indexOf(data[i].baseAbility.abilityName)).assertLarger(-1);
 
                     expect(typeof (data[i].topAbility)).assertEqual("object");
                     expect(typeof (data[i].topAbility.deviceId)).assertEqual("string");
+                    expect(data[i].topAbility.deviceId.length).assertEqual(0);
                     expect(typeof (data[i].topAbility.bundleName)).assertEqual("string");
                     expect(data[i].topAbility.bundleName.length).assertLarger(0);
+                    expect(bundleNameList.indexOf(data[i].topAbility.bundleName)).assertLarger(-1);
                     expect(typeof (data[i].topAbility.abilityName)).assertEqual("string");
                     expect(data[i].topAbility.abilityName.length).assertLarger(0);
+                    expect(abilityNameList.indexOf(data[i].topAbility.abilityName)).assertLarger(-1);
 
                     expect(typeof (data[i].missionDescription)).assertEqual("object");
                     expect(typeof (data[i].missionDescription.label)).assertEqual("string");
@@ -212,13 +246,18 @@ describe('ActsAmsCallBackFourthScene', function () {
             });
         done();
     })
-
+/*
+ * @tc.number    : Acts_Ams_test_5200
+ * @tc.name      : queryRunningAbilityMissionInfos : Query Running Ability Mission Infos
+ * @tc.desc      : Query Running Ability Mission Infos(by CallBack)
+ */
     it('Acts_Ams_test_5200', 0, async function (done) {
         var maxnum = 30;
         abilitymanager.queryRunningAbilityMissionInfos(maxnum,
             (error,data) => {
                 console.info('queryRunningAbilityMissionInfos error.code :' + error.code + ',data length [' + data.length + ']' );
                 expect(Array.isArray(data)).assertEqual(true);
+                expect(data.length).assertEqual(4);
                 for (var i = 0; i < data.length; i++) {
                     console.info('queryRunningAbilityMissionInfos  id: ' + data[i].id + ' baseAbility.deviceId: ' + data[i].baseAbility.deviceId +
                     ' baseAbility.bundleName: ' + data[i].baseAbility.bundleName + ' baseAbility.abilityName: ' + data[i].baseAbility.abilityName +
@@ -231,17 +270,23 @@ describe('ActsAmsCallBackFourthScene', function () {
 
                     expect(typeof (data[i].baseAbility)).assertEqual("object");
                     expect(typeof (data[i].baseAbility.deviceId)).assertEqual("string");
+                    expect(data[i].baseAbility.deviceId.length).assertEqual(0);
                     expect(typeof (data[i].baseAbility.bundleName)).assertEqual("string");
                     expect(data[i].baseAbility.bundleName.length).assertLarger(0);
+                    expect(bundleNameList.indexOf(data[i].baseAbility.bundleName)).assertLarger(-1);
                     expect(typeof (data[i].baseAbility.abilityName)).assertEqual("string");
                     expect(data[i].baseAbility.abilityName.length).assertLarger(0);
+                    expect(abilityNameList.indexOf(data[i].baseAbility.abilityName)).assertLarger(-1);
 
                     expect(typeof (data[i].topAbility)).assertEqual("object");
                     expect(typeof (data[i].topAbility.deviceId)).assertEqual("string");
+                    expect(data[i].topAbility.deviceId.length).assertEqual(0);
                     expect(typeof (data[i].topAbility.bundleName)).assertEqual("string");
                     expect(data[i].topAbility.bundleName.length).assertLarger(0);
+                    expect(bundleNameList.indexOf(data[i].topAbility.bundleName)).assertLarger(-1);
                     expect(typeof (data[i].topAbility.abilityName)).assertEqual("string");
                     expect(data[i].topAbility.abilityName.length).assertLarger(0);
+                    expect(abilityNameList.indexOf(data[i].topAbility.abilityName)).assertLarger(-1);
 
                     expect(typeof (data[i].missionDescription)).assertEqual("object");
                     expect(typeof (data[i].missionDescription.label)).assertEqual("string");
@@ -250,7 +295,11 @@ describe('ActsAmsCallBackFourthScene', function () {
             });
         done();
     })
-
+/*
+ * @tc.number    : Acts_Ams_test_5600
+ * @tc.name      : removeMission : Remove Mission
+ * @tc.desc      : Remove Mission(by CallBack)
+ */
     it('Acts_Ams_test_5600', 0, async function (done) {
         var maxnum = 30;
         var result = await abilitymanager.queryRunningAbilityMissionInfos(maxnum);
@@ -262,7 +311,11 @@ describe('ActsAmsCallBackFourthScene', function () {
             });
         done();
     })
-
+/*
+ * @tc.number    : Acts_Ams_test_6000
+ * @tc.name      : moveMissionToTop : Move Mission To Top
+ * @tc.desc      : Move Mission To Top(by CallBack)
+ */
     it('Acts_Ams_test_6000', 0, async function (done) {
         var maxnum = 30;
         var result = await abilitymanager.queryRunningAbilityMissionInfos(maxnum);
@@ -274,7 +327,11 @@ describe('ActsAmsCallBackFourthScene', function () {
             });
         done();
     })
-
+/*
+ * @tc.number    : Acts_Ams_test_5800
+ * @tc.name      : clearMissions : Clear Missions
+ * @tc.desc      : Clear Missions(by CallBack)
+ */
     it('Acts_Ams_test_5800', 0, async function (done) {
         abilitymanager.clearMissions(
             (error,info) => {
@@ -284,7 +341,11 @@ describe('ActsAmsCallBackFourthScene', function () {
             });
         done();
     })
-
+/*
+ * @tc.number    : Acts_Ams_test_6400
+ * @tc.name      : killProcessesByBundleName : Kill Processes By BundleName
+ * @tc.desc      : Kill Processes By BundleName(by CallBack)
+ */
     it('Acts_Ams_test_6400', 0, async function (done) {
         abilitymanager.killProcessesByBundleName('xxxxxxxxx',
             (error,info) => {
@@ -294,7 +355,11 @@ describe('ActsAmsCallBackFourthScene', function () {
             });
         done();
     })
-
+/*
+ * @tc.number    : Acts_Ams_test_6200
+ * @tc.name      : removeMissions : Remove Missions
+ * @tc.desc      : Remove Missions(by CallBack)
+ */
     it('Acts_Ams_test_6200', 0, async function (done) {
         var maxnum = 30;
         var result = await abilitymanager.queryRunningAbilityMissionInfos(maxnum);
@@ -305,24 +370,5 @@ describe('ActsAmsCallBackFourthScene', function () {
                 expect(info).assertEqual(0);
             });
         done();
-    })
-
-    it('startlauncher_callbackscene4_02', 0, async function (done) {
-        var callback = featureAbility.startAbility(
-            {
-                want:
-                {
-                    deviceId: "",
-                    bundleName: "com.ohos.launcher",
-                    abilityName: "com.ohos.launcher.MainAbility",
-                    action: "action1",
-                    parameters:
-                    {},
-                },
-            },
-            (err, data) => {
-                done();
-            }
-        );
     })
 })
