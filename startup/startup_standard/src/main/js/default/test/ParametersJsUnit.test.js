@@ -17,6 +17,10 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import systemparameter from '@ohos.systemParameter'
 
+const injectRef = Object.getPrototypeOf(global) || global
+injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
+
+
 describe('SystemParameterTest', function () {
     console.info('SystemParameterTest start################################start');
     /**

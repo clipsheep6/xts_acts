@@ -15,6 +15,9 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import storage from '@ohos.data.storage'
 
+const injectRef = Object.getPrototypeOf(global) || global
+injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
+
 const PATH = '/data/test_storage';
 const KEY_TEST_INT_ELEMENT = 'key_test_int';
 const KEY_TEST_LONG_ELEMENT = 'key_test_long';

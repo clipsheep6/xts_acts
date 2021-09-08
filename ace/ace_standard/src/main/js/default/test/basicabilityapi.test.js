@@ -18,6 +18,9 @@ import prompt from '@system.prompt';
 import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
+const injectRef = Object.getPrototypeOf(global) || global
+injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
+
 describe('basicabilityapi', function () {
     let testResult;
     let testResultFail;
