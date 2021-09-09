@@ -32,11 +32,11 @@ describe('TimeTest', function() {
         systemTime.setTime(1526003846000)
             .then(data =>{
             console.log("setTime ===data " + data)
-            execpt(data).assertEqual(true)
+            expect(data).assertEqual(true)
         }).catch(error => {
             console.log("setTime ===error " + error)
             console.log("setTime ===data " + data)
-            execpt(0).assertLarger(1)
+            expect(0).assertLarger(1)
 
         });
         console.log('SUB_systemTime_setTime_JS_API_0100 end');
@@ -59,7 +59,7 @@ describe('TimeTest', function() {
 
         }).catch(error => {
             console.log("setTime ===error " + error)
-            execpt(0).assertLarger(1)
+            expect(1).assertLarger(0)
 
         });
         console.log('SUB_systemTime_setTime_JS_API_0200 end');
