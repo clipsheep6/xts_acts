@@ -1,0 +1,13 @@
+        */.gitignore
+        */.idea/
+        */build.gradle
+        */entry/.gitignore
+        */entry/build.gradle
+        */entry/package.json
+        */entry/proguard-rules.pro
+        */entry/src/main/java/
+        */entry/src/ohosTest/
+        */gradle.properties
+        */gradle/*
+        */gradlew
+        */settings.gradle

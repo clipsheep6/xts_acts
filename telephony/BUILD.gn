@@ -19,6 +19,7 @@ group("telephonyjstest") {
      # "network_search_test:network_search_test",
      # "sms_mms:sms_mms_test",
      # "call_manager:call_manager",
+    "telephonyjstest:telephonyjstest"
     ]
   }
 }
