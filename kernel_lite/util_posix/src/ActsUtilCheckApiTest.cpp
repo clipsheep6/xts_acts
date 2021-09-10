@@ -381,21 +381,6 @@ HWTEST_F(ActsUtilCheckApiTest, testIsascii2200, Function | MediumTest | Level1) 
 }
 
 /**
-* @tc.number     SUB_KERNEL_UTIL_CHECK_ISASTREAM_2300
-* @tc.name       test isastream api with digit
-* @tc.desc       [C- SOFTWARE -0200]
-*/
-HWTEST_F(ActsUtilCheckApiTest, testIsastream2300, Function | MediumTest | Level1) {
-    int paraVal;
-    int returnVal;
-
-    paraVal = 128;
-    returnVal = isastream(paraVal);
-    LOGD("    isastream returnVal:='%d'\n", returnVal);
-    ASSERT_TRUE(-1 == returnVal) << "ErrInfo: isastream returnVal:='" << returnVal << "'";
-}
-
-/**
 * @tc.number     SUB_KERNEL_UTIL_CHECK_ISATTY_2400
 * @tc.name       test isatty api with digit
 * @tc.desc       [C- SOFTWARE -0200]
