@@ -15,7 +15,7 @@ import("//test/xts/tools/lite/build/suite_lite.gni")
 
 hcpptest_suite("ActsMediaRecorderTest") {
   suite_name = "acts"
-  sources = [ "src/testcase/ActsMediaRecorderNDKTest.cpp" ]
+  sources = [ "src/ActsMediaRecorderNDKTest.cpp" ]
 
   include_dirs = [
     "src/include",
