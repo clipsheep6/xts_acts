@@ -25,10 +25,10 @@ describe('HiAppEventApiTest', function () {
     it('testHiAppEventApi01', 1, function () {
         console.info('testHiAppEventApi01 start')
         var result = false;
-        HiAppEvent.write("write", HiAppEvent.EventType.FAULT, {"key_int": 100, "key_string": "demo", "key_bool":true, "key_float":1.1
-        ,"key_array_int": [1, 2, 3], "key_array_float": [1.1, 2.2, 3.3], "key_array_str": ["a", "b", "c"], "key_array_bool": [true, false]
-        ,"key_array_int2": [1, 2, 3], "key_arr_float2": [1.1, 2.2, 3.3], "key_arr_str2": ["a", "b", "c"], "key_array_bool2": [true, false]
-        },
+        HiAppEvent.write("write", HiAppEvent.EventType.FAULT, {"key_int": 100, "key_string": "demo",
+        "key_bool":true, "key_float":1.1,"key_array_int": [1, 2, 3], "key_array_float": [1.1, 2.2, 3.3],
+        "key_array_str": ["a", "b", "c"], "key_array_bool": [true, false],"key_array_int2": [1, 2, 3],
+        "key_arr_float2": [1.1, 2.2, 3.3], "key_arr_str2": ["a", "b", "c"], "key_array_bool2": [true, false]},
             (err, value) => {
                 console.log(`HiAppEvent into json-callback`);
                 if (err) {
@@ -50,9 +50,10 @@ describe('HiAppEventApiTest', function () {
     it('testHiAppEventApi03', 2, function () {
         console.info('testHiAppEventApi03 start')
         var result = false;
-        HiAppEvent.write("write", HiAppEvent.EventType.STATISTIC, {"key_int":100, "key_float":1.1, "key_string":"demo", "key_bool":true,
-            "key_array_int":[1, 2, 3], "key_array_float":[1.1, 2.2, 3.3], "key_array_str":["a", "b", "c"], "key_array_bool":[true, false],
-            "key_array_int2":[1, 2, 3], "key_array_float2":[1.1, 2.2, 3.3], "key_array_str2":["a", "b", "c"], "key_array_bool2":[true, false]},
+        HiAppEvent.write("write", HiAppEvent.EventType.STATISTIC, {"key_int": 100, "key_string": "demo",
+        "key_bool":true, "key_float":1.1,"key_array_int": [1, 2, 3], "key_array_float": [1.1, 2.2, 3.3],
+        "key_array_str": ["a", "b", "c"], "key_array_bool": [true, false],"key_array_int2": [1, 2, 3],
+        "key_arr_float2": [1.1, 2.2, 3.3], "key_arr_str2": ["a", "b", "c"], "key_array_bool2": [true, false]},
             (err, value) => {
                 console.log(`HiAppEvent into json-callback`);
                 if (err) {
@@ -75,9 +76,10 @@ describe('HiAppEventApiTest', function () {
     it('testHiAppEventApi04', 2, function () {
         console.info('testHiAppEventApi04 start')
         var result = false;
-        HiAppEvent.write("write", HiAppEvent.EventType.SECURITY, {"key_int":100, "key_float":1.1, "key_string":"demo", "key_bool":true,
-        "key_array_int":[1, 2, 3], "key_array_float":[1.1, 2.2, 3.3], "key_array_str":["a", "b", "c"], "key_array_bool":[true, false],
-        "key_array_int2":[1, 2, 3], "key_array_float2":[1.1, 2.2, 3.3], "key_array_str2":["a", "b", "c"], "key_array_bool2":[true, false]},
+        HiAppEvent.write("write", HiAppEvent.EventType.SECURITY, {"key_int": 100, "key_string": "demo",
+        "key_bool":true, "key_float":1.1,"key_array_int": [1, 2, 3], "key_array_float": [1.1, 2.2, 3.3],
+        "key_array_str": ["a", "b", "c"], "key_array_bool": [true, false],"key_array_int2": [1, 2, 3],
+        "key_arr_float2": [1.1, 2.2, 3.3], "key_arr_str2": ["a", "b", "c"], "key_array_bool2": [true, false]},
             (err, value) => {
                 console.log(`HiAppEvent into json-callback`);
                 if (err) {
@@ -100,9 +102,10 @@ describe('HiAppEventApiTest', function () {
     it('testHiAppEventApi05', 2, function () {
         console.info('testHiAppEventApi05 start')
         var result = false;
-        HiAppEvent.write("write", HiAppEvent.EventType.BEHAVIOR, {"key_int":100, "key_float":1.1, "key_string":"demo", "key_bool":true,
-        "key_array_int":[1, 2, 3], "key_array_float":[1.1, 2.2, 3.3], "key_array_str":["a", "b", "c"], "key_array_bool":[true, false],
-        "key_array_int2":[1, 2, 3], "key_array_float2":[1.1, 2.2, 3.3], "key_array_str2":["a", "b", "c"], "key_array_bool2":[true, false]},
+        HiAppEvent.write("write", HiAppEvent.EventType.BEHAVIOR, {"key_int": 100, "key_string": "demo",
+        "key_bool":true, "key_float":1.1,"key_array_int": [1, 2, 3], "key_array_float": [1.1, 2.2, 3.3],
+        "key_array_str": ["a", "b", "c"], "key_array_bool": [true, false],"key_array_int2": [1, 2, 3],
+        "key_arr_float2": [1.1, 2.2, 3.3], "key_arr_str2": ["a", "b", "c"], "key_array_bool2": [true, false]},
             (err, value) => {
                 console.log(`HiAppEvent into json-callback`);
                 if (err) {
