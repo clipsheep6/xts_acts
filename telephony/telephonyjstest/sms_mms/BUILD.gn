@@ -10,12 +10,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import("//test/xts/tools/build/suite.gni")
 
-group("telephony") {
-  testonly = true
-  deps = [
-    #"telephonycpptest:telephonycpptest",
-    #"telephonyothertest:telephonyothertest",
-    "telephonyjstest:telephonyjstest",
-  ]
+ohos_js_hap_suite("sms_mms") {
+  test_hap_name = "SmsMms"
+  hap_source_path = "hap/sms_mms_signed.hap"
 }

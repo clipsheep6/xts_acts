@@ -11,11 +11,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-group("telephony") {
-  testonly = true
-  deps = [
-    #"telephonycpptest:telephonycpptest",
-    #"telephonyothertest:telephonyothertest",
-    "telephonyjstest:telephonyjstest",
-  ]
+import("//test/xts/tools/build/suite.gni")
+
+ohos_js_hap_suite("sim") {
+  test_hap_name = "Sim"
+  hap_source_path = "hap/sim_signed.hap"
 }
