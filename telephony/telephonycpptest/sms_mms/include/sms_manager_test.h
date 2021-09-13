@@ -15,13 +15,13 @@
 
 #ifndef TELEPHONY_SMS_MANAGER_TEST
 #define TELEPHONY_SMS_MANAGER_TEST
-#include <gtest/gtest.h>
-#include "send_short_message_callback_stub.h"
 #include "delivery_short_message_callback_stub.h"
+#include "send_short_message_callback_stub.h"
 #include "short_message.h"
 #include "sms_manager_client.h"
 #include "string_utils.h"
 #include "system_ability_definition.h"
+#include <gtest/gtest.h>
 
 struct SmsMessageData {
     int32_t messageClass;
@@ -49,10 +49,8 @@ public:
     void TearDown();
 
     static void Restore();
-    static void InitPdu();
     std::u16string InterceptionPdu(std::u16string data, int pduLength);
     static void InitSmsData(SmsMessageData &smsData, bool isOther);
-    static void InitSmsDataCDMA(SmsMessageData &smsData, bool isOther);
 
     const int LOOP_NUMBER = 10;
     const uint LOOP_MULTITUDE_NUMBER = 10;
@@ -67,21 +65,15 @@ public:
     const int INTERCEPT_POINT_PLUS = 20;
     const int INTERCEPT_POINT = 18;
     const char SMSC_PLUS = '7';
-
-    const char SMS_STATUS_READ = '3';
-    const char SMS_STATUS_UNREAD = '1';
-    const char SMS_STATUS_SENT = '7';
-    const char SMS_STATUS_UNSENT = '5';
+    const int MAX_USER_DATA_LEN = 160;
 
     static const int LOCK_WAIT_SLIP = 50;
     static const int LOCK_WAIT_TIMEOUT = 60000;
 
-    std::u16string OTHER_SMSC = u"0891683108705505F0";
-    std::u16string USABLE_SMSC = u"0891683108502105F0";
     std::u16string OTHER_SMSC_NUMBER = u"+8613800755500";
     std::u16string USABLE_SMSC_NUMBER = u"+8613800512500";
-    std::u16string CORRECT_SMS_PDU = u"01000D91683106019196F4000800";
-    std::u16string OTHER_SMS_PDU = u"01000D91683108705505F0000800";
+    std::u16string CORRECT_SMS_PDU = u"01000F9168683106019196F400080A00680065006C006C006F";
+    std::u16string OTHER_SMS_PDU = u"01000F9168683106019196F400080400410061";
     std::u16string RECEIVE_SMS_PDU = u"240D91689141468496F600001270721142432302B319";
     std::u16string RECEIVE_OTHER_SMS_PDU = u"240D91689141468496F600001270721174322302B91C";
     std::u16string INVALID_SMS_VALUES = u"00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
@@ -99,25 +91,20 @@ public:
     std::map<std::u16string, int> PDU_LENGTH;
 };
 
+static std::unique_ptr<SmsManagerClient> g_smsClientPtr;
 static std::unique_ptr<OHOS::Telephony::ShortMessage> g_message;
 SmsMessageData g_messageSmsData;
+
 static std::unique_ptr<OHOS::Telephony::ShortMessage> g_messageOther;
 SmsMessageData g_messageOtherSmsData;
 
-static std::unique_ptr<OHOS::Telephony::ShortMessage> g_messageCDMA;
-SmsMessageData g_messageSmsDataCDMA;
-static std::unique_ptr<OHOS::Telephony::ShortMessage> g_messageOtherCDMA;
-SmsMessageData g_messageOtherSmsDataCDMA;
-
-static std::unique_ptr<SmsManagerClient> g_smsClientPtr;
 std::u16string g_dataScAddr;
-std::vector<std::u16string> g_smsRecord;
 
 SmsManagerTest::SmsManagerTest()
 {
     // Record the length of pdUs
-    PDU_LENGTH[CORRECT_SMS_PDU] = 28;
-    PDU_LENGTH[OTHER_SMS_PDU] = 28;
+    PDU_LENGTH[CORRECT_SMS_PDU] = 50;
+    PDU_LENGTH[OTHER_SMS_PDU] = 38;
     PDU_LENGTH[RECEIVE_SMS_PDU] = 44;
     PDU_LENGTH[RECEIVE_OTHER_SMS_PDU] = 44;
     PDU_LENGTH[BEYOND_MAX_PDU] = 176;
@@ -157,44 +144,9 @@ void SmsManagerTest::InitSmsData(SmsMessageData &smsData, bool isOther)
     }
 }
 
-// Example Initialize the SMS data of the PDU
-void SmsManagerTest::InitSmsDataCDMA(SmsMessageData &smsData, bool isOther)
-{
-    if (isOther) {
-        smsData.messageClass = 0;
-        smsData.hasReplyPath = false;
-        smsData.isReplaceMessage = false;
-        smsData.isSmsStatusReportMessage = false;
-        std::vector<unsigned char> _pdu =
-            StringUtils::HexToByteVector("0000021002020702C54EA488649C0601FC08120003101BB00103100C100306110804182257");
-        smsData.pdu = _pdu;
-        smsData.protocolId = 0;
-        smsData.scAddress = u"";
-        smsData.scTimestamp = 1312482177;
-        smsData.status = 0;
-        smsData.visibleMessageBody = u"A";
-        smsData.visibleRawAddress = u"153*9221927";
-
-    } else {
-        smsData.messageClass = 0;
-        smsData.hasReplyPath = false;
-        smsData.isReplaceMessage = false;
-        smsData.isSmsStatusReportMessage = false;
-        std::vector<unsigned char> _pdu = StringUtils::HexToByteVector(
-            "0000021002020702c6049064c4d40601fc081b00031000200106102e8cbb366f03061409011126310a01400d0101");
-        smsData.pdu = _pdu;
-        smsData.protocolId = 0;
-        smsData.scAddress = u"";
-        smsData.scTimestamp = 1409570791;
-        smsData.status = 0;
-        smsData.visibleMessageBody = u"hello";
-        smsData.visibleRawAddress = u"18124193135";
-    }
-}
-
 void SmsManagerTest::Restore()
 {
-    int correctSlotId = 1;
+    int correctSlotId = 0;
     int loopNumber = 10;
     g_smsClientPtr->GetPtr()->SetSmscAddr(correctSlotId, g_dataScAddr);
     std::u16string tempScAddr = g_smsClientPtr->GetPtr()->GetSmscAddr(correctSlotId);
@@ -209,8 +161,8 @@ void SmsManagerTest::Restore()
 
     uint32_t fromMsgId = 0;
     uint32_t toMsgId = 0xFFFF;
-    g_smsClientPtr->GetPtr()->SetCBRangeConfig(correctSlotId, true, fromMsgId, toMsgId, 1);
-    g_smsClientPtr->GetPtr()->SetCBRangeConfig(correctSlotId, false, fromMsgId, toMsgId, 1);
+    g_smsClientPtr->GetPtr()->SetCBConfig(correctSlotId, false, fromMsgId, toMsgId, 1);
+    g_smsClientPtr->GetPtr()->SetDefaultSmsSlotId(correctSlotId);
 }
 
 std::u16string SmsManagerTest::InterceptionPdu(std::u16string data, int pduLength)
@@ -220,18 +172,25 @@ std::u16string SmsManagerTest::InterceptionPdu(std::u16string data, int pduLengt
         return getPdu;
     }
     int pduBegin = INTERCEPT_POINT_PLUS;
-    int symbolIndex = 3;
-    if (data[symbolIndex] == SMSC_PLUS) {
-        pduBegin = INTERCEPT_POINT;
-    }
+    std::string str(data.begin(), data.begin() + 2);
+    int intStr = std::atoi(str.c_str());
+    pduBegin = intStr * 2 + 2;
     getPdu.assign(data, pduBegin, pduLength);
     return getPdu;
 }
 
-void SmsManagerTest::InitPdu()
+// excute before first testcase
+void SmsManagerTest::SetUpTestCase()
 {
+    LOG("> ---------- publish ability");
+    g_smsClientPtr = std::make_unique<SmsManagerClient>();
+    if (g_smsClientPtr == nullptr) {
+        LOG("new SmsManagerClient failed!\n");
+        return;
+    }
     std::vector<unsigned char> pdu =
         OHOS::Telephony::StringUtils::HexToByteVector("0891683108200075F4240D91688129562983F600001240800102142302C130");
+
     g_message =
         std::unique_ptr<OHOS::Telephony::ShortMessage>(OHOS::Telephony::ShortMessage::CreateMessage(pdu, u"3gpp"));
     if (g_message == nullptr) {
@@ -253,47 +212,9 @@ void SmsManagerTest::InitPdu()
         InitSmsData(g_messageOtherSmsData, true);
         LOG("TestCreateMessage other succeess!!! \n");
     }
-
-    // CDMA
-    std::vector<unsigned char> pduCDMA = OHOS::Telephony::StringUtils::HexToByteVector(
-        "0000021002020702c6049064c4d40601fc081b00031000200106102e8cbb366f03061409011126310a01400d0101");
-    g_messageCDMA =
-        std::unique_ptr<OHOS::Telephony::ShortMessage>(OHOS::Telephony::ShortMessage::CreateMessage(pduCDMA, u"3gpp2"));
-    if (g_messageCDMA == nullptr) {
-        LOG("TestCreateMessage CDMA fail!!! \n");
-    } else {
-        // Example Initialize the SMS data of the PDU
-        InitSmsDataCDMA(g_messageSmsDataCDMA, false);
-        LOG("TestCreateMessage CDMA succeess!!! \n");
-    }
-
-    std::vector<unsigned char> pduOtherCDMA = OHOS::Telephony::StringUtils::HexToByteVector(
-        "0000021002020702C54EA488649C0601FC08120003101BB00103100C100306110804182257");
-    g_messageOtherCDMA = std::unique_ptr<OHOS::Telephony::ShortMessage>(
-        OHOS::Telephony::ShortMessage::CreateMessage(pduOtherCDMA, u"3gpp2"));
-    if (g_messageOtherCDMA == nullptr) {
-        LOG("TestCreateMessage OTHER CDMA fail!!! \n");
-    } else {
-        // Example Initialize the SMS data of the PDU
-        InitSmsDataCDMA(g_messageOtherSmsDataCDMA, true);
-        LOG("TestCreateMessage OTHER CDMA succeess!!! \n");
-    }
-}
-
-// excute before first testcase
-void SmsManagerTest::SetUpTestCase()
-{
-    LOG("> ---------- publish ability");
-    g_smsClientPtr = std::make_unique<SmsManagerClient>();
-    if (g_smsClientPtr == nullptr) {
-        LOG("new SmsManagerClient failed!\n");
-        return;
-    }
-    InitPdu();
     g_smsClientPtr->Init(TELEPHONY_SMS_MMS_SYS_ABILITY_ID);
     int correctSlotId = 1;
     g_dataScAddr = g_smsClientPtr->GetPtr()->GetSmscAddr(correctSlotId);
-    g_smsRecord = g_smsClientPtr->GetPtr()->GetAllSimMessages(correctSlotId);
 }
 
 // excute after last testcase

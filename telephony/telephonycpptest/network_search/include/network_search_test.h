@@ -26,17 +26,12 @@
 
 #define MEMSET_S_NETWORK(buff) memset_s(buff, sizeof(buff), '\0', sizeof(buff))
 #ifdef NETWORSEARCH_MOCK_TEST
-MockVendor g_mockVender;
+static MockVendor g_mockVender;
 #endif
 static char g_buff[BUFSIZ];
 
 static int ARR_NAME_LENGTH = 3;
 static int ARR_PLMN_LENGTH = 11;
-
-static std::string g_arrLongOperatorName[] = {"CHINA MOBILE", "CHN-UNICOM", "CHINA TELECOM"};
-static std::string g_arrShortOperatorName[] = {"CMCC", "UNICOM", "CTCC"};
-static std::string g_arrPlmnNumeric[] = {
-    "46000", "46001", "46002", "46003", "46004", "46005", "46006", "46007", "46009", "46011", "46020"};
 
 namespace OHOS {
 namespace Telephony {
@@ -47,9 +42,7 @@ enum LockType {
     SET_RADIO_STATUS = 2,
     GET_RADIO_STATUS = 3,
     GET_NETWORK_SEARCH_RESULT = 4,
-    SET_PREFERRED_NETWORK_MODE = 5,
-    GET_PREFERRED_NETWORK_MODE = 6,
-    MAX_DATA_LEN = 7
+    MAX_DATA_LEN = 5
 };
 class NetworkSearchTest : public testing::Test {
 public:
@@ -66,7 +59,6 @@ public:
     static sptr<NetworkState> GetNetworkStateCache();
     static void RecoverNetworkSelectionMode();
     static void RecoverRadioState();
-    static bool MatchAllResultString(const std::string value, const std::string array[], const int length);
     static sptr<NetworkInformation> SetNetworkInformation(int32_t selectionMode);
 #ifdef NETWORSEARCH_MOCK_TEST
     static void SetMockOperatorData(const std::string longname, const std::string shortname, const std::string numeric);
@@ -83,6 +75,7 @@ public:
     static const int WAIT_CACHE_DATA = 2;
     static const int WAIT_RECOVER = 5;
     const int TELEPHONY_ERROR = -1;
+    const int PLMN_SIZE = 5;
 #ifdef NETWORSEARCH_MOCK_TEST
     static const int NETWORK_OPERATOR_NUMERIC_LEN = 5;
     static const int NETWORK_OPERATOR_SHORTNAME_LEN = 4;
@@ -98,8 +91,6 @@ public:
     static bool getNetworkResultCallback;
     static bool setRadioStatusCallback;
     static bool getRadioStatusCallback;
-    static bool setPreferredNetworkModeResult;
-    static bool getPreferredNetworkModeResult;
     static int32_t errCodeResult;
 
     static bool hasNewData[MAX_DATA_LEN];
@@ -135,8 +126,6 @@ bool NetworkSearchTest::setNetworkModeCallbackResult;
 bool NetworkSearchTest::getNetworkResultCallback;
 bool NetworkSearchTest::setRadioStatusCallback;
 bool NetworkSearchTest::getRadioStatusCallback;
-bool NetworkSearchTest::setPreferredNetworkModeResult;
-bool NetworkSearchTest::getPreferredNetworkModeResult;
 int32_t NetworkSearchTest::errCodeResult;
 
 bool NetworkSearchTest::hasNewData[MAX_DATA_LEN];
@@ -153,8 +142,6 @@ public:
     void OnGetRadioStatusCallback(const bool getResult, const int32_t errorCode) override;
     void OnGetNetworkSearchResult(
         const sptr<NetworkSearchResult> &networkSearchResult, const int32_t errorCode) override;
-    void OnSetPreferredNetworkCallback(const bool setResult, const int32_t errorCode) override;
-    void OnGetPreferredNetworkCallback(const int32_t networkMode, const int32_t errorCode) override;
 };
 
 OHOS::sptr<NetworkSearchResultCallBack> g_callback(new NetworkSearchResultCallBack());
@@ -163,7 +150,7 @@ sptr<NetworkInformation> NetworkSearchTest::SetNetworkInformation(int32_t select
 {
     sptr<NetworkInformation> networkInfo(new NetworkInformation());
     if (selectionMode == MODE_TYPE_AUTO) {
-        return networkInfo;
+        return nullptr;
     }
     if (networkInfo == nullptr) {
         LOG("SetNetworkInformation is fail");
@@ -203,18 +190,6 @@ void NetworkSearchTest::RecoverRadioState()
         // To restore initialization, wait 5 seconds before testing
         sleep(WAIT_RECOVER);
     }
-}
-
-bool NetworkSearchTest::MatchAllResultString(const std::string value, const std::string array[], const int length)
-{
-    bool result = false;
-    for (int i = 0; i < length; i++) {
-        if (value == array[i]) {
-            result = true;
-            LOG("NetworkSearchTest MatchAllResultString : %s", value.c_str());
-        }
-    }
-    return result;
 }
 
 sptr<ICoreService> NetworkSearchTest::GetProxy()
@@ -259,9 +234,6 @@ void NetworkSearchTest::SetUpTestCase()
 {
     Init();
 
-    originPsRadioTech_ = GetProxy()->GetPsRadioTech(SLOT_0);
-    originCsRadioTech_ = GetProxy()->GetCsRadioTech(SLOT_0);
-    originRegState_ = GetNetworkStateCache()->GetRegStatus();
     originOperatorNumeric_ = networkStateCache->GetPlmnNumeric();
     originOperatorShortName_ = networkStateCache->GetShortOperatorName();
     originOperatorLongName_ = networkStateCache->GetLongOperatorName();
@@ -280,8 +252,6 @@ void NetworkSearchTest::SetUp()
     hasNewData[SET_RADIO_STATUS] = false;
     hasNewData[GET_RADIO_STATUS] = false;
     hasNewData[GET_NETWORK_SEARCH_RESULT] = false;
-    hasNewData[SET_PREFERRED_NETWORK_MODE] = false;
-    hasNewData[GET_PREFERRED_NETWORK_MODE] = false;
 
     getNetworkModeCallbackResult = false;
     setNetworkModeCallbackResult = false;
@@ -297,16 +267,17 @@ void NetworkSearchTest::SetUp()
 
 void NetworkSearchTest::TearDown()
 {
-    GetNetworkStateCache()->SetNetworkType(static_cast<RadioTech>(originPsRadioTech_), DOMAIN_TYPE_PS);
-    GetNetworkStateCache()->SetNetworkType(static_cast<RadioTech>(originCsRadioTech_), DOMAIN_TYPE_CS);
-    GetNetworkStateCache()->SetNetworkState(static_cast<RegServiceState>(originRegState_), DOMAIN_TYPE_PS);
-    GetNetworkStateCache()->SetNetworkState(static_cast<RegServiceState>(originRegState_), DOMAIN_TYPE_CS);
+#ifdef NETWORSEARCH_MOCK_TEST
+    SetMockOperatorData(originOperatorLongName_, originOperatorShortName_, originOperatorNumeric_);
+    LOG("NETWORSEARCH_MOCK_TEST originOperatorLongName : %s originOperatorShortName : %s originOperatorNumeric : %s ",
+        originOperatorLongName_.c_str(), originOperatorShortName_.c_str(), originOperatorNumeric_.c_str());
+#endif
 }
 
 void NetworkSearchResultCallBack::OnGetNetworkModeCallback(const int32_t searchModel, const int32_t errorCode)
 {
     NetworkSearchTest::getNetworkModeCallbackResult = searchModel;
-    EXPECT_EQ(errorCode, HRIL_ERR_SUCCESS); // errCode is HRIL_ERR_SUCCESS indicates success
+    ASSERT_EQ(errorCode, HRIL_ERR_SUCCESS);
     LOG("getNetworkModeCallbackResult: = %d errCodeResult = %d", searchModel, errorCode);
     NetworkSearchTest::hasNewData[GET_NETWORK_MODEL] = true;
 }
@@ -330,7 +301,7 @@ void NetworkSearchResultCallBack::OnSetRadioStatusCallback(const bool setResult,
 void NetworkSearchResultCallBack::OnGetRadioStatusCallback(const bool getResult, const int32_t errorCode)
 {
     NetworkSearchTest::getRadioStatusCallback = getResult;
-    EXPECT_EQ(errorCode, HRIL_ERR_SUCCESS); // errCode is HRIL_ERR_SUCCESS indicates success
+    ASSERT_EQ(errorCode, HRIL_ERR_SUCCESS);
     LOG("getRadioStatusCallback: = %d errCodeResult = %d", getResult, errorCode);
     NetworkSearchTest::hasNewData[GET_RADIO_STATUS] = true;
 }
@@ -359,23 +330,8 @@ void NetworkSearchResultCallBack::OnGetNetworkSearchResult(
         LOG("getNetworkResultCallback: = %d errCodeResult = %d", NetworkSearchTest::getNetworkResultCallback,
             errorCode);
     }
-    EXPECT_EQ(errorCode, HRIL_ERR_SUCCESS); // errCode is HRIL_ERR_SUCCESS indicates success
+    ASSERT_EQ(errorCode, HRIL_ERR_SUCCESS);
     NetworkSearchTest::hasNewData[GET_NETWORK_SEARCH_RESULT] = true;
-}
-
-void NetworkSearchResultCallBack::OnSetPreferredNetworkCallback(const bool setResult, const int32_t errorCode)
-{
-    NetworkSearchTest::setPreferredNetworkModeResult = setResult;
-    NetworkSearchTest::errCodeResult = errorCode;
-    LOG("getNetworkModeCallbackResult: = %d errCodeResult = %d", setResult, errorCode);
-    NetworkSearchTest::hasNewData[SET_PREFERRED_NETWORK_MODE] = true;
-}
-void NetworkSearchResultCallBack::OnGetPreferredNetworkCallback(const int32_t preferredMode, const int32_t errorCode)
-{
-    NetworkSearchTest::getPreferredNetworkModeResult = preferredMode;
-    NetworkSearchTest::errCodeResult = errorCode;
-    LOG("getNetworkModeCallbackResult: = %d errCodeResult = %d", preferredMode, errorCode);
-    NetworkSearchTest::hasNewData[GET_PREFERRED_NETWORK_MODE] = true;
 }
 
 #ifdef NETWORSEARCH_MOCK_TEST

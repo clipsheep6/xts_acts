@@ -27,7 +27,7 @@ ohos_moduletest_suite("CellularDataFunctionTest") {
     "../../utils",
     "$SOURCE_DIR/include",
     "//base/telephony/core_service/interfaces/innerkits/cellular_data/common",
-    "../include",
+    "include",
     "//base/telephony/core_service/interfaces/innerkits/cellular_data/proxy",
     "$SOURCE_DIR/interfaces/kits/include",
     "$SOURCE_DIR/include/common",

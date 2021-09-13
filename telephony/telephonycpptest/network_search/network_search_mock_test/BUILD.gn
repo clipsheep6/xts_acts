@@ -23,35 +23,27 @@ ohos_moduletest_suite("NetworkSearchMockTest") {
     "src/network_search_mock_test.cpp",
     "$TELEPHONY_ROOT/core_service/network_search/src/network_state.cpp",
     "$TELEPHONY_ROOT/core_service/network_search/src/signal_information.cpp",
-    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/core/core_service_proxy.cpp",
-    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/state_registry/telephony_state_registry_proxy.cpp",
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/proxy/core_service_proxy.cpp",
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/state_registry/proxy/telephony_state_registry_proxy.cpp",
     "$TELEPHONY_ROOT/core_service/network_search/src/network_search_result.cpp",
     "$TELEPHONY_ROOT/core_service/network_search/src/network_information.cpp",
     "//test/xts/acts/telephony/telephonycpptest/mock_vendor/mock_vendor.cpp",
-    "$TELEPHONY_ROOT/core_service/frameworks/native/i_network_search_callback_stub.cpp",
+    "$TELEPHONY_ROOT/core_service/interfaces/kits/src/i_network_search_callback_stub.cpp",
   ]
 
   include_dirs = [
     "$TELEPHONY_ROOT/ril_adapter/interfaces/innerkits",
     "$TELEPHONY_ROOT/core_service/network_search/include",
     "$TELEPHONY_ROOT/core_service/interfaces/innerkits/common",
-    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/core",
-    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/state_registry/core",
-    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/sim",
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/proxy",
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/state_registry/proxy",
+    "$TELEPHONY_ROOT/core_service/sim/include",
     "$TELEPHONY_ROOT/core_service/common/log/include",
     "//test/xts/acts/telephony/telephonycpptest/network_search/include",
     "$TELEPHONY_ROOT/core_service/network_search/test",
     "$TELEPHONY_ROOT/core_service/interfaces/kits/include",
     "//test/xts/acts/telephony/telephonycpptest/mock_vendor",
     "$TELEPHONY_ROOT/ril_adapter/interfaces/innerkits/hril_notification.h",
-    "$TELEPHONY_ROOT/core_service/interfaces/kits/native",
-    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/network_search",
-    "$TELEPHONY_ROOT/core_service/common/network_search",
-    "$TELEPHONY_ROOT/core_service/common/core",
-    "$TELEPHONY_ROOT/core_service/common/cellular_data",
-    "$TELEPHONY_ROOT/core_service/common/sim/",
-    "$TELEPHONY_ROOT/core_service/utils/log/include/",
-    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/state_registry/",
     "../../utils",
   ]
   deps = [
@@ -61,7 +53,7 @@ ohos_moduletest_suite("NetworkSearchMockTest") {
   ]
 
   external_deps = [
-    "ces_standard:cesfwk_innerkits",
+    "ces_standard:cesfwk_kits",
     "safwk:system_ability_fwk",
     "appexecfwk_standard:libeventhandler",
     "samgr_L2:samgr_proxy",

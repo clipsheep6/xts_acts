@@ -15,19 +15,17 @@
 
 #ifndef SMS_MANAGER_CLIENT_H
 #define SMS_MANAGER_CLIENT_H
-#include <mutex>
+#include "condition_lock.h"
+#include "i_sms_service_interface.h"
 #include "if_system_ability_manager.h"
+#include "iservice_registry.h"
+#include "log.h"
 #include "rwlock.h"
 #include "sms_send_indexer.h"
 #include "sms_service_proxy.h"
-#include "i_sms_service_interface.h"
-#include "send_short_message_callback_stub.h"
-#include "delivery_short_message_callback_stub.h"
-#include "iservice_registry.h"
-#include "log.h"
 #include "system_ability.h"
 #include "time_count_helper.h"
-#include "condition_lock.h"
+#include <mutex>
 
 namespace OHOS {
 namespace Telephony {
@@ -135,7 +133,7 @@ void SendCallback::SendCallbackTest::OnSmsSendResult(const ISendShortMessageCall
 {
     res = DEFAULT_TEST;
     LOG("sms_mms_performance_test SendCallbackTest result : %d", result);
-    if (result == 0) {
+    if (result == ISendShortMessageCallback::SmsSendResult::SEND_SMS_SUCCESS) {
         res = DEFAULT_RESULT;
         int32_t useTimeUs = timeHelper[arrayIndex].GetUseTimeUs();
         arrayCallback[arrayIndex] = useTimeUs;

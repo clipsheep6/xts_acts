@@ -24,12 +24,12 @@ using namespace OHOS::Telephony::NetworkSearch;
 using namespace NetworkSearch;
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_0800
+ * @tc.number  Telephony_NetworkSearch_GetNetworkState_0300
  * @tc.name    Test the GetNetworkState interface query function is executed 1000 times, and the output delay is less
  *             than 10ms
  * @tc.desc    Performance test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0800, Performance | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0300, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
     timeHelper.StartCountUs();
@@ -43,11 +43,11 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0800, Perfor
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetPsRadioTech_0500
+ * @tc.number  Telephony_NetworkSearch_GetPsRadioTech_0300
  * @tc.name    Test GetPsRadioTech interface query function is executed 1000 times, the output delay is less than 10ms
  * @tc.desc    Performance test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0500, Performance | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0300, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
     timeHelper.StartCountUs();
@@ -61,11 +61,11 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0500, Perform
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetCsRadioTech_0500
+ * @tc.number  Telephony_NetworkSearch_GetCsRadioTech_0300
  * @tc.name    Test GetCsRadioTech interface query function is executed 1000 times, the output delay is less than 10ms
  * @tc.desc    Performance test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0500, Performance | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0300, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
     timeHelper.StartCountUs();
@@ -227,13 +227,8 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0500, Performa
     timeHelper.StartCountUs();
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
         hasNewData[SET_RADIO_STATUS] = false;
-        if (TEST_RUN_TIME_1000 % 2 == 0) {
-            GetProxy()->SetRadioState(SLOT_0, false, g_callback);
-            LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-        } else {
-            GetProxy()->SetRadioState(SLOT_0, true, g_callback);
-            LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-        }
+        GetProxy()->SetRadioState(SLOT_0, true, g_callback);
+        LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
     }
     int32_t useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_1000;
     LOGE("use %d us", useTimeUs);

@@ -219,13 +219,13 @@ void InitSimMockData()
     TELEPHONY_LOGE("Sim Mock Data Init Done");
 }
 
-void ReqGetSimStatus(void* requestInfo)
+void ReqGetSimStatus(const ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnSimReport, &g_simMockData.cardState, sizeof(HRilCardState));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnSimReport, &g_simMockData.cardState, sizeof(HRilCardState));
 }
 
-void ReqGetSimIO(void* requestInfo, void* data, size_t dataLen)
+void ReqGetSimIO(const ReqDataInfo* requestInfo, const HRilSimIO* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     HRilSimIOResponse SimResponse;
@@ -277,34 +277,34 @@ void ReqGetSimIO(void* requestInfo, void* data, size_t dataLen)
         TELEPHONY_LOGD("cmd:%{public}s, not defined", cmd);
         response = "FFFFFFFFFFFFFFFF";
         SimResponse.response = response;
-        RESP_SUCSS_WITH_DATA(OnSimReport, &SimResponse, sizeof(SimResponse));
+        RESP_SUCSS_WITH_DATA(requestInfo, OnSimReport, &SimResponse, sizeof(SimResponse));
         return;
     }
-    RESP_SUCSS_WITH_DATA(OnSimReport, &SimResponse, sizeof(SimResponse));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnSimReport, &SimResponse, sizeof(SimResponse));
 }
 
-void ReqGetSimImsi(void* requestInfo)
+void ReqGetSimImsi(const ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnSimReport, &g_simMockData.imsi, sizeof(char*));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnSimReport, &g_simMockData.imsi, sizeof(char*));
 }
 
-void ReqGetSimIccID(void* requestInfo)
+void ReqGetSimIccID(const ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnSimReport, &g_simMockData.iccid, sizeof(char*));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnSimReport, &g_simMockData.iccid, sizeof(char*));
 }
 
-void ReqGetSimLockStatus(void* requestInfo, void* data, size_t dataLen)
+void ReqGetSimLockStatus(const ReqDataInfo* requestInfo, const HRilSimClock* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     HRilSimClock* pSimClck = (HRilSimClock*)data;
     int index = GetLockStatusIndex(pSimClck->fac);
     if (index == -1) {
-        RESP_FAIL_WITHOUT_DATA(OnSimReport);
+        RESP_FAIL_WITHOUT_DATA(requestInfo, OnSimReport);
         return;
     }
-    RESP_SUCSS_WITH_DATA(OnSimReport, &g_simMockData.stateList[index].state, sizeof(int*));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnSimReport, &g_simMockData.stateList[index].state, sizeof(int*));
 }
 void ResetPinInputTimes()
 {
@@ -396,7 +396,7 @@ int VerifyPin2(const char* pin, int state)
     return 0;
 }
 
-void ReqSetSimLock(void* requestInfo, void* data, size_t dataLen)
+void ReqSetSimLock(const ReqDataInfo* requestInfo, const HRilSimClock* data, size_t dataLen)
 {
     int ret = -1;
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
@@ -407,17 +407,17 @@ void ReqSetSimLock(void* requestInfo, void* data, size_t dataLen)
             if (ret == UNLOCK_PIN_PUK_INCORRECT) {
                 VerifyPinFail(ret);
             }
-            RESP_CODE_WITHOUT_DATA(OnSimReport, ret);
+            RESP_CODE_WITHOUT_DATA(requestInfo, OnSimReport, ret);
             return;
         }
         ResetPinInputTimes();
     }
 
     ret = UpdateLockState(pSimClck->fac, pSimClck->mode, pSimClck->passwd, "");
-    RESP_CODE_WITHOUT_DATA(OnSimReport, ret);
+    RESP_CODE_WITHOUT_DATA(requestInfo, OnSimReport, ret);
 }
 
-void ReqChangeSimPassword(void* requestInfo, void* data, size_t dataLen)
+void ReqChangeSimPassword(const ReqDataInfo* requestInfo, const HRilSimPassword* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     HRilSimPassword* pSimPwd = (HRilSimPassword*)data;
@@ -430,7 +430,7 @@ void ReqChangeSimPassword(void* requestInfo, void* data, size_t dataLen)
         }
         if (ret != 0) {
             VerifyPinFail(ret);
-            RESP_CODE_WITHOUT_DATA(OnSimReport, ret);
+            RESP_CODE_WITHOUT_DATA(requestInfo, OnSimReport, ret);
             return;
         }
     }
@@ -439,7 +439,7 @@ void ReqChangeSimPassword(void* requestInfo, void* data, size_t dataLen)
     if (strcmp("SC", pSimPwd->fac) == 0 && ret == 0) {
         ResetPinInputTimes();
     }
-    RESP_CODE_WITHOUT_DATA(OnSimReport, ret);
+    RESP_CODE_WITHOUT_DATA(requestInfo, OnSimReport, ret);
 }
 
 void VerifyPukFail(int ret)
@@ -511,7 +511,7 @@ int VerifyPuk2(const char* puk, int state)
     return 0;
 }
 
-void ReqEnterSimPin(void* requestInfo, const char* pin)
+void ReqEnterSimPin(const ReqDataInfo* requestInfo, const char* pin)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d, in_pin:%{public}s, "
                    "self_pin:%{public}s",
@@ -521,10 +521,10 @@ void ReqEnterSimPin(void* requestInfo, const char* pin)
     if (ret == 0) {
         ResetPinInputTimes();
     }
-    RESP_CODE_WITHOUT_DATA(OnSimReport, ret);
+    RESP_CODE_WITHOUT_DATA(requestInfo, OnSimReport, ret);
 }
 
-void ReqUnlockSimPin(void* requestInfo, const char* puk, const char* pin)
+void ReqUnlockSimPin(const ReqDataInfo* requestInfo, const char* puk, const char* pin)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d, puk:%{public}s, pin:%{public}s", __func__, __LINE__, puk, pin);
     int ret = VerifyPuk(puk, HRIL_SIM_PUK);
@@ -537,12 +537,12 @@ void ReqUnlockSimPin(void* requestInfo, const char* puk, const char* pin)
             ret = 0;
         }
     }
-    RESP_CODE_WITHOUT_DATA(OnSimReport, ret);
+    RESP_CODE_WITHOUT_DATA(requestInfo, OnSimReport, ret);
 }
 
-void ReqGetSimPinInputTimes(void* requestInfo)
+void ReqGetSimPinInputTimes(const ReqDataInfo* requestInfo)
 {
-    RESP_SUCSS_WITH_DATA(OnSimReport, &g_simMockData.pinInputTimes, sizeof(HRilPinInputTimes));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnSimReport, &g_simMockData.pinInputTimes, sizeof(HRilPinInputTimes));
 }
 
 void SetSimPin(void* data, int dataLen)
@@ -582,7 +582,7 @@ void ReqEnterSimPin2(void* requestInfo, const char* pin2)
     if (ret == 0) {
         ResetPin2InputTimes();
     }
-    RESP_CODE_WITHOUT_DATA(OnSimReport, ret);
+    RESP_CODE_WITHOUT_DATA(requestInfo, OnSimReport, ret);
 }
 
 void ReqUnlockSimPin2(void* requestInfo, const char* puk2, const char* pin2)
@@ -598,13 +598,13 @@ void ReqUnlockSimPin2(void* requestInfo, const char* puk2, const char* pin2)
             ret = 0;
         }
     }
-    RESP_CODE_WITHOUT_DATA(OnSimReport, ret);
+    RESP_CODE_WITHOUT_DATA(requestInfo, OnSimReport, ret);
 }
 
 void ReqGetSimPin2InputTimes(void* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnSimReport, &g_simMockData.pinInputTimes, sizeof(HRilPinInputTimes));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnSimReport, &g_simMockData.pinInputTimes, sizeof(HRilPinInputTimes));
 }
 
 void ReqEnableSimCard(void* requestInfo, int index, int enable)
@@ -615,5 +615,5 @@ void ReqEnableSimCard(void* requestInfo, int index, int enable)
         g_simMockData.cardState.simState = HRIL_SIM_READY;
         ret = HRIL_ERR_SUCCESS;
     }
-    RESP_CODE_WITHOUT_DATA(OnSimReport, ret);
+    RESP_CODE_WITHOUT_DATA(requestInfo, OnSimReport, ret);
 }

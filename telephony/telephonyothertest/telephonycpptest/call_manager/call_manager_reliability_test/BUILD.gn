@@ -18,26 +18,32 @@ ohos_moduletest_suite("CallManagerReliabilityTest") {
   install_enable = true
   sources = [
     "src/call_manager_reliability_test.cpp",
-    "//base/telephony/core_service/interfaces/innerkits/call_manager/call_manager_service_proxy.cpp",
+    "//base/telephony/core_service/interfaces/innerkits/call_manager/proxy/call_manager_service_proxy.cpp",
+    "//base/telephony/call_manager/interfaces/kits/native/src/call_ability_callback.cpp",
   ]
 
   include_dirs = [
     "//test/xts/acts/telephony/telephonycpptest/mock_vendor",
-    "//base/telephony/core_service/interfaces/innerkits/call_manager",
     "//test/xts/acts/telephony/telephonycpptest/call_manager/include",
-    "//base/telephony/core_service/common/call_manager",
-    "//base/telephony/core_service/common/cellular_call",
-    "//base/telephony_source_back/core_service/interfaces/innerkits/cellular_call/common",
-    "//base/telephony/call_manager/frameworks/native",
-    "//base/telephony/call_manager/interfaces/kits/native",
-    "//base/telephony/core_service/utils/log/include",
     "//test/xts/acts/telephony/telephonycpptest/utils",
-    "//base/telephony/call_manager/frameworks/js/napi",
-    "//base/telephony_source_back/call_manager/interfaces/kits/js/napi/include",
+    "//base/telephony/call_manager/interfaces/kits/call_service_ability/js_interface/napi/include/",
+    "//base/telephony/call_manager/interfaces/kits/call_service_ability/native/include",
     "//foundation/ace/napi/interfaces/kits",
     "//prebuilts/build-tools/common/nodejs/node-v12.18.4-linux-x64/include/node",
+    "//base/utils/system/safwk/native/include",
+    "//base/utils/native/base/include",
+    "//base/foundation/distributedschedule/standard/interfaces/innerkits/samgr_proxy/standard/include",
     "//foundation/aafwk/standard/interfaces/innerkits/want/include/ohos/aafwk/content",
+    "//base/telephony/core_service/interfaces/innerkits/call_manager/common",
+    "//base/telephony/core_service/interfaces/innerkits/call_manager/proxy",
+    "//base/telephony/core_service/common/log/include",
+    "//base/telephony/core_service/interfaces/innerkits/cellular_call/common",
     "//base/telephony/ril_adapter/interfaces/innerkits",
+    "//base/telephony/call_manager/interfaces/kits/native/include",
+    "//base/telephony/call_manager/interfaces/kits/js/napi/include",
+    "//base/telephony/core_service/interfaces/innerkits/call_manager/proxy",
+    "//base/telephony/core_service/interfaces/innerkits/cellular_call/common",
+    "//base/telephony/core_service/common/log/include",
   ]
 
   if (is_standard_system) {

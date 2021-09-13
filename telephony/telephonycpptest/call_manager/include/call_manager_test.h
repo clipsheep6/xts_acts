@@ -19,9 +19,7 @@
 #include <gtest/gtest.h>
 #include <securec.h>
 #include <string_ex.h>
-
 #include "call_manager_basic.h"
-
 #include "log.h"
 #include "utils.h"
 #include <unordered_set>
@@ -29,25 +27,21 @@
 #include "mock_vendor.h"
 #endif
 
-int32_t g_updateCallIdArray[BUFSIZ];
-int g_newCallId = -1;
-int g_newCallState = -1;
+static int32_t g_updateCallIdArray[BUFSIZ] = { 0 };
+static int g_newCallId = -1;
+static int g_newCallState = -1;
 
-OHOS::AppExecFwk::PacMap g_updateResult;
-int32_t g_updateStartTime;
-bool g_updateIsEcc;
-OHOS::Telephony::TelConferenceState g_updateConference;
-bool g_updateSpeaker;
-int32_t g_updateCallType;
-int32_t g_updateCallId;
-char g_updateAccountNumber[BUFSIZ];
-int32_t g_updateAccountId;
-int32_t g_updateVideoState;
-int32_t g_updateCallState;
-int32_t g_updateEventType;
-int32_t g_updateEventId;
-int32_t g_updateSupplementResult;
-OHOS::Telephony::CallResultReportId g_updateReportId;
+static OHOS::AppExecFwk::PacMap g_updateResult;
+static int32_t g_updateCallType = -1;
+static int32_t g_updateCallId = -1;
+static char g_updateAccountNumber[BUFSIZ] = { 0 };
+static int32_t g_updateAccountId = -1;
+static int32_t g_updateVideoState = -1;
+static int32_t g_updateCallState = -1;
+static int32_t g_updateEventType = -1;
+static int32_t g_updateEventId = -1;
+static int32_t g_updateSupplementResult = -1;
+static int32_t g_updateReportId = -1;
 
 namespace OHOS {
 namespace Telephony {
@@ -61,8 +55,6 @@ public:
     int Dial(std::u16string number);
     void GetCallList(std::vector<std::u16string> ans);
     bool HasState(int callId, int callState);
-    void TestRestrictionCallBack(int HasRestriction);
-    void TestTransferCallBack(int HasTransfer, int type);
 
 public:
     const int SLEEP_3000_MS = 3000;
@@ -73,31 +65,27 @@ public:
     const int SLOT_ID = 0;
     static const int SLOT_ID_NO_CARD = 0;
     const int SUCCESSFUL = 0;
-    const int OPEN = 1;
-    const int OFF = 0;
-    const int ERROR_VALUES = 1;
     const int FALSE_DEFAULT = -1;
+    const int ERROR_VALUES = 1;
     static const int NEGATIVE_FALSE = -1;
     static const int TRUE_DEFAULT = 0;
     const std::string EMPTY_DEFAULT = "";
+    const int INVALID_SLOT_ID = 10;
     const int SLEEP_50_MS = 50;
     const int SLEEP_12000_MS = 12000;
+    const int SLEEP_15000_MS = 15000;
     const int SLEEP_30000_MS = 30000;
-    const int32_t LONG_AT_WILL_CALLID = 2147483647;
-    const std::string VALID_CALL_PASSWORD = "0000";
-    const std::string INVALID_CALL_PASSWORD = "0001";
-    const std::string VALID_TRANSFER_NUMBER = "12599";
 
 public:
     const int VIDEO_STATE_ERRO = -1;
     const int CALL_STATE_ERRO = -1;
     const int EVENT_TYPE_ERRO = -1;
     const int EVENT_ID_ERRO = -1;
+    const int REPORT_ID_ERRO = -1;
     const int ACCOUNT_ID_ERRO = -1;
     const int CALL_ID_ERRO = -1;
     const int CALL_TYPE_ERRO = -1;
     const int NEW_CALL_ID_ERRO = -1;
-    const int START_TIME_ERRO = -1;
 };
 
 class CallManagerDialTest : public testing::Test {
@@ -125,6 +113,7 @@ public:
     const std::string EMPTY_DEFAULT = "";
     const int SLEEP_50_MS = 50;
     const int SLEEP_12000_MS = 12000;
+    const int SLEEP_15000_MS = 15000;
     const int SLEEP_30000_MS = 30000;
 
 public:
@@ -132,11 +121,11 @@ public:
     const int CALL_STATE_ERRO = -1;
     const int EVENT_TYPE_ERRO = -1;
     const int EVENT_ID_ERRO = -1;
+    const int REPORT_ID_ERRO = -1;
     const int ACCOUNT_ID_ERRO = -1;
     const int CALL_ID_ERRO = -1;
     const int CALL_TYPE_ERRO = -1;
     const int NEW_CALL_ID_ERRO = -1;
-    const int START_TIME_ERRO = -1;
 };
 
 class CallManagerMockTest : public testing::Test {
@@ -146,9 +135,7 @@ public:
     void SetUp();
     void TearDown();
     int Dial(std::u16string number);
-    void GetCallList(std::vector<std::u16string> ret);
     bool HasState(int callId, int callState);
-    void TestRegisterCallBack(char phoneNumber[BUFSIZ]);
 #ifdef CALLMANAGER_MOCK_TEST
     static int CleanCallList();
 #endif
@@ -160,19 +147,17 @@ public:
     const int SLEEP_50_MS = 50;
     const int SLEEP_12000_MS = 12000;
     const int SLEEP_30000_MS = 30000;
-    const int ACCOUNT_ID = 1;
-    const int SLOT_ID = 0;
 
 public:
     const int VIDEO_STATE_ERRO = -1;
     const int CALL_STATE_ERRO = -1;
     const int EVENT_TYPE_ERRO = -1;
     const int EVENT_ID_ERRO = -1;
+    const int REPORT_ID_ERRO = -1;
     const int ACCOUNT_ID_ERRO = -1;
     const int CALL_ID_ERRO = -1;
     const int CALL_TYPE_ERRO = -1;
     const int NEW_CALL_ID_ERRO = -1;
-    const int START_TIME_ERRO = -1;
 };
 
 class CallManagerPerformanceTest : public testing::Test {
@@ -181,12 +166,10 @@ public:
     static void TearDownTestCase();
     void SetUp();
     void TearDown();
-    int Dial(std::u16string number);
 
 public:
     const int TEST_RUN_TIME_20 = 20;
     const int USEC_500 = 500;
-    const int FALSE_DEFAULT = -1;
     const int FALSE_NEGATIVE_CALLID_100 = -100;
     const int SLOT_ID = 0;
     const int SUCCESSFUL = 0;
@@ -196,17 +179,6 @@ public:
     const std::string EMPTY_DEFAULT = "";
     const int SLEEP_50_MS = 50;
     const int SLEEP_30000_MS = 30000;
-
-public:
-    const int VIDEO_STATE_ERRO = -1;
-    const int CALL_STATE_ERRO = -1;
-    const int EVENT_TYPE_ERRO = -1;
-    const int EVENT_ID_ERRO = -1;
-    const int ACCOUNT_ID_ERRO = -1;
-    const int CALL_ID_ERRO = -1;
-    const int CALL_TYPE_ERRO = -1;
-    const int NEW_CALL_ID_ERRO = -1;
-    const int START_TIME_ERRO = -1;
 };
 
 class CallManagerReliabilityTest : public testing::Test {
@@ -215,13 +187,11 @@ public:
     static void TearDownTestCase();
     void SetUp();
     void TearDown();
-    int Dial(std::u16string number);
     bool HasState(int callId, int callState);
 
 public:
     const int ERROR_VALUES = -1;
     static const int NEGATIVE_DEFAULT = -1;
-    const int FALSE_DEFAULT = -1;
     const int TEST_RUN_TIME_1000 = 1000;
     const int SLOT_ID = 0;
     const int SLEEP_8000_MS = 8000;
@@ -237,17 +207,17 @@ public:
     const int CALL_STATE_ERRO = -1;
     const int EVENT_TYPE_ERRO = -1;
     const int EVENT_ID_ERRO = -1;
+    const int REPORT_ID_ERRO = -1;
     const int ACCOUNT_ID_ERRO = -1;
     const int CALL_ID_ERRO = -1;
     const int CALL_TYPE_ERRO = -1;
     const int NEW_CALL_ID_ERRO = -1;
-    const int START_TIME_ERRO = -1;
 };
 
 static std::unique_ptr<CallManagerBasic> g_clientPtr = nullptr;
 static AppExecFwk::PacMap g_dialInfo;
-std::unordered_set<int> callIdSet;
-std::unordered_map<int, std::unordered_set<int>> callStateMap;
+std::unordered_set<int> g_callIdSet;
+std::unordered_map<int, std::unordered_set<int>> g_callStateMap;
 
 #ifdef CALLMANAGER_MOCK_TEST
 int CallManagerMockTest::CleanCallList()
@@ -259,10 +229,10 @@ int CallManagerMockTest::CleanCallList()
         return -1;
     } else {
         while (g_clientPtr->GetPtr()->GetCallState() != (int)CallStateToApp::CALL_STATE_IDLE && loop < maxLoop) {
-            g_mockVender_.MockVendorSet(DISPATCHID::CALL_REMOVE_ALL_CALL, nullptr, 0);
+            g_mockVender_.MockVendorSet(DISPATCHID::CALL_REMOVE_ALL_CALL, nullptr, TRUE_DEFAULT);
             loop++;
         }
-        return 0;
+        return TRUE_DEFAULT;
     }
 }
 #endif
@@ -271,7 +241,6 @@ int CallManagerFunctionTest::Dial(std::u16string number)
 {
     return g_clientPtr->GetPtr()->DialCall(number, g_dialInfo);
 }
-
 
 void CallManagerFunctionTest::GetCallList(std::vector<std::u16string> ret)
 {
@@ -287,30 +256,13 @@ void CallManagerFunctionTest::GetCallList(std::vector<std::u16string> ret)
 
 bool CallManagerFunctionTest::HasState(int callId, int callState)
 {
-    if(callStateMap.find(callId) == callStateMap.end()) {
+    if (g_callStateMap.find(callId) == g_callStateMap.end()) {
         return false;
     }
-    if(callStateMap[callId].find(callState) == callStateMap[callId].end()) {
+    if (g_callStateMap[callId].find(callState) == g_callStateMap[callId].end()) {
         return false;
     }
     return true;
-}
-
-void CallManagerFunctionTest::TestRestrictionCallBack(int HasRestriction)
-{
-    LOCK_NUM_WHILE_NE(g_updateReportId, GET_CALL_RESTRICTION_REPORT_ID, SLEEP_50_MS, SLEEP_12000_MS);
-    LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("result"), SUCCESSFUL, SLEEP_50_MS, SLEEP_12000_MS);
-    LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("status"), HasRestriction, SLEEP_50_MS, SLEEP_12000_MS);
-}
-
-void CallManagerFunctionTest::TestTransferCallBack(int HasTransfer, int type)
-{
-    LOCK_NUM_WHILE_NE(g_updateReportId, GET_CALL_TRANSFER_REPORT_ID, SLEEP_50_MS, SLEEP_12000_MS);
-    LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("result"), SUCCESSFUL, SLEEP_50_MS, SLEEP_12000_MS);
-    LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("status"), HasTransfer, SLEEP_50_MS, SLEEP_12000_MS);
-    LOCK_STRING_WHILE_NE(g_updateResult.GetStringValue("number").c_str(), VALID_TRANSFER_NUMBER.c_str(),
-            SLEEP_50_MS, SLEEP_12000_MS);
-    LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("type"), type, SLEEP_50_MS, SLEEP_12000_MS);
 }
 
 int CallManagerMockTest::Dial(std::u16string number)
@@ -318,72 +270,51 @@ int CallManagerMockTest::Dial(std::u16string number)
     return g_clientPtr->GetPtr()->DialCall(number, g_dialInfo);
 }
 
-void CallManagerMockTest::GetCallList(std::vector<std::u16string> ret)
-{
-    bool isEmpty = ret.empty();
-    ASSERT_NE(isEmpty, true);
-    if (isEmpty == false) {
-        for (auto it = ret.begin(); it != ret.end(); ++it) {
-            LOG("------------GetCallIdList = %s ------------", Str16ToStr8(*it).c_str());
-        }
-        ret.clear();
-    }
-}
-
-void CallManagerMockTest::TestRegisterCallBack(char phoneNumber[BUFSIZ])
-{
-    EXPECT_EQ(g_updateAccountNumber, phoneNumber);
-    EXPECT_EQ(g_updateSpeaker, false);
-    EXPECT_EQ(g_updateAccountId, ACCOUNT_ID);
-    EXPECT_EQ(g_updateVideoState, (int)VideoStateType::TYPE_VOICE);
-    EXPECT_EQ(g_updateIsEcc, false);
-    EXPECT_EQ(g_updateCallType, (int)CallType::TYPE_CS);
-    EXPECT_EQ(g_updateConference, (int)TelConferenceState::TEL_CONFERENCE_IDLE);
-}
-
-bool CallManagerMockTest::HasState(int callId, int callState)
-{
-    if(callStateMap.find(callId) == callStateMap.end()) {
-        return false;
-    }
-    if(callStateMap[callId].find(callState) == callStateMap[callId].end()) {
-        return false;
-    }
-    return true;
-}
-
 int CallManagerDialTest::Dial(std::u16string number)
 {
     return g_clientPtr->GetPtr()->DialCall(number, g_dialInfo);
 }
 
+void CallManagerDialTest::GetCallList(std::vector<std::u16string> ret)
+{
+    bool isEmpty = ret.empty();
+    EXPECT_NE(isEmpty, true);
+    if (!ret.empty()) {
+        for (auto it = ret.begin(); it != ret.end(); ++it) {
+            LOG("------------GetSubCallIdList = %s ------------", Str16ToStr8(*it).c_str());
+        }
+        ret.clear();
+    }
+}
+
 bool CallManagerDialTest::HasState(int callId, int callState)
 {
-    if(callStateMap.find(callId) == callStateMap.end()) {
+    if (g_callStateMap.find(callId) == g_callStateMap.end()) {
         return false;
     }
-    if(callStateMap[callId].find(callState) == callStateMap[callId].end()) {
+    if (g_callStateMap[callId].find(callState) == g_callStateMap[callId].end()) {
         return false;
     }
     return true;
 }
 
-int CallManagerPerformanceTest::Dial(std::u16string number)
+bool CallManagerMockTest::HasState(int callId, int callState)
 {
-    return g_clientPtr->GetPtr()->DialCall(number, g_dialInfo);
-}
-
-int CallManagerReliabilityTest::Dial(std::u16string number)
-{
-    return g_clientPtr->GetPtr()->DialCall(number, g_dialInfo);
+    if (g_callStateMap.find(callId) == g_callStateMap.end()) {
+        return false;
+    }
+    if (g_callStateMap[callId].find(callState) == g_callStateMap[callId].end()) {
+        return false;
+    }
+    return true;
 }
 
 bool CallManagerReliabilityTest::HasState(int callId, int callState)
 {
-    if(callStateMap.find(callId) == callStateMap.end()) {
+    if (g_callStateMap.find(callId) == g_callStateMap.end()) {
         return false;
     }
-    if(callStateMap[callId].find(callState) == callStateMap[callId].end()) {
+    if (g_callStateMap[callId].find(callState) == g_callStateMap[callId].end()) {
         return false;
     }
     return true;
@@ -392,27 +323,23 @@ bool CallManagerReliabilityTest::HasState(int callId, int callState)
 int32_t CallAbilityCallbackBasic::OnCallDetailsChange(const CallAttributeInfo &info)
 {
     CallAttributeInfo callInfo = info;
-    g_updateSpeaker = callInfo.speakerphoneOn;
-    g_updateStartTime = callInfo.startTime;
-    g_updateIsEcc = callInfo.isEcc;
-    g_updateConference = callInfo.conferenceState;
 
     g_updateAccountId = callInfo.accountId;
     g_updateCallType = callInfo.callType;
     g_updateCallId = callInfo.callId;
     g_updateCallState = callInfo.callState;
 
-    if (callIdSet.find(g_updateCallId) == callIdSet.end()) {
-        callIdSet.insert(g_updateCallId);
+    if (g_callIdSet.find(g_updateCallId) == g_callIdSet.end()) {
+        g_callIdSet.insert(g_updateCallId);
         g_newCallId = g_updateCallId;
         g_newCallState = g_updateCallState;
         std::unordered_set<int> newSet;
         newSet.clear();
-        callStateMap.insert({g_newCallId, newSet});
+        g_callStateMap.insert(std::pair <int, std::unordered_set<int>> (g_newCallId, newSet));
         LOG("===========================RegisterCallBack Successful===============================");
     }
 
-    callStateMap[g_newCallId].insert(g_updateCallState);
+    g_callStateMap[g_newCallId].insert(g_updateCallState);
 
     (void)memset_s(g_updateAccountNumber, sizeof(g_updateAccountNumber), '\0', sizeof(g_updateAccountNumber));
     int ret = strcpy_s(g_updateAccountNumber, BUFSIZ, callInfo.accountNumber);
@@ -434,10 +361,10 @@ int32_t CallAbilityCallbackBasic::OnCallEventChange(const CallEventInfo &info)
 
 int32_t CallAbilityCallbackBasic::OnSupplementResult(const CallResultReportId id, AppExecFwk::PacMap &resultInfo)
 {
-    g_updateReportId = id;
     g_updateResult = resultInfo;
+    g_updateReportId = id;
     TELEPHONY_LOGI("OnUpdateSupplementResult on");
-    return SUCCESSFUL;
+    return TELEPHONY_SUCCESS;
 }
 
 CallAbilityCallbackBasicStub::~CallAbilityCallbackBasicStub()
@@ -577,9 +504,9 @@ void CallManagerMockTest::SetUpTestCase()
     if (g_clientPtr->Init() == NEGATIVE_FALSE) {
         LOG("connect server fail!!!");
     }
-    callIdSet.clear();
-    callIdSet.insert(-1);
-    g_dialInfo.PutIntValue("accountId", 0);
+    g_callIdSet.clear();
+    g_callIdSet.insert(-1);
+    g_dialInfo.PutIntValue("accountId", TRUE_DEFAULT);
     g_dialInfo.PutIntValue("videoState", (int)VideoStateType::TYPE_VOICE);
     g_dialInfo.PutIntValue("dialScene", CALL_NORMAL);
     g_dialInfo.PutIntValue("dialType", (int)DialType::DIAL_CARRIER_TYPE);
@@ -594,11 +521,11 @@ void CallManagerMockTest::SetUp()
     } else {
         ASSERT_EQ(g_clientPtr->IsInit(), SUCCESSFUL);
     }
-    g_updateStartTime = START_TIME_ERRO;
     g_updateVideoState = VIDEO_STATE_ERRO;
     g_updateCallState = CALL_STATE_ERRO;
     g_updateEventType = EVENT_TYPE_ERRO;
     g_updateEventId = EVENT_ID_ERRO;
+    g_updateReportId = REPORT_ID_ERRO;
     g_updateAccountId = ACCOUNT_ID_ERRO;
     g_updateCallId = CALL_ID_ERRO;
     g_updateCallType = CALL_TYPE_ERRO;
@@ -637,10 +564,10 @@ void CallManagerFunctionTest::SetUpTestCase()
     if (g_clientPtr->Init() == NEGATIVE_FALSE) {
         LOG("connect server fail!!!");
     }
-    callIdSet.clear();
-    callIdSet.insert(-1);
+    g_callIdSet.clear();
+    g_callIdSet.insert(-1);
     g_updateResult.Clear();
-    g_dialInfo.PutIntValue("accountId", 0);
+    g_dialInfo.PutIntValue("accountId", TRUE_DEFAULT);
     g_dialInfo.PutIntValue("videoState", (int)VideoStateType::TYPE_VOICE);
     g_dialInfo.PutIntValue("dialScene", CALL_NORMAL);
     g_dialInfo.PutIntValue("dialType", (int)DialType::DIAL_CARRIER_TYPE);
@@ -655,11 +582,11 @@ void CallManagerFunctionTest::SetUp()
     } else {
         ASSERT_EQ(g_clientPtr->IsInit(), SUCCESSFUL);
     }
-    g_updateStartTime = START_TIME_ERRO;
     g_updateVideoState = VIDEO_STATE_ERRO;
     g_updateCallState = CALL_STATE_ERRO;
     g_updateEventType = EVENT_TYPE_ERRO;
     g_updateEventId = EVENT_ID_ERRO;
+    g_updateReportId = REPORT_ID_ERRO;
     g_updateAccountId = ACCOUNT_ID_ERRO;
     g_updateCallId = CALL_ID_ERRO;
     g_updateCallType = CALL_TYPE_ERRO;
@@ -693,10 +620,10 @@ void CallManagerDialTest::SetUpTestCase()
     if (g_clientPtr->Init() == NEGATIVE_FALSE) {
         LOG("connect server fail!!!");
     }
-    callIdSet.clear();
-    callIdSet.insert(-1);
+    g_callIdSet.clear();
+    g_callIdSet.insert(-1);
     g_updateResult.Clear();
-    g_dialInfo.PutIntValue("accountId", 0);
+    g_dialInfo.PutIntValue("accountId", TRUE_DEFAULT);
     g_dialInfo.PutIntValue("videoState", (int)VideoStateType::TYPE_VOICE);
     g_dialInfo.PutIntValue("dialScene", CALL_NORMAL);
     g_dialInfo.PutIntValue("dialType", (int)DialType::DIAL_CARRIER_TYPE);
@@ -711,11 +638,11 @@ void CallManagerDialTest::SetUp()
     } else {
         ASSERT_EQ(g_clientPtr->IsInit(), SUCCESSFUL);
     }
-    g_updateStartTime = START_TIME_ERRO;
     g_updateVideoState = VIDEO_STATE_ERRO;
     g_updateCallState = CALL_STATE_ERRO;
     g_updateEventType = EVENT_TYPE_ERRO;
     g_updateEventId = EVENT_ID_ERRO;
+    g_updateReportId = REPORT_ID_ERRO;
     g_updateAccountId = ACCOUNT_ID_ERRO;
     g_updateCallId = CALL_ID_ERRO;
     g_updateCallType = CALL_TYPE_ERRO;
@@ -725,11 +652,13 @@ void CallManagerDialTest::SetUp()
 // excute after each testcase
 void CallManagerDialTest::TearDown()
 {
-    LOCK_NUM_WHILE_EQ(g_newCallId, FALSE_DEFAULT, SLEEP_50_MS, SLEEP_12000_MS);
-    LOCK_NUM_WHILE_NE(HasState(g_newCallId, CALL_STATUS_DIALING), true, SLEEP_50_MS, SLEEP_12000_MS);
+    LOCK_NUM_WHILE_EQ(g_newCallId, FALSE_DEFAULT, SLEEP_50_MS, SLEEP_15000_MS);
+    LOCK_NUM_WHILE_NE(HasState(g_newCallId, (int)TelCallState::CALL_STATUS_DIALING), true, SLEEP_50_MS,
+        SLEEP_15000_MS);
     int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
     EXPECT_EQ(hangUpRet, SUCCESSFUL);
-    LOCK_NUM_WHILE_NE(HasState(g_newCallId, CALL_STATUS_DISCONNECTED), true, SLEEP_50_MS, SLEEP_30000_MS);
+    LOCK_NUM_WHILE_NE(HasState(g_newCallId, (int)TelCallState::CALL_STATUS_DISCONNECTED), true, SLEEP_50_MS,
+        SLEEP_15000_MS);
 }
 
 // excute after last testcase
@@ -755,26 +684,12 @@ void CallManagerPerformanceTest::SetUpTestCase()
     if (g_clientPtr->Init() == NEGATIVE_DEFAULT) {
         LOG("connect server fail!!!");
     }
-    g_dialInfo.PutIntValue("accountId", 0);
-    g_dialInfo.PutIntValue("videoState", (int)VideoStateType::TYPE_VOICE);
-    g_dialInfo.PutIntValue("dialScene", CALL_NORMAL);
-    g_dialInfo.PutIntValue("dialType", (int)DialType::DIAL_CARRIER_TYPE);
-    LOG("connect server success!!!");
 }
 
 // excute before each testcase
 void CallManagerPerformanceTest::SetUp()
 {
-    ASSERT_EQ(g_clientPtr->IsInit(), 0);
-    g_updateStartTime = START_TIME_ERRO;
-    g_updateVideoState = VIDEO_STATE_ERRO;
-    g_updateCallState = CALL_STATE_ERRO;
-    g_updateEventType = EVENT_TYPE_ERRO;
-    g_updateEventId = EVENT_ID_ERRO;
-    g_updateAccountId = ACCOUNT_ID_ERRO;
-    g_updateCallId = CALL_ID_ERRO;
-    g_updateCallType = CALL_TYPE_ERRO;
-    g_newCallId = NEW_CALL_ID_ERRO;
+    ASSERT_EQ(g_clientPtr->IsInit(), TRUE_DEFAULT);
 }
 
 // excute after each testcase
@@ -803,8 +718,9 @@ void CallManagerReliabilityTest::SetUpTestCase()
     if (g_clientPtr->Init() == NEGATIVE_DEFAULT) {
         LOG("connect server fail!!!");
     }
-    callIdSet.clear();
-    callIdSet.insert(-1);
+    g_callIdSet.clear();
+    g_callIdSet.insert(-1);
+    g_updateResult.Clear();
     g_dialInfo.PutIntValue("accountId", 0);
     g_dialInfo.PutIntValue("videoState", (int)VideoStateType::TYPE_VOICE);
     g_dialInfo.PutIntValue("dialScene", CALL_NORMAL);
@@ -816,11 +732,11 @@ void CallManagerReliabilityTest::SetUpTestCase()
 void CallManagerReliabilityTest::SetUp()
 {
     ASSERT_EQ(g_clientPtr->IsInit(), 0);
-    g_updateStartTime = START_TIME_ERRO;
     g_updateVideoState = VIDEO_STATE_ERRO;
     g_updateCallState = CALL_STATE_ERRO;
     g_updateEventType = EVENT_TYPE_ERRO;
     g_updateEventId = EVENT_ID_ERRO;
+    g_updateReportId = REPORT_ID_ERRO;
     g_updateAccountId = ACCOUNT_ID_ERRO;
     g_updateCallId = CALL_ID_ERRO;
     g_updateCallType = CALL_TYPE_ERRO;

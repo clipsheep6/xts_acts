@@ -23,49 +23,63 @@ using namespace OHOS::Telephony::NetworkSearch;
 using namespace NetworkSearch;
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_0700
+ * @tc.number  Telephony_NetworkSearch_GetNetworkState_0200
  * @tc.name    Test the GetNetworkState interface query function executed 1000 times, each time the data can be
  *             returned successfully
  * @tc.desc    Reliability test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0700, Reliability | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0200, Reliability | MediumTest | Level3)
 {
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
         std::string plmnNumeric = GetNetworkState()->GetPlmnNumeric();
-        bool result = MatchAllResultString(plmnNumeric, g_arrPlmnNumeric, ARR_LENGTH_8);
-        ASSERT_TRUE(result);
+        ASSERT_STRNE(plmnNumeric.c_str(), "");
         std::string shortOperatorName = GetNetworkState()->GetShortOperatorName();
-        result = MatchAllResultString(shortOperatorName, g_arrShortOperatorName, ARR_LENGTH_3);
-        ASSERT_TRUE(result);
-        std::string longOperatorName = GetNetworkState()->GetShortOperatorName();
-        result = MatchAllResultString(longOperatorName, g_arrShortOperatorName, ARR_LENGTH_3);
-        ASSERT_TRUE(result);
+        ASSERT_STRNE(shortOperatorName.c_str(), "");
+        std::string longOperatorName = GetNetworkState()->GetLongOperatorName();
+        ASSERT_STRNE(longOperatorName.c_str(), "");
+        RoamingType roamingType = static_cast<RoamingType>(GetNetworkState()->GetPsRoamingStatus());
+        ASSERT_EQ(roamingType, RoamingType::ROAMING_STATE_UNKNOWN);
+        roamingType = static_cast<RoamingType>(GetNetworkState()->GetCsRoamingStatus());
+        ASSERT_EQ(roamingType, RoamingType::ROAMING_STATE_UNKNOWN);
+        RegServiceState regState = static_cast<RegServiceState>(GetNetworkStateCache()->GetRegStatus());
+        ASSERT_GE(regState, RegServiceState::REG_STATE_UNKNOWN);
+        ASSERT_LE(regState, RegServiceState::REG_STATE_SEARCH);
+        RadioTech radioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetPsRadioTech());
+        ASSERT_GE(radioTech, RadioTech::RADIO_TECHNOLOGY_UNKNOWN);
+        ASSERT_LE(radioTech, RadioTech::RADIO_TECHNOLOGY_LTE);
+        radioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetCsRadioTech());
+        ASSERT_GE(radioTech, RadioTech::RADIO_TECHNOLOGY_UNKNOWN);
+        ASSERT_LE(radioTech, RadioTech::RADIO_TECHNOLOGY_LTE);
     }
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetPsRadioTech_0400
+ * @tc.number  Telephony_NetworkSearch_GetPsRadioTech_0200
  * @tc.name    Test the GetPsRadioTech interface query function executed 1000 times,
  *             each time the data can be returned successfully
  * @tc.desc    Reliability test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0400, Reliability | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0200, Reliability | MediumTest | Level3)
 {
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
-        GetProxy()->GetPsRadioTech(SLOT_0);
+        RadioTech getPsRadioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetPsRadioTech());
+        ASSERT_GE(getPsRadioTech, RadioTech::RADIO_TECHNOLOGY_UNKNOWN);
+        ASSERT_LE(getPsRadioTech, RadioTech::RADIO_TECHNOLOGY_LTE);
     }
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetCsRadioTech_0400
+ * @tc.number  Telephony_NetworkSearch_GetCsRadioTech_0200
  * @tc.name    Test the GetCsRadioTech interface query function executed 1000 times,
  *             each time the data can be returnedsuccessfully
  * @tc.desc    Reliability test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0400, Reliability | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0200, Reliability | MediumTest | Level3)
 {
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
-        GetProxy()->GetCsRadioTech(SLOT_0);
+        RadioTech getCsRadioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetCsRadioTech());
+        ASSERT_GE(getCsRadioTech, RadioTech::RADIO_TECHNOLOGY_UNKNOWN);
+        ASSERT_LE(getCsRadioTech, RadioTech::RADIO_TECHNOLOGY_LTE);
     }
 }
 
@@ -77,10 +91,12 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0400, Reliabi
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetOperatorNumeric_0200, Reliability | MediumTest | Level3)
 {
+    std::string plmnNum = "460";
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
         std::string operatorNumeric = Str16ToStr8(GetProxy()->GetOperatorNumeric(SLOT_0));
-        bool result = MatchAllResultString(operatorNumeric, g_arrPlmnNumeric, ARR_LENGTH_8);
-        ASSERT_TRUE(result);
+        int size = operatorNumeric.size();
+        ASSERT_EQ(size, NetworkSearchTest::PLMN_SIZE);
+        ASSERT_STREQ(operatorNumeric.substr(0, 3).c_str(), plmnNum.c_str());
     }
 }
 
@@ -94,8 +110,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetOperatorName_0200, Reliab
 {
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
         std::string operatorName = Str16ToStr8(GetProxy()->GetOperatorName(SLOT_0));
-        bool result = MatchAllResultString(operatorName, g_arrLongOperatorName, ARR_LENGTH_3);
-        ASSERT_TRUE(result);
+        ASSERT_STRNE(operatorName.c_str(), "");
     }
 }
 
@@ -111,6 +126,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetSignalInfoList_0200, Reli
         auto signalVec = GetProxy()->GetSignalInfoList(SLOT_0);
         SignalInformation::NetworkType type;
         int level = 0;
+        ASSERT_FALSE(signalVec.empty());
         for (const auto &singnal_sptr : signalVec) {
             ASSERT_NE(singnal_sptr, nullptr);
             type = singnal_sptr->GetNetworkType();
@@ -136,9 +152,9 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkSelectionMode_0300
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
         hasNewData[GET_NETWORK_MODEL] = false;
         bool getSelectMode = GetProxy()->GetNetworkSelectionMode(SLOT_0, g_callback);
-        ASSERT_NE(getSelectMode, false);
+        ASSERT_TRUE(getSelectMode);
         LOCK_NUM_WHILE_NE(hasNewData[GET_NETWORK_MODEL], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-        ASSERT_NE(getNetworkModeCallbackResult, MODE_TYPE_UNKNOWN);
+        ASSERT_EQ(getNetworkModeCallbackResult, MODE_TYPE_AUTO);
     }
 }
 
@@ -154,18 +170,19 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetNetworkSelectionMode_0800
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
         hasNewData[SET_NETWORK_MODEL] = false;
         hasNewData[GET_NETWORK_MODEL] = false;
-        if (i <= TEST_RUN_TIME_1000 / 2) {
+        if (i % 2 == 0) {
             selectionMode = MODE_TYPE_MANUAL;
         } else {
             selectionMode = MODE_TYPE_AUTO;
         }
         bool setSelectMode = GetProxy()->SetNetworkSelectionMode(
             SLOT_0, selectionMode, SetNetworkInformation(selectionMode), false, g_callback);
-        ASSERT_NE(setSelectMode, false);
+        ASSERT_TRUE(setSelectMode);
         LOCK_NUM_WHILE_NE(hasNewData[SET_NETWORK_MODEL], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
         ASSERT_TRUE(setNetworkModeCallbackResult);
+        ASSERT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
         bool getSelectMode = GetProxy()->GetNetworkSelectionMode(SLOT_0, g_callback);
-        ASSERT_NE(getSelectMode, false);
+        ASSERT_TRUE(getSelectMode);
         LOCK_NUM_WHILE_NE(hasNewData[GET_NETWORK_MODEL], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
         ASSERT_NE(getNetworkModeCallbackResult, MODE_TYPE_UNKNOWN);
     }
@@ -179,67 +196,13 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetNetworkSelectionMode_0800
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkSearchResult_0300, Reliability | MediumTest | Level3)
 {
-    SelectionMode selectionMode = MODE_TYPE_AUTO;
+    RecoverNetworkSelectionMode();
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
-        hasNewData[SET_NETWORK_MODEL] = false;
-        hasNewData[GET_NETWORK_MODEL] = false;
         hasNewData[GET_NETWORK_SEARCH_RESULT] = false;
-        if (i <= TEST_RUN_TIME_1000 / 2) {
-            selectionMode = MODE_TYPE_MANUAL;
-        } else {
-            selectionMode = MODE_TYPE_AUTO;
-        }
-        bool setSelectMode = GetProxy()->SetNetworkSelectionMode(
-            SLOT_0, selectionMode, SetNetworkInformation(selectionMode), false, g_callback);
-        ASSERT_NE(setSelectMode, false);
-        LOCK_NUM_WHILE_NE(hasNewData[SET_NETWORK_MODEL], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-        ASSERT_TRUE(setNetworkModeCallbackResult);
-        bool getSelectMode = GetProxy()->GetNetworkSelectionMode(SLOT_0, g_callback);
-        ASSERT_NE(getSelectMode, false);
-        LOCK_NUM_WHILE_NE(hasNewData[GET_NETWORK_MODEL], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-        ASSERT_NE(getNetworkModeCallbackResult, MODE_TYPE_UNKNOWN);
         bool networkSearchResult = GetProxy()->GetNetworkSearchResult(SLOT_0, g_callback);
-        ASSERT_NE(networkSearchResult, false);
+        ASSERT_TRUE(networkSearchResult);
         LOCK_NUM_WHILE_NE(hasNewData[GET_NETWORK_SEARCH_RESULT], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    }
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetRadioState_0400
- * @tc.name    Test the  GetRadioState interface query function executed 1000 times, each time the data is not
- * CORE_SERVICE_POWER_NOT_AVAILABLE returned
- * @tc.desc    Reliability test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetRadioState_0400, Reliability | MediumTest | Level3)
-{
-    for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
-        hasNewData[GET_RADIO_STATUS] = false;
-        bool getRadioState = GetProxy()->GetRadioState(SLOT_0, g_callback);
-        ASSERT_TRUE(getRadioState);
-        LOCK_NUM_WHILE_NE(hasNewData[GET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    }
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_SetRadioState_0400
- * @tc.name    Test the  SetRadioState interface query function executed 1000 times, each time the data is not false
- *             returned
- * @tc.desc    Reliability test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0400, Reliability | MediumTest | Level3)
-{
-    for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
-        bool getRadioState;
-        hasNewData[SET_RADIO_STATUS] = false;
-        if (TEST_RUN_TIME_1000 % 2 == 0) {
-            GetProxy()->SetRadioState(SLOT_0, false, g_callback);
-            getRadioState = GetProxy()->GetRadioState(SLOT_0, g_callback);
-        } else {
-            GetProxy()->SetRadioState(SLOT_0, true, g_callback);
-            getRadioState = GetProxy()->GetRadioState(SLOT_0, g_callback);
-        }
-        ASSERT_TRUE(getRadioState);
-        LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
+        ASSERT_TRUE(getNetworkResultCallback);
     }
 }
 
@@ -261,6 +224,46 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetIsoCountryCodeForNetwork_
         std::u16string countryCode = GetProxy()->GetIsoCountryCodeForNetwork(SLOT_0);
         std::string str = Str16ToStr8(countryCode);
         ASSERT_STREQ(str.c_str(), "cn");
+    }
+}
+
+/*
+ * @tc.number  Telephony_NetworkSearch_GetRadioState_0400
+ * @tc.name    Test the  GetRadioState interface query function executed 1000 times, each time the data is not
+ * CORE_SERVICE_POWER_NOT_AVAILABLE returned
+ * @tc.desc    Reliability test
+ */
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetRadioState_0400, Reliability | MediumTest | Level3)
+{
+    for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
+        hasNewData[GET_RADIO_STATUS] = false;
+        bool getRadioState = GetProxy()->GetRadioState(SLOT_0, g_callback);
+        ASSERT_TRUE(getRadioState);
+        LOCK_NUM_WHILE_NE(hasNewData[GET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
+        ASSERT_TRUE(getRadioStatusCallback);
+    }
+}
+
+/*
+ * @tc.number  Telephony_NetworkSearch_SetRadioState_0400
+ * @tc.name    Test the  SetRadioState interface query function executed 1000 times, each time the data is not false
+ *             returned
+ * @tc.desc    Reliability test
+ */
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0400, Reliability | MediumTest | Level3)
+{
+    bool setRadioState;
+    for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
+        hasNewData[SET_RADIO_STATUS] = false;
+        if (i % 2 == 0) {
+            setRadioState = GetProxy()->SetRadioState(SLOT_0, false, g_callback);
+        } else {
+            setRadioState = GetProxy()->SetRadioState(SLOT_0, true, g_callback);
+        }
+        ASSERT_TRUE(setRadioState);
+        LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
+        ASSERT_TRUE(setRadioStatusCallback);
+        ASSERT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
     }
 }
 

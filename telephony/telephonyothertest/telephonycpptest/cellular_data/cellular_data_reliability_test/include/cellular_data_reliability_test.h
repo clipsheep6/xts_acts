@@ -15,21 +15,15 @@
 
 #ifndef CELLULAR_DATA_ENABLE_TEST_H
 #define CELLULAR_DATA_ENABLE_TEST_H
-#include "cellular_data_function_proxy.h"
 #include <gtest/gtest.h>
+#include "cellular_data_reliability_proxy.h"
 
-class CellularDataFunctionTest : public testing::Test {
+class CellularDataReliabilityTest : public testing::Test {
 public:
     static const int SLOT_ID = 0;
-    static const int ERR_SLOT_ID = 3;
+    static const int TEST_RUN_TIME_1000 = 1000;
+    const int TEST_USEC_500 = 500;
     static bool ORIGINAL_STATE;
-    static const int H_CODE_INVALID_PARAM = -1;
-    static const int H_CODE_FAILED = 0;
-    static const int H_CODE_SUCCESS = 1;
-    static const int DATA_STATE_DISCONNECTED = 11;
-    static const int DATA_STATE_CONNECTING = 12;
-    static const int DATA_STATE_CONNECTED = 13;
-    static const int H_CODE_INVALID_PARAM = 13;
 public:
     static void SetUpTestCase();
     static void TearDownTestCase();
@@ -37,9 +31,9 @@ public:
     void TearDown();
 };
 
-bool CellularDataFunctionTest::ORIGINAL_STATE = false;
+bool CellularDataReliabilityTest::ORIGINAL_STATE = false;
 
-void CellularDataFunctionTest::SetUpTestCase()
+void CellularDataReliabilityTest::SetUpTestCase()
 {
     OHOS::Telephony::g_telephonyService = OHOS::Telephony::GetProxy();
     if (OHOS::Telephony::g_telephonyService == nullptr) {
@@ -48,7 +42,7 @@ void CellularDataFunctionTest::SetUpTestCase()
     ORIGINAL_STATE = OHOS::Telephony::g_telephonyService->IsCellularDataEnabled(SLOT_ID);
 }
 
-void CellularDataFunctionTest::SetUp()
+void CellularDataReliabilityTest::SetUp()
 {
     bool enable = false;
     ASSERT_NE(OHOS::Telephony::g_telephonyService, nullptr);
@@ -56,9 +50,9 @@ void CellularDataFunctionTest::SetUp()
     ASSERT_EQ(result, 1);
 }
 
-void CellularDataFunctionTest::TearDown() {}
+void CellularDataReliabilityTest::TearDown(){}
 
-void CellularDataFunctionTest::TearDownTestCase()
+void CellularDataReliabilityTest::TearDownTestCase()
 {
     ASSERT_NE(OHOS::Telephony::g_telephonyService, nullptr);
     if (ORIGINAL_STATE == false) {

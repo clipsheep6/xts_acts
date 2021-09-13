@@ -21,20 +21,6 @@
 
 static OHOS::Telephony::SimProxy g_proxy;
 
-enum LockRetvalue {
-    LOCK_VALUE_0,
-    LOCK_VALUE_1,
-    LOCK_VALUE_2,
-    LOCK_VALUE_3,
-    LOCK_VALUE_4,
-    LOCK_VALUE_5,
-    LOCK_VALUE_6,
-    LOCK_VALUE_7,
-    LOCK_VALUE_8,
-    LOCK_VALUE_9,
-    LOCK_VALUE_10
-};
-
 enum RemainValue {
     REMAIN_0,
     REMAIN_1,
@@ -84,15 +70,6 @@ public:
     static const std::string UNICOM_SPN;
     static const std::string TELECOM_SPN;
     static const unsigned int MIN_LENGTH;
-    static const int TYPE_OTHER;
-    static const int TYPE_FDN;
-    static const int TYPE_ADN;
-    static const int32_t PARAMETERS_ERR;
-    static const std::string NAME;
-    static const std::string NUMBER;
-    static const std::string NEW_NAME;
-    static const std::string NEW_NUMBER;
-    static const int INDEX;
 };
 
 void SimTest::SetUpTestCase()

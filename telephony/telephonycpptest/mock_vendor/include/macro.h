@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,54 +18,49 @@
 #include "vendor_report.h"
 #include <securec.h>
 
-#define RESP_FAIL_WITHOUT_DATA(report_func)                                                         \
-    {                                                                                               \
-        do {                                                                                        \
-            TELEPHONY_LOGD("RESP_FAIL_WITHOUT_DATA");                                               \
-            struct ReportInfo reportInfo;                                                           \
-            reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_GENERIC_FAILURE, HRIL_RESPONSE, 0); \
-            report_func(reportInfo, NULL, 0);                                                       \
-        } while (0);                                                                                \
+#define RESP_FAIL_WITHOUT_DATA(requestInfo, report_func)                                                              \
+    {                                                                                                                 \
+        do {                                                                                                          \
+            TELEPHONY_LOGD("RESP_FAIL_WITHOUT_DATA");                                                                 \
+            struct ReportInfo reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_GENERIC_FAILURE, HRIL_RESPONSE, 0); \
+            report_func(reportInfo, NULL, 0);                                                                         \
+        } while (0);                                                                                                  \
     }
 
-#define RESP_CODE_WITHOUT_DATA(report_func, num)                               \
-    {                                                                          \
-        do {                                                                   \
-            TELEPHONY_LOGD("RESP_CODE_WITHOUT_DATA %{public}d", num);          \
-            struct ReportInfo reportInfo;                                      \
-            reportInfo = CreateReportInfo(requestInfo, num, HRIL_RESPONSE, 0); \
-            report_func(reportInfo, NULL, 0);                                  \
-        } while (0);                                                           \
+#define RESP_CODE_WITHOUT_DATA(requestInfo, report_func, num)                                    \
+    {                                                                                            \
+        do {                                                                                     \
+            TELEPHONY_LOGD("RESP_CODE_WITHOUT_DATA %{public}d", num);                            \
+            struct ReportInfo reportInfo = CreateReportInfo(requestInfo, num, HRIL_RESPONSE, 0); \
+            report_func(reportInfo, NULL, 0);                                                    \
+        } while (0);                                                                             \
     }
 
-#define RESP_SUCSS_WITHOUT_DATA(report_func)                                                \
-    {                                                                                       \
-        do {                                                                                \
-            TELEPHONY_LOGD("RESP_SUCSS_WITHOUT_DATA");                                      \
-            struct ReportInfo reportInfo;                                                   \
-            reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_SUCCESS, HRIL_RESPONSE, 0); \
-            report_func(reportInfo, NULL, 0);                                               \
-        } while (0);                                                                        \
+#define RESP_SUCSS_WITHOUT_DATA(requestInfo, report_func)                                                     \
+    {                                                                                                         \
+        do {                                                                                                  \
+            TELEPHONY_LOGD("RESP_SUCSS_WITHOUT_DATA");                                                        \
+            struct ReportInfo reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_SUCCESS, HRIL_RESPONSE, 0); \
+            report_func(reportInfo, NULL, 0);                                                                 \
+        } while (0);                                                                                          \
     }
 
-#define RESP_SUCSS_WITHOUT_DATA_EX(report_func, num)                                          \
-    {                                                                                         \
-        do {                                                                                  \
-            TELEPHONY_LOGD("RESP_SUCSS_WITHOUT_DATA");                                        \
-            struct ReportInfo reportInfo;                                                     \
-            reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_SUCCESS, HRIL_RESPONSE, num); \
-            report_func(reportInfo, NULL, 0);                                                 \
-        } while (0);                                                                          \
+#define RESP_SUCSS_WITHOUT_DATA_EX(requestInfo, report_func, num)                                               \
+    {                                                                                                           \
+        do {                                                                                                    \
+            TELEPHONY_LOGD("RESP_SUCSS_WITHOUT_DATA");                                                          \
+            struct ReportInfo reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_SUCCESS, HRIL_RESPONSE, num); \
+            report_func(reportInfo, NULL, 0);                                                                   \
+        } while (0);                                                                                            \
     }
 
-#define RESP_SUCSS_WITH_DATA(report_func, data, dataLen)                                    \
-    {                                                                                       \
-        do {                                                                                \
-            TELEPHONY_LOGD("RESP_SUCSS_WITH_DATA");                                         \
-            struct ReportInfo reportInfo;                                                   \
-            reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_SUCCESS, HRIL_RESPONSE, 0); \
-            report_func(reportInfo, (void*)(data), dataLen);                                \
-        } while (0);                                                                        \
+#define RESP_SUCSS_WITH_DATA(requestInfo, report_func, data, dataLen)                                         \
+    {                                                                                                         \
+        do {                                                                                                  \
+            TELEPHONY_LOGD("RESP_SUCSS_WITH_DATA");                                                           \
+            struct ReportInfo reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_SUCCESS, HRIL_RESPONSE, 0); \
+            report_func(reportInfo, (void*)(data), dataLen);                                                  \
+        } while (0);                                                                                          \
     }
 
 #define CLEAR_AND_COPY_FROM_CLEAN_BUFFER(dst, src)         \

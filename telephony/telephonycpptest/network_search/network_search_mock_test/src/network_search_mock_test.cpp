@@ -83,11 +83,11 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkSearchResult_0700,
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_1000
+ * @tc.number  Telephony_NetworkSearch_GetNetworkState_0400
  * @tc.name    Network status change, get the network registration status
  * @tc.desc    Function test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_1000, Function | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0400, Function | MediumTest | Level3)
 {
     g_mockVender.MockVendorSetReg(DOMAIN_TYPE_PS, REG_STATE_IN_SERVICE);
     g_mockVender.MockVendorSetTech(DOMAIN_TYPE_PS, RADIO_TECHNOLOGY_GSM);
@@ -99,12 +99,12 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_1000, Functi
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_1100
+ * @tc.number  Telephony_NetworkSearch_GetNetworkState_0500
  * @tc.name    If the network status changes,the resident mode is mobile, obtain the current operator's long name is
  *             CHINA MOBILE, short name is CMCC and numeric is 46000
  * @tc.desc    Function test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_1100, Function | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0500, Function | MediumTest | Level3)
 {
     SetMockOperatorData("CHINA MOBILE", "CMCC", "46000");
     std::string plmnNumeric = (GetNetworkState()->GetPlmnNumeric());
@@ -116,12 +116,12 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_1100, Functi
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_1200
+ * @tc.number  Telephony_NetworkSearch_GetNetworkState_0600
  * @tc.name    If the network status changes, the resident mode is mobile, obtain the current operator's long name is
  *             China Unicom, short name is CU and numeric is 46001
  * @tc.desc    Function test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_1200, Function | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0600, Function | MediumTest | Level3)
 {
     SetMockOperatorData("China Unicom", "CU", "46001");
     std::string plmnNumeric = (GetNetworkState()->GetPlmnNumeric());
@@ -133,12 +133,12 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_1200, Functi
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_1300
+ * @tc.number  Telephony_NetworkSearch_GetNetworkState_0700
  * @tc.name    If the network status changes, the resident mode is mobile, obtain the current operator's long name is
  *             China Telecom, short name is CT and numeric is 46003
  * @tc.desc    Function test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_1300, Function | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0700, Function | MediumTest | Level3)
 {
     SetMockOperatorData("China Telecom", "CT", "46003");
     std::string plmnNumeric = (GetNetworkState()->GetPlmnNumeric());

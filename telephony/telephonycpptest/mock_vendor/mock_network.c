@@ -239,11 +239,11 @@ void ShowRegStatus(char* regArray[])
         TELEPHONY_LOGD("%{public}d : %{public}s", i, regArray[i]);
     }
 }
-void ReqGetCsRegStatus(void* requestInfo, void* data, size_t dataLen)
+void ReqGetCsRegStatus(const ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     ShowRegStatus(g_networkMockData.csRegStatusInfo);
-    RESP_SUCSS_WITH_DATA(OnNetworkReport, &g_networkMockData.csRegStatusInfo, MAX_REG_INFO_ITEM * sizeof(char*));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnNetworkReport, &g_networkMockData.csRegStatusInfo, MAX_REG_INFO_ITEM * sizeof(char*));
 }
 
 void SetRegServiceState(int reg, int domain)
@@ -263,7 +263,7 @@ void SetRegServiceState(int reg, int domain)
         CLEAR_AND_COPY_FROM_CLEAN_BUFFER(dst, "0");
         break;
     case REG_STATE_IN_SERVICE:
-        CLEAR_AND_COPY_FROM_CLEAN_BUFFER(dst, "5");
+        CLEAR_AND_COPY_FROM_CLEAN_BUFFER(dst, "1");
         break;
     default:
         break;
@@ -308,17 +308,17 @@ void SetRadioTech(int tech, int domain)
     NotityCsRegStatus();
 }
 
-void ReqGetPsRegStatus(void* requestInfo, void* data, size_t dataLen)
+void ReqGetPsRegStatus(const ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     ShowRegStatus(g_networkMockData.psRegStatusInfo);
-    RESP_SUCSS_WITH_DATA(OnNetworkReport, &g_networkMockData.psRegStatusInfo, MAX_REG_INFO_ITEM * sizeof(char*));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnNetworkReport, &g_networkMockData.psRegStatusInfo, MAX_REG_INFO_ITEM * sizeof(char*));
 }
 
-void ReqGetOperatorInfo(void* requestInfo, void* data, size_t dataLen)
+void ReqGetOperatorInfo(const ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnNetworkReport, &g_networkMockData.operator_response, 3 * sizeof(char*));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnNetworkReport, &g_networkMockData.operator_response, 3 * sizeof(char*));
 }
 
 void ShowCanUseOperInfo()
@@ -333,48 +333,53 @@ void ShowCanUseOperInfo()
     TELEPHONY_LOGD("=================ShowCanUseOperInfo===================");
 }
 
-void RequestGetNetworkSearchInformation(void* requestInfo, void* data, size_t dataLen)
+void RequestGetNetworkSearchInformation(const ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     ShowCanUseOperInfo();
-    RESP_SUCSS_WITH_DATA(
+    RESP_SUCSS_WITH_DATA(requestInfo,
         OnNetworkReport, (void*)g_networkMockData.pp_OperInfo, g_operCount * sizeof(AvailableOperInfo*));
 }
 
-void RequestSetNetworkSelectionMode(void* requestInfo, void* data, size_t dataLen)
+void RequestSetAutomaticModeForNetworks(const ReqDataInfo* requestInfo, const HRiSetNetworkModeInfo* data)
 {
     struct ReportInfo reportInfo;
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
 
     HRiSetNetworkModeInfo* setModeInfo = (HRiSetNetworkModeInfo*)data;
-    if (setModeInfo == NULL || setModeInfo->oper == NULL || setModeInfo->selectMode < 0 || setModeInfo->selectMode > 1) {
-        reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_GENERIC_FAILURE, HRIL_RESPONSE, 0);
-        OnNetworkReport(reportInfo, NULL, 1);
-        return;
-    }
-
-    for (unsigned int i = 0; i < strlen(setModeInfo->oper); i++) {
-        if (setModeInfo->oper[i] < '0' || setModeInfo->oper[i] > '9') {
-            reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_GENERIC_FAILURE, HRIL_RESPONSE, 0);
+    TELEPHONY_LOGD("RequestSetAutomaticModeForNetworks setModeInfo:%{public}p", setModeInfo);
+    if (setModeInfo->selectMode != 0) {
+        if (setModeInfo == NULL || setModeInfo->oper == NULL || setModeInfo->selectMode < 0 || setModeInfo->selectMode > 1) {
+            TELEPHONY_LOGD("RequestSetAutomaticModeForNetworks setModeInfo:%{public}p", setModeInfo);
+            reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_INVALID_PARAMETER, HRIL_RESPONSE, 0);
             OnNetworkReport(reportInfo, NULL, 1);
             return;
+        }
+
+        for (unsigned int i = 0; i < strlen(setModeInfo->oper); i++) {
+            if (setModeInfo->oper[i] < '0' || setModeInfo->oper[i] > '9') {
+                TELEPHONY_LOGD("RequestSetAutomaticModeForNetworks setModeInfo:%{public}c", setModeInfo->oper[i]);
+                reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_INVALID_MODEM_PARAMETER, HRIL_RESPONSE, 0);
+                OnNetworkReport(reportInfo, NULL, 1);
+                return;
+            }
         }
     }
 
     g_networkMockData.selectMode = setModeInfo->selectMode;
-    RESP_SUCSS_WITHOUT_DATA_EX(OnNetworkReport, 1);
+    RESP_SUCSS_WITHOUT_DATA_EX(requestInfo, OnNetworkReport, 1);
 }
 
-void RequestGetNetworkSelectionMode(void* requestInfo, void* data, size_t dataLen)
+void RequestQueryNetworkSelectionMode(const ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnNetworkReport, &g_networkMockData.selectMode, sizeof(int));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnNetworkReport, &g_networkMockData.selectMode, sizeof(int));
 }
 
-void ReqGetSignalStrength(void* requestInfo, void* data, size_t dataLen)
+void ReqGetSignalStrength(const ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnNetworkReport, &g_networkMockData.hrilRssi, sizeof(HRilRssi));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnNetworkReport, &g_networkMockData.hrilRssi, sizeof(HRilRssi));
 }
 
 void RequestSetPreferredNetworkPara(void* requestInfo, void* data, size_t dataLen)
@@ -382,16 +387,16 @@ void RequestSetPreferredNetworkPara(void* requestInfo, void* data, size_t dataLe
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     g_networkMockData.netType = *(int*)data;
     if (g_networkMockData.netType < 0 || g_networkMockData.netType > 6) {
-        RESP_CODE_WITHOUT_DATA(OnNetworkReport, HRIL_ERR_GENERIC_FAILURE);
+        RESP_CODE_WITHOUT_DATA(requestInfo, OnNetworkReport, HRIL_ERR_GENERIC_FAILURE);
         return;
     }
-    RESP_SUCSS_WITHOUT_DATA(OnNetworkReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnNetworkReport);
 }
 
 void RequestGetPreferredNetworkPara(void* requestInfo, void* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnNetworkReport, &g_networkMockData.netType, sizeof(int));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnNetworkReport, &g_networkMockData.netType, sizeof(int));
 }
 
 int ProcessRegStatus(char* s, char** response, int count)
@@ -434,6 +439,11 @@ int parseNetTypeStr(char* netType)
     return 0;
 }
 void NotifyNetWokTime()
+{
+    TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
+}
+
+void GetNetworkSearchInformationPause()
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
 }

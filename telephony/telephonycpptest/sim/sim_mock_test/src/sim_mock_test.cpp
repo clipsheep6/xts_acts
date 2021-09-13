@@ -14,10 +14,10 @@
  */
 
 #define SIM_MOCK_TEST
-#include "log.h"
 #include "sim_test.h"
-#include "time_count_helper.h"
 #include <cstring>
+#include "log.h"
+#include "time_count_helper.h"
 
 using namespace testing::ext;
 using namespace OHOS;
@@ -30,7 +30,6 @@ const int32_t SimTest::PASSWORD_ERR = -1;
 const int32_t SimTest::UNLOCKED = 0;
 const int32_t SimTest::SLOTID_4 = 4;
 const int32_t SimTest::SLOTID_2 = 2;
-const int32_t SimTest::SLOTID_1 = 1;
 const int32_t SimTest::SLOTID_0 = 0;
 const int32_t SimTest::OPEN = 1;
 const int32_t SimTest::CLOSE = 0;
@@ -46,7 +45,7 @@ HWTEST_F(SimTest, Telephony_Sim_GetSimState_0500, Function | MediumTest | Level3
     // Use the analog vendor library to set the card status to EX_UNKNOWN
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_UNKNOWN);
     int32_t result = g_proxy.GetHandler()->GetSimState(SLOTID_0);
-    ASSERT_EQ(result, OHOS::Telephony::ExternalState::EX_UNKNOWN);
+    EXPECT_EQ(result, OHOS::Telephony::ExternalState::EX_UNKNOWN);
 }
 
 /**
@@ -60,7 +59,7 @@ HWTEST_F(SimTest, Telephony_Sim_GetSimState_0600, Function | MediumTest | Level3
     // Use the analog vendor library to set the card status to EX_ABSENT
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_ABSENT);
     int32_t result = g_proxy.GetHandler()->GetSimState(SLOTID_0);
-    ASSERT_EQ(result, OHOS::Telephony::ExternalState::EX_ABSENT);
+    EXPECT_EQ(result, OHOS::Telephony::ExternalState::EX_ABSENT);
 }
 
 /**
@@ -74,7 +73,7 @@ HWTEST_F(SimTest, Telephony_Sim_GetSimState_0700, Function | MediumTest | Level3
     // Use the analog vendor library to set the card status to EX_PIN_LOCKED
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_PIN_LOCKED);
     int32_t result = g_proxy.GetHandler()->GetSimState(SLOTID_0);
-    ASSERT_EQ(result, OHOS::Telephony::ExternalState::EX_PIN_LOCKED);
+    EXPECT_EQ(result, OHOS::Telephony::ExternalState::EX_PIN_LOCKED);
 }
 
 /**
@@ -88,7 +87,7 @@ HWTEST_F(SimTest, Telephony_Sim_GetSimState_0800, Function | MediumTest | Level3
     // Use the analog vendor library to set the card status to EX_PUK_LOCKED
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_PUK_LOCKED);
     int32_t result = g_proxy.GetHandler()->GetSimState(SLOTID_0);
-    ASSERT_EQ(result, OHOS::Telephony::ExternalState::EX_PUK_LOCKED);
+    EXPECT_EQ(result, OHOS::Telephony::ExternalState::EX_PUK_LOCKED);
 }
 
 /**
@@ -102,7 +101,7 @@ HWTEST_F(SimTest, Telephony_Sim_HasSimCard_0500, Function | MediumTest | Level3)
     // Use the analog vendor library to set the card status to EX_ABSENT
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_ABSENT);
     bool result = g_proxy.GetHandler()->HasSimCard(SLOTID_0);
-    ASSERT_FALSE(result);
+    EXPECT_FALSE(result);
 }
 
 /**
@@ -119,7 +118,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPin_0100, Function | MediumTest | Level4)
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
     bool retValue = g_proxy.GetHandler()->UnlockPin(pin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 }
 
 /**
@@ -146,7 +145,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPin_0200, Function | MediumTest | Level2)
     bool retValue = g_proxy.GetHandler()->UnlockPin(pin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
     ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_2);
+    EXPECT_EQ(response.remain, REMAIN_2);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -177,7 +176,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPin_0300, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->UnlockPin(pin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -209,7 +208,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPin_0400, Function | MediumTest | Level1)
     bool retValue = g_proxy.GetHandler()->UnlockPin(pin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
     ASSERT_EQ(response.result, UNLOCKED);
-    ASSERT_EQ(response.remain, REMAIN_0);
+    EXPECT_EQ(response.remain, REMAIN_0);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -240,7 +239,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPin_0500, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->UnlockPin(pin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -285,7 +284,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPin_0600, Function | MediumTest | Level2)
     ASSERT_EQ(response.remain, REMAIN_0);
     retValue = g_proxy.GetHandler()->UnlockPin(pin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -315,7 +314,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPin_0700, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->UnlockPin(pin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -350,7 +349,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPin_0800, Performance | MediumTest | Level
     }
     int32_t useTimeUs = timeHelper.GetUseTimeUs() / LOOP_NUMBER;
     LOG("The time of each time is : %d us", useTimeUs);
-    ASSERT_LE(useTimeUs, SimTest::TIME_USEC);
+    EXPECT_LE(useTimeUs, SimTest::TIME_USEC);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -447,7 +446,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPuk_0100, Function | MediumTest | Level1)
     bool retValue = g_proxy.GetHandler()->UnlockPuk(pin, puk, response, SLOTID_0);
     ASSERT_TRUE(retValue);
     ASSERT_EQ(response.result, UNLOCKED);
-    ASSERT_EQ(response.remain, REMAIN_0);
+    EXPECT_EQ(response.remain, REMAIN_0);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -482,7 +481,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPuk_0200, Function | MediumTest | Level2)
 
     bool retValue = g_proxy.GetHandler()->UnlockPuk(pin, puk, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -517,7 +516,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPuk_0300, Function | MediumTest | Level2)
 
     bool retValue = g_proxy.GetHandler()->UnlockPuk(pin, puk, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -553,7 +552,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPuk_0400, Function | MediumTest | Level2)
     bool retValue = g_proxy.GetHandler()->UnlockPuk(pin, puk, response, SLOTID_0);
     ASSERT_TRUE(retValue);
     ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_9);
+    EXPECT_EQ(response.remain, REMAIN_9);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -587,7 +586,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPuk_0500, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->UnlockPuk(pin, puk, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -621,7 +620,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPuk_0600, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->UnlockPuk(pin, puk, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -661,7 +660,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPuk_0700, Function | MediumTest | Level4)
     }
     ASSERT_TRUE(retValue);
     ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_0);
+    EXPECT_EQ(response.remain, REMAIN_0);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -695,7 +694,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPuk_0800, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->UnlockPuk(pin, puk, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -735,7 +734,7 @@ HWTEST_F(SimTest, Telephony_Sim_UnlockPuk_0900, Performance | MediumTest | Level
     }
     int32_t useTimeUs = timeHelper.GetUseTimeUs() / LOOP_NUMBER;
     LOG("The time of each time is : %d us", useTimeUs);
-    ASSERT_LE(useTimeUs, SimTest::TIME_USEC);
+    EXPECT_LE(useTimeUs, SimTest::TIME_USEC);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -838,7 +837,7 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_0100, Function | MediumTest | Level2)
 
     bool retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -871,7 +870,7 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_0200, Function | MediumTest | Level2)
     bool retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
     ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_2);
+    EXPECT_EQ(response.remain, REMAIN_2);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -904,7 +903,7 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_0300, Function | MediumTest | Level1)
     bool retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
     ASSERT_EQ(response.result, UNLOCKED);
-    ASSERT_EQ(response.remain, REMAIN_0);
+    EXPECT_EQ(response.remain, REMAIN_0);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -939,7 +938,7 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_0400, Function | MediumTest | Level2)
     bool retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
     ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_2);
+    EXPECT_EQ(response.remain, REMAIN_2);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -970,7 +969,7 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_0500, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -1001,7 +1000,7 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_0600, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -1033,7 +1032,7 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_0700, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -1064,7 +1063,7 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_0800, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -1095,7 +1094,7 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_0900, Function | MediumTest | Level4)
 
     bool retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -1135,10 +1134,10 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_1000, Function | MediumTest | Level4)
     retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
     ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_0);
+    EXPECT_EQ(response.remain, REMAIN_0);
     retValue = g_proxy.GetHandler()->AlterPin(newPin, oldPin, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -1175,7 +1174,7 @@ HWTEST_F(SimTest, Telephony_Sim_AlterPin_1100, Performance | MediumTest | Level3
     }
     int32_t useTimeUs = timeHelper.GetUseTimeUs() / LOOP_NUMBER;
     LOG("The time of each time is : %d us", useTimeUs);
-    ASSERT_LE(useTimeUs, SimTest::TIME_USEC);
+    EXPECT_LE(useTimeUs, SimTest::TIME_USEC);
 
     // Use the analog vendor library to set the card status to EX_READY
     g_proxy.MockSimStateSet(OHOS::Telephony::ExternalState::EX_READY);
@@ -1264,7 +1263,7 @@ HWTEST_F(SimTest, Telephony_Sim_SetLockState_0100, Function | MediumTest | Level
 
     bool retValue = g_proxy.GetHandler()->SetLockState(pin, OPEN, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, UNLOCKED);
+    EXPECT_EQ(response.result, UNLOCKED);
 }
 
 /**
@@ -1283,7 +1282,7 @@ HWTEST_F(SimTest, Telephony_Sim_SetLockState_0200, Function | MediumTest | Level
 
     bool retValue = g_proxy.GetHandler()->SetLockState(pin, CLOSE, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, UNLOCKED);
+    EXPECT_EQ(response.result, UNLOCKED);
 }
 
 /**
@@ -1303,7 +1302,7 @@ HWTEST_F(SimTest, Telephony_Sim_SetLockState_0300, Function | MediumTest | Level
 
     bool retValue = g_proxy.GetHandler()->SetLockState(pin, OPEN, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 }
 
 /**
@@ -1323,7 +1322,7 @@ HWTEST_F(SimTest, Telephony_Sim_SetLockState_0400, Function | MediumTest | Level
 
     bool retValue = g_proxy.GetHandler()->SetLockState(pin, CLOSE, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 }
 
 /**
@@ -1344,7 +1343,7 @@ HWTEST_F(SimTest, Telephony_Sim_SetLockState_0500, Function | MediumTest | Level
     bool retValue = g_proxy.GetHandler()->SetLockState(pin, OPEN, response, SLOTID_0);
     ASSERT_TRUE(retValue);
     ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_2);
+    EXPECT_EQ(response.remain, REMAIN_2);
 }
 
 /**
@@ -1364,8 +1363,8 @@ HWTEST_F(SimTest, Telephony_Sim_SetLockState_0600, Function | MediumTest | Level
 
     bool retValue = g_proxy.GetHandler()->SetLockState(pin, CLOSE, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_2);
+    EXPECT_EQ(response.result, PASSWORD_ERR);
+    EXPECT_EQ(response.remain, REMAIN_2);
 }
 
 /**
@@ -1385,7 +1384,7 @@ HWTEST_F(SimTest, Telephony_Sim_SetLockState_0700, Function | MediumTest | Level
 
     bool retValue = g_proxy.GetHandler()->SetLockState(pin, CLOSE, response, SLOTID_0);
     ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
+    EXPECT_EQ(response.result, OTHER_ABNORMAL);
 }
 
 /**
@@ -1411,7 +1410,7 @@ HWTEST_F(SimTest, Telephony_Sim_SetLockState_0800, Performance | MediumTest | Le
     }
     int32_t useTimeUs = timeHelper.GetUseTimeUs() / LOOP_NUMBER;
     LOG("The time of each time is : %d us", useTimeUs);
-    ASSERT_LE(useTimeUs, SimTest::TIME_USEC);
+    EXPECT_LE(useTimeUs, SimTest::TIME_USEC);
 }
 
 /**
@@ -1455,614 +1454,4 @@ HWTEST_F(SimTest, Telephony_Sim_SetLockState_1000, Reliability | MediumTest | Le
 
     bool retValue = g_proxy.GetHandler()->SetLockState(pin, OPEN, response, SLOTID_4);
     ASSERT_FALSE(retValue);
-}
-
-/*****************************************************Phase four******************************************************/
-/**
- * @tc.number   Telephony_Sim_UnlockPin2_0100
- * @tc.name     Test the UnlockPin2 interface with normal input parameters.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPin2_0100, Function | MediumTest | Level4)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("1234");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPin2(pin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, UNLOCKED);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPin2_0200
- * @tc.name     Test UnlockPin2 The interface PIN is a string of 3 characters.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPin2_0200, Function | MediumTest | Level4)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("123");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPin2(pin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPin2_0300
- * @tc.name     Test UnlockPin2 The interface PIN is a string of 9 characters.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPin2_0300, Function | MediumTest | Level4)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("123456789");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPin2(pin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPin2_0400
- * @tc.name     Test UnlockPin2 interface error pin2 code entry parameter.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPin2_0400, Function | MediumTest | Level4)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("4321");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPin2(pin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_2);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPin2_0500
- * @tc.name     Test the UnlockPin2 interface and enter the abnormal slotid parameter.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPin2_0500, Function | MediumTest | Level4)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("1234");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPin2(pin2, response, SLOTID_4);
-    ASSERT_FALSE(retValue);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPin2_0600
- * @tc.name     Test UnlockPin2 The puK2 lock is triggered when too many pin2 codes
- *              are entered incorrectly on the interface.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPin2_0600, Function | MediumTest | Level4)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("4321");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPin2(pin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_2);
-    retValue = g_proxy.GetHandler()->UnlockPin2(pin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_1);
-    retValue = g_proxy.GetHandler()->UnlockPin2(pin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_0);
-    retValue = g_proxy.GetHandler()->UnlockPin2(pin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPin2_0700
- * @tc.name     Loop to call UnlockPin2 interface for 1000 times and get the retValueurn value,
- *              and count the number of failures.
- * @tc.desc     Reliability test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPin2_0700, Reliability | MediumTest | Level3)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    for (int32_t loopNumber = 0; loopNumber < LOOP_NUMBER; loopNumber++) {
-        bool retValue = g_proxy.GetHandler()->UnlockPin2(Str8ToStr16(defaultPin2), response, SLOTID_0);
-        ASSERT_TRUE(retValue);
-        ASSERT_EQ(response.result, UNLOCKED);
-    }
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPin2_0800
- * @tc.name     Test the UnlockPin2 interface query function 1000 times
- *              and expect an average delay of less than 500μs.
- * @tc.desc     Performance test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPin2_0800, Performance | MediumTest | Level3)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    TimeCountHelper timeHelper;
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    timeHelper.StartCountUs();
-    for (int32_t timeNumber = 0; timeNumber < LOOP_NUMBER; timeNumber++) {
-        g_proxy.GetHandler()->UnlockPin2(Str8ToStr16(defaultPin2), response, SLOTID_0);
-    }
-    int32_t useTimeUs = timeHelper.GetUseTimeUs() / LOOP_NUMBER;
-    LOG("The time of each time is : %d us", useTimeUs);
-    ASSERT_LE(useTimeUs, SimTest::TIME_USEC);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPuk2_0100
- * @tc.name     Test the UnlockPuk2 interface and enter normal parameters.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPuk2_0100, Function | MediumTest | Level1)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("1234");
-    std::u16string puk2 = Str8ToStr16("12345678");
-    std::string defaultPin2 = "1234";
-    std::string defaultPuk2 = "12345678";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-    // Use the analog vendor library to set the PUK2 to 12345678
-    g_proxy.MockPuk2CodeSet(defaultPuk2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPuk2(pin2, puk2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, UNLOCKED);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPuk2_0200
- * @tc.name     The puk parameter of the UnlockPuk2 interface is a string of 3 characters.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPuk2_0200, Function | MediumTest | Level1)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("1234");
-    std::u16string puk2 = Str8ToStr16("123");
-    std::string defaultPin2 = "1234";
-    std::string defaultPuk2 = "12345678";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-    // Use the analog vendor library to set the PUK2 to 12345678
-    g_proxy.MockPuk2CodeSet(defaultPuk2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPuk2(pin2, puk2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPuk2_0300
- * @tc.name     The puk parameter of the UnlockPuk2 interface is a string of 9 characters.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPuk2_0300, Function | MediumTest | Level1)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("1234");
-    std::u16string puk2 = Str8ToStr16("123456789");
-    std::string defaultPin2 = "1234";
-    std::string defaultPuk2 = "12345678";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-    // Use the analog vendor library to set the PUK2 to 12345678
-    g_proxy.MockPuk2CodeSet(defaultPuk2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPuk2(pin2, puk2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPuk2_0400
- * @tc.name     Test UnlockPuk2 interface and input error PUK2 code.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPuk2_0400, Function | MediumTest | Level1)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("1234");
-    std::u16string puk2 = Str8ToStr16("87654321");
-    std::string defaultPin2 = "1234";
-    std::string defaultPuk2 = "12345678";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-    // Use the analog vendor library to set the PUK2 to 12345678
-    g_proxy.MockPuk2CodeSet(defaultPuk2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPuk2(pin2, puk2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_9);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPuk2_0500
- * @tc.name     Test the UnlockPuk2 interface and enter the abnormal slotId parameter.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPuk2_0500, Function | MediumTest | Level1)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("1234");
-    std::u16string puk2 = Str8ToStr16("12345678");
-    std::string defaultPin2 = "1234";
-    std::string defaultPuk2 = "12345678";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-    // Use the analog vendor library to set the PUK2 to 12345678
-    g_proxy.MockPuk2CodeSet(defaultPuk2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPuk2(pin2, puk2, response, SLOTID_4);
-    ASSERT_FALSE(retValue);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPuk2_0600
- * @tc.name     Testing the UnlockPuk2 interface and entering incorrect Pin parameters.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPuk2_0600, Function | MediumTest | Level1)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("123456789");
-    std::u16string puk2 = Str8ToStr16("12345678");
-    std::string defaultPin2 = "1234";
-    std::string defaultPuk2 = "12345678";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-    // Use the analog vendor library to set the PUK2 to 12345678
-    g_proxy.MockPuk2CodeSet(defaultPuk2);
-
-    bool retValue = g_proxy.GetHandler()->UnlockPuk2(pin2, puk2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPuk2_0700
- * @tc.name     Test the UnlockPuk2 interface with puk2 code input error, call 11 times trigger lock.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPuk2_0700, Function | MediumTest | Level1)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("1234");
-    std::u16string puk2 = Str8ToStr16("87654321");
-    std::string defaultPin2 = "1234";
-    std::string defaultPuk2 = "12345678";
-    int32_t callTimes = 11;
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-    // Use the analog vendor library to set the PUK2 to 12345678
-    g_proxy.MockPuk2CodeSet(defaultPuk2);
-
-    bool retValue = false;
-    for (int32_t loopNumber = 0; loopNumber < callTimes; loopNumber++) {
-        retValue = g_proxy.GetHandler()->UnlockPuk2(pin2, puk2, response, SLOTID_0);
-    }
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPuk2_0800
- * @tc.name     Test the UnlockPuk2 interface query function 1000 times
- *              and expect an average delay of less than 500μs.
- * @tc.desc     Performance test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPuk2_0800, Performance | MediumTest | Level3)
-{
-    TimeCountHelper timeHelper;
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("1234");
-    std::u16string puk2 = Str8ToStr16("12345678");
-    std::string defaultPin2 = "1234";
-    std::string defaultPuk2 = "12345678";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-    // Use the analog vendor library to set the PUK2 to 12345678
-    g_proxy.MockPuk2CodeSet(defaultPuk2);
-
-    timeHelper.StartCountUs();
-    for (int32_t timeNumber = 0; timeNumber < LOOP_NUMBER; timeNumber++) {
-        g_proxy.GetHandler()->UnlockPuk2(pin2, puk2, response, SLOTID_0);
-    }
-    int32_t useTimeUs = timeHelper.GetUseTimeUs() / LOOP_NUMBER;
-    LOG("The time of each time is : %d us", useTimeUs);
-    ASSERT_LE(useTimeUs, SimTest::TIME_USEC);
-}
-
-/**
- * @tc.number   Telephony_Sim_UnlockPuk2_0900
- * @tc.name     Loop to call UnlockPuk2 interface for 1000 times and get the retValueurn value,
- *              and count the number of failures.
- * @tc.desc     Reliability test
- */
-HWTEST_F(SimTest, Telephony_Sim_UnlockPuk2_0900, Reliability | MediumTest | Level3)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string pin2 = Str8ToStr16("1234");
-    std::u16string puk2 = Str8ToStr16("12345678");
-    std::string defaultPin2 = "1234";
-    std::string defaultPuk2 = "12345678";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-    // Use the analog vendor library to set the PUK2 to 12345678
-    g_proxy.MockPuk2CodeSet(defaultPuk2);
-
-    for (int32_t loopNumber = 0; loopNumber < LOOP_NUMBER; loopNumber++) {
-        bool retValue = g_proxy.GetHandler()->UnlockPuk2(pin2, puk2, response, SLOTID_0);
-        ASSERT_TRUE(retValue);
-        ASSERT_EQ(response.result, UNLOCKED);
-    }
-}
-
-/**
- * @tc.number   Telephony_Sim_AlterPin2_0100
- * @tc.name     Test the AlterPin2 interface and enter the correct oldPin2.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_AlterPin2_0100, Function | MediumTest | Level2)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string oldPin2 = Str8ToStr16("1234");
-    std::u16string newPin2 = Str8ToStr16("1234");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->AlterPin2(newPin2, oldPin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, UNLOCKED);
-}
-
-/**
- * @tc.number   Telephony_Sim_AlterPin2_0200
- * @tc.name     Test AlterPin2 interface newpin for a value of length 3.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_AlterPin2_0200, Function | MediumTest | Level2)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string oldPin2 = Str8ToStr16("123");
-    std::u16string newPin2 = Str8ToStr16("1234");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->AlterPin2(newPin2, oldPin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
-}
-
-/**
- * @tc.number   Telephony_Sim_AlterPin2_0300
- * @tc.name     Test AlterPin2 interface newpin as a value of length 9.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_AlterPin2_0300, Function | MediumTest | Level2)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string oldPin2 = Str8ToStr16("123456789");
-    std::u16string newPin2 = Str8ToStr16("1234");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->AlterPin2(newPin2, oldPin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
-}
-
-/**
- * @tc.number   Telephony_Sim_AlterPin2_0400
- * @tc.name     Test the AlterPin2 interface and enter the abnormal oldPin parameter.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_AlterPin2_0400, Function | MediumTest | Level2)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string oldPin2 = Str8ToStr16("1234");
-    std::u16string newPin2 = Str8ToStr16("123456789");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->AlterPin2(newPin2, oldPin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, OTHER_ABNORMAL);
-}
-
-/**
- * @tc.number   Telephony_Sim_AlterPin2_0500
- * @tc.name     Test AlterPin2 interface and enter wrong oldPin parameter.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_AlterPin2_0500, Function | MediumTest | Level2)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string oldPin2 = Str8ToStr16("1234");
-    std::u16string newPin2 = Str8ToStr16("4321");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->AlterPin2(newPin2, oldPin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_2);
-}
-
-/**
- * @tc.number   Telephony_Sim_AlterPin2_0600
- * @tc.name     Test the AlterPin2 interface and enter the abnormal slotId parameter.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_AlterPin2_0600, Function | MediumTest | Level2)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string oldPin2 = Str8ToStr16("1234");
-    std::u16string newPin2 = Str8ToStr16("1234");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->AlterPin2(newPin2, oldPin2, response, SLOTID_4);
-    ASSERT_FALSE(retValue);
-}
-
-/**
- * @tc.number   Telephony_Sim_AlterPin2_0700
- * @tc.name     The test invokes the AlterPin2 interface 4 times and the wrong oldPin is entered
- *              to trigger the PUK2 lock.
- * @tc.desc     Function test
- */
-HWTEST_F(SimTest, Telephony_Sim_AlterPin2_0700, Function | MediumTest | Level2)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string oldPin2 = Str8ToStr16("1234");
-    std::u16string newPin2 = Str8ToStr16("4321");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    bool retValue = g_proxy.GetHandler()->AlterPin2(newPin2, oldPin2, response, SLOTID_0);
-    ASSERT_TRUE(retValue);
-    ASSERT_EQ(response.result, PASSWORD_ERR);
-    ASSERT_EQ(response.remain, REMAIN_2);
-}
-
-/**
- * @tc.number   Telephony_Sim_AlterPin2_0800
- * @tc.name     Test the UnlockPuk2 interface query function 1000 times
- *              and expect an average delay of less than 500μs.
- * @tc.desc     Performance test
- */
-HWTEST_F(SimTest, Telephony_Sim_AlterPin2_0800, Performance | MediumTest | Level3)
-{
-    TimeCountHelper timeHelper;
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string oldPin2 = Str8ToStr16("1234");
-    std::u16string newPin2 = Str8ToStr16("1234");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    timeHelper.StartCountUs();
-    for (int32_t timeNumber = 0; timeNumber < LOOP_NUMBER; timeNumber++) {
-        g_proxy.GetHandler()->AlterPin2(newPin2, oldPin2, response, SLOTID_0);
-    }
-    int32_t useTimeUs = timeHelper.GetUseTimeUs() / LOOP_NUMBER;
-    LOG("The time of each time is : %d us", useTimeUs);
-    ASSERT_LE(useTimeUs, SimTest::TIME_USEC);
-}
-
-/**
- * @tc.number   Telephony_Sim_AlterPin2_0900
- * @tc.name     Loop to call UnlockPuk2 interface for 1000 times and get the retValueurn value,
- *              and count the number of failures.
- * @tc.desc     Reliability test
- */
-HWTEST_F(SimTest, Telephony_Sim_AlterPin2_0900, Reliability | MediumTest | Level3)
-{
-    OHOS::Telephony::LockStatusResponse response;
-    std::u16string oldPin2 = Str8ToStr16("1234");
-    std::u16string newPin2 = Str8ToStr16("1234");
-    std::string defaultPin2 = "1234";
-
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_INIT, NULL, DATA_LENGTH);
-    // Use the analog vendor library to set the PIN2 to 1234
-    g_proxy.MockPin2CodeSet(defaultPin2);
-
-    for (int32_t loopNumber = 0; loopNumber < LOOP_NUMBER; loopNumber++) {
-        bool retValue = g_proxy.GetHandler()->AlterPin2(newPin2, oldPin2, response, SLOTID_0);
-        ASSERT_TRUE(retValue);
-        ASSERT_EQ(response.result, UNLOCKED);
-    }
 }

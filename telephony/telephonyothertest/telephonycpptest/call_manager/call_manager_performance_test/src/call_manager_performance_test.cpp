@@ -14,10 +14,8 @@
  */
 
 #include "call_manager_test.h"
-
 #include <cstring>
 #include <gtest/gtest.h>
-
 #include "call_manager_basic.h"
 #include "time_count_helper.h"
 
@@ -38,21 +36,20 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_DialCall_0600, Perfor
 {
     string phoneNumber = EMPTY_DEFAULT;
     AppExecFwk::PacMap dialInfo;
-    dialInfo.PutIntValue("accountId", TRUE_DEFAULT);
+    dialInfo.PutIntValue("accountId", 0);
     dialInfo.PutIntValue("videoState", (int)VideoStateType::TYPE_VOICE);
     dialInfo.PutIntValue("dialScene", CALL_NORMAL);
     dialInfo.PutIntValue("dialType", (int)DialType::DIAL_CARRIER_TYPE);
 
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
         ret = g_clientPtr->GetPtr()->DialCall(Str8ToStr16(phoneNumber), dialInfo);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -66,18 +63,16 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_DialCall_0600, Perfor
  */
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_AnswerCall_0300, Performance | MediumTest | Level3)
 {
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
     int videoState = (int)VideoStateType::TYPE_VOICE;
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->AnswerCall(callId, videoState);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->AnswerCall(FALSE_NEGATIVE_CALLID_100, videoState);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -92,17 +87,15 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_AnswerCall_0300, Perf
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_RejectCall_0200, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
     u16string textMessage = Str8ToStr16("this is a test message");
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->RejectCall(callId, true, textMessage);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->RejectCall(FALSE_NEGATIVE_CALLID_100, true, textMessage);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -116,17 +109,15 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_RejectCall_0200, Perf
  */
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_HangUpCall_0300, Performance | MediumTest | Level3)
 {
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
     TimeCountHelper timeHelper;
-    int ret = TRUE_DEFAULT;
+    int ret = 0;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->HangUpCall(callId);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->HangUpCall(FALSE_NEGATIVE_CALLID_100);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -141,15 +132,14 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_HangUpCall_0300, Perf
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_GetCallState_0300, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
         ret = g_clientPtr->GetPtr()->GetCallState();
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -163,14 +153,12 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_GetCallState_0300, Pe
  */
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_HoldCall_0300, Performance | MediumTest | Level3)
 {
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->HoldCall(callId);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->HoldCall(FALSE_NEGATIVE_CALLID_100);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
     EXPECT_NE(ret, true);
@@ -187,17 +175,15 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_HoldCall_0300, Perfor
  */
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_UnHoldCall_0300, Performance | MediumTest | Level3)
 {
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->UnHoldCall(callId);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->UnHoldCall(FALSE_NEGATIVE_CALLID_100);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -206,21 +192,20 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_UnHoldCall_0300, Perf
 
 /**
  * @tc.number   Telephony_CallManager_SwitchCall_0300
- * @tc.name     test SwitchCall() 20 times
+ * @tc.name     test SwitchCall() 20 times, ret for false value
  * @tc.desc     Performance test
  */
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_SwitchCall_0300, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->SwitchCall(FALSE_DEFAULT);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->SwitchCall(ret);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -235,11 +220,10 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_SwitchCall_0300, Perf
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_HasCall_0400, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
         ret = g_clientPtr->GetPtr()->HasCall();
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
@@ -258,16 +242,14 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_HasCall_0400, Perform
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_CombineConference_0400, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->CombineConference(callId);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->CombineConference(FALSE_NEGATIVE_CALLID_100);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -282,16 +264,14 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_CombineConference_040
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_GetMainCallId_0400, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->GetMainCallId(callId);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->GetMainCallId(FALSE_NEGATIVE_CALLID_100);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -306,12 +286,10 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_GetMainCallId_0400, P
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_GetSubCallIdList_0400, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        g_clientPtr->GetPtr()->GetSubCallIdList(callId);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        g_clientPtr->GetPtr()->GetSubCallIdList(FALSE_NEGATIVE_CALLID_100);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
     LOG("useTimeUs = %d\n", useTimeUs);
@@ -329,12 +307,10 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_GetCallIdListForConfe
         Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        g_clientPtr->GetPtr()->GetCallIdListForConference(callId);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        g_clientPtr->GetPtr()->GetCallIdListForConference(FALSE_NEGATIVE_CALLID_100);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
     LOG("useTimeUs = %d\n", useTimeUs);
@@ -351,11 +327,10 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_GetCallIdListForConfe
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_IsInEmergencyCall_0400, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
         ret = g_clientPtr->GetPtr()->IsInEmergencyCall();
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
@@ -375,15 +350,14 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_IsEmergencyPhoneNumbe
         Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
     string number = "000";
     std::u16string phoneNumber = Str8ToStr16(number);
-    int32_t slotId = SLOT_ID;
+    int32_t errorCode = -1;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->IsEmergencyPhoneNumber(phoneNumber, slotId);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->IsEmergencyPhoneNumber(phoneNumber, SLOT_ID, errorCode);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
     EXPECT_EQ(ret, true);
@@ -401,16 +375,14 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_IsEmergencyPhoneNumbe
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_GetCallWaiting_0500, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
-    int32_t slotId = SLOT_ID;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->GetCallWaiting(slotId);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->GetCallWaiting(SLOT_ID);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_EQ(ret, TRUE_DEFAULT);
+    EXPECT_EQ(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -425,17 +397,15 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_GetCallWaiting_0500, 
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_SetCallWaiting_0600, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
-    int32_t slotId = SLOT_ID;
+    int ret = ERROR_VALUES;
     bool activate = true;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->SetCallWaiting(slotId, activate);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->SetCallWaiting(SLOT_ID, activate);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_EQ(ret, TRUE_DEFAULT);
+    EXPECT_EQ(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -450,17 +420,15 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_SetCallWaiting_0600, 
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_StartDtmf_1000, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
+    int ret = ERROR_VALUES;
     char str = 'a';
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->StartDtmf(callId, str);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->StartDtmf(FALSE_NEGATIVE_CALLID_100, str);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -475,16 +443,14 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_StartDtmf_1000, Perfo
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_StopDtmf_0400, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
+    int ret = ERROR_VALUES;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->StopDtmf(callId);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->StopDtmf(FALSE_NEGATIVE_CALLID_100);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -499,17 +465,15 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_StopDtmf_0400, Perfor
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_SendDtmf_0600, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
+    int ret = ERROR_VALUES;
     char str = 'a';
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->SendDtmf(callId, str);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->SendDtmf(FALSE_NEGATIVE_CALLID_100, str);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -524,19 +488,17 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_SendDtmf_0600, Perfor
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_SendBurstDtmf_1700, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
-    int32_t callId = FALSE_NEGATIVE_CALLID_100;
+    int ret = ERROR_VALUES;
     string str = "a";
-    int32_t on = TRUE_DEFAULT;
-    int32_t off = TRUE_DEFAULT;
+    int32_t on = 0;
+    int32_t off = 0;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
-        ret = g_clientPtr->GetPtr()->SendBurstDtmf(callId, Str8ToStr16(str), on, off);
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
+        ret = g_clientPtr->GetPtr()->SendBurstDtmf(FALSE_NEGATIVE_CALLID_100, Str8ToStr16(str), on, off);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
-    EXPECT_NE(ret, TRUE_DEFAULT);
+    EXPECT_NE(ret, 0);
     LOG("useTimeUs = %d\n", useTimeUs);
     EXPECT_LE(useTimeUs, USEC_500);
 }
@@ -552,7 +514,7 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_SendBurstDtmf_1700, P
 HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_FormatPhoneNumber_9000, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;
+    int ret = ERROR_VALUES;
     string number = "01085198748";
     string Code = "Kr";
     string formatBefore = "";
@@ -563,8 +525,7 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_FormatPhoneNumber_900
     int32_t ans = (int32_t)formatAfter;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
         ret = g_clientPtr->GetPtr()->FormatPhoneNumber(phoneNumber, countryCode, formatNumber);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;
@@ -585,7 +546,8 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_FormatPhoneNumberToE1
         Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
-    int ret = FALSE_DEFAULT;    string number = "01085198748";
+    int ret = ERROR_VALUES;
+    string number = "01085198748";
     string Code = "Kr";
     string formatBefore = "";
     char formatAfter[ARRAY_NUMBER_SIZE] = "821085198748";
@@ -595,8 +557,7 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_FormatPhoneNumberToE1
     int32_t ans = (int32_t)formatAfter;
 
     timeHelper.StartCountUs();
-    for (int i = TRUE_DEFAULT; i < TEST_RUN_TIME_20; i++)
-    {
+    for (int i = 0; i < TEST_RUN_TIME_20; i++) {
         ret = g_clientPtr->GetPtr()->FormatPhoneNumberToE164(phoneNumber, countryCode, formatNumber);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_20;

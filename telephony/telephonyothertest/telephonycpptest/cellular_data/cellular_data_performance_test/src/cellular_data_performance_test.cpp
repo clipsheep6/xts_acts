@@ -28,8 +28,7 @@ using namespace Telephony;
 
 /**
  * @tc.number   Telephony_CellularData_IsCellularDataEnabled_0300
- * @tc.name     The IsCellularDataEnabled interface was repeatedly invoked for 10 times,
- *              and the slotId parameter was 0 each time. The average time was less than 500us
+ * @tc.name     IsCellularDataEnabled Perform an average of 1000 Performance test
  * @tc.desc     Performance test
  */
 HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_IsCellularDataEnabled_0300,
@@ -37,7 +36,7 @@ HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_IsCellularDataEnabl
 {
     TimeCountHelper timeHelper;
     timeHelper.StartCountUs();
-    for (int32_t i = 0; i < TEST_RUN_TIME_10; i++) {
+    for (int32_t i = 0; i < TEST_RUN_TIME_1000; i++) {
         g_telephonyService->IsCellularDataEnabled(SLOT_ID);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_1000;
@@ -47,7 +46,7 @@ HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_IsCellularDataEnabl
 
 /**
  * @tc.number   Telephony_CellularData_EnableCellularData_0400
- * @tc.name     The EnableCellularData interface is looping 10 times, with an average time of <500us
+ * @tc.name     EnableCellularData Perform an average of 1000 Performance test
  * @tc.desc     Performance test
  */
 HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_EnableCellularData_0400, Performance | MediumTest | Level3)
@@ -55,7 +54,7 @@ HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_EnableCellularData_
     bool enable = true;
     TimeCountHelper timeHelper;
     timeHelper.StartCountUs();
-    for (int32_t i = 0; i < TEST_RUN_TIME_10; i++) {
+    for (int32_t i = 0; i < TEST_RUN_TIME_1000; i++) {
         g_telephonyService->EnableCellularData(SLOT_ID, enable);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_1000;
@@ -65,7 +64,7 @@ HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_EnableCellularData_
 
 /**
  * @tc.number   Telephony_CellularData_GetCellularDataState_0500
- * @tc.name     The GetCellularDataStat interface was looping 10 times, taking an average of less than 500us
+ * @tc.name     GetCellularDataState Perform an average of 1000 Performance test
  * @tc.desc     Performance test
  */
 HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_GetCellularDataState_0500,
@@ -73,7 +72,7 @@ HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_GetCellularDataStat
 {
     TimeCountHelper timeHelper;
     timeHelper.StartCountUs();
-    for (int32_t i = 0; i < TEST_RUN_TIME_10; i++) {
+    for (int32_t i = 0; i < TEST_RUN_TIME_1000; i++) {
         g_telephonyService->GetCellularDataState(SLOT_ID);
     }
     int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_1000;
@@ -81,41 +80,3 @@ HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_GetCellularDataStat
     EXPECT_GE(TEST_USEC_500, useTimeUs);
 }
 
-/**
- * @tc.number   Telephony_CellularData_IsDataRoamingEnabled_0500
- * @tc.name     The IsDataRoamingEnabled interface is repeatedly invoked 10 times,
- *              and slotId is set to 0 each time. The average time is less than 500us
- * @tc.desc     Performance test
- */
-HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_IsDataRoamingEnabled_0500,
-         Performance | MediumTest | Level3)
-{
-    TimeCountHelper timeHelper;
-    timeHelper.StartCountUs();
-    for (int32_t i = 0; i < TEST_RUN_TIME_10; i++) {
-        g_telephonyService->IsCellularDataEnabled(SLOT_ID);
-    }
-    int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_1000;
-    LOGE("use %d us", useTimeUs);
-    EXPECT_GE(TEST_USEC_500, useTimeUs);
-}
-
-/**
- * @tc.number   Telephony_CellularData_EnableDataRoaming_0500
- * @tc.name     The EnableDataRoaming interface is repeatedly invoked for 10 times.
- *              The slotId parameter is 0 and the enable parameter is true. The average time is less than 500us
- * @tc.desc     Performance test
- */
-HWTEST_F(CellularDataPerformanceTest, Telephony_CellularData_EnableDataRoaming_0500,
-         Performance | MediumTest | Level3)
-{
-    TimeCountHelper timeHelper;
-    timeHelper.StartCountUs();
-    for (int32_t i = 0; i < TEST_RUN_TIME_10; i++) {
-        g_telephonyService->EnableDataRoaming(SLOT_ID, true);
-    }
-    int useTimeUs = timeHelper.GetUseTimeUs() / TEST_RUN_TIME_1000;
-    g_telephonyService->EnableDataRoaming(SLOT_ID, false);
-    LOGE("use %d us", useTimeUs);
-    EXPECT_GE(TEST_USEC_500, useTimeUs);
-}

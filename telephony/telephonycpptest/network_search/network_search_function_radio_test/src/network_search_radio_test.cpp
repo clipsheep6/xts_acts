@@ -73,11 +73,10 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetRadioState_0600, Function
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0100, Function | MediumTest | Level3)
 {
-    RecoverRadioState();
     bool setRadioState = GetProxy()->SetRadioState(SLOT_0, true, g_callback);
     ASSERT_TRUE(setRadioState);
     LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    ASSERT_FALSE(setRadioStatusCallback);
+    ASSERT_TRUE(setRadioStatusCallback);
     ASSERT_EQ(errCodeResult, HRIL_ERR_REPEAT_STATUS);
     bool getRadioState = GetProxy()->GetRadioState(SLOT_0, g_callback);
     ASSERT_TRUE(getRadioState);
@@ -94,7 +93,6 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0100, Function
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0200, Function | MediumTest | Level3)
 {
-    RecoverRadioState();
     bool setRadioState = GetProxy()->SetRadioState(SLOT_0, false, g_callback);
     ASSERT_TRUE(setRadioState);
     LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
@@ -114,19 +112,15 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0200, Function
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0600, Function | MediumTest | Level3)
 {
-    RecoverRadioState();
     bool setRadioState = GetProxy()->SetRadioState(SLOT_0, false, g_callback);
     ASSERT_TRUE(setRadioState);
     LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
     std::string plmnNumeric = GetNetworkState()->GetPlmnNumeric();
-    bool result = MatchAllResultString(plmnNumeric, g_arrPlmnNumeric, ARR_PLMN_LENGTH);
-    EXPECT_FALSE(result);
+    EXPECT_NE(plmnNumeric.c_str(), "");
     std::string shortOperatorName = GetNetworkState()->GetShortOperatorName();
-    result = MatchAllResultString(shortOperatorName, g_arrShortOperatorName, ARR_NAME_LENGTH);
-    EXPECT_FALSE(result);
+    EXPECT_NE(shortOperatorName.c_str(), "");
     std::string longOperatorName = GetNetworkState()->GetLongOperatorName();
-    result = MatchAllResultString(longOperatorName, g_arrShortOperatorName, ARR_NAME_LENGTH);
-    EXPECT_FALSE(result);
+    EXPECT_NE(longOperatorName.c_str(), "");
     EXPECT_EQ(GetNetworkState()->GetPsRoamingStatus(), ROAMING_STATE_UNKNOWN);
     EXPECT_EQ(GetNetworkState()->GetCsRoamingStatus(), ROAMING_STATE_UNKNOWN);
     EXPECT_EQ(GetNetworkState()->GetPsRadioTech(), RADIO_TECHNOLOGY_UNKNOWN);
@@ -140,7 +134,6 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0600, Function
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0700, Function | MediumTest | Level3)
 {
-    RecoverRadioState();
     bool setRadioState = GetProxy()->SetRadioState(SLOT_0, false, g_callback);
     ASSERT_TRUE(setRadioState);
     LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
@@ -160,7 +153,6 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0700, Function
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0800, Function | MediumTest | Level3)
 {
-    RecoverRadioState();
     bool setRadioState = GetProxy()->SetRadioState(SLOT_0, false, g_callback);
     ASSERT_TRUE(setRadioState);
     LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
@@ -187,7 +179,6 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetRadioState_0900, Function
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetIsoCountryCodeForNetwork_0700, Function | MediumTest | Level3)
 {
-    RecoverRadioState();
     bool setRadioState = GetProxy()->SetRadioState(SLOT_0, false, g_callback);
     ASSERT_TRUE(setRadioState);
     LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
@@ -198,48 +189,4 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetIsoCountryCodeForNetwork_
     std::u16string countryCode = GetProxy()->GetIsoCountryCodeForNetwork(SLOT_0);
     std::string str = Str16ToStr8(countryCode);
     EXPECT_STREQ(str.c_str(), "");
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetPreferredNetworkMode_0700
- * @tc.name    Set the preferred network mode CORE_NETWORK_MODE_WCDMA_GSM to test the GetPreferredNetwork() return
- *             the preferred network mode is CORE_NETWORK_MODE_WCDMA_GSM
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPreferredNetworkMode_0700, Function | MediumTest | Level3)
-{
-    bool setRadioState = GetProxy()->SetRadioState(SLOT_0, false, g_callback);
-    ASSERT_TRUE(setRadioState);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    bool getRadioState = GetProxy()->GetRadioState(SLOT_0, g_callback);
-    ASSERT_TRUE(getRadioState);
-    LOCK_NUM_WHILE_NE(hasNewData[GET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    EXPECT_FALSE(getRadioStatusCallback);
-    bool getPreferredMode = GetProxy()->GetPreferredNetwork(SLOT_0, g_callback);
-    ASSERT_TRUE(getPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[GET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    ASSERT_EQ(getPreferredNetworkModeResult, CORE_NETWORK_MODE_WCDMA_GSM);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_SetPreferredNetworkMode_0200
- * @tc.name    Set the preferred network mode 12 to test the SetPreferredNetwork() callback is
- *             true and the errcode is HRIL_ERR_SUCCESS
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetPreferredNetworkMode_0200, Function | MediumTest | Level3)
-{
-    bool setRadioState = GetProxy()->SetRadioState(SLOT_0, false, g_callback);
-    ASSERT_TRUE(setRadioState);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    bool getRadioState = GetProxy()->GetRadioState(SLOT_0, g_callback);
-    ASSERT_TRUE(getRadioState);
-    LOCK_NUM_WHILE_NE(hasNewData[GET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    EXPECT_FALSE(getRadioStatusCallback);
-    bool setPreferredMode = GetProxy()->SetPreferredNetwork(SLOT_0, CORE_NETWORK_MODE_WCDMA_GSM, g_callback);
-    ASSERT_TRUE(setPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    EXPECT_TRUE(setPreferredNetworkModeResult);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS); // To do
 }

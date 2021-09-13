@@ -40,14 +40,11 @@ public:
     OHOS::sptr<ICoreService> GetHandler() const;
     int Init();
     void SwitchPinLock(int32_t enable);
-    void DeletePosition1Contact();
 
 #ifdef SIM_MOCK_TEST
     void MockSimStateSet(int32_t simState);
     void MockPinCodeSet(std::string pinCode);
     void MockPukCodeSet(std::string pukCode);
-    void MockPin2CodeSet(std::string pin2Code);
-    void MockPuk2CodeSet(std::string puk2Code);
 #endif
 
 private:
@@ -57,16 +54,6 @@ private:
 OHOS::sptr<ICoreService> SimProxy::GetHandler() const
 {
     return telephonyService_;
-}
-
-void SimProxy::DeletePosition1Contact()
-{
-    int32_t slotId = 0;
-    int32_t typeAdn = 1;
-    int32_t typeFdn = 2;
-    int32_t site = 1;
-    GetHandler()->DelIccDiallingNumbers(slotId, typeAdn, site);
-    GetHandler()->DelIccDiallingNumbers(slotId, typeFdn, site);
 }
 
 void SimProxy::SwitchPinLock(int32_t enable)
@@ -127,16 +114,6 @@ void SimProxy::MockPinCodeSet(std::string pinCode)
 void SimProxy::MockPukCodeSet(std::string pukCode)
 {
     g_mockVender.MockVendorSet(DISPATCHID::SIM_SET_PUK, pukCode.c_str(), strlen(pukCode.c_str()));
-}
-
-void SimProxy::MockPin2CodeSet(std::string pin2Code)
-{
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_SET_PIN2, pin2Code.c_str(), strlen(pin2Code.c_str()));
-}
-
-void SimProxy::MockPuk2CodeSet(std::string puk2Code)
-{
-    g_mockVender.MockVendorSet(DISPATCHID::SIM_SET_PUK2, puk2Code.c_str(), strlen(puk2Code.c_str()));
 }
 #endif
 

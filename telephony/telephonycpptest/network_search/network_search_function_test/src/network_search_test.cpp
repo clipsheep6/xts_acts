@@ -30,119 +30,35 @@ using namespace NetworkSearch;
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0100, Function | MediumTest | Level3)
 {
-    GetNetworkStateCache()->SetNetworkState(RegServiceState::REG_STATE_IN_SERVICE, DOMAIN_TYPE_PS);
-    GetNetworkStateCache()->SetNetworkState(RegServiceState::REG_STATE_UNKNOWN, DOMAIN_TYPE_CS);
-    int regState = GetNetworkStateCache()->GetRegStatus();
-    EXPECT_EQ(regState, static_cast<int>(RegServiceState::REG_STATE_IN_SERVICE));
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_0200
- * @tc.name    The PS registration service status is not registered successfully, the CS registered service status is
- *             registered successfully, and the GetNetworkState interface is tested to query the network registration
- *             service status as registered successful
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0200, Function | MediumTest | Level3)
-{
-    RegServiceState setCsRegState = RegServiceState::REG_STATE_IN_SERVICE;
-    GetNetworkStateCache()->SetNetworkState(RegServiceState::REG_STATE_NO_SERVICE, DOMAIN_TYPE_PS);
-    GetNetworkStateCache()->SetNetworkState(setCsRegState, DOMAIN_TYPE_CS);
-    int regState = GetNetworkStateCache()->GetRegStatus();
-    EXPECT_EQ(regState, static_cast<int>(setCsRegState));
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_0300
- * @tc.name    PS registration service status is not registration successful, CS registration service status is
- *             registration failure, test GetNetworkState interface to query the network registration service status
- *             is registration failure
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0300, Function | MediumTest | Level3)
-{
-    RegServiceState setCsRegState = RegServiceState::REG_STATE_NO_SERVICE;
-    GetNetworkStateCache()->SetNetworkState(RegServiceState::REG_STATE_NO_SERVICE, DOMAIN_TYPE_PS);
-    GetNetworkStateCache()->SetNetworkState(setCsRegState, DOMAIN_TYPE_CS);
-    int regState = GetNetworkStateCache()->GetRegStatus();
-    EXPECT_EQ(regState, static_cast<int>(setCsRegState));
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_0400
- * @tc.name    The PS registration service status is not successful registration, the CS registration service status
- *             is emergency calls only, and the GetNetworkState interface is tested to query the network registration
- *             service status as emergency calls only.
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0400, Function | MediumTest | Level3)
-{
-    RegServiceState setCsRegState = RegServiceState::REG_STATE_EMERGENCY_ONLY;
-    GetNetworkStateCache()->SetNetworkState(RegServiceState::REG_STATE_NO_SERVICE, DOMAIN_TYPE_PS);
-    GetNetworkStateCache()->SetNetworkState(setCsRegState, DOMAIN_TYPE_CS);
-    int regState = GetNetworkStateCache()->GetRegStatus();
-    EXPECT_EQ(regState, static_cast<int>(setCsRegState));
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_0500
- * @tc.name    PS registration service status is not successful registration, CS registration service status is modem
- *             closed, test GetNetworkState interface to query network registration service status is modem closed
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0500, Function | MediumTest | Level3)
-{
-    RegServiceState setCsRegState = RegServiceState::REG_STATE_UNKNOWN;
-    GetNetworkStateCache()->SetNetworkState(RegServiceState::REG_STATE_NO_SERVICE, DOMAIN_TYPE_PS);
-    GetNetworkStateCache()->SetNetworkState(setCsRegState, DOMAIN_TYPE_CS);
-    int regState = GetNetworkStateCache()->GetRegStatus();
-    EXPECT_EQ(regState, static_cast<int>(setCsRegState));
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_0600
- * @tc.name    The service status of the network registration is registration successful, and the operator information
- *             for testing the GetNetworkState interface to query the network registration status is not empty
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0600, Function | MediumTest | Level3)
-{
     std::string plmnNumeric = GetNetworkState()->GetPlmnNumeric();
-    bool result = MatchAllResultString(plmnNumeric, g_arrPlmnNumeric, ARR_PLMN_LENGTH);
-    EXPECT_TRUE(result);
+    EXPECT_STRNE(plmnNumeric.c_str(), "");
     std::string shortOperatorName = GetNetworkState()->GetShortOperatorName();
-    result = MatchAllResultString(shortOperatorName, g_arrShortOperatorName, ARR_NAME_LENGTH);
-    EXPECT_TRUE(result);
+    EXPECT_STRNE(shortOperatorName.c_str(), "");
     std::string longOperatorName = GetNetworkState()->GetLongOperatorName();
-    result = MatchAllResultString(longOperatorName, g_arrLongOperatorName, ARR_NAME_LENGTH);
-    EXPECT_TRUE(result);
+    EXPECT_STRNE(longOperatorName.c_str(), "");
+    RoamingType roamingType = static_cast<RoamingType>(GetNetworkState()->GetPsRoamingStatus());
+    EXPECT_EQ(roamingType, RoamingType::ROAMING_STATE_UNKNOWN);
+    roamingType = static_cast<RoamingType>(GetNetworkState()->GetCsRoamingStatus());
+    EXPECT_EQ(roamingType, RoamingType::ROAMING_STATE_UNKNOWN);
+    RegServiceState regState = static_cast<RegServiceState>(GetNetworkStateCache()->GetRegStatus());
+    EXPECT_GE(regState, RegServiceState::REG_STATE_UNKNOWN);
+    EXPECT_LE(regState, RegServiceState::REG_STATE_SEARCH);
+    RadioTech radioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetPsRadioTech());
+    EXPECT_GE(radioTech, RadioTech::RADIO_TECHNOLOGY_UNKNOWN);
+    EXPECT_LE(radioTech, RadioTech::RADIO_TECHNOLOGY_LTE);
+    radioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetCsRadioTech());
+    EXPECT_GE(radioTech, RadioTech::RADIO_TECHNOLOGY_UNKNOWN);
+    EXPECT_LE(radioTech, RadioTech::RADIO_TECHNOLOGY_LTE);
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_0900
- * @tc.name    PS registration service status is not successful registration, CS registration service status is search,
- *             test GetNetworkState interface to query network registration service status is search
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0900, Function | MediumTest | Level3)
-{
-    RegServiceState setCsRegState = RegServiceState::REG_STATE_SEARCH;
-    GetNetworkStateCache()->SetNetworkState(RegServiceState::REG_STATE_NO_SERVICE, DOMAIN_TYPE_PS);
-    GetNetworkStateCache()->SetNetworkState(setCsRegState, DOMAIN_TYPE_CS);
-    int regState = GetNetworkStateCache()->GetRegStatus();
-    EXPECT_EQ(regState, static_cast<int>(setCsRegState));
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetNetworkState_1400
+ * @tc.number  Telephony_NetworkSearch_GetNetworkState_0800
  * @tc.name    The slot id is 3 to test the GetNetworkState() is wrong and return null
  * @tc.desc    Function test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_1400, Function | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_0800, Function | MediumTest | Level3)
 {
     int slotId = 3;
-    GetNetworkStateCache()->SetNetworkState(RegServiceState::REG_STATE_IN_SERVICE, DOMAIN_TYPE_PS);
-    GetNetworkStateCache()->SetNetworkState(RegServiceState::REG_STATE_UNKNOWN, DOMAIN_TYPE_CS);
     sptr<NetworkState> result = GetProxy()->GetNetworkState(slotId);
     EXPECT_EQ(result, nullptr);
 }
@@ -154,44 +70,17 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNetworkState_1400, Functi
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0100, Function | MediumTest | Level3)
 {
-    RadioTech setPsRadioTech = RadioTech::RADIO_TECHNOLOGY_UNKNOWN;
-    GetNetworkStateCache()->SetNetworkType(setPsRadioTech, DOMAIN_TYPE_PS);
     RadioTech getPsRadioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetPsRadioTech());
-    EXPECT_EQ(getPsRadioTech, setPsRadioTech);
+    EXPECT_GE(getPsRadioTech, RadioTech::RADIO_TECHNOLOGY_UNKNOWN);
+    EXPECT_LE(getPsRadioTech, RadioTech::RADIO_TECHNOLOGY_LTE);
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetPsRadioTech_0200
- * @tc.name    Test the GetPsRadioTech interface query function, and return the PS network mode as 1XRTT
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0200, Function | MediumTest | Level3)
-{
-    RadioTech setPsRadioTech = RadioTech::RADIO_TECHNOLOGY_LTE;
-    GetNetworkStateCache()->SetNetworkType(setPsRadioTech, DOMAIN_TYPE_PS);
-    RadioTech getPsRadioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetPsRadioTech());
-    EXPECT_EQ(getPsRadioTech, setPsRadioTech);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetPsRadioTech_0300
- * @tc.name    Test the GetPsRadioTech interface query function, and return the PS network mode as GSM
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0300, Function | MediumTest | Level3)
-{
-    RadioTech setPsRadioTech = RadioTech::RADIO_TECHNOLOGY_GSM;
-    GetNetworkStateCache()->SetNetworkType(setPsRadioTech, DOMAIN_TYPE_PS);
-    RadioTech getPsRadioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetPsRadioTech());
-    EXPECT_EQ(getPsRadioTech, setPsRadioTech);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetPsRadioTech_0600
+ * @tc.number  Telephony_NetworkSearch_GetPsRadioTech_0400
  * @tc.name    Set the slot id is -1 to test the GetPsRadioTech interface query function and return TELEPHONY_ERROR
  * @tc.desc    Function test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0600, Function | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0400, Function | MediumTest | Level3)
 {
     int slotId = -1;
     int result = GetProxy()->GetPsRadioTech(slotId);
@@ -205,44 +94,17 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPsRadioTech_0600, Functio
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0100, Function | MediumTest | Level3)
 {
-    RadioTech setCsRadioTech = RadioTech::RADIO_TECHNOLOGY_LTE;
-    GetNetworkStateCache()->SetNetworkType(setCsRadioTech, DOMAIN_TYPE_CS);
     RadioTech getCsRadioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetCsRadioTech());
-    EXPECT_EQ(getCsRadioTech, setCsRadioTech);
+    EXPECT_GE(getCsRadioTech, RadioTech::RADIO_TECHNOLOGY_UNKNOWN);
+    EXPECT_LE(getCsRadioTech, RadioTech::RADIO_TECHNOLOGY_LTE);
 }
 
 /*
- * @tc.number  Telephony_NetworkSearch_GetCsRadioTech_0200
- * @tc.name    Test the GetCsRadioTech interface query function, and return the CS network mode as UNKNOWN
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0200, Function | MediumTest | Level3)
-{
-    RadioTech setCsRadioTech = RadioTech::RADIO_TECHNOLOGY_UNKNOWN;
-    GetNetworkStateCache()->SetNetworkType(setCsRadioTech, DOMAIN_TYPE_CS);
-    RadioTech getCsRadioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetCsRadioTech());
-    EXPECT_EQ(getCsRadioTech, setCsRadioTech);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetCsRadioTech_0300
- * @tc.name    Test the GetCsRadioTech interface query function, and return the CS network mode as WCDMA
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0300, Function | MediumTest | Level3)
-{
-    RadioTech setCsRadioTech = RadioTech::RADIO_TECHNOLOGY_WCDMA;
-    GetNetworkStateCache()->SetNetworkType(setCsRadioTech, DOMAIN_TYPE_CS);
-    RadioTech getCsRadioTech = static_cast<RadioTech>(GetNetworkStateCache()->GetCsRadioTech());
-    EXPECT_EQ(getCsRadioTech, setCsRadioTech);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetCsRadioTech_0600
+ * @tc.number  Telephony_NetworkSearch_GetCsRadioTech_0400
  * @tc.name    Set the slot id is a to test the GetCsRadioTech interface query function and return TELEPHONY_ERROR
  * @tc.desc    Function test
  */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0600, Function | MediumTest | Level3)
+HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0400, Function | MediumTest | Level3)
 {
     int slotId = 'a';
     int result = GetProxy()->GetCsRadioTech(slotId);
@@ -257,9 +119,11 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCsRadioTech_0600, Functio
  */
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetOperatorNumeric_0100, Function | MediumTest | Level3)
 {
+    std::string plmnNum = "460";
     std::string operatorNumeric = Str16ToStr8(GetProxy()->GetOperatorNumeric(SLOT_0));
-    bool result = MatchAllResultString(operatorNumeric, g_arrPlmnNumeric, ARR_PLMN_LENGTH);
-    EXPECT_TRUE(result);
+    int size = operatorNumeric.size();
+    EXPECT_EQ(size, NetworkSearchTest::PLMN_SIZE);
+    EXPECT_STREQ(operatorNumeric.substr(0, 3).c_str(), plmnNum.c_str());
 }
 
 /*
@@ -271,7 +135,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetOperatorNumeric_0700, Fun
 {
     int slotId = 99;
     std::string operatorNumeric = Str16ToStr8(GetProxy()->GetOperatorNumeric(slotId));
-    EXPECT_EQ(operatorNumeric, "");
+    EXPECT_STREQ(operatorNumeric.c_str(), "");
 }
 
 /*
@@ -283,8 +147,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetOperatorNumeric_0700, Fun
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetOperatorName_0100, Function | MediumTest | Level3)
 {
     std::string operatorName = Str16ToStr8(GetProxy()->GetOperatorName(SLOT_0));
-    bool result = MatchAllResultString(operatorName, g_arrLongOperatorName, ARR_NAME_LENGTH);
-    EXPECT_TRUE(result);
+    EXPECT_STRNE(operatorName.c_str(), "");
 }
 
 /*
@@ -296,7 +159,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetOperatorName_0700, Functi
 {
     int slotId = 3;
     std::string operatorName = Str16ToStr8(GetProxy()->GetOperatorName(slotId));
-    EXPECT_EQ(operatorName, "");
+    EXPECT_STREQ(operatorName.c_str(), "");
 }
 
 /*
@@ -520,6 +383,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetNetworkSelectionMode_0500
     ASSERT_TRUE(setSelectModeResult);
     LOCK_NUM_WHILE_NE(hasNewData[SET_NETWORK_MODEL], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
     ASSERT_FALSE(setNetworkModeCallbackResult);
+    ASSERT_EQ(errCodeResult, HRIL_ERR_INVALID_PARAMETER);
     bool getSelectModeResult = GetProxy()->GetNetworkSelectionMode(SLOT_0, g_callback);
     ASSERT_TRUE(getSelectModeResult);
     LOCK_NUM_WHILE_NE(hasNewData[GET_NETWORK_MODEL], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
@@ -561,7 +425,8 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetNetworkSelectionMode_0600
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetNetworkSelectionMode_0700, Function | MediumTest | Level3)
 {
     SelectionMode selectionMode = MODE_TYPE_AUTO;
-    bool setSelectModeResult = GetProxy()->SetNetworkSelectionMode(SLOT_0, selectionMode, nullptr, true, g_callback);
+    bool setSelectModeResult = GetProxy()->SetNetworkSelectionMode(
+        SLOT_0, selectionMode, SetNetworkInformation(selectionMode), true, g_callback);
     ASSERT_TRUE(setSelectModeResult);
     LOCK_NUM_WHILE_NE(hasNewData[SET_NETWORK_MODEL], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
     ASSERT_TRUE(setNetworkModeCallbackResult);
@@ -683,161 +548,4 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetIsoCountryCodeForNetwork_
     std::u16string countryCode = GetProxy()->GetIsoCountryCodeForNetwork(slotId);
     std::string str = Str16ToStr8(countryCode);
     EXPECT_STREQ(str.c_str(), "");
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetPreferredNetworkMode_0100
- * @tc.name    Set the preferred network mode CORE_NETWORK_MODE_AUTO to test the GetPreferredNetwork() return the
- *             preferred network mode is CORE_NETWORK_MODE_AUTO
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPreferredNetworkMode_0100, Function | MediumTest | Level3)
-{
-    bool setPreferredMode = GetProxy()->SetPreferredNetwork(SLOT_0, CORE_NETWORK_MODE_AUTO, g_callback);
-    ASSERT_TRUE(setPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    bool getPreferredMode = GetProxy()->GetPreferredNetwork(SLOT_0, g_callback);
-    ASSERT_TRUE(getPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[GET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    ASSERT_EQ(getPreferredNetworkModeResult, CORE_NETWORK_MODE_AUTO);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetPreferredNetworkMode_0200
- * @tc.name    Set the preferred network mode CORE_NETWORK_MODE_GSM to test the GetPreferredNetwork() return the
- *             preferred network mode is CORE_NETWORK_MODE_GSM
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPreferredNetworkMode_0200, Function | MediumTest | Level3)
-{
-    bool setPreferredMode = GetProxy()->SetPreferredNetwork(SLOT_0, CORE_NETWORK_MODE_GSM, g_callback);
-    ASSERT_TRUE(setPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    bool getPreferredMode = GetProxy()->GetPreferredNetwork(SLOT_0, g_callback);
-    ASSERT_TRUE(getPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[GET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    ASSERT_EQ(getPreferredNetworkModeResult, CORE_NETWORK_MODE_GSM);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetPreferredNetworkMode_0300
- * @tc.name    Set the preferred network mode CORE_NETWORK_MODE_WCDMA to test the GetPreferredNetwork() return the
- *             preferred network mode is CORE_NETWORK_MODE_WCDMA
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPreferredNetworkMode_0300, Function | MediumTest | Level3)
-{
-    bool setPreferredMode = GetProxy()->SetPreferredNetwork(SLOT_0, CORE_NETWORK_MODE_WCDMA, g_callback);
-    ASSERT_TRUE(setPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    bool getPreferredMode = GetProxy()->GetPreferredNetwork(SLOT_0, g_callback);
-    ASSERT_TRUE(getPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[GET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    ASSERT_EQ(getPreferredNetworkModeResult, CORE_NETWORK_MODE_WCDMA);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetPreferredNetworkMode_0400
- * @tc.name    Set the preferred network mode CORE_NETWORK_MODE_LTE to test the GetPreferredNetwork() return the
- *             preferred network mode is CORE_NETWORK_MODE_LTE
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPreferredNetworkMode_0400, Function | MediumTest | Level3)
-{
-    bool setPreferredMode = GetProxy()->SetPreferredNetwork(SLOT_0, CORE_NETWORK_MODE_LTE, g_callback);
-    ASSERT_TRUE(setPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    bool getPreferredMode = GetProxy()->GetPreferredNetwork(SLOT_0, g_callback);
-    ASSERT_TRUE(getPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[GET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    ASSERT_EQ(getPreferredNetworkModeResult, CORE_NETWORK_MODE_LTE);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetPreferredNetworkMode_0500
- * @tc.name    Set the preferred network mode CORE_NETWORK_MODE_LTE_WCDMA to test the GetPreferredNetwork() return
- *             the preferred network mode is CORE_NETWORK_MODE_LTE_WCDMA
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPreferredNetworkMode_0500, Function | MediumTest | Level3)
-{
-    bool setPreferredMode = GetProxy()->SetPreferredNetwork(SLOT_0, CORE_NETWORK_MODE_LTE_WCDMA, g_callback);
-    ASSERT_TRUE(setPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    bool getPreferredMode = GetProxy()->GetPreferredNetwork(SLOT_0, g_callback);
-    ASSERT_TRUE(getPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[GET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    ASSERT_EQ(getPreferredNetworkModeResult, CORE_NETWORK_MODE_LTE_WCDMA);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetPreferredNetworkMode_0600
- * @tc.name    Set the preferred network mode CORE_NETWORK_MODE_LTE_WCDMA_GSM to test the GetPreferredNetwork()
- *             return the preferred network mode is CORE_NETWORK_MODE_LTE_WCDMA_GSM
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPreferredNetworkMode_0600, Function | MediumTest | Level3)
-{
-    bool setPreferredMode = GetProxy()->SetPreferredNetwork(SLOT_0, CORE_NETWORK_MODE_LTE_WCDMA_GSM, g_callback);
-    ASSERT_TRUE(setPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    bool getPreferredMode = GetProxy()->GetPreferredNetwork(SLOT_0, g_callback);
-    ASSERT_TRUE(getPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[GET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    ASSERT_EQ(getPreferredNetworkModeResult, CORE_NETWORK_MODE_LTE_WCDMA_GSM);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_GetPreferredNetworkMode_0700
- * @tc.name    Set the preferred network mode CORE_NETWORK_MODE_WCDMA_GSM to test the GetPreferredNetwork() return
- *             the preferred network mode is CORE_NETWORK_MODE_WCDMA_GSM
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetPreferredNetworkMode_0700, Function | MediumTest | Level3)
-{
-    bool setPreferredMode = GetProxy()->SetPreferredNetwork(SLOT_0, CORE_NETWORK_MODE_WCDMA_GSM, g_callback);
-    ASSERT_TRUE(setPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    bool getPreferredMode = GetProxy()->GetPreferredNetwork(SLOT_0, g_callback);
-    ASSERT_TRUE(getPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[GET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    ASSERT_EQ(getPreferredNetworkModeResult, CORE_NETWORK_MODE_WCDMA_GSM);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_SetPreferredNetworkMode_0100
- * @tc.name    Set the preferred network mode CORE_NETWORK_MODE_GSM to test the SetPreferredNetwork() callback is
- *             true and the errcode is HRIL_ERR_SUCCESS
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetPreferredNetworkMode_0100, Function | MediumTest | Level3)
-{
-    bool setPreferredMode = GetProxy()->SetPreferredNetwork(SLOT_0, CORE_NETWORK_MODE_GSM, g_callback);
-    ASSERT_TRUE(setPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    EXPECT_TRUE(setPreferredNetworkModeResult);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS);
-}
-
-/*
- * @tc.number  Telephony_NetworkSearch_SetPreferredNetworkMode_0200
- * @tc.name    Set the preferred network mode 12 to test the SetPreferredNetwork() callback is
- *             true and the errcode is HRIL_ERR_SUCCESS
- * @tc.desc    Function test
- */
-HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_SetPreferredNetworkMode_0200, Function | MediumTest | Level3)
-{
-    int32_t networkMode = 12;
-    bool setPreferredMode = GetProxy()->SetPreferredNetwork(SLOT_0, networkMode, g_callback);
-    ASSERT_TRUE(setPreferredMode);
-    LOCK_NUM_WHILE_NE(hasNewData[SET_PREFERRED_NETWORK_MODE], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    EXPECT_TRUE(setPreferredNetworkModeResult);
-    EXPECT_EQ(errCodeResult, HRIL_ERR_SUCCESS); // To do
 }

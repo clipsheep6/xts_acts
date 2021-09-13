@@ -22,7 +22,7 @@ ohos_moduletest_suite("SimMockTest") {
     "//test/xts/acts/telephony/telephonycpptest/mock_vendor/mock_vendor.cpp",
     "//base/telephony/core_service/network_search/src/network_state.cpp",
     "//base/telephony/core_service/network_search/src/signal_information.cpp",
-    "//base/telephony/core_service/interfaces/innerkits/core/core_service_proxy.cpp",
+    "//base/telephony/core_service/interfaces/innerkits/proxy/core_service_proxy.cpp",
     "//base/telephony/core_service/network_search/src/network_search_result.cpp",
     "//base/telephony/core_service/network_search/src/network_information.cpp"
   ]
@@ -33,11 +33,10 @@ ohos_moduletest_suite("SimMockTest") {
     "//test/xts/acts/telephony/telephonycpptest/mock_vendor",
     "//test/xts/acts/telephony/telephonycpptest/sim/include",
     "//utils/native/base/include",
-    "//base/telephony/core_service/common/sim",
     "//third_party/bounds_checking_function/src",
     "//base/telephony/ril_adapter/interfaces/innerkits",
     "//base/telephony/core_service/interfaces/innerkits/common",
-    "//base/telephony/core_service/interfaces/innerkits/core",
+    "//base/telephony/core_service/interfaces/innerkits/proxy",
     "//base/telephony/core_service/sim/include",
     "//base/telephony/core_service/common/log/include",
     "//base/telephony/core_service/network_search/include",
@@ -46,14 +45,6 @@ ohos_moduletest_suite("SimMockTest") {
     "//foundation/distributedschedule/dmsfwk/services/dtbschedmgr/include",
     "//foundation/aafwk/standard/interfaces/innerkits/want/include/ohos/aafwk/content",
     "//foundation/appexecfwk/standard/interfaces/innerkits/appexecfwk_base/include",
-    "//base/telephony//core_service/interfaces/kits/native",
-    "//base/telephony/core_service/interfaces/innerkits/network_search",
-    "//base/telephony/core_service/common/network_search",
-    "//base/telephony/core_service/common/core",
-    #"//base/telephony/core_service/common/cellular_data",
-    "//base/telephony/core_service/utils/log/include",
-    "//base/telephony/core_service/interfaces/innerkits/state_registry",
-    "//base/telephony/core_service/interfaces/innerkits/sim",
   ]
  if (is_standard_system) {
     external_deps = [ "hiviewdfx_hilog_native:libhilog" ]

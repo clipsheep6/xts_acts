@@ -27,7 +27,7 @@ ohos_shared_library("mock_ril_vendor") {
     ]
     deps = [
         "//drivers/adapter/uhdf2/osal:libhdf_utils",
-        "//base/telephony/core_service/utils:libtelephony_common",
+        "//base/telephony/core_service/common:libtelephony_common",
         "//base/hiviewdfx/faultloggerd/interfaces/innerkits/signal_handler:dfx_signalhandler",
     ]
 

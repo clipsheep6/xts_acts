@@ -18,11 +18,11 @@ ohos_moduletest_suite("SmsFunctionSimTest") {
   install_enable = true
   sources = [
     "src/sms_manager_test.cpp",
-    "//base/telephony/sms_mms/interfaces/kits/native/src/short_message.cpp",
+    "//base/telephony/sms_mms/interfaces/kits/src/short_message.cpp",
     "//base/telephony/sms_mms/utils/string_utils.cpp",
-    "//base/telephony/sms_mms/interfaces/kits/native/src/send_short_message_callback_stub.cpp",
-    "//base/telephony/sms_mms/interfaces/kits/native/src/delivery_short_message_callback_stub.cpp",
-    "//base/telephony/core_service/interfaces/innerkits/sms_mms/sms_service_proxy.cpp",
+    "//base/telephony/sms_mms/interfaces/kits/src/send_short_message_callback_stub.cpp",
+    "//base/telephony/sms_mms/interfaces/kits/src/delivery_short_message_callback_stub.cpp",
+    "//base/telephony/core_service/interfaces/innerkits/sms_mms/proxy/sms_service_proxy.cpp",
   ]
 
   include_dirs = [
@@ -31,15 +31,14 @@ ohos_moduletest_suite("SmsFunctionSimTest") {
     "//base/telephony/sms_mms/services/include",
     "//base/telephony/sms_mms/services/include/gsm",
     "//base/telephony/sms_mms/services/include/cdma",
-    "//base/telephony/sms_mms/interfaces/kits/native/include",
+    "//base/telephony/sms_mms/interfaces/kits/include",
     "//base/telephony/sms_mms/utils",
     "//foundation/communication/ipc/interfaces/innerkits/ipc_core/include",
-    "//base/telephony/core_service/interfaces/innerkits/sms_mms",
+    "//base/telephony/core_service/interfaces/innerkits/sms_mms/proxy",
     "//foundation/ace/ace_engine/frameworks/base/utils",
     "//utils/native/base/include",
     "//base/telephony/ril_adapter/interfaces/innerkits",
-
-    "//base/telephony/core_service/utils/log/include",
+    "//base/telephony/core_service/common/log/include",
   ]
 
   if (is_standard_system) {

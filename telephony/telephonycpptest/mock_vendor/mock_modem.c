@@ -21,24 +21,30 @@
 
 extern HRilRadioState g_radioState;
 
-void ReqSetRadioStatus(void* requestInfo, int fun, int rst)
+void ReqSetRadioStatus(const ReqDataInfo* requestInfo, int function, int reset)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     int ret = -1;
-    g_radioState = fun;
-    ret = SetRadioState(fun, rst);
+    
+    if(g_radioState == function) {
+        struct ReportInfo reportInfo;
+        reportInfo = CreateReportInfo(requestInfo, HRIL_ERR_REPEAT_STATUS, HRIL_RESPONSE, 0);
+        OnModemReport(reportInfo, NULL, 1);
+        return;
+    }
+    ret = SetRadioState(function, reset);
     if (ret != 0) {
         TELEPHONY_LOGD("ReqSetRadioStatus failed");
-        RESP_FAIL_WITHOUT_DATA(OnModemReport);
+        RESP_FAIL_WITHOUT_DATA(requestInfo, OnModemReport);
     }
-    RESP_SUCSS_WITHOUT_DATA(OnModemReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnModemReport);
     return;
 }
 
-void ReqGetRadioStatus(void* requestInfo)
+void ReqGetRadioStatus(const ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnModemReport, &g_radioState, sizeof(HRilRadioState));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnModemReport, &g_radioState, sizeof(HRilRadioState));
 }
 
 void InitModemData()

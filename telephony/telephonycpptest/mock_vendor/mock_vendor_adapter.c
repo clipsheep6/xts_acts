@@ -77,27 +77,17 @@ static const HRilSimReq g_simReqOps = {
     .EnterSimPin = ReqEnterSimPin,
     .UnlockSimPin = ReqUnlockSimPin,
     .GetSimPinInputTimes = ReqGetSimPinInputTimes,
-    .EnterSimPin2 = ReqEnterSimPin2,
-    .UnlockSimPin2 = ReqUnlockSimPin2,
-    .GetSimPin2InputTimes = ReqGetSimPin2InputTimes,
-    .EnableSimCard = ReqEnableSimCard,
 };
 
 static const HRilSmsReq g_smsReqOps = {
     .SendSms = ReqSendSms,
     .SendSmsAck = ReqSendSmsAck,
-    .SendCdmaSms = ReqSendCdmaSms,
-    .SendCdmaAck = ReqSendCdmaSmsAck,
     .StorageSms = ReqStorageSms,
     .DeleteSms = ReqDeleteSms,
     .UpdateSms = ReqUpdateSms,
     .SetSmsCenterAddress = ReqSetSmsCenterAddress,
     .GetSmsCenterAddress = ReqGetSmsCenterAddress,
     .SetCellBroadcast = ReqSetCellBroadcast,
-    .GetCellBroadcast = ReqGetCellBroadcast,
-    .GetCDMACellBroadcast = ReqGetCDMACellBroadcast,
-    .SetCDMACellBroadcast = ReqSetCDMACellBroadcast,
-    .ActiveCDMACellBroadcast = ReqActiveCDMACellBroadcast,
 };
 
 static const HRilNetworkReq g_networkReqOps = {
@@ -106,16 +96,13 @@ static const HRilNetworkReq g_networkReqOps = {
     .GetPsRegStatus = ReqGetPsRegStatus,
     .GetOperatorInfo = ReqGetOperatorInfo,
     .GetNetworkSearchInformation = RequestGetNetworkSearchInformation,
-    .GetNetworkSelectionMode = RequestGetNetworkSelectionMode,
-    .SetNetworkSelectionMode = RequestSetNetworkSelectionMode,
-    .SetPreferredNetworkPara = RequestSetPreferredNetworkPara,
-    .GetPreferredNetworkPara = RequestGetPreferredNetworkPara,
+    .GetNetworkSelectionMode = RequestQueryNetworkSelectionMode,
+    .SetNetworkSelectionMode = RequestSetAutomaticModeForNetworks,
 };
 
 static const HRilDataReq g_dataReqOps = {
     .ActivatePdpContext = ReqActivatePdpContext,
     .DeactivatePdpContext = ReqDeactivatePdpContext,
-    .GetPdpContextList = ReqGetPdpContextList,
 };
 
 static const HRilModemReq g_modemReqOps = {
@@ -134,15 +121,24 @@ HRilOps g_HRilOps = {
 
 int SetRadioState(HRilRadioState newState, int rst)
 {
+    g_radioState = newState;
     struct ReportInfo reportInfo;
     (void)memset_s(&reportInfo, sizeof(struct ReportInfo), 0, sizeof(struct ReportInfo));
     reportInfo.notifyId = HNOTI_MODEM_RADIO_STATE_UPDATED;
     reportInfo.type = HRIL_NOTIFICATION;
     reportInfo.error = HRIL_ERR_SUCCESS;
     g_radioState = newState;
+    if (newState == 0) {
+        InitNetworkMockData();
+    }
     TELEPHONY_LOGE("g_radioState :%{public}d", g_radioState);
     OnModemReport(reportInfo, &g_radioState, sizeof(HRilRadioState));
     return 0;
+}
+
+HRilRadioState GetRadioState(void)
+{
+    return g_radioState;
 }
 
 static int ModemInit(void)
@@ -157,7 +153,6 @@ void SharedMemoryRead(void)
     NOTIFY_SUCSS_WITHOUT_DATA(OnSimReport, HNOTI_SIM_STATUS_CHANGED);
     NotityCsRegStatus();
     ModemInit();
-    NotityCsRegStatus();
     TELEPHONY_LOGE("notify done");
     static const int shmKey = 107077;
     static const int sleepUs10000 = 10000;

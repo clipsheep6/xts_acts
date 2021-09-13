@@ -21,7 +21,6 @@
 #include "i_call_manager_service.h"
 #include "iservice_registry.h"
 #include "napi_call_ability_callback.h"
-
 #include "condition_lock.h"
 #include "log.h"
 #include "mock_vendor.h"
@@ -123,7 +122,7 @@ int32_t CallManagerBasic::Init()
         LOG("RegisterCallBack false ret = %d", ret);
         return ret;
     }
-    return TELEPHONY_SUCCESS;
+    return SUCCESSFUL;
 }
 
 void CallManagerBasic::UnInit()

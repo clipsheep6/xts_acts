@@ -1,7 +1,7 @@
 hdc shell mkdir /data/mock_vendor
 
-hdc file send /home/test/code/OpenHarmony_Standard_System/out/ohos-arm-release/telephonycpptest/mock_vendor/libril_vendor.z.so /data/mock_vendor/libril_vendor.z.so
-hdc file send /home/test/code/OpenHarmony_Standard_System/out/ohos-arm-release/telephonycpptest/mock_vendor/libril_vendor.z.so /system/lib/libril_vendor.z.so
+hdc file send /home/test/code/OpenHarmony_Standard_System/out/ohos-arm-release/telephonycpptest/mock_vendor/libmock_ril_vendor.z.so /data/mock_vendor/libril_vendor.z.so
+hdc file send /home/test/code/OpenHarmony_Standard_System/out/ohos-arm-release/telephonycpptest/mock_vendor/libmock_ril_vendor.z.so /system/lib/libril_vendor.z.so
 hdc file send /home/test/code/OpenHarmony_Standard_System/out/ohos-arm-release/telephonycpptest/mock_vendor/vendor_controller /data/mock_vendor/vendor_controller
 
 if [ $# -gt 0 ]; then
@@ -13,7 +13,7 @@ if [ $# -gt 0 ]; then
     done
 fi
 
-md5sum /home/test/code/OpenHarmony_Standard_System/out/ohos-arm-release/telephonycpptest/mock_vendor/libril_vendor.z.so
+md5sum /home/test/code/OpenHarmony_Standard_System/out/ohos-arm-release/telephonycpptest/mock_vendor/libmock_ril_vendor.z.so
 hdc shell md5sum /system/lib/libril_vendor.z.so
 hdc shell ps -A|grep -E "tel|foun|ril"
 

@@ -18,6 +18,8 @@
 #include "stdlib.h"
 #include "string.h"
 #include "telephony_log_c.h"
+#include "vendor_report.h"
+
 #define HDF_LOG_TAG mock_vendor
 
 #define PP_CALL_MAX_LEN 20
@@ -35,7 +37,6 @@ struct CallMockData {
 
 void AddBaseCallInfo(char* number, HRilCallState state)
 {
-    TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     // 这里由调用者保证数据正确
     if (g_callMockData.call_index > PP_CALL_MAX_LEN) {
@@ -69,9 +70,38 @@ void AddBaseCallInfo(char* number, HRilCallState state)
     NOTIFY_SUCSS_WITHOUT_DATA(OnCallReport, HNOTI_CALL_STATE_UPDATED);
 }
 
+void ChangeCallState(char* number, HRilCallState state)
+{
+
+    NOTIFY_SUCSS_WITHOUT_DATA(OnCallReport, HNOTI_CALL_STATE_UPDATED);
+}
+
+void HandleCallState()
+{
+    bool needNotify = false;
+    for (int i = 0; i < g_callMockData.call_index; i++) {
+        //handle  all number dial -> alert
+        if(g_callMockData.pp_calls[i]->state == HRIL_CALL_DIALING) {
+            g_callMockData.pp_calls[i]->state = HRIL_CALL_ALERTING;
+            needNotify = true;
+            continue;
+        }
+
+        //handle auto accept for special number
+        if (strcmp("10086", g_callMockData.pp_calls[i]->number) == 0 && g_callMockData.pp_calls[i]->state == HRIL_CALL_ALERTING) {
+            g_callMockData.pp_calls[i]->state = HRIL_CALL_ACTIVATE;
+            needNotify = true;
+        }
+    }
+    if(needNotify) {
+        NOTIFY_SUCSS_WITHOUT_DATA(OnCallReport, HNOTI_CALL_STATE_UPDATED);
+    }
+}
+
+
 void AddDialCallInfo(char* number)
 {
-    TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
+    TELEPHONY_LOGD("enter to [%{public}s]:%{public}d, add phone%{public}s:", __func__, __LINE__, number);
     AddBaseCallInfo(number, HRIL_CALL_DIALING);
 }
 
@@ -241,44 +271,45 @@ void InitCallMockData()
     TELEPHONY_LOGE("Call Mock Data Init Done");
 }
 
-void ReqGetCallList(ReqDataInfo* requestInfo, void* data, size_t dataLen)
+void ReqGetCallList(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnCallReport, g_callMockData.pp_calls, sizeof(HRilCallInfo*) * g_callMockData.call_index);
+    RESP_SUCSS_WITH_DATA(requestInfo, OnCallReport, g_callMockData.pp_calls, sizeof(HRilCallInfo*) * g_callMockData.call_index);
+    HandleCallState();
 }
 
-void ReqDial(ReqDataInfo* requestInfo, void* data, size_t dataLen)
+void ReqDial(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
 {
     HRilDial* p_dial = (HRilDial*)data;
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d, address:%{public}s, clir:%{public}d", __func__, __LINE__,
         p_dial->address, p_dial->clir);
     AddDialCallInfo(p_dial->address);
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 
-void ReqHangup(ReqDataInfo* requestInfo, void* data, size_t dataLen)
+void ReqHangup(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
 {
     int* array = (int*)data;
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d, index:%{public}d", __func__, __LINE__, array[0]);
     RemoveCallInfoByIndex(array[0]);
     HoldAndActiveCall();
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 
-void ReqReject(ReqDataInfo* requestInfo, void* data, size_t dataLen)
+void ReqReject(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     g_callMockData.call_index = 0;
     g_callMockData.call_id = 0;
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
     RemoveAllCallInfo();
 }
 
-void ReqAnswer(ReqDataInfo* requestInfo, void* data, size_t dataLen)
+void ReqAnswer(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     AnswerCall();
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 
 // Calling line identification presentation
@@ -330,7 +361,7 @@ static void HoldAndActiveAtSend(ReqDataInfo* requestInfo)
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     HoldAndActiveCall();
     NOTIFY_SUCSS_WITHOUT_DATA(OnCallReport, HNOTI_CALL_STATE_UPDATED);
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 
 void ReqHold(ReqDataInfo* requestInfo)
@@ -353,25 +384,25 @@ void ReqSwap(ReqDataInfo* requestInfo)
 void ReqGetClip(ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnCallReport, &g_callMockData.clip_result, sizeof(HRilGetClipResult));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnCallReport, &g_callMockData.clip_result, sizeof(HRilGetClipResult));
 }
 void ReqSetClip(ReqDataInfo* requestInfo, int action)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     g_callMockData.clip_result.action = action;
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 
 void ReqGetClir(ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnCallReport, &g_callMockData.clir_result, sizeof(HRilGetCallClirResult));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnCallReport, &g_callMockData.clir_result, sizeof(HRilGetCallClirResult));
 }
 void ReqSetClir(ReqDataInfo* requestInfo, int action)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     g_callMockData.clir_result.action = action;
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 
 void ReqGetCallRestriction(ReqDataInfo* requestInfo, const char* fac)
@@ -381,54 +412,54 @@ void ReqGetCallRestriction(ReqDataInfo* requestInfo, const char* fac)
     result.status = SimGetLockStatusByName(fac);
     // update here for support more functions
     result.classCw = 1;
-    RESP_SUCSS_WITH_DATA(OnCallReport, &result, sizeof(HRilCallRestrictionResult));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnCallReport, &result, sizeof(HRilCallRestrictionResult));
 }
 void ReqSetCallRestriction(ReqDataInfo* requestInfo, CallRestrictionInfo info)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     int ret = SimSetLockStatus(info.fac, info.mode, info.password);
     if (ret != 0) {
-        RESP_FAIL_WITHOUT_DATA(OnCallReport);
+        RESP_FAIL_WITHOUT_DATA(requestInfo, OnCallReport);
         return;
     }
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 void ReqStartDtmf(ReqDataInfo* requestInfo, CallDTMFInfo info)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 void ReqSendDtmf(ReqDataInfo* requestInfo, CallDTMFInfo info)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 void ReqStopDtmf(ReqDataInfo* requestInfo, CallDTMFInfo info)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 void ReqJoin(ReqDataInfo* requestInfo, int callType)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 void ReqSplit(ReqDataInfo* requestInfo, int nThCall, int callType)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     SplitCall(nThCall, callType);
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 void ReqGetCallWait(ReqDataInfo* requestInfo)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnCallReport, &g_callMockData.hrilCallWaitResult, sizeof(HRilCallWaitResult));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnCallReport, &g_callMockData.hrilCallWaitResult, sizeof(HRilCallWaitResult));
 }
 void ReqSetCallWait(ReqDataInfo* requestInfo, int active)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     g_callMockData.hrilCallWaitResult.status = active;
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 // 所有的业务注册都只模拟成功的返回
 void SetCallForwardingInfo(int reason, int mode, char* number, int numType, int classx)
@@ -467,7 +498,7 @@ void ReqSetCallForwarding(ReqDataInfo* requestInfo, HRilCFInfo info)
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     int numType;
     if (info.reason > CALL_FORWARD_REASON_ALL_CCF && info.mode > CALL_FORWARD_MODE_ERASURE) {
-        RESP_FAIL_WITHOUT_DATA(OnCallReport);
+        RESP_FAIL_WITHOUT_DATA(requestInfo, OnCallReport);
         return;
     }
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d log1", __func__, __LINE__);
@@ -479,17 +510,17 @@ void ReqSetCallForwarding(ReqDataInfo* requestInfo, HRilCFInfo info)
     }
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d   log2", __func__, __LINE__);
     SetCallForwardingInfo(info.reason, info.mode, info.number, numType, info.classx);
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }
 
 void ReqGetCallForwarding(ReqDataInfo* requestInfo, int reason)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     if (reason > CALL_FORWARD_REASON_ALL_CCF) {
-        RESP_FAIL_WITHOUT_DATA(OnCallReport);
+        RESP_FAIL_WITHOUT_DATA(requestInfo, OnCallReport);
         return;
     }
-    RESP_SUCSS_WITH_DATA(OnCallReport, &g_callMockData.cf_info[reason], sizeof(HRilCFQueryInfo));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnCallReport, &g_callMockData.cf_info[reason], sizeof(HRilCFQueryInfo));
 }
 
 void ReqCallSupplement(ReqDataInfo* requestInfo, int type)
@@ -508,9 +539,9 @@ void ReqCallSupplement(ReqDataInfo* requestInfo, int type)
     }
     default: {
         TELEPHONY_LOGW("ReqCallSupplement warring, type is invalid");
-        RESP_FAIL_WITHOUT_DATA(OnCallReport);
+        RESP_FAIL_WITHOUT_DATA(requestInfo, OnCallReport);
         return;
     }
     }
-    RESP_SUCSS_WITHOUT_DATA(OnCallReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnCallReport);
 }

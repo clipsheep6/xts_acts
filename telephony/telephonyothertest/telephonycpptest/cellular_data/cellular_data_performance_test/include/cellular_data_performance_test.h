@@ -16,15 +16,14 @@
 #ifndef CELLULAR_DATA_ENABLE_TEST_H
 #define CELLULAR_DATA_ENABLE_TEST_H
 #include <gtest/gtest.h>
-#include "cellular_data_reliability_proxy.h"
+#include "cellular_data_performance_proxy.h"
 
-class CellularDataReliabilityTest : public testing::Test {
+class CellularDataPerformanceTest : public testing::Test {
 public:
     static const int SLOT_ID = 0;
-    static const int TEST_RUN_TIME_10 = 10;
+    static const int TEST_RUN_TIME_1000 = 1000;
+    const int TEST_USEC_500 = 500;
     static bool ORIGINAL_STATE;
-    static const H_CODE_FAILED = 0
-    static const H_CODE_SUCCESS = 1
 public:
     static void SetUpTestCase();
     static void TearDownTestCase();
@@ -32,9 +31,9 @@ public:
     void TearDown();
 };
 
-bool CellularDataReliabilityTest::ORIGINAL_STATE = false;
+bool CellularDataPerformanceTest::ORIGINAL_STATE = false;
 
-void CellularDataReliabilityTest::SetUpTestCase()
+void CellularDataPerformanceTest::SetUpTestCase()
 {
     OHOS::Telephony::g_telephonyService = OHOS::Telephony::GetProxy();
     if (OHOS::Telephony::g_telephonyService == nullptr) {
@@ -43,7 +42,7 @@ void CellularDataReliabilityTest::SetUpTestCase()
     ORIGINAL_STATE = OHOS::Telephony::g_telephonyService->IsCellularDataEnabled(SLOT_ID);
 }
 
-void CellularDataReliabilityTest::SetUp()
+void CellularDataPerformanceTest::SetUp()
 {
     bool enable = false;
     ASSERT_NE(OHOS::Telephony::g_telephonyService, nullptr);
@@ -51,9 +50,9 @@ void CellularDataReliabilityTest::SetUp()
     ASSERT_EQ(result, 1);
 }
 
-void CellularDataReliabilityTest::TearDown(){}
+void CellularDataPerformanceTest::TearDown(){}
 
-void CellularDataReliabilityTest::TearDownTestCase()
+void CellularDataPerformanceTest::TearDownTestCase()
 {
     ASSERT_NE(OHOS::Telephony::g_telephonyService, nullptr);
     if (ORIGINAL_STATE == false) {

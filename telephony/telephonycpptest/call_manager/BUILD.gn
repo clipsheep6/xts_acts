@@ -16,6 +16,5 @@ group("call_manager") {
   deps = [
     "call_manager_function_test:CallManagerFunctionTest",
     "call_manager_mock_test:CallManagerMockTest",
-    "call_manager_function_have_card_test:CallManagerFunctionHaveCardTest",
   ]
 }

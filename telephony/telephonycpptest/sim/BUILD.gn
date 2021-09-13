@@ -15,7 +15,6 @@ group("sim") {
   testonly = true
   deps = [
     "sim_function_test:SimFunctionTest",
-    "sim_function_init_test:SimFunctionInitTest",
     "sim_mock_test:SimMockTest",
   ]
 }

@@ -32,17 +32,20 @@
 #define WCDMA_GSM_TYPE "0201"
 #define LTE_WCDMA_TYPE "0302"
 
-void ReqGetSignalStrength(void* requestInfo, void* data, size_t dataLen);
-void ReqGetCsRegStatus(void* requestInfo, void* data, size_t dataLen);
-void ReqGetPsRegStatus(void* requestInfo, void* data, size_t dataLen);
-void ReqGetOperatorInfo(void* requestInfo, void* data, size_t dataLen);
-void RequestGetNetworkSearchInformation(void* requestInfo, void* data, size_t dataLen);
-void RequestGetNetworkSelectionMode(void* requestInfo, void* data, size_t dataLen);
-void RequestSetNetworkSelectionMode(void* requestInfo, void* data, size_t dataLen);
-void RequestSetPreferredNetworkPara(void* requestInfo, void* data, size_t dataLen);
-void RequestGetPreferredNetworkPara(void* requestInfo, void* data, size_t dataLen);
-void NotifyNetWokTime();
-void NotityCsRegStatus();
+void ReqGetSignalStrength(const ReqDataInfo* requestInfo);
+void ReqGetCsRegStatus(const ReqDataInfo* requestInfo);
+void ReqGetPsRegStatus(const ReqDataInfo* requestInfo);
+void ReqGetOperatorInfo(const ReqDataInfo* requestInfo);
+void RequestGetNetworkSearchInformation(const ReqDataInfo* requestInfo);
+void RequestQueryNetworkSelectionMode(const ReqDataInfo* requestInfo);
+void RequestSetAutomaticModeForNetworks(const ReqDataInfo* requestInfo, const HRiSetNetworkModeInfo* data);
+int ProcessRegStatus(char* s, char** response, int count);
+int ProcessParamSignalStrength(char* result, HRilRssi* hrilRssi);
+int ProcessOperListToUse(char* list);
+void PerformTimeOut(int sigFlag);
+int ParseOperListInfo(char* lineinfo, int count, AvailableOperInfo* pOperInfo, AvailableOperInfo** ppOperInfo);
+void GetNetworkSearchInformationPause();
+
 void InitNetworkMockData();
 void SetNumertic(void* data, int dataLen);
 void SetLongOperator(void* data, int dataLen);
@@ -50,4 +53,6 @@ void SetShortOperator(void* data, int dataLen);
 void SetRadioTech(int reg, int domain);
 void SetRegServiceState(int reg, int domain);
 void SetRegServiceRawState(int reg, int domain);
+void NotityCsRegStatus();
+
 #endif // OHOS_MOCK_NETWORK_H

@@ -36,13 +36,13 @@ void InitSmsMockData()
 void ReqSendSms(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnSmsReport, &g_smsMockData.hrilSmsResponse, sizeof(HRilSmsResponse*));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnSmsReport, &g_smsMockData.hrilSmsResponse, sizeof(HRilSmsResponse*));
 }
 
 void ReqSendSmsAck(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITHOUT_DATA(OnSmsReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnSmsReport);
 }
 
 void ReqStorageSms(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
@@ -56,7 +56,7 @@ void ReqStorageSms(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
     }
     asprintf(&smsPdu, "%s%s", msg->smsc, msg->pdu);
     StorageSms(&smsPdu);
-    RESP_SUCSS_WITHOUT_DATA(OnSmsReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnSmsReport);
 }
 
 void ReqDeleteSms(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
@@ -64,7 +64,7 @@ void ReqDeleteSms(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     int index = ((int*)data)[0];
     DeleteSms(index);
-    RESP_SUCSS_WITHOUT_DATA(OnSmsReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnSmsReport);
 }
 
 void ReqUpdateSms(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
@@ -74,7 +74,7 @@ void ReqUpdateSms(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
     char* smsPdu = NULL;
     asprintf(&smsPdu, "%s", msg->pdu);
     UpdateSms(msg->index, &smsPdu);
-    RESP_SUCSS_WITHOUT_DATA(OnSmsReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnSmsReport);
 }
 
 void ReqSetSmsCenterAddress(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
@@ -83,19 +83,19 @@ void ReqSetSmsCenterAddress(ReqDataInfo* requestInfo, const void* data, size_t d
     HRilServiceCenterAddress* centerAddress = (HRilServiceCenterAddress*)data;
     g_smsMockData.hrilServiceCenterAddress.address = centerAddress->address;
     g_smsMockData.hrilServiceCenterAddress.tosca = centerAddress->tosca;
-    RESP_SUCSS_WITHOUT_DATA(OnSmsReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnSmsReport);
 }
 
 void ReqGetSmsCenterAddress(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITH_DATA(OnSmsReport, &g_smsMockData.hrilServiceCenterAddress, sizeof(HRilServiceCenterAddress*));
+    RESP_SUCSS_WITH_DATA(requestInfo, OnSmsReport, &g_smsMockData.hrilServiceCenterAddress, sizeof(HRilServiceCenterAddress*));
 }
 
 void ReqSetCellBroadcast(ReqDataInfo* requestInfo, const void* data, size_t dataLen)
 {
     TELEPHONY_LOGD("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RESP_SUCSS_WITHOUT_DATA(OnSmsReport);
+    RESP_SUCSS_WITHOUT_DATA(requestInfo, OnSmsReport);
 }
 
 void ReqGetCellBroadcast(ReqDataInfo* requestInfo, const void* data, size_t dataLen)

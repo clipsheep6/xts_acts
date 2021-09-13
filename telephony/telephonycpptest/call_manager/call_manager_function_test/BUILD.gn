@@ -18,8 +18,8 @@ ohos_moduletest_suite("CallManagerFunctionTest") {
   install_enable = true
   sources = [
     "src/call_manager_function_test.cpp",
-    "//base/telephony/core_service/interfaces/innerkits/call_manager/call_manager_service_proxy.cpp",
-    "//base/telephony/call_manager/frameworks/js/napi/call_ability_callback.cpp",
+    "//base/telephony/core_service/interfaces/innerkits/call_manager/proxy/call_manager_service_proxy.cpp",
+    "//base/telephony/call_manager/interfaces/kits/native/src/call_ability_callback.cpp",
     "//test/xts/acts/telephony/telephonycpptest/mock_vendor/mock_vendor.cpp",
   ]
 
@@ -40,6 +40,12 @@ ohos_moduletest_suite("CallManagerFunctionTest") {
     "//prebuilts/build-tools/common/nodejs/node-v12.18.4-linux-x64/include/node",
     "//foundation/aafwk/standard/interfaces/innerkits/want/include/ohos/aafwk/content",
     "//base/telephony/ril_adapter/interfaces/innerkits",
+    "//base/telephony/call_manager/interfaces/kits/native/include",
+    "//base/telephony/call_manager/interfaces/kits/js/napi/include",
+    "//base/telephony/core_service/interfaces/innerkits/call_manager/proxy",
+    "//base/telephony/core_service/interfaces/innerkits/call_manager/common",
+    "//base/telephony/core_service/interfaces/innerkits/cellular_call/common",
+    "//base/telephony/core_service/common/log/include",
   ]
 
   if (is_standard_system) {
