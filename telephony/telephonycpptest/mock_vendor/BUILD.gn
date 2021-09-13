@@ -1,0 +1,42 @@
+# Copyright (C) Huawei Technologies Co., Ltd. 2020-2020. All rights reserved.
+
+import("//build/ohos.gni")
+RIL_ADAPTER = "//base/telephony/ril_adapter"
+
+ohos_shared_library("mock_ril_vendor") {
+    sources = [
+        "mock_vendor_adapter.c",
+        "mock_call.c",
+        "mock_sms.c",
+        "mock_network.c",
+        "mock_data.c",
+        "mock_modem.c",
+        "mock_sim.c",
+        "mock_data_handler.c",
+        "$RIL_ADAPTER/vendor/vendor_report.c",
+        "$RIL_ADAPTER/vendor/vendor_util.c",
+    ]
+    include_dirs = [
+        "$RIL_ADAPTER/interfaces/innerkits",
+        "$RIL_ADAPTER/vendor/include",
+        "include",
+    ]
+    defines = [
+        "LOG_TAG = \"MockVendor\"",
+        "LOG_DOMAIN = 0xD002B01",
+    ]
+    deps = [
+        "//drivers/adapter/uhdf2/osal:libhdf_utils",
+        "//base/telephony/core_service/utils:libtelephony_common",
+        "//base/hiviewdfx/faultloggerd/interfaces/innerkits/signal_handler:dfx_signalhandler",
+    ]
+
+    if (is_standard_system) {
+      external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
+    } else {
+      external_deps = [ "hilog:libhilog" ]
+    }
+
+    part_name = "mock_vendor"
+    subsystem_name = "telephonycpptest"
+}

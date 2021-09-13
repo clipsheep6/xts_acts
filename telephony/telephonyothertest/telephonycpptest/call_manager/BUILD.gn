@@ -11,11 +11,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-group("telephony") {
+group("call_manager") {
   testonly = true
   deps = [
-    "telephonycpptest:telephonycpptest",
-    "telephonyothertest:telephonyothertest",
-    #"telephonyjstest:telephonyjstest",
+    "call_manager_performance_test:CallManagerPerformanceTest",
+    "call_manager_reliability_test:CallManagerReliabilityTest",
   ]
 }
