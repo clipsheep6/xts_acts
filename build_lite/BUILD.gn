@@ -70,6 +70,7 @@ lite_component("acts_component") {
         "//test/xts/acts/hiviewdfx_lite/hilog_posix:ActsHilogTest",
 
         "//test/xts/acts/multimedia_lite/media_lite_posix/recorder_native:ActsMediaRecorderTest",
+        "//test/xts/acts/multimedia_lite/media_lite_posix/audio_native:ActsMediaAudioTest",
 
         #"//test/xts/acts/graphic_lite/graphic_utils:uikit_test1",
         #"//test/xts/acts/graphic_lite/surface:uikit_test2",
