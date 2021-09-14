@@ -19,7 +19,7 @@ _all_test_packages = [
   "${ACTS_ROOT}/multimedia:multimedia",
   "${ACTS_ROOT}/hiviewdfx:hiviewdfxtestacts",
   "${ACTS_ROOT}/barrierfree:barrierfree",
- # "${ACTS_ROOT}/telephony:telephony",
+  "${ACTS_ROOT}/telephony:telephony",
 #  "${ACTS_ROOT}/appexecfwk:appexecfwk",
 #  "${ACTS_ROOT}/account:account",
  # "${ACTS_ROOT}/communication:communication",
