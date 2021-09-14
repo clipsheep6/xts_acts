@@ -67,6 +67,7 @@ protected:
         int rt = getgroups(groupNum, groupsArray);
         EXPECT_EQ(rt, groupNum);
     }
+
     void TearDown()
     {
         LOG("TearDown: reset uid and gid");

@@ -17,11 +17,11 @@
 #include "sys/socket.h"
 #include "arpa/inet.h"
 #include "netinet/tcp.h"
-#include "securec.h"
 #include <sys/wait.h>
 #include <string.h>
 #include <errno.h>
 #include <stdlib.h>
+#include "securec.h"
 
 using namespace std;
 using namespace testing::ext;
@@ -931,7 +931,7 @@ HWTEST_F(ActsLwipTest, testInetNtopIpv4Normal, Function | MediumTest | Level2)
         inputAddr.s_addr = inputBig[i];
 #endif
         ret = inet_ntop(AF_INET, &inputAddr, rstBuff, sizeof(rstBuff));
-        ASSERT_NE(ret, nullptr) << "ErrInfo:inet_ntop NULL [" << expectAddrs[i] << "]";
+        ASSERT_NE(ret, nullptr);
         printf("inet_ntop expect [%s]: ret[%s], buf[%s]\n", expectAddrs[i], ret, rstBuff);
         EXPECT_STREQ(expectAddrs[i], ret);
         EXPECT_STREQ(expectAddrs[i], rstBuff);
