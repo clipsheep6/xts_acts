@@ -11,11 +11,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-group("telephony") {
+group("network_search") {
   testonly = true
   deps = [
-    "telephonycpptest:telephonycpptest",
-    "telephonyothertest:telephonyothertest",
-    #"telephonyjstest:telephonyjstest",
+    "network_search_reliability_test:NetworkSearchReliabilityTest",
+    "network_search_performance_test:NetworkSearchPerformanceTest",
   ]
 }
