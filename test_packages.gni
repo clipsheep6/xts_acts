@@ -20,11 +20,11 @@ _all_test_packages = [
   "${ACTS_ROOT}/hiviewdfx:hiviewdfxtestacts",
   "${ACTS_ROOT}/barrierfree:barrierfree",
 
-  # "${ACTS_ROOT}/telephony:telephony",
+  telephony:telephony/telephony:telephony",
   "${ACTS_ROOT}/appexecfwk:appexecfwk",
   "${ACTS_ROOT}/account:account",
 
-  # "${ACTS_ROOT}/communication:communication",
+  telephony:telephony/communication:communication",
   "${ACTS_ROOT}/notification:notification",
   "${ACTS_ROOT}/aafwk:aafwk",
   "${ACTS_ROOT}/location:location",
@@ -34,7 +34,7 @@ _all_test_packages = [
   "${ACTS_ROOT}/sensors:sensors",
   "${ACTS_ROOT}/distributeddatamgr:distributeddatamgr",
 
-  # "${ACTS_ROOT}/distributedschedule:distributedschedule",
+  telephony:telephony/distributedschedule:distributedschedule",
   "${ACTS_ROOT}/updater:update",
   "${ACTS_ROOT}/graphic:graphic",
   "${ACTS_ROOT}/ace:ace",
@@ -43,7 +43,7 @@ _all_test_packages = [
 
 _all_test_packages_ivi = [
   # add acts for ivi here
-  # "${ACTS_ROOT}/multimedia:multimedia_ivi",
+  telephony:telephony/multimedia:multimedia_ivi",
 ]
 
 _all_test_packages_intellitv = [

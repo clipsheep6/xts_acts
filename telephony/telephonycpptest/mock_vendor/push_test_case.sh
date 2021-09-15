@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Copyright (C) 2021 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,11 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-group("telephony") {
-  testonly = true
-  deps = [
-    "telephonycpptest:telephonycpptest",
-    "telephonyothertest:telephonyothertest",
-    #"telephonyjstest:telephonyjstest",
-  ]
-}
+hdc shell mkdir /data/telephonycpptest
+
+
+    hdc shell rm /data/telephonycpptest/* -rf
+    for file in `ls /home/test/code/OpenHarmony_Standard_System/out/ohos-arm-release/suites/acts/testcases|grep -vE "\.json|\.list"`
+    do
+	sleep 0.3
+        hdc file send /home/test/code/OpenHarmony_Standard_System/out/ohos-arm-release/suites/acts/testcases/${file} /data/telephonycpptest/${file}
+        hdc shell chmod +x /data/telephonycpptest/${file}
+    done
+
+
