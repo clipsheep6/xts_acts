@@ -69,7 +69,7 @@ class TestPlayer {
 public:
     std::shared_ptr<Player> player_;
     sptr<Window> window_;
-    explicit TestPlayer(PlayerSignal *test);
+    explicit TestPlayer(std::shared_ptr<PlayerSignal> test);
     virtual ~TestPlayer();
     bool CreatePlayer();
     int32_t SetSource(const std::string &uri);
@@ -94,13 +94,13 @@ public:
     int32_t SetLooping(bool loop);
     int32_t SetPlayerCallback(const std::shared_ptr<PlayerCallback> &callback);
 private:
-    PlayerSignal *test_;
+    std::shared_ptr<PlayerSignal> test_;
 };
 class TestPlayerCallback : public PlayerCallback {
 public:
     int errorNum_ = 0;
     PlayerStates state_ = PLAYER_STATE_ERROR;
-    explicit TestPlayerCallback(PlayerSignal *test);
+    explicit TestPlayerCallback(std::shared_ptr<PlayerSignal> test);
     virtual ~TestPlayerCallback();
     void OnError(PlayerErrorType errorType, int32_t errorCode);
     int WaitForSeekDone(int32_t currentPositon);
@@ -112,7 +112,7 @@ private:
     bool seekDoneFlag_ = false;
     int32_t postion_ = 0;
     void PrintState(PlayerStates state);
-    PlayerSignal *test_;
+    std::shared_ptr<PlayerSignal> test_;
 };
 }
 }

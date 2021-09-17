@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +20,7 @@
 using namespace OHOS;
 using namespace OHOS::Media;
 
-TestPlayer::TestPlayer(PlayerSignal *test)
+TestPlayer::TestPlayer(std::shared_ptr<PlayerSignal> test)
     : test_(test)
 {
 }
@@ -248,7 +247,7 @@ int32_t TestPlayer::SetPlayerCallback(const std::shared_ptr<PlayerCallback> &cal
     return player_->SetPlayerCallback(callback);
 }
 
-TestPlayerCallback::TestPlayerCallback(PlayerSignal *test)
+TestPlayerCallback::TestPlayerCallback(std::shared_ptr<PlayerSignal> test)
     : test_(test)
 {
 }
