@@ -20,44 +20,37 @@
 
 using namespace OHOS;
 using namespace OHOS::Media;
-using namespace PlayerNameSpace;
 
-namespace PlayerNameSpace {
-std::string GetUri()
-{
-    char path[256] = "/data/1.mp4";
-    GetParameter("sys.media.test.stream.path", "/data/1.mp4", &path[0], 256);
-    MEDIA_INFO_LOG("PATH : %s", path);
-    return path;
-}
-}
 TestPlayer::TestPlayer(PlayerSignal *test)
     : test_(test)
 {
 }
+
 TestPlayer::~TestPlayer()
 {
 }
+
 bool TestPlayer::CreatePlayer()
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    player = PlayerFactory::CreatePlayer();
-    if (player == nullptr) {
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    player_ = PlayerFactory::CreatePlayer();
+    if (player_ == nullptr) {
         return false;
     }
     return true;
 }
+
 int32_t TestPlayer::SetSource(const std::string &uri)
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    return player->SetSource(uri);
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    return player_->SetSource(uri);
 }
 
 int32_t TestPlayer::Play()
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    int32_t ret = player->Play();
-    if (test_->mutexFlag_ == true && test_->state_ != PLAYER_STARTED) {
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    int32_t ret = player_->Play();
+    if (ret == RET_OK && test_->mutexFlag_ == true && test_->state_ != PLAYER_STARTED) {
         std::unique_lock<std::mutex> lockPlay(test_->mutexPlay_);
         test_->condVarPlay_.wait_for(lockPlay, std::chrono::seconds(WAITSECOND));
         if (test_->state_ != PLAYER_STARTED) {
@@ -69,9 +62,9 @@ int32_t TestPlayer::Play()
 
 int32_t TestPlayer::Prepare()
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    int32_t ret = player->Prepare();
-    if (test_->mutexFlag_ == true && test_->state_ != PLAYER_PREPARED) {
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    int32_t ret = player_->Prepare();
+    if (ret == RET_OK && test_->mutexFlag_ == true && test_->state_ != PLAYER_PREPARED) {
         std::unique_lock<std::mutex> lockPrepare(test_->mutexPrepare_);
         test_->condVarPrepare_.wait_for(lockPrepare, std::chrono::seconds(WAITSECOND));
         if (test_->state_ != PLAYER_PREPARED) {
@@ -83,9 +76,9 @@ int32_t TestPlayer::Prepare()
 
 int32_t TestPlayer::PrepareAsync()
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    int32_t ret = player->PrepareAsync();
-    if (test_->mutexFlag_ == true && test_->state_ != PLAYER_PREPARED) {
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    int32_t ret = player_->PrepareAsync();
+    if (ret == RET_OK && test_->mutexFlag_ == true && test_->state_ != PLAYER_PREPARED) {
         std::unique_lock<std::mutex> lockPrepare(test_->mutexPrepare_);
         test_->condVarPrepare_.wait_for(lockPrepare, std::chrono::seconds(WAITSECOND));
         if (test_->state_ != PLAYER_PREPARED) {
@@ -97,9 +90,9 @@ int32_t TestPlayer::PrepareAsync()
 
 int32_t TestPlayer::Pause()
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    int32_t ret = player->Pause();
-    if (test_->mutexFlag_ == true && test_->state_ != PLAYER_PAUSED) {
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    int32_t ret = player_->Pause();
+    if (ret == RET_OK && test_->mutexFlag_ == true && test_->state_ != PLAYER_PAUSED) {
         std::unique_lock<std::mutex> lockPause(test_->mutexPause_);
         test_->condVarPause_.wait_for(lockPause, std::chrono::seconds(WAITSECOND));
         if (test_->state_ != PLAYER_PAUSED) {
@@ -111,9 +104,9 @@ int32_t TestPlayer::Pause()
 
 int32_t TestPlayer::Stop()
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    int32_t ret = player->Stop();
-    if (test_->mutexFlag_ == true && test_->state_ != PLAYER_STOPPED) {
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    int32_t ret = player_->Stop();
+    if (ret == RET_OK && test_->mutexFlag_ == true && test_->state_ != PLAYER_STOPPED) {
         std::unique_lock<std::mutex> lockStop(test_->mutexStop_);
         test_->condVarStop_.wait_for(lockStop, std::chrono::seconds(WAITSECOND));
         if (test_->state_ != PLAYER_STOPPED) {
@@ -125,9 +118,9 @@ int32_t TestPlayer::Stop()
 
 int32_t TestPlayer::Reset()
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    int32_t ret = player->Reset();
-    if (test_->mutexFlag_ == true && test_->state_ != PLAYER_IDLE) {
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    int32_t ret = player_->Reset();
+    if (ret == RET_OK && test_->mutexFlag_ == true && test_->state_ != PLAYER_IDLE) {
         std::unique_lock<std::mutex> lockReset(test_->mutexReset_);
         test_->condVarReset_.wait_for(lockReset, std::chrono::seconds(WAITSECOND));
         if (test_->state_ != PLAYER_IDLE) {
@@ -139,23 +132,23 @@ int32_t TestPlayer::Reset()
 
 int32_t TestPlayer::Release()
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    return player->Release();
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    return player_->Release();
 }
 
 int32_t TestPlayer::SetVolume(float leftVolume, float rightVolume)
 {
     MEDIA_INFO_LOG("%s", __FUNCTION__);
-    return player->SetVolume(leftVolume, rightVolume);
+    return player_->SetVolume(leftVolume, rightVolume);
 }
 
 int32_t TestPlayer::Seek(int32_t mseconds, PlayerSeekMode mode)
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
     test_->seekDoneFlag_ = false;
     test_->seekPositon_ = mseconds;
-    int32_t ret = player->Seek(mseconds, mode);
-    if (test_->mutexFlag_ == true && test_->seekDoneFlag_ == false) {
+    int32_t ret = player_->Seek(mseconds, mode);
+    if (ret == RET_OK && test_->mutexFlag_ == true && test_->seekDoneFlag_ == false) {
         std::unique_lock<std::mutex> lockSeek(test_->mutexSeek_);
         test_->condVarSeek_.wait_for(lockSeek, std::chrono::seconds(WAITSECOND));
         if (test_->seekDoneFlag_ != true) {
@@ -167,126 +160,106 @@ int32_t TestPlayer::Seek(int32_t mseconds, PlayerSeekMode mode)
 
 int32_t TestPlayer::GetCurrentTime(int32_t &currentTime)
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    return player->GetCurrentTime(currentTime);
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    return player_->GetCurrentTime(currentTime);
 }
 
 int32_t TestPlayer::GetDuration(int32_t &duration)
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    return player->GetDuration(duration);
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    return player_->GetDuration(duration);
 }
 
 int32_t TestPlayer::SetPlaybackSpeed(PlaybackRateMode mode)
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    return player->SetPlaybackSpeed(mode);
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    return player_->SetPlaybackSpeed(mode);
 }
 
 int32_t TestPlayer::GetPlaybackSpeed(PlaybackRateMode &mode)
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    return player->GetPlaybackSpeed(mode);
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    return player_->GetPlaybackSpeed(mode);
 }
+
 sptr<Surface> TestPlayer::GetVideoSurface(WindowConfig sub_config)
 {
-    char surface[256] = "null";
-    GetParameter("sys.media.test.surface", "null", &surface[0], 256);
+    char surface[PARA_MAX_LEN] = "window";
+    GetParameter("sys.media.test.surface", "window", &surface[0], PARA_MAX_LEN);
     sptr<Surface> videoSurface = nullptr;
     if (strcmp(surface, "null") == 0) {
         return videoSurface;
     }
-    mwindow = WindowManager::GetInstance()->CreateWindow(&g_config);
-    if (mwindow  == nullptr) {
-        MEDIA_ERROR_LOG("Create mwindow failed!!!");
-        return nullptr;
-    }
-    if (strcmp(surface, "subwindow") == 0) {
-        InitSubWindow(sub_config);
-        videoSurface = window->GetSurface();
-    } else if (strcmp(surface, "window") == 0) {
-        videoSurface = mwindow->GetSurface();
-        videoSurface->SetUserData(SURFACE_FORMAT, std::to_string(PIXEL_FMT_RGBA_8888));
-        std::string format = videoSurface->GetUserData(SURFACE_FORMAT);
-        MEDIA_DEBUG_LOG("SetUserData SURFACE_FORMAT = %s", format.c_str());
+    if (strcmp(surface, "window") == 0) {
+        sptr<WindowManager> wmi = WindowManager::GetInstance();
+        if (wmi == nullptr) {
+            return nullptr;
+        }
+        (void)wmi->Init();
+        sptr<WindowOption> option = WindowOption::Get();
+        if (option == nullptr) {
+            return nullptr;
+        }
+        (void)option->SetWindowType(WINDOW_TYPE_NORMAL);
+        (void)wmi->CreateWindow(window_, option);
+        if (window_ == nullptr) {
+            return nullptr;
+        }
+        videoSurface = window_->GetSurface();
+        if (videoSurface == nullptr) {
+            return nullptr;
+        }
+        (void)videoSurface->SetUserData(SURFACE_FORMAT, std::to_string(PIXEL_FMT_RGBA_8888));
     }
     return videoSurface;
 }
+
 int32_t TestPlayer::SetVideoSurface(const sptr<Surface> surface)
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    char parameter[256] = "null";
-    GetParameter("sys.media.test.surface", "null", &parameter[0], 256);
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    char parameter[PARA_MAX_LEN] = "window";
+    GetParameter("sys.media.test.surface", "window", &parameter[0], PARA_MAX_LEN);
     if (strcmp(parameter, "null") == 0) {
         MEDIA_INFO_LOG("sys.media.test.surface null");
         return 0;
     }
-    return player->SetVideoSurface(surface);
+    return player_->SetVideoSurface(surface);
 }
 
 bool TestPlayer::IsPlaying()
 {
-    return player->IsPlaying();
+    return player_->IsPlaying();
 }
 
 bool TestPlayer::IsLooping()
 {
-    return player->IsLooping();
+    return player_->IsLooping();
 }
 
 int32_t TestPlayer::SetLooping(bool loop)
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    return player->SetLooping(loop);
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    return player_->SetLooping(loop);
 }
 
 int32_t TestPlayer::SetPlayerCallback(const std::shared_ptr<PlayerCallback> &callback)
 {
-    MEDIA_INFO_LOG("%s", __FUNCTION__);
-    return player->SetPlayerCallback(callback);
-}
-
-void TestPlayer::InitSubWindow(WindowConfig sub_config)
-{
-    sptr<SurfaceBuffer> buffer;
-    BufferRequestConfig requestConfig;
-    int32_t releaseFence;
-    mwindow->GetRequestConfig(requestConfig);
-    (void)mwindow->GetSurface()->RequestBuffer(buffer, releaseFence, requestConfig);
-    uint32_t buffSize = buffer->GetSize();
-    void *bufferVirAddr = buffer->GetVirAddr();
-    (void)memset_s(bufferVirAddr, buffSize, 0, buffSize);
-    BufferFlushConfig flushConfig = {
-        .damage = {
-            .x = 0,
-            .y = 0,
-            .w = requestConfig.width,
-            .h = requestConfig.height,
-            },
-        .timestamp = 0,
-    };
-    if (mwindow->GetSurface()->FlushBuffer(buffer, -1, flushConfig) != 0) {
-        MEDIA_ERROR_LOG("FlushBuffer failed");
-    }
-    window = WindowManager::GetInstance()->CreateSubWindow(mwindow->GetWindowID(), &sub_config);
-    ASSERT_NE(nullptr, window);
-    if (window  == nullptr) {
-        MEDIA_ERROR_LOG("Create window failed!!!");
-        return;
-    }
-    return;
+    MEDIA_DEBUG_LOG("%s", __FUNCTION__);
+    return player_->SetPlayerCallback(callback);
 }
 
 TestPlayerCallback::TestPlayerCallback(PlayerSignal *test)
     : test_(test)
 {
 }
+
 TestPlayerCallback::~TestPlayerCallback()
 {
 }
+
 void TestPlayerCallback::OnError(PlayerErrorType errorType, int32_t errorCode)
 {
-    errorNum++;
+    errorNum_++;
     errorType_ = errorType;
     errorCode_ = errorCode;
     std::string errorTypeMsg = PlayerErrorTypeToString(errorType);
@@ -294,11 +267,12 @@ void TestPlayerCallback::OnError(PlayerErrorType errorType, int32_t errorCode)
     MEDIA_ERROR_LOG("TestPlayerCallback: OnError errorType is %s, errorCode is %s",
         errorTypeMsg.c_str(), errorCodeMsg.c_str());
 }
+
 void TestPlayerCallback::OnInfo(PlayerOnInfoType type, int32_t extra, const Format &infoBody)
 {
     switch (type) {
         case INFO_TYPE_SEEKDONE:
-            seekDoneFlag = true;
+            seekDoneFlag_ = true;
             test_->SetSeekResult(true);
             MEDIA_INFO_LOG("TestPlayerCallback: OnSeekDone currentPositon is %d", extra);
             if (abs(test_->seekPositon_ - extra) <= DELTA_TIME) {
@@ -324,17 +298,18 @@ void TestPlayerCallback::OnInfo(PlayerOnInfoType type, int32_t extra, const Form
             break;
     }
 }
+
 int TestPlayerCallback::WaitForSeekDone(int32_t currentPositon)
 {
     int64_t waitTime = 0;
-    seekDoneFlag = false;
-    while (seekDoneFlag != true && waitTime < WAITSECOND * 1000) {
-        usleep(1000);
+    seekDoneFlag_ = false;
+    while (seekDoneFlag_ != true && waitTime < WAITSECOND * TIME_SEC2MS) {
+        (void)usleep(WAIT_TIME);
         waitTime += 1;
     }
-    seekDoneFlag = false;
-    if (waitTime >= WAITSECOND * 1000) {
-        MEDIA_INFO_LOG("Failed to seek [%d]s ", currentPositon);
+    seekDoneFlag_ = false;
+    if (waitTime >= WAITSECOND * TIME_SEC2MS) {
+        MEDIA_ERROR_LOG("Failed to seek [%d]s ", currentPositon);
         return -1;
     }
     return 0;
@@ -343,16 +318,17 @@ int TestPlayerCallback::WaitForSeekDone(int32_t currentPositon)
 int TestPlayerCallback::WaitForState(PlayerStates state)
 {
     int64_t waitTime = 0;
-    while (state_ != state && waitTime < WAITSECOND * 1000) {
-        usleep(1000);
+    while (state_ != state && waitTime < WAITSECOND * TIME_SEC2MS) {
+        (void)usleep(WAIT_TIME);
         waitTime += 1;
     }
-    if (waitTime >= WAITSECOND * 1000) {
+    if (waitTime >= WAITSECOND * TIME_SEC2MS) {
         MEDIA_ERROR_LOG("Failed to wait for state[%d] down", state);
         return -1;
     }
     return 0;
 }
+
 void TestPlayerCallback::PrintState(PlayerStates state)
 {
     switch (state) {
@@ -366,9 +342,6 @@ void TestPlayerCallback::PrintState(PlayerStates state)
             break;
         case PLAYER_INITIALIZED:
             MEDIA_INFO_LOG("State: Initialized");
-            break;
-        case PLAYER_PREPARING:
-            MEDIA_INFO_LOG("State: Preparing");
             break;
         case PLAYER_PREPARED:
             MEDIA_INFO_LOG("State: Prepared");
@@ -403,6 +376,7 @@ void PlayerSignal::SetState(PlayerStates state)
 {
     state_ = state;
 }
+
 void PlayerSignal::SetSeekResult(bool seekDoneFlag)
 {
     seekDoneFlag_ = seekDoneFlag;
