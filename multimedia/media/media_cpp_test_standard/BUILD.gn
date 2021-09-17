@@ -28,30 +28,29 @@ ohos_moduletest_suite("ActsMediaCppStandardTest") {
   sources = [
     #"recorder/src/fuction/ActsVideoRecorderTest.cpp",
     #"recorder/src/fuction/ActsAudioRecoederTest.cpp",
-    "player/src/Testplayer.cpp",
     "player/src/TestParamsConfig.cpp",
-    "player/src/function/ActsPlayerFuncTest.cpp",
+    "player/src/Testplayer.cpp",
     "player/src/function/ActsPlayerFuncAsyncTest.cpp",
-    "player/src/function/ActsPlayerStateTest.cpp",
+    "player/src/function/ActsPlayerFuncTest.cpp",
     "player/src/function/ActsPlayerStateAsyncTest.cpp",
+    "player/src/function/ActsPlayerStateTest.cpp",
+
     #"player/src/api/ActsPlayerAPITest.cpp",
   ]
   include_dirs = [
-      "include",
-      "player/include",
-      "recorder/include",
-      "//base/startup/syspara_lite/interfaces/innerkits/native/syspara/include",
-      "//foundation/graphic/standard/interfaces/innerkits/wmclient",
+    "include",
+    "player/include",
+    "recorder/include",
+    "//base/startup/syspara_lite/interfaces/innerkits/native/syspara/include",
+    "//foundation/graphic/standard/interfaces/innerkits/wmclient",
   ]
-  cflags = [
-    "-Wall"
-    ]
+  cflags = [ "-Wall" ]
   cflags_cc = cflags
   deps = [
     "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog",
+    "//base/startup/syspara_lite/interfaces/innerkits/native/syspara:syspara",
     "//foundation/graphic/standard:libwmclient",
     "//third_party/googletest:gtest_main",
-    "//base/startup/syspara_lite/interfaces/innerkits/native/syspara:syspara",
   ]
   external_deps = [
     "ipc:ipc_core",
