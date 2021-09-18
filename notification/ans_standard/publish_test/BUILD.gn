@@ -24,11 +24,11 @@ group("publish_test") {
       "enablenotificationset:enablenotificationset",
       "getactive:getactive",
       "getwantagentinfo:getwantagentinfo",
+      "publishcontentype:ActsAnsNotificationTest",
       "publishimage:ActsAnsPublishImageTest",
       "subscribe:subscribe",
       "unsubscribe:ActsAnsUnSubscriberTest",
       "wantagent:wantagent",
-      "publishcontentype:ActsAnsNotificationTest"
     ]
   }
 }
