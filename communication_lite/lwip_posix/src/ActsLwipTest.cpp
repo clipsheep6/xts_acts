@@ -413,8 +413,7 @@ static int SelectServerForFork(unsigned int timeoutSec)
     char dataBuf[50] = {0};
     int fds[TEST_FD_COUNT] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
     fds[0] = srvFd;
-    long timeout = static_cast<long>(timeoutSec);
-    struct timeval timev = {.tv_sec = timeout, .tv_usec = 0};
+    struct timeval timev = {.tv_sec = timeoutSec, .tv_usec = 0};
     struct sockaddr_in clnAddr = {0};
     socklen_t clnAddrLen = sizeof(clnAddr);
     while (1) {

@@ -1,0 +1,94 @@
+<div class="container">
+<!--    <body style="background-color:black;"></body>-->
+    <text class="title" style="color:black">Audio FW</text>
+    <input type ="button" value ="Get Vol & Ringer Mode" style ="width: 400px; margin-right: 200px;"
+           onclick ="getkv()" ></input>
+    <input type ="button" value ="Volume Media 1" style ="width: 400px; margin-right: 200px;"
+           onclick ="setvolmedia1()" ></input>
+    <input type ="button" value ="Volume Media 7" style ="width: 400px; margin-right: 200px;"
+           onclick ="setvolmedia2()" ></input>
+    <input type ="button" value ="Volume Media 12.8" style ="width: 400px; margin-right: 200px;"
+           onclick ="setvolmedia12()" ></input>
+    <input type ="button" value ="Volume Media 100" style ="width: 400px; margin-right: 200px;"
+           onclick ="setvolmedia100()" ></input>
+    <input type ="button" value ="Volume Ringtone 2" style ="width: 400px; margin-right: 200px;"
+           onclick ="setvolring1()" ></input>
+    <input type ="button" value ="Volume Ringtone 8" style ="width: 400px; margin-right: 200px;"
+           onclick ="setvolring2()" ></input>
+    <input type ="button" value ="Volume Ringtone 9.2" style ="width: 400px; margin-right: 200px;"
+           onclick ="setvolring9()" ></input>
+    <input type ="button" value ="Set MAX Volume - Media" style ="width: 400px; margin-right: 200px;"
+           onclick ="setmaxvolm()" ></input>
+    <input type ="button" value ="Set Min Volume - Media" style ="width: 400px; margin-right: 200px;"
+           onclick ="setminvolm()" ></input>
+    <input type ="button" value ="Set MAX Volume - Ringtone" style ="width: 400px; margin-right: 200px;"
+           onclick ="setmaxvolr()" ></input>
+    <input type ="button" value ="Set Min Volume - Ringtone" style ="width: 400px; margin-right: 200px;"
+           onclick ="setminvolr()" ></input>
+    <input type ="button" value ="Volume GetMAX" style ="width: 400px; margin-right: 200px;"
+           onclick ="maxvol()" ></input>
+    <input type ="button" value ="Volume GetMin" style ="width: 400px; margin-right: 200px;"
+           onclick ="minvol()" ></input>
+    <input type ="button" value ="isSetStream Mute-P" style ="width: 400px; margin-right: 200px;"
+           onclick ="issetstreammutep()" ></input>
+    <input type ="button" value ="isSetStream Mute-CB" style ="width: 400px; margin-right: 200px;"
+           onclick ="issetstreammutecb()" ></input>
+    <input type ="button" value ="SetStream Mute-Media-P" style ="width: 400px; margin-right: 200px;"
+           onclick ="setstreammutemp()" ></input>
+    <input type ="button" value ="SetStream UnMute-Media-P" style ="width: 400px; margin-right: 200px;"
+           onclick ="setstreaunmmutemp()" ></input>
+    <input type ="button" value ="SetStream Mute-Ringtonr-P" style ="width: 400px; margin-right: 200px;"
+           onclick ="setstreammuterp()" ></input>
+    <input type ="button" value ="SetStream UnMute-Ringtone-P" style ="width: 400px; margin-right: 200px;"
+           onclick ="setstreaunmmuterp()" ></input>
+    <input type ="button" value ="SetStream Mute-Media-CB" style ="width: 400px; margin-right: 200px;"
+           onclick ="setstreammutemc()" ></input>
+    <input type ="button" value ="SetStream UnMute-Media-CB" style ="width: 400px; margin-right: 200px;"
+           onclick ="setstreaunmmutemc()" ></input>
+    <input type ="button" value ="SetStream Mute-Ringtonr-CB" style ="width: 400px; margin-right: 200px;"
+           onclick ="setstreammuterc()" ></input>
+    <input type ="button" value ="SetStream UnMute-Ringtone-CB" style ="width: 400px; margin-right: 200px;"
+           onclick ="setstreaunmmuterc()" ></input>
+    <input type ="button" value ="Is Stream Active" style ="width: 400px; margin-right: 200px;"
+           onclick ="isstreamact()" ></input>
+    <input type ="button" value ="Devices-PM" style ="width: 400px; margin-right: 200px;"
+           onclick ="deviceapip()" ></input>
+    <input type ="button" value ="Devices-CB" style ="width: 400px; margin-right: 200px;"
+           onclick ="deviceapic()" ></input>
+    <input type ="button" value ="RingerMode-PM" style ="width: 400px; margin-right: 200px;"
+           onclick ="ringermodep()" ></input>
+    <input type ="button" value ="RingerMode-CB" style ="width: 400px; margin-right: 200px;"
+           onclick ="ringermodec()" ></input>
+    <input type ="button" value ="Audio Parameter" style ="width: 400px; margin-right: 200px;"
+           onclick ="audiparm()" ></input>
+    <input type ="button" value ="Mic Mute - Enable-P" style ="width: 400px; margin-right: 200px;"
+           onclick ="micmutep()" ></input>
+    <input type ="button" value ="Mic Mute - Disable-P" style ="width: 400px; margin-right: 200px;"
+           onclick ="micunmutep()" ></input>
+    <input type ="button" value ="Mic Mute - Enable-CB" style ="width: 400px; margin-right: 200px;"
+           onclick ="micmutecb()" ></input>
+    <input type ="button" value ="Mic Mute - Disable-CB" style ="width: 400px; margin-right: 200px;"
+           onclick ="micunmutecb()" ></input>
+<!--    <input type ="button" value ="Enable Device-PM" style ="width: 400px; margin-right: 200px;"-->
+<!--           onclick ="endevp()" ></input>-->
+<!--    <input type ="button" value ="Disable Device-PM" style ="width: 400px; margin-right: 200px;"-->
+<!--           onclick ="disdevp()" ></input>-->
+<!--    <input type ="button" value ="Enable Device-CB" style ="width: 400px; margin-right: 200px;"-->
+<!--           onclick ="endevc()" ></input>-->
+<!--    <input type ="button" value ="Disable Device-CB" style ="width: 400px; margin-right: 200px;"-->
+<!--           onclick ="disdevc()" ></input>-->
+    <input type ="button" value ="Enable Speaker" style ="width: 400px; margin-right: 200px;"
+           onclick ="enspeak()" ></input>
+    <input type ="button" value ="Disable Speaker" style ="width: 400px; margin-right: 200px;"
+           onclick ="disspeak()" ></input>
+    <input type ="button" value ="Enable BT-A2DP" style ="width: 400px; margin-right: 200px;"
+           onclick ="enbt()" ></input>
+    <input type ="button" value ="Disable BT-A2DP" style ="width: 400px; margin-right: 200px;"
+           onclick ="disbt()" ></input>
+    <input type ="button" value ="Enable Mic" style ="width: 400px; margin-right: 200px;"
+           onclick ="enmic()" ></input>
+    <input type ="button" value ="Disable Mic" style ="width: 400px; margin-right: 200px;"
+           onclick ="dismic()" ></input>
+    <input type ="button" value ="JS Test Script" style ="width: 400px; margin-left: 300px;"
+           onclick ="jstestsuite()" ></input>
+</div>

@@ -1,0 +1,69 @@
+import("//build/ohos.gni")
+import("//build/test.gni")
+import("//foundation/multimodalinput/input/multimodalinput_mini.gni")
+module_output_path = "multimodalinput/systemtest_out"
+
+ohos_systemtest("hosmmi_client_") {
+  module_out_path = module_output_path
+  include_dirs = [
+   "//foundation/multimodalinput/input/frameworks/proxy/module_loader/include/",
+   "//foundation/multimodalinput/input/interfaces/native/innerkits/proxy/include/",
+   "//foundation/multimodalinput/input/frameworks/proxy/module_loader/include",
+   "//foundation/multimodalinput/input/interfaces/native/innerkits/proxy/include/",
+   "//foundation/multimodalinput/input/frameworks/util/common/include/",
+   "//foundation/multimodalinput/input/common/include/",
+   "//foundation/multimodalinput/input/frameworks/util/network/include"
+  ]
+  sources = [
+    "hosmmi_client.cpp",
+  ]
+
+  cflags = [
+    "-DOHOS_BUILD",
+    "-DOHOS_AUTO_TEST_FRAME",
+  ]
+
+  if (is_mmi_have_libinput) {
+    cflags += [
+      "-DOHOS_BUILD_LIBINPUT",
+    ]
+  }
+
+  if (is_mmi_have_hdf) {
+    cflags += [
+      "-DOHOS_BUILD_HDF",
+    ]
+  }
+
+  if (is_mmi_have_ai) {
+    cflags += [
+      "-DOHOS_BUILD_AI",
+    ]
+  }
+
+  deps = [
+    "//foundation/multimodalinput/input/frameworks/util:libmmi-util",
+    "//foundation/multimodalinput/input/frameworks/proxy:libmmi-client",
+    "//third_party/googletest:gmock_main",
+    "//third_party/googletest:gtest_main"
+  ]
+
+  if (is_mmi_have_libinput) {
+    deps += [
+      "//foundation/multimodalinput/input/patch/diff_libinput_mmi:libinput-third-mmi",
+    ]
+  }
+
+  external_deps = [
+    "hiviewdfx_hilog_native:libhilog",
+    "ipc:ipc_core",
+    "safwk:system_ability_fwk",
+    "samgr_L2:samgr_proxy",
+  ]
+}
+
+group("hosmmi_client_info_")
+{
+    testonly = true
+    deps = [":hosmmi_client_",]
+}

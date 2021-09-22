@@ -4,7 +4,10 @@
             "push": [
                 "LibhilogCPPtest->/data/local/tmp/LibhilogCPPtest"
             ],
-            "type": "PushKit"
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/local/tmp/*"
+            ]
         }
     ],
     "driver": {
