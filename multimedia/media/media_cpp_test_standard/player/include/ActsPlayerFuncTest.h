@@ -42,7 +42,6 @@ public:
         MEDIA_INFO_LOG("ActsPlayerFuncTest::TearDown");
     };
     static void LocalPlayFunc(const std::string uri, bool isAsync, WindowConfig config = g_sub_config);
-    static void *LocalMulitPlayFunc(void *threadarg);
 };
 }
 }

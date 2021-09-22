@@ -80,11 +80,10 @@ public:
 };
 class TestPlayer {
 public:
-    std::shared_ptr<Player> player;
-    std::unique_ptr<Window> mwindow;
-    std::unique_ptr<SubWindow> window;
-    explicit TestPlayer(PlayerSignal *test);
-    ~TestPlayer();
+    std::shared_ptr<Player> player_ = nullptr;
+    sptr<Window> window_ = nullptr;
+    explicit TestPlayer(std::shared_ptr<PlayerSignal> test);
+    virtual ~TestPlayer();
     bool CreatePlayer();
     int32_t SetSource(const std::string &uri);
     int32_t Play();
@@ -122,13 +121,13 @@ public:
     void OnInfo(PlayerOnInfoType type, int32_t extra, const Format &InfoBody = {});
     int WaitForState(PlayerStates state);
 private:
+    void PrintState(PlayerStates state);
+
     PlayerErrorType errorType_ = PLAYER_ERROR_UNKNOWN;
     int32_t errorCode_ = -1;
     bool seekDoneFlag = false;
     int32_t postion_ = 0;
-    void PrintState(PlayerStates state);
-
-    PlayerSignal *test_;
+    std::shared_ptr<PlayerSignal> test_;
 };
 }
 }
