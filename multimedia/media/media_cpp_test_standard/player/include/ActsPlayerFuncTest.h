@@ -21,28 +21,25 @@ namespace OHOS {
 namespace Media {
 class ActsPlayerFuncTest : public testing::Test {
 public:
-    // SetUpTestCase: before all testcases
+    // SetUpTestCase: before all testcasee
     static void SetUpTestCase(void)
     {
-        MEDIA_DEBUG_LOG("ActsPlayerFuncTest::SetUpTestCase");
-        TestPlayerBasic::TestParamsConfig::GetInstance().InitPlayProtocol();
+        MEDIA_INFO_LOG("ActsPlayerFuncTest::SetUpTestCase");
     };
-    // TearDownTestCase: after all testcases
+    // TearDownTestCase: after all testcase
     static void TearDownTestCase(void)
     {
-        MEDIA_DEBUG_LOG("ActsPlayerFuncTest::TearDownTestCase");
+        MEDIA_INFO_LOG("ActsPlayerFuncTest::TearDownTestCase");
     };
     // SetUp
     void SetUp(void)
     {
-        const ::testing::TestInfo * const testInfo = ::testing::UnitTest::GetInstance()->current_test_info();
-        MEDIA_DEBUG_LOG("ActsPlayerFuncTest::SetUp:%s", testInfo->name());
+        MEDIA_INFO_LOG("ActsPlayerFuncTest::SetUp");
     };
     // TearDown
     void TearDown(void)
     {
-        const ::testing::TestInfo * const testInfo = ::testing::UnitTest::GetInstance()->current_test_info();
-        MEDIA_DEBUG_LOG("ActsPlayerFuncTest::TearDown:%s", testInfo->name());
+        MEDIA_INFO_LOG("ActsPlayerFuncTest::TearDown");
     };
     static void LocalPlayFunc(const std::string uri, bool isAsync, WindowConfig config = g_sub_config);
 };

@@ -2,9 +2,9 @@
     "description": "Configuration for startup js api Tests",
     "driver": {
         "type": "JSUnitTest",
-        "test-timeout": "60000",
+        "test-timeout": "21600000",
         "package": "ohos.acts.startup.js.function",
-        "shell-timeout": "60000"
+        "shell-timeout": "21600000"
     },
     "kits": [
         {

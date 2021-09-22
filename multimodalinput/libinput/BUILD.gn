@@ -1,0 +1,22 @@
+import("//build/ohos.gni")
+import("//build/test.gni")
+import("//foundation/multimodalinput/input/multimodalinput_mini.gni")
+config("system_test_config") {
+    include_dirs = []
+
+    configs = []
+}
+
+group("libinput") {
+    testonly = true
+    deps = [
+    "single_window_no_switching_test:single_window_no_switching_test_info_",
+    "single_window_registered_test:single_window_registered_test_info_",
+    #"single_window_unregistered_test:single_window_unregistered_test_info_",
+    "system_event_windowless_test:system_event_windowless_test_info_",
+    #"windowless_registered_test:windowless_registered_test_info_",
+    "single_window_test:single_window_test_info_",
+    "single_window_un_registered_test:single_window_un_registered_test_info_",
+    "hosmmi_client:hosmmi_client_info_",
+    ]
+}

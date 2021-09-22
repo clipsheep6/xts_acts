@@ -1,0 +1,24 @@
+import("//build/ohos.gni")
+import("//build/test.gni")
+import("//foundation/multimodalinput/input/multimodalinput_mini.gni")
+config("system_test_config") {
+    include_dirs = []
+
+    configs = []
+}
+
+group("hdf") {
+    testonly = true
+    if (is_mmi_have_hdf) {
+    deps = [
+    "single_window_no_switching_test:single_window_no_switching_test_info",
+    "single_window_registered_test:single_window_registered_test_info",
+    #"single_window_unregistered_test:single_window_unregistered_test_info",
+    "system_event_windowless_test:system_event_windowless_test_info",
+    #"windowless_registered_test:windowless_registered_test_info",
+    "single_window_test:single_window_test_info",
+    "single_window_un_registered_test:single_window_un_registered_test_info",
+    "hosmmi_client:hosmmi_client_info",
+    ]
+    }
+}

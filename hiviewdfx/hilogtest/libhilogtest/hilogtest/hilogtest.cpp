@@ -736,47 +736,7 @@ HWTEST_F(hilogtest, Hilogtool_filter_multiple, Function|MediumTest|Level2)
     }
     ASSERT_TRUE(true == result);
 }
-/*
- * @tc.name Logs are not duplicated and are not lost.
- * @tc.number DFX_DFT_HilogCPP_2080
- * @tc.desc Logs are not duplicated and are not lost.
-*/
-HWTEST_F(hilogtest, Hilogtool_count, Function|MediumTest|Level2)
-{
-    CleanCmd();
-    std::string saveFile= "test_data_30.txt";
-    std::string cmd1 = gHilogtoolExecutable + " -r";
-    std::string cmdResult;
-    CmdRun(cmd1, cmdResult);
-    LogType type = LOG_APP;
-    int i = 0;
-    int cnt = 1000;
-    while (i++ < cnt) {
-        usleep(1);
-        HILOG_DEBUG(type, g_logContent.c_str(), i, 1.00001, 2.333333, "sse", 'a');
-    }
-    std::string cmd2 = gHilogtoolExecutable + "-t app -T HILOGTOOLTEST -x";
-    SaveCmdOutput(cmd2, saveFile);
-    ASSERT_TRUE(cnt == GetTxtLine(saveFile));
-    ifstream in(saveFile);
-    std::string filename;
-    std::string line;
-    std::vector<string> mVec;
-    if (in) {
-        while (getline(in, line)) {
-            mVec.push_back(line);
-        }
-    } else {
-        std::cout << "no such file" << std::endl;
-    }
-    sort(mVec.begin(), mVec.end());
-    vector<string>::iterator endUnique = unique(mVec.begin(), mVec.end());
-    vector<string> vec;
-    while (endUnique != mVec.end()) {
-        vec.push_back(*endUnique++);
-    }
-    ASSERT_TRUE(0 == vec.size());
-}
+
 /*
  * @tc.name buffer size test
  * @tc.number DFX_DFT_HilogCPP_1020
@@ -856,10 +816,9 @@ HWTEST_F(hilogtest, buff_size_all, Function|MediumTest|Level3)
 */
 HWTEST_F(hilogtest, buff_size_illegal, Function|MediumTest|Level4)
 {
-    bool ret = true;
     result = ExecuteCmd("hilog -g -t abc");
-    ret = result.find("Invalid log type") != std::string::npos;
-    EXPECT_EQ(ret, true);
+    expect = "Invalid parameter\n";
+    EXPECT_STREQ(result.c_str(), expect.c_str());
 }
 
 /*
@@ -869,10 +828,9 @@ HWTEST_F(hilogtest, buff_size_illegal, Function|MediumTest|Level4)
 */
 HWTEST_F(hilogtest, buff_size_illegal2, Function|MediumTest|Level4)
 {
-    bool ret = true;
     result = ExecuteCmd("hilog -g -t 'core abc'");
-    ret = result.find("Invalid log type") != std::string::npos;
-    EXPECT_EQ(ret, true);
+    expect = "buffsize operation error!\n";
+    EXPECT_STREQ(result.c_str(), expect.c_str());
 }
 
 /*
@@ -999,10 +957,9 @@ HWTEST_F(hilogtest, buff_resize_gbyte2, Function|MediumTest|Level3)
 */
 HWTEST_F(hilogtest, buff_resize_illegal, Function|MediumTest|Level4)
 {
-    bool ret = true;
     result = ExecuteCmd("hilog -G 0");
-    ret = result.find("Invalid buffer size") != std::string::npos;
-    EXPECT_EQ(ret, true);
+    expect = "core buffer resize fail\napp buffer resize fail\n\n";
+    EXPECT_STREQ(result.c_str(), expect.c_str());
 }
 
 /*
@@ -1012,10 +969,9 @@ HWTEST_F(hilogtest, buff_resize_illegal, Function|MediumTest|Level4)
 */
 HWTEST_F(hilogtest, buff_resize_illegal2, Function|MediumTest|Level3)
 {
-    bool ret = true;
     result = ExecuteCmd("hilog -G 2g");
-    ret = result.find("Invalid buffer size") != std::string::npos;
-    EXPECT_EQ(ret, true);
+    expect = "core buffer resize fail\napp buffer resize fail\n\n";
+    EXPECT_STREQ(result.c_str(), expect.c_str());
 }
 
 /*
@@ -1090,10 +1046,9 @@ HWTEST_F(hilogtest, buff_resize_all, Function|MediumTest|Level4)
 */
 HWTEST_F(hilogtest, buff_resize_illegal_type, Function|MediumTest|Level4)
 {
-    bool ret = true;
     result = ExecuteCmd("hilog -G 2m -t abc");
-    ret = result.find("Invalid log type") != std::string::npos;
-    EXPECT_EQ(ret, true);
+    expect = "Invalid parameter\n";
+    EXPECT_STREQ(result.c_str(), expect.c_str());
     ExeCmd("hilog -G 1m -t all");
 }
 
@@ -1104,10 +1059,9 @@ HWTEST_F(hilogtest, buff_resize_illegal_type, Function|MediumTest|Level4)
 */
 HWTEST_F(hilogtest, buff_resize_illegal_type2, Function|MediumTest|Level4)
 {
-    bool ret = true;
     result = ExecuteCmd("hilog -G 2m -t 'core abc'");
-    ret = result.find("Invalid log type") != std::string::npos;
-    EXPECT_EQ(ret, true);
+    expect = "buffsize operation error!\n";
+    EXPECT_STREQ(result.c_str(), expect.c_str());
     ExeCmd("hilog -G 1m -t all");
 }
 
@@ -1319,10 +1273,9 @@ HWTEST_F(hilogtest, statistic_info_clear_init, Function|MediumTest|Level4)
 */
 HWTEST_F(hilogtest, statistic_info_query_illegal, Function|MediumTest|Level3)
 {
-    bool ret = true;
     result = ExecuteCmd("hilog -s -t abc");
-    ret = result.find("Invalid log type") != std::string::npos;
-    EXPECT_EQ(ret, true);
+    expect = "Invalid parameter\n";
+    EXPECT_STREQ(result.c_str(), expect.c_str());
 }
 
 /*
@@ -1332,10 +1285,9 @@ HWTEST_F(hilogtest, statistic_info_query_illegal, Function|MediumTest|Level3)
 */
 HWTEST_F(hilogtest, statistic_info_clear_illegal, Function|MediumTest|Level4)
 {
-    bool ret = true;
     result = ExecuteCmd("hilog -S -t abc");
-    ret = result.find("Invalid log type") != std::string::npos;
-    EXPECT_EQ(ret, true);
+    expect = "Invalid parameter\n";
+    EXPECT_STREQ(result.c_str(), expect.c_str());
 }
 
 /*
@@ -1510,10 +1462,9 @@ HWTEST_F(hilogtest, log_clear_all, Function|MediumTest|Level4)
 */
 HWTEST_F(hilogtest, log_clear_illegal, Function|MediumTest|Level4)
 {
-    bool ret = true;
     result = ExecuteCmd("hilog -r -t abc");
-    ret = result.find("Invalid log type") != std::string::npos;
-    EXPECT_EQ(ret, true);
+    expect = "Invalid parameter\n";
+    EXPECT_STREQ(result.c_str(), expect.c_str());
 }
 
 /*
@@ -1523,8 +1474,7 @@ HWTEST_F(hilogtest, log_clear_illegal, Function|MediumTest|Level4)
 */
 HWTEST_F(hilogtest, log_clear_illegal2, Function|MediumTest|Level4)
 {
-    bool ret = true;
     result = ExecuteCmd("hilog -r -t 'abc core'");
-    ret = result.find("Invalid log type") != std::string::npos;
-    EXPECT_EQ(ret, true);
+    expect = "clear log operation error!\n";
+    EXPECT_STREQ(result.c_str(), expect.c_str());
 }

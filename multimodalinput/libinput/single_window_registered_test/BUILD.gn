@@ -1,0 +1,64 @@
+import("//build/ohos.gni")
+import("//build/test.gni")
+import("//foundation/multimodalinput/input/multimodalinput_mini.gni")
+module_output_path = "multimodalinput/systemtest_out"
+
+ohos_systemtest("single_window_registered_test_") {
+  module_out_path = module_output_path
+  include_dirs = [
+   "//foundation/multimodalinput/input/test/systemtest/include"
+  ]
+  sources = [
+    "//foundation/multimodalinput/input/test/systemtest/common/MultiInputCommon.cpp",
+    "//foundation/multimodalinput/input/test/systemtest/common/auto_test_main.cpp",
+    "//foundation/multimodalinput/input/test/systemtest/common/auto_test_msg_handle.cpp",
+    "//foundation/multimodalinput/input/test/systemtest/common/auto_test_data_process.cpp", 
+    "single_window_registered_test.cpp",
+  ]
+
+  cflags = [
+    "-DOHOS_BUILD",
+    "-DOHOS_AUTO_TEST_FRAME",
+  ]
+
+  if (is_mmi_have_libinput) {
+    cflags += [
+      "-DOHOS_BUILD_LIBINPUT",
+    ]
+  }
+
+  if (is_mmi_have_hdf) {
+    cflags += [
+      "-DOHOS_BUILD_HDF",
+    ]
+  }
+
+  if (is_mmi_have_ai) {
+    cflags += [
+      "-DOHOS_BUILD_AI",
+    ]
+  }
+
+  deps = [
+    "//foundation/multimodalinput/input/frameworks/util:libmmi-util",
+    "//foundation/multimodalinput/input/frameworks/proxy:libmmi-client",
+    "//third_party/googletest:gmock_main",
+    "//third_party/googletest:gtest_main"
+  ]
+
+  if (is_mmi_have_libinput) {
+    deps += [
+      "//foundation/multimodalinput/input/patch/diff_libinput_mmi:libinput-third-mmi",
+    ]
+  }
+
+  external_deps = [
+      "hiviewdfx_hilog_native:libhilog"
+  ]
+}
+
+group("single_window_registered_test_info_")
+{
+    testonly = true
+    deps = [":single_window_registered_test_",]
+}

@@ -348,8 +348,7 @@ HWTEST_F(MmapApiTest, testMmapFilePrivate, Function | MediumTest | Level3)
         EXPECT_TRUE(munmap(mem, len) == 0) << "ERROR: munmap() != 0";
 
         EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
-        Msleep(1000);
-        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0" << errno;
+        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
     }
 }
 
@@ -394,8 +393,7 @@ HWTEST_F(MmapApiTest, testMmapFileShare, Function | MediumTest | Level3)
         EXPECT_TRUE(munmap(mem, len) == 0) << "ERROR: munmap() != 0";
 
         EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
-        Msleep(1000);
-        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0" << errno;
+        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
     }
 }
 
@@ -435,8 +433,7 @@ HWTEST_F(MmapApiTest, testMmapFileShareOnlyRead, Function | MediumTest | Level1)
 
         EXPECT_TRUE(munmap(mem, len) == 0) << "ERROR: munmap() != 0";
         EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
-        Msleep(1000);
-        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0" << errno;
+        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
     }
 }
 
@@ -478,8 +475,7 @@ HWTEST_F(MmapApiTest, testMmapFileShareOnlyWrite, Function | MediumTest | Level3
 
         EXPECT_TRUE(munmap(mem, len) == 0) << "ERROR: munmap() != 0";
         EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
-        Msleep(1000);
-        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0" << errno;
+        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
     }
 }
 
@@ -525,8 +521,7 @@ HWTEST_F(MmapApiTest, testMmapFilePrivateExec, Function | MediumTest | Level4)
 
         EXPECT_TRUE(munmap(mem, len) == 0) << "ERROR: munmap() != 0";
         EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
-        Msleep(1000);
-        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0" << errno;
+        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
     }
 }
 
@@ -572,8 +567,7 @@ HWTEST_F(MmapApiTest, testMmapFileShareExec, Function | MediumTest | Level4)
 
         EXPECT_TRUE(munmap(mem, len) == 0) << "ERROR: munmap() != 0";
         EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
-        Msleep(1000);
-        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0" << errno;
+        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
     }
 }
 
@@ -616,8 +610,7 @@ HWTEST_F(MmapApiTest, testMmapFileShareNoExec, Function | MediumTest | Level2)
 
         EXPECT_TRUE(munmap(mem, len) == 0) << "ERROR: munmap() != 0";
         EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
-        Msleep(1000);
-        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0" << errno;
+        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
     }
 }
 
@@ -750,8 +743,7 @@ HWTEST_F(MmapApiTest, testMmapWriteBack, Function | MediumTest | Level3)
     EXPECT_TRUE(failure == 0) << "i = " << i << ", rBuffer = " << rBuffer[i];
 
     EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
-    Msleep(1000);
-    EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0" << errno;
+    EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
 }
 
 /**
@@ -791,8 +783,8 @@ HWTEST_F(MmapApiTest, testMmapEACCES, Function | MediumTest | Level3)
         EXPECT_TRUE(munmap(mem, len) == 0) << "ERROR: munmap() != 0";
     }
     EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
-    Msleep(1000);
-    EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0" << errno;
+
+    EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
 }
 
 /**
@@ -896,8 +888,7 @@ HWTEST_F(MmapApiTest, testMmapEINVAL, Function | MediumTest | Level3)
     }
 
     EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
-    Msleep(1000);
-    EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0" << errno;
+    EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
 }
 
 /**

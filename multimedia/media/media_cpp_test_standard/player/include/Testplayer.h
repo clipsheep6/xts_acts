@@ -13,14 +13,27 @@
  * limitations under the License.
  */
 
-#ifndef PLAYER_TEST_H
-#define PLAYER_TEST_H
-
 #include "securec.h"
-#include "TestParamsConfig.h"
+#include "common.h"
+#include "player.h"
+#include "mediatest_log.h"
 #include "window_manager.h"
 #include "surface_type.h"
 #include "display_type.h"
+
+namespace PlayerNameSpace {
+    static const int MAX_THREADS = 16;
+    static const int32_t PLAYING_TIME = 3;
+    static const int32_t PAUSED_TIME = 1;
+    static const int32_t SEEK_TIME_5_SEC = 5000;
+    static const int32_t SEEK_TIME_2_SEC = 2000;
+    static const int DELTA_TIME = 1000;
+    static const int WAITSECOND = 2;
+    static const int MAXTIME = 20;
+    static const int RET_OK = 0;
+    static const int32_t FILE_BEGIN = 0;
+    std::string GetUri();
+}
 
 namespace OHOS {
 namespace Media {
@@ -73,7 +86,6 @@ public:
     virtual ~TestPlayer();
     bool CreatePlayer();
     int32_t SetSource(const std::string &uri);
-    int32_t SetDataSrc(const std::string &uri, bool seekable);
     int32_t Play();
     int32_t Prepare();
     int32_t PrepareAsync();
@@ -94,27 +106,28 @@ public:
     int32_t SetLooping(bool loop);
     int32_t SetPlayerCallback(const std::shared_ptr<PlayerCallback> &callback);
 private:
-    std::shared_ptr<PlayerSignal> test_;
+    void InitSubWindow(WindowConfig sub_config);
+
+    PlayerSignal *test_;
 };
 class TestPlayerCallback : public PlayerCallback {
 public:
-    int errorNum_ = 0;
+    int errorNum = 0;
     PlayerStates state_ = PLAYER_STATE_ERROR;
-    explicit TestPlayerCallback(std::shared_ptr<PlayerSignal> test);
-    virtual ~TestPlayerCallback();
+    explicit TestPlayerCallback(PlayerSignal *test);
+    ~TestPlayerCallback();
     void OnError(PlayerErrorType errorType, int32_t errorCode);
     int WaitForSeekDone(int32_t currentPositon);
-    void OnInfo(PlayerOnInfoType type, int32_t extra, const Format &infoBody = {});
+    void OnInfo(PlayerOnInfoType type, int32_t extra, const Format &InfoBody = {});
     int WaitForState(PlayerStates state);
 private:
     void PrintState(PlayerStates state);
 
     PlayerErrorType errorType_ = PLAYER_ERROR_UNKNOWN;
     int32_t errorCode_ = -1;
-    bool seekDoneFlag_ = false;
+    bool seekDoneFlag = false;
     int32_t postion_ = 0;
     std::shared_ptr<PlayerSignal> test_;
 };
 }
 }
-#endif

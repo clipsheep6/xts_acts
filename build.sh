@@ -114,6 +114,7 @@ do_make()
         exit 1
     fi
 }
+
 parse_cmdline $@
 do_make
 exit 0
