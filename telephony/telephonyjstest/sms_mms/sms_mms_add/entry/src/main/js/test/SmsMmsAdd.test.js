@@ -1052,7 +1052,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0100 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1076,7 +1075,6 @@ describe('SmsMmsAddTest', function () {
     } catch (err) {
       console.log('Telephony_SmsMms_addSimMessage_Promise_0200 finish');
       done();
-      return;
     }
   });
 
@@ -1130,7 +1128,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0300 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1184,7 +1181,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0400 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1236,7 +1232,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0500 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1290,7 +1285,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0600 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1343,7 +1337,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0700 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1395,7 +1388,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0800 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1447,7 +1439,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0900 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1499,7 +1490,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1000 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1551,7 +1541,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1100 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1603,7 +1592,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1200 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1655,7 +1643,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1300 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1710,7 +1697,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1400 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1765,7 +1751,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1500 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1820,7 +1805,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1600 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1873,7 +1857,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1700 get 2 fail');
       done();
-      return;
     }
   });
 
@@ -1926,7 +1909,6 @@ describe('SmsMmsAddTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1800 get 2 fail');
       done();
-      return;
     }
   });
 });

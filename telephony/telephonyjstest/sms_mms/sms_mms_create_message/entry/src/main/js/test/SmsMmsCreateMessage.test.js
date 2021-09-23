@@ -170,7 +170,6 @@ describe('SmsMmsCreateTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_createMessage_Promise_0100 fail');
       done();
-      return;
     }
   });
 
@@ -190,7 +189,6 @@ describe('SmsMmsCreateTest', function () {
     } catch (err) {
       console.log('Telephony_SmsMms_createMessage_Promise_0200 finish');
       done();
-      return;
     }
   });
 
@@ -221,192 +219,6 @@ describe('SmsMmsCreateTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_createMessage_Promise_0500 fail');
       done();
-      return;
     }
   });
-
-  /*
-    * @tc.number  Telephony_SmsMms_createMessage_Async_CDMA_0100
-    * @tc.name    Call interface CreateMessage,
-    *             pass in the PDU(pduCDMA) in line with the coding specification, the specification is 3GPP2,
-    *             shortMessage Don't empty
-    * @tc.desc    Function test
-    */
-  it('Telephony_SmsMms_createMessage_Async_CDMA_0100', 0, async function (done) {
-    sms.createMessage(pduCDMA, "3gpp2", (err, shortMessage) => {
-      if (err) {
-        expect().assertFail()
-        console.log("Telephony_SmsMms_createMessage_Async_CDMA_0100 fail")
-        done()
-        return
-      }
-      expect(shortMessage.visibleMessageBody == body).assertTrue()
-      expect(shortMessage.visibleRawAddress == rawAddr).assertTrue()
-      expect(shortMessage.messageClass == 0).assertTrue()
-      expect(shortMessage.protocolId == 0).assertTrue()
-      expect(shortMessage.scAddress.length == 0 ).assertTrue();
-      expect(shortMessage.scTimestamp == scTime).assertTrue()
-      expect(shortMessage.isReplaceMessage).assertFalse()
-      expect(shortMessage.hasReplyPath).assertFalse()
-      expect(shortMessage.pdu.length > 0).assertTrue()
-      expect(shortMessage.status == 0).assertTrue()
-      expect(shortMessage.isSmsStatusReportMessage).assertFalse()
-      console.log("Telephony_SmsMms_createMessage_Async_CDMA_0100 finish")
-      done()
-    })
-  })
-
-  /*
-    * @tc.number  Telephony_SmsMms_createMessage_Async_0200
-    * @tc.name    Call interface CreateMessage,
-    *             pass in the PDU in line with the coding specification, the specification is 3GPP2,
-    *             shortMessage Don't empty
-    * @tc.desc    Function test
-    */
-  it('Telephony_SmsMms_createMessage_Async_0200', 0, async function (done) {
-    sms.createMessage(rawArray, "3gpp2", (err, shortMessage) => {
-      if (err) {
-        console.log("Telephony_SmsMms_createMessage_Async_0200 finish")
-        done()
-        return
-      }
-      expect().assertFail()
-      console.log("Telephony_SmsMms_createMessage_Async_0200 fail")
-      done()
-    })
-  })
-
-  /*
-    * @tc.number  Telephony_SmsMms_createMessage_Async_CDMA_0200
-    * @tc.name    Call interface CreateMessage,
-    *             pass in the PDU(OtherPduCDMA) in line with the coding specification, the specification is 3GPP2,
-    *             shortMessage Don't empty
-    * @tc.desc    Function test
-    */
-  it('Telephony_SmsMms_createMessage_Async_CDMA_0200', 0, async function (done) {
-    sms.createMessage(OtherPduCDMA, "3gpp2", (err, shortMessage) => {
-      if (err) {
-        expect().assertFail()
-        console.log("Telephony_SmsMms_createMessage_Async_CDMA_0200 fail")
-        done()
-        return
-      }
-      expect(shortMessage.visibleMessageBody == OtherBody).assertTrue()
-      expect(shortMessage.visibleRawAddress == OtherRawAddr).assertTrue()
-      expect(shortMessage.messageClass == 0).assertTrue()
-      expect(shortMessage.protocolId == 0).assertTrue()
-      expect(shortMessage.scAddress.length == 0 ).assertTrue();
-      expect(shortMessage.scTimestamp == OtherScTime).assertTrue()
-      expect(shortMessage.isReplaceMessage).assertFalse()
-      expect(shortMessage.hasReplyPath).assertFalse()
-      expect(shortMessage.pdu.length > 0).assertTrue()
-      expect(shortMessage.status == 0).assertTrue()
-      expect(shortMessage.isSmsStatusReportMessage).assertFalse()
-      console.log("Telephony_SmsMms_createMessage_Async_CDMA_0200 finish")
-      done()
-    })
-  })
-
-  /*
-    * @tc.number  Telephony_SmsMms_createMessage_Promise_CDMA_0100
-    * @tc.name    Call interface CreateMessage,
-    *             pass in the PDU(pduCDMA) in line with the coding specification, the specification is 3GPP2,
-    *             shortMessage Don't empty
-    * @tc.desc    Function test
-    */
-  it('Telephony_SmsMms_createMessage_Promise_CDMA_0100', 0, async function (done) {
-    try {
-      var promise = await sms.createMessage(pduCDMA, '3gpp2')
-      expect(promise.visibleMessageBody == body).assertTrue()
-      expect(promise.visibleRawAddress == rawAddr).assertTrue()
-      expect(promise.messageClass == 0).assertTrue()
-      expect(promise.protocolId == 0).assertTrue()
-      expect(promise.scAddress.length == 0 ).assertTrue();
-      expect(promise.scTimestamp == scTime).assertTrue()
-      expect(promise.isReplaceMessage).assertFalse()
-      expect(promise.hasReplyPath).assertFalse()
-      expect(promise.pdu.length > 0).assertTrue()
-      expect(promise.status == 0).assertTrue()
-      expect(promise.isSmsStatusReportMessage).assertFalse()
-      console.log("Telephony_SmsMms_createMessage_Promise_CDMA_0100 finish")
-      done()
-    } catch (err) {
-      expect().assertFail()
-      console.log("Telephony_SmsMms_createMessage_Promise_CDMA_0100 fail")
-      done()
-      return
-    }
-  })
-
-  /*
-    * @tc.number  Telephony_SmsMms_createMessage_Promise_CDMA_0200
-    * @tc.name    Call interface CreateMessage,
-    *             pass in the PDU(OtherPduCDMA) in line with the coding specification, the specification is 3GPP2,
-    *             shortMessage Don't empty
-    * @tc.desc    Function test
-    */
-  it('Telephony_SmsMms_createMessage_Promise_CDMA_0200', 0, async function (done) {
-    try {
-      var promise = await sms.createMessage(OtherPduCDMA, '3gpp2')
-      expect(promise.visibleMessageBody == OtherBody).assertTrue()
-      expect(promise.visibleRawAddress == OtherRawAddr).assertTrue()
-      expect(promise.messageClass == 0).assertTrue()
-      expect(promise.protocolId == 0).assertTrue()
-      expect(promise.scAddress.length == 0 ).assertTrue();
-      expect(promise.scTimestamp == OtherScTime).assertTrue()
-      expect(promise.isReplaceMessage).assertFalse()
-      expect(promise.hasReplyPath).assertFalse()
-      expect(promise.pdu.length > 0).assertTrue()
-      expect(promise.status == 0).assertTrue()
-      expect(promise.isSmsStatusReportMessage).assertFalse()
-      console.log("Telephony_SmsMms_createMessage_Promise_CDMA_0200 finish")
-      done()
-    } catch (err) {
-      expect().assertFail()
-      console.log("Telephony_SmsMms_createMessage_Promise_CDMA_0200 fail")
-      done()
-      return
-    }
-  })
-
-  /*
-    * @tc.number  Telephony_SmsMms_createMessage_Promise_0200
-    * @tc.name    Call interface CreateMessage,
-    *             pass in the PDU in line with the coding specification, the specification is 3GPP2,
-    *             promise returns the result Don't empty
-    * @tc.desc    Function test
-    */
-  it('Telephony_SmsMms_createMessage_Promise_0200', 0, async function (done) {
-    try {
-      await sms.createMessage(rawArray, '3gpp2')
-      expect().assertFail()
-      console.log("Telephony_SmsMms_createMessage_Promise_0200 fail")
-      done()
-    } catch (err) {
-      console.log("Telephony_SmsMms_createMessage_Promise_0200 finish")
-      done()
-      return
-    }
-  })
-
-  /*
-    * @tc.number  Telephony_SmsMms_createMessage_Promise_0400
-    * @tc.name    Call interface CreateMessage,
-    *             The incoming PDU is empty, the specification is 3GPP2,
-    *             promise returns the result Don't empty
-    * @tc.desc    Function test
-    */
-  it('Telephony_SmsMms_createMessage_Promise_0400', 0, async function (done) {
-    try {
-      await sms.createMessage(rawArrayNull, '3gpp2')
-      expect().assertFail()
-      console.log("Telephony_SmsMms_createMessage_Promise_0400 fail")
-      done()
-    } catch(err) {
-      console.log("Telephony_SmsMms_createMessage_Promise_0400 finish")
-      done()
-      return
-    }
-  })
-
 });

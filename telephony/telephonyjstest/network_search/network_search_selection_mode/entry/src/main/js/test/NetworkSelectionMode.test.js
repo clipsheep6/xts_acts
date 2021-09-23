@@ -63,18 +63,18 @@ describe('NetworkSearchTest', function () {
         try {
             let data = await radio.getNetworkState(SLOT_0);
             gnetworkSMode.networkInformation.operatorNumeric = data.plmnNumeric;
-            console.log(`Telephony_NetworkSearch_RecoverPlmnNumeric success operatorNumeric: ${data.plmnNumeric}`);
+            console.log(`Telephony_NetworkSearch_recoverPlmnNumeric success operatorNumeric: ${data.plmnNumeric}`);
         } catch (err) {
-            console.log('Telephony_NetworkSearch_RecoverPlmnNumeric fail');
+            console.log('Telephony_NetworkSearch_recoverPlmnNumeric fail');
         }
     }
 
     async function recoverNetworkSelectionMode() {
         try {
             await radio.setNetworkSelectionMode(gnetworkSMode);
-            console.log('Telephony_NetworkSearch_RecoverNetworkSelectionMode success');
+            console.log('Telephony_NetworkSearch_recoverNetworkSelectionMode success');
         } catch (err) {
-            console.log('Telephony_NetworkSearch_RecoverNetworkSelectionMode fail');
+            console.log('Telephony_NetworkSearch_recoverNetworkSelectionMode fail');
         }
     }
 
@@ -179,7 +179,6 @@ describe('NetworkSearchTest', function () {
             if (err) {
                 console.log(`Telephony_NetworkSearch_getNetworkSelectionMode_Async_0500 err: ${err}`);
                 done();
-                return;
             } else {
                 console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0500 fail not go to err');
                 expect().assertFail();
@@ -767,7 +766,6 @@ describe('NetworkSearchTest', function () {
             if (err) {
                 console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0400 finish');
                 done();
-                return;
             } else {
                 console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0400 fail not go to err');
                 expect().assertFail();

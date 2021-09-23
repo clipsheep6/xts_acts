@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -154,9 +154,9 @@ describe('SimManagerFunction', function () {
             done();
             return;
           }
+          console.log('Telephony_Sim_getDefaultVoiceSlotId_Async_0100 finish');
+          done();
         });
-        console.log('Telephony_Sim_getDefaultVoiceSlotId_Async_0100 finish');
-        done();
       });
     });
   });
@@ -204,9 +204,9 @@ describe('SimManagerFunction', function () {
             done();
             return;
           }
+          console.log('Telephony_Sim_getDefaultVoiceSlotId_Async_0200 finish');
+          done();
         });
-        console.log('Telephony_Sim_getDefaultVoiceSlotId_Async_0200 finish');
-        done();
       });
     });
   });

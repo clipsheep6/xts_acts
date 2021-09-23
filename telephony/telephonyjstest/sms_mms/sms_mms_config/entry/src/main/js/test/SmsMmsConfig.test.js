@@ -430,7 +430,6 @@ describe('SmsMmsConfigTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setCBConfig_Promise_0100 fail');
       done();
-      return;
     }
   });
 
@@ -456,7 +455,6 @@ describe('SmsMmsConfigTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setCBConfig_Promise_0200 fail');
       done();
-      return;
     }
   });
 
@@ -482,7 +480,6 @@ describe('SmsMmsConfigTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setCBConfig_Promise_0300 fail');
       done();
-      return;
     }
   });
 
@@ -508,7 +505,6 @@ describe('SmsMmsConfigTest', function () {
     } catch (err) {
       console.log('Telephony_SmsMms_setCBConfig_Promise_0400 finish');
       done();
-      return;
     }
   });
 
@@ -533,7 +529,6 @@ describe('SmsMmsConfigTest', function () {
     } catch (err) {
       console.log('Telephony_SmsMms_setCBConfig_Promise_0500 finish');
       done();
-      return;
     }
   });
 
@@ -558,7 +553,6 @@ describe('SmsMmsConfigTest', function () {
     } catch (err) {
       console.log('Telephony_SmsMms_setCBConfig_Promise_0600 finish');
       done();
-      return;
     }
   });
 
@@ -593,7 +587,6 @@ describe('SmsMmsConfigTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setCBConfig_Promise_0700 2 fail');
       done();
-      return;
     }
   });
 
@@ -628,7 +621,6 @@ describe('SmsMmsConfigTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setCBConfig_Promise_0800 2 fail');
       done();
-      return;
     }
   });
 
@@ -670,7 +662,6 @@ describe('SmsMmsConfigTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setCBConfig_Promise_0900  fail');
       done();
-      return;
     }
   });
 
@@ -712,7 +703,6 @@ describe('SmsMmsConfigTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setCBConfig_Promise_1000 2 fail');
       done();
-      return;
     }
   });
 
@@ -738,7 +728,6 @@ describe('SmsMmsConfigTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setCBConfig_Promise_1100 fail');
       done();
-      return;
     }
   });
 
@@ -764,7 +753,6 @@ describe('SmsMmsConfigTest', function () {
     } catch (err) {
       console.log(`Telephony_SmsMms_setCBConfig_Promise_1200 finish err : ${err.message}`);
       done();
-      return;
     }
   });
 
@@ -866,7 +854,6 @@ describe('SmsMmsConfigTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setDefaultSmsSlotId_Promise_0100  fail');
       done();
-      return;
     }
   });
 
@@ -923,7 +910,6 @@ describe('SmsMmsConfigTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_getDefaultSmsSlotId_Promise_0100 fail');
       done();
-      return;
     }
   });
 });

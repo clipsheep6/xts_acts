@@ -795,7 +795,6 @@ describe('CallManagerOnDial', function () {
                             })
                             return;
                         }
-
                         sleep(waitTime);
                         endTime = new Date().getTime();
                         timeOut = endTime - startTime;
@@ -2444,7 +2443,7 @@ describe('CallManagerOnDial', function () {
     /*
      * @tc.number  Telephony_CallManager_isInEmergencyCall_Promise_0200
      * @tc.name    Dial an emergency number (112) and call isInEmergencyCall() to determine whether
-     *             an emergency call is made. The return value is true
+     *              an emergency call is made. The return value is true
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_isInEmergencyCall_Promise_0200', 0, async function (done) {

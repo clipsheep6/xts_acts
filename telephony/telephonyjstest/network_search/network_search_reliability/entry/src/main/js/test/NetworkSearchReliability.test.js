@@ -121,9 +121,9 @@ describe('NetworkSearchTest', function () {
     async function recoverNetworkSelectionMode() {
         try {
             await radio.setNetworkSelectionMode(gnetworkSMode);
-            console.log('Telephony_NetworkSearch_RecoverNetworkSelectionMode success');
+            console.log('Telephony_NetworkSearch_rcoverNetworkSelectionMode success');
         } catch (err) {
-            console.log('Telephony_NetworkSearch_RecoverNetworkSelectionMode fail err: ' + err.message);
+            console.log('Telephony_NetworkSearch_recoverNetworkSelectionMode fail err: ' + err.message);
         }
     }
 
@@ -581,7 +581,6 @@ describe('NetworkSearchTest', function () {
                     console.log('Telephony_NetworkSearch_turnOnRadio_Async_0300 fail err: ' + err.message);
                     expect().assertFail();
                     done();
-                    return;
                 }
             })
         }
@@ -632,7 +631,6 @@ describe('NetworkSearchTest', function () {
                         console.log('Telephony_NetworkSearch_turnOffRadio_Async_0300 fail err: ' + err.message);
                         expect().assertFail();
                         done();
-                        return;
                     }
                 })
             }

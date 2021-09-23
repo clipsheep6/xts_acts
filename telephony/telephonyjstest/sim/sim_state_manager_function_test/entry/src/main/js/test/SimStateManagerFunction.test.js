@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ import {simSlotId, lockSwitch, OTHER_ABNORMAL} from '../default/utils/Constant.t
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
 describe('SimStateManagerFunction', function () {
+
   /**
     * @tc.number  Telephony_Sim_getSimState_Async_0100
     * @tc.name    Enter normal parameters to test whether the getSimState interface function can execute normally.

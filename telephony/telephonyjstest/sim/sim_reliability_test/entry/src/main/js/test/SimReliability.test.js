@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -539,10 +539,10 @@ describe('SimReliability', function () {
               done();
               return;
             }
+            console.log('Telephony_Sim_getDefaultVoiceSlotId_Async_0400 finish');
+            done();
+            return;
           });
-          console.log('Telephony_Sim_getDefaultVoiceSlotId_Async_0400 finish');
-          done();
-          return;
         }
         sim.getDefaultVoiceSlotId((err, data) => {
           if (err) {
@@ -590,7 +590,6 @@ describe('SimReliability', function () {
       console.log(`Telephony_Sim_getDefaultVoiceSlotId_Promise_0400 setDefaultVoiceSLOT_ID_err${err.message}`);
       expect().assertFail();
       done();
-      return;
     }
   });
 
@@ -623,10 +622,10 @@ describe('SimReliability', function () {
             done();
             return;
           }
+          console.log('Telephony_Sim_setDefaultVoiceSlotId_Async_0300 finish');
+          done();
+          return;
         });
-        console.log('Telephony_Sim_setDefaultVoiceSlotId_Async_0300 finish');
-        done();
-        return;
       }
       sim.setDefaultVoiceSlotId(simSlotId.SLOT_ID_0, (err) => {
         if (err) {

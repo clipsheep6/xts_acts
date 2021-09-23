@@ -101,6 +101,7 @@ describe('NetworkSearchTest', function () {
         }
         recursive(timesValue.TEST_RUN_TIME);
     })
+
     /**
      * @tc.number  Telephony_NetworkSearch_getNetworkState_Async_0600
      * @tc.name    The slotId parameter input is 0, the test getNetworkState() query function is executed 10 times,
@@ -433,6 +434,7 @@ describe('NetworkSearchTest', function () {
             `Telephony_NetworkSearch_setNetworkSelectionMode_Promise_1000 finish useTime: ${endTime - startTime}`);
         done();
     })
+    
     /**
      * @tc.number  Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0300
      * @tc.name    Test is executed 10 times, and the output delay is less than 5000us

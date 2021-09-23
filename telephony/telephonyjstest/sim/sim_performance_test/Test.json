@@ -2,10 +2,10 @@
     "description": "Configuration for sim performance Tests",
     "driver": {
         "type": "JSUnitTest",
-        "test-timeout": "21600000",
+        "test-timeout": "720000",
         "package": "com.ohos.simperformance",
-        "shell-timeout": "21600000",
-        "native-test-timeout":"21600000"
+        "shell-timeout": "720000",
+        "native-test-timeout":"720000"
     },
     "kits": [
         {

@@ -181,24 +181,16 @@ describe('SmsMmsDelTest', function () {
    * @tc.desc     Function test
    */
   it('Telephony_SmsMms_delSimMessage_Async_0400', 0, async function (done) {
-    sms.getAllSimMessages(TRUE_SLOT_ID, (err, result) => {
-      if (err) {
-        expect().assertFail();
-        console.log('Telephony_SmsMms_delSimMessage_Async_0400 get 1 fail');
+    let addIndex = 0xffffffff;
+    sms.delSimMessage(TRUE_SLOT_ID, addIndex, (delerr) => {
+      if (delerr) {
+        console.log('Telephony_SmsMms_delSimMessage_Async_0400 delSimMessage finish');
         done();
         return;
       }
-      let addIndex = result.length + 1;
-      sms.delSimMessage(TRUE_SLOT_ID, addIndex, (delerr) => {
-        if (delerr) {
-          console.log('Telephony_SmsMms_delSimMessage_Async_0400 delSimMessage finish');
-          done();
-          return;
-        }
-        expect().assertFail();
-        console.log('Telephony_SmsMms_delSimMessage_Async_0400 del fail');
-        done();
-      });
+      expect().assertFail();
+      console.log('Telephony_SmsMms_delSimMessage_Async_0400 del fail');
+      done();
     });
   });
 
@@ -258,7 +250,6 @@ describe('SmsMmsDelTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_delSimMessage_Promise_0100 get 3 fail');
       done();
-      return;
     }
   });
 
@@ -276,7 +267,6 @@ describe('SmsMmsDelTest', function () {
     } catch (err) {
       console.log('Telephony_SmsMms_delSimMessage_Promise_0200 finish');
       done();
-      return;
     }
   });
 
@@ -321,7 +311,24 @@ describe('SmsMmsDelTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_delSimMessage_Promise_0300 get 2 fail');
       done();
-      return;
+    }
+  });
+
+  /**
+   * @tc.number   Telephony_SmsMms_delSimMessage_Promise_0400
+   * @tc.name     Set index to an error value,Deletes a text message from the SIM card fail
+   * @tc.desc     Function test
+   */
+  it('Telephony_SmsMms_delSimMessage_Promise_0400', 0, async function (done) {
+    let addIndex = 0xffffffff;
+    try {
+      await sms.delSimMessage(TRUE_SLOT_ID, addIndex);
+      expect().assertFail();
+      console.log('Telephony_SmsMms_delSimMessage_Promise_0400 fail');
+      done();
+    } catch (err) {
+      console.log('Telephony_SmsMms_delSimMessage_Promise_0400 finish');
+      done();
     }
   });
 });

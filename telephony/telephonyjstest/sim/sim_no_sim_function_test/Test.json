@@ -2,10 +2,10 @@
     "description": "Configuration for sim no sim function Tests",
     "driver": {
         "type": "JSUnitTest",
-        "test-timeout": "21600000",
+        "test-timeout": "240000",
         "package": "com.ohos.simnosimfunction",
-        "shell-timeout": "21600000",
-        "native-test-timeout":"21600000"
+        "shell-timeout": "240000",
+        "native-test-timeout":"240000"
     },
     "kits": [
         {

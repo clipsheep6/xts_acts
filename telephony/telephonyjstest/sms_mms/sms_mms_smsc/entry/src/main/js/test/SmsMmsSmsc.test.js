@@ -419,7 +419,6 @@ describe('SmsMmsSmscTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_createMessage_Promise_0100 fail');
       done();
-      return;
     }
   });
 
@@ -438,7 +437,6 @@ describe('SmsMmsSmscTest', function () {
     } catch (err) {
       console.log('Telephony_SmsMms_createMessage_Promise_0200  finish ');
       done();
-      return;
     }
   });
 
@@ -477,7 +475,6 @@ describe('SmsMmsSmscTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setSmscAddr_Promise_0300 fail');
       done();
-      return;
     }
   });
 
@@ -519,7 +516,6 @@ describe('SmsMmsSmscTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setSmscAddr_Promise_0400 fail');
       done();
-      return;
     }
   });
 
@@ -558,7 +554,6 @@ describe('SmsMmsSmscTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setSmscAddr_Promise_0500 fail');
       done();
-      return;
     }
   });
 
@@ -597,7 +592,6 @@ describe('SmsMmsSmscTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setSmscAddr_Promise_0600 fail');
       done();
-      return;
     }
   });
 
@@ -636,7 +630,6 @@ describe('SmsMmsSmscTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setSmscAddr_Promise_0700 fail');
       done();
-      return;
     }
   });
 
@@ -675,7 +668,6 @@ describe('SmsMmsSmscTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setSmscAddr_Promise_0800 fail');
       done();
-      return;
     }
   });
 
@@ -714,7 +706,6 @@ describe('SmsMmsSmscTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_setSmscAddr_Promise_0900 fail');
       done();
-      return;
     }
   });
 
@@ -792,7 +783,6 @@ describe('SmsMmsSmscTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_getSmscAddr_Promise_0100 fail');
       done();
-      return;
     }
   });
 
@@ -811,7 +801,6 @@ describe('SmsMmsSmscTest', function () {
       console.log('Telephony_SmsMms_getSmscAddr_Promise_0200 fail');
       expect().assertFail();
       done();
-      return;
     }
   });
 });

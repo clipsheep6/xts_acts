@@ -19,6 +19,9 @@ import device from '@system.device'
 import router from '@system.router'
 import {Core, ExpectExtend} from 'deccjsunit/index'
 
+const injectRef = Object.getPrototypeOf(global) || global
+injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
+
 export default {
     data: {
         title: ""

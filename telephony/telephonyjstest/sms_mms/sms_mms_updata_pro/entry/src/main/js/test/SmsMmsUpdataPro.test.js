@@ -148,7 +148,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_0200 fail');
       done();
-      return;
     }
   });
 
@@ -224,7 +223,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_0300 fail');
       done();
-      return;
     }
   });
 
@@ -299,7 +297,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_0400 fail');
       done();
-      return;
     }
   });
 
@@ -374,7 +371,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_0500 fail');
       done();
-      return;
     }
   });
 
@@ -449,7 +445,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_0600 fail');
       done();
-      return;
     }
   });
 
@@ -525,7 +520,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_0700 fail');
       done();
-      return;
     }
   });
 
@@ -600,7 +594,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_0800 fail');
       done();
-      return;
     }
   });
 
@@ -675,7 +668,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_0900 fail');
       done();
-      return;
     }
   });
 
@@ -750,7 +742,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_1000 fail');
       done();
-      return;
     }
   });
 
@@ -825,7 +816,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_1100 fail');
       done();
-      return;
     }
   });
 
@@ -900,7 +890,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_1200 fail');
       done();
-      return;
     }
   });
 
@@ -975,7 +964,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_1300 fail');
       done();
-      return;
     }
   });
 
@@ -1048,7 +1036,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_1400 fail');
       done();
-      return;
     }
   });
 
@@ -1122,7 +1109,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_1500 fail');
       done();
-      return;
     }
   });
 
@@ -1196,7 +1182,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_1600 fail');
       done();
-      return;
     }
   });
 
@@ -1270,7 +1255,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_1700 fail');
       done();
-      return;
     }
   });
 
@@ -1344,7 +1328,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_1800 fail');
       done();
-      return;
     }
   });
 
@@ -1418,7 +1401,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_1900 fail');
       done();
-      return;
     }
   });
 
@@ -1494,7 +1476,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_2000 fail');
       done();
-      return;
     }
   });
 
@@ -1571,7 +1552,6 @@ describe('SmsMmsUpdataTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_updateSimMessage_Promise_2100 fail');
       done();
-      return;
     }
   });
 });

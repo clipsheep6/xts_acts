@@ -202,7 +202,6 @@ describe('SmsMmsGetAllTest', function () {
     }
     try {
       let promiseGet = await sms.getAllSimMessages(TRUE_SLOT_ID);
-      // let addOfPdu = interceptionPdu(promiseGet[addIndex].shortMessage.pdu, PDU_LENGTH)
       let addOfPdu = CORRECT_SMS_PDU;
       let isAdd = (addOfPdu === CORRECT_SMS_PDU &&
                 promiseGet[addIndex].simMessageStatus === sms.SMS_SIM_MESSAGE_STATUS_SENT);
@@ -232,7 +231,6 @@ describe('SmsMmsGetAllTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_getAllSIMMessages_Promise_0100 get cur fail');
       done();
-      return;
     }
   });
 
@@ -251,8 +249,6 @@ describe('SmsMmsGetAllTest', function () {
       expect().assertFail();
       console.log('Telephony_SmsMms_getAllSIMMessages_Promise_0200 fail');
       done();
-      return;
     }
   });
-
 });

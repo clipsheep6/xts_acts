@@ -22,22 +22,22 @@ describe('NetworkSearchTest', function () {
     const ISO_COUNTRY_CODE = 'cn';
     const PLMN_SIZE = 5;
 
-    async function RecoverRadioState() {
+    async function recoverRadioState() {
         try {
             await radio.turnOnRadio();
-            console.log('Telephony_NetworkSearch_RecoverRadioState success');
+            console.log('Telephony_NetworkSearch_recoverRadioState success');
         } catch (err) {
-            console.log(`Telephony_NetworkSearch_RecoverRadioState fail ${err}`);
+            console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
         }
     }
 
     beforeEach(async function () {
-        RecoverRadioState();
+        recoverRadioState();
     });
 
     afterAll(async function () {
         //Initialize radio status after all test cases
-        RecoverRadioState();
+        recoverRadioState();
         console.log('Telephony_NetworkSearch_RadioTest End!!!');
     });
 

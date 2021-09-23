@@ -2,10 +2,10 @@
     "description": "Configuration for sim reliability Tests",
     "driver": {
         "type": "JSUnitTest",
-        "test-timeout": "21600000",
+        "test-timeout": "540000",
         "package": "com.ohos.simreliability",
-        "shell-timeout": "21600000",
-        "native-test-timeout":"21600000"
+        "shell-timeout": "540000",
+        "native-test-timeout":"540000"
     },
     "kits": [
         {
