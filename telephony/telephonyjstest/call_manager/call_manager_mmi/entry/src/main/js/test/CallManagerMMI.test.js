@@ -17,6 +17,7 @@ import call from '@ohos.telephony_call';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
 describe('CallManagerMMI', function () {
+
     /*
      * @tc.number  Telephony_CallManager_MMI_Async_0100
      * @tc.name    PhoneNumber: **21*12599*10# Call dial() to enable unconditional call transfer. The transfer

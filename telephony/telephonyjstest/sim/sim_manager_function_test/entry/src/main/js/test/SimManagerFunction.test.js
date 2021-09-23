@@ -18,6 +18,7 @@ import {simSlotId} from '../default/utils/Constant.test.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
 describe('SimManagerFunction', function () {
+
   /**
     * @tc.number  Telephony_Sim_getSimAccountInfo_Async_0100
     * @tc.name    Enter normal parameters to test whether the getSimAccountInfo
@@ -35,9 +36,9 @@ describe('SimManagerFunction', function () {
         return;
       }
       expect(data.slotIndex === simSlotId.SLOT_ID_0).assertTrue();
-      // return; the default piling data as simDefaultDisplayName.
+      // return the default piling data as simDefaultDisplayName.
       expect(data.showName === defaultName).assertTrue();
-      // return; the default piling data as simDefaultDisplayNumber.
+      // return the default piling data as simDefaultDisplayNumber.
       expect(data.showNumber === defaultNumber).assertTrue();
       console.log('Telephony_Sim_getSimAccountInfo_Async_0100 finish');
       done();
@@ -76,9 +77,9 @@ describe('SimManagerFunction', function () {
     try {
       var data = await sim.getSimAccountInfo(simSlotId.SLOT_ID_0);
       expect(data.slotIndex === simSlotId.SLOT_ID_0).assertTrue();
-      // return; the default piling data as simDefaultDisplayName.
+      // return the default piling data as simDefaultDisplayName.
       expect(data.showName === defaultName).assertTrue();
-      // return; the default piling data as simDefaultDisplayNumber.
+      // return the default piling data as simDefaultDisplayNumber.
       expect(data.showNumber === defaultNumber).assertTrue();
       console.log('Telephony_Sim_getSimAccountInfo_Async_0100 finish');
     } catch (err) {
@@ -156,7 +157,6 @@ describe('SimManagerFunction', function () {
         });
         console.log('Telephony_Sim_getDefaultVoiceSlotId_Async_0100 finish');
         done();
-        return;
       });
     });
   });
@@ -207,7 +207,6 @@ describe('SimManagerFunction', function () {
         });
         console.log('Telephony_Sim_getDefaultVoiceSlotId_Async_0200 finish');
         done();
-        return;
       });
     });
   });
@@ -237,12 +236,10 @@ describe('SimManagerFunction', function () {
       await sim.setDefaultVoiceSlotId(defaultValue);
       console.log('Telephony_Sim_getDefaultVoiceSlotId_Promise_0100 finish');
       done();
-      return;
     } catch (err) {
       console.log(`Telephony_Sim_getDefaultVoiceSlotId_Promise_0100:setDefaultVoiceSLOT_ID_err: ${err.message}`);
       expect().assertFail();
       done();
-      return;
     }
   });
 
@@ -266,7 +263,6 @@ describe('SimManagerFunction', function () {
         await sim.setDefaultVoiceSlotId(defaultValue);
         console.log('Telephony_Sim_getDefaultVoiceSlotId_Promise_0200 finish');
         done();
-        return;
       } catch (err) {
         console.log(`Telephony_Sim_getDefaultVoiceSlotId_Promise_0200 fail, err: ${err.message}`);
         expect().assertFail();
@@ -277,7 +273,6 @@ describe('SimManagerFunction', function () {
       console.log(`Telephony_Sim_getDefaultVoiceSlotId_Promise_0200:setDefaultVoiceSLOT_ID_err: ${err.message}`);
       expect().assertFail();
       done();
-      return;
     }
   });
 

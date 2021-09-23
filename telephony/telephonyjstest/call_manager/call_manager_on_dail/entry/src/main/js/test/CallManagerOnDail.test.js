@@ -48,7 +48,6 @@ describe('CallManagerOnDial', function () {
         call.off('callDetailsChange', (err) => {
             if (err) {
                 console.log('Telephony_CallManager_off_Async fail err = ' + err);
-                return;
             }
         })
     })
@@ -186,7 +185,8 @@ describe('CallManagerOnDial', function () {
     /*
      * @tc.number  Telephony_CallManager_dial_Async_0800
      * @tc.name    Set the mandatory phone number to a normal number (10086) and the optional parameters options
-     *             to {accountId: 0, videoState: 0, dialScene: 0, dialType: 0}. Dial () in callback mode and return :true
+     *             to {accountId: 0, videoState: 0, dialScene: 0, dialType: 0}. Dial () in callback mode and return
+     *             :true
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_dial_Async_0800', 0, async function (done) {
@@ -312,14 +312,13 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_dial_Promise_0100 fail err = ' + err);
             done();
-            return;
         }
     })
 
     /*
      * @tc.number  Telephony_CallManager_dial_Promise_0300
      * @tc.name    Set the mandatory phone number to abcDE123456 and optional parameters options to
-     *             {accountId: 0, videoState: 0, dialScene: 0, dialType:  0}, options is {extras:false}, call dial() to dial, return :true
+     *             {accountId: 0, videoState: 0, dialScene: 0, dialType:  0},call dial() to dial, return :true
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_dial_Promise_0300', 0, async function (done) {
@@ -969,7 +968,8 @@ describe('CallManagerOnDial', function () {
 
     /*
      * @tc.number  Telephony_CallManager_getCallState_Async_0200
-     * @tc.name    GetCallState () is used as a callback to get the current call status. call.CALL_STATE_OFFHOOK is returned
+     * @tc.name    GetCallState () is used as a callback to get the current call status. call.CALL_STATE_OFFHOOK
+     *             is returned
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_getCallState_Async_0200', 0, async function (done) {
@@ -1520,7 +1520,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_startDTMF_Promise_0100 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -1568,7 +1567,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_startDTMF_Promise_0100 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -1616,7 +1614,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_startDTMF_Promise_0300 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -1664,7 +1661,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_startDTMF_Promise_0100 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -1712,7 +1708,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_startDTMF_Promise_0500 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -1757,7 +1752,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_startDTMF_Promise_0600 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -1804,7 +1798,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_startDTMF_Promise_0700 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -1851,7 +1844,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_startDTMF_Promise_0800 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -1899,7 +1891,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_startDTMF_Promise_0900 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -1979,13 +1970,12 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_stopDTMF_Promise_0200 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
     /*
      * @tc.number  Telephony_CallManager_combineConference_Async_0200
-     * @tc.name   After making a call, call combineConference() to merge the conference call and capture err
+     * @tc.name    After making a call, call combineConference() to merge the conference call and capture err
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_combineConference_Async_0200', 0, async function (done) {
@@ -2061,7 +2051,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_combineConference_Promise_0200 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -2142,7 +2131,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_getMainCallId_Promise_0200 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
@@ -2224,14 +2212,13 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_getSubCallIdList_Promise_0200 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
     /*
      * @tc.number  Telephony_CallManager_getCallIdListForConference_Async_0200
      * @tc.name    Make a phone call, the current callId, calls the callback way getCallIdListForConference () to
-     * obtain a list all the phone call in the conference call, returns an empty list
+     *             obtain a list all the phone call in the conference call, returns an empty list
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_getCallIdListForConference_Async_0200', 0, async function (done) {
@@ -2277,7 +2264,7 @@ describe('CallManagerOnDial', function () {
     /*
      * @tc.number  Telephony_CallManager_getCallIdListForConference_Promise_0200
      * @tc.name    Make a phone call, the current callId, call getCallIdListForConference () to obtain a list all
-     * the phone call in the conference call, returns an empty list
+     *             the phone call in the conference call, returns an empty list
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_getCallIdListForConference_Promise_0200', 0, async function (done) {
@@ -2316,14 +2303,13 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_getCallIdListForConference_Promise_0200 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
     /*
      * @tc.number  Telephony_CallManager_isInEmergencyCall_Async_0100
      * @tc.name    Make a call to a normal number (10086) and call isInEmergencyCall() to
-     * verify an emergency call, returning false
+     *             verify an emergency call, returning false
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_isInEmergencyCall_Async_0100', 0, async function (done) {
@@ -2370,7 +2356,7 @@ describe('CallManagerOnDial', function () {
     /*
      * @tc.number  Telephony_CallManager_isInEmergencyCall_Async_0200
      * @tc.name    Dial an emergency number (112) and call isInEmergencyCall() to determine whether an emergency
-     * call is made, returning true
+     *             call is made, returning true
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_isInEmergencyCall_Async_0200', 0, async function (done) {
@@ -2417,7 +2403,8 @@ describe('CallManagerOnDial', function () {
 
     /*
      * @tc.number  Telephony_CallManager_isInEmergencyCall_Promise_0100
-     * @tc.name    False is returned when an emergency call is made to a common number 'INVALID_NUMBER'(emergencyCall ())
+     * @tc.name    False is returned when an emergency call is made to a common number 'INVALID_NUMBER'
+     *             (emergencyCall ())
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_isInEmergencyCall_Promise_0100', 0, async function (done) {
@@ -2451,14 +2438,13 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_isInEmergencyCall_Promise_0100 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 
     /*
      * @tc.number  Telephony_CallManager_isInEmergencyCall_Promise_0200
      * @tc.name    Dial an emergency number (112) and call isInEmergencyCall() to determine whether
-     * an emergency call is made. The return value is true
+     *             an emergency call is made. The return value is true
      * @tc.desc    Function test
      */
     it('Telephony_CallManager_isInEmergencyCall_Promise_0200', 0, async function (done) {
@@ -2492,7 +2478,6 @@ describe('CallManagerOnDial', function () {
             expect().assertFail();
             console.log('Telephony_CallManager_isInEmergencyCall_Promise_0200 dial fail : err = ' + err);
             done();
-            return;
         }
     })
 })

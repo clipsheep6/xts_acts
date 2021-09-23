@@ -18,6 +18,7 @@ import {simSlotId, timesValue, lockSwitch} from '../default/utils/Constant.test.
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
 describe('SimPerformance', function () {
+
   /**
      * @tc.number  Telephony_Sim_getIMSI_Async_0300
      * @tc.name    Test the getIMSI interface query function ten times

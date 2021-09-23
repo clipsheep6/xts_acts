@@ -18,6 +18,7 @@ import {simSlotId} from '../default/utils/Constant.test.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
 describe('SimNoSimFunction', function () {
+
   /**
    * @tc.number  Telephony_Sim_getSimState_Async_0500
    * @tc.name    Test if there is no SIM card in the case of normal finish-parameter call interface getSimState.

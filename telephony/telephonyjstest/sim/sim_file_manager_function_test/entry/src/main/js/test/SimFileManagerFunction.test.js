@@ -18,6 +18,7 @@ import {simSlotId, OPERATOR_NUM_LENGTH, operatorCode, ICC_LENGTH, IMSI_LENGTH} f
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
 describe('SimFileManagerFunction', function () {
+
   /**
     * @tc.number  Telephony_Sim_getIMSI_Async_0100
     * @tc.name    Test getIMSI interface, input parameter 0, get return; value is not null.

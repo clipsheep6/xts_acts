@@ -17,29 +17,29 @@ import radio from '@ohos.telephony_radio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
 describe('NetworkSearchTest', function () {
-    let g_slot = 0;
-    let g_radioTech = '2';
-    let g_operatorName = '46000';
-    let g_networkSMode = {
-        slotId: g_slot,
+    let gslot = 0;
+    let gradioTech = '2';
+    let goperatorName = '46000';
+    let gnetworkSMode = {
+        slotId: gslot,
         selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
         networkInformation: {
             operatorName: '46000',
             operatorNumeric: '46011',
             state: radio.NETWORK_AVAILABLE,
-            radioTech: g_radioTech,
+            radioTech: gradioTech,
         },
         resumeSelection: false,
     };
     //Network status
-    let g_arrNetworkState = [
+    let garrNetworkState = [
         radio.NETWORK_UNKNOWN,
         radio.NETWORK_AVAILABLE,
         radio.NETWORK_CURRENT,
         radio.NETWORK_FORBIDDEN,
     ];
     //Network system
-    let g_arrNetworkRadioTech = [
+    let garrNetworkRadioTech = [
         radio.RADIO_TECHNOLOGY_UNKNOWN,
         radio.RADIO_TECHNOLOGY_GSM,
         radio.RADIO_TECHNOLOGY_1XRTT,
@@ -62,8 +62,8 @@ describe('NetworkSearchTest', function () {
     async function recoverPlmnNumeric() {
         try {
             let data = await radio.getNetworkState(SLOT_0);
-            g_networkSMode.networkInformation.operatorNumeric = data.plmnNumeric;
-            console.log(`Telephony_NetworkSearch_RecoverPlmnNumeric success g_operatorNumeric: ${data.plmnNumeric}`);
+            gnetworkSMode.networkInformation.operatorNumeric = data.plmnNumeric;
+            console.log(`Telephony_NetworkSearch_RecoverPlmnNumeric success operatorNumeric: ${data.plmnNumeric}`);
         } catch (err) {
             console.log('Telephony_NetworkSearch_RecoverPlmnNumeric fail');
         }
@@ -71,7 +71,7 @@ describe('NetworkSearchTest', function () {
 
     async function recoverNetworkSelectionMode() {
         try {
-            await radio.setNetworkSelectionMode(g_networkSMode);
+            await radio.setNetworkSelectionMode(gnetworkSMode);
             console.log('Telephony_NetworkSearch_RecoverNetworkSelectionMode success');
         } catch (err) {
             console.log('Telephony_NetworkSearch_RecoverNetworkSelectionMode fail');
@@ -99,10 +99,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -139,10 +139,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: radio.NETWORK_SELECTION_MANUAL,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -200,10 +200,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -240,10 +240,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: radio.NETWORK_SELECTION_MANUAL,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -301,10 +301,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: radio.NETWORK_SELECTION_UNKNOWN,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -326,10 +326,10 @@ describe('NetworkSearchTest', function () {
                 console.log(`Telephony_NetworkSearch_setNetworkSelectionMode_Async_0100 set not go to err`);
                 expect().assertFail();
                 done();
-                return;
             }
         });
     });
+    
     /**
      * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Async_0200
      * @tc.name    Test the setNetworkSelectionMode() query function and set the selectmode parameter input to '5'
@@ -342,10 +342,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: ERR_VALUE_5,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -367,7 +367,6 @@ describe('NetworkSearchTest', function () {
                 console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0200 set not go to err');
                 expect().assertFail();
                 done();
-                return;
             }
 
         });
@@ -385,10 +384,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: radio.NETWORK_SELECTION_MANUAL,
             networkInformation: {
-                operatorName: g_operatorName,
+                operatorName: goperatorName,
                 operatorNumeric: OPERATOR_NUMERIC_SSSSS,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -406,13 +405,12 @@ describe('NetworkSearchTest', function () {
                     expect(data === radio.NETWORK_SELECTION_AUTOMATIC).assertTrue();
                     done();
                 });
-            }else{
+            } else {
                 console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0300 set not go to err');
                 expect().assertFail();
                 done();
-                return;
             }
-            
+
         });
     });
 
@@ -428,10 +426,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: radio.NETWORK_SELECTION_MANUAL,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: true,
         };
@@ -468,10 +466,10 @@ describe('NetworkSearchTest', function () {
             slotId: 55, //set the error slot id is 55
             selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -480,13 +478,12 @@ describe('NetworkSearchTest', function () {
             if (err) {
                 console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0700 set finish');
                 done();
-            }else{
+            } else {
                 console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0700 set not go to err');
                 expect().assertFail();
                 done();
-                return;
             }
-            
+
         });
     });
 
@@ -502,10 +499,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: radio.NETWORK_SELECTION_UNKNOWN,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -543,10 +540,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: ERR_VALUE_5,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -584,10 +581,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: radio.NETWORK_SELECTION_MANUAL,
             networkInformation: {
-                operatorName: g_operatorName,
+                operatorName: goperatorName,
                 operatorNumeric: OPERATOR_NUMERIC_SSSSS,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -626,10 +623,10 @@ describe('NetworkSearchTest', function () {
             slotId: SLOT_0,
             selectMode: radio.NETWORK_SELECTION_MANUAL,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: true,
         };
@@ -666,10 +663,10 @@ describe('NetworkSearchTest', function () {
             slotId: 6, //set the error slot id is 6
             selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
             networkInformation: {
-                operatorName: g_operatorName,
-                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                operatorName: goperatorName,
+                operatorNumeric: gnetworkSMode.networkInformation.operatorNumeric,
                 state: radio.NETWORK_AVAILABLE,
-                radioTech: g_radioTech,
+                radioTech: gradioTech,
             },
             resumeSelection: false,
         };
@@ -707,18 +704,17 @@ describe('NetworkSearchTest', function () {
                 done();
                 return;
             }
-            console.log(`Telephony_NetworkSearch_getNetworkSearchInformation_Async_0100 finish data: ${JSON.stringify(data)}`);
+            console.log(
+                `Telephony_NetworkSearch_getNetworkSearchInformation_Async_0100 finish data: ${JSON.stringify(data)}`);
             expect(data.isNetworkSearchSuccess).assertTrue();
             expect(
                 data.networkSearchResult[0].operatorName != undefined &&
                 data.networkSearchResult[0].operatorName != '' &&
                 data.networkSearchResult[0].operatorName != null
             ).assertTrue();
-            expect(g_arrNetworkState).assertContain(data.networkSearchResult[0].state);
-            expect(g_arrNetworkRadioTech).assertContain(data.networkSearchResult[0].radioTech);
+            expect(garrNetworkState).assertContain(data.networkSearchResult[0].state);
+            expect(garrNetworkRadioTech).assertContain(data.networkSearchResult[0].radioTech);
             expect(data.networkSearchResult[0].operatorNumeric.substr(0, 3) === '460').assertTrue();
-            // matchAllResult(g_arrNetworkState, data.networkSearchResult[0].state, 'NetworkState');
-            // matchAllResult(g_arrNetworkRadioTech, data.networkSearchResult[0].radioTech, 'NetworkRadioTech');
             done();
         });
     });
@@ -740,7 +736,8 @@ describe('NetworkSearchTest', function () {
                 done();
                 return;
             }
-            console.log(`Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0100 finish data: ${JSON.stringify(data)}`);
+            console.log(
+                `Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0100 finish data:${JSON.stringify(data)}`);
             expect(data.isNetworkSearchSuccess).assertTrue();
             expect(
                 data.networkSearchResult[0].operatorName != undefined &&
@@ -748,10 +745,8 @@ describe('NetworkSearchTest', function () {
                 data.networkSearchResult[0].operatorName != null
             ).assertTrue();
             expect(data.networkSearchResult[0].operatorNumeric.substr(0, 3) === '460').assertTrue();
-            expect(g_arrNetworkState).assertContain(data.networkSearchResult[0].state);
-            expect(g_arrNetworkRadioTech).assertContain(data.networkSearchResult[0].radioTech);
-            // matchAllResult(g_arrNetworkState, data.networkSearchResult[0].state, 'NetworkState');
-            // matchAllResult(g_arrNetworkRadioTech, data.networkSearchResult[0].radioTech, 'NetworkRadioTech');
+            expect(garrNetworkState).assertContain(data.networkSearchResult[0].state);
+            expect(garrNetworkRadioTech).assertContain(data.networkSearchResult[0].radioTech);
         } catch (err) {
             console.log(`Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0100 fail err: ${err}`);
             expect().assertFail();
@@ -773,12 +768,12 @@ describe('NetworkSearchTest', function () {
                 console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0400 finish');
                 done();
                 return;
-            }else{
+            } else {
                 console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0400 fail not go to err');
                 expect().assertFail();
-                done();
             }
         });
+        done();
     });
 
     /**
@@ -792,10 +787,10 @@ describe('NetworkSearchTest', function () {
             await radio.getNetworkSearchInformation(slotId);
             console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0400 fail not go to err');
             expect().assertFail();
-        } catch (err) {
-            console.log(`Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0400 finish err: ${err}`);
             done();
             return;
+        } catch (err) {
+            console.log(`Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0400 finish err: ${err}`);
         }
         done();
     });

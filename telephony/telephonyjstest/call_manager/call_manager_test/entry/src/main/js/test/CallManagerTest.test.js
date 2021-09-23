@@ -230,7 +230,6 @@ describe('CallManagerTest', function () {
         } catch (err) {
             console.log('Telephony_CallManager_unHoldCall_Promise_0100 finish err = ' + err.message);
             done();
-            return;
         }
     })
 
@@ -290,8 +289,6 @@ describe('CallManagerTest', function () {
                     }
                     expect(data === false).assertTrue();
                     console.log('Telephony_CallManager_hasCall_Async_0100 finish data = ' + data);
-                    done();
-                    return;
                 })
                 done();
                 return;
@@ -692,7 +689,6 @@ describe('CallManagerTest', function () {
         } catch (err) {
             console.log('Telephony_CallManager_answer_Promise_0100 finish err = ' + err.message);
             done();
-            return;
         }
     })
 
@@ -892,6 +888,7 @@ describe('CallManagerTest', function () {
         }
         done();
     })
+
     /*
      * @tc.number  Telephony_CallManager_formatPhoneNumber_Promise_0400
      * @tc.name    If phoneNumber is 13888888888, options: CN, call formatPhoneNumber() to format the

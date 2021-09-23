@@ -19,6 +19,7 @@ import {simSlotId, timesValue, OTHER_ABNORMAL, OPERATOR_NUM_LENGTH, operatorCode
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
 describe('SimReliability', function () {
+
   /**
     * @tc.number  Telephony_Sim_getIMSI_Async_0400
     * @tc.name    The test executed the getIMSI interface query function ten times,
@@ -585,7 +586,6 @@ describe('SimReliability', function () {
       await sim.setDefaultVoiceSlotId(defaultValue);
       console.log('Telephony_Sim_getDefaultVoiceSlotId_Promise_0400 finish');
       done();
-      return;
     } catch (err) {
       console.log(`Telephony_Sim_getDefaultVoiceSlotId_Promise_0400 setDefaultVoiceSLOT_ID_err${err.message}`);
       expect().assertFail();

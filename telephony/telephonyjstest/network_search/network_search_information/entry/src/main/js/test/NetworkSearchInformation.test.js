@@ -14,18 +14,18 @@
  */
 
 import radio from '@ohos.telephony_radio';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
 describe('NetworkSearchTest', function () {
     //Resident status
-    let g_arrRegState = [
+    let garrRegState = [
         radio.REG_STATE_NO_SERVICE,
         radio.REG_STATE_IN_SERVICE,
         radio.REG_STATE_EMERGENCY_CALL_ONLY,
         radio.REG_STATE_POWER_OFF,
     ];
     //NSA network registration status
-    let g_arrNsaState = [
+    let garrNsaState = [
         radio.NSA_STATE_NOT_SUPPORT,
         radio.NSA_STATE_NO_DETECT,
         radio.NSA_STATE_CONNECTED_DETECT,
@@ -34,7 +34,7 @@ describe('NetworkSearchTest', function () {
         radio.NSA_STATE_SA_ATTACHED,
     ];
     //Available network formats
-    let g_arrRadioTech = [
+    let garrRadioTech = [
         radio.RADIO_TECHNOLOGY_UNKNOWN,
         radio.RADIO_TECHNOLOGY_GSM,
         radio.RADIO_TECHNOLOGY_1XRTT,
@@ -50,7 +50,7 @@ describe('NetworkSearchTest', function () {
         radio.RADIO_TECHNOLOGY_NR,
     ];
     //Network type corresponding to signal
-    let g_arrSignalType = [
+    let garrSignalType = [
         radio.NETWORK_TYPE_UNKNOWN,
         radio.NETWORK_TYPE_GSM,
         radio.NETWORK_TYPE_CDMA,
@@ -60,19 +60,10 @@ describe('NetworkSearchTest', function () {
         radio.NETWORK_TYPE_NR,
     ];
     //Corresponding level of signal
-    let g_arrSignalLevel = [0, 1, 2, 3, 4, 5];
-
+    let garrSignalLevel = [0, 1, 2, 3, 4, 5];
     const SLOT_0 = 0;
     const ISO_COUNTRY_CODE = 'cn';
     const PLMN_SIZE = 5;
-
-    // function matchAllResult(arr, value, name) {
-    //     let result = arr.find((item) => {
-    //         return (item === value);
-    //     });
-    //     console.log('Telephony_NetworkSearch ' + name + ' : ' + value);
-    //     expect(result != undefined).assertTrue();
-    // }
 
     afterAll(async function () {
         console.log('Telephony_NetworkSearch_InformationTest End!!!');
@@ -111,8 +102,6 @@ describe('NetworkSearchTest', function () {
             expect(data.plmnNumeric.length == 5 && data.plmnNumeric.substr(0, 3) === '460').assertTrue();
             expect(data.regStatus === 1).assertTrue();
             expect(data.nsaState === 1).assertTrue();
-            // matchAllResult(g_arrRegState, data.regStatus, 'RegState');
-            // matchAllResult(g_arrNsaState, data.nsaState, 'NsaState');
             expect(data.isRoaming === false).assertTrue();
             expect(data.isCaActive === false).assertTrue();
             expect(data.isEmergency === false).assertTrue();
@@ -148,7 +137,7 @@ describe('NetworkSearchTest', function () {
             expect(data.isRoaming === false).assertTrue();
             expect(data.isCaActive === false).assertTrue();
             expect(data.isEmergency === false).assertTrue();
-            
+
             done();
         });
     });
@@ -188,12 +177,10 @@ describe('NetworkSearchTest', function () {
                 done();
                 return;
             }
-            console.log(`Telephony_NetworkSearch_getRadioTech_Async_0100 finish psRadioTech: ${psRadioTech} csRadioTech: ${csRadioTech}`);
-            expect(g_arrRadioTech).assertContain(psRadioTech);
-            expect(g_arrRadioTech).assertContain(csRadioTech);
-            // matchAllResult(g_arrRadioTech, psRadioTech, 'PsRadioTech');
-            // matchAllResult(g_arrRadioTech, csRadioTech, 'CsRadioTech');
-            
+            console.log(`Telephony_NetworkSearch_getRadioTech_Async_0100 finish psRadioTech: ${psRadioTech}
+             csRadioTech: ${csRadioTech}`);
+            expect(garrRadioTech).assertContain(psRadioTech);
+            expect(garrRadioTech).assertContain(csRadioTech);
             done();
         });
     });
@@ -234,7 +221,9 @@ describe('NetworkSearchTest', function () {
                 done();
                 return;
             }
-            console.log(`Telephony_NetworkSearch_getSignalInformation_Async_0100 finish data: ${JSON.stringify(data)}`);
+            console.log(
+                `Telephony_NetworkSearch_getSignalInformation_Async_0100 finish data: ${JSON.stringify(data)}`
+                );
             expect(data != null && data != undefined).assertTrue();
             if (data.length <= 0) {
                 console.log(`Telephony_NetworkSearch_getSignalInformation_Async_0100 fail data.length: ${data.length}`);
@@ -242,10 +231,8 @@ describe('NetworkSearchTest', function () {
                 done();
                 return;
             }
-            expect(g_arrSignalType).assertContain(data[0].signalType);
-            expect(g_arrSignalLevel).assertContain(data[0].signalLevel);
-            // matchAllResult(g_arrSignalType, data[0].signalType, 'SignalType');
-            // matchAllResult(g_arrSignalLevel, data[0].signalLevel, 'SignalLevel');
+            expect(garrSignalType).assertContain(data[0].signalType);
+            expect(garrSignalLevel).assertContain(data[0].signalLevel);
             done();
         });
     });
@@ -292,7 +279,7 @@ describe('NetworkSearchTest', function () {
             expect(data.isRoaming === false).assertTrue();
             expect(data.isCaActive === false).assertTrue();
             expect(data.isEmergency === false).assertTrue();
-            
+
         } catch (err) {
             console.log(`Telephony_NetworkSearch_getNetworkState_Promise_0100 fail err: ${err}`);
             expect().assertFail();
@@ -325,7 +312,7 @@ describe('NetworkSearchTest', function () {
             expect(data.isRoaming === false).assertTrue();
             expect(data.isCaActive === false).assertTrue();
             expect(data.isEmergency === false).assertTrue();
-            
+
         } catch (err) {
             console.log(`Telephony_NetworkSearch_getNetworkState_Promise_0200 fail err: ${err}`);
             expect().assertFail();
@@ -364,10 +351,8 @@ describe('NetworkSearchTest', function () {
             let data = await radio.getRadioTech(SLOT_0);
             console.log(`Telephony_NetworkSearch_getRadioTech_Promise_0100 finish data: ${JSON.stringify(data)}`);
             expect(data != null && data != undefined).assertTrue();
-            expect(g_arrRadioTech).assertContain(data.psRadioTech);
-            expect(g_arrRadioTech).assertContain(data.csRadioTech);
-            // matchAllResult(g_arrRadioTech, data.psRadioTech, 'PsRadioTech');
-            // matchAllResult(g_arrRadioTech, data.csRadioTech, 'CsRadioTech');
+            expect(garrRadioTech).assertContain(data.psRadioTech);
+            expect(garrRadioTech).assertContain(data.csRadioTech);
         } catch (err) {
             console.log(`Telephony_NetworkSearch_getRadioTech_Promise_0100 fail err: ${err}`);
             expect().assertFail();
@@ -405,19 +390,18 @@ describe('NetworkSearchTest', function () {
     it('Telephony_NetworkSearch_getSignalInformation_Promise_0100', 0, async function (done) {
         try {
             let data = await radio.getSignalInformation(SLOT_0);
-            console.log(`Telephony_NetworkSearch_getSignalInformation_Promise_0100 finish data: ${JSON.stringify(data)}`);
+            console.log(
+                `Telephony_NetworkSearch_getSignalInformation_Promise_0100 finish data: ${JSON.stringify(data)}`);
             expect(data != null && data != undefined).assertTrue();
             if (data.length <= 0) {
-                console.log(`Telephony_NetworkSearch_getSignalInformation_Promise_0100 fail data.length: ${data.length}`);
+                console.log(
+                    `Telephony_NetworkSearch_getSignalInformation_Promise_0100 fail data.length: ${data.length}`);
                 expect().assertFail();
                 done();
                 return;
             }
-            expect(g_arrSignalType).assertContain(data[0].signalType);
-            expect(g_arrSignalLevel).assertContain(data[0].signalLevel);
-            // matchAllResult(g_arrSignalType, data[0].signalType, 'SignalType');
-            // matchAllResult(g_arrSignalLevel, data[0].signalLevel, 'SignalLevel');
-            
+            expect(garrSignalType).assertContain(data[0].signalType);
+            expect(garrSignalLevel).assertContain(data[0].signalLevel);
         } catch (err) {
             console.log(`Telephony_NetworkSearch_getSignalInformation_Promise_0100 fail err: ${err}`);
             expect().assertFail();
@@ -436,7 +420,8 @@ describe('NetworkSearchTest', function () {
         try {
             let slotId = 8;
             let data = await radio.getSignalInformation(slotId);
-            console.log(`Telephony_NetworkSearch_getSignalInformation_Promise_0400 finish data: ${JSON.stringify(data)}`);
+            console.log(
+                `Telephony_NetworkSearch_getSignalInformation_Promise_0400 finish data: ${JSON.stringify(data)}`);
             expect(data === undefined || data.length === 0).assertTrue();
         } catch (err) {
             console.log(`Telephony_NetworkSearch_getSignalInformation_Promise_0400 fail err: ${err}`);
@@ -461,7 +446,8 @@ describe('NetworkSearchTest', function () {
                 return;
             }
             expect(data === ISO_COUNTRY_CODE).assertTrue();
-            console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0100 finish data: ${JSON.stringify(data)}`);
+            console.log(
+                `Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0100 finish data: ${JSON.stringify(data)}`);
             done();
         });
     });
@@ -475,7 +461,8 @@ describe('NetworkSearchTest', function () {
         try {
             let data = await radio.getISOCountryCodeForNetwork(SLOT_0);
             expect(data === ISO_COUNTRY_CODE).assertTrue();
-            console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0100 finish data: ${JSON.stringify(data)}`);
+            console.log(
+                `Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0100 finish data:${JSON.stringify(data)}`);
         } catch (err) {
             console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0100 fail err: ${err}`);
             expect().assertFail();
@@ -499,7 +486,8 @@ describe('NetworkSearchTest', function () {
                 done();
                 return;
             }
-            console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0400 finish data: ${JSON.stringify(data)}`);
+            console.log(
+                `Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0400 finish data: ${JSON.stringify(data)}`);
             expect(data === undefined || data.length === 0).assertTrue();
             done();
         });
@@ -514,7 +502,8 @@ describe('NetworkSearchTest', function () {
         try {
             let slotId = 55;
             let data = await radio.getISOCountryCodeForNetwork(slotId);
-            console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0400 finish data: ${JSON.stringify(data)}`);
+            console.log(
+                `Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0400 finish data:${JSON.stringify(data)}`);
             expect(data === undefined || data.length === 0).assertTrue();
         } catch (err) {
             console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0400 fail err: ${err}`);

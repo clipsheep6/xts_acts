@@ -214,12 +214,15 @@ describe('NetworkSearchTest', function () {
                 }
                 console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0500 finish data: ${JSON.stringify(data)}`);
                 expect(
-                    data.longOperatorName === undefined || data.longOperatorName === '' || data.longOperatorName === null
+                    data.longOperatorName === undefined || data.longOperatorName === '' ||
+                     data.longOperatorName === null
                 ).assertTrue();
                 expect(
-                    data.shortOperatorName === undefined || data.shortOperatorName === '' || data.shortOperatorName === null
+                    data.shortOperatorName === undefined || data.shortOperatorName === '' ||
+                     data.shortOperatorName === null
                 ).assertTrue();
-                expect(data.plmnNumeric === undefined || data.plmnNumeric === '' || data.plmnNumeric === null).assertTrue();
+                expect(data.plmnNumeric === undefined || data.plmnNumeric === '' || 
+                data.plmnNumeric === null).assertTrue();
                 expect(data.regStatus === radio.REG_STATE_POWER_OFF).assertTrue();
                 expect(data.nsaState === radio.NSA_STATE_NOT_SUPPORT).assertTrue();
                 expect(data.isRoaming === false).assertTrue();
@@ -282,7 +285,8 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0700 finish psRadioTech: ${psRadioTech} csRadioTech: ${csRadioTech}`);
+                console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0700 finish psRadioTech: ${psRadioTech}
+                 csRadioTech: ${csRadioTech}`);
                 expect(psRadioTech === radio.RADIO_TECHNOLOGY_UNKNOWN).assertTrue();
                 expect(csRadioTech === radio.RADIO_TECHNOLOGY_UNKNOWN).assertTrue();
                 done();
@@ -481,7 +485,8 @@ describe('NetworkSearchTest', function () {
     /**
      * @tc.number  Telephony_NetworkSearch_turnOffRadio_Promise_0500
      * @tc.name    Radio is off, test the getNetworkState() longOperatorName is null and shortOperatorName is null and
-     *             plmnNumeric is null and regStatus is REG_STATE_EMERGENCY_CALL_ONLY and nsaState is NSA_STATE_NOT_SUPPORT and
+     *             plmnNumeric is null and regStatus is REG_STATE_EMERGENCY_CALL_ONLY and nsaState is
+     *             NSA_STATE_NOT_SUPPORT and
      *             isRoaming is false and isCaActive is false and isEmergency is false
      * @tc.desc    Function test
      */
@@ -649,7 +654,8 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500 finish data: ${JSON.stringify(data)}`);
+                console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500 finish
+                 data: ${JSON.stringify(data)}`);
                 expect(data === "" || data === undefined || data === null).assertTrue();
                 done();
             });

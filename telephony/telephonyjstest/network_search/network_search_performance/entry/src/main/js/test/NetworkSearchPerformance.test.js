@@ -17,18 +17,18 @@ import radio from '@ohos.telephony_radio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
 describe('NetworkSearchTest', function () {
-    let g_slot = 0;
-    let g_radioTech = '2';
-    let g_operatorName = 'CMCC';
-    let g_operatorNumeric = '46000';
-    let g_networkSMode = {
-        slotId: g_slot,
+    let gslot = 0;
+    let gradioTech = '2';
+    let goperatorName = 'CMCC';
+    let goperatorNumeric = '46000';
+    let gnetworkSMode = {
+        slotId: gslot,
         selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
         networkInformation: {
-            operatorName: g_operatorName,
-            operatorNumeric: g_operatorNumeric,
+            operatorName: goperatorName,
+            operatorNumeric: goperatorNumeric,
             state: radio.NETWORK_AVAILABLE,
-            radioTech: g_radioTech,
+            radioTech: gradioTech,
         },
         resumeSelection: false,
     };
@@ -46,7 +46,7 @@ describe('NetworkSearchTest', function () {
 
     async function recoverNetworkSelectionMode() {
         try {
-            await radio.setNetworkSelectionMode(g_networkSMode);
+            await radio.setNetworkSelectionMode(gnetworkSMode);
             console.log('Telephony_NetworkSearch_RecoverNetworkSelectionMode success');
         } catch (err) {
             console.log(`Telephony_NetworkSearch_RecoverNetworkSelectionMode fail err: ${err}`);
@@ -79,7 +79,7 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
                 console.log(`Telephony_NetworkSearch_getNetworkState_Async_0400 exec done useTime: ${totalTime}`);
                 expect(totalTime).assertLess(timesValue.TIME_SPAN);
@@ -96,10 +96,10 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
     /**
      * @tc.number  Telephony_NetworkSearch_getNetworkState_Async_0600
@@ -111,7 +111,7 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
                 console.log(`Telephony_NetworkSearch_getNetworkState_Async_0600 exec done useTime: ${totalTime}`);
                 expect(totalTime).assertLess(timesValue.TIME_SPAN);
@@ -128,10 +128,10 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
 
     /**
@@ -144,7 +144,7 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
                 console.log(`Telephony_NetworkSearch_getRadioTech_Async_0300 exec done useTime: ${totalTime}`);
                 expect(totalTime).assertLess(timesValue.TIME_SPAN);
@@ -161,10 +161,10 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
 
     /**
@@ -177,7 +177,7 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
                 console.log(`Telephony_NetworkSearch_getSignalInformation_Async_0300 exec done useTime: ${totalTime}`);
                 expect(totalTime).assertLess(timesValue.TIME_SPAN);
@@ -194,10 +194,10 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
 
     /**
@@ -306,9 +306,10 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
-                console.log(`Telephony_NetworkSearch_getNetworkSelectionMode_Async_0400 exec done useTime: ${totalTime}`);
+                console.log(
+                    `Telephony_NetworkSearch_getNetworkSelectionMode_Async_0400 exec done useTime: ${totalTime}`);
                 expect(totalTime).assertLess(timesValue.TIME_SPAN);
                 done();
                 return;
@@ -323,10 +324,10 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
 
     /**
@@ -348,7 +349,8 @@ describe('NetworkSearchTest', function () {
         }
         const endTime = new Date().getTime();
         expect(endTime - startTime).assertLess(MSEC_5);
-        console.log(`Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0400 finish useTime: ${endTime - startTime}`);
+        console.log(
+            `Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0400 finish useTime: ${endTime - startTime}`);
         done();
     })
 
@@ -373,9 +375,10 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
-                console.log(`Telephony_NetworkSearch_setNetworkSelectionMode_Async_1000 exec done useTime: ${totalTime}`);
+                console.log(
+                    `Telephony_NetworkSearch_setNetworkSelectionMode_Async_1000 exec done useTime: ${totalTime}`);
                 expect(totalTime).assertLess(timesValue.TIME_SPAN);
                 done();
                 return;
@@ -390,10 +393,10 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
 
     /**
@@ -426,7 +429,8 @@ describe('NetworkSearchTest', function () {
         }
         const endTime = new Date().getTime();
         expect(endTime - startTime).assertLess(MSEC_5);
-        console.log(`Telephony_NetworkSearch_setNetworkSelectionMode_Promise_1000 finish useTime: ${endTime - startTime}`);
+        console.log(
+            `Telephony_NetworkSearch_setNetworkSelectionMode_Promise_1000 finish useTime: ${endTime - startTime}`);
         done();
     })
     /**
@@ -439,7 +443,7 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
                 console.log(
                     `Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0300 exec done useTime: ${totalTime}`
@@ -460,10 +464,10 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
 
     /**
@@ -487,7 +491,8 @@ describe('NetworkSearchTest', function () {
         }
         const endTime = new Date().getTime();
         expect(endTime - startTime).assertLess(MSEC_5);
-        console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0300 finish useTime: ${endTime - startTime}`);
+        console.log(
+            `Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0300 finish useTime: ${endTime - startTime}`);
         done();
     })
 
@@ -501,7 +506,7 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
                 `Telephony_NetworkSearch_turnOnRadio_Async_0400 exec done useTime: ${totalTime}`
                 expect(totalTime).assertLess(timesValue.TIME_SPAN);
@@ -515,10 +520,10 @@ describe('NetworkSearchTest', function () {
                 if (err) {
                     //Error code judgment is required here
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
 
     /**
@@ -554,7 +559,7 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
                 console.log('Telephony_NetworkSearch_turnOffRadio_Async_0400 exec done useTime:' + totalTime);
                 console.log('Telephony_NetworkSearch_turnOffRadio_Async_0400 finish');
@@ -569,10 +574,10 @@ describe('NetworkSearchTest', function () {
                 if (err) {
                     //Error code judgment is required here
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
 
     /**
@@ -607,7 +612,7 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
                 console.log('Telephony_NetworkSearch_isRadioOn_Async_0400 exec done useTime:' + totalTime);
                 console.log('Telephony_NetworkSearch_isRadioOn_Async_0400 finish');
@@ -625,10 +630,10 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
 
     /**
@@ -664,7 +669,7 @@ describe('NetworkSearchTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        function Recursive(n) {
+        function recursive(n) {
             if (n <= 0) {
                 console.log(
                     'Telephony_NetworkSearch_getNetworkSearchInformation_Async_0300 exec done useTime:' + totalTime
@@ -686,10 +691,10 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                Recursive(n - 1);
+                recursive(n - 1);
             })
         }
-        Recursive(timesValue.TEST_RUN_TIME);
+        recursive(timesValue.TEST_RUN_TIME);
     })
 
     /**
