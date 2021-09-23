@@ -14,7 +14,7 @@
  */
 import notify from '@ohos.notification'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-
+var time = 1000
 describe('ActsAnsUnSubscriberTest', function () {
     console.info("===========ActsDoNotSubscriberTest start====================>");
     //subscribeOn
@@ -64,9 +64,8 @@ describe('ActsAnsUnSubscriberTest', function () {
         console.debug("===============ActsDoNotSubscriber_test_0100======begin====================>");
 
         var subInfoOne ={
-//            onConsumed:consumeCallbackOne,
-            onConnected:subscribeOnCallback,
-            onDisConnect:unSubscribeCallbackOne
+            onConnecte:subscribeOnCallback,
+            onDestroy:unSubscribeCallbackOne
         }
       try {
           await notify.subscribe(subInfoOne, subscribeCallback);
@@ -82,6 +81,9 @@ describe('ActsAnsUnSubscriberTest', function () {
         }
         console.debug("===============ActsSubscriber_test_0100=======end3===================>");
         done();
+        setTimeout(function(){
+            console.debug("====>time out ActsSubscriber_test_0100====>");
+        }, time);
     })
     /*
      * @tc.number: ActsDoNotSubscriber_test_0200
@@ -92,8 +94,8 @@ describe('ActsAnsUnSubscriberTest', function () {
         console.debug("===============ActsSubscriber_test_0200======begin====================>");
 
         var subInfoOne ={
-            onConnected:subscribeOnCallback,
-            onDisConnect:unSubscribeCallbackOne
+            onConnecte:subscribeOnCallback,
+            onDestroy:unSubscribeCallbackOne
         }
         try {
             await notify.subscribe(subInfoOne, subscribeCallback);
@@ -102,7 +104,7 @@ describe('ActsAnsUnSubscriberTest', function () {
             console.error('=ActsSubscriber_test_0200  订阅 subscribeDoNotCallback err:'+err);
         }
         try{
-            await notify.unsubscribe(subInfoOne).then(()=>
+            notify.unsubscribe(subInfoOne).then(()=>
             console.log("============promise============")
             )
         }
@@ -111,6 +113,9 @@ describe('ActsAnsUnSubscriberTest', function () {
         }
         console.debug("===============ActsSubscriber_test_0200=======end3===================>");
         done();
+        setTimeout(function(){
+            console.debug("====>time out ActsSubscriber_test_0200====>");
+        }, time);
     })
     /*
      * @tc.number: ActsSubscriber_test_0300
@@ -121,8 +126,8 @@ describe('ActsAnsUnSubscriberTest', function () {
         console.debug("===============ActsSubscriber_test_0300======begin====================>");
         var subInfoTwo ={
         //            onConsumed:consumeCallbackTwo,
-            onConnected:subscribeOnCallback,
-            onDisConnect:unSubscribeCallbackTwo
+            onConnecte:subscribeOnCallback,
+            onDestroy:unSubscribeCallbackTwo
         }
         try{
             await notify.subscribe(subInfoTwo,subscribeCallback);
@@ -139,6 +144,9 @@ describe('ActsAnsUnSubscriberTest', function () {
         }
         console.debug("===============ActsSubscriber_test_0300=======end3===================>");
         done();
+        setTimeout(function(){
+            console.debug("====>time out ActsSubscriber_test_0300====>");
+        }, time);
     })
     /*
      * @tc.number: ActsSubscriber_test_0400
@@ -149,8 +157,8 @@ describe('ActsAnsUnSubscriberTest', function () {
         console.debug("===============ActsSubscriber_test_0400======begin====================>");
         var subInfoTwo ={
         //            onConsumed:consumeCallbackTwo,
-            onConnected:subscribeOnCallback,
-            onDisConnect:unSubscribeCallbackTwo
+            onConnecte:subscribeOnCallback,
+            onDestroy:unSubscribeCallbackTwo
         }
         try{
             await notify.subscribe(subInfoTwo,subscribeCallback);
@@ -159,10 +167,10 @@ describe('ActsAnsUnSubscriberTest', function () {
             console.error('=ActsSubscriber_test_0400  订阅 subscribeDoNotCallback err:'+err);
         }
         try{
-            await notify.unsubscribe(subInfoTwo).then(
+             notify.unsubscribe(subInfoTwo).then(
                 console.log("=======unsubscribeTwo Promise=======")
             )
-            await notify.unsubscribe(subInfoTwo).then(
+             notify.unsubscribe(subInfoTwo).then(
                 console.log("=======unsubscribeTwo Promise=======")
             )
         }
@@ -171,6 +179,9 @@ describe('ActsAnsUnSubscriberTest', function () {
         }
         console.debug("===============ActsSubscriber_test_0400=======end3===================>");
         done();
+        setTimeout(function(){
+            console.debug("====>time out ActsSubscriber_test_0400====>");
+        }, time);
     })
     /*
      * @tc.number: ActsSubscriber_test_0500
@@ -181,12 +192,12 @@ describe('ActsAnsUnSubscriberTest', function () {
         console.debug("===============ActsSubscriber_test_0500======begin====================>");
 
         var subInfo1 ={
-            onConnected:subscribeOnCallback,
-            onDisConnect:unSubscribeCallbackThree,
+            onConnecte:subscribeOnCallback,
+            onDestroy:unSubscribeCallbackThree,
         }
         var subInfo2 ={
-            onConnected:subscribeOnCallback,
-            onDisConnect:unSubscribeCallbackFour,
+            onConnecte:subscribeOnCallback,
+            onDestroy:unSubscribeCallbackFour,
         }
         try{
             await notify.subscribe(subInfo1,subscribeCallback);
@@ -203,6 +214,9 @@ describe('ActsAnsUnSubscriberTest', function () {
         }
         console.debug("===============ActsSubscriber_test_0500=======end3===================>");
         done();
+        setTimeout(function(){
+            console.debug("====>time out ActsSubscriber_test_0500====>");
+        }, time);
     })
     /*
      * @tc.number: ActsSubscriber_test_0600
@@ -213,12 +227,12 @@ describe('ActsAnsUnSubscriberTest', function () {
         console.debug("===============ActsSubscriber_test_0600======begin====================>");
 
         var subInfo1 ={
-            onConnected:subscribeOnCallback,
-            onDisConnect:unSubscribeCallbackThree,
+            onConnecte:subscribeOnCallback,
+            onDestroy:unSubscribeCallbackThree,
         }
         var subInfo2 ={
-            onConnected:subscribeOnCallback,
-            onDisConnect:unSubscribeCallbackFour,
+            onConnecte:subscribeOnCallback,
+            onDestroy:unSubscribeCallbackFour,
         }
         try{
             await notify.subscribe(subInfo1,subscribeCallback);
@@ -227,10 +241,10 @@ describe('ActsAnsUnSubscriberTest', function () {
             console.error('=ActsSubscriber_test_0600  订阅 subscribeDoNotCallback err:'+err);
         }
         try{
-                await notify.unsubscribe(subInfo1).then(
+                notify.unsubscribe(subInfo1).then(
                     console.log("=======unsubscribeTree Promise=======")
                 )
-                await notify.unsubscribe(subInfo2).then(
+                notify.unsubscribe(subInfo2).then(
                     console.log("=======unsubscribeTree Promise=======")
                 )
         }
@@ -239,6 +253,9 @@ describe('ActsAnsUnSubscriberTest', function () {
         }
         console.debug("===============ActsSubscriber_test_0600=======end3===================>");
         done();
+        setTimeout(function(){
+            console.debug("====>time out ActsSubscriber_test_0600====>");
+        }, time);
     })
     /*
      * @tc.number: ActsSubscriber_test_0700
@@ -249,22 +266,25 @@ describe('ActsAnsUnSubscriberTest', function () {
         console.debug("===============ActsSubscriber_test_0700======begin====================>");
         try{
             await notify.subscribe({
-                onConnected:subscribeOnCallback,
-                onDisConnect:unSubscribeCallbackFive
+                onConnecte:subscribeOnCallback,
+                onDestroy:unSubscribeCallbackFive
             },subscribeCallback);
         }catch(err) {
             console.error('=ActsSubscriber_test_0700  订阅 subscribeDoNotCallback err:'+err);
         }
         try{
             await notify.unsubscribe({
-                onConnected:subscribeOnCallback,
-                onDisConnect:unSubscribeCallbackFive
+                onConnecte:subscribeOnCallback,
+                onDestroy:unSubscribeCallbackFive
             },unSubscribeCallbackFive);
         }catch(err) {
             console.error('=ActsSubscriber_test_0700  订阅 subscribeDoNotCallback err:'+err);
         }
         console.debug("===============ActsSubscriber_test_0700=======end3===================>");
         done();
+        setTimeout(function(){
+            console.debug("====>time out ActsSubscriber_test_0700====>");
+        }, time);
     })
     /*
      * @tc.number: ActsSubscriber_test_0800
@@ -275,16 +295,16 @@ describe('ActsAnsUnSubscriberTest', function () {
         console.debug("===============ActsSubscriber_test_0800======begin====================>");
         try{
             await notify.subscribe({
-                onConnected:subscribeOnCallback,
-                onDisConnect:unSubscribeCallbackFive
+                onConnecte:subscribeOnCallback,
+                onDestroy:unSubscribeCallbackFive
             },subscribeCallback);
         }catch(err) {
             console.error('=ActsSubscriber_test_0800  订阅 subscribeDoNotCallback err:'+err);
         }
         try{
-                await notify.unsubscribe({
-                    onConnected:subscribeOnCallback,
-                    onDisConnect:unSubscribeCallbackFive
+            notify.unsubscribe({
+                    onConnecte:subscribeOnCallback,
+                    onDestroy:unSubscribeCallbackFive
                 }).then(
                     console.log("=======unsubscribeFour Promise=======")
                 )
@@ -293,6 +313,9 @@ describe('ActsAnsUnSubscriberTest', function () {
         }
         console.debug("===============ActsSubscriber_test_0800=======end3===================>");
         done();
+        setTimeout(function(){
+            console.debug("====>time out ActsSubscriber_test_0800====>");
+        }, time);
     })
 })
 
