@@ -111,7 +111,7 @@ void HiCollieCppTest::DoXCollieTest()
         XcollieTestInstance("WATCHDOG");
         sleep(g_blockTime);
         exit(0);
-    }else {
+    } else {
         wait(&status);
     }
 }

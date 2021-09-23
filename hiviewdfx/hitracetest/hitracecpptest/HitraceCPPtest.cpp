@@ -20,9 +20,6 @@
 #include "hitrace/hitrace.h"
 #include "hitrace/hitraceid.h"
 #include "hitrace/trace.h"
-#include "hilog/log_c.h"
-#include "hilog/log_cpp.h"
-#include "hisysevent.h"
 #include "file_utils.h"
 
 using namespace OHOS;
@@ -30,15 +27,6 @@ using namespace HiviewDFX;
 using namespace testing;
 using namespace testing::ext;
 using namespace std;
-
-namespace {
-long g_serchainId;
-long g_serspanId;
-static HiLogLabel LABEL = {LOG_CORE, 0xD002D00, "HITRACETEST"};
-string g_key = "key";
-string g_reDiRectTimeout = "5";
-string g_hiLogRedirect = "/data/local/tmp/hilogredirect.log";
-}
 
 class HitraceCPPtest : public testing::Test {
 public:
@@ -52,9 +40,6 @@ private:
 };
 void HitraceCPPtest::SetUp()
 {
-    std::vector<std::string> cmdret;
-    string cmd = "hilog -r";
-    ExecCmdWithRet(cmd, cmdret);
 }
 void HitraceCPPtest::TearDown()
 {
@@ -65,20 +50,9 @@ void HitraceCPPtest::SetUpTestCase()
 void HitraceCPPtest::TearDownTestCase()
 {
 }
-void *Thread1(void *ptr) {
-    HiLog::Debug(LABEL, "new thread come!");
-    HiTraceId threadId = HiTrace::GetId();
-    g_serchainId  = threadId.GetChainId();
-    g_serspanId = threadId.GetSpanId();
-    HiLog::Debug(LABEL, "g_serchainId:%{public}ld", g_serchainId);
-    HiLog::Debug(LABEL, "g_serspanId:%{public}ld", g_serspanId);
-
-    HiLog::Debug(LABEL, "new thread end!");
-    return nullptr;
-}
 /**
  * @tc.name HiTrace C++ interface test
- * @tc.number DFX_DFT_HiTrace_0001
+ * @tc.number DFX_DFT_HiTrace_CPP_0001
  * @tc.desc HiTrace C++ interface test
  */
 HWTEST_F(HitraceCPPtest, Hitrace_interface, Function|MediumTest|Level1)
@@ -135,8 +109,8 @@ HWTEST_F(HitraceCPPtest, Hitrace_interface, Function|MediumTest|Level1)
 }
 
 /**
- * @tc.name HiTrace C++ Begin interface, invalid flag
- * @tc.number DFX_DFT_HiTrace_0001
+ * @tc.name HiTrace C++ Begin interface, when flag is invalid.
+ * @tc.number DFX_DFT_HiTrace_CPP_0002
  * @tc.desc HiTrace C++ interface test
  */
 HWTEST_F(HitraceCPPtest, Hitrace_interface1, Function|MediumTest|Level1)
@@ -153,8 +127,8 @@ HWTEST_F(HitraceCPPtest, Hitrace_interface1, Function|MediumTest|Level1)
     GTEST_LOG_(INFO) << "Hitrace_interface1 end" << endl;
 }
 /**
- * @tc.name HiTrace C++ Begin interface, invalid name
- * @tc.number DFX_DFT_HiTrace_0001
+ * @tc.name HiTrace C++ Begin interface, when name is invalid.
+ * @tc.number DFX_DFT_HiTrace_CPP_0003
  * @tc.desc HiTrace C++ interface test
  */
 HWTEST_F(HitraceCPPtest, Hitrace_interface2, Function|MediumTest|Level1)
@@ -167,8 +141,8 @@ HWTEST_F(HitraceCPPtest, Hitrace_interface2, Function|MediumTest|Level1)
     GTEST_LOG_(INFO) << "Hitrace_interface2 end" << endl;
 }
 /**
- * @tc.name HiTrace C++ Begin interface, long name
- * @tc.number DFX_DFT_HiTrace_0001
+ * @tc.name HiTrace C++ Begin interface, when name is very long.
+ * @tc.number DFX_DFT_HiTrace_CPP_0004
  * @tc.desc HiTrace C++ interface test
  */
 HWTEST_F(HitraceCPPtest, Hitrace_interface3, Function|MediumTest|Level1)
@@ -184,8 +158,8 @@ HWTEST_F(HitraceCPPtest, Hitrace_interface3, Function|MediumTest|Level1)
     GTEST_LOG_(INFO) << "Hitrace_interface3 end" << endl;
 }
 /**
- * @tc.name 重复调用Begin interface
- * @tc.number DFX_DFT_HiTrace_0001
+ * @tc.name Repeated call Begin interface.
+ * @tc.number DFX_DFT_HiTrace_CPP_0005
  * @tc.desc HiTrace C++ interface test
  */
 HWTEST_F(HitraceCPPtest, Hitrace_interface4, Function|MediumTest|Level1)
@@ -201,7 +175,7 @@ HWTEST_F(HitraceCPPtest, Hitrace_interface4, Function|MediumTest|Level1)
 }
 /**
  * @tc.name End invalid traceid
- * @tc.number DFX_DFT_HiTrace_0001
+ * @tc.number DFX_DFT_HiTrace_CPP_0006
  * @tc.desc HiTrace C++ interface test
  */
 HWTEST_F(HitraceCPPtest, Hitrace_interface5, Function|MediumTest|Level1)
@@ -220,9 +194,9 @@ HWTEST_F(HitraceCPPtest, Hitrace_interface5, Function|MediumTest|Level1)
     HiTrace::End(traceId);
     GTEST_LOG_(INFO) << "Hitrace_interface5 end" << endl;
 }
-/**s
- * @tc.name 结束一个已经结束的id
- * @tc.number DFX_DFT_HiTrace_0001
+/**
+ * @tc.name End traceId that has ended.
+ * @tc.number DFX_DFT_HiTrace_CPP_0007
  * @tc.desc HiTrace C++ interface test
  */
 HWTEST_F(HitraceCPPtest, Hitrace_interface6, Function|MediumTest|Level1)
@@ -237,178 +211,4 @@ HWTEST_F(HitraceCPPtest, Hitrace_interface6, Function|MediumTest|Level1)
     traceId = HiTrace::GetId();
     EXPECT_EQ(0, traceId.IsValid());
     GTEST_LOG_(INFO) << "Hitrace_interface6 end" << endl;
-}
-/*
- * @tc.name Hitrace start new process test
- * @tc.number DFX_DFT_HiTrace_0002
- * @tc.desc Hitrace start new process test, The traceid of the process is the same
- */
-HWTEST_F(HitraceCPPtest, Hitrace_cpptest, Function|MediumTest|Level1)
-{
-    GTEST_LOG_(INFO) << "Hitrace_cpptest start" << endl;
-    HiTraceId traceId = HiTrace::Begin("test2", HITRACE_FLAG_TP_INFO);
-    ASSERT_TRUE(traceId.IsValid());
-    long clichainId  = traceId.GetChainId();
-    long clispanId = traceId.GetSpanId();
-    pid_t pid;
-    pid = fork();
-    switch (pid) {
-        case -1:
-            std::cout<<"fork pid failed"<<std::endl;
-            break;
-        case 0:
-            std::cout<<"new process come!"<<std::endl;
-            HiLog::Debug(LABEL, "new process come!");
-            HiTraceId processId = HiTrace::GetId();
-            g_serchainId  = processId.GetChainId();
-            g_serspanId = processId.GetSpanId();
-            HiLog::Debug(LABEL, "g_serchainId:%{public}ld", g_serchainId);
-            HiLog::Debug(LABEL, "g_serspanId:%{public}ld", g_serspanId);
-            break;
-    }
-    HiLog::Debug(LABEL, "clichainId:%{public}ld",clichainId);
-    HiLog::Debug(LABEL, "clispanId:%{public}ld",clispanId);
-    sleep(1);
-    HiTrace::End(traceId);
-    EXPECT_EQ(clichainId, g_serchainId);
-    EXPECT_EQ(clispanId, g_serspanId);
-    GTEST_LOG_(INFO) << "Hitrace_cpptest end" << endl;
-}
-/*
- * @tc.name Hitrace start new thread test
- * @tc.number DFX_DFT_HiTrace_0003
- * @tc.desc Hitrace start new thread test
- */
-HWTEST_F(HitraceCPPtest, Hitrace_cpptest1, Function|MediumTest|Level1)
-{
-    GTEST_LOG_(INFO) << "Hitrace_cpptest1 start" << endl;
-    HiTraceId traceId = HiTrace::Begin("test3", HITRACE_FLAG_TP_INFO);
-    ASSERT_TRUE(traceId.IsValid());
-    long clichainId  = traceId.GetChainId();
-    long clispanId = traceId.GetSpanId();
-    HiLog::Debug(LABEL, "clichainId:%{public}ld",clichainId);
-    HiLog::Debug(LABEL, "clispanId:%{public}ld",clispanId);
-    pthread_t thread;
-    int ret;
-    ret = pthread_create(&thread, nullptr, Thread1, nullptr);
-    if (ret != 0) {
-        printf("thread creat fail");
-        ASSERT_TRUE(false);
-    }
-    sleep(2);
-    HiTrace::End(traceId);
-    EXPECT_EQ(clichainId, g_serchainId);
-    EXPECT_EQ(clispanId, g_serspanId);
-    GTEST_LOG_(INFO) << "Hitrace_cpptest1 end" << endl;
-}
-
-/**
- * @tc.name HiTrace C++ interface test
- * @tc.number DFX_DFT_HiTrace_0004
- * @tc.desc HiTrace C++ interface test
- */
-HWTEST_F(HitraceCPPtest, Hitrace_report, Function|MediumTest|Level1)
-{
-    GTEST_LOG_(INFO) << "Hitrace_report start" << endl;
-    bool result = false;
-    HiTraceId hiTraceId = HiTrace::Begin("test4", HITRACE_FLAG_TP_INFO);
-    HiTrace::SetId(hiTraceId);
-    hiTraceId = HiTrace::GetId();
-    ASSERT_TRUE(hiTraceId.IsValid());
-    if (hiTraceId.IsValid())
-    {
-        int param = 100;
-        string domain = OHOS::HiviewDFX::HiSysEvent::Domain::STARTUP;
-        OHOS::HiviewDFX::HiSysEvent::EventType eventtype = OHOS::HiviewDFX::HiSysEvent::EventType::FAULT;
-        OHOS::HiviewDFX::HiSysEvent::Write(domain, "eventNameDemo", eventtype, g_key, param);
-
-        RedirecthiLog(g_hiLogRedirect, g_reDiRectTimeout);
-        string fileinfo = "";
-        fileinfo = ReadFile(g_hiLogRedirect);
-        std::vector<std::string> para = {"STARTUP", "eventNameDemo", "\"event_type_\":1", "\"key\":100","HiTraceID"};
-        if (fileinfo != "") {
-            result = CheckInfo(para, fileinfo);
-        } else {
-            std::cout << "DFX_DFT_HiTrace_0004 file error" << std::endl;
-        }
-        ASSERT_TRUE(result);
-    } else {
-        printf("hiTraceId invalid");
-        ASSERT_TRUE(false);
-    }
-    HiTrace::End(hiTraceId);
-    GTEST_LOG_(INFO) << "Hitrace_report end" << endl;
-}
-
-/**
- * @tc.name HiTrace C++ interface test
- * @tc.number DFX_DFT_HiTrace_0005
- * @tc.desc HiTrace C++ interface test
- */
-HWTEST_F(HitraceCPPtest, Hitrace_report1, Function|MediumTest|Level1)
-{
-    GTEST_LOG_(INFO) << "Hitrace_report1 start" << endl;
-    bool result = false;
-    HiTraceId hiTraceId = HiTrace::Begin("test5", HITRACE_FLAG_TP_INFO);
-    HiTrace::SetId(hiTraceId);
-    hiTraceId = HiTrace::GetId();
-    ASSERT_TRUE(hiTraceId.IsValid());
-    if (hiTraceId.IsValid())
-    {
-        int param = 100;
-        string domain = "test";
-        OHOS::HiviewDFX::HiSysEvent::EventType eventtype = OHOS::HiviewDFX::HiSysEvent::EventType::FAULT;
-        OHOS::HiviewDFX::HiSysEvent::Write(domain, "eventNameDemo1", eventtype, g_key, param);
-
-        RedirecthiLog(g_hiLogRedirect, g_reDiRectTimeout);
-        string fileinfo = "";
-        fileinfo = ReadFile(g_hiLogRedirect);
-        std::vector<std::string> para = {"STARTUP", "eventNameDemo1", "\"event_type_\":1", "\"key\":100","HiTraceID"};
-        if (fileinfo != "") {
-            result = CheckInfo(para, fileinfo);
-        } else {
-            std::cout << "Hitrace_report1 file error" << std::endl;
-        }
-        ASSERT_TRUE(result == false);
-    } else {
-        printf("hiTraceId invalid");
-        ASSERT_TRUE(false);
-    }
-    HiTrace::End(hiTraceId);
-    GTEST_LOG_(INFO) << "Hitrace_report1 end" << endl;
-}
-/**
- * @tc.name HiTrace C++ interface test
- * @tc.number DFX_DFT_HiTrace_0006
- * @tc.desc HiTrace C++ interface test
- */
-HWTEST_F(HitraceCPPtest, Hitrace_report2, Function|MediumTest|Level1)
-{
-    GTEST_LOG_(INFO) << "Hitrace_report2 start" << endl;
-    bool result = false;
-    HiTraceId hiTraceId = HiTrace::Begin("test6", HITRACE_FLAG_TP_INFO);
-    HiTrace::SetId(hiTraceId);
-    hiTraceId = HiTrace::GetId();
-    ASSERT_TRUE(hiTraceId.IsValid());
-    if (hiTraceId.IsValid())
-    {
-        string domain = OHOS::HiviewDFX::HiSysEvent::Domain::STARTUP;
-        OHOS::HiviewDFX::HiSysEvent::EventType eventtype = OHOS::HiviewDFX::HiSysEvent::EventType::FAULT;
-        OHOS::HiviewDFX::HiSysEvent::Write(domain, "eventNameDemo2", eventtype);
-        RedirecthiLog(g_hiLogRedirect, g_reDiRectTimeout);
-        string fileinfo = "";
-        fileinfo = ReadFile(g_hiLogRedirect);
-        std::vector<std::string> para = {"STARTUP", "eventNameDemo2", "\"event_type_\":1","HiTraceID"};
-        if (fileinfo != "") {
-            result = CheckInfo(para, fileinfo);
-        } else {
-            std::cout << "Hitrace_report2 file error" << std::endl;
-        }
-        ASSERT_TRUE(result);
-    } else {
-        printf("hiTraceId invalid");
-        ASSERT_TRUE(false);
-    }
-    HiTrace::End(hiTraceId);
-    GTEST_LOG_(INFO) << "Hitrace_report2 end" << endl;
 }

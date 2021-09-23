@@ -206,5 +206,3 @@ HWTEST_F(HitraceCtest, HitraceC_interface6, Function|MediumTest|Level1)
     EXPECT_EQ(0, HiTraceIsValid(&traceId));
     GTEST_LOG_(INFO) << "HitraceC_interface6 end" << endl;
 }
-
-
