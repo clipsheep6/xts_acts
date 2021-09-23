@@ -1,0 +1,869 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License')
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import radio from '@ohos.telephony_radio';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+
+describe('NetworkSearchTest', function () {
+    let g_slot = 0;
+    let g_radioTech = '2';
+    let g_operatorName = '46000';
+    let g_networkSMode = {
+        slotId: g_slot,
+        selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
+        networkInformation: {
+            operatorName: '46000',
+            operatorNumeric: '46011',
+            state: radio.NETWORK_AVAILABLE,
+            radioTech: g_radioTech,
+        },
+        resumeSelection: false,
+    };
+    //Network status
+    let g_arrNetworkState = [
+        radio.NETWORK_UNKNOWN,
+        radio.NETWORK_AVAILABLE,
+        radio.NETWORK_CURRENT,
+        radio.NETWORK_FORBIDDEN,
+    ];
+    //Network system
+    let g_arrNetworkRadioTech = [
+        radio.RADIO_TECHNOLOGY_UNKNOWN,
+        radio.RADIO_TECHNOLOGY_GSM,
+        radio.RADIO_TECHNOLOGY_1XRTT,
+        radio.RADIO_TECHNOLOGY_WCDMA,
+        radio.RADIO_TECHNOLOGY_HSPA,
+        radio.RADIO_TECHNOLOGY_HSPAP,
+        radio.RADIO_TECHNOLOGY_TD_SCDMA,
+        radio.RADIO_TECHNOLOGY_EVDO,
+        radio.RADIO_TECHNOLOGY_EHRPD,
+        radio.RADIO_TECHNOLOGY_LTE,
+        radio.RADIO_TECHNOLOGY_LTE_CA,
+        radio.RADIO_TECHNOLOGY_IWLAN,
+        radio.RADIO_TECHNOLOGY_NR,
+    ];
+
+    const SLOT_0 = 0;
+    const OPERATOR_NUMERIC_SSSSS = 'SSSSS';
+    const ERR_VALUE_5 = 5;
+
+    async function recoverPlmnNumeric() {
+        try {
+            let data = await radio.getNetworkState(SLOT_0);
+            g_networkSMode.networkInformation.operatorNumeric = data.plmnNumeric;
+            console.log('Telephony_NetworkSearch_RecoverPlmnNumeric success g_operatorNumeric : ' + data.plmnNumeric);
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_RecoverPlmnNumeric fail');
+        }
+    }
+
+    async function recoverNetworkSelectionMode() {
+        try {
+            await radio.setNetworkSelectionMode(g_networkSMode);
+            console.log('Telephony_NetworkSearch_RecoverNetworkSelectionMode success');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_RecoverNetworkSelectionMode fail');
+        }
+    }
+
+    function matchAllResult(arr, value, name) {
+        let result = arr.find((item) => {
+            return (item = value);
+        });
+        console.log('Telephony_NetworkSearch ' + name + ' : ' + value);
+        expect(result != undefined).assertTrue();
+    }
+
+    beforeAll(async function () {
+        await recoverPlmnNumeric();
+    });
+
+    afterAll(async function () {
+        //Initialize network selection mode after all test cases
+        await recoverNetworkSelectionMode();
+        console.log('Telephony_NetworkSearch_SelectionModeTest End!!!');
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getNetworkSelectionMode_Async_0100
+     * @tc.name    Test the getNetworkSelectionMode() query function and set the slotId parameter input to 0,
+     *             test the return value as NETWORK_SELECTION_AUTOMATIC
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0100', 0, async function (done) {
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        await new Promise((resolve, reject) => {
+            radio.setNetworkSelectionMode(networkSMode, (err) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0100 set err: ' + err.message);
+                    reject();
+                }
+                console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0100 set finish');
+                resolve();
+            });
+        }).catch(() => {
+            expect().assertFail();
+            done();
+            return;
+        });
+        await new Promise((resolve, reject) => {
+            radio.getNetworkSelectionMode(SLOT_0, (err, res) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0100 get err: ' + err.message);
+                    reject();
+                }
+                console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0100 get finish');
+                expect(res === radio.NETWORK_SELECTION_AUTOMATIC).assertTrue();
+                resolve();
+            });
+        }).catch(() => {
+            expect().assertFail();
+            done();
+            return;
+        });
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getNetworkSelectionMode_Async_0200
+     * @tc.name    Test the getNetworkSelectionMode() query function and set the slotId parameter input to 0,
+     *             and test the return value as NETWORK_SELECTION_MANUAL
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0200', 0, async function (done) {
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: radio.NETWORK_SELECTION_MANUAL,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        await new Promise((resolve, reject) => {
+            radio.setNetworkSelectionMode(networkSMode, (err) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0200 set err: ' + err.message);
+                    reject();
+                }
+                console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0200 set finish');
+                resolve();
+            });
+        }).catch(() => {
+            expect().assertFail();
+            done();
+            return;
+        });
+        await new Promise((resolve, reject) => {
+            radio.getNetworkSelectionMode(SLOT_0, (err, res) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0200 get err: ' + err.message);
+                    reject();
+                }
+                console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0200 get finish');
+                expect(res === radio.NETWORK_SELECTION_MANUAL).assertTrue();
+                resolve();
+            });
+        }).catch(() => {
+            expect().assertFail();
+            done();
+            return;
+        });
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getNetworkSelectionMode_Async_0500
+     * @tc.name    SlotId parameter input is 3, test getNetworkSelectionMode() query function go to the error
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0500', 0, async function (done) {
+        let slotId = 3;
+        await new Promise((resolve, reject) => {
+            radio.getNetworkSelectionMode(slotId, (err, res) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0500 finish');
+                    resolve();
+                }
+                reject();
+            });
+        }).catch(() => {
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0500 fail');
+            expect().assertFail();
+            done();
+            return;
+        });
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0100
+     * @tc.name    Test the getNetworkSelectionMode() query function and set the slotId parameter input to 0,
+     *             and test the return value as NETWORK_SELECTION_AUTOMATIC
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0100', 0, async function (done) {
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        try {
+            await radio.setNetworkSelectionMode(networkSMode);
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0100 set finish');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0100 set err: ' + err.message);
+            expect().assertFail();
+            done();
+            return;
+        }
+        try {
+            let res = await radio.getNetworkSelectionMode(SLOT_0);
+            expect(res === radio.NETWORK_SELECTION_AUTOMATIC).assertTrue();
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0100 get finish');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0100 get err: ' + err.message);
+            expect().assertFail();
+            done();
+            return;
+        }
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0200
+     * @tc.name    Test the getNetworkSelectionMode() query function and set the slotId parameter input to 0,
+     *             and test the return value as '1'
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0200', 0, async function (done) {
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: radio.NETWORK_SELECTION_MANUAL,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        try {
+            await radio.setNetworkSelectionMode(networkSMode);
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0200 set finish');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0200 set err: ' + err.message);
+            expect().assertFail();
+            done();
+            return;
+        }
+        try {
+            let res = await radio.getNetworkSelectionMode(SLOT_0);
+            expect(res === radio.NETWORK_SELECTION_MANUAL).assertTrue();
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0200 get finish');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0200 get err: ' + err.message);
+            expect().assertFail();
+            done();
+            return;
+        }
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0500
+     * @tc.name    SlotId parameter input is 33, test getNetworkSelectionMode() query function go to the error
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0500', 0, async function (done) {
+        try {
+            let slotId = 33;
+            let res = await radio.getNetworkSelectionMode(slotId);
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0500 fail');
+            expect().assertFail();
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0500 finish');
+            done();
+            return;
+        }
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Async_0100
+     * @tc.name    Test the setNetworkSelectionMode() query function and set the selectmode parameter input to
+     *             'NETWORK_SELECTION_UNKNOWN' and test the return value is 'False' and the network selection mode
+     *             update failed
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0100', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: radio.NETWORK_SELECTION_UNKNOWN,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        await new Promise((resolve, reject) => {
+            radio.setNetworkSelectionMode(networkSMode, (err) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0100 set finish');
+                    resolve();
+                }
+                reject();
+            });
+        }).catch(() => {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0100 set fail');
+            expect().assertFail();
+            done();
+            return;
+        });
+        await new Promise((resolve, reject) => {
+            radio.getNetworkSelectionMode(SLOT_0, (err, res) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0100 get err: ' + err.message);
+                    reject();
+                }
+                console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0100 get finish');
+                expect(res === radio.NETWORK_SELECTION_AUTOMATIC).assertTrue();
+                resolve();
+            });
+        }).catch(() => {
+            expect().assertFail();
+            done();
+            return;
+        });
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Async_0200
+     * @tc.name    Test the setNetworkSelectionMode() query function and set the selectmode parameter input to '5'
+     *             and test the return value is 'False' and the network selection mode update failed
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0200', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: ERR_VALUE_5,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        await new Promise((resolve, reject) => {
+            radio.setNetworkSelectionMode(networkSMode, (err) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0200 set finish');
+                    resolve();
+                }
+                reject();
+            });
+        }).catch(() => {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0200 set fail');
+            expect().assertFail();
+            done();
+            return;
+        });
+        await new Promise((resolve, reject) => {
+            radio.getNetworkSelectionMode(SLOT_0, (err, res) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0200 get err: ' + err.message);
+                    reject();
+                }
+                console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0200 get finish');
+                expect(res === radio.NETWORK_SELECTION_AUTOMATIC).assertTrue();
+                resolve();
+            });
+        }).catch(() => {
+            expect().assertFail();
+            done();
+            return;
+        });
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Async_0300
+     * @tc.name    Test the setNetworkSelectionMode() and set the operatorNumeric parameter input to '46001'
+     *             and test value is 'False' and the network selection mode update fails
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0300', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: radio.NETWORK_SELECTION_MANUAL,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: OPERATOR_NUMERIC_SSSSS,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        await new Promise((resolve, reject) => {
+            radio.setNetworkSelectionMode(networkSMode, (err) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0300 set finish');
+                    resolve();
+                }
+                reject();
+            });
+        }).catch(() => {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0300 set fail');
+            expect().assertFail();
+            done();
+            return;
+        });
+        await new Promise((resolve, reject) => {
+            radio.getNetworkSelectionMode(SLOT_0, (err, res) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0300 get err: ' + err.message);
+                    reject();
+                }
+                console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0300 get finish');
+                expect(res === radio.NETWORK_SELECTION_AUTOMATIC).assertTrue();
+                resolve();
+            });
+        }).catch(() => {
+            expect().assertFail();
+            done();
+            return;
+        });
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Async_0400
+     * @tc.name    Test the setNetworkSelectionMode() and set the resumeSelection parameter input to 'true'
+     *             and test value is 'False' and the network selection mode update fails
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0400', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: radio.NETWORK_SELECTION_MANUAL,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: true,
+        };
+        await new Promise((resolve, reject) => {
+            radio.setNetworkSelectionMode(networkSMode, (err) => {
+                if (err) {
+                    reject();
+                }
+                console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0400 set finish');
+                resolve();
+            });
+        }).catch(() => {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0400 set fail');
+            expect().assertFail();
+            done();
+            return;
+        });
+        await new Promise((resolve, reject) => {
+            radio.getNetworkSelectionMode(SLOT_0, (err, res) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0400 get err: ' + err.message);
+                    reject();
+                }
+                console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0400 get finish : ' + res);
+                expect(res === radio.NETWORK_SELECTION_MANUAL).assertTrue();
+                resolve();
+            });
+        }).catch(() => {
+            expect().assertFail();
+            done();
+            return;
+        });
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Async_0700
+     * @tc.name    SlotId parameter input is 55, test setNetworkSelectionMode() query function go to the error
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0700', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        let networkSMode = {
+            slotId: 55, //set the error slot id is 55
+            selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        await new Promise((resolve, reject) => {
+            radio.setNetworkSelectionMode(networkSMode, (err) => {
+                if (err) {
+                    console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0700 set finish');
+                    resolve();
+                }
+                reject();
+            });
+        }).catch(() => {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Async_0700 set fail');
+            expect().assertFail();
+            done();
+            return;
+        });
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0100
+     * @tc.name    Test the setNetworkSelectionMode() and set the selectmode parameter input to
+     *             'NETWORK_SELECTION_UNKNOWN' and test value is 'False' and the network selection mode update fails
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0100', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: radio.NETWORK_SELECTION_UNKNOWN,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        try {
+            await radio.setNetworkSelectionMode(networkSMode);
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0100 set fail');
+            expect().assertFail();
+            done();
+            return;
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0100 set finish');
+            done();
+        }
+        try {
+            let res = await radio.getNetworkSelectionMode(SLOT_0);
+            expect(res === radio.NETWORK_SELECTION_AUTOMATIC).assertTrue();
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0100 get finish');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0100 get err: ' + err.message);
+            expect().assertFail();
+            done();
+            return;
+        }
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0200
+     * @tc.name    Test the setNetworkSelectionMode() and enter an outlier selectMode: 5 return value is 'False' and
+     *             the network selection mode update fails
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0200', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: ERR_VALUE_5,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        try {
+            await radio.setNetworkSelectionMode(networkSMode);
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0200 set fail');
+            expect().assertFail();
+            done();
+            return;
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0200 set finish');
+            done();
+        }
+        try {
+            let res = await radio.getNetworkSelectionMode(SLOT_0);
+            expect(res === radio.NETWORK_SELECTION_AUTOMATIC).assertTrue();
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0200 get finish');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0200 get err: ' + err.message);
+            expect().assertFail();
+            done();
+            return;
+        }
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0300
+     * @tc.name    Test the setNetworkSelectionMode() and enter an outlier operatorNumeric: '46001'
+     *             return value is 'False' and the network selection mode update fails
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0300', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: radio.NETWORK_SELECTION_MANUAL,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: OPERATOR_NUMERIC_SSSSS,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        try {
+            await radio.setNetworkSelectionMode(networkSMode);
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0300 set fail');
+            expect().assertFail();
+            done();
+            return;
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0300 set finish');
+            done();
+        }
+        try {
+            let res = await radio.getNetworkSelectionMode(SLOT_0);
+            expect(res === radio.NETWORK_SELECTION_AUTOMATIC).assertTrue();
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0300 get finish');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0300 get err: ' + err.message);
+            expect().assertFail();
+            done();
+            return;
+        }
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0400
+     * @tc.name    Test the setNetworkSelectionMode() query function and set the resumeSelection parameter input to
+     *             'true' and test the return value is 'True' and the network selection mode is updated to automatic
+     *             network search
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0400', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        let networkSMode = {
+            slotId: SLOT_0,
+            selectMode: radio.NETWORK_SELECTION_MANUAL,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: true,
+        };
+        try {
+            await radio.setNetworkSelectionMode(networkSMode);
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0400 set finish');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0400 set finish err : ' + err.message);
+            expect().assertFail();
+            done();
+            return;
+        }
+        try {
+            let res = await radio.getNetworkSelectionMode(SLOT_0);
+            expect(res === radio.NETWORK_SELECTION_MANUAL).assertTrue();
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0400 get finish');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0400 get err: ' + err.message);
+            expect().assertFail();
+            done();
+            return;
+        }
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0700
+     * @tc.name    SlotId parameter input is 6, test setNetworkSelectionMode() query function go to the error
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0700', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        let networkSMode = {
+            slotId: 6, //set the error slot id is 6
+            selectMode: radio.NETWORK_SELECTION_AUTOMATIC,
+            networkInformation: {
+                operatorName: g_operatorName,
+                operatorNumeric: g_networkSMode.networkInformation.operatorNumeric,
+                state: radio.NETWORK_AVAILABLE,
+                radioTech: g_radioTech,
+            },
+            resumeSelection: false,
+        };
+        try {
+            await radio.setNetworkSelectionMode(networkSMode);
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0700 fail');
+            expect().assertFail();
+            done();
+            return;
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_setNetworkSelectionMode_Promise_0700 finish');
+            done();
+        }
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getNetworkSearchInformation_Async_0100
+     * @tc.name    Test the getNetworkSearchInformation() query function and set the slotId parameter input to 0,
+     *             test the return value isNetworkSearchSuccess is true and specific operator information
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0100', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        radio.getNetworkSearchInformation(SLOT_0, (err, data) => {
+            if (err) {
+                console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0100 fail err: ' + err.message);
+                expect().assertFail();
+                done();
+                return;
+            }
+            expect(data != null && data != undefined).assertTrue();
+            if (data.networkSearchResult.length === 0) {
+                console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0100 fail');
+                expect().assertFail();
+                done();
+                return;
+            }
+            expect(data.isNetworkSearchSuccess).assertTrue();
+            expect(
+                data.networkSearchResult[0].operatorName != undefined &&
+                    data.networkSearchResult[0].operatorName != '' &&
+                    data.networkSearchResult[0].operatorName != null
+            ).assertTrue();
+            expect(data.networkSearchResult[0].operatorNumeric.substr(0, 3) === '460').assertTrue();
+            matchAllResult(g_arrNetworkState, data.networkSearchResult[0].state, 'NetworkState');
+            matchAllResult(g_arrNetworkRadioTech, data.networkSearchResult[0].radioTech, 'NetworkRadioTech');
+            console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0100 finish');
+            done();
+        });
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0100
+     * @tc.name    Test the getNetworkSearchInformation() query function and set the slotId parameter input to 0,
+     *             test the return value isNetworkSearchSuccess is true and specific operator information
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0100', 0, async function (done) {
+        await recoverNetworkSelectionMode();
+        try {
+            let data = await radio.getNetworkSearchInformation(SLOT_0);
+            expect(data != null && data != undefined).assertTrue();
+            if (data.networkSearchResult.length === 0) {
+                console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0100 fail');
+                expect().assertFail();
+                done();
+                return;
+            }
+            expect(data.isNetworkSearchSuccess).assertTrue();
+            expect(
+                data.networkSearchResult[0].operatorName != undefined &&
+                    data.networkSearchResult[0].operatorName != '' &&
+                    data.networkSearchResult[0].operatorName != null
+            ).assertTrue();
+            expect(data.networkSearchResult[0].operatorNumeric.substr(0, 3) === '460').assertTrue();
+            matchAllResult(g_arrNetworkState, data.networkSearchResult[0].state, 'NetworkState');
+            matchAllResult(g_arrNetworkRadioTech, data.networkSearchResult[0].radioTech, 'NetworkRadioTech');
+            console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0100 finish');
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0100 fail err: ' + err.message);
+            expect().assertFail();
+            done();
+            return;
+        }
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getNetworkSearchInformation_Async_0400
+     * @tc.name    SlotId parameter input is 33, test getNetworkSearchInformation() query function go to the error
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0400', 0, async function (done) {
+        let slotId = 33;
+        radio.getNetworkSearchInformation(slotId, (err, data) => {
+            if (err) {
+                console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0400 finish');
+                done();
+                return;
+            }
+            console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Async_0400 fail');
+            expect().assertFail();
+            done();
+        });
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0400
+     * @tc.name    SlotId parameter input is 77, test getNetworkSearchInformation() query function go to the error
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0400', 0, async function (done) {
+        try {
+            let slotId = 77;
+            let data = await radio.getNetworkSearchInformation(slotId);
+            console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0400 fail');
+            expect().assertFail();
+        } catch (err) {
+            console.log('Telephony_NetworkSearch_getNetworkSearchInformation_Promise_0400 finish err: ' + err.message);
+            done();
+            return;
+        }
+        done();
+    });
+});
