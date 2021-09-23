@@ -47,20 +47,37 @@ describe('SmsMmsRelTest', function () {
   var DEFAULT_SMS_SLOTID = 0;
   var smsIndex = 0;
   beforeAll(async function () {
-    DATA_SCADDR = await sms.getSmscAddr(TRUE_SLOT_ID);
-    DEFAULT_SMS_SLOTID = await sms.getDefaultSmsSlotId();
-    let allSmsRecord = await sms.getAllSimMessages(TRUE_SLOT_ID);
-    smsIndex = allSmsRecord.letgh;
-    for (let index = 0;index < smsIndex;++index) {
-      await sms.delSimMessage(TRUE_SLOT_ID, index);
+    sms.getSmscAddr(TRUE_SLOT_ID, (geterr, getresult) => {
+      if (geterr) {
+        return;
+      }
+      DATA_SCADDR = getresult
+    });
+    sms.getDefaultSmsSlotId((geterr, getresult) => {
+      if (geterr) {
+        return;
+      }
+      DEFAULT_SMS_SLOTID = getresult;
+    });
+    let allSmsRecord = [];
+    sms.getAllSimMessages(TRUE_SLOT_ID, (geterr, getresult) => {
+      if (geterr) {
+        return;
+      }
+      allSmsRecord = getresult;
+    });
+    if (allSmsRecord.length !== 0) {
+      for (let index = 0;index < 10;++index) {
+        sms.delSimMessage(TRUE_SLOT_ID, index, (err) => {});
+      }
     }
   });
 
-  afterEach(async function () {
-    await sms.setSmscAddr(TRUE_SLOT_ID, DATA_SCADDR);
-    await sms.setDefaultSmsSlotId(DEFAULT_SMS_SLOTID);
-    for (let index = 0;index < smsIndex;++index) {
-      await sms.delSimMessage(TRUE_SLOT_ID, index);
+  beforeEach(async function () {
+    sms.setSmscAddr(TRUE_SLOT_ID, DATA_SCADDR, (err) => {});
+    sms.setDefaultSmsSlotId(DEFAULT_SMS_SLOTID, (err) => {});
+    for (let index = 0;index < 10;++index) {
+      sms.delSimMessage(TRUE_SLOT_ID, index, (err) => {});
     }
   });
 

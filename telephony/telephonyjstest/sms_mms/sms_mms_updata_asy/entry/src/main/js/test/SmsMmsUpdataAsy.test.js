@@ -32,17 +32,23 @@ describe('SmsMmsUpdataTest', function () {
 
   beforeAll(async function () {
     // Delete the first 10 SMS messages at each run to ensure the execution of the use case
-    let allSmsRecord = await sms.getAllSimMessages(TRUE_SLOT_ID);
-    for (let index = 0;index < 10;++index) {
-      if (allSmsRecord[index].length !== 0) {
-        await sms.delSimMessage(TRUE_SLOT_ID, index);
+    let allSmsRecord = [];
+    sms.getAllSimMessages(TRUE_SLOT_ID, (geterr, getresult) => {
+      if (geterr) {
+        return;
+      }
+      allSmsRecord = getresult;
+    });
+    if (allSmsRecord.length !== 0) {
+      for (let index = 0;index < 10;++index) {
+        sms.delSimMessage(TRUE_SLOT_ID, index, (err) => {});
       }
     }
   });
 
   afterEach(async function () {
     for (let index = 0;index < 10;++index) {
-      await sms.delSimMessage(TRUE_SLOT_ID, index);
+      sms.delSimMessage(TRUE_SLOT_ID, index, (err) => {});
     }
   });
 

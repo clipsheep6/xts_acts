@@ -28,21 +28,25 @@ describe('SmsMmsDelTest', function () {
   const FALSE_SLOT_ID = 9;
   const CORRECT_SMS_PDU = '01000F9168683106019196F400080A00680065006C006C006F';
 
-
   beforeAll(async function () {
     // Delete the first 10 SMS messages at each run to ensure the execution of the use case
-    let allSmsRecord = await sms.getAllSimMessages(TRUE_SLOT_ID);
+    let allSmsRecord = [];
+    sms.getAllSimMessages(TRUE_SLOT_ID, (geterr, getresult) => {
+      if (geterr) {
+        return;
+      }
+      allSmsRecord = getresult;
+    });
     if (allSmsRecord.length !== 0) {
       for (let index = 0;index < 10;++index) {
-        await sms.delSimMessage(TRUE_SLOT_ID, index);
+        sms.delSimMessage(TRUE_SLOT_ID, index, (err) => {});
       }
     }
   });
 
   afterEach(async function () {
-    // Delete the first 10 SMS messages at each run to ensure the execution of the use case
     for (let index = 0;index < 10;++index) {
-      await sms.delSimMessage(TRUE_SLOT_ID, index);
+      sms.delSimMessage(TRUE_SLOT_ID, index, (err) => {});
     }
   });
 

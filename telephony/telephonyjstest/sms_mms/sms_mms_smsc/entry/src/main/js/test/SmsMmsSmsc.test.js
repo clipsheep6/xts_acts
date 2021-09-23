@@ -31,14 +31,16 @@ describe('SmsMmsSmscTest', function () {
   const USABLE_SMSC_NUMBER = '+8613800512500';
 
   var DATA_SCADDR = '';
-  var DEFAULT_SMS_SLOTTD = 0;
   beforeAll(async function () {
-    DATA_SCADDR = await sms.getSmscAddr(TRUE_SLOT_ID);
-    DEFAULT_SMS_SLOTTD = await sms.getDefaultSmsSlotId();
+    sms.getSmscAddr(TRUE_SLOT_ID, (geterr, getresult) => {
+      if (geterr) {
+        return;
+      }
+      DATA_SCADDR = getresult
+    });
   });
   beforeEach(async function () {
-    await sms.setSmscAddr(TRUE_SLOT_ID, DATA_SCADDR);
-    await sms.setDefaultSmsSlotId(DEFAULT_SMS_SLOTTD);
+    sms.setSmscAddr(TRUE_SLOT_ID, DATA_SCADDR, (err) => {});
   });
 
   /**
