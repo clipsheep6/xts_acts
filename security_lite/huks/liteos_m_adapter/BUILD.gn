@@ -42,7 +42,6 @@ hctest_suite("ActsHuksHalFunctionTest") {
   ]
 
   deps = [
-    #"//base/security/huks/huawei_property/source:huks_new",
     "//test/xts/acts/security_lite/huks/common:huks_new_test_common",
   ]
 
