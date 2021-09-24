@@ -15,9 +15,10 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import ohosDataRdb from '@ohos.data.rdb';
+
 const TAG = '[RDB_JSKITS_TEST]'
-const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, ' 
-    + 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
+const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
++ 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
 const STORE_CONFIG = {
     name: 'insert.db',
 }
@@ -70,8 +71,8 @@ describe('rdbStoreInsertTest', function () {
             const age = await resultSet.getLong(await resultSet.getColumnIndex('age'))
             const salary = await resultSet.getDouble(await resultSet.getColumnIndex('salary'))
             const blobType = await resultSet.getBlob(await resultSet.getColumnIndex('blobType'))
-            console.log(TAG + '{id=' + id + ', name=' + name + ', age=' + age + ', salary=' 
-                + salary + ', blobType=' + blobType);
+            console.log(TAG + '{id=' + id + ', name=' + name + ', age=' + age + ', salary='
+            + salary + ', blobType=' + blobType);
             expect(1).assertEqual(id);
             expect('zhangsan').assertEqual(name);
             expect(18).assertEqual(age);

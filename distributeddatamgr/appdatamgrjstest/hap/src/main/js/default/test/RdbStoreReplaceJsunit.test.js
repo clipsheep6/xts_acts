@@ -15,9 +15,10 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import ohosDataRdb from '@ohos.data.rdb';
+
 const TAG = '[RDB_JSKITS_TEST]'
-const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, ' 
-    + 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
+const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
++ 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
 const STORE_CONFIG = {
     name: 'replace.db'
 }
@@ -58,38 +59,38 @@ describe('rdbStoreReplaceTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket)
+            let insertPromise = await rdbStore.insert('test', valueBucket)
             await expect(1).assertEqual(insertPromise);
             await console.log(TAG + 'insert first done: ' + insertPromise);
         }
         {
-            var valueBucket={
+            var valueBucket = {
                 'name': 'wangwu',
                 'age': 25,
                 'salary': 300.5,
                 'blobType': u8,
-            };
+            }
             let isholding = rdbStore.isHoldingConnection;
             await expect(false).assertEqual(isholding);
             let isready = rdbStore.isReadOnly;
             await expect(false).assertEqual(isready);
-            let count = await rdbStore.replace('test',valueBucket);
+            let count = await rdbStore.replace('test', valueBucket);
             await expect(2).assertEqual(count);
-            predicates.equalTo('name','wangwu');
+            predicates.equalTo('name', 'wangwu');
             let resultSet = await rdbStore.query(predicates, ['id', 'name', 'age', 'salary', 'blobType']);
             await expect(true).assertEqual(resultSet.goToFirstRow());
             await expect(false).assertEqual(resultSet.goToNextRow());
         }
         {
-            var valueBucket={
+            var valueBucket = {
                 'name': 'lisi',
                 'age': 25,
                 'salary': 300.5,
                 'blobType': u8,
-            };
-            let count = await rdbStore.replace('test',valueBucket);
+            }
+            let count = await rdbStore.replace('test', valueBucket);
             await expect(3).assertEqual(count);
-            predicates.equalTo('name','lisi');
+            predicates.equalTo('name', 'lisi');
             let resultSet = await rdbStore.query(predicates, ['id', 'name', 'age', 'salary', 'blobType']);
             await expect(false).assertEqual(resultSet.goToFirstRow());
         }
@@ -106,21 +107,21 @@ describe('rdbStoreReplaceTest', function () {
     it('testRdbStoreReplace0002', 0, async function (done) {
         console.log(TAG + '************* testRdbStoreReplace0002 start *************');
         var u8 = new Uint8Array([3, 4, 5])
-        var valueBucket={
+        var valueBucket = {
             'name': 'wangwu',
             'age': 25,
             'salary': 300.5,
             'blobType': u8,
         }
-        try{
+        try {
             let isholding = rdbStore.isHoldingConnection;
             await expect(false).assertEqual(isholding);
             let isready = rdbStore.isReadOnly;
             await expect(false).assertEqual(isready);
-            let count = await rdbStore.replace(null,valueBucket);
+            let count = await rdbStore.replace(null, valueBucket);
             await console.log('replace second done ' + count);
             await expect(null).assertFail();
-        }catch(e){
+        } catch (e) {
             await console.log(TAG + 'no table name' + e);
         }
         done();
@@ -147,16 +148,16 @@ describe('rdbStoreReplaceTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket)
+            let insertPromise = await rdbStore.insert('test', valueBucket)
             await expect(4).assertEqual(insertPromise);
             await console.log(TAG + 'insert first done3: ' + insertPromise);
         }
-        try{
+        try {
             var valueBucket = new Uint8Array([3, 4, 5]);
-            let count = await rdbStore.replace('tests',valueBucket);
+            let count = await rdbStore.replace('tests', valueBucket);
             await console.log('replace third done3 ' + count);
             await expect(null).assertFail();
-        }catch(e){
+        } catch (e) {
             await console.log('tableName is Wrong:' + e);
         }
         done();
@@ -183,15 +184,15 @@ describe('rdbStoreReplaceTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket)
+            let insertPromise = await rdbStore.insert('test', valueBucket)
             await expect(5).assertEqual(insertPromise);
             await console.log(TAG + 'insert first done4: ' + insertPromise);
         }
-        try{
-            let count=await rdbStore.replace('test',null);
+        try {
+            let count = await rdbStore.replace('test', null);
             await console.log('replace fourth done4 ' + count);
             await expect(null).assertFail();
-        }catch(e){
+        } catch (e) {
             await console.log('valueBucket not allow null:' + e);
         }
         done();

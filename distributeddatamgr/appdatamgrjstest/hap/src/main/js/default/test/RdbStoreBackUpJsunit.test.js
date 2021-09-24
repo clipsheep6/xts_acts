@@ -12,19 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import ohosDataRdb from '@ohos.data.rdb';
+
 const TAG = '[RDB_JSKITS_TEST]'
-const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, ' 
-    + 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
+const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
++ 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
 const STORE_CONFIG = {
     name: 'BackupTest.db'
 }
 var rdbStore = undefined;
-describe('RdbStoreBackupTest',function(){
+describe('RdbStoreBackupTest', function () {
     beforeAll(async function () {
-        console.info(TAG + 'beforeAll' + STORE_CONFIG.storageMode)
+        console.info(TAG + 'beforeAll' + STORE_CONFIG.storageMode);
         rdbStore = await ohosDataRdb.getRdbStore(STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_TEST, null);
     })
@@ -46,8 +46,8 @@ describe('RdbStoreBackupTest',function(){
      * @tc.desc RdbStore BackUp interface test
      */
 
-    it('testRdbStoreBackup001',0,async function (done){
-        console.log(TAG+'**********testRdbStoreBackup001 start*********');
+    it('testRdbStoreBackup001', 0, async function (done){
+        console.log(TAG + '**********testRdbStoreBackup001 start*********');
         {
             let u8 = new Uint8Array([1, 2, 3]);
             let ValuesBucket = {
@@ -55,9 +55,9 @@ describe('RdbStoreBackupTest',function(){
                 'age': 18,
                 'salary': 100.5,
                 'blobType': u8,
-            };
+            }
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
-            await console.log('insert done1 '+insertPromise)
+            await console.log('insert done1 ' + insertPromise)
             await expect(1).assertEqual(insertPromise);
         }
         {
@@ -67,9 +67,9 @@ describe('RdbStoreBackupTest',function(){
                 'age': 18,
                 'salary': 100.5,
                 'blobType': u8,
-            };
+            }
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
-            await console.log('insert done2 '+insertPromise)
+            await console.log('insert done2 ' + insertPromise)
             await  expect(2).assertEqual(insertPromise);
         }
         {
@@ -79,20 +79,20 @@ describe('RdbStoreBackupTest',function(){
                 'age': 20,
                 'salary': 100.5,
                 'blobType': u8,
-            };
+            }
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
-            await console.log('insert done3 '+insertPromise)
+            await console.log('insert done3 ' + insertPromise)
             await expect(3).assertEqual(insertPromise);
         }
-        try{
+        try {
             var u8 = new Uint8Array([1, 2, 3]);
-            let store = await rdbStore.backup('BackupTest.db',u8);
+            let store = await rdbStore.backup('BackupTest.db', u8);
             await expect(true).assertEqual(store)
-        }catch(e){
+        } catch (e) {
             await console.log('backUp001 error ' + e);
         }
         done();
-        console.log(TAG+'****************testRdbStoreBackup001 end****************');
+        console.log(TAG + '****************testRdbStoreBackup001 end****************');
     })
 
     /*
@@ -101,8 +101,8 @@ describe('RdbStoreBackupTest',function(){
      * @tc.desc RdbStore BackUp interface test
      */
 
-    it('testRdbStoreBackup002',0,async function (done){
-        console.log(TAG+'**********testRdbStoreBackup002 start*********');
+    it('testRdbStoreBackup002', 0, async function (done){
+        console.log(TAG + '**********testRdbStoreBackup002 start*********');
         {
             let u8 = new Uint8Array([1, 2, 3]);
             let ValuesBucket = {
@@ -110,10 +110,9 @@ describe('RdbStoreBackupTest',function(){
                 'age': 18,
                 'salary': 100.5,
                 'blobType': u8,
-            };
-
+            }
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
-            await console.log('insert done4'+insertPromise)
+            await console.log('insert done4' + insertPromise)
             await expect(4).assertEqual(insertPromise);
         }
         {
@@ -124,8 +123,9 @@ describe('RdbStoreBackupTest',function(){
                 'salary': 100.5,
                 'blobType': u8,
             };
+
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
-            await console.log('insert done5'+insertPromise)
+            await console.log('insert done5' + insertPromise)
             await  expect(5).assertEqual(insertPromise);
         }
         {
@@ -137,20 +137,20 @@ describe('RdbStoreBackupTest',function(){
                 'blobType': u8,
             };
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
-            await console.log('insert done6'+insertPromise)
+            await console.log('insert done6' + insertPromise)
             await expect(6).assertEqual(insertPromise);
         }
-        try{
+        try {
             let u8 = new Uint8Array([1, 2, 3]);
             await rdbStore.executeSql('DELETE FROM test WHERE age = ?', ['18']);
-            let store = await rdbStore.backup('RdbStoreBackupTest',u8);
-            await console.log('backUp002 done ' +store)
+            let store = await rdbStore.backup('RdbStoreBackupTest', u8);
+            await console.log('backUp002 done ' + store)
             await expect(true).assertEqual(store);
-        }catch(e){
+        } catch (e) {
             await console.log('backUp002 error ' + e);
         }
         done();
-        console.log(TAG+'****************testRdbStoreBackup002 end****************');
+        console.log(TAG + '****************testRdbStoreBackup002 end****************');
     })
 
     /*
@@ -159,8 +159,8 @@ describe('RdbStoreBackupTest',function(){
      * @tc.desc RdbStore BackUp interface test
      */
 
-    it('testRdbStoreBackup003',0,async function (done){
-        console.log(TAG+'**********testRdbStoreBackup003 start*********');
+    it('testRdbStoreBackup003', 0, async function (done){
+        console.log(TAG + '**********testRdbStoreBackup003 start*********');
         {
             let u8 = new Uint8Array([1, 2, 3]);
             let ValuesBucket = {
@@ -168,10 +168,9 @@ describe('RdbStoreBackupTest',function(){
                 'age': 18,
                 'salary': 100.5,
                 'blobType': u8,
-            };
-
+            }
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
-            await console.log('insert done7'+insertPromise)
+            await console.log('insert done7' + insertPromise)
             await expect(7).assertEqual(insertPromise);
         }
         {
@@ -181,9 +180,9 @@ describe('RdbStoreBackupTest',function(){
                 'age': 18,
                 'salary': 100.5,
                 'blobType': u8,
-            };
+            }
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
-            await console.log('insert done8'+insertPromise)
+            await console.log('insert done8' + insertPromise)
             await  expect(8).assertEqual(insertPromise);
         }
         {
@@ -193,27 +192,26 @@ describe('RdbStoreBackupTest',function(){
                 'age': 20,
                 'salary': 100.5,
                 'blobType': u8,
-            };
-
+            }
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
             await console.log('insert done9' + insertPromise)
             await expect(9).assertEqual(insertPromise);
         }
-        try{
+        try {
             let store = await rdbStore.backup('');
             await console.log('backUp003 done ' + store);
-        }catch(e){
+        } catch (e) {
             await console.log('backUp003 error ' + e);
             await  expect(null).assertFail();
         }
-        try{
+        try {
             let store = await rdbStore.backup('/data/test');
             await console.log('backUp003 done ' + store);
-        }catch(e){
+        } catch (e) {
             await console.log('backUp003 error ' + e);
         }
         done();
-        console.log(TAG+'****************testRdbStoreBackup003 end****************');
+        console.log(TAG + '****************testRdbStoreBackup003 end****************');
     })
 
     /*
@@ -221,9 +219,9 @@ describe('RdbStoreBackupTest',function(){
      * @tc.number SUB_DDM_AppDataFWK_JSRdbStore_0040
      * @tc.desc RdbStore BackUp interface test
      */
-    
-    it('testRdbStoreBackup004',0,async function (done){
-        console.log(TAG+'**********testRdbStoreBackup004 start*********');
+
+    it('testRdbStoreBackup004', 0, async function (done){
+        console.log(TAG + '**********testRdbStoreBackup004 start*********');
         {
             let u8 = new Uint8Array([1, 2, 3]);
             let ValuesBucket = {
@@ -231,8 +229,7 @@ describe('RdbStoreBackupTest',function(){
                 'age': 18,
                 'salary': 100.5,
                 'blobType': u8,
-            };
-
+            }
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
             await console.log('insert done10 ' + insertPromise)
             await expect(10).assertEqual(insertPromise);
@@ -244,7 +241,7 @@ describe('RdbStoreBackupTest',function(){
                 'age': 18,
                 'salary': 100.5,
                 'blobType': u8,
-            };
+            }
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
             await console.log('insert done11 ' + insertPromise)
             await  expect(11).assertEqual(insertPromise);
@@ -256,22 +253,22 @@ describe('RdbStoreBackupTest',function(){
                 'age': 20,
                 'salary': 100.5,
                 'blobType': u8,
-            };
+            }
             let insertPromise = await rdbStore.insert('test', ValuesBucket);
             await console.log('insert done12 ' + insertPromise)
             await expect(12).assertEqual(insertPromise);
         }
         await rdbStore.beginTransaction();
-        try{
+        try {
             let store = await rdbStore.backup('backUp004.db');
             await console.log('backUp004 done ' + store);
             await  expect(null).assertFail();
-        }catch(e){
+        } catch (e) {
             await console.log('backUp004 error ' + e);
         }
         await rdbStore.endTransaction();
         done();
-        console.log(TAG+'****************testRdbStoreBackup004 end****************');
+        console.log(TAG + '****************testRdbStoreBackup004 end****************');
     })
     console.log(TAG + '*************Unit Test End*************');
 })

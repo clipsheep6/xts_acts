@@ -15,10 +15,10 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import ohosDataRdb from '@ohos.data.rdb';
-const TAG = '[RDB_JSKITS_TEST]'
-const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, ' 
-    + 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
 
+const TAG = '[RDB_JSKITS_TEST]'
+const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
++ 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
 const STORE_CONFIG = {
     name: 'countTest.db'
 }
@@ -58,7 +58,7 @@ describe('rdbStoreInsertTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket);
+            let insertPromise = await rdbStore.insert('test', valueBucket);
             await console.log(TAG + 'insert first done: ' + insertPromise);
             await expect(1).assertEqual(insertPromise);
         }
@@ -80,7 +80,7 @@ describe('rdbStoreInsertTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket)
+            let insertPromise = await rdbStore.insert('test', valueBucket)
             await console.log(TAG + 'insert third done: ' + insertPromise);
             await expect(3).assertEqual(insertPromise);
         }
@@ -167,7 +167,7 @@ describe('rdbStoreInsertTest', function () {
      * @tc.number SUB_DDM_AppDataFWK_JSRdbStore_0030
      * @tc.desc RdbStore Count interface test
      */
-    
+
     it('countTest003', 0, async function (done) {
         var u8 = new Uint8Array([3, 4, 5])
         console.log(TAG + '************* countTest003 start *************');
@@ -235,7 +235,7 @@ describe('rdbStoreInsertTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket);
+            let insertPromise = await rdbStore.insert('test', valueBucket);
             await expect(7).assertEqual(insertPromise);
             await console.log(TAG + 'insert first done: ' + insertPromise);
         }
@@ -257,7 +257,7 @@ describe('rdbStoreInsertTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket)
+            let insertPromise = await rdbStore.insert('test', valueBucket)
             await expect(9).assertEqual(insertPromise);
             await console.log(TAG + 'insert third done: ' + insertPromise);
         }

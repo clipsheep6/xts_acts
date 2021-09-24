@@ -15,9 +15,10 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import ohosDataRdb from '@ohos.data.rdb';
+
 const TAG = '[RDB_JSKITS_TEST]'
-const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, ' 
-    + 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
+const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
++ 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
 const STORE_CONFIG = {
     name: 'delete.db'
 }
@@ -57,7 +58,7 @@ describe('rdbStoreDeleteTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket)
+            let insertPromise = await rdbStore.insert('test', valueBucket)
             await expect(1).assertEqual(insertPromise);
             await console.log(TAG + 'insert first done: ' + insertPromise);
         }
@@ -68,7 +69,7 @@ describe('rdbStoreDeleteTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket)
+            let insertPromise = await rdbStore.insert('test', valueBucket)
             await expect(2).assertEqual(insertPromise);
             await console.log(TAG + 'insert second done: ' + insertPromise);
         }
@@ -79,19 +80,19 @@ describe('rdbStoreDeleteTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket)
+            let insertPromise = await rdbStore.insert('test', valueBucket)
             await expect(3).assertEqual(insertPromise);
             await console.log(TAG + 'insert third done: ' + insertPromise);
         }
         let predicates = new ohosDataRdb.RdbPredicates('test');
         let resultSet = await rdbStore.query(predicates, ['id', 'name', 'age', 'salary', 'blobType']);
-        try{
-            let count=await rdbStore.delete(predicates);
+        try {
+            let count = await rdbStore.delete(predicates);
             await expect(3).assertEqual(count);
-            let result = await rdbStore.querySql('SELECT * FROM test',null);
+            let result = await rdbStore.querySql('SELECT * FROM test', null);
             await expect(false).assertEqual(resultSet.goToFirstRow());
             await console.log('delete1 done ' + count);
-        }catch(e){
+        } catch (e) {
             await console.log('delete1 error ' + e);
         }
         done()
@@ -114,7 +115,7 @@ describe('rdbStoreDeleteTest', function () {
                 'salary': 100.5,
                 'blobType': u8,
             }
-            let insertPromise =await rdbStore.insert('test', valueBucket)
+            let insertPromise = await rdbStore.insert('test', valueBucket)
             await expect(4).assertEqual(insertPromise);
             await console.log(TAG + 'insert first done: ' + insertPromise);
         }
@@ -129,17 +130,16 @@ describe('rdbStoreDeleteTest', function () {
             await expect(5).assertEqual(insertPromise);
             await console.log(TAG + 'insert second done: ' + insertPromise);
         }
-
         let predicates = new ohosDataRdb.RdbPredicates('test');
         let resultSet = await rdbStore.query(predicates, ['id', 'name', 'age', 'salary', 'blobType']);
         predicates.equalTo('id', '1')
-        try{
-            let count=await rdbStore.delete(predicates);
+        try {
+            let count = await rdbStore.delete(predicates);
             await expect(0).assertEqual(count);
             await console.log('delete2 done ' + count);
-            let result = await rdbStore.querySql('SELECT * FROM test',['id','1']);
+            let result = await rdbStore.querySql('SELECT * FROM test', ['id', '1']);
             await expect(true).assertEqual(resultSet.goToFirstRow());
-        }catch(e){
+        } catch (e) {
             await console.log('delete2 error ' + e);
         }
         done();
@@ -178,12 +178,12 @@ describe('rdbStoreDeleteTest', function () {
             await console.log(TAG + 'insert second done: ' + insertPromise);
         }
         let predicates = new ohosDataRdb.RdbPredicates('test1');
-        predicates.equalTo('id','1');
-        try{
-            let count= await rdbStore.delete(predicates);
+        predicates.equalTo('id', '1');
+        try {
+            let count = await rdbStore.delete(predicates);
             await console.log('delete3 done ' + count);
             await expect(null).assertFail();
-        }catch(e){
+        } catch (e) {
             await console.log('delete3 error ' + e);
         }
         done();
@@ -234,11 +234,11 @@ describe('rdbStoreDeleteTest', function () {
         }
         let predicates = new ohosDataRdb.RdbPredicates('test1');
         predicates.equalTo('aaaid', '1');
-        try{
+        try {
             let count = await rdbStore.delete(predicates);
             await console.log('delete4 done ' + count);
             await expect(null).assertFail();
-        }catch(e){
+        } catch (e) {
             await console.log('delete4 error ' + e);
         }
         done();
