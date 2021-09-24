@@ -17,18 +17,19 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 import ohosDataRdb from '@ohos.data.rdb';
 
 const TAG = "[RDB_JSKITS_TEST]"
-const CREATE_User_TABLE_TEST = "CREATE TABLE IF NOT EXISTS user (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL)";
-const CREATE_Book_TABLE_TEST = "CREATE TABLE IF NOT EXISTS book (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "userId INTEGER)";
+const createUserTableTest = "CREATE TABLE IF NOT EXISTS user (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " 
++ "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL)";
+const createBookTableTest = "CREATE TABLE IF NOT EXISTS book (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+ + "name TEXT NOT NULL, " + "userId INTEGER)";
 const STORE_CONFIG = {
     name: "joinTest.db"
 }
 var rdbStore = undefined;
 describe('rdbStoreJoinTest', function () {
     beforeAll(async function () {
-        console.info(TAG + 'beforeAll' + STORE_CONFIG.storageMode)
         rdbStore = await ohosDataRdb.getRdbStore(STORE_CONFIG, 1);
-        await rdbStore.executeSql(CREATE_User_TABLE_TEST, null);
-        await rdbStore.executeSql(CREATE_Book_TABLE_TEST, null);
+        await rdbStore.executeSql(createUserTableTest, null);
+        await rdbStore.executeSql(createBookTableTest, null);
         const valueBucket = {
             "name": "zhangsan",
             "age": 29,
@@ -61,7 +62,7 @@ describe('rdbStoreJoinTest', function () {
             object1.add(User[i].name);
             object1.add(User[i].age);
             object1.add(User[i].salary);
-            await rdbStore.executeSql(CREATE_User_TABLE_TEST, object1);
+            await rdbStore.executeSql(createUserTableTest, object1);
         }
         const valueBucket5 = {
             "name": "sanguo",
@@ -81,7 +82,7 @@ describe('rdbStoreJoinTest', function () {
             object.add(books[i].id);
             object.add(books[i].name);
             object.add(books[i].userId);
-            await rdbStore.executeSql(CREATE_Book_TABLE_TEST, object);
+            await rdbStore.executeSql(createBookTableTest, object);
         }
     })
     beforeEach(function () {
@@ -186,7 +187,8 @@ describe('rdbStoreJoinTest', function () {
         const name = await resultSet.getString(await resultSet.getColumnIndex("name"));
         const age = await resultSet.getLong(await resultSet.getColumnIndex("age"));
         const salary = await resultSet.getDouble(await resultSet.getColumnIndex("salary"));
-        await console.log(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary);
+        await console.log(TAG + "id=" + id + ", name=" + name + ", age="
+        + age + ", salary=" + salary);
         await expect(false).assertEqual(resultSet.goToNextRow())
         await console.log(TAG + "resultSet goToNextRow done");
         await console.log("innerJoin4 done" + predicates.joinCount);
