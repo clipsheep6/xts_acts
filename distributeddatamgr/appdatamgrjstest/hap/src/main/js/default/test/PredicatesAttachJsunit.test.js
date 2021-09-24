@@ -16,16 +16,15 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 import ohosDataRdb from '@ohos.data.rdb';
 
 const TAG = "[RDB_JSKITS_TEST]"
-const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+const createTableTest = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 const STORE_CONFIG = {
     name: "attachTest.db"
 }
 var rdbStore = undefined;
 describe('RdbStoreAddAttachTest', function () {
     beforeAll(async function () {
-        console.info(TAG + 'beforeAll' + STORE_CONFIG.storageMode)
         rdbStore = await ohosDataRdb.getRdbStore(STORE_CONFIG, 1);
-        await rdbStore.executeSql(CREATE_TABLE_TEST, null);
+        await rdbStore.executeSql(createTableTest, null);
     })
     beforeEach(function () {
         console.info(TAG + 'beforeEach')
