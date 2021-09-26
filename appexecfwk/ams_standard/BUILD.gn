@@ -20,8 +20,8 @@ group("ams_standard") {
       "amsdatauriutils:amsDataUriUtils",
       "amszipfileunzipfilest:amsZipfileUnzipfileST",
       "fwkdataaccessor:FWKDataAccessor",
-      "serviceability/stserviceabilityserver:amsStServiceAilityServer",
       "serviceability/stserviceabilityclient:amsStServiceAbilityClient",
+      "serviceability/stserviceabilityserver:amsStServiceAilityServer",
     ]
   }
 }
