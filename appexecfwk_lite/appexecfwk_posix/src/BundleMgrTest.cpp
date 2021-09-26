@@ -869,8 +869,8 @@ HWTEST_F(BundleMgrTest, testGetBundleSizeWithLegal_0001, Function | MediumTest |
 HWTEST_F(BundleMgrTest, testGetBundleSizeWithLegal_0002, Function | MediumTest | Level1)
 {
     printf("------start testGetBundleSizeWithLegal_0002------\n");
-    char *bundleName = (char*)"com.openharmony.testjsdemoBundleNamelengthequalto127" \
-"testjsdemoBundleNamelengthequalto127testjsdemoBundleNamelengthequalto127testjsde";
+    char *bundleName = (char*)"com.openharmony.testjsdemoBundleNamelengthe" \
+"qualto127testjsdemoBundleNamelengthequalto127testjsdemoBundleNamelengthequalto127tes";
     sem_init(&g_sem, 0, 0);
     InstallParam installParam = {.installLocation = 1,.keepData = false };
     string hapPath = g_testPath + "testGetBundleNameWithLegal127.hap";
