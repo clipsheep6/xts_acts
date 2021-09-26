@@ -46,7 +46,7 @@ var bundleNameList = [
 
 describe('ActsAmsCallBackSecondScene', function () {
     console.info('----ActsAmsCallBackSecondScene----');
-    beforeAll(function () {
+    beforeAll(async function (done) {
         featureAbility.startAbility(
             {
                 want:
@@ -60,19 +60,16 @@ describe('ActsAmsCallBackSecondScene', function () {
                 },
             },
         );
-        var maxnum = 20, flag = 1;
-        abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag, data => {
-            console.info('queryRecentAbilityMissionInfos data  ' + JSON.stringify(data));
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].baseAbility.bundleName != 'com.example.actsamscallbacksecondscene' &&
-                    data[i].topAbility.bundleName != 'com.example.actsamscallbacksecondscene') {
-                    abilitymanager.removeMission(data[i].id,
-                        (info) => {
-                            console.info(' removeMission data  [' + info + ']');
-                        });
-                }
+        var maxnum = 10, flag = 1;
+        var data = await abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag);
+        console.log('queryRecentAbilityMissionInfos data  ' + JSON.stringify(data));
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].baseAbility.bundleName != 'com.example.actsamscallbacksecondscene' &&
+                data[i].topAbility.bundleName != 'com.example.actsamscallbacksecondscene') {
+                var info = abilitymanager.removeMission(data[i].id);
+                console.log(' removeMission data  [' + info + ']');
             }
-        });
+        };
         featureAbility.startAbility(
             {
                 want:
@@ -99,29 +96,14 @@ describe('ActsAmsCallBackSecondScene', function () {
                 },
             }
         );
+        setTimeout(done(), 5000);
     });
 
-    afterAll(function () {
-        featureAbility.startAbility(
-            {
-                want:
-                {
-                    deviceId: "",
-                    bundleName: "com.ohos.launcher",
-                    abilityName: "com.ohos.launcher.MainAbility",
-                    action: "action1",
-                    entities: ["entity1"],
-                    type: "MIMETYPE",
-                    uri: "key={true,true,false}",
-                    options:
-                        {},
-                    parameters:
-                        {},
-                },
-            },
-        );
-        abilitymanager.clearMissions();
-    });
+    function timeout() {
+        expect().assertFail();
+        console.debug('Acts_Ams_test=========timeout========');
+        done();
+    }
 
     /*
      * @tc.number    : Acts_Ams_test_1800
@@ -129,40 +111,39 @@ describe('ActsAmsCallBackSecondScene', function () {
      * @tc.desc      : Get All Running Processes Info(by CallBack)
      */
     it('Acts_Ams_test_1800', 0, async function (done) {
-        setTimeout(function () {
-            abilitymanager.getAllRunningProcesses(
-                (error, info) => {
-                    console.info('getAllRunningProcesses error.code \
-                    ' + error.code + ', data length [' + info.length + ']');
-                    console.info('Acts_Ams_test_1800 getAllRunningProcesses data  ' + JSON.stringify(info));
-                    expect(Array.isArray(info)).assertEqual(true);
-                    expect(info.length).assertEqual(5);
-                    for (var i = 0; i < info.length; i++) {
-                        expect(typeof (info[i].pid)).assertEqual("number");
-                        expect(info[i].pid).assertLarger(0);
+        abilitymanager.getAllRunningProcesses(
+            (error, info) => {
+                console.info('getAllRunningProcesses error.code \
+                ' + error.code + ', data length [' + info.length + ']');
+                console.info('Acts_Ams_test_1800 getAllRunningProcesses data  ' + JSON.stringify(info));
+                expect(Array.isArray(info)).assertEqual(true);
+                expect(info.length).assertEqual(5);
+                for (var i = 0; i < info.length; i++) {
+                    expect(typeof (info[i].pid)).assertEqual("number");
+                    expect(info[i].pid).assertLarger(0);
 
-                        expect(typeof (info[i].processName)).assertEqual("string");
-                        expect(info[i].processName.length).assertLarger(0);
-                        expect(bundleNameList.indexOf(info[i].processName)).assertLarger(-1);
+                    expect(typeof (info[i].processName)).assertEqual("string");
+                    expect(info[i].processName.length).assertLarger(0);
+                    expect(bundleNameList.indexOf(info[i].processName)).assertLarger(-1);
 
-                        expect(Array.isArray(info[i].pkgList)).assertEqual(true);
-                        expect(info[i].pkgList.length).assertEqual(0);
+                    expect(Array.isArray(info[i].pkgList)).assertEqual(true);
+                    expect(info[i].pkgList.length).assertEqual(0);
 
-                        expect(typeof (info[i].uid)).assertEqual("number");
-                        expect(info[i].uid).assertLarger(0);
+                    expect(typeof (info[i].uid)).assertEqual("number");
+                    expect(info[i].uid).assertLarger(0);
 
-                        expect(typeof (info[i].lastMemoryLevel)).assertEqual("number");
-                        expect(info[i].lastMemoryLevel).assertEqual(-1);
+                    expect(typeof (info[i].lastMemoryLevel)).assertEqual("number");
+                    expect(info[i].lastMemoryLevel).assertEqual(-1);
 
-                        expect(typeof (info[i].weight)).assertEqual("number");
-                        expect(info[i].weight).assertEqual(-1);
+                    expect(typeof (info[i].weight)).assertEqual("number");
+                    expect(info[i].weight).assertEqual(-1);
 
-                        expect(typeof (info[i].weightReasonCode)).assertEqual("number");
-                        expect(info[i].weightReasonCode).assertEqual(WeightReasonCode.REASON_UNKNOWN);
-                    }
-                });
-            done();
-        }, 5000);
+                    expect(typeof (info[i].weightReasonCode)).assertEqual("number");
+                    expect(info[i].weightReasonCode).assertEqual(WeightReasonCode.REASON_UNKNOWN);
+                }
+                done();
+            });
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -175,7 +156,7 @@ describe('ActsAmsCallBackSecondScene', function () {
         abilitymanager.queryRunningAbilityMissionInfos(maxnum,
             (error, info) => {
                 console.info('queryRecentAbilityMissionInfos error.code : \
-                ' + error.code + ',data length [' + data.length + ']');
+                ' + error.code + ',data length [' + info.length + ']');
                 console.info('Acts_Ams_test_2000 queryRunningAbilityMissionInfos info  ' + JSON.stringify(info));
                 expect(Array.isArray(info)).assertEqual(true);
                 expect(info.length).assertEqual(3);
@@ -207,8 +188,9 @@ describe('ActsAmsCallBackSecondScene', function () {
                     expect(typeof (info[i].missionDescription.label)).assertEqual("string");
                     expect(typeof (info[i].missionDescription.iconPath)).assertEqual("string");
                 }
+                done();
             });
-        done();
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -221,7 +203,7 @@ describe('ActsAmsCallBackSecondScene', function () {
         abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag,
             (error, info) => {
                 console.info('queryRunningAbilityMissionInfos error.code : \
-                ' + error.code + ',data length [' + data.length + ']');
+                ' + error.code + ',data length [' + info.length + ']');
                 console.info('Acts_Ams_test_2200 queryRecentAbilityMissionInfos info  ' + JSON.stringify(info));
                 expect(Array.isArray(info)).assertEqual(true);
                 expect(info.length).assertEqual(3);
@@ -253,8 +235,9 @@ describe('ActsAmsCallBackSecondScene', function () {
                     expect(typeof (info[i].missionDescription.label)).assertEqual("string");
                     expect(typeof (info[i].missionDescription.iconPath)).assertEqual("string");
                 }
+                done();
             });
-        done();
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -270,8 +253,9 @@ describe('ActsAmsCallBackSecondScene', function () {
                 console.info('Acts_Ams_test_2400 removeMission error.code \
                 ' + error.code + ',data  [' + info + ']');
                 expect(info).assertEqual(0);
+                done();
             });
-        done();
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -287,8 +271,9 @@ describe('ActsAmsCallBackSecondScene', function () {
                 console.info('Acts_Ams_test_2800 moveMissionToTop error.code \
                 ' + error.code + ',data  [' + info + ']');
                 expect(info).assertEqual(0);
+                done();
             });
-        done();
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -304,8 +289,9 @@ describe('ActsAmsCallBackSecondScene', function () {
                 console.info('Acts_Ams_test_3000 removeMissions error.code \
                 ' + error.code + ',data  [' + info + ']');
                 expect(info).assertLarger(0);
+                done();
             });
-        done();
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -319,8 +305,9 @@ describe('ActsAmsCallBackSecondScene', function () {
                 console.info('Acts_Ams_test_2600 clearMissions error.code \
                 ' + error.code + ',data  [' + info + ']');
                 expect(info).assertLarger(0);
+                done();
             });
-        done();
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -334,9 +321,9 @@ describe('ActsAmsCallBackSecondScene', function () {
                 console.info('Acts_Ams_test_3200 killProcessesByBundleName error.code: \
                 ' + error.code + ',data  [' + info + ']');
                 expect(info).assertEqual(0);
+                done();
             });
-        done();
-
+        setTimeout(timeout, 5000);
     })
 })
 
