@@ -227,8 +227,7 @@ describe('ChildProcessTest', function () {
 
     // process GetUid test
     it('GetUid_test_001', 0, function () {
-        var that = new process.Process()
-        var result = that.getUid
+        var result = process.getUid
         if(result > 0) {
             var flag = true
         }
@@ -236,9 +235,8 @@ describe('ChildProcessTest', function () {
     })
 
     it('GetUid_test_002', 0, function () {
-        var that = new process.Process()
         for(var i = 0; i < 3; i++){
-            var result = that.getUid
+            var result = process.getUid
             if(result != null) {
                 if(result > 0) {
                     var flag = true
@@ -250,8 +248,7 @@ describe('ChildProcessTest', function () {
 
     // process GetGid test
     it('GetGid_test_001', 0, function () {
-        var that = new process.Process()
-        var result = that.getGid
+        var result = process.getGid
         if(result > 0) {
             var flag = true
         }
@@ -259,9 +256,8 @@ describe('ChildProcessTest', function () {
     })
 
     it('GetGid_test_002', 0, function () {
-        var that = new process.Process()
         for(var i = 0; i < 3; i++){
-            var result = that.getGid
+            var result = process.getGid
             if(result != null) {
                 if(result > 0) {
                     var flag = true
@@ -273,8 +269,7 @@ describe('ChildProcessTest', function () {
 
     // process GetEuid test
     it('GetEuid_test_001', 0, function () {
-        var that = new process.Process()
-        var result = that.getEuid
+        var result = process.getEuid
         if(result > 0) {
             var flag = true
         }
@@ -282,9 +277,8 @@ describe('ChildProcessTest', function () {
     })
 
     it('GetEuid_test_002', 0, function () {
-        var that = new process.Process()
         for(var i = 0; i < 3; i++){
-            var result = that.getEuid
+            var result = process.getEuid
             if(result != null) {
                 if(result > 0) {
                     var flag = true
@@ -296,8 +290,7 @@ describe('ChildProcessTest', function () {
 
     // process GetEgid test
     it('GetEgid_test_001', 0, function () {
-        var that = new process.Process()
-        var result = that.getEgid
+        var result = process.getEgid
         if(result > 0) {
             var flag = true
         }
@@ -305,9 +298,8 @@ describe('ChildProcessTest', function () {
     })
 
     it('GetEgid_test_002', 0, function () {
-        var that = new process.Process()
         for(var i = 0; i < 3; i++){
-            var result = that.getEgid
+            var result = process.getEgid
             if(result != null) {
                 if(result > 0) {
                     var flag = true
@@ -319,8 +311,7 @@ describe('ChildProcessTest', function () {
 
     // process GetGroups test
     it('GetGroups_test_001', 0, function () {
-        var that = new process.Process()
-        var result = that.getGroups
+        var result = process.getGroups
         var len = result.length
         if(len > 0) {
             var flag = true
@@ -329,9 +320,8 @@ describe('ChildProcessTest', function () {
     })
 
     it('GetGroups_test_002', 0, function () {
-        var that = new process.Process()
         for(var i = 0; i < 3; i++){
-            var result = that.getGroups
+            var result = process.getGroups
             if(result != null) {
                 var len = result.length
                 if(len > 0) {
@@ -344,92 +334,81 @@ describe('ChildProcessTest', function () {
 
     // process chdir test
     it('chdir_test_001', 0, function () {
-        var that = new process.Process()
-        var result = that.chdir('/system')
-        var result1 = that.cwd()
+        var result = process.chdir('/system')
+        var result1 = process.cwd()
         expect(result1).assertEqual('/system')
     })
 
     it('chdir_test_002', 0, function () {
-        var that = new process.Process()
-        var result = that.chdir('/system/lib')
-        var result1 = that.cwd()
+        var result = process.chdir('/system/lib')
+        var result1 = process.cwd()
         expect(result1).assertEqual('/system/lib')
     })
 
     it('chdir_test_003', 0, function () {
-        var that = new process.Process()
-        var result = that.chdir('/..')
-        var result1 = that.cwd()
+        var result = process.chdir('/..')
+        var result1 = process.cwd()
         expect(result1).assertEqual('/')
     })
 
     // process kill test
     it('kill_test_001', 0, function () {
-        var that = new process.Process()
-        var result = that.kill(123, 3)
+        var result = process.kill(123, 3)
         expect(result).assertEqual(false)
     })
 
     it('kill_test_002', 0, function () {
-        var that = new process.Process()
-        var pres = that.getPid
-        var result = that.kill(pres, 23)
+        var pres = process.getPid
+        var result = process.kill(pres, 23)
         expect(result).assertEqual(true)
     })
 
     it('kill_test_003', 0, function () {
-        var that = new process.Process()
-        var pres = that.getPid
-        var result = that.kill(pres, 28)
+        var pres = process.getPid
+        var result = process.kill(pres, 28)
         expect(result).assertEqual(true)
     })
 
     it('kill_test_004', 0, function () {
-        var that = new process.Process()
-        var pres = that.getPid
-        var result = that.kill(pres, 17)
+        var pres = process.getPid
+        var result = process.kill(pres, 17)
         expect(result).assertEqual(true)
     })
 
     // process uptime test
     it('uptime_test_001', 0, function () {
-        var that = new process.Process()
-        var result1 = that.uptime()
+        var result1 = process.uptime()
         function sleep(d){
-            while(that.uptime() - result1 <= d);
+            while(process.uptime() - result1 <= d);
         }
         sleep(5);
-        var result2 = that.uptime() - 6
+        var result2 = process.uptime() - 6
         expect(result1).assertEqual(result2)
     })
 
     it('uptime_test_002', 0, function () {
-        var that = new process.Process()
-        var result1 = that.uptime()
+        var result1 = process.uptime()
         function sleep(d){
-            while(that.uptime() - result1 <= d);
+            while(process.uptime() - result1 <= d);
         }
         sleep(8);
-        var result2 = that.uptime() - 9
+        var result2 = process.uptime() - 9
         expect(result1).assertEqual(result2)
     })
 
     it('uptime_test_003', 0, function () {
-        var that = new process.Process()
-        var result1 = that.uptime()
+        var result1 = process.uptime()
         function sleep(d){
-            while(that.uptime() - result1 <= d);
+            while(process.uptime() - result1 <= d);
         }
         sleep(10);
-        var result2 = that.uptime() - 11
+        var result2 = process.uptime() - 11
         expect(result1).assertEqual(result2)
     })
 
     // process pid test
     it('pid_test_001', 0, function () {
-        var that = new process.Process()
-        var result = that.getPid
+        var result = process.getPid
         if(result > 0) {
             var flag = true
         }
@@ -437,10 +416,9 @@ describe('ChildProcessTest', function () {
     })
 
     it('pid_test_002', 0, function () {
-        var that = new process.Process()
         for(var i = 0; i < 3; i++)
         {
-            var result = that.getPid
+            var result = process.getPid
             if(result > 0) {
                 var flag = true
             }
@@ -450,8 +428,7 @@ describe('ChildProcessTest', function () {
 
     // process ppid test
     it('ppid_test_001', 0, function () {
-        var that = new process.Process()
-        var result = that.getPpid
+        var result = process.getPpid
         if(result > 0) {
             var flag = true
         }
@@ -459,10 +436,9 @@ describe('ChildProcessTest', function () {
     })
 
     it('ppid_test_002', 0, function () {
-        var that = new process.Process()
         for(var i = 0; i < 3; i++)
         {
-            var result = that.getPpid
+            var result = process.getPpid
             if(result > 0) {
                 var flag = true
             }
@@ -472,44 +448,39 @@ describe('ChildProcessTest', function () {
 
     // process cwd test
     it('cwd_test_001', 0, function () {
-        var that =new process.Process()
-        var cwd = that.cwd()
+        var cwd = process.cwd()
         expect(cwd).assertEqual('/')
     })
 
     it('cwd_test_002', 0, function () {
-        var that = new process.Process()
         for(var i = 0; i < 3; i++)
         {
-            var cwd = that.cwd()
+            var cwd = process.cwd()
             expect(cwd).assertEqual('/')
         }
     })
 
     // process on test
     it('on_test_001', 0, function () {
-        var that = new process.Process()
         function add(){
             var value = 3 + 2
         }
-        var ontest = that.on(1, add)
+        var ontest = process.on(1, add)
         expect(ontest).assertEqual(false)
     })
 
     it('on_test_002', 0, function () {
-        var that = new process.Process()
         function add1(num){
             var value = num + 3
         }
-        var on = that.on("add123", add1)
+        var on = process.on("add123", add1)
     })
 
     it('on_test_003', 0, function () {
-        var that = new process.Process()
         function add2(num0, num1){
             var value = num0 + num1
         }
-        var ontest = that.on(879, add2)
+        var ontest = process.on(879, add2)
         expect(ontest).assertEqual(false)
     })
 })
