@@ -14,9 +14,9 @@
  */
 
 #include "gtest/gtest.h"
-#include "sys/socket.h"
-#include "arpa/inet.h"
-#include "netinet/tcp.h"
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/tcp.h>
 #include <sys/wait.h>
 #include <string.h>
 #include <errno.h>
@@ -414,6 +414,7 @@ static int SelectServerForFork(unsigned int timeoutSec)
     int fds[TEST_FD_COUNT] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
     fds[0] = srvFd;
     long timeout = timeoutSec;
+    long timeout = static_cast<long>(timeoutSec);
     struct timeval timev = {.tv_sec = timeout, .tv_usec = 0};
     struct sockaddr_in clnAddr = {0};
     socklen_t clnAddrLen = sizeof(clnAddr);

@@ -22,10 +22,11 @@ hcpptest_suite("ActsLwipTest") {
     "restrict=",
   ]
 
-  deps = ["//third_party/bounds_checking_function:libsec_shared" ]
+  deps = [ "//third_party/bounds_checking_function:libsec_shared" ]
 
   cflags = [ "-Wno-error" ]
       
+
   ldflags = [
     "-lstdc++",
     "-lm",
