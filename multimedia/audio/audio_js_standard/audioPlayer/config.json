@@ -1,0 +1,104 @@
+{
+  "app": {
+    "bundleName": "ohos.acts.plrdtest.multimedia",
+    "vendor": "acts",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 7,
+      "target": 7,
+      "releaseType": "Beta1"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "ohos.acts.plrdtest.multimedia",
+    "name": ".MyApplication",
+    "mainAbility": "ohos.testkit.runner.EntryAbility",
+    "deviceType": [
+      "phone",
+      "default",
+      "tablet",
+      "tv",
+      "car"
+    ],
+    "distro": {
+      "moduleType": "feature",
+      "installationFree": true,
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test" 
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "name": "ohos.testkit.runner.EntryAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "default",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
+      }
+    ],
+
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.CAMERA"
+      },
+      {
+        "name": "ohos.permission.READ_MEDIA"
+      },
+      {
+        "name": "ohos.permission.WRITE_MEDIA"
+      },
+      {
+        "name": "ohos.permission.WRITE_EXTERNAL_STORAGE"
+      },
+      {
+        "name": "ohos.permission.READ_USER_STORAGE"
+      },
+      {
+        "name": "ohos.permission.RECORD_AUDIO"
+      },
+      {
+        "name": "ohos.permission.MICROPHONE"
+      },
+      {
+        "name": "ohos.permission.WRITE_USER_STORAGE"
+      },
+      {
+        "name": "ohos.permission.READ_EXTERNAL_STORAGE"
+      },
+      {
+        "name": "ohos.permission.WRITE_MEDIA_STORAGE"
+      },{
+        "name":"ohos.permission.WRITE_EXTERNAL_MEDIA_MEMORY"
+      }
+    ]
+  }
+}
