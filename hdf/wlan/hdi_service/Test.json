@@ -1,0 +1,18 @@
+{
+    "kits": [
+        {
+            "push": [
+                "WlanHdiServiceTest->/data/local/tmp/WlanHdiServiceTest"
+            ],
+            "type": "PushKit"
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "WlanHdiServiceTest",
+        "runtime-hint": "1s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "description": "Configuration for WlanHdiServiceTest Tests"
+}
