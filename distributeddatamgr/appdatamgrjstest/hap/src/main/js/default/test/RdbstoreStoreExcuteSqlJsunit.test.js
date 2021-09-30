@@ -276,5 +276,126 @@ describe('rdbStoreInsertTest', function () {
         done();
         console.log(TAG + "************* ExcuteSqlTest0003 end   *************");
     })
+
+    /**
+     * @tc.name resultSet ExcuteSql normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_ExcuteSql_0031
+     * @tc.desc resultSet ExcuteSql normal test
+     */
+
+    it('testRdbStoreExecuteSql001', 0, async function (done) {
+        console.log(TAG + '*********** testRdbStoreExecuteSql001 start *********');
+        {
+            let u8 = new Uint8Array([1, 2, 3]);
+            let ValuesBucket = {
+                'name': ' zhangsan',
+                'age': 18,
+                'salary': 100.5,
+                'blobType': u8
+            }
+            let insertPromise = await rdbStore.insert('test', ValuesBucket);
+            await console.log(TAG + 'insert001 first done' + insertPromise)
+            await expect(1).assertEqual(insertPromise);
+        }
+        rdbStore.version = 3;
+        await console.log(TAG + 'version done');
+        let predicates = new ohosDataRdb.RdbPredicates('test');
+        predicates.equalTo('id', '1');
+        let resultSet = await rdbStore.query(predicates, ['id', 'name', 'age', 'salary', 'blobType'])
+        await console.log(TAG + 'predicates done');
+        await rdbStore.executeSql('SELECT * FROM test WHERE name = ?', ['zhangsan']);
+        await console.log(TAG + 'executeSql01 done');
+        await expect(true).assertEqual(resultSet.goToFirstRow());
+        await expect(false).assertEqual(resultSet.goToNextRow());
+        let versionValues = rdbStore.version;
+        await console.log('version001' + versionValues);
+        await expect(0).assertEqual(versionValues);
+        await console.log(TAG + 'test001 done');
+        done();
+        await console.log(TAG + '************* testRdbStoreExecuteSql001 end ***********');
+    })
+
+    /**
+     * @tc.name resultSet ExcuteSql normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_ExcuteSql_0032
+     * @tc.desc resultSet ExcuteSql normal test
+     */
+
+    it('testRdbStoreExecuteSql002', 0, async function (done) {
+        console.log(TAG + '*********** testRdbStoreExecuteSql002 start *********');
+        {
+            let u8 = new Uint8Array([1, 2, 3]);
+            let ValuesBucket = {
+                'name': ' zhangsan',
+                'age': 18,
+                'salary': 100.5,
+                'blobType': u8
+            }
+            let insertPromise = await rdbStore.insert('test', ValuesBucket);
+            await expect(2).assertEqual(insertPromise);
+            await console.log(TAG + 'insert001 first done' + insertPromise)
+        }
+        rdbStore.version = -1;
+        await rdbStore.executeSql('DELETE FROM test WHERE age = ? OR age= ?', ['25', '30']);
+        await console.log(TAG + 'executeSql02 done');
+        let predicates = new ohosDataRdb.RdbPredicates('test');
+        let resultSet = await rdbStore.query(predicates, ['id', 'name', 'age', 'salary', 'blobType']);
+        let number = await rdbStore.count(predicates);
+        await expect(2).assertEqual(number);
+        await expect(true).assertEqual(resultSet.goToFirstRow());
+        await expect(true).assertEqual(resultSet.goToNextRow());
+        await console.log('executeSql002 end');
+        let versionValues = rdbStore.version;
+        await expect(0).assertEqual(versionValues);
+        await console.log(TAG + 'test002 done');
+        done();
+        await console.log(TAG + '*************testRdbStoreExecuteSql002 end ***********');
+    })
+
+    /**
+     * @tc.name resultSet ExcuteSql normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_ExcuteSql_0033
+     * @tc.desc resultSet ExcuteSql normal test
+     */
+
+    it('testRdbStoreExecuteSql003', 0, async function (done) {
+        console.log(TAG + '*********** testRdbStoreExecuteSql003 start *********');
+        {
+            let u8 = new Uint8Array([1, 2, 3]);
+            let ValuesBucket = {
+                'name': ' zhangsan',
+                'age': 18,
+                'salary': 100.5,
+                'blobType': u8
+            }
+            let insertPromise = await rdbStore.insert('test', ValuesBucket);
+            await expect(3).assertEqual(insertPromise);
+            await console.log(TAG + 'insert001 first done' + insertPromise)
+        }
+        rdbStore.version = '1';
+        let versionValues = rdbStore.version;
+        await console.log('version003' + versionValues);
+        await rdbStore.executeSql('DELETE FROM test WHERE age = ? OR age= ?', ['']);
+        await console.log(TAG + 'test003 done');
+        done();
+        await console.log(TAG + '*************testRdbStoreExecuteSql003 end ***********');
+    })
+
+    /**
+     * @tc.name resultSet ExcuteSql normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_ExcuteSql_0034
+     * @tc.desc resultSet ExcuteSql normal test
+     */
+
+    it('testRdbStoreExecuteSql004', 0, async function (done) {
+        console.log(TAG + '*********** testRdbStoreExecuteSql004 start *********');
+        let statement = rdbStore.executeSql('DELETE FROM test WHERE age = ? OR age= ?', null);
+        await console.log(TAG + 'test004 done' + statement);
+        rdbStore.version = '';
+        let versionValues = rdbStore.version;
+        done();
+        await console.log(TAG + '************* testRdbStoreExecuteSql004 end ***********');
+    })
+
     console.log(TAG + "*************Unit Test End*************");
 })

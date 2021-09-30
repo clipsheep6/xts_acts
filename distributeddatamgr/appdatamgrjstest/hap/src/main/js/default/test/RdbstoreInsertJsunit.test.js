@@ -171,5 +171,121 @@ describe('rdbStoreInsertTest', function () {
         done()
         console.log(TAG + "************* testRdbStoreInsert0003 end   *************");
     })
+
+    /**
+     * @tc.name rdb insert test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Insert_0040
+     * @tc.desc rdb insert test
+     */
+
+    it('testRdbStoreInsert0004', 0, async function (done) {
+        console.log(TAG + '************* testRdbStoreInsert0004 start *************');
+        var u8 = new Uint8Array([3, 4, 5])
+        {
+            const valueBucket = {
+                'name': 'zhangsan',
+                'age': 18,
+                'salary': 100.5,
+                'blobType': u8,
+            }
+            let insertPromise = await rdbStore.insert('test', valueBucket)
+            await expect(1).assertEqual(insertPromise);
+            await console.log(TAG + 'insert first done: ' + insertPromise);
+        }
+        let resultSet = await rdbStore.querySql('SELECT * FROM test WHERE name=?', ['zhangsan']);
+        let predicates = new ohosDataRdb.RdbPredicates('test');
+        try {
+            await console.log(TAG + 'resultSet query done');
+            await expect(true).assertEqual(resultSet.goToFirstRow())
+            const id = await resultSet.getLong(await resultSet.getColumnIndex('id'))
+            const name = await resultSet.getString(await resultSet.getColumnIndex('name'))
+            const age = await resultSet.getLong(await resultSet.getColumnIndex('age'))
+            const salary = await resultSet.getDouble(await resultSet.getColumnIndex('salary'))
+            const blobType = await resultSet.getBlob(await resultSet.getColumnIndex('blobType'))
+            console.log(TAG + '{id=' + id + ', name=' + name + ', age=' + age + ', salary='
+            + salary + ', blobType=' + blobType);
+            expect(1).assertEqual(id);
+            expect('zhangsan').assertEqual(name);
+            expect(18).assertEqual(age);
+            expect(100.5).assertEqual(salary);
+            expect(4).assertEqual(blobType[1]);
+            expect(false).assertEqual(resultSet.goToNextRow())
+            console.log(TAG + 'resultSet goToNextRow done');
+            expect(5).assertEqual(resultSet.columnCount)
+            console.log('resultSet columnCount done');
+            let columnnames = resultSet.columnNames
+            console.log('columnnames' + columnnames);
+        } catch (e) {
+            await console.log('insert1 error ' + e);
+        }
+        done()
+        console.log(TAG + '************* testRdbStoreDelete0004 end   *************');
+    })
+
+    /**
+     * @tc.name rdb insert test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Insert_0050
+     * @tc.desc rdb insert test
+     */
+
+    it('testRdbStoreInsert0005', 0, async function (done) {
+        console.log(TAG + '************* testRdbStoreInsert0005 start *************');
+        try {
+            let insertPromise = await rdbStore.insert('test', null)
+            await console.log(TAG + 'insert first done: ' + insertPromise);
+            await expect(null).assertFail();
+        } catch (e) {
+            await console.log('insert2 error ' + e);
+        }
+        done()
+        console.log(TAG + '************* testRdbStoreInsert0005 end   *************');
+    })
+
+    /**
+     * @tc.name rdb insert test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Insert_0060
+     * @tc.desc rdb insert test
+     */
+
+    it('testRdbStoreInsert0006', 0, async function (done) {
+        console.log(TAG + '************* testRdbStoreInsert0006 start *************');
+        try {
+            const valueBucket = {
+                'name': 'zhangsan',
+                'age': 18,
+                'salary': 100.5,
+            }
+            let insertPromise = await rdbStore.insert(null, valueBucket)
+            await expect(null).assertFail();
+        } catch (e) {
+            await console.log('delete1 error ' + e);
+        }
+        done()
+        console.log(TAG + '************* testRdbStoreDelete0006 end   *************');
+    })
+
+    /**
+     * @tc.name rdb insert test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Insert_0070
+     * @tc.desc rdb insert test
+     */
+
+    it('testRdbStoreInsert0007', 0, async function (done) {
+        console.log(TAG + '************* testRdbStoreInsert0007 start *************');
+        try {
+            const valueBucket = {
+                'name': 'zhangsan',
+                'age': 18,
+                'salary': 100.5,
+            }
+            let insertPromise = await rdbStore.insert('tests', valueBucket)
+            await expect(null).assertFail();
+        } catch (e) {
+            await console.log('delete1 error ' + e);
+        }
+        done()
+        console.log(TAG + '************* testRdbStoreDelete0007 end   *************');
+    })
+
     console.log(TAG + "*************Unit Test End*************");
 })
