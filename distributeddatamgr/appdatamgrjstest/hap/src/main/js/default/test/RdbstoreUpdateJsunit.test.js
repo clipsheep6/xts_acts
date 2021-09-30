@@ -260,6 +260,169 @@ describe('rdbStoreUpdateTest', function () {
         done();
         console.log(TAG + "************* testRdbStoreUpdate0004 end   *************");
     })
+
+    /**
+     * @tc.name resultSet Update test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Update_0050
+     * @tc.desc resultSet Update test
+     */
+
+    it('testRdbStoreUpdate0005', 0, async function (done) {
+        console.log(TAG + "************* testRdbStoreUpdate0005 start *************");
+        {
+            var u8 = new Uint8Array([1, 2, 3])
+            const valueBucket = {
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 100.5,
+                "blobType": u8,
+            }
+            let insertPromise = await rdbStore.insert("test", valueBucket)
+            await expect(1).assertEqual(insertPromise);
+            await console.log(TAG + "insert first done: " + insertPromise);
+        }
+        {
+            var u8 = new Uint8Array([4, 5, 6])
+            const valueBucket = {
+                "name": "lisi",
+                "age": 20,
+                "salary": 200.5,
+                "blobType": u8,
+            }
+            var predicates = new ohosDataRdb.RdbPredicates("test")
+            predicates.equalTo("id", "1")
+            try {
+                let updatePromise = await rdbStore.update(valueBucket, predicates);
+                await expect(1).assertEqual(updatePromise);
+                await console.log(TAG + "update1 done: " + updatePromise);
+                let resultSet = await rdbStore.query(predicates)
+                await expect(true).assertEqual(resultSet.goToFirstRow())
+                const id = await resultSet.getLong(resultSet.getColumnIndex("id"))
+                const name = await resultSet.getString(resultSet.getColumnIndex("name"))
+                const age = await resultSet.getLong(resultSet.getColumnIndex("age"))
+                const salary = await resultSet.getDouble(resultSet.getColumnIndex("salary"))
+                const blobType = await resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+                expect(1).assertEqual(id);
+                expect("lisi").assertEqual(name);
+                expect(20).assertEqual(age);
+                expect(200.5).assertEqual(salary);
+                expect(4).assertEqual(blobType[0]);
+                expect(5).assertEqual(blobType[1]);
+                expect(6).assertEqual(blobType[2]);
+                console.log(TAG + "{id=" + id + ", name=" + name + ", age=" + age + ", salary="
+                + salary + ", blobType=" + blobType);
+                expect(false).assertEqual(resultSet.goToNextRow())
+                resultSet = null;
+            } catch (e) {
+                await console.log(TAG + "update1 error" + e);
+            }
+        }
+        done();
+        console.log(TAG + "************* testRdbStoreUpdate0005 end   *************");
+    })
+
+    /**
+     * @tc.name resultSet Update test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Update_0060
+     * @tc.desc resultSet Update test
+     */
+
+    it('testRdbStoreUpdate0006', 0, async function (done) {
+        console.log(TAG + "************* testRdbStoreUpdate0006 start *************");
+        var u8 = new Uint8Array([1, 2, 3])
+        const valueBucket = {
+            "name": "zhangsan",
+            "age": 18,
+            "salary": 100.5,
+            "blobType": u8,
+        }
+        let predicates = await new ohosDataRdb.RdbPredicates("test")
+        try {
+            let updatePromise = await rdbStore.update(valueBucket, predicates);
+            await console.log(TAG + "update2 done: " + updatePromise);
+            await expect(0).assertEqual(updatePromise);
+        } catch (e) {
+            await console.log(TAG + "update2 error" + e);
+        }
+        done();
+        console.log(TAG + "************* testRdbStoreUpdate0006 end   *************");
+    })
+
+    /**
+     * @tc.name resultSet Update test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Update_0070
+     * @tc.desc resultSet Update test
+     */
+
+    it('testRdbStoreUpdate0007', 0, async function (done) {
+        console.log(TAG + "************* testRdbStoreUpdate0007 start *************");
+        var u8 = new Uint8Array([1, 2, 3]);
+        {
+            const valueBucket = {
+                "name": "zhangsan",
+                "age": 20,
+                "salary": 200.5,
+                "blobType": u8,
+            }
+            let insertPromise = await rdbStore.insert("test", valueBucket);
+            await expect(2).assertEqual(insertPromise);
+            await console.log(TAG + "insert first done: " + insertPromise);
+        }
+        const valueBucket = {
+            "name": "zhangsan",
+            "age": 20,
+            "salary": 200.5,
+        }
+        try {
+            let predicates = await new ohosDataRdb.RdbPredicates("test")
+            let updatePromise = await rdbStore.update(valueBucket, predicates);
+            await console.log(TAG + "update3 done: " + updatePromise);
+            await expect(1).assertEqual(updatePromise);
+        } catch (e) {
+            await console.log(TAG + "update3 error" + e);
+        }
+        done();
+        console.log(TAG + "************* testRdbStoreUpdate0007 end   *************");
+    })
+
+    /**
+     * @tc.name resultSet Update test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Update_0080
+     * @tc.desc resultSet Update test
+     */
+
+    it('testRdbStoreUpdate0008', 0, async function (done) {
+        console.log(TAG + "************* testRdbStoreUpdate0008 start *************");
+        {
+            var u8 = new Uint8Array([1, 2, 3])
+            const valueBucket = {
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 100.5,
+                "blobType": u8,
+            }
+            let insertPromise = await rdbStore.insert("test", valueBucket)
+            await expect(3).assertEqual(insertPromise);
+            await console.log(TAG + "insert first done: " + insertPromise);
+        }
+        var u8 = new Uint8Array([1, 2, 3])
+        const valueBucket = {
+            "name": "zhangsan",
+            "age": 18,
+            "salary": 100.5,
+            "blobType": u8,
+        }
+        let predicates = await new ohosDataRdb.RdbPredicates("test")
+        try {
+            let updatePromise = await rdbStore.update(valueBucket, predicates, null)
+            await console.log(TAG + "update4 done: " + updatePromise);
+            await expect(1).assertEqual(updatePromise);
+        } catch (e) {
+            await console.log(TAG + "update4 error" + e);
+        }
+        done();
+        console.log(TAG + "************* testRdbStoreUpdate0008 end   *************");
+    })
     console.log(TAG + "*************Unit Test End*************");
 })
   
