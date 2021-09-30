@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0a
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,7 +24,20 @@ function sleep(delay) {
         continue;
     }
 }
-
+var wifiConfig = {
+    "ssid": "HUAWEI P30",
+    "bssid": "A1:B1:C1:D1:E1:F1",
+    "preSharedKey": "12345678",
+    "isHiddenSsid": "false",
+    "securityType": 3,
+    "netId": 0,
+    "ipType": 1,
+    "creatorUid": 7,
+    "disableReason": 0,
+    "randomMacType": 0,
+    "randomMacAddr": "11:22:33:44:55:66",
+    "staticIp": {"ipAddress": 1284752956,"gateway": 1284752936,"dnsServers": 1284752953,"domains": ["aaa"]},
+}
 describe('appInfoTest', function () {
     beforeEach(function () {
     })
@@ -137,7 +150,72 @@ describe('appInfoTest', function () {
                     console.info("band: " + result[j].band);
                     console.info("frequency: " + result[j].frequency);
                     console.info("timestamp: " + result[j].timestamp);
+                    console.info("capabilities: " + result[j].capabilities);
+                    console.info("channelWidth: " + result[j].channelWidth);
                 }
+            });
+        done();
+    })
+    sleep(20000);
+    /**
+    * @tc.number    wifi_native_js_unit_test_007
+    * @tc.name       Test wifi.removeDeviceconfig 1.
+    * @tc.desc       Test wifi.addDeviceconfig API functionality.
+    */
+    it('wifi_native_js_unit_test_007', 0, async function (done) {
+        console.info('[wifi_test] wifi add device config  test[1]');
+        if(!wifi_native_js.isWifiActive()){
+        except(wifi_native_js.enableWifi()).assertTrue();
+        sleep(3000);
+        }
+        wifi_native_js.addDeviceConfig(wifiConfig,(result) => {
+            expect(result).assertLarger(0);
+            console.info("[wifi_test] test_007 wifi addDeviceconfig callback: " +JSON.stringify(result));
+            expect(wifi_native_js.connectToNetwork(result)).assertTrue();
+            sleep(5000);
+            console.info("[wifi_test] test_007 wifi addDeviceconfig callback: " + result);
+            for (var j = 0; j < JSON.stringify(result).length; ++j) {
+                    console.info("ssid: " + result[j].ssid);
+                    console.info("bssid: " + result[j].bssid);
+                    console.info("securityType: " + result[j].securityType);
+                    console.info("isHiddenSsid: " + result[j].isHiddenSsid);
+                    console.info("preSharedKey: " + result[j].preSharedKey);
+                    console.info("ipType: " + result[j].ipType);
+                    console.info("creatorUid: " + result[j].creatorUid);
+                    console.info("netId: " + result[j].netId);
+                    console.info("disableReason: " + result[j].disableReason);
+                    console.info("randomMacType: " + result[j].randomMacType);
+                    console.info("randomMacAddr: " + result[j].randomMacAddr);
+                    console.info("staticIp: " + result[j].staticIp);
+                }
+            except(wifi_native_js.disconnect()).assertTrue();
+            sleep(3000);
+            except(wifi_native_js.disableWifi()).assertTrue();
+        });
+        done();
+    })
+    /**
+    * @tc.number     wifi_native_js_unit_test_008
+    * @tc.name       Test wifi.deviceconfig 2.
+    * @tc.desc       Test wifi.adddeviceconfig API functionality.
+    */
+    it('wifi_native_js_unit_test_008', 0, async function (done) {
+        console.info("[wifi_test]wifi  add device config  test[2].");
+        if(!wifi_native_js.isWifiActive()){
+        except(wifi_native_js.enableWifi()).assertTrue();
+        sleep(3000);
+        }
+        wifi_native_js.addDeviceConfig(wifiConfig).then(
+            result => {
+                console.info("[wifi_test] test_008 wifi addDeviceconfig promise result: " + JSON.stringify(result));
+                expect(result).assertLarger(0);
+                console.info("[wifi_test] test_008 wifi addDeviceconfig promise result: " + result)
+                sleep(5000);
+                expect(wifi_native_js.connectToNetwork(result)).assertTrue();
+                sleep(5000);
+                except(wifi_native_js.disconnect()).assertTrue();
+                sleep(3000);
+                except(wifi_native_js.disableWifi()).assertTrue();
             });
         done();
     })
