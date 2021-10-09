@@ -737,7 +737,7 @@ HWTEST_F(ActsLwipTest, testSelectMultiClients, Function | MediumTest | Level2)
 HWTEST_F(ActsLwipTest, testSocketOpt, Function | MediumTest | Level2)
 {
     socklen_t len;
-    struct timeval timeout = {0};
+    struct _kernel_sock_timeval timeout = {0};
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     EXPECT_NE(-1, fd);
 
