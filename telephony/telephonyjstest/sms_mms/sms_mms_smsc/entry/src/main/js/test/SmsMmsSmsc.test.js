@@ -27,8 +27,8 @@ describe('SmsMmsSmscTest', function () {
   const TRUE_SLOT_ID = 0;
   const FALSE_SLOT_ID = 9;
 
-  const OTHER_SMSC_NUMBER = '+8613800755500';
-  const USABLE_SMSC_NUMBER = '+8613800512500';
+  const OTHER_SMSC_NUMBER = '+8613800755***';
+  const USABLE_SMSC_NUMBER = '+8613800512***';
 
   var DATA_SCADDR = '';
   beforeAll(async function () {

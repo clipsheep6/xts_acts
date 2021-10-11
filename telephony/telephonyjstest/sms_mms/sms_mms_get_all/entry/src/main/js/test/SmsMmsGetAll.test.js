@@ -26,6 +26,7 @@ import {
 describe('SmsMmsGetAllTest', function () {
   const TRUE_SLOT_ID = 0;
   const FALSE_SLOT_ID = 9;
+  //PDU code data that meets specifications for testing
   const CORRECT_SMS_PDU = '01000F9168683106019196F400080A00680065006C006C006F';
   const PDU_LENGTH = 50;
   const INTERCEPT_POINT_PLUS = 20;

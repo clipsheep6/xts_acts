@@ -49,6 +49,7 @@ describe('SimFileManagerFunction', function () {
     sim.getIMSI(simSlotId.SLOT_ID_4, (err, data) => {
       if (err) {
         // Enter the exception ID to enter err.
+        console.log(`Telephony_Sim_getIMSI_Async_0200, err: ${err.message}`);
         console.log('Telephony_Sim_getIMSI_Async_0200 finish');
         done();
         return;
@@ -88,6 +89,8 @@ describe('SimFileManagerFunction', function () {
     try {
       var data = await sim.getIMSI(simSlotId.SLOT_ID_4);
     } catch (err) {
+      // Enter the exception ID to enter err.
+      console.log(`Telephony_Sim_getIMSI_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getIMSI_Promise_0200 finish');
       done();
       return;
@@ -127,6 +130,7 @@ describe('SimFileManagerFunction', function () {
     sim.getSimIccId(simSlotId.SLOT_ID_4, (err, data) => {
       if (err) {
         // Enter the exception ID to enter err.
+        console.log(`Telephony_Sim_getSimIccId_Async_0200, err: ${err.message}`);
         console.log('Telephony_Sim_getSimIccId_Async_0200 finish');
         done();
         return;
@@ -166,6 +170,7 @@ describe('SimFileManagerFunction', function () {
     try {
       var data = await sim.getSimIccId(simSlotId.SLOT_ID_4);
     } catch (err) {
+      console.log(`Telephony_Sim_getSimIccId_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getSimIccId_Promise_0200 finish');
       done();
       return;
@@ -208,6 +213,7 @@ describe('SimFileManagerFunction', function () {
     sim.getISOCountryCodeForSim(simSlotId.SLOT_ID_4, (err, data) => {
       if (err) {
         // Expect slot id 4 return err here.
+        console.log(`Telephony_Sim_getISOCountryCodeForSim_Async_0200, err: ${err.message}`);
         console.log('Telephony_Sim_getISOCountryCodeForSim_Async_0200 finish');
         done();
         return;
@@ -252,6 +258,7 @@ describe('SimFileManagerFunction', function () {
       var data = await sim.getISOCountryCodeForSim(simSlotId.SLOT_ID_4);
     } catch (err) {
       // Expect slotid 4 return err here.
+      console.log(`Telephony_Sim_getISOCountryCodeForSim_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getISOCountryCodeForSim_Promise_0200 finish');
       done();
       return;
@@ -297,6 +304,7 @@ describe('SimFileManagerFunction', function () {
     sim.getSimOperatorNumeric(simSlotId.SLOT_ID_4, (err, data) => {
       if (err) {
         // Expect slotid 4 return err here.
+        console.log(`Telephony_Sim_getSimOperatorNumeric_Async_0200, err: ${err.message}`);
         console.log('Telephony_Sim_getSimOperatorNumeric_Async_0200 finish');
         done();
         return;
@@ -344,6 +352,7 @@ describe('SimFileManagerFunction', function () {
       var data = await sim.getSimOperatorNumeric(simSlotId.SLOT_ID_4);
     } catch (err) {
       // Expect slotid 4 return err here.
+      console.log(`Telephony_Sim_getSimOperatorNumeric_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getSimOperatorNumeric_Promise_0200 finish');
       done();
       return;
@@ -404,6 +413,7 @@ describe('SimFileManagerFunction', function () {
     sim.getSimSpn(simSlotId.SLOT_ID_4, (err, data) => {
       if (err) {
         // Expect slotid 4 return err here.
+        console.log(`Telephony_Sim_getSimSpn_Async_0200 fail: ${err.message}`);
         console.log('Telephony_Sim_getSimSpn_Async_0200 finish');
         done();
         return;
@@ -466,6 +476,7 @@ describe('SimFileManagerFunction', function () {
       var data = await sim.getSimSpn(simSlotId.SLOT_ID_4);
     } catch (err) {
       // Expect slotid 4 return err here.
+      console.log(`Telephony_Sim_getSimSpn_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getSimSpn_Promise_0200 finish');
       done();
       return;
@@ -506,6 +517,7 @@ describe('SimFileManagerFunction', function () {
     sim.getSimGid1(simSlotId.SLOT_ID_4, (err, data) => {
       if (err) {
         // Expect slotid 4 return err here.
+        console.log(`Telephony_Sim_getSimGid1_Async_0200, err: ${err.message}`);
         console.log('Telephony_Sim_getSimGid1_Async_0200 finish');
         done();
         return;
@@ -548,6 +560,7 @@ describe('SimFileManagerFunction', function () {
       var data = await sim.getSimGid1(simSlotId.SLOT_ID_4);
     } catch (err) {
       // Expect slotid 4 return err here.
+      console.log(`Telephony_Sim_getSimGid1_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getSimGid1_Promise_0200 finish');
       done();
       return;
