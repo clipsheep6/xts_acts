@@ -28,13 +28,70 @@ describe('SmsMmsAddTest', function () {
   const TRUE_SLOT_ID = 0;
   const FALSE_SLOT_ID = 9;
 
+  /** Indicates the SMS message body. */
+  //visibleMessageBody: 'hello';
+  /** Indicates the address of the sender, which is to be displayed on the UI. */
+  //visibleRawAddress: '+86861360101****';
+  /** Indicates the SMS type. */
+  //messageClass: sms.FORWARD_MESSAGE;
+  /** Indicates the protocol identifier. */
+  //protocolId: 0;
+  /** Indicates the short message service center (SMSC) address. */
+  //scAddress: '+861380075****';
+  /** Indicates the SMSC timestamp. */
+  //scTimestamp: number;
+  /** Indicates whether the received SMS is a "replace short message". */
+  //isReplaceMessage: false;
+  /** Indicates whether the received SMS contains "TP-Reply-Path". */
+  //hasReplyPath: false;
+  /** Indicates Protocol Data Units (PDUs) from an SMS message. */
+  //pdu: Array<number>;
+  /**
+     * Indicates the SMS message status from the SMS-STATUS-REPORT message sent by the
+     * Short Message Service Center (SMSC).
+     */
+  //status: 0;
+  /** Indicates whether the current message is SMS-STATUS-REPORT. */
+  //isSmsStatusReportMessage: false;
   const CORRECT_SMS_PDU = '01000F9168683106019196F400080A00680065006C006C006F';
+  var CORRECT_SMS_PDU_SMSC = '+861380075****';
+  var CORRECT_SMS_PDU_RAWADDRESS = '+86861360101****';
+  var CORRECT_SMS_PDU_MESSAGEBODY = 'hello';
+
+  /** Indicates the SMS message body. */
+  //visibleMessageBody: '33';
+  /** Indicates the address of the sender, which is to be displayed on the UI. */
+  //visibleRawAddress: '+861914644****';
+  /** Indicates the SMS type. */
+  //messageClass: sms.FORWARD_MESSAGE;
+  /** Indicates the protocol identifier. */
+  //protocolId: 0;
+  /** Indicates the short message service center (SMSC) address. */
+  //scAddress: '+861380075****';
+  /** Indicates the SMSC timestamp. */
+  //scTimestamp: number;
+  /** Indicates whether the received SMS is a "replace short message". */
+  //isReplaceMessage: false;
+  /** Indicates whether the received SMS contains "TP-Reply-Path". */
+  //hasReplyPath: false;
+  /** Indicates Protocol Data Units (PDUs) from an SMS message. */
+  //pdu: Array<number>;
+  /**
+     * Indicates the SMS message status from the SMS-STATUS-REPORT message sent by the
+     * Short Message Service Center (SMSC).
+     */
+  //status: 0;
+  /** Indicates whether the current message is SMS-STATUS-REPORT. */
+  //isSmsStatusReportMessage: true;
   const RECEIVE_SMS_PDU = '240D91689141468496F600001270721142432302B319';
-  // The PDU corresponding to the length is  CORRECT_SMS_PDU,RECEIVE_SMS_PDU
+  var RECEIVE_SMS_PDU_SMSC = '+861380075****';
+  var RECEIVE_SMS_PDU_RAWADDRESS = '+861914644****';
+  var RECEIVE_SMS_PDU_MESSAGEBODY = '33';
+
+  //The PDU corresponding to the length is  CORRECT_SMS_PDU,RECEIVE_SMS_PDU
   var pduLength = [50, 44];
-
+  //Default length of the encoded SMS center service address
   const INTERCEPT_POINT_PLUS = 20;
-
   beforeAll(async function () {
     //Delete all SMS messages from the SIM card
     sms.getAllSimMessages(TRUE_SLOT_ID, (geterr, getresult) => {
@@ -77,7 +134,37 @@ describe('SmsMmsAddTest', function () {
     return newPdu.substring(pduBegin, pduEnd);
   }
 
-  /**
+  //Matching PDU Data --CORRECT_SMS_PDU
+  function pduDataMatch(parameter) {
+    return (parameter.shortMessage.visibleMessageBody === CORRECT_SMS_PDU_MESSAGEBODY &&
+    parameter.shortMessage.visibleRawAddress.length === CORRECT_SMS_PDU_RAWADDRESS.length &&
+    parameter.shortMessage.messageClass === sms.FORWARD_MESSAGE &&
+    parameter.shortMessage.protocolId === 0 &&
+    parameter.shortMessage.scAddress.length === CORRECT_SMS_PDU_SMSC.length &&
+    parameter.shortMessage.scTimestamp !== undefined &&
+    parameter.shortMessage.isReplaceMessage === false &&
+    parameter.shortMessage.hasReplyPath === false &&
+    parameter.shortMessage.pdu.length > 0 &&
+    parameter.shortMessage.status === 0 &&
+    parameter.shortMessage.isSmsStatusReportMessage === false );
+  }
+
+  //Matching PDU Data --RECEIVE_SMS_PDU
+  function receivePduDataMatch(parameter) {
+    return (parameter.shortMessage.visibleMessageBody === RECEIVE_SMS_PDU_MESSAGEBODY &&
+    parameter.shortMessage.visibleRawAddress.length === RECEIVE_SMS_PDU_RAWADDRESS.length &&
+    parameter.shortMessage.messageClass === sms.FORWARD_MESSAGE &&
+    parameter.shortMessage.protocolId === 0 &&
+    parameter.shortMessage.scAddress.length === RECEIVE_SMS_PDU_SMSC.length &&
+    parameter.shortMessage.scTimestamp !== undefined &&
+    parameter.shortMessage.isReplaceMessage === false &&
+    parameter.shortMessage.hasReplyPath === false &&
+    parameter.shortMessage.pdu.length > 0 &&
+    parameter.shortMessage.status === 0 &&
+    parameter.shortMessage.isSmsStatusReportMessage === true );
+  }
+
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_0100
    * @tc.name     When SLOTID is the correct value,Save a text message to the SIM card
    * @tc.desc     Function test
@@ -105,7 +192,8 @@ describe('SmsMmsAddTest', function () {
           return;
         }
         let addOfPdu = interceptionPdu(getresult[0].shortMessage.pdu, pduLength[0]);
-        let isAdd = (addOfPdu === CORRECT_SMS_PDU && getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT);
+        let isAdd = (addOfPdu === CORRECT_SMS_PDU && getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT &&
+            pduDataMatch(getresult[0]));
         expect(isAdd).assertTrue();
         console.log('Telephony_SmsMms_addSimMessage_Async_0100 getAllSimMessages cur finish');
         done();
@@ -113,7 +201,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_0200
    * @tc.name     When SLOTID is the wrong value,Failed to save SMS to SIM
    * @tc.desc     Function test
@@ -137,7 +225,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_0300
    * @tc.name     Set the length of SMS service address "SMSC" exceeding the limit,Failed to save SMS to SIM
    * @tc.desc     Function test
@@ -170,15 +258,17 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_0400
-   * @tc.name     Set the SMS center service address "SMSC" to Chinese,Save a text message to the SIM card
+   * @tc.name     Set the SMS center service address "SMSC" to Chinese,Save a text message to the SIM card,
+   *              The saved SMS center service address will be overwritten by the default value
    * @tc.desc     Function test
    */
   it('Telephony_SmsMms_addSimMessage_Async_0400', 0, async function (done) {
+    let newSmsc = '短信中心服务地址'
     let data = {
       slotId: TRUE_SLOT_ID,
-      smsc: '短信中心服务地址',
+      smsc: newSmsc,
       pdu: CORRECT_SMS_PDU,
       status: sms.SIM_MESSAGE_STATUS_SENT
     };
@@ -198,7 +288,9 @@ describe('SmsMmsAddTest', function () {
           return;
         }
         let addOfPdu = interceptionPdu(getresult[0].shortMessage.pdu, pduLength[0]);
-        let isAdd = (addOfPdu === CORRECT_SMS_PDU && getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT);
+        let isAdd = (addOfPdu === CORRECT_SMS_PDU && getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT &&
+             pduDataMatch(getresult[0]));
+        //getresult[0].scAddress !== newSmsc
         expect(isAdd).assertTrue();
         console.log('Telephony_SmsMms_addSimMessage_Async_0400 getAllSimMessages cur finish');
         done();
@@ -206,9 +298,9 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_0500
-   * @tc.name     Set the SMS center service address "SMSC" to English,Save a text message to the SIM card
+   * @tc.name     Set the SMS center service address "SMSC" to English,Failed to save SMS to SIM
    * @tc.desc     Function test
    */
   it('Telephony_SmsMms_addSimMessage_Async_0500', 0, async function (done) {
@@ -240,15 +332,17 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_0600
-   * @tc.name     Set the SMS center service address "SMSC" to Special characters,Save a text message to the SIM card
+   * @tc.name     Set the SMS center service address "SMSC" to Special characters,Save a text message to the SIM card,
+   *              The saved SMS center service address will be overwritten by the default value
    * @tc.desc     Function test
    */
   it('Telephony_SmsMms_addSimMessage_Async_0600', 0, async function (done) {
+    let newSmsc = '$%&**^?';
     let data = {
       slotId: TRUE_SLOT_ID,
-      smsc: '$%&**^?',
+      smsc: newSmsc,
       pdu: CORRECT_SMS_PDU,
       status: sms.SIM_MESSAGE_STATUS_SENT
     };
@@ -268,7 +362,9 @@ describe('SmsMmsAddTest', function () {
           return;
         }
         let addOfPdu = interceptionPdu(getresult[0].shortMessage.pdu, pduLength[0]);
-        let isAdd = (addOfPdu === CORRECT_SMS_PDU && getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT);
+        let isAdd = (addOfPdu === CORRECT_SMS_PDU && getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT &&
+             pduDataMatch(getresult[0]));
+        //getresult[0].scAddress !== newSmsc
         expect(isAdd).assertTrue();
         console.log('Telephony_SmsMms_addSimMessage_Async_0600 getAllSimMessages cur finish');
         done();
@@ -276,9 +372,9 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_0700
-   * @tc.name     Set the SMS center service address "SMSC" to Mixed character,Save a text message to the SIM card
+   * @tc.name     Set the SMS center service address "SMSC" to Mixed character,Failed to save SMS to SIM
    * @tc.desc     Function test
    */
   it('Telephony_SmsMms_addSimMessage_Async_0700', 0, async function (done) {
@@ -310,7 +406,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_0800
    * @tc.name     Set the PDU to empty,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -344,7 +440,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_0900
    * @tc.name     Set PDU to Chinese,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -366,7 +462,7 @@ describe('SmsMmsAddTest', function () {
             done();
             return;
           }
-          expect(getresult[0].shortMessage.pdu.length === 0).assertTrue();
+          expect(getresult.length === 0).assertTrue();
           console.log('Telephony_SmsMms_addSimMessage_Async_0900 getAllSimMessages cur finish');
         });
         done();
@@ -378,7 +474,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_1000
    * @tc.name     Set PDU to English,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -412,7 +508,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_1100
    * @tc.name     Set PDU to figure,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -447,7 +543,7 @@ describe('SmsMmsAddTest', function () {
   });
 
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_1200
    * @tc.name     Set PDU to Special characters,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -481,7 +577,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_1300
    * @tc.name     Set PDU to Mixed character,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -515,7 +611,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_1400
    * @tc.name     When status is equal to the correct value of SIM_MESSAGE_STATUS_READ,
    *              Save a text message to the SIM card
@@ -544,7 +640,8 @@ describe('SmsMmsAddTest', function () {
           return;
         }
         let addOfPdu = interceptionPdu(getresult[0].shortMessage.pdu, pduLength[1]);
-        let isAdd = (addOfPdu === RECEIVE_SMS_PDU && getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_READ);
+        let isAdd = (addOfPdu === RECEIVE_SMS_PDU && getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_READ &&
+            receivePduDataMatch(getresult[0]));
         expect(isAdd).assertTrue();
         console.log('Telephony_SmsMms_addSimMessage_Async_1400 getAllSimMessages cur finish');
         done();
@@ -552,7 +649,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_1500
    * @tc.name     When status is equal to the correct value of SIM_MESSAGE_STATUS_UNREAD,
    *              Save a text message to the SIM card
@@ -582,7 +679,8 @@ describe('SmsMmsAddTest', function () {
         }
         let addOfPdu = interceptionPdu(getresult[0].shortMessage.pdu, pduLength[1]);
         let isAdd = (addOfPdu === RECEIVE_SMS_PDU &&
-        getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_UNREAD);
+            getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_UNREAD &&
+            receivePduDataMatch(getresult[0]));
         expect(isAdd).assertTrue();
         console.log('Telephony_SmsMms_addSimMessage_Async_1500 getAllSimMessages cur finish');
         done();
@@ -590,7 +688,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_1600
    * @tc.name     When status is equal to the correct value of SIM_MESSAGE_STATUS_UNSENT,
    *              Save a text message to the SIM card
@@ -620,7 +718,8 @@ describe('SmsMmsAddTest', function () {
         }
         let addOfPdu = interceptionPdu(getresult[0].shortMessage.pdu, pduLength[0]);
         let isAdd = (addOfPdu === CORRECT_SMS_PDU &&
-        getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_UNSENT);
+            getresult[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_UNSENT &&
+            pduDataMatch(getresult[0]));
         expect(isAdd).assertTrue();
         console.log('Telephony_SmsMms_addSimMessage_Async_1600 getAllSimMessages cur finish');
         done();
@@ -628,7 +727,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_1700
    * @tc.name     When status is equal to the correct value of SIM_MESSAGE_STATUS_UNSENT,Set the PDU read type
    *              Description Failed to add SMS messages to the SIM card
@@ -663,7 +762,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Async_1800
    * @tc.name     When status is equal to the correct value of  SIM_MESSAGE_STATUS_UNREAD,Set the PDU sending type
    *              Description Failed to add SMS messages to the SIM card
@@ -698,7 +797,7 @@ describe('SmsMmsAddTest', function () {
     });
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_0100
    * @tc.name     When SLOTID is the correct value,Save a text message to the SIM card
    * @tc.desc     Function test
@@ -722,8 +821,10 @@ describe('SmsMmsAddTest', function () {
     try {
       let promise = await sms.getAllSimMessages(TRUE_SLOT_ID);
       let addOfPdu = interceptionPdu(promise[0].shortMessage.pdu, pduLength[0]);
-      expect(addOfPdu === CORRECT_SMS_PDU &&
-      promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT).assertTrue();
+      let isAdd = (addOfPdu === CORRECT_SMS_PDU &&
+          promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT &&
+          pduDataMatch(promise[0]));
+      expect(isAdd).assertTrue();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0100 getAllSimMessages cur finish');
       done();
     } catch (err) {
@@ -733,7 +834,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_0200
    * @tc.name     When SLOTID is the wrong value,Failed to save SMS to SIM
    * @tc.desc     Function test
@@ -756,7 +857,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_0300
    * @tc.name     Set the length of SMS service address "SMSC" exceeding the limit,
    *              Failed to save the SMS message to the SIM card
@@ -791,15 +892,17 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_0400
    * @tc.name     Set the SMS center service address "SMSC" to Chinese,Save a text message to the SIM card
+                  The saved SMS center service address will be overwritten by the default value
    * @tc.desc     Function test
    */
   it('Telephony_SmsMms_addSimMessage_Promise_0400', 0, async function (done) {
+    let newSmsc = '短信中心服务地址';
     let data = {
       slotId: TRUE_SLOT_ID,
-      smsc: '短信中心服务地址',
+      smsc: newSmsc,
       pdu: CORRECT_SMS_PDU,
       status: sms.SIM_MESSAGE_STATUS_SENT
     };
@@ -815,8 +918,11 @@ describe('SmsMmsAddTest', function () {
     try {
       let promise = await sms.getAllSimMessages(TRUE_SLOT_ID);
       let addOfPdu = interceptionPdu(promise[0].shortMessage.pdu, pduLength[0]);
-      expect(addOfPdu === CORRECT_SMS_PDU &&
-      promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT).assertTrue();
+      let isAdd = (addOfPdu === CORRECT_SMS_PDU &&
+          promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT &&
+          pduDataMatch(promise[0]));
+      //          promise[0].scAddress !== newSmsc &&
+      expect(isAdd).assertTrue();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0400 getAllSimMessages cur finish');
       done();
     } catch (err) {
@@ -826,7 +932,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_0500
    * @tc.name     Set the SMS center service address "SMSC" to English,Failed to save the SMS message to the SIM card
    * @tc.desc     Function test
@@ -859,15 +965,17 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_0600
    * @tc.name     Set the SMS center service address "SMSC" to Special characters,Save a text message to the SIM card
+                  The saved SMS center service address will be overwritten by the default value
    * @tc.desc     Function test
    */
   it('Telephony_SmsMms_addSimMessage_Promise_0600', 0, async function (done) {
+    let newSmsc = '%&^*#！';
     let data = {
       slotId: TRUE_SLOT_ID,
-      smsc: '%&^*#！',
+      smsc: newSmsc,
       pdu: CORRECT_SMS_PDU,
       status: sms.SIM_MESSAGE_STATUS_SENT
     };
@@ -883,8 +991,11 @@ describe('SmsMmsAddTest', function () {
     try {
       let promise = await sms.getAllSimMessages(TRUE_SLOT_ID);
       let addOfPdu = interceptionPdu(promise[0].shortMessage.pdu, pduLength[0]);
-      expect(addOfPdu === CORRECT_SMS_PDU &&
-      promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT).assertTrue();
+      let isAdd = (addOfPdu === CORRECT_SMS_PDU &&
+          promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_SENT &&
+          pduDataMatch(promise[0]));
+      //promise[0].scAddress !== newSmsc &&
+      expect(isAdd).assertTrue();
       console.log('Telephony_SmsMms_addSimMessage_Promise_0600 getAllSimMessages cur finish');
       done();
     } catch (err) {
@@ -894,7 +1005,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_0700
    * @tc.name     Set the SMS center service address "SMSC" to Mixed character,
    *              Failed to save the SMS message to the SIM card
@@ -928,7 +1039,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_0800
    * @tc.name     Set the PDU to empty,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -961,7 +1072,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_0900
    * @tc.name     Set PDU to Chinese,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -994,7 +1105,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_1000
    * @tc.name     Set PDU to English,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -1027,7 +1138,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_1100
    * @tc.name     Set PDU to figure,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -1060,7 +1171,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_1200
    * @tc.name     Set PDU to Special characters,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -1093,7 +1204,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_1300
    * @tc.name     Set PDU to Mixed character,Failed to save SMS to SIM card
    * @tc.desc     Function test
@@ -1126,7 +1237,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_1400
    * @tc.name     When status is equal to the correct value of SIM_MESSAGE_STATUS_READ,
    *              Save a text message to the SIM card
@@ -1151,8 +1262,10 @@ describe('SmsMmsAddTest', function () {
     try {
       let promise = await sms.getAllSimMessages(TRUE_SLOT_ID);
       let addOfPdu = interceptionPdu(promise[0].shortMessage.pdu, pduLength[1]);
-      expect(addOfPdu === RECEIVE_SMS_PDU &&
-      promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_READ).assertTrue();
+      let isAdd = (addOfPdu === RECEIVE_SMS_PDU &&
+          promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_READ &&
+          receivePduDataMatch(promise[0]));
+      expect(isAdd).assertTrue();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1400 getAllSimMessages cur finish');
       done();
     } catch (err) {
@@ -1162,7 +1275,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_1500
    * @tc.name     When status is equal to the correct value of SIM_MESSAGE_STATUS_UNREAD,
    *              Save a text message to the SIM card
@@ -1187,8 +1300,10 @@ describe('SmsMmsAddTest', function () {
     try {
       let promise = await sms.getAllSimMessages(TRUE_SLOT_ID);
       let addOfPdu = interceptionPdu(promise[0].shortMessage.pdu, pduLength[1]);
-      expect(addOfPdu === RECEIVE_SMS_PDU &&
-      promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_UNREAD).assertTrue();
+      let isAdd = (addOfPdu === RECEIVE_SMS_PDU &&
+          promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_UNREAD &&
+          receivePduDataMatch(promise[0]));
+      expect(isAdd).assertTrue();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1500 getAllSimMessages cur finish');
       done();
     } catch (err) {
@@ -1198,7 +1313,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_1600
    * @tc.name     When status is equal to the correct value of SIM_MESSAGE_STATUS_UNSENT,
    *              Save a text message to the SIM card
@@ -1223,8 +1338,10 @@ describe('SmsMmsAddTest', function () {
     try {
       let promise = await sms.getAllSimMessages(TRUE_SLOT_ID);
       let addOfPdu = interceptionPdu(promise[0].shortMessage.pdu, pduLength[0]);
-      expect(addOfPdu === CORRECT_SMS_PDU &&
-      promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_UNSENT).assertTrue();
+      let isAdd = (addOfPdu === CORRECT_SMS_PDU &&
+          promise[0].simMessageStatus === sms.SIM_MESSAGE_STATUS_UNSENT &&
+          pduDataMatch(promise[0]));
+      expect(isAdd).assertTrue();
       console.log('Telephony_SmsMms_addSimMessage_Promise_1600 getAllSimMessages cur finish');
       done();
     } catch (err) {
@@ -1234,7 +1351,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_1700
    * @tc.name     When status is equal to the correct value of SIM_MESSAGE_STATUS_UNSENT,Set the PDU read type
    *              Description Failed to add SMS messages to the SIM card
@@ -1268,7 +1385,7 @@ describe('SmsMmsAddTest', function () {
     }
   });
 
-  /**
+  /*
    * @tc.number   Telephony_SmsMms_addSimMessage_Promise_1800
    * @tc.name     When status is equal to the correct value of  SIM_MESSAGE_STATUS_UNREAD,Set the PDU sending type
    *              Description Failed to add SMS messages to the SIM card
