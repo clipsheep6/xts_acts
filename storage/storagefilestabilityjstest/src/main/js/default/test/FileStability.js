@@ -51,6 +51,7 @@ describe('FileReliability', function () {
         });
         setTimeout(function () {
           resolve('mkdir success!');
+          done()
         }, 250);
       });
       promiseMkdir.then(function () {
@@ -75,6 +76,7 @@ describe('FileReliability', function () {
       });
       promiseWriteText.then(function () {
         console.log('writeText success');
+        done();
       });
       let promiseReadText = new Promise(function (resolve, reject) {
         file.readText({
@@ -94,6 +96,7 @@ describe('FileReliability', function () {
       });
       promiseReadText.then(function () {
         console.log('readText success');
+        done();
       });
       let promiseAccess = new Promise(function (resolve, reject) {
         file.access({
@@ -113,6 +116,7 @@ describe('FileReliability', function () {
       });
       promiseAccess.then(function () {
         console.log('access success');
+        done();
       });
       let promiseGet = new Promise(function (resolve, reject) {
         file.get({
@@ -132,6 +136,7 @@ describe('FileReliability', function () {
       });
       promiseGet.then(function () {
         console.log('get success');
+        done();
       });
       let promiseList = new Promise(function (resolve, reject) {
         file.list({
@@ -151,6 +156,7 @@ describe('FileReliability', function () {
       });
       promiseList.then(function () {
         console.log('list success');
+        done();
       });
       let promiseCopy = new Promise(function (resolve, reject) {
         file.copy({
@@ -171,6 +177,7 @@ describe('FileReliability', function () {
       });
       promiseCopy.then(function () {
         console.log('copy success');
+        done();
       });
       let promiseMove = new Promise(function (resolve, reject) {
         file.move({
@@ -191,6 +198,7 @@ describe('FileReliability', function () {
       });
       promiseMove.then(function () {
         console.log('move success');
+        done();
       });
       file.delete({
         uri: 'internal://app/fileStability01' + i,
@@ -234,6 +242,7 @@ describe('FileReliability', function () {
       });
       promiseWriteArrayBuffer.then(function () {
         console.log('writeArrayBuffer success');
+        done();
       });
       let promiseReadArrayBuffer = new Promise(function (resolve, reject) {
         file.readArrayBuffer({
@@ -252,6 +261,7 @@ describe('FileReliability', function () {
         }, 250);
       });
       promiseReadArrayBuffer.then(function () {
+        done();
         console.log('readArrayBuffer success');
       });
       file.delete({
@@ -284,6 +294,7 @@ describe('FileReliability', function () {
       });
       promiseRmdir.then(function () {
         console.log('rmdir success');
+        done();
       });
 
     }

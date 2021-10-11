@@ -18,7 +18,6 @@
 #include <cstdint>
 #include "gmock/gmock.h"
 
-
 const char *TEST_APP_NAME = "TestApp";
 const int32_t TEMP_REQUEST_ID = 123;
 const int32_t BUFFER_SIZE = 2048;
@@ -30,7 +29,6 @@ const int32_t SERVER_REQUEST_ID = 345;
 const int32_t STR_BUFF_SZ_MIN = 32;
 const int32_t STR_BUFF_SZ_NORMAL = 128;
 const int32_t MAX_GROUP_NUMBER = 101;
-
 
 typedef enum {
     ON_REQUEST = 1,

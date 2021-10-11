@@ -22,6 +22,7 @@ var WantAgent2;
 var time = 1000
 describe('ActsAnsGetWantAgentInfoTwoProTest', function () {
     console.info('----ActsGetWantAgentInfoTest----');
+
     /*
     * @tc.number: ACTS_SetWantInfo_0700
     * @tc.name: getWantAgent()
@@ -70,7 +71,7 @@ describe('ActsAnsGetWantAgentInfoTwoProTest', function () {
                     expect(typeof(data)).assertEqual("object");
                 }
                 done();
-                setTimeout(function(){
+ 		setTimeout(function(){
                     console.debug("====>time out ACTS_SetWantInfo_0700====>");
                 }, time)
             }),
@@ -115,22 +116,22 @@ describe('ActsAnsGetWantAgentInfoTwoProTest', function () {
                 if (err.code == 0) {
                     WantAgent2 = data;
                     console.info('----getWantAgent2 Promise success!----');
-                    console.log("=======WantAgent1======="+JSON.stringify(WantAgent1))
-                    console.log("=======WantAgent2======="+JSON.stringify(WantAgent2))
+                    console.log("==WantAgent1=="+JSON.stringify(WantAgent1))
+                    console.log("==WantAgent2=="+JSON.stringify(WantAgent2))
                     console.info(data);
                     expect(typeof(data)).assertEqual("object");
                     wantAgent.equal(WantAgent1,WantAgent2).then(
-                        (error,data) => {
+                        (data) => {
                         console.info('----equalPromise1 success!----')
                         console.info(data);
-                        expect(typeof(data)).assertEqual("boolean");
+                        expect(data).assertEqual(false);
                         }
                     )
                     wantAgent.equal(WantAgent1,WantAgent1).then(
-                        (error,data) => {
+                        (data) => {
                             console.info('----equalPromise2 success!----')
                             console.info(data);
-                            expect(typeof(data)).assertEqual("boolean");
+                            expect(data).assertEqual(true);
                         }
                     )
                 }
@@ -140,10 +141,11 @@ describe('ActsAnsGetWantAgentInfoTwoProTest', function () {
                     expect(typeof(data)).assertEqual("object");
                 }
                 done();
-                setTimeout(function(){
+ 		setTimeout(function(){
                     console.debug("====>time out ACTS_SetWantInfo_0800====>");
                 }, time)
             });
+
             console.info('----getWantAgent2 after----');
       })
 })
