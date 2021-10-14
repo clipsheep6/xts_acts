@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-#include "ActsMediaPlayerTest.h"
 #include <fstream>
 #include <iostream>
 #include <climits>
 #include <unistd.h>
 #include <fcntl.h>
 #include "securec.h"
+#include "ActsMediaPlayerTest.h"
 
 namespace OHOS {
 const string g_audioFileName = "Audiochannel_002.m4a";
