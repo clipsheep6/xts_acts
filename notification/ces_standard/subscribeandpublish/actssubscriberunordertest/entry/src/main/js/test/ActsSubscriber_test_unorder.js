@@ -31,7 +31,6 @@ describe('ActsSubscriberTestUnorder', async function (done) {
     var commonEventSubscriber010_2;
     var commonEventSubscriber011;
     var commonEventSubscriber012;
-//    var commonEventSubscriber013;
 
     function publishCallback(err) {
         console.info("==========================>publishCallback");
@@ -401,11 +400,8 @@ describe('ActsSubscriberTestUnorder', async function (done) {
             done();
         }
 
-        function sleep(delay) {
-            var start = (new Date()).getTime();
-            while((new Date()).getTime() - start < delay) {
-                continue;
-            }
+        function publishCallback0800(err) {
+            console.info("==========================>publishCallback0800");
             done();
         }
 
@@ -427,10 +423,13 @@ describe('ActsSubscriberTestUnorder', async function (done) {
             data.getSubscribeInfo().then(function (data) {
                 console.info("===============ActsSubscriberTestUnorder_0800=========getSubscribeInfo promise");
                 Subscriber.subscribe(commonEventSubscriber008, subscriberCallBack008);
-                Subscriber.publish("publish_event0800", commonEventPublishData, publishCallback);
+                Subscriber.publish("publish_event0800", commonEventPublishData, publishCallback0800);
             });
         });
-        sleep(5);
+
+        setTimeout(function (){
+            console.debug("===================ActsSubscriberTestUnorder_0800 end==================");
+        }, 30000);
     })
 
     /*
