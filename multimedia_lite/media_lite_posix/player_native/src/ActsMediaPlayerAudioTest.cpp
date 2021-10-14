@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2020-2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,15 +14,14 @@
  */
 
 #include "ActsMediaPlayerTest.h"
-#include <unistd.h>
-#include <fcntl.h>
-#include "securec.h"
 #include <fstream>
 #include <iostream>
 #include <climits>
+#include <unistd.h>
+#include <fcntl.h>
+#include "securec.h"
 
 namespace OHOS {
-const string g_avFileName = "1080P_25fps.mp4";
 const string g_audioFileName = "Audiochannel_002.m4a";
 
 const int32_t HI_SUCCESS = 0;
@@ -33,14 +32,6 @@ using OHOS::Media::PlayerSeekMode;
 using OHOS::Media::Source;
 using OHOS::Media::Format;
 using OHOS::Media::StreamSource;
-
-static void InitSurface()
-{
-    OHOS::g_surface->SetUserData("region_position_x", "0");
-    OHOS::g_surface->SetUserData("region_position_y", "0");
-    OHOS::g_surface->SetUserData("region_width", "720");
-    OHOS::g_surface->SetUserData("region_height", "540");
-}
 
 class PlayerliteTest : public testing::Test {
 protected:
@@ -56,7 +47,6 @@ protected:
     virtual void SetUp()
     {
         g_tagTestSample.adaptr = std::make_shared<Player>();
-        InitSurface();
     }
 // TearDown:Execute after each test case
     virtual void TearDown()
@@ -109,7 +99,9 @@ void PlayerliteCallback::OnRewindToComplete()
 
 static int32_t FileCheck(const string &argv)
 {
-    if (sizeof(argv.c_str()) < sizeof(g_tagTestSample.filePath) &&
+    const char *ptr = argv.c_str();
+
+    if (sizeof(ptr) < sizeof(g_tagTestSample.filePath) &&
         realpath(argv.c_str(), g_tagTestSample.filePath) == nullptr) {
         printf("realpath input file failed, errno: %d!\n", errno);
         return -1;
@@ -128,351 +120,217 @@ static int32_t CreateAndSetSource()
 
 /* *
  * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0100
- * @tc.name      : Video Prepare
+ * @tc.name      : Audio Prepare(),Play() Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_Prepare_test_001, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_001, Level1)
 {
-    int32_t ret = FileCheck(g_avFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    std::string uri(g_tagTestSample.filePath);
-    Source source(uri);
-    ret = g_tagTestSample.adaptr->SetSource(source);
-    string ret1 = source.GetSourceUri();
-    source.GetSourceType();
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->SetVideoSurface(g_surface);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    bool flag = g_tagTestSample.adaptr->IsPlaying();
-    EXPECT_EQ(true, flag);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0200
- * @tc.name      : Video Prepare
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_Prepare_test_002, Level1)
-{
-    int32_t ret = FileCheck(g_avFileName);
+    int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
     ret = CreateAndSetSource();
     EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Prepare();
     EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    sleep(2);
+    g_tagTestSample.adaptr->Release();
+}
+
+/* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0200
+ * @tc.name      : Audio Play() Pause() Stop() Test.
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+HWTEST_F(PlayerliteTest, player_lite_audio_test_002, Level1)
+{
+    int32_t ret = FileCheck(g_audioFileName);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
+    ret = CreateAndSetSource();
+    EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Prepare();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Pause();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Stop();
     EXPECT_EQ(HI_SUCCESS, ret);
     g_tagTestSample.adaptr->Release();
 }
 
 /* *
  * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0300
- * @tc.name      : Video Play Playback Test
+ * @tc.name      : Audio Play() stop() Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_Play_test_001, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_003, Level1)
 {
-    int32_t ret = FileCheck(g_avFileName);
+    int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
     ret = CreateAndSetSource();
     EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Prepare();
     EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->SetVideoSurface(g_surface);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Stop();
     EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Play();
-    sleep(1);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    bool flag = g_tagTestSample.adaptr->IsPlaying();
-    EXPECT_EQ(true, flag);
+    EXPECT_EQ(HI_FAILURE, ret);
     g_tagTestSample.adaptr->Release();
 }
 
 /* *
  * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0400
- * @tc.name      : Video Stop Test
+ * @tc.name      : Audio Prepare() Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_Stop_test_001, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_004, Level1)
 {
-    int32_t ret = FileCheck(g_avFileName);
+    int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
     ret = CreateAndSetSource();
     EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Prepare();
     EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->SetVideoSurface(g_surface);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    std::shared_ptr<PlayerCallback> cb;
-    g_tagTestSample.adaptr->SetPlayerCallback(cb);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    sleep(2);
-    ret = g_tagTestSample.adaptr->Stop();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    bool flag = g_tagTestSample.adaptr->IsPlaying();
-    EXPECT_EQ(false, flag);
     g_tagTestSample.adaptr->Release();
 }
 
 /* *
  * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0500
- * @tc.name      : Video Stop Test
+ * @tc.name      : Audio Prepare() Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_Stop_test_002, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_005, Level1)
 {
-    int32_t ret = FileCheck(g_avFileName);
+    int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
     ret = CreateAndSetSource();
     EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Prepare();
     EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->SetVideoSurface(g_surface);
+    ret = g_tagTestSample.adaptr->Prepare();
     EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Stop();
-    EXPECT_EQ(HI_FAILURE, ret);
     g_tagTestSample.adaptr->Release();
 }
 
 /* *
  * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0600
- * @tc.name      : Video Pause Test
+ * @tc.name      : Audio Play(),Stop() Test
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_Pause_test_001, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_006, Level1)
 {
-    int32_t ret = FileCheck(g_avFileName);
+    int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
     ret = CreateAndSetSource();
     EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Prepare();
     EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->SetVideoSurface(g_surface);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Stop();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    g_tagTestSample.adaptr->Release();
+}
+
+ /* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0700
+ * @tc.name      : Audio Play(),Stop(),IsPlay() Test.
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+HWTEST_F(PlayerliteTest, player_lite_audio_test_007, Level1)
+{
+    int32_t ret = FileCheck(g_audioFileName);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
+    ret = CreateAndSetSource();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Prepare();
     EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Play();
     EXPECT_EQ(HI_SUCCESS, ret);
-    sleep(2);
-    ret = g_tagTestSample.adaptr->Pause();
+    ret = g_tagTestSample.adaptr->Stop();
     EXPECT_EQ(HI_SUCCESS, ret);
     bool flag = g_tagTestSample.adaptr->IsPlaying();
     EXPECT_EQ(false, flag);
     g_tagTestSample.adaptr->Release();
 }
 
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0700
- * @tc.name      : Video Pause Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_Pause_test_002, Level1)
-{
-    int32_t ret = FileCheck(g_avFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Pause();
-    EXPECT_EQ(HI_FAILURE, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
+ /* *
  * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0800
- * @tc.name      : Video GetCurrentTime Test
+ * @tc.name      : Audio IsPlay() Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_GetCurrentTime_test_001, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_008, Level1)
 {
-    int32_t ret = FileCheck(g_avFileName);
+    int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
     ret = CreateAndSetSource();
     EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Prepare();
     EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->SetVideoSurface(g_surface);
-    EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Play();
     EXPECT_EQ(HI_SUCCESS, ret);
-    sleep(1);
-    int64_t currentPosition;
-    ret = g_tagTestSample.adaptr->GetCurrentTime(currentPosition);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0900
- * @tc.name      : Video GetCurrentTime Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_GetCurrentTime_test_002, Level1)
-{
-    int32_t ret = FileCheck(g_avFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    int64_t currentPosition;
-    ret = g_tagTestSample.adaptr->GetCurrentTime(currentPosition);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->SetVideoSurface(g_surface);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    sleep(1);
     bool flag = g_tagTestSample.adaptr->IsPlaying();
     EXPECT_EQ(true, flag);
     g_tagTestSample.adaptr->Release();
 }
 
-/* *
+ /* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_0900
+ * @tc.name      : Audio  Play() Pause() Test.
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+HWTEST_F(PlayerliteTest, player_lite_audio_test_009, Level1)
+{
+    int32_t ret = FileCheck(g_audioFileName);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
+    ret = CreateAndSetSource();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Prepare();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Pause();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Pause();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    g_tagTestSample.adaptr->Release();
+}
+
+ /* *
  * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1000
- * @tc.name      : Video GetDuration Test
+ * @tc.name      : Audio Pause Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_GetDuration_test_001, Level1)
-{
-    int32_t ret = FileCheck(g_avFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    sleep(2);
-    ret = g_tagTestSample.adaptr->Pause();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Rewind(1, PLAYER_SEEK_NEXT_SYNC);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    int64_t currentPosition;
-    ret = g_tagTestSample.adaptr->GetCurrentTime(currentPosition);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1100
- * @tc.name      : Video GetDuration Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_GetDuration_test_002, Level1)
-{
-    int32_t ret = FileCheck(g_avFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    int64_t duration;
-    ret = g_tagTestSample.adaptr->GetDuration(duration);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1200
- * @tc.name      : Video GetVideoSurfaceSize Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_GetVideoSurfaceSize_test_001, Level1)
-{
-    int32_t ret = FileCheck(g_avFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->SetVideoSurface(g_surface);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    int32_t videoWidth;
-    ret = g_tagTestSample.adaptr->GetVideoWidth(videoWidth);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    int32_t videoHeight;
-    ret = g_tagTestSample.adaptr->GetVideoHeight(videoHeight);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1300
- * @tc.name      : Video Reset Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_Reset_test_001, Level1)
-{
-    int32_t ret = FileCheck(g_avFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->SetVideoSurface(g_surface);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    sleep(2);
-    ret = g_tagTestSample.adaptr->Reset();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1400
- * @tc.name      : Video Release Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_Release_test_001, Level1)
-{
-    int32_t ret = FileCheck(g_avFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->SetVideoSurface(g_surface);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    sleep(2);
-    ret = g_tagTestSample.adaptr->Release();
-    EXPECT_EQ(HI_SUCCESS, ret);
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1500
- * @tc.name      : Audio SetSource Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_AudioSetSource_test_001, Level1)
-{
-    int32_t ret = FileCheck(g_audioFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    sleep(2);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1600
- * @tc.name      : Audio Format Play->Pause->Play->Stop Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_AudioPlay_test_001, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_010, Level1)
 {
     int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
@@ -483,161 +341,17 @@ HWTEST_F(PlayerliteTest, medialite_player_AudioPlay_test_001, Level1)
     EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Prepare();
     EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
     ret = g_tagTestSample.adaptr->Pause();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Stop();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1700
- * @tc.name      : Audio Format Play Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_Play_test_002, Level1)
-{
-    int32_t ret = FileCheck(g_audioFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    std::shared_ptr<PlayerliteCallback> callBack;
-    callBack = std::make_shared<PlayerliteCallback>();
-    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Stop();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
     EXPECT_EQ(HI_FAILURE, ret);
     g_tagTestSample.adaptr->Release();
 }
 
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1800
- * @tc.name      : Audio Format Prepare Test
+ /* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1100
+ * @tc.name      : Audio SetVolume Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_audioPrepare_test_001, Level1)
-{
-    int32_t ret = FileCheck(g_audioFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    std::shared_ptr<PlayerliteCallback> callBack;
-    callBack = std::make_shared<PlayerliteCallback>();
-    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1900
- * @tc.name      : Audio Format Prepare Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_audioPrepare_test_002, Level1)
-{
-    int32_t ret = FileCheck(g_audioFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    std::shared_ptr<PlayerliteCallback> callBack;
-    callBack = std::make_shared<PlayerliteCallback>();
-    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2000
- * @tc.name      : Audio Format Stop Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_audioStop_test_001, Level1)
-{
-    int32_t ret = FileCheck(g_audioFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    std::shared_ptr<PlayerliteCallback> callBack;
-    callBack = std::make_shared<PlayerliteCallback>();
-    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Stop();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2100
- * @tc.name      : Audio Format Stop Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_audioStop_test_002, Level1)
-{
-    int32_t ret = FileCheck(g_audioFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    std::shared_ptr<PlayerliteCallback> callBack;
-    callBack = std::make_shared<PlayerliteCallback>();
-    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Stop();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    bool flag = g_tagTestSample.adaptr->IsPlaying();
-    EXPECT_EQ(false, flag);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2200
- * @tc.name      : Audio Format Pause Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_audioPause_test_002, Level1)
-{
-    int32_t ret = FileCheck(g_audioFileName);
-    EXPECT_EQ(HI_SUCCESS, ret);
-    std::shared_ptr<PlayerliteCallback> callBack;
-    callBack = std::make_shared<PlayerliteCallback>();
-    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
-    ret = CreateAndSetSource();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Prepare();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Play();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Pause();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    ret = g_tagTestSample.adaptr->Pause();
-    EXPECT_EQ(HI_SUCCESS, ret);
-    g_tagTestSample.adaptr->Release();
-}
-
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2300
- * @tc.name      : Audio Format SetVolume Test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-HWTEST_F(PlayerliteTest, medialite_player_SetVolume_test_001, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_011, Level1)
 {
     int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
@@ -656,12 +370,12 @@ HWTEST_F(PlayerliteTest, medialite_player_SetVolume_test_001, Level1)
     g_tagTestSample.adaptr->Release();
 }
 
-/* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2400
- * @tc.name      : Audio Format SetVolume Test
+ /* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1200
+ * @tc.name      : Audio SetVolume Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_SetVolume_test_002, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_012, Level1)
 {
     int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
@@ -681,11 +395,11 @@ HWTEST_F(PlayerliteTest, medialite_player_SetVolume_test_002, Level1)
 }
 
 /* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2500
- * @tc.name      : Audio Format SetVolume Test
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1300
+ * @tc.name      : Audio SetVolume Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_SetVolume_test_003, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_013, Level1)
 {
     int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
@@ -705,11 +419,11 @@ HWTEST_F(PlayerliteTest, medialite_player_SetVolume_test_003, Level1)
 }
 
 /* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2600
- * @tc.name      : Audio Format SetVolume Test
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1400
+ * @tc.name      : Audio SetVolume Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_SetVolume_test_004, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_014, Level1)
 {
     int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
@@ -729,11 +443,11 @@ HWTEST_F(PlayerliteTest, medialite_player_SetVolume_test_004, Level1)
 }
 
 /* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2700
- * @tc.name      : Audio Format SetVolume Test
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1500
+ * @tc.name      : Audio SetVolume Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_SetVolume_test_005, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_015, Level1)
 {
     int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
@@ -753,11 +467,35 @@ HWTEST_F(PlayerliteTest, medialite_player_SetVolume_test_005, Level1)
 }
 
 /* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2800
- * @tc.name      : Audio Format GetCurrentTime Test
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1600
+ * @tc.name      : Audio SetVolume Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_audioGetCurrentTime_test_001, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_016, Level1)
+{
+    int32_t ret = FileCheck(g_audioFileName);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
+    ret = CreateAndSetSource();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Prepare();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->SetVolume(50, 100);
+    sleep(10);
+    EXPECT_EQ(HI_FAILURE, ret);
+    g_tagTestSample.adaptr->Release();
+}
+
+/* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1700
+ * @tc.name      : Audio Play, GetCurrentTime Test.
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+HWTEST_F(PlayerliteTest, player_lite_audio_test_017, Level1)
 {
     int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
@@ -778,11 +516,11 @@ HWTEST_F(PlayerliteTest, medialite_player_audioGetCurrentTime_test_001, Level1)
 }
 
 /* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2900
- * @tc.name      : Audio Format GetCurrentTime Test
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1800
+ * @tc.name      : Audio Play, GetCurrentTime Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_audioGetCurrentTime_test_002, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_018, Level1)
 {
     int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
@@ -805,11 +543,35 @@ HWTEST_F(PlayerliteTest, medialite_player_audioGetCurrentTime_test_002, Level1)
 }
 
 /* *
- * @tc.number    : SUB_MEDIA_PLAYER_PLAY_3000
- * @tc.name      : Audio Format Duration Test
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_1900
+ * @tc.name      : Audio Seek Test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
-HWTEST_F(PlayerliteTest, medialite_player_audioGetDuration_test_001, Level1)
+HWTEST_F(PlayerliteTest, player_lite_audio_test_019, Level1)
+{
+    int32_t ret = FileCheck(g_audioFileName);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
+    ret = CreateAndSetSource();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Prepare();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    g_tagTestSample.adaptr->Pause();
+    ret = g_tagTestSample.adaptr->Rewind(4, PLAYER_SEEK_NEXT_SYNC);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    g_tagTestSample.adaptr->Release();
+}
+
+/* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2000
+ * @tc.name      : Audio  GetDuration Test.
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+HWTEST_F(PlayerliteTest, player_lite_audio_test_020, Level1)
 {
     int32_t ret = FileCheck(g_audioFileName);
     EXPECT_EQ(HI_SUCCESS, ret);
@@ -823,5 +585,125 @@ HWTEST_F(PlayerliteTest, medialite_player_audioGetDuration_test_001, Level1)
     int64_t duration;
     ret = g_tagTestSample.adaptr->GetDuration(duration);
     EXPECT_EQ(HI_SUCCESS, ret);
+    g_tagTestSample.adaptr->Release();
+}
+
+/* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2100
+ * @tc.name      : Audio  GetDuration Test.
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+HWTEST_F(PlayerliteTest, player_lite_audio_test_021, Level1)
+{
+    int32_t ret = FileCheck(g_audioFileName);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
+    ret = CreateAndSetSource();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Prepare();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    int64_t duration;
+    ret = g_tagTestSample.adaptr->GetDuration(duration);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    g_tagTestSample.adaptr->Release();
+}
+
+/* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2200
+ * @tc.name      : Audio Reset Test.
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+HWTEST_F(PlayerliteTest, player_lite_audio_test_022, Level1)
+{
+    int32_t ret = FileCheck(g_audioFileName);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
+    ret = CreateAndSetSource();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Prepare();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Reset();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    g_tagTestSample.adaptr->Release();
+}
+
+/* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2300
+ * @tc.name      : Audio Reset Test.
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+HWTEST_F(PlayerliteTest, player_lite_audio_test_023, Level1)
+{
+    int32_t ret = FileCheck(g_audioFileName);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
+    ret = CreateAndSetSource();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Reset();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    g_tagTestSample.adaptr->Release();
+}
+
+/* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2400
+ * @tc.name      : Audio EnableSingleLoop() Test.
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+HWTEST_F(PlayerliteTest, player_lite_audio_test_024, Level1)
+{
+    int32_t ret = FileCheck(g_audioFileName);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
+    ret = CreateAndSetSource();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Prepare();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    bool loop = true;
+    ret = g_tagTestSample.adaptr->EnableSingleLooping(loop);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    bool flag = g_tagTestSample.adaptr->IsPlaying();
+    EXPECT_EQ(true, flag);
+    g_tagTestSample.adaptr->Release();
+}
+
+/* *
+ * @tc.number    : SUB_MEDIA_PLAYER_PLAY_2500
+ * @tc.name      : Audio EnableSingleLoop() Test.
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+HWTEST_F(PlayerliteTest, player_lite_audio_test_025, Level1)
+{
+    int32_t ret = FileCheck(g_audioFileName);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    std::shared_ptr<PlayerliteCallback> callBack;
+    callBack = std::make_shared<PlayerliteCallback>();
+    g_tagTestSample.adaptr->SetPlayerCallback(callBack);
+    ret = CreateAndSetSource();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Prepare();
+    EXPECT_EQ(HI_SUCCESS, ret);
+    ret = g_tagTestSample.adaptr->Play();
+    sleep(10);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    bool loop = true;
+    ret = g_tagTestSample.adaptr->EnableSingleLooping(loop);
+    EXPECT_EQ(HI_SUCCESS, ret);
+    bool flag = g_tagTestSample.adaptr->IsPlaying();
+    EXPECT_EQ(true, flag);
+    g_tagTestSample.adaptr->Release();
 }
 } // OHOS
