@@ -111,7 +111,7 @@ static int32_t FileCheck(const string &argv)
     const char *ptr = argv.c_str();
 
     if (sizeof(ptr) < sizeof(g_tagTestSample.filePath) &&
-        realpath(argv.c_str(), g_tagTestSample.filePath) == NULL) {
+        realpath(argv.c_str(), g_tagTestSample.filePath) == nullptr) {
         printf("realpath input file failed, errno: %d!\n", errno);
         return -1;
     }
