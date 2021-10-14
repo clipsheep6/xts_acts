@@ -106,7 +106,7 @@ describe('Url_mxa_jk_Test', function () {
             console.log(value, key, params === SearchParams)
             arr[i] = value + " " + key + " " + (params === SearchParams)
             i++
-        };
+        }
         params.forEach(func);
         console.log("pss...Url_forEach_test_001:   "+ arr[0] );
         expect(arr[0]).assertEqual("value1 key1 true");
@@ -121,7 +121,7 @@ describe('Url_mxa_jk_Test', function () {
             console.log(value, key, params === SearchParams)
             arr[i] = value + " " + key + " " + (params === SearchParams)
             i++
-        };
+        }
         params.forEach(func);
         console.log("pss...Url_forEach_test_002:   "+ arr[1]);
         expect(arr[1]).assertEqual("value2 key2 true");
@@ -137,7 +137,7 @@ describe('Url_mxa_jk_Test', function () {
             console.log(value, key, params === SearchParams)
             arr[i] = value + " " + key + " " + (params === SearchParams)
             i++
-        };
+        }
         params.forEach(func);
         console.log("pss...Url_forEach_test_003:   "+ arr[2]);
         expect(arr[2]).assertEqual("jk foo true");
