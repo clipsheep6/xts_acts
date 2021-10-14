@@ -32,9 +32,9 @@ describe('SmsMmsCreateTest', function () {
       0x07,0x91,0x68,0x01,0x80,0xF6,0x00,0x08,0x04,0x00,0x41,0x00,0x61
   ];
   // rawArray PDU data
-  const SC_TIMESTAMP = 12011;
   var MESSAGEBODY = 'Aa';
   var RAWADDRESS = '+8610086';
+  //Address of the SMS center service
   var SC_ADDRESS = '+8613800755500';
 
   var pduArray = [
@@ -44,7 +44,6 @@ describe('SmsMmsCreateTest', function () {
   // pduArray PDU data
   var PDU_MESSAGEBODY = 'hello';
   var PDU_RAWADDRESS = '+8610086';
-  const PDU_SC_TIMESTAMP = 11950;
 
   /*
    * @tc.number  Telephony_SmsMms_createMessage_Async_0100
@@ -66,12 +65,12 @@ describe('SmsMmsCreateTest', function () {
       expect(shortMessage.messageClass === sms.FORWARD_MESSAGE).assertTrue();
       expect(shortMessage.protocolId === 0).assertTrue();
       expect(shortMessage.scAddress === SC_ADDRESS).assertTrue();
-      expect(shortMessage.scTimestamp === SC_TIMESTAMP).assertTrue();
+      expect(shortMessage.scTimestamp !== undefined).assertTrue();
       expect(shortMessage.isReplaceMessage).assertFalse();
       expect(shortMessage.hasReplyPath).assertFalse();
       expect(shortMessage.pdu.length > 0).assertTrue();
       expect(shortMessage.status === 0).assertTrue();
-      expect(shortMessage.isSmsStatusReportMessage).assertTrue();
+      expect(shortMessage.isSmsStatusReportMessage).assertFalse();
       console.log('Telephony_SmsMms_createMessage_Async_0100 finish');
       done();
     });
@@ -117,12 +116,12 @@ describe('SmsMmsCreateTest', function () {
       expect(shortMessage.messageClass === sms.FORWARD_MESSAGE).assertTrue();
       expect(shortMessage.protocolId === 0).assertTrue();
       expect(shortMessage.scAddress.length === 0).assertTrue();
-      expect(shortMessage.scTimestamp === PDU_SC_TIMESTAMP).assertTrue();
+      expect(shortMessage.scTimestamp !== undefined).assertTrue();
       expect(shortMessage.isReplaceMessage).assertFalse();
       expect(shortMessage.hasReplyPath).assertFalse();
       expect(shortMessage.pdu.length > 0).assertTrue();
       expect(shortMessage.status === 0).assertTrue();
-      expect(shortMessage.isSmsStatusReportMessage).assertTrue();
+      expect(shortMessage.isSmsStatusReportMessage).assertFalse();
       console.log('Telephony_SmsMms_createMessage_Async_0500 finish');
       done();
     });
@@ -143,12 +142,12 @@ describe('SmsMmsCreateTest', function () {
       expect(promise.messageClass === sms.FORWARD_MESSAGE).assertTrue();
       expect(promise.protocolId === 0).assertTrue();
       expect(promise.scAddress === SC_ADDRESS).assertTrue();
-      expect(promise.scTimestamp === SC_TIMESTAMP).assertTrue();
+      expect(promise.scTimestamp !== undefined).assertTrue();
       expect(promise.isReplaceMessage).assertFalse();
       expect(promise.hasReplyPath).assertFalse();
       expect(promise.pdu.length > 0).assertTrue();
       expect(promise.status === 0).assertTrue();
-      expect(promise.isSmsStatusReportMessage).assertTrue();
+      expect(promise.isSmsStatusReportMessage).assertFalse();
       console.log('Telephony_SmsMms_createMessage_Promise_0100 finish');
       done();
     } catch (err) {
@@ -192,12 +191,12 @@ describe('SmsMmsCreateTest', function () {
       expect(promise.messageClass === sms.FORWARD_MESSAGE).assertTrue();
       expect(promise.protocolId === 0).assertTrue();
       expect(promise.scAddress.length === 0).assertTrue();
-      expect(promise.scTimestamp === PDU_SC_TIMESTAMP).assertTrue();
+      expect(promise.scTimestamp !== undefined ).assertTrue();
       expect(promise.isReplaceMessage).assertFalse();
       expect(promise.hasReplyPath).assertFalse();
       expect(promise.pdu.length > 0).assertTrue();
       expect(promise.status === 0).assertTrue();
-      expect(promise.isSmsStatusReportMessage).assertTrue();
+      expect(promise.isSmsStatusReportMessage).assertFalse();
       console.log('Telephony_SmsMms_createMessage_Promise_0500 finish');
       done();
     } catch (err) {
