@@ -2097,12 +2097,12 @@ describe('dataAbilityPredicatesTest', function () {
         done();
         console.log(TAG + "************* testIndexedBy0002 end *************");
     })
+
     /**
      * @tc.name predicates indexedBy test
      * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0222
      * @tc.desc predicates indexedBy test
      */
-
     it('dataAbilityTest0001', 0, async function (done) {
         console.log(TAG + "************* dataAbilityTest0001 start *************");
         let dataAbility = await new dataDataAbility.DataAbilityPredicates();
