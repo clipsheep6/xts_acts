@@ -346,6 +346,7 @@ static void SelectServerTask(void)
         g_selectFlag = 0;
         return;
     }
+    
     int ret;
     int cliCount = 0;
     int maxFd = srvFd;
@@ -462,6 +463,7 @@ static BOOL LwipFuncTestSuiteTearDown(void)
     printf("+----------------------------------------------------------+\n");
     return TRUE;
 }
+
 
 /**
  * @tc.number    : SUB_COMMUNICATION_LWIP_SDK_0100
@@ -620,6 +622,24 @@ LITE_TEST_CASE(LwipFuncTestSuite, testUdp, Function | MediumTest | Level2)
 }
 
 /**
+ * @tc.number    : SUB_COMMUNICATION_LWIP_SDK_0300
+ * @tc.name      : test socket 
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+LITE_TEST_CASE(LwipFuncTestSuite, testSocket, Function | MediumTest | Level2)
+{
+    int ret;
+    int fdFail = -1;
+    int fdSuccess = -1;
+
+    fdFail = socket(0, 0, 0);
+    TEST_ASSERT_EQUAL_INT(LWIP_TEST_FAIL, fdFail);
+    fdSuccess = socket(AF_INET, SOCK_STREAM, 0);
+    TEST_ASSERT_NOT_EQUAL(LWIP_TEST_FAIL, fdSuccess);
+}
+
+
+/**
  * @tc.number    : SUB_COMMUNICATION_LWIP_SDK_0400
  * @tc.name      : test select timeout
  * @tc.desc      : [C- SOFTWARE -0200]
@@ -638,6 +658,7 @@ LITE_TEST_CASE(LwipFuncTestSuite, testSelectTimeout, Function | MediumTest | Lev
     g_selectTimeout = 2;
     osThreadId_t serverTaskId = osThreadNew((osThreadFunc_t)SelectServerTask, NULL, &tSelect);
     TEST_ASSERT_NOT_NULL(serverTaskId);
+    
     if (serverTaskId == NULL) {
         printf("create select server task fail!\n");
     } else {
@@ -647,53 +668,7 @@ LITE_TEST_CASE(LwipFuncTestSuite, testSelectTimeout, Function | MediumTest | Lev
         }
         TEST_ASSERT_EQUAL_INT(-2, g_selectResult);
     }
-}
-
-/**
- * @tc.number    : SUB_COMMUNICATION_LWIP_SDK_0600
- * @tc.name      : test select with multi clients
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-LITE_TEST_CASE(LwipFuncTestSuite, testSelectMultiClients, Function | MediumTest | Level2)
-{
-    osThreadAttr_t tSelect;
-    tSelect.name = "SelectServerTask";
-    tSelect.attr_bits = 0U;
-    tSelect.cb_mem = NULL;
-    tSelect.cb_size = 0U;
-    tSelect.stack_mem = NULL;
-    tSelect.stack_size = DEF_TASK_STACK;
-    tSelect.priority = DEF_TASK_PRIORITY;
-
-    g_selectTimeout = 5;
-    osThreadId_t serverTaskId = osThreadNew((osThreadFunc_t)SelectServerTask, NULL, &tSelect);
-    TEST_ASSERT_NOT_NULL(serverTaskId);
-    osDelay(ONE_SECOND);
-    if (serverTaskId == NULL) {
-        printf("create select server task fail!\n");
-    } else {
-        osThreadAttr_t tClient[2];
-        osThreadId_t clientTaskId;
-        char taskName[2][8] = {"client1", "client2"};
-        for (int i = 0; i < 2; i++) {
-            tClient[i].name = taskName[i];
-            tClient[i].attr_bits = 0U;
-            tClient[i].cb_mem = NULL;
-            tClient[i].cb_size = 0U;
-            tClient[i].stack_mem = NULL;
-            tClient[i].stack_size = DEF_TASK_STACK;
-            tClient[i].priority = DEF_TASK_PRIORITY;
-            clientTaskId = osThreadNew((osThreadFunc_t)CommTcpClientTask, NULL, &tClient[i]);
-            TEST_ASSERT_NOT_NULL(clientTaskId);
-        }
-
-        g_selectFlag = 1;
-        while (g_selectFlag) {
-            osDelay(ONE_SECOND);
-            printf("wait select server finish...\n");
-        }
-        TEST_ASSERT_EQUAL_INT(0, g_selectResult);
-    }
+    osThreadTerminate(serverTaskId);
 }
 
 /**
