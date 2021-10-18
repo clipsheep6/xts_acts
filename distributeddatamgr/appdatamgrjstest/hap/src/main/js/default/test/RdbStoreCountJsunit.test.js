@@ -14,29 +14,31 @@
  */
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-import ohos_data_rdb from '@ohos.data.rdb';
+import ohosDataRdb from '@ohos.data.rdb';
 
 const TAG = "[RDB_JSKITS_TEST]"
-const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-
+const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " 
++ "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 const STORE_CONFIG = {
     name: "countTest.db",
-    storageMode: 0, // ohos_data_rdb.StorageMode.MODE_DISK,
+    storageMode: 0, // ohosDataRdb.StorageMode.MODE_DISK,
     readOnly: false,
-    fileType: 0, //ohos_data_rdb.DatabaseFileType.NORMAL,
+    fileType: 0, //ohosDataRdb.DatabaseFileType.NORMAL,
     encryptKey: [1, 2, 3, 4, 5, 6, 7],
-    journalMode: 0, // ohos_data_rdb.JournalMode.MODE_DELETE,
-    syncMode: 0, //ohos_data_rdb.SyncMode.MODE_OFF
+    journalMode: 0, // ohosDataRdb.JournalMode.MODE_DELETE,
+    syncMode: 0, //ohosDataRdb.SyncMode.MODE_OFF
 }
 const CALL_BACK = {
     onCreate: () => {
         console.info(TAG + "onCreate on called")
     },
     onUpgrade: (versionAction) => {
-        console.info(TAG + "onUpgrade on called:currentVersion = " + versionAction.currentVersion + ", targetVersion = " + versionAction.targetVersion)
+        console.info(TAG + "onUpgrade on called:currentVersion = " + versionAction.currentVersion 
+        + ", targetVersion = " + versionAction.targetVersion)
     },
     onDowngrade: (versionAction) => {
-        console.info(TAG + "onDowngrade on called:currentVersion = " + versionAction.currentVersion + ", targetVersion = " + versionAction.targetVersion)
+        console.info(TAG + "onDowngrade on called:currentVersion = " 
+        + versionAction.currentVersion + ", targetVersion = " + versionAction.targetVersion)
     },
     onOpen: () => {
         console.info(TAG + "onOpen on called")
@@ -48,7 +50,7 @@ const CALL_BACK = {
 var rdbStore = undefined;
 describe('rdbStoreInsertTest', function () {
     beforeAll(async function () {
-        rdbStore = await ohos_data_rdb.getRdbStore(STORE_CONFIG, 1, CALL_BACK);
+        rdbStore = await ohosDataRdb.getRdbStore(STORE_CONFIG, 1, CALL_BACK);
         await rdbStore.executeSql(CREATE_TABLE_TEST, null);
     })
     beforeEach(function () {
@@ -60,7 +62,7 @@ describe('rdbStoreInsertTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await ohos_data_rdb.deleteRdbStore("countTest.db");
+        await ohosDataRdb.deleteRdbStore("countTest.db");
     })
     console.log(TAG + "*************Unit Test Begin*************");
 
@@ -106,7 +108,7 @@ describe('rdbStoreInsertTest', function () {
             await expect(3).assertEqual(insertPromise);
         }
         {
-            let predicates = new ohos_data_rdb.RdbPredicates("test");
+            let predicates = new ohosDataRdb.RdbPredicates("test");
             predicates.equalTo("name", "lisi")
             let resultSet = await rdbStore.query(predicates, ["id", "name", "age", "salary", "blobType"]);
             try {
@@ -119,7 +121,7 @@ describe('rdbStoreInsertTest', function () {
             }
         }
         {
-            let predicates = new ohos_data_rdb.RdbPredicates("test");
+            let predicates = new ohosDataRdb.RdbPredicates("test");
             predicates.equalTo("age", 20)
             let resultSet = await rdbStore.query(predicates, ["id", "name", "age", "salary", "blobType"]);
             try {
@@ -132,7 +134,7 @@ describe('rdbStoreInsertTest', function () {
             }
         }
         {
-            let predicates = new ohos_data_rdb.RdbPredicates("test");
+            let predicates = new ohosDataRdb.RdbPredicates("test");
             predicates.equalTo("salary", "100.5")
             let resultSet = await rdbStore.query(predicates, ["id", "name", "age", "salary", "blobType"]);
             try {
@@ -145,7 +147,7 @@ describe('rdbStoreInsertTest', function () {
             }
         }
         {
-            let predicates = new ohos_data_rdb.RdbPredicates("test");
+            let predicates = new ohosDataRdb.RdbPredicates("test");
             let resultSet = await rdbStore.query(predicates, ["id", "name", "age", "salary", "blobType"]);
             try {
                 await expect(true).assertEqual(resultSet.goToFirstRow())
@@ -168,7 +170,7 @@ describe('rdbStoreInsertTest', function () {
     it('countTest002', 0, async function (done) {
         var u8 = new Uint8Array([3, 4, 5])
         console.log(TAG + "************* countTest002 start *************");
-        let predicates = new ohos_data_rdb.RdbPredicates("test");
+        let predicates = new ohosDataRdb.RdbPredicates("test");
         let resultSet = await rdbStore.query(predicates, ["id", "name", "age", "salary", "blobType"]);
         try {
             await expect(true).assertEqual(resultSet.goToFirstRow())
@@ -222,7 +224,7 @@ describe('rdbStoreInsertTest', function () {
             await expect(6).assertEqual(insertPromise);
             await console.log(TAG + "insert third done: " + insertPromise);
         }
-        let predicates = new ohos_data_rdb.RdbPredicates("test");
+        let predicates = new ohosDataRdb.RdbPredicates("test");
         predicates.equalTo("name", "lisi")
         predicates.equalTo("age", 18)
         let resultSet = await rdbStore.query(predicates, ["id", "name", "age", "salary", "blobType"]);
@@ -278,7 +280,7 @@ describe('rdbStoreInsertTest', function () {
             await expect(9).assertEqual(insertPromise);
             await console.log(TAG + "insert third done: " + insertPromise);
         }
-        let predicates = new ohos_data_rdb.RdbPredicates("test");
+        let predicates = new ohosDataRdb.RdbPredicates("test");
         predicates.equalTo("age", "18")
         let resultSet = await rdbStore.query(predicates, ["id", "name", "age", "salary", "blobType"]);
         try {
