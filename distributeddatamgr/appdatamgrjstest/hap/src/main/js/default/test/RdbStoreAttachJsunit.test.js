@@ -31,10 +31,12 @@ const CALL_BACK = {
         console.info(TAG + "onCreate on called")
     },
     onUpgrade: (versionAction) => {
-        console.info(TAG + "onUpgrade on called:currentVersion = " + versionAction.currentVersion + ", targetVersion = " + versionAction.targetVersion)
+        console.info(TAG + "onUpgrade on called:currentVersion = " + versionAction.currentVersion 
+        + ", targetVersion = " + versionAction.targetVersion)
     },
     onDowngrade: (versionAction) => {
-        console.info(TAG + "onDowngrade on called:currentVersion = " + versionAction.currentVersion + ", targetVersion = " + versionAction.targetVersion)
+        console.info(TAG + "onDowngrade on called:currentVersion = " + versionAction.currentVersion 
+        + ", targetVersion = " + versionAction.targetVersion)
     },
     onOpen: () => {
         console.info(TAG + "onOpen on called")
