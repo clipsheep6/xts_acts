@@ -555,6 +555,10 @@ LITE_TEST_CASE(LwipFuncTestSuite, testTcp, Function | MediumTest | Level2)
     }
     TEST_ASSERT_EQUAL_INT(1, g_clientResult);
     TEST_ASSERT_EQUAL_INT(1, g_serverResult);
+    
+    osDelay(ONE_SECOND);
+    g_serverWait = 1;
+    g_clientWait = 1;
 }
 
 /**
