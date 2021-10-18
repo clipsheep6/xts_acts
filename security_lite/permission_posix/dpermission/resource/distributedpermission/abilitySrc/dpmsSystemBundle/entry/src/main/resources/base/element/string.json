@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "dpms_system_bundle"
+    },
+    {
+      "name": "mainability_description",
+      "value": "dpms_system_bundle"
+    }
+  ]
+}
