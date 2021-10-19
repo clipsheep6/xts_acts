@@ -1,0 +1,30 @@
+# Copyright (C) Huawei Technologies Co., Ltd. 2020-2020. All rights reserved.
+
+import("//build/ohos.gni")
+UTILS_DIR="//test/xts/acts/telephony/telephonycpptest/utils"
+ohos_shared_library("napi_mock_vendor") {
+    sources = [
+        "napi_js_call_native_bridge.cpp",
+        "../mock_vendor/mock_vendor.cpp",
+    ]
+    include_dirs = [
+        "//third_party/node/src",
+        "$UTILS_DIR"
+    ]
+    defines = [
+        "LOG_TAG = \"NAPI_VENDOR\"",
+        "LOG_DOMAIN = 0xD002B01",
+    ]
+    deps = [
+        "//drivers/adapter/uhdf2/osal:libhdf_utils", 
+        "//foundation/ace/napi:ace_napi",
+        "//base/telephony/core_service/utils:libtelephony_common",
+    ]
+
+    external_deps = [ 
+        "hiviewdfx_hilog_native:libhilog" 
+        ]
+    
+    part_name = "napi_mock_vendor"
+    subsystem_name = "telephonycpptest"
+}
