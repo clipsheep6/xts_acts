@@ -27,12 +27,12 @@ function sleep(delay) {
 }
 
 var wifiConfig = {
-    "ssid": "TEST",
-    "bssid": "A1:B1:C1:D1:E1:F1",
+    "ssid": "testl2",
+    "bssid": "42:2f:b9:e9:6f:8a",
     "preSharedKey": "12345678",
     "isHiddenSsid": "false",
     "securityType": 3,
-    "netId": 0,
+    "netId": 43,
     "ipType": 1,
     "creatorUid": 7,
     "disableReason": 0,
@@ -42,7 +42,7 @@ var wifiConfig = {
 }
 
 var ipConfig = {
-    "ipAddress":  1284752956,
+    "ipAddress": 1284752956,
     "gateway": 17017024,
     "dnsServers": 12345678,
     "domains": ["aaa"],
@@ -84,12 +84,15 @@ it('wifi_native_js_unit_test_003', 0, function () {
     */
 it('wifi_native_js_unit_test_005', 0, async function (done) {
     console.info("[wifi_test] Wifi get scan infos callback test[1].");
+    var result = wifi.scan();
+    sleep(20000);
+
     wifi.getScanInfos(
         (result) => {
             var clen = Object.keys(result).length;
             console.log("[wifi_test] wifi received scan info call back: " + clen);
             expect(result).assertLarger(0);
-            console.info("[wifi_test] add device config callback: " + JSON.stringify(result));
+            console.info("[wifi_test] scan info callback: " + JSON.stringify(result));
             expect(JSON.stringify(result)).assertContain('ssid');
             sleep(5000);
             for (var j = 0; j < clen; ++j) {
@@ -130,6 +133,8 @@ it('wifi_native_js_unit_test_006', 0, async function (done) {
                 console.info("band: " + result[j].band);
                 console.info("frequency: " + result[j].frequency);
                 console.info("timestamp: " + result[j].timestamp);
+                console.info("capabilities: " + result[j].capabilities);
+                console.info("channelWidth: " + result[j].channelWidth);
             }
         });
         done();
