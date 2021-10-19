@@ -16,12 +16,10 @@
 import radio from '@ohos.telephony.radio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
-describe('NetworkSearchTest', function () {
-    const SLOT_0 = 0;
-    const SLOT_ID_ERR = -3;
-    const ISO_COUNTRY_CODE = 'cn';
-    const PLMN_SIZE = 5;
+describe('NetworkSearchRadioTest', function () {
 
+    const SLOT_0 = 0;
+    
     /**
      * @tc.number  Telephony_NetworkSearch_turnOnRadio_Async_0100
      * @tc.name    Radio is off, test The Radio module is turned on and the Radio status is changed to 'true'
@@ -53,7 +51,7 @@ describe('NetworkSearchTest', function () {
                     return;
                 }
                 console.log('Telephony_NetworkSearch_turnOnRadio_Async_0100 turnOn finish');
-                radio.isRadioOn((err, data) => {
+                radio.isRadioOn(async (err, data) => {
                     if (err) {
                         console.log(`Telephony_NetworkSearch_turnOnRadio_Async_0100 isOn fail: ${err}`);
                         expect().assertFail();
@@ -62,6 +60,15 @@ describe('NetworkSearchTest', function () {
                     }
                     console.log(`Telephony_NetworkSearch_turnOnRadio_Async_0100 finish data: ${data}`);
                     expect(data).assertTrue();
+                    try {
+                        await radio.turnOnRadio();
+                        console.log('Telephony_NetworkSearch_recoverRadioState success');
+                    } catch (err) {
+                        console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+                        expect().assertFail();
+                        done();
+                        return;
+                    }
                     done();
                 });
             });
@@ -145,7 +152,7 @@ describe('NetworkSearchTest', function () {
                     return;
                 }
                 console.log('Telephony_NetworkSearch_turnOffRadio_Async_0100 turnOff finish');
-                radio.isRadioOn((err, data) => {
+                radio.isRadioOn(async (err, data) => {
                     if (err) {
                         console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0100 isOn fail: ${err}`);
                         expect().assertFail();
@@ -154,6 +161,15 @@ describe('NetworkSearchTest', function () {
                     }
                     console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0100 finish data: ${data}`)
                     expect(data).assertFalse();
+                    try {
+                        await radio.turnOnRadio();
+                        console.log('Telephony_NetworkSearch_recoverRadioState success');
+                    } catch (err) {
+                        console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+                        expect().assertFail();
+                        done();
+                        return;
+                    }
                     done();
                 });
             });
@@ -191,7 +207,7 @@ describe('NetworkSearchTest', function () {
                     return;
                 }
                 console.log('Telephony_NetworkSearch_turnOffRadio_Async_0200 turnOff2 finish');
-                radio.isRadioOn((err, data) => {
+                radio.isRadioOn(async (err, data) => {
                     if (err) {
                         console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0200 isOn fail: ${err}`);
                         expect().assertFail();
@@ -200,6 +216,15 @@ describe('NetworkSearchTest', function () {
                     }
                     console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0200 finish data: ${data}`)
                     expect(data).assertFalse();
+                    try {
+                        await radio.turnOnRadio();
+                        console.log('Telephony_NetworkSearch_recoverRadioState success');
+                    } catch (err) {
+                        console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+                        expect().assertFail();
+                        done();
+                        return;
+                    }
                     done();
                 });
             });
@@ -233,7 +258,7 @@ describe('NetworkSearchTest', function () {
                 return;
             }
             console.log('Telephony_NetworkSearch_turnOffRadio_Async_0500 turnOff finish');
-            radio.getNetworkState((err, data) => {
+            radio.getNetworkState(async (err, data) => {
                 if (err) {
                     console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0500 get fail err: ${err}`);
                     expect().assertFail();
@@ -241,21 +266,23 @@ describe('NetworkSearchTest', function () {
                     return;
                 }
                 console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0500 finish data: ${JSON.stringify(data)}`);
-                expect(
-                    data.longOperatorName === undefined || data.longOperatorName === '' ||
-                     data.longOperatorName === null
-                ).assertTrue();
-                expect(
-                    data.shortOperatorName === undefined || data.shortOperatorName === '' ||
-                     data.shortOperatorName === null
-                ).assertTrue();
-                expect(data.plmnNumeric === undefined || data.plmnNumeric === '' ||
-                data.plmnNumeric === null).assertTrue();
+                expect(data.longOperatorName === '').assertTrue();
+                expect(data.shortOperatorName === '').assertTrue();
+                expect(data.plmnNumeric === '').assertTrue();
                 expect(data.regStatus === radio.REG_STATE_POWER_OFF).assertTrue();
                 expect(data.nsaState === radio.NSA_STATE_NOT_SUPPORT).assertTrue();
                 expect(data.isRoaming === false).assertTrue();
                 expect(data.isCaActive === false).assertTrue();
                 expect(data.isEmergency === false).assertTrue();
+                try {
+                    await radio.turnOnRadio();
+                    console.log('Telephony_NetworkSearch_recoverRadioState success');
+                } catch (err) {
+                    console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+                    expect().assertFail();
+                    done();
+                    return;
+                }
                 done();
             });
         });
@@ -284,7 +311,7 @@ describe('NetworkSearchTest', function () {
                 return;
             }
             console.log('Telephony_NetworkSearch_turnOffRadio_Async_0600 turnOff finish');
-            radio.getSignalInformation(SLOT_0, (err, data) => {
+            radio.getSignalInformation(SLOT_0, async (err, data) => {
                 if (err) {
                     console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0600 get fail err: ${err}`);
                     expect().assertFail();
@@ -294,6 +321,15 @@ describe('NetworkSearchTest', function () {
                 console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0600 finish data: ${JSON.stringify(data)}`);
                 expect(data != null && data != undefined).assertTrue();
                 expect(data.length === 0).assertTrue();
+                try {
+                    await radio.turnOnRadio();
+                    console.log('Telephony_NetworkSearch_recoverRadioState success');
+                } catch (err) {
+                    console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+                    expect().assertFail();
+                    done();
+                    return;
+                }
                 done();
             });
         });
@@ -323,7 +359,7 @@ describe('NetworkSearchTest', function () {
                 return;
             }
             console.log('Telephony_NetworkSearch_turnOffRadio_Async_0700 turnOff finish');
-            radio.getRadioTech(SLOT_0, (err, { psRadioTech,
+            radio.getRadioTech(SLOT_0, async (err, { psRadioTech,
                 csRadioTech }) => {
                 if (err) {
                     console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0700 get fail err: ${err}`);
@@ -331,10 +367,19 @@ describe('NetworkSearchTest', function () {
                     done();
                     return;
                 }
-                console.log(`Telephony_NetworkSearch_turnOffRadio_Async_0700 finish psRadioTech: ${psRadioTech}
-                 csRadioTech: ${csRadioTech}`);
+                console.log(
+                    `Telephony_NetworkSearch_turnOffRadio_Async_0700 finish ps: ${psRadioTech} cs: ${csRadioTech}`);
                 expect(psRadioTech === radio.RADIO_TECHNOLOGY_UNKNOWN).assertTrue();
                 expect(csRadioTech === radio.RADIO_TECHNOLOGY_UNKNOWN).assertTrue();
+                try {
+                    await radio.turnOnRadio();
+                    console.log('Telephony_NetworkSearch_recoverRadioState success');
+                } catch (err) {
+                    console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+                    expect().assertFail();
+                    done();
+                    return;
+                }
                 done();
             });
         });
@@ -342,7 +387,7 @@ describe('NetworkSearchTest', function () {
 
     /**
      * @tc.number  Telephony_NetworkSearch_isRadioOn_Async_0100
-     * @tc.name    Turn off Radio, input slotId parameter as 1, test isRadioOn() returns 'false'
+     * @tc.name    Turn off Radio, test isRadioOn() returns 'false'
      * @tc.desc    Function test
      */
     it('Telephony_NetworkSearch_isRadioOn_Async_0100', 0, async function (done) {
@@ -363,7 +408,7 @@ describe('NetworkSearchTest', function () {
                 return;
             }
             console.log('Telephony_NetworkSearch_isRadioOn_Async_0100 turnOff finish');
-            radio.isRadioOn((err, data) => {
+            radio.isRadioOn(async (err, data) => {
                 if (err) {
                     console.log(`Telephony_NetworkSearch_isRadioOn_Async_0100 isOn fail err: ${err}`);
                     expect().assertFail();
@@ -372,6 +417,15 @@ describe('NetworkSearchTest', function () {
                 }
                 console.log(`Telephony_NetworkSearch_isRadioOn_Async_0100 finish data: ${data}`);
                 expect(data === false).assertTrue();
+                try {
+                    await radio.turnOnRadio();
+                    console.log('Telephony_NetworkSearch_recoverRadioState success');
+                } catch (err) {
+                    console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+                    expect().assertFail();
+                    done();
+                    return;
+                }
                 done();
             });
 
@@ -380,7 +434,7 @@ describe('NetworkSearchTest', function () {
 
     /**
      * @tc.number  Telephony_NetworkSearch_isRadioOn_Async_0200
-     * @tc.name    Turn on Radio, input slotId parameter as 1, test isRadioOn() returns 'true'
+     * @tc.name    Turn on Radio, test isRadioOn() returns 'true'
      * @tc.desc    Function test
      */
     it('Telephony_NetworkSearch_isRadioOn_Async_0200', 0, async function (done) {
@@ -458,7 +512,6 @@ describe('NetworkSearchTest', function () {
             done();
             return;
         }
-
         done();
     });
 
@@ -532,6 +585,15 @@ describe('NetworkSearchTest', function () {
             done();
             return;
         }
+        try {
+            await radio.turnOnRadio();
+            console.log('Telephony_NetworkSearch_recoverRadioState success');
+        } catch (err) {
+            console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+            expect().assertFail();
+            done();
+            return;
+        }
         done();
     });
 
@@ -579,6 +641,15 @@ describe('NetworkSearchTest', function () {
             done();
             return;
         }
+        try {
+            await radio.turnOnRadio();
+            console.log('Telephony_NetworkSearch_recoverRadioState success');
+        } catch (err) {
+            console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+            expect().assertFail();
+            done();
+            return;
+        }
         done();
     });
 
@@ -613,13 +684,9 @@ describe('NetworkSearchTest', function () {
             let data = await radio.getNetworkState();
             console.log(`Telephony_NetworkSearch_turnOffRadio_Promise_0500 finish data: ${JSON.stringify(data)}`);
             expect(data != null && data != undefined).assertTrue();
-            expect(
-                data.longOperatorName === undefined || data.longOperatorName === '' || data.longOperatorName === null
-            ).assertTrue();
-            expect(
-                data.shortOperatorName === undefined || data.shortOperatorName === '' || data.shortOperatorName === null
-            ).assertTrue();
-            expect(data.plmnNumeric === undefined || data.plmnNumeric === '' || data.plmnNumeric === null).assertTrue();
+            expect(data.longOperatorName === '').assertTrue();
+            expect(data.shortOperatorName === '').assertTrue();
+            expect(data.plmnNumeric === '').assertTrue();
             expect(data.regStatus === radio.REG_STATE_POWER_OFF).assertTrue();
             expect(data.nsaState === radio.NSA_STATE_NOT_SUPPORT).assertTrue();
             expect(data.isRoaming === false).assertTrue();
@@ -628,6 +695,15 @@ describe('NetworkSearchTest', function () {
             
         } catch (err) {
             console.log(`Telephony_NetworkSearch_turnOffRadio_Promise_0500 fail err: ${err}`);
+            expect().assertFail();
+            done();
+            return;
+        }
+        try {
+            await radio.turnOnRadio();
+            console.log('Telephony_NetworkSearch_recoverRadioState success');
+        } catch (err) {
+            console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
             expect().assertFail();
             done();
             return;
@@ -661,11 +737,20 @@ describe('NetworkSearchTest', function () {
         }
         try {
             let data = await radio.getSignalInformation(SLOT_0);
-            console.log(`Telephony_NetworkSearch_turnOffRadio_Promise_0600 finish data: ${data}`);
+            console.log(`Telephony_NetworkSearch_turnOffRadio_Promise_0600 finish data: ${JSON.stringify(data)}`);
             expect(data != null && data != undefined).assertTrue();
             expect(data.length === 0).assertTrue();
         } catch (err) {
             console.log(`Telephony_NetworkSearch_turnOffRadio_Promise_0600 fail: ${err}`);
+            expect().assertFail();
+            done();
+            return;
+        }
+        try {
+            await radio.turnOnRadio();
+            console.log('Telephony_NetworkSearch_recoverRadioState success');
+        } catch (err) {
+            console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
             expect().assertFail();
             done();
             return;
@@ -710,12 +795,21 @@ describe('NetworkSearchTest', function () {
             done();
             return;
         }
+        try {
+            await radio.turnOnRadio();
+            console.log('Telephony_NetworkSearch_recoverRadioState success');
+        } catch (err) {
+            console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+            expect().assertFail();
+            done();
+            return;
+        }
         done();
     });
 
     /**
      * @tc.number  Telephony_NetworkSearch_isRadioOn_Promise_0100
-     * @tc.name    Turn off Radio, input slotId parameter as 1, test isRadioOn() returns 'false'
+     * @tc.name    Turn off Radio, test isRadioOn() returns 'false'
      * @tc.desc    Function test
      */
     it('Telephony_NetworkSearch_isRadioOn_Promise_0100', 0, async function (done) {
@@ -747,12 +841,21 @@ describe('NetworkSearchTest', function () {
             done();
             return;
         }
+        try {
+            await radio.turnOnRadio();
+            console.log('Telephony_NetworkSearch_recoverRadioState success');
+        } catch (err) {
+            console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+            expect().assertFail();
+            done();
+            return;
+        }
         done();
     });
 
     /**
      * @tc.number  Telephony_NetworkSearch_isRadioOn_Promise_0200
-     * @tc.name    Turn on Radio, input slotId parameter as 1, test isRadioOn() returns 'true'
+     * @tc.name    Turn on Radio, test isRadioOn() returns 'true'
      * @tc.desc    Function test
      */
     it('Telephony_NetworkSearch_isRadioOn_Promise_0200', 0, async function (done) {
@@ -780,7 +883,7 @@ describe('NetworkSearchTest', function () {
 
     /**
      * @tc.number  Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500
-     * @tc.name    Radio is off, test the getISOCountryCodeForNetwork() return the data is 'cn'
+     * @tc.name    Radio is off, test the getISOCountryCodeForNetwork() return the data is not 'cn'
      * @tc.desc    Function test
      */
     it('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500', 0, async function (done) {
@@ -801,16 +904,25 @@ describe('NetworkSearchTest', function () {
                 return;
             }
             console.log('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500 turnOff finish');
-            radio.getISOCountryCodeForNetwork(SLOT_0, (err, data) => {
+            radio.getISOCountryCodeForNetwork(SLOT_0, async (err, data) => {
                 if (err) {
                     console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500 get fail: ${err}`);
                     expect().assertFail();
                     done();
                     return;
                 }
-                console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500 finish
-                 data: ${JSON.stringify(data)}`);
-                expect(data === "" || data === undefined || data === null).assertTrue();
+                console.log(
+                `Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500 finish data: ${JSON.stringify(data)}`);
+                expect(data === '').assertTrue();
+                try {
+                    await radio.turnOnRadio();
+                    console.log('Telephony_NetworkSearch_recoverRadioState success');
+                } catch (err) {
+                    console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
+                    expect().assertFail();
+                    done();
+                    return;
+                }
                 done();
             });
         });
@@ -818,7 +930,7 @@ describe('NetworkSearchTest', function () {
 
     /**
      * @tc.number  Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0500
-     * @tc.name    Radio is off, test the getISOCountryCodeForNetwork() return the data is 'cn'
+     * @tc.name    Radio is off, test the getISOCountryCodeForNetwork() return the data is not 'cn'
      * @tc.desc    Function test
      */
     it('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0500', 0, async function (done) {
@@ -843,7 +955,7 @@ describe('NetworkSearchTest', function () {
         try {
             let data = await radio.getISOCountryCodeForNetwork(SLOT_0);
             console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0500 finish: ${data}`);
-            expect(data === "" || data === undefined || data === null).assertTrue();
+            expect(data === '').assertTrue();
         } catch (err) {
             console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0500 fail: ${err}`);
             expect().assertFail();
@@ -852,9 +964,9 @@ describe('NetworkSearchTest', function () {
         }
         try {
             await radio.turnOnRadio();
-            console.log('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0500 turnOn success');
+            console.log('Telephony_NetworkSearch_recoverRadioState success');
         } catch (err) {
-            console.log(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0500 turnOff fail ${err}`);
+            console.log(`Telephony_NetworkSearch_recoverRadioState fail ${err}`);
             expect().assertFail();
             done();
             return;

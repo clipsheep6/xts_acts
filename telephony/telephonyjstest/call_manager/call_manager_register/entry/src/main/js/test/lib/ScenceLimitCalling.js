@@ -1,0 +1,38 @@
+/**
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {RESTRICTION_TYPE_ALL_INCOMING, RESTRICTION_MODE_ACTIVATION, RIGHT_PASSWORD, DEFAULT_SLOT_ID} from './Const.js';
+import {toString} from './ApiToPromise.js';
+import call from '@ohos.telephony.call';
+
+// limit call scence
+export function scenceLimitCalling (caseName, type, mode) {
+  return new Promise((resolve, reject) => {
+    console.log(`${caseName} scenceLimitCalling type:${type},mode:${mode}`);
+    call.setCallRestriction(DEFAULT_SLOT_ID, {
+      type,
+      mode,
+      password:RIGHT_PASSWORD,
+    })
+      .then(data => {
+        console.log(`${caseName} setCallRestriction success, data:${toString(data)}`);
+        resolve(data);
+      })
+      .catch((error) => {
+        console.log(`${caseName} setCallRestriction error,error:${toString(error)}`);
+        reject(error);
+      });
+  });
+}
