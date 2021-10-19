@@ -17,7 +17,7 @@ import media from '@ohos.multimedia.media'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('PlayerLocalTestAudioFormat', function () {
-    const BASIC_PATH = 'file:///data/media/audio/';
+    const BASIC_PATH = 'file:///data/media/';
     const MAX_VOLUME = 1;
     const PLAY_TIME = 3000;
     const SEEK_TIME = 10000; // 10s
@@ -241,21 +241,6 @@ describe('PlayerLocalTestAudioFormat', function () {
         playSource(BASIC_PATH + '47.mp4', done);
     })
 
-    /* *
-        * @tc.number    : SUB_MEDIA_PLAYER_LOCAL_Format_MP4_01_0200
-        * @tc.name      : 002.Playing mp4 streams
-        * @tc.desc      : Format : MP4
-                          Codec : AAC LC
-                          Samplerate : 48000
-                          Bitrate : 16
-                          Channel : 2
-        * @tc.size      : MediumTest
-        * @tc.type      : Function test
-        * @tc.level     : Level0
-    */
-    it('SUB_MEDIA_PLAYER_LOCAL_Format_MP4_01_0200', 0, async function (done) {
-        playSource(BASIC_PATH + '48.mp4', done);
-    })
 
     /* *
         * @tc.number    : SUB_MEDIA_PLAYER_LOCAL_Format_MP4_01_0300
@@ -497,21 +482,6 @@ describe('PlayerLocalTestAudioFormat', function () {
         playSource(BASIC_PATH + '55.m4a', done);
     })
 
-    /* *
-        * @tc.number    : SUB_MEDIA_PLAYER_LOCAL_Format_M4A_01_0200
-        * @tc.name      : 002.Playing m4a streams
-        * @tc.desc      : Format : M4A
-                          Codec : AAC LC
-                          Samplerate : 48000
-                          Bitrate : 16
-                          Channel : 2
-        * @tc.size      : MediumTest
-        * @tc.type      : Function test
-        * @tc.level     : Level0
-    */
-    it('SUB_MEDIA_PLAYER_LOCAL_Format_M4A_01_0200', 0, async function (done) {
-        playSource(BASIC_PATH + '56.m4a', done);
-    })
 
     /* *
         * @tc.number    : SUB_MEDIA_PLAYER_LOCAL_Format_M4A_01_0300
@@ -559,22 +529,6 @@ describe('PlayerLocalTestAudioFormat', function () {
     */
     it('SUB_MEDIA_PLAYER_LOCAL_Format_M4A_01_0500', 0, async function (done) {
         playSource(BASIC_PATH + '59.m4a', done);
-    })
-
-    /* *
-        * @tc.number    : SUB_MEDIA_PLAYER_LOCAL_Format_M4A_01_0600
-        * @tc.name      : 006.Playing m4a streams
-        * @tc.desc      : Format : M4A
-                          Codec : AAC LC
-                          Samplerate : 96000
-                          Bitrate : 32
-                          Channel : 2
-        * @tc.size      : MediumTest
-        * @tc.type      : Function test
-        * @tc.level     : Level0
-    */
-    it('SUB_MEDIA_PLAYER_LOCAL_Format_M4A_01_0600', 0, async function (done) {
-        playSource(BASIC_PATH + '61.m4a', done);
     })
 
     /* *
