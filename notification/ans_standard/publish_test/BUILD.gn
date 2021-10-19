@@ -15,6 +15,23 @@ import("//build/ohos_var.gni")
 group("publish_test") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "notification-ContentType-All:ActsContentTypeAllTest" ]
+    deps = [
+      #"actsanspublishcontroltest:ActsAnsPublishControlTest",
+      #"badgedisplayed:badgedisplayed",
+      #"badgedisplayedset:badgedisplayedset",
+      "enablenotification:enablenotification",
+
+      #"enablenotificationset:enablenotificationset",
+      "getactive:getactive",
+      "getwantagentinfo:getwantagentinfo",
+
+      #"publishcontentype:ActsAnsNotificationTest",
+      #"subscribe:subscribe",
+      #"unsubscribe:ActsAnsUnSubscriberTest",
+      #"activeButton:ActsAnsActionButtonTest",
+      #"publishicontest:ActsAnsIconTest",
+      #"publishimage:ActsAnsPublishImageTest",
+      "wantagent:wantagent",
+    ]
   }
 }

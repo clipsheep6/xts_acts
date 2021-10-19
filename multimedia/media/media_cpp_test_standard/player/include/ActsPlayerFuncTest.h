@@ -15,7 +15,7 @@
 #ifndef PLAYER_FUNC_TEST_H
 #define PLAYER_FUNC_TEST_H
 
-#include "Testplayer.h"
+#include "TestPlayer.h"
 
 namespace OHOS {
 namespace Media {
@@ -45,7 +45,6 @@ public:
         MEDIA_DEBUG_LOG("ActsPlayerFuncTest::TearDown:%s", testInfo->name());
     };
     static void LocalPlayFunc(const std::string uri, bool isAsync, WindowConfig config = g_sub_config);
-    static void *LocalMulitPlayFunc(void *threadarg);
 };
 }
 }
