@@ -15,7 +15,6 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import ohos_data_rdb from '@ohos.data.rdb';
 import data_dataability from '@ohos.data.dataability';
-import ability_featureAbility from '@ohos.ability.featureAbility';
 
 const TAG = "[RDB_JSKITS _TEST]"
 const CREATE_TABLE_ALL_DATA_TYPE_SQL = "CREATE TABLE IF NOT EXISTS AllDataType "
@@ -31,13 +30,11 @@ const STORE_CONFIG = {
     name: "Predicates.db",
 }
 var rdbStore = undefined;
-var context = undefined;
 
 describe('dataAbilityPredicatesTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        context = await ability_featureAbility.getContext();
-        rdbStore = await ohos_data_rdb.getRdbStore(context, STORE_CONFIG, 1);
+        rdbStore = await ohos_data_rdb.getRdbStore(STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_ALL_DATA_TYPE_SQL, null);
         await buildAllDataType1();
         await buildAllDataType2();
@@ -55,7 +52,7 @@ describe('dataAbilityPredicatesTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await ohos_data_rdb.deleteRdbStore(context, "Predicates.db");
+        await ohos_data_rdb.deleteRdbStore("Predicates.db");
     })
 
     function resultSize(resultSet) {
@@ -2100,5 +2097,130 @@ describe('dataAbilityPredicatesTest', function () {
         done();
         console.log(TAG + "************* testIndexedBy0002 end *************");
     })
+
+    /**
+     * @tc.name predicates indexedBy test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0222
+     * @tc.desc predicates indexedBy test
+     */
+    it('dataAbilityTest0001', 0, async function (done) {
+        console.log(TAG + "************* dataAbilityTest0001 start *************");
+        let dataAbility = await new dataDataAbility.DataAbilityPredicates();
+        await console.log("init dataAbility")
+        try {
+            dataAbility.order = "Order";
+            await console.log("Order is done")
+            dataAbility.whereArgs = ["Test"];
+            await console.log("setWhereArgs1 done")
+            dataAbility.whereClause = "whereClause";
+            await console.log("setWhereClause1 done")
+            await expect("Order").assertEqual(dataAbility.order);
+            await console.log("getOrder1 done: " + dataAbility.order);
+            await expect("Test").assertEqual(dataAbility.whereArgs);
+            await console.log("whereArgs1 done: " + dataAbility.whereArgs);
+            await expect("whereClause").assertEqual(dataAbility.whereClause);
+            await console.log("whereClause1 done: " + dataAbility.whereClause);
+            await expect(false).assertEqual(dataAbility.isRawSelection());
+            await console.log("isRawSelection1 done: " + dataAbility.isRawSelection());
+            dataAbility.clear();
+            await console.log("dataability1 done: ");
+        } catch (e) {
+            await console.log("dataability1 error: " + e);
+        }
+        done();
+        console.log(TAG + "************* dataAbilityTest0001 end   *************");
+    })
+
+    /**
+     * @tc.name predicates indexedBy test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0223
+     * @tc.desc predicates indexedBy test
+     */
+
+    it('dataAbilityTest0002', 0, async function (done) {
+        console.log(TAG + "************* dataAbilityTest0002 start *************");
+        let dataAbility = new dataDataAbility.DataAbilityPredicates("userId=?");
+        try {
+            dataAbility.order = " ";
+            await console.log("setOrder2 done");
+            dataAbility.whereArgs = [" "];
+            await console.log("setWhereArgs2 done")
+            dataAbility.whereClause = " ";
+            await console.log("setWhereClause2 done")
+            await expect(" ").assertEqual(dataAbility.order);
+            await console.log("getOrder2 done: " + dataAbility.order);
+            await expect([" "]).assertEqual(dataAbility.whereArgs);
+            await console.log("whereArgs2 done: " + dataAbility.whereArgs);
+            await expect(" ").assertEqual(dataAbility.whereClause);
+            await console.log("whereClause2 done: " + dataAbility.whereClause);
+            await expect(false).assertEqual(dataAbility.isRawSelection());
+            await console.log("isRawSelection2 done: " + dataAbility.isRawSelection());
+            dataAbility.clear();
+            await expect(false).assertEqual(dataAbility.isRawSelection());
+            await console.log("dataability2 done: ");
+        } catch (e) {
+            await console.log("dataAbility error " + e);
+        }
+        done();
+        console.log(TAG + "************* dataAbilityTest0002 end   *************");
+    })
+
+    /**
+     * @tc.name predicates indexedBy test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0224
+     * @tc.desc predicates indexedBy test
+     */
+
+    it('dataAbilityTest0003', 0, async function (done) {
+        console.log(TAG + "************* dataAbilityTest0003 start *************");
+        let dataAbility = new dataDataAbility.DataAbilityPredicates();
+        try {
+            dataAbility.clear();
+            await expect(false).assertEqual(dataAbility.isRawSelection());
+            dataAbility.order = 0;
+            await console.log("setOrder3 done");
+            dataAbility.whereArgs = {
+                id: 1
+            };
+            await console.log("setWhereArgs3 done")
+            dataAbility.whereClause = 1;
+            await console.log("setWhereClause3 done")
+            dataAbility.clear();
+            await console.log("clear3 done: " + dataAbility.whereArgs);
+            await expect(null).assertEqual(dataAbility.order);
+            await expect(null).assertEqual(dataAbility.whereArgs);
+            await expect(null).assertEqual(dataAbility.whereClause);
+            await console.log("dataability3 done: ");
+        } catch (e) {
+            await console.log("dataability3 error " + e);
+        }
+        done();
+        console.log(TAG + "************* dataAbilityTest0003 end *************");
+    })
+
+    /**
+     * @tc.name predicates indexedBy test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0225
+     * @tc.desc predicates indexedBy test
+     */
+
+    it('dataAbilityTest0004', 0, async function (done) {
+        console.log(TAG + "************* dataAbilityTest0004 start *************");
+        let dataAbility = new dataDataAbility.DataAbilityPredicates("test");
+        try {
+            let res = dataAbility.isRawSelection();
+            await expect(false).assertEqual(dataAbility.isRawSelection());
+            dataAbility.order = null;
+            dataAbility.whereArgs = null;
+            dataAbility.whereClause = null;
+            await console.log("dataAbilityTest0004 done  ");
+            await expect(null).assertFail();
+        } catch (e) {
+            await console.log("dataAbilityTest0004 error " + e);
+        }
+        done();
+        console.log(TAG + "************* dataAbilityTest0004 end   *************");
+    })
     console.log(TAG + "*************Unit Test End*************");
 })
+

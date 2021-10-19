@@ -14,7 +14,6 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import ohos_data_rdb from '@ohos.data.rdb';
-import ability_featureAbility from '@ohos.ability.featureAbility';
 
 const TAG = "[RDB_JSKITS _TEST]"
 const CREATE_TABLE_ALL_DATA_TYPE_SQL = "CREATE TABLE IF NOT EXISTS AllDataType "
@@ -30,13 +29,11 @@ const STORE_CONFIG = {
     name: "Predicates.db",
 }
 var rdbStore = undefined;
-var context = undefined;
 
 describe('rdbPredicatesTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        context = await ability_featureAbility.getContext();
-        rdbStore = await ohos_data_rdb.getRdbStore(context, STORE_CONFIG, 1);
+        rdbStore = await ohos_data_rdb.getRdbStore(STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_ALL_DATA_TYPE_SQL, null);
         await buildAllDataType1();
         await buildAllDataType2();
@@ -54,7 +51,7 @@ describe('rdbPredicatesTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await ohos_data_rdb.deleteRdbStore(context, "Predicates.db");
+        await ohos_data_rdb.deleteRdbStore("Predicates.db");
     })
 
     function resultSize(resultSet) {
@@ -1950,6 +1947,7 @@ describe('rdbPredicatesTest', function () {
      * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0221
      * @tc.desc predicates indexedBy test
      */
+
     it('testIndexedBy0002', 0, async function (done) {
         console.log(TAG + "************* testIndexedBy0002 start *************");
         let predicates = await new ohos_data_rdb.RdbPredicates("AllDataType");
@@ -1959,6 +1957,223 @@ describe('rdbPredicatesTest', function () {
         result = null
         done();
         console.log(TAG + "************* testIndexedBy0002 end *************");
+    })
+
+    /**
+     * @tc.name predicates indexedBy test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0222
+     * @tc.desc predicates indexedBy test
+     */
+
+    it('predicates001', 0, async function (done) {
+        console.log(TAG + "************* predicates001 start *************");
+        let predicates = new ohosDataRdb.RdbPredicates("test");
+        try {
+            {
+                let jointypes = ["INSERT JOIN"];
+                predicates.joinTypes = jointypes;
+                await console.log("predicates setJoinTypes done");
+                let joinconditions = ["ON"];
+                predicates.joinConditions = joinconditions;
+                await console.log("predicates setJoinConditionss done");
+                let joincount = 1;
+                predicates.joinCount = joincount;
+                await console.log("predicates setJoinCount done");
+                let joinnames = ["names"];
+                predicates.joinNames = joinnames;
+                await console.log("predicates setJoinNames done");
+                await expect(jointypes).assertEqual(predicates.joinTypes());
+                await expect(joinconditions).assertEqual(predicates.joinConditions());
+                await expect(joincount).assertEqual(predicates.joinCount());
+                await expect(joinnames).assertEqual(predicates.joinNames());
+                predicates.clear();
+            }
+            {
+                let jointypes = ["INSERT"];
+                predicates.joinTypes = jointypes;
+                await console.log("predicates setJoinTypes done");
+                let joinconditions = ["OFF"];
+                predicates.joinConditions = joinconditions;
+                await console.log("predicates setJoinConditionss done");
+                let joincount = 2;
+                predicates.joinCount = joincount;
+                await console.log("predicates setJoinCount done");
+                let joinnames = ["ages"];
+                predicates.joinNames = joinnames;
+                await console.log("predicates setJoinNames done");
+                await expect(jointypes).assertEqual(predicates.joinTypes());
+                await expect(joinconditions).assertEqual(predicates.joinConditions());
+                await expect(joincount).assertEqual(predicates.joinCount());
+                await expect(joinnames).assertEqual(predicates.joinNames());
+            }
+        } catch (e) {
+            await console.log("predicates1 error " + e);
+        }
+        done()
+        console.log(TAG + "************* predicates001 end   *************");
+    })
+
+    /**
+     * @tc.name predicates indexedBy test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0223
+     * @tc.desc predicates indexedBy test
+     */
+
+    it('predicates002', 0, async function (done)     {
+        console.log(TAG + "************* predicates002 start *************");
+        let predicates = new ohosDataRdb.RdbPredicates("tests");
+        try {
+            {
+                let jointypes = ["INSERT JOIN"];
+                predicates.joinTypes = jointypes;
+                await console.log("predicates setJoinTypes done");
+                let joinconditions = ["ON"];
+                predicates.joinConditions = joinconditions;
+                await console.log("predicates setJoinConditionss done");
+                let joincount = 1;
+                predicates.joinCount = joincount;
+                await console.log("predicates setJoinCount done");
+                let joinnames = ["names"];
+                predicates.joinNames = joinnames;
+                await console.log("predicates setJoinNames done");
+                await expect(jointypes).assertEqual(predicates.joinTypes());
+                await expect(joinconditions).assertEqual(predicates.joinConditions());
+                await expect(joincount).assertEqual(predicates.joinCount());
+                await expect(joinnames).assertEqual(predicates.joinNames());
+            }
+            predicates.clear();
+            {
+                let jointypes = ["INSERT"];
+                predicates.joinTypes = jointypes;
+                await console.log("predicates setJoinTypes done");
+                let joinconditions = ["OFF"];
+                predicates.joinConditions = joinconditions;
+                await console.log("predicates setJoinConditionss done");
+                let joincount = 2;
+                predicates.joinCount = joincount;
+                await console.log("predicates setJoinCount done");
+                let joinnames = ["ages"];
+                predicates.joinNames = joinnames;
+                await console.log("predicates setJoinNames done");
+                await expect(jointypes).assertEqual(predicates.joinTypes());
+                await expect(joinconditions).assertEqual(predicates.joinConditions());
+                await expect(joincount).assertEqual(predicates.joinCount());
+                await expect(joinnames).assertEqual(predicates.joinNames());
+            }
+        } catch (e) {
+            await console.log("predicates2 error " + e);
+        }
+        done()
+        console.log(TAG + "************* predicates002 end   *************");
+    })
+
+    /**
+     * @tc.name predicates indexedBy test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0224
+     * @tc.desc predicates indexedBy test
+     */
+
+    it('predicates003', 0, async function (done) {
+        console.log(TAG + "************* predicates003 start *************");
+        let predicates = new ohosDataRdb.RdbPredicates("test", null);
+        try {
+            {
+                let jointypes = ["INSERT JOIN"];
+                predicates.joinTypes = jointypes;
+                await console.log("predicates setJoinTypes done");
+                let joinconditions = ["ON"];
+                predicates.joinConditions = joinconditions;
+                await console.log("predicates setJoinConditionss done");
+                let joincount = 1;
+                predicates.joinCount = joincount;
+                await console.log("predicates setJoinCount done");
+                let joinnames = ["names"];
+                predicates.joinNames = joinnames;
+                await console.log("predicates setJoinNames done");
+                await expect(jointypes).assertEqual(predicates.joinTypes());
+                await expect(joinconditions).assertEqual(predicates.joinConditions());
+                await expect(joincount).assertEqual(predicates.joinCount());
+                await expect(joinnames).assertEqual(predicates.joinNames());
+            }
+            predicates.clear();
+            {
+                let jointypes = ["INSERT"];
+                predicates.joinTypes = jointypes;
+                await console.log("predicates setJoinTypes done");
+                let joinconditions = ["OFF"];
+                predicates.joinConditions = joinconditions;
+                await console.log("predicates setJoinConditionss done");
+                let joincount = 2;
+                predicates.joinCount = joincount;
+                await console.log("predicates setJoinCount done");
+                let joinnames = ["ages"];
+                predicates.joinNames = joinnames;
+                await console.log("predicates setJoinNames done");
+                await expect(jointypes).assertEqual(predicates.joinTypes());
+                await expect(joinconditions).assertEqual(predicates.joinConditions());
+                await expect(joincount).assertEqual(predicates.joinCount());
+                await expect(joinnames).assertEqual(predicates.joinNames());
+            }
+        } catch (e) {
+            await console.log("predicates3 error " + e);
+        }
+        done()
+        console.log(TAG + "************* predicates003 end   *************");
+    })
+
+    /**
+     * @tc.name predicates indexedBy test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0225
+     * @tc.desc predicates indexedBy test
+     */
+
+    it('predicates004', 0, async function (done) {
+        console.log(TAG + "************* predicates004 start *************");
+        let predicates = new ohosDataRdb.RdbPredicates("test");
+        predicates.equalTo("name", "zhangsan");
+        try {
+            {
+                let jointypes = ["INSERT JOIN"];
+                predicates.joinTypes = jointypes;
+                await console.log("predicates setJoinTypes done");
+                let joinconditions = ["ON"];
+                predicates.joinConditions = joinconditions;
+                await console.log("predicates setJoinConditionss done");
+                let joincount = 1;
+                predicates.joinCount = joincount;
+                await console.log("predicates setJoinCount done");
+                let joinnames = ["names"];
+                predicates.joinNames = joinnames;
+                await console.log("predicates setJoinNames done");
+                await expect(jointypes).assertEqual(predicates.joinTypes());
+                await expect(joinconditions).assertEqual(predicates.joinConditions());
+                await expect(joincount).assertEqual(predicates.joinCount());
+                await expect(joinnames).assertEqual(predicates.joinNames());
+            }
+            predicates.clear();
+            {
+                let jointypes = ["INSERT"];
+                predicates.joinTypes = jointypes;
+                await console.log("predicates setJoinTypes done");
+                let joinconditions = ["OFF"];
+                predicates.joinConditions = joinconditions;
+                await console.log("predicates setJoinConditionss done");
+                let joincount = 2;
+                predicates.joinCount = joincount;
+                await console.log("predicates setJoinCount done");
+                let joinnames = ["ages"];
+                predicates.joinNames = joinnames;
+                await console.log("predicates setJoinNames done");
+                await expect(jointypes).assertEqual(predicates.joinTypes());
+                await expect(joinconditions).assertEqual(predicates.joinConditions());
+                await expect(joincount).assertEqual(predicates.joinCount());
+                await expect(joinnames).assertEqual(predicates.joinNames());
+            }
+        } catch (e) {
+            await console.log("predicates4 error " + e);
+        }
+        done()
+        console.log(TAG + "************* predicates004 end   *************");
     })
 
     console.log(TAG + "*************Unit Test End*************");
