@@ -16,7 +16,7 @@
 import media from '@ohos.multimedia.media'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
-describe('RecorderLocalTestAudioAPI', function () {
+describe('Recorder', function () {
     let audioRecorder = media.createAudioRecorder();
     let isTimeOut = false;
     const END_STATE = 0;
