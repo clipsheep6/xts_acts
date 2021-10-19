@@ -15,7 +15,7 @@
 
 
 # 配置发送短信的电话号码
-config_const_var[0]="const SMS_SEND_DST_NUMBER = '138xxxxxxxx';"
+config_const_var[0]="const TEST_PHONY_NUMBER = '12345678901';"
 
 
 for((i = 0; i < ${#config_const_var}; i++))

@@ -26,25 +26,73 @@ import {
 
 describe('SmsMmsCreateTest', function () {
   var rawArrayNull = [];
-
+  const ADDR_LENGTH = 14;
+  /** Indicates the SMS message body. */
+  //visibleMessageBody: 'Aa';
+  /** Indicates the address of the sender, which is to be displayed on the UI. */
+  //visibleRawAddress: '+861892659****';
+  /** Indicates the SMS type. */
+  //messageClass: sms.FORWARD_MESSAGE;
+  /** Indicates the protocol identifier. */
+  //protocolId: 0;
+  /** Indicates the short message service center (SMSC) address. */
+  //scAddress: '+861380020****';
+  /** Indicates the SMSC timestamp. */
+  //scTimestamp: 1617848441;
+  /** Indicates whether the received SMS is a "replace short message". */
+  //isReplaceMessage: false;
+  /** Indicates whether the received SMS contains "TP-Reply-Path". */
+  //hasReplyPath: false;
+  /** Indicates Protocol Data Units (PDUs) from an SMS message. */
+  //pdu: Array<number>;
+  /**
+     * Indicates the SMS message status from the SMS-STATUS-REPORT message sent by the
+     * Short Message Service Center (SMSC).
+     */
+  //status: 0;
+  /** Indicates whether the current message is SMS-STATUS-REPORT. */
+  //isSmsStatusReportMessage: true;
   var rawArray = [
-      0x08,0x91,0x68,0x31,0x08,0x70,0x55,0x05,0xF0,0x01,0x00,
-      0x07,0x91,0x68,0x01,0x80,0xF6,0x00,0x08,0x04,0x00,0x41,0x00,0x61
-  ];
+      0x08,0x91,0x68,0x31,0x08,0x20,0x00,0x75,0xF4,0x24,0x0D,0x91,
+      0x68,0x81,0x29,0x56,0x29,0x83,0xF6,0x00,0x00,0x12,0x40,0x80,
+      0x01,0x02,0x14,0x23,0x02,0xC1,0x30
+  ]
   // rawArray PDU data
-  const SC_TIMESTAMP = 12011;
-  var MESSAGEBODY = 'Aa';
-  var RAWADDRESS = '+8610086';
-  var SC_ADDRESS = '+8613800755500';
+  const MESSAGEBODY = 'Aa';
+  const SC_TIMESTAMP = 1617848441;
 
+  /** Indicates the SMS message body. */
+  //visibleMessageBody: '33';
+  /** Indicates the address of the sender, which is to be displayed on the UI. */
+  //visibleRawAddress: '+861914644****';
+  /** Indicates the SMS type. */
+  //messageClass: sms.FORWARD_MESSAGE;
+  /** Indicates the protocol identifier. */
+  //protocolId: 0;
+  /** Indicates the short message service center (SMSC) address. */
+  //scAddress: '';
+  /** Indicates the SMSC timestamp. */
+  //scTimestamp: 1627356274;
+  /** Indicates whether the received SMS is a "replace short message". */
+  //isReplaceMessage: false;
+  /** Indicates whether the received SMS contains "TP-Reply-Path". */
+  //hasReplyPath: false;
+  /** Indicates Protocol Data Units (PDUs) from an SMS message. */
+  //pdu: Array<number>;
+  /**
+     * Indicates the SMS message status from the SMS-STATUS-REPORT message sent by the
+     * Short Message Service Center (SMSC).
+     */
+  //status: 0;
+  /** Indicates whether the current message is SMS-STATUS-REPORT. */
+  //isSmsStatusReportMessage: true;
   var pduArray = [
-      0x00,0x01,0x00,0x07,0x91,0x68,0x01,0x80,0xF6,0x00,
-      0x08,0x0A,0x00,0x68,0x00,0x65,0x00,0x6C,0x00,0x6C,0x00,0x6F
-  ];
+      0x00,0x24,0x0D,0x91,0x68,0x91,0x41,0x46,0x84,0x96,0xF6,
+      0x00,0x00,0x12,0x70,0x72,0x11,0x42,0x43,0x23,0x02,0xB3,0x19
+  ]
   // pduArray PDU data
-  var PDU_MESSAGEBODY = 'hello';
-  var PDU_RAWADDRESS = '+8610086';
-  const PDU_SC_TIMESTAMP = 11950;
+  const PDU_MESSAGEBODY = '33';
+  const PDU_SC_TIMESTAMP = 1627356274;
 
   /*
    * @tc.number  Telephony_SmsMms_createMessage_Async_0100
@@ -62,10 +110,10 @@ describe('SmsMmsCreateTest', function () {
         return;
       }
       expect(shortMessage.visibleMessageBody === MESSAGEBODY).assertTrue();
-      expect(shortMessage.visibleRawAddress === RAWADDRESS).assertTrue();
+      expect(shortMessage.visibleRawAddress.length === ADDR_LENGTH).assertTrue();
       expect(shortMessage.messageClass === sms.FORWARD_MESSAGE).assertTrue();
       expect(shortMessage.protocolId === 0).assertTrue();
-      expect(shortMessage.scAddress === SC_ADDRESS).assertTrue();
+      expect(shortMessage.scAddress.length === ADDR_LENGTH).assertTrue();
       expect(shortMessage.scTimestamp === SC_TIMESTAMP).assertTrue();
       expect(shortMessage.isReplaceMessage).assertFalse();
       expect(shortMessage.hasReplyPath).assertFalse();
@@ -113,7 +161,7 @@ describe('SmsMmsCreateTest', function () {
         return;
       }
       expect(shortMessage.visibleMessageBody === PDU_MESSAGEBODY).assertTrue();
-      expect(shortMessage.visibleRawAddress === PDU_RAWADDRESS).assertTrue();
+      expect(shortMessage.visibleRawAddress.length === ADDR_LENGTH).assertTrue();
       expect(shortMessage.messageClass === sms.FORWARD_MESSAGE).assertTrue();
       expect(shortMessage.protocolId === 0).assertTrue();
       expect(shortMessage.scAddress.length === 0).assertTrue();
@@ -139,10 +187,10 @@ describe('SmsMmsCreateTest', function () {
     try {
       var promise = await sms.createMessage(rawArray, '3gpp');
       expect(promise.visibleMessageBody === MESSAGEBODY).assertTrue();
-      expect(promise.visibleRawAddress === RAWADDRESS).assertTrue();
+      expect(promise.visibleRawAddress.length === ADDR_LENGTH).assertTrue();
       expect(promise.messageClass === sms.FORWARD_MESSAGE).assertTrue();
       expect(promise.protocolId === 0).assertTrue();
-      expect(promise.scAddress === SC_ADDRESS).assertTrue();
+      expect(promise.scAddress.length === ADDR_LENGTH).assertTrue();
       expect(promise.scTimestamp === SC_TIMESTAMP).assertTrue();
       expect(promise.isReplaceMessage).assertFalse();
       expect(promise.hasReplyPath).assertFalse();
@@ -188,11 +236,11 @@ describe('SmsMmsCreateTest', function () {
     try {
       var promise = await sms.createMessage(pduArray, '3gpp');
       expect(promise.visibleMessageBody === PDU_MESSAGEBODY).assertTrue();
-      expect(promise.visibleRawAddress === PDU_RAWADDRESS).assertTrue();
+      expect(promise.visibleRawAddress.length === ADDR_LENGTH).assertTrue();
       expect(promise.messageClass === sms.FORWARD_MESSAGE).assertTrue();
       expect(promise.protocolId === 0).assertTrue();
       expect(promise.scAddress.length === 0).assertTrue();
-      expect(promise.scTimestamp === PDU_SC_TIMESTAMP).assertTrue();
+      expect(promise.scTimestamp === PDU_SC_TIMESTAMP ).assertTrue();
       expect(promise.isReplaceMessage).assertFalse();
       expect(promise.hasReplyPath).assertFalse();
       expect(promise.pdu.length > 0).assertTrue();
