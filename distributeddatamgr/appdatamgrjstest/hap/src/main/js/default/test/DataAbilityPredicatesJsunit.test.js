@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-import ohos_data_rdb from '@ohos.data.rdb';
-import data_dataability from '@ohos.data.dataability';
+import ohosDataRdb from '@ohos.data.rdb';
+import dataDataability from '@ohos.data.dataability';
 
 const TAG = "[RDB_JSKITS _TEST]"
 const CREATE_TABLE_ALL_DATA_TYPE_SQL = "CREATE TABLE IF NOT EXISTS AllDataType "
@@ -34,7 +34,7 @@ var rdbStore = undefined;
 describe('dataAbilityPredicatesTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        rdbStore = await ohos_data_rdb.getRdbStore(STORE_CONFIG, 1);
+        rdbStore = await ohosDataRdb.getRdbStore(STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_ALL_DATA_TYPE_SQL, null);
         await buildAllDataType1();
         await buildAllDataType2();
@@ -52,7 +52,7 @@ describe('dataAbilityPredicatesTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await ohos_data_rdb.deleteRdbStore("Predicates.db");
+        await ohosDataRdb.deleteRdbStore("Predicates.db");
     })
 
     function resultSize(resultSet) {
@@ -136,9 +136,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testEqualTo0001', 0, async function (done) {
         console.log(TAG + "************* testEqualTo0001 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("booleanValue", true);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -156,9 +156,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testEqualTo0002', 0, async function (done) {
         console.log(TAG + "************* testEqualTo0002 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("byteValue", -128).or().equalTo("byteValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -176,9 +176,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testEqualTo0003', 0, async function (done) {
         console.log(TAG + "************* testEqualTo0003 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN");
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -196,9 +196,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testEqualTo0004', 0, async function (done) {
         console.log(TAG + "************* testEqualTo0004 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("doubleValue", Number.MAX_VALUE);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -216,9 +216,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testEqualTo0005', 0, async function (done) {
         console.log(TAG + "************* testEqualTo0005 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("shortValue", -32768.0);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -236,9 +236,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testEqualTo0006', 0, async function (done) {
         console.log(TAG + "************* testEqualTo0006 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("integerValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(true).assertEqual(result.goToFirstRow());
@@ -256,9 +256,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testEqualTo0007', 0, async function (done) {
         console.log(TAG + "************* testEqualTo0007 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("longValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(true).assertEqual(result.goToFirstRow());
@@ -276,9 +276,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testEqualTo0008', 0, async function (done) {
         console.log(TAG + "************* testEqualTo0008 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("floatValue", -0.123);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(true).assertEqual(result.goToFirstRow());
@@ -297,9 +297,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testNotEqualTo0001', 0, async function (done) {
         console.log(TAG + "************* testNotEqualTo0001 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.notEqualTo("booleanValue", true);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -317,10 +317,10 @@ describe('dataAbilityPredicatesTest', function () {
     it('testNotEqualTo0002', 0, async function (done) {
         console.log(TAG + "************* testNotEqualTo0002 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.notEqualTo("byteValue", -128);
             dataAbilityPredicates.notEqualTo("byteValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -338,9 +338,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testNotEqualTo0003', 0, async function (done) {
         console.log(TAG + "************* testNotEqualTo0003 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.notEqualTo("stringValue", "ABCDEFGHIJKLMN");
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(0).assertEqual(result.rowCount);
@@ -358,9 +358,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testNotEqualTo0004', 0, async function (done) {
         console.log(TAG + "************* testNotEqualTo0004 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.notEqualTo("doubleValue", Number.MAX_VALUE);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -378,9 +378,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testNotEqualTo0005', 0, async function (done) {
         console.log(TAG + "************* testNotEqualTo0005 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.notEqualTo("shortValue", -32768);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -398,9 +398,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testNotEqualTo0006', 0, async function (done) {
         console.log(TAG + "************* testNotEqualTo0006 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.notEqualTo("integerValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -418,9 +418,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testNotEqualTo0007', 0, async function (done) {
         console.log(TAG + "************* testNotEqualTo0007 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.notEqualTo("longValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -438,9 +438,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testNotEqualTo0008', 0, async function (done) {
         console.log(TAG + "************* testNotEqualTo0008 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.notEqualTo("floatValue", -0.123);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -457,9 +457,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testIsNull0001', 0, async function (done) {
         console.log(TAG + "************* testIsNull001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.isNull("primLongValue");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -475,9 +475,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testIsNull0002', 0, async function (done) {
         console.log(TAG + "************* testIsNull0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.isNull("longValue");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(0).assertEqual(result.rowCount);
@@ -493,9 +493,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testIsNull0003', 0, async function (done) {
         console.log(TAG + "************* testIsNull0003 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.isNull("stringValue");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(0).assertEqual(result.rowCount);
@@ -511,9 +511,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testIsNull0004', 0, async function (done) {
         console.log(TAG + "************* testIsNull0004 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.isNull("stringValueX");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(-1).assertEqual(result.rowCount);
@@ -529,9 +529,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testIsNotNull0001', 0, async function (done) {
         console.log(TAG + "************* testIsNotNull0001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.isNotNull("primLongValue");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(0).assertEqual(result.rowCount);
@@ -547,9 +547,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testIsNotNull0002', 0, async function (done) {
         console.log(TAG + "************* testIsNotNull0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.isNotNull("longValue");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -565,9 +565,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testIsNotNull0003', 0, async function (done) {
         console.log(TAG + "************* testIsNotNull0003 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.isNotNull("stringValue");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -583,9 +583,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testIsNotNull0004', 0, async function (done) {
         console.log(TAG + "************* testIsNotNull0004 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.isNotNull("stringValueX");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(-1).assertEqual(result.rowCount);
@@ -602,9 +602,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThan0001', 0, async function (done) {
         console.log(TAG + "************* testGreaterThan0001 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThan("stringValue", "ABC");
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -622,9 +622,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThan0002', 0, async function (done) {
         console.log(TAG + "************* testGreaterThan0002 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThan("doubleValue", 0.0);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -642,9 +642,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThan0003', 0, async function (done) {
         console.log(TAG + "************* testGreaterThan0003 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThan("integerValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -662,9 +662,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThan0004', 0, async function (done) {
         console.log(TAG + "************* testGreaterThan0004 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThan("longValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -683,9 +683,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThan0005', 0, async function (done) {
         console.log(TAG + "************* testGreaterThan0005 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThan("stringValue", "ZZZ");
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(0).assertEqual(result.rowCount);
@@ -703,9 +703,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThan0006', 0, async function (done) {
         console.log(TAG + "************* testGreaterThan0006 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThan("doubleValue", 999.0);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -723,9 +723,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThan0007', 0, async function (done) {
         console.log(TAG + "************* testGreaterThan0007 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThan("integerValue", -999);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -743,9 +743,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThan0008', 0, async function (done) {
         console.log(TAG + "************* testGreaterThan0008 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThan("longValue", -999);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -763,9 +763,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThanOrEqualTo0001', 0, async function (done) {
         console.log(TAG + "************* testGreaterThanOrEqualTo0001 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThanOrEqualTo("stringValue", "ABC");
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -783,9 +783,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThanOrEqualTo0002', 0, async function (done) {
         console.log(TAG + "************* testGreaterThanOrEqualTo0002 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThanOrEqualTo("doubleValue", 0.0);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -803,9 +803,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThanOrEqualTo0003', 0, async function (done) {
         console.log(TAG + "************* testGreaterThanOrEqualTo0003 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThanOrEqualTo("integerValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -823,9 +823,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testGreaterThanOrEqualTo0004', 0, async function (done) {
         console.log(TAG + "************* testGreaterThanOrEqualTo0004 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.greaterThanOrEqualTo("longValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -843,9 +843,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThan0001', 0, async function (done) {
         console.log(TAG + "************* testLessThan0001 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThan("stringValue", "ABD");
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -863,9 +863,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThan0002', 0, async function (done) {
         console.log(TAG + "************* testLessThan0002 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThan("doubleValue", 0.0);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(0).assertEqual(result.rowCount);
@@ -883,9 +883,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThan0003', 0, async function (done) {
         console.log(TAG + "************* testLessThan0003 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThan("integerValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -903,9 +903,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThan0004', 0, async function (done) {
         console.log(TAG + "************* testLessThan0004 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThan("longValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -924,9 +924,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThan0005', 0, async function (done) {
         console.log(TAG + "************* testLessThan0005 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThan("stringValue", "ABD");
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -944,9 +944,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThan0006', 0, async function (done) {
         console.log(TAG + "************* testLessThan0006 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThan("doubleValue", 1.0);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -964,9 +964,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThan0007', 0, async function (done) {
         console.log(TAG + "************* testLessThan0007 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThan("integerValue", -2147483648);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(0).assertEqual(result.rowCount);
@@ -984,9 +984,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThan0008', 0, async function (done) {
         console.log(TAG + "************* testLessThan0008 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThan("longValue", -9223372036854775808);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(0).assertEqual(result.rowCount);
@@ -1005,9 +1005,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThanOrEqualTo0001', 0, async function (done) {
         console.log(TAG + "************* testLessThanOrEqualTo0001 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThanOrEqualTo("stringValue", "ABD");
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -1025,9 +1025,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThanOrEqualTo0002', 0, async function (done) {
         console.log(TAG + "************* testLessThanOrEqualTo0002 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThanOrEqualTo("doubleValue", 0.0);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(0).assertEqual(result.rowCount);
@@ -1045,9 +1045,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThanOrEqualTo0003', 0, async function (done) {
         console.log(TAG + "************* testLessThanOrEqualTo0003 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThanOrEqualTo("integerValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -1065,9 +1065,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testLessThanOrEqualTo0004', 0, async function (done) {
         console.log(TAG + "************* testLessThanOrEqualTo0004 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.lessThanOrEqualTo("longValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -1085,9 +1085,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBetween0001', 0, async function (done) {
         console.log(TAG + "************* testBetween0001 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.between("stringValue", "ABB", "ABD");
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -1105,9 +1105,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBetween0002', 0, async function (done) {
         console.log(TAG + "************* testBetween0002 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.between("doubleValue", 0.0, Number.MAX_VALUE);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -1125,9 +1125,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBetween0003', 0, async function (done) {
         console.log(TAG + "************* testBetween0003 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.between("integerValue", 0, 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -1145,9 +1145,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBetween0004', 0, async function (done) {
         console.log(TAG + "************* testBetween0004 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.between("longValue", 0, 2);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -1165,9 +1165,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBetween0005', 0, async function (done) {
         console.log(TAG + "************* testBetween0005 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.between("stringValue", "ABB", "ABB");
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(0).assertEqual(result.rowCount);
@@ -1185,9 +1185,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBetween0006', 0, async function (done) {
         console.log(TAG + "************* testBetween0006 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.between("doubleValue", Number.MAX_VALUE, Number.MAX_VALUE);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -1205,9 +1205,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBetween0007', 0, async function (done) {
         console.log(TAG + "************* testBetween0007 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.between("integerValue", 1, 0);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(0).assertEqual(result.rowCount);
@@ -1225,9 +1225,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBetween0008', 0, async function (done) {
         console.log(TAG + "************* testBetween0008 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.between("longValue", 2, -1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(0).assertEqual(result.rowCount);
@@ -1244,9 +1244,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testContains0001', 0, async function (done) {
         console.log(TAG + "************* testContains0001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.contains("stringValue", "DEF");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -1262,9 +1262,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testContains0002', 0, async function (done) {
         console.log(TAG + "************* testContains0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.contains("stringValue", "DEFX");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(0).assertEqual(result.rowCount);
@@ -1280,9 +1280,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testContains0003', 0, async function (done) {
         console.log(TAG + "************* testContains0003 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.contains("characterValue", "中");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(1).assertEqual(result.rowCount);
@@ -1298,9 +1298,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testContains0004', 0, async function (done) {
         console.log(TAG + "************* testContains0004 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.contains("characterValue", "#");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(1).assertEqual(result.rowCount);
@@ -1316,9 +1316,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testBeginsWith0001', 0, async function (done) {
         console.log(TAG + "************* testBeginsWith0001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.beginsWith("stringValue", "ABC");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -1334,9 +1334,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testBeginsWith0002', 0, async function (done) {
         console.log(TAG + "************* testBeginsWith0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.beginsWith("stringValue", "ABCX");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(0).assertEqual(result.rowCount);
@@ -1352,9 +1352,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testBeginsWith0003', 0, async function (done) {
         console.log(TAG + "************* testBeginsWith0003 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.beginsWith("characterValue", "中");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(1).assertEqual(result.rowCount);
@@ -1370,9 +1370,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testBeginsWith0004', 0, async function (done) {
         console.log(TAG + "************* testBeginsWith0004 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.beginsWith("characterValue", "#");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(1).assertEqual(result.rowCount);
@@ -1388,9 +1388,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testEndsWith0001', 0, async function (done) {
         console.log(TAG + "************* testEndsWith0001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.endsWith("stringValue", "LMN");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -1406,9 +1406,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testEndsWith0002', 0, async function (done) {
         console.log(TAG + "************* testEndsWith0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.endsWith("stringValue", "LMNX");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(0).assertEqual(result.rowCount);
@@ -1424,9 +1424,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testEndsWith0003', 0, async function (done) {
         console.log(TAG + "************* testEndsWith0003 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.endsWith("characterValue", "中");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(1).assertEqual(result.rowCount);
@@ -1442,9 +1442,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testEndsWith0004', 0, async function (done) {
         console.log(TAG + "************* testEndsWith0004 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.endsWith("characterValue", "#");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(1).assertEqual(result.rowCount);
@@ -1460,9 +1460,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testLike0001', 0, async function (done) {
         console.log(TAG + "************* testLike0001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "%LMN%");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -1478,9 +1478,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testLike0002', 0, async function (done) {
         console.log(TAG + "************* testLike0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "%LMNX%");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(0).assertEqual(result.rowCount);
@@ -1496,9 +1496,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testLike0003', 0, async function (done) {
         console.log(TAG + "************* testLike0003 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("characterValue", "%中%");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(1).assertEqual(result.rowCount);
@@ -1514,9 +1514,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testLike0004', 0, async function (done) {
         console.log(TAG + "************* testLike0004 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("characterValue", "%#%");
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(1).assertEqual(result.rowCount);
@@ -1533,14 +1533,14 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBeginWrap0001', 0, async function (done) {
         console.log(TAG + "************* testBeginWrap0001 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN")
                 .beginWrap()
                 .equalTo("integerValue", 1)
                 .or()
                 .equalTo("integerValue", 2147483647)
                 .endWrap();
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -1558,12 +1558,12 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBeginWrap0002', 0, async function (done) {
         console.log(TAG + "************* testBeginWrap0002 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN")
                 .beginWrap()
                 .equalTo("characterValue", ' ')
                 .endWrap();
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -1581,12 +1581,12 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBeginWrap0003', 0, async function (done) {
         console.log(TAG + "************* testBeginWrap0003 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN")
                 .beginWrap()
                 .equalTo("characterValue", '中')
                 .endWrap();
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -1604,11 +1604,11 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBeginWrap0004', 0, async function (done) {
         console.log(TAG + "************* testBeginWrap0004 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN")
                 .equalTo("characterValue", '中')
                 .endWrap();
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(-1).assertEqual(result.rowCount);
@@ -1626,11 +1626,11 @@ describe('dataAbilityPredicatesTest', function () {
     it('testBeginWrap0005', 0, async function (done) {
         console.log(TAG + "************* testBeginWrap0005 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN")
                 .beginWrap()
                 .equalTo("characterValue", '中');
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(-1).assertEqual(result.rowCount);
@@ -1648,11 +1648,11 @@ describe('dataAbilityPredicatesTest', function () {
     it('testAnd0001', 0, async function (done) {
         console.log(TAG + "************* testAnd0001 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN")
                 .and()
                 .equalTo("integerValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
@@ -1670,14 +1670,14 @@ describe('dataAbilityPredicatesTest', function () {
     it('testAnd0002', 0, async function (done) {
         console.log(TAG + "************* testAnd0002 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN")
                 .beginWrap()
                 .equalTo("integerValue", 1)
                 .or()
                 .equalTo("integerValue", 2147483647)
                 .endWrap();
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
@@ -1695,9 +1695,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testAnd0003', 0, async function (done) {
         console.log(TAG + "************* testAnd0003 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN").or().and().equalTo("integerValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             console.log(TAG + "you should not start a request" + " with \"and\" or use or() before this function");
         }
@@ -1713,9 +1713,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testAnd0004', 0, async function (done) {
         console.log(TAG + "************* testAnd0004 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN").or().or().equalTo("integerValue", 1);
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             console.log(TAG + "you are starting a sql request with predicate or or,"
             + "using function or() immediately after another or(). that is ridiculous.");
@@ -1732,9 +1732,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testOrder0001', 0, async function (done) {
         console.log(TAG + "************* testOrder0001 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN").orderByAsc("integerValue").distinct();
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -1758,9 +1758,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testOrder0002', 0, async function (done) {
         console.log(TAG + "************* testOrder0002 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN").orderByDesc("integerValue").distinct();
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
@@ -1784,9 +1784,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testOrder0003', 0, async function (done) {
         console.log(TAG + "************* testOrder0003 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN").orderByDesc("integerValueX").distinct();
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(-1).assertEqual(result.rowCount);
@@ -1804,9 +1804,9 @@ describe('dataAbilityPredicatesTest', function () {
     it('testOrder0004', 0, async function (done) {
         console.log(TAG + "************* testOrder0004 start *************");
         {
-            let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+            let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
             dataAbilityPredicates.equalTo("stringValue", "ABCDEFGHIJKLMN").orderByAsc("integerValueX").distinct();
-            let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+            let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
             expect(-1).assertEqual(result.rowCount);
@@ -1823,9 +1823,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testLimit0001', 0, async function (done) {
         console.log(TAG + "************* testLimit0001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(1);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(1).assertEqual(result.rowCount);
@@ -1841,9 +1841,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testLimit0002', 0, async function (done) {
         console.log(TAG + "************* testLimit0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -1859,9 +1859,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testLimit0003', 0, async function (done) {
         console.log(TAG + "************* testLimit0003 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(100);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -1877,9 +1877,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testLimit0004', 0, async function (done) {
         console.log(TAG + "************* testLimit0004 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "中").limitAs(1);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(0).assertEqual(result.rowCount);
@@ -1895,9 +1895,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testLimit0005', 0, async function (done) {
         console.log(TAG + "************* testLimit0005 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(0);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -1913,9 +1913,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testLimit0006', 0, async function (done) {
         console.log(TAG + "************* testLimit0006 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(-1);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -1931,9 +1931,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testOffset0001', 0, async function (done) {
         console.log(TAG + "************* testOffset0001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3).offsetAs(1);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(2).assertEqual(result.rowCount);
@@ -1949,9 +1949,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testOffset0002', 0, async function (done) {
         console.log(TAG + "************* testOffset0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3).offsetAs(0);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -1967,9 +1967,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testOffset0003', 0, async function (done) {
         console.log(TAG + "************* testOffset0003 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3).offsetAs(5);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(0).assertEqual(result.rowCount);
@@ -1985,9 +1985,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testOffset0004', 0, async function (done) {
         console.log(TAG + "************* testOffset0004 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3).offsetAs(-1);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -2003,8 +2003,8 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testCreate0001', 0, async function (done) {
         console.log(TAG + "************* testCreate0001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
         done();
@@ -2018,8 +2018,8 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testCreate0002', 0, async function (done) {
         console.log(TAG + "************* testCreate0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
-        let predicates = data_dataability.createRdbPredicates("test", dataAbilityPredicates);
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
+        let predicates = dataDataability.createRdbPredicates("test", dataAbilityPredicates);
         let result = await rdbStore.query(predicates);
         expect(-1).assertEqual(result.rowCount);
         done();
@@ -2034,9 +2034,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testGroupBy0001', 0, async function (done) {
         console.log(TAG + "************* testGroupBy0001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").groupBy(["characterValue"]);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -2052,9 +2052,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testGroupBy0002', 0, async function (done) {
         console.log(TAG + "************* testGroupBy0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").groupBy(["characterValueX"]);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(-1).assertEqual(result.rowCount);
@@ -2070,9 +2070,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testIndexedBy0001', 0, async function (done) {
         console.log(TAG + "************* testIndexedBy0001 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy(["characterValue"]);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
@@ -2088,9 +2088,9 @@ describe('dataAbilityPredicatesTest', function () {
      */
     it('testIndexedBy0002', 0, async function (done) {
         console.log(TAG + "************* testIndexedBy0002 start *************");
-        let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
+        let dataAbilityPredicates = await new dataDataability.DataAbilityPredicates();
         dataAbilityPredicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy(["characterValueX"]);
-        let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
+        let predicates = dataDataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
         let result = await rdbStore.query(predicates);
         expect(3).assertEqual(result.rowCount);
         result = null

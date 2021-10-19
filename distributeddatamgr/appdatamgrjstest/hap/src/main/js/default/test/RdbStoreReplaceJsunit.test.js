@@ -21,12 +21,12 @@ const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIM
 + 'name TEXT NOT NULL, ' + 'age INTEGER, ' + 'salary REAL, ' + 'blobType BLOB)';
 const STORE_CONFIG = {
     name: 'replace.db',
-    storageMode: 0, // ohos_data_rdb.StorageMode.MODE_DISK,
+    storageMode: 0, // ohosDataRdb.StorageMode.MODE_DISK,
     readOnly: false,
-    fileType: 0, //ohos_data_rdb.DatabaseFileType.NORMAL,
+    fileType: 0, //ohosDataRdb.DatabaseFileType.NORMAL,
     encryptKey: [1, 2, 3, 4, 5, 6, 7],
-    journalMode: 0, // ohos_data_rdb.JournalMode.MODE_DELETE,
-    syncMode: 0, //ohos_data_rdb.SyncMode.MODE_OFF
+    journalMode: 0, // ohosDataRdb.JournalMode.MODE_DELETE,
+    syncMode: 0, //ohosDataRdb.SyncMode.MODE_OFF
 }
 
 const CALL_BACK = {

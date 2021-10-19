@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-import ohos_data_rdb from '@ohos.data.rdb';
+import ohosDataRdb from '@ohos.data.rdb';
 
 const TAG = "[RDB_JSKITS_TEST]"
-const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
++ "name NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 
 const STORE_CONFIG = {
     name: "ExcuteSqlTest.db",
@@ -26,7 +27,7 @@ var rdbStore = undefined;
 describe('rdbStoreInsertTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        rdbStore = await ohos_data_rdb.getRdbStore(STORE_CONFIG, 1);
+        rdbStore = await ohosDataRdb.getRdbStore(STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_TEST, null);
     })
 
@@ -42,7 +43,7 @@ describe('rdbStoreInsertTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await ohos_data_rdb.deleteRdbStore("ExcuteSqlTest.db");
+        await ohosDataRdb.deleteRdbStore("ExcuteSqlTest.db");
     })
 
     /**

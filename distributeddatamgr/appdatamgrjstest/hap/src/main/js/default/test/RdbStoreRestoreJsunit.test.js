@@ -17,8 +17,8 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 import ohosDataRdb from '@ohos.data.rdb';
 
 const TAG = '[RDB_JSKITS_TEST]'
-const createTableTest = 'CREATE TABLE IF NOT EXISTS test(' + 'id INTEGER PRIMARY KEY AUTOINCREMENT,' + 'name NOT NULL,'
-+ 'age INTER,' + 'salary REAL,' + 'blobType BLOB)';
+const createTableTest = 'CREATE TABLE IF NOT EXISTS test(' + 'id INTEGER PRIMARY KEY AUTOINCREMENT,' 
++ 'name NOT NULL,' + 'age INTER,' + 'salary REAL,' + 'blobType BLOB)';
 const STORE_CONFIG = {
     name: 'reStoreTest.db'
 }
