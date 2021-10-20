@@ -16,11 +16,11 @@
 import media from '@ohos.multimedia.media'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
-describe('PlayerLocalTestAudioAPI', function () {
+describe('PlayerAPI', function () {
     let audioPlayer = media.createAudioPlayer();
     let loopValue = false;
     let isTimeOut = false;
-    const AUDIO_SOURCE = 'file://data/media/audio/01.mp3';
+    const AUDIO_SOURCE = 'file://data/media/01.mp3';
     const PLAY_TIME = 3000;
     const END_STATE = 0;
     const SRC_STATE = 1;
@@ -34,7 +34,7 @@ describe('PlayerLocalTestAudioAPI', function () {
     const ERROR_STATE = 9;
     const FINISH_STATE = 10;
     const LOOP_STATE = 11;
-    const DURATION_TIME = 99432;
+    const DURATION_TIME = 219600;
     const SEEK_TIME = 5000;
     const DELTA_TIME  = 1000;
     const SECOND_INDEX = 1;
@@ -471,6 +471,7 @@ describe('PlayerLocalTestAudioAPI', function () {
         setCallback(mySteps, done);
         audioPlayer.src = AUDIO_SOURCE;
     })
+
     /* *
         * @tc.number    : SUB_MEDIA_PLAYER_AudioPlayer_Seek_API_0300
         * @tc.name      : 03.seek(0)
@@ -530,6 +531,7 @@ describe('PlayerLocalTestAudioAPI', function () {
         setCallback(mySteps, done);
         audioPlayer.setVolume(VOLUME_VALUE);
     })
+    
     /* *
         * @tc.number    : SUB_MEDIA_PLAYER_AudioPlayer_SetVolume_API_0200
         * @tc.name      : 02.play->setVolume
@@ -544,6 +546,7 @@ describe('PlayerLocalTestAudioAPI', function () {
         setCallback(mySteps, done);
         audioPlayer.src = AUDIO_SOURCE;
     })
+
     /* *
         * @tc.number    : SUB_MEDIA_PLAYER_AudioPlayer_SetVolume_API_0300
         * @tc.name      : 03.pause->setVolume
