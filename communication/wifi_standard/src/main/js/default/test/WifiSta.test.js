@@ -38,7 +38,7 @@ var wifiConfig = {
     "disableReason": 0,
     "randomMacType": 0,
     "randomMacAddr": "11:22:33:44:55:66",
-    "staticIp": {"ipAddress": 1284752956,"gateway": 1284752936},
+    "staticIp": {"ipAddress": 1284752956},
 }
 
 var ipConfig = {
