@@ -84,12 +84,14 @@ it('wifi_native_js_unit_test_003', 0, function () {
     */
 it('wifi_native_js_unit_test_005', 0, async function (done) {
     console.info("[wifi_test] Wifi get scan infos callback test[1].");
+    var result = wifi.scan();
+    sleep(20000);
     wifi.getScanInfos(
         (result) => {
             var clen = Object.keys(result).length;
             console.log("[wifi_test] wifi received scan info call back: " + clen);
             expect(result).assertLarger(0);
-            console.info("[wifi_test] add device config callback: " + JSON.stringify(result));
+            console.info("[wifi_test] scan config callback: " + JSON.stringify(result));
             expect(JSON.stringify(result)).assertContain('ssid');
             sleep(5000);
             for (var j = 0; j < clen; ++j) {
@@ -130,6 +132,8 @@ it('wifi_native_js_unit_test_006', 0, async function (done) {
                 console.info("band: " + result[j].band);
                 console.info("frequency: " + result[j].frequency);
                 console.info("timestamp: " + result[j].timestamp);
+                console.info("capabilities: " + result[j].capabilities);
+                console.info("channelWidth: " + result[j].channelWidth);
             }
         });
         done();
