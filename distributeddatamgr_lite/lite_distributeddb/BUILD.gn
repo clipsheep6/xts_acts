@@ -17,27 +17,25 @@ PROJ_PATH = "//foundation/distributeddatamgr/distributeddatamgr/services/distrib
 
 hcpptest_suite("DistributedDBLiteTest") {
   suite_name = "acts"
-  sources = [ "src/distributeddb_interfaces_nb_transaction_test.cpp" ]
+  sources = [
+    "src/distributeddb_interfaces_nb_transaction_test.cpp",
+  ]
 
   include_dirs = [
     "src",
-    # "$PROJ_PATH/commont/include",
-    # "$PROJ_PATH/common/src",
-    # "$PROJ_PATH/communicator/src",
-    # "$PROJ_PATH/interfaces/src",
-    # "$PROJ_PATH/storage/src",
-    # "$PROJ_PATH/storage/src/operation",
-    # "$PROJ_PATH/storage/src/sqlite",
-    # "$PROJ_PATH/storage/src/upgrader",
-    # "$PROJ_PATH/storage/src/multiver",
-    # "$PROJ_PATH/sync/src",
-    # "$PROJ_PATH/test/unittest/common/common",
-    # "$PROJ_PATH/test/unittest/common/syncer",
-    "$PROJ_PATH/test/unittest/common/interfaces",
-
+    "$PROJ_PATH/include",
+    "$PROJ_PATH/interfaces/include",
   ]
 
-  deps = []
+  deps = [
+    "$PROJ_PATH/lite:foundation_lite_distributeddb",
+  ]
 
   cflags = [ "-Wno-error" ]
+
+  ldflags = [
+    "-lstdc++",
+    "-lm",
+    "-lpthread",
+  ]
 }

@@ -44,7 +44,6 @@ lite_component("acts_component") {
         "//test/xts/acts/distributed_schedule_lite/system_ability_manager_hal:ActsSamgrTest",
         "//test/xts/acts/update_lite/dupdate_hal:ActsUpdaterFuncTest",
         "//test/xts/acts/startup_lite/bootstrap_hal:ActsBootstrapTest",
-        "//test/xts/acts/distributeddatamgr/lite_distributeddb:DistributedDBLiteTest",
       ]
     } else if (ohos_kernel_type == "liteos_a") {
       all_features += [
@@ -73,7 +72,6 @@ lite_component("acts_component") {
         "//test/xts/acts/global_lite:ActsGlobalTest",
         "//test/xts/acts/sensors_lite:sensorstest",
         "//test/xts/acts/update_lite/dupdate_posix:ActsUpdateTest",
-        "//test/xts/acts/distributeddatamgr/lite_distributeddb:DistributedDBLiteTest",
       ]
     } else if (ohos_kernel_type == "linux") {
       all_features += [
@@ -90,13 +88,12 @@ lite_component("acts_component") {
         "//test/xts/acts/appexecfwk_lite/appexecfwk_posix:ActsBundleMgrTest",
         "//test/xts/acts/aafwk_lite/ability_posix:ActsAbilityMgrTest",
         "//test/xts/acts/ai_lite/ai_engine_posix/base:ActsAiEngineTest",
-        "//test/xts/acts/distributeddatamgr/lite_distributeddb:DistributedDBLiteTest",
+        "//test/xts/acts/distributeddatamgr_lite/lite_distributeddb:DistributedDBLiteTest",
       ]
     }
   }
 
-  #if (ohos_build_type == "debug" && ohos_test_args != "notest") {
-  if (ohos_test_args != "notest") {
+  if (ohos_build_type == "debug" && ohos_test_args != "notest") {
     _all_features = ""
     _product_json = rebase_path("${product_path}/config.json")
     foreach(one_feature, all_features) {
