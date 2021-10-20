@@ -1,0 +1,101 @@
+{
+  "app": {
+    "bundleName": "com.third.hiworld.include_use_by_local_app",
+    "vendor": "system",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.third.hiworld.include_use_by_local_app",
+    "name": ".MyApplication",
+    "mainAbility": "com.third.hiworld.include_use_by_local_app.MainAbility",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "name": "com.third.hiworld.include_use_by_local_app.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "default",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
+      }
+    ],
+    "defPermissions":[
+      {
+        "grantMode":"system_grant",
+        "name":"com.myability.permission.MYPERMISSION1"
+      },
+      {
+        "grantMode":"system_grant",
+        "name":"com.myability.permission.MYPERMISSION2"
+      },
+      {
+        "grantMode":"system_grant",
+        "name":"com.myability.permission.MYPERMISSION3"
+      }
+    ],
+    "reqPermissions":[
+      {
+        "reason":"permreason_camera",
+        "usedScene":{
+          "ability":[
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when":"always"
+        },
+        "name":"ohos.permission.CAMERA"
+      },
+      {
+        "reason":"permreason_microphhone",
+        "usedScene":{
+          "ability":[
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when":"always"
+        },
+        "name":"ohos.permission.MICROPHONE"
+      },
+      {
+        "name":"ohos.permission.GET_NETWORK_INFO"
+      },
+      {
+        "name":"ohos.permission.GET_WIFI_INFO"
+      }
+    ]
+  }
+}

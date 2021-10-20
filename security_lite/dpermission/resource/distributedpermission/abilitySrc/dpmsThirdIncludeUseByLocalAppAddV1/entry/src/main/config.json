@@ -1,0 +1,187 @@
+{
+  "app": {
+    "bundleName": "com.third.hiworld.include_use_by_local_app",
+    "vendor": "system",
+    "version": {
+      "code": 2000001,
+      "name": "2.0.1"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.third.hiworld.include_use_by_local_app",
+    "name": ".MyApplication",
+    "mainAbility": "com.third.hiworld.include_use_by_local_app.MainAbility",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "name": "com.third.hiworld.include_use_by_local_app.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "default",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
+      }
+    ],
+    "defPermissions":[
+      {
+        "grantMode":"system_grant",
+        "name":"com.myability.permission.MYPERMISSION1"
+      },
+      {
+        "grantMode":"system_grant",
+        "name":"com.myability.permission.MYPERMISSION2"
+      },
+      {
+        "grantMode":"system_grant",
+        "name":"com.myability.permission.MYPERMISSION3"
+      },
+      {
+        "grantMode":"system_grant",
+        "name":"com.myability.permission.MYPERMISSION4"
+      },
+      {
+        "grantMode":"system_grant",
+        "name":"com.myability.permission.MYPERMISSION5"
+      },
+      {
+        "grantMode":"system_grant",
+        "name":"com.myability.permission.MYPERMISSION6"
+      }
+    ],
+    "reqPermissions":[
+      {
+        "reason":"permreason_camera",
+        "usedScene":{
+          "ability":[
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when":"always"
+        },
+        "name":"ohos.permission.CAMERA"
+      },
+      {
+        "reason":"permreason_microphhone",
+        "usedScene":{
+          "ability":[
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when":"always"
+        },
+        "name":"ohos.permission.MICROPHONE"
+      },
+      {
+        "reason":"LOCATION_IN_BACKGROUND",
+        "usedScene":{
+          "ability":[
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when":"always"
+        },
+        "name":"ohos.permission.LOCATION_IN_BACKGROUND"
+      },
+      {
+        "reason":"LOCATION",
+        "usedScene":{
+          "ability":[
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when":"always"
+        },
+        "name":"ohos.permission.LOCATION"
+      },
+      {
+        "reason":"READ_CALENDAR",
+        "usedScene":{
+          "ability":[
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when":"always"
+        },
+        "name":"ohos.permission.READ_CALENDAR"
+      },
+      {
+        "reason":"WRITE_CALENDAR",
+        "usedScene":{
+          "ability":[
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when":"always"
+        },
+        "name":"ohos.permission.WRITE_CALENDAR"
+      },
+      {
+        "name":"ohos.permission.USE_BLUETOOTH"
+      },
+      {
+        "name":"ohos.permission.CAMERAGET_NETWORK_INFO"
+      },
+      {
+        "name":"ohos.permission.DISCOVER_BLUETOOTH"
+      },
+      {
+        "name":"ohos.permission.SET_NETWORK_INFO"
+      },
+      {
+        "name":"ohos.permission.GET_NETWORK_INFO"
+      },
+      {
+        "name":"ohos.permission.GET_WIFI_INFO"
+      },
+      {
+        "name":"com.myability.permission.MYPERMISSION1"
+      },
+      {
+        "name":"com.myability.permission.MYPERMISSION2"
+      },
+      {
+        "name":"com.myability.permission.MYPERMISSION3"
+      },
+      {
+        "name":"com.myability.permission.MYPERMISSION4"
+      },
+      {
+        "name":"com.myability.permission.MYPERMISSION5"
+      },
+      {
+        "name":"com.myability.permission.MYPERMISSION6"
+      }
+    ]
+  }
+}

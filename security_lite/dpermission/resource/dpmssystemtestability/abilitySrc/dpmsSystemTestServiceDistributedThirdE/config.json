@@ -1,0 +1,41 @@
+{
+    "app":{
+        "bundleName": "com.ohos.dpmsst.service.distributed.third.e",
+        "vendor": "ohos",
+        "version": {
+            "code": 1,
+            "name": "1.0"
+        },
+       "apiVersion": {
+          "compatible": 3,
+          "target": 3
+       }
+    },
+    "deviceConfig": {
+        "default": {
+        }
+    },
+    "module": {
+        "package":"com.hos.DpmsStServiceDistributedThirdE.src",
+        "name":"DpmsSystemTestServiceE",
+        "deviceType": [
+            "tv",
+            "car"
+        ],
+        "distro": {
+            "deliveryWithInstall": true,
+            "moduleName": "testability",
+            "moduleType": "entry"
+        },
+        "abilities": [{
+            "name": "DpmsStServiceDistributedThirdE",
+            "icon": "$media:snowball",
+            "label": "DpmsStServiceDistributedThirdE Ability",
+            "launchType": "standard",
+            "orientation": "unspecified",
+            "type": "service",
+            "srcLanguage": "c++",
+            "visible": true
+            }]
+    }
+}
