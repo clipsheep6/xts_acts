@@ -32,6 +32,7 @@ const STORE_CONFIG = {
 }
 var rdbStore = undefined;
 var context = undefined;
+var DOUBLE_MAX = 9223372036854775807;
 
 describe('dataAbilityPredicatesTest', function () {
     beforeAll(async function () {
@@ -75,7 +76,7 @@ describe('dataAbilityPredicatesTest', function () {
             var u8 = new Uint8Array([1, 2, 3])
             const valueBucket = {
                 "integerValue": 2147483647,
-                "doubleValue": Number.MAX_VALUE,
+                "doubleValue": DOUBLE_MAX,
                 "booleanValue": true,
                 "floatValue": -0.123,
                 "longValue": 9223372036854775807,
@@ -200,7 +201,7 @@ describe('dataAbilityPredicatesTest', function () {
         console.log(TAG + "************* testEqualTo0004 start *************");
         {
             let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
-            dataAbilityPredicates.equalTo("doubleValue", Number.MAX_VALUE);
+            dataAbilityPredicates.equalTo("doubleValue", DOUBLE_MAX);
             let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
@@ -362,7 +363,7 @@ describe('dataAbilityPredicatesTest', function () {
         console.log(TAG + "************* testNotEqualTo0004 start *************");
         {
             let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
-            dataAbilityPredicates.notEqualTo("doubleValue", Number.MAX_VALUE);
+            dataAbilityPredicates.notEqualTo("doubleValue", DOUBLE_MAX);
             let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
@@ -1109,7 +1110,7 @@ describe('dataAbilityPredicatesTest', function () {
         console.log(TAG + "************* testBetween0002 start *************");
         {
             let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
-            dataAbilityPredicates.between("doubleValue", 0.0, Number.MAX_VALUE);
+            dataAbilityPredicates.between("doubleValue", 0.0, DOUBLE_MAX);
             let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
@@ -1189,7 +1190,7 @@ describe('dataAbilityPredicatesTest', function () {
         console.log(TAG + "************* testBetween0006 start *************");
         {
             let dataAbilityPredicates = await new data_dataability.DataAbilityPredicates();
-            dataAbilityPredicates.between("doubleValue", Number.MAX_VALUE, Number.MAX_VALUE);
+            dataAbilityPredicates.between("doubleValue", DOUBLE_MAX, DOUBLE_MAX);
             let predicates = data_dataability.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             let result = await rdbStore.query(predicates);
