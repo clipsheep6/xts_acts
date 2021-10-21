@@ -15,9 +15,18 @@
  
 #ifndef PLAYER_LITE_TEST_H
 #define PLAYER_LITE_TEST_H
-
+#include <sys/prctl.h>
+#include "unistd.h"
+#include <fcntl.h>
+#include "securec.h"
 #include "gtest/gtest.h"
+#include "source.h"
 #include "player.h"
+#include "format.h"
+#include "fstream"
+#include "iostream"
+#include "thread"
+#include <climits>
 
 namespace OHOS {
 using OHOS::Media::Player;
@@ -33,13 +42,76 @@ using namespace std;
 using namespace OHOS::Media;
 using namespace testing::ext;
 
+const int FRAME_RATE_DEFAULT = 30;
 const int FILE_PATH_LEN = 2048;
 
+
+#define DOFUNC_STR_NORET(func, str)                                                              \
+    do {                                                                                         \
+        HI_S32 s32Ret = 0;                                                                       \
+        s32Ret = func;                                                                           \
+        if (s32Ret != HI_SUCCESS) {                                                              \
+            printf("[liteplayer_sample][%s:%d] ret:%d, %s \n", __FILE__, __LINE__, s32Ret, str); \
+            return NULL;                                                                         \
+        }                                                                                        \
+    } while (0)
+
+#define DOFUNC_STR_RET(func, str)                                                                \
+    do {                                                                                         \
+        HI_S32 s32Ret = 0;                                                                       \
+        s32Ret = func;                                                                           \
+        if (s32Ret != HI_SUCCESS) {                                                              \
+            printf("[liteplayer_sample][%s:%d] ret:%d, %s \n", __FILE__, __LINE__, s32Ret, str); \
+            return HI_FAILURE;                                                                   \
+        }                                                                                        \
+    } while (0)
+
+#define IS_OK(ret)                                                \
+    do {                                                          \
+        if (ret != 0) {                                           \
+            printf("[%s: %d] ret:%d\n", __func__, __LINE__, ret); \
+        }                                                         \
+    } while (0)
+
+
+
+class StreamSourceSample;
 using TestSample = struct TagTestSample {
     std::shared_ptr<Player> adaptr;
+    pthread_t process;
+    pthread_mutex_t mutex;
+    int32_t isThreadRunning;
+    int32_t sourceType;
     char filePath[FILE_PATH_LEN];
+    std::shared_ptr<StreamSourceSample> streamSample;
 };
 
+using IdleBuffer =  struct TagIdleBuffer {
+    size_t idx;
+    size_t offset;
+    size_t size;
+};
+
+class StreamSourceSample : public StreamSource {
+public:
+    StreamSourceSample(void);
+    ~StreamSourceSample(void);
+    void OnBufferAvailable(size_t index, size_t offset, size_t size);
+    void SetStreamCallback(const std::shared_ptr<StreamCallback> &callback);
+    uint8_t *GetBufferAddress(size_t idx);
+    void QueueBuffer(size_t index, size_t offset, size_t size, int64_t timestampUs, uint32_t flags);
+    int GetAvailableBuffer(IdleBuffer *buffer);
+    std::weak_ptr<StreamCallback> m_callBack;
+    pthread_mutex_t m_mutex;
+private:
+    std::vector<IdleBuffer> aviableBuffer;
+};
+
+void *StreamProcess(const void *arg);
+void SetSchParam(void);
+
+const int32_t HI_SUCCESS = 0;
+const int32_t HI_FAILURE = -1;
 static TagTestSample g_tagTestSample;
 static Surface *g_surface = Surface::CreateSurface();
 } // namespace OHOS
