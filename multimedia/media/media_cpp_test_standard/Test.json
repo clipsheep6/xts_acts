@@ -13,11 +13,7 @@
             "pre-push": [
             ],
             "push": [
-                "ActsMediaCppStandardTest->/data/local/tmp/ActsMediaCppStandardTest",
-                "resource/media/1h264_320x240_60.3gp ->/data/media/",
-                "resource/media/h264_320x240_60.m4v ->/data/media/",
-                "resource/media/hevc_320x240_30.mp4 ->/data/media/",
-                "resource/media/hevc_320x240_60.mp4 ->/data/media/"
+                "ActsMediaCppStandardTest->/data/local/tmp/ActsMediaCppStandardTest"
             ]
         },
         {
