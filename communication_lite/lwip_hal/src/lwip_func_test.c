@@ -38,7 +38,7 @@
 #define LWIP_TEST_FAIL (-1)
 #define DEF_TASK_STACK 2000
 #define DEF_TASK_PRIORITY 20
-#define ONE_SECOND 1
+#define ONE_SECOND 100
 #define TIMEOUT 4
 #define TEST_FD_COUNT 10
 
@@ -665,6 +665,7 @@ LITE_TEST_CASE(LwipFuncTestSuite, testSelectMultiClients, Function | MediumTest 
     g_selectTimeout = 5;
     osThreadId_t serverTaskId = osThreadNew((osThreadFunc_t)SelectServerTask, NULL, &tSelect);
     TEST_ASSERT_NOT_NULL(serverTaskId);
+    osDelay(ONE_SECOND);
     if (serverTaskId == NULL) {
         printf("create select server task fail!\n");
     } else {
