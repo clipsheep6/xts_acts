@@ -14,7 +14,6 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import ohos_data_rdb from '@ohos.data.rdb';
-import ability_featureAbility from '@ohos.ability.featureAbility';
 
 const TAG = "[RDB_JSKITS _TEST]"
 const CREATE_TABLE_ALL_DATA_TYPE_SQL = "CREATE TABLE IF NOT EXISTS AllDataType "
@@ -30,13 +29,11 @@ const STORE_CONFIG = {
     name: "Predicates.db",
 }
 var rdbStore = undefined;
-var context = undefined;
 var DOUBLE_MAX = 9223372036854775807;
 describe('rdbPredicatesTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        context = await ability_featureAbility.getContext();
-        rdbStore = await ohos_data_rdb.getRdbStore(context, STORE_CONFIG, 1);
+        rdbStore = await ohos_data_rdb.getRdbStore(STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_ALL_DATA_TYPE_SQL, null);
         await buildAllDataType1();
         await buildAllDataType2();
@@ -54,7 +51,7 @@ describe('rdbPredicatesTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await ohos_data_rdb.deleteRdbStore(context, "Predicates.db");
+        await ohos_data_rdb.deleteRdbStore("Predicates.db");
     })
 
     function resultSize(resultSet) {
