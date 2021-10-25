@@ -32,7 +32,7 @@ describe('ActsSubscriberTestUnorderSystem', async function (done) {
     it('ActsSubscriberTestUnorderSystem_0100', 0, async function (done) {
         console.info("===============ActsSubscriberTestUnorderSystem_0100==========================>");
         var commonEventSubscribeInfo = {
-            events: ["publish_event0100"],
+            events: ["Subscriber.Support.COMMON_EVENT_BATTERY_CHANGED"],
             publisherDeviceId: "PublishDeviceId0100",
             priority: 10,
         };
@@ -52,7 +52,7 @@ describe('ActsSubscriberTestUnorderSystem', async function (done) {
 
         function subscriberCallBack001(err, data) {
             console.info("==========================>subscriberCallBack001");
-            expect(data.event).assertEqual("publish_event0100");
+            expect(data.event).assertEqual("Subscriber.Support.COMMON_EVENT_BATTERY_CHANGED");
             expect(data.bundleName).assertEqual("PublishBundleName0100");
             expect(data.code).assertEqual(55);
             expect(data.data).assertEqual("PublishData0100");
@@ -67,7 +67,9 @@ describe('ActsSubscriberTestUnorderSystem', async function (done) {
             data.getSubscribeInfo().then(function (data) {
                 console.info("===============ActsSubscriberTestUnorderSystem_0100=========getSubscribeInfo promise");
                 Subscriber.subscribe(commonEventSubscriber, subscriberCallBack001);
-                Subscriber.publish("publish_event0100", commonEventPublishData, publishCallback);
+                Subscriber.publish("Subscriber.Support.COMMON_EVENT_BATTERY_CHANGED",
+                    commonEventPublishData,
+                    publishCallback);
             });
         })
         setTimeout(function (){
