@@ -98,39 +98,51 @@ describe('Url_mxa_jk_Test', function () {
     })
 
     it('Url_forEach_test_001', 0, function () {
-        let params = new Url.URLSearchParams('key1=value1&key2=value2')
-        var arr = {};
+        let params = new Url.URLSearchParams("key1=value1&key2=value2")
+        var arr={};
         var i = 0;
-        function func(str1, str2, params) {
-            arr[i] = 'key=' + str1 + ' ' + 'value=' + str2 + ' ' + 'flag=' + params
-            i++;
+        function func(value, key, SearchParams)
+        {
+            console.log(value, key, params === SearchParams)
+            arr[i] = value + " " + key + " " + (params === SearchParams)
+            i++
         }
-        params.forEach(func)
-        expect(arr[0]).assertEqual('key=key1 value=value1 flag=key1=value1&key2=value2')
+        params.forEach(func);
+        console.log("pss...Url_forEach_test_001:   "+ arr[0] );
+        expect(arr[0]).assertEqual("value1 key1 true");
     })
+    
     it('Url_forEach_test_002', 0, function () {
-        let params = new Url.URLSearchParams('key1=value1&key2=value2')
-        var arr = {};
+        let params = new Url.URLSearchParams("key1=value1&key2=value2");
+        var arr={};
         var i = 0;
-        function func(str1, str2, params) {
-            arr[i] = 'key=' + str1 + ' ' + 'value=' + str2 + ' ' + 'flag=' + params
-            i++;
+        function func(value, key, SearchParams)
+        {
+            console.log(value, key, params === SearchParams)
+            arr[i] = value + " " + key + " " + (params === SearchParams)
+            i++
         }
-        params.forEach(func)
-        expect(arr[1]).assertEqual('key=key2 value=value2 flag=key1=value1&key2=value2')
+        params.forEach(func);
+        console.log("pss...Url_forEach_test_002:   "+ arr[1]);
+        expect(arr[1]).assertEqual("value2 key2 true");
     })
+
     it('Url_forEach_test_003', 0, function () {
-        let params = new Url.URLSearchParams('key1=value1&key2=value2')
-        params.append('foo', 'jk')
-        var arr = {};
+        let params = new Url.URLSearchParams("key1=value1&key2=value2");
+        params.append("foo","jk");
+        var arr={};
         var i = 0;
-        function func(str1, str2, params) {
-            arr[i] = 'key=' + str1 + ' ' + 'value=' + str2 + ' ' + 'flag=' + params
-            i++;
+        function func(value, key, SearchParams)
+        {
+            console.log(value, key, params === SearchParams)
+            arr[i] = value + " " + key + " " + (params === SearchParams)
+            i++
         }
-        params.forEach(func)
-        expect(arr[2]).assertEqual('key=foo value=jk flag=key1=value1&key2=value2&foo=jk')
+        params.forEach(func);
+        console.log("pss...Url_forEach_test_003:   "+ arr[2]);
+        expect(arr[2]).assertEqual("jk foo true");
     })
+
     it('Url_get_test_001', 0, function () {
         let params = new Url.URLSearchParams('key1=value1&key2=value2')
         var result = params.get('1')
