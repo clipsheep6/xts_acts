@@ -17,12 +17,14 @@ group("sim") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "sim_file_manager_function_test:SimFileManagerFunctionTest",
-      "sim_manager_function_test:SimManagerFunctionTest",
-      "sim_no_sim_function_test:SimNoSimFunctionTest",
-      "sim_performance_test:SimPerformanceTest",
-      "sim_reliability_test:SimReliabilityTest",
-      "sim_state_manager_function_test:SimStateManagerFunctionTest",
+      "sim_no_sim_function_four_test:SimNoSimFunctionFourTest",
+      "sim_reliability_four_test:SimReliabilityFourTest",
+      "sim_performance_four_test:SimPerformanceFourTest",
+      "sim_icc_dialling_numbers_controller_function_test:SimIccDiallingNumbersControllerFunctionTest",
+      "sim_account_information_manager_function_test:SimAccountInformationManagerFunctionTest",
+      "sim_file_information_function_test:SimFileInformationFunctionTest",
+      "sim_fixed_dial_manager_function_test:SimFixedDialManagerFunctionTest",
+      "sim_register_status_monitor_mock_test:SimRegisterStatusMonitorMockTest"
     ]
   }
 }
