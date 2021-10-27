@@ -14,7 +14,7 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import data_rdb from '@ohos.data.rdb'
-import ability_featureAbility from '@ohos.ability.featureAbility';
+import featureAbility from '@ohos.ability.featureAbility';
 
 const TAG = "[RDB_JSKITS_TEST]"
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "data1 text," + "data2 long, " + "data3 double," + "data4 blob)";
@@ -28,8 +28,8 @@ var context = undefined;
 describe('rdbResultSetTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        context = await ability_featureAbility.getContext();
-        rdbStore = await data_rdb.getRdbStore(context, STORE_CONFIG, 1);
+        context = await featureAbility.getContext();
+        rdbStore = await data_rdb.getRdbStore(STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_TEST, null);
         await createTest();
     })
@@ -45,7 +45,7 @@ describe('rdbResultSetTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await data_rdb.deleteRdbStore(context, "Resultset.db");
+        await data_rdb.deleteRdbStore("Resultset.db");
     })
     //插入数据
     async function createTest() {
