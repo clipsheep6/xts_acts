@@ -1,0 +1,15 @@
+ [   
+    {
+     "deviceName": "keyboard",  
+     "events":[
+                {"eventType": "KEY_EVENT_RELESE", "keyValue": 42}
+            ]
+    }
+] [   
+    {
+     "deviceName": "keyboard",  
+     "events":[
+                {"eventType": "KEY_EVENT_RELESE", "keyValue": 42}
+            ]
+    }
+]

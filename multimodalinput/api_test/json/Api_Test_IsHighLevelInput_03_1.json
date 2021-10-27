@@ -1,0 +1,14 @@
+ [
+    {
+     "deviceName": "keyboard model1", 
+     "events":[
+                {"eventType": "KEY_EVENT_RELESE", "keyValue": 29},
+            ]
+    },
+    {
+     "deviceName": "mouse", 
+     "events":[
+                {"eventType": "KEY_EVENT_RELESE", "keyValue": 272},
+            ]
+    }
+]
