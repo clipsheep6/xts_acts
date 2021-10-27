@@ -15,9 +15,19 @@
 
 
 # 配置发送短信的电话号码
-config_const_var[0]="const SMS_SEND_DST_NUMBER = '138xxxxxxxx';"
+config_const_var[0]="const TEST_PHONY_NUMBER = '12345678901';"
 
-
+config_const_var[1]="const AUTO_ACCEPT_NUMBER = '10086';"
+config_const_var[2]="const NOT_ACCEPT_NUMBER = '18968621063';"
+config_const_var[3]="const NULL_PHONE_NUMBER = '';"
+config_const_var[4]="const TRAN_PHONE_NUMBER_00000000000 = '00000000000';"
+config_const_var[5]="const TRNS_PHONE_NUMBER_089800000000 = '089800000000';"
+config_const_var[6]="const TRAN_PHONE_NUMBER_12599 = '12599';"
+config_const_var[7]="const TRAN_PHONE_NUMBER_LONG = '999567890999567890999567890123';"
+config_const_var[8]="const TRAN_PHONE_NUMBER_86459751 = '86459751';"
+config_const_var[9]="const TRAN_PHONE_NUMBER_089899855857 = '089899855857';"
+config_const_var[10]="const PIN2 = '1234';"
+config_const_var[12]="const PUK2 = '9876';"
 for((i = 0; i < ${#config_const_var}; i++))
 do
     if [ "${config_const_var[i]}" == "" ]; then
