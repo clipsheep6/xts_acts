@@ -1071,9 +1071,9 @@ HWTEST_F(ActsLwipTest, testInvalidParameter, Function | MediumTest | Level3)
     ret = getpeername(fdSuccess, nullptr, nullptr);
     EXPECT_EQ(-1, ret);
 
-    ret = send(fdFail, nullptr, strlen(g_srvMsg), 0);
+    ret = send(fdFail, nullptr, strlen(g_srvMsg), MSG_NOSIGNAL);
     EXPECT_EQ(-1, ret);
-    ret = send(fdSuccess, nullptr, strlen(g_srvMsg), 0);
+    ret = send(fdSuccess, nullptr, strlen(g_srvMsg), MSG_NOSIGNAL);
     EXPECT_EQ(-1, ret);
 
     ret = sendto(fdFail, nullptr, strlen(g_srvMsg), 0, nullptr, (socklen_t)sizeof(struct sockaddr_in));
