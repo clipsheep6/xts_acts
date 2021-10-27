@@ -38,7 +38,7 @@ describe('dataAbilityPredicatesTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
         context = await featureAbility.getContext();
-        rdbStore = await dataRdb.getRdbStore(context, STORE_CONFIG, 1);
+        rdbStore = await dataRdb.getRdbStore(STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_ALL_DATA_TYPE_SQL, null);
         await buildAllDataType1();
         await buildAllDataType2();
@@ -56,7 +56,7 @@ describe('dataAbilityPredicatesTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await dataRdb.deleteRdbStore(context, "Predicates.db");
+        await dataRdb.deleteRdbStore("Predicates.db");
     })
 
     function resultSize(resultSet) {
