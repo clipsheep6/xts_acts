@@ -1229,3 +1229,31 @@ HWTEST_F(ActsPlayerFuncTest, SUB_MEDIA_PLAYER_Local_Function_03_3400, Function |
     EXPECT_FALSE(player->IsPlaying());
     EXPECT_EQ(RET_OK, testCallback->errorNum_);
 }
+
+HWTEST_F(ActsPlayerFuncTest, SUB_MEDIA_PLAYER_SetSource_Stability_0100, Function | MediumTest | Level3)
+{
+    std::shared_ptr<PlayerSignal> testObj = std::make_shared<PlayerSignal>();
+    std::shared_ptr<TestPlayer> player = std::make_shared<TestPlayer>(testObj);
+    ASSERT_NE(nullptr, player);
+    ASSERT_EQ(true, player->CreatePlayer());
+    int32_t time;
+    std::string uri = TestParamsConfig::GetInstance().GetUri();
+    ASSERT_EQ(RET_OK, player->SetSource(uri));
+    sptr<Surface> videoSurface = player->GetVideoSurface(g_sub_config);
+    EXPECT_EQ(RET_OK, player->SetVideoSurface(videoSurface));
+    std::shared_ptr<TestPlayerCallback> testCallback = std::make_shared<TestPlayerCallback>(testObj);
+    EXPECT_EQ(RET_OK, player->SetPlayerCallback(testCallback));
+    ASSERT_EQ(RET_OK, player->PrepareAsync());
+    EXPECT_EQ(RET_OK, player->Play());
+    EXPECT_TRUE(player->IsPlaying());
+    for (int i = 0; i < 1000; i++) {
+        MEDIA_INFO_LOG("[----------] Running, for %dtn time ...", i + 1);
+        EXPECT_EQ(RET_OK, player->SetVolume(1, 1));
+        EXPECT_EQ(RET_OK, player->SetVolume(0.1, 0.1));
+        EXPECT_EQ(RET_OK, testCallback->errorNum_);
+    }
+    EXPECT_EQ(RET_OK, player->Seek(SEEK_TIME_5_SEC, SEEK_MODE));
+    EXPECT_EQ(RET_OK, player->GetCurrentTime(time));
+    EXPECT_TRUE(TestParamsConfig::GetInstance().CompareTime(SEEK_TIME_5_SEC, time, SEEK_MODE));
+    EXPECT_EQ(RET_OK, testCallback->errorNum_);
+}
