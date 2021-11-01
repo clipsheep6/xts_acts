@@ -80,12 +80,12 @@ const booleanTest = function() {
     return getIntegerRandom(RANDOM_BEGIN_POSITION, BOOLEAN_RANDOM_LENGTH);
 }
 
-// return null
+// null
 const nullTest = function() {
     return null;
 }
 
-// return undefinedTest
+// undefinedTest
 const undefinedTest = function() {
     return undefined;
 }
