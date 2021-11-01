@@ -11,14 +11,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import("//build/ohos_var.gni")
-group("powermgr") {
+group("powermgr_power_test") {
   testonly = true
 
   if (is_standard_system) {
-    deps = [
-      "battery_manager:powermgr_battery_test",
-      "display_manager:powermgr_display_test",
-      "power_manager:powermgr_power_test",
-    ]
+    deps = [ "running_lock:powermgr_running_lock_test" ]
   }
 }
