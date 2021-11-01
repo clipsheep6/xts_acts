@@ -12,8 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// require('./AudioPerf.test.js')
-require('./AudioFramework.test.js')
-//require('./AudioFramework.test-Gitee.js')
-//require('./AudioCapturer.test.js')
-//require('./AudioRenderer.test.js')
+ 
+package ohos.acts.multimedia.audio.audioplayer;
+
+import ohos.ace.ability.AceAbility;
+import ohos.aafwk.content.Intent;
+
+public class MainAbility extends AceAbility {
+    @Override
+    public void onStart(Intent intent) {
+        super.onStart(intent);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+}
