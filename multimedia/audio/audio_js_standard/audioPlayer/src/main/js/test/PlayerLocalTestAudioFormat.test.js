@@ -45,16 +45,15 @@ describe('PlayerLocalTestAudioFormat', function () {
         for(let t = Date.now(); Date.now() - t <= time;);
     }
 
-    function setSrcCallback(audioPlayer) {
+    function playSource(audioSource, done) {
+        let audioPlayer = media.createAudioPlayer();
+        audioPlayer.src = audioSource;
         audioPlayer.on('dataLoad', () => {
             console.info('case set source success');
             expect(audioPlayer.state).assertEqual('paused');
             expect(audioPlayer.currentTime).assertEqual(0);
             audioPlayer.play();
         });
-    }
-
-    function setPlayCallback(audioPlayer) {
         audioPlayer.on('play', () => {
             console.info('case start to play');
             expect(audioPlayer.state).assertEqual('playing');
@@ -65,17 +64,16 @@ describe('PlayerLocalTestAudioFormat', function () {
                 audioPlayer.seek(SEEK_TIME);
             }
         });
-    }
-
-    function setPauseCallback(audioPlayer) {
         audioPlayer.on('pause', () => {
             console.info('case now is paused');
             expect(audioPlayer.state).assertEqual('paused');
             audioPlayer.setVolume(MAX_VOLUME);
         });
-    }
-
-    function setResetCallback(audioPlayer, done) {
+        audioPlayer.on('stop', () => {
+            console.info('case stop success');
+            expect(audioPlayer.state).assertEqual('stopped');
+            audioPlayer.reset();
+        });
         audioPlayer.on('reset', () => {
             console.info('case reset success');
             expect(audioPlayer.state).assertEqual('idle');
@@ -83,17 +81,6 @@ describe('PlayerLocalTestAudioFormat', function () {
             audioPlayer = undefined;
             done();
         });
-    }
-
-    function setStopCallback(audioPlayer) {
-        audioPlayer.on('stop', () => {
-            console.info('case stop success');
-            expect(audioPlayer.state).assertEqual('stopped');
-            audioPlayer.reset();
-        });
-    }
-
-    function setSeekCallback(audioPlayer, done) {
         audioPlayer.on('timeUpdate', (seekDoneTime) => {
             if (typeof (seekDoneTime) == "undefined") {
                 console.info(`case seek filed,errcode is ${seekDoneTime}`);
@@ -112,25 +99,16 @@ describe('PlayerLocalTestAudioFormat', function () {
                 expect(audioPlayer.duration).assertEqual(seekDoneTime);
             }
         });
-    }
-
-    function setVolumeCallback(audioPlayer) {
         audioPlayer.on('volumeChange', () => {
             console.info('case set volume value to ' + MAX_VOLUME);
             audioPlayer.play();
             isToSeek = true;
         });
-    }
-
-    function setFinishCallback(audioPlayer) {
         audioPlayer.on('finish', () => {
             console.info('case play end');
             expect(audioPlayer.state).assertEqual('stopped');
             audioPlayer.stop();
         });
-    }
-
-    function setErrorCallback(audioPlayer, done) {
         audioPlayer.on('error', (err) => {
             console.info(`case error called,errName is ${err.name}`);
             console.info(`case error called,errCode is ${err.code}`);
@@ -139,26 +117,6 @@ describe('PlayerLocalTestAudioFormat', function () {
             expect().assertFail();
             done();
         });
-    }
-
-    function playSource(audioSource, done) {
-        let audioPlayer = media.createAudioPlayer();
-        if (typeof (audioPlayer) == 'undefined') {
-            console.info('case create player is faild');
-            expect().assertFail();
-            done();
-            return;
-        }
-        setSrcCallback(audioPlayer);
-        setPlayCallback(audioPlayer);
-        setPauseCallback(audioPlayer);
-        setResetCallback(audioPlayer, done);
-        setStopCallback(audioPlayer);
-        setSeekCallback(audioPlayer, done);
-        setVolumeCallback(audioPlayer);
-        setFinishCallback(audioPlayer);
-        setErrorCallback(audioPlayer, done);
-        audioPlayer.src = audioSource;
     }
 
     /* *

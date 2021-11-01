@@ -52,10 +52,10 @@ describe('RecorderLocalTestAudioAPI', function () {
         audioRecorder = media.createAudioRecorder();
     }
 
-    function nextStep(mySteps) {
+    function nextStep(mySteps,done) {
         if (mySteps[0] == END_STATE) {
-            console.info('case end!!!');
-            isTimeOut = true;
+            done();
+            console.info('case to done');
             return;
         }
         switch (mySteps[0]) {
@@ -95,72 +95,58 @@ describe('RecorderLocalTestAudioAPI', function () {
         }
     }
 
-	function setErrorCallback(mySteps) {
-        audioRecorder.on('error', (err) => {
-            console.info(`case error called,errName is ${err.name}`);
-            console.info(`case error called,errCode is ${err.code}`);
-            console.info(`case error called,errMessage is ${err.message}`);
-            console.info('case err returned in error() case callback');
-            mySteps.shift();
-            expect(mySteps[0]).assertEqual(ERROR_STATE);
-            mySteps.shift();
-            nextStep(mySteps);
-        });
-    }
-
-    function setCallback(mySteps, done) {
+	function setCallback(mySteps, done) {
         audioRecorder.on('prepare', () => {
             console.info('setCallback prepare() case callback is called');
             mySteps.shift();
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
 
         audioRecorder.on('start', () => {
             console.info('setCallback start() case callback is called');
+            sleep(RECORDER_TIME);
             mySteps.shift();
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
 
         audioRecorder.on('pause', () => {
             console.info('setCallback pause() case callback is called');
             mySteps.shift();
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
 
         audioRecorder.on('resume', () => {
             console.info('setCallback resume() case callback is called');
             mySteps.shift();
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
 
         audioRecorder.on('stop', () => {
             console.info('setCallback stop() case callback is called');
             mySteps.shift();
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
 
         audioRecorder.on('reset', () => {
             console.info('setCallback reset() case callback is called');
             mySteps.shift();
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
 
         audioRecorder.on('release', () => {
             console.info('setCallback release() case callback is called');
             mySteps.shift();
-            nextStep(mySteps);
-            audioRecorder = undefined;
+            nextStep(mySteps,done);
         });
-		
-		setErrorCallback(mySteps);
-        setTimeout(function() {
-            if (!isTimeOut) {
-                console.info('case is time out!');
-                expect(isTimeOut).assertTrue();
-            }
-            mySteps = undefined;
-            done();
-        }, TIME_OUT);
+        audioRecorder.on('error', (err) => {
+            console.info(`case error called,errName is ${err.name}`);
+            console.info(`case error called,errCode is ${err.code}`);
+            console.info(`case error called,errMessage is ${err.message}`);
+            mySteps.shift();
+            expect(mySteps[0]).assertEqual(ERROR_STATE);
+            mySteps.shift();
+            nextStep(mySteps,done);
+        });  
     }
 
     beforeAll(function () {
