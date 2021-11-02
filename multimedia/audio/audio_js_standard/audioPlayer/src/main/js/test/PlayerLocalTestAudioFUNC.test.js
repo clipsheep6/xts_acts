@@ -74,9 +74,10 @@ describe('PlayerLocalTestAudioFUNC', function () {
         }
     }
 
-    function nextStep(mySteps) {
+    function nextStep(mySteps,done) {
         if (mySteps[0] == END_STATE) {
-            isTimeOut = true;
+            done();
+            console.info('case to done');
             return;
         }
         switch (mySteps[0]) {
@@ -125,18 +126,16 @@ describe('PlayerLocalTestAudioFUNC', function () {
         }
     }
 
-    function setSrcCallback(mySteps) {
+    function setCallback(mySteps, done) {
+        console.info(`case setCallback`);
         audioPlayer.on('dataLoad', () => {
             mySteps.shift();
             console.info(`case dataLoad called`);
             expect(audioPlayer.currentTime).assertEqual(0);
             expect(audioPlayer.duration).assertEqual(DURATION_TIME);
             expect(audioPlayer.state).assertEqual('paused');
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
-    }
-
-    function setPlayCallback(mySteps) {
         audioPlayer.on('play', () => {
             mySteps.shift();
             console.info(`case play called`);
@@ -148,31 +147,22 @@ describe('PlayerLocalTestAudioFUNC', function () {
                 return;
             }
             expect(audioPlayer.state).assertEqual('playing');
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
-    }
-
-    function setPauseCallback(mySteps) {
         audioPlayer.on('pause', () => {
             mySteps.shift();
             console.info(`case pause called`);
             console.info(`case pause currentTime is ${audioPlayer.currentTime}`);
             expect(audioPlayer.duration).assertEqual(DURATION_TIME);
             expect(audioPlayer.state).assertEqual('paused');
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
-    }
-
-    function setResetCallback(mySteps) {
         audioPlayer.on('reset', () => {
             mySteps.shift();
             console.info(`case reset called`);
             expect(audioPlayer.state).assertEqual('idle');
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
-    }
-
-    function setStopCallback(mySteps) {
         audioPlayer.on('stop', () => {
             if (mySteps[0] == RESET_STATE) {
                 console.info(`case reset stop called`);
@@ -183,11 +173,8 @@ describe('PlayerLocalTestAudioFUNC', function () {
             expect(audioPlayer.currentTime).assertEqual(0);
             expect(audioPlayer.duration).assertEqual(DURATION_TIME);
             expect(audioPlayer.state).assertEqual('stopped');
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
-    }
-
-    function setSeekCallback(mySteps) {
         audioPlayer.on('timeUpdate', (seekDoneTime) => {
             if (typeof (seekDoneTime) == 'undefined') {
                 console.info(`case seek filed,errcode is ${seekDoneTime}`);
@@ -207,12 +194,9 @@ describe('PlayerLocalTestAudioFUNC', function () {
                 sleep(PLAY_STATE);
             }
             if ((seekDoneTime < audioPlayer.duration) || (audioPlayer.state == 'paused')) {
-                nextStep(mySteps);
+                nextStep(mySteps,done);
             }
         });
-    }
-
-    function setVolumeCallback(mySteps) {
         audioPlayer.on('volumeChange', () => {
             console.info(`case setvolume called`);
             mySteps.shift();
@@ -220,21 +204,15 @@ describe('PlayerLocalTestAudioFUNC', function () {
             if (audioPlayer.state == 'playing') {
                 sleep(PLAY_TIME);
             }
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
-    }
-
-    function setFinishCallback(mySteps) {
         audioPlayer.on('finish', () => {
             mySteps.shift();
             expect(audioPlayer.state).assertEqual('stopped');
             expect(audioPlayer.currentTime).assertClose(audioPlayer.duration, DELTA_TIME);
             console.info(`case finish called`);
-            nextStep(mySteps);
+            nextStep(mySteps,done);
         });
-    }
-
-    function setErrorCallback(mySteps) {
         audioPlayer.on('error', (err) => {
             console.info(`case error called,errName is ${err.name}`);
             console.info(`case error called,errCode is ${err.code}`);
@@ -243,32 +221,18 @@ describe('PlayerLocalTestAudioFUNC', function () {
                 mySteps.shift();
                 mySteps.shift();
                 mySteps.shift();
+                nextStep(mySteps);
+            } else if (mySteps[0] == ERROR_STATE) {
+                mySteps.shift();
+            } else if (mySteps[0] == END_STATE) {
+                console.info('case release player error');
             } else {
                 mySteps.shift();
                 mySteps.shift();
+                nextStep(mySteps,done);
             }
-            nextStep(mySteps);
         });
-    }
-
-    function setCallback(mySteps, done) {
-        console.info(`case setCallback`);
-        setSrcCallback(mySteps);
-        setPlayCallback(mySteps);
-        setPauseCallback(mySteps);
-        setResetCallback(mySteps);
-        setStopCallback(mySteps);
-        setSeekCallback(mySteps);
-        setVolumeCallback(mySteps);
-        setFinishCallback(mySteps);
-        setErrorCallback(mySteps);
-        setTimeout(function() {
-            if (!isTimeOut) {
-                console.info(`case is time out!`);
-                expect().assertFail();
-            }
-            done();
-        }, TIME_OUT);
+       
     };
 
     /* *
@@ -280,6 +244,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_PLAYER_LOCAL_AUDIO_Function_04_0100', 0, async function (done) {
+        console.info(`case update`);
         let mySteps = new Array(SRC_STATE, PLAY_STATE, END_STATE);
         initAudioPlayer();
         setCallback(mySteps, done);
