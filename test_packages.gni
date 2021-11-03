@@ -33,6 +33,7 @@ _all_test_packages = [
   "${ACTS_ROOT}/startup:startup",
   "${ACTS_ROOT}/distributeddatamgr:distributeddatamgr",
 
+  "${ACTS_ROOT}/multimodalinput:multimodalinput",
   # "${ACTS_ROOT}/distributedschedule:distributedschedule",
   "${ACTS_ROOT}/updater:update",
   "${ACTS_ROOT}/graphic:graphic",
