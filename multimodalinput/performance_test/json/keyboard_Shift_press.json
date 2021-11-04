@@ -1,15 +1,8 @@
  [   
     {
-     "deviceName": "keyboard",  
+     "deviceName": "keyboard model1", 
      "events":[
-                {"eventType": "KEY_EVENT_PRESS", "keyValue": 42}
-            ]
-    }
-] [   
-    {
-     "deviceName": "keyboard",  
-     "events":[
-                {"eventType": "KEY_EVENT_PRESS", "keyValue": 42}
+                {"eventType": "KEY_EVENT_PRESS", "keyValue": 42 }
             ]
     }
 ]

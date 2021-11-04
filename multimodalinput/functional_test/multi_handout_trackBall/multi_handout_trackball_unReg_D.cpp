@@ -234,9 +234,9 @@ HWTEST_F(multiHandouttrackballUnRegDTest, Multi_HandOut_Trackball_Reg_008_D, Tes
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
     ci.eventList = {"trackball_rightturn.json"};
     ci.deviceMsg = {""};
-    ci.libinputExpectList = {"eventPointer|30|0"};
+    ci.libinputExpectList = {"eventPointer|0|30"};
     ci.standardExpectList = {"/"};
-    ci.expectL3Event = {"eventPointer|30|0|"};
+    ci.expectL3Event = {"eventPointer|0|30|"};
     ci.combKeyList = {{{""}}};
     ci.dispatcherList = {""};
     DoCompareAndExpect(ci, "Multi_HandOut_Trackball_Reg_008_D");
@@ -255,9 +255,9 @@ HWTEST_F(multiHandouttrackballUnRegDTest, Multi_HandOut_Trackball_Reg_014_D, Tes
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
     ci.eventList = {"trackball_leftturn.json"};
     ci.deviceMsg = {""};
-    ci.libinputExpectList = {"eventPointer|-30|0"};
+    ci.libinputExpectList = {"eventPointer|0|-30"};
     ci.standardExpectList = {"/"};
-    ci.expectL3Event = {"eventPointer|-30|0|"};
+    ci.expectL3Event = {"eventPointer|0|-30|"};
     ci.combKeyList = {{{""}}};
     ci.dispatcherList = {""};
     DoCompareAndExpect(ci, "Multi_HandOut_Trackball_Reg_014_D");

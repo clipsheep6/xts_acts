@@ -14,13 +14,13 @@ group("functional_test_info") {
     "multi_handout_keyBoard:keyboard",
     #"multi_handout_knob:knob",
     #"multi_handout_mouse:mouse",
-    #"multi_handout_phalangeal:phalangeal",
+    "multi_handout_phalangeal:phalangeal",
     #"multi_handout_remotecontrol:remotecontrol",
     #"multi_handout_rock:rock",
     #"multi_handout_system:system",
     "multi_handout_touchscreen:touchscreen",
-    #"multi_handout_trackball:trackball",
+    #"multi_handout_trackBall:trackball",
     #"multi_handout_trackPad:trackpad",
-    #"multi_handout_voice:voice",
+    "multi_handout_voice:voice",
     ]
 }

@@ -2,7 +2,7 @@
     {
      "deviceName": "mouse",  
      "events":[
-                {"eventType": "KEY_EVENT_RELESE", "keyValue": 278}
+                {"eventType": "KEY_EVENT_RELEASE", "keyValue": 278}
             ]
     }
 ]

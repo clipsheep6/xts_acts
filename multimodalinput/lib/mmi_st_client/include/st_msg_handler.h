@@ -46,6 +46,7 @@ public:
     int32_t OnTestApiTouchCoordinateClientPkt(const UDSClient& client, NetPacket& pkt);
     int32_t OnTestApiTouchTwyParClientPkt(const UDSClient& client, NetPacket& pkt);
     int32_t OnTestApiTouchTwyParFinClientPkt(const UDSClient& client, NetPacket& pkt);
+    int32_t OnTestApiStylusClientPkt(const UDSClient& client, NetPacket& pkt);
     int32_t OnTestClientListPkt(const UDSClient& client, NetPacket& pkt);
     int32_t OnTestKeyTypePkt(const UDSClient& client, NetPacket& pkt);
 };

@@ -5,21 +5,12 @@ module_output_path = "multimodalinput/systemtest_out"
 
 ohos_systemtest("multi_handout_voice_reg_A") {
   module_out_path = module_output_path
-  include_dirs = [
-   "../include",
-    "//foundation/multimodalinput/input/interfaces/native/innerkits/event/include",
-  ]
+
   sources = [
-    "../common/MultiInputCommon.cpp",
-    "../common/auto_test_main.cpp",
-    "../common/auto_test_msg_handle.cpp",
-    "../common/auto_test_data_process.cpp", 
     "multi_handout_voice_reg_A.cpp",
   ]
 
   cflags = [
-    "-DOHOS_BUILD",
-    "-DOHOS_AUTO_TEST_FRAME",
   ]
 
   if (is_mmi_have_libinput) {
@@ -41,13 +32,11 @@ ohos_systemtest("multi_handout_voice_reg_A") {
   }
 
   deps = [
-    "//foundation/multimodalinput/input/frameworks/util:libmmi-util",
-    "//foundation/multimodalinput/input/frameworks/proxy:libmmi-client",
-    "//foundation/multimodalinput/input/patch/diff_libinput_mmi:libinput-third-mmi",
-    "//third_party/googletest:gmock_main",
-    "//third_party/googletest:gtest_main"
+    "//test/xts/acts/multimodalinput/lib/mmi_st_client:mmi_st_client",
+    "//third_party/googletest:gtest",
+    "//third_party/googletest:gtest_main",
   ]
-
+  
   external_deps = [
       "hiviewdfx_hilog_native:libhilog"
   ]
@@ -55,21 +44,12 @@ ohos_systemtest("multi_handout_voice_reg_A") {
 
 ohos_systemtest("multi_handout_voice_reg_B") {
   module_out_path = module_output_path
-  include_dirs = [
-   "../include",
-    "//foundation/multimodalinput/input/interfaces/native/innerkits/event/include",
-  ]
+
   sources = [
-    "../common/MultiInputCommon.cpp",
-    "../common/auto_test_main.cpp",
-    "../common/auto_test_msg_handle.cpp",
-    "../common/auto_test_data_process.cpp", 
     "multi_handout_voice_reg_B.cpp",
   ]
 
   cflags = [
-    "-DOHOS_BUILD",
-    "-DOHOS_AUTO_TEST_FRAME",
   ]
 
   if (is_mmi_have_libinput) {
@@ -91,63 +71,11 @@ ohos_systemtest("multi_handout_voice_reg_B") {
   }
 
   deps = [
-    "//foundation/multimodalinput/input/frameworks/util:libmmi-util",
-    "//foundation/multimodalinput/input/frameworks/proxy:libmmi-client",
-    "//foundation/multimodalinput/input/patch/diff_libinput_mmi:libinput-third-mmi",
-    "//third_party/googletest:gmock_main",
-    "//third_party/googletest:gtest_main"
+    "//test/xts/acts/multimodalinput/lib/mmi_st_client:mmi_st_client",
+    "//third_party/googletest:gtest",
+    "//third_party/googletest:gtest_main",
   ]
-
-  external_deps = [
-      "hiviewdfx_hilog_native:libhilog"
-  ]
-}
-
-ohos_systemtest("multi_handout_voice_unReg_D") {
-  module_out_path = module_output_path
-  include_dirs = [
-   "../include",
-    "//foundation/multimodalinput/input/interfaces/native/innerkits/event/include",
-  ]
-  sources = [
-    "../common/MultiInputCommon.cpp",
-    "../common/auto_test_main.cpp",
-    "../common/auto_test_msg_handle.cpp",
-    "../common/auto_test_data_process.cpp", 
-    "multi_handout_voice_unReg_D.cpp",
-  ]
-
-  cflags = [
-    "-DOHOS_BUILD",
-    "-DOHOS_AUTO_TEST_FRAME",
-  ]
-
-  if (is_mmi_have_libinput) {
-    cflags += [
-      "-DOHOS_BUILD_LIBINPUT",
-    ]
-  }
-
-  if (is_mmi_have_hdf) {
-    cflags += [
-      "-DOHOS_BUILD_HDF",
-    ]
-  }
-
-  if (is_mmi_have_ai) {
-    cflags += [
-      "-DOHOS_BUILD_AI",
-    ]
-  }
-
-  deps = [
-    "//foundation/multimodalinput/input/frameworks/util:libmmi-util",
-    "//foundation/multimodalinput/input/frameworks/proxy:libmmi-client",
-    "//foundation/multimodalinput/input/patch/diff_libinput_mmi:libinput-third-mmi",
-    "//third_party/googletest:gmock_main",
-    "//third_party/googletest:gtest_main"
-  ]
-
+  
   external_deps = [
       "hiviewdfx_hilog_native:libhilog"
   ]
@@ -155,21 +83,12 @@ ohos_systemtest("multi_handout_voice_unReg_D") {
 
 ohos_systemtest("multi_handout_voice_reg_C") {
   module_out_path = module_output_path
-  include_dirs = [
-   "../include",
-    "//foundation/multimodalinput/input/interfaces/native/innerkits/event/include",
-  ]
+
   sources = [
-    "../common/MultiInputCommon.cpp",
-    "../common/auto_test_main.cpp",
-    "../common/auto_test_msg_handle.cpp",
-    "../common/auto_test_data_process.cpp", 
     "multi_handout_voice_reg_C.cpp",
   ]
 
   cflags = [
-    "-DOHOS_BUILD",
-    "-DOHOS_AUTO_TEST_FRAME",
   ]
 
   if (is_mmi_have_libinput) {
@@ -191,23 +110,62 @@ ohos_systemtest("multi_handout_voice_reg_C") {
   }
 
   deps = [
-    "//foundation/multimodalinput/input/frameworks/util:libmmi-util",
-    "//foundation/multimodalinput/input/frameworks/proxy:libmmi-client",
-    "//foundation/multimodalinput/input/patch/diff_libinput_mmi:libinput-third-mmi",
-    "//third_party/googletest:gmock_main",
-    "//third_party/googletest:gtest_main"
+    "//test/xts/acts/multimodalinput/lib/mmi_st_client:mmi_st_client",
+    "//third_party/googletest:gtest",
+    "//third_party/googletest:gtest_main",
   ]
-
+  
   external_deps = [
       "hiviewdfx_hilog_native:libhilog"
   ]
 }
+
+ohos_systemtest("multi_handout_voice_unReg_D") {
+  module_out_path = module_output_path
+
+  sources = [
+    "multi_handout_voice_unReg_D.cpp",
+  ]
+
+  cflags = [
+  ]
+
+  if (is_mmi_have_libinput) {
+    cflags += [
+      "-DOHOS_BUILD_LIBINPUT",
+    ]
+  }
+
+  if (is_mmi_have_hdf) {
+    cflags += [
+      "-DOHOS_BUILD_HDF",
+    ]
+  }
+
+  if (is_mmi_have_ai) {
+    cflags += [
+      "-DOHOS_BUILD_AI",
+    ]
+  }
+
+  deps = [
+    "//test/xts/acts/multimodalinput/lib/mmi_st_client:mmi_st_client",
+    "//third_party/googletest:gtest",
+    "//third_party/googletest:gtest_main",
+  ]
+  
+  external_deps = [
+      "hiviewdfx_hilog_native:libhilog"
+  ]
+}
+
 group("voice")
 {
     testonly = true
-    deps = [":multi_handout_voice_reg_A",
-    ":multi_handout_voice_reg_B",
-    ":multi_handout_voice_unReg_D",
-    ":multi_handout_voice_reg_C",
+    deps = [
+    #":multi_handout_voice_reg_A",
+    #":multi_handout_voice_reg_B",
+    #":multi_handout_voice_reg_C",
+    #":multi_handout_voice_unReg_D"
     ]
 }

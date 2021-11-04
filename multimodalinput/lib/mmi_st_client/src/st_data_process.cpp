@@ -846,6 +846,7 @@ void STDataProcess::ClearAll()
     memset_s(&touchFingerData_, sizeof(touchFingerData_), 0, sizeof(touchFingerData_));
     memset_s(&touchTwyParData_, sizeof(touchTwyParData_), 0, sizeof(touchTwyParData_));
     memset_s(&touchTwyParFinData_, sizeof(touchTwyParFinData_), 0, sizeof(touchTwyParFinData_));
+    memset_s(&stylusData_, sizeof(stylusData_), 0, sizeof(stylusData_));
     return;
 }
 
@@ -866,7 +867,7 @@ void STDataProcess::ApiOnKeyClientPktDataProcess(const OnKeyDataToApi& clientPkt
     memcpy_s(onKeyData_.uuid, MAX_UUIDSIZE, clientPkt.uuid, strlen(clientPkt.uuid));
     onKeyData_.sourceType = clientPkt.sourceType;
     onKeyData_.occurredTime = clientPkt.occurredTime;
-    memcpy_s(onKeyData_.deviceId, MAX_DEVIECID, clientPkt.uuid, strlen(clientPkt.deviceId));
+    memcpy_s(onKeyData_.deviceId, MAX_DEVIECID, clientPkt.deviceId, strlen(clientPkt.deviceId));
     onKeyData_.inputDeviceId = clientPkt.inputDeviceId;
     onKeyData_.isHighLevelEvent = clientPkt.isHighLevelEvent;
     onKeyData_.deviceUdevTags = clientPkt.deviceUdevTags;
@@ -880,7 +881,7 @@ void STDataProcess::ApiRegisterClientPktDataProcess(const RegisterDataToApi& cli
     memcpy_s(registerData_.uuid, MAX_UUIDSIZE, clientPkt.uuid, strlen(clientPkt.uuid));
     registerData_.sourceType = clientPkt.sourceType;
     registerData_.occurredTime = clientPkt.occurredTime;
-    memcpy_s(registerData_.deviceId, MAX_DEVIECID, clientPkt.uuid, strlen(clientPkt.deviceId));
+    memcpy_s(registerData_.deviceId, MAX_DEVIECID, clientPkt.deviceId, strlen(clientPkt.deviceId));
     registerData_.inputDeviceId = clientPkt.inputDeviceId;
     registerData_.isHighLevelEvent = clientPkt.isHighLevelEvent;
     registerData_.deviceUdevTags = clientPkt.deviceUdevTags;
@@ -962,7 +963,7 @@ void STDataProcess::ApiTouchTwyParClientPktDataProcess(const TwentyParamTouchToA
     memcpy_s(touchTwyParData_.uuid, MAX_UUIDSIZE, clientPkt.uuid, strlen(clientPkt.uuid));
     touchTwyParData_.sourceType = clientPkt.sourceType;
     touchTwyParData_.occurredTime = clientPkt.occurredTime;
-    memcpy_s(touchTwyParData_.deviceId, MAX_DEVIECID, clientPkt.uuid, strlen(clientPkt.deviceId));
+    memcpy_s(touchTwyParData_.deviceId, MAX_DEVIECID, clientPkt.deviceId, strlen(clientPkt.deviceId));
     touchTwyParData_.inputDeviceId = clientPkt.inputDeviceId;
     touchTwyParData_.isHighLevelEvent = clientPkt.isHighLevelEvent;
     touchTwyParData_.isStandard = clientPkt.isStandard;
@@ -979,6 +980,24 @@ void STDataProcess::ApiTouchTwyParFinClientPktDataProcess(const TwyParTouchFinTo
         touchTwyParFinData_.x[i] = clientPkt.x[i];
         touchTwyParFinData_.y[i] = clientPkt.y[i];
     }
+}
+
+void STDataProcess::ApiTouchStylusClientPktDataProcess(const StylusToApi& clientPkt)
+{
+    stylusData_.windowId = clientPkt.windowId;
+    stylusData_.action = clientPkt.action;
+    stylusData_.buttons = clientPkt.buttons;
+    stylusData_.startTime = clientPkt.startTime;
+    stylusData_.operationState = clientPkt.operationState;
+    stylusData_.pointerCount = clientPkt.pointerCount;
+    stylusData_.highLevelEvent = clientPkt.highLevelEvent;
+    memcpy_s(stylusData_.uuid, MAX_UUIDSIZE, clientPkt.uuid, strlen(clientPkt.uuid));
+    stylusData_.sourceType = clientPkt.sourceType;
+    stylusData_.occurredTime = clientPkt.occurredTime;
+    memcpy_s(stylusData_.deviceId, MAX_DEVIECID, clientPkt.deviceId, strlen(clientPkt.deviceId));
+    stylusData_.inputDeviceId = clientPkt.inputDeviceId;
+    stylusData_.isHighLevelEvent = clientPkt.isHighLevelEvent;
+    stylusData_.deviceUdevTags = clientPkt.deviceUdevTags;
 }
 
 // Get Data
@@ -1030,5 +1049,10 @@ TwentyParamTouchToApi STDataProcess::GetTouchTwyParData()
 TwyParTouchFinToApi STDataProcess::GetTouchTwyParFinData()
 {
     return touchTwyParFinData_;
+}
+
+StylusToApi STDataProcess::GetStylusData()
+{
+    return stylusData_;
 }
 } // namespace OHOS::MM

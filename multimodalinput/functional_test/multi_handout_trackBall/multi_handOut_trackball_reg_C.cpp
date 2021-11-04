@@ -201,48 +201,6 @@ void multiHandouttrackballRegCTest::DoCompareAndExpect(const struct CaseInfo &ci
 }
 
 /*
- * Feature: Multi_HandOut_Trackball_Reg_003_C
- * Function: Multi_HandOut_Trackball_Reg_003_C
- * SubFunction: NA
- * FunctionPoints: NA
- * EnvConditions: NA
- * CaseDescription: set log print level
- */
-HWTEST_F(multiHandouttrackballRegCTest, Multi_HandOut_Trackball_Reg_003_C, TestSize.Level0)
-{
-    struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"trackball_rightbtn_press.json", "trackball_rightbtn_release.json"};
-    ci.deviceMsg = {"", ""};
-    ci.libinputExpectList = {"eventPointer|273|1", "eventPointer|273|0"};
-    ci.standardExpectList = {"/", "/"};
-    ci.expectL3Event = {"eventPointer|2|1|", "eventPointer|2|0|"};
-    ci.combKeyList = {{{"1101","OnShowMenu"}}, {{""}}};
-    ci.dispatcherList = {"", ""};
-    DoCompareAndExpect(ci, "Multi_HandOut_Trackball_Reg_003_C");
-}
-
-/*
- * Feature: Multi_HandOut_Trackball_Reg_009_C
- * Function: Multi_HandOut_Trackball_Reg_009_C
- * SubFunction: NA
- * FunctionPoints: NA
- * EnvConditions: NA
- * CaseDescription: set log print level
- */
-HWTEST_F(multiHandouttrackballRegCTest, Multi_HandOut_Trackball_Reg_009_C, TestSize.Level0)
-{
-    struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"trackball_rightturn.json"};
-    ci.deviceMsg = {""};
-    ci.libinputExpectList = {"eventPointer|0|30"};
-    ci.standardExpectList = {"/"};
-    ci.expectL3Event = {"eventPointer|0|30|"};
-    ci.combKeyList = {{{"1112","OnNext"}}};
-    ci.dispatcherList = {""};
-    DoCompareAndExpect(ci, "Multi_HandOut_Trackball_Reg_009_C");
-}
-
-/*
  * Feature: Multi_HandOut_Trackball_Reg_015_C
  * Function: Multi_HandOut_Trackball_Reg_015_C
  * SubFunction: NA

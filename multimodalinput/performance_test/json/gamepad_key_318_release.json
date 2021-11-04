@@ -2,7 +2,7 @@
     {
      "deviceName": "gamePad",  
      "events":[
-                {"eventType": "KEY_EVENT_RELESE", "keyValue": 318}
+                {"eventType": "KEY_EVENT_RELEASE", "keyValue": 318}
             ]
     }
 ]

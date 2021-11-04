@@ -170,46 +170,6 @@ HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_001_R, T
 }
 
 /*
- * Feature: Multi_HandOut_Trackball_UnReg_006_R
- * Function: Multi_HandOut_Trackball_UnReg_006_R
- * SubFunction: NA
- * FunctionPoints: NA
- * EnvConditions: NA
- * CaseDescription: set log print level
- */
-HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_006_R, TestSize.Level0)
-{
-    struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"trackball_rightturn.json"};
-    ci.deviceMsg = {""};    
-    ci.libinputExpectList = {"eventPointer|30|0"};
-    ci.standardExpectList = {"/"};
-    ci.expectL3Event = {"eventPointer|30|0|"};
-    ci.dispatcherList = {""};
-    DoCompareAndExpect(ci);
-}
-
-/*
- * Feature: Multi_HandOut_Trackball_UnReg_011_R
- * Function: Multi_HandOut_Trackball_UnReg_011_R
- * SubFunction: NA
- * FunctionPoints: NA
- * EnvConditions: NA
- * CaseDescription: set log print level
- */
-HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_011_R, TestSize.Level0)
-{
-    struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"trackball_leftturn.json"};
-    ci.deviceMsg = {""};    
-    ci.libinputExpectList = {"eventPointer|-30|0"};
-    ci.standardExpectList = {"/"};
-    ci.expectL3Event = {"eventPointer|-30|0|"};
-    ci.dispatcherList = {""};
-    DoCompareAndExpect(ci);
-}
-
-/*
  * Feature: Multi_HandOut_Trackball_UnReg_164_R
  * Function: Multi_HandOut_Trackball_UnReg_164_R
  * SubFunction: NA
@@ -220,11 +180,11 @@ HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_011_R, T
 HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_164_R, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"keyboard_leftCtrl_press.json", "trackball_rightturn.json", "keyboard_leftCtrl_release.json"};
+    ci.eventList = {"keyboard_KEY_CTRL_LEFT_press.json", "trackball_rightturn1.json", "keyboard_KEY_CTRL_LEFT_release.json"};
     ci.deviceMsg = {"", "", ""};    
-    ci.libinputExpectList = {"eventKeyboard|29|1", "eventPointer|45|0", "eventKeyboard|29|0"};
+    ci.libinputExpectList = {"eventKeyboard|29|1", "eventPointer|0|45", "eventKeyboard|29|0"};
     ci.standardExpectList = {"/", "/", "/"};
-    ci.expectL3Event = {"eventKeyboard|2072|1|", "eventPointer|45|0|", "eventKeyboard|2072|0|"};
+    ci.expectL3Event = {"eventKeyboard|2072|1|", "eventPointer|0|45|", "eventKeyboard|2072|0|"};
     ci.dispatcherList = {"", "", ""};
     DoCompareAndExpect(ci);
 }
@@ -240,11 +200,11 @@ HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_164_R, T
 HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_169_R, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"keyboard_leftCtrl_press.json", "trackball_leftturn.json", "keyboard_leftCtrl_release.json"};
+    ci.eventList = {"keyboard_KEY_CTRL_LEFT_press.json", "trackball_leftturn.json", "keyboard_KEY_CTRL_LEFT_release.json"};
     ci.deviceMsg = {"", "", ""};    
-    ci.libinputExpectList = {"eventKeyboard|29|1", "eventPointer|-30|0", "eventKeyboard|29|0"};
+    ci.libinputExpectList = {"eventKeyboard|29|1", "eventPointer|0|-30", "eventKeyboard|29|0"};
     ci.standardExpectList = {"/", "/", "/"};
-    ci.expectL3Event = {"eventKeyboard|2072|1|", "eventPointer|-30|0|", "eventKeyboard|2072|0|"};
+    ci.expectL3Event = {"eventKeyboard|2072|1|", "eventPointer|0|-30|", "eventKeyboard|2072|0|"};
     ci.dispatcherList = {"", "", ""};
     DoCompareAndExpect(ci);
 }
@@ -300,7 +260,7 @@ HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_207_R, T
 HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_258_R, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"", "", "", ""};
+    ci.eventList = {"keyboard_KEY_CTRL_LEFT_press.json", "trackball_rightbtn_press.json", "trackball_rightbtn_release.json", "keyboard_KEY_CTRL_LEFT_release.json"};
     ci.deviceMsg = {"", "", "", ""};    
     ci.libinputExpectList = {"eventKeyboard|29|1", "eventPointer|273|1", "eventPointer|273|0",
                              "eventKeyboard|29|0"};
@@ -322,7 +282,7 @@ HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_258_R, T
 HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_259_R, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"", "", "", ""};
+    ci.eventList = {"keyboard_KEY_SHIFT_LEFT_press.json", "trackball_rightbtn_press.json", "trackball_rightbtn_release.json", "keyboard_KEY_SHIFT_LEFT_release.json"};
     ci.deviceMsg = {"", "", "", ""};    
     ci.libinputExpectList = {"eventKeyboard|42|1", "eventPointer|273|1", "eventPointer|273|0",
                              "eventKeyboard|42|0"};
@@ -330,26 +290,6 @@ HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_259_R, T
     ci.expectL3Event = {"eventKeyboard|2047|1|", "eventPointer|2|1|", "eventPointer|2|0|",
                         "eventKeyboard|2047|0|"};
     ci.dispatcherList = {"", "", "", ""};
-    DoCompareAndExpect(ci);
-}
-
-/*
- * Feature: Multi_HandOut_Trackball_UnReg_Unusual_001_R
- * Function: Multi_HandOut_Trackball_UnReg_Unusual_001_R
- * SubFunction: NA
- * FunctionPoints: NA
- * EnvConditions: NA
- * CaseDescription: set log print level
- */
-HWTEST_F(multiHandouttrackballUnRegRTest, Multi_HandOut_Trackball_UnReg_Unusual_001_R, TestSize.Level0)
-{
-    struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"", ""};
-    ci.deviceMsg = {"", ""};    
-    ci.libinputExpectList = {"eventPointer|15|30", "eventPointer|45|60"};
-    ci.standardExpectList = {"/", "/"};
-    ci.expectL3Event = {"eventPointer|15|30|", "eventPointer|45|60|"};
-    ci.dispatcherList = {"", ""};
     DoCompareAndExpect(ci);
 }
 }

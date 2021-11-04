@@ -46,15 +46,15 @@ class multiHandoutvoiceRegATest : public testing::Test {
 public:
     static void SetUpTestCase(void);
     static void TearDownTestCase(void);
-    
+
     void SetUp() override;
     void TearDown() override;
-    
+
     void DoCompareAndExpect(const struct CaseInfo &ci, std::string caseNum);
 private:
     void ExpectCombKey(const std::vector<std::vector<std::vector<std::string>>> &combKeyList, const size_t i);
 private:
-	  std::string ReplaceExpectXY(std::string str, struct AutoTestCoordinate autoTestCoordinate);	
+      std::string ReplaceExpectXY(std::string str, struct AutoTestCoordinate autoTestCoordinate);
 private:
     static StClientHelper st_client_helper_;
 };
@@ -141,8 +141,8 @@ void multiHandoutvoiceRegATest::ExpectCombKey(const std::vector<std::vector<std:
  */
 std::string multiHandoutvoiceRegATest::ReplaceExpectXY(std::string str,
                                                              struct AutoTestCoordinate autoTestCoordinate) {
-	str = GetSTHelper().ReplaceString(str, std::regex("<X>"), autoTestCoordinate.focusWindowRawX);
-	return GetSTHelper().ReplaceString(str, std::regex("<Y>"), autoTestCoordinate.focusWindowRawY);
+    str = GetSTHelper().ReplaceString(str, std::regex("<X>"), autoTestCoordinate.focusWindowRawX);
+    return GetSTHelper().ReplaceString(str, std::regex("<Y>"), autoTestCoordinate.focusWindowRawY);
 }
 
 /*
@@ -158,29 +158,29 @@ void multiHandoutvoiceRegATest::DoCompareAndExpect(const struct CaseInfo &ci, st
     for (unsigned int i = 0; i < ci.eventList.size(); i++) {
         GetSTHelper().InJectionEvent(ci.eventList[i], ci.deviceMsg[i]);
         if (caseNum.find("_Voice_") == caseNum.npos && caseNum.find("_Phalangeal_") == caseNum.npos) {
-		    struct AutoTestCoordinate autoTestCoordinate = GetDataProcess().GetCoordinate();
+            struct AutoTestCoordinate autoTestCoordinate = GetDataProcess().GetCoordinate();
             std::string ExpectServerResult = "NULL|NULL|NULL |";
             std::string ExpectClientResult = "NULL|NULL|NULL |";
-			if (ci.libinputExpectList[i] != "eventJoyStickAxis") {
+            if (ci.libinputExpectList[i] != "eventJoyStickAxis") {
                 EXPECT_EQ(GetDataProcess().GetLibinputValue(), ReplaceExpectXY(ci.libinputExpectList[i],
-				                                                               autoTestCoordinate));
+                                                                               autoTestCoordinate));
             }
             EXPECT_EQ(GetDataProcess().GetStandardResult(), ci.standardExpectList[i]);
-			//dispatcher FocusWindow
-			GetSTHelper().ReplaceServerValue(std::regex("windowlist"), GetDataProcess().GetWindowsList());
-			struct ClientList clientList = GetDataProcess().GetClientMsg(GetDataProcess().GetFocusId());
-			GetSTHelper().ReplaceServerValue(std::regex("fd"), std::to_string(clientList.fd));
-			GetSTHelper().ReplaceServerValue(std::regex("surfaceId"), std::to_string(clientList.surfaceId));
-			GetSTHelper().ReplaceServerValue(std::regex("abilityId"), std::to_string(clientList.abilityId));
-			GetSTHelper().ReplaceClientValue(std::regex("fd"), std::to_string(clientList.fd));
-			GetSTHelper().ReplaceClientValue(std::regex("surfaceId"), std::to_string(clientList.surfaceId));
-			GetSTHelper().ReplaceClientValue(std::regex("abilityId"), std::to_string(clientList.abilityId));
+            //dispatcher FocusWindow
+            GetSTHelper().ReplaceServerValue(std::regex("windowlist"), GetDataProcess().GetWindowsList());
+            struct ClientList clientList = GetDataProcess().GetClientMsg(GetDataProcess().GetFocusId());
+            GetSTHelper().ReplaceServerValue(std::regex("fd"), std::to_string(clientList.fd));
+            GetSTHelper().ReplaceServerValue(std::regex("surfaceId"), std::to_string(clientList.surfaceId));
+            GetSTHelper().ReplaceServerValue(std::regex("abilityId"), std::to_string(clientList.abilityId));
+            GetSTHelper().ReplaceClientValue(std::regex("fd"), std::to_string(clientList.fd));
+            GetSTHelper().ReplaceClientValue(std::regex("surfaceId"), std::to_string(clientList.surfaceId));
+            GetSTHelper().ReplaceClientValue(std::regex("abilityId"), std::to_string(clientList.abilityId));
             if (ci.libinputExpectList[i] != "NULL|NULL|NULL " && ci.dispatcherList[i] != "|0|0|1" &&
                 ci.dispatcherList[i] != "|1|0|0") {
                 ExpectServerResult = ci.expectL3Event[i] + ci.deviceMsg[i] +
                     GetSTHelper().valueServer;
                 ExpectClientResult = ci.expectL3Event[i] + ci.deviceMsg[i] +
-                    GetSTHelper().valueClient;                         
+                    GetSTHelper().valueClient;
             }
             if ((ci.dispatcherList[i] == "|0|0|1" || ci.dispatcherList[i] == "|1|0|0") &&
                 ci.combKeyList[i][0][0] != "") {
@@ -195,7 +195,7 @@ void multiHandoutvoiceRegATest::DoCompareAndExpect(const struct CaseInfo &ci, st
                      || (ci.dispatcherList[i].find(GetDataProcess().GetDispatcherStr())!=
                      ci.dispatcherList[i].npos), true);
         }
-        ExpectCombKey(ci.combKeyList, i);        
+        ExpectCombKey(ci.combKeyList, i);
         GetDataProcess().ClearAll();
     }
 }
@@ -211,7 +211,7 @@ void multiHandoutvoiceRegATest::DoCompareAndExpect(const struct CaseInfo &ci, st
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_002_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40011"};
+    ci.eventList = {"4001 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -232,7 +232,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_002_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_004_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40021"};
+    ci.eventList = {"4002 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -253,7 +253,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_004_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_006_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40031"};
+    ci.eventList = {"4003 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -274,7 +274,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_006_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_008_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40041"};
+    ci.eventList = {"4004 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -295,7 +295,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_008_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_010_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40051"};
+    ci.eventList = {"4005 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -316,7 +316,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_010_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_012_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40061"};
+    ci.eventList = {"4006 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -337,7 +337,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_012_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_014_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40071"};
+    ci.eventList = {"4007 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -358,7 +358,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_014_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_016_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40081"};
+    ci.eventList = {"4008 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -379,7 +379,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_016_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_018_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40091"};
+    ci.eventList = {"4009 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -400,7 +400,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_018_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_020_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40101"};
+    ci.eventList = {"4010 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -421,7 +421,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_020_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_022_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40111"};
+    ci.eventList = {"4011 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};
@@ -442,7 +442,7 @@ HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_022_A, TestSize.
 HWTEST_F(multiHandoutvoiceRegATest, Multi_HandOut_Voice_Reg_Sys_024_A, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {{{""}}}, {""}};
-    ci.eventList = {"40121"};
+    ci.eventList = {"4012 1"};
     ci.deviceMsg = {"Voice"};
     ci.libinputExpectList = {""};
     ci.standardExpectList = {"/"};

@@ -2,7 +2,7 @@
     {
      "deviceName": "joystick",  
      "events":[
-                {"eventType": "KEY_EVENT_RELESE", "keyValue": 303}
+                {"eventType": "KEY_EVENT_RELEASE", "keyValue": 303}
             ]
     }
 ]

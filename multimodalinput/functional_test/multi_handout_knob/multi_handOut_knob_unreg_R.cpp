@@ -428,9 +428,9 @@ HWTEST_F(multiHandoutknobUnRegRTest, Multi_HandOut_Knob_Unreg_Untouch_066_R, Tes
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
     ci.eventList = {"knob_model3_down_leftturnpress.json", "knob_model3_down_leftturnrelease.json"};
     ci.deviceMsg = {"", ""};    
-    ci.libinputExpectList = {"eventKeyboard|275|1", "eventKeyboard|275|0"};
+    ci.libinputExpectList = {"eventPointer|275|1", "eventPointer|275|0"};
     ci.standardExpectList = {"/", "/"};
-    ci.expectL3Event = {"eventKeyboard|32|1|", "eventKeyboard|32|0|"};
+    ci.expectL3Event = {"eventPointer|32|1|", "eventPointer|32|0|"};
     ci.dispatcherList = {"", ""};
     DoCompareAndExpect(ci);
 }
@@ -448,9 +448,30 @@ HWTEST_F(multiHandoutknobUnRegRTest, Multi_HandOut_Knob_Unreg_Untouch_071_R, Tes
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
     ci.eventList = {"knob_model3_down_rightturnpress.json", "knob_model3_down_rightturnrelease.json"};
     ci.deviceMsg = {"", ""};    
-    ci.libinputExpectList = {"eventKeyboard|276|1", "eventKeyboard|276|0"};
+    ci.libinputExpectList = {"eventPointer|276|1", "eventPointer|276|0"};
     ci.standardExpectList = {"/", "/"};
-    ci.expectL3Event = {"eventKeyboard|64|1|", "eventKeyboard|64|0|"};
+    ci.expectL3Event = {"eventPointer|64|1|", "eventPointer|64|0|"};
+    ci.dispatcherList = {"", ""};
+    DoCompareAndExpect(ci);
+}
+
+
+/*
+ * Feature: Multi_HandOut_Knob_UnReg_Unusual_002_R
+ * Function: Multi_HandOut_Knob_UnReg_Unusual_002_R
+ * SubFunction: NA
+ * FunctionPoints: NA
+ * EnvConditions: NA
+ * CaseDescription: set log print level
+ */
+HWTEST_F(multiHandoutknobUnRegRTest, Multi_HandOut_Knob_UnReg_Unusual_002_R, TestSize.Level0)
+{
+    struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
+    ci.eventList = {"non_knob_press.json", "non_knob_realease.json"};
+    ci.deviceMsg = {"", ""};    
+    ci.libinputExpectList = {"NULL|NULL|NULL ", "NULL|NULL|NULL "};
+    ci.standardExpectList = {"/", "/"};
+    ci.expectL3Event = {"NULL|NULL|NULL|", "NULL|NULL|NULL|"};
     ci.dispatcherList = {"", ""};
     DoCompareAndExpect(ci);
 }
@@ -638,26 +659,6 @@ HWTEST_F(multiHandoutknobUnRegRTest, Multi_HandOut_Knob_UnReg_Unusual_001_R, Tes
                          "|0|1|0,|1|0|0", "|0|1|0,|1|0|0", "|0|1|0,|1|0|0", "|0|1|0,|1|0|0",
                          "|0|1|0,|1|0|0", "|0|1|0,|1|0|0", "|0|1|0,|1|0|0", "|0|1|0,|1|0|0",
                          "|0|1|0,|1|0|0", "|0|1|0,|1|0|0"};
-    DoCompareAndExpect(ci);
-}
-
-/*
- * Feature: Multi_HandOut_Knob_UnReg_Unusual_002_R
- * Function: Multi_HandOut_Knob_UnReg_Unusual_002_R
- * SubFunction: NA
- * FunctionPoints: NA
- * EnvConditions: NA
- * CaseDescription: set log print level
- */
-HWTEST_F(multiHandoutknobUnRegRTest, Multi_HandOut_Knob_UnReg_Unusual_002_R, TestSize.Level0)
-{
-    struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"non_knob_press.json", "non_knob_realease.json"};
-    ci.deviceMsg = {"", ""};    
-    ci.libinputExpectList = {"NULL|NULL|NULL ", "NULL|NULL|NULL "};
-    ci.standardExpectList = {"/", "/"};
-    ci.expectL3Event = {"NULL|NULL|NULL|", "NULL|NULL|NULL|"};
-    ci.dispatcherList = {"", ""};
     DoCompareAndExpect(ci);
 }
 }

@@ -1,7 +1,7 @@
 [{
      "deviceName": "remoteControl",
      "events":[
-                {"eventType": "KEY_EVENT_RELESE", "keyValue": 134}
+                {"eventType": "KEY_EVENT_RELEASE", "keyValue": 134}
             ]
     }
 ]

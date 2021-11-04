@@ -56,6 +56,8 @@ bool STMsgHandler::Init()
             this, std::placeholders::_1, std::placeholders::_2)},
         {MmiMessageId::ST_MESSAGE_CLTTWTYPARFINTOUCHAPIPKT, std::bind(&STMsgHandler::OnTestApiTouchTwyParFinClientPkt,
             this, std::placeholders::_1, std::placeholders::_2)},
+        {MmiMessageId::ST_MESSAGE_CLTSTYLUSAPIPKT, std::bind(&STMsgHandler::OnTestApiStylusClientPkt,
+            this, std::placeholders::_1, std::placeholders::_2)},
         {MmiMessageId::ST_MESSAGE_CLISTPKT, std::bind(&STMsgHandler::OnTestClientListPkt, this, std::placeholders::_1,
             std::placeholders::_2)},
         {MmiMessageId::ST_MESSAGE_KEYTYPEPKT, std::bind(&STMsgHandler::OnTestKeyTypePkt, this,
@@ -220,6 +222,15 @@ int32_t STMsgHandler::OnTestApiTouchTwyParFinClientPkt(const UDSClient& client, 
     pkt >> apiClientPkt;
 
     GetDataProcess().ApiTouchTwyParFinClientPktDataProcess(apiClientPkt);
+    return RET_OK;
+}
+
+int32_t STMsgHandler::OnTestApiStylusClientPkt(const UDSClient& client, NetPacket& pkt)
+{
+    StylusToApi apiClientPkt;
+    pkt >> apiClientPkt;
+
+    GetDataProcess().ApiTouchStylusClientPktDataProcess(apiClientPkt);
     return RET_OK;
 }
 

@@ -382,9 +382,9 @@ HWTEST_F(multiHandoutmouseUnRegRTest, Multi_HandOut_Mouse_Unreg_Untouch_032_R, T
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
     ci.eventList = {"keyboard_Ctrl_press.json", "mouse_wheel_up.json", "keyboard_Ctrl_release.json"};
     ci.deviceMsg = {"", "", ""};    
-    ci.libinputExpectList = {"eventKeyboard|29|1", "eventPointer|0|-45", "eventKeyboard|29|0"};
+    ci.libinputExpectList = {"eventKeyboard|29|1", "eventPointer|0|-30", "eventKeyboard|29|0"};
     ci.standardExpectList = {"/", "/", "/"};
-    ci.expectL3Event = {"eventKeyboard|2072|1|", "eventPointer|0|-45|", "eventKeyboard|2072|0|"};
+    ci.expectL3Event = {"eventKeyboard|2072|1|", "eventPointer|0|-30|", "eventKeyboard|2072|0|"};
     ci.dispatcherList = {"", "", ""};
     DoCompareAndExpect(ci);
 }
@@ -720,9 +720,9 @@ HWTEST_F(multiHandoutmouseUnRegRTest, Multi_HandOut_Mouse_UnReg_Unusual_001_R, T
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
     ci.eventList = {"non_mouse_press.json", "non_mouse_release.json"};
     ci.deviceMsg = {"", ""};    
-    ci.libinputExpectList = {"NULL|NULL|NULL", "NULL|NULL|NULL"};
+    ci.libinputExpectList = {"NULL|NULL|NULL ", "NULL|NULL|NULL "};
     ci.standardExpectList = {"/", "/"};
-    ci.expectL3Event = {"NULL|NULL|NULL|", "NULL|NULL|NULL|"};
+    ci.expectL3Event = {"NULL|NULL|NULL |", "NULL|NULL|NULL |"};
     ci.dispatcherList = {"", ""};
     DoCompareAndExpect(ci);
 }

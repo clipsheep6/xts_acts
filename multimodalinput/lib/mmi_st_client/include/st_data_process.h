@@ -169,6 +169,7 @@ public:
     void ApiTouchCoordinateClientPktDataProcess(const TouchCoordinateToApi& clientPkt);
     void ApiTouchTwyParClientPktDataProcess(const TwentyParamTouchToApi& clientPkt);
     void ApiTouchTwyParFinClientPktDataProcess(const TwyParTouchFinToApi& clientPkt);
+    void ApiTouchStylusClientPktDataProcess(const StylusToApi& clientPkt);
     OnKeyDataToApi GetOnKeyData();
     RegisterDataToApi GetRegisterData();
     DeviceDataToApi GetDeviceData();
@@ -179,6 +180,7 @@ public:
     TouchCoordinateToApi GetTouchCoordinateData();
     TwentyParamTouchToApi GetTouchTwyParData();
     TwyParTouchFinToApi GetTouchTwyParFinData();
+    StylusToApi GetStylusData();
 
 private:
 	std::map < int, struct ClientList > clientMap_;
@@ -208,6 +210,7 @@ private:
     struct TouchCoordinateToApi touchCoordinateData_ {};
     struct TwentyParamTouchToApi touchTwyParData_ {};
     struct TwyParTouchFinToApi touchTwyParFinData_ {};
+    struct StylusToApi stylusData_ {};
 };
 } // namespace MMI
 } // namespace OHOS

@@ -2,7 +2,7 @@
     {
      "deviceName": "knob model3", 
      "events":[
-                {"eventType": "MOUSE_EVENT_HWHEEL", "direction": "right", "distance": 15}
+                {"eventType": "MOUSE_EVENT_HWHEEL", "direction": "right", "distance": 1}
             ]
     }
 ]

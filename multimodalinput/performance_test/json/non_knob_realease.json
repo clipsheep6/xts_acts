@@ -1,8 +1,8 @@
  [   
     {
-     "deviceName": "",  
+     "deviceName": "knob model1", 
      "events":[
-                {"eventType": "KEY_EVENT_RELESE", "keyValue": 999}
+                {"eventType": "KEY_EVENT_RELEASE", "keyValue": 999 }
             ]
     }
 ]

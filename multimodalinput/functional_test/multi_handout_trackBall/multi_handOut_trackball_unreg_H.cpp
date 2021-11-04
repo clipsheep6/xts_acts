@@ -390,26 +390,6 @@ HWTEST_F(multiHandouttrackballUnRegHTest, Multi_HandOut_Trackball_UnReg_191_H, T
 }
 
 /*
- * Feature: Multi_HandOut_Trackball_UnReg_208_H
- * Function: Multi_HandOut_Trackball_UnReg_208_H
- * SubFunction: NA
- * FunctionPoints: NA
- * EnvConditions: NA
- * CaseDescription: set log print level
- */
-HWTEST_F(multiHandouttrackballUnRegHTest, Multi_HandOut_Trackball_UnReg_208_H, TestSize.Level0)
-{
-    struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"", ""};
-    ci.deviceMsg = {"", ""};    
-    ci.libinputExpectList = {"eventPointer|273|1", "eventPointer|273|0"};
-    ci.standardExpectList = {"/", "/"};
-    ci.expectL3Event = {"eventPointer|2|1|", "eventPointer|2|0|"};
-    ci.dispatcherList = {"", ""};
-    DoCompareAndExpect(ci);
-}
-
-/*
  * Feature: Multi_HandOut_Trackball_UnReg_218_H
  * Function: Multi_HandOut_Trackball_UnReg_218_H
  * SubFunction: NA
@@ -442,11 +422,11 @@ HWTEST_F(multiHandouttrackballUnRegHTest, Multi_HandOut_Trackball_UnReg_218_H, T
 HWTEST_F(multiHandouttrackballUnRegHTest, Multi_HandOut_Trackball_UnReg_228_H, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"", "", "", "",
-                    "", "", "", "",
-                    "", "", "", "",
-                    "", "", "", "",
-                    "", "", "", ""};
+    ci.eventList = {"trackball_rightbtn_press.json", "trackball_rightbtn_release.json", "trackball_rightbtn_press.json", "trackball_rightbtn_release.json",
+                    "trackball_rightbtn_press.json", "trackball_rightbtn_release.json", "trackball_rightbtn_press.json", "trackball_rightbtn_release.json",
+                    "trackball_rightbtn_press.json", "trackball_rightbtn_release.json", "trackball_rightbtn_press.json", "trackball_rightbtn_release.json",
+                    "trackball_rightbtn_press.json", "trackball_rightbtn_release.json", "trackball_rightbtn_press.json", "trackball_rightbtn_release.json",
+                    "trackball_rightbtn_press.json", "trackball_rightbtn_release.json", "trackball_rightbtn_press.json", "trackball_rightbtn_release.json"};
     ci.deviceMsg = {"", "", "", "",
                              "", "", "", "",
                              "", "", "", "",
@@ -490,7 +470,7 @@ HWTEST_F(multiHandouttrackballUnRegHTest, Multi_HandOut_Trackball_UnReg_228_H, T
 HWTEST_F(multiHandouttrackballUnRegHTest, Multi_HandOut_Trackball_UnReg_238_H, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"", ""};
+    ci.eventList = {"trackball_rightbtn_longpress.json", "trackball_rightbtn_release.json"};
     ci.deviceMsg = {"", ""};    
     ci.libinputExpectList = {"eventPointer|273|1", "eventPointer|273|0"};
     ci.standardExpectList = {"/", "/"};
@@ -510,7 +490,7 @@ HWTEST_F(multiHandouttrackballUnRegHTest, Multi_HandOut_Trackball_UnReg_238_H, T
 HWTEST_F(multiHandouttrackballUnRegHTest, Multi_HandOut_Trackball_UnReg_248_H, TestSize.Level0)
 {
     struct CaseInfo ci = {{""}, {""}, {""}, {""}, {""}, {""}};
-    ci.eventList = {"", "", "", ""};
+    ci.eventList = {"trackball_rightbtn_press.json", "", "", "trackball_rightbtn_release.json"};
     ci.deviceMsg = {"", "", "", ""};    
     ci.libinputExpectList = {"eventPointer|273|1", "eventPointer|-35|40", "eventPointer|-15|60",
                              "eventPointer|273|0"};
