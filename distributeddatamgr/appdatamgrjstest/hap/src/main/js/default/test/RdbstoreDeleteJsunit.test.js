@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-import ohos_data_rdb from '@ohos.data.rdb';
-import ability_featureAbility from '@ohos.ability.featureAbility';
+import dataRdb from '@ohos.data.rdb';
+import featureAbility from '@ohos.ability.featureAbility';
 
 const TAG = "[RDB_JSKITS_TEST]"
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
@@ -32,8 +32,8 @@ describe('rdbStoreDeleteTest', function () {
 
     beforeEach(async function () {
         console.info(TAG + 'beforeEach')
-        context = await ability_featureAbility.getContext();
-        rdbStore = await ohos_data_rdb.getRdbStore(context, STORE_CONFIG, 1);
+        context = await featureAbility.getContext();
+        rdbStore = await dataRdb.getRdbStore(STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_TEST, null);
     })
 
@@ -41,7 +41,7 @@ describe('rdbStoreDeleteTest', function () {
         console.info(TAG + 'afterEach')
         await rdbStore.executeSql("DELETE FROM test");
         rdbStore = null
-        await ohos_data_rdb.deleteRdbStore(context, "Delete.db");
+        await dataRdb.deleteRdbStore("Delete.db");
     })
 
     afterAll(async function () {
@@ -86,7 +86,7 @@ describe('rdbStoreDeleteTest', function () {
         }
         //删除
         {
-            let predicates = await new ohos_data_rdb.RdbPredicates("test")
+            let predicates = await new dataRdb.RdbPredicates("test")
             let deletePromise = rdbStore.delete(predicates)
             deletePromise.then(async (ret) => {
                 expect(3).assertEqual(ret)
@@ -137,7 +137,7 @@ describe('rdbStoreDeleteTest', function () {
         }
         //删除
         {
-            let predicates = await new ohos_data_rdb.RdbPredicates("test")
+            let predicates = await new dataRdb.RdbPredicates("test")
             predicates.equalTo("name", "zhangsan")
             let deletePromise = rdbStore.delete(predicates)
             deletePromise.then(async (ret) => {
@@ -180,14 +180,14 @@ describe('rdbStoreDeleteTest', function () {
         }
         //删除前查询
         {
-            let predicates = await new ohos_data_rdb.RdbPredicates("test")
+            let predicates = await new dataRdb.RdbPredicates("test")
             predicates.equalTo("age", 28)
             let resultSet = await rdbStore.query(predicates)
             expect(1).assertEqual(resultSet.rowCount)
         }
         //删除
         {
-            let predicates = await new ohos_data_rdb.RdbPredicates("test")
+            let predicates = await new dataRdb.RdbPredicates("test")
             predicates.equalTo("age", 28)
             let deletePromise = rdbStore.delete(predicates)
             deletePromise.then(async (ret) => {
@@ -200,7 +200,7 @@ describe('rdbStoreDeleteTest', function () {
         }
         //删除后查询
         {
-            let predicates = await new ohos_data_rdb.RdbPredicates("test")
+            let predicates = await new dataRdb.RdbPredicates("test")
             predicates.equalTo("age", 28)
             let resultSet = await rdbStore.query(predicates)
             expect(0).assertEqual(resultSet.rowCount)
@@ -246,7 +246,7 @@ describe('rdbStoreDeleteTest', function () {
         }
         //删除
         {
-            let predicates = await new ohos_data_rdb.RdbPredicates("test")
+            let predicates = await new dataRdb.RdbPredicates("test")
             predicates.equalTo("aaa id", 1)
             let deletePromise = rdbStore.delete(predicates)
             deletePromise.then(async (ret) => {
@@ -297,7 +297,7 @@ describe('rdbStoreDeleteTest', function () {
         }
         //删除
         {
-            let predicates = await new ohos_data_rdb.RdbPredicates("test")
+            let predicates = await new dataRdb.RdbPredicates("test")
             predicates.equalTo("name", "lisi")
             let deletePromise = rdbStore.delete(predicates)
             deletePromise.then(async (ret) => {
@@ -349,7 +349,7 @@ describe('rdbStoreDeleteTest', function () {
         }
         //删除
         {
-            let predicates = await new ohos_data_rdb.RdbPredicates("")
+            let predicates = await new dataRdb.RdbPredicates("")
             let deletePromise = rdbStore.delete(predicates)
             deletePromise.then(async (ret) => {
                 console.log(TAG + "delete done: " + ret)
