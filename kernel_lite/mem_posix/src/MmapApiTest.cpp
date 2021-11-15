@@ -939,6 +939,50 @@ HWTEST_F(MmapApiTest, testMmapENOMEM, Function | MediumTest | Level3)
     }
 }
 
+/**
+ * @tc.number SUB_KERNEL_MEM_MMAP_3000
+ * @tc.name   mmap function file share map with close before munmap test
+ * @tc.desc   [C-L*-311] MUST NOT alter NDK API behavior.
+ */
+HWTEST_F(MmapApiTest, testMmapShareAfterCloseFile, Function | MediumTest | Level3)
+{
+    const size_t len = PAGE_SIZE;
+    char testChar = 'A';
+    int prot = PROT_READ | PROT_WRITE;
+    int flags = MAP_SHARED;
+    char buf[PAGE_SIZE] = {0};
+    char file[] = MMAP_TESTFILE;
+
+    int fd = open(file, O_CREAT | O_RDWR, S_IRWXU | S_IRWXG | S_IRWXO);
+    ASSERT_TRUE(fd != -1) << "ERROR: open() == -1";
+
+    int wByte = write(fd, buf, len);
+    EXPECT_TRUE(wByte > 0) << "ERROR: write() <= 0";
+
+    char *mem = (char *)mmap(nullptr, len, prot, flags, fd, 0);
+    ASSERT_TRUE(mem != MAP_FAILED) << "mem == MAP_FAILED";
+
+    pid_t pid = fork();
+    EXPECT_TRUE(pid >= 0) << "Fork Error";
+
+    if (pid == 0) {
+        mem[0] = testChar;
+        mem[1] = testChar + 3;
+        exit(0);
+    } else {
+        WaitProcExitedOK(pid);
+
+        EXPECT_TRUE(close(fd) != -1) << "ERROR: close() == -1";
+        LOG("mem[0] = %c (0x%02x)", mem[0], mem[0]);
+        LOG("mem[1] = %c (0x%02x)", mem[1], mem[1]);
+
+        EXPECT_TRUE(mem[0] == testChar) << "mem[0] = " << mem[0];
+        EXPECT_TRUE(mem[1] == (testChar + 3)) << "mem[1] = " << mem[1];
+        EXPECT_TRUE(munmap(mem, len) == 0) << "ERROR: munmap() != 0";
+        Msleep(50);
+        EXPECT_TRUE(remove(file) == 0) << "ERROR: remove() != 0";
+    }
+}
 
 /**
  * @tc.number SUB_KERNEL_MEM_MUNMAP_0100
