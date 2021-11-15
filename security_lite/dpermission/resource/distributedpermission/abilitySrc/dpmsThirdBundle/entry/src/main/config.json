@@ -1,0 +1,103 @@
+{
+  "app": {
+    "bundleName": "com.third.hiworld.dpmsExample",
+    "vendor": "system",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.third.hiworld.dpmsExample",
+    "name": ".MyApplication",
+    "mainAbility": "com.third.hiworld.dpmsExample.MainAbility",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "name": "com.third.hiworld.dpmsExample.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "default",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
+      }
+    ],
+    "defPermissions":[
+      {
+        "grantMode":"system_grant",
+        "name":"com.myability.permission.MYPERMISSION1"
+      },
+      {
+        "grantMode":"user_grant",
+        "name":"com.myability.permission.MYPERMISSION2"
+      }
+    ],
+    "reqPermissions":[
+      {
+        "reason":"permreason_camera",
+        "usedScene":{
+          "ability":[
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when":"always"
+        },
+        "name":"ohos.permission.CAMERA"
+      },
+      {
+        "reason":"permreason_microphhone",
+        "usedScene":{
+          "ability":[
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when":"always"
+        },
+        "name":"ohos.permission.MICROPHONE"
+      },
+      {
+        "name":"ohos.permission.GET_WIFI_INFO"
+      },
+      {
+        "name":"ohos.permission.GET_NETWORK_INFO"
+      },
+      {
+        "name":"com.myability.permission.MYPERMISSION1"
+      },
+      {
+        "name":"com.myability.permission.MYPERMISSION2"
+      }
+    ]
+  }
+}
