@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import file from '@system.file'
+import app from '@system.app'
 import {Core, ExpectExtend} from 'deccjsunit/index'
 
 const injectRef = Object.getPrototypeOf(global) || global
@@ -34,14 +34,12 @@ export default {
         })
         core.addService('expect', expectExtend)
         core.init()
-
         const configService = core.getDefaultService('config')
         configService.setConfig(this)
 
-        require('../../../test/List.test')
+        require('../../test/List.test')
         core.execute()
     },
     onReady() {
-        console.info('onReady');
     },
 }
