@@ -1,0 +1,21 @@
+{
+    "kits": [
+        {
+            "push": [
+                "CallManagerReliabilityTest->/data/telephonycpptest/CallManagerReliabilityTest"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/telephonycpptest/*"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "CallManagerReliabilityTest",
+        "runtime-hint": "10s",
+        "native-test-device-path": "/data/telephonycpptest"
+    },
+    "description": "Configuration call manager Reliability Tests"
+}
