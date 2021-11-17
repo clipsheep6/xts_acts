@@ -22,7 +22,6 @@ const STRESSLEVEL = 20;
 const BUNDLE_NAME = 'com.example.actsbmskittest';
 const PERMISSION_NAME = 'com.permission.PERMISSION_A';
 const START_ABILITY_TIMEOUT = 3000;
-const EVENTTIMEOUT = 5000;
 var subscriberInfo_0100 = {
     events: ['ACTS_Third1_Publish_CommonEvent'],
 };
@@ -64,6 +63,7 @@ describe('ActsBmsKitTest', function () {
             }
         )
     })
+
     /*
     * @tc.number: ActsBmsKit_getAllShortcutInfo_0100
     * @tc.name: Pressure test interface getAllShortcutInfo by promise
@@ -167,9 +167,6 @@ describe('ActsBmsKitTest', function () {
             }
         }
         done();
-        setTimeout(function () {
-            console.debug('===========ActsBmsKit_getModuleUsageRecordTest_0100===========end');
-        }, EVENTTIMEOUT)
     })
 
     /*
@@ -208,20 +205,35 @@ describe('ActsBmsKitTest', function () {
             expect(data[i].bundleName.length).assertLarger(0);
             console.debug('=============appLabelId==============' + JSON.stringify(data[i].appLabelId));
             expect(data[i].appLabelId >= 0).assertTrue();
+<<<<<<< HEAD
             console.debug('=============name==============' + JSON.stringify(data[i].name));
             expect(data[i].name.length).assertLarger(0);
             console.debug('=============labelId==============' + JSON.stringify(data[i].labelId));
             expect(data[i].labelId >= 0).assertTrue();
+=======
+            expect(data[i].labelId >= 0).assertTrue();
+            expect(data[i].abilityLabelId >= 0).assertTrue();
+            expect(data[i].abilityDescriptionId >= 0).assertTrue();
+            expect(data[i].abilityIconId >= 0).assertTrue();
+            console.debug('=============name==============' + JSON.stringify(data[i].name));
+            expect(data[i].name.length).assertLarger(0);
+            console.debug('=============labelId==============' + JSON.stringify(data[i].labelId));
+>>>>>>> upstream/master
             console.debug('=============descriptionId==============' + JSON.stringify(data[i].descriptionId));
             expect(data[i].descriptionId).assertEqual(0);
             console.debug('=============abilityName==============' + JSON.stringify(data[i].abilityName));
             expect(data[i].abilityName.length).assertLarger(0);
             console.debug('=============abilityLabelId==============' + JSON.stringify(data[i].abilityLabelId));
+<<<<<<< HEAD
             expect(data[i].abilityLabelId >= 0).assertTrue();
             console.debug('===========abilityDescriptionId===========' + JSON.stringify(data[i].abilityDescriptionId));
             expect(data[i].abilityDescriptionId >= 0).assertTrue();
             console.debug('=============abilityIconId==============' + JSON.stringify(data[i].abilityIconId));
             expect(data[i].abilityIconId >= 0).assertTrue();
+=======
+            console.debug('===========abilityDescriptionId===========' + JSON.stringify(data[i].abilityDescriptionId));
+            console.debug('=============abilityIconId==============' + JSON.stringify(data[i].abilityIconId));
+>>>>>>> upstream/master
             console.debug('=============launchedCount==============' + JSON.stringify(data[i].launchedCount));
             expect(data[i].launchedCount).assertLarger(0);
             console.debug('=============lastLaunchTime==============' + JSON.stringify(data[i].lastLaunchTime));

@@ -25,7 +25,11 @@
         {
             "type": "PushKit",
             "push": [
+<<<<<<< HEAD
                   "amsStDataAbility.hap->/data/test/amsStDataAbility.hap"
+=======
+                  "/resource/appexecfwk/amsStDataAbility.hap->/data/test/amsStDataAbility.hap"
+>>>>>>> upstream/master
             ]
             
         },
