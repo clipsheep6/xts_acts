@@ -99,7 +99,7 @@ bool KvStoreTest::TouchKVFiles (int num, const char* key, const char* value) con
     return true;
 }
 
-/* Create files in batches. */
+/* Read files in batches. */
 bool KvStoreTest::ReadKVFiles (int num, const char* key, const char* value) const
 {
     int size = 0;
