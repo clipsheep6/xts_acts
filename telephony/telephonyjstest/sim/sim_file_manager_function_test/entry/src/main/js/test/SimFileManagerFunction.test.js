@@ -1,20 +1,17 @@
-/*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+/** Copyright (C) 2021 Huawei Device Co., Ltd.
+   Licensed under the Apache License, Version 2.0 (the "License")
+   you may not  use this file except in compliance with the License.
+   You may obtain a copy of the License at
 
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License. */
 import sim from '@ohos.telephony.sim';
-import {simSlotId, OPERATOR_NUM_LENGTH, operatorCode, ICC_LENGTH, IMSI_LENGTH} from '../default/utils/Constant.test.js';
+import {SIM_SLOT_ID, OPERATOR_NUM_LENGTH, OPERATOR_CODE, ICC_LENGTH, IMSI_LENGTH} from './lib/Const.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
 describe('SimFileManagerFunction', function () {
@@ -25,7 +22,7 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getIMSI_Async_0100', 0, async function (done) {
-    sim.getIMSI(simSlotId.SLOT_ID_0, (err, data) => {
+    sim.getIMSI(SIM_SLOT_ID.slotId0, (err, data) => {
       if (err) {
         console.log(`Telephony_Sim_getIMSI_Async_0100 fail, err: ${err.message}`);
         expect().assertFail();
@@ -46,9 +43,10 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getIMSI_Async_0200', 0, async function (done) {
-    sim.getIMSI(simSlotId.SLOT_ID_4, (err, data) => {
+    sim.getIMSI(SIM_SLOT_ID.slotId4, (err, data) => {
       if (err) {
         // Enter the exception ID to enter err.
+        console.log(`Telephony_Sim_getIMSI_Async_0200, err: ${err.message}`);
         console.log('Telephony_Sim_getIMSI_Async_0200 finish');
         done();
         return;
@@ -66,7 +64,7 @@ describe('SimFileManagerFunction', function () {
     */
   it('Telephony_Sim_getIMSI_Promise_0100', 0, async function (done) {
     try {
-      var data = await sim.getIMSI(simSlotId.SLOT_ID_0);
+      let data = await sim.getIMSI(SIM_SLOT_ID.slotId0);
       console.log(`Telephony_Sim_getIMSI_Promise_0100 data = ${data}`);
       expect(data !== '' || data !== undefined).assertTrue();
       expect(data.length === IMSI_LENGTH).assertTrue();
@@ -86,8 +84,10 @@ describe('SimFileManagerFunction', function () {
     */
   it('Telephony_Sim_getIMSI_Promise_0200', 0, async function (done) {
     try {
-      var data = await sim.getIMSI(simSlotId.SLOT_ID_4);
+      let data = await sim.getIMSI(SIM_SLOT_ID.slotId4);
     } catch (err) {
+      // Enter the exception ID to enter err.
+      console.log(`Telephony_Sim_getIMSI_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getIMSI_Promise_0200 finish');
       done();
       return;
@@ -103,7 +103,7 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimIccId_Async_0100', 0, async function (done) {
-    sim.getSimIccId(simSlotId.SLOT_ID_0, (err, data) => {
+    sim.getSimIccId(SIM_SLOT_ID.slotId0, (err, data) => {
       if (err) {
         console.log(`Telephony_Sim_getSimIccId_Async_0100 fail, err: ${err.message}`);
         expect().assertFail();
@@ -124,9 +124,10 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimIccId_Async_0200', 0, async function (done) {
-    sim.getSimIccId(simSlotId.SLOT_ID_4, (err, data) => {
+    sim.getSimIccId(SIM_SLOT_ID.slotId4, (err, data) => {
       if (err) {
         // Enter the exception ID to enter err.
+        console.log(`Telephony_Sim_getSimIccId_Async_0200, err: ${err.message}`);
         console.log('Telephony_Sim_getSimIccId_Async_0200 finish');
         done();
         return;
@@ -144,7 +145,7 @@ describe('SimFileManagerFunction', function () {
     */
   it('Telephony_Sim_getSimIccId_Promise_0100', 0, async function (done) {
     try {
-      var data = await sim.getSimIccId(simSlotId.SLOT_ID_0);
+      let data = await sim.getSimIccId(SIM_SLOT_ID.slotId0);
       console.log(`Telephony_Sim_getSimIccId_Promise_0100 data${data}`);
       expect(data !== '' || data !== undefined).assertTrue();
       expect(data.length === ICC_LENGTH).assertTrue();
@@ -164,8 +165,9 @@ describe('SimFileManagerFunction', function () {
     */
   it('Telephony_Sim_getSimIccId_Promise_0200', 0, async function (done) {
     try {
-      var data = await sim.getSimIccId(simSlotId.SLOT_ID_4);
+      let data = await sim.getSimIccId(SIM_SLOT_ID.slotId4);
     } catch (err) {
+      console.log(`Telephony_Sim_getSimIccId_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getSimIccId_Promise_0200 finish');
       done();
       return;
@@ -182,8 +184,8 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getISOCountryCodeForSim_Async_0100', 0, async function (done) {
-    var countryCode = 'cn';
-    sim.getISOCountryCodeForSim(simSlotId.SLOT_ID_0, (err, data) => {
+    let countryCode = 'cn';
+    sim.getISOCountryCodeForSim(SIM_SLOT_ID.slotId0, (err, data) => {
       if (err) {
         console.log(`Telephony_Sim_getISOCountryCodeForSim_Async_0100 fail, err: ${err.message}`);
         expect().assertFail();
@@ -205,9 +207,10 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getISOCountryCodeForSim_Async_0200', 0, async function (done) {
-    sim.getISOCountryCodeForSim(simSlotId.SLOT_ID_4, (err, data) => {
+    sim.getISOCountryCodeForSim(SIM_SLOT_ID.slotId4, (err, data) => {
       if (err) {
         // Expect slot id 4 return err here.
+        console.log(`Telephony_Sim_getISOCountryCodeForSim_Async_0200, err: ${err.message}`);
         console.log('Telephony_Sim_getISOCountryCodeForSim_Async_0200 finish');
         done();
         return;
@@ -225,9 +228,9 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getISOCountryCodeForSim_Promise_0100', 0, async function (done) {
-    var countryCode = 'cn';
+    let countryCode = 'cn';
     try {
-      var data = await sim.getISOCountryCodeForSim(simSlotId.SLOT_ID_0);
+      let data = await sim.getISOCountryCodeForSim(SIM_SLOT_ID.slotId0);
       console.log(`Telephony_Sim_getISOCountryCodeForSim_Promise_0100, data = ${data}`);
       // The country code for mainland China is cn.
       expect(data === countryCode).assertTrue();
@@ -249,9 +252,10 @@ describe('SimFileManagerFunction', function () {
     */
   it('Telephony_Sim_getISOCountryCodeForSim_Promise_0200', 0, async function (done) {
     try {
-      var data = await sim.getISOCountryCodeForSim(simSlotId.SLOT_ID_4);
+      var data = await sim.getISOCountryCodeForSim(SIM_SLOT_ID.slotId4);
     } catch (err) {
       // Expect slotid 4 return err here.
+      console.log(`Telephony_Sim_getISOCountryCodeForSim_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getISOCountryCodeForSim_Promise_0200 finish');
       done();
       return;
@@ -268,8 +272,8 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimOperatorNumeric_Async_0100', 0, async function (done) {
-    var operatorNumTopThree = '460';
-    sim.getSimOperatorNumeric(simSlotId.SLOT_ID_0, (err, data) => {
+    let operatorNumTopThree = '460';
+    sim.getSimOperatorNumeric(SIM_SLOT_ID.slotId0, (err, data) => {
       if (err) {
         console.log(`Telephony_Sim_getSimOperatorNumeric_Async_0100 fail, err: ${err.message}`);
         expect().assertFail();
@@ -294,9 +298,10 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimOperatorNumeric_Async_0200', 0, async function (done) {
-    sim.getSimOperatorNumeric(simSlotId.SLOT_ID_4, (err, data) => {
+    sim.getSimOperatorNumeric(SIM_SLOT_ID.slotId4, (err, data) => {
       if (err) {
         // Expect slotid 4 return err here.
+        console.log(`Telephony_Sim_getSimOperatorNumeric_Async_0200, err: ${err.message}`);
         console.log('Telephony_Sim_getSimOperatorNumeric_Async_0200 finish');
         done();
         return;
@@ -314,9 +319,9 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimOperatorNumeric_Promise_0100', 0, async function (done) {
-    var operatorNumTopThree = '460';
+    let operatorNumTopThree = '460';
     try {
-      var data = await sim.getSimOperatorNumeric(simSlotId.SLOT_ID_0);
+      let data = await sim.getSimOperatorNumeric(SIM_SLOT_ID.slotId0);
       console.log(`Telephony_Sim_getSimOperatorNumeric_Promise_0100, data = ${data}`);
       expect(data !== '' && data !== undefined).assertTrue();
       // The length of operator numeric in mainland China is 5.
@@ -341,9 +346,10 @@ describe('SimFileManagerFunction', function () {
     */
   it('Telephony_Sim_getSimOperatorNumeric_Promise_0200', 0, async function (done) {
     try {
-      var data = await sim.getSimOperatorNumeric(simSlotId.SLOT_ID_4);
+      var data = await sim.getSimOperatorNumeric(SIM_SLOT_ID.slotId4);
     } catch (err) {
       // Expect slotid 4 return err here.
+      console.log(`Telephony_Sim_getSimOperatorNumeric_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getSimOperatorNumeric_Promise_0200 finish');
       done();
       return;
@@ -359,10 +365,10 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimSpn_Async_0100', 0, async function (done) {
-    var mobileSpn = '00434D4343FFFFFFFFFFFFFFFFFFFFFFFF';
-    var unicomSpn = '00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF';
-    var telecomSpn = '01804E2D56FD75354FE1FFFFFFFFFFFFFF';
-    sim.getSimSpn(simSlotId.SLOT_ID_0, (err, data) => {
+    let mobileSpn = '00434D4343FFFFFFFFFFFFFFFFFFFFFFFF';
+    let unicomSpn = '00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF';
+    let telecomSpn = '01804E2D56FD75354FE1FFFFFFFFFFFFFF';
+    sim.getSimSpn(SIM_SLOT_ID.slotId0, (err, data) => {
       if (err) {
         console.log(`Telephony_Sim_getSimSpn_Async_0100 fail, err: ${err.message}`);
         expect().assertFail();
@@ -371,7 +377,7 @@ describe('SimFileManagerFunction', function () {
       }
       console.log(`Telephony_Sim_getSimSpn_Async_0100 , data = ${data}`);
       expect(data !== '' && data !== undefined).assertTrue();
-      sim.getSimOperatorNumeric(simSlotId.SLOT_ID_0, (err, value) => {
+      sim.getSimOperatorNumeric(SIM_SLOT_ID.slotId0, (err, value) => {
         if (err) {
           console.log(`Telephony_Sim_getSimSpn_Async_0100 getSimOperatorNumeric fail, err: ${err.message}`);
           expect().assertFail();
@@ -379,14 +385,14 @@ describe('SimFileManagerFunction', function () {
           return;
         }
         console.log(`Telephony_Sim_getSimSpn_Async_0100 getSimOperatorNumeric , value : ${value}`);
-        if ((value === operatorCode.MOBILE_CODE_1) || (value === operatorCode.MOBILE_CODE_2) ||
-                (value === operatorCode.MOBILE_CODE_3) || (value === operatorCode.MOBILE_CODE_4)) {
+        if ((value === OPERATOR_CODE.mobileCode1) || (value === OPERATOR_CODE.mobileCode2) ||
+                (value === OPERATOR_CODE.mobileCode3) || (value === OPERATOR_CODE.mobileCode4)) {
           expect(data === mobileSpn).assertTrue();
-        } else if ((value === operatorCode.UNICOM_CODE_1) || (value === operatorCode.UNICOM_CODE_2) ||
-                (value === operatorCode.UNICOM_CODE_3)) {
+        } else if ((value === OPERATOR_CODE.unicomCode1) || (value === OPERATOR_CODE.unicomCode2) ||
+                (value === OPERATOR_CODE.unicomCode3)) {
           expect(data === unicomSpn).assertTrue();
-        } else if ((value === operatorCode.TELECOM_CODE_1) || (value === operatorCode.TELECOM_CODE_2) ||
-                (value === operatorCode.TELECOM_CODE_3)) {
+        } else if ((value === OPERATOR_CODE.telecomCode1) || (value === OPERATOR_CODE.telecomCode2) ||
+                (value === OPERATOR_CODE.telecomCode3)) {
           expect(data === telecomSpn).assertTrue();
         }
       });
@@ -401,9 +407,10 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimSpn_Async_0200', 0, async function (done) {
-    sim.getSimSpn(simSlotId.SLOT_ID_4, (err, data) => {
+    sim.getSimSpn(SIM_SLOT_ID.slotId4, (err, data) => {
       if (err) {
         // Expect slotid 4 return err here.
+        console.log(`Telephony_Sim_getSimSpn_Async_0200 fail: ${err.message}`);
         console.log('Telephony_Sim_getSimSpn_Async_0200 finish');
         done();
         return;
@@ -420,24 +427,24 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimSpn_Promise_0100', 0, async function (done) {
-    var mobileSpn = '00434D4343FFFFFFFFFFFFFFFFFFFFFFFF';
-    var unicomSpn = '00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF';
-    var telecomSpn = '01804E2D56FD75354FE1FFFFFFFFFFFFFF';
+    let mobileSpn = '00434D4343FFFFFFFFFFFFFFFFFFFFFFFF';
+    let unicomSpn = '00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF';
+    let telecomSpn = '01804E2D56FD75354FE1FFFFFFFFFFFFFF';
     try {
-      var data = await sim.getSimSpn(simSlotId.SLOT_ID_0);
+      let data = await sim.getSimSpn(SIM_SLOT_ID.slotId0);
       console.log(`Telephony_Sim_getSimSpn_Promise_0100, data = ${data}`);
       expect(data !== '' && data !== undefined).assertTrue();
       try {
-        var value = await sim.getSimOperatorNumeric(simSlotId.SLOT_ID_0);
+        let value = await sim.getSimOperatorNumeric(SIM_SLOT_ID.slotId0);
         console.log(`Telephony_Sim_getSimSpn_Promise_0100, value : ${value}`);
-        if ((value === operatorCode.MOBILE_CODE_1) || (value === operatorCode.MOBILE_CODE_2) ||
-                (value === operatorCode.MOBILE_CODE_3) || (value === operatorCode.MOBILE_CODE_4)) {
+        if ((value === OPERATOR_CODE.mobileCode1) || (value === OPERATOR_CODE.mobileCode2) ||
+                (value === OPERATOR_CODE.mobileCode3) || (value === OPERATOR_CODE.mobileCode4)) {
           expect(data === mobileSpn).assertTrue();
-        } else if ((value === operatorCode.UNICOM_CODE_1) || (value === operatorCode.UNICOM_CODE_2) ||
-                (value === operatorCode.UNICOM_CODE_3)) {
+        } else if ((value === OPERATOR_CODE.unicomCode1) || (value === OPERATOR_CODE.unicomCode2) ||
+                (value === OPERATOR_CODE.unicomCode3)) {
           expect(data === unicomSpn).assertTrue();
-        } else if ((value === operatorCode.TELECOM_CODE_1) || (value === operatorCode.TELECOM_CODE_2) ||
-                (value === operatorCode.TELECOM_CODE_3)) {
+        } else if ((value === OPERATOR_CODE.telecomCode1) || (value === OPERATOR_CODE.telecomCode2) ||
+                (value === OPERATOR_CODE.telecomCode3)) {
           expect(data === telecomSpn).assertTrue();
         }
       } catch (err) {
@@ -463,9 +470,10 @@ describe('SimFileManagerFunction', function () {
     */
   it('Telephony_Sim_getSimSpn_Promise_0200', 0, async function (done) {
     try {
-      var data = await sim.getSimSpn(simSlotId.SLOT_ID_4);
+      var data = await sim.getSimSpn(SIM_SLOT_ID.slotId4);
     } catch (err) {
       // Expect slotid 4 return err here.
+      console.log(`Telephony_Sim_getSimSpn_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getSimSpn_Promise_0200 finish');
       done();
       return;
@@ -481,8 +489,8 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimGid1_Async_0100', 0, async function (done) {
-    var minLength = 1;
-    sim.getSimGid1(simSlotId.SLOT_ID_0, (err, data) => {
+    let minLength = 1;
+    sim.getSimGid1(SIM_SLOT_ID.slotId0, (err, data) => {
       if (err) {
         console.log(`Telephony_Sim_getSimGid1_Async_0100 fail, err: ${err.message}`);
         expect().assertFail();
@@ -503,9 +511,10 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimGid1_Async_0200', 0, async function (done) {
-    sim.getSimGid1(simSlotId.SLOT_ID_4, (err, data) => {
+    sim.getSimGid1(SIM_SLOT_ID.slotId4, (err, data) => {
       if (err) {
         // Expect slotid 4 return err here.
+        console.log(`Telephony_Sim_getSimGid1_Async_0200, err: ${err.message}`);
         console.log('Telephony_Sim_getSimGid1_Async_0200 finish');
         done();
         return;
@@ -522,9 +531,9 @@ describe('SimFileManagerFunction', function () {
     * @tc.desc    Function test
     */
   it('Telephony_Sim_getSimGid1_Promise_0100', 0, async function (done) {
-    var minLength = 1;
+    let minLength = 1;
     try {
-      var data = await sim.getSimGid1(simSlotId.SLOT_ID_0);
+      let data = await sim.getSimGid1(SIM_SLOT_ID.slotId0);
       console.log(`Telephony_Sim_getSimGid1_Promise_0100, data = ${data}`);
       expect(data !== '' && data !== undefined).assertTrue();
       expect((data.length >= minLength)).assertTrue();
@@ -545,9 +554,10 @@ describe('SimFileManagerFunction', function () {
     */
   it('Telephony_Sim_getSimGid1_Promise_0200', 0, async function (done) {
     try {
-      var data = await sim.getSimGid1(simSlotId.SLOT_ID_4);
+      var data = await sim.getSimGid1(SIM_SLOT_ID.slotId4);
     } catch (err) {
       // Expect slotid 4 return err here.
+      console.log(`Telephony_Sim_getSimGid1_Promise_0200, err: ${err.message}`);
       console.log('Telephony_Sim_getSimGid1_Promise_0200 finish');
       done();
       return;
