@@ -34,17 +34,17 @@ describe('SmsMmsConfigTest', function () {
   const RANTYPE_CDMA = 2;
   const RANTYPE_ERROR = 3;
 
-  var DEFAULT_SMS_SLOTID = 0;
+  var defaultSmsSlotid = 0;
   beforeAll(async function () {
     sms.getDefaultSmsSlotId((geterr, getresult) => {
       if (geterr) {
         return;
       }
-      DEFAULT_SMS_SLOTID = getresult;
+      defaultSmsSlotid = getresult;
     });
   });
   beforeEach(async function () {
-    sms.setDefaultSmsSlotId(DEFAULT_SMS_SLOTID, (err) => {});
+    sms.setDefaultSmsSlotId(defaultSmsSlotid, (err) => {});
   });
 
   /**
@@ -352,6 +352,32 @@ describe('SmsMmsConfigTest', function () {
         console.log('Telephony_SmsMms_setCBConfig_Async_1000 2 finish');
         done();
       });
+    });
+  });
+
+  /**
+   * @tc.number   Telephony_SmsMms_setCBConfig_Async_1100
+   * @tc.name     Set the network standard parameter "RANTYPE" to RANTYPE_CDMA(Cdma),
+   *              Configure a cell broadcast for an identity.
+   * @tc.desc     Function test
+   */
+  it('Telephony_SmsMms_setCBConfig_Async_1100', 0, async function (done) {
+    let data = {
+      slotId: TRUE_SLOT_ID,
+      enable: true,
+      startMessageId: IDENTIFIER_MIN,
+      endMessageId: IDENTIFIER_MAX,
+      ranType: RANTYPE_CDMA
+    };
+    sms.setCBConfig(data, (err) => {
+      if (err) {
+        expect().assertFail();
+        console.log('Telephony_SmsMms_setCBConfig_Async_1100 fail');
+        done();
+        return;
+      }
+      console.log('Telephony_SmsMms_setCBConfig_Async_1100 finish');
+      done();
     });
   });
 
@@ -676,6 +702,31 @@ describe('SmsMmsConfigTest', function () {
     } catch (err) {
       expect().assertFail();
       console.log('Telephony_SmsMms_setCBConfig_Promise_1000 2 fail');
+      done();
+    }
+  });
+
+  /**
+   * @tc.number   Telephony_SmsMms_setCBConfig_Promise_1100
+   * @tc.name     Set the network standard parameter "RANTYPE" to RANTYPE_CDMA(Cdma),
+   *              Configure a cell broadcast for an identity.
+   * @tc.desc     Function test
+   */
+  it('Telephony_SmsMms_setCBConfig_Promise_1100', 0, async function (done) {
+    let data = {
+      slotId: TRUE_SLOT_ID,
+      enable: true,
+      startMessageId: IDENTIFIER_MIN,
+      endMessageId: IDENTIFIER_MAX,
+      ranType: RANTYPE_CDMA
+    };
+    try {
+      await sms.setCBConfig(data);
+      console.log('Telephony_SmsMms_setCBConfig_Promise_1100 finish');
+      done();
+    } catch (err) {
+      expect().assertFail();
+      console.log('Telephony_SmsMms_setCBConfig_Promise_1100 fail');
       done();
     }
   });
