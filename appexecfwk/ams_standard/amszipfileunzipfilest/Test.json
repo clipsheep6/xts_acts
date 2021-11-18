@@ -24,10 +24,14 @@
         {
             "type": "PushKit",
             "push": [
+<<<<<<< HEAD
+                "ceshi.txt->/data/test/ceshi.txt"
+=======
                 "/resource/appexecfwk/ceshi.txt->/data/test/ceshi.txt",
                 "/resource/appexecfwk/ceshitwo.zip->/data/test/ceshitwo.zip",
                 "/resource/appexecfwk/ceshitwo.txt->/data/test/ceshitwo.txt"
                 
+>>>>>>> upstream/master
                
             ]
         },
@@ -35,6 +39,11 @@
         {
             "type": "ShellKit",
             "run-command": [
+<<<<<<< HEAD
+                "chmod 777 /data/test/*"
+            ]
+        },
+=======
                 "remount",
                 "mkdir /data/testA"
             ]
@@ -53,17 +62,26 @@
             ]
         },
        
+>>>>>>> upstream/master
         {
             "type": "ShellKit",
             "run-command": [
                 "remount",
+<<<<<<< HEAD
+                "mkdir /data/testA"
+=======
                 "mkdir /data/testb"
+>>>>>>> upstream/master
             ]
         },
         {
             "type": "ShellKit",
             "run-command": [
+<<<<<<< HEAD
+                "chmod 777 /data/testA/*"
+=======
                 "chmod 777 /data/testb/*"
+>>>>>>> upstream/master
             ]
         }
        

@@ -55,11 +55,18 @@ describe('ActsBmsHapModuleTest', function () {
                     expect(hapModuleInfo.iconId).assertEqual(0);
                     expect(hapModuleInfo.backgroundImg).assertEqual('');
                     expect(hapModuleInfo.supportedModes).assertEqual(0);
+<<<<<<< HEAD
+                    console.info('===============hapModuleInfo.reqCapabilities==========' + JSON.stringify(hapModuleInfo.reqCapabilities))
+                    expect(typeof hapModuleInfo.reqCapabilities).assertEqual('object');
+                    // expect(hapModuleInfo.deviceTypes).assertEqual('phone');
+                    console.info('===============hapModuleInfo.abilityInfo==========' + JSON.stringify(hapModuleInfo.abilityInfo))
+=======
                     console.info('hapModuleInfo.reqCapabilities' + JSON.stringify(hapModuleInfo.reqCapabilities));
                     expect(typeof hapModuleInfo.reqCapabilities).assertEqual('object');
                     console.info('===hapModuleInfo devicetypes===' + JSON.stringify(hapModuleInfo.deviceTypes));
                     expect(hapModuleInfo.deviceTypes[0]).assertEqual('phone');
                     console.info('===hapModuleInfo.abilityInfo===' + JSON.stringify(hapModuleInfo.abilityInfo));
+>>>>>>> upstream/master
                     expect(typeof hapModuleInfo.abilityInfo).assertEqual('object');
                     expect(hapModuleInfo.moduleName).assertEqual('entry');
                     expect(hapModuleInfo.mainAbilityName).assertEqual('com.example.bmsmainabilityfirstscene.MainAbility');
@@ -78,8 +85,11 @@ describe('ActsBmsHapModuleTest', function () {
                         isKeepData: false
                     }
                 }, (err, data) => {
+<<<<<<< HEAD
+=======
                     expect(err.code).assertEqual(0);
                     expect(data.status).assertEqual(0);
+>>>>>>> upstream/master
                     expect(data.statusMessage).assertEqual('SUCCESS');
                     done();
                 });
@@ -106,8 +116,11 @@ describe('ActsBmsHapModuleTest', function () {
                 isKeepData: false
             }
         }, async (err, data) => {
+<<<<<<< HEAD
+=======
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
+>>>>>>> upstream/master
             expect(data.statusMessage).assertEqual('SUCCESS');
             bundle.getBundleInfo(bundleName, 1, async (err, result) => {
                 expect(result.hapModuleInfo.length).assertEqual(2);
@@ -126,8 +139,11 @@ describe('ActsBmsHapModuleTest', function () {
                         isKeepData: false
                     }
                 }, (err, data) => {
+<<<<<<< HEAD
+=======
                     expect(err.code).assertEqual(0);
                     expect(data.status).assertEqual(0);
+>>>>>>> upstream/master
                     expect(data.statusMessage).assertEqual('SUCCESS');
                     done();
                 });
@@ -231,8 +247,12 @@ describe('ActsBmsHapModuleTest', function () {
                 }, onReceiveUninstallEvent);
 
                 function onReceiveUninstallEvent(err, data) {
+<<<<<<< HEAD
+                    ;
+=======
                     expect(err.code).assertEqual(0);
                     expect(data.status).assertEqual(0);
+>>>>>>> upstream/master
                     expect(data.statusMessage).assertEqual('SUCCESS');
                     done();
                 }
@@ -268,8 +288,11 @@ describe('ActsBmsHapModuleTest', function () {
                     isKeepData: false
                 }
             }, (err, data) => {
+<<<<<<< HEAD
+=======
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
+>>>>>>> upstream/master
                 expect(data.statusMessage).assertEqual('SUCCESS');
                 bundle.getBundleInfo(bundleName, 1, callback);
             })
@@ -289,8 +312,11 @@ describe('ActsBmsHapModuleTest', function () {
                     isKeepData: false
                 }
             }, (err, data) => {
+<<<<<<< HEAD
+=======
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
+>>>>>>> upstream/master
                 expect(data.statusMessage).assertEqual('SUCCESS');
                 done();
             })
