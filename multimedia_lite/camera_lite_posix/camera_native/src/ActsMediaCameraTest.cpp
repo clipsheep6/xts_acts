@@ -49,6 +49,7 @@ string GetCurDir()
         filePath = buffer;
         free(buffer);
     }
+     
     return filePath + "/";
 }
 
