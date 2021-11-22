@@ -10,12 +10,12 @@
         {
             "test-file-name": [
                 "GetAllFormsInfo10.hap",
-                "ActsFormSystemTestServiceD"
+                "ActsFormSystemTestServiceD.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
         },
-		{
+        {
             "type": "ShellKit",
             "run-command": [
                 "remount",
@@ -26,7 +26,7 @@
             "type": "ShellKit",
             "run-command": [
                 "chmod 644 /system/vendor/*.hap"
-			]
-		}
-	]
+            ]
+        }
+    ]
 }
