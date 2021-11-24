@@ -16,7 +16,6 @@
 import { fileio, nextFileName, describe, it, expect } from '../../Common';
 
 describe('fileio_mkdir_rmdir', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_MkdirSync_0000
    * @tc.name fileio_mkdir_sync_rmdir_sync_000

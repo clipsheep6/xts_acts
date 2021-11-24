@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_stat', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_statSync_0000
    * @tc.name fileio_stat_sync_000

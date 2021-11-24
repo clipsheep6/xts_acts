@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_write', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_WriteSync_0000
    * @tc.name fileio_test_write_sync_000

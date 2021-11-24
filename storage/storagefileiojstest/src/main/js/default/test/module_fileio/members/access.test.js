@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_access', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_AccessSync_0000
    * @tc.name fileio_test_access_sync_000

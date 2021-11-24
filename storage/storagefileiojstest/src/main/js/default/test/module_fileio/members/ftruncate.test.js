@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_ftruncate', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_FtruncateAsync_0000
    * @tc.name fileio_test_ftruncate_async_000

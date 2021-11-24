@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_read', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_ReadSync_0000
    * @tc.name fileio_test_read_sync_000

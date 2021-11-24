@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_createWatcher', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_createWatcher_000
    * @tc.name fileio_test_createWatcher_000

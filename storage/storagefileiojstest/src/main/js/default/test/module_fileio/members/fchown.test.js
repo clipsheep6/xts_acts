@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_fchown', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_Fchown_0010
    * @tc.name fileio_test_fchown_001

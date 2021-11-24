@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_fchmod', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_FchmodAsync_0000
    * @tc.name fileio_test_fchmod_async_000

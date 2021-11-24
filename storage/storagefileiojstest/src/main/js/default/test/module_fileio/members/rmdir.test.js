@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_rmdir', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_RmdirAsync_0000
    * @tc.name fileio_test_rmdir_async_000
@@ -115,7 +114,7 @@ describe('fileio_rmdir', function () {
     }
   });
 
-  /**
+    /**
    * @tc.number SUB_DF_FileIO_RmdirSync_0000
    * @tc.name fileio_test_rmdir_sync_000
    * @tc.desc Test rmdirSync() interfaces.

@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_copyfile', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_CopyFileSync_0000
    * @tc.name fileio_copy_file_sync_000

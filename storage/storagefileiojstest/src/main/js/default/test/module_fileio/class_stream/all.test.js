@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_stream', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_Stream_CreateStreamSync_0000
    * @tc.name fileio_test_stream_create_stream_sync_000

@@ -19,7 +19,6 @@ import {
 } from '../../Common';
 
 describe('fileio_FdOpenStream', function () {
-
   /**
    * @tc.number SUB_DF_FileIO_FdOpenStreamSync_000
    * @tc.name fileio_test_FdOpenStream_sync_000
