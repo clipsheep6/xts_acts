@@ -14,7 +14,7 @@
  */
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-import ohos_data_rdb from '@ohos.data.rdb';
+import dataRdb from '@ohos.data.rdb';
 
 const TAG = "[RDB_JSKITS_TEST]"
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
@@ -28,7 +28,7 @@ var rdbStore = undefined;
 describe('rdbStoreInsertTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        rdbStore = await ohos_data_rdb.getRdbStore(STORE_CONFIG, 1);
+        rdbStore = await dataRdb.getRdbStore(STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_TEST, null);
     })
 
@@ -44,7 +44,7 @@ describe('rdbStoreInsertTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await ohos_data_rdb.deleteRdbStore("InsertTest.db");
+        await dataRdb.deleteRdbStore("InsertTest.db");
     })
 
     console.log(TAG + "*************Unit Test Begin*************");
@@ -85,7 +85,7 @@ describe('rdbStoreInsertTest', function () {
             await rdbStore.insert("test", valueBucket)
         }
 
-        let predicates = new ohos_data_rdb.RdbPredicates("test");
+        let predicates = new dataRdb.RdbPredicates("test");
         predicates.equalTo("name", "zhangsan")
         let resultSet = await rdbStore.query(predicates)
         try {

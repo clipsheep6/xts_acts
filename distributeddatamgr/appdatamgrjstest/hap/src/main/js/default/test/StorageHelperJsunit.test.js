@@ -76,7 +76,7 @@ describe('storageTest', function () {
             expect(null).assertFail();
         }
         var value = mPref.getSync('test', 0);
-        expect(value).assertEqual(0);
+        expect(value).assertEqual(2);
     })
 
     /**
@@ -110,8 +110,8 @@ describe('storageTest', function () {
         }
         try {
             perf.putSync("int", 3);
-            expect(null).assertFail();
         } catch (e) {
+            expect(null).assertFail();
         }
     })
 
