@@ -19,6 +19,7 @@ import {
 } from '../../Common';
 
 describe('fileio_lstat', function () {
+
   /**
    * @tc.number SUB_DF_FileIO_lstatSync_0000
    * @tc.name fileio_lstat_sync_000

@@ -19,6 +19,7 @@ import {
 } from '../Common';
 
 describe('statfs', function () {
+
   /**
    * @tc.number SUB_DF_Statfs_getFreeBytes_0000
    * @tc.name statfs_test_get_free_bytes_async_000
@@ -30,7 +31,6 @@ describe('statfs', function () {
 
     try {
       statfs.getFreeBytes(fpath, function (err, number) {
-        console.log('getFreeBytesCallback:' + number);
         expect(isIntNum(number)).assertTrue();
         expect(fileio.unlinkSync(fpath) == null).assertTrue();
         done();
@@ -52,7 +52,6 @@ describe('statfs', function () {
 
     try {
       let number = await statfs.getFreeBytes(fpath);
-      console.log('getFreeBytesPromise:' + number);
       expect(isIntNum(number)).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
       done();
@@ -73,7 +72,6 @@ describe('statfs', function () {
 
     try {
       statfs.getTotalBytes(fpath, function (err, number) {
-        console.log('getTotalBytesCallback:' + number);
         expect(isIntNum(number)).assertTrue();
         expect(fileio.unlinkSync(fpath) == null).assertTrue();
         done();
@@ -95,7 +93,6 @@ describe('statfs', function () {
 
     try {
       let number = await statfs.getTotalBytes(fpath);
-      console.log('getTotalBytesPromise:' + number);
       expect(isIntNum(number)).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
       done();
