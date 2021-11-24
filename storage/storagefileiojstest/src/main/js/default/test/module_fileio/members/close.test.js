@@ -19,6 +19,7 @@ import {
 } from '../../Common';
 
 describe('fileio_close', function () {
+
   /**
    * @tc.number SUB_DF_FileIO_CloseSync_0000
    * @tc.name fileio_test_close_sync_000

@@ -20,7 +20,6 @@ import {
 
 describe('fileio_dirent', function () {
 
-
   /**
    * @tc.number SUB_DF_FileIO_Dirent_Name_0010
    * @tc.name fileio_test_dirent_name_001

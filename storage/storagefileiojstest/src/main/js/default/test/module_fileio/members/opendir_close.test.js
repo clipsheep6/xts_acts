@@ -16,6 +16,7 @@
 import { fileio, nextFileName, describe, it, expect } from '../../Common';
 
 describe('fileio_dir_opendir_close', function () {
+
   /**
    * @tc.number SUB_DF_FileIO_OpenClosedirSync_0000
    * @tc.name fileio_dir_open_close_sync_000

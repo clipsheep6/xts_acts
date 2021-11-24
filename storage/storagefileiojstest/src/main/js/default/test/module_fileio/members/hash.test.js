@@ -19,6 +19,7 @@ import {
 } from '../../Common';
 
 describe('fileio_hash', function () {
+
   /**
    * @tc.number SUB_DF_FileIO_HashAsync_0000
    * @tc.name fileio_test_hash_async_000

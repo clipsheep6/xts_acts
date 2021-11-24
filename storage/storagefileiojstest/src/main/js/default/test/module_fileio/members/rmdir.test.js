@@ -19,6 +19,7 @@ import {
 } from '../../Common';
 
 describe('fileio_rmdir', function () {
+
   /**
    * @tc.number SUB_DF_FileIO_RmdirAsync_0000
    * @tc.name fileio_test_rmdir_async_000

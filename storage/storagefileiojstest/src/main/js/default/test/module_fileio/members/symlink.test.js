@@ -19,6 +19,7 @@ import {
 } from '../../Common';
 
 describe('fileio_symlink', function () {
+
   /**
    * @tc.number SUB_DF_FileIO_Fdatasync_SymlinkSync_0000
    * @tc.name fileio_test_symlink_sync_000
