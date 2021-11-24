@@ -1294,6 +1294,7 @@ describe('fileio_lstat', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_lstatAsync_IsSocket_0010
    * @tc.name fileio_lstat_async_is_socket_001
@@ -1333,6 +1334,7 @@ describe('fileio_lstat', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_lstatAsync_IsSymbolicLink_0010
    * @tc.name fileio_lstat_async_is_symbolic_link_001

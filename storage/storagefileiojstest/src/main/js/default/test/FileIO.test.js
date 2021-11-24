@@ -35,7 +35,9 @@ import {
   sleep
 }
   from './Common'
+
 describe('fileIOTest', function () {
+
   /**
    * @tc.number SUB_STORAGE_FileIO_open&closesync_0000
    * @tc.name fileio_test_open_close_sync_000

@@ -90,6 +90,7 @@ describe('fileio_FdOpenStream', function () {
       expect(null).assertFail();
     }
   })
+
   /**
    * @tc.number SUB_DF_FileIO_fdopenStreamASync_001
    * @tc.name fileio_test_fdopenStream_async_001

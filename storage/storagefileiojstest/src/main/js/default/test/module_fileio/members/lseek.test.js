@@ -83,6 +83,7 @@ describe('fileio_lseek', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_lseekSync_0010
    * @tc.name fileio_test_lseek_sync_001

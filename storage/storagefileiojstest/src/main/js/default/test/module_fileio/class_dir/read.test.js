@@ -211,6 +211,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_Name_0010
    * @tc.name fileio_dir_read_sync_name_001
@@ -260,6 +261,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_isBlockDevice_0010
    * @tc.name fileio_dir_read_sync_isBlockDevice_001
@@ -284,6 +286,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_isCharacterDevice_0000
    * @tc.name fileio_dir_read_sync_isCharacterDevice_000
@@ -307,6 +310,7 @@ describe('fileio_dir_read', function () {
       console.log('fileio_dir_read_sync_isCharacterDevice_000 has failed for ' + e);
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_isCharacterDevice_0010
    * @tc.name fileio_dir_read_sync_isCharacterDevice_001
@@ -331,6 +335,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_isDirectory_0000
    * @tc.name fileio_dir_read_sync_isDirectory_000
@@ -355,6 +360,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_isDirectory_0010
    * @tc.name fileio_dir_read_sync_isDirectory_001
@@ -379,6 +385,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_isFIFO_0000
    * @tc.name fileio_dir_read_sync_isFIFO_000
@@ -428,6 +435,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_isFile_0000
    * @tc.name fileio_dir_read_sync_isFile_000
@@ -477,6 +485,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_isSocket_0000
    * @tc.name fileio_dir_read_sync_isSocket_000
@@ -526,6 +535,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_isSymbolicLink_0000
    * @tc.name fileio_dir_read_sync_isSymbolicLink_000
@@ -550,6 +560,7 @@ describe('fileio_dir_read', function () {
       expect(null);
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_isSymbolicLink_0010
    * @tc.name fileio_dir_read_sync_isSymbolicLink_001
@@ -574,6 +585,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_0000
    * @tc.name fileio_dir_read_async_000
@@ -598,6 +610,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_0010
    * @tc.name fileio_dir_read_async_001
@@ -648,6 +661,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_Name_0010
    * @tc.name fileio_dir_read_async_name_001
@@ -697,6 +711,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsBlockDevice_0010
    * @tc.name fileio_dir_read_async_isBlockDevice_001
@@ -721,11 +736,13 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsCharacterDevice_0000
    * @tc.name fileio_dir_read_async_isCharacterDevice_000
    * @tc.desc Test Dir.readAsync() interface.
    */
+
   it('fileio_dir_read_async_isCharacterDevice_000', 0, async function (done) {
     let dpath = nextFileName('fileio_dir_read_async_isCharacterDevice_000') + 'd';
     let fpath = dpath + '/f1';
@@ -744,6 +761,7 @@ describe('fileio_dir_read', function () {
       console.log('fileio_dir_read_async_isCharacterDevice_000 has failed for ' + e);
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsCharacterDevice_0010
    * @tc.name fileio_dir_read_async_isCharacterDevice_001
@@ -767,6 +785,7 @@ describe('fileio_dir_read', function () {
       console.log('fileio_dir_read_async_isCharacterDevice_001 has failed for ' + e);
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsDirectory_0000
    * @tc.name fileio_dir_read_async_isDirectory_000
@@ -791,6 +810,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsDirectory_0010
    * @tc.name fileio_dir_read_async_isDirectory_001
@@ -815,6 +835,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsFIFO_0000
    * @tc.name fileio_dir_read_async_isFIFO_000
@@ -839,6 +860,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsFIFO_0010
    * @tc.name fileio_dir_read_async_isFIFO_001
@@ -888,6 +910,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsFile_0010
    * @tc.name fileio_dir_read_async_isDirectory_001
@@ -912,6 +935,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsSocket_0000
    * @tc.name fileio_dir_read_async_isDirectory_000
@@ -936,6 +960,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsSocket_0010
    * @tc.name fileio_dir_read_async_isDirectory_001
@@ -985,6 +1010,7 @@ describe('fileio_dir_read', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadAsync_IsSymbolicLink_0010
    * @tc.name fileio_dir_read_async_isDirectory_001

@@ -49,6 +49,7 @@ describe('fileio_createWatcher', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_createWatcher_000
    * @tc.name fileio_test_createWatcher_001
@@ -106,6 +107,7 @@ describe('fileio_createWatcher', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_createWatcher_000
    * @tc.name fileio_test_createWatcher_003
@@ -134,6 +136,7 @@ describe('fileio_createWatcher', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_createWatcher_000
    * @tc.name fileio_test_createWatcher_004
@@ -196,6 +199,7 @@ describe('fileio_createWatcher', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_createWatcher_000
    * @tc.name fileio_test_createWatcher_006
@@ -257,6 +261,7 @@ describe('fileio_createWatcher', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_createWatcher_000
    * @tc.name fileio_test_createWatcher_008

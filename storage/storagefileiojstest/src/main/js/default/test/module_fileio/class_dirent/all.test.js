@@ -76,6 +76,7 @@ describe('fileio_dirent', function () {
       expect(null).assertFail();
     }
   })
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_ReadSync_0000
    * @tc.name fileio_test_dirent_name_000
@@ -152,6 +153,7 @@ describe('fileio_dirent', function () {
       expect(fileio.rmdirSync(dpath) == null).assertTrue();
     }
   })
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_IsCharacterDevice_0000
    * @tc.name fileio_test_dirent_is_character_device_000
@@ -281,6 +283,7 @@ describe('fileio_dirent', function () {
       expect(null).assertFail()
     }
   })
+
   /**
    * @tc.number SUB_DF_FileIO_Dir_IsFIFO_0010
    * @tc.name fileio_test_dirent_is_fifo_001

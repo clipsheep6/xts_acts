@@ -57,6 +57,7 @@ describe('fileio_chmod', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_ChmodAsync_0000
    * @tc.name fileio_test_chmod_async_000
@@ -112,6 +113,7 @@ describe('fileio_chmod', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_ChmodAsync_0020
    * @tc.name fileio_test_chmod_async_002

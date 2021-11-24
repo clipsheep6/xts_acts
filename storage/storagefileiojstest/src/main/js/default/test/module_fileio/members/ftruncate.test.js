@@ -75,6 +75,7 @@ describe('fileio_ftruncate', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_FtruncateAsync_0020
    * @tc.name fileio_test_ftruncate_async_002
@@ -139,6 +140,7 @@ describe('fileio_ftruncate', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_FtruncateSync_0020
    * @tc.name fileio_test_ftruncate_sync_002

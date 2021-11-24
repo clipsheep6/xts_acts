@@ -63,6 +63,7 @@ describe('fileio_createStream', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_Stream_CreateStreamAsync_0020
    * @tc.name fileio_test_stream_create_stream_async_002

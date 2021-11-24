@@ -57,6 +57,7 @@ describe('fileio_access', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_AccessSync_0020
    * @tc.name fileio_test_access_sync_002
@@ -110,6 +111,7 @@ describe('fileio_access', function () {
     } catch (e) {
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_AccessAsync_0000
    * @tc.name fileio_test_access_async_000
@@ -155,6 +157,7 @@ describe('fileio_access', function () {
       expect(null).assertFail();
     }
   });
+
   /**
    * @tc.number SUB_DF_FileIO_AccessAsync_0020
    * @tc.name fileio_test_access_async_002

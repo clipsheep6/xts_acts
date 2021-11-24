@@ -54,6 +54,7 @@ describe('fileio_stream', function () {
     } catch (e) {
     }
   })
+
   /**
    * @tc.number SUB_DF_FileIO_Stream_FdopenStreamAsync_0000
    * @tc.name fileio_test_stream_fdopen_stream_async_000
