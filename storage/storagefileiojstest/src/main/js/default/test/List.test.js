@@ -18,7 +18,6 @@ require('./FileIODir.test.js')
 require('./FileIODirent.test.js')
 require('./FileIOStat.test.js')
 require('./FileIOStream.test.js')
-require('./statfs/statfs.test.js')
 require('./module_fileio/members/open_close.test.js');
 require('./module_fileio/class_dirent/all.test.js');
 require('./module_fileio/class_watcher/createWatcher.test.js');
