@@ -583,4 +583,46 @@ describe('workerTest', function () {
         expect(res).assertEqual(0)
         done()
     })
+
+    // check onmessageerror is ok
+    it('worker_onmessageerror_test_001', 0, async function (done) {
+        var ss = new worker.Worker("workers/worker_008.js");
+        var res = 0
+        var flag = false;
+
+        ss.onexit = function () {
+            flag = true
+        }
+
+        ss.onmessageerror = function (e) {
+            res++;
+        }
+
+        ss.postMessage("abc")
+        while (!flag) {
+            await PromiseCase()
+        }
+        expect(res).assertEqual(0)
+        done()
+    })
+
+    // check onmessageerror is ok
+    it('worker_onmessageerror_test_002', 0, async function (done) {
+        var ss = new worker.Worker("workers/worker_008.js");
+        var res = 0
+        var flag = false;
+
+        ss.onmessageerror = function (e) {
+            flag = true;
+            res++;
+        }
+        function foo() {
+        }
+        ss.postMessage(foo)
+        while (!flag) {
+            await PromiseCase()
+        }
+        expect(res).assertEqual(1)
+        done()
+    })
 })
