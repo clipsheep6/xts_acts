@@ -24,6 +24,7 @@ const STORE_CONFIG = {
 }
 
 var rdbStore = undefined;
+var context = undefined;
 
 describe('rdbStoreInsertTest', function () {
     beforeAll(async function () {

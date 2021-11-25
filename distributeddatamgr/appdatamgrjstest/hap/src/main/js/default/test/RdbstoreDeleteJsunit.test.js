@@ -22,6 +22,7 @@ const STORE_CONFIG = {
     name: "Delete.db",
 }
 var rdbStore = undefined;
+var context = undefined;
 
 describe('rdbStoreDeleteTest', function () {
     beforeAll(function () {

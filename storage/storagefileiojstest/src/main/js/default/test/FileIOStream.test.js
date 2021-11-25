@@ -14,7 +14,6 @@
  */
 
 import fileio from '@ohos.fileio';
-import file from '@system.file'
 import {
   describe,
   beforeAll,
@@ -46,7 +45,7 @@ describe('fileIOTestStream', function () {
    */
   it('fileio_test_stream_create_stream_sync_000', 0, function () {
     let fpath = nextFileName('fileio_test_stream_create_stream_sync_000');
-    expect(prepareFile(fpath, '')).assertTrue();
+    expect(prepareFile(fpath, 'hello')).assertTrue();
     expect(fileToReadOnly(fpath)).assertTrue();
     try {
       let ss = fileio.createStreamSync(fpath, 'r');
@@ -69,7 +68,7 @@ describe('fileIOTestStream', function () {
   it('fileio_test_stream_create_stream_sync_001', 0, function () {
     let fpath = nextFileName('fileio_test_stream_create_stream_sync_001');
     try {
-      expect(fileio.createStreamSync(fpath, 'r') == null).assertTrue();
+      fileio.createStreamSync(fpath, 'r');
       expect(null).assertFail();
     }
     catch (e) {
@@ -713,7 +712,9 @@ describe('fileIOTestStream', function () {
    */
   it('fileio_test_stream_fdopen_stream_sync_001', 0, function () {
     try {
-      expect(fileio.fdopenStreamSync(-1, 'r') == null).assertTrue();
+      let fd = -1;
+      let mode = 'r+';
+      fileio.fdopenStreamSync(fd, mode);
       expect(null).assertFail();
     } 
     catch (e) {
@@ -1278,7 +1279,7 @@ describe('fileIOTestStream', function () {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
     try {
       let fd = fileio.openSync(fpath, 0o2);
-      expect(fileio.fdopenStreamSync(fd, '') == null).assertTrue();
+      fileio.fdopenStreamSync(fd, '');
       expect(null).assertFail();
     } 
     catch (e) {

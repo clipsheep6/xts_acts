@@ -14,6 +14,7 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import ohos_data_rdb from '@ohos.data.rdb';
+import ability_featureAbility from '@ohos.ability.featureAbility';
 
 const TAG = "[RDB_JSKITS _TEST]"
 const CREATE_TABLE_ALL_DATA_TYPE_SQL = "CREATE TABLE IF NOT EXISTS AllDataType "
@@ -29,11 +30,13 @@ const STORE_CONFIG = {
     name: "Predicates.db",
 }
 var rdbStore = undefined;
-
+var context = undefined;
+var DOUBLE_MAX = 9223372036854775807;
 describe('rdbPredicatesTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        rdbStore = await ohos_data_rdb.getRdbStore(STORE_CONFIG, 1);
+        context = await ability_featureAbility.getContext();
+        rdbStore = await ohos_data_rdb.getRdbStore(context, STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_ALL_DATA_TYPE_SQL, null);
         await buildAllDataType1();
         await buildAllDataType2();
@@ -51,7 +54,7 @@ describe('rdbPredicatesTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await ohos_data_rdb.deleteRdbStore("Predicates.db");
+        await ohos_data_rdb.deleteRdbStore(context, "Predicates.db");
     })
 
     function resultSize(resultSet) {
@@ -71,7 +74,7 @@ describe('rdbPredicatesTest', function () {
             var u8 = new Uint8Array([1, 2, 3])
             const valueBucket = {
                 "integerValue": 2147483647,
-                "doubleValue": Number.MAX_VALUE,
+                "doubleValue": DOUBLE_MAX,
                 "booleanValue": true,
                 "floatValue": -0.123,
                 "longValue": 9223372036854775807,
@@ -190,7 +193,7 @@ describe('rdbPredicatesTest', function () {
         console.log(TAG + "************* testEqualTo0004 start *************");
         {
             let predicates = await new ohos_data_rdb.RdbPredicates("AllDataType");
-            predicates.equalTo("doubleValue", Number.MAX_VALUE);
+            predicates.equalTo("doubleValue", DOUBLE_MAX);
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
             result = null
@@ -336,7 +339,7 @@ describe('rdbPredicatesTest', function () {
         console.log(TAG + "************* testNotEqualTo0004 start *************");
         {
             let predicates = await new ohos_data_rdb.RdbPredicates("AllDataType");
-            predicates.notEqualTo("doubleValue", Number.MAX_VALUE);
+            predicates.notEqualTo("doubleValue", DOUBLE_MAX);
             let result = await rdbStore.query(predicates);
             expect(2).assertEqual(result.rowCount);
             result = null
@@ -1004,7 +1007,7 @@ describe('rdbPredicatesTest', function () {
         console.log(TAG + "************* testBetween0002 start *************");
         {
             let predicates = await new ohos_data_rdb.RdbPredicates("AllDataType");
-            predicates.between("doubleValue", 0.0, Number.MAX_VALUE);
+            predicates.between("doubleValue", 0.0, DOUBLE_MAX);
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
             result = null
@@ -1076,7 +1079,7 @@ describe('rdbPredicatesTest', function () {
         console.log(TAG + "************* testBetween0006 start *************");
         {
             let predicates = await new ohos_data_rdb.RdbPredicates("AllDataType");
-            predicates.between("doubleValue", Number.MAX_VALUE, Number.MAX_VALUE);
+            predicates.between("doubleValue", DOUBLE_MAX, DOUBLE_MAX);
             let result = await rdbStore.query(predicates);
             expect(1).assertEqual(result.rowCount);
             result = null
@@ -1841,7 +1844,7 @@ describe('rdbPredicatesTest', function () {
      */
     it('testIn0003', 0, async function (done) {
         console.log(TAG + "************* testIn0003 start *************");
-        var values = [Number.MAX_VALUE.toString()];
+        var values = [DOUBLE_MAX.toString()];
         let predicates = await new ohos_data_rdb.RdbPredicates("AllDataType");
         predicates.in("doubleValue", values);
         let result = await rdbStore.query(predicates);
@@ -1857,7 +1860,7 @@ describe('rdbPredicatesTest', function () {
      */
     it('testIn0004', 0, async function (done) {
         console.log(TAG + "************* testIn0004 start *************");
-        var values = [Number.MIN_VALUE.toString(), "1.0", Number.MAX_VALUE.toString()];
+        var values = [Number.MIN_VALUE.toString(), "1.0", DOUBLE_MAX.toString()];
         let predicates = await new ohos_data_rdb.RdbPredicates("AllDataType");
         predicates.in("doubleValue", values);
         let result = await rdbStore.query(predicates);

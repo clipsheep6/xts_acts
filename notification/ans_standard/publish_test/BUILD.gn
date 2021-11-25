@@ -18,13 +18,11 @@ group("publish_test") {
     deps = [
       #"actsanspublishcontroltest:ActsAnsPublishControlTest",
       #"badgedisplayed:badgedisplayed",
-      #"badgedisplayedset:badgedisplayedset",
-      "enablenotification:enablenotification",
-      #"enablenotificationset:enablenotificationset",
-      #"getactive:getactive",
-      "getwantagentinfo:getwantagentinfo",
+      #"enablenotification:enablenotification",
+      "getactive:getactive",
+      "getwantagentinfo:ActsAnsGetWantAgentInfoTest",
 
-      #"publishcontentype:ActsAnsNotificationTest",
+      #"publishcontentype:publishcontentype",
       #"subscribe:subscribe",
       #"unsubscribe:ActsAnsUnSubscriberTest",
       "wantagent:wantagent",

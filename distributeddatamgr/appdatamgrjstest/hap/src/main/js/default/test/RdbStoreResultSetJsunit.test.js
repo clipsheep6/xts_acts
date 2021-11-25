@@ -22,6 +22,7 @@ const STORE_CONFIG = {
     name: "Resultset.db",
 }
 var rdbStore = undefined;
+var context = undefined;
 
 describe('rdbResultSetTest', function () {
     beforeAll(async function () {

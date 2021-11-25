@@ -15,7 +15,6 @@
 
 import app from '@system.app'
 
-//import {Core, ExpectExtend, ReportExtend, InstrumentLog} from 'deccjsunit/index'
 import {Core, ExpectExtend} from 'deccjsunit/index'
 
 export default {
@@ -28,22 +27,19 @@ export default {
     onShow() {
         console.info('onShow finish')
         const core = Core.getInstance()
-        //        const instrumentLog = new InstrumentLog({
-        //            'id': 'report'
-        //        })
+        
         const expectExtend = new ExpectExtend({
             'id': 'extend'
         })
         core.addService('expect', expectExtend)
         //        core.addService('report', instrumentLog)
         core.init()
-        //        core.subscribeEvent('spec', instrumentLog)
-        //        core.subscribeEvent('suite', instrumentLog)
-        //        core.subscribeEvent('task', instrumentLog)
+        
 
         const configService = core.getDefaultService('config')
+        
+        this.timeout = 600000
         configService.setConfig(this)
-
         require('../../test/List.test')
         core.execute()
     },
