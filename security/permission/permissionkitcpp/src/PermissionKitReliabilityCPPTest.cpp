@@ -20,6 +20,7 @@
 using namespace testing::ext;
 using namespace OHOS::Security::Permission;
 
+const int RUNNING_TIMES = 5000;
 static vector<PermissionDef> permDefNormal;
 static vector<PermissionDef> permDefAbnormal1;
 static vector<PermissionDef> permDefAbnormal2;
@@ -121,7 +122,7 @@ void PermissionKitTest::TearDown()
  */
 HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_AddDefPer_008, TestSize.Level3)
 {
-    for (int i = 0; i < 5000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         int ret = PermissionKit::RemoveDefPermissions(TEST_BUNDLE_NAME);
         ASSERT_EQ(RET_SUCCESS, ret);
         ret = PermissionKit::AddDefPermissions(permDefNormal);
@@ -141,7 +142,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_AddDefPer_
  */
 HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_RemoveDefPer_007, TestSize.Level3)
 {
-    for (int i = 0; i < 5000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         int ret = PermissionKit::AddDefPermissions(permDefNormal);
         ASSERT_EQ(RET_SUCCESS, ret);
         ret = PermissionKit::RemoveDefPermissions(TEST_BUNDLE_NAME);
@@ -164,7 +165,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_GetDefPer_
     int ret = PermissionKit::AddDefPermissions(permDefNormal);
     ASSERT_EQ(RET_SUCCESS, ret);
     PermissionDef permissionDefResultAlpha;
-    for (int i = 0; i < 5000; i++) {
+    for (int i = 0; i < RUNNING_TIMES; i++) {
         ret = PermissionKit::GetDefPermission(TEST_PERMISSION_NAME_ALPHA, permissionDefResultAlpha);
         ASSERT_EQ(RET_SUCCESS, ret);
     }
@@ -186,7 +187,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_AddUserGra
     ASSERT_EQ(RET_SUCCESS, ret);
     vector<string> permList;
     permList.push_back(TEST_PERMISSION_NAME_ALPHA);
-    for (int i = 0; i < 5000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         ret = PermissionKit::AddUserGrantedReqPermissions(TEST_BUNDLE_NAME, permList, TEST_USER_ID);
         ASSERT_EQ(RET_SUCCESS, ret);
         ret = PermissionKit::RemoveUserGrantedReqPermissions(TEST_BUNDLE_NAME, TEST_USER_ID);
@@ -210,7 +211,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_AddSystemG
     ASSERT_EQ(RET_SUCCESS, ret);
     vector<string> permList;
     permList.push_back(TEST_PERMISSION_NAME_ALPHA);
-    for (int i = 0; i < 5000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         ret = PermissionKit::AddSystemGrantedReqPermissions(TEST_BUNDLE_NAME, permList);
         ASSERT_EQ(RET_SUCCESS, ret);
         ret = PermissionKit::RemoveSystemGrantedReqPermissions(TEST_BUNDLE_NAME);
@@ -234,7 +235,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_RemoveUser
     ASSERT_EQ(RET_SUCCESS, ret);
     vector<string> permList;
     permList.push_back(TEST_PERMISSION_NAME_ALPHA);
-    for (int i = 0; i < 10000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         ret = PermissionKit::AddUserGrantedReqPermissions(TEST_BUNDLE_NAME, permList, TEST_USER_ID);
         ASSERT_EQ(RET_SUCCESS, ret);
         ret = PermissionKit::RemoveUserGrantedReqPermissions(TEST_BUNDLE_NAME, TEST_USER_ID);
@@ -258,7 +259,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_RemoveSyst
     ASSERT_EQ(RET_SUCCESS, ret);
     vector<string> permList;
     permList.push_back(TEST_PERMISSION_NAME_BETA);
-    for (int i = 0; i < 5000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         ret = PermissionKit::AddSystemGrantedReqPermissions(TEST_BUNDLE_NAME, permList);
         ASSERT_EQ(RET_SUCCESS, ret);
         ret = PermissionKit::RemoveSystemGrantedReqPermissions(TEST_BUNDLE_NAME);
@@ -284,7 +285,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_GrantUserG
     permList.push_back(TEST_PERMISSION_NAME_ALPHA);
     ret = PermissionKit::AddUserGrantedReqPermissions(TEST_BUNDLE_NAME, permList, TEST_USER_ID);
     ASSERT_EQ(RET_SUCCESS, ret);
-    for (int i = 0; i < 5000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         ret = PermissionKit::GrantUserGrantedPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_ALPHA, TEST_USER_ID);
         ASSERT_EQ(RET_SUCCESS, ret);
         ret = PermissionKit::VerifyPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_ALPHA, TEST_USER_ID);
@@ -314,7 +315,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_GrantSyste
     permList.push_back(TEST_PERMISSION_NAME_BETA);
     ret = PermissionKit::AddSystemGrantedReqPermissions(TEST_BUNDLE_NAME, permList);
     ASSERT_EQ(RET_SUCCESS, ret);
-    for (int i = 0; i < 5000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         ret = PermissionKit::GrantSystemGrantedPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_BETA);
         ASSERT_EQ(RET_SUCCESS, ret);
         ret = PermissionKit::VerifyPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_BETA, TEST_USER_ID);
@@ -344,7 +345,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_RevokeUser
     permList.push_back(TEST_PERMISSION_NAME_ALPHA);
     ret = PermissionKit::AddUserGrantedReqPermissions(TEST_BUNDLE_NAME, permList, TEST_USER_ID);
     ASSERT_EQ(RET_SUCCESS, ret);
-    for (int i = 0; i < 10000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         ret = PermissionKit::GrantUserGrantedPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_ALPHA, TEST_USER_ID);
         ASSERT_EQ(RET_SUCCESS, ret);
         ret = PermissionKit::VerifyPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_ALPHA, TEST_USER_ID);
@@ -374,7 +375,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_RevokeSyst
     permList.push_back(TEST_PERMISSION_NAME_BETA);
     ret = PermissionKit::AddSystemGrantedReqPermissions(TEST_BUNDLE_NAME, permList);
     ASSERT_EQ(RET_SUCCESS, ret);
-    for (int i = 0; i < 10000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         ret = PermissionKit::GrantSystemGrantedPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_BETA);
         ASSERT_EQ(RET_SUCCESS, ret);
         ret = PermissionKit::VerifyPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_BETA, TEST_USER_ID);
@@ -404,7 +405,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_CanRequest
     permList.push_back(TEST_PERMISSION_NAME_ALPHA);
     ret = PermissionKit::AddUserGrantedReqPermissions(TEST_BUNDLE_NAME, permList, TEST_USER_ID);
     ASSERT_EQ(RET_SUCCESS, ret);
-    for (int i = 0; i < 5000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         bool isCanRequest = PermissionKit::CanRequestPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_ALPHA, TEST_USER_ID);
         ASSERT_TRUE(isCanRequest);
     }
@@ -430,7 +431,7 @@ HWTEST_F(PermissionKitTest, Security_AppSecurity_PermissionManager_L2_VerifyPer_
     ASSERT_EQ(RET_SUCCESS, ret);
     ret = PermissionKit::GrantSystemGrantedPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_BETA);
     ASSERT_EQ(RET_SUCCESS, ret);
-    for (int i = 0; i < 10000; i++){
+    for (int i = 0; i < RUNNING_TIMES; i++){
         ret = PermissionKit::VerifyPermission(TEST_BUNDLE_NAME, TEST_PERMISSION_NAME_BETA, TEST_USER_ID);
         ASSERT_EQ(PERMISSION_GRANTED, ret);
     }
