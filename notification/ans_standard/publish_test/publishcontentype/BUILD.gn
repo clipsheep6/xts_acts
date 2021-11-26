@@ -17,8 +17,8 @@ group("publishcontentype") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      #"publishtype:ActsAnsNotificationTest",
-      #"sub:ActsAnsCommonEventTest",
+      "publishtype:ActsAnsNotificationTest",
+      "sub:ActsAnsCommonEventTest",
     ]
   }
 }
