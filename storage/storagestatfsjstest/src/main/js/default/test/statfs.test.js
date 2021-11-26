@@ -17,7 +17,9 @@ import {
   fileio, FILE_CONTENT, prepareFile, nextFileName, isIntNum,
   describe, it, expect, statfs
 } from './Common';
+
 describe('statfsTest', function () {
+
   /**
    * @tc.number SUB_DF_Statfs_getFreeBytes_0000
    * @tc.name statfs_test_get_free_bytes_async_000
