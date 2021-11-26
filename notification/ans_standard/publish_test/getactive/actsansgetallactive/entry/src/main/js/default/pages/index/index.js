@@ -36,7 +36,6 @@ export default {
         core.init()
 
         const configService = core.getDefaultService('config')
-        this.timeout = 120000
         configService.setConfig(this)
 
         require('../../../test/List.test')
