@@ -14,7 +14,6 @@
  */
 
 import fileio from '@ohos.fileio';
-import statfs from '@ohos.statfs';
 
 export const FILE_CONTENT = 'hello world';
 
@@ -198,6 +197,5 @@ export {
   afterEach,
   afterAll,
   it,
-  expect,
-  statfs
+  expect
 };
