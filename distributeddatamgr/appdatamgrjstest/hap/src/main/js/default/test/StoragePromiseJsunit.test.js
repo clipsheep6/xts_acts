@@ -329,18 +329,18 @@ describe('storageTest', function () {
      * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0140
      * @tc.desc deleteSync promise interface test
      */
-         it('testPutString0171', 0, async function (done) {
-            mPref.putSync(KEY_TEST_STRING_ELEMENT, "abc");
-            const promise = mPref.put(KEY_TEST_STRING_ELEMENT, '');
-            promise.then((ret) => {
-                expect('').assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue"));
-                mPref.deleteSync(KEY_TEST_STRING_ELEMENT);
-                expect(null).assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue"));
-            }).catch((err) => {
-                expect('').assertFail();
-            });
-            await promise;
-            done();
+    it('testPutString0171', 0, async function (done) {
+        mPref.putSync(KEY_TEST_STRING_ELEMENT, "abc");
+        const promise = mPref.put(KEY_TEST_STRING_ELEMENT, '');
+        promise.then((ret) => {
+            expect('').assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue"));
+            mPref.deleteSync(KEY_TEST_STRING_ELEMENT);
+            expect(null).assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue"));
+        }).catch((err) => {
+            expect('').assertFail();
+        });
+        await promise;
+        done();
         })
 
     /**
@@ -368,5 +368,5 @@ describe('storageTest', function () {
     it('testProperty0011', 0, function() {
         expect("80").assertEqual(mPref.MAX_KEY_LENHTH);
         expect("8192").assertEqual(mPref.MAX_VALUE_LENHTH);
-        })
+    })
 })
