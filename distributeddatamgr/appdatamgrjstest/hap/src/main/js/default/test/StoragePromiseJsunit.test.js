@@ -353,7 +353,8 @@ describe('storageTest', function () {
         mPref.putSync(KEY_TEST_STRING_ELEMENT, "test");
         const promise = mPref.flush();
         promise.then((ret) => {
-            expect("test").assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "default"));
+            expect("test").
+            assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "default"));
         }).catch((err) => {
             expect(null).assertFail();
         });
