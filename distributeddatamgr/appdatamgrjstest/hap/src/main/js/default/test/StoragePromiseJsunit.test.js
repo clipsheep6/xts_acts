@@ -314,9 +314,11 @@ describe('storageTest', function () {
         mPref.putSync(KEY_TEST_STRING_ELEMENT, "abc");
         const promise = mPref.put(KEY_TEST_STRING_ELEMENT, '');
         promise.then((ret) => {
-            expect('').assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue"));
+            expect('').assertEqual(mPref.
+                getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue"));
             mPref.flushSync();
-            expect('').assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue"));
+            expect('').assertEqual(mPref.
+                getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue"));
         }).catch((err) => {
             expect(null).assertFail();
         });
@@ -333,10 +335,11 @@ describe('storageTest', function () {
         mPref.putSync(KEY_TEST_STRING_ELEMENT, "abc");
         const promise = mPref.put(KEY_TEST_STRING_ELEMENT, '');
         promise.then((ret) => {
-            expect('').assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "default"));
+            expect('').assertEqual(mPref.
+                getSync(KEY_TEST_STRING_ELEMENT, "default"));
             mPref.deleteSync(KEY_TEST_STRING_ELEMENT);
             expect("default").
-            assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "default"));
+                assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "default"));
         }).catch((err) => {
             expect('').assertFail();
         });
