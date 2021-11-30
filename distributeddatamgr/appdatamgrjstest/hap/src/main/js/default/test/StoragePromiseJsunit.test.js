@@ -335,7 +335,8 @@ describe('storageTest', function () {
         promise.then((ret) => {
             expect('').assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "default"));
             mPref.deleteSync(KEY_TEST_STRING_ELEMENT);
-            expect("default").assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "default"));
+            expect("default").
+            assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "default"));
         }).catch((err) => {
             expect('').assertFail();
         });
