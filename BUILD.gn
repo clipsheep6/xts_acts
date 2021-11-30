@@ -28,4 +28,5 @@ ohos_test_suite("acts_intellitv") {
 ohos_test_suite("acts_wearable") {
   deps = selected_packages_wearable
 }
-###############
+
+//wang
