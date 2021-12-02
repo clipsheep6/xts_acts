@@ -43,6 +43,7 @@ describe('SystemParameterTest', function () {
                 } else {
                     console.info('system_parameter_test_0100 set callback hw_sc.build.os.version value err:'
                     + err.code);
+                    
                 }
             });
             done();
