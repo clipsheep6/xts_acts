@@ -352,10 +352,10 @@ describe('storageTest', function () {
      */
     it('testFlush00181', 0, async function (done) {
         mPref.putSync(KEY_TEST_STRING_ELEMENT, "test");
+        mPref.flushSync();
         const promise = mPref.flush();
         promise.then((ret) => {
-            expect("test").
-                assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "default"));
+            expect("test").assertEqual(mPref.getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue"));
         }).catch((err) => {
             expect(null).assertFail();
         });
@@ -369,7 +369,8 @@ describe('storageTest', function () {
      * @tc.desc const test
      */
     it('testConst001', 0, function () {
-        expect("80").assertEqual(mPref.MAX_KEY_LENHTH);
-        expect("8192").assertEqual(mPref.MAX_VALUE_LENHTH);
+        mPref = storage.getStorageSync(PATH);
+        expect("80").assertEqual(mPref.MAX_KEY_LENGTH);
+        expect("8192").assertEqual(mPref.MAX_VALUE_LENGTH);
     })
 })
