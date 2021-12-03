@@ -29,6 +29,7 @@ group("aafwk_standard") {
       "fwkdataaccessor:FWKDataAccessor",
 
       #"serviceability/actsparticleabilitytest:ActsParticleAbilityTest",
+      "getactiveprocessinfos:getactiveprocessinfos",
       "serviceability/sceneProject/particlestartability:ParticleStartAbility",
       "serviceability/sceneProject/particletestserver:ParticleTestServer",
       "serviceability/stserviceabilityclient:amsStServiceAbilityClient",
