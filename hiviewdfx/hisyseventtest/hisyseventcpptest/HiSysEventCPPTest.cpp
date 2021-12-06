@@ -220,7 +220,7 @@ HWTEST_F(HiSysEventCPPTest, DFX_DFT_HiviewKit_HiSysEvent_Native_0600, Function|M
 {
     GTEST_LOG_(INFO) << "DFX_DFT_HiviewKit_HiSysEvent_Native_0600 start" << endl;
     bool result = false;
-    double param = 30949.374;
+    double param = 30949.4;
     string domain = OHOS::HiviewDFX::HiSysEvent::Domain::WEARABLE_HARDWARE;
     OHOS::HiviewDFX::HiSysEvent::EventType eventtype = OHOS::HiviewDFX::HiSysEvent::EventType::FAULT;
     OHOS::HiviewDFX::HiSysEvent::Write(domain, "eventNameDemo", eventtype, g_key, param);
