@@ -24,126 +24,19 @@
 #include "osal_time.h"
 #include "hdf_log.h"
 #include "input_manager.h"
+#include "hdi_input_test.h"
 
 using namespace testing::ext;
 
-namespace {
-    IInputInterface *g_inputInterface;
-    InputEventCb g_callback;
-    InputHostCb g_hotplugCb;
+IInputInterface *g_inputInterface;
+InputEventCb g_callback;
+InputHostCb g_hotplugCb;
+bool g_HasDev = false;
 
-    static void ReportHotPlugEventPkgCallback(const HotPlugEvent *msg);
-    static void ReportEventPkgCallback(const EventPackage **pkgs, uint32_t count, uint32_t devIndex);
-    static void CloseOnlineDev(DevDesc *sta, int32_t len);
-    static void OpenOnlineDev(DevDesc *sta, int32_t len);
-    const int INIT_DEFAULT_VALUE = 255;
-    const int KEEP_ALIVE_TIME_MS = 15000;
-    const int TOUCH_INDEX = 1;
-    const int INVALID_INDEX = 5;
-    const int NAME_MAX_LEN = 10;
-    const int TEST_RESULT_LEN = 32;
-    const int MAX_DEVICES = 32;
-
-    #define INPUT_CHECK_NULL_POINTER(pointer, ret) do { \
-        if ((pointer) == NULL) { \
-            HDF_LOGE("%s: null pointer", __func__); \
-            ASSERT_EQ ((ret), INPUT_SUCCESS); \
-        } \
-    } while (0)
-
-    static void ReportEventPkgCallback(const EventPackage **pkgs, uint32_t count, uint32_t devIndex)
-    {
-        if (pkgs == NULL) {
-            return;
-        }
-        for (uint32_t i = 0; i < count; i++) {
-            printf("%s: pkgs[%d] = 0x%x, 0x%x, %d\n", __func__, i, pkgs[i]->type, pkgs[i]->code, pkgs[i]->value);
-        }
-    }
-
-    static void ReportHotPlugEventPkgCallback(const HotPlugEvent *msg)
-    {
-        int32_t ret;
-        if (msg == NULL) {
-            return;
-        }
-        HDF_LOGI("%s: status =%d devId=%d type =%d", __func__, msg->status, msg->devIndex, msg->devType);
-
-        if (msg->status == 0) {
-            ret = g_inputInterface->iInputManager->OpenInputDevice(msg->devIndex);
-            if (ret) {
-                HDF_LOGE("%s: open device[%u] failed, ret %d", __func__, msg->devIndex, ret);
-            }
-
-            ret  = g_inputInterface->iInputReporter->RegisterReportCallback(msg->devIndex, &g_callback);
-            if (ret) {
-                HDF_LOGE("%s: register callback failed for device[%d], ret %d", __func__, msg->devIndex, ret);
-            }
-        } else {
-            ret = g_inputInterface->iInputReporter->UnregisterReportCallback(msg->devIndex);
-            if (ret) {
-                HDF_LOGE("%s: unregister callback failed, ret %d", __func__, ret);
-            }
-
-            ret = g_inputInterface->iInputManager->CloseInputDevice(msg->devIndex);
-            if (ret) {
-                HDF_LOGE("%s: close device failed, ret %d", __func__, ret);
-            }
-        }
-    }
-
-    static void OpenOnlineDev(DevDesc *sta, int32_t len)
-    {
-        int32_t ret = g_inputInterface->iInputManager->ScanInputDevice(sta, len);
-        if (ret) {
-            HDF_LOGE("%s: scan device failed, ret %d", __func__, ret);
-        }
-        ASSERT_EQ(ret, INPUT_SUCCESS);
-
-        for (int32_t i = 0; i < len; i++) {
-            if (sta[i].devIndex == 0) {
-                break;
-            }
-            ret = g_inputInterface->iInputManager->OpenInputDevice(sta[i].devIndex);
-            if (ret) {
-                HDF_LOGE("%s: open device[%d] failed, ret %d", __func__, sta[i].devIndex, ret);
-            }
-            ASSERT_EQ(ret, INPUT_SUCCESS);
-
-            ret  = g_inputInterface->iInputReporter->RegisterReportCallback(sta[i].devIndex, &g_callback);
-            if (ret) {
-                HDF_LOGE("%s: register callback failed for device[%d], ret %d", __func__, sta[i].devIndex, ret);
-            }
-            ASSERT_EQ(ret, INPUT_SUCCESS);
-        }
-    }
-
-    static void CloseOnlineDev(DevDesc *sta, int32_t len)
-    {
-        int32_t ret = g_inputInterface->iInputManager->ScanInputDevice(sta, len);
-        if (ret) {
-            HDF_LOGE("%s: scan device failed, ret %d", __func__, ret);
-        }
-        ASSERT_EQ(ret, INPUT_SUCCESS);
-
-        for (int32_t i = 0; i < len; i++) {
-            if (sta[i].devIndex == 0) {
-                break;
-            }
-            ret = g_inputInterface->iInputReporter->UnregisterReportCallback(sta[i].devIndex);
-            if (ret) {
-                HDF_LOGE("%s: register callback failed for device[%d], ret %d", __func__, sta[i].devIndex, ret);
-            }
-            ASSERT_EQ(ret, INPUT_SUCCESS);
-
-            ret = g_inputInterface->iInputManager->CloseInputDevice(sta[i].devIndex);
-            if (ret) {
-                HDF_LOGE("%s: close device[%d] failed, ret %d", __func__, sta[i].devIndex, ret);
-            }
-            ASSERT_EQ(ret, INPUT_SUCCESS);
-        }
-    }
-}
+static void ReportHotPlugEventPkgCallback(const HotPlugEvent *msg);
+static void ReportEventPkgCallback(const EventPackage **pkgs, uint32_t count, uint32_t devIndex);
+static void CloseOnlineDev(DevDesc *sta, int32_t len);
+static void OpenOnlineDev(DevDesc *sta, int32_t len);
 
 class HdiInputTest : public testing::Test {
 public:
@@ -155,13 +48,31 @@ public:
 
 void HdiInputTest::SetUpTestCase()
 {
-    int32_t ret = GetInputInterface(&g_inputInterface);
+    int32_t ret;
+    DevDesc sta[MAX_DEVICES];
+    ret = memset_s(sta, MAX_DEVICES * sizeof(DevDesc), 0, MAX_DEVICES * sizeof(DevDesc));
+    if (ret != 0) {
+        HDF_LOGE("memset failed");
+        return;
+    }
+    ret = GetInputInterface(&g_inputInterface);
     if (ret != INPUT_SUCCESS) {
         HDF_LOGE("%s: get input hdi failed, ret %d", __func__, ret);
     }
 
     g_callback.EventPkgCallback = ReportEventPkgCallback;
     g_hotplugCb.HotPlugCallback = ReportHotPlugEventPkgCallback;
+    ret = g_inputInterface->iInputManager->ScanInputDevice(sta, MAX_DEVICES);
+    if (ret) {
+        HDF_LOGE("%s: scan device failed, ret %d", __func__, ret);
+    }
+    for (int32_t i = 0; i < MAX_DEVICES; i++) {
+        if (sta[i].devIndex == 0) {
+            break;
+        }
+        HDF_LOGI("%s: scan deviceIndex: %d", __func__, sta[i].devIndex);
+        g_HasDev = true;
+    }
 }
 
 void HdiInputTest::TearDownTestCase()
@@ -177,12 +88,113 @@ void HdiInputTest::TearDown()
 {
 }
 
+static void ReportEventPkgCallback(const EventPackage **pkgs, uint32_t count, uint32_t devIndex)
+{
+    if (pkgs == NULL) {
+        return;
+    }
+    for (uint32_t i = 0; i < count; i++) {
+        HDF_LOGI("%s: pkgs[%d] = 0x%x, 0x%x, %d", __func__, i, pkgs[i]->type, pkgs[i]->code, pkgs[i]->value);
+        EXPECT_GE(pkgs[i]->type, 0);
+        EXPECT_GE(pkgs[i]->code, 0);
+        EXPECT_GE(pkgs[i]->value, 0);
+    }
+}
+
+static void ReportHotPlugEventPkgCallback(const HotPlugEvent *msg)
+{
+    int32_t ret;
+    if (msg == NULL) {
+        return;
+    }
+    HDF_LOGI("%s: status =%d devId=%d type =%d", __func__, msg->status, msg->devIndex, msg->devType);
+    EXPECT_GE(msg->status, 0);
+    EXPECT_GE(msg->devIndex, 0);
+    EXPECT_GE(msg->devType, 0);
+
+    if (msg->status == 0) {
+        ret = g_inputInterface->iInputManager->OpenInputDevice(msg->devIndex);
+        if (ret) {
+            HDF_LOGE("%s: open device[%u] failed, ret %d", __func__, msg->devIndex, ret);
+        }
+
+        ret  = g_inputInterface->iInputReporter->RegisterReportCallback(msg->devIndex, &g_callback);
+        if (ret) {
+            HDF_LOGE("%s: register callback failed for device[%d], ret %d", __func__, msg->devIndex, ret);
+        }
+    } else {
+        ret = g_inputInterface->iInputReporter->UnregisterReportCallback(msg->devIndex);
+        if (ret) {
+            HDF_LOGE("%s: unregister callback failed, ret %d", __func__, ret);
+        }
+
+        ret = g_inputInterface->iInputManager->CloseInputDevice(msg->devIndex);
+        if (ret) {
+            HDF_LOGE("%s: close device failed, ret %d", __func__, ret);
+        }
+    }
+}
+
+static void OpenOnlineDev(DevDesc *sta, int32_t len)
+{
+    int32_t ret = g_inputInterface->iInputManager->ScanInputDevice(sta, len);
+    if (ret) {
+        HDF_LOGE("%s: scan device failed, ret %d", __func__, ret);
+    }
+    ASSERT_EQ(ret, INPUT_SUCCESS);
+
+    for (int32_t i = 0; i < len; i++) {
+        if (sta[i].devIndex == 0) {
+            break;
+        }
+        ret = g_inputInterface->iInputManager->OpenInputDevice(sta[i].devIndex);
+        if (ret) {
+            HDF_LOGE("%s: open device[%d] failed, ret %d", __func__, sta[i].devIndex, ret);
+        }
+        ASSERT_EQ(ret, INPUT_SUCCESS);
+
+        ret  = g_inputInterface->iInputReporter->RegisterReportCallback(sta[i].devIndex, &g_callback);
+        if (ret) {
+            HDF_LOGE("%s: register callback failed for device[%d], ret %d", __func__, sta[i].devIndex, ret);
+        }
+        ASSERT_EQ(ret, INPUT_SUCCESS);
+    }
+}
+
+static void CloseOnlineDev(DevDesc *sta, int32_t len)
+{
+    int32_t ret = g_inputInterface->iInputManager->ScanInputDevice(sta, len);
+    if (ret) {
+        HDF_LOGE("%s: scan device failed, ret %d", __func__, ret);
+    }
+    ASSERT_EQ(ret, INPUT_SUCCESS);
+
+    for (int32_t i = 0; i < len; i++) {
+        if (sta[i].devIndex == 0) {
+            break;
+        }
+        ret = g_inputInterface->iInputReporter->UnregisterReportCallback(sta[i].devIndex);
+        if (ret) {
+            HDF_LOGE("%s: register callback failed for device[%d], ret %d", __func__, sta[i].devIndex, ret);
+        }
+        ASSERT_EQ(ret, INPUT_SUCCESS);
+
+        ret = g_inputInterface->iInputManager->CloseInputDevice(sta[i].devIndex);
+        if (ret) {
+            HDF_LOGE("%s: close device[%d] failed, ret %d", __func__, sta[i].devIndex, ret);
+        }
+        ASSERT_EQ(ret, INPUT_SUCCESS);
+    }
+}
+
 /**
-  * @tc.name: ScanInputDevice
-  * @tc.desc: ScanInputDevice test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0001
+  * @tc.name: open input device test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, ScanInputDevice, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0001, Function | MediumTest | Level1)
 {
     DevDesc sta[MAX_DEVICES];
 
@@ -201,11 +213,13 @@ HWTEST_F(HdiInputTest, ScanInputDevice, Function | MediumTest | Level1)
 }
 
 /**
-  * @tc.name: HotPlugCallback
-  * @tc.desc: HotPlugCallback test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0002
+  * @tc.name: open input device test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, HotPlugCallback, Function | MediumTest | Level3)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0002, Function | MediumTest | Level3)
 {
     HDF_LOGI("%s: [Input] HotPlugCallback Testcase enter", __func__);
     int32_t ret = INPUT_SUCCESS;
@@ -247,522 +261,1000 @@ HWTEST_F(HdiInputTest, HotPlugCallback, Function | MediumTest | Level3)
 }
 
 /**
-  * @tc.name: OpenInputDev001
-  * @tc.desc: open input device test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0010
+  * @tc.name: open input device test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, OpenInputDev001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0010, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] OpenInputDev001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
     INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputManager, INPUT_NULL_PTR);
     int32_t ret = g_inputInterface->iInputManager->OpenInputDevice(TOUCH_INDEX);
-    if (ret) {
-        HDF_LOGE("%s: open device1 failed, ret %d", __func__, ret);
-    }
-    EXPECT_EQ(ret, INPUT_SUCCESS);
+    ASSERT_EQ(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputManager->CloseInputDevice(TOUCH_INDEX);
+    ASSERT_EQ(ret, INPUT_SUCCESS);
 }
 
 /**
-  * @tc.name: OpenInputDevice002
-  * @tc.desc: open input device test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0020
+  * @tc.name: open input device error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, OpenInputDevice002, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0020, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] OpenInputDev002 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
     INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputManager, INPUT_NULL_PTR);
-    /* Device "5" is used for testing nonexistent device node */
-    int32_t ret = g_inputInterface->iInputManager->OpenInputDevice(INVALID_INDEX);
-    if (ret) {
-        HDF_LOGE("%s: device5 dose not exist, can't open it, ret %d", __func__, ret);
-    }
+    /* Device "0" is used for testing nonexistent device node*/
+    int32_t ret = g_inputInterface->iInputManager->OpenInputDevice(0);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    /* Device "0" is used for testing nonexistent device node*/
+    ret = g_inputInterface->iInputManager->OpenInputDevice(INVALID_INDEX);
     EXPECT_NE(ret, INPUT_SUCCESS);
 }
 
 /**
-  * @tc.name: CloseInputDevice001
-  * @tc.desc: close input device test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0030
+  * @tc.name: open input device performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
   */
-HWTEST_F(HdiInputTest, CloseInputDevice001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0030, Function | MediumTest | Level3)
 {
-    HDF_LOGI("%s: [Input] CloseInputDev001 enter", __func__);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputManager, INPUT_NULL_PTR);
-    int32_t ret = g_inputInterface->iInputManager->CloseInputDevice(TOUCH_INDEX);
-    if (ret) {
-        HDF_LOGE("%s: close device1 failed, ret %d", __func__, ret);
-    }
-    EXPECT_EQ(ret, INPUT_SUCCESS);
-}
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret = 0;
+    int32_t timeUsed = 0;
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0};
 
-/**
-  * @tc.name: CloseInputDevice002
-  * @tc.desc: close input device test
-  * @tc.type: FUNC
-  */
-HWTEST_F(HdiInputTest, CloseInputDevice002, Function | MediumTest | Level1)
-{
-    HDF_LOGI("%s: [Input] CloseInputDev002 enter", __func__);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputManager, INPUT_NULL_PTR);
-    /* Device "5" is used for testing nonexistent device node */
-    int32_t ret = g_inputInterface->iInputManager->CloseInputDevice(INVALID_INDEX);
-    if (ret) {
-        HDF_LOGE("%s: device5 doesn't exist, can't close it, ret %d", __func__, ret);
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        g_inputInterface->iInputManager->OpenInputDevice(TOUCH_INDEX);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+        ret = g_inputInterface->iInputManager->CloseInputDevice(TOUCH_INDEX);
+        EXPECT_EQ(ret, INPUT_SUCCESS);
     }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0030: OpenInputDevice %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (LONG_TIME * PERFORMANXCE_TIME));
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0040
+  * @tc.name: close input device test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0040, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret = 0;
+    ret = g_inputInterface->iInputManager->CloseInputDevice(TOUCH_INDEX);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    g_inputInterface->iInputManager->OpenInputDevice(TOUCH_INDEX);
+    ASSERT_EQ(ret, INPUT_SUCCESS);
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0050
+  * @tc.name: close input device error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0050, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret = 0;
+    ret = g_inputInterface->iInputManager->CloseInputDevice(0);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputManager->CloseInputDevice(INVALID_INDEX);
     EXPECT_NE(ret, INPUT_SUCCESS);
 }
-
 /**
-  * @tc.name: GetInputDevice001
-  * @tc.desc: get input device info test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0060
+  * @tc.name: close input device performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
   */
-HWTEST_F(HdiInputTest, GetInputDevice001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0060, Function | MediumTest | Level3)
 {
-    HDF_LOGI("%s: [Input] GetInputDevice001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret = 0;
+    int32_t timeUsed = 0;
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0};
+    ASSERT_EQ(ret, INPUT_SUCCESS);
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        g_inputInterface->iInputManager->OpenInputDevice(TOUCH_INDEX);
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputManager->CloseInputDevice(TOUCH_INDEX);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0060: CloseInputDevice %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0070
+  * @tc.name: get input device id info test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0070, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret = 0;
     DeviceInfo *dev = NULL;
     INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
     INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputManager, INPUT_NULL_PTR);
 
-    int32_t ret = g_inputInterface->iInputManager->OpenInputDevice(TOUCH_INDEX);
+    ret = g_inputInterface->iInputManager->OpenInputDevice(TOUCH_INDEX);
     if (ret) {
         HDF_LOGE("%s: open device1 failed, ret %d", __func__, ret);
     }
     ASSERT_EQ(ret, INPUT_SUCCESS);
-
     ret = g_inputInterface->iInputManager->GetInputDevice(TOUCH_INDEX, &dev);
-    if (ret) {
-        HDF_LOGE("%s: get device1 failed, ret %d", __func__, ret);
-    }
-
-    HDF_LOGI("%s: devindex = %u, devType = %u", __func__, dev->devIndex,
-            dev->devType);
-    HDF_LOGI("%s: chipInfo = %s, vendorName = %s, chipName = %s",
-        __func__, dev->chipInfo, dev->vendorName, dev->chipName);
     EXPECT_EQ(ret, INPUT_SUCCESS);
+    EXPECT_EQ((uint32_t)TOUCH_INDEX, dev->devIndex);
+    HDF_LOGI("devindex = %u, devType = %u\n", dev->devIndex, dev->devType);
+    HDF_LOGI("chipInfo = %s, VendorName = %s,chipName = %s\n", dev->chipInfo,dev->vendorName, dev->chipName);
 }
 
 /**
-  * @tc.name: GetInputDeviceList001
-  * @tc.desc: get input device list info test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0080
+  * @tc.name: get input device id error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, GetInputDeviceList001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0080, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] GetInputDeviceList001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret = 0;
+    DeviceInfo *dev = NULL;
+
+    ret = g_inputInterface->iInputManager->GetInputDevice(TOUCH_INDEX, nullptr);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputManager->GetInputDevice(0, &dev);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputManager->GetInputDevice(INVALID_INDEX, &dev);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputManager->GetInputDevice(MAX_INPUT_DEV_NUM, &dev);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+}
+
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0090
+  * @tc.name: get input device id info performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0090, Function | MediumTest | Level3)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret = 0;
+    int32_t timeUsed = 0;
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0};
+    DeviceInfo *dev = NULL;
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputManager->GetInputDevice(TOUCH_INDEX, &dev);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+        EXPECT_EQ((uint32_t)TOUCH_INDEX, dev->devIndex);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0060: GetInputDevice %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0100
+  * @tc.name: get input device list info test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0100, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
     uint32_t num = 0;
     DeviceInfo *dev[MAX_INPUT_DEV_NUM] = {0};
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputManager, INPUT_NULL_PTR);
     ret = g_inputInterface->iInputManager->GetInputDeviceList(&num, dev, MAX_INPUT_DEV_NUM);
-    if (ret) {
-        HDF_LOGE("%s: get device list failed, ret %d", __func__, ret);
-    }
-    ret = num <= MAX_INPUT_DEV_NUM ? HDF_SUCCESS : HDF_FAILURE;  /* num <= MAX_INPUT_DEV_NUM return true */
-    ASSERT_EQ(ret, INPUT_SUCCESS);
-
-
-    for (uint32_t i = 0; i < num; i++) {
-        HDF_LOGI("%s: num = %u, device[%d]'s info is:", __func__, num, i);
-        HDF_LOGI("%s: index = %u, devType = %u", __func__, dev[i]->devIndex,
-                dev[i]->devType);
-        HDF_LOGI("%s: chipInfo = %s, vendorName = %s, chipName = %s",
-            __func__, dev[i]->chipInfo, dev[i]->vendorName, dev[i]->chipName);
-    }
     EXPECT_EQ(ret, INPUT_SUCCESS);
+    ASSERT_LE(num,(uint32_t)MAX_INPUT_DEV_NUM);
+    for (uint32_t i = 0; i <num; i++){
+        HDF_LOGI("num = %u,device[%d]'s info is :\n", num, i);
+        HDF_LOGI("index = %u, devType = %u\n", dev[i]->devIndex, dev[i]->devType);
+        HDF_LOGI("chipInfo = %s, VendorName = %s,chipName = %s\n", dev[i]->chipInfo,dev[i]->vendorName, dev[i]->chipName);
+        EXPECT_LE(0, dev[i]->devType);
+    }
 }
-
 /**
-  * @tc.name: GetDeviceType001
-  * @tc.desc: get input device type test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0110
+  * @tc.name: get input device list info error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, GetDeviceType001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0110, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] GetDeviceType001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    uint32_t num = 0;
+    DeviceInfo *dev[MAX_INPUT_DEV_NUM] = {0}; 
+
+    ret = g_inputInterface->iInputManager->GetInputDeviceList(nullptr, dev , MAX_INPUT_DEV_NUM);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputManager->GetInputDeviceList(&num, nullptr, MAX_INPUT_DEV_NUM);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputManager->GetInputDeviceList(&num, dev , 0);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0120
+  * @tc.name: get input device list info performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0120, Function | MediumTest | Level3)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    uint32_t num = 0;
+    int32_t timeUsed = 0;
+    DeviceInfo *dev[MAX_INPUT_DEV_NUM] = {0};
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputManager->GetInputDeviceList(&num, dev , MAX_INPUT_DEV_NUM);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0120: GetInputDeviceList %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0130
+  * @tc.name: get input device type test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0130, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
     uint32_t devType = INIT_DEFAULT_VALUE;
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
     ret = g_inputInterface->iInputController->GetDeviceType(TOUCH_INDEX, &devType);
-    if (ret) {
-        HDF_LOGE("%s: get device1's type failed, ret %d", __func__, ret);
-    }
-    HDF_LOGI("%s: device1's type is %u", __func__, devType);
     EXPECT_EQ(ret, INPUT_SUCCESS);
+    EXPECT_EQ(devType, INDEV_TYPE_TOUCH);
 }
-
 /**
-  * @tc.name: GetChipInfo001
-  * @tc.desc: get input device chip info test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0140
+  * @tc.name: get input device type error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, GetChipInfo001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0140, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] GetChipInfo001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    uint32_t devType = INIT_DEFAULT_VALUE;
+
+    ret = g_inputInterface->iInputController->GetDeviceType(TOUCH_INDEX, nullptr);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetDeviceType(0, &devType);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetDeviceType(MAX_INPUT_DEV_NUM, &devType);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0150
+  * @tc.name: get input device type performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0150, Function | MediumTest | Level3)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    int32_t timeUsed = 0;
+    uint32_t devType = INIT_DEFAULT_VALUE;
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputController->GetDeviceType(TOUCH_INDEX, &devType);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0150: GetDeviceType %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0160
+  * @tc.name: get input device chip info test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0160, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
     char chipInfo[CHIP_INFO_LEN] = {0};
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
     ret = g_inputInterface->iInputController->GetChipInfo(TOUCH_INDEX, chipInfo, CHIP_INFO_LEN);
-    if (ret) {
-        HDF_LOGE("%s: get device1's chip info failed, ret %d", __func__, ret);
-    }
-    HDF_LOGI("%s: device1's chip info is %s", __func__, chipInfo);
-    EXPECT_EQ(ret, INPUT_SUCCESS);
+    ASSERT_EQ(ret, INPUT_SUCCESS);
+    HDF_LOGI("device's chip info is %s\n", chipInfo);
 }
-
 /**
-  * @tc.name: GetInputDevice002
-  * @tc.desc: get input device chip info test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0170
+  * @tc.name: get input device chip info error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, GetInputDevice002, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0170, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] GetInputDevice002 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
-    DeviceInfo *dev = NULL;
+    char chipInfo[CHIP_INFO_LEN] = {0};
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputManager, INPUT_NULL_PTR);
+    ret = g_inputInterface->iInputController->GetChipInfo(0, chipInfo, CHIP_INFO_LEN);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetChipInfo(MAX_INPUT_DEV_NUM, chipInfo, CHIP_INFO_LEN);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetChipInfo(TOUCH_INDEX, nullptr, CHIP_INFO_LEN);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetChipInfo(TOUCH_INDEX, chipInfo, CHIP_INFO_LEN - 1);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0180
+  * @tc.name: get input device chip info performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0180, Function | MediumTest | Level3)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    int32_t timeUsed = 0;
+    char chipInfo[CHIP_INFO_LEN] = {0};
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputController->GetChipInfo(TOUCH_INDEX, chipInfo, CHIP_INFO_LEN);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0180: GetChipInfo %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0190
+  * @tc.name: get input device info test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0190, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    char chipInfo[CHIP_INFO_LEN] = {0};
+    DeviceInfo *dev =NULL;
     ret = g_inputInterface->iInputManager->GetInputDevice(TOUCH_INDEX, &dev);
-    if (ret) {
-        HDF_LOGE("%s: get device1 failed, ret %d", __func__, ret);
-    }
-
-    HDF_LOGI("%s: After fill the info, new device0's info is:", __func__);
-    HDF_LOGI("%s: new devindex = %u, devType = %u", __func__, dev->devIndex,
-            dev->devType);
-    HDF_LOGI("%s: new chipInfo = %s, vendorName = %s, chipName = %s",
-        __func__, dev->chipInfo, dev->vendorName, dev->chipName);
     EXPECT_EQ(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetChipInfo(TOUCH_INDEX, chipInfo, CHIP_INFO_LEN);
+    EXPECT_EQ(ret, INPUT_SUCCESS);
+    HDF_LOGI("device1's chip info is %s? chipInfo = %s\n", chipInfo, dev->chipInfo);
 }
-
 /**
-  * @tc.name: RegisterCallback001
-  * @tc.desc: get input device chip info test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0200
+  * @tc.name: set device power status test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, RegisterCallback001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0200, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] RegisterCallbac001 enter", __func__);
-    int32_t ret;
-
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputReporter, INPUT_NULL_PTR);
-    /* Device "5" is used for testing nonexistent device node */
-    ret  = g_inputInterface->iInputReporter->RegisterReportCallback(INVALID_INDEX, &g_callback);
-    if (ret) {
-        HDF_LOGE("%s: device2 dose not exist, can't register callback to it, ret %d", __func__, ret);
-    }
-    EXPECT_NE(ret, INPUT_SUCCESS);
-}
-
-/**
-  * @tc.name: SetPowerStatus001
-  * @tc.desc: set device power status test
-  * @tc.type: FUNC
-  */
-HWTEST_F(HdiInputTest, SetPowerStatus001, Function | MediumTest | Level1)
-{
-    HDF_LOGI("%s: [Input] SetPowerStatus001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
     uint32_t setStatus = INPUT_LOW_POWER;
+    uint32_t getStatus = 0;
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
     ret = g_inputInterface->iInputController->SetPowerStatus(TOUCH_INDEX, setStatus);
-    if (ret) {
-        HDF_LOGE("%s: set device1's power status failed, ret %d", __func__, ret);
-    }
     EXPECT_EQ(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetPowerStatus(TOUCH_INDEX, &getStatus);
+    EXPECT_EQ(ret, INPUT_SUCCESS);
+    ASSERT_EQ(setStatus, getStatus);
 }
-
 /**
-  * @tc.name: SetPowerStatus002
-  * @tc.desc: set device power status test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0210
+  * @tc.name: set device poewr status error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, SetPowerStatus002, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0210, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] SetPowerStatus002 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
     uint32_t setStatus = INPUT_LOW_POWER;
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
-    /* Device "5" is used for testing nonexistent device node */
-    ret = g_inputInterface->iInputController->SetPowerStatus(INVALID_INDEX, setStatus);
-    if (ret) {
-        HDF_LOGE("%s: set device5's power status failed, ret %d", __func__, ret);
-    }
+    ret = g_inputInterface->iInputController->SetPowerStatus(0, setStatus);
     EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->SetPowerStatus(MAX_INPUT_DEV_NUM, setStatus);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->SetPowerStatus(TOUCH_INDEX, INPUT_POWER_STATUS_UNKNOWN);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0220
+  * @tc.name: set device power status performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0220, Function | MediumTest | Level3)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    int32_t timeUsed = 0;
+    int32_t setStatus = INPUT_LOW_POWER;
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputController->SetPowerStatus(TOUCH_INDEX, setStatus);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0220: SetPowerStatus %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
 }
 
 /**
-  * @tc.name: GetPowerStatus001
-  * @tc.desc: get device power status test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0230
+  * @tc.name: get device poewr status test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, GetPowerStatus001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0230, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] GetPowerStatus001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
+    uint32_t setStatus = INPUT_RESUME;
     uint32_t getStatus = 0;
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
+    ret = g_inputInterface->iInputController->SetPowerStatus(TOUCH_INDEX, setStatus);
+    EXPECT_EQ(ret, INPUT_SUCCESS);
     ret = g_inputInterface->iInputController->GetPowerStatus(TOUCH_INDEX, &getStatus);
-    if (ret) {
-        HDF_LOGE("%s: get device1's power status failed, ret %d", __func__, ret);
-    }
-    HDF_LOGI("%s: device1's power status is %d:", __func__, getStatus);
     EXPECT_EQ(ret, INPUT_SUCCESS);
+    ASSERT_EQ(setStatus, getStatus);
 }
 
 /**
-  * @tc.name: GetPowerStatus002
-  * @tc.desc: get device power status test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0240
+  * @tc.name: get device poewr status error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, GetPowerStatus002, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0240, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] GetPowerStatus002 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
     uint32_t getStatus = 0;
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
-    /* Device "5" is used for testing nonexistent device node */
-    ret = g_inputInterface->iInputController->GetPowerStatus(INVALID_INDEX, &getStatus);
-    if (ret) {
-        HDF_LOGE("%s: get device5's power status failed, ret %d", __func__, ret);
-    }
+    ret = g_inputInterface->iInputController->GetPowerStatus(0, &getStatus);
     EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetPowerStatus(TOUCH_INDEX, nullptr);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetPowerStatus(MAX_INPUT_DEV_NUM, &getStatus);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+}
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0250
+  * @tc.name: get device power status performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0250, Function | MediumTest | Level3)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    int32_t timeUsed = 0;
+    uint32_t getStatus = 0;
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputController->GetPowerStatus(TOUCH_INDEX, &getStatus);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0250: GetPowerStatus %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
 }
 
 /**
-  * @tc.name: GetVendorName001
-  * @tc.desc: get device vendor name test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0260
+  * @tc.name: get device vendor name test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, GetVendorName001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0260, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] GetVendorName001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
-    char vendorName[NAME_MAX_LEN] = {0};
+    char vendorName[VENDOR_NAME_LEN] = {0};
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
-    ret = g_inputInterface->iInputController->GetVendorName(TOUCH_INDEX, vendorName, NAME_MAX_LEN);
-    if (ret) {
-        HDF_LOGE("%s: get device1's vendor name failed, ret %d", __func__, ret);
-    }
-    HDF_LOGI("%s: device1's vendor name is %s:", __func__, vendorName);
+    ret = g_inputInterface->iInputController->GetVendorName(TOUCH_INDEX, vendorName, VENDOR_NAME_LEN);
     EXPECT_EQ(ret, INPUT_SUCCESS);
+    HDF_LOGI("device1's vendor name is %s:\n", vendorName);
 }
 
 /**
-  * @tc.name: GetVendorName002
-  * @tc.desc: get device vendor name test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0270
+  * @tc.name: get device vendor name error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, GetVendorName002, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0270, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] GetVendorName002 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
-    char vendorName[NAME_MAX_LEN] = {0};
+    char vendorName[VENDOR_NAME_LEN] = {0};
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
-    /* Device "5" is used for testing nonexistent device node */
-    ret = g_inputInterface->iInputController->GetVendorName(INVALID_INDEX, vendorName, NAME_MAX_LEN);
-    if (ret) {
-        HDF_LOGE("%s: get device5's vendor name failed, ret %d", __func__, ret);
-    }
+    ret = g_inputInterface->iInputController->GetVendorName(MAX_INPUT_DEV_NUM, vendorName, VENDOR_NAME_LEN);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetVendorName(0, vendorName, VENDOR_NAME_LEN);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetVendorName(TOUCH_INDEX, nullptr, VENDOR_NAME_LEN);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetVendorName(TOUCH_INDEX, vendorName, VENDOR_NAME_LEN - 1);
     EXPECT_NE(ret, INPUT_SUCCESS);
 }
 
 /**
-  * @tc.name: GetChipName001
-  * @tc.desc: get device chip name test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0280
+  * @tc.name: get device vendor name performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
   */
-HWTEST_F(HdiInputTest, GetChipName001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0280, Function | MediumTest | Level3)
 {
-    HDF_LOGI("%s: [Input] GetChipName001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
-    char chipName[NAME_MAX_LEN] = {0};
+    int32_t timeUsed = 0;
+    char vendorName[VENDOR_NAME_LEN] = {0};
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
-    ret = g_inputInterface->iInputController->GetChipName(TOUCH_INDEX, chipName, NAME_MAX_LEN);
-    if (ret) {
-        HDF_LOGE("%s: get device1's chip name failed, ret %d", __func__, ret);
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputController->GetVendorName(TOUCH_INDEX, vendorName, VENDOR_NAME_LEN);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
     }
-    HDF_LOGI("%s: device1's chip name is %s", __func__, chipName);
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0280: GetVendorName %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0290
+  * @tc.name: get device chip name test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0290, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    char chipName[CHIP_NAME_LEN] = {0};
+
+    ret = g_inputInterface->iInputController->GetChipName(TOUCH_INDEX, chipName, CHIP_NAME_LEN);
     EXPECT_EQ(ret, INPUT_SUCCESS);
+    HDF_LOGI("device1's vendor name is %s:\n", chipName);
 }
-
 /**
-  * @tc.name: GetChipName002
-  * @tc.desc: get device chip name test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0300
+  * @tc.name: get device chip name error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, GetChipName002, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0300, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] GetChipName002 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
-    char chipName[NAME_MAX_LEN] = {0};
+    char chipName[CHIP_NAME_LEN] = {0};
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
-    /* Device "5" is used for testing nonexistent device node */
-    ret = g_inputInterface->iInputController->GetChipName(INVALID_INDEX, chipName, NAME_MAX_LEN);
-    if (ret) {
-        HDF_LOGE("%s: get device5's chip name failed, ret %d", __func__, ret);
-    }
+    ret = g_inputInterface->iInputController->GetChipName(MAX_INPUT_DEV_NUM, chipName, CHIP_NAME_LEN);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetChipName(0, chipName, CHIP_NAME_LEN);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetChipName(TOUCH_INDEX, nullptr, CHIP_NAME_LEN);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->GetChipName(TOUCH_INDEX, chipName, CHIP_NAME_LEN - 1);
     EXPECT_NE(ret, INPUT_SUCCESS);
 }
 
 /**
-  * @tc.name: SetGestureMode001
-  * @tc.desc: set device gesture mode test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0310
+  * @tc.name: get device vendor name performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
   */
-HWTEST_F(HdiInputTest, SetGestureMode001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0310, Function | MediumTest | Level3)
 {
-    HDF_LOGI("%s: [Input] SetGestureMode001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    int32_t timeUsed = 0;
+    char chipName[CHIP_NAME_LEN] = {0};
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputController->GetChipName(TOUCH_INDEX, chipName, CHIP_NAME_LEN);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0310: GetChipName %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0320
+  * @tc.name: set device gesture mode test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0320, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
     uint32_t gestureMode = 1;
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
     ret = g_inputInterface->iInputController->SetGestureMode(TOUCH_INDEX, gestureMode);
-    if (ret) {
-        HDF_LOGE("%s: get device1's gestureMode failed, ret %d", __func__, ret);
-    }
     EXPECT_EQ(ret, INPUT_SUCCESS);
 }
 
 /**
-  * @tc.name: SetGestureMode002
-  * @tc.desc: set device gesture mode test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0330
+  * @tc.name: set device gesture mode error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, SetGestureMode002, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0330, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] SetGestureMode001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
     uint32_t gestureMode = 1;
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
-    /* Device "5" is used for testing nonexistent device node */
-    ret = g_inputInterface->iInputController->SetGestureMode(INVALID_INDEX, gestureMode);
-    if (ret) {
-        HDF_LOGE("%s: get device1's gestureMode failed, ret %d", __func__, ret);
-    }
+    ret = g_inputInterface->iInputController->SetGestureMode(0, gestureMode);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->SetGestureMode(MAX_INPUT_DEV_NUM, gestureMode);
     EXPECT_NE(ret, INPUT_SUCCESS);
 }
 
 /**
-  * @tc.name: RunCapacitanceTest001
-  * @tc.desc: set device gesture mode test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0340
+  * @tc.name: set device gesture mode performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
   */
-HWTEST_F(HdiInputTest, RunCapacitanceTest001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0340, Function | MediumTest | Level3)
 {
-    HDF_LOGI("%s: [Input] RunCapacitanceTest001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
-    char result[TEST_RESULT_LEN] = {0};
-    uint32_t testType = MMI_TEST;
+    uint32_t gestureMode = 1;
+    int32_t timeUsed = 0;
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
-    ret = g_inputInterface->iInputController->RunCapacitanceTest(TOUCH_INDEX, testType, result, TEST_RESULT_LEN);
-    if (ret) {
-        HDF_LOGE("%s: get device1's gestureMode failed, ret %d", __func__, ret);
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputController->SetGestureMode(TOUCH_INDEX, gestureMode);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
     }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0340: SetGestureMode %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0350
+  * @tc.name: Run Capacitance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0350, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    uint32_t testType = MMI_TEST;
+    char result[MAX_INPUT_DEV_NUM] = {0};
+
+    ret = g_inputInterface->iInputController->RunCapacitanceTest(TOUCH_INDEX, testType, result, MAX_INPUT_DEV_NUM);
     EXPECT_EQ(ret, INPUT_SUCCESS);
 }
 
 /**
-  * @tc.name: RunCapacitanceTest001
-  * @tc.desc: set device gesture mode test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0360
+  * @tc.name: Run Capacitance error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, RunExtraCommand001, Function | MediumTest | Level1)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0360, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] RunExtraCommand001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    uint32_t testType = MMI_TEST;
+    char result[MAX_INPUT_DEV_NUM] = {0};
+
+    ret = g_inputInterface->iInputController->RunCapacitanceTest(0, testType, result, MAX_INPUT_DEV_NUM);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->RunCapacitanceTest(MAX_INPUT_DEV_NUM, testType, result, 
+        MAX_INPUT_DEV_NUM);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->RunCapacitanceTest(TOUCH_INDEX, TEST_TYPE_UNKNOWN, result, 
+        MAX_INPUT_DEV_NUM);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->RunCapacitanceTest(TOUCH_INDEX, testType, nullptr, MAX_INPUT_DEV_NUM);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+}
+
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0370
+  * @tc.name: Run Capacitance performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0370, Function | MediumTest | Level3)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    int32_t timeUsed = 0;
+    uint32_t testType = MMI_TEST;
+    char result[MAX_INPUT_DEV_NUM] = {0};
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputController->RunCapacitanceTest(TOUCH_INDEX, testType, result, MAX_INPUT_DEV_NUM);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0370: RunCapacitanceTest %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0380
+  * @tc.name: Run Extra Command test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0380, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
     InputExtraCmd extraCmd = {0};
     extraCmd.cmdCode = "WakeUpMode";
     extraCmd.cmdValue = "Enable";
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
     ret = g_inputInterface->iInputController->RunExtraCommand(TOUCH_INDEX, &extraCmd);
-    if (ret) {
-        HDF_LOGE("%s: get device1's gestureMode failed, ret %d", __func__, ret);
-    }
     EXPECT_EQ(ret, INPUT_SUCCESS);
 }
 
 /**
-  * @tc.name: RegisterCallbackAndReportData001
-  * @tc.desc: get input device chip info test
-  * @tc.type: FUNC
+  * @tc.number: SUB_DriverSystem_HdiInput_0390
+  * @tc.name: Run Extra Command error test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
   */
-HWTEST_F(HdiInputTest, RegisterCallbackAndReportData001, Function | MediumTest | Level3)
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0390, Function | MediumTest | Level0)
 {
-    HDF_LOGI("%s: [Input] RegisterCallbackAndReportData001 enter", __func__);
+    ASSERT_EQ(g_HasDev, true);
     int32_t ret;
+    InputExtraCmd extraCmd = {0};
+    extraCmd.cmdCode = "WakeUpMode";
+    extraCmd.cmdValue = "Enable";
 
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputReporter, INPUT_NULL_PTR);
+    ret = g_inputInterface->iInputController->RunExtraCommand(MAX_INPUT_DEV_NUM, &extraCmd);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->RunExtraCommand(0, &extraCmd);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputController->RunExtraCommand(TOUCH_INDEX, nullptr);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+}
 
-    ret  = g_inputInterface->iInputReporter->RegisterReportCallback(TOUCH_INDEX, &g_callback);
-    if (ret) {
-        HDF_LOGE("%s: register callback failed for device 1, ret %d", __func__, ret);
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0400
+  * @tc.name: Run Extra Command performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0400, Function | MediumTest | Level3)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    int32_t timeUsed = 0;
+    InputExtraCmd extraCmd = {0};
+    extraCmd.cmdCode = "WakeUpMode";
+    extraCmd.cmdValue = "Enable";
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputController->RunExtraCommand(TOUCH_INDEX, &extraCmd);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
     }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0400: RunExtraCommand %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0410
+  * @tc.name: Register Report Callback test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0410, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    g_callback.EventPkgCallback = ReportEventPkgCallback;
+    ret = g_inputInterface->iInputReporter->RegisterReportCallback(0, &g_callback);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputReporter->RegisterReportCallback(MAX_INPUT_DEV_NUM, &g_callback);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+    ret = g_inputInterface->iInputReporter->RegisterReportCallback(TOUCH_INDEX, nullptr);
+    EXPECT_NE(ret, INPUT_SUCCESS);
+}
+
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0430
+  * @tc.name: Register Report Callback performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0430, Function | MediumTest | Level3)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    int32_t timeUsed = 0;
+    g_callback.EventPkgCallback = ReportEventPkgCallback;
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        ret = g_inputInterface->iInputReporter->RegisterReportCallback(TOUCH_INDEX, &g_callback);
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+        ret = g_inputInterface->iInputReporter->UnregisterReportCallback(TOUCH_INDEX);
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0430: RegisterReportCallback %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0440
+  * @tc.name: unRegister Report Callback performance test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 3
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0440, Function | MediumTest | Level3)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    int32_t timeUsed = 0;
+    g_callback.EventPkgCallback = ReportEventPkgCallback;
+    struct timespec tv1 = (struct timespec){0};
+    struct timespec tv2 = (struct timespec){0}; 
+
+    for (int32_t i = 0; i < PERFORMANXCE_TIME; i++){
+        ret = g_inputInterface->iInputReporter->RegisterReportCallback(TOUCH_INDEX, &g_callback);
+        clock_gettime(CLOCK_REALTIME, &tv1);
+        
+        clock_gettime(CLOCK_REALTIME, &tv2);
+        timeUsed +=(((tv2.tv_sec - tv1.tv_sec) * USEC_TIME) + ((tv2.tv_nsec - tv1.tv_nsec) / MSEC_TIME));
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+        ret = g_inputInterface->iInputReporter->UnregisterReportCallback(TOUCH_INDEX);
+        EXPECT_EQ(ret, INPUT_SUCCESS);
+    }
+    HDF_LOGI("SUB_DriverSystem_HdiInput_0440: UnregisterReportCallback %d time=%d us\n", PERFORMANXCE_TIME, timeUsed);
+    ASSERT_TRUE(timeUsed <= (COMMON_TIME * PERFORMANXCE_TIME));
+}
+
+/**
+  * @tc.number: SUB_DriverSystem_HdiInput_0420
+  * @tc.name: Register Report Callback test
+  * @tc.desc: [C- SOFTWARE -0010]
+  * @tc.size: Medium
+  * @tc.level: level 0
+  */
+HWTEST_F(HdiInputTest, SUB_DriverSystem_HdiInput_0420, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(g_HasDev, true);
+    int32_t ret;
+    g_callback.EventPkgCallback = ReportEventPkgCallback;
+
+    ret = g_inputInterface->iInputReporter->RegisterReportCallback(TOUCH_INDEX, &g_callback);
     EXPECT_EQ(ret, INPUT_SUCCESS);
-    HDF_LOGI("%s: wait 15s for testing, pls touch the panel now", __func__);
-    HDF_LOGI("%s: The event data is as following:", __func__);
+    HDF_LOGI("wait 10s for testing, pls  touch the panel now\n");
+    HDF_LOGI("the event data is as following:\n");
     OsalMSleep(KEEP_ALIVE_TIME_MS);
-}
-
-/**
-  * @tc.name: UnregisterReportCallback001
-  * @tc.desc: get input device chip info test
-  * @tc.type: FUNC
-  */
-HWTEST_F(HdiInputTest, UnregisterReportCallback001, Function | MediumTest | Level1)
-{
-    HDF_LOGI("%s: [Input] UnregisterReportCallback001 enter", __func__);
-    int32_t ret;
-    INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputReporter, INPUT_NULL_PTR);
-    INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputManager, INPUT_NULL_PTR);
-
-    ret  = g_inputInterface->iInputReporter->UnregisterReportCallback(TOUCH_INDEX);
-    if (ret) {
-        HDF_LOGE("%s: unregister callback failed for device1, ret %d", __func__, ret);
-    }
+    ret = g_inputInterface->iInputReporter->UnregisterReportCallback(TOUCH_INDEX);
     EXPECT_EQ(ret, INPUT_SUCCESS);
-
-    ret = g_inputInterface->iInputManager->CloseInputDevice(TOUCH_INDEX);
-    if (ret) {
-        HDF_LOGE("%s: close device1 failed, ret %d", __func__, ret);
-    }
-    EXPECT_EQ(ret, INPUT_SUCCESS);
-    HDF_LOGI("%s: Close the device1 successfully after all test", __func__);
 }
