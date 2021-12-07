@@ -28,6 +28,12 @@ using namespace testing::ext;
 namespace HalTest {
 struct IWiFi *g_wifi = nullptr;
 const int32_t WLAN_TX_POWER = 160;
+const uint32_t WLAN_MIN_CHIPID = 0;
+const uint32_t WLAN_MAX_CHIPID = 2;
+const uint32_t IFNAME_MIN_NUM = 0;
+const uint32_t IFNAME_MAX_NUM = 32;
+const uint32_t MAX_IF_NAME_LENGTH = 16;
+const uint32_t SIZE = 4;
 
 class WifiHalTest : public testing::Test {
 public:
@@ -73,7 +79,7 @@ void WifiHalTest::TearDown()
     ASSERT_EQ(HDF_SUCCESS, ret);
 }
 
-static void ParseScanResult(const WifiScanResult *scanResult)
+static void ParseScanResult(WifiScanResult *scanResult)
 {
     printf("ParseScanResult: flags=%d, caps=%d, freq=%d, beaconInt=%d,\n",
         scanResult->flags, scanResult->caps, scanResult->freq, scanResult->beaconInt);
@@ -81,15 +87,19 @@ static void ParseScanResult(const WifiScanResult *scanResult)
         scanResult->qual, scanResult->beaconIeLen, scanResult->level, scanResult->age, scanResult->ieLen);
 }
 
-static int32_t HalCallbackEventScanResult(uint32_t eventId, void *data, const char *ifName)
+static int32_t HalCallbackEvent(uint32_t event, void *respData, const char *ifName)
 {
-    printf("HalCallbackEventScanResult ifName = %s, eventId = %d\n", ifName, eventId);
-    switch (eventId) {
+    (void)event;
+    if (respData == nullptr) {
+        return HDF_FAILURE;
+    }
+    printf("HalCallbackEvent ifName = %s, event = %d\n", ifName, event);
+    switch (event) {
         case WIFI_EVENT_SCAN_DONE:
-            printf("HalCallbackEventScanResult WIFI_EVENT_SCAN_DONE Process\n");
+            printf("HalCallbackEvent WIFI_EVENT_SCAN_DONE Process\n");
             break;
         case WIFI_EVENT_SCAN_RESULT:
-            ParseScanResult((const WifiScanResult *)data);
+            ParseScanResult((WifiScanResult *)respData);
             break;
         default:
             break;
@@ -161,15 +171,6 @@ HWTEST_F(WifiHalTest, WifiHalGetFeatureByIfName001, Function | MediumTest | Leve
 
     ret = g_wifi->destroyFeature((struct IWiFiBaseFeature *)apFeature);
     EXPECT_EQ(HDF_SUCCESS, ret);
-}
-
-static int32_t HalCallbackEvent(uint32_t event, void *respData, const char *ifName)
-{
-    (void)event;
-    if (respData == nullptr) {
-        return HDF_FAILURE;
-    }
-    return HDF_SUCCESS;
 }
 
 /**
@@ -337,6 +338,41 @@ HWTEST_F(WifiHalTest, WifiHalSetCountryCode001, Function | MediumTest | Level1)
     EXPECT_EQ(HDF_SUCCESS, ret);
 }
 
+/**
+ * @tc.name: WifiHalGetIfNamesByChipId001
+ * @tc.desc: Obtain all ifNames and the number of the current chip
+ * @tc.type: FUNC
+ */
+HWTEST_F(WifiHalTest, WifiHalGetIfNamesByChipId001, Function | MediumTest | Level1)
+{
+    int ret;
+    struct IWiFiSta *staFeature = nullptr;
+    char *ifNames = nullptr;
+    unsigned int num = 0;
+    unsigned char chipId = 0;
+    uint8_t i;
+
+    ret = g_wifi->createFeature(PROTOCOL_80211_IFTYPE_STATION, (struct IWiFiBaseFeature **)&staFeature);
+    EXPECT_EQ(HDF_SUCCESS, ret);
+    EXPECT_NE(nullptr, staFeature);
+    ret = staFeature->baseFeature.getChipId((struct IWiFiBaseFeature *)staFeature, &chipId);
+    ASSERT_TRUE(chipId <= WLAN_MAX_CHIPID && chipId >= WLAN_MIN_CHIPID);
+    EXPECT_EQ(HDF_SUCCESS, ret);
+    ret = staFeature->baseFeature.getIfNamesByChipId(chipId, nullptr, nullptr);
+    EXPECT_NE(HDF_SUCCESS, ret);
+    ret = staFeature->baseFeature.getIfNamesByChipId(chipId, &ifNames, &num);
+    EXPECT_NE(nullptr, ifNames);
+    EXPECT_EQ(HDF_SUCCESS, ret);
+    ASSERT_TRUE(num <= IFNAME_MAX_NUM && num >= IFNAME_MIN_NUM);
+    for (i = 0; i < num; i++) {
+        EXPECT_EQ(0, strncmp("wlan", ifNames + i * MAX_IF_NAME_LENGTH, SIZE));
+    }
+    free(ifNames);
+
+    ret = g_wifi->destroyFeature((struct IWiFiBaseFeature *)staFeature);
+    EXPECT_EQ(HDF_SUCCESS, ret);
+}
+
 HWTEST_F(WifiHalTest, WifiHalStartScan001, Function | MediumTest | Level1)
 {
     int ret;
@@ -344,7 +380,7 @@ HWTEST_F(WifiHalTest, WifiHalStartScan001, Function | MediumTest | Level1)
     const char *ifName = "wlan0";
     WifiScan scan = {0};
 
-    ret = g_wifi->registerEventCallback(HalCallbackEventScanResult, ifName);
+    ret = g_wifi->registerEventCallback(HalCallbackEvent, ifName);
     EXPECT_EQ(HDF_SUCCESS, ret);
     ret = g_wifi->createFeature(PROTOCOL_80211_IFTYPE_STATION, (struct IWiFiBaseFeature **)&staFeature);
     EXPECT_EQ(HDF_SUCCESS, ret);
