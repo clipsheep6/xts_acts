@@ -683,7 +683,6 @@ LITE_TEST_CASE(LwipFuncTestSuite, testSelectOneClient, Function | MediumTest | L
         tClient.priority = DEF_TASK_PRIORITY;
         clientTaskId = osThreadNew((osThreadFunc_t)CommTcpClientTask, NULL, &tClient);
         TEST_ASSERT_NOT_NULL(clientTaskId);
-        }
 
         g_selectFlag = 1;
         while (g_selectFlag) {
