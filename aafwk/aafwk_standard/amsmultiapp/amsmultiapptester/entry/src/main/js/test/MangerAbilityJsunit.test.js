@@ -17,13 +17,13 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import commonEvent from '@ohos.commonevent'
 
 const START_ABILITY_TIMEOUT = 4000;
-var subscriberInfoMultiApp_2500 = {
+var subscriberInfoMultiApp2500 = {
     events: ["subscriberInfoMultiAppServiceByServiceStart", "DISCONNECT"]
 };
-var subscriberInfoMultiApp_2600 = {
+var subscriberInfoMultiApp2600 = {
     events: ["subscriberInfoMultiAppServiceByServiceConnect", "DISCONNECT"]
 };
-var subscriberInfoMultiApp_2100 = {
+var subscriberInfoMultiApp2100 = {
     events: ["subscriberInfoMultiAppPageByServiceStart", "DISCONNECT"]
 };
 describe('MultiAppTester', function () {
@@ -39,7 +39,8 @@ describe('MultiAppTester', function () {
         console.log('StartMultiAppTester ConnectAbility onConnect element.shortName : ' + element.shortName)
         console.log('StartMultiAppTester ConnectAbility onConnect remote : ' + remote);
         mRemote = remote;
-        console.log('StartMultiAppTester ConnectAbility onConnect remote 是否为proxy:' + (remote instanceof rpc.RemoteProxy));
+        console.log('StartMultiAppTester ConnectAbility onConnect remote 是否为proxy:' 
+            + (remote instanceof rpc.RemoteProxy));
     }
     function onDisconnectCallback(element) {
         commonEvent.publish("DISCONNECT", ()=>{console.log('disconnect finish1')});
@@ -81,7 +82,8 @@ describe('MultiAppTester', function () {
                     featureAbility.disconnectAbility(
                         connId,
                         (error, data) => {
-                            console.log('MultiAppService DisconnectAbility result errCode : ' + error.code + " data: " + data)
+                            console.log('MultiAppService DisconnectAbility result errCode : '
+                                + error.code + " data: " + data)
                         },
                     );
                 }
@@ -93,7 +95,7 @@ describe('MultiAppTester', function () {
             
         }
 
-        commonEvent.createSubscriber(subscriberInfoMultiApp_2500).then(async (data) => {
+        commonEvent.createSubscriber(subscriberInfoMultiApp2500).then(async (data) => {
             console.debug("====>Create Subscriber====>");
             subscriber = data;
             await commonEvent.subscribe(subscriber, subscribeCallBack);
@@ -109,7 +111,8 @@ describe('MultiAppTester', function () {
             featureAbility.disconnectAbility(
                 connId,
                 (error, data) => {
-                    console.log('StartMultiAppTester DisconnectAbility result errCode : ' + error.code + " data: " + data)
+                    console.log('StartMultiAppTester DisconnectAbility result errCode : '
+                        + error.code + " data: " + data)
                 },
             );
         }
@@ -158,7 +161,8 @@ describe('MultiAppTester', function () {
                     featureAbility.disconnectAbility(
                         connId,
                         (error, data) => {
-                            console.log('MultiAppService DisconnectAbility result errCode : ' + error.code + " data: " + data)
+                            console.log('MultiAppService DisconnectAbility result errCode : '
+                                + error.code + " data: " + data)
                         },
                     );
                 }
@@ -170,7 +174,7 @@ describe('MultiAppTester', function () {
             
         }
 
-        commonEvent.createSubscriber(subscriberInfoMultiApp_2600).then(async (data) => {
+        commonEvent.createSubscriber(subscriberInfoMultiApp2600).then(async (data) => {
             console.debug("====>Create Subscriber====>");
             subscriber = data;
             await commonEvent.subscribe(subscriber, subscribeCallBack);
@@ -186,7 +190,8 @@ describe('MultiAppTester', function () {
             featureAbility.disconnectAbility(
                 connId,
                 (error, data) => {
-                    console.log('StartMultiAppTester DisconnectAbility result errCode : ' + error.code + " data: " + data)
+                    console.log('StartMultiAppTester DisconnectAbility result errCode : '
+                        + error.code + " data: " + data)
                 },
             );
         }
@@ -237,7 +242,8 @@ describe('MultiAppTester', function () {
                     featureAbility.disconnectAbility(
                         connId,
                         (error, data) => {
-                            console.log('MultiAppService DisconnectAbility result errCode : ' + error.code + " data: " + data)
+                            console.log('MultiAppService DisconnectAbility result errCode : ' 
+                                + error.code + " data: " + data);
                         },
                     );
                 }
@@ -248,7 +254,7 @@ describe('MultiAppTester', function () {
             }
             
         }
-        commonEvent.createSubscriber(subscriberInfoMultiApp_2100).then(async (data) => {
+        commonEvent.createSubscriber(subscriberInfoMultiApp2100).then(async (data) => {
             console.debug("====>Create Subscriber====>");
             subscriber = data;
             await commonEvent.subscribe(subscriber, subscribeCallBack);
@@ -264,7 +270,8 @@ describe('MultiAppTester', function () {
             featureAbility.disconnectAbility(
                 connId,
                 (error, data) => {
-                    console.log('StartMultiAppTester DisconnectAbility result errCode : ' + error.code + " data: " + data)
+                    console.log('StartMultiAppTester DisconnectAbility result errCode : '
+                         + error.code + " data: " + data);
                 },
             );
         }

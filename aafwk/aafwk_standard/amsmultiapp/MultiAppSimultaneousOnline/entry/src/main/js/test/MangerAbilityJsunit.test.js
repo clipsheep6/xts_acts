@@ -23,6 +23,7 @@ const MIN_CLONEUID = 20000000;
 
 describe('ActsAmsMultiAppSimultaneousOnline', function () {
     console.info('----ActsAmsMultiAppSimultaneousOnline----');
+    
     /*
      * @tc.number    : AMS_MultiApp_Simultaneous_Online_0100
      * @tc.name      : startAbility : start pageAbility

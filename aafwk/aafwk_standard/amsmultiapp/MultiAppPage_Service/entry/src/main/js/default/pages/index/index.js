@@ -16,7 +16,6 @@ import file from '@system.file'
 import {Core, ExpectExtend} from 'deccjsunit/index'
 import rpc from "@ohos.rpc"
 import commonEvent from '@ohos.commonevent'
-//import featureAbility from '@ohos.ability.featureability'
 import particleAbility from '@ohos.ability.particleability'
 import bundle from "@ohos.bundle"
 

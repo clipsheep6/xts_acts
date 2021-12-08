@@ -39,7 +39,7 @@ export default {
 
     },
     onStart(want) {
-        console.debug('AMS_MultiApp ====>onStart='
+        console.debug('AMS_MultiApp ====>onStart'
             + want + " , JSON." + JSON.stringify(want));
             class MyStub extends rpc.RemoteObject {
                 constructor(des) {
@@ -47,7 +47,6 @@ export default {
                 }
     
                 onRemoteRequest(code, message, reply, option) {
-                    console.log("AMS_MultiApp called");
                     console.log("AMS_MultiApp code:" + code);
                     if (code === 1) {
                         let getContextObject = rpc.IPCSkeleton.getContextObject();
@@ -72,15 +71,15 @@ export default {
     },
     async onConnect(want) {
         console.info('onConnect finish')
-        console.info('AMS_MultiApp_1400 want' 
+        console.info('AMS_MultiApp_0800 want' 
         + JSON.stringify(want));
 
         console.info('particleAbility--------------------------1');
         var featureData = await particleAbility.getWant();
         console.info('particleAbility--------------------------2');
-        console.info('AMS_MultiApp_1400 featureData' + featureData);
-        console.info('AMS_MultiApp_1400 featureData' + JSON.stringify(featureData));
-        console.info('AMS_MultiApp_1400 featureData-->bundleName' + featureData.bundleName);
+        console.info('AMS_MultiApp_0800 featureData' + featureData);
+        console.info('AMS_MultiApp_0800 featureData' + JSON.stringify(featureData));
+        console.info('AMS_MultiApp_0800 featureData-->bundleName' + featureData.bundleName);
 
         var flag=0;
         if((featureData.bundleName) == ("com.example.actsamsmultiapppageconnectservice"))
@@ -90,19 +89,19 @@ export default {
                flag = 1;
            }
         }
-        console.info('AMS_MultiApp_1400 flag' + JSON.stringify(flag));
+        console.info('AMS_MultiApp_0800 flag' + JSON.stringify(flag));
         var info = await particleAbility.getAbilityInfo();
-        console.info('AMS_MultiApp_1400 particleAbility.getAbilityInfo() ' 
+        console.info('AMS_MultiApp_0800 particleAbility.getAbilityInfo() ' 
         + JSON.stringify(info));
-        console.info('AMS_MultiApp_1400 particleAbility.getAbilityInfo() ' 
+        console.info('AMS_MultiApp_0800 particleAbility.getAbilityInfo() ' 
         + info);
-        console.info('AMS_MultiApp_1400 particleAbility.getAbilityInfo() ' 
+        console.info('AMS_MultiApp_0800 particleAbility.getAbilityInfo() ' 
         + JSON.stringify(info.applicationInfo));
         bundle.getBundleInfo("com.example.actsamsmultiapppageconnectservice", 1, async(err, data) => {
-            console.info('AMS_MultiApp_1400 bundle.getBundleInfo ' 
+            console.info('AMS_MultiApp_0800 bundle.getBundleInfo ' 
             + JSON.stringify(data));
             if (data.uid >= MIN_CLONEUID) {
-                console.info('AMS_MultiApp_1400 Clone info ' + JSON.stringify(info.applicationInfo));
+                console.info('AMS_MultiApp_0800 Clone info ' + JSON.stringify(info.applicationInfo));
                 if (info.applicationInfo.isCloned == true)
                 {
                     flag = 1;

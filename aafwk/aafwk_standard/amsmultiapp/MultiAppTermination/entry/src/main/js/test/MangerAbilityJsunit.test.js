@@ -31,6 +31,7 @@ function sleep(delay) {
 
 describe('ActsAmsMultiAppTermination', function () {
     console.info('----ActsAmsMultiAppTermination----');
+    
     /*
      * @tc.number    : AMS_MultiApp_Termination_Ontology_0100
      * @tc.name      : startAbility : start pageAbility

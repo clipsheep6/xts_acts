@@ -54,7 +54,7 @@ function onFailedCallback(code) {
     console.log('ServiceStarter ConnectAbility onFailed errCode : ' + code)
 }
 
-async function ConnectSerciveExecutor() {
+async function connectSerciveExecutor() {
     console.log('ServiceStarter StartSerciveExecutor ConnectAbility set time before : ');
     connId = await particleAbility.connectAbility(
         {
@@ -117,7 +117,7 @@ export default {
         console.log('stub ServiceStarter OnConnect' + JSON.stringify(want));
         if (want.action == 'ConnectSerciveExecutor') {
             console.log('ServiceStarter ConnectSerciveExecutor IN')
-            ConnectSerciveExecutor();
+            connectSerciveExecutor();
         }
         if (want.action == 'StartSerciveExecutor') {
             console.log('stub ServiceStarter OnConnect start service executor')

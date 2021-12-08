@@ -33,7 +33,7 @@ describe('ActsAmsMultiPageAppS', function () {
     });
 
     /*
-     * @tc.number    : AMS_MultiApp_0700,AMS_MultiApp_1300
+     * @tc.number    : AMS_MultiApp_0700
      * @tc.name      : startAbility : start serviceAbility
      * @tc.desc      : pageAbility->ServiceAbility
      */
@@ -45,12 +45,12 @@ describe('ActsAmsMultiPageAppS', function () {
         };
 
         commonEvent.createSubscriber(CommonEventSubscribeInfo).then(async (data) => {
-            console.debug("=AMS_MultiApp_0700_1300 createSubscriber .then(data)=======>"
+            console.debug("=AMS_MultiApp_0700 createSubscriber .then(data)=======>"
                 + ("json data【") + JSON.stringify(data) + (" 】")
                 + " ,data=" + data);
             subscriber = data;
             commonEvent.subscribe(subscriber, async (err, data) => {
-                console.debug("=AMS_MultiApp_0700_1300 subscribe (err,data)=======>"
+                console.debug("=AMS_MultiApp_0700 subscribe (err,data)=======>"
                     + ("json err【") + JSON.stringify(err) + (" 】")
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,err=" + err + " ,data=" + data);
@@ -61,7 +61,7 @@ describe('ActsAmsMultiPageAppS', function () {
                 }
                 else if (data.event == "ACTS_MultiAppPageService_onConnect1")
                 {
-                    console.debug("=======AMS_MultiApp_1300 Clone=======");
+                    console.debug("=======AMS_MultiApp_0700 Clone=======");
                     expect(data.event).assertEqual("ACTS_MultiAppPageService_onConnect1");
                 }            
                 unsubscribe("subscribe", subscriber);

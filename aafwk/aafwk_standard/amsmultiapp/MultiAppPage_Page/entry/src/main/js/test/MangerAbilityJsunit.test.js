@@ -22,31 +22,31 @@ describe('ActsAmsMultiAppPage', function () {
     console.info('----ActsAmsMultiAppPage----');
 
     /*
-     * @tc.number    : AMS_MultiApp_0300,AMS_MultiApp__0900
+     * @tc.number    : AMS_MultiApp_0300
      * @tc.name      : startAbility : start pageAbility
      * @tc.desc      : pageAbility->pageAbility
      */
-    it('AMS_MultiApp_0300_0900', 0, async function (done) {
+    it('AMS_MultiApp_0300', 0, async function (done) {
         var data = await featureAbility.getWant();
         expect(data.bundleName).assertEqual("com.example.actsamsmultiapppage");
         expect(data.abilityName).assertEqual("com.example.actsamsmultiapppage.MainAbility");
-        console.info('AMS_MultiApp_0300_0900 data.bundleName ' 
+        console.info('AMS_MultiApp_0300 data.bundleName ' 
                 + JSON.stringify(data.bundleName));
-        console.info('AMS_MultiApp_0300_0900 data.abilityName ' 
+        console.info('AMS_MultiApp_0300 data.abilityName ' 
                 + JSON.stringify(data.abilityName));
 
         var info = await featureAbility.getAbilityInfo();
         bundle.getBundleInfo("com.example.actsamsmultiapppage", 1, (err, data) => {
-            console.debug("=AMS_MultiApp_0300_0900 err,data=======>"
+            console.debug("=AMS_MultiApp_0300 err,data=======>"
                     + ("json err【") + JSON.stringify(err) + (" 】")
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,err=" + err + " ,data=" + data);
             console.info('AMS_MultiApp Clone info.applicationInfo ' 
                     + JSON.stringify(info.applicationInfo));
             if (data.uid >= MIN_CLONEUID) {
-                console.info('AMS_MultiApp_0900 Clone info.applicationInfo.isCloned ' 
+                console.info('AMS_MultiApp_0300 Clone info.applicationInfo.isCloned ' 
                 + JSON.stringify(info.applicationInfo.isCloned));
-                console.debug("=======AMS_MultiApp_0900 Clone=======");
+                console.debug("=======AMS_MultiApp_0300 Clone=======");
                 expect(info.applicationInfo.isCloned).assertEqual(true);
                 done(); 
             } else {

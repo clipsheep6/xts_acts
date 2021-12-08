@@ -64,11 +64,11 @@ describe('ActsAmsMultiPageAppConnectService', function () {
 
 
     /*
-     * @tc.number    : AMS_MultiApp_0800,AMS_MultiApp_1400
+     * @tc.number    : AMS_MultiApp_0800
      * @tc.name      : connectAbility : connect pageAbility
      * @tc.desc      : pageAbility->serviceAbility
      */
-    it('AMS_MultiApp_0800_1400', 0, async function (done) {
+    it('AMS_MultiApp_0800', 0, async function (done) {
         var subscriber;
         var CommonEventSubscribeInfo = {
             events: ["ACTS_MultiAppPageConnectService_onConnect1",
@@ -85,23 +85,23 @@ describe('ActsAmsMultiPageAppConnectService', function () {
             });
         }
         commonEvent.createSubscriber(CommonEventSubscribeInfo).then(async (data) => {
-            console.debug("=AMS_MultiApp_0800_1400 createSubscriber .then(data)=======>"
+            console.debug("=AMS_MultiApp_0800 createSubscriber .then(data)=======>"
                 + ("json data【") + JSON.stringify(data) + (" 】")
                 + " ,data=" + data);
             subscriber = data;
             await commonEvent.subscribe(subscriber, async (err, data) => {
-                console.debug("=AMS_MultiApp_0800_1400 subscribe (err,data)=======>"
+                console.debug("=AMS_MultiApp_0800 subscribe (err,data)=======>"
                     + ("json err【") + JSON.stringify(err) + (" 】")
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,err=" + err + " ,data=" + data);
                     if (data.event == "ACTS_MultiAppPageConnectService_onConnect2")
                     {
-                        console.debug("=======AMS_MultiApp_0800 Ontology=======");
+                        console.debug("AMS_MultiApp_0800 Ontology");
                         expect(data.event).assertEqual("ACTS_MultiAppPageConnectService_onConnect2");
                     }
                     else if (data.event == "ACTS_MultiAppPageConnectService_onConnect1")
                     {
-                        console.debug("=======AMS_MultiApp_1400 Clone=======");
+                        console.debug("AMS_MultiApp_0800 Clone");
                         expect(data.event).assertEqual("ACTS_MultiAppPageConnectService_onConnect1");
                     }   
                 unsubscribe("subscribe", subscriber);            
