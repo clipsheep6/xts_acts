@@ -15,13 +15,6 @@
 
 import call from '@ohos.telephony.call';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
-
-class RejectMessageOptions {
-    constructor(str){
-        this.messageContent = str;
-    }
-}
-
 describe('CallManagerOnDial', function () {
 
     const GETMAIN_CALLID_ERRO = -1;
@@ -34,8 +27,6 @@ describe('CallManagerOnDial', function () {
     const WITH_LETTER_NUMBER = '';
     const EIGHT_NUMBER = '';
     const EIGHT_NUMBER_WITH_AN_AREA_CODE = '';
-    const REJECT_MESSAGE_NUM = 1234567890123456789012345678901234567890;
-    const REJECT_MESSAGE_STR = 'Hi,你好呀?';
     var callId = 0;
     var callState = -1;
     var timing = 0;
@@ -2691,96 +2682,4 @@ describe('CallManagerOnDial', function () {
             done();
         }
     })
-
-    /*
-     * @tc.number  Telephony_CallManager_reject_Async_0400
-     * @tc.name    Make a call to a normal number (10086) and call reject with message REJECT_MESSAGE_NUM by callback,
-     *             the function return error
-     * @tc.desc    Function test
-     */
-     it('Telephony_CallManager_reject_Async_0400', 0, async function (done) {
-        call.dial(CALLMANAGER_TEST_PHONY_NUMBER, async (err, data) => {
-            if (err) {
-                expect().assertFail();
-                console.log(`Telephony_CallManager_reject_Async_0400 dial fail : err = ${err}`);
-                done();
-                return;
-            }
-            expect(data).assertTrue();
-            console.log(`Telephony_CallManager_reject_Async_0400  dial finish : data = ${data}`);
-            const startTime = new Date().getTime();
-            while (true) {
-                if (callState === call.CALL_STATUS_DIALING || callState === call.CALL_STATUS_ACTIVE ||
-                callState === call.CALL_STATUS_ALERTING) {
-                    call.reject(call.callId, new RejectMessageOptions(REJECT_MESSAGE_NUM), (err, data) => {
-                        if (err) {
-                            console.log(
-                                `Telephony_CallManager_reject_Async_0400 isInEmrgencyCall finish : err = ${
-                                    err}`
-                            );
-                            done();
-                            return;
-                        }
-                        console.log(
-                            `Telephony_CallManager_reject_Async_0400 isInEmrgencyCall fail : data = ${
-                                data}`
-                        );
-                        expect().assertFail();
-                        done();
-                    });
-                    return;
-                }
-                await sleep(waitTime);
-                endTime = new Date().getTime();
-                timing = endTime - startTime;
-                if (timing > timeOut) {
-                    expect().assertFail();
-                    done();
-                    break;
-                }
-            }
-        });
-    });
-
-    /*
-     * @tc.number  Telephony_CallManager_reject_Promise_0400
-     * @tc.name    Make a call to a normal number (10086) and call reject with message by promise,
-     * the function return error
-     * @tc.desc    Function test
-     */
-    it('Telephony_CallManager_reject_Promise_0400', 0, async function (done) {
-        try {
-            var data = await call.dial(CALLMANAGER_TEST_PHONY_NUMBER);
-            expect(data).assertTrue();
-            console.log(`Telephony_CallManager_reject_Promise_0400 dial finish : data = ${data}`);
-            const startTime = new Date().getTime();
-            while (true) {
-                if (callState === call.CALL_STATUS_DIALING || callState === call.CALL_STATUS_ACTIVE ||
-                callState === call.CALL_STATUS_ALERTING) {
-                    try {
-                        var data = await call.reject(call.callId, new RejectMessageOptions(REJECT_MESSAGE_STR));
-                        expect().assertFail();
-                        console.log(`Telephony_CallManager_reject_Promise_0400 fail : data = ${data}`);
-                        done();
-                    } catch (err) {
-                        console.log(`Telephony_CallManager_reject_Promise_0400 finish : err = ${err}`);
-                        done();
-                    }
-                    return;
-                }
-                await sleep(waitTime);
-                endTime = new Date().getTime();
-                timing = endTime - startTime;
-                if (timing > timeOut) {
-                    expect().assertFail();
-                    done();
-                    break;
-                }
-            }
-        } catch (err) {
-            expect().assertFail();
-            console.log(`Telephony_CallManager_reject_Promise_0400 dial fail : err = ${err}`);
-            done();
-        }
-    });
 })

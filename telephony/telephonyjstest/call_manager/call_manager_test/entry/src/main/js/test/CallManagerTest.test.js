@@ -22,8 +22,6 @@ describe('CallManagerTest', function () {
     const ERR_SLOT_ID = -1;
     const MORE_THAN_30_NUMBERS = '';
     const INVALID_NUMBER = '';
-    const ACTIVATE_TRUE = true;
-    const ACTIVATE_FALSE = false;
 
    /*
     * @tc.number  Telephony_CallManager_getCallState_Async_0100
@@ -1622,26 +1620,6 @@ describe('CallManagerTest', function () {
        }
    })
 
-   /*
-     * @tc.number  Telephony_CallManager_getCallWaitingStatus_Async_0100
-     * @tc.name    Call waiting is enabled, slotId is 1, getCallWaiting() is called to getCallWaiting, and status is 1
-     * @tc.desc    Function test
-     */
-    it('Telephony_CallManager_getCallWaitingStatus_Async_0100', 0, async function (done) {
-        call.getCallWaitingStatus(SLOT_0, (err, data) => {
-            if (err) {
-                console.log(`Telephony_CallManager_getCallWaitingStatus_Async_0100 fail err = ${err}`);
-                expect().assertFail();
-                done();
-                return;
-            }
-            console.log(`Telephony_CallManager_getCallWaitingStatus_Async_0100 data = ${data}`);
-            expect(data === call.CALL_WAITING_ENABLE).assertTrue();
-            console.log('Telephony_CallManager_getCallWaitingStatus_Async_0100 finish');
-            done();
-        });
-    });
-
     /*
      * @tc.number  Telephony_CallManager_getCallWaitingStatus_Async_0200
      * @tc.name    Call waiting is enabled. SlotId is -1. GetCallWaiting ()
@@ -1651,99 +1629,15 @@ describe('CallManagerTest', function () {
     it('Telephony_CallManager_getCallWaitingStatus_Async_0200', 0, async function (done) {
         call.getCallWaitingStatus(ERR_SLOT_ID, (err) => {
             if (err) {
-                console.log(`Telephony_CallManager_getCallWaitingStatus_Async_0200 finish : ${err.message}`);
+                console.log('Telephony_CallManager_getCallWaitingStatus_Async_0200 finish : ' + err.message);
                 done();
                 return;
             }
             expect().assertFail();
             console.log('Telephony_CallManager_getCallWaitingStatus_Async_0200 fail');
             done();
-        });
-    });
-
-    /*
-     * @tc.number  Telephony_CallManager_getCallWaitingStatus_Async_0300
-     * @tc.name    Run function setCallWaiting by args slotId SLOT_0,activate ACTIVATE_TRUE to set by callback,
-     *             run function getCallWaiting by args slotId is 1 by callback,
-     *             the function return status call.CALL_WAITING_ENABLE
-     *             the funciton return void
-     * @tc.desc    Function test
-     */
-    it('Telephony_CallManager_getCallWaitingStatus_Async_0300', 0, async function (done) {
-        call.setCallWaiting(SLOT_0, ACTIVATE_TRUE, (err, data) => {
-            if (err) {
-                console.log(`Telephony_CallManager_getCallWaitingStatus_Async_0300 fail err = ${err}`);
-                expect().assertFail();
-                done();
-                return;
-            }
-            call.getCallWaitingStatus(SLOT_0, (err, data) => {
-                if (err) {
-                    console.log(`Telephony_CallManager_getCallWaitingStatus_Async_0300 fail err = ${err}`);
-                    expect().assertFail();
-                    done();
-                    return;
-                }
-                console.log(`Telephony_CallManager_getCallWaitingStatus_Async_0300 data = ${data}`);
-                expect(data === call.CALL_WAITING_ENABLE).assertTrue();
-                console.log('Telephony_CallManager_getCallWaitingStatus_Async_0300 finish');
-                done();
-            });
-        });
-    });
-
-    /*
-     * @tc.number  Telephony_CallManager_getCallWaitingStatus_Async_0400
-     * @tc.name    Run function setCallWaiting by args slotId SLOT_0,activate ACTIVATE_FALSE to set by callback,
-     *             run function getCallWaiting by args slotId is  by callback,
-     *             the function return status call.CALL_WAITING_DISABLE
-     *             the funciton return void,then Run function setCallWaiting by args slotId SLOT_0,
-     *             activate ACTIVATE_TRUE to reset
-     * @tc.desc    Function test
-     */
-    it('Telephony_CallManager_getCallWaitingStatus_Async_0400', 0, async function (done) {
-        call.setCallWaiting(SLOT_0, ACTIVATE_FALSE, (err, data) => {
-            if (err) {
-                console.log(`Telephony_CallManager_getCallWaitingStatus_Async_0400 fail err = ${err}`);
-                expect().assertFail();
-                done();
-                return;
-            }
-            call.getCallWaitingStatus(SLOT_0, (err, data) => {
-                if (err) {
-                    console.log(`Telephony_CallManager_getCallWaitingStatus_Async_0400 fail err = ${err}`);
-                    expect().assertFail();
-                } else {
-                    console.log(`Telephony_CallManager_getCallWaitingStatus_Async_0400 data = ${data}`);
-                    expect(data === call.CALL_WAITING_DISABLE).assertTrue();
-                    console.log('Telephony_CallManager_getCallWaitingStatus_Async_0400 finish');
-                }
-                call.setCallWaiting(SLOT_0, ACTIVATE_TRUE, (err, data) => {
-                    done();
-                });
-            });
-        });
-    });
-
-    /*
-     * @tc.number  Telephony_CallManager_getCallWaitingStatus_Promise_0100
-     * @tc.name    When the call wait sate is on test call getCallWaiting() in callback is on
-     *  @tc.desc    Function test
-     */
-    it('Telephony_CallManager_getCallWaitingStatus_Promise_0100', 0, async function (done) {
-        try {
-            let data = await call.getCallWaitingStatus(SLOT_0);
-            expect(data === call.CALL_WAITING_ENABLE).assertTrue();
-            console.log(`Telephony_CallManager_getCallWaitingStatus_Promise_0100 data = ${data}`);
-            console.log('Telephony_CallManager_getCallWaitingStatus_Promise_0100 finish');
-            done();
-        } catch (err) {
-            expect().assertFail();
-            console.log(`Telephony_CallManager_getCallWaitingStatus_Promise_0100 fail err =${err}`);
-            done();
-
-        }
-    });
+        })
+    })
 
     /*
      * @tc.number  Telephony_CallManager_getCallWaitingStatus_Promise_0200
@@ -1758,57 +1652,48 @@ describe('CallManagerTest', function () {
             done();
             console.log('Telephony_CallManager_getCallWaitingStatus_Promise_0200 fail');
         } catch (err) {
-            console.log(`Telephony_CallManager_getCallWaitingStatus_Promise_0200 finish err =${err.message}`);
+            console.log('Telephony_CallManager_getCallWaitingStatus_Promise_0200 finish err =' + err.message);
             done();
         }
-    });
+    })
 
     /*
-     * @tc.number  Telephony_CallManager_getCallWaitingStatus_Promise_0300
-     * @tc.name    Run function setCallWaiting by args slotId SLOT_0,activate ACTIVATE_TRUE to set by promise,
-     *             run function getCallWaiting by args slotId is SLOT_0 by promise,
-     *             the function return status call.CALL_WAITING_ENABLE
-     *             the funciton return void
+     * @tc.number  Telephony_CallManager_getCallWaitingStatus_Async_0100
+     * @tc.name    Call waiting is enabled, slotId is 1, getCallWaiting() is called to getCallWaiting, and status is 1
      * @tc.desc    Function test
      */
-    it('Telephony_CallManager_getCallWaitingStatus_Promise_0300', 0, async function (done) {
-        try {
-            await call.setCallWaiting(SLOT_0, ACTIVATE_TRUE);
-            let data = await call.getCallWaitingStatus(SLOT_0);
-            console.log(`Telephony_CallManager_getCallWaitingStatus_Promise_0300 data = ${data}`);
+    it('Telephony_CallManager_getCallWaitingStatus_Async_0100', 0, async function (done) {
+        call.getCallWaitingStatus(SLOT_0, (err, data) => {
+            if (err) {
+                console.log('Telephony_CallManager_getCallWaitingStatus_Async_0100 fail err = ' + err);
+                expect().assertFail();
+                done();
+                return;
+            }
+            console.log('Telephony_CallManager_getCallWaitingStatus_Async_0100 data = ' + data);
             expect(data === call.CALL_WAITING_ENABLE).assertTrue();
-            console.log('Telephony_CallManager_getCallWaitingStatus_Promise_0300 finish');
-        } catch (error) {
-            console.log(`Telephony_CallManager_getCallWaitingStatus_Promise_0300 fail error = ${error}`);
-            expect().assertFail();
-        }
-        done();
-    });
+            console.log('Telephony_CallManager_getCallWaitingStatus_Async_0100 finish');
+            done();
+        })
+    })
 
     /*
-     * @tc.number  Telephony_CallManager_getCallWaitingStatus_Promise_0400
-     * @tc.name    Run function setCallWaiting by args slotId SLOT_0,activate ACTIVATE_FALSE to set by promise,
-     *             run function getCallWaiting by args slotId SLOT_0  by promise,
-     *             the function return status call.CALL_WAITING_DISABLE,
-     *             then Run function setCallWaiting by args slotId SLOT_0,activate ACTIVATE_TRUE to reset
+     * @tc.number  Telephony_CallManager_getCallWaitingStatus_Promise_0100
+     * @tc.name    When the call wait sate is on test call getCallWaiting() in callback is on
      * @tc.desc    Function test
      */
-    it('Telephony_CallManager_getCallWaitingStatus_Promise_0400', 0, async function (done) {
+    it('Telephony_CallManager_getCallWaitingStatus_Promise_0100', 0, async function (done) {
         try {
-            await call.setCallWaiting(SLOT_0, ACTIVATE_FALSE);
             let data = await call.getCallWaitingStatus(SLOT_0);
-            console.log(`Telephony_CallManager_getCallWaitingStatus_Promise_0400 data = ${data}`);
-            expect(data === call.CALL_WAITING_DISABLE).assertTrue();
-            console.log('Telephony_CallManager_getCallWaitingStatus_Promise_0400 finish');
-        } catch (error) {
-            console.log(`Telephony_CallManager_getCallWaitingStatus_Promise_0400 fail error = ${error}`);
+            expect(data === call.CALL_WAITING_ENABLE).assertTrue();
+            console.log('Telephony_CallManager_getCallWaitingStatus_Promise_0100 data = ' + data);
+            console.log('Telephony_CallManager_getCallWaitingStatus_Promise_0100 finish');
+            done();
+        } catch (err) {
             expect().assertFail();
+            console.log('Telephony_CallManager_getCallWaitingStatus_Promise_0100 fail err =' + err);
+            done();
+            return;
         }
-        try {
-            await call.setCallWaiting(SLOT_0, ACTIVATE_TRUE);
-        } catch (error) {
-
-        }
-        done();
-    });
+    })
 })

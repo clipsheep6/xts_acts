@@ -17,12 +17,19 @@ group("sim") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "sim_file_manager_function_test:SimFileManagerFunctionTest",
-      "sim_manager_function_test:SimManagerFunctionTest",
-      "sim_no_sim_function_test:SimNoSimFunctionTest",
-      "sim_performance_test:SimPerformanceTest",
-      "sim_reliability_test:SimReliabilityTest",
-      "sim_state_manager_function_test:SimStateManagerFunctionTest",
+      "sim_p6_getcardtype_function_test:SimGetCardTypeFunctionTest",
+      "sim_p6_getimsi_function_test:SimGetIMSIFunctionTest",
+      "sim_p6_getisocountrycodeforsim_function_test:SimGetISOCountryCodeForSimFunctionTest",
+      "sim_p6_setlockstate_function_test:SimSetLockStateFunctionTest",
+      "sim_p6_getlockstate_function_test:SimGetLockStateFunctionTest",
+      "sim_p6_getsimiccid_function_test:SimGetSimIccidFunctionTest",
+      "sim_p6_getsimoperatornumeric_function_test:SimGetSimOperatorNumericFunctionTest",
+      "sim_p6_getsimspn_function_test:SimGetSimSpnFunctionTest",
+      "sim_p6_sendenvelopecmd_function_test:SimSendEnvelopeCmdFunctionTest",
+      "sim_p6_sendterminalresponsecmd_function_test:SimSendTerminalResponseCmdFunctionTest",
+      "sim_p6_no_sim_function_test:SimNoSimFunctionTest",
+      "sim_p6_performance_test:SimPerformanceTest",
+      "sim_p6_reliability_test:SimReliabilityTest",
     ]
   }
 }
