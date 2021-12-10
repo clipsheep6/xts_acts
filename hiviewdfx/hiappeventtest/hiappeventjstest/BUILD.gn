@@ -12,18 +12,20 @@
 # limitations under the License.
 
 import("//test/xts/tools/build/suite.gni")
-ohos_js_hap_suite("hiappeventjstest") {
+ohos_js_hap_suite("ActsHiAppEventJsTest") {
   hap_profile = "./src/main/config.json"
   deps = [
     ":hiappevent_js_assets",
     ":hiappevent_resources",
   ]
+
 #  shared_libraries = [
     #    "//third_party/giflib:libgif",
 #    "//third_party/libpng:libpng",
 #  ]
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "HiAppeventTest"
+  hap_name = "ActsHiAppEventJsTest"
+
 #  part_name = "prebuilt_hap"
 #  subsystem_name = "xts"
 }
