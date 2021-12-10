@@ -14,16 +14,22 @@
  */
 
 #include "hctest.h"
+#ifdef POSIX_NET_API
+#include "sys/socket.h"
+#include "arpa/inet.h"
+#include "netinet/tcp.h"
+#else
 #include "lwip/sockets.h"
 #include "lwip/inet.h"
 #include "lwip/tcp.h"
-#include "securec.h"
-#include "cmsis_os2.h"
+#endif
 #include <string.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include "securec.h"
+#include "cmsis_os2.h"
 
 #define LOCAL_HOST "127.0.0.1"
 #define STACK_PORT 2277
