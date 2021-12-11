@@ -15,10 +15,14 @@ group("hdfacttest") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      #"audio:ActsHdfXtstestAudioTest",
-      "input:ActsHdfXtstestInputTest",
-      "sensor:ActsHdfXtstestSensorTest",
-      "wlan/wifi:ActsHdfXtstestWifiTest",
+      "input:ActsHdfInputTest",
+      "sensor:ActsHdfSensorTest",
+      "wlan/wifi:ActsHdfWifiTest",
+      "vibrator:ActsHdfVibratorTest",
+      "manager:ActsHdfManagerTest",
+      "manager:ActsHdfManagerServiceTest",
+      #"audio:ActsHdfAudioTest",
+      #"camera:ActHdfCameraTest",
     ]
   }
 }

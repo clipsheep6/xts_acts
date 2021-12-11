@@ -2,7 +2,7 @@
     "kits": [
         {
             "push": [
-                "ActsHdfXtstestSensorTest->/data/local/tmp/ActsHdfXtstestSensorTest"
+                "ActsHdfSensorTest->/data/local/tmp/ActsHdfSensorTest"
             ],
             "type": "PushKit"
         }
@@ -10,9 +10,9 @@
     "driver": {
         "native-test-timeout": "120000",
         "type": "CppTest",
-        "module-name": "hdf_xtstest_sensor",
+        "module-name": "ActsHdfSensorTest",
         "runtime-hint": "1s",
         "native-test-device-path": "/data/local/tmp"
     },
-    "description": "Configuration for hdf_xtstest_sensor Tests"
+    "description": "Configuration for ActsHdfSensorTest Tests"
 }
