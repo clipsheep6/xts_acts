@@ -16,7 +16,7 @@ import("//drivers/adapter/uhdf2/uhdf.gni")
 import("//test/xts/tools/build/suite.gni")
 
 #################################group#########################################
-group("ActsHdfXtstestAudioTest") {
+group("ActsHdfAudioTest") {
   if (!defined(ohos_lite)) {
     testonly = true
   }
