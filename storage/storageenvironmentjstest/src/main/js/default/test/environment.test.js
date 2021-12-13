@@ -23,6 +23,7 @@ import {
 } from "./Common";
 
 describe("environment", function () {
+  
   /**
    * @tc.number SUB_DF_ENVIRONMENT_GET_STORAGE_DATA_0000
    * @tc.name environment_test_get_storage_data_async_000
@@ -40,7 +41,9 @@ describe("environment", function () {
         done();
       });
     } catch (e) {
-      console.log("environment_test_get_storage_data_async_000 has failed for " + e);
+      console.log(
+        "environment_test_get_storage_data_async_000 has failed for " + e
+      );
       expect(null).assertFail();
     }
   });
@@ -59,7 +62,9 @@ describe("environment", function () {
       await environment.getStorageData("123");
       expect(null).assertFail();
     } catch (e) {
-      console.log("environment_test_get_storage_data_async_001 has failed for " + e);
+      console.log(
+        "environment_test_get_storage_data_async_001 has failed for " + e
+      );
       expect(!!e).assertTrue();
     }
     done();
@@ -81,7 +86,9 @@ describe("environment", function () {
       console.log("environment_test_get_storage_data_async_002:" + url);
       done();
     } catch (e) {
-      console.log("environment_test_get_storage_data_async_002 has failed for " + e);
+      console.log(
+        "environment_test_get_storage_data_async_002 has failed for " + e
+      );
       expect(null).assertFail();
     }
   });
@@ -102,7 +109,9 @@ describe("environment", function () {
       console.log("environment_test_get_user_data_async_000:" + url);
       done();
     } catch (e) {
-      console.log("environment_test_get_user_data_async_000 has failed for " + e);
+      console.log(
+        "environment_test_get_user_data_async_000 has failed for " + e
+      );
       expect(null).assertFail();
     }
   });
@@ -124,7 +133,9 @@ describe("environment", function () {
         done();
       });
     } catch (e) {
-      console.log("environment_test_get_user_data_async_001 has failed for " + e);
+      console.log(
+        "environment_test_get_user_data_async_001 has failed for " + e
+      );
       expect(null).assertFail();
     }
   });
@@ -143,7 +154,9 @@ describe("environment", function () {
       await environment.getUserData("123");
       expect(null).assertFail();
     } catch (e) {
-      console.log("environment_test_get_user_data_async_002 has failed for " + e);
+      console.log(
+        "environment_test_get_user_data_async_002 has failed for " + e
+      );
       expect(!!e).assertTrue();
     }
     done();
