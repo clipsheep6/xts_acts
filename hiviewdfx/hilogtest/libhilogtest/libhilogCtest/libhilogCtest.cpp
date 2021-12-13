@@ -551,9 +551,7 @@ HWTEST_F(LibhilogCtest, HILOG_STR_EMPTY, Function|MediumTest|Level3)
 {
     std::string cmdRunResult;
     LogType type = LOG_CORE;
-    HILOG_INFO(type,"3333333333");
     HILOG_FATAL(type, "STRING_empty:%{private}s,%{public}s,%s;", "", "", "");
-    HILOG_INFO(type,"4444444444444444");
     std::string expected{"STRING_empty:<private>,,<private>;"};
     CmdRun("timeout 3 hilog | grep testtag0testtag0testtag0testta", cmdRunResult);
     std::cout<<cmdRunResult<<std::endl;
