@@ -15,15 +15,12 @@ import("//build/ohos_var.gni")
 import("//drivers/adapter/uhdf2/uhdf.gni")
 import("//test/xts/tools/build/suite.gni")
 
-module_output_path = "hdf/input"
-ohos_moduletest_suite("ActsHdfInputTest") {
+module_output_path = "hdf/misc"
+ohos_moduletest_suite("ActsHdfVibratorTest") {
   module_out_path = module_output_path
-  include_dirs = [
-    "//drivers/framework/test/unittest/include",
-    "//drivers/peripheral/input/hal/include",
-    "//drivers/peripheral/input/interfaces/include",
-  ]
-  sources = [ "./common/hdi_input_test.cpp" ]
+  include_dirs = []
+
+  sources = [ "./common/hdf_vibrator_test.cpp" ]
   cflags = [
     "-Wall",
     "-Wextra",
@@ -33,9 +30,8 @@ ohos_moduletest_suite("ActsHdfInputTest") {
     "-fno-strict-aliasing",
   ]
   deps = [
-    "$hdf_uhdf_path/test/unittest/common:libhdf_test_common",
     "$hdf_uhdf_path/utils:libhdf_utils",
-    "//drivers/peripheral/input/hal:hdi_input",
+    "//drivers/peripheral/misc/vibrator/hal:hdi_vibrator",
     "//utils/native/base:utils",
   ]
   if (is_standard_system) {
