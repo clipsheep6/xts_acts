@@ -52,7 +52,7 @@ HWTEST_F(ActsAVMetadataAPITest, SUB_MEDIA_AVMETADATAHELPER_API_SetSource_0200, F
     std::string("/H264_AAC.mp4");
     ASSERT_EQ(RET_OK, helper->SetSource(uri, AVMetadataUsage::AV_META_USAGE_META_ONLY));
 
-    for (auto &item : m4aMeta) {
+    for (auto &item : mp4Meta) {
         std::string value = helper->ResolveMetadata(item.first);
         EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(item.first, value, item.second), true);
     }
@@ -60,7 +60,7 @@ HWTEST_F(ActsAVMetadataAPITest, SUB_MEDIA_AVMETADATAHELPER_API_SetSource_0200, F
     std::string("/H264_MP3.mp4");
     EXPECT_EQ(RET_OK, helper->SetSource(uri, AVMetadataUsage::AV_META_USAGE_META_ONLY));
     auto resultMetas = helper->ResolveMetadata();
-    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, oggMeta), true);
+    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, mp4Meta), true);
     helper->Release();
 }
 
@@ -79,11 +79,11 @@ HWTEST_F(ActsAVMetadataAPITest, SUB_MEDIA_AVMETADATAHELPER_API_SetSource_0300, F
     ASSERT_EQ(RET_OK, helper->SetSource(uri, AVMetadataUsage::AV_META_USAGE_META_ONLY));
 
     auto resultMetas = helper->ResolveMetadata();
-    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, m4aMeta), true);
+    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, mp4Meta), true);
     uri = TestParamsConfig::GetInstance().GetMountPath() +
     std::string("/H264_MP3.mp4");
     EXPECT_EQ(RET_OK, helper->SetSource(uri, AVMetadataUsage::AV_META_USAGE_META_ONLY));
-    for (auto &item : oggMeta) {
+    for (auto &item : mp4Meta) {
         std::string value = helper->ResolveMetadata(item.first);
         EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(item.first, value, item.second), true);
     }
@@ -120,12 +120,12 @@ HWTEST_F(ActsAVMetadataAPITest, SUB_MEDIA_AVMETADATAHELPER_API_SetSource_0500, F
     std::string("/H264_AAC.mp4");
     ASSERT_EQ(RET_OK, helper->SetSource(uri, AVMetadataUsage::AV_META_USAGE_META_ONLY));
 
-    for (auto &item : m4aMeta) {
+    for (auto &item : mp4Meta) {
         std::string value = helper->ResolveMetadata(item.first);
         EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(item.first, value, item.second), true);
     }
     auto resultMetas = helper->ResolveMetadata();
-    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, m4aMeta), true);
+    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, mp4Meta), true);
     struct PixelMapParams param = {-1, -1, PixelFormat::RGB_565};
     int64_t timeUs = 0;
     int32_t queryOption = AVMetadataQueryOption::AV_META_QUERY_NEXT_SYNC;
@@ -148,12 +148,12 @@ HWTEST_F(ActsAVMetadataAPITest, SUB_MEDIA_AVMETADATAHELPER_API_SetSource_0550, F
     std::string("/H264_AAC.mp4");
     ASSERT_EQ(RET_OK, helper->SetSource(uri, AVMetadataUsage::AV_META_USAGE_PIXEL_MAP));
 
-    for (auto &item : m4aMeta) {
+    for (auto &item : mp4Meta) {
         std::string value = helper->ResolveMetadata(item.first);
         EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(item.first, value, item.second), true);
     }
     auto resultMetas = helper->ResolveMetadata();
-    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, m4aMeta), true);
+    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, mp4Meta), true);
     struct PixelMapParams param = {-1, -1, PixelFormat::RGB_565};
     int64_t timeUs = 0;
     int32_t queryOption = AVMetadataQueryOption::AV_META_QUERY_NEXT_SYNC;
@@ -178,11 +178,11 @@ HWTEST_F(ActsAVMetadataAPITest, SUB_MEDIA_AVMETADATAHELPER_API_SetSource_0600, F
     ASSERT_EQ(RET_OK, helper->SetSource(uri, AVMetadataUsage::AV_META_USAGE_PIXEL_MAP));
     ASSERT_EQ(RET_OK, helper->SetSource(uri, AVMetadataUsage::AV_META_USAGE_META_ONLY));
     ASSERT_EQ(RET_OK, helper->SetSource(uri, AVMetadataUsage::AV_META_USAGE_PIXEL_MAP));
-    for (auto &item : m4aMeta) {
+    for (auto &item : mp4Meta) {
         std::string value = helper->ResolveMetadata(item.first);
         EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(item.first, value, item.second), true);
     }
     auto resultMetas = helper->ResolveMetadata();
-    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, m4aMeta), true);
+    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, mp4Meta), true);
     helper->Release();
 }

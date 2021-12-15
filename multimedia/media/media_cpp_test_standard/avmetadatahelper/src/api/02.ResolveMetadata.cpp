@@ -59,12 +59,12 @@ HWTEST_F(ActsAVMetadataAPITest, SUB_MEDIA_AVMETADATAHELPER_API_ResolveMetadata_0
     std::string("/H264_AAC.mp4");
     ASSERT_EQ(RET_OK, helper->SetSource(uri, AVMetadataUsage::AV_META_USAGE_META_ONLY));
 
-    for (auto &item : m4aMeta) {
+    for (auto &item : mp4Meta) {
         std::string value = helper->ResolveMetadata(item.first);
         EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(item.first, value, item.second), true);
     }
     auto resultMetas = helper->ResolveMetadata();
-    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, m4aMeta), true);
+    EXPECT_EQ(TestParamsConfig::GetInstance().CompareMetadata(resultMetas, mp4Meta), true);
     helper->Release();
 }
 

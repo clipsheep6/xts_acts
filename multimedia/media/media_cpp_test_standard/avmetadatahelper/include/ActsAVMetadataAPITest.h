@@ -45,24 +45,7 @@ public:
         MEDIA_DEBUG_LOG("ActsAVMetadataAPITest::TearDown:%s", testInfo_->name());
     };
     const ::testing::TestInfo *testInfo_ = nullptr;
-    std::unordered_map<int32_t, std::string> m4aMeta = {
-        {AV_KEY_ALBUM, "media"},
-        {AV_KEY_ALBUM_ARTIST, "media_test"},
-        {AV_KEY_ARTIST, "CJH"},
-        {AV_KEY_AUTHOR, ""},
-        {AV_KEY_COMPOSER, "Cjh"},
-        {AV_KEY_DURATION, "27750"},
-        {AV_KEY_GENRE, "CHAOLIU"},
-        {AV_KEY_HAS_AUDIO, "yes"},
-        {AV_KEY_HAS_VIDEO, "yes"},
-        {AV_KEY_MIME_TYPE, "video/mp4"},
-        {AV_KEY_NUM_TRACKS, "2"},
-        {AV_KEY_SAMPLE_RATE, "44100"},
-        {AV_KEY_TITLE, "test"},
-        {AV_KEY_VIDEO_HEIGHT, "544"},
-        {AV_KEY_VIDEO_WIDTH, "960"},
-    };
-    std::unordered_map<int32_t, std::string> oggMeta = {
+    std::unordered_map<int32_t, std::string> mp4Meta = {
         {AV_KEY_ALBUM, "media"},
         {AV_KEY_ALBUM_ARTIST, "media_test"},
         {AV_KEY_ARTIST, "CJH"},
