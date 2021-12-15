@@ -95,65 +95,6 @@ describe('SmsMmsCreateTest', function () {
   const PDU_MESSAGEBODY = '33';
   const PDU_SC_TIMESTAMP = 1627356274;
 
-  /** Indicates the SMS message body. */
-  // visibleMessageBody: '1';
-  /** Indicates the address of the sender, which is to be displayed on the UI. */
-  // visibleRawAddress: '';
-  /** Indicates the SMS type. */
-  // messageClass: sms.INSTANT_MESSAGE;
-  /** Indicates the protocol identifier. */
-  // protocolId: 0;
-  /** Indicates the short message service center (SMSC) address. */
-  // scAddress: '';
-  /** Indicates the SMSC timestamp. */
-  // scTimestamp: number;
-  /** Indicates whether the received SMS is a "replace short message". */
-  // isReplaceMessage: false;
-  /** Indicates whether the received SMS contains "TP-Reply-Path". */
-  // hasReplyPath: false;
-  /** Indicates Protocol Data Units (PDUs) from an SMS message. */
-  // pdu: Array<number>;
-  /**
-     * Indicates the SMS message status from the SMS-STATUS-REPORT message sent by the
-     * Short Message Service Center (SMSC).
-     */
-  // status: 0;
-  /** Indicates whether the current message is SMS-STATUS-REPORT. */
-  // isSmsStatusReportMessage: false;
-  var InstantPdu = [0x00,0x01,0x00,0x07,0x91,0x68,0x01,0x80,0xF6,0x00,0x19,0x02,0x00,0x31]
-  // pduArray PDU data
-  const INSTANT_PDU_MESSAGEBODY = '1';
-
-  /** Indicates the SMS message body. */
-  // visibleMessageBody: '1';
-  /** Indicates the address of the sender, which is to be displayed on the UI. */
-  // visibleRawAddress: '';
-  /** Indicates the SMS type. */
-  // messageClass: sms.OPTIONAL_MESSAGE;
-  /** Indicates the protocol identifier. */
-  // protocolId: 0;
-  /** Indicates the short message service center (SMSC) address. */
-  // scAddress: '';
-  /** Indicates the SMSC timestamp. */
-  // scTimestamp: number;
-  /** Indicates whether the received SMS is a "replace short message". */
-  // isReplaceMessage: false;
-  /** Indicates whether the received SMS contains "TP-Reply-Path". */
-  // hasReplyPath: false;
-  /** Indicates Protocol Data Units (PDUs) from an SMS message. */
-  // pdu: Array<number>;
-  /**
-     * Indicates the SMS message status from the SMS-STATUS-REPORT message sent by the
-     * Short Message Service Center (SMSC).
-     */
-  // status: 0;
-  /** Indicates whether the current message is SMS-STATUS-REPORT. */
-  // isSmsStatusReportMessage: false;
-  var OptionalPdu = [0x00,0x01,0x00,0x07,0x91,0x68,0x01,0x80,0xF6,0x00,0x1A,0x02,0x00,0x31]
-  // pduArray PDU data
-  const OPTIONAL_PDU_MESSAGEBODY = '1';
-
-
   /*
    * @tc.number  Telephony_SmsMms_createMessage_Async_0100
    * @tc.name    Call interface CreateMessage,
@@ -237,68 +178,6 @@ describe('SmsMmsCreateTest', function () {
   });
 
   /*
-   * @tc.number  Telephony_SmsMms_createMessage_Async_0900
-   * @tc.name    Call interface CreateMessage,
-   *             pass in the PDU(InstantPdu) in line with the coding specification, the specification is 3GPP,
-   *             shortMessage Don't empty, message Class is INSTANT_MESSAGE
-   * @tc.desc    Function test
-   */
-  it('Telephony_SmsMms_createMessage_Async_0900', 0, async function (done) {
-    sms.createMessage(InstantPdu, '3gpp', (err, shortMessage) => {
-      if (err) {
-        expect().assertFail();
-        console.log('Telephony_SmsMms_createMessage_Async_0100 fail');
-        done();
-        return;
-      }
-      expect(shortMessage.visibleMessageBody === INSTANT_PDU_MESSAGEBODY).assertTrue();
-      expect(shortMessage.visibleRawAddress.length === 0).assertTrue();
-      expect(shortMessage.messageClass === sms.INSTANT_MESSAGE).assertTrue();
-      expect(shortMessage.protocolId === 0).assertTrue();
-      expect(shortMessage.scAddress.length === 0).assertTrue();
-      expect(shortMessage.scTimestamp !== undefined).assertTrue();
-      expect(shortMessage.isReplaceMessage).assertFalse();
-      expect(shortMessage.hasReplyPath).assertFalse();
-      expect(shortMessage.pdu.length > 0).assertTrue();
-      expect(shortMessage.status === 0).assertTrue();
-      expect(shortMessage.isSmsStatusReportMessage).assertFalse();
-      console.log('Telephony_SmsMms_createMessage_Async_0900 finish');
-      done();
-    });
-  });
-
-  /*
-   * @tc.number  Telephony_SmsMms_createMessage_Async_1000
-   * @tc.name    Call interface CreateMessage,
-   *             pass in the PDU(OptionalPdu) in line with the coding specification, the specification is 3GPP,
-   *             shortMessage Don't empty, message Class is OPTIONAL_MESSAGE
-   * @tc.desc    Function test
-   */
-  it('Telephony_SmsMms_createMessage_Async_1000', 0, async function (done) {
-    sms.createMessage(OptionalPdu, '3gpp', (err, shortMessage) => {
-      if (err) {
-        expect().assertFail();
-        console.log('Telephony_SmsMms_createMessage_Async_0100 fail');
-        done();
-        return;
-      }
-      expect(shortMessage.visibleMessageBody === OPTIONAL_PDU_MESSAGEBODY).assertTrue();
-      expect(shortMessage.visibleRawAddress.length === 0).assertTrue();
-      expect(shortMessage.messageClass === sms.OPTIONAL_MESSAGE).assertTrue();
-      expect(shortMessage.protocolId === 0).assertTrue();
-      expect(shortMessage.scAddress.length === 0).assertTrue();
-      expect(shortMessage.scTimestamp !== undefined).assertTrue();
-      expect(shortMessage.isReplaceMessage).assertFalse();
-      expect(shortMessage.hasReplyPath).assertFalse();
-      expect(shortMessage.pdu.length > 0).assertTrue();
-      expect(shortMessage.status === 0).assertTrue();
-      expect(shortMessage.isSmsStatusReportMessage).assertFalse();
-      console.log('Telephony_SmsMms_createMessage_Async_1000 finish');
-      done();
-    });
-  });
-
-  /*
    * @tc.number  Telephony_SmsMms_createMessage_Promise_0100
    * @tc.name    Call interface CreateMessage,
    *             pass in the PDU(rawArray) in line with the coding specification, the specification is 3GPP,
@@ -373,66 +252,6 @@ describe('SmsMmsCreateTest', function () {
     } catch (err) {
       expect().assertFail();
       console.log('Telephony_SmsMms_createMessage_Promise_0500 fail');
-      done();
-    }
-  });
-
-  /*
-   * @tc.number  Telephony_SmsMms_createMessage_Promise_0900
-   * @tc.name    Call interface CreateMessage,
-   *             pass in the PDU(pduArray) in line with the coding specification, the specification is 3GPP,
-   *             promise returns the result Don't empty, message Class is INSTANT_MESSAGE
-   * @tc.desc    Function test
-   */
-  it('Telephony_SmsMms_createMessage_Promise_0900', 0, async function (done) {
-    try {
-      var promise = await sms.createMessage(InstantPdu, '3gpp');
-      expect(promise.visibleMessageBody === INSTANT_PDU_MESSAGEBODY).assertTrue();
-      expect(promise.visibleRawAddress.length === 0).assertTrue();
-      expect(promise.messageClass === sms.INSTANT_MESSAGE).assertTrue();
-      expect(promise.protocolId === 0).assertTrue();
-      expect(promise.scAddress.length === 0).assertTrue();
-      expect(promise.scTimestamp !== undefined ).assertTrue();
-      expect(promise.isReplaceMessage).assertFalse();
-      expect(promise.hasReplyPath).assertFalse();
-      expect(promise.pdu.length > 0).assertTrue();
-      expect(promise.status === 0).assertTrue();
-      expect(promise.isSmsStatusReportMessage).assertFalse();
-      console.log('Telephony_SmsMms_createMessage_Promise_0900 finish');
-      done();
-    } catch (err) {
-      expect().assertFail();
-      console.log('Telephony_SmsMms_createMessage_Promise_0900 fail');
-      done();
-    }
-  });
-
-  /*
-   * @tc.number  Telephony_SmsMms_createMessage_Promise_1000
-   * @tc.name    Call interface CreateMessage,
-   *             pass in the PDU(pduArray) in line with the coding specification, the specification is 3GPP,
-   *             promise returns the result Don't empty, message Class is OPTIONAL_MESSAGE
-   * @tc.desc    Function test
-   */
-  it('Telephony_SmsMms_createMessage_Promise_1000', 0, async function (done) {
-    try {
-      var promise = await sms.createMessage(OptionalPdu, '3gpp');
-      expect(promise.visibleMessageBody === OPTIONAL_PDU_MESSAGEBODY).assertTrue();
-      expect(promise.visibleRawAddress.length === 0).assertTrue();
-      expect(promise.messageClass === sms.OPTIONAL_MESSAGE).assertTrue();
-      expect(promise.protocolId === 0).assertTrue();
-      expect(promise.scAddress.length === 0).assertTrue();
-      expect(promise.scTimestamp !== undefined ).assertTrue();
-      expect(promise.isReplaceMessage).assertFalse();
-      expect(promise.hasReplyPath).assertFalse();
-      expect(promise.pdu.length > 0).assertTrue();
-      expect(promise.status === 0).assertTrue();
-      expect(promise.isSmsStatusReportMessage).assertFalse();
-      console.log('Telephony_SmsMms_createMessage_Promise_1000 finish');
-      done();
-    } catch (err) {
-      expect().assertFail();
-      console.log('Telephony_SmsMms_createMessage_Promise_1000 fail');
       done();
     }
   });
