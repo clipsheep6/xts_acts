@@ -17,13 +17,29 @@
                 "resource/media/1h264_320x240_60.3gp ->/data/media/",
                 "resource/media/h264_320x240_60.m4v ->/data/media/",
                 "resource/media/hevc_320x240_30.mp4 ->/data/media/",
-                "resource/media/hevc_320x240_60.mp4 ->/data/media/"
+                "resource/media/H264_AAC.mp4 ->/data/media/",
+                "resource/media/H264_MP3.mp4 ->/data/media/",
+                "resource/media/MPEG2_AAC.mp4 ->/data/media/",
+                "resource/media/MPEG2_MP3.mp4 ->/data/media/",
+                "resource/media/MPEG4_AAC.mp4 ->/data/media/",
+                "resource/media/MPEG4+MP3.mp4 ->/data/media/",
+                "resource/media/out_480_320.mp4 ->/data/media/",
+                "resource/media/out_640_480.mp4 ->/data/media/",
+                "resource/media/out_720_480.mp4 ->/data/media/",
+                "resource/media/out_1024_512.mp4 ->/data/media/",
+                "resource/media/out_1080_720.mp4 ->/data/media/",
+                "resource/media/out_1280_720.mp4 ->/data/media/",
+                "resource/media/out_1912_1080.mp4 ->/data/media/",
+                "resource/media/H264_AAC.mp4 ->/data/media/",
+                "resource/media/H264_MP3.mp4 ->/data/media/"
             ]
         },
         {
             "type": "ShellKit",
             "run-command": [
                 "chmod -R 666 /data/media/*",
+                "mkdir -p /data/media/ThumbnailBak",
+                "chmod -R 777 /data/media/ThumbnailBak",
                 "setenforce 0"
             ],
             "teardown-command":[
