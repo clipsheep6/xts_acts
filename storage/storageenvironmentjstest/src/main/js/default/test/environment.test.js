@@ -23,6 +23,7 @@ import {
 } from "./Common";
 
 describe("environment", function () {
+  
   /**
    * @tc.number SUB_DF_ENVIRONMENT_GET_STORAGE_DATA_0000
    * @tc.name environment_test_get_storage_data_async_000
