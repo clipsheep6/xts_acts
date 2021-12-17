@@ -22,6 +22,7 @@ group("storage") {
       "storagefileioerrorjstest:storagefileioerror_js_test",
       "storagefileiojstest:storagefileio_js_test",
       "storagestatfsjstest:storagestatfs_js_test",
+      "storageespacejstest:storageespace_js_test",
 
       # "storagefmspublicjstest:storagefmspublic_js_test",
       # "storagefmssharejstest:storagefmsshare_js_test",
