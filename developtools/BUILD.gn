@@ -16,6 +16,10 @@ import("//build/ohos_var.gni")
 group("developtoolstestacts") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "hiplugintest:hipluginmoduleapitest" ]
+    deps = [
+      "profiler/hiprofiler_cmd:hiprofiler_cmd_test",
+      "profiler/native_hook:nativehook_test",
+      "profiler/profiler_services:profiler_service_test",
+    ]
   }
 }
