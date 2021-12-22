@@ -190,7 +190,7 @@ sptr<Surface> TestPlayer::GetVideoSurface(WindowConfig sub_config)
     if (strcmp(surface, "null") == 0) {
         return videoSurface;
     }
-    if (strcmp(surface, "window") == 0) {
+    if (strcmp(surface, "window_old") == 0) {
         sptr<WindowManager> wmi = WindowManager::GetInstance();
         if (wmi == nullptr) {
             return nullptr;
@@ -210,6 +210,14 @@ sptr<Surface> TestPlayer::GetVideoSurface(WindowConfig sub_config)
             return nullptr;
         }
         (void)videoSurface->SetUserData(SURFACE_FORMAT, std::to_string(PIXEL_FMT_RGBA_8888));
+    } else if (strcmp(surface, "window") == 0) {
+        OHOS::Rosen::RSSurfaceNodeConfig surfaceNodeConfig = { .SurfaceNodeName = "media_player_test"};
+        surfaceNode_ = OHOS::Rosen::RSSurfaceNode::Create(surfaceNodeConfig, false);
+        if (surfaceNode_ == nullptr) {
+            cout << "surfaceNode_ is nullptr" << endl;
+            return nullptr;
+        }
+        videoSurface = surfaceNode_->GetSurface();
     }
     return videoSurface;
 }
@@ -299,25 +307,6 @@ void TestPlayerCallback::OnInfo(PlayerOnInfoType type, int32_t extra, const Form
     }
 }
 
-int TestPlayerCallback::WaitForSeekDone(int32_t currentPosition)
-{
-    auto start = std::chrono::system_clock::now();
-    auto end = std::chrono::system_clock::now();
-    uint64_t waitTime = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-    seekDoneFlag_ = false;
-    while (seekDoneFlag_ != true && waitTime < WAITSECOND * TIME_SEC2MS) {
-        (void)usleep(WAIT_TIME);
-        end = std::chrono::system_clock::now();
-        waitTime = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-    }
-    seekDoneFlag_ = false;
-    if (waitTime >= WAITSECOND * TIME_SEC2MS) {
-        MEDIA_ERROR_LOG("Failed to seek [%d] ms ", currentPosition);
-        return -1;
-    }
-    return 0;
-}
-
 int TestPlayerCallback::WaitForState(PlayerStates state)
 {
     auto start = std::chrono::system_clock::now();
@@ -330,7 +319,6 @@ int TestPlayerCallback::WaitForState(PlayerStates state)
         waitTime = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     }
     if (waitTime >= waitTimeMax) {
-        MEDIA_ERROR_LOG("Failed to wait for state[%d] down", state);
         return -1;
     }
     return 0;
