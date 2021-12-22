@@ -140,13 +140,25 @@ describe('workerTest', function () {
     })
 
     // check worker transfer buffer is ok
-    it('worker_postMessage_test_005', 0, function () {
+    it('worker_postMessage_test_005', 0, async function (done) {
         var ss = new worker.Worker("workers/worker_006.js");
 
         const buffer = new ArrayBuffer(8)
         expect(buffer.byteLength).assertEqual(8)
         ss.postMessage(buffer, [buffer])
-        expect(buffer.byteLength).assertEqual(0)
+
+        var res = undefined
+        var flag = false
+        ss.onmessage = function (e) {
+            res = e.data;
+            flag = true
+        }
+
+        while (!flag) {
+            await PromiseCase()
+        }
+        expect(res).assertEqual("hello world")
+        done()
     })
 
     // check worker handle error is ok
@@ -384,47 +396,6 @@ describe('workerTest', function () {
         expect(times).assertEqual(10)
     })
 
-    // check worker off function is ok
-    it('worker_off_test_001', 0, function () {
-        var ss = new worker.Worker("workers/worker.js");
-
-        var zhangsan_times = 0;
-        ss.on("zhangsan", ()=>{
-            zhangsan_times++;
-        })
-
-        ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsan_times).assertEqual(1)
-
-        ss.off("zhangsan")
-
-        ss.dispatchEvent({type: "zhangsan"})
-        ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsan_times).assertEqual(1)
-    })
-
-    // check worker off function is ok
-    it('worker_off_test_002', 0, function () {
-        var ss = new worker.Worker("workers/worker.js");
-
-        var zhangsan_times = 0;
-        ss.on("zhangsan", ()=>{
-            zhangsan_times++;
-        })
-
-        ss.dispatchEvent({type: "zhangsan"})
-        ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsan_times).assertEqual(2)
-
-        for (var i=0;i<3;i++)
-        {
-            ss.off("zhangsan")
-        }
-
-        ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsan_times).assertEqual(2)
-    })
-
     // check worker removeEventListener function is ok
     it('worker_removeListener_test_001', 0, function () {
         var ss = new worker.Worker("workers/worker.js");
@@ -464,6 +435,7 @@ describe('workerTest', function () {
 
         ss.dispatchEvent({type: "zhangsan"})
         expect(zhangsan_times).assertEqual(2)
+
     })
 
     // check worker removeAllListener function is ok

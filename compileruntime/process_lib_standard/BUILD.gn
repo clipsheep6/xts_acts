@@ -14,6 +14,7 @@
 import("//test/xts/tools/build/suite.gni")
 ohos_js_hap_suite("process_js_test") {
   hap_profile = "./src/main/config.json"
+  js2abc = true
   deps = [
     ":process_js_assets",
     ":process_resources",
@@ -29,6 +30,7 @@ ohos_js_hap_suite("process_js_test") {
   #  part_name = "prebuilt_hap"
   #  subsystem_name = "xts"
 }
+
 ohos_js_assets("process_js_assets") {
   source_dir = "./src/main/js/default"
 }
