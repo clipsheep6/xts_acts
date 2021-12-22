@@ -214,7 +214,7 @@ sptr<Surface> TestPlayer::GetVideoSurface(WindowConfig sub_config)
         OHOS::Rosen::RSSurfaceNodeConfig surfaceNodeConfig = { .SurfaceNodeName = "media_player_test"};
         surfaceNode_ = OHOS::Rosen::RSSurfaceNode::Create(surfaceNodeConfig, false);
         if (surfaceNode_ == nullptr) {
-            cout << "surfaceNode_ is nullptr" << endl;
+            MEDIA_INFO_LOG("surfaceNode_ is nullptr");
             return nullptr;
         }
         videoSurface = surfaceNode_->GetSurface();
