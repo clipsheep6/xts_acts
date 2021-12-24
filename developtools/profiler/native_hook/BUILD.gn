@@ -10,41 +10,48 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 import("//build/test.gni")
 import("//test/xts/tools/build/suite.gni")
-import("../../../../../developtools/profiler/device/base/config.gni")
+import("../../../../../../developtools/profiler/device/base/config.gni")
 
-###############################################################################
 config("module_private_config") {
   visibility = [ ":*" ]
+  defines = [
+    "is_ohos=1",
+    "HAVE_LIBUNWIND=1",
+    "HIPERF_DEBUG",
+    "CONFIG_NO_HILOG",
+    "target_cpu_${target_cpu}",
+  ]
+
+  if (current_toolchain != host_toolchain) {
+    defines += [ "HAVE_HILOG" ]
+  }
 }
 
-ohos_moduletest_suite("hipluginmoduleapitest") {
-  deps = [
-    "${OHOS_PROFILER_DIR}/device/plugins/memory_plugin:memdataplugin",
-    "${OHOS_PROFILER_DIR}/protos/types/plugins/memory_data:memory_data_cpp",
-    "//third_party/googletest:gtest",
-  ]
-  include_dirs = [
-    "${OHOS_PROFILER_DIR}/interfaces/kits/",
-    "${OHOS_PROFILER_DIR}/device/plugins/memory_plugin/include",
-    "${OHOS_PROFILER_DIR}/device/plugins/api/include",
-    "${OHOS_PROFILER_DIR}/device/plugins/api/src",
-    "${OHOS_PROFILER_DIR}/device/base/include/",
-    "//third_party/googletest/googletest/include/gtest",
-  ]
+ohos_moduletest_suite("nativehook_test") {
   sources = [
-    "${OHOS_PROFILER_DIR}/device/plugins/memory_plugin/test/unittest/buffer_splitter_unittest.cpp",
-    "${OHOS_PROFILER_DIR}/device/plugins/memory_plugin/test/unittest/memory_data_plugin_unittest.cpp",
-    "hipluginmoduleapitest.cpp",
+    "${OHOS_PROFILER_DIR}/device/plugins/memory_plugin/src/buffer_splitter.cpp",
+    "src/check_hook_data_test.cpp",
   ]
+
+  include_dirs = [
+    "${OHOS_PROFILER_DIR}/device/base/include/",
+    "${OHOS_PROFILER_DIR}/device/plugins/memory_plugin/include",
+    "//third_party/googletest/googletest/include/gtest",
+    "//utils/native/base/include",
+  ]
+
+  deps = [ "//utils/native/base:utilsecurec" ]
+
   cflags = [
-    "-pthread",
     "-Wno-inconsistent-missing-override",
     "-Dprivate=public",  #allow test code access private members
+    "-Dprotected=public",  #allow test code access private members
   ]
+
   external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
+  configs = [ ":module_private_config" ]
   subsystem_name = "${OHOS_PROFILER_SUBSYS_NAME}"
-  defines = [ "HAVE_HILOG" ]
+  part_name = "${OHOS_PROFILER_PART_NAME}"
 }

@@ -42,6 +42,7 @@ _all_test_packages = [
   "${ACTS_ROOT}/storage:storage",
   "${ACTS_ROOT}/distributedhardware:distributedhardware",
   "${ACTS_ROOT}/hdf:hdfacttest",
+  "${ACTS_ROOT}/developtools:developtoolstestacts",
 ]
 
 _all_test_packages_ivi = [
