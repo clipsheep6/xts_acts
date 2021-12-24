@@ -18,14 +18,27 @@ module_output_path = "hit/ActsMediaCppStandardTest"
 config("media_cpp_config") {
   visibility = [ ":*" ]
   include_dirs = [
-    "include",
-    "//multimedia/media_standard/frameworks/innerkitsimpl/native/player/include",
+    "//foundation/multimedia/media_standard/interfaces/innerkits/native/media/include",
+    "//base/startup/syspara_lite/interfaces/innerkits/native/syspara/include",
+    "//foundation/graphic/standard/interfaces/innerkits/wmclient",
+    "//foundation/multimedia/image_standard/interfaces/innerkits/include",
+    "//third_party/ffmpeg/",
+    "//third_party/libjpeg",
+    "//foundation/graphic/standard/frameworks/surface/include",
+    "//foundation/multimedia/camera_standard/frameworks/innerkitsimpl/metadata/include",
   ]
 }
 
 ohos_moduletest_suite("ActsMediaCppStandardTest") {
   module_out_path = module_output_path
   sources = [
+    "avmetadatahelper/src/TestAVMetadataHelper.cpp",
+    "avmetadatahelper/src/api/01.SetSource.cpp",
+    "avmetadatahelper/src/api/02.ResolveMetadata.cpp",
+    "avmetadatahelper/src/api/03.FetchFrameAtTime.cpp",
+    "avmetadatahelper/src/api/04.Release.cpp",
+    "avmetadatahelper/src/function/ActsAVMetadataFuncTest.cpp",
+    "avmetadatahelper/src/function/ActsThumbnailFuncTest.cpp",
     "player/src/TestParamsConfig.cpp",
     "player/src/TestPlayer.cpp",
     "player/src/api/ActsPlayerAPITest.cpp",
@@ -36,18 +49,24 @@ ohos_moduletest_suite("ActsMediaCppStandardTest") {
   ]
   include_dirs = [
     "include",
+    "avmetadatahelper/include",
     "player/include",
     "recorder/include",
     "//base/startup/syspara_lite/interfaces/innerkits/native/syspara/include",
     "//foundation/graphic/standard/interfaces/innerkits/wmclient",
   ]
-  cflags = [ "-Wall" ]
+  cflags = [ 
+    "-Wall",
+    "-Wno-integer-overflow",
+  ]
   cflags_cc = cflags
   deps = [
     "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog",
     "//base/startup/syspara_lite/interfaces/innerkits/native/syspara:syspara",
     "//foundation/graphic/standard:libwmclient",
+    "//foundation/multimedia/image_standard/interfaces/innerkits:image_native",
     "//third_party/googletest:gtest_main",
+    "//third_party/libjpeg:libjpeg_static",
   ]
   external_deps = [
     "ipc:ipc_core",
