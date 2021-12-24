@@ -20,6 +20,10 @@ config("media_cpp_config") {
   include_dirs = [
     "include",
     "//multimedia/media_standard/frameworks/innerkitsimpl/native/player/include",
+    "//foundation/graphic/standard/rosen/modules/render_service_client/core/ui",
+    "//foundation/graphic/standard/rosen/modules/render_service_base/include",
+    "//foundation/graphic/standard/rosen/modules/render_service_client/core",
+    "//third_party/flutter/skia",
   ]
 }
 
@@ -47,6 +51,8 @@ ohos_moduletest_suite("ActsMediaCppStandardTest") {
     "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog",
     "//base/startup/syspara_lite/interfaces/innerkits/native/syspara:syspara",
     "//foundation/graphic/standard:libwmclient",
+    "//foundation/graphic/standard/rosen/modules/render_service_base:librender_service_base",
+    "//foundation/graphic/standard/rosen/modules/render_service_client:librender_service_client",
     "//third_party/googletest:gtest_main",
   ]
   external_deps = [

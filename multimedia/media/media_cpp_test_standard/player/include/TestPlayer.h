@@ -21,6 +21,8 @@
 #include "window_manager.h"
 #include "surface_type.h"
 #include "display_type.h"
+#include "rs_node.h"
+#include "rs_surface_node.h"
 
 namespace OHOS {
 namespace Media {
@@ -70,6 +72,7 @@ class TestPlayer {
 public:
     std::shared_ptr<Player> player_ = nullptr;
     sptr<Window> window_ = nullptr;
+    std::shared_ptr<OHOS::Rosen::RSSurfaceNode> surfaceNode_ = nullptr;
     explicit TestPlayer(std::shared_ptr<PlayerSignal> test);
     virtual ~TestPlayer();
     DISALLOW_COPY_AND_MOVE(TestPlayer);
@@ -106,7 +109,6 @@ public:
     virtual ~TestPlayerCallback();
     DISALLOW_COPY_AND_MOVE(TestPlayerCallback);
     void OnError(PlayerErrorType errorType, int32_t errorCode);
-    int WaitForSeekDone(int32_t currentPosition);
     void OnInfo(PlayerOnInfoType type, int32_t extra, const Format &infoBody = {});
     void SeekNotify(int32_t extra, const Format &infoBody);
     int WaitForState(PlayerStates state);
