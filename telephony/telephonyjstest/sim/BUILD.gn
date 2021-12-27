@@ -19,10 +19,15 @@ group("sim") {
     deps = [
       "sim_file_manager_function_test:SimFileManagerFunctionTest",
       "sim_manager_function_test:SimManagerFunctionTest",
-      "sim_no_sim_function_test:SimNoSimFunctionTest",
-      "sim_performance_test:SimPerformanceTest",
-      "sim_reliability_test:SimReliabilityTest",
       "sim_state_manager_function_test:SimStateManagerFunctionTest",
+      "sim_icc_dialling_numbers_controller_function_test:SimIccDiallingNumbersControllerFunctionTest",
+      "sim_account_information_manager_function_test:SimAccountInformationManagerFunctionTest",
+      "sim_file_information_function_test:SimFileInformationFunctionTest",
+      "sim_fixed_dial_manager_function_test:SimFixedDialManagerFunctionTest",
+      "sim_activate_manager_function_test:SimActivateManagerFunctionTest",
+      "sim_setvoicemailinfo_function_test:SimSetVoiceMailInfoFunctionTest",
+      "sim_getsimaccountinfo_function_test:SimGetSimAccountInfoFunctionTest",
+      "sim_no_sim_function_test:SimNoSimFunctionTest"
     ]
   }
 }
