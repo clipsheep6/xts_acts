@@ -13,17 +13,16 @@
  * limitations under the License.
  */
 
- package ohos.acts.multimedia.image;
+package ohos.acts.multimedia.image;
 
- import ohos.aafwk.ability.AbilityPackage;
+import ohos.aafwk.ability.AbilityPackage;
 
 /*
  * java MyApplication
  */
-
- public class MyApplication extends AbilityPackage {
+public class MyApplication extends AbilityPackage {
     @Override
     public void onInitialize() {
         super.onInitialize();
     }
- }
+}

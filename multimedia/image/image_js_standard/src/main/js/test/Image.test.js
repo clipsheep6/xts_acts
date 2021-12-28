@@ -46,7 +46,6 @@ describe('Image', function () {
         * @tc.type      : Functional
         * @tc.level     : FWK Layer
     */
-
     it('TC_001', 0, async function (done) {
         const Color = new ArrayBuffer(96);
         let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } }
@@ -63,32 +62,32 @@ describe('Image', function () {
             })
     })
     
-/* *
-        * @tc.number    : TC_001-1
-        * @tc.name      : create pixelmap object
-        * @tc.desc      : 1.创建InitializationOptions对象opts
-        *                 2.设置color，colorlength，offset，width，height，pixeFormat，alphyType
-        *                 3.使用color，colorlength， offset，width和opts创建PixelMap对象newPixelMap
-        *                 4.验证newPixelMap对象不为null
-        * @tc.size      : 
-        * @tc.type      : Functional
-        * @tc.level     : FWK Layer
-    */
-
-it('TC_001-1', 0, async function (done) {
-    const Color = new ArrayBuffer(96);
-    let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } }
-    image.createPixelMap(Color, opts, pixelmap => {
-            expect(pixelmap !== null).assertTrue();
-            console.info('TC_001-1 success');
-            done();
-        })
-        .catch(error => {
-            console.log('TC_001-1 error: ' + error);
-            expect().assertFail();
-            done();
-        })
+    /* *
+            * @tc.number    : TC_001-1
+            * @tc.name      : create pixelmap object
+            * @tc.desc      : 1.创建InitializationOptions对象opts
+            *                 2.设置color，colorlength，offset，width，height，pixeFormat，alphyType
+            *                 3.使用color，colorlength， offset，width和opts创建PixelMap对象newPixelMap
+            *                 4.验证newPixelMap对象不为null
+            * @tc.size      : 
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+    it('TC_001-1', 0, async function (done) {
+        const Color = new ArrayBuffer(96);
+        let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } }
+        image.createPixelMap(Color, opts, pixelmap => {
+                expect(pixelmap !== null).assertTrue();
+                console.info('TC_001-1 success');
+                done();
+            })
+            .catch(error => {
+                console.log('TC_001-1 error: ' + error);
+                expect().assertFail();
+                done();
+            })
     })
+
     /* *
         * @tc.number    : TC_020
         * @tc.name      : read Pixels To Buffer
@@ -100,7 +99,6 @@ it('TC_001-1', 0, async function (done) {
         * @tc.type      : Functional
         * @tc.level     : FWK Layer
     */
-
     it('TC_020', 0, async function (done) {
         console.info('TC_020 in');
         const color = new ArrayBuffer(96);
@@ -147,6 +145,7 @@ it('TC_001-1', 0, async function (done) {
                 done();
             })
     })
+
     /* *
         * @tc.number    : TC_020-1
         * @tc.name      : read Pixels To Buffer
@@ -158,7 +157,6 @@ it('TC_001-1', 0, async function (done) {
         * @tc.type      : Functional
         * @tc.level     : FWK Layer
     */
-
     it('TC_020-1', 0, async function (done) {
         console.info('TC_020-1 in');
         const color = new ArrayBuffer(96);
@@ -214,7 +212,6 @@ it('TC_001-1', 0, async function (done) {
          * @tc.type      : Functional
          * @tc.level     : FWK Layer
      */
-
     it('TC_021', 0, async function (done) {
         const color = new ArrayBuffer(96);
         var bufferArr = new Uint8Array(color);
@@ -261,6 +258,7 @@ it('TC_001-1', 0, async function (done) {
                 done();
             })
     })
+
    /* *
          * @tc.number    : TC_021-1
          * @tc.name      : read Pixels
@@ -272,7 +270,6 @@ it('TC_001-1', 0, async function (done) {
          * @tc.type      : Functional
          * @tc.level     : FWK Layer
      */
-
    it('TC_021-1', 0, async function (done) {
     const color = new ArrayBuffer(96);
     var bufferArr = new Uint8Array(color);
@@ -317,7 +314,8 @@ it('TC_001-1', 0, async function (done) {
             expect().assertFail();
             done();
         })
-})
+    })
+
     /* *
             * @tc.number    : TC_022
             * @tc.name      : write Pixels
@@ -329,7 +327,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_022', 0, async function (done) {
         const color = new ArrayBuffer(96);
         let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
@@ -378,7 +375,8 @@ it('TC_001-1', 0, async function (done) {
                 done();
             })
     })
- /* *
+ 
+    /* *
             * @tc.number    : TC_022-1
             * @tc.name      : write Pixels
             * @tc.desc      : 1.创建PixelMap
@@ -389,16 +387,15 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
- it('TC_022-1', 0, async function (done) {
-    const color = new ArrayBuffer(96);
-    let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
-    image.createPixelMap(color, opts, pixelmap => {
-        expect(pixelmap !== null).assertTrue();
-        console.info('TC_022-1 success');
-        done();
-       
-    })
+    it('TC_022-1', 0, async function (done) {
+        const color = new ArrayBuffer(96);
+        let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
+        image.createPixelMap(color, opts, pixelmap => {
+            expect(pixelmap !== null).assertTrue();
+            console.info('TC_022-1 success');
+            done();
+        
+        })
             const area = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
             var bufferArr = new Uint8Array(area.pixels);
             for (var i = 0; i < bufferArr.length; i++) {
@@ -434,7 +431,8 @@ it('TC_001-1', 0, async function (done) {
             expect().assertFail();
             done();
         })
-})
+    })
+
     /* *
             * @tc.number    : TC_023
             * @tc.name      : write Buffer To Pixels
@@ -446,7 +444,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_023', 0, async function (done) {
         const color = new ArrayBuffer(96);
         var bufferArr = new Uint8Array(color);
@@ -493,7 +490,8 @@ it('TC_001-1', 0, async function (done) {
                 done();
             })
     })
- /* *
+ 
+    /* *
             * @tc.number    : TC_023-1
             * @tc.name      : write Buffer To Pixels
             * @tc.desc      : 1.创建PixelMap，buffer
@@ -504,7 +502,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_023-1', 0, async function (done) {
     const color = new ArrayBuffer(96);
     var bufferArr = new Uint8Array(color);
@@ -548,7 +545,8 @@ it('TC_001-1', 0, async function (done) {
             done();
         })
    })
-    /* *
+
+   /* *
             * @tc.number    : TC_024
             * @tc.name      : get Image In fo
             * @tc.desc      : 1.创建PixelMap，ImageInfo
@@ -559,7 +557,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_024', 0, async function (done) {
         const color = new ArrayBuffer(96);
         let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
@@ -590,6 +587,7 @@ it('TC_001-1', 0, async function (done) {
                 done();
             })
     })
+
     /* *
             * @tc.number    : TC_024-1
             * @tc.name      : get Image In fo
@@ -601,7 +599,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_024-1', 0, async function (done) {
     const color = new ArrayBuffer(96);
     let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
@@ -631,6 +628,7 @@ it('TC_001-1', 0, async function (done) {
             done();
         })
     })
+
     /* *
             * @tc.number    : TC_025
             * @tc.name      : get Bytes Number PerRow
@@ -643,7 +641,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_025', 0, async function (done) {
         const color = new ArrayBuffer(96);
         let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
@@ -667,6 +664,7 @@ it('TC_001-1', 0, async function (done) {
                 done();
             })
     })
+
     /* *
             * @tc.number    : TC_025-1
             * @tc.name      : get Bytes Number PerRow
@@ -679,7 +677,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_025-1', 0, async function (done) {
     const color = new ArrayBuffer(96);
     let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
@@ -702,6 +699,7 @@ it('TC_001-1', 0, async function (done) {
             done();
         })
     })
+
     /* *
             * @tc.number    : TC_026
             * @tc.name      : get Pixel Bytes Number
@@ -714,7 +712,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_026', 0, async function (done) {
         const color = new ArrayBuffer(96);
         let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
@@ -738,6 +735,7 @@ it('TC_001-1', 0, async function (done) {
                 done();
             })
     })
+
     /* *
             * @tc.number    : TC_026-1
             * @tc.name      : get Pixel Bytes Number
@@ -750,17 +748,16 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
- it('TC_026-1', 0, async function (done) {
-    const color = new ArrayBuffer(96);
-    let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
-    const expectNum = opts.pixelFormat * opts.size.width * opts.size.height;
-    image.createPixelMap(color, opts,pixelmap => {
-        expect(pixelmap !== null).assertTrue();
-        console.info('TC_026-1 success');
-        done();
-       
-    })
+    it('TC_026-1', 0, async function (done) {
+        const color = new ArrayBuffer(96);
+        let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
+        const expectNum = opts.pixelFormat * opts.size.width * opts.size.height;
+        image.createPixelMap(color, opts,pixelmap => {
+            expect(pixelmap !== null).assertTrue();
+            console.info('TC_026-1 success');
+            done();
+        
+        })
         pixelmap.getPixelBytesNumber(num => {
                 console.info('TC_026-1 num is ' + num);
                 expect(num == expectNum).assertTrue();
@@ -772,6 +769,7 @@ it('TC_001-1', 0, async function (done) {
             done();
         })
     })
+
     /* *
             * @tc.number    : TC_027
             * @tc.name      : release
@@ -783,7 +781,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_027', 0, async function (done) {
         const color = new ArrayBuffer(96);
         let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
@@ -816,7 +813,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_041', 0, async function (done) {
         const imageSourceApi = image.createImageSource('/data/local/tmp/image/test.jpg');
         expect(imageSourceApi !== null).assertTrue();
@@ -834,7 +830,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_042', 0, async function (done) {
         const imageSourceApi = image.createImageSource(29);
         expect(imageSourceApi !== null).assertTrue();
@@ -852,7 +847,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_043', 0, async function (done) {
         const data = new ArrayBuffer(96);
         const imageSourceApi = image.createImageSource(data);
@@ -860,6 +854,7 @@ it('TC_001-1', 0, async function (done) {
         console.info('TC_043 finished');
         done();
     })
+
     /* *
             * @tc.number    : TC_044
             * @tc.name      : release()
@@ -885,21 +880,6 @@ it('TC_001-1', 0, async function (done) {
                 done();
             })
         }
-
-        // if (imageSourceApi == null) {
-        //     console.info('TC_044 create image source failed');
-        //     expect(false).assertTrue();
-        //     done();
-        // } else {
-        //     imageSourceApi.release(() => {
-        //         console.info('TC_044 Success1');
-        //         expect(true).assertTrue();
-        //         done();
-        //     })
-        //     onsole.info('TC_044 Success2');
-        //     expect(true).assertTrue();
-        //     done();
-        // }
     })
 
     /* *
@@ -914,7 +894,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_045', 0, async function (done) {
         const imageSourceApi = image.createImageSource('/data/local/tmp/image/test.jpg');
         if (imageSourceApi == null) {
@@ -942,7 +921,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_046', 0, async function (done) {
         const imageSourceApi = image.createImageSource('/data/local/tmp/image/test.jpg');
         if (imageSourceApi == null) {
@@ -970,7 +948,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_047', 0, async function (done) {
         const imageSourceApi = image.createImageSource('/data/local/tmp/image/test.jpg');
         if (imageSourceApi == null) {
@@ -999,7 +976,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     /*it('TC_048', 0, async function (done) {
         const imageSourceApi = image.createImageSource('/data/local/tmp/image/test.jpg');
         if (imageSourceApi == null) {
@@ -1029,7 +1005,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     /*it('TC_049', 0, async function (done) {
         const imageSourceApi = image.createImageSource('/data/local/tmp/image/test_exif.jpg');
         if (imageSourceApi == null) {
@@ -1060,7 +1035,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_050', 0, async function (done) {
         const imageSourceApi = image.createImageSource('/data/local/tmp/image/test.jpg');
         if (imageSourceApi == null) {
@@ -1091,7 +1065,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_051', 0, async function (done) {
         const imageSourceApi = image.createImageSource('/data/local/tmp/image/test.jpg');
         if (imageSourceApi == null) {
@@ -1121,7 +1094,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_052', 0, async function (done) {
         const data = new ArrayBuffer(96);
         const imageSourceApi = image.createIncrementalSource(data);
@@ -1146,7 +1118,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_053', 0, async function (done) {
         const dataBuffer = new ArrayBuffer(96);
         const imageSourceIncrementalSApi = image.createIncrementalSource(dataBuffer);
@@ -1169,7 +1140,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_061', 0, async function (done) {
         const imageSourceApi = image.createImageSource('/data/local/tmp/image/test.png');
         if (imageSourceApi == null) {
@@ -1205,7 +1175,6 @@ it('TC_001-1', 0, async function (done) {
             * @tc.type      : Functional
             * @tc.level     : FWK Layer
         */
-
     it('TC_062', 0, async function (done) {
         const imagePackerApi = image.createImagePacker();
         if (imagePackerApi == null) {
