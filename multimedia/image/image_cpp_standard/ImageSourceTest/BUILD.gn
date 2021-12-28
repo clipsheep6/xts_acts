@@ -37,12 +37,12 @@ ohos_moduletest_suite("ImageSourceTest") {
   ]
 
   sources = [
+    "../Common/src/image_source_util.cpp",
+    "src/image_source_bmp_test.cpp",
     "src/image_source_gif_test.cpp",
     "src/image_source_jpeg_test.cpp",
     "src/image_source_png_test.cpp",
-    "../Common/src/image_source_util.cpp",
     "src/image_source_webp_test.cpp",
-    "src/image_source_bmp_test.cpp",
   ]
 
   deps = [
@@ -53,9 +53,7 @@ ohos_moduletest_suite("ImageSourceTest") {
     "//utils/native/base:utils",
   ]
 
-  deps += [
-    "//foundation/multimedia/image_standard/frameworks/innerkitsimpl/utils:image_utils",
-  ]
+  deps += [ "//foundation/multimedia/image_standard/frameworks/innerkitsimpl/utils:image_utils" ]
 
   resource_config_file =
       "//foundation/multimedia/image_standard/test/resource/image/ohos_test.xml"
