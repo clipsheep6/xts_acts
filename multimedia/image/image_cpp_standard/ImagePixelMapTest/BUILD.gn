@@ -28,7 +28,6 @@ config("image_test_config") {
 }
 
 ohos_moduletest_suite("ImagePixelMapTest") {
-
   module_out_path = module_output_path
 
   sources = [ "src/image_pixel_map_test.cpp" ]
