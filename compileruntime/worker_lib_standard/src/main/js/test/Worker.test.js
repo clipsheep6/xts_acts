@@ -25,7 +25,7 @@ describe('workerTest', function () {
         console.info('total case over')
     })
 
-    function promiseCase() {
+    function PromiseCase() {
         let p = new Promise(function (resolve, reject) {
             setTimeout(function () {
                 resolve()
@@ -71,7 +71,7 @@ describe('workerTest', function () {
 
         ss.postMessage("hello world")
         while (!flag) {
-            await promiseCase()
+            await PromiseCase()
         }
         expect(res).assertEqual("hello world worker")
         done()
@@ -92,7 +92,7 @@ describe('workerTest', function () {
 
         ss.postMessage(12)
         while (!flag) {
-            await promiseCase()
+            await PromiseCase()
         }
         expect(res).assertEqual(25)
         done()
@@ -113,7 +113,7 @@ describe('workerTest', function () {
 
         ss.postMessage({"message":"hello world"})
         while (!flag) {
-            await promiseCase()
+            await PromiseCase()
         }
         expect(res).assertEqual("hello world worker")
         done()
@@ -133,20 +133,32 @@ describe('workerTest', function () {
 
         ss.postMessage("hello world")
         while (!flag) {
-            await promiseCase()
+            await PromiseCase()
         }
         expect(res).assertEqual("zhangsan")
         done()
     })
 
     // check worker transfer buffer is ok
-    it('worker_postMessage_test_005', 0, function () {
+    it('worker_postMessage_test_005', 0, async function (done) {
         var ss = new worker.Worker("workers/worker_006.js");
 
         const buffer = new ArrayBuffer(8)
         expect(buffer.byteLength).assertEqual(8)
         ss.postMessage(buffer, [buffer])
-        expect(buffer.byteLength).assertEqual(0)
+
+        var res = undefined
+        var flag = false
+        ss.onmessage = function (e) {
+            res = e.data;
+            flag = true
+        }
+
+        while (!flag) {
+            await PromiseCase()
+        }
+        expect(res).assertEqual("hello world")
+        done()
     })
 
     // check worker handle error is ok
@@ -163,7 +175,7 @@ describe('workerTest', function () {
 
         ss.postMessage("hello world")
         while (!flag) {
-            await promiseCase()
+            await PromiseCase()
         }
         expect(res).assertEqual("Error: 123")
         done()
@@ -181,7 +193,7 @@ describe('workerTest', function () {
         }
         ss.terminate()
         while (!flag) {
-            await promiseCase()
+            await PromiseCase()
         }
         expect(res).assertEqual(1)
         done()
@@ -203,7 +215,7 @@ describe('workerTest', function () {
         ss.terminate()
 
         while (!flag) {
-            await promiseCase()
+            await PromiseCase()
         }
         expect(res).assertEqual(1)
         done()
@@ -226,12 +238,12 @@ describe('workerTest', function () {
 
         ss.terminate()
         while (!flag) {
-            await promiseCase()
+            await PromiseCase()
         }
         expect(res).assertEqual(1)
 
         ss.postMessage("hello world")
-        await promiseCase()
+        await PromiseCase()
         expect(res).assertEqual(1)
         done()
     })
@@ -384,47 +396,6 @@ describe('workerTest', function () {
         expect(times).assertEqual(10)
     })
 
-    // check worker off function is ok
-    it('worker_off_test_001', 0, function () {
-        var ss = new worker.Worker("workers/worker.js");
-
-        var zhangsan_times = 0;
-        ss.on("zhangsan", ()=>{
-            zhangsan_times++;
-        })
-
-        ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsan_times).assertEqual(1)
-
-        ss.off("zhangsan")
-
-        ss.dispatchEvent({type: "zhangsan"})
-        ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsan_times).assertEqual(1)
-    })
-
-    // check worker off function is ok
-    it('worker_off_test_002', 0, function () {
-        var ss = new worker.Worker("workers/worker.js");
-
-        var zhangsan_times = 0;
-        ss.on("zhangsan", ()=>{
-            zhangsan_times++;
-        })
-
-        ss.dispatchEvent({type: "zhangsan"})
-        ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsan_times).assertEqual(2)
-
-        for (var i=0;i<3;i++)
-        {
-            ss.off("zhangsan")
-        }
-
-        ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsan_times).assertEqual(2)
-    })
-
     // check worker removeEventListener function is ok
     it('worker_removeListener_test_001', 0, function () {
         var ss = new worker.Worker("workers/worker.js");
@@ -464,6 +435,7 @@ describe('workerTest', function () {
 
         ss.dispatchEvent({type: "zhangsan"})
         expect(zhangsan_times).assertEqual(2)
+
     })
 
     // check worker removeAllListener function is ok
@@ -508,7 +480,7 @@ describe('workerTest', function () {
         }
 
         ss.postMessage("abc")
-        await promiseCase()
+        await PromiseCase()
         expect(res).assertEqual(0)
         done()
     })
@@ -525,11 +497,11 @@ describe('workerTest', function () {
         }
 
         ss1.postMessage("abc")
-        await promiseCase()
+        await PromiseCase()
         expect(res).assertEqual(0)
 
         ss2.postMessage("hello world")
-        await promiseCase()
+        await PromiseCase()
         expect(res).assertEqual(0)
 
         done()
@@ -547,7 +519,7 @@ describe('workerTest', function () {
         }
 
         ss1.postMessage("abc")
-        await promiseCase()
+        await PromiseCase()
         expect(res).assertEqual(0)
 
         ss2.addEventListener("zhangsan", ()=>{
@@ -575,54 +547,12 @@ describe('workerTest', function () {
 
         ss.postMessage("abc")
         while (!flag) {
-            await promiseCase()
+            await PromiseCase()
         }
 
         ss.postMessage("hello")
-        await promiseCase()
+        await PromiseCase()
         expect(res).assertEqual(0)
-        done()
-    })
-
-    // check onmessageerror is ok
-    it('worker_onmessageerror_test_001', 0, async function (done) {
-        var ss = new worker.Worker("workers/worker_008.js");
-        var res = 0
-        var flag = false;
-
-        ss.onexit = function () {
-            flag = true
-        }
-
-        ss.onmessageerror = function (e) {
-            res++;
-        }
-
-        ss.postMessage("abc")
-        while (!flag) {
-            await promiseCase()
-        }
-        expect(res).assertEqual(0)
-        done()
-    })
-
-    // check onmessageerror is ok
-    it('worker_onmessageerror_test_002', 0, async function (done) {
-        var ss = new worker.Worker("workers/worker_008.js");
-        var res = 0
-        var flag = false;
-
-        ss.onmessageerror = function (e) {
-            flag = true;
-            res++;
-        }
-        function foo() {
-        }
-        ss.postMessage(foo)
-        while (!flag) {
-            await promiseCase()
-        }
-        expect(res).assertEqual(1)
         done()
     })
 })
