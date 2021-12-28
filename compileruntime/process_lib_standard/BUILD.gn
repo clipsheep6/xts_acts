@@ -15,6 +15,7 @@ import("//test/xts/tools/build/suite.gni")
 
 ohos_js_hap_suite("process_js_test") {
   hap_profile = "./src/main/config.json"
+  js2abc = true
   deps = [
     ":process_js_assets",
     ":process_resources",
@@ -22,6 +23,7 @@ ohos_js_hap_suite("process_js_test") {
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsProcessJSApiTest"
 }
+
 ohos_js_assets("process_js_assets") {
   source_dir = "./src/main/js/default"
 }

@@ -15,6 +15,7 @@ import("//test/xts/tools/build/suite.gni")
 
 ohos_js_hap_suite("util_js_test") {
   hap_profile = "./src/main/config.json"
+  js2abc = true
   deps = [
     ":util_js_assets",
     ":util_resources",
