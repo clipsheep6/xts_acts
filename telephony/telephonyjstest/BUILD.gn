@@ -20,5 +20,6 @@ group("telephonyjstest") {
     "network_search:network_search",
     "sim:sim",
     "sms_mms:sms_mms",
+    "cellular_data:cellular_data",
   ]
 }
