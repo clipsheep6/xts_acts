@@ -227,7 +227,8 @@ describe('Image', function () {
                     done();
                 }
 
-                const area = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
+                const area = { pixels: new ArrayBuffer(20), offset: 0, stride: 8,
+                                region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
                 pixelmap.readPixels(area).then(() => {
                     var bufferArr = new Uint8Array(area.pixels);
                     var res = true;
@@ -284,7 +285,8 @@ describe('Image', function () {
                
             })
 
-            const area = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
+            const area = { pixels: new ArrayBuffer(20), offset: 0, stride: 8,
+                            region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
             pixelmap.readPixels(area,() => {
                 var bufferArr = new Uint8Array(area.pixels);
                 var res = true;
@@ -338,14 +340,16 @@ describe('Image', function () {
                     done();
                 }
 
-                const area = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
+                const area = { pixels: new ArrayBuffer(20), offset: 0, stride: 8,
+                                region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
                 var bufferArr = new Uint8Array(area.pixels);
                 for (var i = 0; i < bufferArr.length; i++) {
                     bufferArr[i] = i;
                 }
 
                 pixelmap.writePixels(area).then(() => {
-                    const readArea = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
+                    const readArea = { pixels: new ArrayBuffer(20), offset: 0, stride: 8,
+                                        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
                     pixelmap.readPixels(readArea).then(() => {
                         var readArr = new Uint8Array(readArea.pixels);
                         var res = true;
@@ -396,14 +400,16 @@ describe('Image', function () {
             done();
         
         })
-            const area = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
+            const area = { pixels: new ArrayBuffer(20), offset: 0, stride: 8,
+                            region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
             var bufferArr = new Uint8Array(area.pixels);
             for (var i = 0; i < bufferArr.length; i++) {
                 bufferArr[i] = i;
             }
 
             pixelmap.writePixels(area,() => {
-                const readArea = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
+                const readArea = { pixels: new ArrayBuffer(20), offset: 0, stride: 8,
+                                    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
                 pixelmap.readPixels(readArea,() => {
                     var readArr = new Uint8Array(readArea.pixels);
                     var res = true;
