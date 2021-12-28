@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for ImagePixelMapParcelTest Tests",
+    "driver": {
+        "native-test-timeout": "4800000",
+        "type": "CppTest",
+        "module-name": "ImagePixelMapParcelTest",
+        "runtime-hint": "1s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "ImagePixelMapParcelTest->/data/local/tmp/ImagePixelMapParcelTest"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 666 /data/media/*",
+                "setenforce 0"
+            ],
+            "teardown-command":[
+                "setenforce 1"
+            ]
+        }
+    ]
+}
