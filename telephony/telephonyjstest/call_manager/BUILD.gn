@@ -17,14 +17,14 @@ group("call_manager") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "call_manager_ims_call:CallManagerImsCall",
+      "call_manager_media:CallManagerMedia",
       "call_manager_mmi:CallManagerMMI",
       "call_manager_on_dail:CallManagerOnDail",
-      "call_manager_test:CallManagerTest",
-      "call_manager_media:CallManagerMedia",
       "call_manager_register:CallManagerRegister",
       "call_manager_restriction:CallManagerRestriction",
+      "call_manager_test:CallManagerTest",
       "call_manager_transfer:CallManagerTransfer",
-      "call_manager_ims_call:CallManagerImsCall"
     ]
   }
 }

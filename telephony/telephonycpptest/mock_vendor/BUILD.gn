@@ -15,41 +15,41 @@ import("//build/ohos.gni")
 RIL_ADAPTER = "//base/telephony/ril_adapter"
 
 ohos_shared_library("mock_ril_vendor") {
-    sources = [
-        "mock_vendor_adapter.c",
-        "mock_call.c",
-        "mock_sms.c",
-        "mock_network.c",
-        "mock_data.c",
-        "mock_modem.c",
-        "mock_sim.c",
-        "mock_data_handler.c",
-        "mock_report_public.c",
-        "mock_unused_interface.c",
-        "$RIL_ADAPTER/services/vendor/src/vendor_report.c",
-    ]
-    include_dirs = [
-        "$RIL_ADAPTER/interfaces/innerkits/include",
-        "$RIL_ADAPTER/services/vendor/include",
-        "include",
-        "//test/xts/acts/telephony/telephonycpptest/utils",
-    ]
-    defines = [
-        "LOG_TAG = \"MockVendor\"",
-        "LOG_DOMAIN = 0xD002B01",
-    ]
-    deps = [
-        "//drivers/adapter/uhdf2/utils:libhdf_utils",
-        "//base/telephony/core_service/utils:libtelephony_common",
-        "//base/hiviewdfx/faultloggerd/interfaces/innerkits/signal_handler:dfx_signalhandler",
-    ]
+  sources = [
+    "$RIL_ADAPTER/services/vendor/src/vendor_report.c",
+    "mock_call.c",
+    "mock_data.c",
+    "mock_data_handler.c",
+    "mock_modem.c",
+    "mock_network.c",
+    "mock_report_public.c",
+    "mock_sim.c",
+    "mock_sms.c",
+    "mock_unused_interface.c",
+    "mock_vendor_adapter.c",
+  ]
+  include_dirs = [
+    "$RIL_ADAPTER/interfaces/innerkits/include",
+    "$RIL_ADAPTER/services/vendor/include",
+    "include",
+    "//test/xts/acts/telephony/telephonycpptest/utils",
+  ]
+  defines = [
+    "LOG_TAG = \"MockVendor\"",
+    "LOG_DOMAIN = 0xD002B01",
+  ]
+  deps = [
+    "//base/hiviewdfx/faultloggerd/interfaces/innerkits/signal_handler:dfx_signalhandler",
+    "//base/telephony/core_service/utils:libtelephony_common",
+    "//drivers/adapter/uhdf2/utils:libhdf_utils",
+  ]
 
-    if (is_standard_system) {
-      external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
-    } else {
-      external_deps = [ "hilog:libhilog" ]
-    }
+  if (is_standard_system) {
+    external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
+  } else {
+    external_deps = [ "hilog:libhilog" ]
+  }
 
-    part_name = "mock_vendor"
-    subsystem_name = "telephonycpptest"
+  part_name = "mock_vendor"
+  subsystem_name = "telephonycpptest"
 }

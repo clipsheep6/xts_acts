@@ -13,50 +13,49 @@
 
 import("//build/ohos.gni")
 import("//build/test.gni")
-import("//test/xts/tools/build/suite.gni")
 import("//drivers/adapter/uhdf2/uhdf.gni")
-import("//foundation/communication/netmanager_standard/netmanager_base_config.gni")
+import(
+    "//foundation/communication/netmanager_standard/netmanager_base_config.gni")
+import("//test/xts/tools/build/suite.gni")
 
 ohos_moduletest_suite("NetworkManagerEthernetTest") {
-    install_enable = true
-    sources = [
-        "src/network_manager_ethernet_test.cpp",
-    ]
+  install_enable = true
+  sources = [ "src/network_manager_ethernet_test.cpp" ]
 
-    include_dirs = [
-        "//test/xts/acts/telephony/telephonycpptest/network_manager/include",
-        "$INNERKITS_ROOT/native/ethernetmanager/include/ipc",
-        "$INNERKITS_ROOT/native/ethernetmanager/include",
-        "$INNERKITS_ROOT/native/netconnmanager/include",
-        "//foundation/aafwk/standard/frameworks/kits/ability/native/include",
-        "$INNERKITS_ROOT/native/dnsresolvermanager/include",
-        "$INNERKITS_ROOT/native/dnsresolvermanager/include/ipc",
-        "//foundation/communication/netmanager_standard/interfaces/innerkits/native/include",
-        "//foundation/communication/netmanager_standard/services/dnsresolvermanager/include/ipc",
-        "//foundation/communication/netmanager_standard/services/dnsresolvermanager/include",
-        "//foundation/communication/netmanager_standard/services/common/include",
-        "//foundation/communication/netmanager_standard/interfaces/innerkits/native/dnsresolvermanager/include",
-        "//foundation/communication/netmanager_standard/interfaces/innerkits/native/netpolicymanager/include",
-        "//foundation/communication/netmanager_standard/interfaces/innerkits/native/ethernetmanager/include",
-    ]
+  include_dirs = [
+    "//test/xts/acts/telephony/telephonycpptest/network_manager/include",
+    "$INNERKITS_ROOT/native/ethernetmanager/include/ipc",
+    "$INNERKITS_ROOT/native/ethernetmanager/include",
+    "$INNERKITS_ROOT/native/netconnmanager/include",
+    "//foundation/aafwk/standard/frameworks/kits/ability/native/include",
+    "$INNERKITS_ROOT/native/dnsresolvermanager/include",
+    "$INNERKITS_ROOT/native/dnsresolvermanager/include/ipc",
+    "//foundation/communication/netmanager_standard/interfaces/innerkits/native/include",
+    "//foundation/communication/netmanager_standard/services/dnsresolvermanager/include/ipc",
+    "//foundation/communication/netmanager_standard/services/dnsresolvermanager/include",
+    "//foundation/communication/netmanager_standard/services/common/include",
+    "//foundation/communication/netmanager_standard/interfaces/innerkits/native/dnsresolvermanager/include",
+    "//foundation/communication/netmanager_standard/interfaces/innerkits/native/netpolicymanager/include",
+    "//foundation/communication/netmanager_standard/interfaces/innerkits/native/ethernetmanager/include",
+  ]
 
-   deps = [
-        "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
-        "$INNERKITS_ROOT/native/ethernetmanager:ethernet_manager_if",
-        "$INNERKITS_ROOT/native/netconnmanager:net_conn_manager_if",
-        "$INNERKITS_ROOT/native/dnsresolvermanager:dns_resolver_manager_if",
-        "//third_party/googletest:gtest_main",
-    ]
+  deps = [
+    "$INNERKITS_ROOT/native/dnsresolvermanager:dns_resolver_manager_if",
+    "$INNERKITS_ROOT/native/ethernetmanager:ethernet_manager_if",
+    "$INNERKITS_ROOT/native/netconnmanager:net_conn_manager_if",
+    "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
+    "//third_party/googletest:gtest_main",
+  ]
 
-    external_deps = [
-        "safwk:system_ability_fwk",
-        "ipc:ipc_core",
-    ]
+  external_deps = [
+    "ipc:ipc_core",
+    "safwk:system_ability_fwk",
+  ]
 
   defines = [
-        "TAG = \"NetworkMgrEthernetTest\"",
-        "LOG_DOMAIN = 0xD002B01",
-    ]
+    "TAG = \"NetworkMgrEthernetTest\"",
+    "LOG_DOMAIN = 0xD002B01",
+  ]
 
   if (is_standard_system) {
     external_deps += [ "hiviewdfx_hilog_native:libhilog" ]

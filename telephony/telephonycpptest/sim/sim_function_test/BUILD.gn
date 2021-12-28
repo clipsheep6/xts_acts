@@ -11,22 +11,22 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
-import("//test/xts/tools/build/suite.gni")
 import("//build/ohos.gni")
 import("//drivers/adapter/uhdf2/uhdf.gni")
+import("//test/xts/tools/build/suite.gni")
 
 ohos_moduletest_suite("SimFunctionTest") {
   install_enable = true
   sources = [
-    "src/sim_function_test.cpp",
+    "//base/telephony/core_service/frameworks/native/src/cell_information.cpp",
     "//base/telephony/core_service/frameworks/native/src/core_service_proxy.cpp",
+    "//base/telephony/core_service/frameworks/native/src/i_network_search_callback_stub.cpp",
+    "//base/telephony/core_service/frameworks/native/src/network_information.cpp",
+    "//base/telephony/core_service/frameworks/native/src/network_search_result.cpp",
     "//base/telephony/core_service/frameworks/native/src/network_state.cpp",
     "//base/telephony/core_service/frameworks/native/src/signal_information.cpp",
-    "//base/telephony/core_service/frameworks/native/src/network_search_result.cpp",
-    "//base/telephony/core_service/frameworks/native/src/network_information.cpp",
-    "//base/telephony/core_service/frameworks/native/src/cell_information.cpp",
-    "//base/telephony/core_service/frameworks/native/src/i_network_search_callback_stub.cpp",
     "//test/xts/acts/telephony/telephonycpptest/mock_vendor/mock_vendor.cpp",
+    "src/sim_function_test.cpp",
   ]
 
   include_dirs = [
@@ -55,35 +55,39 @@ ohos_moduletest_suite("SimFunctionTest") {
     "//base/telephony/core_service/interfaces/innerkits/network_search",
     "//base/telephony/core_service/common/network_search",
     "//base/telephony/core_service/common/core",
+
     #"//base/telephony/core_service/common/cellular_data",
     "//base/telephony/core_service/utils/log/include",
     "//base/telephony/core_service/interfaces/innerkits/state_registry",
     "//base/telephony/core_service/interfaces/innerkits/sim",
   ]
- if (is_standard_system) {
-    external_deps = [ "hiviewdfx_hilog_native:libhilog",
-    "aafwk_standard:want",
-    "ces_standard:cesfwk_innerkits",
+  if (is_standard_system) {
+    external_deps = [
+      "aafwk_standard:want",
+      "ces_standard:cesfwk_innerkits",
+      "hiviewdfx_hilog_native:libhilog",
     ]
   } else {
     external_deps = [ "hilog:libhilog" ]
   }
 
   deps = [
+    "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
     "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
     "//foundation/communication/ipc/interfaces/innerkits/ipc_core:ipc_core",
-    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
     "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
-    "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
-
+    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
     "//third_party/googletest:gtest_main",
   ]
 
   defines = [
-    "CORRECT_PIN=\"1234\"", # Please enter the correct pin code of the sim card
-    "CORRECT_PUK=\"82160694\"", # Please enter the correct puk code of the sim card
-    "CORRECT_PIN2=\"87968263\"", # Please enter the correct pin2 code of the sim card
-    "CORRECT_PUK2=\"06315781\"", # Please enter the correct puk2 code of the sim card
+    "CORRECT_PIN=\"1234\"",  # Please enter the correct pin code of the sim card
+    "CORRECT_PUK=\"82160694\"",  # Please enter the correct puk code of the sim
+                                 # card
+    "CORRECT_PIN2=\"87968263\"",  # Please enter the correct pin2 code of the
+                                  # sim card
+    "CORRECT_PUK2=\"06315781\"",  # Please enter the correct puk2 code of the
+                                  # sim card
   ]
 
   part_name = "telephonycpptest"

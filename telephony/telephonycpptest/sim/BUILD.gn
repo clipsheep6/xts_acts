@@ -16,8 +16,8 @@ group("sim") {
   deps = [
     "sim_function_test:SimFunctionTest",
     "sim_icc_dialling_number_function_test:SimIccDiallingNumberFunctionTest",
+    "sim_no_sim_function_test:SimNoSimFunctionTest",
     "sim_pin2_function_test:SimPin2FunctionTest",
     "sim_puk2_mock_test:SimPuk2MockTest",
-    "sim_no_sim_function_test:SimNoSimFunctionTest",
   ]
 }

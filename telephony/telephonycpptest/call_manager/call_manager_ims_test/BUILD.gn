@@ -11,16 +11,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//test/xts/tools/build/suite.gni")
 import("//build/ohos.gni")
+import("//test/xts/tools/build/suite.gni")
 
 ohos_moduletest_suite("CallManagerImsTest") {
   install_enable = true
   sources = [
-    "src/call_manager_ims_test.cpp",
-    "//base/telephony/core_service/interfaces/innerkits/call_manager/call_manager_service_proxy.cpp",
     "//base/telephony/call_manager/frameworks/native/src/call_ability_callback.cpp",
+    "//base/telephony/core_service/interfaces/innerkits/call_manager/call_manager_service_proxy.cpp",
     "//test/xts/acts/telephony/telephonycpptest/mock_vendor/mock_vendor.cpp",
+    "src/call_manager_ims_test.cpp",
   ]
 
   include_dirs = [
@@ -53,23 +53,24 @@ ohos_moduletest_suite("CallManagerImsTest") {
   }
 
   deps = [
-    "//third_party/googletest:gtest_main",
-    "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
-    "//foundation/aafwk/standard/interfaces/innerkits/want:want",
-    "//utils/native/base:utils",
-    "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
-    "//foundation/communication/ipc/interfaces/innerkits/ipc_core:ipc_core",
-    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
     "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
+    "//foundation/aafwk/standard/interfaces/innerkits/want:want",
+    "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
+    "//foundation/communication/ipc/interfaces/innerkits/ipc_core:ipc_core",
+    "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
+    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
     "//foundation/multimedia/camera_standard/frameworks/innerkitsimpl/camera:camera_framework",
     "//foundation/multimedia/camera_standard/frameworks/innerkitsimpl/metadata:metadata",
+    "//third_party/googletest:gtest_main",
+    "//utils/native/base:utils",
   ]
   defines = [
-    "TARGET_PHONY_NUMBER=\"10000000001\"", # The number of the called mobile phone
-    "OPERATOR_PHONY_NUMBER=\"10086\"", # Owntest nuber
+    "TARGET_PHONY_NUMBER=\"10000000001\"",  # The number of the called mobile
+                                            # phone
+    "OPERATOR_PHONY_NUMBER=\"10086\"",  # Owntest nuber
     "TELEOPERATOR_OPERATOR_NUMBER=\"10000\"",
     "UNICOM_OPERATOR_NUMBER=\"10010\"",
-    "EMERGENCY_PHONY_NUMBER=\"112\"", # emergency phone
+    "EMERGENCY_PHONY_NUMBER=\"112\"",  # emergency phone
   ]
   part_name = "telephonycpptest"
   subsystem_name = "telephony"

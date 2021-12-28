@@ -12,25 +12,25 @@
 # limitations under the License.
 
 import("//build/ohos.gni")
-import("//test/xts/tools/build/suite.gni")
 import("//drivers/adapter/uhdf2/uhdf.gni")
+import("//test/xts/tools/build/suite.gni")
 
 TELEPHONY_ROOT = "//base/telephony"
 
 ohos_moduletest_suite("NetworkSearchMockTest") {
   install_enable = true
   sources = [
-    "src/network_search_mock_test.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/cell_information.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/core_service_proxy.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/i_network_search_callback_stub.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/network_information.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/network_search_result.cpp",
     "$TELEPHONY_ROOT/core_service/frameworks/native/src/network_state.cpp",
     "$TELEPHONY_ROOT/core_service/frameworks/native/src/signal_information.cpp",
-    "$TELEPHONY_ROOT/core_service/frameworks/native/src/core_service_proxy.cpp",
-    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/state_registry/telephony_state_registry_proxy.cpp",
-    "$TELEPHONY_ROOT/core_service/frameworks/native/src/network_search_result.cpp",
-    "$TELEPHONY_ROOT/core_service/frameworks/native/src/network_information.cpp",
     "$TELEPHONY_ROOT/core_service/interfaces/innerkits/network_search/network_search_callback_proxy.cpp",
-    "$TELEPHONY_ROOT/core_service/frameworks/native/src/i_network_search_callback_stub.cpp",
-    "$TELEPHONY_ROOT/core_service/frameworks/native/src/cell_information.cpp",
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/state_registry/telephony_state_registry_proxy.cpp",
     "//test/xts/acts/telephony/telephonycpptest/mock_vendor/mock_vendor.cpp",
+    "src/network_search_mock_test.cpp",
   ]
 
   include_dirs = [
@@ -65,11 +65,11 @@ ohos_moduletest_suite("NetworkSearchMockTest") {
   ]
 
   external_deps = [
-    "ces_standard:cesfwk_innerkits",
-    "safwk:system_ability_fwk",
     "appexecfwk_standard:libeventhandler",
+    "ces_standard:cesfwk_innerkits",
+    "ipc:ipc_core",
+    "safwk:system_ability_fwk",
     "samgr_standard:samgr_proxy",
-    "ipc:ipc_core"
   ]
 
   if (is_standard_system) {

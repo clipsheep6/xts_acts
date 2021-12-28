@@ -11,16 +11,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//test/xts/tools/build/suite.gni")
 import("//build/ohos.gni")
+import("//test/xts/tools/build/suite.gni")
 
 SOURCE_DIR = "//base/telephony/cellular_data/services"
 HDF_FRAMEWORKS = "//drivers/hdf/frameworks"
 ohos_moduletest_suite("CellularDataRoamingTest") {
   install_enable = true
   sources = [
-    "src/cellular_data_roaming_test.cpp",
     "//base/telephony/core_service/interfaces/innerkits/cellular_data/cellular_data_service_proxy.cpp",
+    "src/cellular_data_roaming_test.cpp",
   ]
 
   include_dirs = [
@@ -49,19 +49,19 @@ ohos_moduletest_suite("CellularDataRoamingTest") {
     "//base/telephony/core_service/utils/log/include/",
     "//base/telephony/core_service/common/core/",
     "//base/telephony/core_service/interfaces/innerkits/cellular_data/",
-    "//base/telephony/core_service/interfaces/innerkits/core"
+    "//base/telephony/core_service/interfaces/innerkits/core",
   ]
 
   deps = [
+    "//base/telephony/core_service:tel_core_service",
+    "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
+    "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
+    "//foundation/communication/ipc/interfaces/innerkits/ipc_core:ipc_core",
+    "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
+    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
     "//test/xts/acts/telephony/telephonycpptest/utils:telephonyutils",
     "//third_party/googletest:gtest_main",
-    "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
     "//utils/native/base:utils",
-    "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
-    "//foundation/communication/ipc/interfaces/innerkits/ipc_core:ipc_core",
-    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
-    "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
-    "//base/telephony/core_service:tel_core_service"
   ]
 
   if (is_standard_system) {
@@ -73,4 +73,3 @@ ohos_moduletest_suite("CellularDataRoamingTest") {
   part_name = "telephonycpptest"
   subsystem_name = "telephony"
 }
-

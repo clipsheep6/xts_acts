@@ -17,10 +17,10 @@ group("cellular_data") {
   if (is_standard_system) {
     deps = [
       "cellular_data_function:CellularDataFunction",
-      "cellular_data_roaming:CellularDataRoaming",
       "cellular_data_preferred_cmcc:CellularDataPreferredCMCC",
       "cellular_data_preferred_cucc:CellularDataPreferredCUCC",
       "cellular_data_radio:CellularDataRadio",
+      "cellular_data_roaming:CellularDataRoaming",
     ]
   }
 }

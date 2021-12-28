@@ -12,10 +12,8 @@
 # limitations under the License.
 
 # import("//test/xts/tools/build/suite.gni")
-# import("//build/ohos.gni") 
+# import("//build/ohos.gni")
 
 static_library("telephonyutils") {
-    sources = [
-        "utils.cpp",
-    ]
+  sources = [ "utils.cpp" ]
 }

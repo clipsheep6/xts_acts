@@ -15,10 +15,10 @@ group("telephonycpptest") {
   testonly = true
   deps = [
     "call_manager:call_manager",
+    "cellular_data:cellular_data",
+    "mock_vendor:mock_ril_vendor",
+    "network_manager:network_manager",
     "network_search:network_search",
     "sim:sim",
-    "cellular_data:cellular_data",
-    "network_manager:network_manager",
-    "mock_vendor:mock_ril_vendor",
   ]
 }
