@@ -28,7 +28,6 @@ config("image_test_config") {
 }
 
 ohos_moduletest_suite("ImagePixelMapParcelTest") {
-
   module_out_path = module_output_path
 
   sources = [ "src/image_pixel_map_parcel_test.cpp" ]
@@ -42,9 +41,9 @@ ohos_moduletest_suite("ImagePixelMapParcelTest") {
   ]
 
   external_deps = [
-   "bytrace_standard:bytrace_core",
-   "ipc:ipc_core",
- ]
+    "bytrace_standard:bytrace_core",
+    "ipc:ipc_core",
+  ]
 
   configs = [ ":image_test_config" ]
 }
