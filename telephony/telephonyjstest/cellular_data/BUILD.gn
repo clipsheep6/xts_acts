@@ -16,11 +16,11 @@ group("cellular_data") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "cellular_data_function:CellularDataFunction",
-      "cellular_data_preferred_cmcc:CellularDataPreferredCMCC",
-      "cellular_data_preferred_cucc:CellularDataPreferredCUCC",
-      "cellular_data_radio:CellularDataRadio",
-      "cellular_data_roaming:CellularDataRoaming",
+      "cellular_data_function:ActsCellularDataFunctionTest",
+      "cellular_data_preferred_cmcc:ActsCellularDataPreferredCMCCTest",
+      "cellular_data_preferred_cucc:ActsCellularDataPreferredCUCCTest",
+      "cellular_data_radio:ActsCellularDataRadioTest",
+      "cellular_data_roaming:ActsCellularDataRoamingTest",
     ]
   }
 }

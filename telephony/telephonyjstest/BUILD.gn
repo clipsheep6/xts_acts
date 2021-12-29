@@ -18,6 +18,7 @@ group("telephonyjstest") {
   deps = [
     "call_manager:call_manager",
     "cellular_data:cellular_data",
+    "network_manager:network_manager",
     "network_search:network_search",
     "sim:sim",
     "sms_mms:sms_mms",
