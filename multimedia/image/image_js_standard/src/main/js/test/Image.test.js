@@ -118,7 +118,7 @@ describe('Image', function () {
                 }
 
                 const readBuffer = new ArrayBuffer(96);
-                pixelmap.readPixelsToBuffer(readBuffer).then (() => {
+                pixelmap.readPixelsToBuffer(readBuffer).then(() => {
                     var bufferArr = new Uint8Array(readBuffer);
                     var res = true;
                     for (var i = 0; i < bufferArr.length; i++) {
@@ -468,7 +468,7 @@ describe('Image', function () {
                 const writeColor = new ArrayBuffer(96);
                 pixelmap.writeBufferToPixels(writeColor).then(() => {
                     const readBuffer = new ArrayBuffer(96);
-                    pixelmap.readPixelsToBuffer(readBuffer).then (() => {
+                    pixelmap.readPixelsToBuffer(readBuffer).then(() => {
                         var bufferArr = new Uint8Array(readBuffer);
                         var res = true;
                         for (var i = 0; i < bufferArr.length; i++) {
