@@ -1,9 +1,9 @@
 {
-    "description": "Configuration for callmanager Tests",
+    "description": "Configuration for ActsCallManagerMMITest Tests",
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "1200000",
-        "package": "com.ohos.callmanager",
+        "package": "com.ohos.actscallmanagermmitest",
         "shell-timeout": "1200000",
         "native-test-timeout":"1200000"
     },

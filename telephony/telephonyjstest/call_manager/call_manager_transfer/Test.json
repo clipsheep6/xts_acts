@@ -1,9 +1,9 @@
 {
-    "description": "Configuration for CallManagerTransfer Tests",
+    "description": "Configuration for ActsCallManagerTransferTest Tests",
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "1200000",
-        "package": "com.ohos.callmanagertransfer",
+        "package": "com.ohos.actscallmanagertransfertest",
         "shell-timeout": "1200000",
         "native-test-timeout":"1200000"
     },

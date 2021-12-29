@@ -1,9 +1,9 @@
 {
-    "description": "Configuration for CallManagerRegister Tests",
+    "description": "Configuration for ActsCallManagerRegisterTest Tests",
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "1200000",
-        "package": "com.ohos.callmanagerregister",
+        "package": "com.ohos.actscallmanagerregistertest",
         "shell-timeout": "1200000",
         "native-test-timeout":"1200000"
     },

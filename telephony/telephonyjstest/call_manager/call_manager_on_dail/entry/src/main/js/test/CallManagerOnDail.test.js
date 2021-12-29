@@ -70,7 +70,6 @@ describe('CallManagerOnDial', function () {
                         return;
                     }
                     console.log('Telephony_CallManager_hangup_Async finish');
-                    return;
                 })
             }
             await sleep(waitTime);
@@ -867,7 +866,6 @@ describe('CallManagerOnDial', function () {
         timeOut = endTime - startTime;
         if (timeOut > onTime) {
             done();
-            return;
         }
     })
 

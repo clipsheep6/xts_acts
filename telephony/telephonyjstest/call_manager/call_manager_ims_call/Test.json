@@ -1,9 +1,9 @@
 {
-    "description": "Configuration for CallManagerImsCall Tests",
+    "description": "Configuration for ActsCallManagerImsCallTest Tests",
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "1200000",
-        "package": "com.ohos.callmanagerimscall",
+        "package": "com.ohos.actscallmanagerimscalltest",
         "shell-timeout": "1200000",
         "native-test-timeout":"1200000"
     },

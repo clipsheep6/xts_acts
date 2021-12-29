@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.ohos.callmanagerimscall",
+    "bundleName": "com.ohos.actscallmanagerimscalltest",
     "vendor": "ohos",
     "version": {
       "code": 1000000,
@@ -14,7 +14,7 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.ohos.callmanagerimscall",
+    "package": "com.ohos.actscallmanagerimscalltest",
     "name": ".MyApplication",
     "deviceType": [
       "phone"
@@ -37,7 +37,7 @@
             ]
           }
         ],
-        "name": "com.ohos.callmanagerimscall.MainAbility",
+        "name": "com.ohos.actscallmanagerimscalltest.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:app_name",

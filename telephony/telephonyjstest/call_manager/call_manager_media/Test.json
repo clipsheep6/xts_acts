@@ -1,9 +1,9 @@
 {
-    "description": "Configuration for CallManagerMedia Tests",
+    "description": "Configuration for ActsCallManagerMediaTest Tests",
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "1200000",
-        "package": "com.ohos.callmanagermedia",
+        "package": "com.ohos.actscallmanagermediatest",
         "shell-timeout": "1200000",
         "native-test-timeout":"1200000"
     },

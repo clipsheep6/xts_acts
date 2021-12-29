@@ -1,9 +1,9 @@
 {
-    "description": "Configuration for CallManagerRestriction Tests",
+    "description": "Configuration for ActsCallManagerRestrictionTest Tests",
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "1200000",
-        "package": "com.ohos.callmanagerrestriction",
+        "package": "com.ohos.actscallmanagerrestrictiontest",
         "shell-timeout": "1200000",
         "native-test-timeout":"1200000"
     },

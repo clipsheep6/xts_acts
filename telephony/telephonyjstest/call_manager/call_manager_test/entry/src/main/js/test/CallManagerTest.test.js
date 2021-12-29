@@ -230,7 +230,6 @@ describe('CallManagerTest', function () {
        } catch (err) {
            console.log('Telephony_CallManager_unHoldCall_Promise_0100 finish err = ' + err.message);
            done();
-           return;
        }
    })
 
@@ -690,7 +689,6 @@ describe('CallManagerTest', function () {
        } catch (err) {
            console.log('Telephony_CallManager_answer_Promise_0100 finish err = ' + err.message);
            done();
-           return;
        }
    })
 
