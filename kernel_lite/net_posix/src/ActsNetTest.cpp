@@ -3,7 +3,6 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
  *   http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
@@ -1163,8 +1162,6 @@ HWTEST_F(ActsNetTest, testIoctlIfnetAddrOthers, Function | MediumTest | Level2)
             ASSERT_EQ(0, ret) << "ioctl fail[SIOCGIFADDR], errinfo[" << strerror(errno) << "]";
             addr2 = (struct sockaddr_in *)&ifrTmp.ifr_addr;
             EXPECT_EQ(addr1->sin_addr.s_addr, addr2->sin_addr.s_addr);
-            printf("[###]get %s addr1[%s],addr2[%s]\n", ifr[i].ifr_name, inet_ntoa(addr1->sin_addr),
-                inet_ntoa(addr2->sin_addr));
 
             // set inet addr
             addr2->sin_addr.s_addr = addr1->sin_addr.s_addr;
@@ -1223,7 +1220,6 @@ HWTEST_F(ActsNetTest, testIoctlIfhwAddr, Function | MediumTest | Level2)
             ret = sprintf_s(rst1, sizeof(rst1), "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x", *macPtr, *(macPtr+1),
                 *(macPtr+2), *(macPtr+3), *(macPtr+4), *(macPtr+5));
             EXPECT_EQ(strlen(rst1), (unsigned int)ret) << "sprintf_s error";
-            printf("[###]get %s rst[%s]\n", ifrTmp.ifr_name, rst1);
         }
     }
     ret = close(udpFd);
