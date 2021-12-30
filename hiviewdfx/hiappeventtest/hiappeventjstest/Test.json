@@ -1,5 +1,5 @@
 {
-    "description": "Configuration for hjunit demo Tests",
+    "description": "Configuration for hjunit demo Tests11",
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "270000",
