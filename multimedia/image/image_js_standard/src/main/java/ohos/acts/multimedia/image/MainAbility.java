@@ -15,8 +15,8 @@
 
 package ohos.acts.multimedia.image;
 
-import ohos.ace.ability.AceAbility;
 import ohos.aafwk.content.Intent;
+import ohos.ace.ability.AceAbility;
 
 /*
  * java MainAbility

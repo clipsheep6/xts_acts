@@ -1,4 +1,6 @@
 /*
+ * @file index.js
+ *
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,29 +15,29 @@
  * limitations under the License.
  */
 
-import {Core, ExpectExtend} from 'deccjsunit/index'
+import {Core, ExpectExtend} from 'deccjsunit/index';
 
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = this.$t('strings.world');
     },
     onShow() {
-        console.info('onShow finish')
-        const core = Core.getInstance()
+        console.info('onShow finish');
+        const core = Core.getInstance();
         const expectExtend = new ExpectExtend({
             'id': 'extend'
-        })
-        core.addService('expect', expectExtend)
-        core.init()
-        const configService = core.getDefaultService('config')
-        configService.setConfig(this)
-        this.timeout = 60000
-        require('../../../test/List.test')
-        core.execute()
+        });
+        core.addService('expect', expectExtend);
+        core.init();
+        const configService = core.getDefaultService('config');
+        configService.setConfig(this);
+        this.timeout = 60000;
+        require('../../../test/List.test');
+        core.execute();
     },
     onReady() {
     },
-}
+};
