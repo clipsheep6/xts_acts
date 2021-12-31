@@ -9,7 +9,7 @@
 .title {
     font-size: 40px;
     color: #000;
-    opacity: 0.9;
+    opacity: .9;
 }
 
 @media screen and (device-type: tablet) and (orientation: landscape) {
