@@ -299,4 +299,21 @@ describe('window_test', function(){
             })
         })
     })
+		/**
+    * @tc.number     GRAPHIC_FUNCTION_WINDOW_TESTWINDOW_JSNAPI_1900
+    * @tc.name       Test Test moveTest6.
+    * @tc.desc      Test window.move API function test6.
+    */
+    it('moveTest6', 0, function(){
+        console.log('jsunittest moveTest6 begin')
+        window.getTopWindow().then(wnd => {
+            console.log('jsunittest moveTest6 getTopWindow wnd: ' + wnd)
+            wnd.moveTo(-200,300).then(()=>{
+                console.log('jsunittest moveTest6 wnd.moveTo(-200,300) success')
+            })
+            wnd.moveTo(200,-400).then(()=>{
+                console.log('jsunittest moveTest6 wnd.moveTo(200,-400) success')
+            })
+        })
+    })
 })
