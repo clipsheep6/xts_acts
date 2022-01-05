@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,30 @@ export default function ratingJsunit() {
   }
 
   describe('ratingTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Rating',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Rating state success " + JSON.stringify(pages));
+        if (!("Rating" == pages.name)) {
+          console.info("get Rating state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push Rating page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Rating page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Rating after each called");
+    });
 
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0990
@@ -38,16 +62,6 @@ export default function ratingJsunit() {
      */
     it('testGetRatingAttr010', 0, async function (done) {
       console.info('testGetRatingAttr1 START');
-      let options = {
-        uri: 'pages/Rating',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push Rating page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push Rating page error " + JSON.stringify(result));
-      }
-      await sleep(1)
       let strJson = getInspectorByKey('rating1');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));
@@ -73,7 +87,6 @@ export default function ratingJsunit() {
      */
     it('testGetRatingAttr020', 0, async function (done) {
       console.info('testGetRatingAttr2 START');
-      await sleep(1)
       let strJson = getInspectorByKey('rating2');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));

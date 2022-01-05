@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,30 @@ export default function listJsunit() {
   }
 
   describe('listTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/List',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get List state success " + JSON.stringify(pages));
+        if (!("List" == pages.name)) {
+          console.info("get List state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push List page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push List page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("List after each called");
+    });
 
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0410
@@ -38,15 +62,6 @@ export default function listJsunit() {
      */
     it('listTest001', 0, async function (done) {
       console.info('++++++++++++++++ List TestCase 1 START ++++++++++++++++');
-      let options = {
-        uri: 'pages/List',
-      }
-      try {
-        let result = await router.push(options)
-        console.info(JSON.stringify(result));
-      } catch (err) {
-        console.error(JSON.stringify(result));
-      }
       await sleep(1)
       let strJson = getInspectorByKey('list');
       let obj = JSON.parse(strJson);

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,30 @@ export default function listItemJsunit() {
   }
 
   describe('listItemTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/ListItem',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get ListItem state success " + JSON.stringify(pages));
+        if (!("ListItem" == pages.name)) {
+          console.info("get ListItem state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push ListItem page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push ListItem page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("ListItem after each called");
+    });
 
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0390
@@ -38,15 +62,6 @@ export default function listItemJsunit() {
      */
     it('listItemTest001', 0, async function (done) {
       console.info('++++++++++++++++ ListItem TestCase 1 START ++++++++++++++++');
-      let options = {
-        uri: 'pages/ListItem',
-      }
-      try {
-        let result = await router.push(options)
-        console.info(JSON.stringify(result));
-      } catch (err) {
-        console.error(JSON.stringify(result));
-      }
       await sleep(1)
       let strJson = getInspectorByKey('listitem');
       console.log(JSON.stringify(strJson))

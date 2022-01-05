@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,31 @@ export default function columnJsunit() {
   }
 
   describe('columnTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Column',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Column state success " + JSON.stringify(pages));
+        if (!("Column" == pages.name)) {
+          console.info("get Column state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push Column page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Column page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Column after each called");
+    });
+
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0670
      * @tc.name      testColumn010
@@ -37,16 +62,6 @@ export default function columnJsunit() {
      */
     it('testColumn010', 0, async function (done) {
       console.info('new Column0 START');
-      let options = {
-        uri: 'pages/Column',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push Column page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push Column page error " + JSON.stringify(result));
-      }
-      await sleep(3)
       let strJson = getInspectorByKey('column');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));

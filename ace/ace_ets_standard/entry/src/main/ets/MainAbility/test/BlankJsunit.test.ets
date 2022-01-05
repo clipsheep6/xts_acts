@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,23 +30,37 @@ export default function blankJsunit() {
   }
 
   describe('BlankTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Blank',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Blank state success " + JSON.stringify(pages));
+        if (!("Blank" == pages.name)) {
+          console.info("get Blank state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push Blank page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Blank page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Blank after each called");
+    });
+
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0630
      * @tc.name      testBlankGetInspectorByKey010
      * @tc.desc      aceEtsTest
      */
     it('BlankGetInspectorByKey', 0, async function (done) {
-      console.info('testGetInspectorByKey START');
-      let options = {
-        uri: 'pages/Blank',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push blank page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push blan page error " + JSON.stringify(result));
-      }
-      await sleep(1)
       let strJson = getInspectorByKey('blank');
       let obj = JSON.parse(strJson);
       console.info("cd blank component obj is: " + JSON.stringify(obj));

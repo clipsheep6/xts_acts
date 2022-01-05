@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,31 @@ export default function buttonJsunit() {
   }
 
   describe('buttonTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Button',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Button state success " + JSON.stringify(pages));
+        if (!("Button" == pages.name)) {
+          console.info("get Button state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push Button page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Button page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Button after each called");
+    });
+
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0640
      * @tc.name      testButtonGetInspectorByKey010
@@ -37,16 +62,6 @@ export default function buttonJsunit() {
      */
     it('buttonGetInspectorByKey010', 0, async function (done) {
       console.info('testGetInspectorByKey START');
-      let options = {
-        uri: 'pages/Button',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push button page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push button page error " + JSON.stringify(result));
-      }
-      await sleep(2)
       let strJson = getInspectorByKey('button');
       let obj = JSON.parse(strJson);
       console.info("cd button component obj is: " + JSON.stringify(obj));
@@ -67,7 +82,6 @@ export default function buttonJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('ButtonGetInspectorByKey020', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('button1');
       let obj = JSON.parse(strJson);
       console.info("cd button1 component obj is: " + JSON.stringify(obj));
@@ -86,7 +100,6 @@ export default function buttonJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('ButtonGetInspectorByKey030', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('button2');
       let obj = JSON.parse(strJson);
       console.info("cd button2 component obj is: " + JSON.stringify(obj));

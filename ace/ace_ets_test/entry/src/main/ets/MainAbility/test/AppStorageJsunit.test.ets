@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,31 @@ export default function appStorageJsunit() {
   }
 
   describe('appStorageTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/AppStorage',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get AppStorage state success " + JSON.stringify(pages));
+        if (!("AppStorage" == pages.name)) {
+          console.info("get AppStorage state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push AppStorage page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push AppStorage page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("AppStorage after each called");
+    });
+
 
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0130
@@ -38,15 +63,6 @@ export default function appStorageJsunit() {
      */
     it('appStorageTest001', 0, async function (done) {
       console.info('AppStorageTest001 START');
-      let options = {
-        uri: 'pages/AppStorage',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push AppStorage0 page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push AppStorage0 page error " + JSON.stringify(result));
-      }
       await sleep(1)
       let strJson = getInspectorByKey('Button0_1');
       let obj = JSON.parse(strJson);

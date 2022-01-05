@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -31,6 +31,31 @@ export default function propJsunit() {
 
   describe('propTest', function () {
 
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Prop',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Prop state success " + JSON.stringify(pages));
+        if (!("Prop" == pages.name)) {
+          console.info("get Prop state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push Prop page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Prop page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Prop after each called");
+    });
+
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0470
      * @tc.name      propTest001
@@ -38,22 +63,13 @@ export default function propJsunit() {
      */
     it('propTest001', 0, async function (done) {
       console.info('propTest001 START');
-      let options = {
-        uri: 'pages/Prop',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push prop0 page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push prop0 page error " + JSON.stringify(result));
-      }
       await sleep(1)
       let strJson = getInspectorByKey('Text001');
       let obj = JSON.parse(strJson);
       expect(obj.$type).assertEqual('Text');
       console.log(JSON.stringify(obj.$type))
-      console.log("cd attrs.conten type1"+typeof("10"))
-      console.log("yr prop0 content-'10'"+obj.$attrs.content)
+      console.log("cd attrs.conten type1" + typeof ("10"))
+      console.log("yr prop0 content-'10'" + obj.$attrs.content)
       expect(obj.$attrs.content).assertEqual("10");
       console.info('propTest001 END');
       done();
@@ -69,10 +85,10 @@ export default function propJsunit() {
       let strJson = getInspectorByKey('Text002');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));
-      console.log("cd attrs.conten type"+typeof(obj.$attrs.content))
-      console.log("cd attrs.conten type1 "+typeof("10"))
+      console.log("cd attrs.conten type" + typeof (obj.$attrs.content))
+      console.log("cd attrs.conten type1 " + typeof ("10"))
       expect(obj.$attrs.content).assertEqual("10");
-      console.log("cd prop0 content-'10'"+JSON.stringify(obj.$attrs.content))
+      console.log("cd prop0 content-'10'" + JSON.stringify(obj.$attrs.content))
       console.info('propTest002 END');
       done();
     });

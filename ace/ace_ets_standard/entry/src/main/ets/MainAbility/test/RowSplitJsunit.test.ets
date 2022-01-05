@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,30 @@ export default function rowSplitJsunit() {
   }
 
   describe('RowSplitTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/RowSplit',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get RowSplit state success " + JSON.stringify(pages));
+        if (!("RowSplit" == pages.name)) {
+          console.info("get RowSplit state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push RowSplit page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push RowSplit page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("RowSplit after each called");
+    });
 
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_1010
@@ -38,16 +62,6 @@ export default function rowSplitJsunit() {
      */
     it('testRowSplitGetInspectorByKey010', 0, async function (done) {
       console.info('testGetInspectorByKey START');
-      let options = {
-        uri: 'pages/RowSplit',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push rowSplit page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push rowSplit page error " + JSON.stringify(result));
-      }
-      await sleep(1)
       let strJson = getInspectorByKey('rowSplit');
       let obj = JSON.parse(strJson);
       console.info("cd rowSplit component obj is: " + JSON.stringify(obj));
@@ -65,7 +79,6 @@ export default function rowSplitJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testRowSplitGetInspectorByKey020', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('rowSplit1');
       let obj = JSON.parse(strJson);
       console.info("cd rowSplit1 component obj is: " + JSON.stringify(obj));

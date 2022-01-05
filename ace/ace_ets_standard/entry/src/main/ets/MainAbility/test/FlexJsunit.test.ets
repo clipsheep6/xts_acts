@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,30 @@ export default function flexJsunit() {
   }
 
   describe('flexTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Flex',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Flex state success " + JSON.stringify(pages));
+        if (!("Flex" == pages.name)) {
+          console.info("get Flex state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push Flex page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Flex page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Flex after each called");
+    });
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0770
      * @tc.name      testFlex010
@@ -37,16 +61,6 @@ export default function flexJsunit() {
      */
     it('testFlex010', 0, async function (done) {
       console.info('new Flex0 START');
-      let options = {
-        uri: 'pages/Flex',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push Flex page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push Flex page error " + JSON.stringify(result));
-      }
-      await sleep(1)
       let strJson = getInspectorByKey('flex');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));

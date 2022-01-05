@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,7 +30,30 @@ export default function StackJsunit() {
   }
 
   describe('StackTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Stack',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Stack state success " + JSON.stringify(pages));
+        if (!("Stack" == pages.name)) {
+          console.info("get Stack state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push Stack page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Stack page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
 
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Stack after each called");
+    });
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_1110
      * @tc.name      testStackGetInspectorByKey010
@@ -38,16 +61,6 @@ export default function StackJsunit() {
      */
     it('testStackGetInspectorByKey010', 0, async function (done) {
       console.info('testGetInspectorByKey START');
-      let options = {
-        uri: 'pages/Stack',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push stack page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push stack page error " + JSON.stringify(result));
-      }
-      await sleep(1)
       let strJson = getInspectorByKey('stack');
       let obj = JSON.parse(strJson);
       console.info("cd stack component obj is: " + JSON.stringify(obj));
@@ -65,7 +78,6 @@ export default function StackJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testStackGetInspectorByKey020', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('stack1');
       let obj = JSON.parse(strJson);
       console.info("cd stack1 component obj is: " + JSON.stringify(obj));
@@ -82,7 +94,6 @@ export default function StackJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testStackGetInspectorByKey030', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('stack2');
       let obj = JSON.parse(strJson);
       console.info("cd stack2 component obj is: " + JSON.stringify(obj));
@@ -98,7 +109,6 @@ export default function StackJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testStackGetInspectorByKey040', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('stack3');
       let obj = JSON.parse(strJson);
       console.info("cd stack3 component obj is: " + JSON.stringify(obj));
@@ -113,7 +123,6 @@ export default function StackJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testStackGetInspectorByKey050', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('stack4');
       let obj = JSON.parse(strJson);
       console.info("cd stack4 component obj is: " + JSON.stringify(obj));
@@ -129,7 +138,6 @@ export default function StackJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testStackGetInspectorByKey060', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('stack5');
       let obj = JSON.parse(strJson);
       console.info("cd stack5 component obj is: " + JSON.stringify(obj));
@@ -145,7 +153,6 @@ export default function StackJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testStackGetInspectorByKey070', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('stack6');
       let obj = JSON.parse(strJson);
       console.info("cd stack6 component obj is: " + JSON.stringify(obj));
@@ -161,7 +168,6 @@ export default function StackJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testStackGetInspectorByKey080', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('stack7');
       let obj = JSON.parse(strJson);
       console.info("cd stack7 component obj is: " + JSON.stringify(obj));
@@ -177,7 +183,6 @@ export default function StackJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testStackGetInspectorByKey090', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('stack8');
       let obj = JSON.parse(strJson);
       console.info("cd stack8 component obj is: " + JSON.stringify(obj));

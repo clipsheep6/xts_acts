@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,7 +30,30 @@ export default function spanJsunit() {
   }
 
   describe('SpanTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Span',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Span state success " + JSON.stringify(pages));
+        if (!("Span" == pages.name)) {
+          console.info("get Span state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push Span page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Span page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
 
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Span after each called");
+    });
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_1080
      * @tc.name      testGetSpanAttr010
@@ -38,16 +61,6 @@ export default function spanJsunit() {
      */
     it('testGetSpanAttr010', 0, async function (done) {
       console.info('testGetSpanAttr1 START');
-      let options = {
-        uri: 'pages/Span',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push Span page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push Span page error " + JSON.stringify(result));
-      }
-      await sleep(1)
       let strJson = getInspectorByKey('span1');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));
@@ -68,7 +81,6 @@ export default function spanJsunit() {
      */
     it('testGetSpanAttr020', 0, async function (done) {
       console.info('testGetSpanAttr2 START');
-      await sleep(1)
       let strJson = getInspectorByKey('span2');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));
@@ -87,7 +99,6 @@ export default function spanJsunit() {
      */
     it('testGetSpanAttr030', 0, async function (done) {
       console.info('testGetSpanAttr3 START');
-      await sleep(1)
       let strJson = getInspectorByKey('span3');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));

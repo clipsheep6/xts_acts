@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,31 @@ export default function columnSplitJsunit() {
   }
 
   describe('columnSplitTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/ColumnSplit',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get ColumnSplit state success " + JSON.stringify(pages));
+        if (!("ColumnSplit" == pages.name)) {
+          console.info("get ColumnSplit state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push ColumnSplit page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push ColumnSplit page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("ColumnSplit after each called");
+    });
+
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0700
      * @tc.name      testColumnSplit010
@@ -37,16 +62,6 @@ export default function columnSplitJsunit() {
      */
     it('testColumnSplit010', 0, async function (done) {
       console.info('new columnSplit0 START');
-      let options = {
-        uri: 'pages/ColumnSplit',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push columnSplit page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push columnSplit page error " + JSON.stringify(result));
-      }
-      await sleep(1)
       let strJson = getInspectorByKey('columnSplit')
       let obj = JSON.parse(strJson)
       console.info("component obj is: " + JSON.stringify(obj))

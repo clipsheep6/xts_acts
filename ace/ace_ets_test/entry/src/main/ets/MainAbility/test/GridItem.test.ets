@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,30 @@ export default function gridItemJsunit() {
   }
 
   describe('gridItemTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/GridItem',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get GridItem state success " + JSON.stringify(pages));
+        if (!("GridItem" == pages.name)) {
+          console.info("get GridItem state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push GridItem page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push GridItem page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("GridItem after each called");
+    });
 
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0340
@@ -38,26 +62,17 @@ export default function gridItemJsunit() {
      */
     it('gridItemTest001', 0, async function (done) {
       console.info('gridItemTest001 START');
-      let options = {
-        uri: 'pages/GridItem',
-      }
-      try {
-        let result = await router.push(options)
-        console.info( JSON.stringify(result));
-      } catch (err) {
-        console.error(JSON.stringify(result));
-      }
       await sleep(1)
       let strJson = getInspectorByKey('GridItem1');
       let obj = JSON.parse(strJson);
       console.info("属性值集合: " + JSON.stringify(obj));
       console.log(JSON.stringify(obj.$type))
       expect(obj.$type).assertEqual('GridItem')
-      console.log('GridItem1‘s rowStart is '+JSON.stringify(obj.$attrs.rowStart))
-      console.log('GridItem1‘s rowEnd is '+JSON.stringify(obj.$attrs.rowEnd))
-      console.log('GridItem1‘s columnStart is '+JSON.stringify(obj.$attrs.columnStart))
-      console.log('GridItem1‘s columnEnd is '+JSON.stringify(obj.$attrs.columnEnd))
-      console.log('GridItem1‘s forceRebuild is '+JSON.stringify(obj.$attrs.forceRebuild))
+      console.log('GridItem1‘s rowStart is ' + JSON.stringify(obj.$attrs.rowStart))
+      console.log('GridItem1‘s rowEnd is ' + JSON.stringify(obj.$attrs.rowEnd))
+      console.log('GridItem1‘s columnStart is ' + JSON.stringify(obj.$attrs.columnStart))
+      console.log('GridItem1‘s columnEnd is ' + JSON.stringify(obj.$attrs.columnEnd))
+      console.log('GridItem1‘s forceRebuild is ' + JSON.stringify(obj.$attrs.forceRebuild))
       await sleep(1)
       expect(obj.$attrs.rowStart).assertEqual('1')
       expect(obj.$attrs.rowEnd).assertEqual('4')

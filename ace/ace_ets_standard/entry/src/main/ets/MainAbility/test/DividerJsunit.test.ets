@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,30 @@ export default function dividerJsunit() {
   }
 
   describe('dividerTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Divider',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get divider state success " + JSON.stringify(pages));
+        if (!("Divider" == pages.name)) {
+          console.info("get divider state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push divider page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push divider page error " + JSON.stringify(result));
+      }
+      await sleep(1)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Divider after each called");
+    });
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0750
      * @tc.name      testDividerGetInspectorByKey010
@@ -37,16 +61,6 @@ export default function dividerJsunit() {
      */
     it('testDividerGetInspectorByKey010', 0, async function (done) {
       console.info('testGetInspectorByKey START');
-      let options = {
-        uri: 'pages/Divider',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push divider page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push divider page error " + JSON.stringify(result));
-      }
-      await sleep(1)
       let strJson = getInspectorByKey('divider');
       let obj = JSON.parse(strJson);
       console.info("cd divider component obj is: " + JSON.stringify(obj));
@@ -71,7 +85,6 @@ export default function dividerJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testDividerGetInspectorByKey020', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('divider1');
       let obj = JSON.parse(strJson);
       console.info(" divider1 component obj is: " + JSON.stringify(obj));
@@ -88,7 +101,6 @@ export default function dividerJsunit() {
      * @tc.desc      aceEtsTest
      */
     it('testDividerGetInspectorByKey030', 0, async function (done) {
-      await sleep(1)
       let strJson = getInspectorByKey('divider2');
       let obj = JSON.parse(strJson);
       console.info(" divider2 component obj is: " + JSON.stringify(obj));

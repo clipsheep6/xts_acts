@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,30 @@ export default function progressJsunit() {
   }
 
   describe('progressTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Progress',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Progress state success " + JSON.stringify(pages));
+        if (!("Progress" == pages.name)) {
+          console.info("get Progress state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push Progress page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Progress page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Progress after each called");
+    });
 
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0960
@@ -38,16 +62,6 @@ export default function progressJsunit() {
      */
     it('testGetProgressAttr010', 0, async function (done) {
       console.info('testGetProgressAttr START');
-      let options = {
-        uri: 'pages/Progress',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push Progress page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push Progress page error " + JSON.stringify(result));
-      }
-      await sleep(1)
       let strJson = getInspectorByKey('progress');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));
@@ -76,7 +90,6 @@ export default function progressJsunit() {
      */
     it('testGetProgressAttr020', 0, async function (done) {
       console.info('testGetProgressAttr2 START');
-      await sleep(1)
       let strJson = getInspectorByKey('progress2');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));

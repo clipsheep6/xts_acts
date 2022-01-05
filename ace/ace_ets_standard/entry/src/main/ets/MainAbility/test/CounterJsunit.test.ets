@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
@@ -30,6 +30,31 @@ export default function counterJsunit() {
   }
 
   describe('counterTest', function () {
+    beforeEach(async function (done) {
+      let options = {
+        uri: 'pages/Counter',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Counter state success " + JSON.stringify(pages));
+        if (!("Counter" == pages.name)) {
+          console.info("get Counter state success " + JSON.stringify(pages.name));
+          let result = await router.push(options)
+          console.info("push Counter page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Counter page error " + JSON.stringify(result));
+      }
+      await sleep(2)
+      done()
+    });
+
+    afterEach(async function () {
+      await sleep(1)
+      console.info("Counter after each called");
+    });
+
     /**
      * @tc.number    SUB_ACE_BASIC_ETS_API_0720
      * @tc.name      testCounterGetInspectorByKey010
@@ -37,16 +62,6 @@ export default function counterJsunit() {
      */
     it('testCounterGetInspectorByKey010', 0, async function (done) {
       console.info('testGetInspectorByKey START');
-      let options = {
-        uri: 'pages/Counter',
-      }
-      try {
-        let result = await router.push(options)
-        console.info("push counter page success " + JSON.stringify(result));
-      } catch (err) {
-        console.error("push counter page error " + JSON.stringify(result));
-      }
-      await sleep(1)
       let strJson = getInspectorByKey('counter');
       let obj = JSON.parse(strJson);
       console.info("component obj is: " + JSON.stringify(obj));
