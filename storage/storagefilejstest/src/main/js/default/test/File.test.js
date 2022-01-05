@@ -32,7 +32,8 @@ import {
   randomString,
   cacheFileName,
   prepareEmptyFile,
-  nextFileName
+  nextFileName,
+  sleep
 }
   from './Common'
 
@@ -44,7 +45,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, delete file.The test file is exist.
    */
   it('File_Delete_001', 0, async function (done) {
-    let fpath = fileName('File_Delete_001');
+    let fpath = await fileName('File_Delete_001');
     prepareFile(fpath, 'hello');
     file.delete({
       uri: 'internal://cache/../files/File_Delete_001',
@@ -117,7 +118,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, error code: 300 The dir is exist with files.
    */
   it('File_Delete_004', 0, async function (done) {
-    let dpath = fileName('File_Delete_004');
+    let dpath = await fileName('File_Delete_004');
     let fpath = dpath + '/File_Delete_004';
     expect(fileio.mkdirSync(dpath) !== null).assertTrue();
     expect(prepareFile(fpath, FILE_CONTENT) !== null).assertTrue();
@@ -162,7 +163,7 @@ describe('fileTest', function () {
    */
   it('File_Delete_006', 0, async function (done) {
     let firstPath = randomString(32);
-    let dpath = fileName(firstPath);
+    let dpath = await fileName(firstPath);
     let uri = 'internal://cache/' + firstPath;
     fileio.mkdirSync(dpath);
     for (let i = 0; i < 16; i++) {
@@ -554,7 +555,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, error code: 300 The uri path is dir path.
    */
   it('File_writeText_008', 0, async function (done) {
-    let dpath = fileName('File_writeText_008d');
+    let dpath = await fileName('File_writeText_008d');
     expect(fileio.mkdirSync(dpath) !== null).assertTrue();
     file.writeText({
       uri: 'internal://cache/File_writeText_008d/',
@@ -1392,7 +1393,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, readArrayBuffer, wrong position.
    */
   it('File_read_array_buffer_004', 0, async function (done) {
-    let fpath = fileName('File_read_array_buffer_004');
+    let fpath = await fileName('File_read_array_buffer_004');
     prepareFile(fpath, FILE_CONTENT);
     file.readArrayBuffer({
       uri: fpath,
@@ -1415,7 +1416,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, readArrayBuffer, wrong length.
    */
   it('File_read_array_buffer_005', 0, async function (done) {
-    let fpath = fileName('File_read_array_buffer_005');
+    let fpath = await fileName('File_read_array_buffer_005');
     prepareFile(fpath, FILE_CONTENT);
     file.readArrayBuffer({
       uri: fpath,
@@ -1641,7 +1642,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, error code: 202 The test file and dir are exist.
    */
   it('File_access_003', 0, async function (done) {
-    let fpath = fileName('File_access_003');
+    let fpath = await fileName('File_access_003');
     file.access({
       uri: fpath,
       success: function () {
@@ -1703,7 +1704,7 @@ describe('fileTest', function () {
    */
   it('File_access_006', 0, async function (done) {
     let firstPath = randomString(32);
-    let dpath = fileName(firstPath);
+    let dpath = await fileName(firstPath);
     let uri = 'internal://cache/' + firstPath;
     fileio.mkdirSync(dpath);
     for (let i = 0; i < 16; i++) {
@@ -2332,11 +2333,11 @@ describe('fileTest', function () {
    */
   it('File_Move_002', 0, async function (done) {
     let typeArray = new Array('.txt', '.ppt', '.flac', '.mp4', '.so', '.zip');
-    let dpath = fileName('cache');
+    let dpath = await fileName('cache');
     fileio.mkdirSync(dpath);
     for (let i = 0; i < typeArray.length; i++) {
-      let srcFpath = fileName('File_Move_002') + typeArray[i];
-      let dstFpath = cacheFileName('File_Move_002') + typeArray[i];
+      let srcFpath = await fileName('File_Move_002') + typeArray[i];
+      let dstFpath = await cacheFileName('File_Move_002') + typeArray[i];
       expect(prepareEmptyFile(srcFpath) !== null).assertTrue();
       file.move({
         srcUri: 'internal://cache/../files/File_Move_002' + typeArray[i],
@@ -2359,9 +2360,9 @@ describe('fileTest', function () {
    * @tc.desc Function of API, different size file.The test file is exist.
    */
   it('File_Move_003', 0, async function (done) {
-    let srcFpath = fileName('File_Move_003');
+    let srcFpath = await fileName('File_Move_003');
     expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
-    let dstFpath = cacheFileName('File_Move_003');
+    let dstFpath = await cacheFileName('File_Move_003');
     let srcUri = 'internal://cache/../files/File_Move_003';
     let dstUri = 'internal://app/cache/File_Move_003';
     file.move({
@@ -2384,7 +2385,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, error code: 202.The test file is exist.
    */
   it('File_Move_004', 0, async function (done) {
-    let srcFpath = fileName('File_Move_004');
+    let srcFpath = await fileName('File_Move_004');
     expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
     file.move({
       srcUri: 'internal://app/File_Move_004',
@@ -2407,7 +2408,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, error code: 300.The test file is exist.
    */
   it('File_Move_005', 0, async function (done) {
-    let srcDpath = fileName('File_Move_005d');
+    let srcDpath = await fileName('File_Move_005d');
     expect(fileio.mkdirSync(srcDpath) !== null).assertTrue();
     file.move({
       srcUri: 'internal://cache/../files/File_Move_005d',
@@ -2430,7 +2431,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, error code: 301.The test file is not exist.
    */
   it('File_Move_006', 0, async function (done) {
-    let dstUri = fileName('File_Move_006');
+    let dstUri = await fileName('File_Move_006');
     expect(prepareFile(dstUri, FILE_CONTENT) !== null).assertTrue();
     file.move({
       srcUri: 'internal://app/File_Move',
@@ -2454,7 +2455,7 @@ describe('fileTest', function () {
    */
   it('File_Move_007', 0, async function (done) {
     let firstPath = randomString(32);
-    let dpath = fileName(firstPath);
+    let dpath = await fileName(firstPath);
     let uri = 'internal://app/' + firstPath;
     fileio.mkdirSync(dpath);
     for (let i = 0; i < 16; i++) {
@@ -2527,7 +2528,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, same path.
    */
   it('File_Move_009', 0, async function (done) {
-    let srcFpath = fileName('File_Move_009');
+    let srcFpath = await fileName('File_Move_009');
     expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
     file.move({
       srcUri: 'internal://app/File_Move_009',
@@ -2550,8 +2551,8 @@ describe('fileTest', function () {
    * @tc.desc Function of API, dstFpath has same file.
    */
   it('File_Move_010', 0, async function (done) {
-    let srcFpath = fileName('File_Move_010');
-    let dstFpath = cacheFileName('File_Move_010');
+    let srcFpath = await fileName('File_Move_010');
+    let dstFpath = await cacheFileName('File_Move_010');
     expect(prepareFile(srcFpath, 'aaa') !== null).assertTrue();
     expect(prepareFile(dstFpath, 'bbb') !== null).assertTrue();
     file.move({
@@ -2575,7 +2576,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, move app path file to cache path.
    */
   it('File_Move_011', 0, async function (done) {
-    let srcFpath = fileName('File_Move_011');
+    let srcFpath = await fileName('File_Move_011');
     expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
     file.move({
       srcUri: 'internal://cache/../files/File_Move_011',
@@ -2597,7 +2598,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, out of package, Virtual path(create and give 777 authority).
    */
   it('File_Move_012', 0, async function (done) {
-    let srcFpath = fileName('File_Move_012');
+    let srcFpath = await fileName('File_Move_012');
     expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
     file.move({
       srcUri: 'internal://app/../files/File_Move_012',
@@ -2620,8 +2621,8 @@ describe('fileTest', function () {
    * @tc.desc Function of API, check back value.
    */
   it('File_Move_014', 0, async function (done) {
-    let srcFpath = fileName('File_Move_014');
-    let dstFpath = cacheFileName('File_Move_014');
+    let srcFpath = await fileName('File_Move_014');
+    let dstFpath = await cacheFileName('File_Move_014');
     expect(prepareFile(srcFpath, 'test') !== null).assertTrue();
     let dstUri = 'internal://cache/File_Move_014';
     file.move({
@@ -2644,8 +2645,8 @@ describe('fileTest', function () {
    * @tc.desc Function of API, copy, app path.The test file is exist.
    */
   it('File_Copy_001', 0, async function (done) {
-    let srcFpath = fileName('File_Copy_001');
-    let dstFpath = cacheFileName('File_Copy_001');
+    let srcFpath = await fileName('File_Copy_001');
+    let dstFpath = await cacheFileName('File_Copy_001');
     expect(prepareFile(srcFpath, 'test.') !== null).assertTrue();
     file.copy({
       srcUri: 'internal://cache/../files/File_Copy_001',
@@ -2682,8 +2683,8 @@ describe('fileTest', function () {
   it('File_Copy_002', 0, async function (done) {
     let typeArray = new Array('.txt', '.ppt', '.flac', '.mp4', '.so', '.zip');
     for (let i = 0; i < typeArray.length; i++) {
-      let srcFpath = fileName('File_Copy_002') + typeArray[i];
-      let dstFpath = cacheFileName('File_Copy_002') + typeArray[i];
+      let srcFpath = await fileName('File_Copy_002') + typeArray[i];
+      let dstFpath = await cacheFileName('File_Copy_002') + typeArray[i];
       expect(prepareEmptyFile(srcFpath) !== null).assertTrue();
       file.copy({
         srcUri: 'internal://cache/../files/File_Copy_002' + typeArray[i],
@@ -2708,9 +2709,9 @@ describe('fileTest', function () {
    * @tc.desc Function of API, different size of files. The test file is exist.
    */
   it('File_Copy_003', 0, async function (done) {
-    let srcFpath = fileName('File_Copy_003');
+    let srcFpath = await fileName('File_Copy_003');
     expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
-    let dstFpath = cacheFileName('File_Copy_003');
+    let dstFpath = await cacheFileName('File_Copy_003');
     file.copy({
       srcUri: 'internal://cache/../files/File_Copy_003',
       dstUri: 'internal://cache/../files/cache/File_Copy_003',
@@ -2745,7 +2746,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, error code: 202 The test file is exist.
    */
   it('File_Copy_004', 0, async function (done) {
-    let srcFpath = fileName('File_Copy_004');
+    let srcFpath = await fileName('File_Copy_004');
     expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
     file.copy({
       srcUri: 'internal://app/File_Copy_004',
@@ -2824,7 +2825,7 @@ describe('fileTest', function () {
    */
   it('File_Copy_007', 0, async function (done) {
     let firstPath = randomString(32);
-    let dpath = fileName(firstPath);
+    let dpath = await fileName(firstPath);
     let uri = 'internal://cache/' + firstPath;
     fileio.mkdirSync(dpath);
     for (let i = 0; i < 16; i++) {
@@ -2908,7 +2909,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, same path.
    */
   it('File_Copy_009', 0, async function (done) {
-    let srcFpath = fileName('File_Copy_009');
+    let srcFpath = await fileName('File_Copy_009');
     expect(prepareFile(srcFpath, FILE_CONTENT) !== null).assertTrue();
     file.copy({
       srcUri: 'internal://app/File_Copy_009',
@@ -2932,8 +2933,8 @@ describe('fileTest', function () {
    * @tc.desc Function of API, dstFpath path has same file.
    */
   it('File_Copy_010', 0, async function (done) {
-    let srcFpath = fileName('File_Copy_010');
-    let dstFpath = cacheFileName('File_Copy_010');
+    let srcFpath = await fileName('File_Copy_010');
+    let dstFpath = await cacheFileName('File_Copy_010');
     expect(prepareFile(srcFpath, 'aaa') !== null).assertTrue();
     expect(prepareFile(dstFpath, 'bbb') !== null).assertTrue();
     file.copy({
@@ -2945,7 +2946,7 @@ describe('fileTest', function () {
       },
       fail: function (data, code) {
         console.log('File_Copy_010 , code: ' + code + ', data: ' + data);
-        console.log("code::" + code);
+        console.log('code::' + code);
         expect(code == 301).assertTrue();
         fileio.unlinkSync(srcFpath);
         fileio.unlinkSync(dstFpath);
@@ -2960,7 +2961,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, copy file to cache path.The test file is exist.
    */
   it('File_Copy_011', 0, async function (done) {
-    let srcFpath = fileName('File_Copy_011');
+    let srcFpath = await fileName('File_Copy_011');
     expect(prepareFile(srcFpath, 'test.') !== null).assertTrue();
     file.copy({
       srcUri: 'internal://cache/../files/File_Copy_011',
@@ -2993,7 +2994,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, out of package, Virtual path(create and give 777 authority).The test file is exist.
    */
   it('File_Copy_012', 0, async function (done) {
-    let srcFpath = fileName('File_Copy_012');
+    let srcFpath = await fileName('File_Copy_012');
     expect(prepareFile(srcFpath, 'test') !== null).assertTrue();
     file.copy({
       srcUri: 'internal://app/../files/File_Copy_012',
@@ -3018,8 +3019,8 @@ describe('fileTest', function () {
    */
 
   it('File_Copy_014', 0, async function (done) {
-    let srcFpath = fileName('File_Copy_014');
-    let dstFpath = cacheFileName('File_Copy_014');
+    let srcFpath = await fileName('File_Copy_014');
+    let dstFpath = await cacheFileName('File_Copy_014');
     expect(prepareFile(srcFpath, 'test') !== null).assertTrue();
     let dstUri = 'internal://cache/File_Copy_014';
     file.copy({
@@ -3042,7 +3043,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, list.The test file and dir are exist.
    */
   it('File_List_001', 0, async function (done) {
-    let dpath = fileName('File_List_001') + 'd';
+    let dpath = await fileName('File_List_001') + 'd';
     let fpath = dpath + '/File_List_001';
     let ddpath = dpath + '/File_List_001_1d';
     expect(fileio.mkdirSync(dpath) !== null).assertTrue();
@@ -3070,7 +3071,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, set value of uri.The test file and dir are exist.
    */
   it('File_List_002', 0, async function (done) {
-    let dpath = fileName('File_List_002') + 'd';
+    let dpath = await fileName('File_List_002') + 'd';
     let fpath = dpath + '/File_List_002';
     let ddpath = dpath + '/File_List_002_1d';
     expect(fileio.mkdirSync(dpath) !== null).assertTrue();
@@ -3098,7 +3099,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, check lastModifiedTime.The test file and dir are exist.
    */
   it('File_List_003', 0, async function (done) {
-    let dpath = fileName('File_List_003') + 'd';
+    let dpath = await fileName('File_List_003') + 'd';
     let fpath = dpath + '/File_List_003';
     let ddpath = dpath + '/File_List_003_1d';
     expect(fileio.mkdirSync(dpath) !== null).assertTrue();
@@ -3145,7 +3146,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, check length.The test file and dir are exist.
    */
   it('File_List_004', 0, async function (done) {
-    let dpath = fileName('File_List_004') + 'd';
+    let dpath = await fileName('File_List_004') + 'd';
     let fpath = dpath + '/File_List_004';
     let ddpath = dpath + '/File_List_004_1d';
     expect(fileio.mkdirSync(dpath) !== null).assertTrue();
@@ -3170,7 +3171,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, check type.The test file and dir are exist.
    */
   it('File_List_005', 0, async function (done) {
-    let dpath = fileName('File_List_005') + 'd';
+    let dpath = await fileName('File_List_005') + 'd';
     let fpath = dpath + '/File_List_005';
     let ddpath = dpath + '/File_List_005_1d';
     expect(fileio.mkdirSync(dpath) !== null).assertTrue();
@@ -3195,7 +3196,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, error code:202
    */
   it('File_List_006', 0, async function (done) {
-    let dpath = fileName('File_List_006') + 'd'
+    let dpath = await fileName('File_List_006') + 'd'
     file.list({
       uri: dpath,
       success: function (data) {
@@ -3216,7 +3217,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, uri set value of file.
    */
   it('File_List_007', 0, async function (done) {
-    let fpath = fileName('File_List_007');
+    let fpath = await fileName('File_List_007');
     expect(prepareFile(fpath, FILE_CONTENT) !== null).assertTrue();
     file.list({
       uri: 'internal://cache/../files/File_List_007',
@@ -3259,7 +3260,7 @@ describe('fileTest', function () {
    */
   it('File_List_009', 0, async function (done) {
     let firstPath = randomString(32);
-    let dpath = fileName(firstPath);
+    let dpath = await fileName(firstPath);
     let uri = 'internal://app/' + firstPath;
     fileio.mkdirSync(dpath);
     for (let i = 0; i < 16; i++) {
@@ -3288,7 +3289,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, cache path.The test file and dir are exist.
    */
   it('File_List_010', 0, async function (done) {
-    let dpath = nextFileName('File_List_010d');
+    let dpath = await nextFileName('File_List_010d');
     let fpath = dpath + '/File_List_010';
     let ffpath = dpath + '/File_List_010_1';
     let ddpath = dpath + '/File_List_010_1d';
@@ -3328,7 +3329,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, virtual path.The test dir are exist.
    */
   it('File_List_011', 0, async function (done) {
-    let dpath = fileName('File_List_011') + 'd';
+    let dpath = await fileName('File_List_011') + 'd';
     let fpath = dpath + '/File_List_011';
     let ddpath = dpath + '/File_List_011_1d';
     expect(fileio.mkdirSync(dpath) !== null).assertTrue();
@@ -3375,7 +3376,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, Get.The test file is exist.
    */
   it('File_Get_001', 0, async function (done) {
-    let fpath = fileName('File_Get_001');
+    let fpath = await fileName('File_Get_001');
     expect(prepareFile(fpath, FILE_CONTENT) !== null).assertTrue();
     file.get({
       uri: 'internal://cache/../files/File_Get_001',
@@ -3398,7 +3399,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, recursive = false.The test file is exist.
    */
   it('File_Get_002', 0, async function (done) {
-    let fpath = fileName('File_Get_002');
+    let fpath = await fileName('File_Get_002');
     expect(prepareFile(fpath, FILE_CONTENT) !== null).assertTrue();
     file.get({
       uri: 'internal://cache/../files/File_Get_002',
@@ -3426,7 +3427,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, not input recursive.The test file is exist.
    */
   it('File_Get_003', 0, async function (done) {
-    let fpath = fileName('File_Get_003');
+    let fpath = await fileName('File_Get_003');
     expect(prepareFile(fpath, FILE_CONTENT) !== null).assertTrue();
     file.get({
       uri: 'internal://cache/../files/File_Get_003',
@@ -3454,7 +3455,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, recursive = ture.The test file is exist.
    */
   it('File_Get_004', 0, async function (done) {
-    let dpath = fileName('File_Get_004d');
+    let dpath = await fileName('File_Get_004d');
     let ddpath = dpath + '/File_Get_004dd'
     let fpath = dpath + '/File_Get_004f'
     let ffpath = ddpath + '/File_Get_004ff'
@@ -3492,7 +3493,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, recursive = false.The test file is exist.
    */
   it('File_Get_005', 0, async function (done) {
-    let dpath = fileName('File_Get_005d');
+    let dpath = await fileName('File_Get_005d');
     let ddpath = dpath + '/File_Get_005dd';
     let fpath = dpath + '/File_Get_005f';
     let ffpath = ddpath + '/File_Get_005ff';
@@ -3530,7 +3531,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, not input recursive.The test file is exist.
    */
   it('File_Get_006', 0, async function (done) {
-    let dpath = fileName('File_Get_006d');
+    let dpath = await fileName('File_Get_006d');
     let ddpath = dpath + '/File_Get_006dd';
     let fpath = dpath + '/File_Get_006f';
     let ffpath = ddpath + '/File_Get_006ff';
@@ -3695,7 +3696,7 @@ describe('fileTest', function () {
    */
   it('File_Get_012', 0, async function (done) {
     let firstPath = randomString(32);
-    let dpath = fileName(firstPath);
+    let dpath = await fileName(firstPath);
     let uri = 'internal://cache/' + firstPath;
     expect(fileio.mkdirSync(dpath) !== null).assertTrue();
     for (let i = 0; i < 16; i++) {
@@ -3730,7 +3731,7 @@ describe('fileTest', function () {
    * @tc.desc Function of API, virtual path.
    */
   it('File_Get_013', 0, async function (done) {
-    let dpath = fileName('File_Get_013d');
+    let dpath = await fileName('File_Get_013d');
     let ddpath = dpath + '/File_Get_013dd';
     let fpath = dpath + '/File_Get_013f';
     let ffpath = ddpath + '/File_Get_013ff';
