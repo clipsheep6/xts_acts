@@ -1,0 +1,46 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+UTILS_DIR="//test/xts/acts/telephony/telephonycpptest/utils"
+MOCK_VENDOR="//test/xts/acts/telephony/telephonycpptest/mock_vendor"
+ohos_shared_library("napi_mock_vendor") {
+    sources = [
+        "napi_network_handler.cpp",
+        "napi_util.cpp",
+        "napi_js_call_native_bridge.cpp",
+        "$MOCK_VENDOR/mock_vendor.cpp",
+    ]
+    include_dirs = [
+        "//third_party/node/src",
+        "$UTILS_DIR",
+        "$MOCK_VENDOR",
+        "include"
+    ]
+    defines = [
+        "LOG_TAG = \"NAPI_VENDOR\"",
+        "LOG_DOMAIN = 0xD002B01",
+    ]
+    deps = [
+        "//drivers/adapter/uhdf2/utils:libhdf_utils",
+        "//foundation/ace/napi:ace_napi",
+        "//base/telephony/core_service/utils:libtelephony_common",
+    ]
+
+    external_deps = [
+        "hiviewdfx_hilog_native:libhilog"
+        ]
+
+    part_name = "napi_mock_vendor"
+    subsystem_name = "telephonycpptest"
+}

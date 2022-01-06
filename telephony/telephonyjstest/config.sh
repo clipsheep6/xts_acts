@@ -21,8 +21,8 @@ config_const_var[0]="const TEST_PHONY_NUMBER = '12345678901';"
 config_const_var[1]="const AUTO_ACCEPT_NUMBER = '10086';"
 # 配置不接听的电话号码
 config_const_var[2]="const NOT_ACCEPT_NUMBER = '10086';"
-# 配置空电话号码
-config_const_var[3]="const NULL_PHONE_NUMBER = '';"
+# 配置紧急电话号码
+config_const_var[3]="const EMERGENCY_NUMBER = '112';"
 # 配置11位电话号码
 config_const_var[4]="const PHONE_NUMBER_LENGTH_11 = '00000000000';"
 # 配置区号+座机电话号码
@@ -34,8 +34,10 @@ config_const_var[7]="const PHONE_NUMBER_LONG = '1234567890123456789012345678901'
 # 配置8位座机电话号码
 config_const_var[8]="const PHONE_NUMBER_LENGTH_8 = '86459751';"
 
-# 固定拨号的PIN2和PUK码
-config_const_var[10]="const CORRECT_PIN2 = '87968263';"
+# SIM卡的PIN, PUK,PIN2和PUK2码
+config_const_var[9]="const CORRECT_PIN = '1234';"
+config_const_var[10]="const CORRECT_PUK = '82160694';"
+config_const_var[11]="const CORRECT_PIN2 = '87968263';"
 config_const_var[12]="const CORRECT_PUK2 = '06315781';"
 
 # 呼叫限制正确密码
@@ -43,9 +45,9 @@ config_const_var[13]="const RIGHT_PASSWORD = '0000';"
 # 呼叫限制错误密码
 config_const_var[14]="const ERROR_PASSWORD = '0001';"
 
-config_const_var[15]="const CUCC_NUMBER = '10010';"
+# 配置第二通自动接听的电话号码
+config_const_var[15]="const AUTO_ACCEPT_NUMBER2 = '10010';"
 
-config_const_var[16]="const CMCC_NUMBER = '10086';"
 for((i = 0; i < ${#config_const_var}; i++))
 do
     if [ "${config_const_var[i]}" == "" ]; then
@@ -55,7 +57,7 @@ do
     key=`echo ${config_const_var[i]}| awk -F= '{print $1}'`
     for line in `grep -nr "${key}"| sed 's/ //g'|grep -v "config.sh"`
     do
-
+        
         file=`echo ${line}|awk -F: '{print $1}'`
         line_no=`echo ${line}|awk -F: '{print $2}'`
         echo $file $line_no

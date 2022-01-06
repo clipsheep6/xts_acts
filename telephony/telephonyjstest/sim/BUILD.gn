@@ -17,17 +17,20 @@ group("sim") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "sim_account_information_manager_function_test:ActsSimAccountInformationManagerFunctionTest",
-      "sim_activate_manager_function_test:ActsSimActivateManagerFunctionTest",
-      "sim_file_information_function_test:ActsSimFileInformationFunctionTest",
-      "sim_file_manager_function_test:ActsSimFileManagerFunctionTest",
-      "sim_fixed_dial_manager_function_test:ActsSimFixedDialManagerFunctionTest",
-      "sim_getsimaccountinfo_function_test:ActsSimGetSimAccountInfoFunctionTest",
-      "sim_icc_dialling_numbers_controller_function_test:ActsSimIccDiallingNumbersControllerFunctionTest",
-      "sim_manager_function_test:ActsSimManagerFunctionTest",
-      "sim_no_sim_function_test:ActsSimNoSimFunctionTest",
-      "sim_setvoicemailinfo_function_test:ActsSimSetVoiceMailInfoFunctionTest",
-      "sim_state_manager_function_test:ActsSimStateManagerFunctionTest",
+      "sim_getimsi_isim_function_test:SimGetImsiIsimFunctionTest",
+      "sim_getimsi_cdma_function_test:SimGetImsiCdmaFunctionTest",
+      "sim_getcardtype_function_test:SimGetCardTypeFunctionTest",
+      "sim_getisocountrycodeforsim_function_test:SimGetISOCountryCodeForSimFunctionTest",
+      "sim_setlockstate_function_test:SimSetLockStateFunctionTest",
+      "sim_getlockstate_function_test:SimGetLockStateFunctionTest",
+      "sim_getsimiccid_function_test:SimGetSimIccidFunctionTest",
+      "sim_getsimoperatornumeric_function_test:SimGetSimOperatorNumericFunctionTest",
+      "sim_getsimspn_function_test:SimGetSimSpnFunctionTest",
+      "sim_sendenvelopecmd_function_test:SimSendEnvelopeCmdFunctionTest",
+      "sim_sendterminalresponsecmd_function_test:SimSendTerminalResponseCmdFunctionTest",
+      "sim_no_sim_function_test:SimNoSimFunctionTest",
+      "sim_performance_test:SimPerformanceTest",
+      "sim_reliability_test:SimReliabilityTest",
     ]
   }
 }
