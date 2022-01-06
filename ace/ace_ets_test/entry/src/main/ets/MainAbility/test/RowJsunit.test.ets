@@ -17,7 +17,7 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
 
-export default function rowJsunit() {
+export default function tabJsunit() {
 
   function sleep(time) {
     return new Promise((resolve, reject) => {
@@ -29,22 +29,23 @@ export default function rowJsunit() {
     })
   }
 
-  describe('rowTest', function () {
+  describe('tabTest', function () {
+
     beforeEach(async function (done) {
       let options = {
-        uri: 'pages/Row',
+        uri: 'pages/Tab',
       }
       try {
         router.clear();
         let pages = router.getState();
-        console.info("get Row state success " + JSON.stringify(pages));
-        if (!("Row" == pages.name)) {
-          console.info("get Row state success " + JSON.stringify(pages.name));
+        console.info("get Tab state success " + JSON.stringify(pages));
+        if (!("Tab" == pages.name)) {
+          console.info("get Tab state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
-          console.info("push Row page success " + JSON.stringify(result));
+          console.info("push Tab page success " + JSON.stringify(result));
         }
       } catch (err) {
-        console.error("push Row page error " + JSON.stringify(result));
+        console.error("push Tab page error " + JSON.stringify(result));
       }
       await sleep(2)
       done()
@@ -52,27 +53,69 @@ export default function rowJsunit() {
 
     afterEach(async function () {
       await sleep(1)
-      console.info("Row after each called");
+      console.info("Tab after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_BASIC_ETS_API_0490
-     * @tc.name      rowTest001
+     * @tc.number    SUB_ACE_BASIC_ETS_API_0510
+     * @tc.name      tabTest001
      * @tc.desc      aceEtsTest
      */
-    it('rowTest001', 0, async function (done) {
-      console.info('++++++++++++++++ Row TestCase 1 START ++++++++++++++++');
-      await sleep(1)
-      let strJson = getInspectorByKey('row');
+    it('tabTest001', 0, async function (done) {
+      console.info('++++++++++++++++ Tab TestCase 1 START ++++++++++++++++');
+      let strJson = getInspectorByKey('tab');
       let obj = JSON.parse(strJson);
       console.info("get inspector value is: " + JSON.stringify(obj));
       console.log(JSON.stringify(obj.$type))
-      expect(obj.$type).assertEqual('Row')
-      console.log('Row‘s useAlign is ' + JSON.stringify(obj.$attrs.useAlign))
-      console.log('Row‘s space is ' + JSON.stringify(obj.$attrs.space))
-      console.log('Row‘s alignItems is ' + JSON.stringify(obj.$attrs.alignItems))
-      expect(obj.$attrs.alignItems).assertEqual('VerticalAlign.Top')
-      console.info('++++++++++++++++ Row TestCase 1 End ++++++++++++++++');
+      console.log('obj.$attrs.scrollable' + typeof (obj.$attrs.scrollable))
+      console.log('obj.$attrs.vertical' + typeof (obj.$attrs.vertical))
+      expect(obj.$type).assertEqual('Tabs')
+      expect(obj.$attrs.barPosition).assertEqual('BarPosition.Start')
+      expect(obj.$attrs.index).assertEqual('1')
+      expect(obj.$attrs.vertical).assertEqual('true')
+      expect(obj.$attrs.scrollable).assertTrue()
+      expect(obj.$attrs.barMode).assertEqual('BarMode.Fixed')
+      expect(obj.$attrs.barWidth).assertEqual(70.000000.toFixed(6))
+      expect(obj.$attrs.barHeight).assertEqual(150.000000.toFixed(6))
+      console.info('++++++++++++++++ Tab TestCase 1 End ++++++++++++++++');
+      done();
+    });
+
+    /**
+     * @tc.number    SUB_ACE_BASIC_ETS_API_0520
+     * @tc.name      tabTest002
+     * @tc.desc      aceEtsTest
+     */
+    it('tabTest002', 0, async function (done) {
+      console.info('++++++++++++++++ Tab TestCase 2 START ++++++++++++++++');
+      let strJson = getInspectorByKey('tabcontent');
+      let obj = JSON.parse(strJson);
+      console.info("get inspector value is: " + JSON.stringify(obj));
+      console.log(JSON.stringify(obj.$type))
+      console.log(JSON.stringify(obj.$attrs.tabBar))
+      expect(obj.$type).assertEqual('TabContent')
+      expect(obj.$attrs.tabBar).assertEqual('yellow')
+      console.info('++++++++++++++++ Tab TestCase 2 End ++++++++++++++++');
+      done();
+    });
+
+    /**
+     * @tc.number    SUB_ACE_BASIC_ETS_API_0530
+     * @tc.name      tabTest003
+     * @tc.desc      aceEtsTest
+     */
+    it('tabTest003', 0, async function (done) {
+      console.info('++++++++++++++++ Tab TestCase 3 START ++++++++++++++++');
+      let strJson = getInspectorByKey('tab2');
+      let obj = JSON.parse(strJson);
+      console.info("get inspector value is: " + JSON.stringify(obj));
+      console.log(JSON.stringify(obj.$type))
+      expect(obj.$type).assertEqual('Tabs')
+      expect(obj.$attrs.barPosition).assertEqual('BarPosition.End')
+      expect(obj.$attrs.barMode).assertEqual('BarMode.Scrollable')
+      expect(obj.$attrs.vertical).assertEqual('false')
+      expect(obj.$attrs.scrollable).assertFalse()
+      console.info('++++++++++++++++ Tab TestCase 3 End ++++++++++++++++');
       done();
     });
   })
