@@ -180,21 +180,19 @@ static void* SampleTcpServerTask(void *p)
     struct sockaddr_in clnAddr = {0};
     socklen_t clnAddrLen = sizeof(clnAddr);
     int clnFd = accept(srvFd, (struct sockaddr*)&clnAddr, &clnAddrLen);
-    printf("[tcp server]accept <%s:%d>\n", inet_ntoa(clnAddr.sin_addr), ntohs(clnAddr.sin_port));
+    printf("[tcp server]accept <%s:%d>\n");
     EXPECT_NE(-1, clnFd);
-    printf("[tcp server]lsfd[%d], sfd[%d]\n", srvFd, clnFd);
+    printf("[tcp server]lsfd[%d], sfd[%d]\n");
 
     struct sockaddr addr = {0};
     socklen_t addrLen = sizeof(addr);
     int ret = getsockname(clnFd, &addr, &addrLen);
-    printf("[tcp server]getsockname %s:%d\n", inet_ntoa(((struct sockaddr_in*)&addr)->sin_addr),
-        ntohs(((struct sockaddr_in*)&addr)->sin_port));
+    printf("[tcp server]getsockname %s:%d\n");
     EXPECT_EQ(0, ret);
     EXPECT_EQ(inet_addr(g_localHost), ((struct sockaddr_in*)&addr)->sin_addr.s_addr);
 
     ret = getpeername(clnFd, &addr, &addrLen);
-    printf("[tcp server]getpeername %s:%d\n", inet_ntoa(((struct sockaddr_in*)&addr)->sin_addr),
-        ntohs(((struct sockaddr_in*)&addr)->sin_port));
+    printf("[tcp server]getpeername %s:%d\n");
     EXPECT_EQ(0, ret);
     EXPECT_EQ(inet_addr(g_localHost), ((struct sockaddr_in*)&addr)->sin_addr.s_addr);
 
@@ -247,10 +245,10 @@ static void* SampleTcpServerTask(void *p)
     ret = recvmsg(clnFd, &msg, 0);
     if (len * strlen(g_cliMsg) == (unsigned int)ret && ret >= 0) {
         bufrec[ret] = 0;
-        printf("[tcp server]recvmsg on socket %d:%d, msg[%s]\n", clnFd, ret, buf);
+        printf("[tcp server]recvmsg on socket %d:%d, msg[%s]\n");
     } else {
         EXPECT_TRUE(false);
-        printf("[tcp server] recvmsg on socket %d： %d\n", clnFd, ret);
+        printf("[tcp server] recvmsg on socket %d： %d\n");
     }
 
     ret = shutdown(clnFd, SHUT_RDWR);
@@ -275,20 +273,18 @@ static void* SampleTcpClientTask(void *p)
     srvAddr.sin_addr.s_addr = inet_addr(g_localHost);
     srvAddr.sin_port = htons(PEER_PORT);
     int ret = connect(clnFd, (struct sockaddr*)&srvAddr, sizeof(srvAddr));
-    printf("[tcp client]connect %s:%d, fd[%d]\n", inet_ntoa(srvAddr.sin_addr), ntohs(srvAddr.sin_port), clnFd);
+    printf("[tcp client]connect %s:%d, fd[%d]\n");
     EXPECT_EQ(0, ret);
 
     struct sockaddr addr = {0};
     socklen_t addrLen = sizeof(addr);
     ret = getpeername(clnFd, &addr, &addrLen);
-    printf("[tcp client]getpeername %s:%d\n", inet_ntoa(((struct sockaddr_in*)&addr)->sin_addr),
-        ntohs(((struct sockaddr_in*)&addr)->sin_port));
+    printf("[tcp client]getpeername %s:%d\n");
     EXPECT_EQ(0, ret);
     EXPECT_EQ(inet_addr(g_localHost), ((struct sockaddr_in*)&addr)->sin_addr.s_addr);
 
     ret = getsockname(clnFd, &addr, &addrLen);
-    printf("[tcp client]getsockname %s:%d\n", inet_ntoa(((struct sockaddr_in*)&addr)->sin_addr),
-        ntohs(((struct sockaddr_in*)&addr)->sin_port));
+    printf("[tcp client]getsockname %s:%d\n");
     EXPECT_EQ(0, ret);
     EXPECT_EQ(inet_addr(g_localHost), ((struct sockaddr_in*)&addr)->sin_addr.s_addr);
 
@@ -303,7 +299,7 @@ static void* SampleTcpClientTask(void *p)
 
     memset_s(buf, BUF_SIZE, 0, BUF_SIZE);
     ret = recv(clnFd, buf, sizeof(buf), 0);
-    printf("[tcp client]recv, ret=%d, msg[%s]\n", ret, buf);
+    printf("[tcp client]recv, ret=%d, msg[%s]\n");
     EXPECT_EQ(strlen(g_srvMsg), (unsigned int)ret);
 
     WAIT();
@@ -342,7 +338,7 @@ static void* SampleTcpClientTask(void *p)
     ret = recvmsg(clnFd, &msg, 0);
     if (len * strlen(g_srvMsg) == (unsigned int)ret && ret >= 0) {
         bufrec[ret] = 0;
-        printf("[tcp client]recvmsg, ret=%d, msg[%s]\n", ret, bufrec);
+        printf("[tcp client]recvmsg, ret=%d, msg[%s]\n");
     } else {
         EXPECT_TRUE(false);
         printf("[tcp clien]recvmsg, ret=%d\n", ret);
@@ -372,8 +368,7 @@ static void *TcpServerLoopTask(void *p)
     while (i < 30)
     {
         clientFds[i] = accept(srvFd, (struct sockaddr *)&clnAddr, &clnAddrLen);
-        printf("[***---][tcp server loop]accept <%s:%d>, fd[%d]i[%d]\n", inet_ntoa(clnAddr.sin_addr),
-               ntohs(clnAddr.sin_port), clientFds[i], i);
+        printf("[***---][tcp server loop]accept <%s:%d>, fd[%d]i[%d]\n");
         EXPECT_NE(-1, clientFds[i]);
         i++;
     }
@@ -407,7 +402,7 @@ static void* TcpClientOnlyConnectTask(void *p)
     int clientFds[10];
     for (index = 0; index < 10; index++) {
         clientFds[index] = socket(AF_INET, SOCK_STREAM, 0);
-        printf("[------][tcp client[%d]]create socket fd[%d],index[%d]\n", tId, clientFds[index], index);
+        printf("[------][tcp client[%d]]create socket fd[%d],index[%d]\n");
         EXPECT_NE(-1, clientFds[index]);
         ret = connect(clientFds[index], (struct sockaddr*)&srvAddr, sizeof(srvAddr));
         EXPECT_EQ(0, ret);
@@ -416,8 +411,7 @@ static void* TcpClientOnlyConnectTask(void *p)
         }
 
         ret = getsockname(clientFds[index], &addr, &addrLen);
-        printf("[------][tcp client[%d]]getsockname %s:%d\n", tId, inet_ntoa(((struct sockaddr_in*)&addr)->sin_addr),
-            ntohs(((struct sockaddr_in*)&addr)->sin_port));
+        printf("[------][tcp client[%d]]getsockname %s:%d\n");
         EXPECT_EQ(0, ret);
         EXPECT_EQ(inet_addr(g_localHost), ((struct sockaddr_in*)&addr)->sin_addr.s_addr);
         ret = getpeername(clientFds[index], &addr, &addrLen);
@@ -546,9 +540,9 @@ static int SelectServerForFork(unsigned int timeoutSec)
                 memset_s(dataBuf, sizeof(dataBuf), 0, sizeof(dataBuf));
                 int len = recv(fds[i], dataBuf, sizeof(dataBuf), 0);
                 if (len > 0) {
-                    printf("[***][select process][%d]recv msg[%s]\n", fds[i], dataBuf);
+                    printf("[***][select process][%d]recv msg[%s]\n");
                     if (strcmp(dataBuf, "bye") == 0) {
-                        printf("[###][select process][%d]client bye,cliCount[%d]\n", fds[i], cliCount);
+                        printf("[###][select process][%d]client bye,cliCount[%d]\n");
                         FD_CLR(fds[i], &readSet);
                         close(fds[i]);
                         fds[i] = -1;
