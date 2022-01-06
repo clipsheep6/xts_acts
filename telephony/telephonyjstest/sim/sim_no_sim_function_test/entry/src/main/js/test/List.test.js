@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-require('./SimNoSimFunction.test.js');
+require('./sim_no_sim_function.test');
