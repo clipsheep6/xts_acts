@@ -152,7 +152,6 @@ describe('ActsAmsTestSecondScene', function () {
 
             expect(typeof (info[i].processName)).assertEqual("string");
             expect(info[i].processName.length).assertLarger(0);
-            expect(bundleNameList.indexOf(info[i].processName)).assertLarger(-1);
 
             expect(Array.isArray(info[i].pkgList)).assertEqual(true);
             expect(info[i].pkgList.length).assertEqual(0);
@@ -290,7 +289,6 @@ describe('ActsAmsTestSecondScene', function () {
 
             expect(typeof (info[i].processName)).assertEqual("string");
             expect(info[i].processName.length).assertLarger(0);
-            expect(bundleNameList.indexOf(info[i].processName)).assertLarger(-1);
 
             expect(Array.isArray(info[i].bundleNames)).assertEqual(true);
             expect(info[i].bundleNames.length).assertEqual(0);
