@@ -118,14 +118,13 @@ describe('ActsAmsCallBackFirstScene', function () {
                 ' + error.code + ', data length [' + info.length + ']');
                 console.info('Acts_Ams_test_0200 getAllRunningProcesses data ' + JSON.stringify(info));
                 expect(Array.isArray(info)).assertEqual(true);
-                expect(info.length).assertEqual(9);
+                expect(info.length).assertLarger(0);
                 for (var i = 0; i < info.length; i++) {
                     expect(typeof (info[i].pid)).assertEqual("number");
                     expect(info[i].pid).assertLarger(0);
 
                     expect(typeof (info[i].processName)).assertEqual("string");
                     expect(info[i].processName.length).assertLarger(0);
-                    expect(bundleNameList.indexOf(info[i].processName)).assertLarger(-1);
 
                     expect(Array.isArray(info[i].pkgList)).assertEqual(true);
                     expect(info[i].pkgList.length).assertEqual(0);
@@ -253,14 +252,13 @@ describe('ActsAmsCallBackFirstScene', function () {
                 ' + error.code + ', data length [' + info.length + ']');
                 console.info('Acts_Ams_test_8600 getActiveProcessInfos data ' + JSON.stringify(info));
                 expect(Array.isArray(info)).assertEqual(true);
-                expect(info.length).assertEqual(9);
+                expect(info.length).assertLarger(0);
                 for (var i = 0; i < info.length; i++) {
                     expect(typeof (info[i].pid)).assertEqual("number");
                     expect(info[i].pid).assertLarger(0);
 
                     expect(typeof (info[i].processName)).assertEqual("string");
                     expect(info[i].processName.length).assertLarger(0);
-                    expect(bundleNameList.indexOf(info[i].processName)).assertLarger(-1);
 
                     expect(Array.isArray(info[i].bundleNames)).assertEqual(true);
                     expect(info[i].bundleNames.length).assertEqual(0);
