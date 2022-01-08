@@ -17,14 +17,11 @@ group("call_manager") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "call_manager_ims_call:ActsCallManagerImsCallTest",
-      "call_manager_media:ActsCallManagerMediaTest",
-      "call_manager_mmi:ActsCallManagerMMITest",
-      "call_manager_on_dail:ActsCallManagerOnDailTest",
-      "call_manager_register:ActsCallManagerRegisterTest",
-      "call_manager_restriction:ActsCallManagerRestrictionTest",
-      "call_manager_test:ActsCallManagerTest",
-      "call_manager_transfer:ActsCallManagerTransferTest",
+      "call_manager_ims_restriction:ActsCallManagerImsRestrictionTest",
+      "call_manager_ims_transfer:ActsCallManagerImsTransferTest",
+      "call_manager_ims2_call:ActsCallManagerIms2CallTest",
+      #"call_manager_q6_performance:ActsCallManagerQ6PerformanceTest ",
+      #"call_manager_q6_reliability:ActsCallManagerQ6ReliabilityTest "
     ]
   }
 }
