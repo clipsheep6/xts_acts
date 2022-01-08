@@ -71,7 +71,7 @@ describe('ActsAmsTestThirdScene', function () {
                 },
             },
         );
-        var maxnum = 20;
+        var maxnum = 10;
 	 var flag = 1;
         var data = await abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag);
         console.log('queryRecentAbilityMissionInfos data  ' + JSON.stringify(data));
@@ -239,7 +239,7 @@ describe('ActsAmsTestThirdScene', function () {
      */
     it('Acts_Ams_test_3700', 0, async function (done) {
         var maxnum = 20;
-	 var flag = 1;
+	 var flag = 2;
         var data = await abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag);
         console.info('Acts_Ams_test_3700 queryRecentAbilityMissionInfos data ' + JSON.stringify(data));
         expect(Array.isArray(data)).assertEqual(true);

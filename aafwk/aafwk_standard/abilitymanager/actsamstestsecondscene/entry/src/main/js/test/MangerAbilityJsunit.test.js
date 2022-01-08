@@ -71,7 +71,7 @@ describe('ActsAmsTestSecondScene', function () {
                 },
             },
         );
-        var maxnum = 20;
+        var maxnum = 10;
 	 var flag = 1;
         var data = await abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag);
         console.log('queryRecentAbilityMissionInfos data  ' + JSON.stringify(data));
