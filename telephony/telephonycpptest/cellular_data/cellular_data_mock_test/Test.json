@@ -1,0 +1,21 @@
+{
+    "kits": [
+        {
+            "push": [
+                "CellularDataMockTest->/data/telephonycpptest/CellularDataMockTest"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/telephonycpptest/*"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "CellularDataMockTest",
+        "runtime-hint": "10s",
+        "native-test-device-path": "/data/telephonycpptest"
+    },
+    "description": "Configuration cellular_data_mock_test basic Tests"
+}

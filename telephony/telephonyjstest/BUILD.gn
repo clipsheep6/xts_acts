@@ -15,12 +15,11 @@ import("//build/ohos_var.gni")
 
 group("telephonyjstest") {
   testonly = true
-  deps = [
-    "call_manager:call_manager",
-    "cellular_data:cellular_data",
-    "network_manager:network_manager",
-    "network_search:network_search",
-    "sim:sim",
-    "sms_mms:sms_mms",
-  ]
+   deps = [
+      "network_search:network_search",
+      "sms_mms:sms_mms",
+      "call_manager:call_manager",
+      "sim:sim",
+      "cellular_data:cellular_data",
+   ]
 }

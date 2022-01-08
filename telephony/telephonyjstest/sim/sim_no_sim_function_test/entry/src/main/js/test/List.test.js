@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-require('./SimNoSimFunction.test.js');
+require('./sim_setprimaryslotid_function.test');
