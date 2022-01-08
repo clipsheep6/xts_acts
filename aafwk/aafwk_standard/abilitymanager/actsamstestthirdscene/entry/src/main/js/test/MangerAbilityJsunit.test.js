@@ -147,8 +147,13 @@ describe('ActsAmsTestThirdScene', function () {
 
     function sleep(delay) {
         var start = (new Date()).getTime();
-        while ((new Date()).getTime() - start < delay) {
-            continue;
+        var endTime = (new Date()).getTime();
+        for (let index = 1; index > 0; index++) {
+	        if (endTime - startTime > delay) {
+		        break;
+	        } else {
+		        endTime = (new Date()).getTime();
+        	}
         }
     }
 
