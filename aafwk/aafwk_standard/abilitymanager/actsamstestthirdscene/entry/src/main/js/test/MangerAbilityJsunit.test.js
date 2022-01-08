@@ -80,7 +80,7 @@ describe('ActsAmsTestThirdScene', function () {
                 var info = abilitymanager.removeMission(data[i].id);
                 console.log(' removeMission data  [' + info + ']');
             }
-        };
+        }
         await featureAbility.startAbility(
             {
                 want:
@@ -170,7 +170,6 @@ describe('ActsAmsTestThirdScene', function () {
 
             expect(typeof (info[i].processName)).assertEqual("string");
             expect(info[i].processName.length).assertLarger(0);
-
             expect(Array.isArray(info[i].pkgList)).assertEqual(true);
             expect(info[i].pkgList.length).assertEqual(0);
 
@@ -290,7 +289,6 @@ describe('ActsAmsTestThirdScene', function () {
 
             expect(typeof (info[i].processName)).assertEqual("string");
             expect(info[i].processName.length).assertLarger(0);
-
             expect(Array.isArray(info[i].bundleNames)).assertEqual(true);
             expect(info[i].bundleNames.length).assertEqual(0);
 
