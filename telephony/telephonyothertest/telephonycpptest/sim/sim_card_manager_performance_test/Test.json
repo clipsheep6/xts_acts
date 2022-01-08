@@ -1,0 +1,21 @@
+{
+    "kits": [
+        {
+            "push": [
+                "SimCardManagerPerformanceTest->/data/telephonycpptest/SimCardManagerPerformanceTest"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/telephonycpptest/*"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "SimCardManagerPerformanceTest",
+        "runtime-hint": "10s",
+        "native-test-device-path": "/data/telephonycpptest"
+    },
+    "description": "Configuration sim performance Tests"
+}
