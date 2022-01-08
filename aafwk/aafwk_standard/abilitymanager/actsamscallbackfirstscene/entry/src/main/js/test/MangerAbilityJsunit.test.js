@@ -64,7 +64,8 @@ describe('ActsAmsCallBackFirstScene', function () {
                 },
             },
         );
-        var maxnum = 10, flag = 1;
+        var maxnum = 20;
+	 var flag = 1;
         var data = await abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag);
         console.log('queryRecentAbilityMissionInfos data  ' + JSON.stringify(data));
         for (var i = 0; i < data.length; i++) {
@@ -198,7 +199,8 @@ describe('ActsAmsCallBackFirstScene', function () {
      * @tc.desc      : Query Recent Ability Mission Infos(by CallBack)
      */
     it('Acts_Ams_test_0600', 0, async function (done) {
-        var maxnum = 10, flag = 1;
+        var maxnum = 20;
+	 var flag = 1;
         abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag,
             (error, info) => {
                 console.info('queryRunningAbilityMissionInfos error.code : \
