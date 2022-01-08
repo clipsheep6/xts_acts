@@ -186,7 +186,7 @@ describe('ActsAmsTestFirstScene', function () {
             expect(data[i].baseAbility.deviceId.length).assertEqual(0);
             expect(typeof (data[i].baseAbility.bundleName)).assertEqual("string");
             expect(data[i].baseAbility.bundleName.length).assertLarger(0);
-            expect(bundleNameList.indexOf(data[i].baseAbility.bundleName)).assertLarger(-1);;
+            expect(bundleNameList.indexOf(data[i].baseAbility.bundleName)).assertLarger(-1);
             expect(typeof (data[i].baseAbility.abilityName)).assertEqual("string");
             expect(data[i].baseAbility.abilityName.length).assertLarger(0);
             expect(abilityNameList.indexOf(data[i].baseAbility.abilityName)).assertLarger(-1);

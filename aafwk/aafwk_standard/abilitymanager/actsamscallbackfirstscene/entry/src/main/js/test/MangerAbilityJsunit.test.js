@@ -73,7 +73,7 @@ describe('ActsAmsCallBackFirstScene', function () {
                 var info = abilitymanager.removeMission(data[i].id);
                 console.log(' removeMission data  [' + info + ']');
             }
-        };
+        }
         await featureAbility.startAbility(
             {
                 want:
