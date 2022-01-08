@@ -69,7 +69,8 @@ describe('ActsAmsTestFirstScene', function () {
                 },
             },
         );
-        var maxnum = 10, flag = 1;
+        var maxnum = 10;
+	 var flag = 1;
         var data = await abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag);
         console.log('queryRecentAbilityMissionInfos data  ' + JSON.stringify(data));
         for (var i = 0; i < data.length; i++) {
@@ -215,7 +216,8 @@ describe('ActsAmsTestFirstScene', function () {
     * @tc.desc      : Query Recent Ability Mission Infos(by Promise)
     */
     it('Acts_Ams_test_0500', 0, async function (done) {
-        var maxnum = 10, flag = 1;
+        var maxnum = 10;
+	 var flag = 1;
         var data = await abilitymanager.queryRecentAbilityMissionInfos(maxnum, flag);
         console.info('Acts_Ams_test_0500 queryRecentAbilityMissionInfos data ' + JSON.stringify(data));
         expect(Array.isArray(data)).assertEqual(true);
