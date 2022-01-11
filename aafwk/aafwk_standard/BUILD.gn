@@ -45,18 +45,13 @@ group("aafwk_standard") {
       "featureability:featureability",
       "formmanager:formmanager",
 
-      #"fwkdataaccessor:ActsFWKDataAccessorTest",
-
-      #"serviceability/actsparticleabilitytest:ActsParticleAbilityTest",
       "serviceability/sceneProject/particlestartability:ParticleStartAbility",
       "serviceability/sceneProject/particletestserver:ParticleTestServer",
 
-      #"serviceability/stserviceabilityclient:ActsAmsStServiceAbilityClientTest",
       "serviceability/stserviceabilityserver:amsStServiceAilityServer",
       "serviceability/stserviceabilityserversecond:ActsAmsStServiceAilityServerSecondTest",
       "setshowonlockscreen:setshowonlockscreen",
 
-      #"verifypermission:verifypermission",
       "want:want",
     ]
   }
