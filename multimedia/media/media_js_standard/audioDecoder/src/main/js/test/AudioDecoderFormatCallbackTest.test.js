@@ -21,24 +21,16 @@ describe('AudioDecoderFunc', function () {
     const AUDIOPATH1 =  '/data/media/AAC_48000_32_1.aac'
     const AUDIOPATH2 =  '/data/media/FLAC_48000_32_1.flac'
     const AUDIOPATH3 = '/data/media/mp3.es';
-    const AUDIOPATH4 = '/data/media/vorbis_es.dump';
-    let SAVEPATH = '/data/media/totalfunc.txt';
-    let audioDecodeProcessor = null;
-    let readStreamSync = undefined;
-    let eosframenum = 0;
-    let workdoneAtEOS = false;
-    let needgetOutputMediaDescription = false;
-    let needrelease = false;
-    let i = 1;
+    const AUDIOPATH4 = '/data/media/vorbis.es';
+    const BASIC_PATH = '/data/media/results/decode_format_callback_';
+    let audioDecodeProcessor;
+    let readStreamSync;
+    let needgetMediaDes = false;
+    let frameCnt = 1;
     let timestamp = 0;
-    const FREAM_HEAD_BYTE = 0;
-    let dequeInputCnt = 0;
     let enqueInputCnt = 0;
-    let dequeOutputCnt = 0;
     let releaseOutputCnt = 0;
-    let pushInputCnt = 0;
-    let pushOutputCnt = 0;
-    let getcontentCNT = 1;
+    let getcontentCnt = 1;
     let sawInputEOS = false;
     let sawOutputEOS = false;
     let inputQueue = [];
@@ -55,22 +47,14 @@ describe('AudioDecoderFunc', function () {
 
     beforeEach(function() {
         console.info('beforeEach case');
-        SAVEPATH = '/data/media/';
         audioDecodeProcessor = null;
         readStreamSync = undefined;
-        eosframenum = 0;
-        workdoneAtEOS = false;
-        needgetOutputMediaDescription = false;
-        needrelease = false;
-        i = 1;
+        needgetMediaDes = false;
+        frameCnt = 1;
         timestamp = 0;
-        dequeInputCnt = 0;
         enqueInputCnt = 0;
-        dequeOutputCnt = 0;
         releaseOutputCnt = 0;
-        pushInputCnt = 0;
-        pushOutputCnt = 0;
-        getcontentCNT = 1;
+        getcontentCnt = 1;
         sawInputEOS = false;
         sawOutputEOS = false;
         inputQueue = [];
@@ -84,7 +68,7 @@ describe('AudioDecoderFunc', function () {
 
     afterEach(function() {
         console.info('afterEach case');
-        if (audioDecodeProcessor != null){
+        if (audioDecodeProcessor != null) {
             audioDecodeProcessor = null
         }
     })
@@ -93,77 +77,68 @@ describe('AudioDecoderFunc', function () {
         console.info('afterAll case');
     })
 
-    function writeFile(path, buf, len){
+    function writeFile(path, buf, len) {
         try{
             let writestream = Fileio.createStreamSync(path, "ab+");
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
-        }catch(e){
+        }catch(e) {
             console.log(e)
         }
     }
 
-    function readFile(path){
+    function readFile(path) {
         console.log('read file start execution');
         try{
             console.log('filepath: ' + path);
             readStreamSync = Fileio.createStreamSync(path, 'rb');
-        }catch(e){
+        }catch(e) {
             console.log(e);
         }
     }
 
-    function getContent(buf, len){
+    function getContent(buf, len) {
         console.log("start get content");
-        console.log("getContent count: " + getcontentCNT);
+        console.log("getContent count: " + getcontentCnt);
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
         console.log('lengthreal: ' + lengthreal);
-        getcontentCNT += 1;
+        getcontentCnt += 1;
     }
 
-    async function enqueueAllInputs(audioDecodeProcessor, queue, done){
-        console.log('inputQueue.length:' + queue.length);
-        while (queue.length > 0 && !sawInputEOS){
+    async function enqueueAllInputs(audioDecodeProcessor, queue) {
+        while (queue.length > 0 && !sawInputEOS) {
             let inputobject = queue.shift(); 
-            dequeInputCnt += 1;
-            if (i == eosframenum || i == ES_LENGTH + 1){
+            if (frameCnt == ES_LENGTH + 1) {
                 inputobject.flags = 1;  
                 inputobject.timeMs = 0;
                 inputobject.length = 0; 
                 sawInputEOS = true;
-            }
-            else{                   
+            } else {                   
                 inputobject.timeMs = timestamp;
                 inputobject.offset = 0;
-                if (i==1 && isVorbis){
-                    console.info("vorbis first frame")
-                    inputobject.length = ES[i] - FREAM_HEAD_BYTE;  
-                    getContent(inputobject.data, ES[i]);
-                    console.info("first frame write to buffer success")
+                if (frameCnt==1 && isVorbis) {
+                    inputobject.length = ES[frameCnt];  
+                    getContent(inputobject.data, ES[frameCnt]);
                     inputobject.flags = 8;
-                    console.info("vorbis first frame, set flag=8 success")
-                }
-                else if (isMp3){                
-                    inputobject.length = ES[1] - FREAM_HEAD_BYTE;  
+                } else if (isMp3) {                
+                    inputobject.length = ES[1];  
                     getContent(inputobject.data, ES[1]);
-                    console.info("mp3 frame write to buffer success")
                     inputobject.flags = 0;
-                }
-                else{
-                    inputobject.length = ES[i] - FREAM_HEAD_BYTE;  
-                    getContent(inputobject.data, ES[i]);
-                    console.info("write to buffer success")
+                } else {
+                    inputobject.length = ES[frameCnt];  
+                    getContent(inputobject.data, ES[frameCnt]);
                     inputobject.flags = 0;
                 }
             }
-            if (isMp3){timestamp += ES[1]/samplerate;}
-            else {
-                timestamp += ES[i]/samplerate;
+            if (isMp3) {
+                timestamp += ES[1]/samplerate;
+            } else {
+                timestamp += ES[frameCnt]/samplerate;
             }
-            i += 1;
-            audioDecodeProcessor.queueInput(inputobject, (err) => {
+            frameCnt += 1;
+            audioDecodeProcessor.queueInput(inputobject, () => {
                 enqueInputCnt += 1;
                 console.log('enqueInputCnt:' + enqueInputCnt);
                 console.info('queueInput success');
@@ -171,31 +146,26 @@ describe('AudioDecoderFunc', function () {
         }
     }
 
-    async function dequeueAllOutputs(audioDecodeProcessor, queue, done){
-        console.log('outputQueue.length:' + queue.length);
-        while (queue.length > 0 && !sawOutputEOS){
+    async function dequeueAllOutputs(audioDecodeProcessor, queue, savepath, done) {
+        while (queue.length > 0 && !sawOutputEOS) {
             let outputobject = queue.shift();   
-            dequeOutputCnt += 1;
-            if (outputobject.flags == 1){
+            if (outputobject.flags == 1) {
                 sawOutputEOS = true;
-                if (workdoneAtEOS) {
-                    audioDecodeProcessor.stop((err) => {
+                audioDecodeProcessor.stop((err) => {
+                    expect(err).assertUndefined();
+                    console.log("stop success");
+                    audioDecodeProcessor.reset((err) => {
                         expect(err).assertUndefined();
-                        console.log("stop success");
-                        audioDecodeProcessor.reset((err) => {
-                            expect(err).assertUndefined();
-                            console.log("reset success");
-                            audioDecodeProcessor = null;
-                            done();  
-                        })
+                        console.log("reset success");
+                        audioDecodeProcessor = null;
+                        done();  
                     })
-                } 
-            }
-            else{
-                writeFile(SAVEPATH, outputobject.data, outputobject.length);
+                })
+            } else {
+                writeFile(savepath, outputobject.data, outputobject.length);
                 console.log("write to file success");
             }
-            audioDecodeProcessor.releaseOutput(outputobject, (err) => {
+            audioDecodeProcessor.releaseOutput(outputobject, () => {
                 console.info('release output success');
                 releaseOutputCnt += 1;
                 console.log('release output count:' + releaseOutputCnt);
@@ -203,26 +173,24 @@ describe('AudioDecoderFunc', function () {
         } 
     }
 
-    function setCallback(audioDecodeProcessor, done){
+    function setCallback(audioDecodeProcessor, savepath, done) {
         console.info('case callback');
         audioDecodeProcessor.on('inputBufferAvailable', async(inBuffer) => {
-            pushInputCnt += 1;
+            console.info("inputBufferAvailable");
             inputQueue.push(inBuffer);
-            await enqueueAllInputs(audioDecodeProcessor, inputQueue, done);
+            await enqueueAllInputs(audioDecodeProcessor, inputQueue);
         });
         audioDecodeProcessor.on('outputBufferAvailable', async(outBuffer) => {
-            console.info("outBuffer.flags: " + outBuffer.flags);
-            if (needgetOutputMediaDescription){
+            console.info("outputBufferAvailable");
+            if (needgetMediaDes) {
                 audioDecodeProcessor.getOutputMediaDescription((err, MediaDescription) => {
                     console.log("get OutputMediaDescription success");
                     console.log('get outputMediaDescription : ' + MediaDescription);
-                    needgetOutputMediaDescription=false;
+                    needgetMediaDes=false;
                 })
             }
-            pushOutputCnt += 1;
-            console.log('pushOutputCnt: ' + pushOutputCnt);  
             outputQueue.push(outBuffer);
-            await dequeueAllOutputs(audioDecodeProcessor, outputQueue, done);
+            await dequeueAllOutputs(audioDecodeProcessor, outputQueue, savepath, done);
         });
         audioDecodeProcessor.on('error',(err) => {
             console.info('case error called,errName is' + err);
@@ -234,25 +202,23 @@ describe('AudioDecoderFunc', function () {
 
     /* *
         * @tc.number    : SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0100
-        * @tc.name      : 001.aac
+        * @tc.name      : 001.test aac format
         * @tc.desc      : basic decode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */ 
-
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0100', 0, async function (done) {
-        console.log("aac callback");
+        console.log("case test aac format");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
                     "channel_count": 2, 
                     "sample_rate": 44100,
-                    "audio_raw_format":4,
+                    "audio_raw_format": 4,
         }
-        workdoneAtEOS = true;
-        needgetOutputMediaDescription = true;
-        SAVEPATH = SAVEPATH + 'aacPromise0100.txt';
+        let savepath = BASIC_PATH + 'aac0100.txt';
+        needgetMediaDes = true;
         ES = [0, 283, 336, 291, 405, 438, 411, 215, 215, 313, 270, 342, 641, 554, 545, 545, 546, 541, 540, 542,
             552, 537, 533, 498, 472, 445, 430, 445, 427, 414, 386, 413, 370, 380, 401, 393, 369, 391, 367, 395, 
             396, 396, 385, 391, 384, 395, 392, 386, 388, 384, 379, 376, 381, 375, 373, 349, 391, 357, 384, 395, 
@@ -325,7 +291,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, done);
+                setCallback(audioDecodeProcessor, savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -345,25 +311,23 @@ describe('AudioDecoderFunc', function () {
 
     /* *
         * @tc.number    : SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0200
-        * @tc.name      : 002.flac
+        * @tc.name      : 002.test flac format
         * @tc.desc      : basic decode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */ 
-
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0200', 0, async function (done) {
-        console.log("flac callback");
+        console.log("case test flac format");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
                     "channel_count": 1, 
                     "sample_rate": 48000,
-                    "audio_raw_format":4,
+                    "audio_raw_format": 4,
         }
-        workdoneAtEOS = true;
-        needgetOutputMediaDescription = true;
-        SAVEPATH = SAVEPATH + 'flacPromise0100.txt';
+        let savepath = BASIC_PATH + 'flac0100.txt';
+        needgetMediaDes = true;
         samplerate = 48;
         ES = [0, 2116, 2093, 2886, 2859, 2798, 2778, 2752, 2752, 2754, 2720, 2898, 2829, 2806, 2796, 
             2786, 2774, 2758, 2741, 3489, 3342, 3272, 3167, 3048, 3060, 2919, 2839, 2794, 2770, 2763, 
@@ -400,7 +364,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, done);
+                setCallback(audioDecodeProcessor, savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -420,30 +384,27 @@ describe('AudioDecoderFunc', function () {
 
     /* *
         * @tc.number    : SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0300
-        * @tc.name      : 003.mp3
+        * @tc.name      : 003.test mp3 format
         * @tc.desc      : basic decode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */ 
-
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0300', 0, async function (done) {
-        console.log("mp3 callback");
+        console.log("test mp3 format");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
             "channel_count": 2, 
             "sample_rate": 44100,
-            "audio_raw_format":4,
+            "audio_raw_format": 4,
         }
-        workdoneAtEOS = true;
-        needgetOutputMediaDescription = true;
-        SAVEPATH = SAVEPATH + 'mp3Promise0100.txt';
+        let savepath = BASIC_PATH + 'mp30100.txt';
+        needgetMediaDes = true;
         isMp3 = true;
         isVorbis = false;
         ES = [0, 1044]
         ES_LENGTH = 1000;
-
         eventEmitter.on('getAudioDecoderCaps', () => {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
@@ -464,7 +425,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, done);
+                setCallback(audioDecodeProcessor, savepath, done);
                 eventEmitter.emit('start');
             })
         });      
@@ -484,31 +445,62 @@ describe('AudioDecoderFunc', function () {
 
     /* *
         * @tc.number    : SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0400
-        * @tc.name      : 004. vorbis
+        * @tc.name      : 004.test vorbis format
         * @tc.desc      : basic decode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */ 
-
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0400', 0, async function (done) {
-        console.log("vorbis callback");
+        console.log("test vorbis format");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
             "channel_count": 1, 
             "sample_rate": 48000,
-            "audio_raw_format":4,
+            "audio_raw_format": 4,
         }
-        workdoneAtEOS = true;
-        needgetOutputMediaDescription = true;
+        let savepath = BASIC_PATH + 'vorbis0100.txt';
+        needgetMediaDes = true;
         samplerate = 48;
-        SAVEPATH = SAVEPATH + 'vorbisCallback0100.txt';
         isVorbis = true;
-        isMp3 = false;
-        ES = [0, 3251, 33, 160, 162, 159, 148, 160, 160, 159, 167, 156, 162, 173, 135, 137, 133, 126, 126, 130, 127, 133, 138, 132, 124, 129, 134, 136, 146, 135, 137, 144, 137, 128, 124, 127, 129, 127, 130, 127, 134, 130, 135, 146, 142, 140, 134, 134, 128, 119, 122, 122, 123, 121, 128, 125, 128, 122, 137, 141, 136, 135, 127, 128, 125, 128, 122, 126, 132, 127, 127, 135, 143, 134, 148, 133, 131, 140, 143, 135, 140, 141, 135, 149, 27, 30, 36, 32, 157, 155, 158, 154, 136, 150, 149, 142, 150, 142, 149, 139, 142, 146, 138, 138, 144, 138, 139, 132, 120, 130, 134, 124, 127, 130, 130, 123, 133, 141, 137, 135, 140, 147, 139, 141, 134, 131, 146, 139, 136, 136, 130, 143, 147, 144, 138, 145, 137, 137, 138, 142, 148, 149, 138, 141, 148, 139, 139, 139, 134, 135, 131, 124, 131, 131, 120, 121, 132, 128, 127, 130, 136, 129, 130, 123, 133, 132, 141, 147, 147, 139, 127, 149, 157, 165, 154, 143, 153, 141, 157, 144, 146, 135, 142, 133, 134, 140, 142, 133, 136, 133, 141, 143, 128, 127, 136, 144, 138, 141, 133, 127, 123, 138, 131, 126, 130, 131, 135, 131, 137, 136, 125, 127, 126, 143, 142, 127, 134, 140, 144, 128, 125, 139, 144, 135, 141, 123, 130, 127, 126, 140, 136, 140, 139, 140, 133, 132, 146, 142, 138, 134, 130, 125, 130, 130, 129, 137, 133, 128, 130, 130, 132, 135, 126, 129, 142, 129, 151, 150, 146, 130, 130, 144, 137, 145, 140, 126, 123, 128, 138, 136, 140, 137, 137, 147, 
-            146, 141, 137, 139, 117, 133, 140, 126, 137, 138, 143, 141, 141, 132, 128, 132, 145, 148, 151, 160, 162, 154, 140, 147, 30, 28, 28, 26, 27, 27, 31, 33, 32, 145, 132, 130, 124, 142, 140, 128, 124, 131, 127, 130, 128, 135, 125, 
-            137, 137, 127, 128, 127, 125, 127, 130, 124, 134, 137, 129, 127, 146, 136, 131, 124, 125, 130, 131, 135, 147, 148, 151, 147, 143, 148, 145, 158, 142, 137, 129, 127, 156, 147, 143, 137, 135, 142, 141, 140, 137, 136, 132, 134, 130, 124, 127, 130, 127, 126, 127, 129, 132, 134, 141, 147, 136, 141, 141, 134, 126, 127, 136, 135, 134, 122, 130, 128, 140, 133, 124, 128, 137, 128, 141, 135, 141, 147, 153, 151, 151, 154, 150, 147, 157, 153, 153, 153, 151, 155, 154, 153, 150, 143, 157, 146, 150, 154, 152, 153, 28, 35, 33, 34, 37, 36, 30, 31, 27, 37, 38, 36, 38, 37, 36, 39, 38, 36, 172, 172, 179, 178, 172, 171, 180, 173, 163, 164, 159, 159, 155, 163, 184, 187, 176, 176, 184, 179, 174, 167, 165, 166, 160, 166, 169, 169, 159, 165, 166, 168, 162, 180, 174, 186, 179, 180, 186, 187, 178, 156, 158, 156, 161, 165, 163, 160, 169, 160, 160, 168, 161, 159, 167, 173, 177, 170, 172, 172, 169, 157, 161, 155, 165, 164, 154, 161, 160, 31, 30, 28, 31, 31, 29, 38, 36, 40, 31, 33, 37, 39, 179, 30, 28, 27, 30, 28, 30, 30, 37, 42, 39, 184, 163, 158, 172, 166, 161, 160, 167, 174, 175, 183, 176, 192, 176, 170, 179, 173, 164, 156, 160, 162, 152, 155, 157, 174, 176, 184, 173, 180, 177, 182, 190, 170, 167, 154, 156, 171, 169, 172, 177, 190, 192, 186, 188, 192, 192, 176, 179, 175, 191, 174, 197, 194, 203, 198, 190, 185, 202, 179, 169, 179, 184, 193, 185, 185, 181, 197, 188, 189, 188, 189, 193, 197, 198, 203, 188, 189, 198, 190, 196, 191, 191, 197, 202, 182, 178, 186, 194, 192, 186, 187, 188, 186, 179, 179, 168, 165, 173, 165, 160, 161, 145, 162, 149, 155, 154, 145, 154, 152, 152, 163, 174, 175, 170, 181, 177, 162, 167, 164, 162, 147, 147, 157, 159, 27, 28, 28, 36, 36, 37, 35, 35, 35, 35, 37, 37, 35, 35, 36, 171, 40, 40, 176, 178, 171, 174, 165, 161, 157, 160, 154, 167, 163, 174, 172, 155, 158, 165, 166, 181, 190, 160, 158, 160, 30, 39, 36, 174, 157, 180, 174, 167, 178, 177, 171, 175, 173, 166, 28, 28, 28, 29, 30, 34, 35, 36, 29, 36, 37, 38, 32, 29, 41, 38, 38, 35, 34, 34, 36, 34, 35, 30, 30, 31, 31, 28, 30, 31, 36, 36, 36, 40, 38, 44, 41, 34, 38, 38, 38, 39, 184, 157, 155, 167, 178]
+        ES = [0, 3251, 33, 160, 162, 159, 148, 160, 160, 159, 167, 156, 162, 173, 135, 137, 133, 126, 126, 130, 
+            127, 133, 138, 132, 124, 129, 134, 136, 146, 135, 137, 144, 137, 128, 124, 127, 129, 127, 130, 127, 
+            134, 130, 135, 146, 142, 140, 134, 134, 128, 119, 122, 122, 123, 121, 128, 125, 128, 122, 137, 141, 
+            136, 135, 127, 128, 125, 128, 122, 126, 132, 127, 127, 135, 143, 134, 148, 133, 131, 140, 143, 135, 
+            140, 141, 135, 149, 27, 30, 36, 32, 157, 155, 158, 154, 136, 150, 149, 142, 150, 142, 149, 139, 142, 
+            146, 138, 138, 144, 138, 139, 132, 120, 130, 134, 124, 127, 130, 130, 123, 133, 141, 137, 135, 140, 
+            147, 139, 141, 134, 131, 146, 139, 136, 136, 130, 143, 147, 144, 138, 145, 137, 137, 138, 142, 148, 
+            149, 138, 141, 148, 139, 139, 139, 134, 135, 131, 124, 131, 131, 120, 121, 132, 128, 127, 130, 136, 
+            129, 130, 123, 133, 132, 141, 147, 147, 139, 127, 149, 157, 165, 154, 143, 153, 141, 157, 144, 146, 
+            135, 142, 133, 134, 140, 142, 133, 136, 133, 141, 143, 128, 127, 136, 144, 138, 141, 133, 127, 123, 
+            138, 131, 126, 130, 131, 135, 131, 137, 136, 125, 127, 126, 143, 142, 127, 134, 140, 144, 128, 125, 
+            139, 144, 135, 141, 123, 130, 127, 126, 140, 136, 140, 139, 140, 133, 132, 146, 142, 138, 134, 130, 
+            125, 130, 130, 129, 137, 133, 128, 130, 130, 132, 135, 126, 129, 142, 129, 151, 150, 146, 130, 130, 
+            144, 137, 145, 140, 126, 123, 128, 138, 136, 140, 137, 137, 147, 146, 141, 137, 139, 117, 133, 140, 
+            126, 137, 138, 143, 141, 141, 132, 128, 132, 145, 148, 151, 160, 162, 154, 140, 147, 30, 28, 28, 26, 
+            27, 27, 31, 33, 32, 145, 132, 130, 124, 142, 140, 128, 124, 131, 127, 130, 128, 135, 125, 137, 137, 
+            127, 128, 127, 125, 127, 130, 124, 134, 137, 129, 127, 146, 136, 131, 124, 125, 130, 131, 135, 147, 
+            148, 151, 147, 143, 148, 145, 158, 142, 137, 129, 127, 156, 147, 143, 137, 135, 142, 141, 140, 137, 
+            136, 132, 134, 130, 124, 127, 130, 127, 126, 127, 129, 132, 134, 141, 147, 136, 141, 141, 134, 126, 
+            127, 136, 135, 134, 122, 130, 128, 140, 133, 124, 128, 137, 128, 141, 135, 141, 147, 153, 151, 151, 
+            154, 150, 147, 157, 153, 153, 153, 151, 155, 154, 153, 150, 143, 157, 146, 150, 154, 152, 153, 28, 
+            35, 33, 34, 37, 36, 30, 31, 27, 37, 38, 36, 38, 37, 36, 39, 38, 36, 172, 172, 179, 178, 172, 171, 
+            180, 173, 163, 164, 159, 159, 155, 163, 184, 187, 176, 176, 184, 179, 174, 167, 165, 166, 160, 166, 
+            169, 169, 159, 165, 166, 168, 162, 180, 174, 186, 179, 180, 186, 187, 178, 156, 158, 156, 161, 165, 
+            163, 160, 169, 160, 160, 168, 161, 159, 167, 173, 177, 170, 172, 172, 169, 157, 161, 155, 165, 164, 
+            154, 161, 160, 31, 30, 28, 31, 31, 29, 38, 36, 40, 31, 33, 37, 39, 179, 30, 28, 27, 30, 28, 30, 30, 
+            37, 42, 39, 184, 163, 158, 172, 166, 161, 160, 167, 174, 175, 183, 176, 192, 176, 170, 179, 173, 164, 
+            156, 160, 162, 152, 155, 157, 174, 176, 184, 173, 180, 177, 182, 190, 170, 167, 154, 156, 171, 169, 
+            172, 177, 190, 192, 186, 188, 192, 192, 176, 179, 175, 191, 174, 197, 194, 203, 198, 190, 185, 202, 
+            179, 169, 179, 184, 193, 185, 185, 181, 197, 188, 189, 188, 189, 193, 197, 198, 203, 188, 189, 198, 
+            190, 196, 191, 191, 197, 202, 182, 178, 186, 194, 192, 186, 187, 188, 186, 179, 179, 168, 165, 173, 
+            165, 160, 161, 145, 162, 149, 155, 154, 145, 154, 152, 152, 163, 174, 175, 170, 181, 177, 162, 167, 
+            164, 162, 147, 147, 157, 159, 27, 28, 28, 36, 36, 37, 35, 35, 35, 35, 37, 37, 35, 35, 36, 171, 40, 
+            40, 176, 178, 171, 174, 165, 161, 157, 160, 154, 167, 163, 174, 172, 155, 158, 165, 166, 181, 190, 
+            160, 158, 160, 30, 39, 36, 174, 157, 180, 174, 167, 178, 177, 171, 175, 173, 166, 28, 28, 28, 29, 
+            30, 34, 35, 36, 29, 36, 37, 38, 32, 29, 41, 38, 38, 35, 34, 34, 36, 34, 35, 30, 30, 31, 31, 28, 30, 
+            31, 36, 36, 36, 40, 38, 44, 41, 34, 38, 38, 38, 39, 184, 157, 155, 167, 178]
         ES_LENGTH = 757;
         eventEmitter.on('getAudioDecoderCaps', () => {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
@@ -530,7 +522,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, done);
+                setCallback(audioDecodeProcessor, savepath, done);
                 eventEmitter.emit('start');
             })
         });      
@@ -547,5 +539,4 @@ describe('AudioDecoderFunc', function () {
             eventEmitter.emit('getAudioDecoderCaps');
         })
     })
-
 })

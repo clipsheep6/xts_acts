@@ -12,18 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+ package ohos.acts.multimedia.audio.audiodecoder;
 
- package ohos.acts.multimedia.audio.audioplayer;
-
- import ohos.aafwk.ability.AbilityPackage;
+ import ohos.ace.ability.AceAbility;
+ import ohos.aafwk.content.Intent;
 
 /*
- * java MyApplication
+ * java MainAbility
  */
 
- public class MyApplication extends AbilityPackage {
+ public class MainAbility extends AceAbility {
     @Override
-    public void onInitialize() {
-        super.onInitialize();
+    public void onStart(Intent intent) {
+        super.onStart(intent);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
  }

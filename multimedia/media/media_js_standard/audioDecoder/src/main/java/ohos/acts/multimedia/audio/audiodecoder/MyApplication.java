@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
- package ohos.acts.multimedia.audio.audioplayer;
+ package ohos.acts.multimedia.audio.audiodecoder;
 
  import ohos.aafwk.ability.AbilityPackage;
 

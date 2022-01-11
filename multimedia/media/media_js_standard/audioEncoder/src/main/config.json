@@ -6,7 +6,7 @@
           "target": 7
       },
       "vendor": "acts",
-      "bundleName": "ohos.acts.multimedia.audio.audioplayer",
+      "bundleName": "ohos.acts.multimedia.audio.audioencoder",
       "version": {
           "code": 1000000,
           "name": "1.0.0"
@@ -35,7 +35,7 @@
               "visible": true,
               "labelId": 16777216,
               "icon": "$media:icon",
-              "name": "ohos.acts.multimedia.audio.audioplayer.MainAbility",
+              "name": "ohos.acts.multimedia.audio.audioencoder.MainAbility",
               "description": "$string:mainability_description",
               "label": "$string:entry_MainAbility",
               "type": "page",
@@ -49,14 +49,14 @@
           "tv",
           "wearable"
       ],
-      "mainAbility": "ohos.acts.multimedia.audio.audioplayer.MainAbility",
+      "mainAbility": "ohos.acts.multimedia.audio.audioencoder.MainAbility",
       "distro": {
           "moduleType": "entry",
           "installationFree": false,
           "deliveryWithInstall": true,
           "moduleName": "entry"
       },
-      "package": "ohos.acts.multimedia.audio.audioplayer",
+      "package": "ohos.acts.multimedia.audio.audioencoder",
       "name": ".MyApplication",
       "js": [
           {
