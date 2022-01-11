@@ -78,7 +78,7 @@ describe('AudioDecoderFunc', function () {
     })
 
     function writeFile(path, buf, len) {
-        try{
+        try {
             let writestream = Fileio.createStreamSync(path, "ab+");
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
@@ -90,7 +90,7 @@ describe('AudioDecoderFunc', function () {
 
     function readFile(path) {
         console.log('read file start execution');
-        try{
+        try {
             console.log('filepath: ' + path);
             readStreamSync = Fileio.createStreamSync(path, 'rb');
         }catch(e) {
