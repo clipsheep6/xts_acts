@@ -44,14 +44,11 @@ group("aafwk_standard") {
       "context:context",
       "featureability:featureability",
       "formmanager:formmanager",
-
       "serviceability/sceneProject/particlestartability:ParticleStartAbility",
       "serviceability/sceneProject/particletestserver:ParticleTestServer",
-
       "serviceability/stserviceabilityserver:amsStServiceAilityServer",
       "serviceability/stserviceabilityserversecond:ActsAmsStServiceAilityServerSecondTest",
       "setshowonlockscreen:setshowonlockscreen",
-
       "want:want",
     ]
   }
