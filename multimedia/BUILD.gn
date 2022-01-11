@@ -20,6 +20,8 @@ group("multimedia") {
       "audio/audio_js_standard/audioManager:audio_manager_js_hap",
       "media/media_js_standard/audioPlayer:audio_player_js_hap",
       "media/media_js_standard/audioRecorder:audio_recorder_js_hap",
+	  #"media/media_js_standard/audioDecorder:audio_decorder_js_hap",
+	  #"media/media_js_standard/audioEncorder:audio_encorder_js_hap",
     ]
   } else {
     deps = [
