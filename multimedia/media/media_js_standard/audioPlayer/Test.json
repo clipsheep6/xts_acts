@@ -42,6 +42,7 @@
             "type": "ShellKit",
             "run-command": [
                 "chmod -R 666 /data/media/*",
+                "mkdir /data/media/results",
                 "setenforce 0"
             ],
             "teardown-command":[
