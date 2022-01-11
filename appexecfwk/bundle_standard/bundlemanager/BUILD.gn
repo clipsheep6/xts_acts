@@ -27,6 +27,7 @@ group("bundlemanager") {
       "actsbmsmoduleusagerecordtest:ActsBmsModuleUsageRecordTest",
       "actsbundlemanagertest:ActsBundleManagerTest",
       "actsbundlemanageruninstall:ActsBundleManagerUninstallTest",
+      "actsbundlemgrmultipleinstalltest:ActsBundleMgrMultipleInstallTest",
 
       # "bmscheckpermissiontest:ActsBmsCheckPermissionManualTest",
       # "bmspermissionchangetest:ActsBmsPermissionChangeManualTest",
@@ -58,6 +59,22 @@ group("bundlemanager") {
       "sceneProject/bmsscenethree:bmsJstest3",
       "sceneProject/bmsscenetwo:bmsJstest2",
       "sceneProject/bmssecondrequestpermissions:SecondRequestPermissions",
+
+      "sceneProject/bmsfirstright:first_right",
+      "sceneProject/bmssecondright:second_right",
+      "sceneProject/bmsthirdright:third_right",
+      "sceneProject/bmsfourthright:fourth_right",
+      "sceneProject/bmseighthright:eighth_right",
+      "sceneProject/bmsninthright:ninth_right",
+      "sceneProject/bmstenthright:tenth_right",
+      "sceneProject/bmseleventhright:eleventh_right",
+      "sceneProject/bmsfifthright:fifth_right",
+      "sceneProject/bmssecondbackupright:second_backup_right",
+      "sceneProject/bmstwelfthright:twelfth_right",
+      "sceneProject/bmssixthright:sixth_right",
+      "sceneProject/bmsthirteenthright:thirteenth_right",
+      "sceneProject/bmsfourteenthright:fourteenth_right",
+      "sceneProject/bmssixteenthright:sixteenth_right",
     ]
   }
 }
