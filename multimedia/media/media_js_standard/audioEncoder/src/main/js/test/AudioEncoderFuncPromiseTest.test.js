@@ -245,7 +245,9 @@ describe('AudioEncoderFunc', function () {
                 } else if (workdoneAtEOS) {
                     await doneWork(audioEncodeProcessor);
                     done();
-                } else {}
+                } else {
+                    console.info("saw output EOS");
+                }
             }
             else{
                 writeHead(savepath, outputobject.length);

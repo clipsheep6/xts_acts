@@ -369,7 +369,9 @@ describe('AudioDecoderFunc', function () {
                     await flushWork(audioDecodeProcessor);
                 } else if (workdoneAtEOS) {
                     await doneWork(audioDecodeProcessor, done);
-                } else {}
+                } else {
+                    console.info("saw output EOS");
+                }
             }
             else{
                 writeFile(savepath, outputobject.data, outputobject.length);
