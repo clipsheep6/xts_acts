@@ -22,7 +22,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_0100
-     * @tc.name      Test systemTimer.Timer type = TIMER_TYPE_REALTIME
+     * @tc.name      Test systemTimer.createTimer type = TIMER_TYPE_REALTIME
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -36,7 +36,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -52,7 +52,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_0200
-     * @tc.name      Test systemTimer.Timer type = TIMER_TYPE_REALTIME_WAKEUP
+     * @tc.name      Test systemTimer.createTimer type = TIMER_TYPE_REALTIME_WAKEUP
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -66,7 +66,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -82,7 +82,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_0300
-     * @tc.name      Test systemTimer.Timer type = TIMER_TYPE_EXACT
+     * @tc.name      Test systemTimer.createTimer type = TIMER_TYPE_EXACT
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -96,7 +96,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -112,7 +112,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_0400
-     * @tc.name      Test systemTimer.Timer type = TIMER_TYPE_REALTIME
+     * @tc.name      Test systemTimer.createTimer type = TIMER_TYPE_REALTIME
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -126,7 +126,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -142,7 +142,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_0500
-     * @tc.name      Test systemTimer.Timer triggerTime = 0
+     * @tc.name      Test systemTimer.createTimer triggerTime = 0
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -156,7 +156,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -172,7 +172,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_0600
-     * @tc.name      Test systemTimer.Timer triggerTime = 5000
+     * @tc.name      Test systemTimer.createTimer triggerTime = 5000
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -186,7 +186,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -202,7 +202,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_0700
-     * @tc.name      Test systemTimer.Timer triggerTime = Number.MAX_VALUE/2
+     * @tc.name      Test systemTimer.createTimer triggerTime = Number.MAX_VALUE/2
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -216,7 +216,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -232,7 +232,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_0800
-     * @tc.name      Test systemTimer.Timer triggerTime = Number.MAX_VALUE-1
+     * @tc.name      Test systemTimer.createTimer triggerTime = Number.MAX_VALUE-1
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -246,7 +246,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -262,7 +262,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_0900
-     * @tc.name      Test systemTimer.Timer triggerTime = Number.MAX_VALUE
+     * @tc.name      Test systemTimer.createTimer triggerTime = Number.MAX_VALUE
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -276,7 +276,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -292,7 +292,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_1000
-     * @tc.name      Test systemTimer.Timer repeat = true
+     * @tc.name      Test systemTimer.createTimer repeat = true
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -306,7 +306,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -322,7 +322,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_1100
-     * @tc.name      Test systemTimer.Timer persistent = true
+     * @tc.name      Test systemTimer.createTimer persistent = true
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -336,7 +336,7 @@ describe('TimerTest', function() {
 			persistent:true
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -352,7 +352,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_1200
-     * @tc.name      Test systemTimer.Timer repeat,persistent = true
+     * @tc.name      Test systemTimer.createTimer repeat,persistent = true
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -366,7 +366,7 @@ describe('TimerTest', function() {
 			persistent:true
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -382,7 +382,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_1300
-     * @tc.name      Test systemTimer.Timer create,start,stop,destroy 1000 timers
+     * @tc.name      Test systemTimer.createTimer create,start,stop,destroy 1000 timers
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -398,7 +398,7 @@ describe('TimerTest', function() {
 		for (var index = 0; index < 1000; index++)
 		{
 			console.log("create timer")
-			let timer = systemTimer.Timer(options)
+			let timer = systemTimer.createTimer(options)
 			expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 
 			console.log("start timer")
@@ -415,7 +415,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_1400
-     * @tc.name      Test systemTimer.Timer interval = 0
+     * @tc.name      Test systemTimer.createTimer interval = 0
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -430,7 +430,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -446,7 +446,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_1500
-     * @tc.name      Test systemTimer.Timer interval = 5000
+     * @tc.name      Test systemTimer.createTimer interval = 5000
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -461,7 +461,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -477,7 +477,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_1600
-     * @tc.name      Test systemTimer.Timer interval = Number.MAX_VALUE/2
+     * @tc.name      Test systemTimer.createTimer interval = Number.MAX_VALUE/2
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -492,7 +492,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -508,7 +508,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_1700
-     * @tc.name      Test systemTimer.Timer interval = Number.MAX_VALUE-1
+     * @tc.name      Test systemTimer.createTimer interval = Number.MAX_VALUE-1
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -523,7 +523,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -539,7 +539,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_1800
-     * @tc.name      Test systemTimer.Timer interval = Number.MAX_VALUE
+     * @tc.name      Test systemTimer.createTimer interval = Number.MAX_VALUE
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -554,7 +554,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -570,7 +570,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_1900
-     * @tc.name      Test systemTimer.Timer WantAgent
+     * @tc.name      Test systemTimer.createTimer WantAgent
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -585,7 +585,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -601,7 +601,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_2000
-     * @tc.name      Test systemTimer.Timer Called back when the timer goes off.
+     * @tc.name      Test systemTimer.createTimer Called back when the timer goes off.
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -617,7 +617,7 @@ describe('TimerTest', function() {
 			callback:callbackFunction
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -633,7 +633,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_2100
-     * @tc.name      Test systemTimer.Timer start a not exist timer
+     * @tc.name      Test systemTimer.createTimer start a not exist timer
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -647,7 +647,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start a not exist timer")
@@ -660,7 +660,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_2200
-     * @tc.name      Test systemTimer.Timer stop a not exist timer
+     * @tc.name      Test systemTimer.createTimer stop a not exist timer
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -674,7 +674,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -693,7 +693,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_2300
-     * @tc.name      Test systemTimer.Timer destroy a not exist timer
+     * @tc.name      Test systemTimer.createTimer destroy a not exist timer
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -707,7 +707,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -726,7 +726,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_2400
-     * @tc.name      Test systemTimer.Timer stop a not started timer
+     * @tc.name      Test systemTimer.createTimer stop a not started timer
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -740,7 +740,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("stop a not started timer")
@@ -753,7 +753,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_2500
-     * @tc.name      Test systemTimer.Timer destroy a started timer
+     * @tc.name      Test systemTimer.createTimer destroy a started timer
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -767,7 +767,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -780,7 +780,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_2600
-     * @tc.name      Test systemTimer.Timer repeat to start a timer
+     * @tc.name      Test systemTimer.createTimer repeat to start a timer
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -794,7 +794,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -813,7 +813,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_2700
-     * @tc.name      Test systemTimer.Timer repeat to stop a timer
+     * @tc.name      Test systemTimer.createTimer repeat to stop a timer
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -827,7 +827,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -846,7 +846,7 @@ describe('TimerTest', function() {
 
 	/**
      * @tc.number    SUB_systemTimer_Timer_JS_API_2800
-     * @tc.name      Test systemTimer.Timer repeat to destroy a timer
+     * @tc.name      Test systemTimer.createTimer repeat to destroy a timer
      * @tc.desc      Test systemTimer_Timer API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -860,7 +860,7 @@ describe('TimerTest', function() {
 			persistent:false
 		}
 		console.log("create timer")
-        let timer = systemTimer.Timer(options)
+        let timer = systemTimer.createTimer(options)
 		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
 		
 		console.log("start timer")
@@ -875,6 +875,36 @@ describe('TimerTest', function() {
 		console.log("destroy timer again")
 		systemTimer.destroyTimer(timer)
 		console.log('SUB_systemTimer_Timer_JS_API_2800 end');
+	});
+
+	/**
+     * @tc.number    SUB_systemTimer_Timer_JS_API_2900
+     * @tc.name      Test systemTimer.createTTimer type = TIMER_TYPE_IDLE
+     * @tc.desc      Test systemTimer_Timer API functionality.
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+	it('systemTimer_Timer_test29',0, async () => {
+		console.log("SUB_systemTimer_Timer_JS_API_2900 start")
+        var options = {
+			type:TIMER_TYPE_IDLE,
+			repeat:false,
+			persistent:false
+		}
+		console.log("create timer")
+        let timer = systemTimer.createTimer(options)
+		expect(parseInt(timer) == parseFloat(timer)).assertEqual(true)
+		
+		console.log("start timer")
+		systemTimer.startTimer(timer, 100000)
+		
+		console.log("stop timer")
+		systemTimer.stopTimer(timer)
+		
+		console.log("destroy timer")
+		systemTimer.destroyTimer(timer)
+		console.log('SUB_systemTimer_Timer_JS_API_2900 end');
 	});
 
 	/**
