@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "60000",
+        "package": "com.example.myapplication105",
+        "shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "NopermissionTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "NopermissionTest.hap->/data/test/NopermissionTest.hap",
+		"FaceAuthPrepare->/data/FaceAuthPrepare"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+		"/data/FaceAuthPrepare --gtest_filter=FaceAuthPrepare.CPPAPI_Prepare_0200",
+                "chmod 644 /data/test/*.hap"
+            ]
+        }
+    ]
+}
