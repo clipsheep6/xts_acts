@@ -12,10 +12,13 @@
       "releaseType": "Beta1"
     }
   },
-  "deviceConfig": {},
+  "deviceConfig": {
+    "default":{}
+  },
   "module": {
     "package": "com.example.system1",
     "name": ".BmsSystemBundle1",
+    "mainAbility": "com.example.system1.MainAbility",
     "deviceType": [
       "phone"
     ],
@@ -43,8 +46,7 @@
         "type": "page",
         "forms": [
           {
-            "colorMode": "light",
-            "description": " JS1S Form",
+            "description": "JS1S Form",
             "supportDimensions": [ "1*2", "2*2", "2*4", "4*4"],
             "type": "JS",
             "jsComponentName": "JS_name1S",
@@ -52,17 +54,23 @@
               "customizeData": [
                 {
                   "name": "originWidgetName1S",
-                  "value": "com.huawei.weather.testWidget1S"
+                  "value": "com.openharmony.weather.testWidget1S"
                 }
               ]
             },
             "isDefault": true,
             "deepLink": "ability://com.example.myapplication.fa/.MainAbility",
-            "defaultDimension": "1*2",
+            "defaultDimension": "4*4",
             "name": "Form_JS1S",
-            "scheduledUpateTime": "21:55",
+            "scheduledUpdateTime": "10:30",
             "updateEnabled": true,
-            "updateDuration": 1
+            "updateDuration": 1,
+            "formConfigAbility": "ability://com.example.system1.MainAbility",
+            "src": "/pages/card/index",
+            "window": {
+              "designWidth": 770,
+              "autoDesignWidth": true
+            }
           }
         ],
         "launchType": "standard",

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import fileio from '@system.fileio';
 import file from '@system.file';
 import {
@@ -24,6 +25,7 @@ import {
   FILE_CONTENT,
   prepareFile,
   fileName,
+  nextFileName
 }
   from './Common'
 
@@ -60,6 +62,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -81,6 +88,11 @@ describe('fileVirtualPath', function () {
         done();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -125,6 +137,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -163,6 +180,11 @@ describe('fileVirtualPath', function () {
     file.delete({
       uri: 'internal://app/../../ohos.acts.distributeddatamgr.distributedfile/File_writeArrayBuffer_011'
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -199,6 +221,11 @@ describe('fileVirtualPath', function () {
     file.delete({
       uri: 'internal://app/../../ohos.acts.distributeddatamgr.distributedfile/File_readText_008'
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -219,6 +246,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -258,6 +290,11 @@ describe('fileVirtualPath', function () {
     file.delete({
       uri: 'internal://cache/../../ohos.acts.distributeddatamgr.distributedfile/File_read_array_buffer_010'
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -280,6 +317,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -324,6 +366,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -345,6 +392,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -377,6 +429,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -409,6 +466,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -433,6 +495,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -457,6 +524,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -502,6 +574,11 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
   /**
@@ -523,6 +600,64 @@ describe('fileVirtualPath', function () {
         expect(null).assertFail();
       },
     });
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
+  });
+
+  /**
+   * @tc.number SUB_STORAGE_fileioPerformance_prop_copyFile
+   * @tc.name fileioPerformance_prop_copyFile
+   * @tc.desc 0.5G Synchronous opening performance test of test files
+   * The path needs to be manually placed in advance
+   * data/accounts/account_0/appdata/ohos.acts.distributeddatamgr.distributedfile/cache/p1'的0.5g文件）
+   */
+  it('fileioPerformance_prop_copyFile', 0, function () {
+    console.log('---fileioPerformance_prop_copyFile 0.5G---start---');
+    let fpath = nextFileName('p1');
+    let fpathTarget = nextFileName('p2');
+    for (let i = 0; i < 1000; i++) {
+      let start2 = new Date().getTime();
+      let copyFileSync = fileio.copyFileSync(fpath, fpathTarget);
+      let end2 = new Date().getTime();
+      let time2 = end2 - start2
+      console.log('fileioPerformance_prop_copyFileSync,copyFileSync:' + copyFileSync + ', time2:' + time2 + ',' + i);
+      fileio.unlinkSync(fpathTarget);
+    }
+    fileio.closeSync(fd);
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
+  });
+
+  /**
+   * @tc.number SUB_STORAGE_fileioPerformance_prop_openSync
+   * @tc.name fileioPerformance_prop_openSync
+   * @tc.desc 0.5G Synchronous opening performance test of test files
+   * The path needs to be manually placed in advance
+   * data/accounts/account_0/appdata/ohos.acts.distributeddatamgr.distributedfile/cache/p1'的0.5g文件）
+   */
+  it('fileioPerformance_prop_openSync', 0, function () {
+    console.log('---fileioPerformance_prop_openSync 0.5G---start---');
+    let fpath = nextFileName('p1');
+    let fd
+    for (let i = 0; i < 1000; i++) {
+      let start = new Date().getTime();
+      fd = fileio.openSync(fpath, 0o2002);
+      let end = new Date().getTime();
+      let time = end - start
+      console.log('fileioPerformance_prop_openSync,openSync:' + fd + ', time:' + time + ',' + i);
+    }
+    fileio.closeSync(fd);
+    setTimeout(
+      function(){
+        expect(null).assertFail();
+        done();
+      },30)
   });
 
 });

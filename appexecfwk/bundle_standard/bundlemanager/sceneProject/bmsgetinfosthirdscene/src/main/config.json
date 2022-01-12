@@ -2,6 +2,7 @@
   "app": {
     "bundleName": "com.example.third1",
     "vendor": "example",
+    "singleUser":true,
     "version": {
       "code": 1,
       "name": "1.0"
@@ -12,7 +13,11 @@
       "releaseType": "Beta1"
     }
   },
-  "deviceConfig": {},
+  "deviceConfig": {
+    "default":{
+      "keepAlive":true
+    }
+  },
   "module": {
     "package": "com.example.third3",
     "name": ".BmsThirdBundle3",
@@ -67,7 +72,7 @@
               "customizeData": [
                 {
                   "name": "originWidgetName3",
-                  "value": "com.huawei.weather.testWidget3"
+                  "value": "com.openharmony.weather.testWidget3"
                 }
               ]
             },
@@ -104,6 +109,46 @@
             }
           ]
         }
+      },
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "backgroundModes": [
+          "dataTransfer",
+          "audioPlayback",
+          "audioRecording",
+          "location",
+          "bluetoothInteraction",
+          "multiDeviceConnection",
+          "wifiInteraction",
+          "voip",
+          "taskKeeping"
+        ],
+        "name": "com.example.third1.MainAbilityA",
+        "icon": "$media:icon",
+        "form": {
+          "formEntity": [
+            "homeScreen",
+            "searchbox"
+          ],
+          "defaultHeight": 100,
+          "defaultWidth": 200,
+          "minHeight": 50,
+          "minWidth": 100
+        },
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "service",
+        "launchType": "standard",
+        "visible": true
       }
     ],
     "shortcuts": [

@@ -18,7 +18,7 @@
 #include "hks_generate_key_test.h"
 
 #include <hctest.h>
-#include "hi_watchdog.h"
+#include "iot_watchdog.h"
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_test_api_performance.h"
@@ -28,7 +28,6 @@
 #include "ohos_types.h"
 
 #define DEFAULT_X25519_PARAM_SET_OUT 104
-
 #define TEST_TASK_STACK_SIZE      0x2000
 #define WAIT_TO_TEST_DONE         4
 
@@ -42,6 +41,14 @@ static osPriority_t g_setPriority;
  */
 LITE_TEST_SUIT(security, securityData, HksGenerateKeyTest);
 
+static void ExecHksInitialize(void const *argument)
+{
+    LiteTestPrint("HksInitialize Begin!\n");
+    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    LiteTestPrint("HksInitialize End!\n");
+    osThreadExit();
+}
+
 /**
  * @tc.setup: define a setup for test suit, format:"CalcMultiTest + SetUp"
  * @return: true——setup success
@@ -49,8 +56,20 @@ LITE_TEST_SUIT(security, securityData, HksGenerateKeyTest);
 static BOOL HksGenerateKeyTestSetUp()
 {
     LiteTestPrint("setup\n");
-    hi_watchdog_disable();
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    IoTWatchDogDisable();
+    osThreadId_t id;
+    osThreadAttr_t attr;
+    g_setPriority = osPriorityAboveNormal6;
+    attr.name = "test";
+    attr.attr_bits = 0U;
+    attr.cb_mem = NULL;
+    attr.cb_size = 0U;
+    attr.stack_mem = NULL;
+    attr.stack_size = TEST_TASK_STACK_SIZE;
+    attr.priority = g_setPriority;
+    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
+    sleep(WAIT_TO_TEST_DONE);
+    LiteTestPrint("HksGenerateKeyTestSetUp End2!\n");
     return TRUE;
 }
 
@@ -61,7 +80,7 @@ static BOOL HksGenerateKeyTestSetUp()
 static BOOL HksGenerateKeyTestTearDown()
 {
     LiteTestPrint("tearDown\n");
-    hi_watchdog_enable();
+    IoTWatchDogEnable();
     return TRUE;
 }
 

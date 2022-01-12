@@ -23,7 +23,7 @@ export default {
         title: "测试GetSlot接口：promise形式"
     },
     onInit() {
-        this.title = this.data.title;
+        this.title = "测试GetSlot接口：promise形式";
     },
     onShow() {
         console.info('onShow finish')
@@ -31,10 +31,7 @@ export default {
         const expectExtend = new ExpectExtend({
             'id': 'extend'
         })
-        const reportExtend = new ReportExtend(file)
         core.addService('expect', expectExtend)
-        core.addService('report', reportExtend)
-
         core.init()
 
         const configService = core.getDefaultService('config')

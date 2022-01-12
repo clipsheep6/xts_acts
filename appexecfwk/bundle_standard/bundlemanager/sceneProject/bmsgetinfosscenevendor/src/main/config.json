@@ -43,26 +43,28 @@
         "type": "page",
         "forms": [
           {
-            "colorMode": "light",
-            "description": " JS1V Form",
-            "supportDimensions": [ "1*2", "2*2", "2*4", "4*4"],
-            "type": "JS",
+            "colorMode": "dark",
+            "description": "JS1V Form",
+            "supportDimensions": ["1*2", "2*2", "test", "2*4"],
+            "type": "Java",
             "jsComponentName": "JS_name1V",
             "metaData": {
-              "customizeData": [
-                {
-                  "name": "originWidgetName1V",
-                  "value": "com.huawei.weather.testWidget1V"
-                }
-              ]
+              "customizeData": [{
+                "name": "originWidgetName1V",
+                "value": "com.openharmony.weather.testWidget1V"
+              }]
             },
-            "isDefault": true,
+            "isDefault": false,
             "deepLink": "ability://com.example.myapplication.fa/.MainAbility",
-            "defaultDimension": "1*2",
+            "defaultDimension": "2*3",
             "name": "Form_JS1V",
-            "scheduledUpateTime": "21:55",
+            "scheduledUpdateTime": "21:55",
             "updateEnabled": true,
-            "updateDuration": 1
+            "updateDuration": 1,
+            "window": {
+              "designWidth": 750,
+              "autoDesignWidth": true
+            }
           },
           {
             "colorMode": "light",
@@ -74,7 +76,7 @@
               "customizeData": [
                 {
                   "name": "originWidgetName1V2",
-                  "value": "com.huawei.weather.testWidget1V2"
+                  "value": "com.openharmony.weather.testWidget1V2"
                 }
               ]
             },
@@ -90,19 +92,21 @@
         "launchType": "standard",
         "metaData": {
           "parameters": [{
-            "name": "Data1V",
+            "name": "Data1V0",
             "type": "float",
             "description": "$string:mainability_description"
-          }],
+          },
+        {
+          "name": "Data1V1",
+          "type": "float",
+          "description": "$string:mainability_description"
+        }],
           "results": [{
             "name": "Data1V",
             "type": "float",
             "description": "$string:mainability_description"
           }],
-          "customizeData": [{
-            "name": "Data1V",
-            "value": "float",
-            "extra": "$string:mainability_description"
+          "customizeData": [{  
           }]
         }
       }

@@ -1,0 +1,10 @@
+<div class="container">
+    <div>
+        <text class="title">
+            {{ title }}
+        </text>
+    </div>
+    <div>
+        <input class="btn" type="button" value="permissionTest" on:click="clickAction"></input>
+    </div>
+</div>

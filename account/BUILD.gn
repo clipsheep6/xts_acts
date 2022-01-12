@@ -15,11 +15,11 @@ import("//build/ohos_var.gni")
 group("account") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "OsAccountTest_js:osaccount_js_test" ]
-  } else {
     deps = [
+      "OsAccountTest_js:ActsOsAccountJSApiTest",
       "appaccount:appaccount_hap",
-      "osaccount:osaccount_hap",
     ]
+  } else {
+    deps = []
   }
 }

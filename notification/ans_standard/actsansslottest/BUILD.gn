@@ -17,9 +17,17 @@ group("ActsAnsSlotTest") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "actsansgetslottestcallback:ActsAnsGetSlotTestCallback",
-      "actsansgetslottestpromise:ActsAnsGetSlotTestPromise",
+      "actsansgetslotWithoutadd:ActsAnsGetSlotWithoutAddTest",
+      "actsansgetslottestcallback:ActsAnsGetSlotTestCallbackTest",
+      "actsansgetslottestpromise:ActsAnsGetSlotTestPromiseTest",
       "actsansremoveslottest:ActsAnsRemoveSlotTest",
+      "actsansremoveslotwithoutadd:ActsAnsRemoveSlotWithoutAddTest",
+
+      #"actsansslotbybundle:ActsAnsSlotByBundleTest",
+      #"actsansaddslotsystem:ActsAnsAddSlotSystemTest",
+      #"actsansslotsystemcallback:ActsAnsSlotSystemCallbackTest",
+      #"actsansslotsystempromise:ActsAnsSlotSystemPromiseTest",
+      #"actsansslottaddremoveall:ActsAnsSlotAddRemoveAllTest",
     ]
   }
 }

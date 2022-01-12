@@ -20,7 +20,8 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 var commonEventSubscribeInfo;
 var commonEventSubscriber;
 var WantAgent;
-describe('ActsAnsActiveSubscriberTest', function () {
+var time = 1000
+describe('ActsAnsCommonSubscriberTest', function () {
     console.info("===========ActsSubscriberTest start====================>");
 
     //consume
@@ -64,6 +65,9 @@ describe('ActsAnsActiveSubscriberTest', function () {
         })
         console.info("===============ActsSubscriberTestUnorder_0100==============================>");
         done();
+        setTimeout(function(){
+            console.debug("====>time out ActsSubscriberTestUnorder_0100====>");
+        }, time)
     })
 })
 

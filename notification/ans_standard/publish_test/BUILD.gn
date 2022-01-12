@@ -17,11 +17,21 @@ group("publish_test") {
   if (is_standard_system) {
     deps = [
       "actsanspublishcontroltest:ActsAnsPublishControlTest",
+      "actsanspublishconversation:ActsAnsConversationTest",
       "badgedisplayed:badgedisplayed",
-      "badgedisplayedset:badgedisplayedset",
       "enablenotification:enablenotification",
-      "enablenotificationset:enablenotificationset",
-      "getwantagentinfo:getwantagentinfo",
+      "getactive:getactive",
+      "getwantagentinfo:ActsAnsGetWantAgentInfoTest",
+
+      #"publishcontentype:publishcontentype",
+      #"subscribe:subscribe",
+      "activebtn:activebtn",
+      "ansactscancelgroup:ActsAnsCancelGroupTest",
+      "ansactsremovegroup:ActsAnsRemoveGroupTest",
+      "donotdisturbmode:ActsAnsDoNotDisturbTest",
+      "publishsound:ActsAnsPublishSoundTest",
+      "publishvibra:ActsAnsPublishVibraTest",
+      "unsubscribe:ActsAnsUnSubscriberTest",
       "wantagent:wantagent",
     ]
   }

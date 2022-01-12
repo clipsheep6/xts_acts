@@ -2,6 +2,7 @@
   "app": {
     "bundleName": "com.example.third1",
     "vendor": "example",
+    "singleUser":false,
     "version": {
       "code": 2,
       "name": "2.0"
@@ -12,10 +13,15 @@
       "releaseType": "Beta1"
     }
   },
-  "deviceConfig": {},
+  "deviceConfig": {
+    "default":{
+      "keepAlive":false
+    }
+  },
   "module": {
     "package": "com.example.third1.entry",
     "name": "com.example.third1.BmsThirdBundle1",
+    "mainAbility": "com.example.third1.AMainAbility",
     "deviceType": [
       "phone"
     ],
@@ -65,7 +71,7 @@
               "customizeData": [
                 {
                   "name": "originWidgetNameA1",
-                  "value": "com.huawei.weather.testWidgetA1"
+                  "value": "com.openharmony.weather.testWidgetA1"
                 }
               ]
             },
@@ -103,6 +109,34 @@
             }
           ]
         }
+      },
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "backgroundModes": [
+          "audioRecording",
+          "location",
+          "bluetoothInteraction",
+          "multiDeviceConnection",
+          "wifiInteraction",
+          "voip",
+          "taskKeeping"
+        ],
+        "name": "com.example.third1.AMainAbilityA",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "service",
+        "launchType": "standard",
+        "visible": true
       }
     ],
     "shortcuts": [

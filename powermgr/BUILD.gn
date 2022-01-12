@@ -13,8 +13,13 @@
 import("//build/ohos_var.gni")
 group("powermgr") {
   testonly = true
-
-  if (is_standard_system) {
-    deps = [ "powermgrbattery:powermgr_battery_test" ]
-  } 
+  if (device_name == "rk3568") {
+    if (is_standard_system) {
+      deps = [ "powermgrbattery_rk3568:powermgr_battery_test_rk3568" ]
+    }
+  } else {
+    if (is_standard_system) {
+      deps = [ "powermgrbattery:powermgr_battery_test" ]
+    }
+  }
 }

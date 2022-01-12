@@ -14,11 +14,12 @@
  */
 
 import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 var time = 1000
 var WantAgent;
 describe('ActsAnsWantAgentFourTest', function () {
+
     /*
      * @tc.number: ACTS_SetWant_0700
      * @tc.name: getWantAgent(OperationType.UNKNOWN_TYPE)
@@ -28,9 +29,9 @@ describe('ActsAnsWantAgentFourTest', function () {
         var agentInfo = {
             wants: [
                     {
-                        deviceId: "deviceId",
-                        bundleName: "com.neu.WantAgentTest1",
-                        abilityName: "com.example.test.MainAbility",
+                        deviceId: "",
+                        bundleName: "com.example.WantAgentTest1",
+                        abilityName: "com.example.WantAgentTest1.MainAbility",
                         action: "action1",
                         entities: ["entity1"],
                         type: "MIMETYPE",
@@ -49,7 +50,7 @@ describe('ActsAnsWantAgentFourTest', function () {
             ],
             operationType: OperationType.UNKNOWN_TYPE,
             requestCode: 0,
-            wantAgentFlags:[Flags.UPDATE_PRESENT_FLAG]
+            wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
         }
         console.info('----getWantAgent before----');
         wantAgent.getWantAgent(agentInfo,
@@ -65,10 +66,10 @@ describe('ActsAnsWantAgentFourTest', function () {
                         (err, data) => {
                             if (err.code == 0) {
                                 console.info('----trigger success!----');
-                                console.info('==================== trigger data  ' + JSON.stringify(data) );
+                                console.info('== trigger data  ' + JSON.stringify(data) );
                             } else {
                                 console.info('----trigger failed!----');
-                                console.info('==================== trigger data  ' + JSON.stringify(data) );
+                                console.info('== trigger data  ' + JSON.stringify(data) );
                             }
                             done();
                         }
@@ -80,11 +81,12 @@ describe('ActsAnsWantAgentFourTest', function () {
                     expect(typeof(data)).assertEqual("object");
                 }
                 done();
-                setTimeout(function(){
-                    console.debug("====>time out ACTS_SetWant_0700====>");
-                }, time);
+               
             }
         );
+ 	setTimeout(function(){
+                    console.debug("====>time out ACTS_SetWant_0700====>");
+                }, time);
         console.info('----getWantAgent after----');
     })
 })

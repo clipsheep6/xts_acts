@@ -26,9 +26,10 @@ var notificationSubscriber = {
 
 var idRecord = new Array(20).fill(0);
 const publishFrequence = 10;
+const TIMEOUT = 3000;
 
-function consumeCallback(err,data) {
-    console.debug("====>consumeCallback err: ====>" + JSON.stringify(err));
+function consumeCallback(data) {
+    console.debug("====>consumeCallback data: ====>" + JSON.stringify(data));
     console.debug("====>consumeCallback id: ====>" + data.request.id);
     switch(data.request.id){
         case 1:
@@ -119,9 +120,8 @@ function consumeCallback(err,data) {
     }
 }
 
-function subscribeOnCallback(err) {
-    console.debug("====>subscribeOnCallback err: ====>" + JSON.stringify(err));
-    expect(err.code).assertEqual(0);
+function subscribeOnCallback() {
+    console.debug("====>subscribeOnCallback enter====>");
 }
 
 function subscribeCallback(err) {
@@ -186,16 +186,14 @@ function publish_the_eighteenth_notification(err){
 function publish_the_nineteenth_notification(err){
     console.debug("====>publish the nineteenth notification 19 19 err: ====>" + JSON.stringify(err));
 }
-function publish_the_twentieth_notification(err){
-    console.debug("====>publish the twentieth notification 20 20 err: ====>" + JSON.stringify(err));
-}
 
 describe('ActsAnsPublishControlTest', function () {
 
     /*
      * @tc.number    : ActsAnsPublishControlTest_0100
      * @tc.name      : Verify rejection of publishing notifications that exceed the threshold
-     * @tc.desc      : Twenty notifications are published continuously within one second, and the first ten notifications can be received, the last ten notifications cannot be received
+     * @tc.desc      : Twenty notifications are published continuously within one second, and the first
+     *                 ten notifications can be received, the last ten notifications cannot be received
      */
     it('ActsAnsPublishControlTest_0100', 0, async function (done) {
         console.debug("====>ActsAnsPublishControlTest_0100 start====>");
@@ -221,6 +219,12 @@ describe('ActsAnsPublishControlTest', function () {
             expect(sumTwo).assertEqual(0);
             console.debug("====>ActsAnsPublishControlTest_0100 end====>");
             done();
+        }
+
+        function publish_the_twentieth_notification(err){
+            console.debug("====>publish the twentieth notification 20 20 err: ====>" + JSON.stringify(err));
+            console.debug("====>time out start====>");
+            setTimeout(timeOut, TIMEOUT);
         }
 
         notification.publish({
@@ -443,7 +447,5 @@ describe('ActsAnsPublishControlTest', function () {
             },
             id: 20
         }, publish_the_twentieth_notification);
-        console.debug("====>time out start====>");
-        setTimeout(timeOut, 15000);
     })
 })

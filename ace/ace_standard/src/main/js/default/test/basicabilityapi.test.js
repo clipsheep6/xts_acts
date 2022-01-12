@@ -110,10 +110,11 @@ describe('basicabilityapi', function () {
      */
     it('testRouterPush', 0, async function (done) {
         console.info('testRouterPush START');
+        let options = {
+            uri : 'pages/routerPush/index'
+        }
         let promise1 = new Promise((resolve, reject) => {
-            router.push({
-                uri: 'pages/routerPush/index'
-            });
+            router.push(options);
             resolve();
         });
         let promise2 = new Promise((resolve, reject) => {
@@ -172,21 +173,25 @@ describe('basicabilityapi', function () {
      * @tc.desc      Replace the current page with a page in the application, and destroy the replaced page.
      */
     it('testRouterReplace', 0, async function (done) {
+        //测试框架不允许index页面直接替换，需要先跳转到其他页面再替换
         console.info('testRouterReplace START');
+        let options = {
+            uri : 'pages/routerPush/index'
+        }
         let promise1 = new Promise((resolve, reject) => {
-            router.push({
-                uri: 'pages/routerPush/index'
-            });
+            router.push(options);
             resolve();
         });
+        let repleasePage = {
+            uri : 'pages/routerReplace/index'
+        }
         let promise2 = new Promise((resolve, reject) => {
             setTimeout(() => {
-                router.replace({
-                    uri: 'pages/routerReplace/index'
-                });
+                router.replace(repleasePage);
                 resolve();
             }, 500);
         });
+        //替换堆栈数量不会变
         let promise3 = new Promise((resolve, reject) => {
             setTimeout(() => {
                 let pages = router.getState();
@@ -295,10 +300,11 @@ describe('basicabilityapi', function () {
         let size = router.getLength();
         console.info('[router.getLength] pages stack size = ' + size);
         expect(size).assertEqual('1');
+        let options = {
+            uri : 'pages/routerPush/index'
+        }
         let promise1 = new Promise((resolve, reject) => {
-            router.push({
-                uri: 'pages/routerPush/index'
-            });
+            router.push(options);
             resolve();
         });
         let promise2 = new Promise((resolve, reject) => {
@@ -329,49 +335,12 @@ describe('basicabilityapi', function () {
             console.info('[router.getState] index: ' + page.index);
             console.info('[router.getState] name: ' + page.name);
             console.info('[router.getState] path: ' + page.path);
-            expect(page.index).assertEqual('1');
+            expect(page.index).assertEqual(1);
             expect(page.name).assertEqual('index');
             expect(page.path).assertEqual('pages/index/');
             console.info('testRouterGetState END');
             done();
         }, 500);
-    });
-
-    /**
-     * @tc.number    SUB_ACE_BASICABILITY_JS_API_0710
-     * @tc.name      testRouterMaxLength
-     * @tc.desc      Test the max number of the page stack is 32.
-     */
-    it('testRouterMaxLength', 0, async function (done) {
-        console.info('testRouterMaxLength START');
-        let intervalID = -1;
-        let promise1 = new Promise((resolve, reject) => {
-            intervalID = setInterval(function () {
-                router.push({
-                    uri: 'pages/routerPush/index'
-                });
-                console.info('testRouterMaxLength router.getLength:' + router.getLength());
-                resolve();
-            }, 100);
-        });
-        let promise2 = new Promise((resolve, reject) => {
-            setTimeout(function () {
-                console.info('testRouterMaxLength[clearInterval] start');
-                clearInterval(intervalID);
-                console.info('testRouterMaxLength[clearInterval] end');
-                resolve();
-            }, 500 * 34);
-        });
-        Promise.all([promise1, promise2]).then(() => {
-            setTimeout(async () => {
-                console.info("testRouterMaxLength getLength:" + router.getLength());
-                expect("32").assertEqual(router.getLength());
-                console.info('testRouterMaxLength success');
-                await backToIndex();
-                console.info('testRouterMaxLength END');
-                done();
-            }, 500);
-        });
     });
 
     /**
@@ -431,6 +400,7 @@ describe('basicabilityapi', function () {
     it('testConfigurationGetLocale', 0, function () {
         console.info('testConfigurationGetLocale START');
         const localeInfo = configuration.getLocale();
+        console.info("[configuration.getLocale] localeInfo: " + JSON.stringify(localeInfo));
         console.info("[configuration.getLocale] language: " + localeInfo.language);
         console.info("[configuration.getLocale] countryOrRegion: " + localeInfo.countryOrRegion);
         console.info("[configuration.getLocale] dir: " + localeInfo.dir);
@@ -458,7 +428,7 @@ describe('basicabilityapi', function () {
             console.info('[settimeout] v2: ' + v2);
             expect('test').assertEqual(v1);
             expect('message').assertEqual(v2);
-            expect(delay).assertLess(end_time - start_time);
+            expect(end_time - start_time >= delay).assertTrue();
             console.info('testSetTimeout END');
             done();
         }, delay, 'test', 'message');

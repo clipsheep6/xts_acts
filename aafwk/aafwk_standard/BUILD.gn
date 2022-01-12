@@ -18,8 +18,45 @@ group("aafwk_standard") {
   if (is_standard_system) {
     deps = [
       "abilitymanager:actsabilitymanagertest",
+      "amsabilitymanager/amsMissionSnapshotTest:ActsAmsMissionSnapshotTest",
+      "amsabilitymanager/amsMissionSnapshotTestSingleton:ActsAmsMissionSnapshotTestSingleton",
+      "amsabilitymanager/amsMissionSnapshotTestSingletonS:ActsAmsMissionSnapshotTestSingletonS",
+      "amsdatauriutils:ActsAmsDataUriUtilsTest",
+      "amsmultiapp/MultiAppPage:ActsAmsMultiPageApp",
+      "amsmultiapp/MultiAppPageConnectService:ActsAmsMultiPageAppConnectService",
+      "amsmultiapp/MultiAppPageConnect_Service:ActsAmsMultiAppPageConnectService",
+      "amsmultiapp/MultiAppPagePermission:ActsAmsMultiPageAppPermission",
+      "amsmultiapp/MultiAppPagePermission_Page:ActsAmsMultiAppPagePermission",
+      "amsmultiapp/MultiAppPage_PSS:ActsAmsMultiPageAppS",
+      "amsmultiapp/MultiAppPage_Page:ActsAmsMultiAppPage",
+      "amsmultiapp/MultiAppPage_Service:ActsAmsMultiAppPageService",
+      "amsmultiapp/MultiAppSimultaneousOnline:ActsAmsMultiAppSimultaneousOnline",
+      "amsmultiapp/MultiAppSimultaneousOnline_test:ActsAmsMultiAppPageClone",
+      "amsmultiapp/MultiAppTermination:ActsAmsMultiAppTermination",
+      "amsmultiapp/MultiAppTermination_test:ActsAmsMultiAppPageCloneTermination",
+      "amsmultiapp/amsmultiapppageexecutor:ActsAmsMultiAppPageExecutor",
+      "amsmultiapp/amsmultiappserviceexecutor:ActsAmsMultiAppServiceExecutor",
+      "amsmultiapp/amsmultiappservicestarter:ActsAmsMultiAppServiceStarter",
+      "amsmultiapp/amsmultiapptester:ActsAmsMultiAppTester",
+      "amsmultiapp/amsmultidataabilityclone:ActsAmsMultiDataAbilityClone",
+      "amsmultiapp/amsmultidataabilityself:ActsAmsMultiDataAbilitySelf",
+      "amszipfileunzipfilest:ActsAmsZipfileUnzipfileSTest",
       "context:context",
       "featureability:featureability",
+      "formmanager:formmanager",
+
+      #"fwkdataaccessor:ActsFWKDataAccessorTest",
+
+      #"serviceability/actsparticleabilitytest:ActsParticleAbilityTest",
+      "serviceability/sceneProject/particlestartability:ParticleStartAbility",
+      "serviceability/sceneProject/particletestserver:ParticleTestServer",
+
+      #"serviceability/stserviceabilityclient:ActsAmsStServiceAbilityClientTest",
+      "serviceability/stserviceabilityserver:amsStServiceAilityServer",
+      "serviceability/stserviceabilityserversecond:ActsAmsStServiceAilityServerSecondTest",
+      "setshowonlockscreen:setshowonlockscreen",
+
+      #"verifypermission:verifypermission",
       "want:want",
     ]
   }

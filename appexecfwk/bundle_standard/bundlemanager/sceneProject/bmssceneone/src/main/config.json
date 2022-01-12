@@ -43,7 +43,16 @@
         "type": "page",
         "isVisible": "true",
         "launchType": "standard",
-        "language": "C++"
+        "orientation": "unspecified",
+        "language": "C++",
+        "metaData": {
+            "customizeData": [
+                {
+                    "name": "originWidgetName",
+                    "value": "com.weather.testWidget"
+                }
+            ]
+        }
       }
     ],
     "js": [
@@ -56,6 +65,17 @@
           "designWidth": 720,
           "autoDesignWidth": false
         }
+      }
+    ],
+    "defPermissions": [
+      {
+        "availableScope": [
+          "signature"
+        ],
+        "grantMode": "system_grant",
+        "name": "com.permission.BMS_PERMISSION_CAMERA",
+        "description": "BMS_PERMISSION_CAMERA permission in detail",
+        "label": "BMS_PERMISSION_CAMERA permission"
       }
     ]
   }

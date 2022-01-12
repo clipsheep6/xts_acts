@@ -17,9 +17,8 @@ import bundle from '@ohos.bundle'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 
 const BUNDLE_NAME = 'com.example.actsbmscheckpermissiontest';
-const PERMISSION_ONE = 'com.permission.CAMERA';
-const PERMISSION_TWO = 'com.permission.PERMISSION_A';
-const TIMEOUT = 1000;
+const PERMISSION_ONE = 'com.permission.PERMISSION_A';
+const PERMISSION_TWO = 'com.permission.PERMISSION_B';
 const NAMECOUNT = 10000;
 
 describe('ActsBmsCheckPermissionTest', function () {
@@ -31,12 +30,9 @@ describe('ActsBmsCheckPermissionTest', function () {
     */
     it('bms_checkPermission_0100', 0, async function (done) {
         console.info('=====================bms_checkPermission_0100==================');
-        var data = await bundle.checkPermission(BUNDLE_NAME, PERMISSION_TWO)
-        expect(data).assertEqual(0);
+        var data = await bundle.checkPermission(BUNDLE_NAME, PERMISSION_ONE)
+        expect(data).assertEqual(bundle.GrantStatus.PERMISSION_GRANTED);
         done();
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_0100==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -46,14 +42,11 @@ describe('ActsBmsCheckPermissionTest', function () {
     */
     it('bms_checkPermission_0200', 0, async function (done) {
         console.info('=====================bms_checkPermission_0200==================');
-        await bundle.checkPermission(BUNDLE_NAME, PERMISSION_TWO, (err, data) => {
+        await bundle.checkPermission(BUNDLE_NAME, PERMISSION_ONE, (err, data) => {
             expect(err.code).assertEqual(0);
-            expect(data).assertEqual(0);
+            expect(data).assertEqual(bundle.GrantStatus.PERMISSION_GRANTED);
             done();
         })
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_0200==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -65,11 +58,8 @@ describe('ActsBmsCheckPermissionTest', function () {
     it('bms_checkPermission_0300', 0, async function (done) {
         console.info('=====================bms_checkPermission_0300==================');
         var data = await bundle.checkPermission('', PERMISSION_ONE)
-        expect(data).assertEqual(-1);
+        expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
         done();
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_0300==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -82,12 +72,9 @@ describe('ActsBmsCheckPermissionTest', function () {
         console.info('=====================bms_checkPermission_0400==================');
         await bundle.checkPermission('', PERMISSION_ONE, (err, data) => {
             expect(err.code).assertEqual(-1);
-            expect(data).assertEqual(-1);
+            expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
             done();
         })
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_0400==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -99,11 +86,8 @@ describe('ActsBmsCheckPermissionTest', function () {
     it('bms_checkPermission_0500', 0, async function (done) {
         console.info('=====================bms_checkPermission_0500==================');
         var data = await bundle.checkPermission(BUNDLE_NAME, '')
-        expect(data).assertEqual(-1);
+        expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
         done();
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_0500==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -116,12 +100,9 @@ describe('ActsBmsCheckPermissionTest', function () {
         console.info('=====================bms_checkPermission_0600==================');
         await bundle.checkPermission(BUNDLE_NAME, '', (err, data) => {
             expect(err.code).assertEqual(-1);
-            expect(data).assertEqual(-1);
+            expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
             done();
         })
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_0600==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -133,11 +114,8 @@ describe('ActsBmsCheckPermissionTest', function () {
     it('bms_checkPermission_0700', 0, async function (done) {
         console.info('=====================bms_checkPermission_0700==================');
         var data = await bundle.checkPermission(BUNDLE_NAME, '@\n,. 。测试@abc1^%12345')
-        expect(data).assertEqual(-1);
+        expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
         done();
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_0700==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -150,12 +128,9 @@ describe('ActsBmsCheckPermissionTest', function () {
         console.info('=====================bms_checkPermission_0800==================');
         await bundle.checkPermission(BUNDLE_NAME, '@\n,. 。测试@abc1^%12345', (err, data) => {
             expect(err.code).assertEqual(-1);
-            expect(data).assertEqual(-1);
+            expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
             done();
         })
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_0800==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -167,11 +142,8 @@ describe('ActsBmsCheckPermissionTest', function () {
     it('bms_checkPermission_0900', 0, async function (done) {
         console.info('=====================bms_checkPermission_0900==================');
         var data = await bundle.checkPermission('@\n,. 。测试@abc1^%12345', PERMISSION_ONE)
-        expect(data).assertEqual(-1);
+        expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
         done();
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_0900==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -184,12 +156,9 @@ describe('ActsBmsCheckPermissionTest', function () {
         console.info('=====================bms_checkPermission_1000==================');
         await bundle.checkPermission('@\n,. 。测试@abc1^%12345', PERMISSION_ONE, (err, data) => {
             expect(err.code).assertEqual(-1);
-            expect(data).assertEqual(-1);
+            expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
             done();
         })
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_1000==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -205,11 +174,8 @@ describe('ActsBmsCheckPermissionTest', function () {
             permissionName += 'test';
         }
         var data = await bundle.checkPermission(BUNDLE_NAME, permissionName)
-        expect(data).assertEqual(-1);
+        expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
         done();
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_1100==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -226,12 +192,9 @@ describe('ActsBmsCheckPermissionTest', function () {
         }
         await bundle.checkPermission(BUNDLE_NAME, permissionName, (err, data) => {
             expect(err.code).assertEqual(-1);
-            expect(data).assertEqual(-1);
+            expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
             done();
         })
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_1200==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -247,11 +210,8 @@ describe('ActsBmsCheckPermissionTest', function () {
             bundleName += 'test';
         }
         var data = await bundle.checkPermission(bundleName, PERMISSION_ONE)
-        expect(data).assertEqual(-1);
+        expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
         done();
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_1300==================end');
-        }, TIMEOUT)
     })
 
     /*
@@ -268,11 +228,36 @@ describe('ActsBmsCheckPermissionTest', function () {
         }
         await bundle.checkPermission(bundleName, PERMISSION_ONE, (err, data) => {
             expect(err.code).assertEqual(-1);
-            expect(data).assertEqual(-1);
+            expect(data).assertEqual(bundle.GrantStatus.PERMISSION_DENIED);
             done();
         })
-        setTimeout(function () {
-            console.info('=====================bms_checkPermission_1400==================end');
-        }, TIMEOUT)
+    })
+
+    /*
+    * @tc.number: bms_checkPermission_1500
+    * @tc.name: check whether the permission is granted
+    * @tc.desc: Verify that permissions which availableScope is system_grant requested
+    *                   from other apps are granted. (by promise)
+    */
+    it('bms_checkPermission_1500', 0, async function (done) {
+        console.info('=====================bms_checkPermission_1500==================');
+        var data = await bundle.checkPermission(BUNDLE_NAME, PERMISSION_TWO)
+        expect(data).assertEqual(bundle.GrantStatus.PERMISSION_GRANTED);
+        done();
+    })
+
+    /*
+    * @tc.number: bms_checkPermission_1600
+    * @tc.name: check whether the permission is granted
+    * @tc.desc: Verify that permissions which availableScope is system_grant requested
+    *                   from other apps are granted.  (by callback)
+    */
+    it('bms_checkPermission_1600', 0, async function (done) {
+        console.info('=====================bms_checkPermission_1600==================');
+        await bundle.checkPermission(BUNDLE_NAME, PERMISSION_TWO, (err, data) => {
+            expect(err.code).assertEqual(0);
+            expect(data).assertEqual(bundle.GrantStatus.PERMISSION_GRANTED);
+            done();
+        })
     })
 })
