@@ -20,7 +20,7 @@ ohos_js_hap_suite("audio_decoder_js_hap") {
     ":audio_decoder_resources",
   ]
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "AudioDecoderJsTest"
+  hap_name = "ActsAudioDecoderJsTest"
 }
 ohos_js_assets("audio_decoder_js_assets") {
   source_dir = "./src/main/js/default"

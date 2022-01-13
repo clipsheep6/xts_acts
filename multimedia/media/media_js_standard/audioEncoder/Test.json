@@ -28,7 +28,7 @@
         },
         {
             "test-file-name": [
-                "AudioEncoderJsTest.hap"
+                "ActsAudioEncoderJsTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

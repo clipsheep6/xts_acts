@@ -31,7 +31,7 @@
         },
         {
             "test-file-name": [
-                "AudioDecoderJsTest.hap"
+                "ActsAudioDecoderJsTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
