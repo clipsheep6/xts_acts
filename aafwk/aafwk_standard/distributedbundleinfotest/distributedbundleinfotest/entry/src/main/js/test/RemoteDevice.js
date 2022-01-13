@@ -36,7 +36,8 @@ export default class RemoteDeviceModel {
                 }
                 self.#deviceManager = value;
                 self.registerDeviceListCallback_(callback);
-                console.log('[RemoteDeviceModel] createDeviceManager callback returned, error=' + error + ' value=' + value);
+                console.log('[RemoteDeviceModel] createDeviceManager callback returned, error=' +
+                    error + ' value=' + value);
             });
             console.log('[RemoteDeviceModel] deviceManager.createDeviceManager end');
         } else {
