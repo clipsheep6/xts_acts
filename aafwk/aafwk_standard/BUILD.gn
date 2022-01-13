@@ -42,6 +42,10 @@ group("aafwk_standard") {
       "amsmultiapp/amsmultidataabilityself:ActsAmsMultiDataAbilitySelf",
       "amszipfileunzipfilest:ActsAmsZipfileUnzipfileSTest",
       "context:context",
+      "distributedbundleinfotest/distributedbundleinfofirststage:DistributedInfoFirstStage",
+      "distributedbundleinfotest/distributedbundleinfosecondstage:DistributedInfoSecondStage",
+      "distributedbundleinfotest/distributedbundleinfotest:ActsDistributedInfoTest",
+      "distributedbundleinfotest/distributedbundleinfothirdstage:DistributedInfoThirdStage",
       "featureability:featureability",
       "formmanager:formmanager",
 
