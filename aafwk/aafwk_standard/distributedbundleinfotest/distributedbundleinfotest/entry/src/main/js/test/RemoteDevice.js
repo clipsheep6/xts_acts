@@ -68,7 +68,8 @@ export default class RemoteDeviceModel {
             switch (data.action) {
                 case 0:
                     self.deviceList[self.deviceList.length] = data.device;
-                    console.info('MusicPlayer[RemoteDeviceModel] online, updated device list=' + JSON.stringify(self.deviceList));
+                    console.info('MusicPlayer[RemoteDeviceModel] online, updated device list=' +
+                        JSON.stringify(self.deviceList));
                     self.callback();
                     break;
                 case 2:

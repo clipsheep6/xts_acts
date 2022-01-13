@@ -25,7 +25,7 @@ const HAP3 = "DistributedInfoThirdStage.hap";
 const NAME = "com.acts.distributedinfo";
 var DEVICE_LIST_LOCALHOST;
 
-function CheckBundleBaseInfo(data) {
+function checkBundleBaseInfo(data) {
     if ((data.name == "com.acts.distributedinfo") &&
         (data.version == 1) &&
         (data.versionCode == 1) &&
@@ -43,10 +43,10 @@ function CheckBundleBaseInfo(data) {
     }
 }
 
-function CheckBundleInfo(data, checkHap1, checkHap2, checkHap3) {
+function checkBundleInfo(data, checkHap1, checkHap2, checkHap3) {
     var checkNums = 0;
     var userInfos = data.userInfos;
-    var baseInfoCheckResult = CheckBundleBaseInfo(data);
+    var baseInfoCheckResult = checkBundleBaseInfo(data);
 
     if (baseInfoCheckResult != 0) {
         console.info("baseInfo check fail");
@@ -91,7 +91,7 @@ function CheckBundleInfo(data, checkHap1, checkHap2, checkHap3) {
     return 0;
 }
 
-function CheckBundleInfoNull(data) {
+function checkBundleInfoNull(data) {
 
     if ((data == undefined) || (data == "type mismatch")) {
         return 0;
@@ -100,7 +100,7 @@ function CheckBundleInfoNull(data) {
     }
 }
 
-function CheckSelfBundleBaseInfo(data) {
+function checkSelfBundleBaseInfo(data) {
     if ((data.name == "com.acts.distributedinfo") &&
         (data.appId == "com.acts.distributedinfo_BEArN65PUQRAS/rAaHZ+5vAfPL1e63CRO5ciMdfSHnF416BtxA" +
             "IF1St1gPXFgJdkIHMSuRgqfyhAgic127YvLMU=") &&
@@ -219,7 +219,7 @@ export default {
      * @tc.name: check bundle info before connected
      * @tc.desc: check distributed bundle info before connected.
      */
-    async ACTS_DistributedBundleInfo_0100() {
+    async actsDistributedBundleInfo0100() {
         var userInfos;
         let options = {
             "userId": 0,
@@ -231,7 +231,7 @@ export default {
                 console.info("ACTS_DistributedBundleInfo_0100 callback data.json:" + JSON.stringify(data));
                 console.info("ACTS_DistributedBundleInfo_0100 err:" + err);
                 console.info("ACTS_DistributedBundleInfo_0100 data.name:" + data.name);
-                if ((err == 0) && (CheckBundleInfo(data, true, true, true) == 0)) {
+                if ((err == 0) && (checkBundleInfo(data, true, true, true) == 0)) {
                     this.logmessage += "ACTS_DistributedBundleInfo_0100 CallBack Success ";
                     this.logmessage += " \n";
                     console.info("ACTS_DistributedBundleInfo_0100 CallBack pass");
@@ -246,7 +246,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0100 promise finished");
             console.info("ACTS_DistributedBundleInfo_0100 promise data.json:" + JSON.stringify(data));
 
-            if (CheckBundleInfo(data, true, true, true) == 0) {
+            if (checkBundleInfo(data, true, true, true) == 0) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0100 Promise Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0100 Promise pass");
@@ -266,7 +266,7 @@ export default {
      * @tc.name: install bundle after connected
      * @tc.desc: install bundle after connected and check remote bundle info.
      */
-    async ACTS_DistributedBundleInfo_0200() {
+    async actsDistributedBundleInfo0200() {
         let options = {
             "userId": 0,
             "networkId": this.remoteDeviceId
@@ -277,7 +277,7 @@ export default {
                 console.info("ACTS_DistributedBundleInfo_0200 callback data.json:" + JSON.stringify(data));
                 console.info("ACTS_DistributedBundleInfo_0200 err:" + err);
                 console.info("ACTS_DistributedBundleInfo_0200 data.name:" + data.name);
-                if ((err == 0) && (CheckBundleInfo(data, true, false, false) == 0)) {
+                if ((err == 0) && (checkBundleInfo(data, true, false, false) == 0)) {
                     this.logmessage += "ACTS_DistributedBundleInfo_0200 CallBack Success ";
                     this.logmessage += " \n";
                     console.info("ACTS_DistributedBundleInfo_0200 CallBack pass");
@@ -292,7 +292,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0200 promise finished");
             console.info("ACTS_DistributedBundleInfo_0200 promise data.json:" + JSON.stringify(data));
 
-            if (CheckBundleInfo(data, true, false, false) == 0) {
+            if (checkBundleInfo(data, true, false, false) == 0) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0200 Promise Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0200 Promise pass");
@@ -312,7 +312,7 @@ export default {
      * @tc.name: install bundle after connected
      * @tc.desc: install bundle after connected and check remote bundle info.
      */
-    async ACTS_DistributedBundleInfo_0300_1() {
+    async actsDistributedBundleInfo03001() {
         let options = {
             "userId": 0,
             "networkId": this.remoteDeviceId
@@ -323,7 +323,7 @@ export default {
                 console.info("ACTS_DistributedBundleInfo_0300_1 callback data.json:" + JSON.stringify(data));
                 console.info("ACTS_DistributedBundleInfo_0300_1 err:" + err);
                 console.info("ACTS_DistributedBundleInfo_0300_1 data.name:" + data.name);
-                if ((err == 0) && (CheckBundleInfo(data, true, false, false) == 0)) {
+                if ((err == 0) && (checkBundleInfo(data, true, false, false) == 0)) {
                     this.logmessage += "ACTS_DistributedBundleInfo_0300_1 CallBack Success ";
                     this.logmessage += " \n";
                     console.info("ACTS_DistributedBundleInfo_0300_1 CallBack pass");
@@ -338,7 +338,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0300_1 promise finished");
             console.info("ACTS_DistributedBundleInfo_0300_1 promise data.json:" + JSON.stringify(data));
 
-            if (CheckBundleInfo(data, true, false, false) == 0) {
+            if (checkBundleInfo(data, true, false, false) == 0) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0300_1 Promise Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0300_1 Promise pass");
@@ -358,7 +358,7 @@ export default {
      * @tc.name: install bundle after connected
      * @tc.desc: install bundle after connected and check remote bundle info.
      */
-    async ACTS_DistributedBundleInfo_0300_2() {
+    async actsDistributedBundleInfo03002() {
         let options = {
             "userId": 0,
             "networkId": this.remoteDeviceId
@@ -369,7 +369,7 @@ export default {
                 console.info("ACTS_DistributedBundleInfo_0300_2 callback data.json:" + JSON.stringify(data));
                 console.info("ACTS_DistributedBundleInfo_0300_2 err:" + err);
                 console.info("ACTS_DistributedBundleInfo_0300_2 data.name:" + data.name);
-                if ((err == 0) && (CheckBundleInfo(data, true, true, false) == 0)) {
+                if ((err == 0) && (checkBundleInfo(data, true, true, false) == 0)) {
                     this.logmessage += "ACTS_DistributedBundleInfo_0300_2 CallBack Success ";
                     this.logmessage += " \n";
                     console.info("ACTS_DistributedBundleInfo_0300_2 CallBack pass");
@@ -384,7 +384,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0300_2 promise finished");
             console.info("ACTS_DistributedBundleInfo_0300_2 promise data.json:" + JSON.stringify(data));
 
-            if (CheckBundleInfo(data, true, true, false) == 0) {
+            if (checkBundleInfo(data, true, true, false) == 0) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0300_2 Promise Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0300_2 Promise pass");
@@ -404,7 +404,7 @@ export default {
      * @tc.name: install bundle after connected
      * @tc.desc: install bundle after connected and check remote bundle info.
      */
-    async ACTS_DistributedBundleInfo_0400_1() {
+    async actsDistributedBundleInfo04001() {
         let options = {
             "userId": 0,
             "networkId": this.remoteDeviceId
@@ -415,7 +415,7 @@ export default {
                 console.info("ACTS_DistributedBundleInfo_0400_1 callback data.json:" + JSON.stringify(data));
                 console.info("ACTS_DistributedBundleInfo_0400_1 err:" + err);
                 console.info("ACTS_DistributedBundleInfo_0400_1 data.name:" + data.name);
-                if ((err == 0) && (CheckBundleInfo(data, true, false, false) == 0)) {
+                if ((err == 0) && (checkBundleInfo(data, true, false, false) == 0)) {
                     this.logmessage += "ACTS_DistributedBundleInfo_0400_1 CallBack Success ";
                     this.logmessage += " \n";
                     console.info("ACTS_DistributedBundleInfo_0400_1 CallBack pass");
@@ -430,7 +430,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0400_1 promise finished");
             console.info("ACTS_DistributedBundleInfo_0400_1 promise data.json:" + JSON.stringify(data));
 
-            if (CheckBundleInfo(data, true, false, false) == 0) {
+            if (checkBundleInfo(data, true, false, false) == 0) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0400_1 Promise Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0400_1 Promise pass");
@@ -450,7 +450,7 @@ export default {
      * @tc.name: uninstall bundle after connected
      * @tc.desc: uninstall bundle after connected and check remote bundle info.
      */
-    async ACTS_DistributedBundleInfo_0400_2() {
+    async actsDistributedBundleInfo04002() {
         let options = {
             "userId": 0,
             "networkId": this.remoteDeviceId
@@ -461,7 +461,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0400_2 callback begins");
             console.info("ACTS_DistributedBundleInfo_0400_2 callback data.json:" + JSON.stringify(data));
             console.info("ACTS_DistributedBundleInfo_0400_2 err:" + err);
-            if ((err == 1) && (CheckBundleInfoNull(data) == 0)) {
+            if ((err == 1) && (checkBundleInfoNull(data) == 0)) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0400_2 CallBack Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0400_2 CallBack pass");
@@ -495,7 +495,7 @@ export default {
      * @tc.name: install bundle after connected
      * @tc.desc: install bundle after connected and check remote bundle info.
      */
-    async ACTS_DistributedBundleInfo_0500() {
+    async actsDistributedBundleInfo0500() {
         let options = {
             "userId": 0,
             "networkId": this.remoteDeviceId
@@ -506,7 +506,7 @@ export default {
                 console.info("ACTS_DistributedBundleInfo_0500 callback data.json:" + JSON.stringify(data));
                 console.info("ACTS_DistributedBundleInfo_0500 err:" + err);
                 console.info("ACTS_DistributedBundleInfo_0500 data.name:" + data.name);
-                if ((err == 0) && (CheckBundleInfo(data, true, true, false) == 0)) {
+                if ((err == 0) && (checkBundleInfo(data, true, true, false) == 0)) {
                     this.logmessage += "ACTS_DistributedBundleInfo_0500 CallBack Success ";
                     this.logmessage += " \n";
                     console.info("ACTS_DistributedBundleInfo_0500 CallBack pass");
@@ -521,7 +521,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0500 promise finished");
             console.info("ACTS_DistributedBundleInfo_0500 promise data.json:" + JSON.stringify(data));
 
-            if (CheckBundleInfo(data, true, true, false) == 0) {
+            if (checkBundleInfo(data, true, true, false) == 0) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0500 Promise Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0500 Promise pass");
@@ -541,7 +541,7 @@ export default {
      * @tc.name: install bundle after connected
      * @tc.desc: install bundle after connected and check remote bundle info.
      */
-    async ACTS_DistributedBundleInfo_0600_1() {
+    async actsDistributedBundleInfo06001() {
         let options = {
             "userId": 0,
             "networkId": this.remoteDeviceId
@@ -552,7 +552,7 @@ export default {
                 console.info("ACTS_DistributedBundleInfo_0600_1 callback data.json:" + JSON.stringify(data));
                 console.info("ACTS_DistributedBundleInfo_0600_1 err:" + err);
                 console.info("ACTS_DistributedBundleInfo_0600_1 data.name:" + data.name);
-                if ((err == 0) && (CheckBundleInfo(data, true, true, false) == 0)) {
+                if ((err == 0) && (checkBundleInfo(data, true, true, false) == 0)) {
                     this.logmessage += "ACTS_DistributedBundleInfo_0600_1 CallBack Success ";
                     this.logmessage += " \n";
                     console.info("ACTS_DistributedBundleInfo_0600_1 CallBack pass");
@@ -567,7 +567,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0600_1 promise finished");
             console.info("ACTS_DistributedBundleInfo_0600_1 promise data.json:" + JSON.stringify(data));
 
-            if (CheckBundleInfo(data, true, true, false) == 0) {
+            if (checkBundleInfo(data, true, true, false) == 0) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0600_1 Promise Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0600_1 Promise pass");
@@ -587,7 +587,7 @@ export default {
     * @tc.name: install bundle after connected
     * @tc.desc: install bundle after connected and fail to check remote bundle info.
     */
-    async ACTS_DistributedBundleInfo_0600_2() {
+    async actsDistributedBundleInfo06002() {
         let options = {
             "userId": 0,
             "networkId": this.remoteDeviceId
@@ -598,7 +598,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0600_2 callback begins");
             console.info("ACTS_DistributedBundleInfo_0600_2 callback data.json:" + JSON.stringify(data));
             console.info("ACTS_DistributedBundleInfo_0600_2 err:" + err);
-            if ((err == 1) && (CheckBundleInfoNull(data) == 0)) {
+            if ((err == 1) && (checkBundleInfoNull(data) == 0)) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0600_2 CallBack Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0600_2 CallBack pass");
@@ -632,7 +632,7 @@ export default {
      * @tc.name: install bundle after connected
      * @tc.desc: install bundle after connected and check self bundle info with param abnormal.
      */
-    async ACTS_DistributedBundleInfo_0700() {
+    async actsDistributedBundleInfo0700() {
         let options = {
             "userId": 0,
             "networkId": null
@@ -643,7 +643,7 @@ export default {
                 console.info("ACTS_DistributedBundleInfo_0700 callback data.json:" + JSON.stringify(data));
                 console.info("ACTS_DistributedBundleInfo_0700 err:" + err);
                 console.info("ACTS_DistributedBundleInfo_0700 data.name:" + data.name);
-                if ((err == 0) && (CheckSelfBundleBaseInfo(data) == 0)) {
+                if ((err == 0) && (checkSelfBundleBaseInfo(data) == 0)) {
                     this.logmessage += "ACTS_DistributedBundleInfo_0700 CallBack Success ";
                     this.logmessage += " \n";
                     console.info("ACTS_DistributedBundleInfo_0700 CallBack pass");
@@ -658,7 +658,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0700 promise finished");
             console.info("ACTS_DistributedBundleInfo_0700 promise data.json:" + JSON.stringify(data));
 
-            if (CheckSelfBundleBaseInfo(data) == 0) {
+            if (checkSelfBundleBaseInfo(data) == 0) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0700 Promise Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0700 Promise pass");
@@ -678,7 +678,7 @@ export default {
      * @tc.name: install bundle after connected
      * @tc.desc: install bundle after connected and check self bundle info with param abnormal.
      */
-    async ACTS_DistributedBundleInfo_0800() {
+    async actsDistributedBundleInfo0800() {
         let options = {
             "userId": 0,
             "networkId": ""
@@ -689,7 +689,7 @@ export default {
                 console.info("ACTS_DistributedBundleInfo_0800 callback data.json:" + JSON.stringify(data));
                 console.info("ACTS_DistributedBundleInfo_0800 err:" + err);
                 console.info("ACTS_DistributedBundleInfo_0800 data.name:" + data.name);
-                if ((err == 0) && (CheckSelfBundleBaseInfo(data) == 0)) {
+                if ((err == 0) && (checkSelfBundleBaseInfo(data) == 0)) {
                     this.logmessage += "ACTS_DistributedBundleInfo_0800 CallBack Success ";
                     this.logmessage += " \n";
                     console.info("ACTS_DistributedBundleInfo_0800 CallBack pass");
@@ -704,7 +704,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0800 promise finished");
             console.info("ACTS_DistributedBundleInfo_0800 promise data.json:" + JSON.stringify(data));
 
-            if (CheckSelfBundleBaseInfo(data) == 0) {
+            if (checkSelfBundleBaseInfo(data) == 0) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0800 Promise Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0800 Promise pass");
@@ -724,7 +724,7 @@ export default {
      * @tc.name: install bundle after connected
      * @tc.desc: install bundle after connected and check self bundle info with param abnormal.
      */
-    async ACTS_DistributedBundleInfo_0900() {
+    async actsDistributedBundleInfo0900() {
         let options = {
             "userId": 0,
             "networkId": undefined
@@ -735,7 +735,7 @@ export default {
                 console.info("ACTS_DistributedBundleInfo_0900 callback data.json:" + JSON.stringify(data));
                 console.info("ACTS_DistributedBundleInfo_0900 err:" + err);
                 console.info("ACTS_DistributedBundleInfo_0900 data.name:" + data.name);
-                if ((err == 0) && (CheckSelfBundleBaseInfo(data) == 0)) {
+                if ((err == 0) && (checkSelfBundleBaseInfo(data) == 0)) {
                     this.logmessage += "ACTS_DistributedBundleInfo_0900 CallBack Success ";
                     this.logmessage += " \n";
                     console.info("ACTS_DistributedBundleInfo_0900 CallBack pass");
@@ -750,7 +750,7 @@ export default {
             console.info("ACTS_DistributedBundleInfo_0900 promise finished");
             console.info("ACTS_DistributedBundleInfo_0900 promise data.json:" + JSON.stringify(data));
 
-            if (CheckSelfBundleBaseInfo(data) == 0) {
+            if (checkSelfBundleBaseInfo(data) == 0) {
                 this.logmessage += "ACTS_DistributedBundleInfo_0900 Promise Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_0900 Promise pass");
@@ -770,7 +770,7 @@ export default {
      * @tc.name: install bundle after connected
      * @tc.desc: install bundle after connected and check return err with param abnormal.
      */
-    async ACTS_DistributedBundleInfo_1000_to_1200() {
+    async actsDistributedBundleInfo1000To1200() {
         let options = {
             "userId": 0,
             "networkId": this.remoteDeviceId
@@ -780,7 +780,7 @@ export default {
         bundle.getBundleInfo(null, 0, options, (err, data) => {
             console.info("ACTS_DistributedBundleInfo_1000 callback data.json:" + JSON.stringify(data));
             console.info("ACTS_DistributedBundleInfo_1000 callback err.json:" + JSON.stringify(err));
-            if ((CheckBundleInfoNull(data) == 0) && (err == 1)) {
+            if ((checkBundleInfoNull(data) == 0) && (err == 1)) {
                 this.logmessage += "ACTS_DistributedBundleInfo_1000 CallBack Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_1000 CallBack pass");
@@ -816,7 +816,7 @@ export default {
         bundle.getBundleInfo('', 0, options, (err, data) => {
             console.info("ACTS_DistributedBundleInfo_1100 callback data.json:" + JSON.stringify(data));
             console.info("ACTS_DistributedBundleInfo_1100 callback err.json:" + JSON.stringify(err));
-            if ((CheckBundleInfoNull(data) == 0) && (err == 1)) {
+            if ((checkBundleInfoNull(data) == 0) && (err == 1)) {
                 this.logmessage += "ACTS_DistributedBundleInfo_1100 CallBack Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_1100 CallBack pass");
@@ -852,7 +852,7 @@ export default {
         bundle.getBundleInfo(undefined, 0, options, (err, data) => {
             console.info("ACTS_DistributedBundleInfo_1200 callback data.json:" + JSON.stringify(data));
             console.info("ACTS_DistributedBundleInfo_1200 callback err.json:" + JSON.stringify(err));
-            if ((CheckBundleInfoNull(data) == 0) && (err == 1)) {
+            if ((checkBundleInfoNull(data) == 0) && (err == 1)) {
                 this.logmessage += "ACTS_DistributedBundleInfo_1200 CallBack Success ";
                 this.logmessage += " \n";
                 console.info("ACTS_DistributedBundleInfo_1200 CallBack pass");

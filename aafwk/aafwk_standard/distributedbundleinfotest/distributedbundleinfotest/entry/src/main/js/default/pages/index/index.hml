@@ -20,25 +20,25 @@
         </div>
         <text class="title">ACTS_DistributedBundleInfo</text>
         <div class="circleall">
-            <button class="btn" value="0100" onclick="ACTS_DistributedBundleInfo_0100"></button>
-            <button class="btn" value="0200" onclick="ACTS_DistributedBundleInfo_0200"></button>
-            <button class="btn" value="0300_1" onclick="ACTS_DistributedBundleInfo_0300_1"></button>
-            <button class="btn" value="0300_2" onclick="ACTS_DistributedBundleInfo_0300_2"></button>
+            <button class="btn" value="0100" onclick="actsDistributedBundleInfo0100"></button>
+            <button class="btn" value="0200" onclick="actsDistributedBundleInfo0200"></button>
+            <button class="btn" value="0300_1" onclick="actsDistributedBundleInfo03001"></button>
+            <button class="btn" value="0300_2" onclick="actsDistributedBundleInfo03002"></button>
         </div>
         <div class="circleall">
-            <button class="btn" value="0400_1" onclick="ACTS_DistributedBundleInfo_0400_1"></button>
-            <button class="btn" value="0400_2" onclick="ACTS_DistributedBundleInfo_0400_2"></button>
-            <button class="btn" value="0500" onclick="ACTS_DistributedBundleInfo_0500"></button>
-            <button class="btn" value="0600_1" onclick="ACTS_DistributedBundleInfo_0600_1"></button>
+            <button class="btn" value="0400_1" onclick="actsDistributedBundleInfo04001"></button>
+            <button class="btn" value="0400_2" onclick="actsDistributedBundleInfo04002"></button>
+            <button class="btn" value="0500" onclick="actsDistributedBundleInfo0500"></button>
+            <button class="btn" value="0600_1" onclick="actsDistributedBundleInfo06001"></button>
         </div>
         <div class="circleall">
-            <button class="btn" value="0600_2" onclick="ACTS_DistributedBundleInfo_0600_2"></button>
-            <button class="btn" value="0700" onclick="ACTS_DistributedBundleInfo_0700"></button>
-            <button class="btn" value="0800" onclick="ACTS_DistributedBundleInfo_0800"></button>
-            <button class="btn" value="0900" onclick="ACTS_DistributedBundleInfo_0900"></button>
+            <button class="btn" value="0600_2" onclick="actsDistributedBundleInfo06002"></button>
+            <button class="btn" value="0700" onclick="actsDistributedBundleInfo0700"></button>
+            <button class="btn" value="0800" onclick="actsDistributedBundleInfo0800"></button>
+            <button class="btn" value="0900" onclick="actsDistributedBundleInfo0900"></button>
         </div>
         <div class="circleall">
-            <button class="btn" value="1000to1200" onclick="ACTS_DistributedBundleInfo_1000_to_1200"></button>
+            <button class="btn" value="1000to1200" onclick="actsDistributedBundleInfo1000To1200"></button>
         </div>
     </div>
 </div>
