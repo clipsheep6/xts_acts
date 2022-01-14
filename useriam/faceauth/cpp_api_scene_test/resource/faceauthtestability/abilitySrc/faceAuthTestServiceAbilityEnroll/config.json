@@ -1,0 +1,52 @@
+{
+    "app":{
+        "bundleName": "com.ohos.faceauth.service.appEnroll",
+        "vendor": "ohos",
+        "version": {
+            "code": 1,
+            "name": "1.0"
+        },
+       "apiVersion": {
+          "compatible": 3,
+          "target": 3
+       }
+    },
+    "deviceConfig": {
+        "default": {
+        }
+    },
+    "module": {
+        "package":"com.ohos.FaceAuthTestServiceEnroll.src",
+        "name":"FaceAuthTestServiceEnroll",
+        "deviceType": [
+            "tv",
+            "car"
+        ],
+        "distro": {
+            "deliveryWithInstall": true,
+            "moduleName": "testability",
+            "moduleType": "entry"
+        },
+        "abilities": [{
+            "name": "FaceAuthTestServiceAbilityEnroll",
+            "icon": "$media:snowball",
+            "label": "FaceAuthTestServiceAbilityEnroll Ability",
+            "launchType": "standard",
+            "orientation": "unspecified",
+            "type": "service",
+            "srcLanguage":"c++",
+            "visible": true
+            }],
+        "reqPermissions": [
+            {
+                "name": "ohos.permission.ENROLL_BIOMETRIC",
+                "reason": "permreason_access_faceauth",
+                "usedScene": 
+                {
+                    "ability": ["com.mycamera.Ability", "com.mycamera.AbilityBackground"],
+                    "when": "always"
+                }
+            }
+        ]
+    }
+}

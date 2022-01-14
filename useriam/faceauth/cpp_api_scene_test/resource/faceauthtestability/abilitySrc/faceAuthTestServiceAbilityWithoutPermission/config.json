@@ -1,0 +1,41 @@
+{
+    "app":{
+        "bundleName": "com.ohos.faceauth.service.appWithout_Permission",
+        "vendor": "ohos",
+        "version": {
+            "code": 1,
+            "name": "1.0"
+        },
+       "apiVersion": {
+          "compatible": 3,
+          "target": 3
+       }
+    },
+    "deviceConfig": {
+        "default": {
+        }
+    },
+    "module": {
+        "package":"com.ohos.FaceAuthTestServiceWithoutPermission.src",
+        "name":"FaceAuthTestServiceWithoutPermission",
+        "deviceType": [
+            "tv",
+            "car"
+        ],
+        "distro": {
+            "deliveryWithInstall": true,
+            "moduleName": "testability",
+            "moduleType": "entry"
+        },
+        "abilities": [{
+            "name": "FaceAuthTestServiceAbilityWithoutPermission",
+            "icon": "$media:snowball",
+            "label": "FaceAuthTestServiceAbilityWithoutPermission Ability",
+            "launchType": "standard",
+            "orientation": "unspecified",
+            "type": "service",
+            "srcLanguage":"c++",
+            "visible": true
+            }]
+    }
+}
