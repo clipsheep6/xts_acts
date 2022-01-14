@@ -199,7 +199,7 @@ HWTEST_F(KeyEventTest, InputManagerTest_KeyEvent_002, TestSize.Level1)
 
 //普通-双击 
 HWTEST_F(KeyEventTest, InputManagerTest_KeyEvent_002, TestSize.Level1){
-	    NUMS = 0;
+	NUMS = 0;
 	std::string injectionCommand = "hosmmi-event-injection json keyevent002.json";   //双击
     int32_t response = InputManager::GetInstance()->AddMonitor(KeyClickMonitorCallBack);
 	std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
@@ -215,6 +215,7 @@ HWTEST_F(KeyEventTest, InputManagerTest_KeyEvent_002, TestSize.Level1){
 
 //普通-连击 
 HWTEST_F(KeyEventTest, InputManagerTest_KeyEvent_003, TestSize.Level1){
+	NUMS = 0;
 	std::string injectionCommand = "hosmmi-event-injection json keyevent003.json";   //三击
     int32_t response = InputManager::GetInstance()->AddMonitor(KeyClickMonitorCallBack);
 	std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
@@ -230,6 +231,7 @@ HWTEST_F(KeyEventTest, InputManagerTest_KeyEvent_003, TestSize.Level1){
 
 //组合键
 HWTEST_F(KeyEventTest, InputManagerTest_KeyEvent_004, TestSize.Level1){
+	NUMS = 0;
 	std::string injectionCommand = "hosmmi-event-injection json keyevent004.json";   //crtl + c
     int32_t response = InputManager::GetInstance()->AddMonitor(KeyCombinationMonitorCallBack);
 	std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
