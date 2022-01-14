@@ -23,12 +23,11 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
     console.log('*************Usb Unit UsbFunctionsJsFunctionsTestEx Begin*************');
     var Version = usb.getVersion()
     console.info('begin test getversion :' + Version)
-
-    // 切换到 device
+    //  17 version host currentMode = 2 device currentMode = 1
     var usbPortList = usb.getPorts()
     if (usbPortList.length > 0) {
-      if (usbPortList[0].status.currentMode == 2) {
-        console.info('usb case set data role 1, data role 1');
+      var HostMode = 2
+      if (usbPortList[0].status.currentMode == HostMode) {
         usb.setPortRoles(usbPortList[0].id, 2, 2).then(data => {
           console.info('usb case setPortRoles return: ' + data);
         }).catch(error => {
@@ -52,7 +51,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_to_string_test_01
+   * @tc.number    : SUB_USB_usb_function_to_string_test_01
    * @tc.name      : usbFunctionsToString
    * @tc.desc      : 正向测试 0 返回 'none'
    */
@@ -66,7 +65,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_to_string_test_02
+   * @tc.number    : SUB_USB_usb_function_to_string_test_02
    * @tc.name      : usbFunctionsToString
    * @tc.desc      : 正向测试 1 返回 'acm'
    */
@@ -80,7 +79,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_to_string_test_03
+   * @tc.number    : SUB_USB_usb_function_to_string_test_03
    * @tc.name      : usbFunctionsToString
    * @tc.desc      : 正向测试 2 返回 'ecm'
    */
@@ -94,7 +93,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_to_string_test_04
+   * @tc.number    : SUB_USB_usb_function_to_string_test_04
    * @tc.name      : usbFunctionsToString
    * @tc.desc      : 正向测试 3 返回 'acm,ecm'
    */
@@ -108,7 +107,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_to_string_test_05
+   * @tc.number    : SUB_USB_usb_function_to_string_test_05
    * @tc.name      : usbFunctionsToString
    * @tc.desc      : 正向测试 4 返回 'hdc'
    */
@@ -122,7 +121,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_to_string_test_06
+   * @tc.number    : SUB_USB_usb_function_to_string_test_06
    * @tc.name      : usbFunctionsToString
    * @tc.desc      : 正向测试 5 返回 'acm,hdc'
    */
@@ -136,7 +135,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_to_string_test_07
+   * @tc.number    : SUB_USB_usb_function_to_string_test_07
    * @tc.name      : usbFunctionsToString
    * @tc.desc      : 正向测试 6 返回 'ecm,hdc'
    */
@@ -150,7 +149,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_from_string_test_01
+   * @tc.number    : SUB_USB_usb_function_from_string_test_01
    * @tc.name      : usbFunctionsFromString
    * @tc.desc      : 正向测试 'none' 返回 0
    */
@@ -164,7 +163,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_from_string_test_02
+   * @tc.number    : SUB_USB_usb_function_from_string_test_02
    * @tc.name      : usbFunctionsFromString
    * @tc.desc      : 正向测试 'acm' 返回 1
    */
@@ -178,7 +177,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_from_string_test_03
+   * @tc.number    : SUB_USB_usb_function_from_string_test_03
    * @tc.name      : usbFunctionsFromString
    * @tc.desc      : 正向测试 'ecm' 返回 2
    */
@@ -192,7 +191,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_from_string_test_04
+   * @tc.number    : SUB_USB_usb_function_from_string_test_04
    * @tc.name      : usbFunctionsFromString
    * @tc.desc      : 正向测试 'acm,ecm' 返回 3
    */
@@ -206,7 +205,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_from_string_test_05
+   * @tc.number    : SUB_USB_usb_function_from_string_test_05
    * @tc.name      : usbFunctionsFromString
    * @tc.desc      : 正向测试 'hdc' 返回 4
    */
@@ -220,7 +219,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_from_string_test_06
+   * @tc.number    : SUB_USB_usb_function_from_string_test_06
    * @tc.name      : usbFunctionsFromString
    * @tc.desc      : 正向测试 'acm,hdc' 返回 5
    */
@@ -234,7 +233,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : usb_function_from_string_test_07
+   * @tc.number    : SUB_USB_usb_function_from_string_test_07
    * @tc.name      : usbFunctionsFromString
    * @tc.desc      : 正向测试 'ecm,hdc' 返回 6
    */
