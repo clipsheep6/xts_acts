@@ -26,9 +26,10 @@ describe('ActsOsAccountSystemTest', function () {
         console.debug("====>ActsOsAccountConstraints_0100 start====");
         var AccountManager = osAccount.getAccountManager();
         console.debug("====>get AccountManager finish====");
-        var adminConstraints = ["constraint.wifi","constraint.wifi.set","constraint.locale.set","constraint.app.accounts",
-        "constraint.apps.install","constraint.apps.uninstall","constraint.location.shared","constraint.unknown.sources.install",
-        "constraint.global.unknown.app.install","constraint.bluetooth.set","constraint.bluetooth"];
+        var adminConstraints = ["constraint.wifi","constraint.wifi.set","constraint.locale.set",
+        "constraint.app.accounts","constraint.apps.install","constraint.apps.uninstall","constraint.location.shared",
+        "constraint.unknown.sources.install","constraint.global.unknown.app.install","constraint.bluetooth.set",
+        "constraint.bluetooth"];
         AccountManager.getOsAccountAllConstraints(100, (err, constraints)=>{
             console.debug("====>getOsAccountAllConstraints err:" + JSON.stringify(err));
             console.debug("====>getOsAccountAllConstraints:" + JSON.stringify(constraints));
@@ -61,9 +62,10 @@ describe('ActsOsAccountSystemTest', function () {
         console.debug("====>ActsOsAccountConstraints_0200 start====");
         var AccountManager = osAccount.getAccountManager();
         console.debug("====>get AccountManager finish====");
-        var adminConstraints = ["constraint.wifi","constraint.wifi.set","constraint.locale.set","constraint.app.accounts",
-        "constraint.apps.install","constraint.apps.uninstall","constraint.location.shared","constraint.unknown.sources.install",
-        "constraint.global.unknown.app.install","constraint.bluetooth.set","constraint.bluetooth"];
+        var adminConstraints = ["constraint.wifi","constraint.wifi.set","constraint.locale.set",
+        "constraint.app.accounts","constraint.apps.install","constraint.apps.uninstall","constraint.location.shared",
+        "constraint.unknown.sources.install","constraint.global.unknown.app.install","constraint.bluetooth.set",
+        "constraint.bluetooth"];
         var constraints = await AccountManager.getOsAccountAllConstraints(100);
         console.debug("====>getAccountManager constraints:" + JSON.stringify(constraints));
         expect(constraints.length).assertEqual(adminConstraints.length);
@@ -619,7 +621,8 @@ describe('ActsOsAccountSystemTest', function () {
                 console.debug("====>isOsAccountConstraintEnable constraint:" + constraint);
                 expect(err.code).assertEqual(0);
                 expect(constraint).assertFalse();
-                AccountManager.setOsAccountConstraints(localId, ["constraint.device.unmute", "constraint.undefined"], true, (err)=>{
+                AccountManager.setOsAccountConstraints(localId, ["constraint.device.unmute",
+                "constraint.undefined"], true, (err)=>{
                     console.debug("====>setOsAccountConstraints err:" + JSON.stringify(err));
                     expect(err.code != 0).assertTrue();
                     AccountManager.removeOsAccount(localId, (err)=>{
@@ -651,7 +654,8 @@ describe('ActsOsAccountSystemTest', function () {
         console.debug("====>isOsAccountConstraintEnable constraints:" + constraint);
         expect(constraint).assertFalse();
         try{
-            await AccountManager.setOsAccountConstraints(localId, ["constraint.device.unmute", "constraint.undefined"], true);
+            await AccountManager.setOsAccountConstraints(localId, ["constraint.device.unmute",
+            "constraint.undefined"], true);
         }
         catch(err){
             console.debug("====>setOsAccountConstraints:" + JSON.stringify(err));
@@ -683,7 +687,8 @@ describe('ActsOsAccountSystemTest', function () {
                 console.debug("====>isOsAccountConstraintEnable constraint:" + constraint);
                 expect(err.code).assertEqual(0);
                 expect(constraint).assertTrue();
-                AccountManager.setOsAccountConstraints(localId, ["constraint.cell.broadcasts.set", "constraint.undefined"], false, (err)=>{
+                AccountManager.setOsAccountConstraints(localId, ["constraint.cell.broadcasts.set",
+                "constraint.undefined"], false, (err)=>{
                     console.debug("====>setOsAccountConstraints err:" + JSON.stringify(err));
                     expect(err.code != 0).assertTrue();
                     AccountManager.removeOsAccount(localId, (err)=>{
@@ -715,7 +720,8 @@ describe('ActsOsAccountSystemTest', function () {
         console.debug("====>isOsAccountConstraintEnable constraints:" + constraint);
         expect(constraint).assertFalse();
         try{
-            await AccountManager.setOsAccountConstraints(localId, ["constraint.device.unmute", "constraint.undefined"], true);
+            await AccountManager.setOsAccountConstraints(localId, ["constraint.device.unmute",
+            "constraint.undefined"], true);
         }
         catch(err){
             console.debug("====>setOsAccountConstraints err:" + JSON.stringify(err));
@@ -736,11 +742,12 @@ describe('ActsOsAccountSystemTest', function () {
         var AccountManager = osAccount.getAccountManager();
         console.debug("====>get AccountManager finish====");
         var localId;
-        var normalConstraint = ["constraint.global.unknown.app.install","constraint.bluetooth.set","constraint.bluetooth",
-        "constraint.bluetooth.share","constraint.usb.file.transfer","constraint.credentials.set","constraint.os.account.remove",
-        "constraint.managed.profile.remove","constraint.debug.features.use","constraint.vpn.set","constraint.date.time.set",
-        "constraint.tethering.config","constraint.network.reset","constraint.factory.reset","constraint.os.account.create",
-        "constraint.add.managed.profile","constraint.apps.verify.disable","constraint.cell.broadcasts.set"];
+        var normalConstraint = ["constraint.global.unknown.app.install","constraint.bluetooth.set",
+        "constraint.bluetooth","constraint.bluetooth.share","constraint.usb.file.transfer","constraint.credentials.set",
+        "constraint.os.account.remove","constraint.managed.profile.remove","constraint.debug.features.use",
+        "constraint.vpn.set","constraint.date.time.set","constraint.tethering.config","constraint.network.reset",
+        "constraint.factory.reset","constraint.os.account.create","constraint.add.managed.profile",
+        "constraint.apps.verify.disable","constraint.cell.broadcasts.set"];
         AccountManager.createOsAccount('NameConstraintsC', osAccount.OsAccountType.NORMAL, (err, data)=>{
             console.debug("====>createOsAccount err:" + JSON.stringify(err));
             console.debug("====>createOsAccount data:" + JSON.stringify(data));
@@ -793,11 +800,12 @@ describe('ActsOsAccountSystemTest', function () {
         var AccountManager = osAccount.getAccountManager();
         console.debug("====>get AccountManager finish====");
         var localId;
-        var normalConstraint = ["constraint.global.unknown.app.install","constraint.bluetooth.set","constraint.bluetooth",
-        "constraint.bluetooth.share","constraint.usb.file.transfer","constraint.credentials.set","constraint.os.account.remove",
-        "constraint.managed.profile.remove","constraint.debug.features.use","constraint.vpn.set","constraint.date.time.set",
-        "constraint.tethering.config","constraint.network.reset","constraint.factory.reset","constraint.os.account.create",
-        "constraint.add.managed.profile","constraint.apps.verify.disable","constraint.cell.broadcasts.set"];
+        var normalConstraint = ["constraint.global.unknown.app.install","constraint.bluetooth.set",
+        "constraint.bluetooth","constraint.bluetooth.share","constraint.usb.file.transfer","constraint.credentials.set",
+        "constraint.os.account.remove","constraint.managed.profile.remove","constraint.debug.features.use",
+        "constraint.vpn.set","constraint.date.time.set","constraint.tethering.config","constraint.network.reset",
+        "constraint.factory.reset","constraint.os.account.create","constraint.add.managed.profile",
+        "constraint.apps.verify.disable","constraint.cell.broadcasts.set"];
         var info = await AccountManager.createOsAccount("NameConstraintsP", osAccount.OsAccountType.NORMAL);
         console.debug("====>createOsAccount info:" + JSON.stringify(info));
         expect(info.localName).assertEqual("NameConstraintsP");
@@ -979,22 +987,25 @@ describe('ActsOsAccountSystemTest', function () {
         var AccountManager = osAccount.getAccountManager();
         console.debug("====>get AccountManager finish====");
         var localId;
-        var addallConstraints = ["constraint.wifi","constraint.wifi.set","constraint.locale.set","constraint.app.accounts",
-        "constraint.apps.install","constraint.apps.uninstall","constraint.location.shared","constraint.unknown.sources.install",
-        "constraint.global.unknown.app.install","constraint.bluetooth.set","constraint.bluetooth","constraint.bluetooth.share",
-        "constraint.usb.file.transfer","constraint.credentials.set","constraint.os.account.remove","constraint.managed.profile.remove",
-        "constraint.debug.features.use","constraint.vpn.set","constraint.date.time.set","constraint.tethering.config",
-        "constraint.network.reset","constraint.factory.reset","constraint.os.account.create","constraint.add.managed.profile",
+        var addallConstraints = ["constraint.wifi","constraint.wifi.set","constraint.locale.set",
+        "constraint.app.accounts","constraint.apps.install","constraint.apps.uninstall","constraint.location.shared",
+        "constraint.unknown.sources.install","constraint.global.unknown.app.install","constraint.bluetooth.set",
+        "constraint.bluetooth","constraint.bluetooth.share","constraint.usb.file.transfer","constraint.credentials.set",
+        "constraint.os.account.remove","constraint.managed.profile.remove","constraint.debug.features.use",
+        "constraint.vpn.set","constraint.date.time.set","constraint.tethering.config","constraint.network.reset",
+        "constraint.factory.reset","constraint.os.account.create","constraint.add.managed.profile",
         "constraint.apps.verify.disable","constraint.cell.broadcasts.set","constraint.mobile.networks.set",
         "constraint.control.apps","constraint.physical.media","constraint.microphone","constraint.microphone.unmute",
-        "constraint.volume.adjust","constraint.calls.outgoing","constraint.sms.use","constraint.fun","constraint.windows.create",
-        "constraint.system.error.dialogs","constraint.cross.profile.copy.paste","constraint.beam.outgoing",
-        "constraint.wallpaper","constraint.safe.boot","constraint.parent.profile.app.linking","constraint.audio.record",
-        "constraint.camera.use","constraint.os.account.background.run","constraint.data.roam","constraint.os.account.set.icon",
+        "constraint.volume.adjust","constraint.calls.outgoing","constraint.sms.use","constraint.fun",
+        "constraint.windows.create","constraint.system.error.dialogs","constraint.cross.profile.copy.paste",
+        "constraint.beam.outgoing","constraint.wallpaper","constraint.safe.boot",
+        "constraint.parent.profile.app.linking","constraint.audio.record","constraint.camera.use",
+        "constraint.os.account.background.run","constraint.data.roam","constraint.os.account.set.icon",
         "constraint.wallpaper.set","constraint.oem.unlock","constraint.device.unmute","constraint.password.unified",
-        "constraint.autofill","constraint.content.capture","constraint.content.suggestions","constraint.os.account.start",
-        "constraint.location.set","constraint.airplane.mode.set","constraint.brightness.set","constraint.share.into.profile",
-        "constraint.ambient.display","constraint.screen.timeout.set","constraint.print","constraint.private.dns.set"];
+        "constraint.autofill","constraint.content.capture","constraint.content.suggestions",
+        "constraint.os.account.start","constraint.location.set","constraint.airplane.mode.set",
+        "constraint.brightness.set","constraint.share.into.profile","constraint.ambient.display",
+        "constraint.screen.timeout.set","constraint.print","constraint.private.dns.set"];
         AccountManager.createOsAccount('NameConstraintsC', osAccount.OsAccountType.NORMAL, (err, data)=>{
             console.debug("====>createOsAccount err:" + JSON.stringify(err));
             console.debug("====>createOsAccount data:" + JSON.stringify(data));
@@ -1009,7 +1020,8 @@ describe('ActsOsAccountSystemTest', function () {
                     console.debug("====>getOsAccountAllConstraints:" + JSON.stringify(constraints));
                     expect(err.code).assertEqual(0);
                     expect(constraints.length).assertEqual(63);
-                    AccountManager.setOsAccountConstraints(localId, ["constraint.print", "constraint.private.dns.set"], false, (err)=>{
+                    AccountManager.setOsAccountConstraints(localId, ["constraint.print",
+                    "constraint.private.dns.set"], false, (err)=>{
                         console.debug("====>getOsAccountAllConstraints err:" + JSON.stringify(err));
                         expect(err.code).assertEqual(0);
                         AccountManager.getOsAccountAllConstraints(localId, (err, constraints)=>{
@@ -1036,22 +1048,25 @@ describe('ActsOsAccountSystemTest', function () {
         var AccountManager = osAccount.getAccountManager();
         console.debug("====>get AccountManager finish====");
         var localId;
-        var addallConstraints = ["constraint.wifi","constraint.wifi.set","constraint.locale.set","constraint.app.accounts",
-        "constraint.apps.install","constraint.apps.uninstall","constraint.location.shared","constraint.unknown.sources.install",
-        "constraint.global.unknown.app.install","constraint.bluetooth.set","constraint.bluetooth","constraint.bluetooth.share",
-        "constraint.usb.file.transfer","constraint.credentials.set","constraint.os.account.remove","constraint.managed.profile.remove",
-        "constraint.debug.features.use","constraint.vpn.set","constraint.date.time.set","constraint.tethering.config",
-        "constraint.network.reset","constraint.factory.reset","constraint.os.account.create","constraint.add.managed.profile",
+        var addallConstraints = ["constraint.wifi","constraint.wifi.set","constraint.locale.set",
+        "constraint.app.accounts","constraint.apps.install","constraint.apps.uninstall","constraint.location.shared",
+        "constraint.unknown.sources.install","constraint.global.unknown.app.install","constraint.bluetooth.set",
+        "constraint.bluetooth","constraint.bluetooth.share","constraint.usb.file.transfer","constraint.credentials.set",
+        "constraint.os.account.remove","constraint.managed.profile.remove","constraint.debug.features.use",
+        "constraint.vpn.set","constraint.date.time.set","constraint.tethering.config","constraint.network.reset",
+        "constraint.factory.reset","constraint.os.account.create","constraint.add.managed.profile",
         "constraint.apps.verify.disable","constraint.cell.broadcasts.set","constraint.mobile.networks.set",
         "constraint.control.apps","constraint.physical.media","constraint.microphone","constraint.microphone.unmute",
-        "constraint.volume.adjust","constraint.calls.outgoing","constraint.sms.use","constraint.fun","constraint.windows.create",
-        "constraint.system.error.dialogs","constraint.cross.profile.copy.paste","constraint.beam.outgoing",
-        "constraint.wallpaper","constraint.safe.boot","constraint.parent.profile.app.linking","constraint.audio.record",
-        "constraint.camera.use","constraint.os.account.background.run","constraint.data.roam","constraint.os.account.set.icon",
+        "constraint.volume.adjust","constraint.calls.outgoing","constraint.sms.use","constraint.fun",
+        "constraint.windows.create","constraint.system.error.dialogs","constraint.cross.profile.copy.paste",
+        "constraint.beam.outgoing","constraint.wallpaper","constraint.safe.boot",
+        "constraint.parent.profile.app.linking","constraint.audio.record","constraint.camera.use",
+        "constraint.os.account.background.run","constraint.data.roam","constraint.os.account.set.icon",
         "constraint.wallpaper.set","constraint.oem.unlock","constraint.device.unmute","constraint.password.unified",
-        "constraint.autofill","constraint.content.capture","constraint.content.suggestions","constraint.os.account.start",
-        "constraint.location.set","constraint.airplane.mode.set","constraint.brightness.set","constraint.share.into.profile",
-        "constraint.ambient.display","constraint.screen.timeout.set","constraint.print","constraint.private.dns.set"];
+        "constraint.autofill","constraint.content.capture","constraint.content.suggestions",
+        "constraint.os.account.start","constraint.location.set","constraint.airplane.mode.set",
+        "constraint.brightness.set","constraint.share.into.profile","constraint.ambient.display",
+        "constraint.screen.timeout.set","constraint.print","constraint.private.dns.set"];
         var info = await AccountManager.createOsAccount("NameConstraintsP", osAccount.OsAccountType.NORMAL);
         console.debug("====>createOsAccount info:" + JSON.stringify(info));
         expect(info.localName).assertEqual("NameConstraintsP");
@@ -1061,7 +1076,8 @@ describe('ActsOsAccountSystemTest', function () {
         var constraints = await AccountManager.getOsAccountAllConstraints(localId);
         console.debug("====>getAccountManager constraints:" +JSON.stringify(constraints));
         expect(constraints.length).assertEqual(63);
-        await AccountManager.setOsAccountConstraints(localId, ["constraint.print", "constraint.private.dns.set"], false);
+        await AccountManager.setOsAccountConstraints(localId, ["constraint.print",
+        "constraint.private.dns.set"], false);
         var constraints = await AccountManager.getOsAccountAllConstraints(localId);
         console.debug("====>getAccountManager constraints:" +JSON.stringify(constraints));
         expect(constraints.length).assertEqual(61);
