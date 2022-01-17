@@ -279,14 +279,14 @@ describe('SimReliability', function () {
             done();
             return;
           }
-          if ((value === operatorCode.MOBILE_CODE_1) || (value === operatorCode.MOBILE_CODE_2) ||
-            (value === operatorCode.MOBILE_CODE_3) || (value === operatorCode.MOBILE_CODE_4)) {
+          if ((value === operatorCode.CMCC_CODE_1) || (value === operatorCode.CMCC_CODE_2) ||
+            (value === operatorCode.CMCC_CODE_3) || (value === operatorCode.CMCC_CODE_4)) {
             expect(data === mobileSpn).assertTrue();
-          } else if ((value === operatorCode.UNICOM_CODE_1) || (value === operatorCode.UNICOM_CODE_2) ||
-            (value === operatorCode.UNICOM_CODE_3)) {
+          } else if ((value === operatorCode.CU_CODE_1) || (value === operatorCode.CU_CODE_2) ||
+            (value === operatorCode.CU_CODE_3)) {
             expect(data === unicomSpn).assertTrue();
-          } else if ((value === operatorCode.TELECOM_CODE_1) || (value === operatorCode.TELECOM_CODE_2) ||
-            (value === operatorCode.TELECOM_CODE_3)) {
+          } else if ((value === operatorCode.CT_CODE_1) || (value === operatorCode.CT_CODE_2) ||
+            (value === operatorCode.CT_CODE_3)) {
             expect(data === telecomSpn).assertTrue();
           }
         });
@@ -313,14 +313,14 @@ describe('SimReliability', function () {
         expect(data !== '' && data !== undefined).assertTrue();
         try {
           let value = await sim.getSimOperatorNumeric(simSlotId.SLOT_ID_0);
-          if ((value === operatorCode.MOBILE_CODE_1) || (value === operatorCode.MOBILE_CODE_2) ||
-            (value === operatorCode.MOBILE_CODE_3) || (value === operatorCode.MOBILE_CODE_4)) {
+          if ((value === operatorCode.CMCC_CODE_1) || (value === operatorCode.CMCC_CODE_2) ||
+            (value === operatorCode.CMCC_CODE_3) || (value === operatorCode.CMCC_CODE_4)) {
             expect(data === mobileSpn).assertTrue();
-          } else if ((value === operatorCode.UNICOM_CODE_1) || (value === operatorCode.UNICOM_CODE_2) ||
-            (value === operatorCode.UNICOM_CODE_3)) {
+          } else if ((value === operatorCode.CU_CODE_1) || (value === operatorCode.CU_CODE_2) ||
+            (value === operatorCode.CU_CODE_3)) {
             expect(data === unicomSpn).assertTrue();
-          } else if ((value === operatorCode.TELECOM_CODE_1) || (value === operatorCode.TELECOM_CODE_2) ||
-            (value === operatorCode.TELECOM_CODE_3)) {
+          } else if ((value === operatorCode.CT_CODE_1) || (value === operatorCode.CT_CODE_2) ||
+            (value === operatorCode.CT_CODE_3)) {
             expect(data === telecomSpn).assertTrue();
           }
         } catch (err) {
