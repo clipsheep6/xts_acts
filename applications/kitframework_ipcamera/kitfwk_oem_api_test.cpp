@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-#include <string.h>
-#include <stdbool.h>
-#include "cJSON.h"
+#include <cstring>
+#include <cstdbool>
 #include "gtest/gtest.h"
+#include "cJSON.h"
 #include "oem_auth_config.h"
 #include "oem_auth_result_storage.h"
 #include "token.h"
@@ -33,19 +33,13 @@ MbucBf5K9uFnzJyUSj+1u6Ro1jX4xVM0JP4P7FngyAvro4DCmK1Pjq5btHrtceve,000000000000000
 sdi73fabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwxyz\
 09uvuyabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwxyz."
 
-
-#define MAX_SERVER_INFO_LEN  256
-#define ENCRYPT_TOKEN_LEN 151
-#define ENCRYPT_TICKET_LEN 64
-#define STATUS_LEN 320
-#define PRODUCT_ID_LEN 4
-#define ACKEY_LEN 48
-#define PRODUCT_KEY_LEN 32
-
-
-#define TEST_ASSERT_EQUAL_STRING_MESSAGE(expt, actual, msg)  ASSERT_STREQ(expt, actual) << msg << "\n";
-#define TEST_ASSERT_NOT_NULL_MESSAGE(actual, msg)            ASSERT_NE(actual, nullptr) << msg << "\n";
-#define TEST_ASSERT_EQUAL_INT_MESSAGE(expt, actual, msg)     ASSERT_EQ(expt, actual) << msg << "\n";
+constexpr int PRODUCT_KEY_LEN = 32;
+constexpr int ACKEY_LEN = 48;
+constexpr int PRODUCT_ID_LEN = 4;
+constexpr int STATUS_LEN = 320;
+constexpr int ENCRYPT_TICKET_LEN = 64;
+constexpr int ENCRYPT_TOKEN_LEN = 151;
+constexpr int MAX_SERVER_INFO_LEN = 256;
 
 bool g_isFirstRun = true;
 class OEMAPITEST : public testing::Test {
@@ -110,10 +104,10 @@ HWTEST_F(OEMAPITEST, TestLoadKitInfos, TestSize.Level0) {
     cJSON* root = cJSON_Parse(kitInfoMsg);
     free(kitInfoMsg);
 
-    TEST_ASSERT_NOT_NULL_MESSAGE(root, "Invalid json format!");
+    ASSERT_NE(root, nullptr) << "Invalid json format!" << "\n";
 
     cJSON* kitInfoArray = cJSON_GetObjectItem(root, KIT_INFO_JSON_KEY);
-    TEST_ASSERT_NOT_NULL_MESSAGE(kitInfoArray, "Invalid json format!");
+    ASSERT_NE(kitInfoArray, nullptr) << "Invalid json format!" << "\n";
     cJSON_Delete(root);
 }
 /**
@@ -123,7 +117,7 @@ HWTEST_F(OEMAPITEST, TestLoadKitInfos, TestSize.Level0) {
 HWTEST_F(OEMAPITEST, TestIsOverTemperatureLimit, TestSize.Level0) {
     LOG("----- temperature api test start -----");
     bool results = OEMIsOverTemperatureLimit();
-    TEST_ASSERT_EQUAL_INT_MESSAGE(0, results, "OEMIsOverTemperatureLimit should fail in normal state");
+    ASSERT_EQ(0, results) << "OEMIsOverTemperatureLimit should fail in normal state" << "\n";
 }
 /**
  * @tc.name: TestResetFlagApi
@@ -133,21 +127,16 @@ HWTEST_F(OEMAPITEST, TestResetFlagApi, TestSize.Level0) {
     LOG("----- reset flag api test start -----");
     if (g_isFirstRun) {
         int ret = OEMCreateResetFlag();
-
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to create the reset flag");
+        ASSERT_EQ(0, ret) << "Failed to create the reset flag" << "\n";
         bool flag = OEMIsResetFlagExist();
-
-        TEST_ASSERT_EQUAL_INT_MESSAGE(1, flag, "the reset flag should exist.");
+        ASSERT_EQ(1, flag) << "the reset flag should exist." << "\n";
     } else {
         bool flag = OEMIsResetFlagExist();
-
-        TEST_ASSERT_EQUAL_INT_MESSAGE(1, flag, "the reset flag should exist.");
+        ASSERT_EQ(1, flag) << "the reset flag should exist." << "\n";
         int ret = OEMDeleteResetFlag();
-
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to delete the Reset flag");
+        ASSERT_EQ(0, ret) << "Failed to delete the Reset flag" << "\n";
         flag = OEMIsResetFlagExist();
-
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, flag, "the reset flag should not exist.");
+        ASSERT_EQ(0, flag) << "the reset flag should not exist." << "\n";
     }
 }
 
@@ -166,36 +155,36 @@ HWTEST_F(OEMAPITEST, TestAuthStatusApi, TestSize.Level0) {
     }
     if (g_isFirstRun) {
         int ret = OEMWriteAuthStatus(TEST_AUTH_STATUS, len);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to write auth data");
+        ASSERT_EQ(0, ret) << "Failed to write auth data" << "\n";
         bool isExist = OEMIsAuthStatusExist();
-        TEST_ASSERT_EQUAL_INT_MESSAGE(1, isExist, "authStatus should exist!");
+        ASSERT_EQ(1, isExist) << "authStatus should exist!" << "\n";
         ret = OEMReadAuthStatus(statusRead, len);
         LOG("statusRead:%s", statusRead);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to read authStatus");
+        ASSERT_EQ(0, ret) << "Failed to read authStatus" << "\n";
         statusRead[len] = 0;
-        TEST_ASSERT_EQUAL_STRING_MESSAGE(TEST_AUTH_STATUS, statusRead, "authStatus not match!");
+        ASSERT_STREQ(TEST_AUTH_STATUS, statusRead) << "authStatus not match!" << "\n";
         uint32_t newLen = 0;
         ret = OEMGetAuthStatusFileSize(&newLen);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "failed to get authStatus size");
+        ASSERT_EQ(0, ret) << "failed to get authStatus size" << "\n";
         // Check whether the obtained length is the same as the initial written length.
-        TEST_ASSERT_EQUAL_INT_MESSAGE(len, newLen, "Failed: length not match!");
+        ASSERT_EQ(len, newLen) << "Failed: length not match!" << "\n";
     } else {
         bool isExist = OEMIsAuthStatusExist();
-        TEST_ASSERT_EQUAL_INT_MESSAGE(1, isExist, "authStatus should exist!");
+        ASSERT_EQ(1, isExist) << "authStatus should exist!" << "\n";
         int ret = OEMReadAuthStatus(statusRead, len);
         LOG("statusRead:%s", statusRead);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to read auth status");
+        ASSERT_EQ(0, ret) << "Failed to read authStatus" << "\n";
         statusRead[len] = 0;
-        TEST_ASSERT_EQUAL_STRING_MESSAGE(TEST_AUTH_STATUS, statusRead, "authStatus not match!");
+        ASSERT_STREQ(TEST_AUTH_STATUS, statusRead) << "authStatus not match!" << "\n";
         uint32_t newLen = 0;
         ret = OEMGetAuthStatusFileSize(&newLen);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "failed to get authStatus size");
-        TEST_ASSERT_EQUAL_INT_MESSAGE(len, newLen, "Failed: length not match!");
+        ASSERT_EQ(0, ret) << "failed to get authStatus size" << "\n";
+        ASSERT_EQ(len, newLen) << "Failed: length not match!" << "\n";
 
         ret = OEMDeleteAuthStatus();
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "failed to delete authStatus");
+        ASSERT_EQ(0, ret) << "failed to delete authStatus" << "\n";
         isExist = OEMIsAuthStatusExist();
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, isExist, "file still exist!");
+        ASSERT_EQ(0, isExist) << "file still exist!" << "\n";
     }
     free(statusRead);
 }
@@ -215,35 +204,35 @@ HWTEST_F(OEMAPITEST, TestTicketApi, TestSize.Level0) {
     }
     if (g_isFirstRun) {
         int ret = OEMWriteTicket(TEST_TICKET, len);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to write ticket");
+        ASSERT_EQ(0, ret) << "Failed to write ticket" << "\n";
         bool isExist = OEMIsTicketExist();
-        TEST_ASSERT_EQUAL_INT_MESSAGE(1, isExist, "ticket should exist!");
+        ASSERT_EQ(1, isExist) << "ticket should exist!" << "\n";
         ret = OEMReadTicket(ticketRead, len);
         LOG("ticketRead:%s", ticketRead);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to tead ticket");
+        ASSERT_EQ(0, ret) << "Failed to tead ticket" << "\n";
         ticketRead[len] = 0;
-        TEST_ASSERT_EQUAL_STRING_MESSAGE(TEST_TICKET, ticketRead, "ticket not match");
+        ASSERT_STREQ(TEST_TICKET, ticketRead) << "ticket not match" << "\n";
         uint32_t newLen = 0;
         ret = OEMGetTicketFileSize(&newLen);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to get ticket size");
-        TEST_ASSERT_EQUAL_INT_MESSAGE(len, newLen, "length not match!");
+        ASSERT_EQ(0, ret) << "Failed to get ticket size" << "\n";
+        ASSERT_EQ(len, newLen) << "length not match!" << "\n";
     } else {
         bool isExist = OEMIsTicketExist();
-        TEST_ASSERT_EQUAL_INT_MESSAGE(1, isExist, "ticket not does exist!");
+        ASSERT_EQ(1, isExist) << "ticket not does exist!" << "\n";
         int ret = OEMReadTicket(ticketRead, len);
         LOG("ticketRead:%s", ticketRead);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to read ticket");
+        ASSERT_EQ(0, ret) << "Failed to read ticket" << "\n";
         ticketRead[len] = 0;
-        TEST_ASSERT_EQUAL_STRING_MESSAGE(TEST_TICKET, ticketRead, "ticket not match");
+        ASSERT_STREQ(TEST_TICKET, ticketRead) << "ticket not match" << "\n";
         uint32_t newLen = 0;
         ret = OEMGetTicketFileSize(&newLen);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "failed to get ticket size");
-        TEST_ASSERT_EQUAL_INT_MESSAGE(len, newLen, "length not match!");
+        ASSERT_EQ(0, ret) << "failed to get ticket size" << "\n";
+        ASSERT_EQ(len, newLen) << "length not match!" << "\n";
 
         ret = OEMDeleteTicket();
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to delete ticket");
+        ASSERT_EQ(0, ret) << "Failed to delete ticket" << "\n";
         isExist = OEMIsTicketExist();
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, isExist, "file still exist!");
+        ASSERT_EQ(0, isExist) << "file still exist!" << "\n";
     }
     free(ticketRead);
 }
@@ -269,24 +258,24 @@ HWTEST_F(OEMAPITEST, TestTokenApi, TestSize.Level0) {
         }
         // write then read token check
         ret = WriteToken(TEST_TOKEN1, len);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to write token");
+        ASSERT_EQ(0, ret) << "Failed to write token" << "\n";
         ret = ReadToken(tokenRead, len);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to read token");
+        ASSERT_EQ(0, ret) << "Failed to read token" << "\n";
         tokenRead[len] = 0;
-        TEST_ASSERT_EQUAL_STRING_MESSAGE(TEST_TOKEN1, tokenRead, "token not match");
+        ASSERT_STREQ(TEST_TOKEN1, tokenRead) << "token not match" << "\n";
 
         // write then read token check, again. for A-B area check
         ret = WriteToken(TEST_TOKEN2, len);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to write token");
+        ASSERT_EQ(0, ret) << "Failed to write token" << "\n";
         ret = ReadToken(tokenRead, len);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to read token");
+        ASSERT_EQ(0, ret) << "Failed to read token" << "\n";
         tokenRead[len] = 0;
-        TEST_ASSERT_EQUAL_STRING_MESSAGE(TEST_TOKEN2, tokenRead, "token not match");
+        ASSERT_STREQ(TEST_TOKEN2, tokenRead) << "token not match" << "\n";
     } else {
         int ret = ReadToken(tokenRead, len);
-        TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to read token");
+        ASSERT_EQ(0, ret) << "Failed to read token" << "\n";
         tokenRead[len] = 0;
-        TEST_ASSERT_EQUAL_STRING_MESSAGE(TEST_TOKEN2, tokenRead, "token not match");
+        ASSERT_STREQ(TEST_TOKEN2, tokenRead) << "token not match" << "\n";
     }
     free(tokenRead);
 }
@@ -300,7 +289,7 @@ HWTEST_F(OEMAPITEST, TestGetAckeyApi, TestSize.Level0)
     char acKey[ACKEY_LEN];
     unsigned int len = sizeof(acKey);
     int ret = GetAcKey(acKey, len);
-    TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to get the ackey");
+    ASSERT_EQ(0, ret) << "Failed to get the ackey" << "\n";
 }
 
 /**
@@ -312,7 +301,7 @@ HWTEST_F(OEMAPITEST, TestGetProdIdApi, TestSize.Level0)
     LOG("----- test getprodid start -----");
     char productId[PRODUCT_ID_LEN];
     int ret = GetProdId(productId, sizeof(productId));
-    TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to get the productid");
+    ASSERT_EQ(0, ret) << "Failed to get the productid" << "\n";
 }
 
 /**
@@ -324,7 +313,7 @@ HWTEST_F(OEMAPITEST, TestGetProdKeyApi, TestSize.Level0)
     LOG("----- test getproductkey start -----");
     char productKey[PRODUCT_KEY_LEN];
     int ret = GetProdKey(productKey, sizeof(productKey));
-    TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to get the productkey");
+    ASSERT_EQ(0, ret) << "Failed to get the productkey" << "\n";
 }
 
 #else  // defined TOKEN_PERSIST_TEST
@@ -343,10 +332,10 @@ HWTEST_F(OEMAPITEST, TestIfTokenPersist, TestSize.Level0){
         return;
     }
     int ret = ReadToken(tokenRead, len);
-    TEST_ASSERT_EQUAL_INT_MESSAGE(0, ret, "Failed to read token");
+    ASSERT_EQ(0, ret) << "Failed to read token" << "\n";
     tokenRead[len] = 0;
     LOG("tokenRead:%s", tokenRead);
-    TEST_ASSERT_EQUAL_STRING_MESSAGE(TEST_TOKEN2, tokenRead, "token not match");
+    ASSERT_STREQ(TEST_TOKEN2, tokenRead) << "token not match" << "\n";
 
     free(tokenRead);
 }
