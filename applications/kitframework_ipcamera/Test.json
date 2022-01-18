@@ -1,0 +1,25 @@
+{
+    "description": "Config for the kernel_lite test cases",
+    "environment": [
+        {
+            "type": "device",
+            "label": "ipcamera"
+        }
+    ],
+    "kits": [
+        {
+            "type": "MountKit",
+            "server": "NfsServer",
+            "mount": [
+                {
+                    "source": "testcases/kitframework_ipcamera",
+                    "target": "/test_root/kitframework_ipcamera"
+                }
+            ]
+        }
+    ],
+    "driver": {
+        "type": "CppTestLite",
+        "execute": "/test_root/kitframework_ipcamera/ActsKitFwkApiTest.bin"
+    }
+}
