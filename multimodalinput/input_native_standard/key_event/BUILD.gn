@@ -79,7 +79,6 @@ ohos_systemtest("KeyEventTest") {
 
   sources = [ 
     "./src/key_event_test.cpp",
-    "./src/input_event_test.cpp" 
   ]
 
   deps = [
