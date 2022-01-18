@@ -17,10 +17,8 @@ import("//build/lite/config/subsystem/aafwk/config.gni")
 import("//test/xts/tools/lite/build/suite_lite.gni")
 
 executable("ActsKitFwkApiTest") {
-  output_extension = "bin"
-
   sources = [ "kitfwk_oem_api_test.cpp" ]
-  
+
   include_dirs = [
     "//third_party/googletest/googletest/include",
     "//third_party/cJSON",
@@ -43,6 +41,8 @@ executable("ActsKitFwkApiTest") {
     "//vendor/ingenic/smartpen/adapter/kitframework:oem_auth_config",
     "//vendor/ingenic/smartpen/adapter/kitframework:oem_auth_result_storage",
   ]
+
+  output_extension = "bin"
 
   # un-comment this Macro for token-persist-test
   # defines = [ "TOKEN_PERSIST_TEST" ]
