@@ -1,5 +1,5 @@
 {
-    "description": "Config for kernel_lite test cases",
+    "description": "Config for the kernel_lite test cases",
     "environment": [
         {
             "type": "device",
