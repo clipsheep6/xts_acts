@@ -28,7 +28,7 @@ executable("ActsKitFwkApiTest") {
     "//third_party/bounds_checking_function/include/",
     "//base/startup/syspara_lite/interfaces/kits/",
 
-    # dir for oem_auth_config.h and oem_auth_result_storage.h
+    # dir for the oem_auth_config.h and oem_auth_result_storage.h
     "//vendor/kitframework/include/",
   ]
   deps = [
