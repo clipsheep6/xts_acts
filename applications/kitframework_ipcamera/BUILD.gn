@@ -20,6 +20,7 @@ executable("ActsKitFwkApiTest") {
   output_extension = "bin"
 
   sources = [ "kitfwk_oem_api_test.cpp" ]
+  
   include_dirs = [
     "//third_party/googletest/googletest/include",
     "//third_party/cJSON",
