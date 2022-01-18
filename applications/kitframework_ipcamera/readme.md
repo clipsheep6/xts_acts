@@ -53,4 +53,4 @@ BUILD.gn中修改deps最后两行为oem_auth_config.a和oem_auth_result_storage.
 编译完成后可在out/bin目录找到ActsKitFwkApiTest.bin文件
 
 ### 第四步
-放入设备，运行看日志
+放入设备，运行查看日志
