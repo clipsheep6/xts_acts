@@ -45,5 +45,5 @@ executable("ActsKitFwkApiTest") {
   ]
 
   # un-comment this Macro for token-persist-test
-  #defines = [ "TOKEN_PERSIST_TEST" ]
+  # defines = [ "TOKEN_PERSIST_TEST" ]
 }
