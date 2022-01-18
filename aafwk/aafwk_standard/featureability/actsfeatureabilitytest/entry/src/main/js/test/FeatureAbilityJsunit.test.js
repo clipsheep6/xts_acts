@@ -2114,7 +2114,8 @@ describe('ActsFeatureAbilityTest', function () {
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_0700 asyncCallback errCode : ' + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('ACTS_StartAbility_0700 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
                 expect(err.code == 2097152).assertTrue();
                 done();
             });
@@ -2142,7 +2143,8 @@ describe('ActsFeatureAbilityTest', function () {
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_0800 asyncCallback errCode : ' + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('ACTS_StartAbility_0800 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
                 expect(err.code == 2097152).assertTrue();
                 done();
             });
@@ -2170,7 +2172,8 @@ describe('ActsFeatureAbilityTest', function () {
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_0900 asyncCallback errCode : ' + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('ACTS_StartAbility_0900 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
                 expect(err.code == 2097152).assertTrue();
                 done();
             });
@@ -2228,7 +2231,8 @@ describe('ActsFeatureAbilityTest', function () {
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1000 asyncCallback errCode : ' + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('ACTS_StartAbility_1000 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
                 expect(err.code == 0).assertTrue();
                 done();
             });
@@ -2254,7 +2258,8 @@ describe('ActsFeatureAbilityTest', function () {
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1100 asyncCallback errCode : ' + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('ACTS_StartAbility_1100 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
                 expect(err.code == 2097152).assertTrue();
                 done();
             });
@@ -2281,7 +2286,8 @@ describe('ActsFeatureAbilityTest', function () {
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1200 asyncCallback errCode : ' + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('ACTS_StartAbility_1200 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
                 expect(err.code == 2097152).assertTrue();
                 done();
             });
@@ -2338,7 +2344,8 @@ describe('ActsFeatureAbilityTest', function () {
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1300 asyncCallback errCode : ' + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('ACTS_StartAbility_1300 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
                 expect(err.code == 0).assertTrue();
                 done();
             });
@@ -2365,7 +2372,8 @@ describe('ActsFeatureAbilityTest', function () {
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1400 asyncCallback errCode : ' + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('ACTS_StartAbility_1400 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
                 expect(err.code == 2097152).assertTrue();
                 done();
             });
@@ -2389,7 +2397,8 @@ describe('ActsFeatureAbilityTest', function () {
             }
 
             featureAbility.startAbility(StartAbilityParameter).then((err,data) => {
-                console.log('ACTS_StartAbility_1600 asyncCallback errCode : ' + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('ACTS_StartAbility_1600 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
                 expect(data == undefined).assertTrue();
                 done();
             });
@@ -2425,7 +2434,8 @@ describe('ActsFeatureAbilityTest', function () {
         console.info("------------------logMessage ACTS_StartAbility_1800-------------------");
         try{
             featureAbility.startAbility(undefined).then((err,data) => {
-                console.log('ACTS_StartAbility_1800 asyncCallback errCode : ' + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('ACTS_StartAbility_1800 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
                 expect(data == undefined).assertTrue();
                 done();
             });
