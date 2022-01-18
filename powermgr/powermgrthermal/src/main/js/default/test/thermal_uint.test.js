@@ -33,7 +33,7 @@ describe('appInfoTest', function () {
             setTimeout(()=>{
                 var cold = thermal.getThermalLevel();
                 console.info("cold level is: " + cold);
-                expect(cold >= 0 && cold <= 5).assertEqual('1');
+                expect(cold >= 0 && cold <= 6).assertEqual('1');
                 resolve();
             }, MSEC_10000);
         })
@@ -49,7 +49,7 @@ describe('appInfoTest', function () {
             setTimeout(()=>{
                 var warm = thermal.getThermalLevel();
                 console.info("warm level is: " + warm);
-                expect(warm >= 0 && warm <= 5).assertEqual('1');
+                expect(warm >= 0 && warm <= 6).assertEqual('1');
                 resolve();
             }, MSEC_10000);
         })
@@ -65,7 +65,7 @@ describe('appInfoTest', function () {
             setTimeout(()=>{
                 var hot = thermal.getThermalLevel();
                 console.info("hot level is: " + hot);
-                expect(hot >= 0 && hot <= 5).assertEqual('1');
+                expect(hot >= 0 && hot <= 6).assertEqual('1');
                 resolve();
             }, MSEC_10000);
         })
@@ -81,7 +81,7 @@ describe('appInfoTest', function () {
             setTimeout(()=>{
                 var overheated = thermal.getThermalLevel();
                 console.info("overheated level is: " + overheated);
-                expect(overheated >= 0 && overheated <= 5).assertEqual('1');
+                expect(overheated >= 0 && overheated <= 6).assertEqual('1');
                 resolve();
             }, MSEC_10000);
         })
@@ -97,7 +97,7 @@ describe('appInfoTest', function () {
             setTimeout(()=>{
                 var warning = thermal.getThermalLevel();
                 console.info("warning level is: " + warning);
-                expect(warning >= 0 && warning <= 5).assertEqual('1');
+                expect(warning >= 0 && warning <= 6).assertEqual('1');
                 resolve();
             }, MSEC_10000);
         })
@@ -113,7 +113,7 @@ describe('appInfoTest', function () {
             setTimeout(()=>{
                 var emergency = thermal.getThermalLevel();
                 console.info("emergency level is: " + emergency);
-                expect(emergency >= 0 && emergency <= 5).assertEqual('1');
+                expect(emergency >= 0 && emergency <= 6).assertEqual('1');
                 resolve();
             }, MSEC_10000);
         })
@@ -129,7 +129,7 @@ describe('appInfoTest', function () {
         thermal.subscribeThermalLevel((cool) => {
             console.info("cool level is: " + cool);
             count ++;
-            expect(cool >= 0 && cool <= 5).assertEqual('1');
+            expect(cool >= 0 && cool <= 6).assertEqual('1');
         })
         await new Promise((resolve, reject)=>{
             setTimeout(()=>{
@@ -150,7 +150,7 @@ describe('appInfoTest', function () {
         thermal.subscribeThermalLevel((warm) => {
             console.info("cool level is: " + warm);
             count ++;
-            expect(warm >= 0 && warm <= 5).assertEqual('1');
+            expect(warm >= 0 && warm <= 6).assertEqual('1');
         })
         await new Promise((resolve, reject)=>{
             setTimeout(()=>{
@@ -171,7 +171,7 @@ describe('appInfoTest', function () {
         thermal.subscribeThermalLevel((hot) => {
             console.info("hot level is: " + hot);
             count ++;
-            expect(hot >= 0 && hot <= 5).assertEqual('1');
+            expect(hot >= 0 && hot <= 6).assertEqual('1');
         })
         await new Promise((resolve, reject)=>{
             setTimeout(()=>{
@@ -192,7 +192,7 @@ describe('appInfoTest', function () {
         thermal.subscribeThermalLevel((overheated) => {
             console.info("overheated level is: " + overheated);
             count ++;
-            expect(overheated >= 0 && overheated <= 5).assertEqual('1');
+            expect(overheated >= 0 && overheated <= 6).assertEqual('1');
         })
         await new Promise((resolve, reject)=>{
             setTimeout(()=>{
@@ -213,7 +213,7 @@ describe('appInfoTest', function () {
         thermal.subscribeThermalLevel((warning) => {
             console.info("warning level is: " + warning);
             count ++;
-            expect(warning >= 0 && warning <= 5).assertEqual('1');
+            expect(warning >= 0 && warning <= 6).assertEqual('1');
         })
         await new Promise((resolve, reject)=>{
             setTimeout(()=>{
@@ -234,7 +234,7 @@ describe('appInfoTest', function () {
         thermal.subscribeThermalLevel((emergency) => {
             console.info("emergency level is: " + emergency);
             count ++;
-            expect(emergency >= 0 && emergency <= 5).assertEqual('1');
+            expect(emergency >= 0 && emergency <= 6).assertEqual('1');
         })
         await new Promise((resolve, reject)=>{
             setTimeout(()=>{
@@ -255,7 +255,7 @@ describe('appInfoTest', function () {
         thermal.subscribeThermalLevel((cool) => {
             console.info("cool level is: " + cool);
             count ++;
-            expect(cool >= 0 && cool <= 5).assertEqual('1');
+            expect(cool >= 0 && cool <= 6).assertEqual('1');
         })
         await new Promise((resolve, reject)=>{
             setTimeout(()=>{
