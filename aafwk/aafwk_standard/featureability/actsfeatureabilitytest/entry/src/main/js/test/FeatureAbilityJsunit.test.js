@@ -39,10 +39,10 @@ var subscriberInfo_ACTS_StartAbility_0500 = {
 var subscriberInfo_ACTS_StartAbility_0600 = {
     events: ["ACTS_StartAbility_0600_CommonEvent"],
 };
-var subscriberInfo_ACTS_StartAbility_1000 = {
+var subscriberInfoStartAbilityTen = {
     events: ["ACTS_StartAbility_1000_CommonEvent"],
 };
-var subscriberInfo_ACTS_StartAbility_1300 = {
+var subscriberInfoStartAbilityThirteen = {
     events: ["ACTS_StartAbility_1300_CommonEvent"],
 };
 var subscriberInfo_ACTS_StartAbilityForResult_0100 = {
@@ -60,14 +60,14 @@ var subscriberInfo_ACTS_StartAbilityForResult_0400 = {
 var subscriberInfo_ACTS_StartAbilityForResult_0500 = {
     events: ["ACTS_StartAbilityForResult_0500_CommonEvent"],
 };
-var subscriberInfo_ACTS_StartAbilityForResult_0600 = {
+var subscriberInfoStartAbilityForResultSix = {
     events: ["ACTS_StartAbilityForResult_0600_CommonEvent"],
 };
 var subscriberInfo_ACTS_TerminateAbility_0100 = {
     events: ["ACTS_TerminateAbility_0100_CommonEvent",
         "ACTS_TerminateAbility_0100_Return"],
 };
-var subscriberInfo_ACTS_TerminateAbility_0200 = {
+var subscriberInfoTerminateAbilityTwo = {
     events: ["ACTS_TerminateAbility_0200_CommonEvent",
         "ACTS_TerminateAbility_0200_Return"],
 };
@@ -2202,7 +2202,7 @@ describe('ActsFeatureAbilityTest', function () {
                 done();
             }
 
-            commonEvent.createSubscriber(subscriberInfo_ACTS_StartAbility_1000).then(async (data) => {
+            commonEvent.createSubscriber(subscriberInfoStartAbilityTen).then(async (data) => {
                 console.debug("====>Create Subscriber====>");
                 Subscriber = data;
                 await commonEvent.subscribe(Subscriber, SubscribeCallBack);
@@ -2316,7 +2316,7 @@ describe('ActsFeatureAbilityTest', function () {
                 done();
             }
 
-            commonEvent.createSubscriber(subscriberInfo_ACTS_StartAbility_1300).then(async (data) => {
+            commonEvent.createSubscriber(subscriberInfoStartAbilityThirteen).then(async (data) => {
                 console.debug("====>Create Subscriber====>");
                 Subscriber = data;
                 await commonEvent.subscribe(Subscriber, SubscribeCallBack);
