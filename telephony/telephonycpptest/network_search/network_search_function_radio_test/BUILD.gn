@@ -1,0 +1,82 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+import("//test/xts/tools/build/suite.gni")
+import("//drivers/adapter/uhdf2/uhdf.gni")
+
+TELEPHONY_ROOT = "//base/telephony"
+
+ohos_moduletest_suite("NetworkSearchFunctionRadioTest") {
+  install_enable = true
+  sources = [
+    "src/network_search_radio_test.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/network_state.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/signal_information.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/core_service_proxy.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/core_service_client.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/network_search_result.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/network_information.cpp",
+    "$TELEPHONY_ROOT/core_service/services/network_search/src/network_search_callback_proxy.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/i_network_search_callback_stub.cpp",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/src/cell_information.cpp",
+    "$TELEPHONY_ROOT/state_registry/frameworks/native/notify/src/telephony_state_registry_client.cpp",
+  ]
+
+  include_dirs = [
+    "$TELEPHONY_ROOT/ril_adapter/interfaces/innerkits",
+    "$TELEPHONY_ROOT/core_service/services/network_search/include",
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/cellular_data",
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/core",
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/sim",
+    "//test/xts/acts/telephony/telephonycpptest/network_search/include",
+    "$TELEPHONY_ROOT/core_service/interfaces/kits/include",
+    "//test/xts/acts/telephony/telephonycpptest/mock_vendor",
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/network_search",
+    "$TELEPHONY_ROOT/core_service/utils/log/include",
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits/state_registry",
+    "$TELEPHONY_ROOT/core_service/frameworks/native/include",
+    "//base/global/resmgr_standard/interfaces/innerkits/include",
+    "//third_party/icu/icu4c/source/common",
+    "$TELEPHONY_ROOT/state_registry/interfaces/innerkits/notify",
+    "$TELEPHONY_ROOT/ril_adapter/interfaces/innerkits/include",
+    "$TELEPHONY_ROOT/core_service/utils/common/include",
+    "$TELEPHONY_ROOT/core_service/services/tel_ril/include",
+    "$TELEPHONY_ROOT/state_registry/frameworks/native/common/include",
+    "../../utils",
+  ]
+
+  deps = [
+    "$TELEPHONY_ROOT/core_service/interfaces/innerkits:tel_core_service_api",
+    "$hdf_uhdf_path/hdi:libhdi",
+    "//foundation/aafwk/standard/interfaces/innerkits/want:want",
+    "//utils/native/base:utils",
+  ]
+
+  external_deps = [
+    "ces_standard:cesfwk_innerkits",
+    "safwk:system_ability_fwk",
+    "appexecfwk_standard:libeventhandler",
+    "samgr_standard:samgr_proxy",
+    "ipc:ipc_core"
+  ]
+
+  if (is_standard_system) {
+    external_deps += [ "hiviewdfx_hilog_native:libhilog" ]
+  } else {
+    external_deps += [ "hilog:libhilog" ]
+  }
+  part_name = "telephonycpptest"
+
+  subsystem_name = "telephony"
+}

@@ -1,0 +1,88 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+import("//build/test.gni")
+import("//test/xts/tools/build/suite.gni")
+import("//drivers/adapter/uhdf2/uhdf.gni")
+import("//foundation/communication/netmanager_base/netmanager_base_config.gni")
+import("//foundation/communication/netmanager_ext/netmanager_ext_config.gni")
+
+ohos_moduletest_suite("NetworkManagerGetBytesTest") {
+    install_enable = true
+    sources = [
+        "src/network_manager_get_bytes_test.cpp",
+    ]
+
+    include_dirs = [
+        "//test/xts/acts/telephony/telephonycpptest/network_manager/include",
+        "$INNERKITS_ROOT/ethernetmanager/include/ipc",
+        "$INNERKITS_ROOT/ethernetmanager/include",
+        "$INNERKITS_ROOT/netconnmanager/include",
+
+        "//foundation/aafwk/standard/frameworks/kits/ability/include",
+        "$INNERKITS_ROOT/dnsresolvermanager/include",
+        "$INNERKITS_ROOT/dnsresolvermanager/include/ipc",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/include",
+        "//foundation/communication/netmanager_base/services/dnsresolvermanager/include/ipc",
+        "//foundation/communication/netmanager_base/services/dnsresolvermanager/include",
+        "//foundation/communication/netmanager_base/services/common/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/dnsresolvermanager/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/netpolicymanager/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/ethernetmanager/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/ethernetmanager/include",
+       "//foundation/communication/netmanager_base/interfaces/innerkits/netstatsclient/include/proxy" ,
+       "//foundation/communication/netmanager_base/interfaces/innerkits/netstatsclient/include" ,
+        "$INNERKITS_ROOT/netstatsclient/include",
+        "$NETCONNMANAGER_COMMON_DIR/include",
+        "$NETSTATSMANAGER_INNERKITS_SOURCE_DIR/include",
+        "$NETSTATSMANAGER_SOURCE_DIR/include",
+        "//test/xts/acts/telephony/telephonycpptest/network_manager/include",
+        "//foundation/communication/ipc/interfaces/innerkits/ipc_core/include",
+        "//foundation/communication/wifi/services/wifi_standard/wifi_framework/common/net_helper",
+        "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard/interfaces",
+        "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard/include",
+    ]
+
+   deps = [
+        "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
+        "$EXT_INNERKITS_ROOT/ethernetclient:ethernet_manager_if",
+        "$BASE_INNERKITS_ROOT/netconnclient:net_conn_manager_if",
+        "$INNERKITS_ROOT/dnsresolverclient:dns_resolver_manager_if",
+        "$INNERKITS_ROOT/netstatsclient:net_stats_manager_if",
+        "//third_party/googletest:gtest_main",
+        "$NETSTATSMANAGER_SOURCE_DIR:net_stats_manager",
+        "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog",
+        "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard:wifi_sdk",
+    ]
+
+    external_deps = [
+        "safwk:system_ability_fwk",
+        "ipc:ipc_core",
+    ]
+
+  defines = [
+        "TAG = \"NetworkManagerGetBytesTest\"",
+        "LOG_DOMAIN = 0xD002B01",
+    ]
+
+  if (is_standard_system) {
+    external_deps += [ "hiviewdfx_hilog_native:libhilog" ]
+  } else {
+    external_deps += [ "hilog:libhilog" ]
+  }
+  part_name = "telephonycpptest"
+
+  subsystem_name = "telephony"
+
+}
