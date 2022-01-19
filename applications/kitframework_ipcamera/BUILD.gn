@@ -29,7 +29,6 @@ executable("ActsKitFwkApiTest") {
     # dir for oem_auth_config.h and oem_auth_result_storage.h
     "//vendor/ingenic/smartpen/adapter/kitframework/include/",
   ]
-
   deps = [
     "//base/startup/syspara_lite/frameworks/token:token_shared",
     "//build/lite/config/component/cJSON:cjson_shared",
