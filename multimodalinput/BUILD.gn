@@ -19,6 +19,7 @@ group("multimodalinput") {
     deps = [
       "input_js_standard:multimodalinput_js_test",
       "input_native_standard/key_event:KeyEvent",
+      "input_native_standard/pointer_event:PointerEvent",
     ]
   }
 }

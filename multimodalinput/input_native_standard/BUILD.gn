@@ -10,5 +10,6 @@ group("multimodalinput") {
   testonly = true
   deps = [
     "key_event:KeyEvent",
+    "pointer_event:PointerEvent",
   ]
 }
