@@ -9,7 +9,8 @@ config("system_test_config") {
 group("multimodalinput") {
   testonly = true
   deps = [
-    "key_event:KeyEvent",
+    "key_event:KeyEvent",    
     "pointer_event:PointerEvent",
+    "input_event:InputEvent",
   ]
 }

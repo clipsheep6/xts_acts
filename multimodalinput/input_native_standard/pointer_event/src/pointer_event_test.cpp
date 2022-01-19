@@ -60,7 +60,7 @@ void PointButtonClickMonitorCallBack(std::shared_ptr<OHOS::MMI::PointerEvent> po
 		EXPECT_EQ(pointerEvent->GetActionTime(), 0);
 		ASSERT_FALSE(pointerEvent->IsButtonPressed(pointerEvent->GetButtonId()));
 	}
-    EXPECT_EQ(pointerEvent->GetButtonId(), (int32_t)(OHOS::MMI::PointerEvent::POINTER_ACTION_BUTTON_UP));
+    EXPECT_EQ(pointerEvent->GetButtonId(), (int32_t)(OHOS::MMI::PointerEvent::MOUSE_BUTTON_LEFT));
     EXPECT_EQ(pointerEvent->GetPointerAction(), PointActionResult);
     EXPECT_EQ(pointerEvent->GetAction(), PointActionResult);
     EXPECT_EQ(pointerEvent->GetDeviceId(), 0);
