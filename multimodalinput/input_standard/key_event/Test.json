@@ -1,28 +1,38 @@
 {
-    "description": "Config for hcpptest demo test cases",
-    "environment": [
-        {
-            "type": "device",
-            "label": "ipcamera"
-        }
-    ],
+    "description": "Config for KeyEventTest",
+	"driver": {
+        "type": "CppTest",
+		"module-name": "KeyEventTest",
+		"native-test-timeout": "2000000",
+        "native-test-device-path": "/data/local/tmp/mmi_test"
+        "runtime-hint": "1s",
+        "shell-timeout": "2000000"
+        "test-timeout": "2000000",
+    },
     "kits": [
         {
-            "type": "MountKit",
-            "server": "NfsServer",
-            "mount": [
-                {
-                    "source": "testcases/multimedia",
-                    "target": "/test_root/multimedia"
-                },{
-                    "source": "resource/multimedia",
-                    "target": "/test_root/multimedia"
-                }
+            "type": "PushKit",
+            "pre-push": [
+                "rm -fr /data/local/tmp/mmi_test",
+                "mkdir -p /data/local/tmp/mmi_test/json"
+            ],
+            "push": [
+                "KeyEventTest -> /data/local/tmp/mmi_test/KeyEventTest",
+				"json/keyboard_KEY_A_click.json -> /data/local/tmp/mmi_test/json/keyboard_KEY_A_click.json",
+				"json/keyboard_KEY_A_click2.json -> /data/local/tmp/mmi_test/json/keyboard_KEY_A_click2.json"
+            ],
+            "post-push": [
+                "chmod 777 /data/local/tmp/mmi_test/KeyEventTest"
+            ],
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hosmmi-virtual-device-manager start all &"
+            ],
+            "teardown-command":[
+			    "hosmmi-virtual-device-manager close all"
             ]
         }
-    ],
-    "driver": {
-        "type": "CppTestLite",
-        "execute": "/test_root/multimedia/ActsMediaCameraTest.bin"
-    }
+    ]
 }

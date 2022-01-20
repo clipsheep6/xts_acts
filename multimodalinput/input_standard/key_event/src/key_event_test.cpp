@@ -166,7 +166,7 @@ void KeyCombinationMonitorCallBack(std::shared_ptr<OHOS::MMI::KeyEvent> keyEvent
 HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_001, TestSize.Level1)
 {   
     NUMS = 0;
-	std::string injectionCommand = "hosmmi-event-injection json keyevent001.json";   
+	std::string injectionCommand = "hosmmi-event-injection json keyboard_KEY_A_click.json";   
     int32_t response = InputManager::GetInstance()->AddMonitor(KeyClickMonitorCallBack);
     ASSERT_EQ(MMI_STANDARD_EVENT_SUCCESS, response);
     std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
@@ -183,7 +183,7 @@ HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_001, TestSize.Level1)
 HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_002, TestSize.Level1)
 {
 	NUMS = 0;
-	std::string injectionCommand = "hosmmi-event-injection json keyevent0020.json";  //单键按下
+	std::string injectionCommand = "hosmmi-event-injection json keyboard_KEY_B_press.json";  //单键按下
     int32_t response = InputManager::GetInstance()->AddMonitor(KeyPressedMonitorCallBack);
 	std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
     ASSERT_EQ(MMI_STANDARD_EVENT_SUCCESS, response);
@@ -191,7 +191,7 @@ HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_002, TestSize.Level1)
     std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
 	EXPECT_TRUE(result.empty());
     std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
-	std::string injectionCommand1 = "hosmmi-event-injection json keyevent0021.json";  //单键抬起
+	std::string injectionCommand1 = "hosmmi-event-injection json keyboard_KEY_B_release.json";  //单键抬起
 	system(injectionCommand1.data());
 	std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
 	EXPECT_TRUE(result.empty()&&result.size()==2);
@@ -202,7 +202,7 @@ HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_002, TestSize.Level1)
 //普通-双击 
 HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_003, TestSize.Level1){
 	NUMS = 0;
-	std::string injectionCommand = "hosmmi-event-injection json keyevent002.json";   //双击
+	std::string injectionCommand = "hosmmi-event-injection json keyboard_KEY_A_click2.json";   //双击
     int32_t response = InputManager::GetInstance()->AddMonitor(KeyClickMonitorCallBack);
 	std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
     ASSERT_EQ(MMI_STANDARD_EVENT_SUCCESS, response);
@@ -218,7 +218,7 @@ HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_003, TestSize.Level1){
 //普通-连击 
 HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_004, TestSize.Level1){
 	NUMS = 0;
-	std::string injectionCommand = "hosmmi-event-injection json keyevent003.json";   //三击
+	std::string injectionCommand = "hosmmi-event-injection json keyboard_KEY_A_click3.json";   //三击
     int32_t response = InputManager::GetInstance()->AddMonitor(KeyClickMonitorCallBack);
 	std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
     ASSERT_EQ(MMI_STANDARD_EVENT_SUCCESS, response);
@@ -234,7 +234,7 @@ HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_004, TestSize.Level1){
 //组合键
 HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_005, TestSize.Level1){
 	NUMS = 0;
-	std::string injectionCommand = "hosmmi-event-injection json keyevent004.json";   //crtl + c
+	std::string injectionCommand = "hosmmi-event-injection json keyboard_KEY_CTRL_LEFT_C.json";   //crtl + c
     int32_t response = InputManager::GetInstance()->AddMonitor(KeyCombinationMonitorCallBack);
 	std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
     ASSERT_EQ(MMI_STANDARD_EVENT_SUCCESS, response);
