@@ -25,8 +25,6 @@ executable("ActsKitFwkApiTest") {
     "//third_party/mbedtls/include/",
     "//third_party/bounds_checking_function/include/",
     "//base/startup/syspara_lite/interfaces/kits/",
-
-    # dir for oem_auth_config.h and oem_auth_result_storage.h
     "//vendor/kitframework/include/",
   ]
 
@@ -36,8 +34,6 @@ executable("ActsKitFwkApiTest") {
     "//test/xts/tools/lite/hcpptest:hcpptest_main",
     "//third_party/bounds_checking_function:libsec_shared",
     "//third_party/mbedtls:mbedtls_shared",
-
-    # dir for oem_auth_config.a and oem_auth_result_storage.a
     "//vendor/ingenic/smartpen/adapter/kitframework:oem_auth_config",
     "//vendor/ingenic/smartpen/adapter/kitframework:oem_auth_result_storage",
   ]
