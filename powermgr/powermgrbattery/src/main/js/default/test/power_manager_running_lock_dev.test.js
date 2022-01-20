@@ -32,3 +32,4 @@ describe('appInfoTest', function () {
         console.info('power_shutdown_device_test success');
     })
 })
+})
