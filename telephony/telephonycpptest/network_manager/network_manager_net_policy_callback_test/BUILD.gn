@@ -1,0 +1,120 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+import("//build/test.gni")
+import("//test/xts/tools/build/suite.gni")
+import("//drivers/adapter/uhdf2/uhdf.gni")
+import("//foundation/communication/netmanager_base/netmanager_base_config.gni")
+
+
+ohos_moduletest_suite("network_manager_net_policy_callback_test") {
+    install_enable = true
+    sources = [
+        "src/network_manager_net_policy_callback_test.cpp"
+    ]
+
+    include_dirs = [
+        "//test/xts/acts/telephony/telephonycpptest/network_manager/include",
+        "$INNERKITS_ROOT/native/ethernetmanager/include/ipc",
+        "$INNERKITS_ROOT/native/ethernetmanager/include",
+        "$INNERKITS_ROOT/native/netconnmanager/include",
+
+        "$NETPOLICYMANAGER_SOURCE_DIR/include",
+        "$INNERKITS_ROOT/native/netconnclient/include",
+        "$INNERKITS_ROOT/native/netconnclient/include/proxy",
+        "$INNERKITS_ROOT/native/netpolicyclient/include",
+        "$INNERKITS_ROOT/native/netpolicyclient/include/proxy",
+
+        "$NETPOLICYMANAGER_SOURCE_DIR/include/ipc",
+         "$NETPOLICYMANAGER_SOURCE_DIR/include/stub",
+          "$NETPOLICYMANAGER_SOURCE_DIR/include/net_policy_controller",
+
+        "//foundation/aafwk/standard/frameworks/kits/ability/native/include",
+        "$INNERKITS_ROOT/native/dnsresolvermanager/include",
+        "$INNERKITS_ROOT/native/dnsresolvermanager/include/ipc",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/include",
+        "//foundation/communication/netmanager_base/services/dnsresolvermanager/include/ipc",
+        "//foundation/communication/netmanager_base/services/dnsresolvermanager/include",
+        "//foundation/communication/netmanager_base/services/common/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/dnsresolvermanager/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netpolicymanager/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/ethernetmanager/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/ethernetmanager/include",
+       "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include/proxy" ,
+       "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include" ,
+         
+        "//test//xts//acts//telephony//telephonycpptest//utils",
+        "//foundation/communication/netmanager_base/services/dnsresolverclient/include/ipc",
+        "//foundation/communication/netmanager_base/services/dnsresolverclient/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/dnsresolverclient/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netpolicyclient/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/ethernetclient/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include/proxy",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include/",
+        "//foundation/communication/netmanager_base/services/netpolicymanager/include",
+
+      "$INNERKITS_ROOT/native/netstatsclient/include",
+      "$NETCONNMANAGER_COMMON_DIR/include",
+      "$NETSTATSMANAGER_INNERKITS_SOURCE_DIR/include",
+      "$NETSTATSMANAGER_SOURCE_DIR/include",
+       "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy/include",
+    ]
+
+   deps = [
+        "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
+        "$INNERKITS_ROOT/ethernetclient:ethernet_manager_if",
+        "$INNERKITS_ROOT/netconnclient:net_conn_manager_if",
+        "$INNERKITS_ROOT/dnsresolverclient:dns_resolver_manager_if",
+        "$INNERKITS_ROOT/netstatsclient:net_stats_manager_if",
+        "//third_party/googletest:gtest_main",
+
+        "$NETPOLICYMANAGER_SOURCE_DIR:net_policy_manager",
+        "//utils/native/base:utils",
+        "$INNERKITS_ROOT/netpolicyclient:net_policy_manager_if",
+        "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
+        "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog",
+
+        "$INNERKITS_ROOT/netpolicyclient:net_policy_manager_if",
+        "$INNERKITS_ROOT/ethernetclient:ethernet_manager_if",
+
+        "$NETSTATSMANAGER_SOURCE_DIR:net_stats_manager",
+        "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog",
+        "//utils/native/base:utils"
+    ]
+
+    external_deps = [
+        "safwk:system_ability_fwk",
+        "ipc:ipc_core",
+
+       "appexecfwk_standard:libeventhandler",
+       "samgr_standard:samgr_proxy",
+       "ipc:ipc_core",
+       "aafwk_standard:want",
+       "ces_standard:cesfwk_innerkits",
+    ]
+
+  defines = [
+        "TAG = \"network_manager_net_policy_callback_test\"",
+        "LOG_DOMAIN = 0xD002B01",
+    ]
+
+  if (is_standard_system) {
+    external_deps += [ "hiviewdfx_hilog_native:libhilog" ]
+  } else {
+    external_deps += [ "hilog:libhilog" ]
+  }
+  part_name = "telephonycpptest"
+
+  subsystem_name = "telephony"
+}
