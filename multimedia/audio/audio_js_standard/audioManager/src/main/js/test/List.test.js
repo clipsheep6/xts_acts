@@ -15,3 +15,4 @@
 
 
 require('./AudioFramework.test.js')
+require('./AudioPerf.test.js')
