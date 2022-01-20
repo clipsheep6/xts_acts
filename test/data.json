@@ -1,0 +1,14 @@
+{
+  "suites":[
+    {
+      "describe":"userauthTest",
+      "stress": 1,
+      "params": [],
+      "items":[{
+        "it":"testfunctionstability101",
+        "stress": 1,
+        "params":[]
+      }]
+    }
+  ]
+}
