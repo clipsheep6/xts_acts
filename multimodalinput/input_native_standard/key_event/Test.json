@@ -1,8 +1,8 @@
 {
-    "description": "Config for KeyEventTest",
+    "description": "Config for key_event_test",
     "driver": {
         "type": "CppTest",
-        "module-name": "KeyEventTest",
+        "module-name": "key_event_test",
         "native-test-timeout": "2000000",
         "native-test-device-path": "/data/local/tmp/mmi_test",
         "runtime-hint": "1s",
@@ -17,12 +17,12 @@
                 "mkdir -p /data/local/tmp/mmi_test/json"
             ],
             "push": [
-                "KeyEventTest -> /data/local/tmp/mmi_test/KeyEventTest",
+                "key_event_test -> /data/local/tmp/mmi_test/key_event_test",
                 "json/keyboard_key_a_click.json -> /data/local/tmp/mmi_test/json/keyboard_key_a_click.json",
                 "json/keyboard_key_ctrl_left_click.json -> /data/local/tmp/mmi_test/json/keyboard_key_ctrl_left_click.json"
             ],
             "post-push": [
-                "chmod 777 /data/local/tmp/mmi_test/KeyEventTest"
+                "chmod 777 /data/local/tmp/mmi_test/key_event_test"
             ],
         },
         {
