@@ -1,13 +1,13 @@
 {
     "description": "Config for KeyEventTest",
-	"driver": {
+    "driver": {
         "type": "CppTest",
-		"module-name": "KeyEventTest",
-		"native-test-timeout": "2000000",
-        "native-test-device-path": "/data/local/tmp/mmi_test"
+        "module-name": "KeyEventTest",
+        "native-test-timeout": "2000000",
+        "native-test-device-path": "/data/local/tmp/mmi_test",
         "runtime-hint": "1s",
-        "shell-timeout": "2000000"
-        "test-timeout": "2000000",
+        "shell-timeout": "2000000",
+        "test-timeout": "2000000"
     },
     "kits": [
         {
@@ -18,8 +18,8 @@
             ],
             "push": [
                 "KeyEventTest -> /data/local/tmp/mmi_test/KeyEventTest",
-				"json/keyboard_KEY_A_click.json -> /data/local/tmp/mmi_test/json/keyboard_KEY_A_click.json",
-				"json/keyboard_KEY_A_click2.json -> /data/local/tmp/mmi_test/json/keyboard_KEY_A_click2.json"
+                "json/keyboard_key_a_click.json -> /data/local/tmp/mmi_test/json/keyboard_key_a_click.json",
+                "json/keyboard_key_ctrl_left_click.json -> /data/local/tmp/mmi_test/json/keyboard_key_ctrl_left_click.json"
             ],
             "post-push": [
                 "chmod 777 /data/local/tmp/mmi_test/KeyEventTest"
@@ -30,8 +30,8 @@
             "run-command": [
                 "hosmmi-virtual-device-manager start all &"
             ],
-            "teardown-command":[
-			    "hosmmi-virtual-device-manager close all"
+            "teardown-command": [
+                "hosmmi-virtual-device-manager close all"
             ]
         }
     ]

@@ -13,26 +13,23 @@
 
 import("//build/ohos.gni")
 import("//build/test.gni")
-import("//test/xts/tools/build/suite.gni")
 import("//foundation/multimodalinput/input/multimodalinput_mini.gni")
+import("//test/xts/tools/build/suite.gni")
 module_output_path = "acts/multimodalinput"
 
-
-ohos_copy("KeyEventTest_Copy") {
-   sources = [
-    "src/json/keyboard_KEY_A_click.json",
-    "src/json/keyboard_KEY_A_click2.json",
-    "src/json/keyboard_KEY_A_click3.json",
-	"src/json/keyboard_KEY_B_press.json",
-    "src/json/keyboard_KEY_B_release.json",
-	"src/json/keyboard_KEY_CTRL_LEFT_C.json"
-	]
-   outputs = ["${root_out_dir}/suites/acts/multimodalinput/json/{{sources_file_part}}"]
-   module_source_dir = "${target_out_dir}/build/bin/multimodalinput"
-   module_install_name = ""
+ohos_copy("key_event_test_copy") {
+  sources = [
+    "json/keyboard_key_a_click.json",
+    "json/keyboard_key_ctrl_left_click.json",
+  ]
+  outputs = [
+    "${root_out_dir}/suites/acts/testcases/json/{{source_file_part}}",
+  ]
+  module_source_dir = "${target_out_dir}/build/bin/multimodalinput"
+  module_install_name = ""
 }
 
-config("libmmi_client_config") {
+config("key_event_test_config") {
   visibility = [ ":*" ]
   include_dirs = [
     "//foundation/multimodalinput/input/frameworks/proxy/event_handle/include",
@@ -45,10 +42,7 @@ config("libmmi_client_config") {
   ]
 }
 
-
-
-
-ohos_moduletest_suite("KeyEventTest") {
+ohos_moduletest_suite("key_event_test") {
   module_out_path = module_output_path
   include_dirs = [
     "//utils/native/base/include",
@@ -74,10 +68,7 @@ ohos_moduletest_suite("KeyEventTest") {
     include_dirs += [ "$root_out_dir/diff_libinput_mmi/src" ]
   }
 
-  cflags = [
-    "-DOHOS_BUILD",
-    "-DOHOS_AUTO_TEST_FRAME",
-  ]
+  cflags = [ "-DOHOS_BUILD" ]
 
   if (is_mmi_have_debug) {
     cflags += [ "-DOHOS_BUILD_MMI_DEBUG" ]
@@ -95,23 +86,23 @@ ohos_moduletest_suite("KeyEventTest") {
     cflags += [ "-DOHOS_BUILD_AI" ]
   }
 
-  sources = [ "./simple/key_event_test.cpp" ]
+  sources = [ "simple/key_event_test.cpp" ]
 
   deps = [
     "${mmi_path}/frameworks/proxy:libmmi-client",
     "${mmi_path}/frameworks/util:libmmi-util",
     "//foundation/communication/ipc/interfaces/innerkits/ipc_core:ipc_core",
-    "//third_party/googletest:gmock_main",
+    "//test/xts/acts/multimodalinput/input_standard/lib:mmi_xts_lib",
     "//third_party/googletest:gtest_main",
   ]
   external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
 }
 
-group("KeyEvent") {
+group("key_event") {
   testonly = true
   deps = []
   deps += [
-    ":KeyEventTest",
-	":KeyEventTest_Copy"
+    ":key_event_test",
+    ":key_event_test_copy",
   ]
 }
