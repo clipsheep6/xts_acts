@@ -11,22 +11,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/ohos_var.gni")
 import("//build/ohos.gni")
-import("//build/test.gni")
 import("//foundation/multimodalinput/input/multimodalinput_mini.gni")
 
-config("system_test_config") {
-  include_dirs = []
-  configs = []
+mmi_xts_input_xts_lib_path="//test/xts/acts/multimodalinput/input_standard/lib"
+
+config("mmi_xts_lib_public_config") {
+  include_dirs = [
+    "${mmi_xts_input_xts_lib_path}/include",
+  ]
 }
 
-group("multimodalinput") {
-  testonly = true
-  if (is_standard_system) {
-    deps = [
-    	"input_js_standard:multimodalinput_js_test",
-    	"input_standard/key_event:KeyEvent",
-    ]
-  }
+config("mmi_xts_lib_config") {
+  include_dirs = [
+    "${mmi_xts_input_xts_lib_path}/include",
+  ]
 }
+
+ohos_source_set("mmi_xts_lib") {
+  sources = [
+    "${mmi_xts_input_xts_lib_path}/src/tools.cpp",
+  ]
+
+  public_configs = [ ":mmi_xts_lib_public_config" ]
+
+  configs = [ ":mmi_xts_lib_config" ]
+
+  external_deps = [
+    "hiviewdfx_hilog_native:libhilog",
+  ]
+}
+
