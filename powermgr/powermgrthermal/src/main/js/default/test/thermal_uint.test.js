@@ -37,6 +37,7 @@ describe('appInfoTest', function () {
 })
 
 function test1() {
+
     /* @tc.number thermal_manager_js_001
      * @tc.name Thermal_001
      * @tc.desc Thermal acquisition kit
@@ -56,6 +57,7 @@ function test1() {
 }
 
 function test2() {
+
     /* @tc.number thermal_manager_js_002
      * @tc.name Thermal_002
      * @tc.desc Thermal acquisition kit
@@ -74,6 +76,7 @@ function test2() {
 }
 
 function test3() {
+
     /* @tc.number thermal_manager_js_003
      * @tc.name Thermal_003
      * @tc.desc Thermal acquisition kit
@@ -92,6 +95,7 @@ function test3() {
 }
 
 function test4() {
+
     /* @tc.number thermal_manager_js_004
      * @tc.name Thermal_004
      * @tc.desc Thermal acquisition kit
@@ -110,6 +114,7 @@ function test4() {
 }
 
 function test5() {
+
     /* @tc.number thermal_manager_js_005
      * @tc.name Thermal_005
      * @tc.desc Thermal acquisition kit
@@ -128,6 +133,7 @@ function test5() {
 }
 
 function test6() {
+
     /* @tc.number thermal_manager_js_006
      * @tc.name Thermal_006
      * @tc.desc Thermal acquisition kit
@@ -146,6 +152,7 @@ function test6() {
 }
 
 function test7() {
+
     /* @tc.number thermal_manager_js_007
      * @tc.name Thermal_007
      * @tc.desc Thermal acquisition kit
@@ -167,6 +174,7 @@ function test7() {
 }
 
 function test8() {
+
     /* @tc.number thermal_manager_js_008
      * @tc.name Thermal_008
      * @tc.desc Thermal acquisition kit
@@ -187,6 +195,7 @@ function test8() {
 }
 
 function test9() {
+
     /* @tc.number thermal_manager_js_009
      * @tc.name Thermal_009
      * @tc.desc Thermal acquisition kit
@@ -208,6 +217,7 @@ function test9() {
 }
 
 function test10() {
+
     /* @tc.number thermal_manager_js_010
      * @tc.name Thermal_010
      * @tc.desc Thermal acquisition kit
@@ -228,6 +238,7 @@ function test10() {
 }
 
 function test11() {
+
     /* @tc.number thermal_manager_js_011
      * @tc.name Thermal_011
      * @tc.desc Thermal acquisition kit
@@ -248,6 +259,7 @@ function test11() {
 }
 
 function test12() {
+
     /* @tc.number thermal_manager_js_012
      * @tc.name Thermal_012
      * @tc.desc Thermal acquisition kit
@@ -268,6 +280,7 @@ function test12() {
 }
 
 function test13() {
+
     /* @tc.number thermal_manager_js_013
      * @tc.name Thermal_013
      * @tc.desc Thermal acquisition kit

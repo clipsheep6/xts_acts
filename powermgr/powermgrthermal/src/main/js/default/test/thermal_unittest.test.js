@@ -26,6 +26,7 @@ describe('appInfoTest', function () {
 })
 
 function test14() {
+
     /* @tc.number thermal_manager_js_014
      * @tc.name Thermal_014
      * @tc.desc Thermal acquisition kit
@@ -45,6 +46,7 @@ function test14() {
 }
 
 function test15() {
+
     /* @tc.number thermal_manager_js_015
      * @tc.name Thermal_015
      * @tc.desc Thermal acquisition kit
