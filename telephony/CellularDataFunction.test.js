@@ -17,7 +17,6 @@ import cellular from "@ohos.telephony.data";
 import { describe, it, expect } from "deccjsunit/index";
 
 describe("TelephonyCellularDataFunction", function () {
-
     const ERR_SLOT_ID = 3;
 
     /*
@@ -134,7 +133,6 @@ describe("TelephonyCellularDataFunction", function () {
         })
     })
 
-
     /*
      * @tc.number   Telephony_CellularData_getCellularDataFlowType_Async_0100
      * @tc.name     When cellular data is turned on, call getCellularDataFlowType() to get the data stream type and
@@ -142,7 +140,6 @@ describe("TelephonyCellularDataFunction", function () {
      * @tc.desc     Function test
      */
     it("Telephony_CellularData_getCellularDataFlowType_Async_0100", 0, async function (done) {
-
         cellular.getCellularDataFlowType((err, data) => {
             if (err) {
                 expect().assertFail();
@@ -206,13 +203,10 @@ describe("TelephonyCellularDataFunction", function () {
                 done();
                 return;
             }
-            console.log(
-                "Telephony_CellularData_setDefaultCellularDataSlotId_Async_0500 finish"
-                );
+            console.log("Telephony_CellularData_setDefaultCellularDataSlotId_Async_0500 finish");
             done();
         })
     })
-
 
     /*
      * @tc.number   Telephony_CellularData_isCellularDataEnabled_Promise_0100
@@ -229,8 +223,7 @@ describe("TelephonyCellularDataFunction", function () {
             expect().assertFail();
             console.log("Telephony_CellularData_isCellularDataEnabled_Promise_0100 fail");
             done();
-            return;
-          }
+        }
     })
 
     /*
@@ -248,8 +241,7 @@ describe("TelephonyCellularDataFunction", function () {
             expect().assertFail();
             console.log("Telephony_CellularData_getCellularDataState_Promise_0100 fail");
             done();
-            return;
-          }
+        }
     })
 
     /*
@@ -266,8 +258,7 @@ describe("TelephonyCellularDataFunction", function () {
             expect().assertFail();
             console.log("Telephony_CellularData_enableCellularData_Promise_0100 fail");
             done();
-            return;
-          }
+        }
     })
 
     /*
@@ -284,8 +275,7 @@ describe("TelephonyCellularDataFunction", function () {
             expect().assertFail();
             console.log("Telephony_CellularData_disableCellularData_Promise_0100 fail");
             done();
-            return;
-          }
+        }
     })
 
     /*
@@ -303,8 +293,7 @@ describe("TelephonyCellularDataFunction", function () {
         } catch (err) {
             console.log("Telephony_CellularData_enableCellularDataRoaming_Promise_0300 finish");
             done();
-            return;
-          }
+        }
     })
 
     /*
@@ -322,10 +311,8 @@ describe("TelephonyCellularDataFunction", function () {
         } catch (err) {
             console.log("Telephony_CellularData_disableCellularDataRoaming_Promise_0300 finish");
             done();
-            return;
-          }
+        }
     })
-
 
     /*
      * @tc.number   Telephony_CellularData_getCellularDataFlowType_Promise_0100
@@ -342,8 +329,7 @@ describe("TelephonyCellularDataFunction", function () {
             expect().assertFail();
             console.log("Telephony_CellularData_getCellularDataFlowType_Promise_0100 fail");
             done();
-            return;
-          }
+        }
     })
 
     /*
@@ -361,8 +347,7 @@ describe("TelephonyCellularDataFunction", function () {
         } catch (err) {
             console.log("Telephony_CellularData_isCellularDataRoamingEnabled_Promise_0200 finish");
             done();
-            return;
-          }
+        }
     })
 
     /*
@@ -380,8 +365,7 @@ describe("TelephonyCellularDataFunction", function () {
         } catch (err) {
             console.log("Telephony_CellularData_setDefaultCellularDataSlotId_Promise_0500 finish");
             done();
-            return;
-          }
+        }
     })
 
     /*
@@ -398,7 +382,6 @@ describe("TelephonyCellularDataFunction", function () {
             expect().assertFail();
             console.log("Telephony_CellularData_getDefaultCellularDataSlotId_Promise_0500 fail");
             done();
-            return;
-          }
+        }
     })
 })

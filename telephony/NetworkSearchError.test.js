@@ -16,7 +16,7 @@
 import radio from '@ohos.telephony.radio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
-describe('NetworkSearchRadioTest', function () {
+describe('ActsNetworkSearchTest', function () {
 
     const SLOT_0 = 0;
     const SLOT_2 = -1;
@@ -727,7 +727,6 @@ describe('NetworkSearchRadioTest', function () {
         } catch (err) {
             console.log(`Telephony_NetworkSearch_turnOnRadio_Promise_0200 fail ${err}`);
             done();
-            return;
         }
     });
 
@@ -761,7 +760,6 @@ describe('NetworkSearchRadioTest', function () {
         } catch (err) {
             console.log(`Telephony_NetworkSearch_turnOffRadio_Promise_0200 fail ${err}`);
             done();
-            return;
         }
     });
 
@@ -795,7 +793,6 @@ describe('NetworkSearchRadioTest', function () {
         } catch (err) {
             console.log(`Telephony_NetworkSearch_isRadioOn_Promise_0200 fail ${err}`);
             done();
-            return;
         }
     });
 
