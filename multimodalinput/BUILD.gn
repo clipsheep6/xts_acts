@@ -16,6 +16,11 @@ import("//build/ohos_var.gni")
 group("multimodalinput") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "input_js_standard:multimodalinput_js_test" ]
+    deps = [
+      "input_js_standard:multimodalinput_js_test",
+      "input_native_standard/key_event:KeyEvent",
+      "input_native_standard/pointer_event:PointerEvent",
+      "input_native_standard/input_event:InputEvent",
+    ]
   }
 }
