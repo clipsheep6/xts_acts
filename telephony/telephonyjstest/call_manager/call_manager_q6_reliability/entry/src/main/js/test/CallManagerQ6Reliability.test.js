@@ -288,7 +288,7 @@ describe('CallManagementReliablePerformance', function () {
         let flag = true;
         for (let i = 0;i < TEST_RELY_NUMBER;i++) {
             try {
-                await testFunc(DEFAULT_SLOT_ID, i / 2 === 0 ? true : false);
+                await testFunc(DEFAULT_SLOT_ID, i / 2 === 0 ? false : true);
             } catch (error) {
                 flag = flag && false;
                 expect().assertFail();
@@ -310,7 +310,7 @@ describe('CallManagementReliablePerformance', function () {
         let flag = true;
         for (let i = 0;i < TEST_RELY_NUMBER;i++) {
             try {
-                await call.setCallWaiting(DEFAULT_SLOT_ID, i / 2 === 0 ? true : false);
+                await call.setCallWaiting(DEFAULT_SLOT_ID, i / 2 === 0 ? false : true);
             } catch (error) {
                 expect().assertFail();
                 console.log(`${caseName} error,error:${toString(error)}`);
@@ -444,7 +444,7 @@ describe('CallManagementReliablePerformance', function () {
             caseName: caseName,
             target: call,
             compareFunc: function (error, data) {
-                return data && data.status === RESTRICTION_DISABLE;
+                return data === RESTRICTION_DISABLE;
             },
             runedFunc:function (flag) {
                 expect(flag).assertTrue();
@@ -472,7 +472,7 @@ describe('CallManagementReliablePerformance', function () {
             caseName: caseName,
             target: call,
             compareFunc: function (error, data) {
-                return data && data.status === RESTRICTION_DISABLE;
+                return data === RESTRICTION_DISABLE;
             },
             runedFunc:function (flag) {
                 expect(flag).assertTrue();

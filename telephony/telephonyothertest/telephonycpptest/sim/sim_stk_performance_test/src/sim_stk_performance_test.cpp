@@ -24,14 +24,14 @@ using namespace OHOS;
 using namespace OHOS::Telephony;
 
 const int32_t SimTest::VAILD_SLOT_ID = 0;
-const int32_t SimTest::LOOP_NUMBER = 1000;
+const int32_t SimTest::LOOP_NUMBER = 10;
 const int32_t SimTest::TIME_USEC = 1000;
 const std::string SimTest::RESPONSE_CMD = "81030125000202828";
 const std::string SimTest::STK_CMD = "D30781020181900101";
 
 /**
  * @tc.number   Telephony_Sim_SendTerminalResponseCmd_0500
- * @tc.name     Test the SendTerminalResponseCmd interface query function 1000 times
+ * @tc.name     Test the SendTerminalResponseCmd interface query function 10 times
  *              and expect an average delay of less than 1000us.
  * @tc.desc     Function test
  */
@@ -49,7 +49,7 @@ HWTEST_F(SimStkTest, Telephony_Sim_SendTerminalResponseCmd_0500, Function | Medi
 
 /**
  * @tc.number   Telephony_Sim_SendEnvelopeCmd_0500
- * @tc.name     Test the SendEnvelopeCmd interface query function 1000 times
+ * @tc.name     Test the SendEnvelopeCmd interface query function 10 times
  *              and expect an average delay of less than 1000us.
  * @tc.desc     Function test
  */

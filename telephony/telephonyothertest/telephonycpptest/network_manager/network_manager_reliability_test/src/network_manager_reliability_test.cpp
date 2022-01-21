@@ -51,6 +51,8 @@
 #include "net_link_info.h"
 #include "time_count_helper.h"
 #include "network_manager_getallnets_test.h"
+#include "network_manager_register_netconn_callback_test.h"
+#include "test_net_conn_callback.h"
 
 using namespace OHOS;
 using namespace OHOS::NetManagerStandard;
@@ -426,7 +428,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetAllNets_0300, Performance | Me
 
     int count;
     std::list<sptr<NetHandle>> netIdList;
-    for (count = 0; count < TEST_COUNT_1000; count++) {
+    for (count = 0; count < TEST_COUNTS_1000; count++) {
         int32_t result = DelayedSingleton<NetConnClient>::GetInstance()->GetAllNets(netIdList);
         ASSERT_EQ(result, NET_CONN_SUCCESS);
         ASSERT_NE(SIZE_ZERO, netIdList.size());
@@ -453,7 +455,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetConnectionProperties_0300, Per
     int count;
     NetLinkInfo info;
     int32_t result;
-    for (count = 0; count < TEST_COUNT_1000; count++) {
+    for (count = 0; count < TEST_COUNTS_1000; count++) {
         if(!netIdList.empty()){
             result = DelayedSingleton<NetConnClient>::GetInstance()->GetConnectionProperties(*(netIdList.front()), info);
         }
@@ -482,7 +484,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetNetCapabilities_0300, Performa
     int count;
     NetAllCapabilities cap;
     int32_t result;
-    for (count = 0; count < TEST_COUNT_1000; count++) {
+    for (count = 0; count < TEST_COUNTS_1000; count++) {
         if(!netIdList.empty()){
             result = DelayedSingleton<NetConnClient>::GetInstance()->GetNetCapabilities(*(netIdList.front()), cap);
         }

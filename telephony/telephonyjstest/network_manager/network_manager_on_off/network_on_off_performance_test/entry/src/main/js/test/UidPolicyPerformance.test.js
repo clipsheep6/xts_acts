@@ -22,7 +22,7 @@ describe('NetworkManagerUidPolicyPerformanceTest', function() {
 
     /**
      * @tc.number  Telephony_NetworkManager_on_Async_1300
-     * @tc.name    APP calls on()1000 times, and the output delay is less than 1000000us
+     * @tc.name    APP calls on()1000 times, and the output delay is less than 1000μs
      * @tc.desc    Performance test
      */
     it('Telephony_NetworkManager_on_Async_1300', 0, async function(done) {
@@ -46,14 +46,13 @@ describe('NetworkManagerUidPolicyPerformanceTest', function() {
             times++;
             console.log(`${caseName} data: ${times}`);
             recursive(n - 1);
-
         }
         recursive(TEST_RUN_TIME);
     })
 
     /**
      * @tc.number  Telephony_NetworkManager_off_Async_0400
-     * @tc.name    APP calls off()1000 times, and the output delay is less than 1000000us
+     * @tc.name    APP calls off()1000 times, and the output delay is less than 1000μs
      * @tc.desc    Performance test
      */
     it('Telephony_NetworkManager_off_Async_0400', 0, async function(done) {
@@ -77,7 +76,6 @@ describe('NetworkManagerUidPolicyPerformanceTest', function() {
             times++;
             console.log(`${caseName} data: ${times}`);
             recursive(n - 1);
-
         }
         recursive(TEST_RUN_TIME);
     })

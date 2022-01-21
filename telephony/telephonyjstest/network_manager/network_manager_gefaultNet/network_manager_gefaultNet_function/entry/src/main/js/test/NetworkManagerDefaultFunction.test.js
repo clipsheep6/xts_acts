@@ -34,7 +34,6 @@ describe('NetworkManagerGetSpecifiNetFunction.test', function () {
             console.log(`${caseName}` + "getDefaultNet promiss error = " + error);
             expect().assertFail();
             done();
-            return;
         });
     });
 
@@ -50,7 +49,6 @@ describe('NetworkManagerGetSpecifiNetFunction.test', function () {
                 console.log(`${caseName}` + "getDefaultNet callback error = " + error);
                 expect().assertFail();
                 done();
-                return;
             } else {
                 console.log(`${caseName}` + "getDefaultNet callback = " + data.netId);
                 expect(data.netId).assertEqual(DEFAULT_NET_ID);
@@ -75,7 +73,6 @@ describe('NetworkManagerGetSpecifiNetFunction.test', function () {
             console.log(`${caseName} get fail: ${error}`);
             expect().assertFail();
             done();
-            return;
         });
     });
 
@@ -91,7 +88,6 @@ describe('NetworkManagerGetSpecifiNetFunction.test', function () {
                 console.log(`${caseName}` + "hasDefaultNet callback error = " + error);
                 expect().assertFail();
                 done();
-                return;
             } else {
                 console.log(`${caseName}` + "hasDefaultNet callback value = " + value);
                 expect(value).assertTrue();

@@ -27,7 +27,7 @@ describe('SimGetSimSpnFunctionTest', function () {
    */
   it('Telephony_Sim_GetSimSpn_Async_0500', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimSpn_Async_0500';
-    sim.getSimSpn(env.SLOTID0, (error, spn) => {
+    sim.getSimSpn(env.DEFAULT_SLOTID, (error, spn) => {
       if (error) {
         console.log(`${CASE_NAME} getSimSpn error: ${error.message}`);
         expect().assertFail();
@@ -64,12 +64,12 @@ describe('SimGetSimSpnFunctionTest', function () {
   /**
    * @tc.number  Telephony_Sim_GetSimSpn_Async_0700
    * @tc.name    CDMA file, GetSimSpn async callback interface slotId
-   *             exception enters parameter 1 test
+   *             exception enters parameter 3 test
    * @tc.desc    Function test
    */
   it('Telephony_Sim_GetSimSpn_Async_0700', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimSpn_Async_0700';
-    sim.getSimSpn(env.SLOTID1, error => {
+    sim.getSimSpn(env.SLOTID3, error => {
       if (error) {
         console.log(`${CASE_NAME} getSimSpn expect error: ${error.message}`);
         console.log(`${CASE_NAME} test finish.`);
@@ -112,7 +112,7 @@ describe('SimGetSimSpnFunctionTest', function () {
   it('Telephony_Sim_GetSimSpn_Promise_0500', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimSpn_Promise_0500';
     try {
-      const spn = await sim.getSimSpn(env.SLOTID0);
+      const spn = await sim.getSimSpn(env.DEFAULT_SLOTID);
       expect(spn === env.CDMA_SPN).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -144,13 +144,13 @@ describe('SimGetSimSpnFunctionTest', function () {
   /**
    * @tc.number  Telephony_Sim_GetSimSpn_Promise_0700
    * @tc.name    CDMA file, GetSimSpn promise interface slotId
-   *             exception enters parameter 1 test
+   *             exception enters parameter 3 test
    * @tc.desc    Function test
    */
   it('Telephony_Sim_GetSimSpn_Promise_0700', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimSpn_Promise_0700';
     try {
-      await sim.getSimSpn(env.SLOTID1);
+      await sim.getSimSpn(env.SLOTID3);
       expect().assertFail();
       console.log(`${CASE_NAME} test fail.`);
     } catch (error) {

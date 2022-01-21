@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import call from '@ohos.telephony.calltest';
+import call from '@ohos.telephony.call';
 import {toString} from './ApiToPromise.js';
 export function scenceTransferCalling (caseName, settingType, type, phoneNumber) {
     return new Promise((resolve, reject) => {
         call.setCallTransfer(0, {
             settingType,
             type,
-            phoneNumber,
+            transferNum:phoneNumber,
         })
             .then(data => {
                 console.log(`${caseName} scenceTransferCalling success,data:${toString(data)}`);

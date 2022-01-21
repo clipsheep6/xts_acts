@@ -41,16 +41,16 @@ ohos_moduletest_suite("NetworkManagerDetectionTest") {
         "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard/interfaces",
         "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard/include",
         "//test/xts/acts/telephony/telephonycpptest/utils",
+        "//foundation/communication/netmanager_base/services/netconnmanager/include",
     ]
 
    deps = [
         "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
-        "$INNERKITS_ROOT/ethernetclient:ethernet_manager_if",
         "$INNERKITS_ROOT/netconnclient:net_conn_manager_if",
         "$NETDCONTROLLER_ROOT_DIR:netd_controller",
         "//third_party/googletest:gtest_main",
         "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
-        "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard:wifi_sdk", 
+        "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard:wifi_sdk",
         "//utils/native/base:utils",
         "//third_party/jsoncpp:jsoncpp",
     ]

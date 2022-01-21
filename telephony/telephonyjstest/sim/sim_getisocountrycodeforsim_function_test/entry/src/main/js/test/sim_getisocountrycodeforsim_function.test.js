@@ -27,7 +27,7 @@ describe('SimGetISOCountryCodeForSimFunctionTest', function () {
    */
   it('Telephony_Sim_GetISOCountryCodeForSim_Async_0500', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetISOCountryCodeForSim_Async_0500';
-    sim.getISOCountryCodeForSim(env.SLOTID0, (error, ISOCountryCode) => {
+    sim.getISOCountryCodeForSim(env.DEFAULT_SLOTID, (error, ISOCountryCode) => {
       if (error) {
         console.log(`${CASE_NAME} getISOCountryCodeForSim error: ${error.message}`);
         expect().assertFail();
@@ -64,12 +64,12 @@ describe('SimGetISOCountryCodeForSimFunctionTest', function () {
   /**
    * @tc.number  Telephony_Sim_GetISOCountryCodeForSim_Async_0700
    * @tc.name    CDMA file, GetISOCountryCodeForSim async callback interface slotId
-   *             exception enters parameter 1 test
+   *             exception enters parameter 3 test
    * @tc.desc    Function test
    */
   it('Telephony_Sim_GetISOCountryCodeForSim_Async_0700', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetISOCountryCodeForSim_Async_0700';
-    sim.getISOCountryCodeForSim(env.SLOTID1, error => {
+    sim.getISOCountryCodeForSim(env.SLOTID3, error => {
       if (error) {
         console.log(`${CASE_NAME} getISOCountryCodeForSim expect error: ${error.message}`);
         console.log(`${CASE_NAME} test finish.`);
@@ -112,7 +112,7 @@ describe('SimGetISOCountryCodeForSimFunctionTest', function () {
   it('Telephony_Sim_GetISOCountryCodeForSim_Promise_0500', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetISOCountryCodeForSim_Promise_0500';
     try {
-      const ISOCountryCode = await sim.getISOCountryCodeForSim(env.SLOTID0);
+      const ISOCountryCode = await sim.getISOCountryCodeForSim(env.DEFAULT_SLOTID);
       expect(ISOCountryCode === env.ISO_COUNTRY_CODE).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -144,13 +144,13 @@ describe('SimGetISOCountryCodeForSimFunctionTest', function () {
   /**
    * @tc.number  Telephony_Sim_GetISOCountryCodeForSim_Promise_0700
    * @tc.name    CDMA file, GetISOCountryCodeForSim promise interface slotId
-   *             exception enters parameter 1 test
+   *             exception enters parameter 3 test
    * @tc.desc    Function test
    */
   it('Telephony_Sim_GetISOCountryCodeForSim_Promise_0700', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetISOCountryCodeForSim_Promise_0700';
     try {
-      await sim.getISOCountryCodeForSim(env.SLOTID1);
+      await sim.getISOCountryCodeForSim(env.SLOTID3);
       expect().assertFail();
       console.log(`${CASE_NAME} test fail.`);
     } catch (error) {

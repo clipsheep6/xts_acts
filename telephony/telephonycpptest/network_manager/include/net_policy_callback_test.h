@@ -60,11 +60,6 @@ int32_t NetPolicyCallbackTest::NetCellularPolicyChanged(const std::vector<NetPol
         std::cout << "NetPolicyCallbackTest::NetCellularPolicyChanged, cellularPolicys empty." << std::endl;
         return -1;
     }
-
-    for (auto x:cellularPolicys) {
-        std::cout << "NetPolicyCallbackTest::NetCellularPolicyChanged, cellularPolicys subscriberId_." << x.subscriberId_.c_str() << std::endl;
-    }
-
     return 0;
 }
 

@@ -42,13 +42,14 @@ HWTEST_F(CallManagerReliabilityTest, Telephony_CallManager_IMS_HoldCall_0800, Re
         ASSERT_EQ(ret, SUCCESSFUL);
 
         if (HasActiveStatus()) {
-        ret = g_clientPtr->GetPtr()->HoldCall(g_newCallId);
-        EXPECT_EQ(ret, SUCCESSFUL);
-        LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_HOLDING), true, SLEEP_50_MS, SLEEP_12000_MS);
-        int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
-        ASSERT_EQ(hangUpRet, SUCCESSFUL);
-        LOCK_NUM_WHILE_NE(
-            HasState(g_newCallId, TelCallState::CALL_STATUS_DISCONNECTED), true, SLEEP_50_MS, SLEEP_12000_MS);
+            ret = g_clientPtr->GetPtr()->HoldCall(g_newCallId);
+            EXPECT_EQ(ret, SUCCESSFUL);
+            LOCK_NUM_WHILE_NE(
+                HasState(g_newCallId, TelCallState::CALL_STATUS_HOLDING), true, SLEEP_50_MS, SLEEP_12000_MS);
+            int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
+            ASSERT_EQ(hangUpRet, SUCCESSFUL);
+            LOCK_NUM_WHILE_NE(
+                HasState(g_newCallId, TelCallState::CALL_STATUS_DISCONNECTED), true, SLEEP_50_MS, SLEEP_12000_MS);
         } else {
             break;
         }
@@ -71,15 +72,17 @@ HWTEST_F(CallManagerReliabilityTest, Telephony_CallManager_IMS_UnHoldCall_0800, 
         ASSERT_EQ(ret, SUCCESSFUL);
 
         if (HasActiveStatus()) {
-        ret = g_clientPtr->GetPtr()->HoldCall(g_newCallId);
-        EXPECT_EQ(ret, SUCCESSFUL);
-        LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_HOLDING), true, SLEEP_50_MS, SLEEP_12000_MS);
-        EXPECT_EQ(g_clientPtr->GetPtr()->UnHoldCall(g_newCallId), 0);
-        LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE), true, SLEEP_50_MS, SLEEP_12000_MS);
-        int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
-        ASSERT_EQ(hangUpRet, SUCCESSFUL);
-        LOCK_NUM_WHILE_NE(
-            HasState(g_newCallId, TelCallState::CALL_STATUS_DISCONNECTED), true, SLEEP_50_MS, SLEEP_12000_MS);
+            ret = g_clientPtr->GetPtr()->HoldCall(g_newCallId);
+            EXPECT_EQ(ret, SUCCESSFUL);
+            LOCK_NUM_WHILE_NE(
+                HasState(g_newCallId, TelCallState::CALL_STATUS_HOLDING), true, SLEEP_50_MS, SLEEP_12000_MS);
+            EXPECT_EQ(g_clientPtr->GetPtr()->UnHoldCall(g_newCallId), 0);
+            LOCK_NUM_WHILE_NE(
+                HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE), true, SLEEP_50_MS, SLEEP_12000_MS);
+            int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
+            ASSERT_EQ(hangUpRet, SUCCESSFUL);
+            LOCK_NUM_WHILE_NE(
+                HasState(g_newCallId, TelCallState::CALL_STATUS_DISCONNECTED), true, SLEEP_50_MS, SLEEP_12000_MS);
         } else {
             break;
         }
@@ -218,11 +221,11 @@ HWTEST_F(
 /************************************ Test EnableImsSwitch() *****************************************/
 
 /**
- * @tc.number   Telephony_CallManager_IMS_EnableVoLte_0600
+ * @tc.number   Telephony_CallManager_IMS_EnableImsSwitch_0600
  * @tc.name     test EnableImsSwitch() 1000 times
  * @tc.desc     Reliability test
  */
-HWTEST_F(CallManagerReliabilityTest, Telephony_CallManager_IMS_EnableVoLte_0600, Reliability | MediumTest | Level3)
+HWTEST_F(CallManagerReliabilityTest, Telephony_CallManager_IMS_EnableImsSwitch_0600, Reliability | MediumTest | Level3)
 {
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
         int ret = g_clientPtr->GetPtr()->EnableImsSwitch(SLOT_ID);
@@ -233,11 +236,11 @@ HWTEST_F(CallManagerReliabilityTest, Telephony_CallManager_IMS_EnableVoLte_0600,
 /************************************ Test DisableImsSwitch() *****************************************/
 
 /**
- * @tc.number   Telephony_CallManager_IMS_DisableVoLte_0800
+ * @tc.number   Telephony_CallManager_IMS_DisableImsSwitch_0800
  * @tc.name     test DisableImsSwitch() 1000 times
  * @tc.desc     Reliability test
  */
-HWTEST_F(CallManagerReliabilityTest, Telephony_CallManager_IMS_DisableVoLte_0800, Reliability | MediumTest | Level3)
+HWTEST_F(CallManagerReliabilityTest, Telephony_CallManager_IMS_DisableImsSwitch_0800, Reliability | MediumTest | Level3)
 {
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
         int ret = g_clientPtr->GetPtr()->DisableImsSwitch(SLOT_ID);
@@ -248,11 +251,12 @@ HWTEST_F(CallManagerReliabilityTest, Telephony_CallManager_IMS_DisableVoLte_0800
 /************************************ Test IsImsSwitchEnabled() *****************************************/
 
 /**
- * @tc.number   Telephony_CallManager_IMS_IsVoLteEnabled_0700
+ * @tc.number   Telephony_CallManager_IMS_IsImsSwitchEnabled_0700
  * @tc.name     test IsImsSwitchEnabled() 1000 times
  * @tc.desc     Reliability test
  */
-HWTEST_F(CallManagerReliabilityTest, Telephony_CallManager_IMS_IsVoLteEnabled_0700, Reliability | MediumTest | Level3)
+HWTEST_F(
+    CallManagerReliabilityTest, Telephony_CallManager_IMS_IsImsSwitchEnabled_0700, Reliability | MediumTest | Level3)
 {
     for (int i = 0; i < TEST_RUN_TIME_1000; i++) {
         int ret = g_clientPtr->GetPtr()->IsImsSwitchEnabled(SLOT_ID);

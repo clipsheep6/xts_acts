@@ -13,11 +13,14 @@
 //  * limitations under the License.
 //  */
 
+#include "network_manager_detection_test.h"
+
 #include <iostream>
 #include <unistd.h>
 #include <list>
+
 #include <gtest/gtest.h>
-#include "network_manager_detection_test.h"
+
 #include "connect_wifi.h"
 #include "common.h"
 #include "net_specifier.h"
@@ -30,13 +33,10 @@
 #include "i_net_detection_callback.h"
 #include "i_net_conn_service.h"
 
-
-
 namespace OHOS {
 namespace NetManagerStandard {
 using namespace testing::ext;
 using namespace OHOS::Wifi;
-
 
 /*
  * @tc.number  Telephony_NetworkManager_NetDetection_0100
@@ -62,12 +62,11 @@ HWTEST_F(DetectionTest, Telephony_NetworkManager_NetDetection_0100, Function | M
         EXPECT_EQ(result, NET_CONN_SUCCESS);
         std::cout << "TestNetDetection result:" << result << std::endl;
     }
-
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_NetDetection_0200
- * @tc.nameThe netId is "NETID_INVALID", test NetDetection()
+ * @tc.name    The netId is "NETID_INVALID", test NetDetection()
  *             return "NET_CONN_ERR_NETID_NOT_FOUND"
  * @tc.desc    Function test
  */
@@ -78,12 +77,11 @@ HWTEST_F(DetectionTest, Telephony_NetworkManager_NetDetection_0200, Function | M
     int32_t ret = netConnClient->NetDetection(netHandle);
     std::cout << "NetDetection ret:" << ret << std::endl;
     EXPECT_EQ(ret, NET_CONN_ERR_NETID_NOT_FOUND);
-
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_NetDetection_0300
- * @tc.nameThe netId is Registered Listening, test NetDetection()
+ * @tc.name    The netId is Registered Listening, test NetDetection()
  *             return "NET_CONN_SUCCESS", return result the callback
  *             "NET_DETECTION_SUCCESS"
  * @tc.desc    Function test
@@ -122,16 +120,15 @@ HWTEST_F(DetectionTest, Telephony_NetworkManager_NetDetection_0300, Function | M
             }
         }
         EXPECT_EQ(result, NET_CONN_SUCCESS);
-        EXPECT_TRUE(flag);      //callback_result
+        EXPECT_TRUE(flag);      // callback_result
         result = m_netConnService->UnRegisterNetDetectionCallback(netId, detectionCallback);
         std::cout << "TestNetDetection result_UnRe:" << result << std::endl;
-
     }
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_NetDetection_0400
- * @tc.nameThe netId is Unregistered listening, test NetDetection()
+ * @tc.name    The netId is Unregistered listening, test NetDetection()
  *             return "NET_CONN_SUCCESS"
  * @tc.desc    Function test
  */
@@ -225,7 +222,7 @@ HWTEST_F(DetectionTest, Telephony_NetworkManager_NetDetection_0600, Function | M
 
         result = netConnClient->NetDetection(*netHandler);
         EXPECT_EQ(result, NET_CONN_SUCCESS);
-        EXPECT_TRUE(flag);      //callback_result
+        EXPECT_TRUE(flag);      // callback_result
         std::cout << "TestNetDetection result_NetDetection:" << result << std::endl;
         std::cout << "callback_result :" << TestNetDetectionCallback::m_detectionResult << std::endl;
 
@@ -279,13 +276,13 @@ HWTEST_F(DetectionTest, Telephony_NetworkManager_NetDetection_0700, Function | M
                 result = netConnClient->NetDetection(*netHandler);
                 std::cout << "NetDetection result:" << result << std::endl;
             }
-            else{
+            else {
                 flag = true;
                 break;
             }
         }
         EXPECT_EQ(result, NET_CONN_SUCCESS);
-        EXPECT_TRUE(flag);      //callback_result
+        EXPECT_TRUE(flag);      // callback_result
 
         result = m_netConnService->UnRegisterNetDetectionCallback(netId, detectionCallback);
         std::cout << "TestNetDetection result_UnRe:" << result << std::endl;
@@ -293,7 +290,5 @@ HWTEST_F(DetectionTest, Telephony_NetworkManager_NetDetection_0700, Function | M
 
     wifiTest.DisableWifi();
 }
-
-
-}   //NetManagerStandard
-}   //OHOS
+}   // NetManagerStandard
+}   // OHOS

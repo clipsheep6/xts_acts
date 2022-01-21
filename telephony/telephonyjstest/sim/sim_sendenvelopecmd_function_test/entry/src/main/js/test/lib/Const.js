@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-export const SLOTID0 = 0;
-export const SLOTID1 = 1;
+export const DEFAULT_SLOTID = 0;
+export const SLOTID3 = 3;
 export const SLOTID2 = 2;
 export const SLOTID_MINUS1 = -1;
 

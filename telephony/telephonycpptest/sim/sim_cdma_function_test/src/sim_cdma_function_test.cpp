@@ -38,6 +38,10 @@ const unsigned int SimTest::OPERATOR_NUM_LENGTH = 5;
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimIccId_0500, Function | MediumTest | Level2)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetSimIccId(SimTest::VAILD_SLOT_ID);
     const char *temp = nullptr;
     temp = Str16ToStr8(result).c_str();
@@ -54,6 +58,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimIccId_0500, Function | MediumTest | Le
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimIccId_0600, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetSimIccId(SimTest::SLOTID_MINUS);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -65,6 +73,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimIccId_0600, Function | MediumTest | Le
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimIccId_0700, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetSimIccId(SimTest::SLOT_ID_3);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -76,6 +88,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimIccId_0700, Function | MediumTest | Le
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimIccId_0800, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetSimIccId(SimTest::SLOT_ID_2);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -88,6 +104,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimIccId_0800, Function | MediumTest | Le
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetISOCountryCodeForSim_0500, Function | MediumTest | Level2)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::string countryCode = "cn";
     std::u16string result = g_proxy.GetHandler()->GetISOCountryCodeForSim(SimTest::VAILD_SLOT_ID);
     // The country code for mainland China is cn.
@@ -102,6 +122,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetISOCountryCodeForSim_0500, Function | Med
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetISOCountryCodeForSim_0600, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetISOCountryCodeForSim(SimTest::SLOTID_MINUS);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -114,6 +138,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetISOCountryCodeForSim_0600, Function | Med
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetISOCountryCodeForSim_0700, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetISOCountryCodeForSim(SimTest::SLOT_ID_3);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -126,6 +154,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetISOCountryCodeForSim_0700, Function | Med
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetISOCountryCodeForSim_0800, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetISOCountryCodeForSim(SimTest::SLOT_ID_2);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -137,6 +169,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetISOCountryCodeForSim_0800, Function | Med
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimSpn_0500, Function | MediumTest | Level2)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::string retSpn = "中国电信"; // Pile driving data.
     std::u16string result = g_proxy.GetHandler()->GetSimSpn(SimTest::VAILD_SLOT_ID);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), retSpn.c_str());
@@ -149,6 +185,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimSpn_0500, Function | MediumTest | Leve
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimSpn_0600, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetSimSpn(SimTest::SLOTID_MINUS);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -160,6 +200,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimSpn_0600, Function | MediumTest | Leve
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimSpn_0700, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetSimSpn(SimTest::SLOT_ID_3);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -171,6 +215,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimSpn_0700, Function | MediumTest | Leve
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimSpn_0800, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetSimSpn(SimTest::SLOT_ID_2);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -182,6 +230,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimSpn_0800, Function | MediumTest | Leve
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetIMSI_0500, Function | MediumTest | Level2)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetIMSI(SimTest::VAILD_SLOT_ID);
     const char *temp = nullptr;
     temp = Str16ToStr8(result).c_str();
@@ -198,6 +250,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetIMSI_0500, Function | MediumTest | Level2
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetIMSI_0600, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetIMSI(SimTest::SLOTID_MINUS);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -209,6 +265,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetIMSI_0600, Function | MediumTest | Level4
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetIMSI_0700, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetIMSI(SimTest::SLOT_ID_3);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -220,6 +280,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetIMSI_0700, Function | MediumTest | Level4
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetIMSI_0800, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetIMSI(SimTest::SLOT_ID_2);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -232,6 +296,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetIMSI_0800, Function | MediumTest | Level4
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimOperatorNumeric_0500, Function | MediumTest | Level2)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::string operatorNumTopThree = "460";
     std::u16string result = g_proxy.GetHandler()->GetSimOperatorNumeric(SimTest::VAILD_SLOT_ID);
     const char *temp = nullptr;
@@ -252,6 +320,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimOperatorNumeric_0500, Function | Mediu
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimOperatorNumeric_0600, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetSimOperatorNumeric(SimTest::SLOTID_MINUS);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -264,6 +336,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimOperatorNumeric_0600, Function | Mediu
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimOperatorNumeric_0700, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetSimOperatorNumeric(SimTest::SLOT_ID_3);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }
@@ -276,6 +352,10 @@ HWTEST_F(SimCDMATest, Telephony_Sim_GetSimOperatorNumeric_0700, Function | Mediu
  */
 HWTEST_F(SimCDMATest, Telephony_Sim_GetSimOperatorNumeric_0800, Function | MediumTest | Level4)
 {
+    if (!isCDMA) {
+        LOG("The current sim card type is not CDMA.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetSimOperatorNumeric(SimTest::SLOT_ID_2);
     ASSERT_STREQ(Str16ToStr8(result).c_str(), "");
 }

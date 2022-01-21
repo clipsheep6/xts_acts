@@ -14,7 +14,7 @@
  */
 
 // sim slot id
-export const SLOTID0 = 0;
+export const DEFAULT_SLOTID = 0;
 
 // sim correct password
 export const CORRECT_PIN = '';

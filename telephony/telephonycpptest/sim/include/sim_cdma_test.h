@@ -20,6 +20,8 @@
 #include "sim_proxy.h"
 #include "sim_test.h"
 
+static bool isCDMA = false;
+
 class SimCDMATest : public testing::Test {
 public:
     static void SetUpTestCase();
@@ -32,6 +34,16 @@ void SimCDMATest::SetUpTestCase()
     if (ret != 0) {
         LOG("SimCDMATest SetUpTestCase telephonyService_ error....");
         return;
+    }
+    int32_t simId = 0;
+    int32_t delayTime = 2;
+    int32_t result = g_proxy.GetHandler()->RefreshSimState(simId);
+    LOG("RefreshSimState return value is : %d", result);
+    sleep(delayTime);
+    int32_t cardType = static_cast<int32_t>(g_proxy.GetHandler()->GetCardType(simId));
+    LOG("Card type is : %d", cardType);
+    if (cardType == (int32_t)OHOS::Telephony::CardType::SINGLE_MODE_RUIM_CARD) {
+        isCDMA = true;
     }
 }
 

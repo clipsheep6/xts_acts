@@ -42,13 +42,13 @@ describe('SimGetLockStateFunctionTest', function () {
 
   /**
    * @tc.number Telephony_Sim_GetLockState_Async_0200
-   * @tc.name   Test the GetLockState async callback interface, enter parameter 1
+   * @tc.name   Test the GetLockState async callback interface, enter parameter 3
    *            for slotId exception, check the callback value
    * @tc.desc   Function test
    */
   it('Telephony_Sim_GetLockState_Async_0200', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetLockState_Async_0200';
-    sim.getLockState(env.SLOTID1, sim.PIN_LOCK, error => {
+    sim.getLockState(env.SLOTID3, sim.PIN_LOCK, error => {
       if (error) {
         console.log(`${CASE_NAME} getLockState expect error: ${error.message}`);
         console.log(`${CASE_NAME} test finish`);
@@ -103,14 +103,14 @@ describe('SimGetLockStateFunctionTest', function () {
 
   /**
    * @tc.number Telephony_Sim_GetLockState_Promise_0200
-   * @tc.name   Test the GetLockState promise interface, enter parameter 1
+   * @tc.name   Test the GetLockState promise interface, enter parameter 3
    *            for slotId exception, check the callback value
    * @tc.desc   Function test
    */
   it('Telephony_Sim_GetLockState_Promise_0200', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetLockState_Promise_0200';
     try {
-      await sim.getLockState(env.SLOTID1, sim.PIN_LOCK);
+      await sim.getLockState(env.SLOTID3, sim.PIN_LOCK);
       console.log(`${CASE_NAME} test fail`);
       expect().assertFail();
     } catch (error) {

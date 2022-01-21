@@ -24,12 +24,12 @@ using namespace OHOS;
 using namespace OHOS::Telephony;
 
 const int32_t SimTest::VAILD_SLOT_ID = 0;
-const int32_t SimTest::LOOP_NUMBER = 1000;
+const int32_t SimTest::LOOP_NUMBER = 10;
 const int32_t SimTest::TIME_USEC = 1000;
 
 /**
  * @tc.number   Telephony_Sim_SetLockState_0800
- * @tc.name     Test the SetLockState interface query function 1000 times
+ * @tc.name     Test the SetLockState interface query function 10 times
  *              and expect an average delay of less than 1000us.
  * @tc.desc     Function test
  */
@@ -58,7 +58,7 @@ HWTEST_F(SimLockStateTest, Telephony_Sim_SetLockState_0800, Function | MediumTes
 
 /**
  * @tc.number   Telephony_Sim_GetLockState_0400
- * @tc.name     Test the GetLockState interface query function 1000 times
+ * @tc.name     Test the GetLockState interface query function 10 times
  *              and expect an average delay of less than 1000us.
  * @tc.desc     Function test
  */
@@ -76,7 +76,7 @@ HWTEST_F(SimLockStateTest, Telephony_Sim_GetLockState_0400, Function | MediumTes
 
 /**
  * @tc.number   Telephony_Sim_GetCardType_0500
- * @tc.name     Test the GetCardType interface query function 1000 times
+ * @tc.name     Test the GetCardType interface query function 10 times
  *              and expect an average delay of less than 1000us.
  * @tc.desc     Function test
  */

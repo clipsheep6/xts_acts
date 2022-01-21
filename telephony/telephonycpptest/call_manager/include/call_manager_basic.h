@@ -80,8 +80,8 @@ private:
 
 class CallAbilityCallbackBasic : public CallAbilityCallbackBasicStub {
 public:
-    explicit CallAbilityCallbackBasic(){};
-    ~CallAbilityCallbackBasic(){};
+    explicit CallAbilityCallbackBasic(){ };
+    ~CallAbilityCallbackBasic(){ };
 
     int32_t OnCallDetailsChange(const CallAttributeInfo &info);
     int32_t OnCallEventChange(const CallEventInfo &info);

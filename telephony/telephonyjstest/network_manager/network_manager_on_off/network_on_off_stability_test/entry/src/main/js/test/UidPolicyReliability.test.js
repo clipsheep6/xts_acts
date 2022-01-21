@@ -51,9 +51,7 @@ describe('NetworkManagerOnOffTest', function() {
                     console.log(`${caseName} register fail: ${err}`);
                     expect().assertFail();
                     done();
-                    return;
                 } else {
-
                 }
             });
             sleep(DELAY);
@@ -83,7 +81,6 @@ describe('NetworkManagerOnOffTest', function() {
                     console.log(`${caseName}  Unregister err: ${err}`);
                     expect().assertFail();
                     done();
-                    return;
                 } else {}
             });
             times++;

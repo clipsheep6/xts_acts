@@ -31,7 +31,6 @@
 #include "i_net_detection_callback.h"
 #include "i_net_conn_service.h"
 
-
 namespace OHOS {
 namespace NetManagerStandard {
 
@@ -87,7 +86,6 @@ int32_t TestNetDetectionCallback::OnNetDetectionResultChanged(
 sptr<INetDetectionCallback> detectionCallback = (std::make_unique<TestNetDetectionCallback>()).release();
 
 class DetectionTest : public testing::Test {
-
 public:
     static void SetUpTestCase();
     static void TearDownTestCase();
@@ -97,12 +95,10 @@ public:
 
 void DetectionTest::SetUpTestCase()
 {
-    //HILOG_DEBUG(TAG, "msg: %{public}s", "NAPI_MOCK_VENDOR # init success ");
 }
 
 void DetectionTest::TearDownTestCase()
 {
-    //HILOG_DEBUG(TAG, "  %s   line: %d", __func__, __LINE__);
 }
 
 void DetectionTest::SetUp()
@@ -112,14 +108,12 @@ void DetectionTest::SetUp()
         std::cout << "register service fail, TestNetDetection m_netConnService is nullptr" << std::endl;
         ASSERT_TRUE(false);
     }
-    //HILOG_DEBUG(TAG, "  %s   line: %d", __func__, __LINE__);
 }
 
 void DetectionTest::TearDown()
 {
-    //HILOG_DEBUG(TAG, "  %s   line: %d", __func__, __LINE__);
 }
 
 } // namespace NetManagerStandard
-}  //namespace OHOS
+}  // namespace OHOS
 #endif // DETECTION_TEST_H

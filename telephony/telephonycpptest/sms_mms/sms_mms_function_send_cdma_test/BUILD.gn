@@ -30,7 +30,8 @@ ohos_moduletest_suite("SmsFunctionSendCdmaTest") {
   include_dirs = [
     "../include",
     "../../utils",
-    "//base/telephony/core_service/frameworks/native/include",
+    "//base/telephony/core_service/interfaces/innerkits/include",
+    #"//base/telephony/core_service/frameworks/native/include",
     "//base/telephony/sms_mms/frameworks/native/sms/include",
     "//base/telephony/core_service/interfaces/innerkits/common",
     "//base/telephony/core_service/interfaces/innerkits/proxy",
@@ -68,7 +69,7 @@ ohos_moduletest_suite("SmsFunctionSendCdmaTest") {
     "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
     "//utils/native/base:utils",
     "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
-    "//base/telephony/core_service:tel_core_service",
+    "//base/telephony/core_service/interfaces/innerkits:tel_core_service_api",
     "//foundation/communication/ipc/interfaces/innerkits/ipc_core:ipc_core",
     "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
     "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",

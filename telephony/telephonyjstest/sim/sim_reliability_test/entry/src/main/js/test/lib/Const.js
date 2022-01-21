@@ -14,12 +14,12 @@
  */
 
 // sim slot id
-export const SLOTID0 = 0;
+export const DEFAULT_SLOTID = 0;
 
 // runtime config
 export const GENERAL_RUN_TIMES = 1000;
 export const EXPECT_TOTAL_TIME = 500;
-export const TIME_OUT = 30;
+export const TIME_OUT = 300;
 
 // sim correct password
 export const CORRECT_PIN2 = '87968263';

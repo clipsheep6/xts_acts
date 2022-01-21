@@ -118,7 +118,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SetCallWaiting_0500,
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SetCallWaiting_0600, Function | MediumTest | Level3)
 {
-    int ret = g_clientPtr->GetPtr()->SetCallWaiting(SLOT_ID_1, true);
+    int ret = g_clientPtr->GetPtr()->SetCallWaiting(SLOT_ID_3, true);
     ASSERT_NE(ret, SUCCESSFUL);
 }
 
@@ -151,7 +151,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SetCallWaiting_0800,
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SetCallWaiting_1100, Function | MediumTest | Level3)
 {
-    int ret = g_clientPtr->GetPtr()->SetCallWaiting(SLOT_ID_1, false);
+    int ret = g_clientPtr->GetPtr()->SetCallWaiting(SLOT_ID_3, false);
     ASSERT_NE(ret, SUCCESSFUL);
 }
 
@@ -178,7 +178,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_GetCallWaiting_0100,
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_GetCallWaiting_0200, Function | MediumTest | Level3)
 {
-    int ret = g_clientPtr->GetPtr()->GetCallWaiting(SLOT_ID_1);
+    int ret = g_clientPtr->GetPtr()->GetCallWaiting(SLOT_ID_3);
     EXPECT_NE(ret, SUCCESSFUL);
 }
 
@@ -483,7 +483,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SetCallRestriction_1
 
 /**
  * @tc.number   Telephony_CallManager_IMS_SetCallRestriction_1400
- * @tc.name     enable fac RESTRICTION_TYPE_ALL_OUTGOING, mode RESTRICTION_MODE_ACTIVATION,SLOT_ID_1 of 1
+ * @tc.name     enable fac RESTRICTION_TYPE_ALL_OUTGOING, mode RESTRICTION_MODE_ACTIVATION,SLOT_ID_3 of 1
  *              test SetCallRestriction(), return 0,Restoring the Initial Environment of RESTRICTION_MODE_DEACTIVATION
  * @tc.desc     Function test
  */
@@ -494,7 +494,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SetCallRestriction_1
     int ret = strcpy_s(setCallRestriction.password, BUFSIZ, VALID_CALL_PASSWORD.c_str());
     ASSERT_EQ(ret, SUCCESSFUL);
     setCallRestriction.mode = CallRestrictionMode::RESTRICTION_MODE_ACTIVATION;
-    EXPECT_NE(g_clientPtr->GetPtr()->SetCallRestriction(SLOT_ID_1, setCallRestriction), SUCCESSFUL);
+    EXPECT_NE(g_clientPtr->GetPtr()->SetCallRestriction(SLOT_ID_3, setCallRestriction), SUCCESSFUL);
     EXPECT_EQ(g_clientPtr->GetPtr()->GetCallRestriction(SLOT_ID, setCallRestriction.fac), SUCCESSFUL);
     TestRestrictionCallBack(OFF);
 
@@ -967,7 +967,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_GetCallRestriction_1
 {
     CallRestrictionInfo setCallRestriction;
     setCallRestriction.fac = CallRestrictionType::RESTRICTION_TYPE_ALL_INCOMING;
-    EXPECT_NE(g_clientPtr->GetPtr()->GetCallRestriction(SLOT_ID_1, setCallRestriction.fac), SUCCESSFUL);
+    EXPECT_NE(g_clientPtr->GetPtr()->GetCallRestriction(SLOT_ID_3, setCallRestriction.fac), SUCCESSFUL);
 }
 
 /**
@@ -995,7 +995,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_GetCallRestriction_1
     CallRestrictionInfo setCallRestriction;
     setCallRestriction.fac = CallRestrictionType(INVALID_RESTRICTION_TYPE);
 
-    EXPECT_NE(g_clientPtr->GetPtr()->GetCallRestriction(SLOT_ID_1, setCallRestriction.fac), SUCCESSFUL);
+    EXPECT_NE(g_clientPtr->GetPtr()->GetCallRestriction(SLOT_ID_3, setCallRestriction.fac), SUCCESSFUL);
 }
 
 /************************************** Test SetCallTransferInfo() ***********************************/
@@ -1225,7 +1225,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SetCallTransferInfo_
     setCallTransfer.type = CallTransferType::TRANSFER_TYPE_UNCONDITIONAL;
     int ret = strcpy_s(setCallTransfer.transferNum, BUFSIZ, VALID_TRANSFER_NUMBER.c_str());
     ASSERT_EQ(ret, SUCCESSFUL);
-    ASSERT_NE(g_clientPtr->GetPtr()->SetCallTransferInfo(SLOT_ID_1, setCallTransfer), SUCCESSFUL);
+    ASSERT_NE(g_clientPtr->GetPtr()->SetCallTransferInfo(SLOT_ID_3, setCallTransfer), SUCCESSFUL);
     EXPECT_EQ(g_clientPtr->GetPtr()->GetCallTransferInfo(SLOT_ID, setCallTransfer.type), SUCCESSFUL);
     TestTransferCallBack(OFF);
 }
@@ -1595,7 +1595,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_GetCallTransferInfo_
 {
     CallTransferInfo setCallTransfer;
     setCallTransfer.type = CallTransferType::TRANSFER_TYPE_UNCONDITIONAL;
-    EXPECT_NE(g_clientPtr->GetPtr()->GetCallTransferInfo(SLOT_ID_1, setCallTransfer.type), SUCCESSFUL);
+    EXPECT_NE(g_clientPtr->GetPtr()->GetCallTransferInfo(SLOT_ID_3, setCallTransfer.type), SUCCESSFUL);
 }
 
 /**

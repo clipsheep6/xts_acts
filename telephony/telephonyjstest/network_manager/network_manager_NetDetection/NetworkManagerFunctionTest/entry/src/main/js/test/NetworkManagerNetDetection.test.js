@@ -18,8 +18,6 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 
 describe('NetworkManagerNetDetectionTest', function () {
 
-    const TEST_RUN_TIME = 1000;
-    const DELAYL_LIMIT = 1000
     const NETID_INVALID = -1;
     const NETID_OUT = 1001;
     const NET_CONN_ERR_NETID_NOT_FOUND = -8;
@@ -103,7 +101,6 @@ describe('NetworkManagerNetDetectionTest', function () {
                 console.log(`${caseName} get handle fail: ${error}`);
                 expect().assertFail();
                 done();
-                return;
             } else {
                 connection.reportNetConnected(handle, (error, value) => {
                     if (error) {
@@ -275,7 +272,6 @@ describe('NetworkManagerNetDetectionTest', function () {
                 console.log(`${caseName} get handle fail: ${error}`);
                 expect().assertFail();
                 done();
-                return;
             } else {
                 console.log(`${caseName} get netId: ${handle.netId}`);
                 connection.reportNetDisconnected(handle, (error, value) => {
@@ -312,7 +308,6 @@ describe('NetworkManagerNetDetectionTest', function () {
             console.log(`${caseName} end value: ${JSON.stringify(value)}`);
             expect().assertFail();
             done();
-            return;
         });
     });
 
@@ -335,7 +330,6 @@ describe('NetworkManagerNetDetectionTest', function () {
             console.log(`${caseName} end value: ${JSON.stringify(value)}`);
             expect().assertFail();
             done();
-            return;
         });
     });
 
@@ -351,14 +345,12 @@ describe('NetworkManagerNetDetectionTest', function () {
                 console.log(`${caseName} get handle fail: ${error}`);
                 expect().assertFail();
                 done();
-                return;
             } else {
                 connection.reportNetConnected(handle, (error, value) => {
                     if (error) {
                         console.log(`${caseName} reportNetConnected fail: ${error}`);
                         expect().assertFail();
                         done();
-                        return;
                     }else{
                         connection.reportNetDisconnected(handle, (error, data) => {
                             if(error){

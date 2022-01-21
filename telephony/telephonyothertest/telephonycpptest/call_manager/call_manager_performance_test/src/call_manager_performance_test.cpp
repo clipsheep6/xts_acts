@@ -253,11 +253,11 @@ HWTEST_F(
 /************************************ Test EnableImsSwitch() *****************************************/
 
 /**
- * @tc.number   Telephony_CallManager_IMS_EnableVoLte_0700
+ * @tc.number   Telephony_CallManager_IMS_EnableImsSwitch_0700
  * @tc.name     test EnableImsSwitch() 20 times
  * @tc.desc     Performance test
  */
-HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_IMS_EnableVoLte_0700, Performance | MediumTest | Level3)
+HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_IMS_EnableImsSwitch_0700, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
     timeHelper.StartCountUs();
@@ -272,11 +272,11 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_IMS_EnableVoLte_0700,
 /************************************ Test DisableImsSwitch() *****************************************/
 
 /**
- * @tc.number   Telephony_CallManager_IMS_DisableVoLte_0900
+ * @tc.number   Telephony_CallManager_IMS_DisableImsSwitch_0900
  * @tc.name     test DisableImsSwitch() 20 times
  * @tc.desc     Performance test
  */
-HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_IMS_DisableVoLte_0900, Performance | MediumTest | Level3)
+HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_IMS_DisableImsSwitch_0900, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
     timeHelper.StartCountUs();
@@ -291,11 +291,12 @@ HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_IMS_DisableVoLte_0900
 /************************************ Test IsImsSwitchEnabled() *****************************************/
 
 /**
- * @tc.number   Telephony_CallManager_IMS_IsVoLteEnabled_0800
+ * @tc.number   Telephony_CallManager_IMS_IsImsSwitchEnabled_0800
  * @tc.name     test IsImsSwitchEnabled() 20 times
  * @tc.desc     Performance test
  */
-HWTEST_F(CallManagerPerformanceTest, Telephony_CallManager_IMS_IsVoLteEnabled_0800, Performance | MediumTest | Level3)
+HWTEST_F(
+    CallManagerPerformanceTest, Telephony_CallManager_IMS_IsImsSwitchEnabled_0800, Performance | MediumTest | Level3)
 {
     TimeCountHelper timeHelper;
     timeHelper.StartCountUs();

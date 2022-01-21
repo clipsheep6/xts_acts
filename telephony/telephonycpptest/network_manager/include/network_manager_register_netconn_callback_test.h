@@ -15,17 +15,16 @@
 
 #ifndef UID_POLICY_TEST_H
 #define UID_POLICY_TEST_H
+#include <gtest/gtest.h>
+#include <iostream>
+#include <vector>
+#include <memory>
+#include <thread>
 #include "i_cellular_data_manager.h"
 #include "i_net_conn_service.h"
 #include "iservice_registry.h"
 #include "system_ability_definition.h"
 #include "cellular_data_types.h"
-#include <gtest/gtest.h>
-
-#include <iostream>
-#include <vector>
-#include <memory>
-#include <thread>
 #include "wifi_errcode.h"
 #include "wifi_device.h"
 #include "wifi_scan.h"
@@ -77,8 +76,8 @@ sptr<INetConnService> GetProxy()
         return nullptr;
         }
     }
-}// namespace NetManagerStandard
-}// namespace OHOS
+} // namespace NetManagerStandard
+} // namespace OHOS
 
 namespace OHOS {
 namespace Wifi {
@@ -292,7 +291,7 @@ private:
             "WIFI_OPT_INVALID_CONFIG", /* invalid config */
             "WIFI_OPT_P2P_NOT_OPENED", /* p2p service not opened */
             "WIFI_OPT_P2P_MAC_NOT_FOUND", "WIFI_OPT_P2P_ERR_MAC_FORMAT", "WIFI_OPT_P2P_ERR_INTENT",
-            "WIFI_OPT_P2P_ERR_SIZE_NW_NAME", "WIFI_OPT_MOVING_FREEZE_CTRL", /* moving freeze scanning control */
+            "WIFI_OPT_P2P_ERR_SIZE_NW_NAME", "WIFI_OPT_MOVING_FREEZE_CTRL",
         };
 
         return wifiOptSts[code];
@@ -312,7 +311,7 @@ public:
     void SetUp();
     void TearDown();
 };
-void NetworkManagerRegisterNetconnCallbackTest::SetUpTestCase() 
+void NetworkManagerRegisterNetconnCallbackTest::SetUpTestCase()
 {
     OHOS::Telephony::g_telephonyService = OHOS::Telephony::GetProxy();
     if (OHOS::Telephony::g_telephonyService == nullptr) {

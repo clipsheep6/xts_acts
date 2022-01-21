@@ -41,6 +41,7 @@ enum CallTestEnum {
     INVALID_VALUE_2 = 2,
     INVALID_VALUE_3 = 3,
     SLEEP_50_MS = 50,
+    SLEEP_1000_MS = 1000,
     SLEEP_12000_MS = 12000,
     INVALIN_ENUM_VALUE = 83886080,
 };
@@ -98,7 +99,7 @@ public:
     const int INVALID_CALLID = 1234;
     const int32_t LONG_FALSE_CALLID = 2147483647;
     const int SLOT_ID = 0;
-    const int SLOT_ID_1 = 1;
+    const int SLOT_ID_3 = 3;
     const int SET_CALL_WAITING_FIAL = 4;
     const int SUCCESSFUL = 0;
     const int OPEN = 1;
@@ -274,7 +275,7 @@ public:
     const int TEST_RUN_TIME_50 = 50;
     const int TEST_RUN_TIME_5 = 5;
     const int SLOT_ID = 0;
-    const int SLOT_ID_1 = 1;
+    const int SLOT_ID_3 = 3;
     static const int VALID_ID = 0;
     const int SUCCESSFUL = 0;
     const int FALSE_NEGATIVE_CALLID_100 = -100;
@@ -357,10 +358,11 @@ bool CallManagerFunctionTest::HasActiveStatus()
     LOG("Waiting for activation !");
     int sumUseTime = 0;
     int slipMs = 50;
+    int increasingTime = 1000;
     int useTimeMs = 18000;
     do {
         if (!(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE))) {
-            usleep(slipMs * 1000);
+            usleep(slipMs * increasingTime);
             sumUseTime += slipMs;
         } else {
             LOG("===========wait %d ms callStatus:%d==============", sumUseTime, g_updateCallState);
@@ -376,10 +378,11 @@ bool CallManagerReliabilityTest::HasActiveStatus()
     LOG("Waiting for activation !");
     int sumUseTime = 0;
     int slipMs = 50;
+    int increasingTime = 1000;
     int useTimeMs = 18000;
     do {
         if (!(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE))) {
-            usleep(slipMs * 1000);
+            usleep(slipMs * increasingTime);
             sumUseTime += slipMs;
         } else {
             LOG("===========wait %d ms callStatus:%d==============", sumUseTime, g_updateCallState);
@@ -584,6 +587,7 @@ void CallManagerMockTest::SetUpTestCase()
 #ifdef CALLMANAGER_MOCK_TEST
     int ret = g_clientPtr->GetPtr()->EnableImsSwitch(CallTestEnum::SLOT_ID);
     ASSERT_EQ(ret, 0);
+    LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("result"), 0, CallTestEnum::SLEEP_50_MS, CallTestEnum::SLEEP_1000_MS);
     int SetCallType = g_clientPtr->GetPtr()->SetCallPreferenceMode(CallTestEnum::SLOT_ID, CallTestEnum::CALL_TYPE_IMS);
     ASSERT_EQ(SetCallType, 0);
     LOG("SetCallPreferenceMode SUCCESS");
@@ -656,6 +660,7 @@ void CallManagerFunctionTest::SetUpTestCase()
     ASSERT_EQ(SetCallType, 0);
     int ret = g_clientPtr->GetPtr()->EnableImsSwitch(CallTestEnum::SLOT_ID);
     ASSERT_EQ(ret, 0);
+    LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("result"), 0, CallTestEnum::SLEEP_50_MS, CallTestEnum::SLEEP_1000_MS);
     LOG("SetCallPreferenceMode SUCCESS");
     g_callIdSet.clear();
     g_dialInfo.PutIntValue("accountId", 0);
@@ -796,6 +801,7 @@ void CallManagerPerformanceTest::SetUpTestCase()
 
     int ret = g_clientPtr->GetPtr()->EnableImsSwitch(CallTestEnum::SLOT_ID);
     ASSERT_EQ(ret, 0);
+    LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("result"), 0, CallTestEnum::SLEEP_50_MS, CallTestEnum::SLEEP_1000_MS);
     int SetCallType = g_clientPtr->GetPtr()->SetCallPreferenceMode(CallTestEnum::SLOT_ID, CallTestEnum::CALL_TYPE_IMS);
     ASSERT_EQ(SetCallType, 0);
     LOG("SetCallPreferenceMode SUCCESS");
@@ -874,6 +880,7 @@ void CallManagerReliabilityTest::SetUpTestCase()
 
     int ret = g_clientPtr->GetPtr()->EnableImsSwitch(CallTestEnum::SLOT_ID);
     ASSERT_EQ(ret, 0);
+    LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("result"), 0, CallTestEnum::SLEEP_50_MS, CallTestEnum::SLEEP_1000_MS);
     int SetCallType = g_clientPtr->GetPtr()->SetCallPreferenceMode(CallTestEnum::SLOT_ID, CallTestEnum::CALL_TYPE_IMS);
     ASSERT_EQ(SetCallType, 0);
     LOG("SetCallPreferenceMode SUCCESS");
@@ -921,7 +928,6 @@ void CallManagerReliabilityTest::TearDownTestCase()
     char callPassword[BUFSIZ] = "0000";
     char transferNumber[BUFSIZ] = "12599";
     ASSERT_EQ(g_clientPtr->GetPtr()->SetMuted(false), 0);
-    ASSERT_EQ(g_clientPtr->GetPtr()->SetAudioDevice(AudioDevice::DEVICE_EARPIECE), 0);
     ASSERT_EQ(g_clientPtr->GetPtr()->SetCallWaiting(VALID_ID, true), 0);
     CallTransferInfo CallTransfer;
     CallTransfer.settingType = CallTransferSettingType::CALL_TRANSFER_ERASURE;

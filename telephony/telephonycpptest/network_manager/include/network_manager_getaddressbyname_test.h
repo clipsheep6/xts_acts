@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef NETWORK_MANAGER_GETALLNETS_TEST_H
-#define NETWORK_MANAGER_GETALLNETS_TEST_H
+#ifndef NETWORK_MANAGER_GETADDRESSBYNAME_TEST_H
+#define NETWORK_MANAGER_GETADDRESSBYNAME_TEST_H
 
 #include <gtest/gtest.h>
 #include <iostream>
@@ -34,34 +34,36 @@ sptr<INetConnService> netConnService = nullptr;
 sptr<INetConnService> GetProxy();
 const int TEST_COUNT_1000 =  1000;
 const int NETID_100 = 100;
+const int FD_ID_1=1;
+const int FD_ID_2=2;
+const int FD_ID_100=100;
+const int FD_ID_0=0;
 static const int32_t TIME_USEC = 500;
-class NetHandlerTest : public testing::Test {
+class NetHandleTest : public testing::Test {
 public:
     static void SetUpTestCase();
     static void TearDownTestCase();
     void SetUp();
     void TearDown();
-    
 };
 
-void NetHandlerTest::SetUpTestCase() {
-    
+void NetHandleTest::SetUpTestCase() {
     std::cout<<"SetUpTestCase"<<std::endl;
 }
 
-void NetHandlerTest::TearDownTestCase() {
+void NetHandleTest::TearDownTestCase() {
     std::cout<<"TearDownTestCase"<<std::endl;
 }
 
 
-void NetHandlerTest::SetUp() {
+void NetHandleTest::SetUp() {
 
      std::cout<<"SetUp"<<std::endl;
 }
 
-void NetHandlerTest::TearDown() {
+void NetHandleTest::TearDown() {
     std::cout<<"TearDown"<<std::endl;
 }
 }
 }
-#endif // NETWORK_MANAGER_GETALLNETS_TEST_H
+#endif // NETWORK_MANAGER_GETADDRESSBYNAME_TEST_H

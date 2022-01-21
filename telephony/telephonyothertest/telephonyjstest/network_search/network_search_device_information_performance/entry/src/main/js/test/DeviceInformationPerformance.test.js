@@ -20,8 +20,6 @@ describe('DeviceInformationPerformance', function () {
     const SLOT_0 = 0;
     const TEST_RUN_TIME = 1000;
     const DELAYL_LIMIT = 500
-    const MOKE_CDMA = 200;
-    const WAIT_TIME = 5000;
     
     function sleep(timeout) {
         return new Promise((reslove, reject) => {
@@ -100,8 +98,6 @@ describe('DeviceInformationPerformance', function () {
      * @tc.desc    Performance test
      */
     it('Telephony_NetworkSearch_getMEID_Async_0900', 0, async function (done) {
-        await radio.setPreferredNetwork(SLOT_0, MOKE_CDMA);
-        await sleep(WAIT_TIME);
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
@@ -134,8 +130,6 @@ describe('DeviceInformationPerformance', function () {
      * @tc.desc    Performance test
      */
     it('Telephony_NetworkSearch_getMEID_Promise_0900', 0, async function (done) {
-        await radio.setPreferredNetwork(SLOT_0, MOKE_CDMA);
-        await sleep(WAIT_TIME);
         let startTime = new Date().getTime();
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {

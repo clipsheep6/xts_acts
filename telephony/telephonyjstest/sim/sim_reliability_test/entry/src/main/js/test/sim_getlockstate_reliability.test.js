@@ -15,14 +15,23 @@
 
 import sim from '@ohos.telephony.sim';
 import * as env from './lib/Const.js';
-import { describe, it, expect, Core } from 'deccjsunit/index';
+import { describe, it, expect, Core, beforeAll, afterAll } from 'deccjsunit/index';
 
 describe('SimGetLockStateReliabilityTest', function () {
 
-  // set timeout
-  const core = Core.getInstance();
-  const config = core.getDefaultService('config');
-  config.timeout = env.TIME_OUT * 1000;
+  beforeAll(function () {
+    // set timeout
+    const core = Core.getInstance();
+    const config = core.getDefaultService('config');
+    config.timeout = env.TIME_OUT * 1000;
+  });
+
+  afterAll(function () {
+    // set timeout
+    const core = Core.getInstance();
+    const config = core.getDefaultService('config');
+    config.timeout = 5 * 1000;
+  });
 
   /**
    * @tc.number Telephony_Sim_GetLockState_Async_0500
@@ -38,7 +47,7 @@ describe('SimGetLockStateReliabilityTest', function () {
         return;
       }
       console.debug(`${CASE_NAME} run ${env.GENERAL_RUN_TIMES - n + 1} times`);
-      sim.getLockState(env.SLOTID0, sim.PIN_LOCK, (error, lockState) => {
+      sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK, (error, lockState) => {
         if (error) {
           console.log(`${CASE_NAME} getLockState error: ${error.message}`);
           expect().assertFail();
@@ -68,7 +77,7 @@ describe('SimGetLockStateReliabilityTest', function () {
     for (let index = 0; index < env.GENERAL_RUN_TIMES; index++) {
       console.debug(`${CASE_NAME} run ${index + 1} times`);
       try {
-        const lockState = await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+        const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
         if (lockState !== sim.LOCK_OFF) {
           console.log(`${CASE_NAME} getLockState lock state incorrect: ${lockState}`);
           expect().assertFail();

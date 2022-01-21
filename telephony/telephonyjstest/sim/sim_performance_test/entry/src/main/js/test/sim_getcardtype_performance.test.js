@@ -15,14 +15,23 @@
 
 import sim from '@ohos.telephony.sim';
 import * as env from './lib/Const.js';
-import { describe, it, expect, Core } from 'deccjsunit/index';
+import { describe, it, expect, Core, beforeAll, afterAll } from 'deccjsunit/index';
 
 describe('SimGetCardTypePerformanceTest', function () {
 
-  // set timeout
-  const core = Core.getInstance();
-  const config = core.getDefaultService('config');
-  config.timeout = env.TIME_OUT * 1000;
+  beforeAll(function () {
+    // set timeout
+    const core = Core.getInstance();
+    const config = core.getDefaultService('config');
+    config.timeout = env.TIME_OUT * 1000;
+  });
+
+  afterAll(function () {
+    // set timeout
+    const core = Core.getInstance();
+    const config = core.getDefaultService('config');
+    config.timeout = 5 * 1000;
+  });
 
   /**
    * @tc.number Telephony_Sim_GetCardType_Async_0500
@@ -43,7 +52,7 @@ describe('SimGetCardTypePerformanceTest', function () {
       }
       console.debug(`${CASE_NAME} run ${env.GENERAL_RUN_TIMES - n + 1} times`);
       startTime = new Date().getTime();
-      sim.getCardType(env.SLOTID0, () => {
+      sim.getCardType(env.DEFAULT_SLOTID, () => {
         endTime = new Date().getTime();
         totalTime += endTime - startTime;
         recursive(n - 1);
@@ -67,7 +76,7 @@ describe('SimGetCardTypePerformanceTest', function () {
       console.debug(`${CASE_NAME} run ${index + 1} times`);
       try {
         startTime = new Date().getTime();
-        await sim.getCardType(env.SLOTID0);
+        await sim.getCardType(env.DEFAULT_SLOTID);
         endTime = new Date().getTime();
         totalTime += endTime - startTime;
       } catch (error) {

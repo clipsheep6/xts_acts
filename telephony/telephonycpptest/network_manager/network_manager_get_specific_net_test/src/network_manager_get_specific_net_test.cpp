@@ -85,7 +85,7 @@ HWTEST_F(GetSpecificNetTest, Telephony_NetworkManager_GetDefaultNet_0200, Functi
 HWTEST_F(GetSpecificNetTest, Telephony_NetworkManager_GetDefaultNet_0300, Function | MediumTest | Level3)
 {
     NetBearType bearerType = BEARER_ETHERNET;
-    std::set<NetCap> netCaps {NET_CAPABILITY_INTERNET,NET_CAPABILITY_MMS};
+    std::set<NetCap> netCaps {NET_CAPABILITY_INTERNET, NET_CAPABILITY_MMS};
     std::string ident = "ident";
     int32_t result_1 = DelayedSingleton<NetConnClient>::GetInstance()->RegisterNetSupplier(bearerType,
         ident, netCaps, supplierIdTest[0]);
@@ -114,7 +114,7 @@ HWTEST_F(GetSpecificNetTest, Telephony_NetworkManager_GetDefaultNet_0300, Functi
 HWTEST_F(GetSpecificNetTest, Telephony_NetworkManager_GetDefaultNet_0400, Function | MediumTest | Level3)
 {
     NetBearType bearerType = BEARER_CELLULAR;
-    std::set<NetCap> netCaps {NET_CAPABILITY_INTERNET,NET_CAPABILITY_MMS};
+    std::set<NetCap> netCaps {NET_CAPABILITY_INTERNET, NET_CAPABILITY_MMS};
     std::string ident = "ident";
     int32_t result = DelayedSingleton<NetConnClient>::GetInstance()->RegisterNetSupplier(bearerType,
         ident, netCaps, supplierIdTest[0]);
@@ -187,7 +187,7 @@ HWTEST_F(GetSpecificNetTest, Telephony_NetworkManager_HasDefaultNet_0100, Functi
 HWTEST_F(GetSpecificNetTest, Telephony_NetworkManager_HasDefaultNet_0200, Function | MediumTest | Level3)
 {
     NetBearType bearerType = BEARER_ETHERNET;
-    std::set<NetCap> netCaps {NET_CAPABILITY_INTERNET,NET_CAPABILITY_MMS};
+    std::set<NetCap> netCaps {NET_CAPABILITY_INTERNET, NET_CAPABILITY_MMS};
     std::string ident = "ident";
     int32_t result_1 = DelayedSingleton<NetConnClient>::GetInstance()->RegisterNetSupplier(bearerType,
         ident, netCaps, supplierIdTest[0]);
@@ -216,7 +216,7 @@ HWTEST_F(GetSpecificNetTest, Telephony_NetworkManager_HasDefaultNet_0200, Functi
 HWTEST_F(GetSpecificNetTest, Telephony_NetworkManager_HasDefaultNet_0300, Function | MediumTest | Level3)
 {
     NetBearType bearerType = BEARER_CELLULAR;
-    std::set<NetCap> netCaps {NET_CAPABILITY_INTERNET,NET_CAPABILITY_MMS};
+    std::set<NetCap> netCaps {NET_CAPABILITY_INTERNET, NET_CAPABILITY_MMS};
     std::string ident = "ident";
     int32_t result = DelayedSingleton<NetConnClient>::GetInstance()->RegisterNetSupplier(bearerType,
         ident, netCaps, supplierIdTest[0]);

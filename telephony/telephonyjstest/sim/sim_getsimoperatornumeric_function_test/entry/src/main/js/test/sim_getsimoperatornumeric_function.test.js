@@ -27,7 +27,7 @@ describe('SimGetSimOperatorNumeric', function () {
    */
   it('Telephony_Sim_GetSimOperatorNumeric_Async_0500', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimOperatorNumeric_Async_0500';
-    sim.getSimOperatorNumeric(env.SLOTID0, (error, simOperatorNumeric) => {
+    sim.getSimOperatorNumeric(env.DEFAULT_SLOTID, (error, simOperatorNumeric) => {
       if (error) {
         console.log(`${CASE_NAME} getSimOperatorNumeric error: ${error.message}`);
         expect().assertFail();
@@ -67,12 +67,12 @@ describe('SimGetSimOperatorNumeric', function () {
   /**
    * @tc.number  Telephony_Sim_GetSimOperatorNumeric_Async_0700
    * @tc.name    CDMA file, GetSimOperatorNumeric async callback interface slotId
-   *             exception enters parameter 1 test
+   *             exception enters parameter 3 test
    * @tc.desc    Function test
    */
   it('Telephony_Sim_GetSimOperatorNumeric_Async_0700', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimOperatorNumeric_Async_0700';
-    sim.getSimOperatorNumeric(env.SLOTID1, error => {
+    sim.getSimOperatorNumeric(env.SLOTID3, error => {
       if (error) {
         console.log(`${CASE_NAME} getSimOperatorNumeric expect error: ${error.message}`);
         console.log(`${CASE_NAME} test finish.`);
@@ -115,7 +115,7 @@ describe('SimGetSimOperatorNumeric', function () {
   it('Telephony_Sim_GetSimOperatorNumeric_Promise_0500', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimOperatorNumeric_Promise_0500';
     try {
-      const simOperatorNumeric = await sim.getSimOperatorNumeric(env.SLOTID0);
+      const simOperatorNumeric = await sim.getSimOperatorNumeric(env.DEFAULT_SLOTID);
       expect(
         simOperatorNumeric.length === env.SIM_OPERATOR_NUMBERIC_LEN
         && simOperatorNumeric.startsWith(env.SIM_OPERATOR_NUMBERIC_PREFIX
@@ -150,13 +150,13 @@ describe('SimGetSimOperatorNumeric', function () {
   /**
    * @tc.number  Telephony_Sim_GetSimOperatorNumeric_Promise_0700
    * @tc.name    CDMA file, GetSimOperatorNumeric promise interface slotId
-   *             exception enters parameter 1 test
+   *             exception enters parameter 3 test
    * @tc.desc    Function test
    */
   it('Telephony_Sim_GetSimOperatorNumeric_Promise_0700', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimOperatorNumeric_Promise_0700';
     try {
-      await sim.getSimOperatorNumeric(env.SLOTID1);
+      await sim.getSimOperatorNumeric(env.SLOTID3);
       expect().assertFail();
       console.log(`${CASE_NAME} test fail.`);
     } catch (error) {

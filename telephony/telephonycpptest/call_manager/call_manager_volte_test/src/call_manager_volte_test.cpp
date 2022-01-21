@@ -633,12 +633,12 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_EnableImsSwitch_0200
 
 /**
  * @tc.number   Telephony_CallManager_IMS_EnableImsSwitch_0300
- * @tc.name     test EnableImsSwitch() interface, SLOT_ID_1 of 1,return non-zero
+ * @tc.name     test EnableImsSwitch() interface, SLOT_ID_3 of 1,return non-zero
  * @tc.desc     Function test
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_EnableImsSwitch_0300, Function | MediumTest | Level2)
 {
-    int ret = g_clientPtr->GetPtr()->EnableImsSwitch(SLOT_ID_1);
+    int ret = g_clientPtr->GetPtr()->EnableImsSwitch(SLOT_ID_3);
     ASSERT_NE(ret, SUCCESSFUL);
 }
 
@@ -756,7 +756,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_DisableImsSwitch_040
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_DisableImsSwitch_0500, Function | MediumTest | Level2)
 {
-    int ret = g_clientPtr->GetPtr()->DisableImsSwitch(SLOT_ID_1);
+    int ret = g_clientPtr->GetPtr()->DisableImsSwitch(SLOT_ID_3);
     ASSERT_NE(ret, SUCCESSFUL);
 }
 
@@ -858,12 +858,12 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_IsImsSwitchEnabled_0
 
 /**
  * @tc.number   Telephony_CallManager_IMS_IsImsSwitchEnabled_0400
- * @tc.name     test IsImsSwitchEnabled() interface,imput SLOT_ID_1, return non-zero
+ * @tc.name     test IsImsSwitchEnabled() interface,imput SLOT_ID_3, return non-zero
  * @tc.desc     Function test
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_IsImsSwitchEnabled_0400, Function | MediumTest | Level2)
 {
-    int ret = g_clientPtr->GetPtr()->IsImsSwitchEnabled(SLOT_ID_1);
+    int ret = g_clientPtr->GetPtr()->IsImsSwitchEnabled(SLOT_ID_3);
     ASSERT_NE(ret, SUCCESSFUL);
 }
 

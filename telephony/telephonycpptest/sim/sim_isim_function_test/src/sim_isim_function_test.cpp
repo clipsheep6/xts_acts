@@ -33,6 +33,10 @@ const unsigned int SimTest::IMSI_LENGTH = 15;
  */
 HWTEST_F(SimISIMTest, Telephony_Sim_GetIMSI_0900, Function | MediumTest | Level3)
 {
+    if (!isISIM) {
+        LOG("The current sim card type is not IMSI.");
+        return;
+    }
     std::u16string result = g_proxy.GetHandler()->GetIMSI(SimTest::VAILD_SLOT_ID);
     const char *temp = nullptr;
     temp = Str16ToStr8(result).c_str();

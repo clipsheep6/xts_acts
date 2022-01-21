@@ -26,289 +26,301 @@ namespace OHOS {
 namespace NetManagerStandard {
 using namespace testing::ext;
 
-// NetHandler handler;
-
-
-
 // =================================test GetAddressesByName start===================================
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressesByName_0100
- * @tc.name
+ * @tc.name    Verify hostName is "www.baidu.com" test GetAddressesByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressesByName_0100, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressesByName_0100, Function | MediumTest | Level3)
 {
     std::string host = "www.baidu.com";
     std::vector<INetAddr> addrList;
     uint32_t netId = NETID_100;
-    // sptr<NetHandler> handler = std::make_unique<NetHandler>(netId).release();
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressesByName(host, addrList);
-    
-    // int32_t result = handler->BindSocket(1);
+    // sptr<NetHandle> handle = std::make_unique<NetHandle>(netId).release();
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressesByName(host, addrList);
+    // int32_t result = handle->BindSocket(1);
     std::cout<<"result="<<result<<std::endl;
     ASSERT_TRUE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressesByName_0200
- * @tc.name
+ * @tc.name    Verify hostName is "www.taobao.com" test GetAddressesByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressesByName_0200, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressesByName_0200, Function | MediumTest | Level3)
 {
     std::string host = "www.taobao.com";
     std::vector<INetAddr> addrList;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressesByName(host, addrList);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressesByName(host, addrList);
     ASSERT_TRUE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressesByName_0300
- * @tc.name
+ * @tc.name    Verify hostName is "www.csdn.net" test GetAddressesByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressesByName_0300, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressesByName_0300, Function | MediumTest | Level3)
 {
     std::string host = "www.csdn.net";
     std::vector<INetAddr> addrList;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressesByName(host, addrList);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressesByName(host, addrList);
     ASSERT_TRUE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressesByName_0400
- * @tc.name
+ * @tc.name    Verify hostName is "" test GetAddressesByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressesByName_0400, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressesByName_0400, Function | MediumTest | Level3)
 {
     std::string host = "";
     std::vector<INetAddr> addrList;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressesByName(host, addrList);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressesByName(host, addrList);
     ASSERT_FALSE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressesByName_0500
- * @tc.name
+ * @tc.name    Verify hostName is "666" test GetAddressesByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressesByName_0500, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressesByName_0500, Function | MediumTest | Level3)
 {
     std::string host = "666";
     std::vector<INetAddr> addrList;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressesByName(host, addrList);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressesByName(host, addrList);
     ASSERT_FALSE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressesByName_0600
- * @tc.name
+ * @tc.name    Verify hostName is "AAA" test GetAddressesByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressesByName_0600, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressesByName_0600, Function | MediumTest | Level3)
 {
     std::string host = "AAA";
     std::vector<INetAddr> addrList;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressesByName(host, addrList);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressesByName(host, addrList);
     ASSERT_FALSE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressByName_0100
- * @tc.name
+ * @tc.name    Verify hostName is "www.baidu.com" test GetAddressByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressByName_0100, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressByName_0100, Function | MediumTest | Level3)
 {
     std::string host = "www.baidu.com";
     INetAddr addr;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressByName(host, addr);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressByName(host, addr);
     std::cout<<"result="<<result<<std::endl;
     ASSERT_TRUE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressByName_0200
- * @tc.name
+ * @tc.name    Verify hostName is "www.taobao.com" test GetAddressByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressByName_0200, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressByName_0200, Function | MediumTest | Level3)
 {
     std::string host = "www.taobao.com";
     INetAddr addr;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressByName(host, addr);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressByName(host, addr);
     std::cout<<"result="<<result<<std::endl;
     ASSERT_TRUE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressByName_0300
- * @tc.name
+ * @tc.name    Verify hostName is "www.csdn.net" test GetAddressByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressByName_0300, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressByName_0300, Function | MediumTest | Level3)
 {
     std::string host = "www.csdn.net";
     INetAddr addr;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressByName(host, addr);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressByName(host, addr);
     std::cout<<"result="<<result<<std::endl;
     ASSERT_TRUE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressByName_0400
- * @tc.name
+ * @tc.name    Verify hostName is "" test GetAddressByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressByName_0400, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressByName_0400, Function | MediumTest | Level3)
 {
     std::string host = "";
     INetAddr addr;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressByName(host, addr);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressByName(host, addr);
     std::cout<<"result="<<result<<std::endl;
     ASSERT_FALSE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressByName_0500
- * @tc.name
+ * @tc.name    Verify hostName is "666" test GetAddressByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressByName_0500, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressByName_0500, Function | MediumTest | Level3)
 {
     std::string host = "666";
     INetAddr addr;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressByName(host, addr);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressByName(host, addr);
     std::cout<<"result="<<result<<std::endl;
     ASSERT_FALSE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_GetAddressByName_0600
- * @tc.name
+ * @tc.name    Verify hostName is "AAA" test GetAddressByName() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_GetAddressByName_0600, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_GetAddressByName_0600, Function | MediumTest | Level3)
 {
     std::string host = "AAA";
     std::vector<INetAddr> addrList;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->GetAddressesByName(host, addrList);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->GetAddressesByName(host, addrList);
     ASSERT_FALSE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_BindSocket_0100
- * @tc.name
+ * @tc.name    Verify hostName is "1" test BindSocket() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
 
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_BindSocket_0100, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_BindSocket_0100, Function | MediumTest | Level3)
 {
     int32_t socket_fd = 1;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->BindSocket(socket_fd);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->BindSocket(socket_fd);
     ASSERT_TRUE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_BindSocket_0200
- * @tc.name
+ * @tc.name    Verify hostName is "2" test BindSocket() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
 
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_BindSocket_0200, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_BindSocket_0200, Function | MediumTest | Level3)
 {
     int32_t socket_fd = 2;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->BindSocket(socket_fd);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->BindSocket(socket_fd);
     ASSERT_TRUE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_BindSocket_0300
- * @tc.name
+ * @tc.name    Verify hostName is "100" test BindSocket() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
 
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_BindSocket_0300, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_BindSocket_0300, Function | MediumTest | Level3)
 {
     int32_t socket_fd = 100;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->BindSocket(socket_fd);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->BindSocket(socket_fd);
     ASSERT_TRUE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_BindSocket_0400
- * @tc.name
+* @tc.name    Verify hostName is "0" test BindSocket() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
 
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_BindSocket_0400, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_BindSocket_0400, Function | MediumTest | Level3)
 {
     int32_t socket_fd = 0;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->BindSocket(socket_fd);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->BindSocket(socket_fd);
     ASSERT_TRUE(result == 0);
 }
 
 /*
  * @tc.number  Telephony_NetworkManager_BindSocket_0500
- * @tc.name
+ * @tc.name    Verify hostName is "-1" test BindSocket() to check the return value and
+ *             resolution result. NET_CONN_SUCCESS is returned with 0
  * @tc.desc   Function test
  */
 
-HWTEST_F(NetHandlerTest, Telephony_NetworkManager_BindSocket_0500, Function | MediumTest | Level3)
+HWTEST_F(NetHandleTest, Telephony_NetworkManager_BindSocket_0600, Function | MediumTest | Level3)
 {
     int32_t socket_fd = -1;
     uint32_t netId = NETID_100;
-    auto handler = DelayedSingleton<NetHandle>::GetInstance();
-    handler->SetNetId(netId);
-    int32_t result = handler->BindSocket(socket_fd);
+    auto handle = DelayedSingleton<NetHandle>::GetInstance();
+    handle->SetNetId(netId);
+    int32_t result = handle->BindSocket(socket_fd);
     ASSERT_FALSE(result == 0);
 }
 

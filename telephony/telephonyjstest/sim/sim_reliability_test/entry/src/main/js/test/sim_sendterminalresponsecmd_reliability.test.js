@@ -16,7 +16,7 @@
 import sim from '@ohos.telephony.sim';
 import commonEvent from '@ohos.commonEvent';
 import * as env from './lib/Const.js';
-import { describe, it, expect, beforeEach, afterEach, Core } from 'deccjsunit/index';
+import { describe, it, expect, beforeEach, afterEach, Core, beforeAll, afterAll } from 'deccjsunit/index';
 
 describe('SimSendTerminalResponseCmdReliabilityTest', function () {
 
@@ -24,16 +24,25 @@ describe('SimSendTerminalResponseCmdReliabilityTest', function () {
   let commonEventData;
   const STK_CMD = '81030125000202828';
 
-  // set timeout
-  const core = Core.getInstance();
-  const config = core.getDefaultService('config');
-  config.timeout = env.TIME_OUT * 1000 * 60;
-
   const sleep = function (s) {
     return new Promise(resolve => {
       setTimeout(resolve, s * 1000);
     });
   };
+
+  beforeAll(function () {
+    // set timeout
+    const core = Core.getInstance();
+    const config = core.getDefaultService('config');
+    config.timeout = env.TIME_OUT * 1000;
+  });
+
+  afterAll(function () {
+    // set timeout
+    const core = Core.getInstance();
+    const config = core.getDefaultService('config');
+    config.timeout = 5 * 1000;
+  });
 
   beforeEach(async function () {
     try {
@@ -85,7 +94,7 @@ describe('SimSendTerminalResponseCmdReliabilityTest', function () {
         return;
       }
       console.debug(`${CASE_NAME} run ${env.GENERAL_RUN_TIMES / 10 - n + 1} times`);
-      sim.sendTerminalResponseCmd(env.SLOTID0, STK_CMD, async error => {
+      sim.sendTerminalResponseCmd(env.DEFAULT_SLOTID, STK_CMD, async error => {
         if (error) {
           console.log(`${CASE_NAME} sendTerminalResponseCmd error: ${error.message}`);
           expect().assertFail();
@@ -117,7 +126,7 @@ describe('SimSendTerminalResponseCmdReliabilityTest', function () {
     for (let index = 0; index < env.GENERAL_RUN_TIMES / 10; index++) {
       console.debug(`${CASE_NAME} run ${index + 1} times`);
       try {
-        await sim.sendTerminalResponseCmd(env.SLOTID0, STK_CMD);
+        await sim.sendTerminalResponseCmd(env.DEFAULT_SLOTID, STK_CMD);
         await sleep(env.EVENT_RECEIVING_FREQUENCY);
         if (!commonEventData) {
           throw new Error('test fail');

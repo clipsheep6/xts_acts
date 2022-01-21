@@ -56,7 +56,7 @@ public:
     static const int32_t LONG_NEGATIVE_CALLID = -2147483647;
     const int32_t LONG_FALSE_CALLID = 2147483647;
     const int SLOT_ID = 0;
-    const int SLOT_ID_1 = 1;
+    const int SLOT_ID_3 = 3;
     const int ACCOUNT_ID = 0;
     const int SUCCESSFUL = 0;
     const int OPEN = 1;
@@ -110,11 +110,11 @@ bool CallManagerIMSTest::HasActiveStatus()
 {
     int sumUseTime = 0;
     int slipMs = 50;
-    int useTimeMs = 15000;
+    int increasingTime = 1000;
+    int useTimeMs = 18000;
     do {
-        if (!(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE)) &&
-            !(HasState(g_newCallId, TelCallState::CALL_STATUS_ALERTING))) {
-            usleep(slipMs * 1000);
+        if (!(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE))) {
+            usleep(slipMs * increasingTime);
             sumUseTime += slipMs;
         } else {
             LOG("===========wait %d ms callStatus:%d==============", sumUseTime, g_updateCallState);
@@ -169,6 +169,7 @@ void CallManagerIMSTest::SetUpTestCase()
 #ifndef CALLMANAGER_VOLTE_TEST
     int ret = g_clientPtr->GetPtr()->EnableImsSwitch(CallTestEnum::SLOT_ID);
     ASSERT_EQ(ret, 0);
+    LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("result"), 0, CallTestEnum::SLEEP_50_MS, CallTestEnum::SLEEP_1000_MS);
     int SetCallType = g_clientPtr->GetPtr()->SetCallPreferenceMode(CallTestEnum::SLOT_ID, CallTestEnum::CALL_TYPE_IMS);
     ASSERT_EQ(SetCallType, 0);
     LOG("SetCallPreferenceMode SUCCESS");

@@ -25,9 +25,9 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
   const setPinLockState = async function (state) {
     let lockInfo = { lockType: sim.PIN_LOCK, state, password: env.CORRECT_PIN };
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
       if (lockState !== state) {
-        await sim.setLockState(env.SLOTID0, lockInfo);
+        await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       }
     } catch (error) {
       console.log(`setPinLockState ${state ? 'ON' : 'OFF'} error: ${error.message}`);
@@ -37,9 +37,9 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
   const setFdnLockState = async function (state) {
     let lockInfo = { lockType: sim.FDN_LOCK, state, password: env.CORRECT_PIN2 };
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.FDN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.FDN_LOCK);
       if (lockState !== state) {
-        await sim.setLockState(env.SLOTID0, lockInfo);
+        await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       }
     } catch (error) {
       console.log(`setFdnLockState ${state ? 'ON' : 'OFF'} error: ${error.message}`);
@@ -49,9 +49,9 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
   const restoreLockRemain = async function (lockType) {
     try {
       if (lockType === sim.FDN_LOCK) {
-        await sim.unlockPin2(env.SLOTID0, env.CORRECT_PIN2);
+        await sim.unlockPin2(env.DEFAULT_SLOTID, env.CORRECT_PIN2);
       } else {
-        await sim.unlockPin(env.SLOTID0, env.CORRECT_PIN);
+        await sim.unlockPin(env.DEFAULT_SLOTID, env.CORRECT_PIN);
       }
     } catch (error) {
       console.log(`restoreLockRemain error: ${error.message}`);
@@ -65,15 +65,15 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       const pin2LockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_ON, password: env.CORRECT_PIN2 };
       const pin2UnlockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_OFF, password: env.CORRECT_PIN2 };
 
-      const pinLock = await sim.setLockState(env.SLOTID0, pinLockInfo);
+      const pinLock = await sim.setLockState(env.DEFAULT_SLOTID, pinLockInfo);
       console.debug(`pinLock result: ${JSON.stringify(pinLock)}`);
       pinIsError = pinLock.result !== env.LOCK_RESULT.SUCCESS;
-      await sim.setLockState(env.SLOTID0, pinUnlockInfo);
+      await sim.setLockState(env.DEFAULT_SLOTID, pinUnlockInfo);
 
-      const checkFdn = await sim.setLockState(env.SLOTID0, pin2LockInfo);
+      const checkFdn = await sim.setLockState(env.DEFAULT_SLOTID, pin2LockInfo);
       console.debug(`checkFdn result: ${JSON.stringify(checkFdn)}`);
       fdnLockUnavailable = checkFdn.result !== env.LOCK_RESULT.SUCCESS;
-      await sim.setLockState(env.SLOTID0, pin2UnlockInfo);
+      await sim.setLockState(env.DEFAULT_SLOTID, pin2UnlockInfo);
 
       console.debug(`pinIsError: ${pinIsError}, fdnLockUnavailable: ${fdnLockUnavailable}`);
     } catch (error) {
@@ -100,7 +100,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     const lockInfo = { lockType: sim.PIN_LOCK, state: sim.LOCK_ON, password: env.CORRECT_PIN };
     await setPinLockState(sim.LOCK_OFF);
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.SUCCESS) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -114,7 +114,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
       expect(lockState === sim.LOCK_ON).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -140,7 +140,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     const lockInfo = { lockType: sim.PIN_LOCK, state: sim.LOCK_OFF, password: env.CORRECT_PIN };
     await setPinLockState(sim.LOCK_ON);
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.SUCCESS) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -156,7 +156,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
       expect(lockState === sim.LOCK_OFF).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -183,7 +183,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     const lockInfo = { lockType: sim.PIN_LOCK, state: sim.LOCK_ON, password: env.CORRECT_PIN };
     await setPinLockState(sim.LOCK_ON);
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.EXCEPTION) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -199,7 +199,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
       expect(lockState === sim.LOCK_ON).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -226,7 +226,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     const lockInfo = { lockType: sim.PIN_LOCK, state: sim.LOCK_OFF, password: env.CORRECT_PIN };
     await setPinLockState(sim.LOCK_OFF);
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.EXCEPTION) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -240,7 +240,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
       expect(lockState === sim.LOCK_OFF).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -264,7 +264,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     }
     const lockInfo = { lockType: sim.PIN_LOCK, state: sim.LOCK_ON, password: env.INCORRECT_PIN };
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.FAILURE || lockStatusResponse.remain !== 2) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -278,7 +278,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
       expect(lockState === sim.LOCK_OFF).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -305,7 +305,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     const lockInfo = { lockType: sim.PIN_LOCK, state: sim.LOCK_OFF, password: env.INCORRECT_PIN };
     await setPinLockState(sim.LOCK_ON);
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.FAILURE || lockStatusResponse.remain !== 2) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -321,7 +321,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
       expect(lockState === sim.LOCK_ON).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -347,7 +347,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     }
     const lockInfo = { lockType: sim.PIN_LOCK, state: sim.LOCK_ON, password: env.INCORRECT_PIN_LEN3 };
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.EXCEPTION) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -361,7 +361,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
       expect(lockState === sim.LOCK_OFF).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -399,7 +399,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
   /**
    * @tc.number Telephony_Sim_SetLockState_Promise_1100
    * @tc.name   The card is in the ready state, test the SetLockState promise interface
-   *            slotId exception into the parameter 1, check the callback value
+   *            slotId exception into the parameter 3, check the callback value
    * @tc.desc   Function test
    */
   it('Telephony_Sim_SetLockState_Promise_1100', 0, async function (done) {
@@ -411,7 +411,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     }
     const lockInfo = { lockType: sim.PIN_LOCK, state: sim.LOCK_OFF, password: env.CORRECT_PIN };
     try {
-      await sim.setLockState(env.SLOTID1, lockInfo);
+      await sim.setLockState(env.SLOTID3, lockInfo);
       console.log(`${CASE_NAME} test fail`);
       expect().assertFail();
     } catch (error) {
@@ -461,7 +461,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     const lockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_ON, password: env.CORRECT_PIN2 };
 
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.SUCCESS) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -475,7 +475,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.FDN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.FDN_LOCK);
       expect(lockState === sim.LOCK_ON).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -503,7 +503,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     const lockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_OFF, password: env.CORRECT_PIN2 };
     await setFdnLockState(sim.LOCK_OFF);
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.SUCCESS) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -519,7 +519,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.FDN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.FDN_LOCK);
       expect(lockState === sim.LOCK_OFF).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -544,7 +544,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     const lockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_ON, password: env.CORRECT_PIN2 };
     await setFdnLockState(sim.LOCK_ON);
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.SUCCESS) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -560,7 +560,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.FDN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.FDN_LOCK);
       expect(lockState === sim.LOCK_ON).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -585,7 +585,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     }
     const lockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_OFF, password: env.CORRECT_PIN2 };
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.SUCCESS) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -599,7 +599,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.FDN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.FDN_LOCK);
       expect(lockState === sim.LOCK_OFF).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -624,7 +624,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     }
     const lockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_ON, password: env.INCORRECT_PIN2 };
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.FAILURE || lockStatusResponse.remain !== 2) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -638,7 +638,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.FDN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.FDN_LOCK);
       expect(lockState === sim.LOCK_OFF).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -664,7 +664,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     const lockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_OFF, password: env.INCORRECT_PIN2 };
     await setFdnLockState(sim.LOCK_ON);
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.FAILURE || lockStatusResponse.remain !== 2) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -680,7 +680,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.FDN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.FDN_LOCK);
       expect(lockState === sim.LOCK_ON).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -706,7 +706,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
     }
     const lockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_ON, password: env.INCORRECT_PIN2_LEN9 };
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       if (lockStatusResponse.result !== env.LOCK_RESULT.EXCEPTION) {
         console.log(`${CASE_NAME} setLockState failure, lock status response: ${lockStatusResponse.result}`);
         expect().assertFail();
@@ -720,7 +720,7 @@ describe('SimSetLockStatePromiseFunctionTest', function () {
       return;
     }
     try {
-      const lockState = await sim.getLockState(env.SLOTID0, sim.FDN_LOCK);
+      const lockState = await sim.getLockState(env.DEFAULT_SLOTID, sim.FDN_LOCK);
       expect(lockState === sim.LOCK_OFF).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {

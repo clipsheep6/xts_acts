@@ -14,7 +14,6 @@
  */
 
 #include <iostream>
-
 #include "net_mgr_log_wrapper.h"
 #include "test_net_conn_callback.h"
 

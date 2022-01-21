@@ -15,7 +15,7 @@
 
 import {RIGHT_PASSWORD, DEFAULT_SLOT_ID, RESTRICTION_MODE_DEACTIVATION} from './Const.js';
 import {toString} from './ApiToPromise.js';
-import call from '@ohos.telephony.calltest';
+import call from '@ohos.telephony.call';
 
 // limit call scence
 export function scenceLimitCalling (caseName, type, mode, slotId) {

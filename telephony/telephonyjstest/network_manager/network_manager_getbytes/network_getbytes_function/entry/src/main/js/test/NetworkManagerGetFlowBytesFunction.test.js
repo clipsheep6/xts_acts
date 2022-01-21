@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 import netstats from '@ohos.netmanager.netstats';
-import { describe, it, expect, beforeAll, afterAll, afterEach } from 'deccjsunit/index';
+import { describe, it, expect } from 'deccjsunit/index';
 
-describe('NetworkManagerGetFlowBytesFunction.test', function () {
+describe('GetFlowBytesFunctionTest', function () {
     const DATA_0 = 0;
     const DATA_LOWER_1 = -1;
 
@@ -26,7 +26,6 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getCellularRxBytes_Async_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getCellularRxBytes_Async_0100';
-        console.log(`${caseName} done`);
         netstats.getCellularRxBytes((err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
@@ -47,13 +46,12 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
     it('Telephony_NetworkManager_getCellularRxBytes_Promise_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getCellularRxBytes_Promise_0100';
         netstats.getCellularRxBytes().then((data) => {
-            console.log("${caseName} get data = " + data.message + " " + data.code);
+            console.log(`${caseName} get data = ${ data.message } : ${data.code}`);
             expect(data.code).assertLarger(DATA_0);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -90,7 +88,6 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -101,8 +98,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getUidRxBytes_Async_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidRxBytes_Async_0100';
-        let app_uid = 567;
-        netstats.getUidRxBytes(app_uid,(err, data) => {
+        let appUid = 567;
+        netstats.getUidRxBytes(appUid,(err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -141,15 +138,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getUidRxBytes_Promise_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidRxBytes_Promise_0100';
-        let app_uid = 567;
-        netstats.getUidRxBytes(app_uid).then((data) => {
+        let appUid = 567;
+        netstats.getUidRxBytes(appUid).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertLarger(DATA_0);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -160,15 +156,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getUidRxBytes_Promise_0200', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidRxBytes_Promise_0200';
-        let app_uid = 10000;
-        netstats.getUidRxBytes(app_uid).then((data) => {
+        let appUid = 10000;
+        netstats.getUidRxBytes(appUid).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertEqual(DATA_LOWER_1);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -179,8 +174,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getUidTxBytes_Async_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidTxBytes_Async_0100';
-        let app_uid = 567;
-        netstats.getUidTxBytes(app_uid,(err, data) => {
+        let appUid = 567;
+        netstats.getUidTxBytes(appUid,(err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -219,15 +214,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getUidTxBytes_Promise_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidTxBytes_Promise_0100';
-        let app_uid = 567;
-        netstats.getUidTxBytes(app_uid).then((data) => {
+        let appUid = 567;
+        netstats.getUidTxBytes(appUid).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertLarger(DATA_LOWER_1);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -246,7 +240,6 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -258,8 +251,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Async_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Async_0100';
-        let iface_name = "usb0";
-        netstats.getIfaceRxBytes(iface_name,(err, data) => {
+        let ifaceName = "usb0";
+        netstats.getIfaceRxBytes(ifaceName,(err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -279,8 +272,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Async_0200', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Async_0200';
-        let iface_name = "wlan0";
-        netstats.getIfaceRxBytes(iface_name,(err, data) => {
+        let ifaceName = "wlan0";
+        netstats.getIfaceRxBytes(ifaceName,(err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -300,8 +293,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Async_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Async_0300';
-        let iface_name = "eth0";
-        netstats.getIfaceRxBytes(iface_name,(err, data) => {
+        let ifaceName = "eth0";
+        netstats.getIfaceRxBytes(ifaceName,(err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -321,8 +314,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Async_0400', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Async_0400';
-        let iface_name = "xlan0";
-        netstats.getIfaceRxBytes(iface_name,(err, data) => {
+        let ifaceName = "xlan0";
+        netstats.getIfaceRxBytes(ifaceName,(err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -342,15 +335,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0100';
-        let iface_name = "usb0";
-        netstats.getIfaceRxBytes(iface_name).then((data) => {
+        let ifaceName = "usb0";
+        netstats.getIfaceRxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertLarger(DATA_0);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -362,15 +354,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0200', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0200';
-        let iface_name = "wlan0";
-        netstats.getIfaceRxBytes(iface_name).then((data) => {
+        let ifaceName = "wlan0";
+        netstats.getIfaceRxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertLarger(DATA_0);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -382,15 +373,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0300';
-        let iface_name = "eth0";
-        netstats.getIfaceRxBytes(iface_name).then((data) => {
+        let ifaceName = "eth0";
+        netstats.getIfaceRxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertLarger(DATA_0);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -402,15 +392,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0400', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0400';
-        let iface_name = "xlan0";
-        netstats.getIfaceRxBytes(iface_name).then((data) => {
+        let ifaceName = "xlan0";
+        netstats.getIfaceRxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertEqual(DATA_LOWER_1);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -422,8 +411,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Async_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Async_0100';
-        let iface_name = "usb0";
-        netstats.getIfaceTxBytes(iface_name,(err, data) => {
+        let ifaceName = "usb0";
+        netstats.getIfaceTxBytes(ifaceName,(err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -443,8 +432,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Async_0200', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Async_0200';
-        let iface_name = "wlan0";
-        netstats.getIfaceTxBytes(iface_name,(err, data) => {
+        let ifaceName = "wlan0";
+        netstats.getIfaceTxBytes(ifaceName,(err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -464,8 +453,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Async_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Async_0300';
-        let iface_name = "eth0";
-        netstats.getIfaceTxBytes(iface_name,(err, data) => {
+        let ifaceName = "eth0";
+        netstats.getIfaceTxBytes(ifaceName,(err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -485,8 +474,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Async_0400', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Async_0400';
-        let iface_name = "xlan0";
-        netstats.getIfaceTxBytes(iface_name,(err, data) => {
+        let ifaceName = "xlan0";
+        netstats.getIfaceTxBytes(ifaceName,(err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -506,15 +495,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0100';
-        let iface_name = "usb0";
-        netstats.getIfaceTxBytes(iface_name).then((data) => {
+        let ifaceName = "usb0";
+        netstats.getIfaceTxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertLarger(DATA_0);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -526,15 +514,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0200', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0200';
-        let iface_name = "wlan0";
-        netstats.getIfaceTxBytes(iface_name).then((data) => {
+        let ifaceName = "wlan0";
+        netstats.getIfaceTxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertLarger(DATA_0);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -546,15 +533,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0300';
-        let iface_name = "eth0";
-        netstats.getIfaceTxBytes(iface_name).then((data) => {
+        let ifaceName = "eth0";
+        netstats.getIfaceTxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertLarger(DATA_0);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -566,15 +552,14 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0400', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0400';
-        let iface_name = "xlan0";
-        netstats.getIfaceTxBytes(iface_name).then((data) => {
+        let ifaceName = "xlan0";
+        netstats.getIfaceTxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code).assertEqual(DATA_LOWER_1);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -605,13 +590,12 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
     it('Telephony_NetworkManager_getAllRxBytes_Promise_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getAllRxBytes_Promise_0100';
         netstats.getAllRxBytes().then((data) => {
-            console.log("${caseName} get data = " + data.message + " " + data.code);
+            console.log(`${caseName} get data = ${data.message} :${data.code}`);
             expect(data.code).assertLarger(DATA_0);
             done();
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 
@@ -648,7 +632,6 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
         }).catch((err) => {
             console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
             done();
-            return;
         });
     });
 });

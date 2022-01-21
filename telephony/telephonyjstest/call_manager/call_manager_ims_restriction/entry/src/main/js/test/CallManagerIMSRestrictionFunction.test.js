@@ -2632,7 +2632,7 @@ describe('CallManagementCallRestriction', function () {
      *             run the function setCallWaiting by args slotId DEFAULT_SLOT_ID activate true by promise to reset
      * @tc.desc    Function test
      */
-    it('Telephony_CallManager_IMS_getCallWaitingStatus_Promise_0400', 0, async function (done) {
+    it('Telephony_CallManager_IMS_getCallWaitingStatus_Promise_0400', 0, async function () {
         let caseName = 'Telephony_CallManager_IMS_getCallWaitingStatus_Promise_0400';
         try {
             await call.setCallWaiting(DEFAULT_SLOT_ID, false);

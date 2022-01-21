@@ -80,9 +80,9 @@ ohos_moduletest_suite("SimCardTypeLockPerformanceTest") {
 
   defines += [
     "CORRECT_PIN=\"1234\"", # Please enter the correct pin code of the sim card
-    "CORRECT_PUK=\"81717146\"", # Please enter the correct puk code of the sim card
-    "CORRECT_PIN2=\"18099014\"", # Please enter the correct pin2 code of the sim card
-    "CORRECT_PUK2=\"50410255\"", # Please enter the correct puk2 code of the sim card
+    "CORRECT_PUK=\"25725224\"", # Please enter the correct puk code of the sim card
+    "CORRECT_PIN2=\"32663378\"", # Please enter the correct pin2 code of the sim card
+    "CORRECT_PUK2=\"27194972\"", # Please enter the correct puk2 code of the sim card
   ]
 
   part_name = "telephonycpptest"

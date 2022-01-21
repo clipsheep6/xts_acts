@@ -21,50 +21,44 @@ import("//foundation/communication/netmanager_base/netmanager_base_config.gni")
 ohos_moduletest_suite("network_manager_net_policy_callback_test") {
     install_enable = true
     sources = [
-        "src/network_manager_net_policy_callback_test.cpp"
+        "src/network_manager_net_policy_callback_test.cpp",
     ]
 
     include_dirs = [
         "//test/xts/acts/telephony/telephonycpptest/network_manager/include",
-        "$INNERKITS_ROOT/native/ethernetmanager/include/ipc",
-        "$INNERKITS_ROOT/native/ethernetmanager/include",
-        "$INNERKITS_ROOT/native/netconnmanager/include",
-
+        "$INNERKITS_ROOT/ethernetmanager/include/ipc",
+        "$INNERKITS_ROOT/ethernetmanager/include",
+        "$INNERKITS_ROOT/netconnmanager/include",
         "$NETPOLICYMANAGER_SOURCE_DIR/include",
-        "$INNERKITS_ROOT/native/netconnclient/include",
-        "$INNERKITS_ROOT/native/netconnclient/include/proxy",
-        "$INNERKITS_ROOT/native/netpolicyclient/include",
-        "$INNERKITS_ROOT/native/netpolicyclient/include/proxy",
-
+        "$INNERKITS_ROOT/netconnclient/include",
+        "$INNERKITS_ROOT/netconnclient/include/proxy",
+        "$INNERKITS_ROOT/netpolicyclient/include",
+        "$INNERKITS_ROOT/netpolicyclient/include/proxy",
         "$NETPOLICYMANAGER_SOURCE_DIR/include/ipc",
          "$NETPOLICYMANAGER_SOURCE_DIR/include/stub",
           "$NETPOLICYMANAGER_SOURCE_DIR/include/net_policy_controller",
-
-        "//foundation/aafwk/standard/frameworks/kits/ability/native/include",
-        "$INNERKITS_ROOT/native/dnsresolvermanager/include",
-        "$INNERKITS_ROOT/native/dnsresolvermanager/include/ipc",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/include",
+        "//foundation/aafwk/standard/frameworks/kits/ability/include",
+        "$INNERKITS_ROOT/dnsresolvermanager/include",
+        "$INNERKITS_ROOT/dnsresolvermanager/include/ipc",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/include",
         "//foundation/communication/netmanager_base/services/dnsresolvermanager/include/ipc",
         "//foundation/communication/netmanager_base/services/dnsresolvermanager/include",
         "//foundation/communication/netmanager_base/services/common/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/dnsresolvermanager/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netpolicymanager/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/ethernetmanager/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/ethernetmanager/include",
-       "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include/proxy" ,
-       "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include" ,
-         
+        "//foundation/communication/netmanager_base/interfaces/innerkits/dnsresolvermanager/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/netpolicymanager/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/ethernetmanager/include",
+       "//foundation/communication/netmanager_base/interfaces/innerkits/netstatsclient/include/proxy" ,
+       "//foundation/communication/netmanager_base/interfaces/innerkits/netstatsclient/include" ,
         "//test//xts//acts//telephony//telephonycpptest//utils",
         "//foundation/communication/netmanager_base/services/dnsresolverclient/include/ipc",
         "//foundation/communication/netmanager_base/services/dnsresolverclient/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/dnsresolverclient/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netpolicyclient/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/ethernetclient/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include/proxy",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include/",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/dnsresolverclient/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/netpolicyclient/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/ethernetclient/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/netstatsclient/include/proxy",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/netstatsclient/include/",
         "//foundation/communication/netmanager_base/services/netpolicymanager/include",
-
-      "$INNERKITS_ROOT/native/netstatsclient/include",
+      "$INNERKITS_ROOT/netstatsclient/include",
       "$NETCONNMANAGER_COMMON_DIR/include",
       "$NETSTATSMANAGER_INNERKITS_SOURCE_DIR/include",
       "$NETSTATSMANAGER_SOURCE_DIR/include",
@@ -73,24 +67,17 @@ ohos_moduletest_suite("network_manager_net_policy_callback_test") {
 
    deps = [
         "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
-        "$INNERKITS_ROOT/ethernetclient:ethernet_manager_if",
         "$INNERKITS_ROOT/netconnclient:net_conn_manager_if",
         "$INNERKITS_ROOT/dnsresolverclient:dns_resolver_manager_if",
         "$INNERKITS_ROOT/netstatsclient:net_stats_manager_if",
         "//third_party/googletest:gtest_main",
-
         "$NETPOLICYMANAGER_SOURCE_DIR:net_policy_manager",
-        "//utils/native/base:utils",
         "$INNERKITS_ROOT/netpolicyclient:net_policy_manager_if",
-        "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
-        "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog",
-
+          "//base/hiviewdfx/hilog/adapter:libhilog_os_adapter",
+         "//base/hiviewdfx/hilog/frameworks/native:libhilog_source",
+         "//utils/native/base:utilsecurec_shared",
         "$INNERKITS_ROOT/netpolicyclient:net_policy_manager_if",
-        "$INNERKITS_ROOT/ethernetclient:ethernet_manager_if",
-
         "$NETSTATSMANAGER_SOURCE_DIR:net_stats_manager",
-        "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog",
-        "//utils/native/base:utils"
     ]
 
     external_deps = [

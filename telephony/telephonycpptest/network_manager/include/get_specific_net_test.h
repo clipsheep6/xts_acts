@@ -35,9 +35,11 @@ public:
     void TearDown();
 };
 
-void GetSpecificNetTest::SetUpTestCase() {}
+void GetSpecificNetTest::SetUpTestCase() {
+}
 
-void GetSpecificNetTest::TearDownTestCase() {}
+void GetSpecificNetTest::TearDownTestCase() {
+}
 
 void GetSpecificNetTest::SetUp() {
     int32_t loopNumber = 10;
@@ -50,11 +52,10 @@ void GetSpecificNetTest::TearDown() {
     int32_t loopNumber = 10;
     for (int32_t index = 0 ;index < loopNumber; index++) {
         if (supplierIdTest[index] != 0) {
-            OHOS::DelayedSingleton<OHOS::NetManagerStandard::NetConnClient>::GetInstance()-> UnregisterNetSupplier(supplierIdTest[index]);
+            OHOS::DelayedSingleton<OHOS::NetManagerStandard::NetConnClient>::GetInstance()->
+                UnregisterNetSupplier(supplierIdTest[index]);
         }
-        
     }
 }
-
 
 #endif // GET_SPECIFIC_NET_TEST_H

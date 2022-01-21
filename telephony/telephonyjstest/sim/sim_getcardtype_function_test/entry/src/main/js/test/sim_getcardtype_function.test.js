@@ -27,7 +27,7 @@ describe('SimGetCardTypeFunctionTest', function () {
    */
   it('Telephony_Sim_GetCardType_Async_0100', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetCardType_Async_0100';
-    sim.getCardType(env.SLOTID0, (error, cardType) => {
+    sim.getCardType(env.DEFAULT_SLOTID, (error, cardType) => {
       if (error) {
         console.log(`${CASE_NAME} GetCardType error: ${error.message}`);
         expect().assertFail();
@@ -64,12 +64,12 @@ describe('SimGetCardTypeFunctionTest', function () {
   /**
    * @tc.number Telephony_Sim_GetCardType_Async_0300
    * @tc.name   Verify that the slotId of the GetCardType async callback interface is abnormal
-   *            and enter parameter 1, and check the callback value
+   *            and enter parameter 3, and check the callback value
    * @tc.desc   Function test
    */
   it('Telephony_Sim_GetCardType_Async_0300', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetCardType_Async_0300';
-    sim.getCardType(env.SLOTID1, (error, cardType) => {
+    sim.getCardType(env.SLOTID3, (error, cardType) => {
       if (error) {
         console.log(`${CASE_NAME} GetCardType error: ${error.message}`);
         expect().assertFail();
@@ -112,7 +112,7 @@ describe('SimGetCardTypeFunctionTest', function () {
   it('Telephony_Sim_GetCardType_Promise_0100', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetCardType_Promise_0100';
     try {
-      const cardType = await sim.getCardType(env.SLOTID0);
+      const cardType = await sim.getCardType(env.DEFAULT_SLOTID);
       expect(cardType === sim.SINGLE_MODE_USIM_CARD).assertTrue();
       console.log(`${CASE_NAME} test finish.`);
     } catch (error) {
@@ -144,13 +144,13 @@ describe('SimGetCardTypeFunctionTest', function () {
   /**
    * @tc.number Telephony_Sim_GetCardType_Promise_0300
    * @tc.name   Verify that the slotId of the GetCardType promise interface is abnormal
-   *            and enter parameter 1, and check the callback value
+   *            and enter parameter 3, and check the callback value
    * @tc.desc   Function test
    */
   it('Telephony_Sim_GetCardType_Promise_0300', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetCardType_Promise_0300';
     try {
-      const cardType = await sim.getCardType(env.SLOTID1);
+      const cardType = await sim.getCardType(env.SLOTID3);
       expect(cardType === sim.UNKNOWN_CARD).assertTrue();
       console.log(`${CASE_NAME} test finish.`);
     } catch (error) {

@@ -16,7 +16,7 @@
 import statistics from '@ohos.net.statistics';
 import { describe, it, expect } from 'deccjsunit/index';
 
-describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
+describe('GetFlowBytesPerformanceTest', function () {
     const TEST_RUN_TIME = 1000;
     const DELAYL_LIMIT = 1000;
 
@@ -139,7 +139,7 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        let app_uid = 567;
+        let appUid = 567;
         function recursive(n) {
             if (n <= 0) {
                 console.log(`${caseName} done useTime: ${totalTime}`);
@@ -148,7 +148,7 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
                 return;
             }
             startTime = new Date().getTime();
-            statistics.getUidRxBytes(app_uid,(err, data) => {
+            statistics.getUidRxBytes(appUid,(err, data) => {
                 endTime = new Date().getTime();
                 totalTime += endTime - startTime;
                 if (err) {
@@ -169,10 +169,10 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
     it('Telephony_NetworkManager_getUidRxBytes_Promise_0400', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidRxBytes_Promise_0400';
         let startTime = new Date().getTime();
-        let app_uid = 567;
+        let appUid = 567;
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data= await statistics.getUidRxBytes(app_uid);
+                let data= await statistics.getUidRxBytes(appUid);
                 console.log(`${caseName} data: ${JSON.stringify(data)}`);
             } catch (err) {
                 console.log(`${caseName} fail `);
@@ -195,7 +195,7 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        let app_uid = 567;
+        let appUid = 567;
         function recursive(n) {
             if (n <= 0) {
                 console.log(`${caseName} done useTime: ${totalTime}`);
@@ -204,7 +204,7 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
                 return;
             }
             startTime = new Date().getTime();
-            statistics.getUidTxBytes(app_uid,(err, data) => {
+            statistics.getUidTxBytes(appUid,(err, data) => {
                 endTime = new Date().getTime();
                 totalTime += endTime - startTime;
                 if (err) {
@@ -225,10 +225,10 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
     it('Telephony_NetworkManager_getUidTxBytes_Promise_0400', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidTxBytes_Promise_0400';
         let startTime = new Date().getTime();
-        let app_uid = 567;
+        let appUid = 567;
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data= await statistics.getUidTxBytes(app_uid);
+                let data= await statistics.getUidTxBytes(appUid);
                 console.log(`${caseName} data: ${JSON.stringify(data)}`);
             } catch (err) {
                 console.log(`${caseName} fail `);
@@ -251,7 +251,7 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         function recursive(n) {
             if (n <= 0) {
                 console.log(`${caseName} done useTime: ${totalTime}`);
@@ -260,7 +260,7 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
                 return;
             }
             startTime = new Date().getTime();
-            statistics.getIfaceRxBytes(iface_name,(err, data) => {
+            statistics.getIfaceRxBytes(ifaceName,(err, data) => {
                 endTime = new Date().getTime();
                 totalTime += endTime - startTime;
                 if (err) {
@@ -281,10 +281,10 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0600', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0600';
         let startTime = new Date().getTime();
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data= await statistics.getIfaceRxBytes(iface_name);
+                let data= await statistics.getIfaceRxBytes(ifaceName);
                 console.log(`${caseName} data: ${JSON.stringify(data)}`);
             } catch (err) {
                 console.log(`${caseName} fail `);
@@ -307,7 +307,7 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         function recursive(n) {
             if (n <= 0) {
                 console.log(`${caseName} done useTime: ${totalTime}`);
@@ -316,7 +316,7 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
                 return;
             }
             startTime = new Date().getTime();
-            statistics.getIfaceTxBytes(iface_name,(err, data) => {
+            statistics.getIfaceTxBytes(ifaceName,(err, data) => {
                 endTime = new Date().getTime();
                 totalTime += endTime - startTime;
                 if (err) {
@@ -337,10 +337,10 @@ describe('NetworkManagerGetFlowBytesPerformanceTest', function () {
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0600', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0600';
         let startTime = new Date().getTime();
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data= await statistics.getIfaceTxBytes(iface_name);
+                let data= await statistics.getIfaceTxBytes(ifaceName);
                 console.log(`${caseName} data: ${JSON.stringify(data)}`);
             } catch (err) {
                 console.log(`${caseName} fail `);

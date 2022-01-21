@@ -17,43 +17,25 @@
 #define NETWORK_MANAGER_GETBYTES_TEST_H
 
 #include <gtest/gtest.h>
-#include "dns_resolver_constants.h"
-#include "ethernet_constants.h"
-
-#include <gtest/gtest.h>
-#include <iostream>
-#include "ethernet_client.h"
-#include "dns_resolver_client.h"
-#include "static_configuration.h"
-
-#include "system_ability_definition.h"
-#include "data_flow_statistics.h"
-#include "i_net_stats_service.h"
-#include "net_stats_csv.h"
-#include "net_stats_client.h"
-#include "timer.h"
-#include <unistd.h>
-
 #include <vector>
-#include <memory>
+#include <iostream>
 #include <thread>
-#include "connect_wifi.h"
-
-#include "wifi_msg.h"
+#include "net_stats_client.h"
+#include "i_net_stats_service.h"
+#include "static_configuration.h"
+#include "data_flow_statistics.h"
+#include "dns_resolver_client.h"
+#include "dns_resolver_constants.h"
 
 namespace OHOS {
 namespace NetManagerStandard {
-enum INET
-{
+enum INET{
     UNKNOWN = 0X00,
     IPV4 = 0X01,
     IPV6 = 0X02
 };
 
-// using namespace OHOS::Wifi;
-
-class NetworkManagerGetBytesTest : public testing::Test
-{
+class NetworkManagerGetBytesTest : public testing::Test{
 public:
     static void SetUpTestCase();
     static void TearDownTestCase();
@@ -62,11 +44,9 @@ public:
 };
 
 void NetworkManagerGetBytesTest::SetUpTestCase() {}
-
 void NetworkManagerGetBytesTest::TearDownTestCase() {}
-
 void NetworkManagerGetBytesTest::SetUp(){ }
-
-void NetworkManagerGetBytesTest::TearDown() {}}
+void NetworkManagerGetBytesTest::TearDown() {}
+}
 }
 #endif // NETWORK_MANAGER_TEST_H

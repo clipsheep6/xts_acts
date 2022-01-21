@@ -38,8 +38,8 @@ public:
 class CommonEventTest : public OHOS::EventFwk::CommonEventSubscriber {
 public:
     explicit CommonEventTest(const OHOS::EventFwk::CommonEventSubscribeInfo &sp)
-        : OHOS::EventFwk::CommonEventSubscriber(sp){};
-    ~CommonEventTest(){};
+        : OHOS::EventFwk::CommonEventSubscriber(sp) {};
+    ~CommonEventTest() {};
 
     void OnReceiveEvent(const OHOS::EventFwk::CommonEventData &data);
 

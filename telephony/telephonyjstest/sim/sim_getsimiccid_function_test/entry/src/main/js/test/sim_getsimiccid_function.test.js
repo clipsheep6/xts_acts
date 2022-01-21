@@ -27,7 +27,7 @@ describe('SimGetSimIccIdFunctionTest', function () {
    */
   it('Telephony_Sim_GetSimIccId_Async_0500', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimIccId_Async_0500';
-    sim.getSimIccId(env.SLOTID0, (error, iccId) => {
+    sim.getSimIccId(env.DEFAULT_SLOTID, (error, iccId) => {
       if (error) {
         console.log(`${CASE_NAME} getSimIccId error: ${error.message}`);
         expect().assertFail();
@@ -64,12 +64,12 @@ describe('SimGetSimIccIdFunctionTest', function () {
   /**
    * @tc.number  Telephony_Sim_GetSimIccId_Async_0700
    * @tc.name    CDMA file, getSimIccId async callback interface slotId
-   *             exception enters parameter 1 test
+   *             exception enters parameter 3 test
    * @tc.desc    Function test
    */
   it('Telephony_Sim_GetSimIccId_Async_0700', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimIccId_Async_0700';
-    sim.getSimIccId(env.SLOTID1, error => {
+    sim.getSimIccId(env.SLOTID3, error => {
       if (error) {
         console.log(`${CASE_NAME} getSimIccId expect error: ${error.message}`);
         console.log(`${CASE_NAME} test finish.`);
@@ -112,7 +112,7 @@ describe('SimGetSimIccIdFunctionTest', function () {
   it('Telephony_Sim_GetSimIccId_Promise_0500', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimIccId_Promise_0500';
     try {
-      const iccId = await sim.getSimIccId(env.SLOTID0);
+      const iccId = await sim.getSimIccId(env.DEFAULT_SLOTID);
       expect(iccId.length === env.SIM_ICCID_LEN).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -144,13 +144,13 @@ describe('SimGetSimIccIdFunctionTest', function () {
   /**
    * @tc.number  Telephony_Sim_GetSimIccId_Promise_0700
    * @tc.name    CDMA file, getSimIccId promise interface slotId
-   *             exception enters parameter 1 test
+   *             exception enters parameter 3 test
    * @tc.desc    Function test
    */
   it('Telephony_Sim_GetSimIccId_Promise_0700', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetSimIccId_Promise_0700';
     try {
-      await sim.getSimIccId(env.SLOTID1);
+      await sim.getSimIccId(env.SLOTID3);
       expect().assertFail();
       console.log(`${CASE_NAME} test fail.`);
     } catch (error) {

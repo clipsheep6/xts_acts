@@ -52,11 +52,11 @@ ohos_moduletest_suite("NetworkManagerGetBytesTest") {
         "//foundation/communication/wifi/services/wifi_standard/wifi_framework/common/net_helper",
         "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard/interfaces",
         "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard/include",
+        "//foundation/communication/netmanager_ext/interfaces/innerkits/ethernetclient/include",
     ]
 
    deps = [
         "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
-        "$EXT_INNERKITS_ROOT/ethernetclient:ethernet_manager_if",
         "$BASE_INNERKITS_ROOT/netconnclient:net_conn_manager_if",
         "$INNERKITS_ROOT/dnsresolverclient:dns_resolver_manager_if",
         "$INNERKITS_ROOT/netstatsclient:net_stats_manager_if",

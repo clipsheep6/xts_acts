@@ -15,14 +15,23 @@
 
 import sim from '@ohos.telephony.sim';
 import * as env from './lib/Const.js';
-import { describe, it, expect, Core } from 'deccjsunit/index';
+import { describe, it, expect, Core, beforeAll, afterAll } from 'deccjsunit/index';
 
 describe('SimGetLockStatePerformanceTest', function () {
 
-  // set timeout
-  const core = Core.getInstance();
-  const config = core.getDefaultService('config');
-  config.timeout = env.TIME_OUT * 1000;
+  beforeAll(function () {
+    // set timeout
+    const core = Core.getInstance();
+    const config = core.getDefaultService('config');
+    config.timeout = env.TIME_OUT * 1000;
+  });
+
+  afterAll(function () {
+    // set timeout
+    const core = Core.getInstance();
+    const config = core.getDefaultService('config');
+    config.timeout = 5 * 1000;
+  });
 
   /**
    * @tc.number Telephony_Sim_GetLockState_Async_0400
@@ -43,7 +52,7 @@ describe('SimGetLockStatePerformanceTest', function () {
       }
       console.debug(`${CASE_NAME} run ${env.GENERAL_RUN_TIMES - n + 1} times`);
       startTime = new Date().getTime();
-      sim.getLockState(env.SLOTID0, sim.PIN_LOCK, () => {
+      sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK, () => {
         endTime = new Date().getTime();
         totalTime += endTime - startTime;
         recursive(n - 1);
@@ -67,7 +76,7 @@ describe('SimGetLockStatePerformanceTest', function () {
       console.debug(`${CASE_NAME} run ${index + 1} times`);
       try {
         startTime = new Date().getTime();
-        await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+        await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
         endTime = new Date().getTime();
         totalTime += endTime - startTime;
       } catch (error) {

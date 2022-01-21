@@ -89,13 +89,13 @@ describe('SimSendTerminalResponseCmdFunctionTest', function () {
 
   /**
    * @tc.number Telephony_Sim_SendTerminalResponseCmd_Async_0200
-   * @tc.name   Test SendTerminalResponseCmd async callback interface, enter parameter 1
+   * @tc.name   Test SendTerminalResponseCmd async callback interface, enter parameter 3
    *            for slotId exception, check the callback value
    * @tc.desc   Function test
    */
   it('Telephony_Sim_SendTerminalResponseCmd_Async_0200', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_SendTerminalResponseCmd_Async_0200';
-    sim.sendTerminalResponseCmd(env.SLOTID1, env.STK_CMD, (error) => {
+    sim.sendTerminalResponseCmd(env.SLOTID3, env.STK_CMD, (error) => {
       if (error) {
         console.log(`${CASE_NAME} SendTerminalResponseCmd expect error: ${error.message}`);
         console.log(`${CASE_NAME} test finish`);
@@ -137,7 +137,7 @@ describe('SimSendTerminalResponseCmdFunctionTest', function () {
    */
   it('Telephony_Sim_SendTerminalResponseCmd_Async_0400', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_SendTerminalResponseCmd_Async_0400';
-    sim.sendTerminalResponseCmd(env.SLOTID0, env.STK_CMD, async error => {
+    sim.sendTerminalResponseCmd(env.DEFAULT_SLOTID, env.STK_CMD, async error => {
       if (error) {
         console.log(`${CASE_NAME} SendTerminalResponseCmd error: ${error.message}`);
         expect().assertFail();
@@ -172,14 +172,14 @@ describe('SimSendTerminalResponseCmdFunctionTest', function () {
 
   /**
    * @tc.number Telephony_Sim_SendTerminalResponseCmd_Promise_0200
-   * @tc.name   Test SendTerminalResponseCmd promise interface, enter parameter 1
+   * @tc.name   Test SendTerminalResponseCmd promise interface, enter parameter 3
    *            for slotId exception, check the callback value
    * @tc.desc   Function test
    */
   it('Telephony_Sim_SendTerminalResponseCmd_Promise_0200', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_SendTerminalResponseCmd_Promise_0200';
     try {
-      await sim.sendTerminalResponseCmd(env.SLOTID1, env.STK_CMD);
+      await sim.sendTerminalResponseCmd(env.SLOTID3, env.STK_CMD);
       console.log(`${CASE_NAME} test fail`);
       expect().assertFail();
     } catch (error) {
@@ -217,7 +217,7 @@ describe('SimSendTerminalResponseCmdFunctionTest', function () {
   it('Telephony_Sim_SendTerminalResponseCmd_Promise_0400', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_SendTerminalResponseCmd_Promise_0400';
     try {
-      await sim.sendTerminalResponseCmd(env.SLOTID0, env.STK_CMD);
+      await sim.sendTerminalResponseCmd(env.DEFAULT_SLOTID, env.STK_CMD);
       await sleep(env.WAITING_AFTER_SEND_CMD);
       expect(!!commonEventData).assertTrue();
       console.log(`${CASE_NAME} test finish`);

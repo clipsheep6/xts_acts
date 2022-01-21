@@ -27,7 +27,7 @@ describe('SimGetImsiIsimFunctionTest', function () {
    */
   it('Telephony_Sim_GetIMSI_Async_0900', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetIMSI_Async_0900';
-    sim.getIMSI(env.SLOTID0, (error, imsi) => {
+    sim.getIMSI(env.DEFAULT_SLOTID, (error, imsi) => {
       if (error) {
         console.log(`${CASE_NAME} getIMSI error: ${error.message}`);
         expect().assertFail();
@@ -49,7 +49,7 @@ describe('SimGetImsiIsimFunctionTest', function () {
   it('Telephony_Sim_GetIMSI_Promise_0900', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetIMSI_Promise_0900';
     try {
-      const imsi = await sim.getIMSI(env.SLOTID0);
+      const imsi = await sim.getIMSI(env.DEFAULT_SLOTID);
       expect(imsi.length === env.SIM_IMSI_LEN).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {

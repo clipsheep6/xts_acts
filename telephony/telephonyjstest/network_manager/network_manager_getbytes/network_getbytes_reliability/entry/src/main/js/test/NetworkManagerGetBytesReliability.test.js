@@ -17,7 +17,7 @@
 import statistics from '@ohos.net.statistics';
 import { describe, it, expect } from 'deccjsunit/index';
 
-describe('NetworkManagerGetBytesReliabilityTest', function () {
+describe('GetBytesReliabilityTest', function () {
     const TEST_RUN_TIME = 1000;
     const FLOW_DATA_0=0;
 
@@ -127,14 +127,14 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
      */
     it('Telephony_NetworkManager_getUidRxBytes_Async_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidRxBytes_Async_0300';
-        let app_uid = 567;
+        let appUid = 567;
         function recursive(n) {
             if (n <= 0) {
                 console.log(`${caseName} finish`);
                 done();
                 return;
             }
-            statistics.getUidRxBytes(app_uid,(err,data)=>{
+            statistics.getUidRxBytes(appUid,(err,data)=>{
                 if (err) {
                     console.log(`${caseName} erro data:${err.code}`);
                     expect().assertFail();
@@ -156,10 +156,10 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
      */
     it('Telephony_NetworkManager_getUidRxBytes_Promise_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidRxBytes_Promise_0300';
-        let app_uid = 567;
+        let appUid = 567;
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data = await statistics.getUidRxBytes(app_uid);
+                let data = await statistics.getUidRxBytes(appUid);
                 expect(data.code >= FLOW_DATA_0).assertTrue();
             } catch (err) {
                 console.log(`${caseName} fail : ${err}`);
@@ -180,14 +180,14 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
      */
     it('Telephony_NetworkManager_getUidTxBytes_Async_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidTxBytes_Async_0300';
-        let app_uid = 567;
+        let appUid = 567;
         function recursive(n) {
             if (n <= 0) {
                 console.log(`${caseName} finish`);
                 done();
                 return;
             }
-            statistics.getUidTxBytes(app_uid,(err,data)=>{
+            statistics.getUidTxBytes(appUid,(err,data)=>{
                 if (err) {
                     console.log(`${caseName} erro data:${err.code}`);
                     expect().assertFail();
@@ -209,10 +209,10 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
      */
     it('Telephony_NetworkManager_getUidTxBytes_Promise_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getUidTxBytes_Promise_0300';
-        let app_uid = 567;
+        let appUid = 567;
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data = await statistics.getUidTxBytes(app_uid);
+                let data = await statistics.getUidTxBytes(appUid);
                 expect(data.code >= FLOW_DATA_0).assertTrue();
             } catch (err) {
                 console.log(`${caseName} fail : ${err}`);
@@ -233,14 +233,14 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Async_0500', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Async_0500';
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         function recursive(n) {
             if (n <= 0) {
                 console.log(`${caseName} finish`);
                 done();
                 return;
             }
-            statistics.getIfaceRxBytes(iface_name,(err,data)=>{
+            statistics.getIfaceRxBytes(ifaceName,(err,data)=>{
                 if (err) {
                     console.log(`${caseName} erro data:${err.code}`);
                     expect().assertFail();
@@ -262,10 +262,10 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0500', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0500';
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data = await statistics.getIfaceRxBytes(iface_name);
+                let data = await statistics.getIfaceRxBytes(ifaceName);
                 expect(data.code >= FLOW_DATA_0).assertTrue();
             } catch (err) {
                 console.log(`${caseName} fail : ${err}`);
@@ -286,14 +286,14 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Async_0500', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Async_0500';
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         function recursive(n) {
             if (n <= 0) {
                 console.log(`${caseName} finish`);
                 done();
                 return;
             }
-            statistics.getIfaceTxBytes(iface_name,(err,data)=>{
+            statistics.getIfaceTxBytes(ifaceName,(err,data)=>{
                 if (err) {
                     console.log(`${caseName} erro data:${err.code}`);
                     expect().assertFail();
@@ -315,10 +315,10 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0500', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0500';
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data = await statistics.getIfaceTxBytes(iface_name);
+                let data = await statistics.getIfaceTxBytes(ifaceName);
                 expect(data.code >= FLOW_DATA_0).assertTrue();
             } catch (err) {
                 console.log(`${caseName} fail : ${err}`);

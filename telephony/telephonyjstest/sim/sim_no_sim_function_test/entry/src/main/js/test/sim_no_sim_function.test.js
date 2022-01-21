@@ -15,9 +15,19 @@
 
 import sim from '@ohos.telephony.sim';
 import * as env from './lib/Const.js';
-import { describe, it, expect } from 'deccjsunit/index';
+import { describe, it, expect, beforeAll } from 'deccjsunit/index';
 
 describe('SimNoSimFunctionTest', function () {
+
+  let hasSimCard = false;
+
+  beforeAll(async function () {
+    try {
+      hasSimCard = await sim.hasSimCard(env.DEFAULT_SLOTID);
+    } catch (error) {
+      console.log(`check hasSimCard has a error: ${error.message}`);
+    }
+  });
 
   /**
    * @tc.number Telephony_Sim_SetLockState_Async_2000
@@ -25,9 +35,14 @@ describe('SimNoSimFunctionTest', function () {
    * @tc.desc   Function test
    */
   it('Telephony_Sim_SetLockState_Async_2000', 0, function (done) {
+    if (hasSimCard) {
+      console.log('Test the function without SIM card, but now there is a SIMka in the sim slot ');
+      done();
+      return;
+    }
     const CASE_NAME = 'Telephony_Sim_SetLockState_Async_2000';
     const lockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_ON, password: env.CORRECT_PIN2 };
-    sim.setLockState(env.SLOTID0, lockInfo, (error, lockStatusResponse) => {
+    sim.setLockState(env.DEFAULT_SLOTID, lockInfo, (error, lockStatusResponse) => {
       if (error) {
         console.log(`${CASE_NAME} setLockState error: ${error.message}`);
         expect().assertFail();
@@ -46,11 +61,16 @@ describe('SimNoSimFunctionTest', function () {
    * @tc.desc   Function test
    */
   it('Telephony_Sim_SetLockState_Promise_2000', 0, async function (done) {
+    if (hasSimCard) {
+      console.log('Test the function without SIM card, but now there is a SIMka in the sim slot ');
+      done();
+      return;
+    }
     const CASE_NAME = 'Telephony_Sim_SetLockState_Promise_2000';
     const lockInfo = { lockType: sim.FDN_LOCK, state: sim.LOCK_ON, password: env.CORRECT_PIN2 };
 
     try {
-      const lockStatusResponse = await sim.setLockState(env.SLOTID0, lockInfo);
+      const lockStatusResponse = await sim.setLockState(env.DEFAULT_SLOTID, lockInfo);
       expect(lockStatusResponse.result === env.LOCK_RESULT.EXCEPTION).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -67,8 +87,13 @@ describe('SimNoSimFunctionTest', function () {
    * @tc.desc   Function test
    */
   it('Telephony_Sim_GetLockState_Async_0600', 0, function (done) {
+    if (hasSimCard) {
+      console.log('Test the function without SIM card, but now there is a SIMka in the sim slot ');
+      done();
+      return;
+    }
     const CASE_NAME = 'Telephony_Sim_GetLockState_Async_0600';
-    sim.getLockState(env.SLOTID0, sim.PIN_LOCK, error => {
+    sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK, error => {
       if (error) {
         console.log(`${CASE_NAME} getLockState expect error: ${error.message}`);
         console.log(`${CASE_NAME} test finish`);
@@ -87,9 +112,14 @@ describe('SimNoSimFunctionTest', function () {
    * @tc.desc   Function test
    */
   it('Telephony_Sim_GetLockState_Promise_0600', 0, async function (done) {
+    if (hasSimCard) {
+      console.log('Test the function without SIM card, but now there is a SIMka in the sim slot ');
+      done();
+      return;
+    }
     const CASE_NAME = 'Telephony_Sim_GetLockState_Promise_0600';
     try {
-      await sim.getLockState(env.SLOTID0, sim.PIN_LOCK);
+      await sim.getLockState(env.DEFAULT_SLOTID, sim.PIN_LOCK);
       console.log(`${CASE_NAME} test fail`);
       expect().assertFail();
     } catch (error) {
@@ -105,8 +135,13 @@ describe('SimNoSimFunctionTest', function () {
    * @tc.desc   Function test
    */
   it('Telephony_Sim_GetCardType_Async_0700', 0, async function (done) {
+    if (hasSimCard) {
+      console.log('Test the function without SIM card, but now there is a SIMka in the sim slot ');
+      done();
+      return;
+    }
     const CASE_NAME = 'Telephony_Sim_GetCardType_Async_0700';
-    sim.getCardType(env.SLOTID0, (error, cardType) => {
+    sim.getCardType(env.DEFAULT_SLOTID, (error, cardType) => {
       if (error) {
         console.log(`${CASE_NAME} GetCardType error: ${error.message}`);
         expect().assertFail();
@@ -125,9 +160,14 @@ describe('SimNoSimFunctionTest', function () {
    * @tc.desc   Function test
    */
   it('Telephony_Sim_GetCardType_Promise_0700', 0, async function (done) {
+    if (hasSimCard) {
+      console.log('Test the function without SIM card, but now there is a SIMka in the sim slot ');
+      done();
+      return;
+    }
     const CASE_NAME = 'Telephony_Sim_GetCardType_Promise_0700';
     try {
-      const cardType = await sim.getCardType(env.SLOTID0);
+      const cardType = await sim.getCardType(env.DEFAULT_SLOTID);
       expect(cardType === sim.UNKNOWN_CARD).assertTrue();
       console.log(`${CASE_NAME} test finish.`);
     } catch (error) {

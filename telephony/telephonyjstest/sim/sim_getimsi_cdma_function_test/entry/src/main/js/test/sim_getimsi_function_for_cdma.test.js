@@ -27,7 +27,7 @@ describe('SimGetImsiCdmaFunctionTest', function () {
    */
   it('Telephony_Sim_GetIMSI_Async_0500', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetIMSI_Async_0500';
-    sim.getIMSI(env.SLOTID0, (error, imsi) => {
+    sim.getIMSI(env.DEFAULT_SLOTID, (error, imsi) => {
       if (error) {
         console.log(`${CASE_NAME} getIMSI error: ${error.message}`);
         expect().assertFail();
@@ -63,12 +63,12 @@ describe('SimGetImsiCdmaFunctionTest', function () {
   /**
    * @tc.number  Telephony_Sim_GetIMSI_Async_0700
    * @tc.name    CDMA file, getIMSI async callback interface slotId
-   *             exception enters parameter 1 test
+   *             exception enters parameter 3 test
    * @tc.desc    Function test
    */
   it('Telephony_Sim_GetIMSI_Async_0700', 0, function (done) {
     const CASE_NAME = 'Telephony_Sim_GetIMSI_Async_0700';
-    sim.getIMSI(env.SLOTID1, error => {
+    sim.getIMSI(env.SLOTID3, error => {
       if (error) {
         console.log(`${CASE_NAME} getIMSI expect error: ${error.message}`);
         console.log(`${CASE_NAME} test finish.`);
@@ -109,7 +109,7 @@ describe('SimGetImsiCdmaFunctionTest', function () {
   it('Telephony_Sim_GetIMSI_Promise_0500', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetIMSI_Promise_0500';
     try {
-      const imsi = await sim.getIMSI(env.SLOTID0);
+      const imsi = await sim.getIMSI(env.DEFAULT_SLOTID);
       expect(imsi.length === env.SIM_IMSI_LEN).assertTrue();
       console.log(`${CASE_NAME} test finish`);
     } catch (error) {
@@ -141,13 +141,13 @@ describe('SimGetImsiCdmaFunctionTest', function () {
   /**
    * @tc.number  Telephony_Sim_GetIMSI_Promise_0700
    * @tc.name    CDMA file, getIMSI promise interface slotId
-   *             exception enters parameter 1 test
+   *             exception enters parameter 3 test
    * @tc.desc    Function test
    */
   it('Telephony_Sim_GetIMSI_Promise_0700', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_GetIMSI_Promise_0700';
     try {
-      await sim.getIMSI(env.SLOTID1);
+      await sim.getIMSI(env.SLOTID3);
       expect().assertFail();
       console.log(`${CASE_NAME} test fail.`);
     } catch (error) {

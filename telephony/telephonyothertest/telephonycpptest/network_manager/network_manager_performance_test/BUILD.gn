@@ -23,6 +23,7 @@ ohos_moduletest_suite("NetworkManagerPerformanceTest") {
     install_enable = true
     sources = [
         "src/network_manager_performance_test.cpp",
+        "//test//xts//acts//telephony//telephonycpptest/network_manager/network_manager_register_netconn_callback_test/src/test_net_conn_callback.cpp",
     ]
 
     include_dirs = [

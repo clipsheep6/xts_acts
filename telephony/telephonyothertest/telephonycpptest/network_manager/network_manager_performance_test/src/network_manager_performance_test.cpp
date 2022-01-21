@@ -53,6 +53,9 @@
 #include "i_net_conn_service.h"
 #include "net_link_info.h"
 #include "time_count_helper.h"
+#include "network_manager_register_netconn_callback_test.h"
+#include "test_net_conn_callback.h"
+#include "network_manager_getallnets_test.h"
 
 using namespace OHOS;
 using namespace OHOS::NetManagerStandard;
@@ -492,7 +495,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetAllNets_0400, Performance | Me
     TimeCountHelper timeHelper;
     int count;
     std::list<sptr<NetHandle>> netIdList;
-    for (count = 0; count < TEST_COUNT_1000; count++) {
+    for (count = 0; count < TEST_COUNTS_1000; count++) {
         timeHelper.StartCountUs();
         DelayedSingleton<NetConnClient>::GetInstance()->GetAllNets(netIdList);
         int32_t useTimeUs = timeHelper.GetUseTimeUs();
@@ -517,7 +520,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetAllNets_0500, Performance | Me
     int count;
     std::list<sptr<NetHandle>> netIdList;
     timeHelper.StartCountUs();
-    for (count = 0; count < TEST_COUNT_1000; count++) {
+    for (count = 0; count < TEST_COUNTS_1000; count++) {
         DelayedSingleton<NetConnClient>::GetInstance()->GetAllNets(netIdList);
     }
     int32_t useTimeUs = timeHelper.GetUseTimeUs();
@@ -544,7 +547,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetConnectionProperties_0400, Per
     int count;
     NetLinkInfo info;
     int32_t useTimeUs;
-    for (count = 0; count < TEST_COUNT_1000; count++) {
+    for (count = 0; count < TEST_COUNTS_1000; count++) {
         if(!netIdList.empty()){
             timeHelper.StartCountUs();
             DelayedSingleton<NetConnClient>::GetInstance()->GetConnectionProperties(*(netIdList.front()), info);
@@ -576,7 +579,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetConnectionProperties_0500, Per
     int32_t useTimeUs;
     timeHelper.StartCountUs();
     if(!netIdList.empty()){
-        for (count = 0; count < TEST_COUNT_1000; count++) {
+        for (count = 0; count < TEST_COUNTS_1000; count++) {
            DelayedSingleton<NetConnClient>::GetInstance()->GetConnectionProperties(*(netIdList.front()), info);
         }
         useTimeUs = timeHelper.GetUseTimeUs();
@@ -604,7 +607,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetNetCapabilities_0400, Performa
     int count;
     NetAllCapabilities cap;
      int32_t useTimeUs;
-    for (count = 0; count < TEST_COUNT_1000; count++) {
+    for (count = 0; count < TEST_COUNTS_1000; count++) {
         if(!netIdList.empty()){
             timeHelper.StartCountUs();
             DelayedSingleton<NetConnClient>::GetInstance()->GetNetCapabilities(*(netIdList.front()), cap);
@@ -637,7 +640,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetNetCapabilities_0500, Performa
      int32_t useTimeUs;
     timeHelper.StartCountUs();
     if(!netIdList.empty()){
-        for (count = 0; count < TEST_COUNT_1000; count++) {
+        for (count = 0; count < TEST_COUNTS_1000; count++) {
             DelayedSingleton<NetConnClient>::GetInstance()->GetNetCapabilities(*(netIdList.front()), cap);
         }
         useTimeUs = timeHelper.GetUseTimeUs();

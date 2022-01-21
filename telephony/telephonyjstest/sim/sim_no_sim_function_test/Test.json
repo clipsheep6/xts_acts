@@ -1,11 +1,11 @@
 {
-    "description": "Configuration for no sim card function test",
+    "description": "Configuration for sim no sim function test",
     "driver": {
         "type": "JSUnitTest",
-        "test-timeout": "540000",
+        "test-timeout": "240000",
         "package": "com.ohos.simnosimfunctiontest",
-        "shell-timeout": "540000",
-        "native-test-timeout":"540000"
+        "shell-timeout": "240000",
+        "native-test-timeout":"240000"
     },
     "kits": [
         {
