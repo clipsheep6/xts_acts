@@ -16,6 +16,6 @@ import("//build/ohos_var.gni")
 group("aafwk") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "aafwk_standard:aafwk_standard" ]
+    deps = [ "ability_runtime:aafwk_standard" ]
   }
 }
