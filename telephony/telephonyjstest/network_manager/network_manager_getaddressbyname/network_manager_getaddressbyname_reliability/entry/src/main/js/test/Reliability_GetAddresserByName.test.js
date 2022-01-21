@@ -1,0 +1,194 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License')
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, it, expect } from 'deccjsunit/index';
+import connection from '@ohos.net.connection';
+
+describe('NetworkManagerGetBytesReliabilityTest', function () {
+    const TEST_RUN_TIME = 1000;
+    const FLOW_DATA_0=0;
+
+    /**
+     * @tc.number  Telephony_NetworkManager_GetAddressesByName_Async_0700
+     * @tc.name    Test GetAddressesByName() 1000 times and return data successfully each time
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkManager_GetAddressesByName_Async_0700', 0, async function (done) {
+        let caseName = 'Telephony_NetworkManager_GetAddressesByName_Async_0700';
+        let flag = true;
+        connection.getDefaultNet().then((handle) => {
+            for (let index = 0; index < TEST_RUN_TIME; index++) {
+                handle.getAddressesByName("www.baidu.com", (error, value) => {
+                    if (error) {
+                        console.log(`${caseName}`+"getAddressesByName callback error = " + error);
+                        flag = false;
+                        expect().assertFail();
+                        done();
+                        return;
+                    } else {
+                        console.log(`${caseName}`+" getAddressesByName callback = " + JSON.stringify(value));
+                        expect(flag).assertTrue();
+                        done();
+                        return;
+                    }
+                });
+            }
+            }).catch((error) => {
+                console.log(`${caseName}`+"getDefaultNet promiss error = " + error);
+                expect().assertFail();
+                done();
+            });
+        console.log(`${caseName} finish`);
+        done();
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkManager_GetAddressesByName_Promise_0200
+     * @tc.name    Test GetAddressesByName() 1000 times and return data successfully each time
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkManager_GetAddressesByName_Promise_0700', 0, async function (done) {
+        let caseName = 'Telephony_NetworkManager_GetAddressesByName_Promise_0700';
+        connection.getDefaultNet().then((handle) => {
+            for (let index = 0; index < TEST_RUN_TIME; index++) {
+                handle.getAddressesByName("www.taobao.com").then((data) => {
+                    console.log(`${caseName}`+"getAddressesByName promiss = " + JSON.stringify(data));
+                    expect(data.length > 0).assertTrue();
+                    done();
+                    return;
+                }).catch((error) => {
+                    console.log(`${caseName}`+"getAddressesByName promiss error = " + error);
+                    expect().assertFail();
+                    done();
+                });
+            }
+        }).catch((error) => {
+            console.log(`${caseName}`+"getDefaultNet promiss error = " + error);
+            expect().assertFail();
+            done();
+        });
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkManager_GetAddressByName_Async_0700
+     * @tc.name    Test GetAddressByName() 1000 times and return data successfully each time
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkManager_GetAddressByName_Async_0700', 0, async function (done) {
+        let caseName = 'Telephony_NetworkManager_GetAddressByName_Async_0300';
+        connection.getDefaultNet().then((handle) => {
+            for (let index = 0; index < TEST_RUN_TIME; index++) {
+                handle.getAddressByName("www.csdn.net", (error, value) => {
+                    if (error) {
+                        console.log(`${caseName}`+"getAddressByName callback error = " + error);
+                        expect().assertFail();
+                        done();
+                        return;
+                    } else {
+                        console.log(`${caseName}`+"getAddressByName callback = " + JSON.stringify(value));
+                        expect(value.length > 0).assertTrue();
+                        done();
+                    }
+                });
+            }
+        }).catch((error) => {
+            console.log(`${caseName}`+"getDefaultNet promiss error = " + error);
+        });
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkManager_GetAddressByName_Promise_0700
+     * @tc.name    Test GetAddressByName() 1000 times and return data successfully each time
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkManager_GetAddressByName_Promise_0700', 0, async function (done) {
+        let caseName = 'Telephony_NetworkManager_GetAddressByName_Promise_0700';
+        connection.getDefaultNet().then((handle) => {
+            for(let index = 0; index < TEST_RUN_TIME; index++) {
+                handle.getAddressByName("www.taobao.com").then((data) => {
+                    console.log(`${caseName}`+"getAddressByName promiss = " + JSON.stringify(data));
+                    expect(data.length > 0).assertTrue();
+                    done();
+                }).catch((error) => {
+                    console.log(`${caseName}`+"getAddressByName promiss error = " + error);
+                    expect().assertFail();
+                    done();
+                });
+            }
+        }).catch((error) => {
+            console.log(`${caseName}`+"getDefaultNet promiss error = " + error);
+            expect().assertFail();
+            done();
+        });
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkManager_BindSocket_Async_0700
+     * @tc.name    Test bindSocket() 1000 times and return data successfully each time
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkManager_BindSocket_Async_0700', 0, async function (done) {
+        let caseName = 'Telephony_NetworkManager_bindSocket_Async_0700';
+        connection.getDefaultNet().then((handle) => {
+            for(let index = 0; index < TEST_RUN_TIME; index++) {
+                handle.bindSocket(1, (error, value) => {
+                    if (error) {
+                        console.log(`${caseName}`+"bindSocket callback error = " + error);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        console.log(`${caseName}`+"bindSocket callback = " + value);
+                    }
+                    expect(value == 0).assertTrue();
+                    done();
+                });
+            }
+        }).catch((error) => {
+            console.log(`${caseName}`+"getDefaultNet promiss error = " + error);
+        });
+    });
+
+    /**
+     * @tc.number  Telephony_NetworkManager_BindSocket_Promise_0700
+     * @tc.name    Test bindSocket() 1000 times and return data successfully each time
+     * @tc.desc    Function test
+     */
+    it('Telephony_NetworkManager_BindSocket_Promise_0700', 0, async function (done) {
+        let caseName = 'Telephony_NetworkManager_BindSocket_Promise_0700';
+        connection.getDefaultNet().then((handle) => {
+            for(let index = 0; index < TEST_RUN_TIME; index++) {
+                handle.bindSocket(1).then((data) => {
+                    console.log(`${caseName}`+"bindSocket promiss = " + data);
+                    expect(data == 0).assertTrue();
+                    done();
+                }).catch((error) => {
+                    expect().assertFail();
+                    done();
+                });
+            }
+        }).catch((error) => {
+            console.log(`${caseName}`+"getDefaultNet promiss error = " + error);
+            expect().assertFail();
+            done();
+        });
+    });
+});
+
+
+
+
+
+
+
