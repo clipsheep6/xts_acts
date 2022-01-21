@@ -1,0 +1,40 @@
+{
+    "description": "Configuration for audioDecoder Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "2000000",
+        "package": "ohos.acts.multimedia.audio.audiodecoder",
+		"shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "./resource/audio/AAC_48000_32_1.aac ->/data/media/",
+                "./resource/audio/aac_AAC_1.aac ->/data/media/",
+                "./resource/audio/FLAC_48000_32_1.flac ->/data/media/",
+                "./resource/audio/mp3.es ->/data/media/",
+                "./resource/audio/vorbis.es ->/data/media/"
+            ]
+        },
+		{
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/media/*",
+                "setenforce 0"
+            ],
+            "teardown-command":[
+                "setenforce 1"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsAudioDecoderJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

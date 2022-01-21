@@ -1,0 +1,37 @@
+{
+    "description": "Configuration for audioEncoder Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "2000000",
+        "package": "ohos.acts.multimedia.audio.audioencoder",
+		"shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "./resource/audio/S32LE.pcm ->/data/media/",
+                "./resource/audio/S32LE2.pcm ->/data/media/"
+            ]
+        },
+		{
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/media/*",
+                "setenforce 0"
+            ],
+            "teardown-command":[
+                "setenforce 1"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsAudioEncoderJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
