@@ -27,7 +27,7 @@ ohos_source_set("mmi_xts_lib") {
   sources = [ "src/tools.cpp" ]
 
   public_configs = [ ":mmi_xts_lib_public_config" ]
-  deps = ["//third_party/googletest:gtest_main"]
+  deps = [ "//third_party/googletest:gtest_main" ]
   configs = [ ":mmi_xts_lib_config" ]
 
   external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
