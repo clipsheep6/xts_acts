@@ -7,7 +7,7 @@ config("system_test_config") {
   configs = []
 }
 
-group("multimodalinput") {
+group("input_standard") {
   testonly = true
   deps = [ "key_event:key_event" ]
 }
