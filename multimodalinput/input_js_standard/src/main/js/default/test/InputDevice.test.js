@@ -77,46 +77,7 @@ describe('MultimodalInput_test', function () {
     console.log(`inputDevice::getDeviceIds_test-04 exit`);
   })
 
-
-  it("inputDevice::getDevice_test-01", 0, function () {
-    console.log(`inputDevice::getDevice_test-01 enter`);
-    inputDevice.getDevice((data, error) => {
-      console.log(`inputDevice::getDevice_test-01 if start  66666`)
-      console.log(`inputDevice::getDevice_test-01 if start  error:${JSON.stringify(error)}`)
-      console.log(`inputDevice::getDevice_test-01 if start  success:${JSON.stringify(data)}`)
-      if (error) {
-        console.log(`inputDevice::getDevice_test-01 error:${JSON.stringify(error)}`)
-        expect(false).assertTrue();
-      } else {
-        console.log(`inputDevice::getDevice_test-01 success:${JSON.stringify(data)}`);
-        expect(JSON.stringify(data) !== "{}").assertTrue();
-      }
-      console.log(`inputDevice::getDevice_test-01 if end  66666`)
-      console.log(`inputDevice::getDevice_test-01 if end  error`)
-      console.log(`inputDevice::getDevice_test-01 if end  success`)
-    });
-    console.log(`inputDevice::getDevice_test-01 exit`);
-  })
-
-  it("inputDevice::getDevice_test-02", 0, function () {
-    console.log(`inputDevice::getDevice_test-02 enter`);
-    inputDevice.getDevice("abc", (data, error) => {
-      console.log(`inputDevice::getDevice_test-02 if start  66666`)
-      console.log(`inputDevice::getDevice_test-02 if start  error:${JSON.stringify(error)}`)
-      console.log(`inputDevice::getDevice_test-02 if start  success:${JSON.stringify(data)}`)
-      if (error) {
-        console.log(`inputDevice::getDevice_test-02 error:${JSON.stringify(error)}`)
-        expect(false).assertTrue();
-      } else {
-        console.log(`inputDevice::getDevice_test-02 success:${JSON.stringify(data)}`);
-        expect(JSON.stringify(data) !== "{}").assertTrue();
-      }
-      console.log(`inputDevice::getDevice_test-02 if end  66666`)
-      console.log(`inputDevice::getDevice_test-02 if end  error`)
-      console.log(`inputDevice::getDevice_test-02 if end  success`)
-    })
-    console.log(`inputDevice::getDevice_test-02 exit`);
-  })
+  //getdevice
 
   it("inputDevice::getDevice_test-03", 0, function () {
     console.log(`inputDevice::getDevice_test-03 enter`);
