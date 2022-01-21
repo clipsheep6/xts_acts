@@ -23,7 +23,7 @@ ohos_copy("key_event_test_copy") {
     "json/keyboard_key_ctrl_left_click.json",
   ]
   outputs = [
-    "${root_out_dir}/suites/acts/multimodalinput/json/",
+    "${root_out_dir}/suites/acts/multimodalinput/json/{{source_file_part}}",
   ]
   module_source_dir = "${target_out_dir}/build/bin/multimodalinput"
   module_install_name = ""
