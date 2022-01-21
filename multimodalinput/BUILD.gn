@@ -11,8 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/ohos_var.gni")
 import("//build/ohos.gni")
+import("//build/ohos_var.gni")
 import("//build/test.gni")
 import("//foundation/multimodalinput/input/multimodalinput_mini.gni")
 
@@ -25,8 +25,8 @@ group("multimodalinput") {
   testonly = true
   if (is_standard_system) {
     deps = [
-    	"input_js_standard:multimodalinput_js_test",
-    	"input_standard/key_event:KeyEvent",
+      #"input_js_standard:multimodalinput_js_test",
+      "input_standard:input_standard",
     ]
   }
 }

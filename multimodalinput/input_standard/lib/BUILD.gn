@@ -14,31 +14,20 @@
 import("//build/ohos.gni")
 import("//foundation/multimodalinput/input/multimodalinput_mini.gni")
 
-mmi_xts_input_xts_lib_path="//test/xts/acts/multimodalinput/input_standard/lib"
-
 config("mmi_xts_lib_public_config") {
-  include_dirs = [
-    "${mmi_xts_input_xts_lib_path}/include",
-  ]
+  include_dirs = [ "include" ]
 }
 
 config("mmi_xts_lib_config") {
-  include_dirs = [
-    "${mmi_xts_input_xts_lib_path}/include",
-  ]
+  include_dirs = [ "include" ]
 }
 
 ohos_source_set("mmi_xts_lib") {
-  sources = [
-    "${mmi_xts_input_xts_lib_path}/src/tools.cpp",
-  ]
+  sources = [ "src/tools.cpp" ]
 
   public_configs = [ ":mmi_xts_lib_public_config" ]
 
   configs = [ ":mmi_xts_lib_config" ]
 
-  external_deps = [
-    "hiviewdfx_hilog_native:libhilog",
-  ]
+  external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
 }
-

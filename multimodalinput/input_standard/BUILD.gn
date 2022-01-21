@@ -1,6 +1,7 @@
 import("//build/ohos.gni")
 import("//build/test.gni")
 import("//foundation/multimodalinput/input/multimodalinput_mini.gni")
+
 config("system_test_config") {
   include_dirs = []
   configs = []
@@ -8,7 +9,5 @@ config("system_test_config") {
 
 group("multimodalinput") {
   testonly = true
-  deps = [
-    "key_event:KeyEvent",
-  ]
+  deps = [ "key_event:key_event" ]
 }
