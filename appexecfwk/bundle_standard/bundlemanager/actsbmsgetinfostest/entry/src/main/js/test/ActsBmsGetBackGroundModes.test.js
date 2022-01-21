@@ -24,8 +24,6 @@ const BUNDLE_PATH5 = '/data/test/bmsThirdBundleTest5.hap';
 const BUNDLE_PATH6 = '/data/test/bmsThirdBundleTest6.hap';
 const BUNDLE_PATHUPDATE = '/data/test/bmsThirdBundleTestA1.hap';
 const SYSTEM_PATH = '/data/test/bmsSystemBundleTest2.hap';
-const SYSTEM_FEATURE_PATH = '/data/test/bmsSystemBundleTest2Feature.hap';
-const SYSTEM_UPDATE_PATH = '/data/test/bmsSystemBundleTest2Update.hap';
 const BUNDLE_NAME1 = 'com.example.third1';
 const BUNDLE_NAME2 = 'com.example.third2';
 const BUNDLE_NAME4 = 'com.example.third4';
@@ -58,40 +56,34 @@ describe('ActsBmsGetBackGroundModes', function () {
         var bundlePath = [BUNDLE_PATH5]
         var installer = await bundle.getBundleInstaller();
         installer.install(bundlePath, {
-            param: {
-                userId: 0,
-                installFlag: 1,
-                isKeepData: false
-            }
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
         }, async (err, data) => {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
             var dataInfos = await bundle.queryAbilityByWant({
-                want: {
-                    action: 'action.system.home',
-                    entities: ['entity.system.home'],
-                    elementName: {
-                        deviceId: '0',
-                        bundleName: BUNDLE_NAME5,
-                        abilityName: 'com.example.third5.MainAbilityA',
-                    },
-                }
+                action: 'action.system.home',
+                entities: ['entity.system.home'],
+                elementName: {
+                    deviceId: '0',
+                    bundleName: BUNDLE_NAME5,
+                    abilityName: '',
+                },
             }, 0, 0)
             expect(dataInfos.length).assertEqual(NUM_FOUR);
             if (dataInfos.length == NUM_FOUR) {
                 expect(dataInfos[NUM_TWO].name).assertEqual("com.example.third5.MainAbilityA");
-                expect(dataInfos[NUM_TWO].backgroundModes).assertEqual(dataTransfer + audioPlayback + audioRecording +
-                    location + bluetoothInteraction + multiDeviceConnection + wifiInteraction + voip + taskKeeping);
+                expect(dataInfos[NUM_TWO].backgroundModes).assertEqual(dataTransfer | audioPlayback | audioRecording |
+                    location | bluetoothInteraction | multiDeviceConnection | wifiInteraction | voip | taskKeeping);
                 expect(dataInfos[NUM_THREE].name).assertEqual("com.example.third5.MainAbilityB");
-                expect(dataInfos[NUM_THREE].backgroundModes).assertEqual(dataTransfer + voip);
+                expect(dataInfos[NUM_THREE].backgroundModes).assertEqual(dataTransfer | voip);
             }
             installer.uninstall(BUNDLE_NAME5, {
-                param: {
-                    userId: 0,
-                    installFlag: 1,
-                    isKeepData: false
-                }
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
             }, (err, data) => {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
@@ -112,25 +104,21 @@ describe('ActsBmsGetBackGroundModes', function () {
         var bundlePath = [BUNDLE_PATH6]
         var installer = await bundle.getBundleInstaller();
         installer.install(bundlePath, {
-            param: {
-                userId: 0,
-                installFlag: 1,
-                isKeepData: false
-            }
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
         }, async (err, data) => {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
             var dataInfos = await bundle.queryAbilityByWant({
-                want: {
-                    action: 'action.system.home',
-                    entities: ['entity.system.home'],
-                    elementName: {
-                        deviceId: '0',
-                        bundleName: BUNDLE_NAME6,
-                        abilityName: '',
-                    },
-                }
+                action: 'action.system.home',
+                entities: ['entity.system.home'],
+                elementName: {
+                    deviceId: '0',
+                    bundleName: BUNDLE_NAME6,
+                    abilityName: '',
+                },
             }, 0, 0)
             expect(dataInfos.length).assertEqual(NUM_NINE);
             for (let i = 0, len = dataInfos.length; i < len; i++) {
@@ -139,11 +127,9 @@ describe('ActsBmsGetBackGroundModes', function () {
                 console.info("==========dataInfos[1].name=========" + dataInfos[i].name);
             }
             installer.uninstall(BUNDLE_NAME6, {
-                param: {
-                    userId: 0,
-                    installFlag: 1,
-                    isKeepData: false
-                }
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
             }, (err, data) => {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
@@ -163,38 +149,34 @@ describe('ActsBmsGetBackGroundModes', function () {
         var bundlePath = [BUNDLE_PATH2]
         var installer = await bundle.getBundleInstaller();
         installer.install(bundlePath, {
-            param: {
-                userId: 0,
-                installFlag: 1,
-                isKeepData: false
-            }
+
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
+
         }, async (err, data) => {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
             var dataInfos = await bundle.queryAbilityByWant({
-                want: {
-                    action: 'action.system.home',
-                    entities: ['entity.system.home'],
-                    elementName: {
-                        deviceId: '0',
-                        bundleName: BUNDLE_NAME2,
-                        abilityName: 'com.example.third2.MainAbilityA',
-                    },
-                }
+                action: 'action.system.home',
+                entities: ['entity.system.home'],
+                elementName: {
+                    deviceId: '0',
+                    bundleName: BUNDLE_NAME2,
+                    abilityName: '',
+                },
             }, 0, 0)
             expect(dataInfos.length).assertEqual(NUM_TWO);
             if (dataInfos.length == NUM_TWO) {
                 expect(dataInfos[1].name).assertEqual("com.example.third2.MainAbilityA")
-                expect(dataInfos[1].backgroundModes).assertEqual(audioPlayback + audioRecording + location
-                    + bluetoothInteraction + multiDeviceConnection + wifiInteraction + voip + taskKeeping)
+                expect(dataInfos[1].backgroundModes).assertEqual(audioPlayback | audioRecording | location
+                    | bluetoothInteraction | multiDeviceConnection | wifiInteraction | voip | taskKeeping)
             }
             installer.uninstall(BUNDLE_NAME2, {
-                param: {
-                    userId: 0,
-                    installFlag: 1,
-                    isKeepData: false
-                }
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
             }, (err, data) => {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
@@ -214,25 +196,21 @@ describe('ActsBmsGetBackGroundModes', function () {
         var bundlePath1 = [BUNDLE_PATH4]
         var installer = await bundle.getBundleInstaller();
         installer.install(bundlePath1, {
-            param: {
-                userId: 0,
-                installFlag: 1,
-                isKeepData: false
-            }
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
         }, async (err, data) => {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
             var dataInfos = await bundle.queryAbilityByWant({
-                want: {
-                    action: 'action.system.home',
-                    entities: ['entity.system.home'],
-                    elementName: {
-                        deviceId: '0',
-                        bundleName: BUNDLE_NAME4,
-                        abilityName: 'com.example.third4.MainAbility',
-                    },
-                }
+                action: 'action.system.home',
+                entities: ['entity.system.home'],
+                elementName: {
+                    deviceId: '0',
+                    bundleName: BUNDLE_NAME4,
+                    abilityName: '',
+                },
             }, 0, 0)
             expect(dataInfos.length).assertEqual(1);
             if (dataInfos.length == 1) {
@@ -240,11 +218,9 @@ describe('ActsBmsGetBackGroundModes', function () {
                 expect(dataInfos[0].backgroundModes).assertEqual(0)
             }
             installer.uninstall(BUNDLE_NAME4, {
-                param: {
-                    userId: 0,
-                    installFlag: 1,
-                    isKeepData: false
-                }
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
             }, (err, data) => {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
@@ -264,39 +240,33 @@ describe('ActsBmsGetBackGroundModes', function () {
         var bundlePath = [BUNDLE_PATH1, BUNDLE_PATH3];
         var installer = await bundle.getBundleInstaller();
         installer.install(bundlePath, {
-            param: {
-                userId: 0,
-                installFlag: 1,
-                isKeepData: false
-            }
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
         }, async (err, data) => {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
             var dataInfos = await bundle.queryAbilityByWant({
-                want: {
-                    action: 'action.system.home',
-                    entities: ['entity.system.home'],
-                    elementName: {
-                        deviceId: '0',
-                        bundleName: BUNDLE_NAME1,
-                        abilityName: 'com.example.third1.MainAbilityA',
-                    },
-                }
+                action: 'action.system.home',
+                entities: ['entity.system.home'],
+                elementName: {
+                    deviceId: '0',
+                    bundleName: BUNDLE_NAME1,
+                    abilityName: '',
+                },
             }, 0, 0)
             expect(dataInfos.length).assertEqual(NUM_FOUR);
             if (dataInfos.length == NUM_FOUR) {
                 expect(dataInfos[1].name).assertEqual("com.example.third1.MainAbilityA")
-                expect(dataInfos[1].backgroundModes).assertEqual(dataTransfer + audioPlayback + audioRecording +
-                    location + bluetoothInteraction + multiDeviceConnection + wifiInteraction + voip + taskKeeping)
+                expect(dataInfos[1].backgroundModes).assertEqual(dataTransfer | audioPlayback | audioRecording |
+                    location | bluetoothInteraction | multiDeviceConnection | wifiInteraction | voip | taskKeeping)
             }
             console.info("========dataInfos[0].backgroundModes=======>" + dataInfos[0].backgroundModes)
             installer.uninstall(BUNDLE_NAME1, {
-                param: {
-                    userId: 0,
-                    installFlag: 1,
-                    isKeepData: false
-                }
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
             }, (err, data) => {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
@@ -317,65 +287,55 @@ describe('ActsBmsGetBackGroundModes', function () {
         var bundlePath2 = [BUNDLE_PATHUPDATE]
         var installer = await bundle.getBundleInstaller();
         installer.install(bundlePath1, {
-            param: {
-                userId: 0,
-                installFlag: 1,
-                isKeepData: false
-            }
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
         }, async (err, data) => {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
             var dataInfos = await bundle.queryAbilityByWant({
-                want: {
-                    action: 'action.system.home',
-                    entities: ['entity.system.home'],
-                    elementName: {
-                        deviceId: '0',
-                        bundleName: BUNDLE_NAME1,
-                        abilityName: 'com.example.third1.MainAbilityA',
-                    },
-                }
+                action: 'action.system.home',
+                entities: ['entity.system.home'],
+                elementName: {
+                    deviceId: '0',
+                    bundleName: BUNDLE_NAME1,
+                    abilityName: '',
+                },
             }, 0, 0)
             expect(dataInfos.length).assertEqual(NUM_TWO);
             if (dataInfos.length == NUM_TWO) {
                 expect(dataInfos[1].name).assertEqual("com.example.third1.MainAbilityA")
-                expect(dataInfos[1].backgroundModes).assertEqual(dataTransfer + audioPlayback + audioRecording +
-                    location + bluetoothInteraction + multiDeviceConnection + wifiInteraction + voip + taskKeeping)
+                expect(dataInfos[1].backgroundModes).assertEqual(dataTransfer | audioPlayback | audioRecording |
+                    location | bluetoothInteraction | multiDeviceConnection | wifiInteraction | voip | taskKeeping)
             }
             installer.install(bundlePath2, {
-                param: {
-                    userId: 0,
-                    installFlag: 1,
-                    isKeepData: false
-                }
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
             }, async (err, data) => {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
                 expect(data.statusMessage).assertEqual('SUCCESS');
                 var dataInfos = await bundle.queryAbilityByWant({
-                    want: {
-                        action: 'action.system.home',
-                        entities: ['entity.system.home'],
-                        elementName: {
-                            deviceId: '0',
-                            bundleName: BUNDLE_NAME1,
-                            abilityName: 'com.example.third1.MainAbility',
-                        },
-                    }
+                    action: 'action.system.home',
+                    entities: ['entity.system.home'],
+                    elementName: {
+                        deviceId: '0',
+                        bundleName: BUNDLE_NAME1,
+                        abilityName: '',
+                    },
                 }, 0, 0)
                 expect(dataInfos.length).assertEqual(NUM_TWO);
                 if (dataInfos.length == NUM_TWO) {
                     expect(dataInfos[1].name).assertEqual("com.example.third1.AMainAbilityA");
-                    expect(dataInfos[1].backgroundModes).assertEqual(audioRecording + location + bluetoothInteraction +
-                        multiDeviceConnection + wifiInteraction + voip + taskKeeping);
+                    expect(dataInfos[1].backgroundModes).assertEqual(audioRecording | location | bluetoothInteraction |
+                        multiDeviceConnection | wifiInteraction | voip | taskKeeping);
                 }
                 installer.uninstall(BUNDLE_NAME1, {
-                    param: {
-                        userId: 0,
-                        installFlag: 1,
-                        isKeepData: false
-                    }
+                    userId: 0,
+                    installFlag: 1,
+                    isKeepData: false
                 }, (err, data) => {
                     expect(err.code).assertEqual(0);
                     expect(data.status).assertEqual(0);
@@ -387,147 +347,203 @@ describe('ActsBmsGetBackGroundModes', function () {
     })
 
     /*
-    * @tc.number: bms_backGroundModes_0700
-    * @tc.name: Get the backgroundModes information of the application through queryAbilityByWant
-    * @tc.desc: Uninstall the application, get the backgroundModes information of the upgraded application's ability 
+    * @tc.number: bms_getColorMode_0100
+    * @tc.name: Get the ColorMode information of the application through getBundleInfo
+    * @tc.desc: Get the information of the ColorMode from third-party application
     */
-    it('bms_backGroundModes_0700', 0, async function (done) {
-        console.info('=====================bms_backGroundModes_0700==================');
+    it('bms_getColorMode_0100', 0, async function (done) {
+        console.info('=====================bms_getColorMode_0100==================');
         var bundlePath = [BUNDLE_PATH1]
         var installer = await bundle.getBundleInstaller();
         installer.install(bundlePath, {
-            param: {
-                userId: 0,
-                installFlag: 1,
-                isKeepData: false
-            }
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
         }, async (err, data) => {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
-            var dataInfos = await bundle.queryAbilityByWant({
-                want: {
-                    action: 'action.system.home',
-                    entities: ['entity.system.home'],
-                    elementName: {
-                        deviceId: '0',
-                        bundleName: BUNDLE_NAME1,
-                        abilityName: 'com.example.third1.MainAbility'
-                    }
-                }
-            }, 0, 0)
-            expect(dataInfos.length).assertEqual(NUM_TWO);
-            if (dataInfos.length == NUM_TWO) {
-                expect(dataInfos[1].name).assertEqual("com.example.third1.MainAbilityA")
-                expect(dataInfos[1].backgroundModes).assertEqual(dataTransfer + audioPlayback + audioRecording +
-                    location + bluetoothInteraction + multiDeviceConnection + wifiInteraction + voip + taskKeeping)
+            let bundleInfo = await bundle.getBundleInfo(BUNDLE_NAME1, bundle.BundleFlag.GET_BUNDLE_DEFAULT);
+            expect(bundleInfo.hapModuleInfo.length).assertEqual(1);
+            if (1 == bundleInfo.hapModuleInfo.length) {
+                expect(bundleInfo.hapModuleInfo[0].colorMode).assertEqual(bundle.ColorMode.LIGHT_MODE);
             }
             installer.uninstall(BUNDLE_NAME1, {
-                param: {
-                    userId: 0,
-                    installFlag: 1,
-                    isKeepData: false
-                }
-            }, async (err, data) => {
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
+            }, (err, data) => {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
                 expect(data.statusMessage).assertEqual('SUCCESS');
-                var dataInfos = await bundle.queryAbilityByWant({
-                    want: {
-                        action: 'action.system.home',
-                        entities: ['entity.system.home'],
-                        elementName: {
-                            deviceId: '0',
-                            bundleName: BUNDLE_NAME1,
-                            abilityName: 'com.example.third1.MainAbility'
-                        }
-                    }
-                }, 0, 0)
-                expect(dataInfos.length).assertEqual(0);
                 done();
             });
         })
     })
 
     /*
-    * @tc.number: bms_getIsKeepAliveAndSingleUser_0100
-    * @tc.name: Get the isKeepAlive and singleUser information of the third-party application
-    * @tc.desc: Get the isKeepAlive and singleUser information of the third-party application by getBundleInfo
+    * @tc.number: bms_getColorMode_0200
+    * @tc.name: Get the ColorMode information of the application which ColorMode is not configured through getBundleInfo
+    * @tc.desc: Get the ColorMode information from third-party application which ColorMode is not configured, check it
+    *               is auto
     */
-    it('bms_getIsKeepAliveAndSingleUser_0100', 0, async function (done) {
-        console.info('===========begin bms_getIsKeepAliveAndSingleUser_0100===========');
+    it('bms_getColorMode_0200', 0, async function (done) {
+        console.info('=====================bms_getColorMode_0200==================');
+        var bundlePath = [BUNDLE_PATH2]
         var installer = await bundle.getBundleInstaller();
-        installer.install([BUNDLE_PATH1], {
-            param: {
-                userId: 0,
-                installFlag: 1,
-                isKeepData: false
-            }
+        installer.install(bundlePath, {
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
         }, async (err, data) => {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
-            bundle.getBundleInfo(BUNDLE_NAME1, 1, (err, bundleInfo) => {
+            let bundleInfo = await bundle.getBundleInfo(BUNDLE_NAME2, bundle.BundleFlag.GET_BUNDLE_DEFAULT);
+            expect(bundleInfo.hapModuleInfo.length).assertEqual(1);
+            if (1 == bundleInfo.hapModuleInfo.length) {
+                expect(bundleInfo.hapModuleInfo[0].colorMode).assertEqual(bundle.ColorMode.AUTO_MODE);
+            }
+            installer.uninstall(BUNDLE_NAME2, {
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
+            }, (err, data) => {
                 expect(err.code).assertEqual(0);
-                expect(bundleInfo.isKeepAlive).assertFalse();
-                expect(bundleInfo.singleUser).assertFalse();
+                expect(data.status).assertEqual(0);
+                expect(data.statusMessage).assertEqual('SUCCESS');
+                done();
+            });
+        })
+    })
+
+    /*
+    * @tc.number: bms_getColorMode_0300
+    * @tc.name: Get the ColorMode information of the multi haps application through getBundleInfo
+    * @tc.desc: Get the ColorMode information from third-party application which has two haps
+    */
+    it('bms_getColorMode_0300', 0, async function (done) {
+        console.info('=====================bms_getColorMode_0300==================');
+        var bundlePath = [BUNDLE_PATH1, BUNDLE_PATH3]
+        var installer = await bundle.getBundleInstaller();
+        installer.install(bundlePath, {
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
+        }, async (err, data) => {
+            expect(err.code).assertEqual(0);
+            expect(data.status).assertEqual(0);
+            expect(data.statusMessage).assertEqual('SUCCESS');
+            let bundleInfo = await bundle.getBundleInfo(BUNDLE_NAME1, bundle.BundleFlag.GET_BUNDLE_DEFAULT);
+            expect(bundleInfo.hapModuleInfo.length).assertEqual(NUM_TWO);
+            if (NUM_TWO == bundleInfo.hapModuleInfo.length) {
+                expect(bundleInfo.hapModuleInfo[0].colorMode).assertEqual(bundle.ColorMode.LIGHT_MODE);
+                expect(bundleInfo.hapModuleInfo[1].colorMode).assertEqual(bundle.ColorMode.AUTO_MODE);
+            }
+            installer.uninstall(BUNDLE_NAME1, {
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
+            }, (err, data) => {
+                expect(err.code).assertEqual(0);
+                expect(data.status).assertEqual(0);
+                expect(data.statusMessage).assertEqual('SUCCESS');
+                done();
+            });
+        })
+    })
+
+    /*
+    * @tc.number: bms_getColorMode_0400
+    * @tc.name: Update application, get the ColorMode information of the application through getBundleInfo
+    * @tc.desc: Update application, get the ColorMode information of the application through getBundleInfo, check it has
+    *             been updated
+    */
+    it('bms_getColorMode_0400', 0, async function (done) {
+        console.info('=====================bms_getColorMode_0400==================');
+        var bundlePath1 = [BUNDLE_PATH1]
+        var bundlePath2 = [BUNDLE_PATHUPDATE]
+        var installer = await bundle.getBundleInstaller();
+        installer.install(bundlePath1, {
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
+        }, async (err, data) => {
+            expect(err.code).assertEqual(0);
+            expect(data.status).assertEqual(0);
+            expect(data.statusMessage).assertEqual('SUCCESS');
+            let bundleInfo = await bundle.getBundleInfo(BUNDLE_NAME1, bundle.BundleFlag.GET_BUNDLE_DEFAULT);
+            expect(bundleInfo.hapModuleInfo.length).assertEqual(1);
+            if (1 == bundleInfo.hapModuleInfo.length) {
+                expect(bundleInfo.hapModuleInfo[0].colorMode).assertEqual(bundle.ColorMode.LIGHT_MODE);
+            }
+            installer.install(bundlePath2, {
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
+            }, async (err, data) => {
+                expect(err.code).assertEqual(0);
+                expect(data.status).assertEqual(0);
+                expect(data.statusMessage).assertEqual('SUCCESS');
+                let bundleInfo = await bundle.getBundleInfo(BUNDLE_NAME1, bundle.BundleFlag.GET_BUNDLE_DEFAULT);
+                if (1 == bundleInfo.hapModuleInfo.length) {
+                    expect(bundleInfo.hapModuleInfo[0].colorMode).assertEqual(bundle.ColorMode.DARK_MODE);
+                }
                 installer.uninstall(BUNDLE_NAME1, {
-                    param: {
-                        userId: 0,
-                        installFlag: 1,
-                        isKeepData: false
-                    }
+                    userId: 0,
+                    installFlag: 1,
+                    isKeepData: false
                 }, (err, data) => {
                     expect(err.code).assertEqual(0);
                     expect(data.status).assertEqual(0);
                     expect(data.statusMessage).assertEqual('SUCCESS');
                     done();
                 });
-            });
+            })
         })
     })
 
-    /*
-    * @tc.number: bms_getIsKeepAliveAndSingleUser_0200
-    * @tc.name: Get the isKeepAlive and singleUser information of the application which doesn't config those fields
-    * @tc.desc: Get the isKeepAlive and singleUser information of the application which doesn't config those fields
-    *               by getBundleInfo(application is system)
-    */
-    it('bms_getIsKeepAliveAndSingleUser_0200', 0, async function (done) {
-        console.info('=====================bms_getIsKeepAliveAndSingleUser_0200==================');
-        var bundleInfo = await bundle.getBundleInfo('com.example.system1', 1);
-        console.info('========bundleInfo is=====' + JSON.stringify(bundleInfo));
-        expect(bundleInfo.isKeepAlive).assertFalse();
-        expect(bundleInfo.singleUser).assertFalse();
-        done();
-    })
 
     /*
-    * @tc.number: bms_getIsKeepAliveAndSingleUser_0300
-    * @tc.name: Get the isKeepAlive and singleUser information of the application includes two haps
-    * @tc.desc: Get the isKeepAlive and singleUser information of the application includes two haps, the attribute value
-    *               will remain the same as the attribute value of the first installed hap(application is system)
+    * @tc.number: bms_queryAbilityByEntities_0100
+    * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos 
+    * @tc.desc: The entities in the parameter want pass in the new field, and use the implicit query to get abilitInfos
     */
-    it('bms_getIsKeepAliveAndSingleUser_0300', 0, async function (done) {
-        console.info('===========begin bms_getIsKeepAliveAndSingleUser_0300===========');
+    it('bms_queryAbilityByEntities_0100', 0, async function (done) {
+        console.info('===========begin bms_queryAbilityByEntities_0100===========');
         let installer = await bundle.getBundleInstaller()
-        installer.install([SYSTEM_PATH, SYSTEM_FEATURE_PATH], {
-            param: {
-                userId: 0,
-                isKeepData: false
-            }
+        installer.install([SYSTEM_PATH], {
+            userId: 0,
+            installFlag: 1,
+            isKeepData: false
         }, async (err, data) => {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
-            var bundleInfo = await bundle.getBundleInfo(SYSTEM_NAME, 1);
-            expect(bundleInfo.singleUser).assertTrue();
-            expect(bundleInfo.isKeepAlive).assertFalse();
+            var dataInfos = await bundle.queryAbilityByWant({
+                action: 'action.system.home',
+                entities: ["entity.app.music",
+                    "entity.app.email",
+                    "entity.app.contacts",
+                    "entity.app.maps",
+                    "entity.app.browser",
+                    "entity.app.calendar",
+                    "entity.app.messaging",
+                    "entity.app.files",
+                    "entity.app.gallery"],
+                elementName: {
+                    deviceId: '0',
+                    bundleName: '',
+                    abilityName: '',
+                },
+            }, 0, 0)
+            console.log('=========ability info is=========' + JSON.stringify(dataInfos));
+            expect(dataInfos.length).assertEqual(1);
+            expect(dataInfos[0].name).assertEqual('com.example.system2.MainAbility');
             installer.uninstall(SYSTEM_NAME, {
-                param: {
-                    userId: 0,
-                    isKeepData: false
-                }
+                userId: 0,
+                installFlag: 1,
+                isKeepData: false
             }, (err, data) => {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
@@ -537,56 +553,4 @@ describe('ActsBmsGetBackGroundModes', function () {
         });
     })
 
-    /*
-    * @tc.number: bms_getIsKeepAliveAndSingleUser_0400
-    * @tc.name: Update application, get the isKeepAlive and singleUser information of the application
-    * @tc.desc: Update application, get the isKeepAlive and singleUser information of the application whether update
-    *               (application is system)
-    */
-    it('bms_getIsKeepAliveAndSingleUser_0400', 0, async function (done) {
-        console.info('=====================bms_getIsKeepAliveAndSingleUser_0400==================');
-        var installer = await bundle.getBundleInstaller();
-        installer.install([SYSTEM_PATH], {
-            param: {
-                userId: 0,
-                installFlag: 1,
-                isKeepData: false
-            }
-        }, async (err, data) => {
-            expect(err.code).assertEqual(0);
-            expect(data.status).assertEqual(0);
-            expect(data.statusMessage).assertEqual('SUCCESS');
-            var bundleInfo = await bundle.getBundleInfo(SYSTEM_NAME, 1);
-            expect(bundleInfo.singleUser).assertTrue();
-            expect(bundleInfo.isKeepAlive).assertFalse();
-            installer.install([SYSTEM_UPDATE_PATH], {
-                param: {
-                    userId: 0,
-                    installFlag: 1,
-                    isKeepData: false
-                }
-            }, async (err, data) => {
-                expect(err.code).assertEqual(0);
-                expect(data.status).assertEqual(0);
-                expect(data.statusMessage).assertEqual('SUCCESS');
-                var bundleInfo = await bundle.getBundleInfo(SYSTEM_NAME, 1);
-                console.info('========bundleInfo is=====' + JSON.stringify(bundleInfo));
-                expect(bundleInfo.name).assertEqual(SYSTEM_NAME);
-                expect(bundleInfo.isKeepAlive).assertTrue();
-                expect(bundleInfo.singleUser).assertTrue();
-                installer.uninstall(SYSTEM_NAME, {
-                    param: {
-                        userId: 0,
-                        installFlag: 1,
-                        isKeepData: false
-                    }
-                }, (err, data) => {
-                    expect(err.code).assertEqual(0);
-                    expect(data.status).assertEqual(0);
-                    expect(data.statusMessage).assertEqual('SUCCESS');
-                    done();
-                });
-            })
-        })
-    })
 })
