@@ -38,6 +38,7 @@ describe('ActsOsAccountSystemTest', function () {
         function onCallback(receiveLocalId){
             console.debug("====>receive localId:" + receiveLocalId);
             if(receiveLocalId == localId){
+                sleep(TIMEOUT);
                 osAccountManager.off("activating", "osAccountOnOffNameA", offCallback);
             }
         }
@@ -49,6 +50,7 @@ describe('ActsOsAccountSystemTest', function () {
         }
         function offCallback(){
             console.debug("====>off enter")
+            sleep(TIMEOUT);
             osAccountManager.removeOsAccount(localId, removeCallback);
         }
         osAccountManager.on("activating", "osAccountOnOffNameA", onCallback);
@@ -271,6 +273,7 @@ describe('ActsOsAccountSystemTest', function () {
             osAccountManager.activateOsAccount(localId, (err)=>{
                 console.debug("====>activateOsAccount errcode:" + JSON.stringify(err));
                 expect(err.code).assertEqual(0);
+                sleep(TIMEOUT);
                 setTimeout(()=>{
                     osAccountManager.removeOsAccount(localId, (err)=>{
                         console.debug("====>remove localId: " + localId + " err:" + JSON.stringify(err));
