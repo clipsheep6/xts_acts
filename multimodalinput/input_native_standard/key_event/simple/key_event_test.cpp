@@ -14,8 +14,6 @@
  */
 
 #include <gtest/gtest.h>
-#include <semaphore.h>
-#include <sstream>
 #include <vector>
 #include "define_multimodal.h"
 #include "input_handler_manager.h"
@@ -56,7 +54,8 @@ protected:
 
 void KeyEventTest::SetUp(void)
 {
-    monitorId_ = OHOS::MMI::InputManager::GetInstance()->AddMonitor(std::bind(&OHOS::MMI::KeyEventTest::KeyCombinationMonitorCallBack, this, std::placeholders::_1));
+    monitorId_ = OHOS::MMI::InputManager::GetInstance()->AddMonitor(
+        std::bind(&OHOS::MMI::KeyEventTest::KeyCombinationMonitorCallBack, this, std::placeholders::_1));
     ASSERT_NE(monitorId_, -1); // 后面使用正式的值
 
     int ret = sem_init(&semId_, 0, 0);
@@ -106,21 +105,19 @@ void KeyEventTest::HandleInjectResult1(std::shared_ptr<OHOS::MMI::KeyEvent> keyE
 #if 0
     int keyActionResult = (NUMS > 2) ?
             (OHOS::MMI::KeyEvent::KEY_ACTION_UP) : (OHOS::MMI::KeyEvent::KEY_ACTION_DOWN);
-    // KEY_STATE_RELEASED   //KEY_STATE_PRESSED
     std::vector<int32_t> pressedKeys = keyEvent->GetPressedKeys();
     std::vector<int32_t>::iterator pressedResult = std::find(pressedKeys.begin(),
         pressedKeys.end(), keyEvent->GetKeyCode());
     std::vector<OHOS::MMI::KeyEvent::KeyItem> keys_ =  keyEvent->GetKeyItems();
-    if  (NUMS <= 2){
+    if  (NUMS <= 2) {
         ASSERT_TRUE(pressedKeys.empty());
         ASSERT_TRUE(pressedResult != pressedKeys.end());
         ASSERT_TRUE(keys_.empty()&& (keys_.size() == NUMS));
-        if (NUMS == 1){
-           EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
-        }
-        else{
-           EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
-           EXPECT_TRUE(keys_[1].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_C);
+        if (NUMS == 1) {
+            EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
+        } else {
+            EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
+            EXPECT_TRUE(keys_[1].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_C);
         }
         EXPECT_EQ(keys_[NUMS-1].GetDeviceId(), 0);
         EXPECT_TRUE(keys_[NUMS-1].IsPressed());
@@ -138,21 +135,19 @@ void KeyEventTest::HandleInjectResult2(std::shared_ptr<OHOS::MMI::KeyEvent> keyE
 #if 0
     int keyActionResult = (NUMS > 2) ?
             (OHOS::MMI::KeyEvent::KEY_ACTION_UP) : (OHOS::MMI::KeyEvent::KEY_ACTION_DOWN);
-    //KEY_STATE_RELEASED   //KEY_STATE_PRESSED
     std::vector<int32_t> pressedKeys = keyEvent->GetPressedKeys();
     std::vector<int32_t>::iterator pressedResult = std::find(pressedKeys.begin(),
         pressedKeys.end(), keyEvent->GetKeyCode());
     std::vector<OHOS::MMI::KeyEvent::KeyItem> keys_ =  keyEvent->GetKeyItems();
-    if  (NUMS <= 2){
+    if  (NUMS <= 2) {
         ASSERT_TRUE(pressedKeys.empty());
         ASSERT_TRUE(pressedResult != pressedKeys.end());
         ASSERT_TRUE(keys_.empty()&& (keys_.size() == NUMS));
-        if (NUMS == 1){
-           EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
-        }
-        else{
-           EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
-           EXPECT_TRUE(keys_[1].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_C);
+        if (NUMS == 1) {
+            EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
+        } else {
+            EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
+            EXPECT_TRUE(keys_[1].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_C);
         }
         EXPECT_EQ(keys_[NUMS-1].GetDeviceId(), 0);
         EXPECT_TRUE(keys_[NUMS-1].IsPressed());

@@ -40,8 +40,7 @@ void MmiSleep1s()
 int32_t ExecInjection(const std::string jsonFileName)
 {
     const std::string injectionCommand = "hosmmi-event-injection json " + jsonFileName;   
-    int ret = system(injectionCommand.data());
-    //MMI_LOGD("call system(\"%{public}s\"), ret: %{public}d", injectionCommand.data(), ret);
+    system(injectionCommand.data());
     return ret;
 }
 } // namespace MMI
