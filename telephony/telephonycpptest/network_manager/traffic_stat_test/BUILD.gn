@@ -1,0 +1,62 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+import("//build/test.gni")
+import("//test/xts/tools/build/suite.gni")
+import("//drivers/adapter/uhdf2/uhdf.gni")
+import("//foundation/communication/netmanager_base/netmanager_base_config.gni")
+
+ohos_moduletest_suite("TrafficStatTest") {
+    install_enable = true
+    sources = [
+        "src/traffic_stat_test.cpp",
+        "src/net_stat_callback_test.cpp"
+    ]
+
+    include_dirs = [
+        "//test/xts/acts/telephony/telephonycpptest/network_manager/include",
+        "$INNERKITS_ROOT/netstatsclient/include",
+        "$NETCONNMANAGER_COMMON_DIR/include",
+        "$NETSTATSMANAGER_SOURCE_DIR/include/stub",
+        "$NETSTATSMANAGER_SOURCE_DIR/include",
+        "$NETDCONTROLLER_ROOT_DIR/include"
+    ]
+
+   deps = [
+        "$NETDCONTROLLER_ROOT_DIR:netd_controller",
+        "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
+        "$INNERKITS_ROOT/netstatsclient:net_stats_manager_if",
+        "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog",
+        "//utils/native/base:utils"
+    ]
+
+    external_deps = [
+        "safwk:system_ability_fwk",
+        "ipc:ipc_core",
+    ]
+
+  defines = [
+        "TAG = \"TrafficStatTest\"",
+        "LOG_DOMAIN = 0xD002B01",
+    ]
+
+  if (is_standard_system) {
+    external_deps += [ "hiviewdfx_hilog_native:libhilog" ]
+  } else {
+    external_deps += [ "hilog:libhilog" ]
+  }
+  part_name = "telephonycpptest"
+
+  subsystem_name = "telephony"
+}
