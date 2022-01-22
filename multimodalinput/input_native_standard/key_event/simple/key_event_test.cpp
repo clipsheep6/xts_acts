@@ -39,7 +39,7 @@ public:
 
     void HandleInjectResult1(std::shared_ptr<OHOS::MMI::KeyEvent> keyEvent);
     void HandleInjectResult2(std::shared_ptr<OHOS::MMI::KeyEvent> keyEvent);
-    
+
 protected:
     void KeyCombinationMonitorCallBack(std::shared_ptr<OHOS::MMI::KeyEvent> keyEvent);
     void WaitEnd();
@@ -65,7 +65,7 @@ void KeyEventTest::SetUp(void)
 void KeyEventTest::TearDown(void)
 {
     MMIEventHdl.RemoveInputEventMontior(monitorId_);
-    monitorId_ = -1;    
+    monitorId_ = -1;
     sem_destroy(&semId_);
     results_.clear();
     funcList_.clear();
@@ -77,7 +77,7 @@ void KeyEventTest::WaitEnd()
     EXPECT_EQ(ret, 0);
     if (ret != 0) {
         MMI_LOGE("ret: %{public}d", ret);
-    }   
+    }
 }
 
 void KeyEventTest::KeyCombinationMonitorCallBack(std::shared_ptr<OHOS::MMI::KeyEvent> keyEvent)
@@ -112,7 +112,7 @@ void KeyEventTest::HandleInjectResult1(std::shared_ptr<OHOS::MMI::KeyEvent> keyE
     if  (NUMS <= 2) {
         ASSERT_TRUE(pressedKeys.empty());
         ASSERT_TRUE(pressedResult != pressedKeys.end());
-        ASSERT_TRUE(keys_.empty()&& (keys_.size() == NUMS));
+        ASSERT_TRUE(keys_.empty() && (keys_.size() == NUMS));
         if (NUMS == 1) {
             EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
         } else {
@@ -133,8 +133,8 @@ void KeyEventTest::HandleInjectResult2(std::shared_ptr<OHOS::MMI::KeyEvent> keyE
              "deviceId=%{private}d, actionTime = %{public}d", keyEvent->GetKeyCode(), keyEvent->GetKeyAction(),
              keyEvent->GetAction(), keyEvent->GetDeviceId(), keyEvent->GetActionTime());
 #if 0
-    int keyActionResult = (NUMS > 2) ?
-            (OHOS::MMI::KeyEvent::KEY_ACTION_UP) : (OHOS::MMI::KeyEvent::KEY_ACTION_DOWN);
+    int keyActionResult = 
+        (NUMS > 2) ? (OHOS::MMI::KeyEvent::KEY_ACTION_UP) : (OHOS::MMI::KeyEvent::KEY_ACTION_DOWN);
     std::vector<int32_t> pressedKeys = keyEvent->GetPressedKeys();
     std::vector<int32_t>::iterator pressedResult = std::find(pressedKeys.begin(),
         pressedKeys.end(), keyEvent->GetKeyCode());
@@ -165,7 +165,7 @@ HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_005, TestSize.Level1)
     funcList_.push_back(std::bind(&OHOS::MMI::KeyEventTest::HandleInjectResult2, this, std::placeholders::_1));
     funcList_.push_back(std::bind(&OHOS::MMI::KeyEventTest::HandleInjectResult1, this, std::placeholders::_1));
 
-    ExecInjection("keyboard_key_ctrl_left_click.json"); //crtl + c
+    ExecInjection("keyboard_key_ctrl_left_click.json"); // crtl + c
 
     WaitEnd();
 }

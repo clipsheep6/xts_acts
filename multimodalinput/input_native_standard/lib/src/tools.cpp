@@ -24,12 +24,12 @@ void MmiSleep(float second)
     ASSERT_GT(second, 0);
     int32_t ms = int32_t(second * 1000); // 1 second equals 1000 microseconds
     ASSERT_GT(ms, 0);
-    std::this_thread::sleep_for(std::chrono::milliseconds(ms));     
+    std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
 
 void MmiSleep(int32_t second)
 {
-    std::this_thread::sleep_for(std::chrono::seconds(1));   
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 void MmiSleep1s()
@@ -39,7 +39,7 @@ void MmiSleep1s()
 
 int32_t ExecInjection(const std::string jsonFileName)
 {
-    const std::string injectionCommand = "hosmmi-event-injection json " + jsonFileName;   
+    const std::string injectionCommand = "hosmmi-event-injection json " + jsonFileName;
     system(injectionCommand.data());
     return ret;
 }
