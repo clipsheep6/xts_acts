@@ -135,8 +135,6 @@ void KeyEventTest::HandleInjectResult2(std::shared_ptr<OHOS::MMI::KeyEvent> keyE
              "deviceId=%{private}d, actionTime = %{public}d", keyEvent->GetKeyCode(), keyEvent->GetKeyAction(),
              keyEvent->GetAction(), keyEvent->GetDeviceId(), keyEvent->GetActionTime());
 #if 0
-    int keyActionResult =
-        (NUMS > KEY_NUM2) ? (OHOS::MMI::KeyEvent::KEY_ACTION_UP) : (OHOS::MMI::KeyEvent::KEY_ACTION_DOWN);
     std::vector<int32_t> pressedKeys = keyEvent->GetPressedKeys();
     std::vector<int32_t>::iterator pressedResult = std::find(pressedKeys.begin(),
         pressedKeys.end(), keyEvent->GetKeyCode());
