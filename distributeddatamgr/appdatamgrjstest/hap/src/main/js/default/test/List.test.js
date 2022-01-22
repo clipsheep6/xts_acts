@@ -24,3 +24,7 @@ require('./RdbstoreRdbstoreJsunit.test.js')
 require('./RdbstoreStoreExcuteSqlJsunit.test.js')
 require('./RdbstoreUpdateJsunit.test.js')
 require('./DataAbilityPredicatesJsunit.test.js')
+require('./RdbstoreTransactionJsunit.test.js')
+require('./RdbstorePredicatesJsunit.test.js')
+
+
