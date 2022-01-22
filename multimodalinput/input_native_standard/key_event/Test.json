@@ -1,0 +1,38 @@
+{
+    "description": "Config for key_event_test",
+    "driver": {
+        "type": "CppTest",
+        "module-name": "key_event_test",
+        "native-test-timeout": "2000000",
+        "native-test-device-path": "/data/local/tmp/mmi_test",
+        "runtime-hint": "1s",
+        "shell-timeout": "2000000",
+        "test-timeout": "2000000"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push": [
+                "rm -fr /data/local/tmp/mmi_test",
+                "mkdir -p /data/local/tmp/mmi_test/json"
+            ],
+            "push": [
+                "key_event_test -> /data/local/tmp/mmi_test/key_event_test",
+                "json/keyboard_key_a_click.json -> /data/local/tmp/mmi_test/json/keyboard_key_a_click.json",
+                "json/keyboard_key_ctrl_left_click.json -> /data/local/tmp/mmi_test/json/keyboard_key_ctrl_left_click.json"
+            ],
+            "post-push": [
+                "chmod 777 /data/local/tmp/mmi_test/key_event_test"
+            ],
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hosmmi-virtual-device-manager start all &"
+            ],
+            "teardown-command": [
+                "hosmmi-virtual-device-manager close all"
+            ]
+        }
+    ]
+}
