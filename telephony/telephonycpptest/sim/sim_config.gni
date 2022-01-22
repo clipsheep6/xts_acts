@@ -1,0 +1,34 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//base/telephony/core_service/telephony.gni")
+
+defines += [
+    "EFFECTIVE_SLOT_ID = 0", # Please enter the slot id of the sim card supported by the modem
+
+    "CORRECT_PIN=\"1234\"", # Please enter the correct pin code of the sim card
+    "CORRECT_PUK=\"25725224\"", # Please enter the correct puk code of the sim card
+    "CORRECT_PIN2=\"32663378\"", # Please enter the correct pin2 code of the sim card
+    "CORRECT_PUK2=\"27194972\"", # Please enter the correct puk2 code of the sim card
+
+    "PN_PIN_LOCK_PASSWORD = \"1111\"", # Piling PN_PIN_LOCK password
+    "PN_PUK_LOCK_PASSWORD = \"1112\"", # Piling PN_PUK_LOCK password
+    "PU_PIN_LOCK_PASSWORD = \"1113\"", # Piling PU_PIN_LOCK password
+    "PU_PUK_LOCK_PASSWORD = \"1114\"", # Piling PU_PUK_LOCK password
+    "PP_PIN_LOCK_PASSWORD = \"1115\"", # Piling PP_PIN_LOCK password
+    "PP_PUK_LOCK_PASSWORD = \"1116\"", # Piling PP_PUK_LOCK password
+    "PC_PIN_LOCK_PASSWORD = \"1117\"", # Piling PC_PIN_LOCK password
+    "PC_PUK_LOCK_PASSWORD = \"1118\"", # Piling PC_PUK_LOCK password
+    "SIM_PIN_LOCK_PASSWORD = \"1119\"", # Piling SIM_PIN_LOCK password
+    "SIM_PUK_LOCK_PASSWORD = \"1120\"", # Piling SIM_PUK_LOCK password
+]

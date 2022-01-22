@@ -1,0 +1,25 @@
+{
+    "kits": [
+        {
+            "push": [
+                "CellularDataReliabilityTest->/data/telephonycpptest/CellularDataReliabilityTest"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/telephonycpptest/*"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "CellularDataReliabilityTest",
+        "runtime-hint": "10s",
+        "native-test-device-path": "/data/telephonycpptest"
+    },
+<<<<<<< HEAD
+    "description": "Configuration cellular_data_Reliability_test basic Tests"
+=======
+    "description": "Configuration cellular_data reliability Tests"
+>>>>>>> 068cf5490b29462b07a81d6d685a2d2bc81ea939
+}

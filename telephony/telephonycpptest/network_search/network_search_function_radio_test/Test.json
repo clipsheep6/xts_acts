@@ -1,0 +1,21 @@
+{
+    "kits": [
+        {
+            "push": [
+                "NetworkSearchFunctionRadioTest->/data/telephonycpptest/NetworkSearchFunctionRadioTest"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/telephonycpptest/*"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "NetworkSearchFunctionRadioTest",
+        "runtime-hint": "1s",
+        "native-test-device-path": "/data/telephonycpptest"
+    },
+    "description": "Configuration TelephonyNetworkSearchFunctionRadioTest basic Tests"
+}

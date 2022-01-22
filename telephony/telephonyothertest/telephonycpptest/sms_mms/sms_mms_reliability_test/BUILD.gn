@@ -1,0 +1,90 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+import("//build/ohos.gni")
+
+ohos_moduletest_suite("SmsReliabilityTest") {
+  install_enable = true
+  sources = [
+    "src/sms_manager_test.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/utils/mms_base64.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/utils/mms_quoted_printable.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_msg.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_body.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_attachment.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_body_part_header.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_body_part.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_buffer.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_decode_buffer.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_encode_buffer.cpp",
+    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_header_categ.cpp",
+
+    "//base/telephony/sms_mms/frameworks/native/sms/src/short_message.cpp",
+    "//base/telephony/sms_mms/utils/string_utils.cpp",
+    "//base/telephony/sms_mms/frameworks/native/sms/src/send_short_message_callback_stub.cpp",
+    "//base/telephony/sms_mms/frameworks/native/sms/src/delivery_short_message_callback_stub.cpp",
+    "//base/telephony/sms_mms/frameworks/native/sms/src/sms_service_proxy.cpp",
+  ]
+
+  include_dirs = [
+    "//foundation/ace/ace_engine/frameworks",
+    "//base/telephony/sms_mms/frameworks/native/mms/include",
+    "//base/telephony/sms_mms/frameworks/native/mms/include/utils",
+    "//third_party/glib/glib",
+    "//third_party/glib",
+    "//third_party/glib/gmodule",
+
+    "//base/telephony/sms_mms/frameworks/native/sms/include",
+    "//test/xts/acts/telephony/telephonycpptest/sms_mms/include",
+    "//test//xts//acts//telephony//telephonycpptest//utils",
+    "//base/telephony/sms_mms/services/include",
+    "//base/telephony/sms_mms/services/include/gsm",
+    "//base/telephony/sms_mms/services/include/cdma",
+    "//base/telephony/sms_mms/interfaces/kits/include",
+    "//base/telephony/sms_mms/utils",
+    "//foundation/communication/ipc/interfaces/innerkits/ipc_core/include",
+    "//base/telephony/core_service/interfaces/innerkits/sms_mms/proxy",
+    "//foundation/ace/ace_engine/frameworks/base/utils",
+    "//utils/native/base/include",
+    "//base/telephony/ril_adapter/interfaces/innerkits",
+    "//base/telephony/core_service/utils/log/include",
+    "//base/telephony/sms_mms/interfaces/innerkits",
+    "//base/telephony/core_service/common/log/include",
+  ]
+
+  if (is_standard_system) {
+    external_deps = [ "hiviewdfx_hilog_native:libhilog"]
+  } else {
+    external_deps = [ "hilog:libhilog" ]
+  }
+
+  deps = [
+    "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
+    "//utils/native/base:utils",
+    "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
+    "//foundation/communication/ipc/interfaces/innerkits/ipc_core:ipc_core",
+    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
+    "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
+    "//base/telephony/sms_mms:tel_sms_mms",
+    "//third_party/googletest:gtest_main",
+    "//third_party/glib:glib_packages",
+  ]
+  defines = [
+    "SMS_SEND_DST_NUMBER=\"00000000000\"", # Phone number of the SMS recipient
+    "OTHER_SMSC_NUMBER=\"+8613800755500\"", # Address of the SMS center service
+    "USABLE_SMSC_NUMBER=\"+8613800512500\"", # Address of the SMS center service
+  ]
+  part_name = "telephonycpptest"
+  subsystem_name = "telephony"
+}
