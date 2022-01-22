@@ -1,0 +1,40 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "19000000",
+        "package": "com.example.myapplication102",
+        "shell-timeout": "19000000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "PerformanceTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "PerformanceTest.hap->/data/test/PerformanceTest.hap",
+		"FaceAuthPrepare->/data/FaceAuthPrepare"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "/data/FaceAuthPrepare --gtest_filter=FaceAuthPrepare.CPPAPI_Prepare_0100",
+                "chmod 644 /data/test/*.hap",
+		"chmod 777 -R data"
+            ]
+        }
+    ]
+}
