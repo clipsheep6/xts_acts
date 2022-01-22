@@ -26,6 +26,8 @@
 namespace OHOS {
 namespace MMI {
 namespace {
+static int32_t KEY_NUM1 = 1;
+static int32_t KEY_NUM2 = 2;
 using namespace testing::ext;
 constexpr OHOS::HiviewDFX::HiLogLabel LABEL = { LOG_CORE, MMI_LOG_DOMAIN, "KeyEventTest" };
 }
@@ -103,17 +105,17 @@ void KeyEventTest::HandleInjectResult1(std::shared_ptr<OHOS::MMI::KeyEvent> keyE
              "deviceId=%{private}d, actionTime = %{public}d", keyEvent->GetKeyCode(), keyEvent->GetKeyAction(),
              keyEvent->GetAction(), keyEvent->GetDeviceId(), keyEvent->GetActionTime());
 #if 0
-    int keyActionResult = (NUMS > 2) ?
-            (OHOS::MMI::KeyEvent::KEY_ACTION_UP) : (OHOS::MMI::KeyEvent::KEY_ACTION_DOWN);
+    int keyActionResult = (NUMS > KEY_NUM2) ?
+        (OHOS::MMI::KeyEvent::KEY_ACTION_UP) : (OHOS::MMI::KeyEvent::KEY_ACTION_DOWN);
     std::vector<int32_t> pressedKeys = keyEvent->GetPressedKeys();
     std::vector<int32_t>::iterator pressedResult = std::find(pressedKeys.begin(),
         pressedKeys.end(), keyEvent->GetKeyCode());
     std::vector<OHOS::MMI::KeyEvent::KeyItem> keys_ =  keyEvent->GetKeyItems();
-    if  (NUMS <= 2) {
+    if (NUMS <= KEY_NUM2) {
         ASSERT_TRUE(pressedKeys.empty());
         ASSERT_TRUE(pressedResult != pressedKeys.end());
         ASSERT_TRUE(keys_.empty() && (keys_.size() == NUMS));
-        if (NUMS == 1) {
+        if (NUMS == KEY_NUM1) {
             EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
         } else {
             EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
@@ -133,16 +135,16 @@ void KeyEventTest::HandleInjectResult2(std::shared_ptr<OHOS::MMI::KeyEvent> keyE
              "deviceId=%{private}d, actionTime = %{public}d", keyEvent->GetKeyCode(), keyEvent->GetKeyAction(),
              keyEvent->GetAction(), keyEvent->GetDeviceId(), keyEvent->GetActionTime());
 #if 0
-    int keyActionResult = 
-        (NUMS > 2) ? (OHOS::MMI::KeyEvent::KEY_ACTION_UP) : (OHOS::MMI::KeyEvent::KEY_ACTION_DOWN);
+    int keyActionResult =
+        (NUMS > KEY_NUM2) ? (OHOS::MMI::KeyEvent::KEY_ACTION_UP) : (OHOS::MMI::KeyEvent::KEY_ACTION_DOWN);
     std::vector<int32_t> pressedKeys = keyEvent->GetPressedKeys();
     std::vector<int32_t>::iterator pressedResult = std::find(pressedKeys.begin(),
         pressedKeys.end(), keyEvent->GetKeyCode());
     std::vector<OHOS::MMI::KeyEvent::KeyItem> keys_ =  keyEvent->GetKeyItems();
-    if  (NUMS <= 2) {
+    if (NUMS <= KEY_NUM2) {
         ASSERT_TRUE(pressedKeys.empty());
         ASSERT_TRUE(pressedResult != pressedKeys.end());
-        ASSERT_TRUE(keys_.empty()&& (keys_.size() == NUMS));
+        ASSERT_TRUE(keys_.empty() && (keys_.size() == NUMS));
         if (NUMS == 1) {
             EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
         } else {
@@ -153,7 +155,6 @@ void KeyEventTest::HandleInjectResult2(std::shared_ptr<OHOS::MMI::KeyEvent> keyE
         EXPECT_TRUE(keys_[NUMS-1].IsPressed());
     }
 #endif
-
     results_.push_back(true);
 }
 
@@ -166,7 +167,6 @@ HWTEST_F(KeyEventTest, MultiModalInputTest_KeyEvent_005, TestSize.Level1)
     funcList_.push_back(std::bind(&OHOS::MMI::KeyEventTest::HandleInjectResult1, this, std::placeholders::_1));
 
     ExecInjection("keyboard_key_ctrl_left_click.json"); // crtl + c
-
     WaitEnd();
 }
 } // namespace MMI
