@@ -23,7 +23,7 @@
             ],
             "post-push": [
                 "chmod 777 /data/local/tmp/mmi_test/key_event_test"
-            ],
+            ]
         },
         {
             "type": "ShellKit",
