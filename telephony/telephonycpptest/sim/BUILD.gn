@@ -1,0 +1,33 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+group("sim") {
+  testonly = true
+  deps = [
+    "sim_no_sim_function_test:SimNoSimFunctionTest",
+    "sim_file_information_function_test:SimFileInformationFunctionTest",
+    "sim_file_manager_function_test:SimFileManagerFunctionTest",
+    "sim_pin_mock_test:SimPinMockTest",
+    "sim_icc_dialling_number_function_test:SimIccDiallingNumberFunctionTest",
+    "sim_pin2_function_test:SimPin2FunctionTest",
+    "sim_puk2_mock_test:SimPuk2MockTest",
+    "sim_card_type_function_test:SimCardTypeFunctionTest",
+    "sim_card_type_mock_test:SimCardTypeMockTest",
+    "sim_cdma_function_test:SimCDMAFunctionTest",
+    "sim_isim_function_test:SimISIMFunctionTest",
+    "sim_stk_function_test:SimStkFunctionTest",
+    "sim_lock_state_function_test:SimLockStateFunctionTest",
+    "sim_card_manager_function_test:SimCardMangerFunctionTest",
+    "sim_card_privileges_function_test:SimCardPrivilegesFunctionTest",
+  ]
+}
