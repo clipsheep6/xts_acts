@@ -1,0 +1,72 @@
+<element src="../../common/component/back/back.hml" name="goback"></element>
+<element src="../../common/component/loading/loading.hml" name='loading'></element>
+<div class="add-message">
+    <goback></goback>
+    <div class="setRadio">
+        <text class="radio-text">飞行模式</text>
+        <div class="radio-switch">
+            <switch showtext="true" texton="开启" textoff="关闭" checked="{{!flightMode}}" @change="switchChange">
+            </switch>
+        </div>
+    </div>
+    <div class="standard">
+        <div class="standard_header">
+            <text>当前网络制式：</text>
+            <text class="stand-red" if="{{choiceValue == 7 }}">CMDA</text>
+            <text class="stand-red" else>GSM</text>
+        </div>
+        <div class="standard-group">
+            <button class="group-buttons" @click="setPreferenceModel(1)">设置GSM制式</button>
+            <button class="group-buttons" @click="setPreferenceModel(7)">设置CMDA制式</button>
+        </div>
+    </div>
+    <div class="add-content">
+        <div class="recipient">
+            <text class="recipient-text" style="font-size: 20px;" >收件人：</text>
+            <div class="recipient-div"><text class="recipient-input" >{{recipientPerson}}</text></div>
+        </div>
+        <div class="user-input">
+            <text class="user-text" style="font-size: 20px;">发送内容：</text>
+            <div class="user-textarea-div">
+                <textarea id="textarea" class="textarea user-textarea" maxlength="500"
+                          placeholder="要发送的内容" disabled="true"
+                          value="{{userInput}}" onfocus="focusChange('text2')">
+                </textarea>
+            </div>
+        </div>
+        <div class="clear">
+            <div class="clear-group">
+                <button  class="clear-btn"  @click="openCloseKeyWord">{{openKeyWord ? '关闭':'开启'}}数字键盘</button>
+                <button  class="clear-btn"  @click="clearText">清除文本内容</button>
+            </div>
+        </div>
+        <div class="keyword-fixed" show="{{openKeyWord}}">
+            <div class="Ninekey">
+                <div class="nineKey-group">
+                    <div class="nineKey-item" @click="setProcess(1)"><text>1</text></div>
+                    <div class="nineKey-item" @click="setProcess(2)"><text>2</text></div>
+                    <div class="nineKey-item" @click="setProcess(3)"><text>3</text></div>
+                </div>
+                <div class="nineKey-group">
+                    <div class="nineKey-item" @click="setProcess(4)"><text>4</text></div>
+                    <div class="nineKey-item" @click="setProcess(5)"><text>5</text></div>
+                    <div class="nineKey-item" @click="setProcess(6)"><text>6</text></div>
+                </div>
+                <div class="nineKey-group">
+                    <div class="nineKey-item" @click="setProcess(7)"><text>7</text></div>
+                    <div class="nineKey-item" @click="setProcess(8)"><text>8</text></div>
+                    <div class="nineKey-item" @click="setProcess(9)"><text>9</text></div>
+                </div>
+                <div class="nineKey-group">
+                    <div class="nineKey-item" @click="setProcess(0)"><text>0</text></div>
+                    <div class="nineKey-item" @click="delNum"><text>del</text></div>
+                </div>
+            </div>
+        </div>
+        <div class="send-type">
+            <div class="send-item" for="{{(index,value) in selectData}}" tid="value.id">
+                <button class="button select-btn" @click="userSelect(value)" style="font-size: 24px;" >{{value.text}}</button>
+            </div>
+        </div>
+    </div>
+</div>

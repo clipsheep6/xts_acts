@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="header-title">
+        <button class="button head-item" type="capsule" @click="getAllMsg">获取所有信息</button>
+        <button class="button head-item" type="capsule" @click="addMsg">添加信息</button>
+    </div>
+<!--  <div class="addMesg-flex">-->
+<!--    <button class="button add-btn" type="capsule" @click="sendMsg">发送信息</button>-->
+<!--  </div>-->
+    <div show="{{lists.length === 0}}" class="nodatawrap" >
+        <text>暂无数据</text>
+    </div>
+    <div show="{{lists.length > 0 }}" class="marginTop">
+        <div class="list-context">
+            <block for="{{(index, value) in lists}}">
+                <div class="list-item" if="{{value.msgId}}">
+                    <div class="item-text">
+                        <text class="text-desc">msgId: {{value.msgId}}</text>
+                        <text class="text-desc">内容：{{value.msgContent}}</text>
+                        <text class="text-desc">msgState：{{value.msgState}}</text>
+                    </div>
+                    <div class="item-text">
+                        <text class="text-desc">是否锁定：{{value.isLock == 0 ?'未锁定':'锁定'}}</text>
+                        <text class="text-desc">是否已读：{{value.isRead == 0 ?'未读':'已读'}}</text>
+                        <text class="text-desc">是否收藏：{{value.isCollect == 0 ?'未收藏':'已收藏'}}</text>
+                    </div>
+                    <div class="item-status">
+                        <button class="button text-delete" type="capsule" @click="modifyItem(value)">修改锁定状态</button>
+                        <button class="button  warning" type="capsule" @click="deleteItem(value.msgId)">删除</button>
+                        <button class="button text-delete" type="capsule" if="{{value.isCollect == 0 }}" @click="updateItem(value)">未收藏</button>
+                        <button class="button  warning" type="capsule" @click="updateItem(value)" else>已收藏</button>
+                    </div>
+                </div>
+            </block>
+        </div>
+    </div>
+</div>

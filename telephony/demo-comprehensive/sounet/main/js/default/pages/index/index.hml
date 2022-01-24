@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="status-header"><text>信号强度</text></div>
+    <div class="single-message">
+        <div class="single-signalType">
+            <text>其驻网类型为：</text>
+            <text class="textWeight">{{signalType}}</text>
+            <text>—</text>
+            <text class="textWeight" if="{{signalType == 1}}">GSM</text>
+            <text class="textWeight" elif="{{signalType == 2}}">CDMA</text>
+            <text class="textWeight" elif="{{signalType == 3}}">WCDMA</text>
+            <text class="textWeight" elif="{{signalType == 4}}">TDSCDMA</text>
+            <text class="textWeight" elif="{{signalType == 5}}">LTE</text>
+            <text class="textWeight" elif="{{signalType == 6}}">NR</text>
+            <text class="textWeight" else>未知网络类型</text>
+        </div>
+        <div class="single-signalLevel"><text>信号等级为：</text><text class="textWeight">{{signalLevel}}</text></div>
+    </div>
+    <div class="network-status">
+        <div class="status-header"><text>网络状态</text></div>
+        <div class="nerwork-status-text">
+            <div class="text-item"><text>注册网络的长字母数字格式的运营商名称：</text><text class="focuOon">{{longOperatorName}}</text></div>
+            <div class="text-item"><text>注册网络的短字母数字格式的运营商名称：</text><text class="focuOon">{{shortOperatorName}}</text></div>
+            <div class="text-item"><text>注册网络的PLMN代码：</text><text class="focuOon">{{plmnNumeric}}</text></div>
+            <div class="text-item"><text>设备是否正在漫游：</text>
+                <text class="focuOon" if="{{isRoaming}}">是</text>
+                <text class="focuOon"  else>否</text>
+            </div>
+            <div class="text-item">
+                <text>设备的网络注册状态：</text>
+                <text class="focuOon">{{regStatus}}</text>
+                <text class="focu-text" if="{{regStatus == 0}}">设备无法使用任何服务的状态</text>
+                <text class="focu-text"  elif="{{regStatus == 1}}">设备可以正常使用服务的状态</text>
+                <text class="focu-text" elif="{{regStatus == 2}}">设备只能使用紧急呼叫服务的状态</text>
+                <text class="focu-text" elif="{{regStatus == 3}}">蜂窝无线电已关闭</text>
+                <text class="focu-text" else>设备无法使用任何服务的状态</text>
+            </div>
+            <div class="text-item">
+                <text>设备的 NSA 网络注册状态：</text>
+                <text class="focuOon">{{nsaState}}</text>
+                <text class="focu-text" if="{{nsaState == 1}}">设备在不支持NSA的LTE小区下处于空闲状态或已连接到该小区</text>
+                <text class="focu-text" elif="{{nsaState == 2}}">设备在支持NSA但不支持NR覆盖检测的LTE小区下空闲</text>
+                <text class="focu-text" elif="{{nsaState == 3}}">设备已连接到支持NSA和NR覆盖检测的LTE小区下的LTE网络</text>
+                <text class="focu-text" elif="{{nsaState == 4}}">设备在支持NSA和NR覆盖检测的LTE小区下空闲</text>
+                <text class="focu-text" elif="{{nsaState == 5}}">设备接入支持NSA的LTE小区下的LTE+NR网络</text>
+                <text class="focu-text" elif="{{nsaState == 6}}">设备在连接到 5GC 时空闲或连接到 NG-RAN 小区</text>
+                <text class="focu-text" else>未知状态</text>
+            </div>
+            <div class="text-item">
+                <text>CA是否处于激活状态：</text>
+                <text class="focuOon" if="{{isCaActive}}">是</text>
+                <text class="focuOon" else>否</text>
+            </div>
+            <div class="text-item">
+                <text>是否只允许此设备拨打紧急电话：</text>
+                <text class="focuOon" if="{{isEmergency}}">是</text>
+                <text class="focuOon" else>否</text>
+            </div>
+        </div>
+    </div>
+    <div class="status-header"><text>手动搜网结果</text></div>
+    <div class="hand-text">
+        <text>获取手动搜网结果：</text>
+        <text class="weightRed" class="" if="{{handSearchResult}}">成功</text>
+        <text class="weightRed" else>失败</text>
+    </div>
+    <div class="hand-result-list">
+        <div class="hand-result-header"><text>获取手动搜网结果展示列表</text></div>
+        <div class="hand-result-con" if="{{handSearchResultList}}">
+            <div for="{{(item,value) in handSearchResultList}}" class="hand-item">
+                <div class="value-item"><text>运营商名称：{{value.operatorName}}</text></div>
+                <div class="value-item"><text>运营商代码：{{value.operatorNumeric}}</text></div>
+                <div class="value-item">
+                    <text>网络状态：</text>
+                    <text class="weightRed">{{value.state}}</text>
+                </div>
+                <div class="value-item">
+                    <text>网络状态中文说明：</text>
+                    <text class="weightRed" if="{{value.state == 0}}">网络服务状态未知</text>
+                    <text class="weightRed" elif="{{value.state == 1}}">网络服务可用</text>
+                    <text class="weightRed" elif="{{value.state == 2}}">网络服务已注册</text>
+                    <text class="weightRed" elif="{{value.state == 3}}">网络服务无法注册</text>
+                    <text class="weightRed" else>其他错误状态</text>
+                </div>
+                <div class="value-item"><text>无线技术名：{{value.radioTech}}</text></div>
+            </div>
+        </div>
+    </div>
+</div>

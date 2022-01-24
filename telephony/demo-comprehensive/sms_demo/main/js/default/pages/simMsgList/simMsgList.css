@@ -1,0 +1,93 @@
+.simmsglist {
+  flex-direction: column;
+  position:relative;
+}
+.header-title{
+  width:100%;
+  height:80px;
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20px;
+  margin-top: 60px;
+}
+.button{
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 18px;
+  background-color: #169BD5;
+}
+.addMesg-flex{
+  margin-top:90px;
+  width:100%;
+  height:80px;
+  display:flex;
+  justify-content: flex-end;
+}
+.add-btn{
+  width:160px;
+  height:60px;
+}
+.list-context{
+  width:700px;
+  flex-direction: column;
+  margin:10px 10px 10px 10px;
+}
+.list-item{
+  width:100%;
+  background-color:#f5f5f5;
+  flex-direction: column;
+  margin-bottom:10px;
+  border-radius: 10px;
+}
+.item-text{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  align-items:center;
+}
+.text-desc{
+  width:100%;
+  font-size:18px;
+  margin:10px;
+}
+.item-status{
+  width:100%;
+  border: 1px solid #66FFFF;
+  margin: 0 10px 10px;
+  padding: 5px 0;
+  background-color: #fff;
+  justify-content: space-around;
+
+}
+.item-status text{
+  font-size: 18px;
+}
+.status-btn{
+  width:300px;
+  text-align:center;
+  color:#fff;
+  font-size:12px;
+}
+.warning{
+  background-color:red;
+}
+.nodatawrap{
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+.opt-btns{
+  justify-content: space-around;
+}
+.opt-btns button{
+  width: 120px;
+}
+.btn{
+  height: 60px;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: green;
+}

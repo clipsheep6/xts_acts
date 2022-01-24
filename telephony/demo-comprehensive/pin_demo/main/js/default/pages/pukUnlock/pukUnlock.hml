@@ -1,0 +1,35 @@
+<element name="numkeyboard" src="../../common/component/numKeyboard/numKeyboard.hml"></element>
+<element name="back" src="../../common/component/back/back.hml"></element>
+<element src="../../common/component/loading/loading.hml" name='loading'></element>
+<div class="container">
+  <back></back>
+  <block if="showLoading">
+    <loading></loading>
+  </block>
+  <div class="unlock-container">
+    <div class="header-title">
+      <text>解锁Puk</text>
+    </div>
+    <div class="input-write" if="{{step === 1}}">
+      <label class="input-label">请输入新pin码:</label>
+      <div class="input-text">
+        <text class="input {{ red? 'red': '' }} ">{{ newPinInput }}</text>
+      </div>
+    </div>
+    <div class="input-write" if="{{step === 2}}">
+      <label class="input-label">请输入puk码:</label>
+      <div class="input-text">
+        <text class="input {{ red2? 'red': '' }} ">{{ pukInput }}</text>
+      </div>
+    </div>
+    <text class="input-label" >slotId: {{ slotId }} </text>
+  </div>
+  <div class="keyword-position">
+    <numkeyboard @on-input-change="onInputChange"  open-key-word="{{ showKeyboard }}"></numkeyboard>
+  </div>
+  <div class="fixed-btn">
+    <button class="confirm btnstep" @click="handlerPrevious" show="{{step === 2}}">上一步</button>
+    <button class="confirm" @click="handlerNext" show="{{step === 1}}">下一步</button>
+    <button class="confirm" @click="handlerConfirm" show="{{step === 2}}">确定</button>
+  </div>
+</div>

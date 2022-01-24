@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="header" >
+    <text class="title" >sim卡联系人列表</text>
+  </div>
+  <div class="getinfo" >
+    <button @click="getNumberList" >获取联系人</button>
+  </div>
+  <div class="numlist" >
+    <div class="num-item" for="list" >
+      <div class="num-info" >
+        <label>姓名：</label>
+        <text>{{$item.alphaTag}}</text>
+      </div>
+      <div class="num-info" >
+        <label>号码：</label>
+        <text>{{$item.number}}</text>
+      </div>
+      <div class="num-btn" >
+        <button @click="goUpdate($item)" >更新</button>
+        <button @click="del($item)" >删除</button>
+      </div>
+    </div>
+  </div>
+</div>

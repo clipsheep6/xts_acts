@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="header" >
+    <text class="title" >sim卡联系人管理</text>
+  </div>
+  <div class="opt-btn-groups" >
+    <button @click="addNumber" >添加联系人</button>
+    <button @click="getNumberList" >获取联系人列表</button>
+  </div>
+</div>

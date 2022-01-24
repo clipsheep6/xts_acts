@@ -1,0 +1,21 @@
+<element name="keyboard" src="../../common/component/keyboard/keyboard.hml"></element>
+<div class="container">
+  <div class="header" >
+    <text class="title" >添加sim卡联系人</text>
+  </div>
+  <div class="userinfo" >
+    <text class="red" >提示：先点击对应的输入项后再进行输入</text>
+    <div class="info-item {{currentInput === 'username'? 'current' : ''}}" @click="changeTarget('username')"  >
+      <text>姓名：</text>
+      <text>{{username}}</text>
+    </div>
+    <div class="info-item {{currentInput === 'telnum'? 'current' : ''}}" @click="changeTarget('telnum')" >
+      <text>手机号：</text>
+      <text>{{telnum}}</text>
+    </div>
+  </div>
+  <keyboard @cell-handle="cellClick"></keyboard>
+  <div class="opt-btn-groups" >
+    <button class="btn-save" @click="save" >保存</button>
+  </div>
+</div>

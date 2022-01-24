@@ -1,0 +1,35 @@
+.container {
+    flex-direction: column;
+    position:relative;
+    padding: 10px;
+}
+.header{
+    justify-content: center;
+}
+.title{
+    font-size: 33px;
+    margin-bottom: 10px;
+}
+.list-wrap{
+    flex-direction: column;
+}
+.list-item{
+    width:100%;
+    margin: 10px 0px;
+}
+.item-icon{
+    width: 50px;
+}
+.item-content{
+    width: 85%;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+    padding-left: 20px;
+    justify-content: space-between;
+}
+.item-text{
+    font-size: 22px;
+}
+.noborder{
+    border-bottom: 0;
+}

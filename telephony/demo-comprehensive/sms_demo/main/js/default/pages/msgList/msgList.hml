@@ -1,0 +1,30 @@
+<element src="../../common/component/back/back.hml" name="goback"></element>
+<element name="nodata" src="../../common/component/nodata/nodata.hml"></element>
+<div class="msglist">
+  <goback></goback>
+  <div class="head" >
+    <text class="head-title" >短信列表</text>
+  </div>
+  <div class="msg-list">
+    <div class="msg-item {{$idx === smsList.length -1 ? 'noborder': '' }}" for="{{smsList}}" >
+      <div class="msg-header">
+        <text class="msgtel">来自 {{$item.visibleRawAddress}}</text>
+        <text class="msgType">制式 {{$item.smsType}}</text>
+      </div>
+      <text class="msginfo" >{{$item.visibleMessageBody}}</text>
+      <block if="{{$item.visibleRawAddress === '广播类型'}}">
+        <text class="msginfo">msgId: {{$item.msgId}} </text>
+        <text class="msginfo">format: {{$item.format}} </text>
+        <text class="msginfo">recvTime: {{$item.recvTime}} </text>
+        <text class="msginfo">isCmasMessage: {{$item.isCmasMessage}} </text>
+        <text class="msginfo">isEtwsMessage: {{$item.isEtwsMessage}} </text>
+        <text class="msginfo">isEtwsPrimary: {{$item.isEtwsPrimary}} </text>
+        <text class="msginfo">serialNum: {{$item.serialNum}} </text>
+        <text class="msginfo">serviceCategory: {{$item.serviceCategory}} </text>
+      </block>
+    </div>
+    <div class="nodatawrap"  show="{{smsList.length <= 0}}">
+      <nodata></nodata>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="loadingpage">
+  <div class="loading-container" grab:click.capture="loadingClick">
+    <image src="/common/images/loading.png"  class="loading-icon" style="width: 80px; height: 80px;" ></image>
+    <text class="loading-txt" >加载中......</text>
+  </div>
+</div>

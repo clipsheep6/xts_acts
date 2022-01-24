@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="title"><text>蜂窝数据开关功耗demo</text></div>
+    <div class="setRadio">
+        <text class="radio-text">蜂窝数据</text>
+        <div class="radio-switch">
+            <switch showtext="true" texton="开启" textoff="关闭" checked="{{calluarModel}}" @change="switchChange">
+            </switch>
+        </div>
+    </div>
+    <div class="state">
+        <text>蜂窝数据状态：{{stateNum}}</text>
+    </div>
+    <div class="chineseDes">
+        <text if="{{stateNum == 0}}">表示蜂窝数据断开连接</text>
+        <text elif="{{stateNum == 1}}">表示蜂窝数据正在连接</text>
+        <text elif="{{stateNum == 2}}">表示蜂窝数据已连接</text>
+        <text elif="{{stateNum == 3}}">表示蜂窝数据连路已暂停</text>
+        <text else>表示蜂窝数据连接未知状态</text>
+    </div>
+    <div>
+        <button class="buttons" @click="getSatus">获取蜂窝数据状态</button>
+    </div>
+</div>

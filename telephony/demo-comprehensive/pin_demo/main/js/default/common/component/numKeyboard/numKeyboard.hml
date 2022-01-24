@@ -1,0 +1,30 @@
+<div class="numkeyboard">
+  <div class="clear">
+    <div class="clear-group">
+      <button  class="clear-btn"  @click="openCloseKeyWord">{{showKeyBoard ? '关闭':'开启'}}数字键盘</button>
+    </div>
+  </div>
+  <div class="keyword-fixed" show="{{showKeyBoard}}" >
+    <div class="Ninekey">
+      <div class="nineKey-group">
+        <div class="nineKey-item" @click="setProcess(1)"><text>1</text></div>
+        <div class="nineKey-item" @click="setProcess(2)"><text>2</text></div>
+        <div class="nineKey-item" @click="setProcess(3)"><text>3</text></div>
+      </div>
+      <div class="nineKey-group">
+        <div class="nineKey-item" @click="setProcess(4)"><text>4</text></div>
+        <div class="nineKey-item" @click="setProcess(5)"><text>5</text></div>
+        <div class="nineKey-item" @click="setProcess(6)"><text>6</text></div>
+      </div>
+      <div class="nineKey-group">
+        <div class="nineKey-item" @click="setProcess(7)"><text>7</text></div>
+        <div class="nineKey-item" @click="setProcess(8)"><text>8</text></div>
+        <div class="nineKey-item" @click="setProcess(9)"><text>9</text></div>
+      </div>
+      <div class="nineKey-group">
+        <div class="nineKey-item" @click="setProcess(0)"><text>0</text></div>
+        <div class="nineKey-item" @click="delNum"><text>del</text></div>
+      </div>
+    </div>
+  </div>
+</div>

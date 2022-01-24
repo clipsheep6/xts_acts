@@ -1,0 +1,62 @@
+<div class="container">
+
+<!--    引用示例
+1.单输入 <keyboard @on-input-change="onInputChange"></keyboard>
+2.多输入 <keyboard input="{{ keyboardValue }}" @on-input-change="onInputChange"></keyboard>
+-->
+
+    <div class="key-btn">
+        <canvas if="{{ ! isMinMode }}" ref="showText" class="show-canvas"></canvas>
+        <text class="mode" onclick="switchVisibility">{{ isMinMode ? '开启键盘' : '关闭键盘' }}</text>
+    </div>
+
+    <div class="container" if="{{ ! isMinMode }}">
+
+    <!--   数字 符号混合键盘 -->
+
+        <div if="{{ numberInput }}" class="number-parent">
+            <div>
+                <list style="columns : 2; width : 42%; background-color : white; border-radius : 8px;
+                        margin : 4px 2px;">
+                    <list-item for="{{ numberKeyboard.punctuation }}" onclick="onKeyClick($item)"
+                               on:longpress="onStartMultiInput($item)" on:touchend="onStopMultiInput">
+                        <text else class="item-punctuation">{{ toUpperCase ? $item.value : $item.lowerCaseValue
+                            }}
+                        </text>
+                    </list-item>
+                </list>
+                <list scrolleffect="no" style="columns : 3; margin-top : 1px;">
+                    <list-item for="{{ numberKeyboard.number }}" onclick="onKeyClick($item)"
+                               on:longpress="onStartMultiInput($item)" on:touchend="onStopMultiInput">
+                        <image if="{{ $item.icon }}" class=" item item-listitem item-number-icon {{ $item.styleClass }}"
+                               src="{{ $item.value }}"/>
+                        <text else class="item item-listitem {{ $item.styleClass }}">{{
+                            toUpperCase ? $item.value : $item.lowerCaseValue }}
+                        </text>
+                    </list-item>
+                </list>
+            </div>
+
+            <div class="bottom-parent">
+                <div for="{{ numberKeyboard.fun }}" onclick="onKeyClick($item)" on:longpress="onStartMultiInput($item)"
+                     on:touchend="onStopMultiInput">
+                    <image if="{{ $item.icon }}" class=" item key-icon {{ $item.styleClass }}" src="{{ $item.value }}"/>
+                    <text else class=" item {{ $item.styleClass }}">{{ toUpperCase ? $item.value : $item.lowerCaseValue
+                        }}
+                    </text>
+                </div>
+
+            </div>
+        </div>
+
+    <!--  abs键盘  -->
+        <div else class="chart-parent">
+            <div for="{{ chartKeyboard }}" onclick="onKeyClick($item)" on:longpress="onStartMultiInput($item)"
+                 on:touchend="onStopMultiInput">
+                <image if="{{ $item.icon }}" class=" item key-icon {{ $item.styleClass }}" src="{{ $item.value }}"/>
+                <text else class=" item {{ $item.styleClass }}">{{ toUpperCase ? $item.value : $item.lowerCaseValue }}
+                </text>
+            </div>
+        </div>
+    </div>
+</div>

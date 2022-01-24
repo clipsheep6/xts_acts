@@ -1,0 +1,17 @@
+<div class="container">
+  <text class="txt" >stk测试</text>
+  <div class="info" >
+    <div class="info-item" >
+      <text class="item-left" >slotID</text>
+      <text class="item-right">{{slotID}}</text>
+    </div>
+    <div class="info-item" >
+      <text class="item-left" >cardStatus</text>
+      <text class="item-right">{{cardStatus}}</text>
+    </div>
+    <div class="info-item no-border" >
+      <text class="item-left" >msgCmd</text>
+      <text class="item-right">{{msgCmd}}</text>
+    </div>
+  </div>
+</div>

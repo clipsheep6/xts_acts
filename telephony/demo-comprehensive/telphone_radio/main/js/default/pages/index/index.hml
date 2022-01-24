@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="header">
+        <text>无卡状态和飞行模式demo</text>
+    </div>
+    <div class="setRadio">
+        <text class="radio-text">开启飞行模式</text>
+        <div class="radio-switch">
+            <switch showtext="true" texton="开启" textoff="关闭" checked="{{!flightMode}}" @change="switchChange">
+            </switch>
+        </div>
+    </div>
+    <div class="dial-telphone"><text>{{dialTelphone}}</text></div>
+    <div class="dial">
+        <div class="number-plate">
+            <div class="plate-group">
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum(1)">1</button>
+                </div>
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum(2)">2</button>
+                </div>
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum(3)">3</button>
+                </div>
+            </div>
+            <div class="plate-group">
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum(4)">4</button>
+                </div>
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum(5)">5</button>
+                </div>
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum(6)">6</button>
+                </div>
+            </div>
+            <div class="plate-group">
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum(7)">7</button>
+                </div>
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum(8)">8</button>
+                </div>
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum(9)">9</button>
+                </div>
+            </div>
+            <div class="plate-group">
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum('*')">*</button>
+                </div>
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum(0)">0</button>
+                </div>
+                <div class="group-column">
+                    <button class="button text" type="text"  @click="setNum('#')">#</button>
+                </div>
+            </div>
+        </div>
+        <div class="dial-button">
+            <button class="button circle" type="circle" icon="common/images/answer.png" @click="dialPhone"></button>
+            <button class="button del" if="{{dialTelphone}}" type="circle" icon="common/images/del.png" @click="deleteNum"></button>
+        </div>
+    </div>
+    <div class="simState">
+        <text class="currentText">当前sim卡状态为：</text>
+        <text class="currentState" if="{{cardState == 1}}">卡不存在</text>
+        <text class="currentState" elif="{{cardState == 2}}">卡锁定状态</text>
+        <text class="currentState" elif="{{cardState == 3}}">卡未就绪</text>
+        <text class="currentState" elif="{{cardState == 4 || cardState == 5}}">卡可正常工作</text>
+        <text class="currentState" else>状态未知</text>
+    </div>
+</div>

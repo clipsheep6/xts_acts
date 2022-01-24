@@ -1,0 +1,93 @@
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.header{
+    width:100%;
+    height:80px;
+    background-color:#6600FF;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+.setRadio{
+    width:90%;
+    margin:0 5%;
+    display:flex;
+    justify-content: space-between;
+}
+.radio-text{
+    font-size:20px;
+}
+switch{
+    texton-color:#6600FF;
+    textoff-color:#6600FF;
+    text-padding:10px;
+    font-size:30px;
+}
+.dial-telphone{
+    margin-top:10px;
+    height:80px;
+}
+.dial-telphone text{
+    font-size:40px;
+}
+.dial{
+    flex-direction: column;
+    width:80%;
+    margin:40px 10% 10px 10%;
+}
+.number-plate{
+    width:100%;
+    flex-direction: column;
+    display:flex;
+    justify-content: center;
+}
+.plate-group{
+    margin-bottom:10px;
+}
+.text{
+    margin:0px 20px;
+    width:60px;
+    height:60px;
+    border-radius:60px;
+    background-color:#6600FF;
+    text-color: #fff;
+    font-size: 30px;
+    font-weight: 900;
+}
+.dial-button{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    position:relative;
+    height:100px;
+}
+.circle {
+    width:100px;
+    height:100px;
+}
+.del{
+    width:60px;
+    height:40px;
+    position:absolute;
+    right:0;
+    top:50%;
+    transform: translateY(-50%);
+    background-color:#fff;
+}
+.simState{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    margin-top:10px;
+}
+.simState text{
+     font-size:20px;
+}
+.currentState{
+   color:#6600FF;
+}

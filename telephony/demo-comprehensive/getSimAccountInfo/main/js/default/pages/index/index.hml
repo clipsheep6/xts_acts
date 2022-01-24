@@ -1,0 +1,38 @@
+<element src="../../common/component/loading/loading.hml" name='loading'></element>
+<div class="container">
+  <block if="showLoading">
+    <loading></loading>
+  </block>
+  <text class="txt" >获取sim卡的用户信息</text>
+  <button @click="getSimAccountInfo" class="btn">获取信息</button>
+  <div class="info" >
+    <div class="info-item" >
+      <text class="item-left" >simId</text>
+      <text class="item-right">{{simId}}</text>
+    </div>
+    <div class="info-item" >
+      <text class="item-left" >slotIndex</text>
+      <text class="item-right">{{slotIndex}}</text>
+    </div>
+    <div class="info-item" >
+      <text class="item-left" >是否是eSim卡</text>
+      <text class="item-right">{{isEsim? "是" : "否"}}</text>
+    </div>
+    <div class="info-item" >
+      <text class="item-left" >SIM卡激活状态</text>
+      <text class="item-right">{{isActive? "已激活" : "未激活"}}</text>
+    </div>
+    <div class="info-item" >
+      <text class="item-left" >iccId</text>
+      <text class="item-right">{{iccId}}</text>
+    </div>
+    <div class="info-item" >
+      <text class="item-left" >SIM卡名称</text>
+      <text class="item-right">{{showName}}</text>
+    </div>
+    <div class="info-item no-border" >
+      <text class="item-left" >SIM卡号码</text>
+      <text class="item-right">{{showNumber}}</text>
+    </div>
+  </div>
+</div>
