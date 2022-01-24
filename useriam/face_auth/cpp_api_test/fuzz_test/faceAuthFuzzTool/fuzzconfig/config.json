@@ -1,0 +1,19 @@
+{
+	"flag": 10,
+	"DistributedFaceAuthKit": {
+		"Authenticate": [],
+		"CancelAuth": [],
+		"Init": [],
+		"Release": [],
+		"ResetTimeout": [],
+		"GetRemainingTime": [],
+		"GetRemainingNum": [],
+		"Enroll": [],
+		"CancelEnrollment": [],
+		"PreEnroll": [],
+		"PostEnroll": [],
+		"Remove": [],
+		"GetEnrolledFaceIDs": [],
+		"GetAngleDim": []
+	}
+}
