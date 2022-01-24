@@ -30,7 +30,6 @@ import gridJsunit from './GridJsnuit.test.ets';
 import videoJsunit from './VideoJsunit.test.ets';
 export default function testsuite() {
   alphabetIndexerJsunit()
-  hyperlinkJsunit()
   rowJsunit()
   gridJsunit()
   gridItemJsunit()
