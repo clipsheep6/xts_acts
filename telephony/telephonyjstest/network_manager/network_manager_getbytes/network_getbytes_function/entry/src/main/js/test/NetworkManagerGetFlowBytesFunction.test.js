@@ -45,7 +45,7 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
     it('Telephony_NetworkManager_getCellularRxBytes_Promise_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getCellularRxBytes_Promise_0100';
         statistics.getCellularRxBytes().then((data) => {
-            console.log("${caseName} get data = " + data.message + " " + data.code);
+            console.log(`${caseName} get data = ${data.message}:${ data.code}`);
             expect(data.code >= DATA_0).assertTrue();
             done();
         }).catch((err) => {
@@ -97,8 +97,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Async_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Async_0100';
-        let iface_name = "usb0";
-        statistics.getIfaceRxBytes(iface_name, (err, data) => {
+        let ifaceName = "usb0";
+        statistics.getIfaceRxBytes(ifaceName, (err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -117,8 +117,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Async_0200', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Async_0200';
-        let iface_name = "wlan0";
-        statistics.getIfaceRxBytes(iface_name, (err, data) => {
+        let ifaceName = "wlan0";
+        statistics.getIfaceRxBytes(ifaceName, (err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -137,8 +137,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Async_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Async_0300';
-        let iface_name = "eth0";
-        statistics.getIfaceRxBytes(iface_name, (err, data) => {
+        let ifaceName = "eth0";
+        statistics.getIfaceRxBytes(ifaceName, (err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -157,8 +157,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Async_0400', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Async_0400';
-        let iface_name = "xlan0";
-        statistics.getIfaceRxBytes(iface_name, (err, data) => {
+        let ifaceName = "xlan0";
+        statistics.getIfaceRxBytes(ifaceName, (err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -177,8 +177,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0100';
-        let iface_name = "usb0";
-        statistics.getIfaceRxBytes(iface_name).then((data) => {
+        let ifaceName = "usb0";
+        statistics.getIfaceRxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code >= DATA_0).assertTrue();
             done();
@@ -196,8 +196,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0200', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0200';
-        let iface_name = "wlan0";
-        statistics.getIfaceRxBytes(iface_name).then((data) => {
+        let ifaceName = "wlan0";
+        statistics.getIfaceRxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code >= DATA_0).assertTrue();
             done();
@@ -215,8 +215,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0300';
-        let iface_name = "eth0";
-        statistics.getIfaceRxBytes(iface_name).then((data) => {
+        let ifaceName = "eth0";
+        statistics.getIfaceRxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code >= DATA_0).assertTrue();
             done();
@@ -234,8 +234,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0400', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0400';
-        let iface_name = "xlan0";
-        statistics.getIfaceRxBytes(iface_name).then((data) => {
+        let ifaceName = "xlan0";
+        statistics.getIfaceRxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code == DATA_0).assertTrue();
             done();
@@ -253,8 +253,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Async_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Async_0100';
-        let iface_name = "usb0";
-        statistics.getIfaceTxBytes(iface_name, (err, data) => {
+        let ifaceName = "usb0";
+        statistics.getIfaceTxBytes(ifaceName, (err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -273,8 +273,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Async_0200', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Async_0200';
-        let iface_name = "wlan0";
-        statistics.getIfaceTxBytes(iface_name, (err, data) => {
+        let ifaceName = "wlan0";
+        statistics.getIfaceTxBytes(ifaceName, (err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -293,8 +293,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Async_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Async_0300';
-        let iface_name = "eth0";
-        statistics.getIfaceTxBytes(iface_name, (err, data) => {
+        let ifaceName = "eth0";
+        statistics.getIfaceTxBytes(ifaceName, (err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -313,8 +313,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Async_0400', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Async_0400';
-        let iface_name = "xlan0";
-        statistics.getIfaceTxBytes(iface_name, (err, data) => {
+        let ifaceName = "xlan0";
+        statistics.getIfaceTxBytes(ifaceName, (err, data) => {
             if (err) {
                 console.log(`${caseName} get data fail: ${err.message} ${err.code}`);
                 done();
@@ -333,8 +333,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0100', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0100';
-        let iface_name = "usb0";
-        statistics.getIfaceTxBytes(iface_name).then((data) => {
+        let ifaceName = "usb0";
+        statistics.getIfaceTxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code >= DATA_0).assertTrue();
             done();
@@ -352,8 +352,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0200', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0200';
-        let iface_name = "wlan0";
-        statistics.getIfaceTxBytes(iface_name).then((data) => {
+        let ifaceName = "wlan0";
+        statistics.getIfaceTxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code >= DATA_0).assertTrue();
             done();
@@ -371,8 +371,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0300', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0300';
-        let iface_name = "eth0";
-        statistics.getIfaceTxBytes(iface_name).then((data) => {
+        let ifaceName = "eth0";
+        statistics.getIfaceTxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code >= DATA_0).assertTrue();
             done();
@@ -390,8 +390,8 @@ describe('NetworkManagerGetFlowBytesFunction.test', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0400', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0400';
-        let iface_name = "xlan0";
-        statistics.getIfaceTxBytes(iface_name).then((data) => {
+        let ifaceName = "xlan0";
+        statistics.getIfaceTxBytes(ifaceName).then((data) => {
             console.log(`${caseName}  get data: ${data.message} + ${data.code}`);
             expect(data.code == DATA_0).assertTrue();
             done();

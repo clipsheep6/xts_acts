@@ -40,7 +40,6 @@ describe('NetworkManagerGetSpecifiNetFunction.test', function () {
         }
         console.log(`${caseName} finish`);
         done();
-        return;
     });
 
     /**
@@ -91,7 +90,6 @@ describe('NetworkManagerGetSpecifiNetFunction.test', function () {
         }
         console.log(`${caseName} finish`);
         done();
-        return;
     });
 
     /**

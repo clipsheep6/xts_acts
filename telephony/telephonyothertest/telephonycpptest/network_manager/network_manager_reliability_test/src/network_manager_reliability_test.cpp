@@ -54,7 +54,7 @@
 
 using namespace OHOS;
 using namespace OHOS::NetManagerStandard;
-static const int BYTES_DATA_NUM_0=0;
+static const int BYTES_DATA_NUM_0 = 0;
 static const int TEST_COUNTS_1000 = 1000;
 static const uint32_t SIZE_ZERO = 0;
 namespace OHOS {
@@ -71,9 +71,9 @@ HWTEST_F(NetworkManagerGetBytesTest, Telephony_NetworkManager_GetCellularRxBytes
 {
     int count;
     for (count = 0; count < TEST_COUNTS_1000; ++count) {
-        std::unique_ptr<DataFlowStatistics> flow(new DataFlowStatistics());
+        std::unique_ptr<DataFlowStatistics> flow = std::make_unique<DataFlowStatistics>();
         long ret = flow->GetCellularRxBytes();
-        EXPECT_EQ(ret,BYTES_DATA_NUM_0);
+        EXPECT_EQ(ret, BYTES_DATA_NUM_0);
     }
 }
 
@@ -87,9 +87,9 @@ HWTEST_F(NetworkManagerGetBytesTest, Telephony_NetworkManager_GetCellularTxBytes
 {
     int count;
     for (count = 0; count < TEST_COUNTS_1000; ++count) {
-        std::unique_ptr<DataFlowStatistics> flow(new DataFlowStatistics());
+        std::unique_ptr<DataFlowStatistics> flow = std::make_unique<DataFlowStatistics>();
         long ret = flow->GetCellularTxBytes();
-        EXPECT_NE(ret,BYTES_DATA_NUM_0);
+        EXPECT_NE(ret, BYTES_DATA_NUM_0);
     }
 }
 
@@ -104,9 +104,9 @@ HWTEST_F(NetworkManagerGetBytesTest, Telephony_NetworkManager_GetUidRxBytes_0300
     int count;
     int app_uid=1123;
     for (count = 0; count < TEST_COUNTS_1000; ++count) {
-        std::unique_ptr<DataFlowStatistics> flow(new DataFlowStatistics());
+        std::unique_ptr<DataFlowStatistics> flow = std::make_unique<DataFlowStatistics>();
         long ret = flow->GetUidRxBytes(app_uid);
-        EXPECT_NE(ret,BYTES_DATA_NUM_0);
+        EXPECT_NE(ret, BYTES_DATA_NUM_0);
     }
 }
 
@@ -121,7 +121,7 @@ HWTEST_F(NetworkManagerGetBytesTest, Telephony_NetworkManager_GetUidTxBytes_0300
     int count;
     int app_uid=1123;
     for (count = 0; count < TEST_COUNTS_1000; ++count) {
-        std::unique_ptr<DataFlowStatistics> flow(new DataFlowStatistics());
+        std::unique_ptr<DataFlowStatistics> flow = std::make_unique<DataFlowStatistics>();
         long ret = flow->GetUidRxBytes(app_uid);
         EXPECT_NE(ret, BYTES_DATA_NUM_0);
     }
@@ -138,7 +138,7 @@ HWTEST_F(NetworkManagerGetBytesTest, Telephony_NetworkManager_GetIfaceRxBytes_06
     int count;
     std::string iface = "eth0";
     for (count = 0; count < TEST_COUNTS_1000; ++count) {
-        std::unique_ptr<DataFlowStatistics> flow(new DataFlowStatistics());
+        std::unique_ptr<DataFlowStatistics> flow = std::make_unique<DataFlowStatistics>();
         long ret = flow->GetIfaceRxBytes(iface);
         EXPECT_EQ(ret, BYTES_DATA_NUM_0);
     }
@@ -155,7 +155,7 @@ HWTEST_F(NetworkManagerGetBytesTest, Telephony_NetworkManager_GetIfaceTxBytes_06
     int count;
     std::string iface = "eth0";
     for (count = 0; count < TEST_COUNTS_1000; ++count) {
-        std::unique_ptr<DataFlowStatistics> flow(new DataFlowStatistics());
+        std::unique_ptr<DataFlowStatistics> flow = std::make_unique<DataFlowStatistics>();
         long ret = flow->GetIfaceTxBytes(iface);
         EXPECT_EQ(ret, BYTES_DATA_NUM_0);
     }
@@ -174,7 +174,7 @@ HWTEST_F(NetworkManagerGetBytesTest, Telephony_NetworkManager_GetAllRxBytes_0200
     std::string iface_wlan = "wlan0";
     std::string iface_eth = "eth0";
     for (count = 0; count < TEST_COUNTS_1000; ++count) {
-        std::unique_ptr<DataFlowStatistics> flow(new DataFlowStatistics());
+        std::unique_ptr<DataFlowStatistics> flow = std::make_unique<DataFlowStatistics>();
         long ret_usb=flow->GetIfaceRxBytes(iface_cell);
         long ret_wlan=flow->GetIfaceRxBytes(iface_wlan);
         long ret_eth=flow->GetIfaceRxBytes(iface_eth);
@@ -196,7 +196,7 @@ HWTEST_F(NetworkManagerGetBytesTest, Telephony_NetworkManager_GetAllTxBytes_0200
     std::string iface_wlan = "wlan0";
     std::string iface_eth = "eth0";
     for (count = 0; count < TEST_COUNTS_1000; ++count) {
-        std::unique_ptr<DataFlowStatistics> flow(new DataFlowStatistics());
+        std::unique_ptr<DataFlowStatistics> flow = std::make_unique<DataFlowStatistics>();
         long ret_usb=flow->GetIfaceRxBytes(iface_cell);
         long ret_wlan=flow->GetIfaceRxBytes(iface_wlan);
         long ret_eth=flow->GetIfaceRxBytes(iface_eth);
@@ -245,7 +245,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
     sptr<INetPolicyCallback> callback = (std::make_unique<NetPolicyCallbackTest>()).release();
     int count;
     for (count = 0; count < TEST_COUNTS_1000; ++count) {
-         int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
+        int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
         EXPECT_EQ(result, ERR_NONE);
     }
 }
@@ -260,7 +260,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_UnregisterNetPolicyCallbac
     sptr<INetPolicyCallback> callback = (std::make_unique<NetPolicyCallbackTest>()).release();
     int count;
     for (count = 0; count < TEST_COUNTS_1000; ++count) {
-         int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
+        int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
         EXPECT_EQ(result, ERR_NONE);
     }
 }
@@ -288,7 +288,7 @@ HWTEST_F(DetectionTest, Telephony_NetworkManager_NetDetection_0800, Function | M
         for (count = 0; count < TEST_COUNTS_1000; ++count) {
             int32_t ret = netConnClient->NetDetection(*netHandler);
             ASSERT_EQ(ret, NET_CONN_SUCCESS);
-       }
+        }
     }
 }
 
@@ -459,7 +459,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetConnectionProperties_0300, Per
     NetLinkInfo info;
     int32_t result;
     for (count = 0; count < TEST_COUNTS_1000; count++) {
-        if(!netIdList.empty()){
+        if (!netIdList.empty()) {
             result = DelayedSingleton<NetConnClient>::GetInstance()->GetConnectionProperties(*(netIdList.front()),
                 info);
         }
@@ -489,7 +489,7 @@ HWTEST_F(AllNetsTest, Telephony_NetworkManager_GetNetCapabilities_0300, Performa
     NetAllCapabilities cap;
     int32_t result;
     for (count = 0; count < TEST_COUNTS_1000; count++) {
-        if(!netIdList.empty()){
+        if (!netIdList.empty()) {
             result = DelayedSingleton<NetConnClient>::GetInstance()->GetNetCapabilities(*(netIdList.front()), cap);
         }
         ASSERT_EQ(result, NET_CONN_SUCCESS);

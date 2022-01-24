@@ -147,6 +147,5 @@ HWTEST_F(DetectionTest, Telephony_NetworkManager_NetDetection_0400, Function | M
         std::cout << "TestNetDetection result:" << result << std::endl;
     }
 }
-
 }   // NetManagerStandard
 }   // OHOS

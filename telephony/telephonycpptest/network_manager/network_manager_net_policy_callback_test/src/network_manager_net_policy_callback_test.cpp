@@ -36,7 +36,7 @@
 static const uint32_t UID_NUM_1 = 1;
 static const uint32_t UID_NUM_2 = 2;
 static const uint32_t UID_NUM_3 = 3;
-static const uint32_t  UID_NUM_4 = 4;
+static const uint32_t UID_NUM_4 = 4;
 static const uint32_t UID_NUM_5 = 5;
 static const uint32_t UID_NUM_6 = 6;
 
@@ -52,16 +52,16 @@ using namespace testing::ext;
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_0100,  Function | MediumTest | Level3)
 {
-    std::string caseName= "Telephony_NetworkManager_RegisterNetPolicyCallback_0100";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_0100";
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     if (result == ERR_NONE) {
         DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(UID_NUM_1, NetUidPolicy::NET_POLICY_NONE);
         sleep(3);
-        std::cout <<  caseName <<NetPolicyCallbackTest::m_uid<< std::endl;
+        std::cout << caseName <<NetPolicyCallbackTest::m_uid<< std::endl;
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_1);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_NONE);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -76,7 +76,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_0200,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_RegisterNetPolicyCallback_0200";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_0200";
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     if (result == ERR_NONE) {
         DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(UID_NUM_2,
@@ -85,7 +85,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_2);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_ALLOW_METERED_BACKGROUND);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -100,16 +100,16 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_0300,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_RegisterNetPolicyCallback_0300";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_0300";
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     if (result == ERR_NONE) {
         DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(UID_NUM_3,
-            NetUidPolicy:: NET_POLICY_TEMPORARY_ALLOW_METERED);
+            NetUidPolicy::NET_POLICY_TEMPORARY_ALLOW_METERED);
         sleep(3);
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_3);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_TEMPORARY_ALLOW_METERED);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -124,7 +124,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_0400,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_RegisterNetPolicyCallback_0400";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_0400";
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     if (result == ERR_NONE) {
         DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(UID_NUM_4,
@@ -133,7 +133,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_4);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_REJECT_METERED_BACKGROUND);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -148,15 +148,15 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_0500,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_RegisterNetPolicyCallback_0500";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_0500";
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
-     if (result == ERR_NONE) {
+    if (result == ERR_NONE) {
         DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(UID_NUM_5, NetUidPolicy::NET_POLICY_ALLOW_ALL);
         sleep(3);
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_5);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_ALLOW_ALL);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -171,7 +171,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_0600,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_RegisterNetPolicyCallback_0600";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_0600";
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     if (result == ERR_NONE) {
         DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(UID_NUM_6,
@@ -180,7 +180,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_6);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_REJECT_ALL);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -195,7 +195,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_0700,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_RegisterNetPolicyCallback_0700";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_0700";
     DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     if (result == ERR_NONE) {
@@ -205,7 +205,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_1);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_ALLOW_METERED_BACKGROUND);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -221,7 +221,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_0800,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_RegisterNetPolicyCallback_0800";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_0800";
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     if (result == ERR_NONE) {
         DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(UID_NUM_1,
@@ -235,7 +235,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_1);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_ALLOW_METERED_BACKGROUND);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -251,7 +251,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_0900,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_RegisterNetPolicyCallback_0900";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_0900";
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     if (result == ERR_NONE) {
         DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(UID_NUM_1,
@@ -265,7 +265,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_2);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_ALLOW_METERED_BACKGROUND);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -281,12 +281,12 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_1000,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_RegisterNetPolicyCallback_1000";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_1000";
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     if (result == ERR_NONE) {
         DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(UID_NUM_1,
             NetUidPolicy::NET_POLICY_ALLOW_METERED_BACKGROUND);
-         sleep(3);
+        sleep(3);
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_1);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_ALLOW_METERED_BACKGROUND);
         DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(UID_NUM_1,
@@ -295,7 +295,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_1);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_REJECT_ALL);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -310,7 +310,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_1100,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_RegisterNetPolicyCallback_1100";
+    std::string caseName = "Telephony_NetworkManager_RegisterNetPolicyCallback_1100";
     DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
@@ -321,7 +321,7 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
         EXPECT_EQ(NetPolicyCallbackTest::m_uid, UID_NUM_1);
         EXPECT_EQ(NetPolicyCallbackTest::netPolicy, NetUidPolicy::NET_POLICY_ALLOW_METERED_BACKGROUND);
     } else {
-        std::cout <<  caseName << "RegisterNetPolicyCallback return fail" << std::endl;
+        std::cout << caseName << "RegisterNetPolicyCallback return fail" << std::endl;
         EXPECT_TRUE(false);
     }
     DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
@@ -329,13 +329,13 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_RegisterNetPolicyCallback_
 
 /*
  * @tc.number  Telephony_NetworkManager_UnregisterNetPolicyCallback_0100
- * @tc.name    APP called RegisterNetPolicyCallback (), and then call UnregisterNetPolicyCallback (), 
+ * @tc.name    APP called RegisterNetPolicyCallback(), and then call UnregisterNetPolicyCallback(),
  *             to check the return value
  * @tc.desc    Function test
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_UnregisterNetPolicyCallback_0100,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_UnregisterNetPolicyCallback_0100";
+    std::string caseName = "Telephony_NetworkManager_UnregisterNetPolicyCallback_0100";
     DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
     EXPECT_EQ(result, ERR_NONE);
@@ -343,13 +343,13 @@ HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_UnregisterNetPolicyCallbac
 
 /*
  * @tc.number  Telephony_NetworkManager_UnregisterNetPolicyCallback_0200
- * @tc.name    APP called RegisterNetPolicyCallback (), and then call twice UnregisterNetPolicyCallback (),
+ * @tc.name    APP called RegisterNetPolicyCallback(), and then call twice UnregisterNetPolicyCallback(),
  *             to check the return value
  * @tc.desc    Function test
  */
 HWTEST_F(NetworkManagerTest, Telephony_NetworkManager_UnregisterNetPolicyCallback_0200,  Function | MediumTest | Level3)
 {
-    std::string caseName=  "Telephony_NetworkManager_UnregisterNetPolicyCallback_0200";
+    std::string caseName = "Telephony_NetworkManager_UnregisterNetPolicyCallback_0200";
     DelayedSingleton<NetPolicyClient>::GetInstance()->RegisterNetPolicyCallback(callback);
     int32_t result = DelayedSingleton<NetPolicyClient>::GetInstance()->UnregisterNetPolicyCallback(callback);
     EXPECT_EQ(result, ERR_NONE);

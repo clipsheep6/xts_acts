@@ -46,7 +46,6 @@ describe('NetworkManagerGetSpecifiNetFunction.test', function () {
         console.log(`${caseName} done useTime: ${endTime - startTime}`);
         expect(endTime - startTime).assertLess(DELAY_LIMIT);
         done();
-        return;
     });
 
     /**
@@ -109,7 +108,6 @@ describe('NetworkManagerGetSpecifiNetFunction.test', function () {
         console.log(`${caseName} done useTime: ${endTime - startTime}`);
         expect(endTime - startTime).assertLess(DELAY_LIMIT);
         done();
-        return;
     });
 
     /**

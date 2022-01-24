@@ -117,19 +117,19 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
 
     /**
      * @tc.number  Telephony_NetworkManager_getIfaceRxBytes_Async_0500
-     * @tc.name    Set the network interface to an Ethernet interface and call getIfaceRxBytes() TEST_RUN_TIME times, 
+     * @tc.name    Set the network interface to an Ethernet interface and call getIfaceRxBytes() TEST_RUN_TIME times,
      *             each time successfully returning data
      * @tc.desc    Reliability test
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Async_0500', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Async_0500';
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         function recursive(n) {
             if (n <= 0) {
                 console.log(`${caseName} finish`);
                 done();
             }
-            statistics.getIfaceRxBytes(iface_name, (err, data) => {
+            statistics.getIfaceRxBytes(ifaceName, (err, data) => {
                 if (err) {
                     console.log(`${caseName} erro data:${err.code}`);
                     expect().assertFail();
@@ -145,16 +145,16 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
 
     /**
      * @tc.number  Telephony_NetworkManager_getIfaceRxBytes_Promise_0500
-     * @tc.name    Set the network interface to an Ethernet interface and call getIfaceRxBytes() TEST_RUN_TIME times, 
+     * @tc.name    Set the network interface to an Ethernet interface and call getIfaceRxBytes() TEST_RUN_TIME times,
      *             each time successfully returning data
      * @tc.desc    Reliability test
      */
     it('Telephony_NetworkManager_getIfaceRxBytes_Promise_0500', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceRxBytes_Promise_0500';
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data = await statistics.getIfaceRxBytes(iface_name);
+                let data = await statistics.getIfaceRxBytes(ifaceName);
                 expect(data.code >= FLOW_DATA_0).assertTrue();
             } catch (err) {
                 console.log(`${caseName} fail : ${err}`);
@@ -168,19 +168,19 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
 
     /**
      * @tc.number  Telephony_NetworkManager_getIfaceTxBytes_Async_0500
-     * @tc.name    Set the network interface to an Ethernet interface and call getIfaceTxBytes() TEST_RUN_TIME times, 
+     * @tc.name    Set the network interface to an Ethernet interface and call getIfaceTxBytes() TEST_RUN_TIME times,
      *             each time successfully returning data
      * @tc.desc    Reliability test
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Async_0500', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Async_0500';
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         function recursive(n) {
             if (n <= 0) {
                 console.log(`${caseName} finish`);
                 done();
             }
-            statistics.getIfaceTxBytes(iface_name, (err, data) => {
+            statistics.getIfaceTxBytes(ifaceName, (err, data) => {
                 if (err) {
                     console.log(`${caseName} erro data:${err.code}`);
                     expect().assertFail();
@@ -202,10 +202,10 @@ describe('NetworkManagerGetBytesReliabilityTest', function () {
      */
     it('Telephony_NetworkManager_getIfaceTxBytes_Promise_0500', 0, async function (done) {
         let caseName = 'Telephony_NetworkManager_getIfaceTxBytes_Promise_0500';
-        let iface_name = "eth0";
+        let ifaceName = "eth0";
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data = await statistics.getIfaceTxBytes(iface_name);
+                let data = await statistics.getIfaceTxBytes(ifaceName);
                 expect(data.code >= FLOW_DATA_0).assertTrue();
             } catch (err) {
                 console.log(`${caseName} fail : ${err}`);

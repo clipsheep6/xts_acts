@@ -24,33 +24,37 @@ namespace OHOS {
 namespace NetManagerStandard {
 sptr<INetConnService> GetProxy();
 const int NETID_100 = 100;
-const int FD_ID_1=1;
-const int FD_ID_2=2;
-const int FD_ID_100=100;
-const int FD_ID_0=0;
+const int FD_ID_1 = 1;
+const int FD_ID_2 = 2;
+const int FD_ID_100 = 100;
+const int FD_ID_0 = 0;
 class GetAddressByName : public testing::Test {
-    public:
-        static void SetUpTestCase();
-        static void TearDownTestCase();
-        void SetUp();
-        void TearDown();
-    };
+public:
+    static void SetUpTestCase();
+    static void TearDownTestCase();
+    void SetUp();
+    void TearDown();
+};
 
-void GetAddressByName::SetUpTestCase() {
+void GetAddressByName::SetUpTestCase()
+{
     std::cout<<"SetUpTestCase"<<std::endl;
-    }
+}
 
-void GetAddressByName::TearDownTestCase() {
+void GetAddressByName::TearDownTestCase()
+{
     std::cout<<"TearDownTestCase"<<std::endl;
-    }
+}
 
-void GetAddressByName::SetUp() {
+void GetAddressByName::SetUp()
+{
     std::cout<<"SetUp"<<std::endl;
-    }
+}
 
-void GetAddressByName::TearDown() {
+void GetAddressByName::TearDown()
+{
     std::cout<<"TearDown"<<std::endl;
-    }
+}
 }
 }
 #endif // NETWORK_MANAGER_GETALLNETS_TEST_H

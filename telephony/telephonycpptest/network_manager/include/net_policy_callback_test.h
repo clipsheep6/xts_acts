@@ -22,17 +22,15 @@
 
 namespace OHOS {
 namespace NetManagerStandard {
-
 class NetPolicyCallbackTest : public NetPolicyCallbackStub {
 public:
     NetPolicyCallbackTest();
     virtual ~NetPolicyCallbackTest() override;
     int32_t NetUidPolicyChanged(uint32_t uid, NetUidPolicy policy) override;
     int32_t NetCellularPolicyChanged(const std::vector<NetPolicyCellularPolicy> &cellularPolicys) override;
-public:  
+public:
     static uint32_t m_uid;
     static NetUidPolicy netPolicy;
-
 };
 
 uint32_t NetPolicyCallbackTest::m_uid = 100;
@@ -64,7 +62,6 @@ int32_t NetPolicyCallbackTest::NetCellularPolicyChanged(const std::vector<NetPol
 }
 
 sptr<INetPolicyCallback> callback = (std::make_unique<NetPolicyCallbackTest>()).release();
-
-} // namespace NetManagerStandard
-} // namespace OHOS
+}
+}
 #endif // NET_POLICY_CALLBACK_TEST_H
