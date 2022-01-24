@@ -39,7 +39,7 @@ void MmiSleep1s()
 
 int32_t ExecInjection(const std::string jsonFileName)
 {
-    const std::string injectionCommand = "hosmmi-event-injection json " + jsonFileName;
+    const std::string injectionCommand = "hosmmi-event-injection json /data/local/tmp/mmi_test/json/" + jsonFileName;   
     system(injectionCommand.data());
     return ret;
 }

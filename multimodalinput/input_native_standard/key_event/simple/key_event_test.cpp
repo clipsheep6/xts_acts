@@ -14,6 +14,8 @@
  */
 
 #include <gtest/gtest.h>
+#include <semaphore.h>
+#include <sstream>
 #include <vector>
 #include "define_multimodal.h"
 #include "input_handler_manager.h"
@@ -143,7 +145,7 @@ void KeyEventTest::HandleInjectResult2(std::shared_ptr<OHOS::MMI::KeyEvent> keyE
         ASSERT_TRUE(pressedKeys.empty());
         ASSERT_TRUE(pressedResult != pressedKeys.end());
         ASSERT_TRUE(keys_.empty() && (keys_.size() == NUMS));
-        if (NUMS == 1) {
+        if (NUMS == KEY_NUM1) {
             EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
         } else {
             EXPECT_TRUE(keys_[0].GetKeyCode() ==  keyEvent->GetKeyCode() == OHOS::MMI::KeyEvent::KEYCODE_CTRL_LEFT);
