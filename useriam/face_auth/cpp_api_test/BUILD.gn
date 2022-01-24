@@ -1,0 +1,49 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//base/user_iam/face_auth/useriam.gni")
+import("//build/ohos.gni")
+
+config("face_auth_system_test_config") {
+  visibility = [ ":*" ]
+  include_dirs = [
+    "${face_auth_services_path}/include",
+    "${face_auth_innerkits_path}/include",
+    "${useriam_auth_kits_path}/include",
+    "${useriam_common_path}/log/include",
+    "${aafwk_path}/services/abilitymgr/include",
+    "${aafwk_path}/services/common/include",
+    "${aafwk_path}/interfaces/innerkits/app_manager:app_manager",
+    "${aafwk_path}/services/appmgr/include",
+    "//base/startup/appspawn_standard/include",
+    "//base/notification/ces_standard/frameworks/core/include",
+    "//base/notification/ces_standard/interfaces/innerkits/native/include",
+  ]
+
+  defines = [
+    "APP_LOG_TAG = \"FaceAuth\"",
+    "LOG_DOMAIN = 0xD002422",
+  ]
+  cflags_cc = [ "-DHILOG_ENABLE" ]
+  configs = []
+}
+
+group("systemtest") {
+  testonly = true
+  deps = [
+    "function_test:function_test",
+    "fuzz_test:FaceAuthFuzzTest",
+    "performance_test:performance_test",
+    "stability_test:FaceAuthStabilityCppTest"
+  ]
+}
