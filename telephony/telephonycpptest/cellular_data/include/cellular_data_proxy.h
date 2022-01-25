@@ -30,8 +30,7 @@ static sptr<ICellularDataManager> GetProxy()
     }
     sptr<IRemoteObject> remote = systemAbilityMgr->CheckSystemAbility(TELEPHONY_CELLULAR_DATA_SYS_ABILITY_ID);
     if (remote) {
-        sptr<ICellularDataManager> g_telephonyService =
-            iface_cast<ICellularDataManager>(remote);
+        sptr<ICellularDataManager> g_telephonyService = iface_cast<ICellularDataManager>(remote);
         return g_telephonyService;
     }
     return nullptr;

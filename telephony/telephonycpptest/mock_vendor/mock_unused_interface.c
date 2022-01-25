@@ -150,11 +150,11 @@ int ProcessVoiceRadioInfo(const char *s, const HRilVoiceRadioInfo *hrilVoiceRadi
 {
     return 0;
 }
-int32_t ProcessCurrentCellList(struct ReportInfo reportInfo, const char *s)
+int32_t GetSlotId(const ReqDataInfo *requestInfo)
 {
     return 0;
 }
-int32_t GetSlotId(const ReqDataInfo *requestInfo)
+int32_t ProcessCurrentCellList(struct ReportInfo reportInfo, const char *s)
 {
     return 0;
 }

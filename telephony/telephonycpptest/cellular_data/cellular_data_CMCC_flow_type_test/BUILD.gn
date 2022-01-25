@@ -13,11 +13,9 @@
 
 import("//test/xts/tools/build/suite.gni")
 import("//build/ohos.gni")
-import("//base/telephony/core_service/telephony.gni")
 
 SOURCE_DIR = "//base/telephony/cellular_data/services"
 HDF_FRAMEWORKS = "//drivers/hdf/frameworks"
-
 ohos_moduletest_suite("CellularDataCMCCFlowTypeTest") {
   install_enable = true
 sources = [
@@ -26,6 +24,7 @@ sources = [
     "//base/telephony/call_manager/frameworks/native/src/call_ability_callback.cpp",
     "//base/telephony/cellular_data/frameworks/native/cellular_data_service_proxy.cpp",
     "//base/telephony/core_service/frameworks/native/src/i_network_search_callback_stub.cpp",
+    "//base/telephony/core_service/frameworks/native/src/core_service_proxy.cpp",
   ]
 
   include_dirs = [
@@ -39,14 +38,13 @@ sources = [
     "//base/telephony/ril_adapter/interfaces/innerkits/include/",
     "//base/telephony/call_manager/frameworks/js/napi/include/",
     "//base/telephony/core_service/common/call_manager/",
-    "//base/telephony/core_service/interfaces/innerkits/include/",
     "//foundation/aafwk/standard/interfaces/innerkits/want/include/ohos/aafwk/content/",
     "//base/telephony/core_service/interfaces/innerkits/call_manager/",
     "//base/telephony/call_manager/frameworks/native/include",
     "//base/telephony/core_service/interfaces/innerkits/network_search",
     "//base/telephony/core_service/frameworks/native/include",
     "//base/telephony/core_service/interfaces/innerkits/sim",
-    "//base/telephony/core_service/interfaces/innerkits/network_search",
+    "//base/telephony/core_service/interfaces/innerkits/networ  k_search",
     "//base/telephony/core_service/interfaces/innerkits/core",
     "//base/telephony/cellular_data/interfaces/innerkits/",
     "//test/xts/acts/telephony/telephonycpptest/cellular_data/include",
@@ -74,24 +72,21 @@ sources = [
 
   deps = [
     "//test/xts/acts/telephony/telephonycpptest/utils:telephonyutils",
+    "//third_party/googletest:gtest_main",
     "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
     "//utils/native/base:utils",
-    "//foundation/multimedia/camera_standard/frameworks/innerkitsimpl/camera:camera_framework",
-    "//foundation/multimedia/camera_standard/frameworks/innerkitsimpl/metadata:metadata",
-    "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
-    "//base/telephony/core_service:tel_core_service",
-
     "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
     "//foundation/communication/ipc/interfaces/innerkits/ipc_core:ipc_core",
     "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
+    "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
+    "//base/telephony/core_service:tel_core_service",
     "//foundation/aafwk/standard/interfaces/innerkits/want:want",
-    "//base/telephony/core_service/interfaces/innerkits:tel_core_service_api",
+    "//foundation/multimedia/camera_standard/frameworks/innerkitsimpl/camera:camera_framework",
+    "//foundation/multimedia/camera_standard/frameworks/innerkitsimpl/metadata:metadata",
   ]
 
   if (is_standard_system) {
-    external_deps = [ "hiviewdfx_hilog_native:libhilog",
-        "core_service:tel_core_service_api",
-    ]
+    external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
   } else {
     external_deps = [ "hilog:libhilog" ]
   }

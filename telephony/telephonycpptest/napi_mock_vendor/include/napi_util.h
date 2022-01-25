@@ -19,8 +19,7 @@
 #include <node_api.h>
 
 #define MAX_PROPERTY_LENGTH 30
-namespace NapiUtil
-{
+namespace NapiUtil {
     napi_status GetPropertyValue(napi_env env, napi_value object, char *propName, napi_value *propValue);
     void GetStringProperty(char *ret, napi_env env, napi_value object, char *propName);
     int32_t GetIntProperty(napi_env env, napi_value object, char *propName);

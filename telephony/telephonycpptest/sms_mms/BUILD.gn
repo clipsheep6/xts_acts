@@ -15,14 +15,7 @@
 group("sms_mms") {
   testonly = true
   deps = [
-    "sms_mms_function_send_create_test:SmsFunctionSendCreateTest",
-    "sms_mms_function_add_updata_test:SmsFunctionAddUpdataTest",
-    "sms_mms_function_del_getAll_config_test:SmsFunctionDelGetConfigTest",
     "sms_mms_function_message_test:SmsFunctionMessageTest",
     "sms_mms_function_send_cdma_test:SmsFunctionSendCdmaTest",
-    "sms_mms_function_mms_test:SmsFunctionMmsTest",
-    "sms_mms_function_judgment_test:SmsFunctionJudgmentTest",
-    "sms_mms_function_sim_card_oper_test:SmsFunctionSimCardTest",
-    "sms_mms_function_radio_test:SmsFunctionRadioTest",
   ]
 }

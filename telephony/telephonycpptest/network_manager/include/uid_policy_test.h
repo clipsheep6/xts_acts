@@ -40,17 +40,18 @@ void UidPolicyTest::SetUp() {}
 
 void UidPolicyTest::TearDown()
 {
-    NetUidPolicy arr[] = {NetUidPolicy::NET_POLICY_NONE,
+    NetUidPolicy arr[] = {
+        NetUidPolicy::NET_POLICY_NONE,
         NetUidPolicy::NET_POLICY_ALLOW_METERED_BACKGROUND,
         NetUidPolicy::NET_POLICY_TEMPORARY_ALLOW_METERED,
         NetUidPolicy::NET_POLICY_REJECT_METERED_BACKGROUND,
         NetUidPolicy::NET_POLICY_ALLOW_ALL,
         NetUidPolicy::NET_POLICY_REJECT_ALL};
     for (const NetUidPolicy &item : arr) {
-        std::vector<uint32_t> uids = DelayedSingleton<NetPolicyClient>::GetInstance()->GetUids(item);
+        std::vector<uint32_t> uids = DelayedSingleton<NetPolicyClient>::GetInstance()->GetUidsByPolicy(item);
         std::vector<uint32_t>::iterator ptr_uid = uids.begin();
         while (ptr_uid != uids.end()) {
-            DelayedSingleton<NetPolicyClient>::GetInstance()->SetUidPolicy(*ptr_uid, (NetUidPolicy)0); //reset status
+            DelayedSingleton<NetPolicyClient>::GetInstance()->SetPolicyByUid(*ptr_uid, (NetUidPolicy)0);
             ptr_uid++;
         }
     }

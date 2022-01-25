@@ -19,8 +19,7 @@
 #include "napi_util.h"
 #include "hilog/log.h"
 
-namespace NetworkHandler
-{
+namespace NetworkHandler {
     NetworkStatus *ParseNetworkStats(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
@@ -44,7 +43,7 @@ namespace NetworkHandler
         HILOG_DEBUG(LOG_APP, "parse : src data: %{public}s %{public}s %{public}s ",
             networkStats->longOptName, networkStats->shortOptName, networkStats->plmn);
         HILOG_DEBUG(LOG_APP, "parse : src data: %{public}d %{public}d ",
-             networkStats->regStatus, networkStats->nsaState);
+            networkStats->regStatus, networkStats->nsaState);
         HILOG_DEBUG(LOG_APP, "parse : src data: %{public}d %{public}d %{public}d ",
             networkStats->isRoaming, networkStats->isCaActive, networkStats->isEmergency);
         return networkStats;

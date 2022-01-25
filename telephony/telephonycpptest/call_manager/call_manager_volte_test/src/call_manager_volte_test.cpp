@@ -82,11 +82,11 @@ HWTEST_F(CallManagerIMSTest, Telephony_CallManager_IMS_HoldCall_0300, Function |
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_HoldCall_0400, Function | MediumTest | Level2)
 {
-    sleep(SLEEP_5_SEC);
     int ret = Dial(Str8ToStr16(UNICOM_OPERATOR_NUMBER));
     ASSERT_EQ(ret, SUCCESSFUL);
 
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    sleep(FIRST_WAITING_TIME);
+    if (HasActiveStatus()) {
         ret = g_clientPtr->GetPtr()->HoldCall(g_newCallId);
         ASSERT_EQ(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_HOLDING), true, SLEEP_50_MS, SLEEP_12000_MS);
@@ -106,16 +106,15 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_HoldCall_0400, Funct
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_HoldCall_0500, Function | MediumTest | Level2)
 {
-    sleep(SLEEP_5_SEC);
     int ret = Dial(Str8ToStr16(OPERATOR_PHONY_NUMBER));
     ASSERT_EQ(ret, SUCCESSFUL);
 
-    sleep(SLEEP_8_SEC);
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         ret = g_clientPtr->GetPtr()->HoldCall(LONG_FALSE_CALLID);
         EXPECT_NE(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE), true, SLEEP_50_MS, SLEEP_12000_MS);
-
+    }
+    if (g_clientPtr->GetPtr()->GetCallState() == static_cast<int>(CallStateToApp::CALL_STATE_OFFHOOK)) {
         int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
         EXPECT_EQ(hangUpRet, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(
@@ -131,11 +130,10 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_HoldCall_0500, Funct
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_HoldCall_0600, Function | MediumTest | Level2)
 {
-    sleep(SLEEP_5_SEC);
     int ret = Dial(Str8ToStr16(TELEOPERATOR_OPERATOR_NUMBER));
     ASSERT_EQ(ret, SUCCESSFUL);
 
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         ret = g_clientPtr->GetPtr()->HoldCall(g_newCallId);
         ASSERT_EQ(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_HOLDING), true, SLEEP_50_MS, SLEEP_12000_MS);
@@ -162,14 +160,15 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_HoldCall_0700, Funct
     ASSERT_EQ(ret, SUCCESSFUL);
 
     sleep(SLEEP_8_SEC);
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         ret = g_clientPtr->GetPtr()->HoldCall(g_newCallId);
         ASSERT_EQ(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_HOLDING), true, SLEEP_50_MS, SLEEP_12000_MS);
         ret = g_clientPtr->GetPtr()->HoldCall(CallManagerIMSTest::LONG_NEGATIVE_CALLID);
         EXPECT_NE(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_HOLDING), true, SLEEP_50_MS, SLEEP_12000_MS);
-
+    }
+    if (g_clientPtr->GetPtr()->GetCallState() == static_cast<int>(CallStateToApp::CALL_STATE_OFFHOOK)) {
         int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
         EXPECT_EQ(hangUpRet, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(
@@ -230,11 +229,10 @@ HWTEST_F(CallManagerIMSTest, Telephony_CallManager_IMS_UnHoldCall_0300, Function
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_UnHoldCall_0400, Function | MediumTest | Level2)
 {
-    sleep(SLEEP_5_SEC);
     int ret = Dial(Str8ToStr16(UNICOM_OPERATOR_NUMBER));
     ASSERT_EQ(ret, SUCCESSFUL);
 
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         ret = g_clientPtr->GetPtr()->UnHoldCall(g_newCallId);
         EXPECT_NE(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE), true, SLEEP_50_MS, SLEEP_12000_MS);
@@ -254,11 +252,10 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_UnHoldCall_0400, Fun
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_UnHoldCall_0500, Function | MediumTest | Level2)
 {
-    sleep(SLEEP_5_SEC);
     int ret = Dial(Str8ToStr16(TELEOPERATOR_OPERATOR_NUMBER));
     ASSERT_EQ(ret, SUCCESSFUL);
 
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         ret = g_clientPtr->GetPtr()->UnHoldCall(CallManagerIMSTest::LONG_NEGATIVE_CALLID);
         EXPECT_NE(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE), true, SLEEP_50_MS, SLEEP_12000_MS);
@@ -278,19 +275,18 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_UnHoldCall_0500, Fun
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_UnHoldCall_0600, Function | MediumTest | Level2)
 {
-    sleep(SLEEP_5_SEC);
     int ret = Dial(Str8ToStr16(OPERATOR_PHONY_NUMBER));
     ASSERT_EQ(ret, SUCCESSFUL);
 
-    sleep(SLEEP_8_SEC);
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         ret = g_clientPtr->GetPtr()->HoldCall(g_newCallId);
         ASSERT_EQ(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_HOLDING), true, SLEEP_50_MS, SLEEP_12000_MS);
         ret = g_clientPtr->GetPtr()->UnHoldCall(g_newCallId);
         EXPECT_EQ(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE), true, SLEEP_50_MS, SLEEP_12000_MS);
-
+    }
+    if (g_clientPtr->GetPtr()->GetCallState() == static_cast<int>(CallStateToApp::CALL_STATE_OFFHOOK)) {
         int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
         EXPECT_EQ(hangUpRet, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(
@@ -306,11 +302,10 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_UnHoldCall_0600, Fun
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_UnHoldCall_0700, Function | MediumTest | Level2)
 {
-    sleep(SLEEP_5_SEC);
     int ret = Dial(Str8ToStr16(TELEOPERATOR_OPERATOR_NUMBER));
     ASSERT_EQ(ret, SUCCESSFUL);
 
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         ret = g_clientPtr->GetPtr()->HoldCall(g_newCallId);
         ASSERT_EQ(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_HOLDING), true, SLEEP_50_MS, SLEEP_12000_MS);
@@ -378,11 +373,10 @@ HWTEST_F(CallManagerIMSTest, Telephony_CallManager_IMS_SwitchCall_0300, Function
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SwitchCall_0400, Function | MediumTest | Level2)
 {
-    sleep(SLEEP_5_SEC);
     int ret = Dial(Str8ToStr16(TELEOPERATOR_OPERATOR_NUMBER));
     ASSERT_EQ(ret, SUCCESSFUL);
 
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         ret = g_clientPtr->GetPtr()->SwitchCall(CallManagerIMSTest::LONG_NEGATIVE_CALLID);
         EXPECT_NE(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE), true, SLEEP_50_MS, SLEEP_12000_MS);
@@ -402,16 +396,15 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SwitchCall_0400, Fun
  */
 HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SwitchCall_0500, Function | MediumTest | Level2)
 {
-    sleep(SLEEP_5_SEC);
     int ret = Dial(Str8ToStr16(OPERATOR_PHONY_NUMBER));
     ASSERT_EQ(ret, SUCCESSFUL);
 
-    sleep(SLEEP_8_SEC);
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         ret = g_clientPtr->GetPtr()->SwitchCall(g_newCallId);
         EXPECT_NE(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_ACTIVE), true, SLEEP_50_MS, SLEEP_12000_MS);
-
+    }
+    if (g_clientPtr->GetPtr()->GetCallState() == static_cast<int>(CallStateToApp::CALL_STATE_OFFHOOK)) {
         int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
         EXPECT_EQ(hangUpRet, SUCCESSFUL);
         LOCK_NUM_WHILE_NE(
@@ -432,7 +425,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SwitchCall_0600, Fun
     ASSERT_EQ(ret, SUCCESSFUL);
 
     int firstCall = -1;
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         firstCall = g_newCallId;
         ret = Dial(Str8ToStr16(TARGET_PHONY_NUMBER));
         ASSERT_EQ(ret, SUCCESSFUL);
@@ -466,7 +459,7 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SwitchCall_0700, Fun
     ASSERT_EQ(ret, SUCCESSFUL);
 
     int firstCall = -1;
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         firstCall = g_newCallId;
         ret = Dial(Str8ToStr16(TARGET_PHONY_NUMBER));
         ASSERT_EQ(ret, SUCCESSFUL);
@@ -501,13 +494,13 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SwitchCall_0800, Fun
 
     sleep(SLEEP_8_SEC);
     int firstCall = -1;
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         firstCall = g_newCallId;
         ret = Dial(Str8ToStr16(UNICOM_OPERATOR_NUMBER));
         ASSERT_EQ(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_EQ(g_newCallId, firstCall, SLEEP_50_MS, SLEEP_12000_MS);
 
-        if (CallManagerFunctionTest::HasActiveStatus()) {
+        if (HasActiveStatus()) {
             ret = g_clientPtr->GetPtr()->SwitchCall(firstCall);
             EXPECT_EQ(ret, SUCCESSFUL);
             LOCK_NUM_WHILE_NE(
@@ -539,13 +532,13 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SwitchCall_0900, Fun
 
     sleep(SLEEP_8_SEC);
     int firstCall = -1;
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         firstCall = g_newCallId;
         ret = Dial(Str8ToStr16(TELEOPERATOR_OPERATOR_NUMBER));
         ASSERT_EQ(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_EQ(g_newCallId, firstCall, SLEEP_50_MS, SLEEP_12000_MS);
 
-        if (CallManagerFunctionTest::HasActiveStatus()) {
+        if (HasActiveStatus()) {
             ret = g_clientPtr->GetPtr()->SwitchCall(g_newCallId);
             EXPECT_NE(ret, SUCCESSFUL);
             LOCK_NUM_WHILE_NE(
@@ -577,12 +570,12 @@ HWTEST_F(CallManagerFunctionTest, Telephony_CallManager_IMS_SwitchCall_1000, Fun
     ASSERT_EQ(ret, SUCCESSFUL);
 
     int firstCall = -1;
-    if (CallManagerFunctionTest::HasActiveStatus()) {
+    if (HasActiveStatus()) {
         firstCall = g_newCallId;
         ret = Dial(Str8ToStr16(TELEOPERATOR_OPERATOR_NUMBER));
         ASSERT_EQ(ret, SUCCESSFUL);
         LOCK_NUM_WHILE_EQ(g_newCallId, firstCall, SLEEP_50_MS, SLEEP_12000_MS);
-        if (CallManagerFunctionTest::HasActiveStatus()) {
+        if (HasActiveStatus()) {
             ret = g_clientPtr->GetPtr()->SwitchCall(CallManagerIMSTest::LONG_NEGATIVE_CALLID);
             EXPECT_NE(ret, SUCCESSFUL);
             LOCK_NUM_WHILE_NE(
@@ -678,7 +671,10 @@ HWTEST_F(CallManagerIMSTest, Telephony_CallManager_IMS_EnableImsSwitch_0800, Fun
     ret = Dial(Str8ToStr16(TARGET_PHONY_NUMBER));
     ASSERT_EQ(ret, SUCCESSFUL);
     LOCK_NUM_WHILE_NE(HasState(g_newCallId, TelCallState::CALL_STATUS_DIALING), true, SLEEP_50_MS, SLEEP_12000_MS);
-    LOCK_NUM_WHILE_NE(g_updateCallType, CallType::TYPE_IMS, SLEEP_50_MS, SLEEP_1000_MS);
+    if (g_updateCallType == CallType::TYPE_IMS) {
+    } else {
+        LOG("After an IMS domain is selected, it is still a CS domain !");
+    }
 }
 
 /******************************************* Test DisableImsSwitch() *********************************************/

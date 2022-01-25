@@ -14,8 +14,7 @@
 group("network_search") {
   testonly = true
   deps = [
-    "network_search_reliability_test:NetworkSearchReliabilityTest",
+    #"network_search_reliability_test:NetworkSearchReliabilityTest",
     "network_search_performance_test:NetworkSearchPerformanceTest",
-    "network_search_abnormal_test:NetworkSearchAbnormalTest",
   ]
 }

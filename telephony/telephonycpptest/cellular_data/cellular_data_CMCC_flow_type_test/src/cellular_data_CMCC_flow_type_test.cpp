@@ -27,8 +27,7 @@ using namespace Telephony;
 
 /**
  * @tc.number   Telephony_CellularData_GetCellularDataFlowType_0400
- * @tc.name     When calling under the GSM network, call GetCellularDataFlowType() to get the data flow type and verify
- *              that the return value is the sleep type
+ * @tc.name     In GSM network, call and hang up the phone to verify the cellular data status change
  * @tc.desc     Function test
  */
 HWTEST_F(CelluarDataStateTest, Telephony_CellularData_GetCellularDataFlowType_0400, Function | MediumTest | Level3)
@@ -44,11 +43,9 @@ HWTEST_F(CelluarDataStateTest, Telephony_CellularData_GetCellularDataFlowType_04
         LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
     int ret = Dial(Str8ToStr16(CMCC_TEST_PHONE));
     ASSERT_EQ(ret, CelluarDataStateTest::SUCCESSFUL);
-    LOCK_NUM_WHILE_NE(
-        HasState(g_newCallId, TelCallState::CALL_STATUS_DIALING), true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
     LOCK_NUM_WHILE_NE(g_telephonyService->GetCellularDataFlowType(), (int)CellDataFlowType::DATA_FLOW_TYPE_DORMANT,
         LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    sleep(WAIT_TIME);
+    sleep(TWO_TIME);
     int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
     EXPECT_EQ(hangUpRet, CelluarDataStateTest::SUCCESSFUL);
     LOCK_NUM_WHILE_NE(g_telephonyService->GetCellularDataState(), (int)DataConnectionStatus::DATA_STATE_CONNECTED,

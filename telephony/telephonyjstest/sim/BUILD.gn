@@ -17,16 +17,6 @@ group("sim") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "sim_file_manager_function_test:ActsSimFileManagerFunctionTest",
-      "sim_manager_function_test:ActsSimManagerFunctionTest",
-      "sim_state_manager_function_test:ActsSimStateManagerFunctionTest",
-      "sim_icc_dialling_numbers_controller_function_test:ActsSimIccDiallingNumbersControllerFunctionTest",
-      "sim_account_information_manager_function_test:ActsSimAccountInformationManagerFunctionTest",
-      "sim_file_information_function_test:ActsSimFileInformationFunctionTest",
-      "sim_fixed_dial_manager_function_test:ActsSimFixedDialManagerFunctionTest",
-      "sim_activate_manager_function_test:ActsSimActivateManagerFunctionTest",
-      "sim_setvoicemailinfo_function_test:ActsSimSetVoiceMailInfoFunctionTest",
-      "sim_getsimaccountinfo_function_test:ActsSimGetSimAccountInfoFunctionTest",
       "sim_getimsi_isim_function_test:ActsSimGetImsiIsimFunctionTest",
       "sim_getimsi_cdma_function_test:ActsSimGetImsiCdmaFunctionTest",
       "sim_getcardtype_function_test:ActsSimGetCardTypeFunctionTest",
@@ -38,12 +28,9 @@ group("sim") {
       "sim_getsimspn_function_test:ActsSimGetSimSpnFunctionTest",
       "sim_sendenvelopecmd_function_test:ActsSimSendEnvelopeCmdFunctionTest",
       "sim_sendterminalresponsecmd_function_test:ActsSimSendTerminalResponseCmdFunctionTest",
-      "sim_getmaxsimcount_function_test:ActsSimGetMaxSimCountFunctionTest",
-      "sim_getprimaryslotid_function_test:ActsSimGetPrimarySlotIdFunctionTest",
-      "sim_setprimaryslotid_function_test:ActsSimSetPrimarySlotIdFunctionTest",
-      "sim_hasoperatorprivileges_function_test:ActsSimHasOperatorPrivilegesFunctionTest",
-      "sim_unlocksimlock_function_test:ActsSimUnlockSimLockFunctionTest",
-      "sim_no_sim_function_test:ActsSimNoSimFunctionTest"
+      "sim_no_sim_function_test:ActsSimNoSimFunctionTest",
+      "sim_performance_test:ActsSimPerformanceTest",
+      "sim_reliability_test:ActsSimReliabilityTest",
     ]
   }
 }

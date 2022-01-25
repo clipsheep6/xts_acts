@@ -999,6 +999,11 @@ void ReqSimStkIsReady(const ReqDataInfo *requestInfo)
     RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSimReport);
 }
 
+void ReqStkCmdCallSetup(const ReqDataInfo *requestInfo, int flagAccept)
+{
+    TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
+    RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSimReport);
+}
 
 void ReqSetRadioProtocol(const ReqDataInfo *requestInfo, const HRilSimProtocolRequest *data, size_t dataLen)
 {
@@ -1008,13 +1013,11 @@ void ReqSetRadioProtocol(const ReqDataInfo *requestInfo, const HRilSimProtocolRe
 void ReqSimOpenLogicalChannel(const ReqDataInfo *requestInfo, const char *appID, int32_t p2)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSimReport);
 }
 
 void ReqSimCloseLogicalChannel(const ReqDataInfo *requestInfo, int chanID)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSimReport);
 }
 
 void ReqSimTransmitApduLogicalChannel(const ReqDataInfo *requestInfo, HRilApduSimIO *data, size_t dataLen)
@@ -1025,5 +1028,4 @@ void ReqSimTransmitApduLogicalChannel(const ReqDataInfo *requestInfo, HRilApduSi
 void ReqUnlockSimLock(const ReqDataInfo *requestInfo, int32_t lockReason, const char *passward)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSimReport);
 }

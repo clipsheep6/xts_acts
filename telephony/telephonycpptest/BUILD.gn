@@ -19,9 +19,9 @@ group("telephonycpptest") {
     "sms_mms:sms_mms",
     "sim:sim",
     "cellular_data:cellular_data",
-    "network_manager:network_manager",
     "mock_vendor:mock_ril_vendor",
     "napi_mock_vendor:napi_mock_vendor",
     "vendor_controller:vendor_controller",
+    "network_manager:network_manager",
   ]
 }

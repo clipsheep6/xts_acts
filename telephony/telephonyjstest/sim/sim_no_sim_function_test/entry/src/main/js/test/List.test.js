@@ -13,7 +13,4 @@
  * limitations under the License.
  */
 
-require('./P3_SimNoSimFunction.test')
-require('./P5_SimNoSimFunction.test');
-require('./P6_SimNoSimFunction.test')
-require('./P7_SimNoSimFunction.test')
+require('./sim_no_sim_function.test');

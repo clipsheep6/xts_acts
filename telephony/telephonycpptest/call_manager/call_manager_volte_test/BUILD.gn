@@ -46,6 +46,7 @@ ohos_moduletest_suite("CallManagerVolteTest") {
     "//foundation/multimedia/camera_standard/services/camera_service/binder/client/include",
     "//foundation/multimedia/camera_standard/services/camera_service/binder/server/include",
     "//base/telephony/ril_adapter/interfaces/innerkits",
+    "//base/telephony/core_service/interfaces/innerkits/cellular_call",
     "//base/telephony/core_service/interfaces/innerkits/include",
   ]
 

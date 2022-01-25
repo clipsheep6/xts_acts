@@ -16,11 +16,10 @@ group("network_search") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "network_search_information:NetworkSearchInformation",
-      "network_search_radio:NetworkSearchRadio",
-      "network_search_selection_mode:NetworkSearchSelectionMoce",
-      "network_search_preferred_mode:NetworkSearchPreferredMode",
-      "network_search_device_information:NetworkSearchDeviceInformationTest"
+      "network_search_device_information:NetworkSearchDeviceInformationTest",
+      "network_search_preferrend_network:NetworkSearchPreferredNetworkTest",
+      "network_search_stub_device_information:NetworkSearchStubDeviceInformationTest",
+      "network_search_stub_radiotech:NetworkSearchStubRadioTechTest"
     ]
   }
 }

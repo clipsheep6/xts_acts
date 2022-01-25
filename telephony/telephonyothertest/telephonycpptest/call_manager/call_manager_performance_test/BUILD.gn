@@ -31,7 +31,6 @@ ohos_moduletest_suite("CallManagerPerformanceTest") {
     "//base/telephony/core_service/common/cellular_call",
     "//base/telephony_source_back/core_service/interfaces/innerkits/cellular_call/common",
     "//base/telephony/core_service/utils/log/include",
-    "//base/telephony/call_manager/frameworks/js/napi/include",
     "//base/telephony_source_back/call_manager/interfaces/kits/js/napi/include",
     "//test/xts/acts/telephony/telephonycpptest/mock_vendor",
     "//test/xts/acts/telephony/telephonycpptest/utils",

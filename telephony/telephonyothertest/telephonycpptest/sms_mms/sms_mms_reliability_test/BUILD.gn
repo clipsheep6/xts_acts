@@ -15,21 +15,9 @@ import("//test/xts/tools/build/suite.gni")
 import("//build/ohos.gni")
 
 ohos_moduletest_suite("SmsReliabilityTest") {
-  install_enable = true
+ install_enable = true
   sources = [
     "src/sms_manager_test.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/utils/mms_base64.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/utils/mms_quoted_printable.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_msg.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_body.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_attachment.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_body_part_header.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_body_part.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_buffer.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_decode_buffer.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_encode_buffer.cpp",
-    "//base/telephony/sms_mms/frameworks/native/mms/src/mms_header_categ.cpp",
-
     "//base/telephony/sms_mms/frameworks/native/sms/src/short_message.cpp",
     "//base/telephony/sms_mms/utils/string_utils.cpp",
     "//base/telephony/sms_mms/frameworks/native/sms/src/send_short_message_callback_stub.cpp",
@@ -38,13 +26,6 @@ ohos_moduletest_suite("SmsReliabilityTest") {
   ]
 
   include_dirs = [
-    "//foundation/ace/ace_engine/frameworks",
-    "//base/telephony/sms_mms/frameworks/native/mms/include",
-    "//base/telephony/sms_mms/frameworks/native/mms/include/utils",
-    "//third_party/glib/glib",
-    "//third_party/glib",
-    "//third_party/glib/gmodule",
-
     "//base/telephony/sms_mms/frameworks/native/sms/include",
     "//test/xts/acts/telephony/telephonycpptest/sms_mms/include",
     "//test//xts//acts//telephony//telephonycpptest//utils",
@@ -78,10 +59,9 @@ ohos_moduletest_suite("SmsReliabilityTest") {
     "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
     "//base/telephony/sms_mms:tel_sms_mms",
     "//third_party/googletest:gtest_main",
-    "//third_party/glib:glib_packages",
   ]
   defines = [
-    "SMS_SEND_DST_NUMBER=\"00000000000\"", # Phone number of the SMS recipient
+    "SMS_SEND_DST_NUMBER=\"18211305277\"", # Phone number of the SMS recipient
     "OTHER_SMSC_NUMBER=\"+8613800755500\"", # Address of the SMS center service
     "USABLE_SMSC_NUMBER=\"+8613800512500\"", # Address of the SMS center service
   ]

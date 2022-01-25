@@ -70,9 +70,7 @@ private:
 
     int32_t CallStateInfoRequestBasic(MessageParcel &data, MessageParcel &reply);
     int32_t CallEventRequestBasic(MessageParcel &data, MessageParcel &reply);
-    int32_t CallUpdateDisconnectedCauseBasic(MessageParcel &data, MessageParcel &reply);
     int32_t CallUpdateAysncResults(MessageParcel &data, MessageParcel &reply);
-    int32_t CallUpdateOttRequestBasic(MessageParcel &data, MessageParcel &reply);
 
     std::map<uint32_t, CallAbilityCallbackFunc> memberFuncMap_;
 };
@@ -86,20 +84,10 @@ public:
     int32_t OnCallEventChange(const CallEventInfo &info);
     int32_t OnReportAsyncResults(CallResultReportId reportId, AppExecFwk::PacMap &resultInfo);
     int32_t OnOttCallRequest(OttCallRequestId requestId, AppExecFwk::PacMap &info);
-    int32_t OnCallDisconnectedCause(DisconnectedDetails cause);
 
 public:
     const int SUCCESSFUL = 0;
 };
-
-CallAbilityCallbackBasicStub::CallAbilityCallbackBasicStub()
-{
-    memberFuncMap_[UPDATE_CALL_STATE_INFO] = &CallAbilityCallbackBasicStub::CallStateInfoRequestBasic;
-    memberFuncMap_[UPDATE_CALL_EVENT] = &CallAbilityCallbackBasicStub::CallEventRequestBasic;
-    memberFuncMap_[UPDATE_CALL_DISCONNECTED_CAUSE] = &CallAbilityCallbackBasicStub::CallUpdateDisconnectedCauseBasic;
-    memberFuncMap_[UPDATE_CALL_ASYNC_RESULT_REQUEST] = &CallAbilityCallbackBasicStub::CallUpdateAysncResults;
-    memberFuncMap_[REPORT_OTT_CALL_REQUEST] = &CallAbilityCallbackBasicStub::CallUpdateOttRequestBasic;
-}
 
 CallAbilityCallbackBasicStub::~CallAbilityCallbackBasicStub()
 {
@@ -179,17 +167,6 @@ int32_t CallAbilityCallbackBasicStub::CallEventRequestBasic(MessageParcel &data,
     return TELEPHONY_SUCCESS;
 }
 
-int32_t CallAbilityCallbackBasicStub::CallUpdateDisconnectedCauseBasic(MessageParcel &data, MessageParcel &reply)
-{
-    DisconnectedDetails cause = (DisconnectedDetails)data.ReadInt32();
-    int32_t result = OnCallDisconnectedCause(cause);
-    if (!reply.WriteInt32(result)) {
-        TELEPHONY_LOGE("writing parcel failed");
-        return TELEPHONY_ERR_WRITE_REPLY_FAIL;
-    }
-    return TELEPHONY_SUCCESS;
-}
-
 int32_t CallAbilityCallbackBasicStub::CallUpdateAysncResults(MessageParcel &data, MessageParcel &reply)
 {
     int32_t result = TELEPHONY_SUCCESS;
@@ -244,33 +221,11 @@ int32_t CallAbilityCallbackBasicStub::CallUpdateAysncResults(MessageParcel &data
     return TELEPHONY_SUCCESS;
 }
 
-int32_t CallAbilityCallbackBasicStub::CallUpdateOttRequestBasic(MessageParcel &data, MessageParcel &reply)
+CallAbilityCallbackBasicStub::CallAbilityCallbackBasicStub()
 {
-    int32_t result = TELEPHONY_SUCCESS;
-    AppExecFwk::PacMap resultInfo;
-    OttCallRequestId requestId = static_cast<OttCallRequestId>(data.ReadInt32());
-    resultInfo.PutStringValue("phoneNumber", data.ReadString());
-    resultInfo.PutStringValue("bundleName", data.ReadString());
-    resultInfo.PutIntValue("videoState", data.ReadInt32());
-    switch (requestId) {
-        case OttCallRequestId::OTT_REQUEST_INVITE_TO_CONFERENCE:
-            resultInfo.PutStringValue("number", data.ReadString());
-            break;
-        case OttCallRequestId::OTT_REQUEST_UPDATE_CALL_MEDIA_MODE:
-            resultInfo.PutIntValue("callMediaMode", data.ReadInt32());
-            break;
-        default:
-            break;
-    }
-    if (!data.ContainFileDescriptors()) {
-        TELEPHONY_LOGW("sent raw data is less than 32k");
-    }
-    result = OnOttCallRequest(requestId, resultInfo);
-    if (!reply.WriteInt32(result)) {
-        TELEPHONY_LOGE("writing parcel failed");
-        return TELEPHONY_ERR_WRITE_REPLY_FAIL;
-    }
-    return TELEPHONY_SUCCESS;
+    memberFuncMap_[UPDATE_CALL_STATE_INFO] = &CallAbilityCallbackBasicStub::CallStateInfoRequestBasic;
+    memberFuncMap_[UPDATE_CALL_EVENT] = &CallAbilityCallbackBasicStub::CallEventRequestBasic;
+    memberFuncMap_[UPDATE_CALL_ASYNC_RESULT_REQUEST] = &CallAbilityCallbackBasicStub::CallUpdateAysncResults;
 }
 
 int32_t CallManagerBasic::Init()
@@ -344,7 +299,7 @@ int32_t CallManagerBasic::RegisterCallBack()
         return TELEPHONY_ERR_FAIL;
     }
 
-    int32_t ret = callManagerServicePtr_->RegisterCallBack(callAbilityCallbackPtr_);
+    int32_t ret = callManagerServicePtr_->RegisterCallBack(callAbilityCallbackPtr_, BUNDLE_NAME);
     LOG("========= ret = %d", ret);
     if (ret != TELEPHONY_SUCCESS) {
         Clean();

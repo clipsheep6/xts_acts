@@ -17,9 +17,6 @@
 #define NETWORK_MANAGER_TEST_H
 
 #include <gtest/gtest.h>
-#include "dns_resolver_constants.h"
-#include "ethernet_constants.h"
-#include "net_policy_constants.h"
 
 enum INET {
     UNKNOWN = 0X00,
@@ -35,13 +32,20 @@ public:
     void TearDown();
 };
 
-void NetworkManagerTest::SetUpTestCase() {}
+void NetworkManagerTest::SetUpTestCase()
+{
+}
 
-void NetworkManagerTest::TearDownTestCase() {}
+void NetworkManagerTest::TearDownTestCase()
+{
+}
 
-void NetworkManagerTest::SetUp() {}
+void NetworkManagerTest::SetUp()
+{
+}
 
-void NetworkManagerTest::TearDown() {}
+void NetworkManagerTest::TearDown()
+{
+}
 
-
-#endif // NETWORK_MANAGER_TEST_H
+#endif

@@ -14,4 +14,3 @@
  */
 
 require('./DeviceInformationPerformance.test');
-require('./DeviceMeIdPerformance.test');

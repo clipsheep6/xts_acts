@@ -20,32 +20,48 @@ describe('DeviceInformationPerformance', function () {
     const SLOT_0 = 0;
     const TEST_RUN_TIME = 1000;
     const DELAYL_LIMIT = 500
+    
+    function sleep(timeout) {
+        return new Promise((reslove, reject) => {
+            setTimeout(() => {
+                reslove();
+            }, timeout);
+        })
+    }
+
+    afterEach(async function () {
+        await radio.setPreferredNetwork(SLOT_0, radio.PREFERRED_NETWORK_MODE_AUTO);
+    })
+
+    beforeAll(async function () {
+        await radio.setPreferredNetwork(SLOT_0, radio.PREFERRED_NETWORK_MODE_AUTO);
+    })
 
     /**
-     * @tc.number  Telephony_NetworkSearch_getImei_Async_0900
-     * @tc.name    Test getImei() is executed TEST_RUN_TIME times,
+     * @tc.number  Telephony_NetworkSearch_getIMEI_Async_0900
+     * @tc.name    Test getIMEI() is executed TEST_RUN_TIME times,
      *             and the output delay is less than DELAYL_LIMIT ms
      * @tc.desc    Performance test
      */
-    it('Telephony_NetworkSearch_getImei_Async_0900', 0, async function (done) {
+    it('Telephony_NetworkSearch_getIMEI_Async_0900', 0, async function (done) {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;
         function recursive(n) {
             if (n <= 0) {
-                console.log(`Telephony_NetworkSearch_getImei_Async_0900 done useTime: ${totalTime}`);
+                console.log(`Telephony_NetworkSearch_getIMEI_Async_0900 done useTime: ${totalTime}`);
                 expect(totalTime).assertLess(DELAYL_LIMIT);
                 done();
                 return;
             }
             startTime = new Date().getTime();
-            radio.getImei(SLOT_0, (err, data) => {
+            radio.getIMEI(SLOT_0, (err, data) => {
                 endTime = new Date().getTime();
                 totalTime += endTime - startTime;
                 if (err) {
-                    console.log(`Telephony_NetworkSearch_getImei_Async_0900 fail err: ${err}`);
+                    console.log(`Telephony_NetworkSearch_getIMEI_Async_0900 fail err: ${err}`);
                 }
-                console.log(`Telephony_NetworkSearch_getImei_Async_0900 data: ${data}`);
+                console.log(`Telephony_NetworkSearch_getIMEI_Async_0900 data: ${data}`);
                 recursive(n - 1);
             })
 
@@ -54,23 +70,77 @@ describe('DeviceInformationPerformance', function () {
     })
 
     /**
-     * @tc.number  Telephony_NetworkSearch_getImei_Promise_0900
-     * @tc.name    Test getImei() is executed TEST_RUN_TIME times,
+     * @tc.number  Telephony_NetworkSearch_getIMEI_Promise_0900
+     * @tc.name    Test getIMEI() is executed TEST_RUN_TIME times,
      *             and the output delay is less than DELAYL_LIMIT ms
      * @tc.desc    Performance test
      */
-    it('Telephony_NetworkSearch_getImei_Promise_0900', 0, async function (done) {
+    it('Telephony_NetworkSearch_getIMEI_Promise_0900', 0, async function (done) {
         let startTime = new Date().getTime();
         for (let index = 0; index < TEST_RUN_TIME; index++) {
             try {
-                let data = await radio.getImei(SLOT_0);
-                console.log(`Telephony_NetworkSearch_getImei_Promise_0900 data: ${data}`);
+                let data = await radio.getIMEI(SLOT_0);
+                console.log(`Telephony_NetworkSearch_getIMEI_Promise_0900 data: ${data}`);
             } catch (err) {
-                console.log(`Telephony_NetworkSearch_getImei_Promise_0900 fail `);
+                console.log(`Telephony_NetworkSearch_getIMEI_Promise_0900 fail `);
             }
         }
         let endTime = new Date().getTime();
-        console.log(`Telephony_NetworkSearch_getImei_Promise_0900 done useTime: ${endTime - startTime}`);
+        console.log(`Telephony_NetworkSearch_getIMEI_Promise_0900 done useTime: ${endTime - startTime}`);
+        expect(endTime - startTime).assertLess(DELAYL_LIMIT);
+        done();
+    })
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getMEID_Async_0900
+     * @tc.name    Test getMEID() is executed TEST_RUN_TIME times,
+     *             and the output delay is less than DELAYL_LIMIT ms
+     * @tc.desc    Performance test
+     */
+    it('Telephony_NetworkSearch_getMEID_Async_0900', 0, async function (done) {
+        let totalTime = 0;
+        let startTime = 0;
+        let endTime = 0;
+        function recursive(n) {
+            if (n <= 0) {
+                console.log(`Telephony_NetworkSearch_getMEID_Async_0900 done useTime: ${totalTime}`);
+                expect(totalTime).assertLess(DELAYL_LIMIT);
+                done();
+                return;
+            }
+            startTime = new Date().getTime();
+            radio.getMEID(SLOT_0, (err, data) => {
+                endTime = new Date().getTime();
+                totalTime += endTime - startTime;
+                if (err) {
+                    console.log(`Telephony_NetworkSearch_getMEID_Async_0900 fail err: ${err}`);
+                }
+                console.log(`Telephony_NetworkSearch_getMEID_Async_0900 data: ${data}`);
+                recursive(n - 1);
+            })
+
+        }
+        recursive(TEST_RUN_TIME);
+    })
+
+    /**
+     * @tc.number  Telephony_NetworkSearch_getMEID_Promise_0900
+     * @tc.name    Test getMEID() is executed TEST_RUN_TIME times,
+     *             and the output delay is less than DELAYL_LIMIT ms
+     * @tc.desc    Performance test
+     */
+    it('Telephony_NetworkSearch_getMEID_Promise_0900', 0, async function (done) {
+        let startTime = new Date().getTime();
+        for (let index = 0; index < TEST_RUN_TIME; index++) {
+            try {
+                let data = await radio.getMEID(SLOT_0);
+                console.log(`Telephony_NetworkSearch_getMEID_Promise_0900 data: ${data}`);
+            } catch (err) {
+                console.log(`Telephony_NetworkSearch_getMEID_Promise_0900 fail `);
+            }
+        }
+        let endTime = new Date().getTime();
+        console.log(`Telephony_NetworkSearch_getMEID_Promise_0900 done useTime: ${endTime - startTime}`);
         expect(endTime - startTime).assertLess(DELAYL_LIMIT);
         done();
     })
@@ -81,7 +151,7 @@ describe('DeviceInformationPerformance', function () {
      *             and the output delay is less than DELAYL_LIMIT ms
      * @tc.desc    Performance test
      */
-     it('Telephony_NetworkSearch_getUniqueDeviceId_Async_0900', 0, async function (done) {
+    it('Telephony_NetworkSearch_getUniqueDeviceId_Async_0900', 0, async function (done) {
         let totalTime = 0;
         let startTime = 0;
         let endTime = 0;

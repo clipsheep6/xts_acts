@@ -31,8 +31,7 @@ using namespace Telephony;
  *              and verify that the return value is within the enumeration value range
  * @tc.desc     Function test
  */
-HWTEST_F(
-    CellularDataFlowTypeFunctionTest, Telephony_CellularData_DetectionAndRecovery_0100, Function | MediumTest | Level3)
+HWTEST_F(CellularDataFunctionTest, Telephony_CellularData_DetectionAndRecovery_0100, Function | MediumTest | Level3)
 {
     EXPECT_EQ(g_telephonyService->EnableCellularData(false), (int)DataRespondCode::SET_SUCCESS);
     g_mockVender.MockDataActiveError(HRIL_ERR_GENERIC_FAILURE);
@@ -51,8 +50,7 @@ HWTEST_F(
  *              and verify that the return value is within the enumeration value range
  * @tc.desc     Function test
  */
-HWTEST_F(
-    CellularDataFlowTypeFunctionTest, Telephony_CellularData_DetectionAndRecovery_0200, Function | MediumTest | Level3)
+HWTEST_F(CellularDataFunctionTest, Telephony_CellularData_DetectionAndRecovery_0200, Function | MediumTest | Level3)
 {
     EXPECT_EQ(g_telephonyService->EnableCellularData(false), (int)DataRespondCode::SET_SUCCESS);
     g_mockVender.MockDataActiveError(HRIL_ERR_CMD_SEND_FAILURE);
@@ -71,8 +69,7 @@ HWTEST_F(
  *              and verify that the return value is within the enumeration value range
  * @tc.desc     Function test
  */
-HWTEST_F(
-    CellularDataFlowTypeFunctionTest, Telephony_CellularData_DetectionAndRecovery_0300, Function | MediumTest | Level3)
+HWTEST_F(CellularDataFunctionTest, Telephony_CellularData_DetectionAndRecovery_0300, Function | MediumTest | Level3)
 {
     EXPECT_EQ(g_telephonyService->EnableCellularData(true), (int)DataRespondCode::SET_SUCCESS);
     LOCK_NUM_WHILE_NE(g_telephonyService->GetCellularDataState(), (int)DataConnectionStatus::DATA_STATE_CONNECTED,

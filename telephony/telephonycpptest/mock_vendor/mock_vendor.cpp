@@ -149,10 +149,6 @@ void MockVendor::MockLostDataConnect(void)
 
 int MockVendor::MockVendorSet(int id, const char *data, int dataLen) const
 {
-    if (sendSt_ == nullptr) {
-        LOGE("shm pointer is null !");
-        return -1;
-    }
     // 自己设计的锁
     for (int i = 0; i < maxLoop1000_; i++) {
         if (!IsFull()) {
@@ -180,10 +176,6 @@ int MockVendor::MockVendorSet(int id, const char *data, int dataLen) const
 
 int MockVendor::MockVendorSetWithDelay(int id, const char *data, int dataLen) const
 {
-    if (sendSt_ == nullptr) {
-        LOGE("shm pointer is null !");
-        return -1;
-    }
     // 自己设计的锁
     for (int i = 0; i < maxLoop1000_; i++) {
         if (!IsFull()) {

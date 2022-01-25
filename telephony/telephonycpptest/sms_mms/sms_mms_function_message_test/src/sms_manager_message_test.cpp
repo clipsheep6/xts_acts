@@ -21,8 +21,8 @@ using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 using namespace Telephony;
-using namespace OHOS::Telephony::SmsManager;
-using namespace SmsManager;
+using namespace OHOS::Telephony::SmsMmsManagerTest;
+using namespace SmsMmsManagerTest;
 using namespace OHOS::Telephony;
 
 /**
@@ -392,7 +392,7 @@ HWTEST_F(SmsManagerTest, Telephony_SmsMms_SplitMessage_1800, Function | MediumTe
     ASSERT_TRUE(newReseult == Str8ToStr16(bodyMessage));
 }
 
-//-------------------------------------*CreateMessage CDMA*-------------------
+// -------------------------------------- CreateMessage CDMA --------------------
 /**
  * @tc.number   Telephony_SmsMms_GetVisibleMessageBody_0500
  * @tc.name     Get Visible Message Body

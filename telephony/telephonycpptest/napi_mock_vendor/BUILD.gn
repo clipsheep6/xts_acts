@@ -32,15 +32,15 @@ ohos_shared_library("napi_mock_vendor") {
         "LOG_DOMAIN = 0xD002B01",
     ]
     deps = [
-        "//drivers/adapter/uhdf2/utils:libhdf_utils", 
+        "//drivers/adapter/uhdf2/utils:libhdf_utils",
         "//foundation/ace/napi:ace_napi",
         "//base/telephony/core_service/utils:libtelephony_common",
     ]
 
-    external_deps = [ 
-        "hiviewdfx_hilog_native:libhilog" 
+    external_deps = [
+        "hiviewdfx_hilog_native:libhilog"
         ]
-    
+
     part_name = "napi_mock_vendor"
     subsystem_name = "telephonycpptest"
 }

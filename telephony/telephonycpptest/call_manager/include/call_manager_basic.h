@@ -25,9 +25,6 @@
 #include "mock_vendor.h"
 #include "rwlock.h"
 #include "system_ability_definition.h"
-#ifdef CALLMANAGER_RTT_MOCK_TEST
-MockVendor g_mockVender_;
-#endif
 #ifdef CALLMANAGER_MOCK_TEST
 MockVendor g_mockVender_;
 #endif

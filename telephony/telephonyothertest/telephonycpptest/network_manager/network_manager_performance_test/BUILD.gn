@@ -16,53 +16,55 @@ import("//build/test.gni")
 import("//test/xts/tools/build/suite.gni")
 import("//drivers/adapter/uhdf2/uhdf.gni")
 import("//foundation/communication/netmanager_base/netmanager_base_config.gni")
+import("//foundation/communication/netmanager_ext/netmanager_ext_config.gni")
 
 
 ohos_moduletest_suite("NetworkManagerPerformanceTest") {
     install_enable = true
     sources = [
-        "src/network_manager_performance_test.cpp"
+        "src/network_manager_performance_test.cpp",
+        "//test//xts//acts//telephony//telephonycpptest/network_manager/network_manager_register_netconn_callback_test/src/test_net_conn_callback.cpp",
     ]
 
     include_dirs = [
-        "//test/xts/acts/telephony/telephonycpptest/utils",
         "//test/xts/acts/telephony/telephonycpptest/network_manager/include",
-        "$INNERKITS_ROOT/native/ethernetclient/include/ipc",
-        "$INNERKITS_ROOT/native/ethernetclient/include",
-        "$INNERKITS_ROOT/native/netconnclient/include",
-        "//foundation/aafwk/standard/frameworks/kits/ability/native/include",
-        "$INNERKITS_ROOT/native/dnsresolverclient/include",
-        "$INNERKITS_ROOT/native/dnsresolverclient/include/ipc",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/include",
-        "//foundation/communication/netmanager_base/services/dnsresolvermanager/include/ipc",
-        "//foundation/communication/netmanager_base/services/dnsresolvermanager/include",
-        "//foundation/communication/netmanager_base/services/common/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/dnsresolverclient/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/ethernetclient/include",
-        "$NETSTATSMANAGER_INNERKITS_SOURCE_DIR/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include/proxy",
-        "$NETSTATSMANAGER_SOURCE_DIR/include/stub",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netpolicymanager/include",
         "$NETPOLICYMANAGER_SOURCE_DIR/include/ipc",
         "$NETPOLICYMANAGER_SOURCE_DIR/include",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include/proxy/",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netstatsclient/include",
-        "//foundation/communication/netmanager_base/services/netpolicymanager/include/",
+        "//test//xts//acts//telephony//telephonycpptest//utils",
+        "//test/xts/acts/telephony/telephonycpptest/network_manager/include",
+        "//foundation/aafwk/standard/frameworks/kits/ability/native/include",
+        "//foundation/communication/netmanager_base/services/dnsresolverclient/include/ipc",
+        "//foundation/communication/netmanager_base/services/dnsresolverclient/include",
+        "//foundation/communication/netmanager_base/services/common/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/dnsresolverclient/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/netpolicyclient/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/ethernetclient/include",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/netstatsclient/include/proxy",
+        "//foundation/communication/netmanager_base/interfaces/innerkits/netstatsclient/include/",
+        "//foundation/communication/netmanager_base/services/netpolicymanager/include",
         "//foundation/communication/netmanager_base/services/netpolicymanager/include/stub",
         "//foundation/communication/netmanager_base/services/netpolicymanager/include/net_policy_controller",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netpolicyclient/include/",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/netpolicyclient/include/proxy",
-        "//foundation/communication/netmanager_base/interfaces/innerkits/native/dnsresolverclient/include/proxy/"
+        "//foundation/communication/netmanager_base/services/netstatsmanager/include/stub",
+        "//foundation/communication/netmanager_base/services/netstatsmanager/include",
+        "//foundation/communication/netmanager_base/utils/log/include",
+        "//foundation/communication/netmanager_base/services/netconnmanager/include",
+        "//foundation/communication/netmanager_base/test/netconnmanager/local_test",
+        "//foundation/communication/netmanager_base/test/netconnmanager/unittest/net_conn_manager_test",
+        "//foundation/communication/wifi/services/wifi_standard/wifi_framework/common/net_helper",
+        "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard/interfaces",
+        "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard/include",
     ]
 
    deps = [
         "$NETMANAGER_BASE_ROOT/utils:net_manager_common",
-        "$INNERKITS_ROOT/native/netpolicyclient:net_policy_manager_if",
-        "$INNERKITS_ROOT/native/ethernetclient:ethernet_manager_if",
-        "$INNERKITS_ROOT/native/dnsresolverclient:dns_resolver_manager_if",
-        "$INNERKITS_ROOT/native/netconnclient:net_conn_manager_if",
-        "$NETMANAGER_BASE_ROOT/services/netstatsmanager:net_stats_manager",
+        "$INNERKITS_ROOT/netpolicyclient:net_policy_manager_if",
+        "$EXT_INNERKITS_ROOT/ethernetclient:ethernet_manager_if",
+        "$BASE_INNERKITS_ROOT/netconnclient:net_conn_manager_if",
+        "$INNERKITS_ROOT/dnsresolverclient:dns_resolver_manager_if",
         "//third_party/googletest:gtest_main",
         "//third_party/jsoncpp:jsoncpp",
+        "//foundation/communication/wifi/interfaces/innerkits/native_cpp/wifi_standard:wifi_sdk",
     ]
 
     external_deps = [

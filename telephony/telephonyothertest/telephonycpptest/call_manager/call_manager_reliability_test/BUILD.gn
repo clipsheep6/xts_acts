@@ -35,7 +35,6 @@ ohos_moduletest_suite("CallManagerReliabilityTest") {
     "//base/telephony/core_service/common/core/",
     "//base/telephony/core_service/utils/log/include",
     "//test/xts/acts/telephony/telephonycpptest/utils",
-    "//base/telephony/call_manager/frameworks/js/napi/include",
     "//base/telephony_source_back/call_manager/interfaces/kits/js/napi/include",
     "//foundation/ace/napi/interfaces/kits",
     "//prebuilts/build-tools/common/nodejs/node-v12.18.4-linux-x64/include/node",
@@ -46,7 +45,6 @@ ohos_moduletest_suite("CallManagerReliabilityTest") {
     "//foundation/multimedia/camera_standard/services/camera_service/binder/client/include",
     "//foundation/multimedia/camera_standard/services/camera_service/binder/server/include",
     "//base/telephony/ril_adapter/interfaces/innerkits",
-    "//base/telephony/core_service/interfaces/innerkits/cellular_call",
     "//base/telephony/core_service/interfaces/innerkits/include",
   ]
 

@@ -89,6 +89,5 @@ void InitImeiSn(void);
 void InitMeidSn(void);
 void InitCellInfoList(void);
 void SetCurrentCellInfo(const char *buff, int dataLen);
-void ProactiveReportImsStatus(void);
 
 #endif // OHOS_MOCK_NETWORK_H

@@ -887,6 +887,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCellInfoList_0800, Functi
     CellInformation::CellType type;
     for (const auto &cellList : cellInfoList) {
         ASSERT_NE(cellList, nullptr);
+        bool result = false;
         type = cellList->GetNetworkType();
         LOG("Telephony_NetworkSearch_GetCellInfoList_0800 type:%d", static_cast<int32_t>(type));
         if (type == CellInformation::CellType::CELL_TYPE_CDMA) {
@@ -903,7 +904,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCellInfoList_0800, Functi
             EXPECT_LE(cdma->GetSid(), CELL_INFO_SID_MAX);
             LOG("CDMA String: %s", cdma->ToString().c_str());
         } else {
-            FAIL();
+            EXPECT_TRUE(result);
             LOG("GetCellInfoList is RAT_TYPE_NONE");
         }
     }
@@ -923,6 +924,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCellInfoList_0900, Functi
     CellInformation::CellType type;
     for (const auto &cellList : cellInfoList) {
         ASSERT_NE(cellList, nullptr);
+        bool result = false;
         type = cellList->GetNetworkType();
         LOG("Telephony_NetworkSearch_GetCellInfoList_0900 type:%d", static_cast<int32_t>(type));
         if (type == CellInformation::CellType::CELL_TYPE_TDSCDMA) {
@@ -943,7 +945,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCellInfoList_0900, Functi
             EXPECT_NE(tdscdma->GetMnc(), "");
             LOG("TDSCDMA String: %s", tdscdma->ToString().c_str());
         } else {
-            FAIL();
+            EXPECT_TRUE(result);
             LOG("GetCellInfoList is RAT_TYPE_NONE");
         }
     }
@@ -963,6 +965,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCellInfoList_1000, Functi
     CellInformation::CellType type;
     for (const auto &cellList : cellInfoList) {
         ASSERT_NE(cellList, nullptr);
+        bool result = false;
         type = cellList->GetNetworkType();
         LOG("Telephony_NetworkSearch_GetCellInfoList_1000 type:%d", static_cast<int32_t>(type));
         if (type == CellInformation::CellType::CELL_TYPE_NR) {
@@ -979,7 +982,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetCellInfoList_1000, Functi
             EXPECT_LE(nr->GetNci(), CELL_INFO_NR_NCI_MAX);
             LOG("NR String: %s", nr->ToString().c_str());
         } else {
-            FAIL();
+            EXPECT_TRUE(result);
             LOG("GetCellInfoList is RAT_TYPE_NONE");
         }
     }
@@ -1081,8 +1084,8 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetUniqueDeviceId_0800, Func
 HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetNrOptionMode_0800, Function | MediumTest | Level3)
 {
     VendorTestCDMA(PreferredNetworkMode::CORE_NETWORK_MODE_LTE_EVDO_CDMA);
-    NrMode nrMode = GetProxy()->GetNrOptionMode(SLOT_ID);
-    EXPECT_EQ(nrMode, NrMode::NR_MODE_NSA_ONLY);
+    LOCK_NUM_WHILE_NE(
+        GetProxy()->GetNrOptionMode(SLOT_ID), NrMode::NR_MODE_NSA_ONLY, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
 }
 
 /*
@@ -1112,6 +1115,7 @@ HWTEST_F(NetworkSearchTest, Telephony_NetworkSearch_GetMeid_0500, Function | Med
     ASSERT_TRUE(getRadioState);
     LOCK_NUM_WHILE_NE(hasNewData[GET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
     EXPECT_FALSE(getRadioStatusCallback);
+    LOCK_NUM_WHILE_NE((Str16ToStr8(GetProxy()->GetMeid(SLOT_ID)) != ""), true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
     std::u16string getMeid = GetProxy()->GetMeid(SLOT_ID);
     std::string str = Str16ToStr8(getMeid);
     EXPECT_STRNE(str.c_str(), "");

@@ -68,7 +68,7 @@ public:
     const int MAX_USER_DATA_LENTH = 160;
     const int LOOP_NUMBER = 10;
     const uint LOOP_MULTITUDE_NUMBER = 10;
-    const int TIME_USEC_500 = 500 * 2;
+    const int TIME_USEC_500 = 500;
     const int SLOT_ID_1 = 1;
     const int SLOT_ID_0 = 0;
     const int SLOT_ID_2 = 2;
@@ -78,7 +78,6 @@ public:
     const int MAX_CHINESE_MESSAGE_LENTH = 63;
     const int MAX_CHINESE_MESSAGE_PARAGRAPJ_LENTH = 60;
     const int MAX_MESSAGE_LENTH = 2401;
-    const uint SPLIT_INFO_RESULT_LENGTH = 4;
 
     static const int LOCK_WAIT_SLIP = 50;
     static const int LOCK_WAIT_TIMEOUT = 60000;
@@ -292,13 +291,6 @@ void SmsManagerTest::SetUp()
 
 void SmsManagerTest::TearDown() {}
 
-#ifdef SMS_MMS_NETWORSEARCH_CDMA_TEST
-static NetworkSearchProxy proxy_;
-enum PreferredNetwork {
-    CORE_NETWORK_MODE_AUTO = 0,
-    CORE_NETWORK_MODE_CDMA = 7,
-};
-#endif
 class SimSmsManagerTest : public testing::Test {
 public:
     SimSmsManagerTest();
@@ -314,7 +306,7 @@ public:
     static bool ReceivePduDataMatch(OHOS::Telephony::ShortMessage SmsRecord);
 
     const uint LOOP_MULTITUDE_NUMBER = 10;
-    const int TIME_USEC_500 = 500 * 2;
+    const int TIME_USEC_500 = 500;
     const int SLOT_ID_1 = 1;
     const int SLOT_ID_0 = 0;
     const int ERROR_SLOT_ID = 9;
@@ -322,12 +314,6 @@ public:
     const int MAX_USER_DATA_LENTH = 160;
     const int SMSC_MIN_LENGTH = 2;
     static const int ADDRESS_LENGTH = 14;
-
-#ifdef SMS_MMS_NETWORSEARCH_CDMA_TEST
-    static const int WAIT_TIME = 5;
-    static sptr<ICoreService> GetProxy_();
-    static void RecoverState();
-#endif
 
     // PDU code data that meets specifications for testing
     std::u16string CORRECT_SMS_PDU = u"01000F9168683106019196F400080A00680065006C006C006F";
@@ -339,25 +325,6 @@ public:
     std::map<std::u16string, int> PDU_LENGTH;
 };
 
-#ifdef SMS_MMS_NETWORSEARCH_CDMA_TEST
-sptr<ICoreService> SimSmsManagerTest::GetProxy_()
-{
-    return proxy_.GetHandler();
-}
-
-class NetworkSearchResultCallBack : public INetworkSearchCallbackStub {
-public:
-};
-
-OHOS::sptr<NetworkSearchResultCallBack> g_callback(new NetworkSearchResultCallBack());
-void SimSmsManagerTest::RecoverState()
-{
-    int SLOT_ID = 0;
-    ASSERT_TRUE(GetProxy_()->SetPreferredNetwork(
-        SLOT_ID, static_cast<int32_t>(PreferredNetwork::CORE_NETWORK_MODE_CDMA), g_callback));
-    sleep(WAIT_TIME);
-}
-#endif
 SimSmsManagerTest::SimSmsManagerTest()
 {
     // Record the length of pdUs
@@ -442,13 +409,6 @@ void SimSmsManagerTest::TearDownTestCase()
     LOG("> ---------- unInit");
     g_smsClientPtr->unInit();
     Restore();
-
-#ifdef SMS_MMS_NETWORSEARCH_CDMA_TEST
-    int SLOT_ID = 0;
-    ASSERT_TRUE(GetProxy_()->SetPreferredNetwork(
-        SLOT_ID, static_cast<int32_t>(PreferredNetwork::CORE_NETWORK_MODE_AUTO), g_callback));
-    sleep(WAIT_TIME);
-#endif
 }
 
 void SimSmsManagerTest::SetUp()
@@ -474,7 +434,7 @@ public:
     const int SLOT_ID_2 = 2;
     const int ERROR_SLOT_ID = 9;
     const uint LOOP_MULTITUDE_NUMBER = 10;
-    const int TIME_USEC_500 = 500 * 2;
+    const int TIME_USEC_500 = 500;
 
     // Address of the SMS center service
     std::u16string OTHER_SMSC = u"0891683108705505F0";

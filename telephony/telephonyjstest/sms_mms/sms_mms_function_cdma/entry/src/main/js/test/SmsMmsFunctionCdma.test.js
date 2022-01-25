@@ -24,12 +24,10 @@ import {
   expect
 } from 'deccjsunit/index';
 
-describe('SmsMmsTest', function () {
+describe('SmsMmsCdmaSendTest', function () {
   const SMS_SEND_DST_NUMBER = '13632862140';
   const MAX_TEST = 160;
-
   const TRUE_SLOT_ID = 0;
-  const FALSE_SLOT_ID = 9;
 
   /*
    * @tc.number  Telephony_SmsMms_sendMessage_1800

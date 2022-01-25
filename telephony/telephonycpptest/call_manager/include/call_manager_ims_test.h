@@ -29,9 +29,6 @@
 #ifdef CALLMANAGER_MOCK_TEST
 #    include "mock_vendor.h"
 #endif
-#ifdef CALLMANAGER_RTT_MOCK_TEST
-#    include "mock_vendor.h"
-#endif
 
 namespace OHOS {
 namespace Telephony {
@@ -47,7 +44,9 @@ public:
     bool HasState(int callId, TelCallState callState);
     void TestRegisterCallBack(char phoneNumber[BUFSIZ]);
     bool HasActiveStatus();
+#ifdef CALLMANAGER_MOCK_TEST
     static int CleanCallList();
+#endif
 
 public:
     const int INVALID_SLOT_ID = -1;
@@ -60,7 +59,6 @@ public:
     const int SLOT_ID_3 = 3;
     const int ACCOUNT_ID = 0;
     const int SUCCESSFUL = 0;
-    const int SLEEP_3_SEC = 3;
     const int OPEN = 1;
     const int OFF = 0;
     const int FALSE_DEFAULT = -1;
@@ -126,21 +124,6 @@ bool CallManagerIMSTest::HasActiveStatus()
     LOG("===========wait %d ms callStatus:%d=====not active=========", sumUseTime, g_updateCallState);
     return false;
 }
-#ifdef CALLMANAGER_RTT_MOCK_TEST
-int CallManagerIMSTest::CleanCallList()
-{
-    if (g_clientPtr == nullptr) {
-        LOG("g_clientPtr is nullptr, CleanCallList false !");
-        return CallTestEnum::INVALIN_ENUM_VALUE;
-    } else {
-        LOG("------------CleanCallList ------------");
-        g_mockVender_.MockVendorSet(DISPATCHID::CALL_REMOVE_ALL_CALL, nullptr, 0);
-        LOCK_NUM_WHILE_NE(g_clientPtr->GetPtr()->GetCallState(), static_cast<int>(CallStateToApp::CALL_STATE_IDLE),
-            CallTestEnum::SLEEP_50_MS, CallTestEnum::SLEEP_12000_MS);
-        return 0;
-    }
-}
-#endif
 
 #ifdef CALLMANAGER_MOCK_TEST
 int CallManagerIMSTest::CleanCallList()
@@ -183,14 +166,14 @@ void CallManagerIMSTest::SetUpTestCase()
         LOG("connect server fail!!!");
     }
     LOG("connect server success!!!");
-
+#ifdef CALLMANAGER_VOLTE_TEST
     int ret = g_clientPtr->GetPtr()->EnableImsSwitch(CallTestEnum::SLOT_ID);
     ASSERT_EQ(ret, 0);
     LOCK_NUM_WHILE_NE(g_updateResult.GetIntValue("result"), 0, CallTestEnum::SLEEP_50_MS, CallTestEnum::SLEEP_1000_MS);
     int SetCallType = g_clientPtr->GetPtr()->SetCallPreferenceMode(CallTestEnum::SLOT_ID, CallTestEnum::CALL_TYPE_IMS);
     ASSERT_EQ(SetCallType, 0);
     LOG("SetCallPreferenceMode SUCCESS");
-
+#endif
     g_camManagerObj = CameraManager::GetInstance();
     g_cameraObjList = g_camManagerObj->GetCameras();
     ASSERT_FALSE(g_cameraObjList.empty());
@@ -212,11 +195,16 @@ void CallManagerIMSTest::SetUp()
     } else {
         ASSERT_EQ(g_clientPtr->IsInit(), SUCCESSFUL);
     }
+    LOCK_NUM_WHILE_NE(g_clientPtr->GetPtr()->GetCallState(), static_cast<int>(CallStateToApp::CALL_STATE_IDLE),
+        SLEEP_50_MS, SLEEP_30000_MS);
+#ifdef CALLMANAGER_MOCK_TEST
+    CleanCallList();
+    int SetCallType = g_clientPtr->GetPtr()->SetCallPreferenceMode(CallTestEnum::SLOT_ID, CallTestEnum::CALL_TYPE_IMS);
+    ASSERT_EQ(SetCallType, 0);
+#endif
 
     // add 2 seconds to prevent blocking by the carrier when dialing too fast
     sleep(SLEEP_2_SEC);
-    LOCK_NUM_WHILE_NE(g_clientPtr->GetPtr()->GetCallState(), static_cast<int>(CallStateToApp::CALL_STATE_IDLE),
-        SLEEP_50_MS, SLEEP_30000_MS);
     g_updateResult.Clear();
     g_updateReportId = static_cast<CallResultReportId>(CallTestEnum::INVALIN_ENUM_VALUE);
     g_updateConference = static_cast<OHOS::Telephony::TelConferenceState>(CallTestEnum::INVALIN_ENUM_VALUE);
@@ -238,7 +226,7 @@ void CallManagerIMSTest::TearDown()
         LOG("g_clentPtr is nullptr, TearDownTestCase false !");
         return;
     }
-#ifndef CALLMANAGER_RTT_MOCK_TEST
+#ifdef CALLMANAGER_VOLTE_TEST
     LOCK_NUM_WHILE_EQ(g_newCallId, FALSE_DEFAULT, SLEEP_50_MS, SLEEP_12000_MS);
     int hangUpRet = g_clientPtr->GetPtr()->HangUpCall(g_newCallId);
     EXPECT_EQ(hangUpRet, SUCCESSFUL);
@@ -252,13 +240,6 @@ void CallManagerIMSTest::TearDownTestCase()
 {
 #ifdef CALLMANAGER_MOCK_TEST
     CleanCallList();
-    int SetCallType = g_clientPtr->GetPtr()->SetCallPreferenceMode(CallTestEnum::SLOT_ID, CallTestEnum::CALL_TYPE_CS);
-    ASSERT_EQ(SetCallType, 0);
-#endif
-#ifdef CALLMANAGER_RTT_MOCK_TEST
-    CleanCallList();
-    int SetCallType = g_clientPtr->GetPtr()->SetCallPreferenceMode(CallTestEnum::SLOT_ID, CallTestEnum::CALL_TYPE_CS);
-    ASSERT_EQ(SetCallType, 0);
 #endif
 
     LOG("> ---------- unInit");

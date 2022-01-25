@@ -16,21 +16,6 @@ group("network_search") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "network_search_information_performance:NetworkSearchInformationPerformance",
-      "network_search_information_reliability:NetworkSearchInformationReliability",
-      
-      "network_search_radio_performance:NetworkSearchRadioPerformance",
-      "network_search_radio_reliability:NetworkSearchRadioReliability",
-
-      "network_search_selection_mode_performance:NetworkSearchSelectModePerformance",
-      "network_search_selection_mode_reliability:NetworkSearchSelectModeReliability",
-
-      "network_search_preferred_mode_performance:ActsNetworkSearchPreferredPerformanceTest",
-      "network_search_preferred_mode_reliability:ActsNetworkSearchPreferredReliabilityTest",
-
-      "network_search_cell_information_performance:NetworkSearchCellInformationPerformance",
-      "network_search_cell_information_reliability:NetworkSearchCellInformationReliability",
-
       "network_search_device_information_performance:DeviceInformationPerformance",
       "network_search_device_information_reliability:DeviceInformationReliability"
     ]

@@ -14,13 +14,8 @@
 group("call_manager") {
   testonly = true
   deps = [
-    "call_manager_function_test:CallManagerFunctionTest",
     "call_manager_mock_test:CallManagerMockTest",
-    "call_manager_function_have_card_test:CallManagerFunctionHaveCardTest",
-    "call_manager_ims_test:CallManagerImsTest",
     "call_manager_volte_test:CallManagerVolteTest",
-    "call_manager_supplementary_service_test:CallManagerSupplementaryServiceTest",
-    "call_manager_rtt_mock_test:CallManagerRttMockTest",
-    "call_manager_rtt_test:CallManagerRttTest",
+    "call_manager_modem_test:CallManagerModemTest",
   ]
 }

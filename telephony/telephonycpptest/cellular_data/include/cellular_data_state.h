@@ -49,10 +49,10 @@ enum CellularLockType {
     GET_PREFERRED_NETWORK_MODE = 3,
     MAX_DATA_LEN = 4
 };
-static const int CRIL_ERR_SUCCESS = 0;
 static NetworkSearchProxy proxy_;
 class CelluarDataStateTest : public testing::Test {
 public:
+    static const int TWO_TIME = 2;
     static const int LOCK_WAIT_SLIP = 50;
     static const int LOCK_WAIT_TIMEOUT = 60000;
     static const int SLOT_ID = 0;
@@ -66,9 +66,6 @@ public:
     static bool setPreferredNetworkModeResult;
     static bool getPreferredNetworkModeResult;
     static int32_t errCodeResult;
-    static std::string operatorName;
-    static std::string CMCC;
-    static std::string CUCC;
     static sptr<ICoreService> GetProxy_();
     static void SetRadioStateOn();
     static bool hasNewData[MAX_DATA_LEN];
@@ -77,7 +74,6 @@ public:
 public:
     static int g_newCallId;
     static int32_t g_updateCallId;
-    static TelCallState g_updateCallState;
     static int RadioState;
     static bool Cellular;
     static int PreferredNetworkState;
@@ -92,34 +88,30 @@ public:
 
 public:
     int Dial(std::u16string number);
-    bool HasState(int callId, TelCallState callState);
+    bool HasState(int callId, int callState);
     static void SetUpTestCase();
     static void TearDownTestCase();
     void RecoverState();
     void SetUp();
     void TearDown();
 };
-std::string CelluarDataStateTest::operatorName;
-std::string CelluarDataStateTest::CMCC = "CHINA MOBILE";
-std::string CelluarDataStateTest::CUCC = "China Unicom";
 int CelluarDataStateTest::PreferredNetworkState = 0;
 int CelluarDataStateTest::RadioState = 0;
 bool CelluarDataStateTest::Cellular = false;
-TelCallState CelluarDataStateTest::g_updateCallState;
 int32_t CelluarDataStateTest::g_updateCallId = -1;
 int CelluarDataStateTest::g_newCallId = -1;
 char CelluarDataStateTest::g_updateAccountNumber[BUFSIZ] = {0};
 static std::unique_ptr<CallManager::CallManagerBasic> g_clientPtr = nullptr;
 static AppExecFwk::PacMap g_dialInfo;
 std::unordered_set<int> g_callIdSet;
-std::unordered_map<int, std::unordered_set<TelCallState>> g_callStateMap;
+std::unordered_map<int, std::unordered_set<int>> g_callStateMap;
 
 int CelluarDataStateTest::Dial(std::u16string number)
 {
     return g_clientPtr->GetPtr()->DialCall(number, g_dialInfo);
 }
 
-bool CelluarDataStateTest::HasState(int callId, TelCallState callState)
+bool CelluarDataStateTest::HasState(int callId, int callState)
 {
     if (g_callStateMap.find(callId) == g_callStateMap.end()) {
         return false;
@@ -130,7 +122,8 @@ bool CelluarDataStateTest::HasState(int callId, TelCallState callState)
     return true;
 }
 
-int32_t CallManager::CallAbilityCallbackBasic::OnCallEventChange(const CallEventInfo &info)
+int32_t CallManager::CallAbilityCallbackBasic::OnReportAsyncResults(CallResultReportId reportId,
+    AppExecFwk::PacMap &resultInfo)
 {
     return SUCCESSFUL;
 }
@@ -140,13 +133,7 @@ int32_t CallManager::CallAbilityCallbackBasic::OnOttCallRequest(OttCallRequestId
     return SUCCESSFUL;
 }
 
-int32_t CallManager::CallAbilityCallbackBasic::OnCallDisconnectedCause(DisconnectedDetails cause)
-{
-    return SUCCESSFUL;
-}
-
-int32_t CallManager::CallAbilityCallbackBasic::OnReportAsyncResults(
-    CallResultReportId reportId, AppExecFwk::PacMap &resultInfo)
+int32_t CallManager::CallAbilityCallbackBasic::OnCallEventChange(const CallEventInfo &info)
 {
     return SUCCESSFUL;
 }
@@ -155,23 +142,18 @@ int32_t CallManager::CallAbilityCallbackBasic::OnCallDetailsChange(const CallAtt
 {
     CallAttributeInfo callInfo = info;
     CelluarDataStateTest::g_updateCallId = callInfo.callId;
-    CelluarDataStateTest::g_updateCallState = callInfo.callState;
 
     // set callid remove duplication, and set g_callStateMap space
     if (g_callIdSet.find(CelluarDataStateTest::g_updateCallId) == g_callIdSet.end()) {
         g_callIdSet.insert(CelluarDataStateTest::g_updateCallId);
         CelluarDataStateTest::g_newCallId = CelluarDataStateTest::g_updateCallId;
-        std::unordered_set<TelCallState> newSet;
+        std::unordered_set<int> newSet;
         newSet.clear();
-        // g_callStateMap.insert(
-        //     std::pair<int, std::unordered_set<TelCallState>>(CelluarDataStateTest::g_newCallId, newSet));
-        g_callStateMap.insert(
-            std::pair<int, std::unordered_set<TelCallState>>(CelluarDataStateTest::g_newCallId, newSet));
+        g_callStateMap.insert(std::pair<int, std::unordered_set<int>>(CelluarDataStateTest::g_newCallId, newSet));
         LOG("===========================RegisterCallBack Successful===============================");
     }
 
     // set Map key and value
-    g_callStateMap[CelluarDataStateTest::g_updateCallId].insert(CelluarDataStateTest::g_updateCallState);
 
     (void)memset_s(CelluarDataStateTest::g_updateAccountNumber, sizeof(CelluarDataStateTest::g_updateAccountNumber),
         '\0', sizeof(CelluarDataStateTest::g_updateAccountNumber));
@@ -205,7 +187,7 @@ void CelluarDataStateTest::SetRadioStateOn()
     LOCK_NUM_WHILE_NE(g_telephonyService->EnableCellularData(true), true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
     LOCK_NUM_WHILE_NE(g_telephonyService->GetCellularDataState(), (int)DataConnectionStatus::DATA_STATE_CONNECTED,
         LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
-    bool ret = GetProxy_()->SetRadioState(SLOT_ID, true, g_callback);
+    bool ret = GetProxy_()->SetRadioState(true, g_callback);
     if (ret == false) {
         LOG("RecoverRadioState is faild");
     } else {
@@ -228,7 +210,7 @@ void NetworkSearchResultCallBack::OnSetRadioStateCallback(const bool setResult, 
 void NetworkSearchResultCallBack::OnGetRadioStateCallback(const bool getResult, const int32_t errorCode)
 {
     CelluarDataStateTest::getRadioStatusCallback = getResult;
-    EXPECT_EQ(errorCode, CRIL_ERR_SUCCESS);
+    EXPECT_EQ(errorCode, HRIL_ERR_SUCCESS);
     LOG("getRadioStatusCallback: = %d errCodeResult = %d", getResult, errorCode);
     CelluarDataStateTest::hasNewData[GET_RADIO_STATUS] = true;
 }
@@ -244,7 +226,7 @@ void NetworkSearchResultCallBack::OnSetPreferredNetworkCallback(const bool setRe
 void NetworkSearchResultCallBack::OnGetPreferredNetworkCallback(const int32_t preferredMode, const int32_t errorCode)
 {
     CelluarDataStateTest::getPreferredNetworkModeResult = preferredMode;
-    EXPECT_EQ(errorCode, CRIL_ERR_SUCCESS);
+    EXPECT_EQ(errorCode, HRIL_ERR_SUCCESS);
     LOG("getPreferredNetworkCallback: = %d errCodeResult = %d", preferredMode, errorCode);
     CelluarDataStateTest::hasNewData[GET_PREFERRED_NETWORK_MODE] = true;
 }
@@ -303,7 +285,6 @@ void CelluarDataStateTest::SetUpTestCase()
     g_dialInfo.PutIntValue("videoState", static_cast<int>(VideoStateType::TYPE_VOICE));
     g_dialInfo.PutIntValue("dialScene", static_cast<int>(DialScene::CALL_PRIVILEGED));
     g_dialInfo.PutIntValue("dialType", static_cast<int>(DialType::DIAL_CARRIER_TYPE));
-    operatorName = Str16ToStr8(GetProxy_()->GetOperatorName(SLOT_ID));
 }
 
 void CelluarDataStateTest::SetUp()
@@ -343,7 +324,7 @@ void CelluarDataStateTest::TearDownTestCase()
     g_mockVender.MockVendorSetRawReg(DOMAIN_TYPE_PS, NON_ROAMING);
 #endif
 #ifdef CELLULAR_DATA_NETWORSEARCH_RADIO_TEST
-    ASSERT_TRUE(GetProxy_()->SetRadioState(SLOT_ID, true, g_callback));
+    ASSERT_TRUE(GetProxy_()->SetRadioState(true, g_callback));
     LOCK_NUM_WHILE_NE(hasNewData[SET_RADIO_STATUS], true, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
     sleep(TEN_TIME);
 #endif

@@ -16,8 +16,6 @@ group("network_search") {
   deps = [
     "network_search_function_test:NetworkSearchFunctionTest",
     "network_search_function_radio_test:NetworkSearchFunctionRadioTest",
-    "network_search_mock_test:NetworkSearchMockTest",
-    "network_search_initial_test:NetworkSearchInitialTest",
     "network_search_modem_test:NetworkSearchModemTest",
   ]
 }

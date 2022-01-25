@@ -29,8 +29,10 @@ ohos_shared_library("mock_ril_vendor") {
         "$RIL_ADAPTER/services/vendor/src/vendor_report.c",
     ]
     include_dirs = [
-        "$RIL_ADAPTER/interfaces/innerkits/include",
-        "$RIL_ADAPTER/services/vendor/include/",
+        "$RIL_ADAPTER/interfaces/innerkits",
+        "$RIL_ADAPTER/services/vendor/include",
+        "$RIL_ADAPTER/test/include",
+        "$RIL_ADAPTER/interfaces/innerkits/include/",
         "include",
         "//test/xts/acts/telephony/telephonycpptest/utils",
     ]

@@ -17,8 +17,7 @@
 #define NAPI_NETWORK_HANDLER_H
 #include <node_api.h>
 #include "mock_vendor_common.h"
-namespace NetworkHandler
-{
+namespace NetworkHandler {
     NetworkStatus *ParseNetworkStats(napi_env, napi_callback_info);
     SignalInfo *ParseSignal(napi_env, napi_callback_info);
 } // NetworkHandler

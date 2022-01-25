@@ -39,8 +39,6 @@ ohos_moduletest_suite("CellularDataFlowTypeFunctionTest") {
     "$HDF_FRAMEWORKS/core/host/include",
     "$HDF_FRAMEWORKS/core/master/include",
     "$HDF_FRAMEWORKS/include/core",
-    "//base/telephony/core_service/services/tel_ril/include/",
-    "//base/telephony/core_service/interfaces/innerkits/include/",
     "$HDF_FRAMEWORKS/include/utils",
     "$HDF_FRAMEWORKS/utils/include",
     "$HDF_FRAMEWORKS/include/osal",

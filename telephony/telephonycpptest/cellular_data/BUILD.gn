@@ -14,15 +14,8 @@
 group("cellular_data") {
   testonly = true
   deps = [
-    "cellular_data_slotId_test:CellularDataSlotIdTest",
-    "cellular_data_function_test:CellularDataFunctionTest",
-    "cellular_data_roaming_test:CellularDataRoamingTest",
-    "cellular_data_radio_test:CellularDataRadioTest",
-    "cellular_data_preferrednetwork_CUCC_test:CellularDataPreferrednetworkCUCCTest",
-    "cellular_data_preferrednetwork_CMCC_test:CellularDataPreferrednetworkCMCCTest",
-    "cellular_data_mock_test:CellularDataMockTest",
-    "cellular_data_flow_type_function_test:CellularDataFlowTypeFunctionTest",
-    "cellular_data_flow_type_mock_test:CellularDataFlowTypeMockTest",
+    # "cellular_data_flow_type_function_test:CellularDataFlowTypeFunctionTest",
     "cellular_data_CMCC_flow_type_test:CellularDataCMCCFlowTypeTest",
+    # "cellular_data_flow_type_mock_test:CellularDataFlowTypeMockTest",
   ]
 }

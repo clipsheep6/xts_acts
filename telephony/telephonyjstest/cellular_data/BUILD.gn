@@ -16,8 +16,8 @@ group("cellular_data") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "cellular_data:CellularData",
-      "cellular_data_roaming:CellularDataRoaming",
+      "cellular_data_flow_type:ActsCellularDataFlowTypeTest",
+      "cellular_data_preferred_cucc:ActsCellularDataPreferredCMCCTest",
     ]
   }
 }

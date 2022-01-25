@@ -24,7 +24,7 @@ import {
   expect
 } from 'deccjsunit/index';
 
-describe('SmsMmsTest', function () {
+describe('SmsMmsMessageTest', function () {
   const DIVIDE_MESSAGE_INTO_1 = 1;
   const DIVIDE_MESSAGE_INTO_2 = 2;
   const DIVIDE_MESSAGE_INTO_18 = 18;
@@ -33,10 +33,10 @@ describe('SmsMmsTest', function () {
   const MAX_CHINESE_MESSAGE_LENTH = 63;
   const MAX_CHINESE_MESSAGE_PARAGRAPJ_LENTH = 60;
   const MAX_MESSAGE_LENTH = 2401;
-  
+
   //****************createMessage CDMA************************
   var rawArrayNull = [];
-  
+
   /** Indicates the SMS message body. */
   //visibleMessageBody: 'A';
   /** Indicates the address of the sender, which is to be displayed on the UI. */
@@ -580,6 +580,7 @@ describe('SmsMmsTest', function () {
       expect(getMessage === message).assertTrue();
     } catch (err) {
       expect().assertFail();
+      console.log("Telephony_SmsMms_splitMessage_Promise_0100 splitMessage on err because " + err.message);
       console.log('Telephony_SmsMms_splitMessage_Promise_0100 fail');
     }
     done();
@@ -604,6 +605,7 @@ describe('SmsMmsTest', function () {
       expect(getMessage === message).assertTrue();
     } catch (err) {
       expect().assertFail();
+      console.log("Telephony_SmsMms_splitMessage_Promise_0200 splitMessage on err because " + err.message);
       console.log('Telephony_SmsMms_splitMessage_Promise_0200 fail');
     }
     done();
@@ -628,6 +630,7 @@ describe('SmsMmsTest', function () {
       expect(getMessage === message).assertTrue();
     } catch (err) {
       expect().assertFail();
+      console.log("Telephony_SmsMms_splitMessage_Promise_0300 splitMessage on err because " + err.message);
       console.log('Telephony_SmsMms_splitMessage_Promise_0300 fail');
     }
     done();
@@ -1075,15 +1078,13 @@ describe('SmsMmsTest', function () {
       expect().assertFail();
       console.log("Telephony_SmsMms_createMessage_Promise_0600 fail");
       done();
-      return;
     }
   });
 
   /*
    * @tc.number  Telephony_SmsMms_createMessage_Promise_0700
    * @tc.name    Call interface CreateMessage,
-   *             The incoming PDU is empty, the specification is 3GPP2,
-   *             shortMessage empty
+   *             The incoming PDU is empty, the specification is 3GPP2, The results for the err
    * @tc.desc    Function test
    */
   it('Telephony_SmsMms_createMessage_Promise_0700', 0, async function (done) {
@@ -1095,7 +1096,6 @@ describe('SmsMmsTest', function () {
     } catch (err) {
       console.log("Telephony_SmsMms_createMessage_Promise_0400 finish");
       done();
-      return;
     }
   });
 
@@ -1126,8 +1126,7 @@ describe('SmsMmsTest', function () {
       expect().assertFail();
       console.log("Telephony_SmsMms_createMessage_Promise_0800 fail");
       done();
-      return;
     }
   });
-  
+
 });

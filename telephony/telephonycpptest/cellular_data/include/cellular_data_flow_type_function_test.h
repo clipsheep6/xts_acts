@@ -43,9 +43,9 @@ public:
     void TearDown();
 };
 
-bool CellularDataFlowTypeFunctionTest::ORIGINAL_STATE = false;
+bool CellularDataFunctionTest::ORIGINAL_STATE = false;
 
-void CellularDataFlowTypeFunctionTest::SetUpTestCase()
+void CellularDataFunctionTest::SetUpTestCase()
 {
 #ifdef CELLULAR_DATA_MOCK_TEST
     if (g_mockVender.Init() != 0) {
@@ -61,7 +61,7 @@ void CellularDataFlowTypeFunctionTest::SetUpTestCase()
     ORIGINAL_STATE = OHOS::Telephony::g_telephonyService->IsCellularDataEnabled();
 }
 
-void CellularDataFlowTypeFunctionTest::SetUp()
+void CellularDataFunctionTest::SetUp()
 {
     bool enable = false;
     ASSERT_NE(OHOS::Telephony::g_telephonyService, nullptr);
@@ -71,9 +71,9 @@ void CellularDataFlowTypeFunctionTest::SetUp()
         (int)OHOS::Telephony::DataConnectionStatus::DATA_STATE_DISCONNECTED, LOCK_WAIT_SLIP, LOCK_WAIT_TIMEOUT);
 }
 
-void CellularDataFlowTypeFunctionTest::TearDown() {}
+void CellularDataFunctionTest::TearDown() {}
 
-void CellularDataFlowTypeFunctionTest::TearDownTestCase()
+void CellularDataFunctionTest::TearDownTestCase()
 {
     ASSERT_NE(OHOS::Telephony::g_telephonyService, nullptr);
     int32_t result = OHOS::Telephony::g_telephonyService->EnableCellularData(ORIGINAL_STATE);

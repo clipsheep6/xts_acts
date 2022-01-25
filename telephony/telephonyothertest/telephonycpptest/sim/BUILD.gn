@@ -14,19 +14,9 @@
 group("sim") {
   testonly = true
   deps = [
-    "sim_file_information_reliability_test:SimFileInformationReliabilityTest",
-    "sim_file_information_performance_test:SimFileInformationPerformanceTest",
-    "sim_file_manager_reliability_test:SimFileManagerReliabilityTest",
-    "sim_file_manager_performance_test:SimFileManagerPerformanceTest",
-    "sim_icc_dialling_number_performance_test:SimIccDiallingNumberPerformanceTest",
-    "sim_icc_dialling_number_reliability_test:SimIccDiallingNumberReliabilityTest",
     "sim_card_type_lock_reliability_test:SimCardTypeLockReliabilityTest",
     "sim_card_type_lock_performance_test:SimCardTypeLockPerformanceTest",
     "sim_stk_reliability_test:SimStkReliabilityTest",
     "sim_stk_performance_test:SimStkPerformanceTest",
-    "sim_card_manager_performance_test:SimCardManagerPerformanceTest",
-    "sim_card_manager_reliability_test:SimCardManagerReliabilityTest",
-    "sim_card_privileges_performance_test:SimCardPrivilegesPerformanceTest",
-    "sim_card_privileges_reliability_test:SimCardPrivilegesReliabilityTest",
   ]
 }

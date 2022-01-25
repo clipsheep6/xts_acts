@@ -20,8 +20,6 @@
 struct SmsMockData {
     HRilSmsResponse hrilSmsResponse;
     HRilServiceCenterAddress hrilServiceCenterAddress;
-    HRilCdmaCBConfigInfo cdmaCBConfig;
-    HRilCBConfigInfo cellBroadcast;
 } g_smsMockData;
 
 void InitSmsMockData(void)
@@ -112,68 +110,35 @@ void ReqGetSmscAddr(const ReqDataInfo *requestInfo)
 void ReqSetCBConfig(const ReqDataInfo *requestInfo, const HRilCBConfigInfo *data, size_t dataLen)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d, len:%{public}d", __func__, __LINE__, dataLen);
-    if (data == NULL) {
-        RespErrnoWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport, HRIL_ERR_GENERIC_FAILURE);
-        return;
-    }
-    g_smsMockData.cellBroadcast = *data;
     RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport);
 }
 
 void ReqGetCBConfig(const ReqDataInfo *requestInfo)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RespSuccessWithData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport, (const uint8_t *)&g_smsMockData.cellBroadcast,
-        sizeof(HRilCBConfigInfo));
 }
 
 void ReqGetCdmaCBConfig(const ReqDataInfo *requestInfo)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RespSuccessWithData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport, (const uint8_t *)&g_smsMockData.cdmaCBConfig,
-        sizeof(HRilCdmaCBConfigInfo));
 }
 
 void ReqSetCdmaCBConfig(const ReqDataInfo *requestInfo, const HRilCdmaCBConfigInfo *data, size_t dataLen)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d, len:%{public}d", __func__, __LINE__, dataLen);
-    if (data == NULL) {
-        RespErrnoWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport, HRIL_ERR_GENERIC_FAILURE);
-        return;
-    }
-    g_smsMockData.cdmaCBConfig = *data;
-    int size = dataLen / sizeof(HRilCdmaCBConfigInfo);
-    if (size <= 0) {
-        RespErrnoWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport, HRIL_ERR_GENERIC_FAILURE);
-        return;
-    }
-    RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport);
 }
 
 void ReqAddCdmaSimMessage(const ReqDataInfo *requestInfo, const HRilSmsWriteSms *data, size_t dataLen)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    if (data == NULL) {
-        RespErrnoWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport, HRIL_ERR_GENERIC_FAILURE);
-        return;
-    }
-    RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport);
 }
 
 void ReqDelCdmaSimMessage(const ReqDataInfo *requestInfo, const int32_t *data, size_t dataLen)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    if (data == NULL) {
-        RespErrnoWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport, HRIL_ERR_GENERIC_FAILURE);
-        return;
-    }
-
-    RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport);
 }
 
 void ReqUpdateCdmaSimMessage(const ReqDataInfo *requestInfo, const HRilSmsWriteSms *data, size_t dataLen)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-
-    RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnSmsReport);
 }

@@ -14,7 +14,12 @@
 group("network_manager") {
   testonly = true
   deps = [
-    "network_manager_ethernet_test:NetworkManagerEthernetTest",
-    "network_manager_uid_policy_test:NetworkManagerUidPolicyTest",
+    "network_manager_detection_test:NetworkManagerDetectionTest",
+    "network_manager_get_bytes_test:NetworkManagerGetBytesTest",
+    "network_manager_get_specific_net_test:NetworkManagerGetSpecificNetTest",
+    "network_manager_getallntes_test:NetworkManagerGetAllNetsTest",
+    "network_manager_net_policy_callback_test:network_manager_net_policy_callback_test",
+    "network_manager_register_netconn_callback_test:NetworkManagerRegisterNetconnCallbackTest",
+    "network_manager_getaddressbyname_test:NetworkManagerGetAddressByName",
   ]
 }

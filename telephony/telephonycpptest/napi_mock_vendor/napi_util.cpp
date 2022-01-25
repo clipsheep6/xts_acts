@@ -19,8 +19,7 @@
 #include <cassert>
 #include <cstdlib>
 
-namespace NapiUtil
-{
+namespace NapiUtil {
     napi_status GetPropertyValue(napi_env env, napi_value object, char *propName, napi_value *propValue)
     {
         return napi_get_named_property(env, object, propName, propValue);

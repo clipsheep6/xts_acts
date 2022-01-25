@@ -18,7 +18,7 @@ import { describe, it, expect, beforeAll, afterEach } from 'deccjsunit/index';
 
 describe('NetworkSearchDeviceInformationTest', function () {
     const SLOT_0 = 0;
-    const SLOT_1 = 1;
+    const SLOT_1 = 5;
     const SLOT_2 = 2;
     const SLOT_3 = -1;
     const IMEI_LENGTH = 15;
@@ -43,7 +43,6 @@ describe('NetworkSearchDeviceInformationTest', function () {
     }
 
     beforeAll(async function () {
-        await radio.setPreferredNetwork(SLOT_0, radio.PREFERRED_NETWORK_MODE_AUTO);
         await turnOnRadio();
     })
 

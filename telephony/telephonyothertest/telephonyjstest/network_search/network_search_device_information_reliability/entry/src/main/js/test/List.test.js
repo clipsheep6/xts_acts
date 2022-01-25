@@ -14,4 +14,3 @@
  */
 
 require('./DeviceInformationReliability.test');
-require('./DeviceMeIdReliability.test')

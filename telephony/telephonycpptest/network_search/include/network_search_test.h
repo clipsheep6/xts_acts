@@ -83,7 +83,7 @@ public:
     static const int LOCK_WAIT_TIMEOUT_RESULT = 180000;
     static const int WAIT_TELEPHONY_RUN = 10;
     static const int WAIT_CACHE_DATA = 2;
-    static const int WAIT_RECOVER = 2;
+    static const int WAIT_RECOVER = 5;
     const int TELEPHONY_ERROR = -1;
     const int PLMN_SIZE = 5;
     const int IMEI_SIZE = 15;
@@ -395,12 +395,7 @@ void NetworkSearchTest::SetUp()
 
 void NetworkSearchTest::TearDown()
 {
-// The modem test restore initial value
-#ifdef NETWORSEARCH_MODEM_TEST
-    RecoverPreferredNetwork();
-#endif
-// The reliability test restore initial value
-#ifdef NETWORSEARCH_RELIABILITY_TEST
+#ifdef NETWORSEARCH_FUNCTION_TEST
     RecoverPreferredNetwork();
 #endif
 }

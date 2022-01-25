@@ -14,7 +14,6 @@
  */
 #include "mock_call.h"
 #include "mock_sim.h"
-#include "mock_network.h"
 #include "stdlib.h"
 #include "string.h"
 #include "telephony_log_c.h"
@@ -34,7 +33,6 @@ struct CallMockData {
     int preferredMode;
     int lteImsSwitchStatus;
     int UssdCusd;
-    int mute;
     HRilCallStatusInfo callStatusInfo;
     HRilCallEndInfo callEndInfo;
     HRilGetClipResult clip_result;
@@ -712,7 +710,6 @@ void ReqGetImsCallList(const ReqDataInfo *requestInfo)
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     pthread_mutex_lock(&freeMemMutex);
     ViewCallInfo();
-    TELEPHONY_LOGI("pp_calls: %{public}p", g_callMockData.pp_calls);
     RespSuccessWithData(HRIL_SIM_SLOT_0, requestInfo, OnCallReport, (const uint8_t *)g_callMockData.pp_calls,
         sizeof(HRilCallInfo) * g_callMockData.call_index);
     HandleCallState();
@@ -729,11 +726,7 @@ void ReqGetCallPreferenceMode(const ReqDataInfo *requestInfo)
 void ReqSetCallPreferenceMode(const ReqDataInfo *requestInfo, int mode)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    TELEPHONY_LOGI("mode:%{public}d", mode);
     g_callMockData.preferredMode = mode;
-    if (IsImsDomain()) {
-        ProactiveReportImsStatus();
-    }
     RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnCallReport);
 }
 
@@ -748,10 +741,6 @@ void ReqSetLteImsSwitchStatus(const ReqDataInfo *requestInfo, int active)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
     g_callMockData.lteImsSwitchStatus = active;
-    if (active == 1) {
-        ProactiveReportImsStatus();
-    }
-
     RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnCallReport);
 }
 
@@ -772,14 +761,11 @@ void ReqGetUssdCusd(const ReqDataInfo *requestInfo)
 void ReqGetMute(const ReqDataInfo *requestInfo)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    RespSuccessWithData(HRIL_SIM_SLOT_0, requestInfo, OnCallReport, (const uint8_t *)&g_callMockData.mute, sizeof(int));
 }
 
 void ReqSetMute(const ReqDataInfo *requestInfo, int mute)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    g_callMockData.mute = mute;
-    RespSuccessWithoutData(HRIL_SIM_SLOT_0, requestInfo, OnCallReport);
 }
 
 void ReqGetEmergencyCallList(const ReqDataInfo *requestInfo)

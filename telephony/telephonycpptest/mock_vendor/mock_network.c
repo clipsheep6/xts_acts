@@ -584,18 +584,6 @@ void ReqGetImsRegStatus(const ReqDataInfo *requestInfo)
         (const uint8_t *)&g_networkMockData.imsRegStatusInfo, sizeof(HRilImsRegStatusInfo));
 }
 
-void ProactiveReportImsStatus(void)
-{
-    TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
-    int extInfo = 5;
-    g_networkMockData.imsRegStatusInfo.regInfo = SwitchDomain();
-    if (IsImsDomain()) {
-        g_networkMockData.imsRegStatusInfo.extInfo = extInfo;
-    }
-    NotifySuccessWithData(HRIL_SIM_SLOT_0, OnNetworkReport, HNOTI_NETWORK_IMS_REG_STATUS_UPDATED,
-        (const uint8_t *)&g_networkMockData.imsRegStatusInfo, sizeof(HRilImsRegStatusInfo));
-}
-
 void ReqGetRadioCapability(const ReqDataInfo *requestInfo)
 {
     TELEPHONY_LOGI("enter to [%{public}s]:%{public}d", __func__, __LINE__);
