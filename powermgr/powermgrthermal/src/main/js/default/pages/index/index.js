@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,25 +12,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-@Entry
-@Component
-struct hyperLink_testcase {
-  @State active: boolean = false
 
-  build() {
-    Column() {
-      Column() {
-        Hyperlink('https://developer.harmonyos.com/', 'Go to the developer website') {
-          Text("click to link to developer page")
-            .fontSize(30)
-        }.color("#008000")
-        .key('hyperlink1')
-      }.width('100%').margin({ top: 5 })
+import device from '@system.device';
+
+import {Core, ExpectExtend} from 'deccjsunit/index'
+
+const core = Core.getInstance();
+
+core.init()
+
+require('../../test/List.test')
+
+core.execute()
+
+export default {
+    data: {
+        title: "world",
+        width:0,
+        height: 0
+    },
+    onInit() {
+        device.getInfo({
+            success:(data) =>{
+                this.width = data.windowWidth;
+                this.height = data.windowHeight;
+            }
+        });
     }
-    .width(300)
-    .height(300)
-    .borderColor(Color.Pink)
-    .borderWidth(2)
-  }
 }
