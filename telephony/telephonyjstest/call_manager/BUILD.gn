@@ -16,6 +16,12 @@ import("//test/xts/tools/build/suite.gni")
 group("call_manager") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "call_manager_ims2_call:ActsCallManagerIms2CallTest" ]
+    deps = [
+      "call_manager_ims_restriction:ActsCallManagerImsRestrictionTest",
+      "call_manager_ims_transfer:ActsCallManagerImsTransferTest",
+      "call_manager_ims2_call:ActsCallManagerIms2CallTest",
+      #"call_manager_q6_performance:ActsCallManagerQ6PerformanceTest ",
+      #"call_manager_q6_reliability:ActsCallManagerQ6ReliabilityTest "
+    ]
   }
 }
