@@ -1,4 +1,18 @@
-// @ts-nocheck
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import sms from '@ohos.telephony.sms'
 import prompt from '@system.prompt'
 import router from '@system.router';
@@ -7,8 +21,6 @@ export default {
   data: {
     showLoading: true,
     lists:[]
-    // test data
-//    lists:[{shortMessage: {visibleMessageBody: '你好，信息'}, simMessageStatus: 5}, {shortMessage: {visibleMessageBody: '你好，信息'}, simMessageStatus: 1}]
   },
   onShow(){
     this.getAllMsg();
@@ -17,10 +29,9 @@ export default {
     console.log('getAllSimMessages begin');
     this.showLoading = true;
     try {
-      sms.getAllSimMessages(simObj.slotId_major).then((res)=>{
+      sms.getAllSimMessages(simObj.slotIdMajor).then((res)=>{
         this.showLoading = false;
         console.log("getAllSimMessages res"+JSON.stringify(res))
-        // prompt.showToast({message: '获取短信列表成功'});
         if(Object.prototype.toString.call(res) == "[object Array]"){
           this.lists = res;
         }else{
@@ -94,7 +105,7 @@ export default {
     let chapterPdu =  this.interceptionPdu(pduArr).pdu
     let smsc = this.interceptionPdu(pduArr).smsc
     let options ={
-      slotId:simObj.slotId_major,
+      slotId:simObj.slotIdMajor,
       msgIndex:currentIndex,
       pdu:chapterPdu,
       newStatus:newStatus,
@@ -154,11 +165,11 @@ export default {
     })
   },
   deleteMsg(currentIndex){
-    console.log("simObj.slotId_major: "+ simObj.slotId_major)
+    console.log("simObj.slotIdMajor: "+ simObj.slotIdMajor)
     console.log("currentIndex: "+currentIndex)
     this.showLoading = true;
     try {
-      sms.delSimMessage(simObj.slotId_major, currentIndex).then((res)=>{
+      sms.delSimMessage(simObj.slotIdMajor, currentIndex).then((res)=>{
         this.showLoading = false;
         console.log('delSimMessageInterface333 ');
         console.log('删除成功 ' + res + Date.now());

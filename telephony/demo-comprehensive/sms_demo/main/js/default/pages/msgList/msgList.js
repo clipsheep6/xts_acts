@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import router from '@system.router';
 export default {
   data: {
@@ -10,9 +25,6 @@ export default {
       console.log('smsList update')
       const list = this.$app.$def.data.smsList;
       console.log('list11:' + JSON.stringify(list));
-      // test data
-//      const list1 = [{visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，你好',smsType:'CDMA'}, {visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好你好'}, {visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，你好'}, {visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，你好'}, {visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，你好',smsType:'CDMA'}, {visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好你好',smsType:'CDMA'}]
-//      const list = [{visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，你好'}, {visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好短信内容，你好你好'}, {visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，你好'}, {visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，你好'}, {visibleRawAddress: '13212345565', visibleMessageBody: '短信内容，你好'}]
       return list || [];
     }
   }

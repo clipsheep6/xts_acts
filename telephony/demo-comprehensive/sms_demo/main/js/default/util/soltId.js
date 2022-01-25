@@ -1,5 +1,21 @@
-export const slotId_major = 0
-export const slotId_minor = 1
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+export const slotIdMajor = 0
+export const slotIdMinor = 1
 export const  mockData =['030891683108704705F26010A10196933423071083D508127091116141233C050003D505050039006500330062003900630037006100630064003100620032003700',
 '030891683108704705F26010A10196933423071083D5081270911161412316050003D50501301000570065004C0069006E006B3011FFFFFFFFFFFFFFFFFFFFFFFFFF',
 '030891683108704705F26010A10196933423071083D508127091116141238C050003D5050300490044FF1A00390038003500200033003800300020003600350037FF',
@@ -54,41 +70,41 @@ export function nextState(str){
   let nextState =  statusItem.nextStatus
   return  nextState
 }
-export const select_send_number = 0  //发送数字
-export const select_send_english = 1 //发送英文
-export const select_send_special = 2 //发送特殊字符
-export const select_send_chinese = 3 //发送中文
-export const select_send_longText = 4 // 发送长文本
+export const selectSendNumber = 0  //发送数字
+export const selectSendEnglish = 1 //发送英文
+export const selectSendSpecial = 2 //发送特殊字符
+export const selectSendChinese = 3 //发送中文
+export const selectSendlongText = 4 // 发送长文本
 
-export const SEND_SMS_SUCCESS = 0 //表示短信成功发送到了短信服务中心
-export const SEND_SMS_FAILURE_UNKNOWN = 1 //表示短信未发送到短信服务中心，失败原因未知
-export const SEND_SMS_FAILURE_RADIO_OFF = 2 //表示短信未发送到短信服务中心，失败原因是无线模块已关闭
-export const SEND_SMS_FAILURE_SERVICE_UNAVAILABLE = 3 //表示短信未发送到短信服务中心，失败原因是网络不可用
+export const sendSmsSuccess = 0 //表示短信成功发送到了短信服务中心
+export const sendSmsFailureUnknown = 1 //表示短信未发送到短信服务中心，失败原因未知
+export const sendSmsFailureRadioOff = 2 //表示短信未发送到短信服务中心，失败原因是无线模块已关闭
+export const sendSmsFailureServiceUnavailable = 3 //表示短信未发送到短信服务中心，失败原因是网络不可用
 
-export const NUMBER_CONTENT = '12345678910111213141516'
-export const ENGLISH_CONTENT = 'Do not know what to say, then say I love you China'
-export const SPECIAL_CONTENT = '`@#$%^&&*(){}[];//``,'
-export const CHINESE_CONTENT = '不知道说什么好,那就说句我爱你中国!'
-export const LONGTEXT_CONTENT = '1234567891011螳螂虾非常善于打埋伏。Do not know what to say强烈的攻击可将敌人置于死地。`@#$%^&&*(){}[];//``,披着钙化装甲的龙虾、立着脚尖悄然路过的螃蟹也常成为螳螂虾的攻击对象。螳螂虾两个锤节的猛烈打击可以毁坏蟹的神经系统并使它当场毙命。用它头下带倒刺的臂飞快地刺向食物，这一点颇像螳螂。有一种有掌节的螳螂虾更是厉害。有掌节的螳螂虾体重较轻，其保护装置已进化得能够抵御连续不断的打击，像古罗马的角斗，它们战斗时躲在由卷曲的尾巴做成的盾牌后面，以躲避敌人的攻击。螳螂虾极为好斗，而且常常表现得无所畏惧，它能抓住比它身体大10倍、重10倍的头足类动物。章鱼等头足类动物找到一个裂缝藏起来，三思后才敢接近螳螂虾的巢。鱼类是螳螂虾的主要敌人。在露天地带被抓住后，它们总要进行斗争，在猎手嘴里挣扎的螳螂虾很难咽下去，许多又被原封不动地吐了出来'
-export const CDMA_MODEL = 7  //发送短信设置网络制式CDMA
-export const GSM_MODEL = 1 //发送短信设置(获取)网络制式GSM
+export const numberContent = '12345678910111213141516'
+export const englistContent = 'Do not know what to say, then say I love you China'
+export const spacialContent = '`@#$%^&&*(){}[];//``,'
+export const chineseContent = '不知道说什么好,那就说句我爱你中国!'
+export const longTextContent = '1234567891011螳螂虾非常善于打埋伏。Do not know what to say强烈的攻击可将敌人置于死地。`@#$%^&&*(){}[];//``,披着钙化装甲的龙虾、立着脚尖悄然路过的螃蟹也常成为螳螂虾的攻击对象。螳螂虾两个锤节的猛烈打击可以毁坏蟹的神经系统并使它当场毙命。用它头下带倒刺的臂飞快地刺向食物，这一点颇像螳螂。有一种有掌节的螳螂虾更是厉害。有掌节的螳螂虾体重较轻，其保护装置已进化得能够抵御连续不断的打击，像古罗马的角斗，它们战斗时躲在由卷曲的尾巴做成的盾牌后面，以躲避敌人的攻击。螳螂虾极为好斗，而且常常表现得无所畏惧，它能抓住比它身体大10倍、重10倍的头足类动物。章鱼等头足类动物找到一个裂缝藏起来，三思后才敢接近螳螂虾的巢。鱼类是螳螂虾的主要敌人。在露天地带被抓住后，它们总要进行斗争，在猎手嘴里挣扎的螳螂虾很难咽下去，许多又被原封不动地吐了出来'
+export const cdmaModel= 7  //发送短信设置网络制式CDMA
+export const gsmModel = 1 //发送短信设置(获取)网络制式GSM
 export const simObj= {
-  slotId_major,
-  slotId_minor,
-  select_send_number,
-  select_send_english,
-  select_send_special,
-  select_send_chinese,
-  select_send_longText,
-  SEND_SMS_SUCCESS,
-  SEND_SMS_FAILURE_UNKNOWN,
-  SEND_SMS_FAILURE_RADIO_OFF,
-  SEND_SMS_FAILURE_SERVICE_UNAVAILABLE,
-  NUMBER_CONTENT,
-  ENGLISH_CONTENT,
-  SPECIAL_CONTENT,
-  CHINESE_CONTENT,
-  LONGTEXT_CONTENT,
-  CDMA_MODEL,
-  GSM_MODEL,
+  slotIdMajor,
+  slotIdMinor,
+  selectSendNumber,
+  selectSendEnglish,
+  selectSendSpecial,
+  selectSendChinese,
+  selectSendlongText,
+  sendSmsSuccess,
+  sendSmsFailureUnknown,
+  sendSmsFailureRadioOff,
+  sendSmsFailureServiceUnavailable,
+  numberContent,
+  englistContent,
+  spacialContent,
+  chineseContent,
+  longTextContent,
+  cdmaModel,
+  gsmModel,
 }

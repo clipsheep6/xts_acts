@@ -14,11 +14,6 @@
  */
 
 
-
-
-  
-
-
 export default {
 	props:{
 		callData: {

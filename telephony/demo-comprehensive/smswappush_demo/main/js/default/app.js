@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 import sms from '@ohos.telephony.sms'
 import Subscriber from '@ohos.commonevent';
 import router from '@system.router';
@@ -30,10 +46,10 @@ export default {
   installationSubscriberCallBack(err, jsonData){
     console.log('installationSubscriberCallBack get ');
     if (err.code == 0) {
-      console.log('==========================>installationSubscriberCallBack 1111111111');
-      console.log('==========================>SubscriberCallBack  callbackData = ' + JSON.stringify(jsonData));
-      console.log('==========================>SubscriberCallBack  callbackData = ' + jsonData.data);
-      console.log('==========================>SubscriberCallBack  parameters = ' + JSON.stringify(jsonData.parameters));
+      console.log('====>installationSubscriberCallBack 1111111111');
+      console.log('====>SubscriberCallBack  callbackData = ' + JSON.stringify(jsonData));
+      console.log('====>SubscriberCallBack  callbackData = ' + jsonData.data);
+      console.log('====>SubscriberCallBack  parameters = ' + JSON.stringify(jsonData.parameters));
       let innerData =  jsonData.parameters;
       const data = innerData.rawData;
       const numary = this.convertStrArray(data);
@@ -92,19 +108,8 @@ export default {
     });
   },
 
-
-//截取广播返回的带冒号的pdu，根据冒号截取成数组，保存到strArr
-  testSplitString(pdudata){
-    console.log('pdudata'+JSON.stringify(pdudata))
-    //    var strArr = pdudata.split(':');
-    var strArr = pdudata.pdus
-    console.log('testSplitString: '+strArr.length)
-    if (strArr.length > 0) {
-      this.testCreateMessage(protocol,strArr);
-    }
-  },
   convertStrArray(sourceStr) {
-    let wby = new String(sourceStr);
+    let wby = String(sourceStr);
     let length = wby.length;
     let isDouble = (length % 2) == 0;
     let halfSize = parseInt(length / 2);

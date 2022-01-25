@@ -18,7 +18,12 @@
 
   
 
-import callStateObj,{ CALL_STATUS_WAITING,CALL_STATUS_IDLE, getCallStateText, callStateTextMap } from '../../../common/constant/callStateConst.js';
+import callStateObj,
+{
+	CALL_STATUS_WAITING,
+	CALL_STATUS_IDLE,
+	getCallStateText,
+	callStateTextMap } from '../../../common/constant/callStateConst.js';
 
 import { hangUpCall } from '../../../model/callServiceProxy.js';
 
@@ -47,7 +52,6 @@ export default {
 				return Object.assign({}, { ...obj, ...item });
 			});
 			return arr.filter(v => v.callState !== CALL_STATUS_WAITING);
-
 		},
 		phoneNumber() {
 			return this.$item.accountNumber || '未知号码';

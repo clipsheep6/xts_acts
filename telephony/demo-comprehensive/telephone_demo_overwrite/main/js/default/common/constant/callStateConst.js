@@ -59,7 +59,8 @@ export const callStateTextMap = {
 	[CALL_STATUS_IDLE]: 'callIdle'
 }
 
-const callStateTxtList = [ '', 'callHold', 'dialing', 'partyIsRinging', '', 'thirdPartyCalls', 'hangUpCompleted', 'hangingUp', 'callIdle' ];
+const callStateTxtList = [ '', 'callHold', 'dialing', 'partyIsRinging', '',
+  'thirdPartyCalls', 'hangUpCompleted', 'hangingUp', 'callIdle' ];
 
 export const defaultCallData = {
 	callId: 0,

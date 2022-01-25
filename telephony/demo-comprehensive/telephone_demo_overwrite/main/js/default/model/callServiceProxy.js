@@ -21,7 +21,6 @@
  * */
 
 import call from "@ohos.telephony.call";
-//import sim from '@ohos.telephony.sim';
 
 /**
  * @param { Function } callBack
@@ -44,6 +43,7 @@ export function registerCallStateCallback(callBack) {
 		console.log('callui:@ohos.tel_call_manager_inner_api:call.on' + JSON.stringify(res));
 	});
 }
+
 /**
  * 拨打电话
  *  @param { Number } callId
@@ -94,7 +94,6 @@ export const rejectCall = (callId, isSendSms = false, msg = '') => {
  *  @returns Promise
  */
 export const hangUpCall = (callId) => {
-//	把callList 数据里面的通话中的状态的给挂断
 	return new Promise((resolve, reject) => {
 		call.hangup(callId).then(res => {
 			resolve(res);
@@ -163,9 +162,9 @@ export function registerCallEventCallback() {
 		call.registerCallEventCallback((err, callAttributeInfo) => {
 			if (err) {
 				reject(err)
-				console.log('callui:@ohos.tel_call_manager_inner_api:registerCallEventCallback' + JSON.stringify(err));
+				console.log('registerCallEventCallback err ' + JSON.stringify(err));
 			} else {
-				console.log('callui:@ohos.tel_call_manager_inner_api:registerCallEventCallback' + JSON.stringify(callAttributeInfo));
+				console.log('registerCallEventCallback' + JSON.stringify(callAttributeInfo));
 			}
 		})
 	});

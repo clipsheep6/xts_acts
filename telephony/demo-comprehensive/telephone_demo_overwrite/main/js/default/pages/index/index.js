@@ -1,5 +1,21 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 import callStateObj, { CALL_STATUS_IDLE, getCallStateText } from '../../common/constant/callStateConst.js';
-//import call from "@ohos.telephony.call";
+import call from "@ohos.telephony.call";
 
 export default {
   data: {
@@ -20,26 +36,30 @@ export default {
     callState() {
       const { callState } = this.callData;
       console.log('callState change computed' + new Date().getTime());
-      console.log("callState callList"+JSON.stringify(this.callList))
       this.stateTxt = getCallStateText(callState);
+      console.log(`this.callList:${this.callList.length}-- ${JSON.stringify(this.callList)}`);
+      console.log(`this.$app.callList: ${this.$app.callList.length}--${JSON.stringify(this.$app.callList)}`);
       return callState !== undefined ? callState : CALL_STATUS_IDLE;
+    },
+    telList() {
+      console.log('telList chagne: ' + this.$app.callList.length);
+      return this.$app.callList;
     }
   },
   onInit() {
     this.callData = this.$app.callData;
     this.callList = this.$app.callList;
-//    this.callData = {"accountNumber":"13360512473","accountId":0,"videoState":0,"startTime":1642836852,"isEcc":false,"callType":1,"callId":2,"callState":1,"conferenceState":0}
-//    this.callList = [{"accountNumber":"13360512473","accountId":0,"videoState":0,"startTime":1642836852,"isEcc":false,"callType":1,"callId":2,"callState":1,"conferenceState":0},{"accountNumber":"13312925572","accountId":0,"videoState":0,"startTime":0,"isEcc":false,"callType":1,"callId":3,"callState":1,"conferenceState":0}]
-//    this.$app.callManger.addCallBack(this.onCallStateChange.bind(this));
+    this.$app.callManger.addCallBack(this.onCallStateChange.bind(this));
   },
   onReady() {
     this.onCallStateChange(this.callData.callState, CALL_STATUS_IDLE);
   },
   onCallStateChange(newVal, oldVal) {
     console.log(`状态改变。。。 ${newVal}---${this.callStateTxt[newVal]}: ${Date.now()}`);
-//    if (this.callData.callState === callStateObj.CALL_STATUS_WAITING || this.callData.callState === callStateObj.CALL_STATUS_INCOMING) {
-//      this.isShowDailKeyboard = false;
-//    }
+
+    console.log(`this.callData ${JSON.stringify(this.callData)}`);
+    console.log(`状态改变 this.callList:${this.callList.length}-- ${JSON.stringify(this.callList)}`);
+    console.log(`状态改变 this.$app.callList: ${this.$app.callList.length}--${JSON.stringify(this.$app.callList)}`);
 
     this.$child('contactCard').onCallStateChange(newVal, oldVal);
     let timer = setTimeout(_ => {
@@ -57,13 +77,6 @@ export default {
 		this.inputValue += val;
     this.dialNum += val;
     console.log(this.inputValue);
-//		const codeBoxDom = this.$child('contactCard').$element('codeBox');
-//		if (codeBoxDom) {
-//			const obj = codeBoxDom.getBoundingClientRect();
-//			if (obj.left < 40) {
-//				this.inputValue = this.inputValue.substr(1);
-//			}
-//		}
 	},
   clearPhone() {
     this.inputValue = this.inputValue.substr(0, this.inputValue.length - 1);
@@ -89,9 +102,7 @@ export default {
         prompt.showToast({
           message: `设置${typeValue}通话失败 ${err.message}`
         })
-        return;
-      }
-      else{
+      } else {
         console.log(`setCallPreferenceMode value: ${value}`);
         if(!value){
           prompt.showToast({

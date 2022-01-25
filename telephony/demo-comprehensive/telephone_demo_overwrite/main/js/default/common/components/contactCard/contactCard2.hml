@@ -1,0 +1,74 @@
+<!--
+ /*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+
+
+
+
+ 
+
+
+ 
+
+<element name="call-list" src="../callList/callList.hml"></element>
+
+<div class="contact-card">
+    <div class="conference" style="flex-direction: column;" @click="userList" if="{{ isConference }}" >
+       <div style="align-items: center; margin-bottom: 15px;justify-content: center;">
+           <text style="color: white;width: 200px;height: 56px; font-size: 48px;line-height: 56px;align-items: center;" >视频会议</text>
+           <image src="../../../assets/picture/conference.png" style="width: 14px; height: 26px;margin-left: 10px;" ></image>
+       </div>
+        <div  class="time">
+            <div class="icon">
+                <text>HD</text>
+            </div>
+            <text>{{ callTimeList[0].callTime }}</text>
+        </div>
+    </div>
+    <div else class="informationBar">
+        <div if="{{(!kbCommand || (kbCommand && !isShowKeyboard)) && (callState === callStateObj.CALL_STATUS_WAITING || callList.length >= 2) }}">
+        <call-list call-List="{{ callList }}"
+                   call-time-list="{{ callTimeList }}"
+                   call-state="{{ callState }}">
+        </call-list>
+    </div>
+        <div if="{{ isShowCard || (kbCommand && isShowKeyboard) }}" style="flex-direction: column;" >
+        <div class="phone-num" id="codeBox" >
+            <text style="font-size: 52px;">{{ isShowKeyboard && kbCommand ? kbCommand : phoneNumber }}</text>
+        </div>
+        <div class="address" if="{{ !isShowKeyboard && callState !== callStateObj.CALL_STATUS_ALERTING }}">
+            <text>{{ address }} {{ simCardType }}</text>
+        </div>
+        <div class="call-state" if="{{ !isShowTime }}">
+            <div if="{{ callState === callStateObj.CALL_STATUS_DIALING}}">
+                <text>{{ callStateText }}</text>
+                <div class="points">
+                    <text>{{ pointText }}</text>
+                </div>
+            </div>
+<!--            <div else class="nullCharacter">-->
+<!--                <text>{{ callStateText }}</text>-->
+<!--            </div>-->
+        </div>
+        <div else class="time">
+            <div class="icon">
+                <text>HD</text>
+            </div>
+            <text>{{ callTimeList[0].callTime }}</text>
+        </div>
+    </div>
+    </div>
+</div>

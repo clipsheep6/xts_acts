@@ -23,7 +23,7 @@
 <div class="list-wrap">
     <div class="list-item" for="{{ list }}">
         <div class="left" >
-            <text class="color:blue">{{ phoneNumber }}</text>
+            <text>{{ phoneNumber }}</text>
         </div>
         <div class="right">
             <div if="{{ $item.callState === callStateObj.CALL_STATUS_ACTIVE }}">

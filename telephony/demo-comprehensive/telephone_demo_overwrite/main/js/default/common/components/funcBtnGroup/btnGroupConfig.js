@@ -108,7 +108,7 @@ function addIconUrl(arr) {
 	const regExp = /^icon.*.*Url$/;
 	arr.forEach(item => {
 		for(let key in item) {
-			if (item.hasOwnProperty(key) && regExp.test(key)) {
+			if (regExp.test(key)) {
 				item[key] = `${baseUrl}${item[key]}.png`;
 			}
 		}

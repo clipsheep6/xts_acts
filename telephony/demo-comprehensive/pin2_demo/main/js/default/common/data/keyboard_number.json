@@ -1,0 +1,329 @@
+{
+  "fun": [
+    {
+      "icon": false,
+      "key": "switchInput",
+      "lowerCaseValue": "abc",
+      "styleClass": "fun",
+      "type": "fun",
+      "value": "abc"
+    },
+    {
+      "icon": true,
+      "key": "lastFocus",
+      "lowerCaseValue": "common/images/dbm_func_key_focus_left.png",
+      "styleClass": "fun",
+      "type": "fun",
+      "value": "common/images/dbm_func_key_focus_left.png"
+    },
+    {
+      "icon": true,
+      "key": "space",
+      "lowerCaseValue": "common/images/dbm_func_key_space.png",
+      "styleClass": "item-punctuation-space",
+      "type": "inputPunctuation",
+      "value": "common/images/dbm_func_key_space.png"
+    },
+    {
+      "icon": true,
+      "key": "nextFocus",
+      "lowerCaseValue": "common/images/dbm_func_key_focus_right.png",
+      "styleClass": "bottom-fun",
+      "type": "fun",
+      "value": "common/images/dbm_func_key_focus_right.png"
+    },
+    {
+      "icon": true,
+      "key": "enter",
+      "lowerCaseValue": "common/images/dbm_func_key_enter.png",
+      "styleClass": "item-punctuation-enter",
+      "type": "fun",
+      "value": "common/images/dbm_func_key_enter.png"
+    }
+  ],
+  "number": [
+    {
+      "icon": false,
+      "lowerCaseValue": "1",
+      "styleClass": "input",
+      "type": "inputNumber",
+      "value": "1"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "2",
+      "styleClass": "input",
+      "type": "inputNumber",
+      "value": "2"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "3",
+      "styleClass": "input",
+      "type": "inputNumber",
+      "value": "3"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "4",
+      "styleClass": "input",
+      "type": "inputNumber",
+      "value": "4"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "5",
+      "styleClass": "input",
+      "type": "inputNumber",
+      "value": "5"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "6",
+      "styleClass": "input",
+      "type": "inputNumber",
+      "value": "6"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "7",
+      "styleClass": "input",
+      "type": "inputNumber",
+      "value": "7"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "8",
+      "styleClass": "input",
+      "type": "inputNumber",
+      "value": "8"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "9",
+      "styleClass": "input",
+      "type": "inputNumber",
+      "value": "9"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": ".",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "."
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "0",
+      "styleClass": "input",
+      "type": "inputNumber",
+      "value": "0"
+    },
+    {
+      "icon": true,
+      "key": "delete",
+      "lowerCaseValue": "common/images/dbm_func_key_del.png",
+      "styleClass": "fun",
+      "type": "fun",
+      "value": "common/images/dbm_func_key_del.png"
+    }
+  ],
+  "punctuation": [
+    {
+      "icon": false,
+      "lowerCaseValue": ",",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": ","
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": ",",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": ";"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "?",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "?"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": ";",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "!"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "'",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "'"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": ":",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": ":"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "(",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "("
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": ")",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": ")"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "[",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "["
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "]",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "]"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "{",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "{"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "}",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "}"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "+",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "+"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "-",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "-"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "*",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "*"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "/",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "/"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "~",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "~"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "#",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "#"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "$",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "$"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "%",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "%"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "^",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "^"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "&",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "&"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "_",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "_"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": ""
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "|",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "|"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "\\",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "\\"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "/",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "/"
+    },
+    {
+      "icon": false,
+      "lowerCaseValue": "|",
+      "styleClass": "input",
+      "type": "inputPunctuation",
+      "value": "|"
+    }
+  ]
+}

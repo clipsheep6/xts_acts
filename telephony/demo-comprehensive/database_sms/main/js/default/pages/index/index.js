@@ -1,7 +1,23 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import prompt from '@system.prompt';
 import featureAbility from '@ohos.ability.featureAbility';
 import ohosDataAbility from '@ohos.data.dataability';
-const URI_MESSAGE_LOG = "dataability:///com.ohos.smsmmsability";
+const urlMessageLog = "dataability:///com.ohos.smsmmsability";
+
 // JS公共常量
 
 let message_info = {
@@ -25,7 +41,6 @@ let message_info = {
     is_subsection:'is_subsection',
     session_id:'session_id',
     group_id:'group_id',
-    //        mms_protocol_id:'mms_protocol_id',
     is_sender:'is_sender',
 }
 export default {
@@ -66,7 +81,7 @@ export default {
         console.log('queryMessageDetail param:' + JSON.stringify(actionData));
         try {
             var dataAbilityHelper = await featureAbility.getDataAbilityHelper(
-                URI_MESSAGE_LOG
+                urlMessageLog
             );
             console.log('dataAbilityHelper create: ' + JSON.stringify(dataAbilityHelper));
             //返回的数据集字段
@@ -91,14 +106,12 @@ export default {
                 message_info.is_subsection,
                 message_info.session_id,
                 message_info.group_id,
-                //            message_info.mms_protocol_id,
                 message_info.is_sender,
             ];
             //根据thradId获取短信详情
             //查询条件
             let condition = new ohosDataAbility.DataAbilityPredicates();
-            //        condition.equalTo(message_info.session_id, actionData.sessionId);
-            let managerUri = URI_MESSAGE_LOG + '/sms_mms/sms_mms_info';
+            let managerUri = urlMessageLog + '/sms_mms/sms_mms_info';
             dataAbilityHelper.query(managerUri, resultColumns, condition).then(resultSet => {
                 prompt.showToast({message: '查询成功'});
                 let resultList = [];
@@ -124,7 +137,6 @@ export default {
                     result.isSubsection = resultSet.getString(17);
                     result.sessionId = resultSet.getString(18);
                     result.groupId = resultSet.getString(19);
-                    //              result.mmsProtocolId = resultSet.getString(20);
                     result.isSender = resultSet.getString(20);
                     console.log('queryMessageDetail result:' + JSON.stringify(result));
                     resultList.push(result);
@@ -144,7 +156,7 @@ export default {
     async insertMessageDetail(actionData, callback) {
         /* 获取DataAbilityHelper对象 */
         var dataAbilityHelper = await featureAbility.getDataAbilityHelper(
-            URI_MESSAGE_LOG
+            urlMessageLog
         );
         console.log('dataAbilityHelper 22' + JSON.stringify(dataAbilityHelper));
         var stringValue = {
@@ -169,7 +181,7 @@ export default {
             "group_id": 1
         };
         /* Promise 形式调用 */
-        let managerUri = URI_MESSAGE_LOG + '/sms_mms/sms_mms_info';
+        let managerUri = urlMessageLog + '/sms_mms/sms_mms_info';
         dataAbilityHelper.insert(managerUri, stringValue).then(data => {
             console.log('insertMessageDetail, success:' + data);
             if(data){
@@ -187,17 +199,16 @@ export default {
         console.log('updateLock , actionData = ' + JSON.stringify(actionData));
         //锁定信息
         var dataAbilityHelper = await featureAbility.getDataAbilityHelper(
-            URI_MESSAGE_LOG
+            urlMessageLog
         );
         //删除短信根据group_ids删除
         var msgIds = actionData.msgIds;
         var condition = new ohosDataAbility.DataAbilityPredicates();
-//        condition.in(message_info.group_id, actionData.groupIds);
         condition.in(message_info.msg_id, msgIds);
         var stringValue = {
             "is_lock": actionData.hasLock,
         };
-        let managerUri = URI_MESSAGE_LOG + '/sms_mms/sms_mms_info';
+        let managerUri = urlMessageLog + '/sms_mms/sms_mms_info';
         dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
             console.log('updateLock success! data = ' + JSON.stringify(data));
             let code = JSON.stringify(data)
@@ -244,13 +255,13 @@ export default {
 //    接口参数
     async deleteInter(actionData){
         var dataAbilityHelper = await featureAbility.getDataAbilityHelper(
-            URI_MESSAGE_LOG
+            urlMessageLog
         );
         //删除短信根据msg_ids删除
         var msgIds = actionData.msgIds;
         var condition = new ohosDataAbility.DataAbilityPredicates();
         condition.in(message_info.msg_id, msgIds);
-        let managerUri = URI_MESSAGE_LOG + '/sms_mms/sms_mms_info';
+        let managerUri = urlMessageLog + '/sms_mms/sms_mms_info';
         dataAbilityHelper.delete(managerUri, condition).then((data)=>{
             console.log('deleteMessageByIds success! data = ' + JSON.stringify(data));
             let code = JSON.stringify(data)
@@ -270,7 +281,7 @@ export default {
         console.log('updateCollect , actionData = ' + JSON.stringify(actionData));
         //锁定信息
         var dataAbilityHelper = await featureAbility.getDataAbilityHelper(
-            URI_MESSAGE_LOG
+            urlMessageLog
         );
         //删除短信根据group_ids删除
         var msgIds = actionData.msgIds;
@@ -280,7 +291,7 @@ export default {
             "is_collect": actionData.hasCollect,
         };
         console.log('updateCollect-stringValue'+JSON.stringify(stringValue))
-        let managerUri = URI_MESSAGE_LOG + '/sms_mms/sms_mms_info';
+        let managerUri = urlMessageLog + '/sms_mms/sms_mms_info';
         dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
             console.log('updateCollect success! data = ' + JSON.stringify(data));
             let code = JSON.stringify(data)

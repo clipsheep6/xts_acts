@@ -28,6 +28,7 @@ export default class CallDataManager {
 	constructor(callList) {
 		this.callList = callList;
 	}
+
 	update(callData) {
 		const { callState, callId } = callData;
 		if (this.callList.every(v => v.callId !== callId)) {
@@ -36,12 +37,9 @@ export default class CallDataManager {
 			const targetObj = this.callList.find(v => v.callId === callId);
 			Object.assign(targetObj, { ...callData });
 		}
-		console.log("CallDataManager callData"+JSON.stringify(callData))
 
 		if (callState === CALL_STATUS_DISCONNECTED) {
 			if (this.callList.length === 1) {
-//				app.terminate();
-//				this.callList = [];
 				this.removeCallById(callId)
 			} else {
 				this.removeCallById(callId)
@@ -54,9 +52,7 @@ export default class CallDataManager {
 	}
 
 	removeCallById(callId) {
-		console.log('移除removeCallById'+callId)
 		const index = this.callList.findIndex(v => v.callId === callId);
 		this.callList.splice(index, 1);
-		console.log('removeCallById this.callList'+JSON.stringify(callList))
 	}
 }

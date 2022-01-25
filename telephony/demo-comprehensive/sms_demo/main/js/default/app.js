@@ -1,36 +1,33 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 import sms from '@ohos.telephony.sms'
 import Subscriber from '@ohos.commonevent';
 import router from '@system.router';
 import {smsFormat} from './util/constantAdd.js';
 
 const EventConstants = {
-//  EVENT_PACKAGE_ADDED : "usual.event.PACKAGE_ADDED",
-//  EVENT_PACKAGE_CHANGED : "usual.event.PACKAGE_CHANGED",
-//  EVENT_PACKAGE_REMOVED : "usual.event.PACKAGE_REMOVED",
   EVENT_SMS_RECEIVE : "usual.event.SMS_RECEIVE_COMPLETED",
   EVENT_SOS_BROADCAST:"usual.event.SMS_EMERGENCY_CB_RECEIVE_COMPLETED",
   EVENT_NORMAL_BROADCAST:"usual.event.SMS_CB_RECEIVE_COMPLETED"
 }
 
-/*
-* //紧急小区广播类型 Action
-//旧
-ohos.action.telephonySmsETWSCBReceiveFinished
-//新
-usual.event.telephony.SMS_EMERGENCY_CB_RECEIVE_COMPLETED
-
-//商用小区广播类型 Action
-//旧
-ohos.action.telephonySmsCBReceiveFinished
-//新
-usual.event.telephony.SMS_CB_RECEIVE_COMPLETED
-*/
 let mCommonEventSubscriber = null;
 let mCommonEventSubscribeInfo = {
   events: [
-//    EventConstants.EVENT_PACKAGE_ADDED,
-//  EventConstants.EVENT_PACKAGE_CHANGED,
-//  EventConstants.EVENT_PACKAGE_REMOVED,
   EventConstants.EVENT_SMS_RECEIVE,
   EventConstants.EVENT_SOS_BROADCAST,
   EventConstants.EVENT_NORMAL_BROADCAST
@@ -110,7 +107,6 @@ export default {
 //截取广播返回的带冒号的pdu，根据冒号截取成数组，保存到strArr
   testSplitString(protocol,pdudata){
     console.log('pdudata'+JSON.stringify(pdudata))
-    //    var strArr = pdudata.split(':');
     var strArr = pdudata.pdus
     console.log('testSplitString: '+strArr.length)
     if (strArr.length > 0) {

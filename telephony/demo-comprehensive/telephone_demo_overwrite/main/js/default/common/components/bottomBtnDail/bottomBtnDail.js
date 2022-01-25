@@ -43,10 +43,6 @@ export default {
 		showKeyboard: false,
 		isSpeaker: false
 	},
-//	clickShowHandle() {
-//		this.showKeyboard = !this.showKeyboard;
-//		this.$emit('showKeyboard', this.showKeyboard);
-//	},
 	delPhone() {
 		this.$emit('deltel');
 	},

@@ -7,7 +7,7 @@
 
 <div class="container">
   <div style="height: 70px; position: fixed; top: 0;" >
-    <text style="font-size: 22px; color: red;"  >当前状态 {{ callData.callState }} --{{ callStateTxt[callData.callState] }}</text>
+    <text style="font-size: 22px; color: red;"  >当前状态 {{ callData.callState }} --{{ callStateTxt[callData.callState] }}--calllist{{callList.length}}</text>
     <div>
       <button @click="setImsMode(0)" >设置为CS域</button>
       <button @click="setImsMode(3)" >设置为IMS域</button>
@@ -22,69 +22,46 @@
                   call-List="{{ callList }}">
     </contact-card>
   </div>
-
-  <div if="{{callData.callState == callStateObj.CALL_STATUS_INCOMING || callData.callState == callStateObj.CALL_STATUS_WAITING}}">
-  <!--  来电 begin-->
-    <div  class="menu-wrap" >
-      <incoming-com call-data="{{ callData }}" @show-keyboard="showKeyboard"></incoming-com>
-    </div>
-  <!--  来电 end-->
-  </div>
-<!--  其他状态start-->
-  <div if="{{callData.callState == callStateObj.CALL_STATUS_ACTIVE || callData.callState == callStateObj.CALL_STATUS_HOLDING ||callData.callState == callStateObj.ALL_STATUS_DIALING ||callData.callState == callStateObj.CALL_STATUS_ALERTING}}"  class="menu-wrap-board">
-    <div if="{{ isShowKeyboard }}" class="keyboard-warp">
+<!--  拨号盘 begin-->
+<!--  1、应用初始化时，2、点击添加通话时 3 挂断，已没有通话时 显示拨号盘-->
+<!--  <div class="menu-wrap-board" if="{{ isShowDailKeyboard || callData.callState === callStateObj.CALL_STATUS_DISCONNECTED || callData.callState === callStateObj.CALL_STATUS_IDLE }}" >-->
+  <div class="menu-wrap-board" if="{{callList.length ==0}}">
+    <div class="keyboard-warp">
       <key-board @cell-handle="cellClick"
                  call-data="{{ callData }}"></key-board>
     </div>
-    <div else class="func-btn-group-wrap">
-      <func-btn-group  id="funcBtnGroup"
-                       call-data="{{ callData }}"
-                       call-List="{{ callList }}"></func-btn-group>
-    </div>
     <div class="bottom-btn" >
-      <bottom-button @show-keyboard="showKeyboard"
-                     call-data="{{ callData }}" tel-number="{{inputValue}}" @deltel="clearPhone"></bottom-button>
+      <dial-btn @showdail="showdail"
+                call-data="{{ callData }}"
+                tel-number="{{inputValue}}"
+                @deltel="clearPhone">
+      </dial-btn>
     </div>
   </div>
-<!--  其他状态end-->
-  <div else>
-  <!--  拨号盘 begin-->
-  <!--  1、应用初始化时，2、点击添加通话时 3 挂断，已没有通话时 显示拨号盘-->
-  <!--  <div class="menu-wrap-board" if="{{ isShowDailKeyboard || callData.callState === callStateObj.CALL_STATUS_DISCONNECTED || callData.callState === callStateObj.CALL_STATUS_IDLE }}" >-->
-    <div class="menu-wrap-board">
-      <div class="keyboard-warp">
+<!--  拨号盘 end-->
+  <block else>
+<!--  <block if="{{ callData.callState !== callStateObj.CALL_STATUS_DISCONNECTED && callData.callState !== callStateObj.CALL_STATUS_IDLE}}">-->
+    <div if="{{ callData.callState !== callStateObj.CALL_STATUS_WAITING && callData.callState !== callStateObj.CALL_STATUS_INCOMING }}" class="menu-wrap-board">
+      <div if="{{ isShowKeyboard }}" class="keyboard-warp">
         <key-board @cell-handle="cellClick"
                    call-data="{{ callData }}"></key-board>
       </div>
+      <div else class="func-btn-group-wrap">
+        <func-btn-group  id="funcBtnGroup"
+                         call-data="{{ callData }}"
+                         call-List="{{ callList }}"></func-btn-group>
+      </div>
       <div class="bottom-btn" >
-        <dial-btn @showdail="showdail"
-                  call-data="{{ callData }}"
-                  tel-number="{{inputValue}}"
-                  @deltel="clearPhone">
-        </dial-btn>
+        <bottom-button @show-keyboard="showKeyboard"
+                       call-data="{{ callData }}" tel-number="{{inputValue}}" @deltel="clearPhone"></bottom-button>
       </div>
     </div>
-  <!--  拨号盘 end-->
-  </div>
-
-<!--  <block if="{{ callData.callState !== callStateObj.CALL_STATUS_DISCONNECTED && callData.callState !== callStateObj.CALL_STATUS_IDLE}}">-->
-<!--    <div if="{{ callData.callState !== callStateObj.CALL_STATUS_WAITING && callData.callState !== callStateObj.CALL_STATUS_INCOMING }}" class="menu-wrap-board">-->
-<!--      <div if="{{ isShowKeyboard }}" class="keyboard-warp">-->
-<!--        <key-board @cell-handle="cellClick"-->
-<!--                   call-data="{{ callData }}"></key-board>-->
-<!--      </div>-->
-<!--      <div else class="func-btn-group-wrap">-->
-<!--        <func-btn-group  id="funcBtnGroup"-->
-<!--                         call-data="{{ callData }}"-->
-<!--                         call-List="{{ callList }}"></func-btn-group>-->
-<!--      </div>-->
-<!--      <div class="bottom-btn" >-->
-<!--        <bottom-button @show-keyboard="showKeyboard"-->
-<!--                       call-data="{{ callData }}" tel-number="{{inputValue}}" @deltel="clearPhone"></bottom-button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </block>-->
-
+  <!--  来电 begin-->
+    <div else class="menu-wrap" >
+      <incoming-com call-data="{{ callData }}" @show-keyboard="showKeyboard"></incoming-com>
+    </div>
+  <!--  来电 end-->
+  </block>
 
   <!--  无卡、无网络提示框 begin-->
   <dialog id="msgDialog" class="dialog-box">

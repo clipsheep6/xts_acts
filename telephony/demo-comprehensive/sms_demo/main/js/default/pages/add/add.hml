@@ -1,9 +1,6 @@
 <element src="../../common/component/back/back.hml" name="goback"></element>
 <element src="../../common/component/loading/loading.hml" name='loading'></element>
 <div class="add">
-<!--    <block if="showLoading">-->
-<!--        <loading></loading>-->
-<!--    </block>-->
     <goback></goback>
     <div class="main">
         <div class="main-section">

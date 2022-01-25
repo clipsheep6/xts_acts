@@ -39,30 +39,36 @@
         </div>
     </div>
     <div else class="informationBar">
-        <div if="{{(!kbCommand || (kbCommand && !isShowKeyboard)) && (callList.length >= 2) }}">
+        <div if="{{(!kbCommand || (kbCommand && !isShowKeyboard)) && (callState === callStateObj.CALL_STATUS_WAITING || callList.length >= 2) }}">
             <call-list call-List="{{ callList }}"
                        call-time-list="{{ callTimeList }}"
                        call-state="{{ callState }}">
             </call-list>
         </div>
         <div if="{{ isShowCard || (kbCommand && isShowKeyboard) }}" style="flex-direction: column;" >
-        <div class="phone-num" id="codeBox" >
-            <text style="font-size: 52px;">{{ isShowKeyboard && kbCommand ? kbCommand : phoneNumber }}</text>
-        </div>
-        <div class="call-state" if="{{ !isShowTime }}">
-            <div if="{{ callState === callStateObj.CALL_STATUS_DIALING}}">
-                <text>{{ callStateText }}</text>
-                <div class="points">
-                    <text>{{ pointText }}</text>
+            <div class="phone-num" id="codeBox" >
+                <text style="font-size: 52px;">{{ isShowKeyboard && kbCommand ? kbCommand : phoneNumber }}</text>
+            </div>
+            <div class="address" if="{{ !isShowKeyboard && callState !== callStateObj.CALL_STATUS_ALERTING }}">
+                <text>{{ address }} {{ simCardType }}</text>
+            </div>
+            <div class="call-state" if="{{ !isShowTime }}">
+                <div if="{{ callState === callStateObj.CALL_STATUS_DIALING}}">
+                    <text>{{ callStateText }}</text>
+                    <div class="points">
+                        <text>{{ pointText }}</text>
+                    </div>
                 </div>
+    <!--            <div else class="nullCharacter">-->
+    <!--                <text>{{ callStateText }}</text>-->
+    <!--            </div>-->
+            </div>
+            <div else class="time">
+                <div class="icon">
+                    <text>HD</text>
+                </div>
+                <text>{{ callTimeList[0].callTime }}</text>
             </div>
         </div>
-        <div else class="time">
-            <div class="icon">
-                <text>HD</text>
-            </div>
-            <text>{{ callTimeList[0].callTime }}</text>
-        </div>
-    </div>
     </div>
 </div>

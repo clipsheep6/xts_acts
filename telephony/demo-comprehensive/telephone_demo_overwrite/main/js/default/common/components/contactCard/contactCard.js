@@ -49,10 +49,6 @@ export default {
 		}
 	},
 	data: {
-		/*
-		It is written here because phase I does not have this dependency.
-		Write it first for the time being
-		*/
 		callStateObj,
 		address: '广东深圳',
 		simCardType: '移动',
@@ -67,6 +63,7 @@ export default {
 			return this.callData.callState;
 		},
 		phoneNumber() {
+			console.log(`this.callData.accountNumber: ${this.callData.accountNumber}`);
 			return formatPhoneNum(this.callData.accountNumber) || '未知号码';
 		},
 		isShowTime() {
@@ -97,7 +94,7 @@ export default {
 		}, oneThousandMilliseconds);
 	},
 	onCallStateChange(newVal, oldVal) {
-		console.log('onCallStateChange-callList'+this.callList)
+		console.log(`contactCard onCallStateChange this.callData ${JSON.stringify(this.callData)}`);
 		const { callId } = this.callData;
 		const key = getCallStateText(newVal) || '';
 		this.callStateText = key ? this.$t(`strings.${key}`) : '';

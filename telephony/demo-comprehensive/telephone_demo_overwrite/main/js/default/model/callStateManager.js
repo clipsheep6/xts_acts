@@ -18,7 +18,7 @@
 
 
 
-import {CALL_STATUS_DISCONNECTED, CALL_STATUS_DISCONNECTING} from '../common/constant/callStateConst.js'
+import {CALL_STATUS_DISCONNECTED, CALL_STATUS_DISCONNECTING, CALL_STATUS_ACTIVE} from '../common/constant/callStateConst.js'
 
 export default class CallStateManager {
 	constructor(callData) {
@@ -26,15 +26,28 @@ export default class CallStateManager {
 	}
 
 	update(data, callList) {
-		console.log("CallStateManager" + JSON.stringify(callList))
-		console.log("CallStateManager length" + JSON.stringify(callList).length)
 		console.log('CallStateManager update' + JSON.stringify(data) + new Date().getTime());
+		console.log('callList length: ' + callList.length);
+		console.log('callList: ' + JSON.stringify(callList));
 		if (callList.length >= 2) {
+			console.log('callList length >=2');
 			if (data.callState !== CALL_STATUS_DISCONNECTED || data.callState !== CALL_STATUS_DISCONNECTING) {
 				Object.assign(this.callData, { ...data });
+			} else {
+				console.log(`data.callState: ${data.callState}`);
+				const curdata = callList.find((item) => {
+					return item.callState === CALL_STATUS_ACTIVE
+				})
+				console.log(`curdata: ${JSON.stringify(curdata)}`);
+				Object.assign(this.callData, { ...curdata });
 			}
 		} else {
-			Object.assign(this.callData, { ...data });
+			console.log('callList length <2');
+			if (callList.length === 1) {
+				Object.assign(this.callData, { ...callList[0] });
+			} else {
+				Object.assign(this.callData, { ...data });
+			}
 		}
 	}
 }

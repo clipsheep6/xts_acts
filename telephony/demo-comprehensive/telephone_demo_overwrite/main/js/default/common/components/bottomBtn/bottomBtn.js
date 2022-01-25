@@ -51,7 +51,7 @@ export default {
   	this.isSpeaker = !this.isSpeaker;
   },
 	onHangUp() {
-		console.log(`状态改变。。。onHangUp 点击挂断 : ${Date.now()}`);
+		console.log(`状态改变。。。onHangUp 点击挂断 ${JSON.stringify(this.callData)} : ${Date.now()}`);
 		hangUpCall(this.callData.callId);
 	},
 	delPhone() {

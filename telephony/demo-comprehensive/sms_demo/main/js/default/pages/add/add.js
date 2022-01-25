@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import sms from '@ohos.telephony.sms'
 import router from '@system.router';
 import prompt from '@system.prompt';
@@ -14,7 +29,6 @@ export default {
     fourthContent:[],
     tabContentIndex:0,
     selectedPdu:'',
-    showLoading: false
   },
   onShow(){
     this.smsStateArr = smsState
@@ -57,21 +71,18 @@ export default {
     }
     let currentIns = this.dealStatus(this.currentIndex);
     let options ={
-      slotId : simObj.slotId_major,
+      slotId : simObj.slotIdMajor,
       smsc : this.smscText,
       pdu : this.selectedPdu,
       status :currentIns,
     }
     console.log('addPduMsg options: ' + JSON.stringify(options))
-//    this.showLoading = true;
     sms.addSimMessage(options,(err,result)=>{
-      this.showLoading = false;
       if(err){
         prompt.showToast({
           message: '添加失败'
         })
         console.log("addSimMessage err"+err)
-        return
       }else{
         console.log("addSimMessage result"+result)
         if(!result){

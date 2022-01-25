@@ -1,31 +1,14 @@
 <div class="container">
-    <div class="header"><text>搜网功耗demo</text></div>
-    <div class="setRadio">
-        <text class="radio-text">飞行模式</text>
-        <div class="radio-switch">
-            <switch showtext="true" texton="开启" textoff="关闭" checked="{{!flightMode}}" @change="switchChange">
-            </switch>
-        </div>
+    <div class="header" >
+        <text class="title" >pin2/puk2解锁主页</text>
     </div>
-    <div class="standard">
-        <div class="desc">
-            <text class="descText">当前优选网络为：{{choiceValue}}</text>
-            <div class="descState">
-                <text class="descStateText">对应的中文描述状态为：</text>
-                <text class="sy_row" if="{{choiceValue == 1}}">GSM制式</text>
-                <text class="sy_row" elif="{{choiceValue == 2}}">WCDMA制式</text>
-                <text class="sy_row" elif="{{choiceValue == 3}}">LTE制式</text>
-                <text class="sy_row" else>其他网络制式</text>
+    <div class="list-wrap">
+        <div class="list-item" for="{{lists}}" @click="handleAction($item.action)">
+            <image class="item-icon"  src="{{$item.icon}}"></image>
+            <div class="item-content {{$idx === lists.length -1 ? 'noborder': '' }}" >
+                <text class="item-text">{{$item.title}}</text>
+                <image class="arrow"  src="/common/images/arrow.png" if="$item.goUri"></image>
             </div>
         </div>
-        <div class="standard_header"><text>选择优选制式</text></div>
-        <div class="standard-con">
-            <button class="buttons" type="capsule"  @click="choiceModel(1)">设置为GSM</button>
-            <button class="buttons" type="capsule"  @click="choiceModel(2)">设置为WCDMA</button>
-            <button class="buttons" type="capsule"  @click="choiceModel(3)">设置为LTE</button>
-        </div>
-    </div>
-    <div class="getObtain">
-        <button class="buttons" @click="getPreferenceModel">获取当前网络优选制式</button>
     </div>
 </div>

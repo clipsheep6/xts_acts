@@ -33,8 +33,6 @@ class CallManager{
 		this.callDataManager = null;
 		this.getInstance();
     this.addCallDataListenter();
-//		this.oldCallState = callData.callState;
-//    this.callStateChange = (newVal, oldVal) => {};
 	}
 
 	getInstance() {
@@ -49,13 +47,14 @@ class CallManager{
 	getCallData(data) {
 		this.callDataManager.update(data);
 		this.callStateManager.update(data, this.callList);
-		console.log("getCallData this.callList"+JSON.stringify(this.callList))
 		this.callStateChange(data.callState, this.oldCallState);
 		this.oldCallState = data.callState;
 	}
+
 	addCallBack(callBack) {
 		this.callStateChange = callBack
 	}
+
 }
 
 export default CallManager;

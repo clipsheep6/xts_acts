@@ -23,7 +23,8 @@
 
 
 import { btnGroupList, threePartyList } from './btnGroupConfig.js';
-import { CALL_STATUS_ACTIVE, CALL_STATUS_IDLE, CALL_STATUS_HOLDING, defaultCallData } from '../../../common/constant/callStateConst.js';
+import { CALL_STATUS_ACTIVE, CALL_STATUS_IDLE, CALL_STATUS_HOLDING,
+	defaultCallData } from '../../../common/constant/callStateConst.js';
 import { holdCall, unHoldCall, switchCall, combineConference } from '../../../model/callServiceProxy.js';
 import { formatTime } from '../../utils/utils.js';
 import clone from '../../utils/clone.js';
@@ -73,11 +74,6 @@ export default {
 		} else {
 			this.btnList.splice(1, 2, ...clone(this.btnGroupList).splice(1, 2));
 		}
-//		if (this.callList.length >= 2) {
-//			this.btnList.splice(1, 2, this.threePartyList);
-//		} else {
-//			this.btnList.splice(1, 2, this.btnGroupList.splice(1, 2));
-//		}
 		if (newVal === CALL_STATUS_ACTIVE || newVal === CALL_STATUS_HOLDING ) {
 			this.btnList.forEach(item => {
 				if(!['video', 'record'].includes(item.type)) {

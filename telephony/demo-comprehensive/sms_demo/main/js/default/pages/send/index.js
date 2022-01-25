@@ -1,3 +1,20 @@
+
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 import sms from '@ohos.telephony.sms'
 import radio from '@ohos.telephony.radio';
 import router from '@system.router';
@@ -58,7 +75,7 @@ export default{
     try{
       console.log("sendMessage-start:"+new Date().getTime())
       sms.sendMessage({
-        slotId:simObj.slotId_major,
+        slotId:simObj.slotIdMajor,
         destinationHost:this.recipientPerson,
         content:data,
         sendCallback : (err,result) => {
@@ -91,20 +108,20 @@ export default{
   //  处理用户选择按钮得函数
   dealSelect(state){
     switch(state){
-      case simObj.select_send_number:
-        this.sendMsgContent(simObj.NUMBER_CONTENT);
+      case simObj.selectSendNumber:
+        this.sendMsgContent(simObj.numberContent);
         break;
-      case simObj.select_send_english:
-        this.sendMsgContent(simObj.ENGLISH_CONTENT);
+      case simObj.selectSendEnglish:
+        this.sendMsgContent(simObj.englistContent);
         break;
-      case simObj.select_send_special:
-        this.sendMsgContent(simObj.SPECIAL_CONTENT);
+      case simObj.selectSendSpecial:
+        this.sendMsgContent(simObj.spacialContent);
         break;
-      case simObj.select_send_chinese:
-        this.sendMsgContent(simObj.CHINESE_CONTENT);
+      case simObj.selectSendChinese:
+        this.sendMsgContent(simObj.chineseContent);
         break;
-      case simObj.select_send_longText:
-        this.sendMsgContent(simObj.LONGTEXT_CONTENT);
+      case simObj.selectSendlongText:
+        this.sendMsgContent(simObj.longTextContent);
         break;
       default:
         prompt.showToast({
@@ -120,22 +137,22 @@ export default{
   dealCallBackFun(number){
     console.log("dealCallBackFun-number"+number)
     switch(number){
-      case simObj.SEND_SMS_SUCCESS:
+      case simObj.sendSmsSuccess:
         prompt.showToast({
           message: '短信成功发送到了短信服务中心'
         })
         break;
-      case simObj.SEND_SMS_FAILURE_UNKNOWN:
+      case simObj.sendSmsFailureUnknown:
         prompt.showToast({
           message: '表示短信未发送到短信服务中心，失败原因未知'
         })
         break;
-      case simObj.SEND_SMS_FAILURE_RADIO_OFF:
+      case simObj.sendSmsFailureRadioOff:
         prompt.showToast({
           message: '短信未发送到短信服务中心，失败原因是无线模块已关闭'
         })
         break;
-      case simObj.SEND_SMS_FAILURE_SERVICE_UNAVAILABLE:
+      case simObj.sendSmsFailureServiceUnavailable:
         prompt.showToast({
           message: '短信未发送到短信服务中心，失败原因是网络不可用'
         })
@@ -228,10 +245,10 @@ export default{
   },
   matchNetworkModel(data){
     switch(data){
-      case simObj.GSM_MODEL:
+      case simObj.gsmModel:
         this.choiceValue = 1
         break;
-      case simObj.CDMA_MODEL:
+      case simObj.cdmaModel:
         this.choiceValue = 7
       default:
         this.choiceValue = 1
