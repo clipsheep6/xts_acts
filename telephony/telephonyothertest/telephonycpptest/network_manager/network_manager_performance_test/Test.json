@@ -1,0 +1,22 @@
+
+{
+    "kits": [
+        {
+            "push": [
+                "NetworkManagerPerformanceTest->/data/telephonycpptest/NetworkManagerPerformanceTest"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/telephonycpptest/*"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "NetworkManagerPerformanceTest",
+        "runtime-hint": "10s",
+        "native-test-device-path": "/data/telephonycpptest"
+    },
+    "description": "Configuration NetworkManagerPerformanceTest basic Tests"
+}
