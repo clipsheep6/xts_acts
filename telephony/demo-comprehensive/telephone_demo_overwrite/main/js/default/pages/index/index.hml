@@ -1,0 +1,76 @@
+<element name="incoming-com" src="../../common/components/IncomingCom/IncomingCom.hml"></element>
+<element name="key-board" src="../../common/components/keyboard/keyboard.hml"></element>
+<element name="bottom-button" src="../../common/components/bottomBtn/bottomBtn.hml"></element>
+<element name="dial-btn" src="../../common/components/bottomBtnDail/bottomBtnDail.hml"></element>
+<element name="contact-card" src="../../common/components/contactCard/contactCard.hml"></element>
+<element name="func-btn-group" src="../../common/components/funcBtnGroup/funcBtnGroup.hml"></element>
+
+<div class="container">
+  <div style="height: 70px; position: fixed; top: 0;" >
+    <text style="font-size: 22px; color: red;"  >当前状态 {{ callData.callState }} --{{ callStateTxt[callData.callState] }}--calllist{{callList.length}}</text>
+    <div>
+      <button @click="setImsMode(0)" >设置为CS域</button>
+      <button @click="setImsMode(3)" >设置为IMS域</button>
+    </div>
+
+  </div>
+  <div class="card-wrap dial-num" >
+    <contact-card id="contactCard"
+                  call-data="{{ callData }}"
+                  is-show-keyboard="{{ !isShowKeyboard }}"
+                  kb-command="{{ inputValue }}"
+                  call-List="{{ callList }}">
+    </contact-card>
+  </div>
+<!--  拨号盘 begin-->
+<!--  1、应用初始化时，2、点击添加通话时 3 挂断，已没有通话时 显示拨号盘-->
+<!--  <div class="menu-wrap-board" if="{{ isShowDailKeyboard || callData.callState === callStateObj.CALL_STATUS_DISCONNECTED || callData.callState === callStateObj.CALL_STATUS_IDLE }}" >-->
+  <div class="menu-wrap-board" if="{{callList.length ==0}}">
+    <div class="keyboard-warp">
+      <key-board @cell-handle="cellClick"
+                 call-data="{{ callData }}"></key-board>
+    </div>
+    <div class="bottom-btn" >
+      <dial-btn @showdail="showdail"
+                call-data="{{ callData }}"
+                tel-number="{{inputValue}}"
+                @deltel="clearPhone">
+      </dial-btn>
+    </div>
+  </div>
+<!--  拨号盘 end-->
+  <block else>
+<!--  <block if="{{ callData.callState !== callStateObj.CALL_STATUS_DISCONNECTED && callData.callState !== callStateObj.CALL_STATUS_IDLE}}">-->
+    <div if="{{ callData.callState !== callStateObj.CALL_STATUS_WAITING && callData.callState !== callStateObj.CALL_STATUS_INCOMING }}" class="menu-wrap-board">
+      <div if="{{ isShowKeyboard }}" class="keyboard-warp">
+        <key-board @cell-handle="cellClick"
+                   call-data="{{ callData }}"></key-board>
+      </div>
+      <div else class="func-btn-group-wrap">
+        <func-btn-group  id="funcBtnGroup"
+                         call-data="{{ callData }}"
+                         call-List="{{ callList }}"></func-btn-group>
+      </div>
+      <div class="bottom-btn" >
+        <bottom-button @show-keyboard="showKeyboard"
+                       call-data="{{ callData }}" tel-number="{{inputValue}}" @deltel="clearPhone"></bottom-button>
+      </div>
+    </div>
+  <!--  来电 begin-->
+    <div else class="menu-wrap" >
+      <incoming-com call-data="{{ callData }}" @show-keyboard="showKeyboard"></incoming-com>
+    </div>
+  <!--  来电 end-->
+  </block>
+
+  <!--  无卡、无网络提示框 begin-->
+  <dialog id="msgDialog" class="dialog-box">
+    <div class="dialog-content">
+      <text style="font-size: 32px; margin-top: 48px;" >无法访问移动网络</text>
+      <div class="cancel-box" @click="cancel">
+        <text  style="font-size: 32px;color: #0A59F7;">知道了</text>
+      </div>
+    </div>
+  </dialog>
+ <!--  无卡、无网络提示框 end-->
+</div>

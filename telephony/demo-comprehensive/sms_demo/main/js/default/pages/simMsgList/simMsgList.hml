@@ -1,0 +1,47 @@
+<element name="nodata" src="../../common/component/nodata/nodata.hml"></element>
+<element src="../../common/component/back/back.hml" name="goback"></element>
+<element src="../../common/component/loading/loading.hml" name='loading'></element>
+<div class="simmsglist">
+  <goback></goback>
+  <div class="header-title">
+    <button class="btn" @click="getAllMsg">获取sim卡中的短信</button>
+  </div>
+  <div show="{{lists.length === 0}}" class="nodatawrap" >
+    <nodata></nodata>
+  </div>
+  <div show="{{lists.length > 0 }}">
+    <div class="list-context">
+      <block for="{{(index, value) in lists}}">
+        <div class="list-item" if="{{value.shortMessage.visibleMessageBody}}">
+          <div class="item-text">
+            <text class="text-desc">内容：{{value.shortMessage.visibleMessageBody}}</text>
+          </div>
+          <div class="item-status">
+            <block>
+              <text if="{{value.simMessageStatus == 1}}">当前状态： 已读</text>
+              <text elif="{{value.simMessageStatus == 3}}">当前状态：未读</text>
+              <text elif="{{value.simMessageStatus == 5}}">当前状态：已发送</text>
+              <text elif="{{value.simMessageStatus == 7}}">当前状态：未发送</text>
+              <text else>当前状态：未知状态</text>
+            </block>
+            <block>
+              <text if="{{value.simMessageStatus == 1}}">可改为： 未读</text>
+              <text elif="{{value.simMessageStatus == 3}}">可改为：已读</text>
+              <text elif="{{value.simMessageStatus == 5}}">可改为：未发送</text>
+              <text elif="{{value.simMessageStatus == 7}}">可改为：已发送</text>
+              <text else>当前状态：未知状态</text>
+            </block>
+          </div>
+          <div class="opt-btns" >
+            <button class="button warning" @click="modifyItem(index,value.shortMessage, value)">修改状态</button>
+            <button class="button btn-delete " @click="deleteItem(index,value.shortMessage)">删除</button>
+          </div>
+        </div>
+      </block>
+    </div>
+  </div>
+
+  <block if="showLoading">
+    <loading></loading>
+  </block>
+</div>

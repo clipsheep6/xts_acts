@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="header" >
+    <text class="title" >pin/puk 解锁修改主界面</text>
+  </div>
+  <div class="list-wrap">
+    <div class="list-item" for="{{lists}}" @click="handleAction($item.action)">
+      <image class="item-icon"  src="{{$item.icon}}"></image>
+      <div class="item-content {{$idx === lists.length -1 ? 'noborder': '' }}" >
+        <text class="item-text">{{$item.title}}</text>
+        <image class="arrow"  src="/common/images/arrow.png" if="$item.goUri"></image>
+      </div>
+    </div>
+  </div>
+  <div class="container simstate" >
+    <text class="state-txt" >当前sim卡状态：</text>
+    <text class="state" >{{simState}}</text>
+  </div>
+</div>

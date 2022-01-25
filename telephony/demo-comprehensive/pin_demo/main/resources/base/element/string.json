@@ -1,0 +1,12 @@
+{
+	"string":[
+		{
+			"name":"entry_MainAbility",
+			"value":"pin_demo_entry_MainAbility"
+		},
+		{
+			"name":"mainability_description",
+			"value":"JS_Empty Ability"
+		}
+	]
+}

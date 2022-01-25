@@ -1,0 +1,58 @@
+<element src="../../common/component/back/back.hml" name="goback"></element>
+<element src="../../common/component/loading/loading.hml" name='loading'></element>
+<div class="add">
+    <goback></goback>
+    <div class="main">
+        <div class="main-section">
+            <div class="section-title"><text>请选择短信状态以及对应的pdu</text></div>
+            <div class="select-msg-state">
+                <tabs class = "tabs" index="0" vertical="false" onchange="changeTab">
+                    <tab-bar class="tab-bar" mode="fixed">
+                        <text class="tab-text" for="{{(index,value) in smsStateArr}}">{{value.text}}</text>
+                    </tab-bar>
+                    <tab-content class="tabcontent" scrollable="true">
+                        <div class="item-content">
+                            <div class="item-title" for="{{(index,item) in firstContent}}">
+                                <div class="item-check"> <image src="{{item.img}}" style="object-fit:contain"  @click="completeEvent('firstContent',item.id)"></image></div>
+                                <div class="input">
+                                    <div class="chinaText"><text>{{item.text}}</text></div>
+                                    <div class="pduText"><text>pdu：{{item.value}}</text></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title" for="{{(index,item) in secondContent}}">
+                                <div class="item-check"> <image src="{{item.img}}" style="object-fit:contain" @click="completeEvent('secondContent',item.id)"></image></div>
+                                <div class="input">
+                                    <div class="chinaText"><text>{{item.text}}</text></div>
+                                    <div class="pduText"><text>pdu：{{item.value}}</text></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title" for="{{(index,item) in thirdContent}}">
+                                <div class="item-check"> <image src="{{item.img}}" style="object-fit:contain" @click="completeEvent('thirdContent',item.id)"></image></div>
+                                <div class="input">
+                                    <div class="chinaText"><text>{{item.text}}</text></div>
+                                    <div class="pduText"><text>pdu：{{item.value}}</text></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title" for="{{(index,item) in fourthContent}}">
+                                <div class="item-check"> <image src="{{item.img}}" style="object-fit:contain" @click="completeEvent('fourthContent',item.id)"></image></div>
+                                <div class="input">
+                                    <div class="chinaText"><text>{{item.text}}</text></div>
+                                    <div class="pduText"><text>pdu：{{item.value}}</text></div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab-content>
+                </tabs>
+            </div>
+        </div>
+    </div>
+    <div class="add-bottom">
+        <button class="bottom-btn" value="Capsule button" @click="addPduMsg">添加</button>
+    </div>
+</div>

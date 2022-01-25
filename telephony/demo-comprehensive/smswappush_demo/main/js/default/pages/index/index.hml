@@ -1,0 +1,27 @@
+<div class="msglist">
+  <div class="head" >
+    <text class="head-title" >彩信列表</text>
+  </div>
+  <div class="msg-list">
+    <div class="msg-item {{$idx === smsList.length -1 ? 'noborder': '' }}" for="{{smsList}}" >
+      <div class="msg-header">
+        <text class="msgtel">彩信类型:  {{$item.contentType}}</text>
+      </div>
+      <block if="{{$item.rawData}}">
+        <text class="msginfo msgtel">rawData: </text>
+        <text class="msginfo" >{{$item.rawData}} </text>
+      </block>
+      <div class="msg-header" if="{{$item.messageType}}">
+        <text class="msgtel">MessageType:  {{$item.messageType}}</text>
+      </div>
+      <block if="{{$item.mmsType}}">
+        <text class="msginfo msgtel">mmsType: </text>
+        <text class="msginfo" >{{$item.mmsType}} </text>
+      </block>
+      <block if="{{$item.attachment}}">
+        <text class="msginfo msgtel">attachment: </text>
+        <text class="msginfo">{{$item.attachment}}</text>
+      </block>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,338 @@
+[
+  {
+    "icon": false,
+    "lowerCaseValue": "1",
+    "styleClass": "input",
+    "type": "inputNumber",
+    "value": "1"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "2",
+    "styleClass": "input",
+    "type": "inputNumber",
+    "value": "2"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "3",
+    "styleClass": "input",
+    "type": "inputNumber",
+    "value": "3"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "4",
+    "styleClass": "input",
+    "type": "inputNumber",
+    "value": "4"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "5",
+    "styleClass": "input",
+    "type": "inputNumber",
+    "value": "5"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "6",
+    "styleClass": "input",
+    "type": "inputNumber",
+    "value": "6"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "7",
+    "styleClass": "input",
+    "type": "inputNumber",
+    "value": "7"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "8",
+    "styleClass": "input",
+    "type": "inputNumber",
+    "value": "8"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "9",
+    "styleClass": "input",
+    "type": "inputNumber",
+    "value": "9"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "0",
+    "styleClass": "input",
+    "type": "inputNumber",
+    "value": "0"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "q",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "Q"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "w",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "W"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "e",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "E"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "r",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "R"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "t",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "T"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "y",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "Y"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "u",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "U"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "i",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "I"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "o",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "O"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "p",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "P"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "",
+    "styleClass": "none",
+    "type": "holder",
+    "value": ""
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "a",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "A"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "s",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "S"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "d",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "D"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "f",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "F"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "g",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "G"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "h",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "H"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "j",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "J"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "k",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "K"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "l",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "L"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "",
+    "styleClass": "none",
+    "type": "holder",
+    "value": ""
+  },
+  {
+    "icon": false,
+    "key": "case",
+    "lowerCaseValue": "AB",
+    "styleClass": "fun",
+    "type": "fun",
+    "value": "ab"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "z",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "Z"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "x",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "X"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "c",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "C"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "v",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "V"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "b",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "B"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "n",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "N"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": "m",
+    "styleClass": "input",
+    "type": "inputChar",
+    "value": "M"
+  },
+  {
+    "icon": true,
+    "key": "delete",
+    "lowerCaseValue": "common/images/dbm_func_key_del.png",
+    "styleClass": "fun",
+    "type": "fun",
+    "value": "common/images/dbm_func_key_del.png"
+  },
+  {
+    "icon": false,
+    "key": "switchInput",
+    "lowerCaseValue": "123",
+    "styleClass": "fun",
+    "type": "fun",
+    "value": "123"
+  },
+  {
+    "icon": true,
+    "key": "lastFocus",
+    "lowerCaseValue": "common/images/dbm_func_key_focus_left.png",
+    "styleClass": "fun",
+    "type": "fun",
+    "value": "common/images/dbm_func_key_focus_left.png"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": ",",
+    "styleClass": "input",
+    "type": "inputPunctuation",
+    "value": " ，"
+  },
+  {
+    "icon": true,
+    "key": "space",
+    "lowerCaseValue": "common/images/dbm_func_key_space.png",
+    "styleClass": "input-space",
+    "type": "inputPunctuation",
+    "value": "common/images/dbm_func_key_space.png"
+  },
+  {
+    "icon": false,
+    "lowerCaseValue": ".",
+    "styleClass": "input",
+    "type": "inputPunctuation",
+    "value": " 。"
+  },
+  {
+    "icon": true,
+    "key": "nextFocus",
+    "lowerCaseValue": "common/images/dbm_func_key_focus_right.png",
+    "styleClass": "fun",
+    "type": "fun",
+    "value": "common/images/dbm_func_key_focus_right.png"
+  },
+  {
+    "icon": true,
+    "key": "enter",
+    "lowerCaseValue": "common/images/dbm_func_key_enter.png",
+    "styleClass": "fun",
+    "type": "fun",
+    "value": "common/images/dbm_func_key_enter.png"
+  }
+]

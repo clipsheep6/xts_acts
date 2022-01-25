@@ -1,0 +1,35 @@
+<element name="numkeyboard" src="../../common/component/numKeyboard/numKeyboard.hml"></element>
+<element name="back" src="../../common/component/back/back.hml"></element>
+<element src="../../common/component/loading/loading.hml" name='loading'></element>
+<div class="container">
+  <back></back>
+  <block if="showLoading">
+    <loading></loading>
+  </block>
+  <div class="unlock-container">
+    <div class="header-title">
+      <text>打开/关闭PIN锁</text>
+    </div>
+    <div class="input-write">
+      <label class="input-label">请输入pin码:</label>
+      <div class="input-text">
+        <text  class="input {{ red? 'red': '' }} " id='pinInput'>{{ pinInput }}</text>
+      </div>
+    </div>
+    <div class="content">
+      <label class="label-tip" target="open">打开</label>
+      <input type="radio" checked='true' name="radioSample" value="1" onchange="onRadioChange('打开')" id="open"></input>
+      <label class="label-tip marg" target="close">关闭</label>
+      <input type="radio" checked='false' name="radioSample" value="0" onchange="onRadioChange('关闭')" id="close"></input>
+    </div>
+    <text class="label-tip" >enable: {{ enable }} </text>
+    <text class="label-tip" >slotId: {{ slotId }} </text>
+    <text class="msg-tip" >提示： 开启pin锁后，请重启板子</text>
+  </div>
+  <div class="keyword-position">
+    <numkeyboard @on-input-change="onInputChange"  open-key-word="{{ showKeyboard }}"></numkeyboard>
+  </div>
+  <div class="fixed-btn">
+    <button class="confirm" @click="handlerConfirm">确定</button>
+  </div>
+</div>

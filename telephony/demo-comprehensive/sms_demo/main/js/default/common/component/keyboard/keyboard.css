@@ -1,0 +1,168 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+.key-btn{
+    height : 38px;
+    width : 100%;
+    justify-content : flex-end;
+    align-items : flex-end;
+}
+
+.show-text {
+    margin: 0px 4px;
+    font-size: 20px;
+    color: #252525;
+    min-height: 24px;
+    text-overflow: clip;
+}
+
+.show-canvas {
+    height: 24px;
+    width: 100%;
+}
+
+.mode {
+    font-size: 15px;
+    width: 60px;
+    height: 100%;
+    border-width: 1px;
+    border-color: #b1b1b1;
+    text-align: center;
+    background-color: #E5E6EB;
+    color: black;
+    align-self: flex-end;
+}
+
+.min:active {
+    background-color: #afafaf;
+}
+
+.chart-parent {
+    background-color: #E5E6EB;
+    padding: 4px 5px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 286px;
+}
+
+/* 360 - 6 / 10*/
+
+.item {
+    border-radius: 5px;
+    margin: 5px 3px;
+    width: 29px;
+    height: 45px;
+    font-size: 19px;
+    color: black;
+    text-align: center;
+}
+
+.item:active {
+    background-color: #9c9c9c;
+}
+
+.item-punctuation:active {
+    background-color: #9c9c9c;
+}
+
+.fun {
+    background-color: #C9CACE;
+    width: 46px;
+    font-size: 17px;
+}
+
+.none {
+    width: 11.5px;
+}
+
+.none:active {
+    background-color: #E5E6EB;
+}
+
+.input {
+    background-color: #FFFFFF;
+}
+
+.input-space {
+    width: 65.5px;
+    background-color: #FFFFFF;
+}
+
+.key-icon {
+    padding: 11px;
+}
+
+/*数字混合键盘*/
+
+.number-parent {
+    background-color: #E5E6EB;
+    padding: 4px 5px;
+    height: 286px;;
+    flex-direction: column;
+}
+
+.item-listitem {
+    width: 100%;
+    height: 46.4px;
+    margin: 4px 3px;
+}
+
+.item-number-icon {
+    padding: 8px;
+    object-fit: contain;
+}
+
+.bottom-parent {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    margin-left: 0px;
+    padding: 0px;
+    margin-bottom: -1px;
+    height: 59px;
+}
+
+/*标点符号*/
+
+.item-punctuation {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 22px;
+    color: black;
+    border-width: 1px;
+    border-color: #e3e3e3;
+}
+
+.item-punctuation-enter {
+    width: 78px;
+    object-fit: contain;
+    background-color: #C9CACE;
+}
+
+.item-punctuation-space {
+    width: 110px;
+    margin-left: 3px;
+    object-fit: scale-down;
+    padding: 0px;
+    background-color: #FFFFFF;
+}
+
+.fun-punctuation {
+    background-color: #C9CACE;
+    width: 46px;
+    font-size: 17px;
+}
+
+.bottom-fun {
+    background-color: #C9CACE;
+    width: 44px;
+    font-size: 17px;
+    margin-right: 1px;
+    margin-left: 1px;
+}/*
+bottom-fun*/

@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="header">
+        <text>获取通话状态和是否有通话</text>
+    </div>
+    <div class="state-content">
+        <div class="state-item">
+            <text class="state-left">当前通话状态：</text>
+            <text class="state-right" if="{{callState ==-1}}">未知状态</text>
+            <text class="state-right" elif="{{callState == 0}}">闲置状态</text>
+            <text class="state-right" elif="{{callState == 1}}">响铃状态</text>
+            <text class="state-right" elif="{{callState == 2}}">摘机状态</text>
+            <text class="state-right" else>其他状态</text>
+        </div>
+        <div class="state-item">
+            <text class="state-left">当前是否有新的通话：</text>
+            <text class="state-right">{{hasCall == true ? '有通话':'暂无通话'}}</text>
+        </div>
+    </div>
+    <div class="content-part">
+        <div class="dialPhone"><text>{{phoneNum}}</text></div>
+<!--        来电状态-->
+        <div class="call-status" if="{{callState ==1}}">
+            <div class="call-status-title"><text>通话状态处于响铃状态，表示有一个来电，或一个第三方来电的状态</text></div>
+            <div class="call-status-content">
+                <div class="call-status-item">
+                    <button class="circle dialButton" type="circle" icon="/common/images/answer.png" @click="answerTel">接听</button>
+                </div>
+                <div class="call-status-item">
+                    <button class="circle dialButton" type="circle" icon="/common/images/reject.png" @click="rejectTel">接听</button>
+                </div>
+            </div>
+        </div>
+<!--        滴机状态 接听中-->
+        <div class="drip-machine" elif="{{callState==2}}">
+            <div class="drip-machine-title"><text>通话状态处于摘机状态，表示至少有一通通话处于拨号、通话中或被挂起，同时没有新的来电</text></div>
+            <div class="answer-title"><text>电话接听中</text></div>
+        </div>
+<!--        其他状态-->
+        <div class="other-status" else>
+            <div class="Ninekey">
+                <div class="nineKey-group">
+                    <div class="nineKey-item" @click="setProcess(1)"><text>1</text></div>
+                    <div class="nineKey-item" @click="setProcess(2)"><text>2</text></div>
+                    <div class="nineKey-item" @click="setProcess(3)"><text>3</text></div>
+                </div>
+                <div class="nineKey-group">
+                    <div class="nineKey-item" @click="setProcess(4)"><text>4</text></div>
+                    <div class="nineKey-item" @click="setProcess(5)"><text>5</text></div>
+                    <div class="nineKey-item" @click="setProcess(6)"><text>6</text></div>
+                </div>
+                <div class="nineKey-group">
+                    <div class="nineKey-item" @click="setProcess(7)"><text>7</text></div>
+                    <div class="nineKey-item" @click="setProcess(8)"><text>8</text></div>
+                    <div class="nineKey-item" @click="setProcess(9)"><text>9</text></div>
+                </div>
+                <div class="nineKey-group">
+                    <div class="nineKey-item" @click="setProcess('*')"><text>*</text></div>
+                    <div class="nineKey-item" @click="setProcess(0)"><text>0</text></div>
+                    <div class="nineKey-item" @click="setProcess('#')"><text>#</text></div>
+                </div>
+            </div>
+            <div class="dial-btn">
+                <button class="circle dialButton" type="circle" icon="/common/images/answer.png" @click="dialTel">接听</button>
+                <button class="button deleButton" type="circle" @click="deleTel" if="{{phoneNum.length > 0}}">清除</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer-group">
+        <div class="group-item"><button class="button" type="capsule" @click="getCallState">获取通话状态</button></div>
+        <div class="group-item"><button class="button" type="capsule" @click="getHasCall">获取是否有通话</button></div>
+    </div>
+</div>

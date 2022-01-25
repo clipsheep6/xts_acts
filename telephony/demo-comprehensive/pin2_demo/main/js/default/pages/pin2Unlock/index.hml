@@ -1,0 +1,27 @@
+<element name="numkeyboard" src="../../common/component/numKeyboard/numKeyboard.hml"></element>
+<element name="back" src="../../common/component/back/back.hml"></element>
+<element src="../../common/component/loading/loading.hml" name='loading'></element>
+<div class="container">
+    <back></back>
+    <block if="showLoading">
+        <loading></loading>
+    </block>
+    <div class="unlock-container">
+        <div class="header-title">
+            <text>解锁pin2码</text>
+        </div>
+        <div class="input-write">
+            <label class="input-label">请输入pin2码:</label>
+            <div class="input-text">
+                <text class="input {{ red? 'red': '' }} ">{{ pin2Input }}</text>
+            </div>
+        </div>
+        <text class="input-label" >slotId: {{ slotId }} </text>
+    </div>
+    <div class="keyword-position">
+        <numkeyboard @on-input-change="onInputChange"  open-key-word="{{ showKeyboard }}"></numkeyboard>
+    </div>
+    <div class="fixed-btn">
+        <button class="confirm" @click="handlerConfirm">确定</button>
+    </div>
+</div>
