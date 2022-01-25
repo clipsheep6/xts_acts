@@ -1,0 +1,79 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//base/user_iam/face_auth/useriam.gni")
+import("//build/test.gni")
+
+module_output_path = "faceauth/faceauthtest"
+
+ohos_systemtest("FaceAuthFunctionCppAuthTest") {
+  module_out_path = module_output_path
+
+  include_dirs = [
+    "//foundation/distributedschedule/services/safwk/include",
+    "//test/xts/acts/useriam/face_auth/cpp_api_test/tool/include",
+    "//test/xts/acts/useriam/face_auth/cpp_api_scene_test/function_test/include",
+  ]
+
+  sources = [
+    "//test/xts/acts/useriam/face_auth/cpp_api_scene_test/function_test/src/face_auth_function_cpp_auth_test.cpp",
+    "//test/xts/acts/useriam/face_auth/cpp_api_test/tool/src/event.cpp",
+    "//test/xts/acts/useriam/face_auth/cpp_api_test/tool/src/module_test_dump_util.cpp",
+    "//test/xts/acts/useriam/face_auth/cpp_api_test/tool/src/stoperator.cpp",
+    "//test/xts/acts/useriam/face_auth/cpp_api_test/tool/src/system_test_ability_util.cpp",
+  ]
+
+  configs = [ "//test/xts/acts/useriam/face_auth/cpp_api_scene_test:face_auth_system_test_config" ]
+  deps = [
+    "${aafwk_path}/interfaces/innerkits/app_manager:app_manager",
+    "${aafwk_path}/interfaces/innerkits/want:want",
+    "${aafwk_path}/services/abilitymgr:abilityms",
+    "${face_auth_innerkits_path}:face_auth_innerkits",
+    "${face_auth_services_path}:face_auth_services",
+    "${useriam_auth_kits_path}:faceauth_auth_kits",
+    "${useriam_common_path}:faceauth_common",
+    "//base/security/permission/interfaces/innerkits/permission_standard/permissionsdk:libpermissionsdk_standard",
+    "//base/startup/appspawn_standard/interfaces/innerkits:appspawn_socket_client",
+    "//base/startup/syspara_lite/interfaces/innerkits/native/syspara:syspara",
+    "//foundation/aafwk/standard/interfaces/innerkits/base:base",
+    "//foundation/appexecfwk/standard/interfaces/innerkits/appexecfwk_base:appexecfwk_base",
+    "//foundation/appexecfwk/standard/interfaces/innerkits/appexecfwk_core:appexecfwk_core",
+    "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
+    "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
+    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
+    "//foundation/graphic/standard:libsurface",
+    "//third_party/googletest:gtest_main",
+    "//utils/native/base:utils",
+  ]
+
+  cflags = []
+  if (target_cpu == "arm") {
+    cflags += [ "-DBINDER_IPC_32BIT" ]
+  }
+
+  external_deps = [
+    "ability_runtime:app_manager",
+    "ability_runtime:want",
+    "ces_standard:cesfwk_core",
+    "ces_standard:cesfwk_innerkits",
+    "hiviewdfx_hilog_native:libhilog",
+    "ipc:ipc_core",
+    "safwk:system_ability_fwk",
+    "samgr_standard:samgr_proxy",
+  ]
+}
+
+group("function_hap_test") {
+  testonly = true
+  deps = [ ":FaceAuthFunctionCppAuthTest" ]
+}
