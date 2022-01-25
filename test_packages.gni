@@ -17,7 +17,6 @@ _all_test_packages = [
   "${ACTS_ROOT}/global:global",
   "${ACTS_ROOT}/useriam:useriam",
   "${ACTS_ROOT}/multimedia:multimedia",
-  "${ACTS_ROOT}/barrierfree:barrierfree",
   "${ACTS_ROOT}/appexecfwk:appexecfwk",
   "${ACTS_ROOT}/account:account",
   "${ACTS_ROOT}/communication:communication",
