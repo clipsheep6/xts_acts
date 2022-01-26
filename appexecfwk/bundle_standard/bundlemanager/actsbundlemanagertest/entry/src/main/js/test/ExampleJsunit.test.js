@@ -722,9 +722,9 @@ describe('ActsBundleManagerTest', function () {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
                 expect(data.statusMessage).assertEqual('SUCCESS');
-                done();
             });
         }
+        done();
     })
 
     /**
