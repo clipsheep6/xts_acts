@@ -124,7 +124,6 @@ describe('SmsMmsErrorTest', function () {
     } catch (err) {
       console.log('Telephony_SmsMms_addSimMessage_Promise_1400 add  fail');
       done();
-      return;
     }
   });
 
