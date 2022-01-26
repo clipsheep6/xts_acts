@@ -15,7 +15,10 @@ import("//build/ohos_var.gni")
 group("communication") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "wifi_standard:wifi_standard_test" ]
+    deps = [
+      "dsoftbus/rpc:ActsRpcJsTest",
+      "wifi_standard:wifi_standard_test",
+    ]
   } else {
     deps = [ "wifi_standard:wifi_standard_test" ]
   }
