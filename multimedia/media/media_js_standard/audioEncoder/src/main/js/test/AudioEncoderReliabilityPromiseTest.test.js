@@ -216,7 +216,7 @@ describe('AudioEncoderSTTPromise', function () {
     function nextStep(mySteps, done) {
         console.info("case myStep[0]: " + mySteps[0]);
         if (mySteps[0] == END) {
-            await audioEncodeProcessor.release().then(() => {
+            audioEncodeProcessor.release().then(() => {
                 console.info("case release success");
                 audioEncodeProcessor = null;
             }, failCallback).catch(failCatch);
