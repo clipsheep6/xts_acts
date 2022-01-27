@@ -63,7 +63,12 @@ describe('AudioEncoderFuncPromise', function () {
 
     afterEach(function() {
         console.info('afterEach case');
-        wait(2000);
+        if (audioEncodeProcessor != null) {
+            audioEncodeProcessor.release().then(() => {
+                console.info('audioEncodeProcessor release success');
+                audioEncodeProcessor = null;
+            }, failCallback).catch(failCatch);
+        }
     })
 
     afterAll(function() {
@@ -181,6 +186,9 @@ describe('AudioEncoderFuncPromise', function () {
         }, failCallback).catch(failCatch);
         await audioEncodeProcessor.reset().then(() => {
             console.info("case reset success");
+        }, failCallback).catch(failCatch);
+        await audioEncodeProcessor.release().then(() => {
+            console.info("case release success");
         }, failCallback).catch(failCatch);
         audioEncodeProcessor = null;
     }
@@ -508,6 +516,9 @@ describe('AudioEncoderFuncPromise', function () {
             }, failCallback).catch(failCatch);});
         await audioEncodeProcessor.reset().then(() => {
             console.info("reset success");
+        }, failCallback).catch(failCatch);
+        await audioEncodeProcessor.release().then(() => {
+            console.info("case release success");
         }, failCallback).catch(failCatch);
         audioEncodeProcessor = null;
         done();
