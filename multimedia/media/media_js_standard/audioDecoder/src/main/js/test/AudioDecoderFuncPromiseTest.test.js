@@ -243,11 +243,11 @@ describe('AudioDecoderFunc', function () {
 
     afterEach(function() {
         console.info('afterEach case');
-        if (audioDecodeProcessor != null){
+        if (audioDecodeProcessor != null) {
             audioDecodeProcessor.release().then(() => {
                 console.info('audioDecodeProcessor release success');
                 audioDecodeProcessor = null;
-            })
+            }, failCallback).catch(failCatch);
         }
     })
 
@@ -338,6 +338,9 @@ describe('AudioDecoderFunc', function () {
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.reset().then(() => {
             console.info("case reset success");
+        }, failCallback).catch(failCatch);
+        await audioDecodeProcessor.release().then(() => {
+            console.info("case release success");
         }, failCallback).catch(failCatch);
         audioDecodeProcessor = null;
     }
@@ -654,6 +657,9 @@ describe('AudioDecoderFunc', function () {
             }, failCallback).catch(failCatch);});
         await audioDecodeProcessor.reset().then(() => {
             console.info("case reset success");
+        }, failCallback).catch(failCatch);
+        await audioDecodeProcessor.release().then(() => {
+            console.info("case release success");
         }, failCallback).catch(failCatch);
         audioDecodeProcessor = null;
         done();

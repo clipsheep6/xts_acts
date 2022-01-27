@@ -63,7 +63,11 @@ describe('AudioDecoderFormatCallback', function () {
     afterEach(function() {
         console.info('afterEach case');
         if (audioDecodeProcessor != null) {
-            audioDecodeProcessor = null
+            audioDecodeProcessor.release((err) => {
+                expect(err).assertUndefined();
+                console.log("case release success");
+                audioDecodeProcessor = null;
+            })
         }
     })
 
@@ -147,8 +151,12 @@ describe('AudioDecoderFormatCallback', function () {
                     audioDecodeProcessor.reset((err) => {
                         expect(err).assertUndefined();
                         console.log("reset success");
-                        audioDecodeProcessor = null;
-                        done();
+                        audioDecodeProcessor.release((err) => {
+                            expect(err).assertUndefined();
+                            console.log("case release success");
+                            audioDecodeProcessor = null;
+                            done();
+                        })
                     })
                 })
             } else {

@@ -246,7 +246,11 @@ describe('AudioDecoderFunc', function () {
     afterEach(async function() {
         console.info('afterEach case');
         if (audioDecodeProcessor != null) {
-            audioDecodeProcessor = null;
+            audioDecodeProcessor.release((err) => {
+                expect(err).assertUndefined();
+                console.log("case release success");
+                audioDecodeProcessor = null;
+            })
         }
     })
 
@@ -310,7 +314,11 @@ describe('AudioDecoderFunc', function () {
             expect(err).assertUndefined();
             console.info("case reset success");
             if (needrelease) {
-                audioDecodeProcessor = null;
+                audioDecodeProcessor.release((err) => {
+                    expect(err).assertUndefined();
+                    console.log("case release success");
+                    audioDecodeProcessor = null;
+                })
             }
         })
     }
@@ -332,7 +340,12 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.reset((err) => {
                 expect(err).assertUndefined();
                 console.log("case reset success");
-                done();
+                audioDecodeProcessor.release((err) => {
+                    expect(err).assertUndefined();
+                    console.log("case release success");
+                    audioDecodeProcessor = null;
+                    done();
+                })
             })
         })
     }
@@ -761,6 +774,13 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.reset((err) => {
                 expect(err).assertUndefined();
                 console.info(`case reset 1`);
+                eventEmitter.emit('release');
+            })
+        });
+        eventEmitter.on('release', () => {
+            audioDecodeProcessor.release((err) => {
+                expect(err).assertUndefined();
+                console.info(`case release 1`);
                 audioDecodeProcessor = null;
                 done();
             })

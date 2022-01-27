@@ -62,8 +62,11 @@ describe('AudioDecoderFormatPromise', function () {
 
     afterEach(function() {
         console.info('afterEach case');
-        if (audioDecodeProcessor != null) {
-            audioDecodeProcessor = null
+        if (audioDecodeProcessor != null){
+            audioDecodeProcessor.release().then(() => {
+                console.info('audioDecodeProcessor release success');
+                audioDecodeProcessor = null;
+            }, failCallback).catch(failCatch);
         }
     })
 
@@ -157,7 +160,10 @@ describe('AudioDecoderFormatPromise', function () {
                 await audioDecodeProcessor.reset().then(() => {
                     console.log("reset success");
                 }, failCallback).catch(failCatch);
-                audioDecodeProcessor = null;
+                await audioDecodeProcessor.release().then(() => {
+                    console.info('release success');
+                    audioDecodeProcessor = null;
+                }, failCallback).catch(failCatch);
                 done();
             }
             else{
