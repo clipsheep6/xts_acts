@@ -22,6 +22,7 @@ describe('AudioDecoderFunc', function () {
     const AUDIOPATH2 =  '/data/media/AAC_16000_1.aac';
     const AUDIOPATH3 = '/data/media/FLAC_48000_32_1.flac';
     const BASIC_PATH = '/data/media/results/decode_func_promise_';
+    let audioDecodeProcessor;
     let readStreamSync;
     let eosframenum = 0;
     let samplerate = 44.1;
@@ -134,6 +135,7 @@ describe('AudioDecoderFunc', function () {
 
     beforeEach(function() {
         console.info('beforeEach case');
+        audioDecodeProcessor = undefined;
         readStreamSync = undefined;
         eosframenum = 0;
         samplerate = 44.1;
@@ -441,7 +443,6 @@ describe('AudioDecoderFunc', function () {
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_00_0100', 0, async function (done) {
         console.info("case test set EOS after last frame and reset");
-        let audioDecodeProcessor;
         let mediaDescription = {
                     "channel_count": 2,
                     "sample_rate": 44100,
@@ -500,7 +501,6 @@ describe('AudioDecoderFunc', function () {
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0100', 0, async function (done) {
         console.info("case test set EOS manually before last frame and reset");
-        let audioDecodeProcessor;
         let mediaDescription = {
                     "channel_count": 2,
                     "sample_rate": 44100,
@@ -541,7 +541,6 @@ describe('AudioDecoderFunc', function () {
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0200', 0, async function (done) {
         console.info("case test flush at running state");
-        let audioDecodeProcessor;
         let mediaDescription = {
                     "channel_count": 2,
                     "sample_rate": 44100,
@@ -585,7 +584,6 @@ describe('AudioDecoderFunc', function () {
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0300', 0, async function (done) {
         console.info("case test flush at EOS state");
-        let audioDecodeProcessor;
         let mediaDescription = {
                     "channel_count": 2,
                     "sample_rate": 44100,
@@ -625,7 +623,6 @@ describe('AudioDecoderFunc', function () {
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0400', 0, async function (done) {
         console.info("case test stop at running state and reset");
-        let audioDecodeProcessor;
         let mediaDescription = {
                     "channel_count": 2,
                     "sample_rate": 44100,
@@ -675,7 +672,6 @@ describe('AudioDecoderFunc', function () {
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0500', 0, async function (done) {
         console.info("case test stop and restart");
-        let audioDecodeProcessor;
         let mediaDescription = {
                     "channel_count": 2,
                     "sample_rate": 44100,
@@ -730,7 +726,6 @@ describe('AudioDecoderFunc', function () {
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0600', 0, async function (done) {
         console.info("case test reconfigure codec for new file with the same format");
-        let audioDecodeProcessor;
         let mediaDescription = {
                     "channel_count": 2,
                     "sample_rate": 44100,
@@ -808,7 +803,6 @@ describe('AudioDecoderFunc', function () {
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0700', 0, async function (done) {
         console.info("case test reconfigure codec for new file with different formats");
-        let audioDecodeProcessor;
         let mediaDescription = {
                     "channel_count": 2,
                     "sample_rate": 44100,

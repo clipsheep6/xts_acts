@@ -181,8 +181,12 @@ describe('AudioEncoderSTTCallback', function () {
             audioEncodeProcessor.reset((err) => {
                 expect(err).assertUndefined();
                 console.log("case reset success");
-                audioEncodeProcessor = null;
-                done();
+                audioEncodeProcessor.release((err) => {
+                    expect(err).assertUndefined();
+                    console.log("case release success");
+                    audioEncodeProcessor = null;
+                    done();
+                })
             })
         })
     }
@@ -202,10 +206,9 @@ describe('AudioEncoderSTTCallback', function () {
                 expect(err).assertUndefined();
                 console.log("case release success");
                 audioEncodeProcessor = null;
+                done();
+                return;
             })
-            done();
-            console.info('case to done');
-            return;
         }
         switch (mySteps[0]) {
             case CONFIGURE:

@@ -372,9 +372,8 @@ describe('AudioDecoderReliabilityPromise', function () {
                 console.info("case release success");
                 audioDecodeProcessor = null;
                 done();
+                return;
             }, failCallback).catch(failCatch);
-            console.info('case to done');
-            return;
         }
         switch (mySteps[0]) {
             case CONFIGURE:

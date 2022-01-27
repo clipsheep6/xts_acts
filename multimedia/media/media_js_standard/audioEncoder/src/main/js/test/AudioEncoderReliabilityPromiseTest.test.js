@@ -219,10 +219,9 @@ describe('AudioEncoderSTTPromise', function () {
             audioEncodeProcessor.release().then(() => {
                 console.info("case release success");
                 audioEncodeProcessor = null;
+                done();
+                return;
             }, failCallback).catch(failCatch);
-            done();
-            console.info('case to done');
-            return;
         }
         switch (mySteps[0]) {
             case CONFIGURE:

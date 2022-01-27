@@ -48,12 +48,6 @@ describe('AudioDecoderMultiInstances', function () {
 
     afterEach(function() {
         console.info('afterEach case');
-        if (audioDecodeProcessor != null) {
-            audioDecodeProcessor.release().then(() => {
-                console.info('audioDecodeProcessor release success');
-                audioDecodeProcessor = null;
-            }, failCallback).catch(failCatch);
-        }
     })
 
     afterAll(function() {

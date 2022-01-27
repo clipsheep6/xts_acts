@@ -356,9 +356,10 @@ describe('AudioDecoderReliabilityCallback', function () {
             audioDecodeProcessor.release((err) => {
                 expect(err).assertUndefined();
                 console.info(`case release 1`);
+                audioDecodeProcessor = null;
                 done();
+                return;
             });
-            return;
         }
         switch (mySteps[0]) {
             case CONFIGURE:
