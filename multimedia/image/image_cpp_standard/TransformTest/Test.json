@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for TransformTest Tests",
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "TransformTest",
+        "runtime-hint": "1s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "TransformTest->/data/local/tmp/TransformTest"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 666 /data/media/*",
+                "setenforce 0"
+            ],
+            "teardown-command":[
+                "setenforce 1"
+            ]
+        }
+    ]
+}
