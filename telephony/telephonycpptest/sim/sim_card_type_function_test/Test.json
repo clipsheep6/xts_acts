@@ -1,0 +1,21 @@
+{
+    "kits": [
+        {
+            "push": [
+                "SimCardTypeFunctionTest->/data/telephonycpptest/SimCardTypeFunctionTest"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/telephonycpptest/*"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "SimCardTypeFunctionTest",
+        "runtime-hint": "10s",
+        "native-test-device-path": "/data/telephonycpptest"
+    },
+    "description": "Configuration SimCardTypeFunctionTest basic Tests"
+}

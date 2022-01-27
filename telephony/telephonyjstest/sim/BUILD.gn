@@ -16,6 +16,21 @@ import("//build/ohos_var.gni")
 group("sim") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "sim_manager_function_test:ActsSimManagerFunctionTest" ]
+    deps = [
+      "sim_getimsi_isim_function_test:ActsSimGetImsiIsimFunctionTest",
+      "sim_getimsi_cdma_function_test:ActsSimGetImsiCdmaFunctionTest",
+      "sim_getcardtype_function_test:ActsSimGetCardTypeFunctionTest",
+      "sim_getisocountrycodeforsim_function_test:ActsSimGetISOCountryCodeForSimFunctionTest",
+      "sim_setlockstate_function_test:ActsSimSetLockStateFunctionTest",
+      "sim_getlockstate_function_test:ActsSimGetLockStateFunctionTest",
+      "sim_getsimiccid_function_test:ActsSimGetSimIccidFunctionTest",
+      "sim_getsimoperatornumeric_function_test:ActsSimGetSimOperatorNumericFunctionTest",
+      "sim_getsimspn_function_test:ActsSimGetSimSpnFunctionTest",
+      "sim_sendenvelopecmd_function_test:ActsSimSendEnvelopeCmdFunctionTest",
+      "sim_sendterminalresponsecmd_function_test:ActsSimSendTerminalResponseCmdFunctionTest",
+      "sim_no_sim_function_test:ActsSimNoSimFunctionTest",
+      "sim_performance_test:ActsSimPerformanceTest",
+      "sim_reliability_test:ActsSimReliabilityTest",
+    ]
   }
 }
