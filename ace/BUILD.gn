@@ -18,5 +18,6 @@ group("ace") {
     "ace_ets_test:ActsAceEtsTest",
     "ace_ets_third_test:ActsAceEtsThirdTest",
     "ace_standard:ace_standard_test",
+    "ace_ets_component:AceEtsComponentTest"
   ]
 }
