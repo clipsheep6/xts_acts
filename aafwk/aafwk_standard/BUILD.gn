@@ -17,7 +17,7 @@ group("aafwk_standard") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "aafwk_ets_test:ActsAafwkEtsTest",
+  #    "aafwk_ets_test:ActsAafwkEtsTest", api8
       "abilitymanager:actsabilitymanagertest",
       "amsabilitymanager/amsMissionSnapshotTest:ActsAmsMissionSnapshotTest",
       "amsabilitymanager/amsMissionSnapshotTestSingleton:ActsAmsMissionSnapshotTestSingleton",
