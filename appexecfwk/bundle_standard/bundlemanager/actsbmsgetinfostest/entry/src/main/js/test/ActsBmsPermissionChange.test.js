@@ -135,7 +135,7 @@ describe('ActsBmsGetRegisterPermissionTest', function () {
                 expect(err.code).assertEqual(-1);
                 done();
             })
-        })
+        },TIMEOUT)
     })
 
     /*
@@ -217,6 +217,6 @@ describe('ActsBmsGetRegisterPermissionTest', function () {
                 expect(err.code).assertEqual(-1);
                 done();
             })
-        })
+        },TIMEOUT)
     })
 })
