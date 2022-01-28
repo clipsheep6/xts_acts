@@ -143,7 +143,7 @@ export default function systemRouterJsunit() {
         console.info("[systemRouterTest005] on events_emitter err : " + JSON.stringify(err));
       }
       console.info("[systemRouterTest005] click replace button result is: "
-      + JSON.stringify(sendEventByKey('ReplaceButtonA', 10, "")));
+        + JSON.stringify(sendEventByKey('ReplaceButtonA', 10, "")));
       done();
     });
   });
