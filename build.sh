@@ -98,12 +98,12 @@ do_make()
     rm -rf "$BASE_HOME/test/xts/autogen_apiobjs"
     export XTS_SUITENAME=acts
     if [ "$SYSTEM_SIZE" = "standard" ]; then
-       ./build.sh --product-name $PRODUCT_NAME --gn-args build_xts=true --build-target $BUILD_TARGET --build-target "deploy_testtools" --gn-args is_standard_system=true
+       ./build.sh --product-name $PRODUCT_NAME --nopkg --gn-args build_xts=true --build-target $BUILD_TARGET --build-target "deploy_testtools" --gn-args is_standard_system=true
     else
        if [ "$BUILD_TARGET" = "acts acts_ivi acts_intellitv acts_wearable" ]; then
-         ./build.sh --product-name $PRODUCT_NAME --gn-args build_xts=true --build-target "acts" --build-target "acts_ivi" --build-target "acts_intellitv" --build-target "acts_wearable" --build-target "deploy_testtools"
+         ./build.sh --product-name $PRODUCT_NAME --nopkg --gn-args build_xts=true --build-target "acts" --build-target "acts_ivi" --build-target "acts_intellitv" --build-target "acts_wearable" --build-target "deploy_testtools"
        else
-         ./build.sh --product-name $PRODUCT_NAME --gn-args build_xts=true --build-target $BUILD_TARGET --build-target "deploy_testtools"
+         ./build.sh --product-name $PRODUCT_NAME --nopkg --gn-args build_xts=true --build-target $BUILD_TARGET --build-target "deploy_testtools"
        fi
     fi
     ret=$?
