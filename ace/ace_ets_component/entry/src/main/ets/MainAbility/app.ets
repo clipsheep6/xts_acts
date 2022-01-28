@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,10 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
 export default {
   onCreate() {
-    console.info('Application onCreate done')
+    console.info('Application onCreate')
   },
   onDestroy() {
     console.info('Application onDestroy')
