@@ -13,8 +13,5 @@
  * limitations under the License.
  */
 
-//require('./BackgroundTaskMagrJs.test.js')
-
-
-
+require('./FeatureAbilityDistribute.test.js')
 
