@@ -302,14 +302,14 @@ describe('AudioDecoderFunc', function () {
         console.info('lengthreal: ' + lengthreal);
     }
 
-    async function stopWork(audioDecodeProcessor) {
+    async function stopWork() {
         audioDecodeProcessor.stop((err) => {
             expect(err).assertUndefined();
             console.info("case stop success")
         })
     }
 
-    async function resetWork(audioDecodeProcessor) {
+    async function resetWork() {
         audioDecodeProcessor.reset((err) => {
             expect(err).assertUndefined();
             console.info("case reset success");
@@ -323,7 +323,7 @@ describe('AudioDecoderFunc', function () {
         })
     }
 
-    async function flushWork(audioDecodeProcessor) {
+    async function flushWork() {
         audioDecodeProcessor.flush((err) => {
             expect(err).assertUndefined();
             console.info("case flush at inputeos success");
@@ -333,7 +333,7 @@ describe('AudioDecoderFunc', function () {
         })
     }
 
-    async function doneWork(audioDecodeProcessor, done) {
+    async function doneWork(done) {
         audioDecodeProcessor.stop((err) => {
             expect(err).assertUndefined();
             console.info("case stop success");
@@ -358,7 +358,7 @@ describe('AudioDecoderFunc', function () {
         for(let t = Date.now(); Date.now() - t <= time;);
     }
 
-    async function enqueueAllInputs(audioDecodeProcessor, queue){
+    async function enqueueAllInputs(queue){
         while (queue.length > 0 && !sawInputEOS){
             let inputobject = queue.shift();
             console.info("frameCnt:" + frameCnt);
@@ -384,19 +384,19 @@ describe('AudioDecoderFunc', function () {
         }
     }
 
-    async function dequeueAllOutputs(audioDecodeProcessor, queue, savepath, done) {
+    async function dequeueAllOutputs(queue, savepath, done) {
         while (queue.length > 0 && !sawOutputEOS) {
             let outputobject = queue.shift();
             if (outputobject.flags == 1) {
                 sawOutputEOS = true;
                 if (stopAtEOS) {
-                    await stopWork(audioDecodeProcessor);
+                    await stopWork();
                 } else if (resetAtEOS) {
-                    await resetWork(audioDecodeProcessor);
+                    await resetWork();
                 } else if (flushAtEOS) {
-                    await flushWork(audioDecodeProcessor);
+                    await flushWork();
                 } else if (workdoneAtEOS) {
-                    await doneWork(audioDecodeProcessor, done);
+                    await doneWork(done);
                 } else {}
             }
             else{
@@ -409,12 +409,12 @@ describe('AudioDecoderFunc', function () {
         }
     }
 
-    function setCallback(audioDecodeProcessor, savepath, done){
+    function setCallback(savepath, done) {
         console.info('case callback');
         audioDecodeProcessor.on('inputBufferAvailable', async(inBuffer) => {
             console.info('inputBufferAvailable');
             inputQueue.push(inBuffer);
-            await enqueueAllInputs(audioDecodeProcessor, inputQueue);
+            await enqueueAllInputs(inputQueue);
         });
         audioDecodeProcessor.on('outputBufferAvailable', async(outBuffer) => {
             console.info('outputBufferAvailable');
@@ -427,7 +427,7 @@ describe('AudioDecoderFunc', function () {
                 });
             }
             outputQueue.push(outBuffer);
-            await dequeueAllOutputs(audioDecodeProcessor, outputQueue, savepath, done);
+            await dequeueAllOutputs(outputQueue, savepath, done);
         });
         audioDecodeProcessor.on('error',(err) => {
             console.info('case error called,errName is' + err);
@@ -477,7 +477,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -558,7 +558,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -628,7 +628,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -694,7 +694,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -750,7 +750,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -832,7 +832,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -860,7 +860,7 @@ describe('AudioDecoderFunc', function () {
                     expect(err).assertUndefined();
                     console.info(`restart after 2s`);
                     workdoneAtEOS=true;
-                    enqueueAllInputs(audioDecodeProcessor, inputQueue);
+                    enqueueAllInputs(inputQueue);
                 })
             })
         });
@@ -894,7 +894,7 @@ describe('AudioDecoderFunc', function () {
         let savepath = BASIC_PATH + '0600.pcm';
         let mediaDescription2 = {
             "channel_count": 1,
-            "sample_rate": 44100,
+            "sample_rate": 16000,
             "audio_raw_format": 4,
         }
         let hasreconfigured = false;
@@ -918,7 +918,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -1017,7 +1017,7 @@ describe('AudioDecoderFunc', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioDecodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });

@@ -310,13 +310,13 @@ describe('AudioDecoderFunc', function () {
         lengthreal = readStreamSync.readSync(buf,{length:len});
     }
 
-    async function stopWork(audioDecodeProcessor) {
+    async function stopWork() {
         await audioDecodeProcessor.stop().then(() => {
             console.info("case stop success")
         }, failCallback).catch(failCatch);
     }
 
-    async function resetWork(audioDecodeProcessor) {
+    async function resetWork() {
         await audioDecodeProcessor.reset().then(() => {
             console.info("case reset success");
             if (needrelease) {
@@ -325,7 +325,7 @@ describe('AudioDecoderFunc', function () {
         }, failCallback).catch(failCatch);
     }
 
-    async function flushWork(audioDecodeProcessor) {
+    async function flushWork() {
         await audioDecodeProcessor.flush().then(() => {
             console.info("case flush at inputeos success");
             resetParam();
@@ -334,7 +334,7 @@ describe('AudioDecoderFunc', function () {
         }, failCallback).catch(failCatch);
     }
 
-    async function doneWork(audioDecodeProcessor) {
+    async function doneWork() {
         await audioDecodeProcessor.stop().then(() => {
             console.info("case stop success");
         }, failCallback).catch(failCatch);
@@ -355,7 +355,7 @@ describe('AudioDecoderFunc', function () {
         for(let t = Date.now(); Date.now() - t <= time;);
     }
 
-    async function enqueueAllInputs(audioDecodeProcessor, queue) {
+    async function enqueueAllInputs(queue) {
         while (queue.length > 0 && !sawInputEOS) {
             let inputobject = queue.shift();
             if (frameCnt == eosframenum || frameCnt == ES_LENGTH + 1) {
@@ -379,20 +379,20 @@ describe('AudioDecoderFunc', function () {
         }
     }
 
-    async function dequeueAllOutputs(audioDecodeProcessor, queue, savapath, done) {
+    async function dequeueAllOutputs(queue, savapath, done) {
         while (queue.length > 0 && !sawOutputEOS) {
             let outputobject = queue.shift();
             if (outputobject.flags == 1) {
                 sawOutputEOS = true;
                 console.info("sawOutputEOS == true");
                 if (stopAtEOS) {
-                    await stopWork(audioDecodeProcessor);
+                    await stopWork();
                 } else if (resetAtEOS) {
-                    await resetWork(audioDecodeProcessor);
+                    await resetWork();
                 } else if (flushAtEOS) {
-                    await flushWork(audioDecodeProcessor);
+                    await flushWork();
                 } else if (workdoneAtEOS) {
-                    await doneWork(audioDecodeProcessor);
+                    await doneWork();
                     done();
                 } else {}
             }
@@ -406,12 +406,12 @@ describe('AudioDecoderFunc', function () {
         }
     }
 
-    function setCallback(audioDecodeProcessor, savepath, done) {
+    function setCallback(savepath, done) {
         console.info('case callback');
         audioDecodeProcessor.on('inputBufferAvailable', async(inBuffer) => {
             console.info('inputBufferAvailable');
             inputQueue.push(inBuffer);
-            await enqueueAllInputs(audioDecodeProcessor, inputQueue);
+            await enqueueAllInputs(inputQueue);
         });
         audioDecodeProcessor.on('outputBufferAvailable', async(outBuffer) => {
             console.info('outputBufferAvailable');
@@ -423,7 +423,7 @@ describe('AudioDecoderFunc', function () {
                     needGetMediaDes=false;
                 }, failCallback).catch(failCatch);}
             outputQueue.push(outBuffer);
-            await dequeueAllOutputs(audioDecodeProcessor, outputQueue, savepath, done);
+            await dequeueAllOutputs(outputQueue, savepath, done);
         });
         audioDecodeProcessor.on('error',(err) => {
             console.info('case error called,errName is' + err);
@@ -482,7 +482,7 @@ describe('AudioDecoderFunc', function () {
             console.info("case configure success");
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
-        setCallback(audioDecodeProcessor, savepath, done);
+        setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
             console.info("case prepare success");
         }, failCallback).catch(failCatch);
@@ -522,7 +522,7 @@ describe('AudioDecoderFunc', function () {
             console.info("case configure success");
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
-        setCallback(audioDecodeProcessor, savepath, done);
+        setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
             console.info("case prepare success");
         }, failCallback).catch(failCatch);
@@ -560,7 +560,7 @@ describe('AudioDecoderFunc', function () {
             console.info("case configure success");
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
-        setCallback(audioDecodeProcessor, savepath, done);
+        setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
             console.info("case prepare success");
         }, failCallback).catch(failCatch);
@@ -604,7 +604,7 @@ describe('AudioDecoderFunc', function () {
             console.info("case configure success");
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
-        setCallback(audioDecodeProcessor, savepath, done);
+        setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
             console.info("case prepare success");
         }, failCallback).catch(failCatch);
@@ -641,7 +641,7 @@ describe('AudioDecoderFunc', function () {
             console.info("case configure success");
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
-        setCallback(audioDecodeProcessor, savepath, done);
+        setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
             console.info("case prepare success");
         }, failCallback).catch(failCatch);
@@ -691,7 +691,7 @@ describe('AudioDecoderFunc', function () {
             console.info("case configure success");
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
-        setCallback(audioDecodeProcessor, savepath, done);
+        setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
             console.info("case prepare success");
         }, failCallback).catch(failCatch);
@@ -712,7 +712,7 @@ describe('AudioDecoderFunc', function () {
         await audioDecodeProcessor.start().then(() => {
             console.info("case restart after 3s success");
             workdoneAtEOS = true;
-            enqueueAllInputs(audioDecodeProcessor, inputQueue);
+            enqueueAllInputs(inputQueue);
         }, failCallback).catch(failCatch);
     })
 
@@ -751,7 +751,7 @@ describe('AudioDecoderFunc', function () {
             console.info("case configure success");
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
-        setCallback(audioDecodeProcessor, savepath, done);
+        setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
             console.info("case prepare success");
         }, failCallback).catch(failCatch);
@@ -784,7 +784,7 @@ describe('AudioDecoderFunc', function () {
             582, 616, 610, 573, 509, 535];
         ES_LENGTH = 200;
         samplerate = 16;
-        setCallback(audioDecodeProcessor, savepath, done);
+        setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
             console.info("case prepare2 success");
         }, failCallback).catch(failCatch);
@@ -829,7 +829,7 @@ describe('AudioDecoderFunc', function () {
             console.info("case configure success");
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
-        setCallback(audioDecodeProcessor, savepath, done);
+        setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
             console.info("case prepare success");
         }, failCallback).catch(failCatch);
@@ -860,7 +860,7 @@ describe('AudioDecoderFunc', function () {
             3625, 4953, 5239, 5094, 4993, 4821, 4431, 5195, 5542, 5557, 4894, 4414];
         ES_LENGTH = 100;
         samplerate = 48;
-        setCallback(audioDecodeProcessor, savepath, done);
+        setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
             console.info("case prepare2 success");
         }, failCallback).catch(failCatch);
