@@ -18,6 +18,7 @@ group("aafwk_standard") {
   if (is_standard_system) {
     deps = [
       "abilitymanager:actsabilitymanagertest",
+      "actsabilitydistributetest:ActsAbilityDistributeTest",
       "amsabilitymanager/amsMissionSnapshotTest:ActsAmsMissionSnapshotTest",
       "amsabilitymanager/amsMissionSnapshotTestSingleton:ActsAmsMissionSnapshotTestSingleton",
       "amsabilitymanager/amsMissionSnapshotTestSingletonS:ActsAmsMissionSnapshotTestSingletonS",
