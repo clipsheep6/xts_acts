@@ -167,6 +167,7 @@ describe('ActsBmsModuleUsageRecordTest', function () {
         console.debug('=====================bms_getModuleUsageRecordTest_0100==================');
         let records = await bundle.getModuleUsageRecords(RECORD_COUNT + NUM_TWO);
         checkModuleUsageRecord(records);
+        // test
         let dataMap = new Map();
         for (let i = 0, length = records.length; i < length; i++) {
             console.debug('=============bundleName is=========' + JSON.stringify(records[i].bundleName));
