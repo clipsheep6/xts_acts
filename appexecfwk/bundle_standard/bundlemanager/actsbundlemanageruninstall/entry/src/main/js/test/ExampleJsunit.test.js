@@ -52,6 +52,7 @@ describe('ActsBundleManagerUninstall', function () {
      */
     it('uninstall_0100', 0, async function (done) {
         let installData = await demo.getBundleInstaller();
+        console.debug('squirrel-- test');
         installData.install([PATH + BMSJSTEST1], {
             userId: 100,
             installFlag: 1,
@@ -87,37 +88,54 @@ describe('ActsBundleManagerUninstall', function () {
      * @tc.desc Test uninstall interfaces.
      */
     it('uninstall_0200', 0, async function (done) {
+        console.debug('squirrel-- a');
         let installData = await demo.getBundleInstaller()
+        console.debug('squirrel-- b');
         installData.install([PATH + BMSJSTEST1, PATH + BMSJSTEST3], {
             userId: 100,
             installFlag: 1,
             isKeepData: false
         }, async (err, data) => {
+            console.debug('squirrel-- 01' + JSON.stringify(data));
+            console.debug('squirrel-- 01' + JSON.stringify(err));
             expect(err.code).assertEqual(ERR_CODE);
             expect(data.status).assertEqual(STATUS_INSTALL_FAILURE_CONFLICT);
             expect(data.statusMessage).assertEqual('STATUS_INSTALL_FAILURE_CONFLICT');
+            console.debug('squirrel-- 02');
             var datainfo1 = await demo.getBundleInfo(NAME1, 1);
+            console.debug('squirrel-- 03');
             var datainfo2 = await demo.getBundleInfo(NAME2, 1);
+            console.debug('squirrel-- 04');
             expect(datainfo1.name).assertEqual('');
             expect(datainfo2.name).assertEqual('');
+            console.debug('squirrel-- 05');
             installData.uninstall(NAME1, {
                 userId: 100,
                 installFlag: 1,
                 isKeepData: false
             }, async(err, data) => {
+                console.debug('squirrel-- 06' + JSON.stringify(data));
+                console.debug('squirrel-- 06' + JSON.stringify(err));
                 var datainfo3 = await demo.getBundleInfo(NAME1, 1);
+                console.debug('squirrel-- 07');
                 expect(datainfo3.name).assertEqual('');
                 installData.uninstall(NAME2, {
                     userId: 100,
                     installFlag: 1,
                     isKeepData: false
                 }, async(err, data) => {
+                    console.debug('squirrel-- 08' + JSON.stringify(data));
+                    console.debug('squirrel-- 08' + JSON.stringify(err));
                     var datainfo4 = await demo.getBundleInfo(NAME2, 1);
+                    console.debug('squirrel-- 09');
                     expect(datainfo4.name).assertEqual('');
                     done();
+                    console.debug('squirrel-- 10');
                 })
             })
+            console.debug('squirrel-- c');
         });
+        console.debug('squirrel-- d');
     })
 
     /**
@@ -205,7 +223,7 @@ describe('ActsBundleManagerUninstall', function () {
 
             function OnReceiveinstallEvent(err, data) {
                 expect(typeof data).assertEqual(OBJECT);
-                console.info('======data.statusMessage=====' + JSON.stringify(data.statusMessage));
+                console.debug('======data.statusMessage=====' + JSON.stringify(data.statusMessage));
                 expect(data.statusMessage).assertEqual("STATUS_UNINSTALL_FAILURE_ABORTED");
                 done();
             }
@@ -227,7 +245,7 @@ describe('ActsBundleManagerUninstall', function () {
 
             function OnReceiveinstallEvent(err, data) {
                 expect(typeof data).assertEqual(OBJECT);
-                console.info('======data.statusMessage=====' + JSON.stringify(data.statusMessage));
+                console.debug('======data.statusMessage=====' + JSON.stringify(data.statusMessage));
                 expect(data.statusMessage).assertEqual("STATUS_UNINSTALL_FAILURE_CONFLICT");
                 done();
             }
