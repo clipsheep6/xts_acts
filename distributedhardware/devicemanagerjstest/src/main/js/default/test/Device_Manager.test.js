@@ -98,7 +98,7 @@ describe('deviceManagerTest', function() {
 
     /*
      * @tc.number  deviceManagerTest_startDeviceDiscovery_0100
-     * @tc.name    Incoming normal device information,DiscoverMode is DISCOVER_MODE_PASSIVE,ExchangeMedium is AUTO,ExchangeFreq is LOW,SubscribeCap is SUBSCRIBE_CAPABILITY_DDMP
+     * @tc.name    Discover device Test with ACTIVE mode
      * @tc.desc    Function test
      * @tc.level   0
      */
@@ -137,8 +137,7 @@ describe('deviceManagerTest', function() {
 
     /*
      * @tc.number  deviceManagerTest_startDeviceDiscovery_0200
-     * @tc.name    Incoming normal device information,DiscoverMode is DISCOVER_MODE_PASSIVE,
-                   ExchangeMedium is BLE,ExchangeFreq is MID,SubscribeCap is SUBSCRIBE_CAPABILITY_DDMP
+     * @tc.name    Discover device Test with PASSIVE mode
      * @tc.desc    Function test
      * @tc.level   1
      */
