@@ -2,7 +2,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 
 
 export default function abilityTest(abilityContext) {
-  describe('ActsAbilityTest',function() {
+  describe('ActsAbilityTest', function() {
     /**
      * @tc.number: SUB_AA_OpenHarmony_Context_0900
      * @tc.name: Check that resourceManager is ok.
@@ -13,7 +13,6 @@ export default function abilityTest(abilityContext) {
       abilityContext.resourceManager.getString(16777218,(error,data) => {
         expect('demo for test').assertEqual(data);
         done()
-
       });
     })
   })
