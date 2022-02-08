@@ -2307,6 +2307,7 @@ describe('deviceManagerTest', function() {
         console.log("----------stop running deviceManagerTest_deviceDiscoveredEnable_0200----------");
         done();
     })
+	
     /*
      * @tc.number  deviceManagerTest_deviceDiscoveredEnable_0200
      * @tc.name    Pass in normal parameters，IsEnable is string
