@@ -1,13 +1,13 @@
-import Ability from'@ohos.application.Ability'
+import Ability from '@ohos.application.Ability'
 
 export default class MainAbility extends Ability {
     onCreate(want,launchParam){
-        // Ability is creating, initalize resources for this ability
+        // Ability is creating, initialize resources for this ability
         console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
     }
 
-    onDestroy(){
+    onDestroy() {
         // Ability is destroying, release resources for this ability
         console.log("[Demo] MainAbility onDestroy")
     }

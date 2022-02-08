@@ -8,7 +8,7 @@
         "deviceTypes": [
             "phone"
         ],
-        "deliveryWithInstall": true
+        "deliveryWithInstall": true,
         "installationFree": false,
         "uiSyntax": "ets",
         "pages": "$profile:main_pages",
@@ -18,7 +18,7 @@
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:phone_entry_main",
                 "icon": "$media:icon",
-                "label": "string:entry_label",
+                "label": "$string:entry_label",
                 "visible": true,
                 "orientation": "portrait",
                 "skills": [
@@ -30,7 +30,7 @@
                             "entity.system.home"
                         ]
                     }
-                ],
+                ]
             }
         ]
 

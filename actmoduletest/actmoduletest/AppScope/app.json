@@ -1,7 +1,7 @@
 {
     "app":{
         "bundleName":"com.example.actmoduletest",
-        "vebdor":"huawei",
+        "vendor":"huawei",
         "versionCode":1000000,
         "versionName":"1.0.0",
         "debug":false,

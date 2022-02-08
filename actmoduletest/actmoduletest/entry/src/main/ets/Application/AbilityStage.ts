@@ -1,7 +1,7 @@
-import AbilityStage from"@ohos.application.AbilityStage"
+import AbilityStage from "@ohos.application.AbilityStage"
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate(){
+    onCreate() {
         console.log("[Demo] MyAbilityStage onCreate")
     }
 }
