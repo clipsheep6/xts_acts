@@ -1,0 +1,54 @@
+{
+    "app":{
+        "bundleName": "com.ohos.faceauth.service.stability",
+        "vendor": "ohos",
+        "version": {
+            "code": 1,
+            "name": "1.0"
+        },
+       "apiVersion": {
+          "compatible": 3,
+          "target": 3
+       }
+    },
+    "deviceConfig": {
+        "default": {
+        }
+    },
+    "module": {
+        "package":"com.hos.FaceAuthStabilityTest.src",
+        "name":"FaceAuthStabilityTest",
+        "deviceType": [
+            "tv",
+            "car"
+        ],
+        "distro": {
+            "deliveryWithInstall": true,
+            "moduleName": "testability",
+            "moduleType": "entry"
+        },
+        "abilities": [{
+            "name": "FaceAuthStabilityTest",
+            "icon": "$media:snowball",
+            "label": "FaceAuthStabilityTest Ability",
+            "launchType": "standard",
+            "orientation": "unspecified",
+            "type": "service",
+            "srcLanguage": "c++",
+            "visible": true
+            }],
+        "reqPermissions": [
+            {
+                "name": "ohos.permission.ACCESS_BIOMETRIC",
+                "reason": "permreason_access_faceauth",
+                "usedScene": 
+                {
+                    "ability": ["com.mycamera.Ability", "com.mycamera.AbilityBackground"],
+                    "when": "always"
+                }
+            }
+        ]
+    }
+}
+
+
