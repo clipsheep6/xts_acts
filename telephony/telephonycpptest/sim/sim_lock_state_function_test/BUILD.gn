@@ -1,0 +1,85 @@
+#Copyright (C) 2021 Huawei Device Co., Ltd.
+#Licensed under the Apache License, Version 2.0 (the "License")
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+import("//build/ohos.gni")
+import("//drivers/adapter/uhdf2/uhdf.gni")
+import("////test/xts/acts/telephony/telephonycpptest/sim/sim_config.gni")
+
+ohos_moduletest_suite("SimLockStateFunctionTest") {
+  install_enable = true
+  sources = [
+    "src/sim_lock_state_function_test.cpp",
+    "//base/telephony/core_service/frameworks/native/src/network_state.cpp",
+    "//base/telephony/core_service/frameworks/native/src/signal_information.cpp",
+    "//base/telephony/core_service/frameworks/native/src/network_search_result.cpp",
+    "//base/telephony/core_service/frameworks/native/src/network_information.cpp",
+    "//base/telephony/core_service/frameworks/native/src/cell_information.cpp",
+    "//test/xts/acts/telephony/telephonycpptest/mock_vendor/mock_vendor.cpp",
+  ]
+
+  include_dirs = [
+    "include",
+    "//test/xts/acts/telephony/telephonycpptest/utils",
+    "//test/xts/acts/telephony/telephonycpptest/mock_vendor",
+    "//third_party/bounds_checking_function/src",
+    "//test/xts/acts/telephony/telephonycpptest/sim/include",
+    "//utils/native/base/include",
+    "//base/telephony/core_service/common/sim",
+    "//base/telephony/ril_adapter/interfaces/innerkits",
+    "//base/telephony/core_service/interfaces/innerkits/common",
+    "//base/telephony/core_service/interfaces/innerkits/core",
+    "//base/telephony/core_service/frameworks/native/include",
+    "//base/telephony/core_service/frameworks/native/src/",
+    "//base/telephony/core_service/sim/include",
+    "//base/telephony/core_service/common/log/include",
+    "//base/telephony/core_service/network_search/include",
+    "//base/notification/ces_standard/cesfwk/innerkits/include",
+    "//base/notification/ces_standard/cesfwk/kits/native/include",
+    "//foundation/distributedschedule/dmsfwk/services/dtbschedmgr/include",
+    "//foundation/aafwk/standard/interfaces/innerkits/want/include/ohos/aafwk/content",
+    "//foundation/appexecfwk/standard/interfaces/innerkits/appexecfwk_base/include",
+    "//base/telephony//core_service/interfaces/kits/native",
+    "//base/telephony/core_service/interfaces/innerkits/network_search",
+    "//base/telephony/core_service/common/network_search",
+    "//base/telephony/core_service/common/core",
+    "//base/telephony/core_service/utils/log/include",
+    "//base/telephony/core_service/interfaces/innerkits/state_registry",
+    "//base/telephony/core_service/interfaces/innerkits/sim",
+    "//base/telephony/ril_adapter/interfaces/innerkits/include",
+  ]
+ if (is_standard_system) {
+    external_deps = [ "hiviewdfx_hilog_native:libhilog",
+    "aafwk_standard:want",
+    "ces_standard:cesfwk_innerkits",
+    "core_service:tel_core_service_api",
+    ]
+  } else {
+    external_deps = [ "hilog:libhilog" ]
+  }
+
+  deps = [
+    "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
+    "//foundation/communication/ipc/interfaces/innerkits/ipc_core:ipc_core",
+    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
+    "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
+    "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
+
+    "//third_party/googletest:gtest_main",
+  ]
+
+  defines += []
+
+  part_name = "telephonycpptest"
+  subsystem_name = "telephony"
+}
