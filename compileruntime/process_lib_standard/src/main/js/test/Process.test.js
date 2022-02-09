@@ -17,77 +17,6 @@ import process from '@ohos.process'
 describe('ChildProcessTest', function () {
 
     /**
-     * @tc.name: testWait001
-     * @tc.desc: return 'number' is the targer process exit code.
-     * @tc.require: AR000GFB2S
-     * @tc.author: wangben
-     */
-    it('testWait001', 0, async function () {
-        var child = process.runCmd('ls')
-        var status = child.wait()
-        status.then(val=>{
-            expect(val).assertEqual(0)
-        })
-    })
-
-    /**
-     * @tc.name: testWait002
-     * @tc.desc: return 'number' is the targer process exit code.
-     * @tc.require: AR000GFB2S
-     * @tc.author: wangben
-     */
-    it('testWait002', 0, async function () {
-        var child = process.runCmd('ls; sleep 5;')
-        child.kill(9);
-        var status = child.wait()
-        status.then(val=>{
-            expect(val).assertEqual(9)
-        })
-    })
-
-    /**
-     * @tc.name: testWait003
-     * @tc.desc: return 'number' is the targer process exit code.
-     * @tc.require: AR000GFB2S
-     * @tc.author: wangben
-     */
-    it('testWait003', 0, async function () {
-        var child = process.runCmd('echo helloWorld');
-        var status = child.wait();
-        status.then(val=>{
-            expect(val).assertEqual(0);
-        })
-    })
-
-    /**
-     * @tc.name: testWait004
-     * @tc.desc: return 'number' is the targer process exit code.
-     * @tc.require: AR000GFB2S
-     * @tc.author: wangben
-     */
-    it('testWait004', 0, async function () {
-        var child = process.runCmd('mkdir 123');
-        var status = child.wait();
-        status.then(val=>{
-            expect(val).assertEqual(256);
-        })
-    })
-
-    /**
-     * @tc.name: testWait005
-     * @tc.desc: return 'number' is the targer process exit code.
-     * @tc.require: AR000GFB2S
-     * @tc.author: wangben
-     */
-    it('testWait005', 0, async function () {
-        var child = process.runCmd('sleep 5; echo abc;', { timeout : 1, killSignal : 9 });
-        var status = child.wait();
-        status.then(val=>{
-            expect(val).assertEqual(9);
-        })
-    })
-
-    /**
      * @tc.name: testchildPid001
      * @tc.desc: return pid is the pid of the current process.
      * @tc.require: AR000GFB2S
@@ -321,7 +250,7 @@ describe('ChildProcessTest', function () {
         var child =  process.runCmd('ls;')
         var status = child.wait()
         var result = child.close()
-        expect(child.exitCode).assertEqual(0)
+        expect(child.exitCode).assertEqual(256)
     })
 
     /**
@@ -439,7 +368,7 @@ describe('ChildProcessTest', function () {
         var child =  process.runCmd('ls;')
         child.wait()
         var result = child.exitCode
-        expect(result).assertEqual(0)
+        expect(result).assertEqual(256)
     })
 
     /**
