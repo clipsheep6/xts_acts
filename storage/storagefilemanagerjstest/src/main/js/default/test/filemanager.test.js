@@ -199,7 +199,6 @@ describe("filemanager_test", function () {
     done();
   });
 
-
   /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0070
    * @tc.name filemanager_test_createfile_async_007
