@@ -14,10 +14,6 @@
  */
 require('./ActsBmsGetBackGroundModes.test.js')
 require('./ActsBmsFormsInfoTest.test.js')
-<<<<<<< Updated upstream
 require('./ActsBmsPermissionChange.test.js')
 require('./ActsBmsQueryAbilityByWant.test.js') 
-=======
-require('./ActsBmsQueryAbilityByWant.test.js') 
 require('./ActsBmsCleanCacheTest.test.js')
->>>>>>> Stashed changes
