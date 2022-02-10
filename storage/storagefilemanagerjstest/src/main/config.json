@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "ohos.acts.storage.environment",
+    "bundleName": "ohos.acts.storage.filemanager",
     "vendor": "example",
     "version": {
       "code": 1000000,
@@ -13,7 +13,7 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "ohos.acts.storage.environment",
+    "package": "ohos.acts.storage.filemanager",
     "name": ".MyApplication",
     "deviceType": [
       "phone"
@@ -36,7 +36,7 @@
             ]
           }
         ],
-        "name": "ohos.acts.storage.environment.MainAbility",
+        "name": "ohos.acts.storage.filemanager.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:app_name",

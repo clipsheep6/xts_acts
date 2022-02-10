@@ -15,9 +15,9 @@
 
 export default {
   onCreate() {
-    console.info('ohos.acts.storage.environment onCreate');
+    console.info('ohos.acts.storage.filemanager onCreate');
   },
   onDestroy() {
-    console.info('ohos.acts.storage.environment onDestroy');
+    console.info('ohos.acts.storage.filemanager onDestroy');
   }
 };
