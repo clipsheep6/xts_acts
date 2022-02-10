@@ -27,6 +27,7 @@ const ROOTFILE = [
   {"name":"audio_album","path":"dataability:///album","type":"album","size":0,"added_time":0,"modified_time":0},
   {"name":"file_folder","path":"dataability:///album","type":"album","size":0,"added_time":0,"modified_time":0}
 ];
+
 // listFile() interface, when the parameter type is "image", the returned data and the data contrast, return the same data is correct
 const LISTFILE_IMAGEINFO = [
   {"name":"taobao","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/1","type":"8","size":4096,"added_time":67817,"modified_time":67817},
@@ -59,7 +60,7 @@ const CALLBACK_URI = "dataability:///com.ohos.medialibrary.MediaLibraryDataAbili
 
 describe("filemanager_test", function () {
 
-/**
+  /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0000
    * @tc.name filemanager_test_createfile_async_000
    * @tc.desc Test createFile() interfaces promise way to create a file normally.
@@ -81,7 +82,7 @@ describe("filemanager_test", function () {
     done();
   });
 
-/**
+  /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0010
    * @tc.name filemanager_test_createfile_async_001
    * @tc.desc Test createFile() interfaces callback way to create a file normally.
@@ -98,7 +99,8 @@ describe("filemanager_test", function () {
     });
     done();
   });
-/**
+  
+  /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0020
    * @tc.name filemanager_test_createfile_async_002
    * @tc.desc Test createFile() interfaces to create an existing file, throw an exception.
@@ -119,7 +121,7 @@ describe("filemanager_test", function () {
     done();
   });
 
-/**
+  /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0030
    * @tc.name filemanager_test_createfile_async_003
    * @tc.desc Test createFile() interfaces to create a file, the path error parameters, throw an exception.
@@ -138,7 +140,8 @@ describe("filemanager_test", function () {
     }
     done();
   });
-/**
+  
+  /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0040
    * @tc.name filemanager_test_createfile_async_004
    * @tc.desc Test createFile() interfaces to create a file, without any parameters, throw an exception.
@@ -157,7 +160,7 @@ describe("filemanager_test", function () {
     done();
   });
 
-/**
+  /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0050
    * @tc.name filemanager_test_createfile_async_005
    * @tc.desc Test createFile() interfaces to create a file, all parameters to an empty string, throw an exception.
@@ -175,7 +178,8 @@ describe("filemanager_test", function () {
     }
     done();
   });
-/**
+  
+  /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0060
    * @tc.name filemanager_test_createfile_async_006
    * @tc.desc Test createFile() interfaces create a file, parameter path contains escape characters, throw an exception.
@@ -196,7 +200,7 @@ describe("filemanager_test", function () {
   });
 
 
-/**
+  /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0070
    * @tc.name filemanager_test_createfile_async_007
    * @tc.desc Test createFile() interfaces a file, parameter path contain special characters, throw an exception.
@@ -215,7 +219,7 @@ describe("filemanager_test", function () {
     done();
   });
 
- /**
+   /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0080
    * @tc.name filemanager_test_createfile_async_008
    * @tc.desc Test createFile() interfaces to create a file, lack of path parameters, throw an exception.
@@ -236,7 +240,7 @@ describe("filemanager_test", function () {
     done();
   });
 
-/**
+  /**
    * @tc.number SUB_DF_FILEMANAGER_GET_ROOT_0000
    * @tc.name filemanager_test_get_root_async_000
    * @tc.desc Test getRoot() interfaces, the first layer directory album information, promise way back.
@@ -257,7 +261,7 @@ describe("filemanager_test", function () {
     done();
   });
 
-/**
+  /**
    * @tc.number SUB_DF_FILEMANAGER_GET_ROOT_0010
    * @tc.name filemanager_test_get_root_async_001
    * @tc.desc Test getRoot() interfaces, the first layer directory album information, callback way back.
@@ -279,7 +283,7 @@ describe("filemanager_test", function () {
     done();
   });
 
-/**
+  /**
    * @tc.number SUB_DF_FILEMANAGER_GET_ROOT_0020
    * @tc.name filemanager_test_get_root_async_002
    * @tc.desc Test getRoot() interfaces, without any parameters, throw an exception.
@@ -297,7 +301,8 @@ describe("filemanager_test", function () {
     }
     done();
   });
-/**
+  
+  /**
    * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0000
    * @tc.name filemanager_test_list_file_async_000
    * @tc.desc Test listFile() interfaces，when the type parameters as the "file", return path of files information accordingly.
@@ -319,7 +324,7 @@ describe("filemanager_test", function () {
     done();
   });
 
-/**
+  /**
    * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0010
    * @tc.name filemanager_test_list_file_async_001
    * @tc.desc Test listFile() interfaces， when the type parameters as the "image", return path of files information accordingly.
@@ -340,7 +345,8 @@ describe("filemanager_test", function () {
     }
     done();
   });
- /**
+  
+  /**
    * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0020
    * @tc.name filemanager_test_list_file_async_002
    * @tc.desc Test listFile() interfaces, when the type parameters as the "video", return path of files information accordingly.
@@ -363,7 +369,7 @@ describe("filemanager_test", function () {
     done();
   });
 
-/**
+  /**
    * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0030
    * @tc.name filemanager_test_list_file_async_003
    * @tc.desc Test listFile() interfaces, when the type parameter to an empty string, throw an exception.
