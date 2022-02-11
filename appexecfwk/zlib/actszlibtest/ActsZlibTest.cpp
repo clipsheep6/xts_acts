@@ -43,7 +43,7 @@ static unsigned pull(void *desc, unsigned char **buf)
     static unsigned int next = 0;
     static unsigned char dat[] = {0x63, 0, 2, 0};
 
-    if (desc == Z_NULL) {
+    if (desc == nullptr) {
         next = 0;
         return 0;   /* no input (already provided at next_in) */
     }
@@ -53,7 +53,7 @@ static unsigned pull(void *desc, unsigned char **buf)
 static int push(void *desc, unsigned char *buf, unsigned len)
 {
     buf += len;
-    return desc != Z_NULL;      /* force error if desc not null */
+    return desc != nullptr;      /* force error if desc not null */
 }
 
 class ActsZlibTest : public testing::Test {
@@ -1290,9 +1290,9 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzInflateBack, Function | MediumTest | Level2
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
     /* initialize inflateBack state for repeated use */
     window = match; /* reuse match buffer */
-    strm.zalloc = Z_NULL;
-    strm.zfree = Z_NULL;
-    strm.opaque = Z_NULL;
+    strm.zalloc = nullptr;
+    strm.zfree = nullptr;
+    strm.opaque = nullptr;
     err = inflateBackInit(&strm, 15, window);
     ASSERT_EQ(err, Z_OK);
     if (err != Z_OK) {
@@ -1301,7 +1301,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzInflateBack, Function | MediumTest | Level2
     }
     strm.next_in = uncompr;
     strm.avail_in = 1;
-    err = inflateBack(&strm, pull, Z_NULL, push, &strm);
+    err = inflateBack(&strm, pull, nullptr, push, &strm);
     ASSERT_TRUE(err != NULL);
     err = inflateBackEnd(&strm);
     ASSERT_EQ(err, Z_OK);
@@ -1344,11 +1344,11 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateCodesUsed, Function | MediumTest | Lev
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateCopy_END, Function | MediumTest | Level2)
 {         
     int err;
-    err = inflate(Z_NULL, 0);
+    err = inflate(nullptr, 0);
     ASSERT_TRUE(err == Z_STREAM_ERROR);
-    err = inflateEnd(Z_NULL);
+    err = inflateEnd(nullptr);
     ASSERT_TRUE(err == Z_STREAM_ERROR);
-    err = inflateCopy(Z_NULL, Z_NULL);
+    err = inflateCopy(nullptr, nullptr);
     ASSERT_TRUE(err == Z_STREAM_ERROR);
 }
 
@@ -1397,7 +1397,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateGetHeader, Function | MediumTest | Lev
     struct mem_zone *zone;
     zone = (struct mem_zone *)malloc(sizeof(struct mem_zone));
     ASSERT_TRUE(zone != NULL);
-    zone->first = NULL;
+    zone->first = nullptr;
     zone->total = 0;
     zone->highwater = 0;
     zone->limit = 0;
@@ -1412,7 +1412,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateGetHeader, Function | MediumTest | Lev
     strm.zalloc = nullptr;
     strm.zfree = nullptr;
     strm.avail_in = 0;
-    strm.next_in = Z_NULL;
+    strm.next_in = nullptr;
     err = inflateInit2(&strm, 1);
     ASSERT_TRUE(err != Z_OK);
     out = (unsigned char *)malloc(len);
@@ -1442,7 +1442,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateInit_, Function | MediumTest | Level2)
     struct mem_zone *zone;
     zone = (struct mem_zone *)malloc(sizeof(struct mem_zone));
     ASSERT_TRUE(zone != NULL);
-    zone->first = NULL;
+    zone->first = nullptr;
     zone->total = 0;
     zone->highwater = 0;
     zone->limit = 0;
@@ -1452,23 +1452,23 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateInit_, Function | MediumTest | Level2)
     strm.zalloc = nullptr;
     strm.zfree = nullptr;
     strm.avail_in = 0;
-    strm.next_in = Z_NULL;
+    strm.next_in = nullptr;
     err = inflateInit(&strm);
     ASSERT_TRUE(err == Z_OK);
     err = inflatePrime(&strm, 5, 31);
     ASSERT_TRUE(err == Z_OK);
     err = inflatePrime(&strm, -1, 0);
     ASSERT_TRUE(err == Z_OK);
-    err = inflateSetDictionary(&strm, Z_NULL, 0);
+    err = inflateSetDictionary(&strm, nullptr, 0);
     ASSERT_TRUE(err == Z_STREAM_ERROR);
     err = inflateEnd(&strm);
     ASSERT_TRUE(err == Z_OK);
     strm.avail_in = 0;
-    strm.next_in = Z_NULL;
-    err = inflateInit_(&strm, ZLIB_VERSION - 1, (int)sizeof(z_stream));
+    strm.next_in = nullptr;
+    err = inflateInit_(&strm, ZLIB_VERSION - 1, static_cast<int>(sizeof(z_stream)));
     ASSERT_TRUE(err == Z_VERSION_ERROR);
 
-    err = inflateInit2_(&strm, windowBits, ZLIB_VERSION - 1, (int)sizeof(z_stream));
+    err = inflateInit2_(&strm, windowBits, ZLIB_VERSION - 1, static_cast<int>(sizeof(z_stream)));
     ASSERT_TRUE(err == Z_VERSION_ERROR);
     free(zone);
 }
@@ -1485,7 +1485,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflatePrime, Function | MediumTest | Level2)
     struct mem_zone *zone;
     zone = (struct mem_zone *)malloc(sizeof(struct mem_zone));
     ASSERT_TRUE(zone != NULL);
-    zone->first = NULL;
+    zone->first = nullptr;
     zone->total = 0;
     zone->highwater = 0;
     zone->limit = 0;
@@ -1493,9 +1493,9 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflatePrime, Function | MediumTest | Level2)
     zone->rogue = 0;
     strm.opaque = zone;
     strm.zalloc = nullptr;
-    strm.zfree = Z_NULL;
+    strm.zfree = nullptr;
     strm.avail_in = 0;
-    strm.next_in = Z_NULL;
+    strm.next_in = nullptr;
     ret = inflateInit(&strm);
     ASSERT_TRUE(ret == Z_OK);
     ret = inflatePrime(&strm, 5, 31);
