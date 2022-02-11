@@ -61,7 +61,9 @@
           "pages/index",
           "pages/ellipse",
           "pages/systemRouterA",
-          "pages/systemRouterB"
+          "pages/systemRouterB",
+          "pages/swiper",
+          "pages/gridContainer"
         ],
         "name": ".MainAbility",
         "window": {
