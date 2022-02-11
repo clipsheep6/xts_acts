@@ -1192,7 +1192,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzTell, Function | MediumTest | Level2)
     ASSERT_TRUE(file != NULL);
     z_off64_t pos;
     pos = gzseek(file, -8L, SEEK_CUR);
-    ASSERT_FALSE(gztell(file) == pos);/* define gztell gztell64 in zlib.h */
+    ASSERT_FALSE(gztell(file) == pos); /* define gztell gztell64 in zlib.h */
     gzclose(file);
 #else
     gzFile file;
@@ -1342,7 +1342,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateCodesUsed, Function | MediumTest | Lev
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateCopy_END, Function | MediumTest | Level2)
-{         
+{
     int err;
     err = inflate(nullptr, 0);
     ASSERT_TRUE(err == Z_STREAM_ERROR);
@@ -1358,7 +1358,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateCopy_END, Function | MediumTest | Leve
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateGetDictionary, Function | MediumTest | Level2)
-{         
+{
     Byte *compr, *uncompr;
     uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
@@ -1393,7 +1393,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateGetDictionary, Function | MediumTest |
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateGetHeader, Function | MediumTest | Level2)
-{        
+{
     struct mem_zone *zone;
     zone = (struct mem_zone *)malloc(sizeof(struct mem_zone));
     ASSERT_TRUE(zone != NULL);
@@ -1435,7 +1435,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateGetHeader, Function | MediumTest | Lev
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateInit_, Function | MediumTest | Level2)
-{        
+{
     int err;
     int windowBits = 8;
     z_stream strm;
@@ -1479,7 +1479,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateInit_, Function | MediumTest | Level2)
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestInflatePrime, Function | MediumTest | Level2)
-{        
+{
     int ret;
     z_stream strm;
     struct mem_zone *zone;
@@ -1509,7 +1509,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflatePrime, Function | MediumTest | Level2)
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateReset, Function | MediumTest | Level2)
-{        
+{
     Byte *compr, *uncompr;
     uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
@@ -1547,7 +1547,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateReset, Function | MediumTest | Level2)
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateSetDictionary, Function | MediumTest | Level2)
-{        
+{
     Byte *compr, *uncompr;
     uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
@@ -1581,7 +1581,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateSetDictionary, Function | MediumTest |
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateSyncPoint, Function | MediumTest | Level2)
-{        
+{
     Byte *compr, *uncompr;
     uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
@@ -1613,7 +1613,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateSyncPoint, Function | MediumTest | Lev
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateUndermine, Function | MediumTest | Level2)
-{        
+{
     Byte *compr, *uncompr;
     uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
@@ -1645,7 +1645,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateUndermine, Function | MediumTest | Lev
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateValidate, Function | MediumTest | Level2)
-{        
+{
     Byte *compr, *uncompr;
     uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
@@ -1677,7 +1677,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateValidate, Function | MediumTest | Leve
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestzlibCompileFlags, Function | MediumTest | Level2)
-{        
+{
     static const char* myVersion = ZLIB_VERSION;
 
     if (zlibVersion()[0] != myVersion[0]) {
@@ -1698,7 +1698,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestzlibCompileFlags, Function | MediumTest | Lev
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestzError, Function | MediumTest | Level2)
-{    
+{
     const char* err;   
     err = zError(Z_DATA_ERROR);
     ASSERT_EQ(err, "data error");
@@ -1710,7 +1710,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestzError, Function | MediumTest | Level2)
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsZlibTest, ActsZlibTestzlibVersion, Function | MediumTest | Level2)
-{        
+{
     static const char* myVersion = ZLIB_VERSION;
     static const char* err;
     err = zlibVersion();
