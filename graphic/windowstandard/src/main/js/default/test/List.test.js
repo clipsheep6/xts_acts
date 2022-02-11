@@ -14,3 +14,6 @@
  */
 require('./window.test.js')
 require('./window.parameter.js')
+require('./display.screenshot.api.js')
+require('./window.api.part1.js')
+require('./window.api.part2.js')

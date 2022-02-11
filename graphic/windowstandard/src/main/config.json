@@ -48,7 +48,8 @@
     "js": [
       {
         "pages": [
-          "pages/index/index"
+          "pages/index/index",
+          "pages/test01/test01"
         ],
         "name": "default",
         "window": {
