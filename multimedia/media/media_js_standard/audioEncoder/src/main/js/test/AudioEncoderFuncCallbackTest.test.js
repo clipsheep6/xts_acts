@@ -166,6 +166,8 @@ describe('AudioEncoderFuncCallback', function () {
     }
 
     async function flushWork() {
+        inputQueue = [];
+        outputQueue = [];
         audioEncodeProcessor.flush((err) => {
             expect(err).assertUndefined();
             console.info("case flush at inputeos success");
@@ -473,6 +475,8 @@ describe('AudioEncoderFuncCallback', function () {
             })
         });
         eventEmitter.on('flush', () => {
+            inputQueue = [];
+            outputQueue = [];
             audioEncodeProcessor.flush((err) => {
                 expect(err).assertUndefined();
                 console.info(`case flush after 5s`);
