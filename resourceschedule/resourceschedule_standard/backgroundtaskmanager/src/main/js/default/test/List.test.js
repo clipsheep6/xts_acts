@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-require('./BackgroundTaskMagrJs.test.js')
+//require('./BackgroundTaskMagrJs.test.js')
 
 
 
