@@ -50,7 +50,7 @@ export default {
             console.debug("====>scene start====");
             var osAccountManager = osaccount.getAccountManager();
             console.debug("====>get AccountManager finish====");
-            var osAccountInfo = await osAccountManager.createOsAccount("osAccountNameScene", osaccount.OsAccountType.NORMAL);
+            var osAccountInfo = await osAccountManager.createOsAccount("osAccountName", osaccount.OsAccountType.NORMAL);
             createIocalId = osAccountInfo.localId;
             function publishCallback(err){
                 console.debug("====>publish call back scene err:" + JSON.stringify(err));
