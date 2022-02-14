@@ -1344,6 +1344,17 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateCodesUsed, Function | MediumTest | Lev
     ASSERT_TRUE(err != Z_OK);
     free(compr);
     free(uncompr);
+    ====
+
+
+
+    ====
+    int a = 8;
+    if (a == NULL) {
+        fprintf(stderr, "--------djc-----------qqqq------\n");
+    } else {
+        fprintf(stderr, "--------djc-----------aaa------\n");
+    }
 }
 
 /**
