@@ -25,6 +25,7 @@
         {
             "type": "PushKit",
             "push": [
+                "bmsThirdBundleTest1.hap->/data/test/bmsThirdBundleTest1.hap",
                 "bmsJstest1.hap->/data/test/bmsJstest1.hap"
             ]
         },

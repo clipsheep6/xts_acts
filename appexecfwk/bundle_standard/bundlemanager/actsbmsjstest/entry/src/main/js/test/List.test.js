@@ -13,3 +13,4 @@
  * limitations under the License.
  */
 require('./ActsBmsJsTest.test.js')
+require('./ActsBmsListeningInterfaceTest.test.js')

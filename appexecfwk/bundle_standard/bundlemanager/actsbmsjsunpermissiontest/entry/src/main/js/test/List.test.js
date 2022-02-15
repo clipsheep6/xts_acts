@@ -14,3 +14,4 @@
  */
 
 require('./ActsBmsJsUnPermissionTest.test.js')
+require('./ActsBmsListeningInterfaceTest.test.js')
