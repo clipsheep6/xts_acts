@@ -13,3 +13,4 @@
  * limitations under the License.
  */
 require('./thermal_unittest.test.js')
+require('./thermal_performance.test.js')
