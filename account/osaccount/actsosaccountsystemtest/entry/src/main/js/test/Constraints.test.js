@@ -20,7 +20,7 @@ describe('ActsOsAccountSystemTest', function () {
     /*
      * @tc.number  : ActsOsAccountConstraints_0100
      * @tc.name    : Constraints callback
-     * @tc.desc    : get 100 local user all constraints
+     * @tc.desc    : get constraints for users of the same type as 100 user
      */
     it('ActsOsAccountConstraints_0100', 0, async function(done){
         console.debug("====>ActsOsAccountConstraints_0100 start====");
@@ -30,33 +30,41 @@ describe('ActsOsAccountSystemTest', function () {
         "constraint.app.accounts","constraint.apps.install","constraint.apps.uninstall","constraint.location.shared",
         "constraint.unknown.sources.install","constraint.global.unknown.app.install","constraint.bluetooth.set",
         "constraint.bluetooth"];
-        AccountManager.getOsAccountAllConstraints(100, (err, constraints)=>{
-            console.debug("====>getOsAccountAllConstraints err:" + JSON.stringify(err));
-            console.debug("====>getOsAccountAllConstraints:" + JSON.stringify(constraints));
-            expect(err.code).assertEqual(0);
-            expect(constraints.length).assertEqual(adminConstraints.length);
-            var succeed = 0, failed = 0;
-            for(var j = 0; j<constraints.length; j++){
-                if(adminConstraints.indexOf(constraints[j]) == -1){
-                    failed++;
+        var localId;
+        AccountManager.createOsAccount("osAccountNameCreate", osAccount.OsAccountType.ADMIN, (err, osAccountInfo)=>{
+            console.debug("====>createOsAccount err:" + JSON.stringify(err));
+            console.debug("====>createOsAccount:" + JSON.stringify(osAccountInfo));
+            localId = osAccountInfo.localId;
+            AccountManager.getOsAccountAllConstraints(localId, (err, constraints)=>{
+                console.debug("====>getOsAccountAllConstraints err:" + JSON.stringify(err));
+                console.debug("====>getOsAccountAllConstraints:" + JSON.stringify(constraints));
+                expect(err.code).assertEqual(0);
+                expect(constraints.length).assertEqual(adminConstraints.length);
+                var succeed = 0, failed = 0;
+                for(var j = 0; j<constraints.length; j++){
+                    if(adminConstraints.indexOf(constraints[j]) == -1){
+                        failed++;
+                    }
+                    else{
+                        succeed++;
+                    }
                 }
-                else{
-                    succeed++;
-                }
-            }
-            console.debug("====>the number of constraints obtained:" + succeed);
-            console.debug("====>number of constraints not fetched:" + failed);
-            if(failed == 0){
-                console.debug("====>ActsOsAccountConstraints_0100 end====");
-                done();
-            }
+                console.debug("====>the number of constraints obtained:" + succeed);
+                console.debug("====>number of constraints not fetched:" + failed);
+                expect(failed).assertEqual(0);
+                AccountManager.removeOsAccount(localId, (err)=>{
+                    console.debug("====>removeOsAccount err:" + JSON.stringify(err));
+                    console.debug("====>ActsOsAccountConstraints_0100 end====");
+                    done();
+                })
+            })
         })
     })
 
     /*
      * @tc.number  : ActsOsAccountConstraints_0200
      * @tc.name    : Constraints promise
-     * @tc.desc    : get 100 local user all constraints
+     * @tc.desc    : get constraints for users of the same type as 100 user
      */
     it('ActsOsAccountConstraints_0200', 0, async function(done){
         console.debug("====>ActsOsAccountConstraints_0200 start====");
@@ -66,7 +74,11 @@ describe('ActsOsAccountSystemTest', function () {
         "constraint.app.accounts","constraint.apps.install","constraint.apps.uninstall","constraint.location.shared",
         "constraint.unknown.sources.install","constraint.global.unknown.app.install","constraint.bluetooth.set",
         "constraint.bluetooth"];
-        var constraints = await AccountManager.getOsAccountAllConstraints(100);
+        var localId;
+        var osAccountInfo = await AccountManager.createOsAccount("osAccountNameCreate", osAccount.OsAccountType.ADMIN);
+        console.debug("====>createOsAccount:" + JSON.stringify(osAccountInfo));
+        localId = osAccountInfo.localId;
+        var constraints = await AccountManager.getOsAccountAllConstraints(localId);
         console.debug("====>getAccountManager constraints:" + JSON.stringify(constraints));
         expect(constraints.length).assertEqual(adminConstraints.length);
         var succeed = 0, failed = 0;
@@ -80,10 +92,8 @@ describe('ActsOsAccountSystemTest', function () {
         }
         console.debug("====>the number of constraints obtained:" + succeed);
         console.debug("====>number of constraints not fetched:" + failed);
-        if(failed == 0){
-            console.debug("====>ActsOsAccountConstraints_0100 end====");
-            done();
-        }
+        expect(failed).assertEqual(0);
+        await AccountManager.removeOsAccount(localId);
         console.debug("====>ActsOsAccountConstraints_0200 end====");
         done();
     })
