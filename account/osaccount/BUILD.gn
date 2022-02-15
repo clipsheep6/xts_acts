@@ -17,9 +17,9 @@ group("osaccount_hap") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "actsosaccountpermissiontest:osaccount_permission",
       "actsosaccountsystemtest:ActsOsAccountSystemTest",
       "actsosaccountthirdpartytest:ActsOsAccountThirdPartyTest",
-      "actsosaccountpermissiontest:osaccount_permission",
       "sceneProject:osaccount_scene",
     ]
   }

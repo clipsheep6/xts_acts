@@ -17,10 +17,10 @@ group("osaccount_permission") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "actsosaccountconstrainttest:ActsOsAccountConstraintTest",
       "actsosaccountpermissioninteracttest:ActsOsAccountPermissionInteractTest",
       "actsosaccountpermissionmanagetest:ActsOsAccountPermissionManageTest",
       "actsosaccountpermissionnotest:ActsOsAccountPermissionNoTest",
-      "actsosaccountconstrainttest:ActsOsAccountConstraintTest",
     ]
   }
 }

@@ -16,8 +16,6 @@ import("//test/xts/tools/build/suite.gni")
 group("osaccount_scene") {
   testonly = true
   if (is_standard_system) {
-    deps = [
-      "actsosaccountscenepermission:ActsOsAccountScenePermission",
-    ]
+    deps = [ "actsosaccountscenepermission:ActsOsAccountScenePermission" ]
   }
 }
