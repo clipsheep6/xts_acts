@@ -13,5 +13,11 @@
  * limitations under the License.
  */
 
-require('./WifiSta.test.js')
-require('./WifiSoftAP.test.js')
+export default {
+    onCreate() {
+        console.info('AceApplication onCreate');
+    },
+    onDestroy() {
+        console.info('AceApplication onDestroy');
+    }
+};

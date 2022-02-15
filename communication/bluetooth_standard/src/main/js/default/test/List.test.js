@@ -13,5 +13,4 @@
  * limitations under the License.
  */
 
-require('./WifiSta.test.js')
-require('./WifiSoftAP.test.js')
+require('./Bluetooth.test.js')
