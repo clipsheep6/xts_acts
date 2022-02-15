@@ -35,6 +35,8 @@ const ERR_OSACCOUNT_KIT_QUERY_OS_ACCOUNT_BY_ID_ERROR = 4587553;
 const ERR_OSACCOUNT_KIT_GET_OS_ACCOUNT_PROFILE_PHOTO_ERROR = 4587555;
 const ERR_OSACCOUNT_KIT_SET_OS_ACCOUNT_PROFILE_PHOTO_ERROR = 4587563;
 const ERR_OSACCOUNT_KIT_SET_OS_ACCOUNT_CONSTRAINTS_ERROR = 4587562;
+const ERR_OSACCOUNT_KIT_ACTIVATE_OS_ACCOUNT_ERROR = 4587571;
+const ERR_OSACCOUNT_KIT_REMOVE_OSACCOUNT_ERROR = 4587529;
 describe('ActsOsAccountPermissionTest', function () {
     function sleep(delay) {
         var start = (new Date()).getTime();
@@ -250,7 +252,6 @@ describe('ActsOsAccountPermissionTest', function () {
             expect().assertFail();
             done();
         }
-
     })
 
     /*
@@ -686,5 +687,107 @@ describe('ActsOsAccountPermissionTest', function () {
         expect(isVerified).assertEqual(false);
         console.debug("====>ActsOsAccountPermission_2800 end====");
         done();
+    })
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_2900
+     * @tc.name    : activateOsAccount callback
+     * @tc.desc    : activate specified user does not meet the permission
+     */
+    it('ActsOsAccountPermission_2900', 0, async function(done){
+        console.debug("====>ActsOsAccountPermission_2900 start====");
+        var AccountManager = osAccount.getAccountManager();
+        console.debug("====>get os AccountManager finish====");
+        if(receiveLocalId != -1){
+            AccountManager.activateOsAccount(receiveLocalId, (err)=>{
+                console.debug("====>activateOsAccount err:" + JSON.stringify(err));
+                expect(err.code).assertEqual(ERR_OSACCOUNT_KIT_ACTIVATE_OS_ACCOUNT_ERROR);
+                console.debug("====>ActsOsAccountPermission_2900 end====");
+                done();
+            })
+        }
+        else{
+            console.debug("====>user creation failed====");
+            expect().assertFail();
+            done();
+        }
+    })
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_3000
+     * @tc.name    : activateOsAccount promise
+     * @tc.desc    : activate specified user does not meet the permission
+     */
+    it('ActsOsAccountPermission_3000', 0, async function(done){
+        console.debug("====>ActsOsAccountPermission_3000 start====");
+        var AccountManager = osAccount.getAccountManager();
+        console.debug("====>get os AccountManager finish====");
+        if(receiveLocalId != -1){
+            try{
+                await AccountManager.activateOsAccount(receiveLocalId);
+            }
+            catch(err){
+                console.debug("====>activateOsAccount err:" + JSON.stringify(err));
+                expect(err.code).assertEqual(ERR_OSACCOUNT_KIT_ACTIVATE_OS_ACCOUNT_ERROR);
+                console.debug("====>ActsOsAccountPermission_3000 end====");
+                done();
+            }
+        }
+        else{
+            console.debug("====>user creation failed====");
+            expect().assertFail();
+            done();
+        }
+    })
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_3100
+     * @tc.name    : removeOsAccount callback
+     * @tc.desc    : remove specified user does not meet the permission
+     */
+    it('ActsOsAccountPermission_3100', 0, async function(done){
+        console.debug("====>ActsOsAccountPermission_3100 start====");
+        var AccountManager = osAccount.getAccountManager();
+        console.debug("====>get os AccountManager finish====");
+        if(receiveLocalId != -1){
+            AccountManager.removeOsAccount(receiveLocalId, (err)=>{
+                console.debug("====>removeOsAccount err:" + JSON.stringify(err));
+                expect(err.code).assertEqual(ERR_OSACCOUNT_KIT_REMOVE_OSACCOUNT_ERROR);
+                console.debug("====>ActsOsAccountPermission_3100 end====");
+                done();
+            })
+        }
+        else{
+            console.debug("====>user creation failed====");
+            expect().assertFail();
+            done();
+        }
+    })
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_3200
+     * @tc.name    : removeOsAccount promise
+     * @tc.desc    : remove specified user does not meet the permission
+     */
+    it('ActsOsAccountPermission_3200', 0, async function(done){
+        console.debug("====>ActsOsAccountPermission_3200 start====");
+        var AccountManager = osAccount.getAccountManager();
+        console.debug("====>get os AccountManager finish====");
+        if(receiveLocalId != -1){
+            try{
+                await AccountManager.removeOsAccount(receiveLocalId);
+            }
+            catch(err){
+                console.debug("====>removeOsAccount err:" + JSON.stringify(err));
+                expect(err.code).assertEqual(ERR_OSACCOUNT_KIT_REMOVE_OSACCOUNT_ERROR);
+                console.debug("====>ActsOsAccountPermission_3200 end====");
+                done();
+            }
+        }
+        else{
+            console.debug("====>user creation failed====");
+            expect().assertFail();
+            done();
+        }
     })
 })
