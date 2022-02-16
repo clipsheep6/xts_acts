@@ -27,6 +27,7 @@ describe('appInfoTest', function () {
 
 function performanceTest1() {
     var MAXNUM = 1000;
+
     /**
      * @tc.number ThermalPerformance_001
      * @tc.name test get thermal level
@@ -45,6 +46,7 @@ function performanceTest1() {
 
 function performanceTest2() {
     var MAXNUM = 1000;
+
     /**
      * @tc.number ThermalPerformance_002
      * @tc.name subscribe thermal level
@@ -65,6 +67,7 @@ function performanceTest2() {
 
 function performanceTest3() {
     var MAXNUM = 1000;
+
     /**
      * @tc.number ThermalPerformance_002
      * @tc.name subscribe thermal level
