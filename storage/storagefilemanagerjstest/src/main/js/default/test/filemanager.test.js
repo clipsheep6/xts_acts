@@ -12,13 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+import filemanager from '@ohos.filemanager'
+
 import {
   describe,
   it,
-  expect,
-  filemanager
-} from "./Common";
+  expect
+}
+from 'deccjsunit/index'
 
 // getRoot() interface, when the parameter is "local", the returned data and the data contrast,  return the same data is correct
 const ROOTFILE = [
@@ -28,39 +30,217 @@ const ROOTFILE = [
   {"name":"file_folder","path":"dataability:///album","type":"album","size":0,"added_time":0,"modified_time":0}
 ];
 
-// listFile() interface, when the parameter type is "image", the returned data and the data contrast, return the same data is correct
-const LISTFILE_IMAGEINFO = [
-  {"name":"taobao","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/1","type":"8","size":4096,"added_time":67817,"modified_time":67817},
-  {"name":"image","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/2","type":"8","size":4096,"added_time":65375,"modified_time":65375},
-  {"name":"weixin","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/10","type":"8","size":4096,"added_time":65375,"modified_time":65375}
-];
-
-// listFile() nterface, when the parameter type is "video", the returned data and the data contrast, return the same data is correct
-const LISTFILE_VIDEOINFO = [
-  {"name":"taobao","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/9","type":"8","size":4096,"added_time":65375,"modified_time":65375}
-];
-
-// listFile() interface, when the parameter type is "file", the returned data and the data contrast, return the same data is correct
-const LISTFILE_FILEINFO = [
-  {"name":"taobao","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/1","type":"8","size":4096,"added_time":67817,"modified_time":67817},
-  {"name":"image","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/2","type":"8","size":4096,"added_time":65375,"modified_time":65375},
-  {"name":"media_library.db-wal","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/3","type":"1","size":16512,"added_time":82255,"modified_time":82255},
-  {"name":"fmsdir.sh","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/4","type":"1","size":368,"added_time":67809,"modified_time":67809},
-  {"name":"media_library.db","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/5","type":"1","size":4096,"added_time":82255,"modified_time":82255},
-  {"name":"photo","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/8","type":"8","size":4096,"added_time":65375,"modified_time":65375},
-  {"name":"video","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/14","type":"8","size":4096,"added_time":65375,"modified_time":65375},
-  {"name":"audio","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/15","type":"8","size":4096,"added_time":65375,"modified_time":65375},
-  {"name":"document","path":"dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/16","type":"8","size":4096,"added_time":65375,"modified_time":65375}
-];
-// createFile promise way to create a file returns expected URI
-const PROMISE_URI = "dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/20";
-
-// createFile callback way to create a file returns expected URI
-const CALLBACK_URI = "dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/21";
-
+let IMAGE_ROOT = "";
+let VIDEO_ROOT = "";
+let FILE_ROOT = "";
+let AUDIO_ROOT = "";
+let IMAGE_AlBUM = "";
+let LOG_ = "FMS_XTS_TEXT: "
 describe("filemanager_test", function () {
+  /**
+   * @tc.number SUB_DF_FILEMANAGER_GET_ROOT_0000
+   * @tc.name filemanager_test_get_root_async_000
+   * @tc.desc Test getRoot() interfaces, the first layer directory album information, promise way back.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it("filemanager_test_get_root_async_000", 0, async function (done) {
+    try {
+      let fileInfos = await filemanager.getRoot();
+      expect(Array.isArray(fileInfos)).assertTrue();
+      expect(JSON.stringify(fileInfos) == JSON.stringify(ROOTFILE)).assertTrue();
+      expect(JSON.stringify(fileInfos) == JSON.stringify(ROOTFILE)).assertTrue();
+      console.log(JSON.stringify(fileInfos))
+      for (let i = 0; i < fileInfos.length; i++) {
+        if (fileInfos[i].name == "image_album") {
+          console.log(LOG_ +JSON.stringify(fileInfos[i]))
+          IMAGE_ROOT = fileInfos[i].path;
+          console.log(LOG_ + IMAGE_ROOT)
+        } else if (fileInfos[i].name == "audio_album") {
+          console.log(LOG_ + JSON.stringify(fileInfos[i]))
+          AUDIO_ROOT = fileInfos[i].path;
+          console.log(LOG_ + AUDIO_ROOT)
+        } else if (fileInfos[i].name == "video_album") {
+          console.log(LOG_ + JSON.stringify(fileInfos[i]))
+          VIDEO_ROOT = fileInfos[i].path;
+          console.log(LOG_ + AUDIO_ROOT)
+        } else if (fileInfos[i].name == "file_folder") {
+          console.log(LOG_ + JSON.stringify(fileInfos[i]))
+          FILE_ROOT = fileInfos[i].path;
+          console.log(LOG_ + AUDIO_ROOT)
+        }
+      }
+    } catch (error) {
+      console.log("filemanager_test_get_root_async_000 has failed for " + error);
+      expect(null).assertFail();
+    }
+    done();
+  });
 
   /**
+   * @tc.number SUB_DF_FILEMANAGER_GET_ROOT_0010
+   * @tc.name filemanager_test_get_root_async_001
+   * @tc.desc Test getRoot() interfaces, the first layer directory album information, callback way back.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it("filemanager_test_get_root_async_001", 0, async function (done) {
+    try {
+      filemanager.getRoot((error, fileInfos) => {
+        expect(Array.isArray(fileInfos)).assertTrue();
+        expect(JSON.stringify(fileInfos) == JSON.stringify(ROOTFILE)).assertTrue();
+      });
+    } catch (error) {
+      console.log("filemanager_test_get_root_async_001 has failed for " + error);
+      expect(null).assertFail();
+    }
+    done();
+  });
+
+   /**
+    * @tc.number SUB_DF_FILEMANAGER_GET_ROOT_0020
+    * @tc.name filemanager_test_get_root_async_002
+    * @tc.desc Test getRoot() interfaces, without any parameters, throw an exception.
+    * @tc.size MEDIUM
+    * @tc.type Function
+    * @tc.level Level 0
+    * @tc.require
+    */
+   it("filemanager_test_get_root_async_002", 0, async function (done) {
+     try {
+       filemanager.getRoot("1")
+         .then(file => {
+           console.log("filemanager_test_get_root_async_002 file " + JSON.stringify(file));
+           expect(null).assertFail();
+         }).catch(e => {
+          console.log("filemanager_test_get_root_async_002 e " + e);
+       })
+     } catch (error) {
+       console.log("filemanager_test_get_root_async_002 has failed for " + error);
+       expect(error.toString().indexOf("Number of argments unmatched") != -1).assertTrue();
+     }
+     done();
+   });
+
+  /**
+    * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0000
+    * @tc.name filemanager_test_list_file_async_000
+    * @tc.desc Test listFile() interfaces，when the type parameters as the "image", return path of files information accordingly.
+    * @tc.size MEDIUM
+    * @tc.type Function
+    * @tc.level Level 0
+    * @tc.require
+    */
+  it("filemanager_test_list_file_async_000", 0, async function (done) {
+    try {
+      let path = IMAGE_ROOT;
+      let fileInfos = await filemanager.listFile(path, "image");
+      expect(Array.isArray(fileInfos)).assertTrue();
+      //       expect(JSON.stringify(fileInfos) == JSON.stringify(LISTFILE_FILEINFO)).assertTrue();
+      console.log(JSON.stringify(fileInfos))
+      for (let i = 0; i < fileInfos.length; i++) {
+        if (fileInfos[i].name == "image") {
+          console.log(JSON.stringify(fileInfos[i]))
+          IMAGE_AlBUM = fileInfos[i].path;
+          console.log(LOG_ + JSON.stringify(fileInfos[i]))
+          console.log(LOG_ + IMAGE_AlBUM)
+        }
+      }
+    } catch (error) {
+      console.log("filemanager_test_list_file_async_000 has failed for " + error);
+      expect(null).assertFail();
+    }
+    done();
+  });
+
+  /**
+    * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0010
+    * @tc.name filemanager_test_list_file_async_001
+    * @tc.desc Test listFile() interfaces， when the type parameters as the "image", return path of files information accordingly.
+    * @tc.size MEDIUM
+    * @tc.type Function
+    * @tc.level Level 0
+    * @tc.require
+    */
+  it("filemanager_test_list_file_async_001", 0, async function (done) {
+    try {
+      let path = IMAGE_AlBUM;
+      let fileInfos = await filemanager.listFile(path, "image");
+      expect(Array.isArray(fileInfos)).assertTrue();
+    } catch (error) {
+      console.log("filemanager_test_list_file_async_001 has failed for " + error);
+      expect(null).assertFail();
+    }
+    done();
+  });
+
+  /**
+    * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0020
+    * @tc.name filemanager_test_list_file_async_002
+    * @tc.desc Test listFile() interfaces, when the type parameters as the "file", return path of files information accordingly.
+    * @tc.size MEDIUM
+    * @tc.type Function
+    * @tc.level Level 0
+    * @tc.require
+    */
+  it("filemanager_test_list_file_async_002", 0, async function (done) {
+    try {
+      let path = FILE_ROOT;
+      filemanager.listFile(path, "file", (error,fileInfos)=>{
+        expect(Array.isArray(fileInfos)).assertTrue();
+        //         expect(JSON.stringify(fileInfos) == JSON.stringify(LISTFILE_VIDEOINFO)).assertTrue();
+      });
+    } catch (error) {
+      console.log("filemanager_test_list_file_async_002 has failed for " + error);
+      expect(null).assertFail();
+    }
+    done();
+  });
+
+  /**
+    * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0030
+    * @tc.name filemanager_test_list_file_async_003
+    * @tc.desc Test listFile() interfaces, when the type parameter to an empty string, throw an exception.
+    * @tc.size MEDIUM
+    * @tc.type Function
+    * @tc.level Level 0
+    * @tc.require
+    */
+  it("filemanager_test_list_file_async_003", 0, async function (done) {
+    try {
+      let path = FILE_ROOT;
+      await filemanager.listFile(path, " ");
+    } catch (error) {
+      console.log("filemanager_test_list_file_async_003 has failed for " + error);
+      expect(error.message == "Not a directory").assertTrue();
+    }
+    done();
+  });
+
+  /**
+    * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0040
+    * @tc.name filemanager_test_list_file_async_004
+    * @tc.desc Test listFile() interfaces, when the path parameter to an empty string, throw an exception..
+    * @tc.size MEDIUM
+    * @tc.type Function
+    * @tc.level Level 0
+    * @tc.require
+    */
+  it("filemanager_test_list_file_async_004", 0, async function (done) {
+    try {
+      await filemanager.listFile(" ", "file");
+    } catch (error) {
+      console.log("filemanager_test_list_file_async_004 has failed for " + error);
+      expect(error.message == "No such file or directory").assertTrue();
+    }
+    done();
+  });
+
+      /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0000
    * @tc.name filemanager_test_createfile_async_000
    * @tc.desc Test createFile() interfaces promise way to create a file normally.
@@ -71,10 +251,12 @@ describe("filemanager_test", function () {
    */
   it("filemanager_test_createfile_async_000", 0, async function (done) {
     try {
-      let name = "filemanager_test_createfile_async_000.txt";
-      let path = 'dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/8';
-      let uri = await filemanager.createFile("local", name, path);
-      expect(uri == PROMISE_URI).assertTrue();
+      let name = "create00" + new Date().getTime() + ".jpg";
+      let path = IMAGE_ROOT;
+      let uri = await filemanager.createFile(path, name);
+      console.log(LOG_ + name + " " + path)
+      console.log(LOG_ + uri)
+      expect(uri != undefined).assertTrue();
     } catch (error) {
       console.log("filemanager_test_createfile_async_000 has failed for " + error);
       expect(null).assertFail();
@@ -82,7 +264,7 @@ describe("filemanager_test", function () {
     done();
   });
 
-  /**
+      /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0010
    * @tc.name filemanager_test_createfile_async_001
    * @tc.desc Test createFile() interfaces callback way to create a file normally.
@@ -92,15 +274,16 @@ describe("filemanager_test", function () {
    * @tc.require
    */
   it("filemanager_test_createfile_async_001", 0, async function (done) {
-    let name = "filemanager_test_createfile_async_001.txt";
-    let path = 'dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/8';
-    filemanager.createFile("local", name, path, (err, uri) => {
-      expect(uri == CALLBACK_URI).assertTrue();
+    let name = "create00" + new Date().getTime() + ".txt";
+    let path = IMAGE_ROOT;
+    filemanager.createFile(path, name, (err, uri) => {
+      expect(uri != undefined).assertTrue();
+      console.log(LOG_ + uri)
     });
     done();
   });
-  
-  /**
+
+      /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0020
    * @tc.name filemanager_test_createfile_async_002
    * @tc.desc Test createFile() interfaces to create an existing file, throw an exception.
@@ -111,12 +294,17 @@ describe("filemanager_test", function () {
    */
   it("filemanager_test_createfile_async_002", 0, async function (done) {
     try {
-      let name = "filemanager_test_createfile_async_000.txt";
-      let path = 'dataability:///com.ohos.medialibrary.MediaLibraryDataAbility/file/8';
-      await filemanager.createFile("local", name, path);
+      let name = "1.jpg";
+      let path = IMAGE_ROOT;
+      filemanager.createFile(path, name)
+      .then(uri => {
+        console.log("filemanager_test_createfile_async_002 uri " + uri);
+        expect(null).assertFail();
+      }).catch(e => {
+        console.log("filemanager_test_createfile_async_002 e " + e);
+      })
     } catch (error) {
-      console.log("filemanager_test_createfile_async_002 has failed for " + error);
-      expect(error.message ==  "Operation not permitted").assertTrue();
+      console.log("filemanager_test_createfile_async_002 for " + error);
     }
     done();
   });
@@ -133,14 +321,20 @@ describe("filemanager_test", function () {
   it("filemanager_test_createfile_async_003", 0, async function (done) {
     try {
       let name = "filemanager_test_createfile_async_003";
-      await filemanager.createFile("local", name, "123");
+      filemanager.createFile("123", name)
+        .then(uri => {
+          console.log("filemanager_test_createfile_async_003 uri " + uri);
+          expect(null).assertFail();
+        }).catch(e => {
+        console.log("filemanager_test_createfile_async_003 e " + e);
+        })
     } catch (error) {
       console.log("filemanager_test_createfile_async_003 has failed for " + error);
       expect(error.message == "No such file or directory").assertTrue();
     }
     done();
   });
-  
+
   /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0040
    * @tc.name filemanager_test_createfile_async_004
@@ -152,10 +346,15 @@ describe("filemanager_test", function () {
    */
   it("filemanager_test_createfile_async_004", 0, async function (done) {
     try {
-      await filemanager.createFile();
+      filemanager.createFile()
+        .then(uri => {
+          console.log("filemanager_test_createfile_async_004 uri " + uri);
+          expect(null).assertFail();
+        }).catch(e => {
+          console.log("filemanager_test_createfile_async_004 e " + e);
+        })
     } catch (error) {
       console.log("filemanager_test_createfile_async_004 has failed for " + error);
-      expect(error.toString().indexOf("Number of arguments unmatched") !=-1).assertTrue();
     }
     done();
   });
@@ -171,14 +370,19 @@ describe("filemanager_test", function () {
    */
   it("filemanager_test_createfile_async_005", 0, async function (done) {
     try {
-      await filemanager.createFile("", "", "");
+      filemanager.createFile("", "", "")
+        .then(uri => {
+          console.log("filemanager_test_createfile_async_005 uri " + uri);
+          expect(null).assertFail();
+        }).catch(e => {
+          console.log("filemanager_test_createfile_async_005 e " + e);
+       })
     } catch (error) {
       console.log("filemanager_test_createfile_async_005 has failed for " + error);
-      expect(error.message == "No such file or directory").assertTrue();
     }
     done();
   });
-  
+
   /**
    * @tc.number SUB_DF_FILEMANAGER_CREATEFILE_0060
    * @tc.name filemanager_test_createfile_async_006
@@ -191,7 +395,13 @@ describe("filemanager_test", function () {
   it("filemanager_test_createfile_async_006", 0, async function (done) {
     try {
       let name = "filemanager_test_createfile_async_006";
-      await filemanager.createFile("local", name, "internal://cache%d%sfile");
+        filemanager.createFile("internal://cache%d%sfile", name)
+          .then(uri => {
+            console.log("filemanager_test_createfile_async_006 uri " + uri);
+            expect(null).assertFail();
+          }).catch(e => {
+            console.log("filemanager_test_createfile_async_006 e " + e);
+          })
     } catch (error) {
       console.log("filemanager_test_createfile_async_006 has failed for " + error);
       expect(error.message == "No such file or directory").assertTrue();
@@ -210,7 +420,13 @@ describe("filemanager_test", function () {
    */
   it("filemanager_test_createfile_async_007", 0, async function (done) {
     try {
-      await filemanager.createFile("local", "filemanager_test_createfile_async_007", "internal://cache/@#$&^");
+      filemanager.createFile("internal://cache/@#$&^", "filemanager_test_createfile_async_007")
+        .then(uri => {
+          console.log("filemanager_test_createfile_async_007 uri " + uri);
+          expect(null).assertFail();
+        }).catch(e => {
+          console.log("filemanager_test_createfile_async_007 e " + e);
+        })
     } catch (error) {
       console.log("filemanager_test_createfile_async_007 has failed for " + error);
       expect(error.message == "No such file or directory").assertTrue();
@@ -230,181 +446,17 @@ describe("filemanager_test", function () {
   it("filemanager_test_createfile_async_008", 0, async function (done) {
     let name = "filemanager_test_createfile_async_008";
     try {
-      await filemanager.createFile("local", name);
-      expect(null).assertFail();
+      filemanager.createFile(name)
+        .then(uri => {
+          console.log("filemanager_test_createfile_async_008 uri " + uri);
+          expect(null).assertFail();
+        }).catch(e => {
+          console.log("filemanager_test_createfile_async_008 e " + e);
+        })
     } catch (error) {
       console.log("filemanager_test_createfile_async_008 has failed for " + error);
       expect(error.toString().indexOf("Number of arguments unmatched") !=-1).assertTrue();
     }
     done();
   });
-
-  /**
-   * @tc.number SUB_DF_FILEMANAGER_GET_ROOT_0000
-   * @tc.name filemanager_test_get_root_async_000
-   * @tc.desc Test getRoot() interfaces, the first layer directory album information, promise way back.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it("filemanager_test_get_root_async_000", 0, async function (done) {
-    try {
-      let fileInfos = await filemanager.getRoot("local");
-      expect(Array.isArray(fileInfos)).assertTrue();
-      expect(JSON.stringify(fileInfos) == JSON.stringify(ROOTFILE)).assertTrue();
-    } catch (error) {
-      console.log("filemanager_test_get_root_async_000 has failed for " + error);
-      expect(null).assertFail();
-    }
-    done();
-  });
-
-  /**
-   * @tc.number SUB_DF_FILEMANAGER_GET_ROOT_0010
-   * @tc.name filemanager_test_get_root_async_001
-   * @tc.desc Test getRoot() interfaces, the first layer directory album information, callback way back.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it("filemanager_test_get_root_async_001", 0, async function (done) {
-    try {
-      filemanager.getRoot("local", (error, fileInfos) => {
-        expect(Array.isArray(fileInfos)).assertTrue();
-        expect(JSON.stringify(fileInfos) == JSON.stringify(ROOTFILE)).assertTrue();
-      });
-    } catch (error) {
-      console.log("filemanager_test_get_root_async_001 has failed for " + error);
-      expect(null).assertFail();
-    }
-    done();
-  });
-
-  /**
-   * @tc.number SUB_DF_FILEMANAGER_GET_ROOT_0020
-   * @tc.name filemanager_test_get_root_async_002
-   * @tc.desc Test getRoot() interfaces, without any parameters, throw an exception.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it("filemanager_test_get_root_async_002", 0, async function (done) {
-    try {
-      await filemanager.getRoot();
-    } catch (error) {
-      console.log("filemanager_test_get_root_async_002 has failed for " + error);
-      expect(error.toString().indexOf("Number of argments unmatched") != -1).assertTrue();
-    }
-    done();
-  });
-  
-  /**
-   * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0000
-   * @tc.name filemanager_test_list_file_async_000
-   * @tc.desc Test listFile() interfaces，when the type parameters as the "file", return path of files information accordingly.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it("filemanager_test_list_file_async_000", 0, async function (done) {
-    try {
-      let path = "dataability:///album";
-      let fileInfos = await filemanager.listFile("local", "file", path);
-      expect(Array.isArray(fileInfos)).assertTrue();
-      expect(JSON.stringify(fileInfos) == JSON.stringify(LISTFILE_FILEINFO)).assertTrue();
-    } catch (error) {
-      console.log("filemanager_test_list_file_async_000 has failed for " + error);
-      expect(null).assertFail();
-    }
-    done();
-  });
-
-  /**
-   * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0010
-   * @tc.name filemanager_test_list_file_async_001
-   * @tc.desc Test listFile() interfaces， when the type parameters as the "image", return path of files information accordingly.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it("filemanager_test_list_file_async_001", 0, async function (done) {
-    try {
-      let path = "dataability:///album";
-      let fileInfos = await filemanager.listFile("local", "image", path);
-      expect(Array.isArray(fileInfos)).assertTrue();
-      expect(JSON.stringify(fileInfos) == JSON.stringify(LISTFILE_IMAGEINFO)).assertTrue();
-    } catch (error) {
-      console.log("filemanager_test_list_file_async_001 has failed for " + error);
-      expect(null).assertFail();
-    }
-    done();
-  });
-  
-  /**
-   * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0020
-   * @tc.name filemanager_test_list_file_async_002
-   * @tc.desc Test listFile() interfaces, when the type parameters as the "video", return path of files information accordingly.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it("filemanager_test_list_file_async_002", 0, async function (done) {
-    try {
-      let path = "dataability:///album";
-      filemanager.listFile("local", "video", path,(error,fileInfos)=>{
-        expect(Array.isArray(fileInfos)).assertTrue();
-        expect(JSON.stringify(fileInfos) == JSON.stringify(LISTFILE_VIDEOINFO)).assertTrue();
-      });
-    } catch (error) {
-      console.log("filemanager_test_list_file_async_002 has failed for " + error);
-      expect(null).assertFail();
-    }
-    done();
-  });
-
-  /**
-   * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0030
-   * @tc.name filemanager_test_list_file_async_003
-   * @tc.desc Test listFile() interfaces, when the type parameter to an empty string, throw an exception.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it("filemanager_test_list_file_async_003", 0, async function (done) {
-    try {
-      let path = "dataability:///album";
-     await filemanager.listFile("local", "", path);
-    } catch (error) {
-      console.log("filemanager_test_list_file_async_003 has failed for " + error);
-      expect(error.message == "Not a directory").assertTrue();
-    }
-    done();
-  });
-
-  /**
-   * @tc.number SUB_DF_FILEMANAGER_LIST_FILE_0040
-   * @tc.name filemanager_test_list_file_async_004
-   * @tc.desc Test listFile() interfaces, when the path parameter to an empty string, throw an exception..
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it("filemanager_test_list_file_async_004", 0, async function (done) {
-    try {
-      await filemanager.listFile("local", "file", "");
-    } catch (error) {
-      console.log("filemanager_test_list_file_async_004 has failed for " + error);
-      expect(error.message == "No such file or directory").assertTrue();
-    }
-    done();
-  });
 });
-
