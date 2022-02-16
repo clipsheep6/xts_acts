@@ -30,13 +30,14 @@ const ROOTFILE = [
   {"name":"file_folder","path":"dataability:///album","type":"album","size":0,"added_time":0,"modified_time":0}
 ];
 
-let IMAGE_ROOT = "";
-let VIDEO_ROOT = "";
-let FILE_ROOT = "";
-let AUDIO_ROOT = "";
-let IMAGE_AlBUM = "";
-let LOG_ = "FMS_XTS_TEXT: "
+const IMAGE_ROOT = "";
+const VIDEO_ROOT = "";
+const FILE_ROOT = "";
+const AUDIO_ROOT = "";
+const IMAGE_AlBUM = "";
+const LOG_ = "FMS_XTS_TEXT: "
 describe("filemanager_test", function () {
+	
   /**
    * @tc.number SUB_DF_FILEMANAGER_GET_ROOT_0000
    * @tc.name filemanager_test_get_root_async_000
