@@ -34,7 +34,7 @@ const IMAGE_ROOT = "";
 const VIDEO_ROOT = "";
 const FILE_ROOT = "";
 const AUDIO_ROOT = "";
-const IMAGE_AlBUM = "";
+const VIDEO_AlBUM = "";
 const LOG_ = "FMS_XTS_TEXT: "
 describe("filemanager_test", function () {
 	
