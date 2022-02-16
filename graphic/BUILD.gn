@@ -16,7 +16,7 @@ group("graphic") {
   testonly = true
   if (is_standard_system) {
     deps = [ 
-      "windowstandard:window_hap_test", 
+      "windowstandard:window_hap_test",
       "webGL:webGL_hap_test",
     ]
   } else {
