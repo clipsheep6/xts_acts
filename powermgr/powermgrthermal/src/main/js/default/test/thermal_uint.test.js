@@ -110,7 +110,8 @@ function test4() {
             setTimeout(()=>{
                 var overheated = thermal.getThermalLevel();
                 console.info("overheated level is: " + overheated);
-                expect(overheated >= thermal.ThermalLevel.COOL && overheated <= thermal.ThermalLevel.EMERGENCY).assertTrue();
+                expect(overheated >= thermal.ThermalLevel.COOL &&
+                    overheated <= thermal.ThermalLevel.EMERGENCY).assertTrue();
                 resolve();
             }, MSEC_1000 * 4);
         })
