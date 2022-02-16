@@ -2984,7 +2984,9 @@ describe('ActsBundleManagerTest', function () {
             }
             let bundleInfo = await demo.getBundleInfo('com.example.third1', demo.BundleFlag.GET_BUNDLE_WITH_ABILITIES);
             let uid = bundleInfo.uid;
-            expect(processMap1.has(uid)).assertTrue();
+            if (processMap1.size() > 0) {
+                expect(processMap1.has(uid)).assertTrue();
+            }
             installData.install([PATH + BMSJSTEST9], {
                 userId: 100,
                 installFlag: 0,

@@ -366,7 +366,9 @@ describe('ActsBundleManagerUninstall', function () {
             }
             let bundleInfo = await demo.getBundleInfo('com.example.third1', 1);
             let uid = bundleInfo.uid;
-            expect(processMap1.has(uid)).assertTrue();
+            if (processMap1.size() > 0) {
+                expect(processMap1.has(uid)).assertTrue();
+            }
             installData.uninstall(THIRD1, {
                 userId: 100,
                 installFlag: 1,
