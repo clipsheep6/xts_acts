@@ -15,6 +15,7 @@
 import osAccount from '@ohos.account.osAccount'
 import commonevent from '@ohos.commonevent'
 import featureAbility from '@ohos.ability.featureability'
+import bundle from '@ohos.bundle'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 var commonEventSubscribeInfo = {
@@ -24,6 +25,7 @@ var subscriber;
 var receiveLocalId = -1;
 const TIMEOUT = 2000;
 const TIMEOUTSTART = 10000;
+const OSACCOUNTMAXNUMBER = 999;
 const ERR_OSACCOUNT_KIT_CREATE_OS_ACCOUNT_ERROR = 4587523;
 const ERR_OSACCOUNT_KIT_IS_OS_ACCOUNT_ACTIVED_ERROR = 4587542;
 const ERR_OSACCOUNT_KIT_IS_OS_ACCOUNT_CONSTRAINT_ENABLE_ERROR = 4587543;
@@ -789,5 +791,281 @@ describe('ActsOsAccountPermissionTest', function () {
             expect().assertFail();
             done();
         }
+    })
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_3300
+     * @tc.name    : isMultiOsAccountEnable callback
+     * @tc.desc    : whether to support multiple user does not meet the permission
+     */
+    it('ActsOsAccountPermission_3300', 0, async function(done){
+        console.debug("====>ActsOsAccountPermission_3300 start====");
+        var AccountManager = osAccount.getAccountManager();
+        console.debug("====>get os AccountManager finish====");
+        AccountManager.isMultiOsAccountEnable((err, data)=>{
+            console.debug("====>isMultiOsAccountEnable err:" + JSON.stringify(err));
+            console.debug("====>isMultiOsAccountEnable data:" + data);
+            expect(err.code).assertEqual(0);
+            expect(data).assertEqual(true);
+            console.debug("====>ActsOsAccountPermission_3300 end====");
+            done();
+        })
+    })
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_3400
+     * @tc.name    : isMultiOsAccountEnable promise
+     * @tc.desc    : whether to support multiple user does not meet the permission
+     */
+    it('ActsOsAccountPermission_3400', 0, async function(done){
+        console.debug("====>ActsOsAccountPermission_3400 start====");
+        var AccountManager = osAccount.getAccountManager();
+        console.debug("====>get os AccountManager finish====");
+        try{
+            var data = await AccountManager.isMultiOsAccountEnable();
+        }
+        catch(err){
+            console.debug("====>catch isMultiOsAccountEnable err:" + JSON.stringify(err));
+            expect().assertFail();
+            done();
+        }
+        console.debug("====>isMultiOsAccountEnable data:" + JSON.stringify(data));
+        expect(data).assertEqual(true);
+        console.debug("====>ActsOsAccountPermission_3400 end====");
+        done();
+    })
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_3500
+     * @tc.name    : queryMaxOsAccountNumber callback
+     * @tc.desc    : Query the maximum number of users does not meet the permission
+     */
+    it('ActsOsAccountPermission_3500', 0, async function (done) {
+        console.debug("====>ActsOsAccountPermission_3500 start====");
+        var osAccountManager = osAccount.getAccountManager();
+        console.debug("====>get AccountManager finish====");
+        osAccountManager.queryMaxOsAccountNumber((err, data)=>{
+            console.debug("====>queryMaxOsAccountNumber err:" + JSON.stringify(err));
+            console.debug("====>queryMaxOsAccountNumber data:" + data);
+            expect(err.code).assertEqual(0);
+            expect(data).assertEqual(OSACCOUNTMAXNUMBER);
+            console.debug("====>ActsOsAccountPermission_3500 end====");
+            done();
+        })
+    });
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_3600
+     * @tc.name    : queryMaxOsAccountNumber promise
+     * @tc.desc    : Query the maximum number of users does not meet the permission
+     */
+    it('ActsOsAccountPermission_3600', 0, async function (done) {
+        console.debug("====>ActsOsAccountPermission_3600 start====");
+        var osAccountManager = osAccount.getAccountManager();
+        console.debug("====>get AccountManager finish====");
+        var maxOsAccount = await osAccountManager.queryMaxOsAccountNumber();
+        console.debug("====>queryMaxOsAccountNumber:" + maxOsAccount);
+        expect(maxOsAccount).assertEqual(OSACCOUNTMAXNUMBER);
+        console.debug("====>ActsOsAccountPermission_3600 end====");
+        done();
+    });
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_3700
+     * @tc.name    : getOsAccountLocalIdFromProcess callback
+     * @tc.desc    : Verify that the user localId obtained from the current process uid does not meet the permission
+     */
+    it('ActsOsAccountPermission_3700', 0, async function (done) {
+        console.debug("====>ActsOsAccountPermission_3700 start====");
+        var osAccountManager = osAccount.getAccountManager();
+        console.debug("====>get AccountManager finish====");
+        osAccountManager.getOsAccountLocalIdFromProcess((err, localId)=>{
+            console.debug("====>get localId err: " + JSON.stringify(err));
+            console.debug("====>localId obtained by process:" + localId);
+            expect(err.code).assertEqual(0);
+            expect(localId).assertEqual(100);
+            console.debug("====>ActsOsAccountPermission_3700 end====");
+            done();
+        });
+    });
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_3800
+     * @tc.name    : getOsAccountLocalIdFromProcess promise
+     * @tc.desc    : Verify that the user localId obtained from the current process uid does not meet the permission
+     */
+    it('ActsOsAccountPermission_3800', 0, async function (done) {
+        console.debug("====>ActsOsAccountPermission_3800 start====");
+        var osAccountManager = osAccount.getAccountManager();
+        console.debug("====>get AccountManager finish====");
+        var localId = await osAccountManager.getOsAccountLocalIdFromProcess();
+        console.debug("====>localId obtained by process:" + localId);
+        expect(localId).assertEqual(100);
+        console.debug("====>ActsOsAccountPermission_3800 end====");
+        done();
+    });
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_3900
+     * @tc.name    : getOsAccountLocalIdFromUid callback
+     * @tc.desc    : Verify that the user localId is obtained by uid does not meet the permission
+     */
+    it('ActsOsAccountPermission_3900', 0, async function (done) {
+        console.debug("====>ActsOsAccountPermission_3900 start====");
+        var osAccountManager = osAccount.getAccountManager();
+        console.debug("====>get AccountManager finish====");
+        var bundleName = "com.example.actsosaccountpermissionnotest";
+        var bundleInfo = await bundle.getBundleInfo(bundleName, bundle.BundleFlag.GET_BUNDLE_WITH_ABILITIES);
+        var uid = bundleInfo.uid;
+        console.debug("====>obtained uid:" + uid);
+        osAccountManager.getOsAccountLocalIdFromUid(uid, (err, localId)=>{
+            console.debug("====>get localId err: " + JSON.stringify(err));
+            console.debug("====>localId obtained by uid:" + localId);
+            expect(err.code).assertEqual(0);
+            expect(localId).assertEqual(100);
+            console.debug("====>ActsOsAccountPermission_3900 end====");
+            done();
+        });
+    });
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_4000
+     * @tc.name    : getOsAccountLocalIdFromUid promise
+     * @tc.desc    : Verify that the user localId is obtained by uid does not meet the permission
+     */
+    it('ActsOsAccountPermission_4000', 0, async function (done) {
+        console.debug("====>ActsOsAccountPermission_4000 start====");
+        var osAccountManager = osAccount.getAccountManager();
+        console.debug("====>get AccountManager finish====");
+        var bundleName = "com.example.actsosaccountpermissionnotest";
+        var bundleInfo = await bundle.getBundleInfo(bundleName, bundle.BundleFlag.GET_BUNDLE_WITH_ABILITIES);
+        var uid = bundleInfo.uid;
+        console.debug("====>obtained uid:" + uid);
+        var localId = await osAccountManager.getOsAccountLocalIdFromUid(uid);
+        console.debug("====>localId obtained by uid:" + localId);
+        expect(localId).assertEqual(100);
+        console.debug("====>ActsOsAccountPermission_4000 end====");
+        done();
+    });
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_4100
+     * @tc.name    : getOsAccountTypeFromProcess callback
+     * @tc.desc    : Verify that the user type obtained from the current process uid does not meet the permission
+     */
+    it('ActsOsAccountPermission_4100', 0, async function (done) {
+        console.debug("====>ActsOsAccountPermission_4100 start====");
+        var osAccountManager = osAccount.getAccountManager();
+        console.debug("====>get AccountManager finish====");
+        osAccountManager.getOsAccountTypeFromProcess((err, accountType)=>{
+            console.debug("====>get type err: " + JSON.stringify(err));
+            console.debug("====>type obtained by process:" + JSON.stringify(accountType));
+            expect(err.code).assertEqual(0);
+            expect(accountType.ADMIN).assertEqual(0);
+            console.debug("====>ActsOsAccountPermission_4100 end====");
+            done();
+        });
+    });
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_4200
+     * @tc.name    : getOsAccountTypeFromProcess promise
+     * @tc.desc    : Verify that the user type obtained from the current process uid does not meet the permission
+     */
+    it('ActsOsAccountPermission_4200', 0, async function (done) {
+        console.debug("====>ActsOsAccountPermission_4200 start====");
+        var osAccountManager = osAccount.getAccountManager();
+        console.debug("====>get AccountManager finish====");
+        var accountType = await osAccountManager.getOsAccountTypeFromProcess();
+        console.debug("====>type obtained by process:" + JSON.stringify(accountType));
+        expect(accountType.ADMIN).assertEqual(0);
+        console.debug("====>ActsOsAccountPermission_4200 end====");
+        done();
+    });
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_4300
+     * @tc.name    : getSerialNumberByOsAccountLocalId callback
+     * @tc.desc    : Verify query serialNumber by 100 user and query 100 user by serialNumber does not meet the
+     *               permission
+     */
+    it('ActsOsAccountPermission_4300', 0, async function (done) {
+        console.debug("====>ActsOsAccountPermission_4300 start====");
+        var osAccountManager = osAccount.getAccountManager();
+        console.debug("====>get AccountManager finish====");
+        osAccountManager.getSerialNumberByOsAccountLocalId(100, (err, serialNumber)=>{
+            console.debug("====>ger serialNumber err:" + JSON.stringify(err));
+            console.debug("====>get serialNumber:" + serialNumber + " by localId: 100" );
+            expect(err.code).assertEqual(0);
+            var serialNumberStr = serialNumber.toString();
+            var serialIntercept = serialNumberStr.substring(8);
+            console.debug("====>truncate the last eight characters: " + serialIntercept);
+            expect(serialIntercept).assertEqual("00000001");
+            osAccountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err, localId)=>{
+                console.debug("====>ger localId err:" + JSON.stringify(err));
+                console.debug("====>get localId:" + localId + " by serialNumber: " + serialNumber);
+                expect(err.code).assertEqual(0);
+                expect(localId).assertEqual(100);
+                console.debug("====>ActsOsAccountPermission_4300 end====");
+                done();
+            })
+        })
+    });
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_4400
+     * @tc.name    : getSerialNumberByOsAccountLocalId promise
+     * @tc.desc    : Verify query serialNumber by 100 user and query 100 user by serialNumber does not meet the
+     *               permission
+     */
+    it('ActsOsAccountPermission_4400', 0, async function (done) {
+        console.debug("====>ActsOsAccountPermission_4400 start====");
+        var osAccountManager = osAccount.getAccountManager();
+        console.debug("====>get AccountManager finish====");
+        var serialNumber = await osAccountManager.getSerialNumberByOsAccountLocalId(100);
+        console.debug("====>get serialNumber:" + serialNumber + " by localId: 100" );
+        var serialNumberStr = serialNumber.toString();
+        var serialIntercept = serialNumberStr.substring(8);
+        console.debug("====>truncate the last eight characters: " + serialIntercept);
+        expect(serialIntercept).assertEqual("00000001");
+        var localId = await osAccountManager.getOsAccountLocalIdBySerialNumber(serialNumber);
+        console.debug("====>get localId:" + localId + " by serialNumber: " + serialNumber);
+        expect(localId).assertEqual(100);
+        console.debug("====>ActsOsAccountPermission_4400 end====");
+        done();
+    });
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_4500
+     * @tc.name    : isTestOsAccount callback
+     * @tc.desc    : check whether this OS account is a test OS account does not meet the permission
+     */
+    it('ActsOsAccountPermission_4500', 0, async function(done){
+        console.debug("====>ActsOsAccountPermission_4500 start====");
+        var AccountManager = osAccount.getAccountManager();
+        console.debug("====>get os AccountManager finish====");
+        AccountManager.isTestOsAccount((err, data)=>{
+            console.debug("====>isTestOsAccount err:" + JSON.stringify(err));
+            console.debug("====>isTestOsAccount data:" + JSON.stringify(data));
+            expect(err.code).assertEqual(0);
+            expect(data).assertEqual(false);
+            console.debug("====>ActsOsAccountPermission_4500 end====");
+            done();
+        })
+    })
+
+    /*
+     * @tc.number  : ActsOsAccountPermission_4600
+     * @tc.name    : isTestOsAccount promise
+     * @tc.desc    : check whether this OS account is a test OS account does not meet the permission
+     */
+    it('ActsOsAccountPermission_4600', 0, async function(done){
+        console.debug("====>ActsOsAccountPermission_4600 start====");
+        var AccountManager = osAccount.getAccountManager();
+        console.debug("====>get os AccountManager finish====");
+        var isTest = await AccountManager.isTestOsAccount();
+        expect(isTest).assertFalse();
+        console.debug("====>ActsOsAccountPermission_4600 end====");
+        done();
     })
 })
