@@ -34,7 +34,7 @@ const IMAGE_ROOT = "";
 const VIDEO_ROOT = "";
 const FILE_ROOT = "";
 const AUDIO_ROOT = "";
-const IMAGE_TEST = "";
+const IMAGE_ALBUM = "";
 const LOG_ = "FMS_XTS_TEXT: "
 describe("filemanager_test", function () {
 	
@@ -146,9 +146,9 @@ describe("filemanager_test", function () {
       for (let i = 0; i < fileInfos.length; i++) {
         if (fileInfos[i].name == "image") {
           console.log(JSON.stringify(fileInfos[i]))
-          IMAGE_AlBUM = fileInfos[i].path;
+          IMAGE_ALBUM = fileInfos[i].path;
           console.log(LOG_ + JSON.stringify(fileInfos[i]))
-          console.log(LOG_ + IMAGE_AlBUM)
+          console.log(LOG_ + IMAGE_ALBUM)
         }
       }
     } catch (error) {
@@ -169,7 +169,7 @@ describe("filemanager_test", function () {
     */
   it("filemanager_test_list_file_async_001", 0, async function (done) {
     try {
-      let path = IMAGE_AlBUM;
+      let path = IMAGE_ALBUM;
       let fileInfos = await filemanager.listFile(path, "image");
       expect(Array.isArray(fileInfos)).assertTrue();
     } catch (error) {
