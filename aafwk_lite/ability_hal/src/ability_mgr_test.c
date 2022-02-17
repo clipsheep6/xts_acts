@@ -105,6 +105,7 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantElement, Function | MediumTest | 
     }
     ClearElement(&element);
     ClearWant(&want);
+    TEST_ASSERT_EQUAL_STRING(want.element, NULL);
     printf("------end testSetWantElement------\n");
 }
 
@@ -171,6 +172,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantDate, Function | MediumTest | Lev
         TEST_ASSERT_TRUE(want.dataLength == 5);
     }
     ClearWant(&want);
+    TEST_ASSERT_EQUAL_STRING(want.data, NULL);
+    TEST_ASSERT_TRUE(want.dataLength == 5);
     printf("------end testSetWantDate------\n");
 }
 
@@ -201,14 +204,13 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testStartAbilityIllegal, Function | MediumTe
 {
     printf("------start testStartAbilityIllegal------\n");
     int result = StartAbility(NULL);
-    printf("ret is %d \n", result);
     int expect = 8;
     TEST_ASSERT_TRUE(result == expect);
     printf("------end testStartAbilityIllegal------\n");
 }
 
 /**
- * @tc.number    : SUB_AAFWK_ABILITY_0008
+ * @tc.number    : SUB_AAFWK_ABILITY_0009
  * @tc.name      : testSetIntParam parameter illegal test
  * @tc.desc      : [C- SOFTWARE -0200]
  */
@@ -216,14 +218,13 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetIntParamIllegal, Function | MediumTes
 {
     printf("------start testSetIntParamIllegal------\n");
     int result = SetIntParam(NULL, NULL, 0, 0);
-    printf("ret is %d \n", result);
     int expect = 0;
     TEST_ASSERT_TRUE(result == expect);
     printf("------end testSetIntParamIllegal------\n");
 }
 
 /**
- * @tc.number    : SUB_AAFWK_ABILITY_0009
+ * @tc.number    : SUB_AAFWK_ABILITY_0010
  * @tc.name      : testSetStrParam parameter illegal test
  * @tc.desc      : [C- SOFTWARE -0200]
  */
@@ -231,7 +232,6 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetStrParamIllegal, Function | MediumTes
 {
     printf("------start testSetStrParamIllegal------\n");
     int result = SetStrParam(NULL, NULL, 0, NULL, 0);
-    printf("ret is %d \n", result);
     int expect = 0;
     TEST_ASSERT_TRUE(result == expect);
     printf("------end testSetStrParamIllegal------\n");

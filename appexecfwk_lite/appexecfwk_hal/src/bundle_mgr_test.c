@@ -44,6 +44,23 @@ static BOOL BundleMgrTestSuiteTearDown(void)
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0001
+ * @tc.name      : testClearAbilityInfo parameter legal test with bundle name
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+LITE_TEST_CASE(BundleMgrTestSuite, testClearAbilityInfo, Function | MediumTest | Level2)
+{
+    printf("------start testClearAbilityInfo------\n");
+    AbilityInfo abilityInfo;
+    memset_s(&abilityInfo, sizeof(abilityInfo), 0, sizeof(abilityInfo));
+    abilityInfo.bundleName = "com.openharmony.testjsdemo";
+    TEST_ASSERT_EQUAL_STRING(abilityInfo.bundleName, "com.openharmony.testjsdemo");
+    ClearAbilityInfo(&abilityInfo);
+    TEST_ASSERT_EQUAL_STRING(abilityInfo.bundleName, NULL);
+    printf("------end testClearAbilityInfo------\n");
+}
+
+/**
+ * @tc.number    : SUB_APPEXECFWK_0002
  * @tc.name      : testClearAbilityInfo parameter illegal test
  * @tc.desc      : [C- SOFTWARE -0200]
  */
@@ -59,14 +76,31 @@ LITE_TEST_CASE(BundleMgrTestSuite, testClearAbilityInfoIllegal, Function | Mediu
 }
 
 /**
- * @tc.number    : SUB_APPEXECFWK_0002
+ * @tc.number    : SUB_APPEXECFWK_0003
  * @tc.name      : testClearBundleInfo parameter legal test with bundle name
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+LITE_TEST_CASE(BundleMgrTestSuite, testClearBundleInfo, Function | MediumTest | Level2)
+{
+    printf("------start testClearBundleInfo------\n");
+    BundleInfo bundleInfo = { 0 };
+    memset_s(&bundleInfo, sizeof(bundleInfo), 0, sizeof(bundleInfo));
+    bundleInfo.bundleName = "com.openharmony.testjsdemo";
+    TEST_ASSERT_EQUAL_STRING(bundleInfo.bundleName, "com.openharmony.testjsdemo");
+    ClearBundleInfo(&bundleInfo);
+    TEST_ASSERT_EQUAL_STRING(bundleInfo.bundleName, NULL);
+    printf("------end testClearBundleInfo------\n");
+}
+
+/**
+ * @tc.number    : SUB_APPEXECFWK_0004
+ * @tc.name      : testClearBundleInfo parameter illegal test
  * @tc.desc      : [C- SOFTWARE -0200]
  */
 LITE_TEST_CASE(BundleMgrTestSuite, testClearBundleInfoIllegal, Function | MediumTest | Level2)
 {
     printf("------start testClearBundleInfoIllegal------\n");
-    BundleInfo bundleInfo = { 0 };
+    BundleInfo bundleInfo;
     memset_s(&bundleInfo, sizeof(bundleInfo), 0, sizeof(bundleInfo));
     bundleInfo.bundleName = "com.openharmony.testjsdemo";
     ClearBundleInfo(NULL);
@@ -75,7 +109,40 @@ LITE_TEST_CASE(BundleMgrTestSuite, testClearBundleInfoIllegal, Function | Medium
 }
 
 /**
- * @tc.number    : SUB_APPEXECFWK_0003
+ * @tc.number    : SUB_APPEXECFWK_0005
+ * @tc.name      : ClearAbilityInfo parameter legal test with module info
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+LITE_TEST_CASE(BundleMgrTestSuite, testClearModuleInfo, Function | MediumTest | Level1)
+{
+    printf("------start testClearModuleInfo------\n");
+    ModuleInfo moduleInfo = { 0 };
+    memset_s(&moduleInfo, sizeof(moduleInfo), 0, sizeof(moduleInfo));
+    moduleInfo.moduleName = "test";
+    TEST_ASSERT_EQUAL_STRING(moduleInfo.moduleName, "test");
+    ClearModuleInfo(&moduleInfo);
+    TEST_ASSERT_EQUAL_STRING(moduleInfo.moduleName, NULL);
+    printf("------end testClearModuleInfo------\n");
+}
+
+/**
+ * @tc.number    : SUB_APPEXECFWK_0006
+ * @tc.name      : ClearAbilityInfo parameter illegal test
+ * @tc.desc      : [C- SOFTWARE -0200]
+ */
+LITE_TEST_CASE(BundleMgrTestSuite, testClearModuleInfoIllegal, Function | MediumTest | Level1)
+{
+    printf("------start testClearModuleInfoIllegal------\n");
+    ModuleInfo moduleInfo = { 0 };
+    memset_s(&moduleInfo, sizeof(moduleInfo), 0, sizeof(moduleInfo));
+    moduleInfo.moduleName = "test";
+    ClearModuleInfo(NULL);
+    TEST_ASSERT_EQUAL_STRING(moduleInfo.moduleName, "test");
+    printf("------end testClearModuleInfoIllegal------\n");
+}
+
+/**
+ * @tc.number    : SUB_APPEXECFWK_0007
  * @tc.name      : testSetElementAbilityName parameter legal test
  * @tc.desc      : [C- SOFTWARE -0100]
  */
@@ -94,7 +161,7 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementAbilityName, Function | MediumT
 }
 
 /**
- * @tc.number    : SUB_APPEXECFWK_0004
+ * @tc.number    : SUB_APPEXECFWK_0008
  * @tc.name      : testSetElementAbilityName parameter illegal test
  * @tc.desc      : [C- SOFTWARE -0100]
  */
@@ -110,13 +177,15 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementAbilityNameIllegal, Function | 
     SetElementAbilityName(&element, NULL);
     SetWantElement(&want, element);
     TEST_ASSERT_EQUAL_STRING(want.element->abilityName, NULL);
+    int ret = SetElementAbilityName(NULL, aName);
+    TEST_ASSERT_FALSE(ret);
     ClearElement(&element);
     ClearWant(&want);
     printf("------end testSetElementAbilityNameIllegal------\n");
 }
 
 /**
- * @tc.number    : SUB_APPEXECFWK_0005
+ * @tc.number    : SUB_APPEXECFWK_0009
  * @tc.name      : testSetElementBundleName parameter legal test
  * @tc.desc      : [C- SOFTWARE -0100]
  */
@@ -135,7 +204,7 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementBundleName, Function | MediumTe
 }
 
 /**
- * @tc.number    : SUB_APPEXECFWK_0006
+ * @tc.number    : SUB_APPEXECFWK_0010
  * @tc.name      : testSetElementBundleName parameter illegal test
  * @tc.desc      : [C- SOFTWARE -0100]
  */
@@ -151,12 +220,14 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementBundleNameIllegal, Function | M
     SetElementBundleName(&element, NULL);
     SetWantElement(&want, element);
     TEST_ASSERT_EQUAL_STRING(want.element->bundleName, NULL);
+    bool ret = SetElementBundleName(NULL, bName);
+    TEST_ASSERT_FALSE(ret);
     ClearElement(&element);
     ClearWant(&want);
     printf("------end testSetElementBundleNameIllegal------\n");
 }
 /**
- * @tc.number    : SUB_APPEXECFWK_0007
+ * @tc.number    : SUB_APPEXECFWK_0011
  * @tc.name      : testSetElementDeviceID parameter legal test
  * @tc.desc      : [C- SOFTWARE -0100]
  */
@@ -175,7 +246,7 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementDeviceID, Function | MediumTest
 }
 
 /**
- * @tc.number    : SUB_APPEXECFWK_0008
+ * @tc.number    : SUB_APPEXECFWK_0012
  * @tc.name      : testSetElementDeviceID parameter illegal test
  * @tc.desc      : [C- SOFTWARE -0100]
  */
@@ -191,58 +262,15 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementDeviceIDIllegal, Function | Med
     SetElementDeviceID(&element, NULL);
     SetWantElement(&want, element);
     TEST_ASSERT_EQUAL_STRING(want.element->deviceId, NULL);
+    int ret = SetElementDeviceID(NULL, "0001000");
+    TEST_ASSERT_FALSE(ret);
     ClearElement(&element);
     ClearWant(&want);
     printf("------end testSetElementDeviceIDIllegal------\n");
 }
 
 /**
- * @tc.number    : SUB_APPEXECFWK_0009
- * @tc.name      : ClearAbilityInfo parameter legal test with module info
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-LITE_TEST_CASE(BundleMgrTestSuite, testClearModuleInfoIllegal, Function | MediumTest | Level1)
-{
-    printf("------start testClearModuleInfoIllegal------\n");
-    ModuleInfo moduleInfo = { 0 };
-    memset_s(&moduleInfo, sizeof(moduleInfo), 0, sizeof(moduleInfo));
-    moduleInfo.moduleName = "test";
-    ClearModuleInfo(NULL);
-    TEST_ASSERT_EQUAL_STRING(moduleInfo.moduleName, "test");
-    printf("------end testClearModuleInfoIllegal------\n");
-}
-
-/**
- * @tc.number    : SUB_APPEXECFWK_0010
- * @tc.name      : GetBundleInfo parameter legal test.
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-LITE_TEST_CASE(BundleMgrTestSuite, testGetBundleInfoRight, Function | MediumTest | Level1)
-{
-    printf("------start testGetBundleInfoRight------\n");
-    BundleInfo bundleInfo;
-    memset_s(&bundleInfo, sizeof(bundleInfo), 0, sizeof(bundleInfo));
-    const char *bundleName = "com.openharmony.testjsdemo";
-    int32_t flags = 0;
-    printf("bundleName is %s \n", bundleName);
-    sleep(2);
-    uint8_t ret = GetBundleInfo(bundleName, flags, &bundleInfo);
-    printf("getBundleInfo ret is %d \n", ret);
-    TEST_ASSERT_EQUAL_STRING(bundleInfo.bundleName, NULL);
-    TEST_ASSERT_TRUE(ret == 2);
-    flags = 1;
-    printf("bundleName is %s \n", bundleName);
-    ret = GetBundleInfo(bundleName, flags, &bundleInfo);
-    sleep(2);
-    printf("getBundleInfo ret is %d \n", ret);
-    TEST_ASSERT_TRUE(ret == 2);
-    TEST_ASSERT_EQUAL_STRING(bundleInfo.bundleName, NULL);
-    ClearBundleInfo(&bundleInfo);
-    printf("------end testGetBundleInfoRight------\n");
-}
-
-/**
- * @tc.number    : SUB_APPEXECFWK_0011
+ * @tc.number    : SUB_APPEXECFWK_0013
  * @tc.name      : GetBundleInfo parameter illegal test.
  * @tc.desc      : [C- SOFTWARE -0200]
  */
@@ -262,36 +290,12 @@ LITE_TEST_CASE(BundleMgrTestSuite, testGetBundleInfoIllegal, Function | MediumTe
     TEST_ASSERT_TRUE(ret == 2);
     ret = GetBundleInfo("com.openharmony.testjsdemo", 2, &bundleInfo);
     sleep(2);
-    TEST_ASSERT_TRUE(ret != 1);
+    TEST_ASSERT_TRUE(ret == 2);
     printf("------end testGetBundleInfoIllegal------\n");
 }
 
 /**
- * @tc.number    : SUB_APPEXECFWK_0012
- * @tc.name      : GetBundleInfos parameter legal test
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-LITE_TEST_CASE(BundleMgrTestSuite, testGetBundleInfosRight, Function | MediumTest | Level1)
-{
-    printf("------start testGetBundleInfosRight------\n");
-    BundleInfo *bundleInfos = NULL;
-    int32_t flags = 0;
-    int32_t length = 0;
-    uint8_t ret = GetBundleInfos(flags, &bundleInfos, &length);
-    sleep(2);
-    printf("getBundleInfo ret is %d \n", ret);
-    TEST_ASSERT_TRUE(ret == 2);
-    flags = 1;
-    ret = GetBundleInfos(flags, &bundleInfos, &length);
-    printf("getBundleInfo ret is %d \n", ret);
-    sleep(2);
-    TEST_ASSERT_TRUE(ret == 2);
-    free(bundleInfos);
-    printf("------end testGetBundleInfosRight------\n");
-}
-
-/**
- * @tc.number    : SUB_APPEXECFWK_0013
+ * @tc.number    : SUB_APPEXECFWK_0014
  * @tc.name      : GetBundleInfos parameter illegal test
  * @tc.desc      : [C- SOFTWARE -0200]
  */
@@ -302,7 +306,7 @@ LITE_TEST_CASE(BundleMgrTestSuite, testGetBundleInfosIllegal, Function | MediumT
     int32_t *length = NULL;
     int32_t flags = 0;
     uint8_t ret = GetBundleInfos(flags, NULL, length);
-    TEST_ASSERT_TRUE(ret != 2);
+    TEST_ASSERT_TRUE(ret == 1);
     ret = GetBundleInfos(flags, &bundleInfos, NULL);
     printf("ret is %d \n", ret);
     TEST_ASSERT_TRUE(ret == 2);
