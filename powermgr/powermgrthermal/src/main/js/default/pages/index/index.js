@@ -12,31 +12,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import device from '@system.device';
+import app from '@system.app'
 
 import {Core, ExpectExtend} from 'deccjsunit/index'
-
-const core = Core.getInstance();
-
-core.init()
-
-require('../../test/List.test')
-
-core.execute()
+import {PressureTest} from './JSPressTest'
 
 export default {
     data: {
-        title: "world",
-        width:0,
-        height: 0
+        title: ""
     },
     onInit() {
-        device.getInfo({
-            success:(data) =>{
-                this.width = data.windowWidth;
-                this.height = data.windowHeight;
-            }
-        });
-    }
+        this.title = this.$t('strings.world');
+    },
+    onShow() {
+        console.info('onShow finish')
+        const core = Core.getInstance()
+        const expectExtend = new ExpectExtend({
+            'id': 'extend'
+        })
+        core.addService('expect', expectExtend)
+        core.init()
+        const configService = core.getDefaultService('config')
+        configService.setConfig(this)
+        require('../../../test/List.test.js')
+        core.execute()
+        /**
+         * note: //如果跑压力测试请将取消下面三行代码的注释，并注释掉core.execute()
+         * 并设置执行时间为: two hours
+         * var press = new PressureTest(core);
+         * press.setPressTimes(10000);
+         * press.run();
+         */
+    },
+    onReady() {
+    },
 }
