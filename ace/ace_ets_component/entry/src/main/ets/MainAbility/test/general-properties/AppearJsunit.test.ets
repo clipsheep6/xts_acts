@@ -15,7 +15,7 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
-import events_emitter from '@ohos.emitter'
+import events_emitter from '@ohos.events.emitter'
 import Utils from '../Utils.ets';
 
 export default function appearJsunit() {
@@ -84,7 +84,7 @@ export default function appearJsunit() {
       } catch (err) {
         console.info("testAppear02 on appearEvent err : " + JSON.stringify(err));
       }
-      console.info("testAppear02 appearEvent result is: " + JSON.stringify(sendEventByKey('appear', 10, "")));
+      console.info("testAppear02 appearEvent click result is: " + JSON.stringify(sendEventByKey('appear', 10, "")));
 
       try {
         let callBackDisAppear = (backData) => {
@@ -99,7 +99,7 @@ export default function appearJsunit() {
       } catch (err) {
         console.info("testAppear02 on disAppearEvent err : " + JSON.stringify(err));
       }
-      console.info("testAppear02 click result is: " + JSON.stringify(sendEventByKey('appear', 10, "")));
+      console.info("testAppear02 disAppearEvent click result is: " + JSON.stringify(sendEventByKey('appear', 10, "")));
       console.info('[testAppear02] END');
       done();
     });

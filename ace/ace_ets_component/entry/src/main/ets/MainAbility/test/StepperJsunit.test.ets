@@ -16,7 +16,7 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
 import Utils from './Utils';
-import events_emitter from '@ohos.emitter';
+import events_emitter from '@ohos.events.emitter';
 
 export default function stepperJsunit() {
   describe('stepperTest', function () {
@@ -85,64 +85,6 @@ export default function stepperJsunit() {
       console.info("stepperTest_0200 component objNew is: " + JSON.stringify(objNew));
       expect(objNew.$attrs.index).assertEqual('1');
       console.info('stepperTest_0200 END');
-      done();
-    });
-
-    it('stepperTest_0300', 0, async function (done) {
-      console.info('stepperTest_0300 START');
-      await Utils.sleep(2000);
-      let strJson = getInspectorByKey('stepperItem1');
-      console.info("stepperTest_0300 component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("stepperTest_0300 component obj is: " + JSON.stringify(obj));
-      expect(obj.$type).assertEqual('StepperItem');
-      console.info('stepperTest_0300 END');
-      done();
-    });
-
-    it('stepperTest_0400', 0, async function (done) {
-      console.info('stepperTest_0400 START');
-      await Utils.sleep(1500);
-      let callback = (indexEvent) => {
-        console.info("stepperTest_0400 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.firstState).assertEqual(3);
-      }
-      let indexEvent = {
-        eventId: 13,
-        priority: events_emitter.EventPriority.LOW
-      }
-      try {
-        events_emitter.on(indexEvent, callback);
-      } catch (err) {
-        console.info("stepperTest_0400 on events_emitter err : " + JSON.stringify(err));
-      }
-      console.info("stepperTest_0400 click result is: "
-      + JSON.stringify(sendEventByKey('text1',10,"")));
-      await Utils.sleep(1000);
-      console.info('stepperTest_0400 END');
-      done();
-    });
-
-    it('stepperTest_0500', 0, async function (done) {
-      console.info('stepperTest_0500 START');
-      await Utils.sleep(1500);
-      let callback = (indexEvent) => {
-        console.info("stepperTest_0500 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.secondState).assertEqual(2);
-      }
-      let indexEvent = {
-        eventId: 14,
-        priority: events_emitter.EventPriority.LOW
-      }
-      try {
-        events_emitter.on(indexEvent, callback);
-      } catch (err) {
-        console.info("stepperTest_0500 on events_emitter err : " + JSON.stringify(err));
-      }
-      console.info("stepperTest_0500 click result is: "
-      + JSON.stringify(sendEventByKey('text2',10,"")));
-      await Utils.sleep(1000);
-      console.info('stepperTest_0500 END');
       done();
     });
   })

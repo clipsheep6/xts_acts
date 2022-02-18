@@ -61,13 +61,13 @@ struct ClipAndMaskExample {
         .fontColor(0xCCCCCC)
 
       if (this.isClipCircle) {
-        Image($r('app.media.clip'))
+        Image('/images/clip.png')
           .clip(new Circle({ width: 80, height: 80 }))
           .width('500px')
           .height('280px')
           .key('image_clip')
       } else {
-        Image($r('app.media.clip'))
+        Image('/images/clip.png')
           .clip(new Rect({ width: 80, height: 60 }))
           .width('500px')
           .height('280px')
@@ -75,7 +75,7 @@ struct ClipAndMaskExample {
       }
 
       Row() {
-        Image($r('app.media.clip'))
+        Image('/images/clip.png')
           .width('500px')
           .height('280px')
       }
@@ -89,12 +89,12 @@ struct ClipAndMaskExample {
         .fontColor(0xCCCCCC)
 
       if (this.isMaskRect) {
-        Image($r('app.media.clip'))
+        Image('/images/clip.png')
           .mask(new Rect({ width: '500px', height: '280px' }).fill(Color.Grey))
           .width('500px').height('280px')
           .key('image_mask')
       } else {
-        Image($r('app.media.clip'))
+        Image('/images/clip.png')
           .mask(new Circle({ width: '280px', height: '280px' }).fill(Color.Grey))
           .width('500px').height('280px')
           .key('image_mask')

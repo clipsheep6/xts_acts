@@ -55,7 +55,7 @@ struct AppearExample  {
       if (this.isShow) {
         Text(this.myText)
           .onAppear(() => {
-            this.appearFlag = 'true'
+            this.appearFlag = true
             this.changeAppear = 'Show Text'
             console.info('appearFlag current action state is: ' + this.appearFlag);
             prompt.showToast({ message: 'The text is shown', duration: 2000 })
@@ -76,7 +76,7 @@ struct AppearExample  {
             }
           })
           .onDisAppear(() => {
-            this.disAppearFlag = 'true'
+            this.disAppearFlag = true
             this.changeAppear = 'Hide Text'
             console.info('disAppearFlag current action state is: ' + this.disAppearFlag);
             prompt.showToast({ message: 'The text is hidden', duration: 2000 })

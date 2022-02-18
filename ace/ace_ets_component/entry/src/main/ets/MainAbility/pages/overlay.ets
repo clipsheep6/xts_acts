@@ -57,7 +57,7 @@ struct OverlayExample {
         Text('floating layer')
           .fontSize(12).fontColor(0xCCCCCC).maxLines(1)
         Column() {
-          Image($r('app.media.img'))
+          Image('/images/img.jpeg')
             .width(340).height(240)
             .key('overlay')
             .overlay(this.title,

@@ -46,21 +46,6 @@ struct StepperExample {
           .key('text1')
           .onClick(()=>{
             this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip
-            try {
-              var backData = {
-                data: {
-                  "firstState": this.firstState,
-                }
-              }
-              var backEvent = {
-                eventId: 13,
-                priority: events_emitter.EventPriority.LOW
-              }
-              console.info("start to emit action state")
-              events_emitter.emit(backEvent, backData)
-            } catch (err) {
-              console.info("emit action state err: " + JSON.stringify(err.message))
-            }
           })
       }
       .nextLabel('Next')
@@ -78,21 +63,6 @@ struct StepperExample {
           .key('text2')
           .onClick(()=>{
             this.secondState = this.secondState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting
-            try {
-              var backData = {
-                data: {
-                  "secondState": this.secondState,
-                }
-              }
-              var backEvent = {
-                eventId: 14,
-                priority: events_emitter.EventPriority.LOW
-              }
-              console.info("start to emit action state")
-              events_emitter.emit(backEvent, backData)
-            } catch (err) {
-              console.info("emit action state err: " + JSON.stringify(err.message))
-            }
           })
       }
       .position({x: '35%', y: 0})

@@ -127,38 +127,38 @@ struct ImageEffectsExample {
         .height(40)
         .fontSize(16)
         .backdropBlur(this.backdropBlueValue)
-        .backgroundImage('/test/images/download.png')
+        .backgroundImage('/images/download.png')
         .backgroundImageSize({ width: 1200, height: 160 })
         .key('centerRow2')
 
       Text('shadow').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.download'))
+      Image('/images/download.png')
         .width('90%')
         .height(40)
         .shadow(this.shadowValue)
         .key('centerRow3')
 
       Text('grayscale').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.download'))
+      Image('/images/download.png')
         .width('90%')
         .height(40)
         .grayscale(`${this.grayscaleValue}`)
         .key('centerRow4')
 
       Text('brightness').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.download')).width('90%').height(40).brightness(this.brightnessValue).key('centerRow5')
+      Image('/images/download.png').width('90%').height(40).brightness(this.brightnessValue).key('centerRow5')
 
       Text('saturate').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.download')).width('90%').height(40).saturate(this.saturateValue).key('centerRow6')
+      Image('/images/download.png').width('90%').height(40).saturate(this.saturateValue).key('centerRow6')
 
       Text('contrast').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.download')).width('90%').height(40).contrast(this.contrastValue).key('centerRow7')
+      Image('/images/download.png').width('90%').height(40).contrast(this.contrastValue).key('centerRow7')
 
       Text('invert').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.download')).width('90%').height(40).invert(`${this.invertValue}`).key('centerRow8')
+      Image('/images/download.png').width('90%').height(40).invert(`${this.invertValue}`).key('centerRow8')
 
       Text('hueRotate').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.download')).width('90%').height(40).hueRotate(`${this.hueRotateValue}`).key('centerRow9')
+      Image('/images/download.png').width('90%').height(40).hueRotate(`${this.hueRotateValue}`).key('centerRow9')
     }.width('100%').margin({ top: 5 })
   }
 }

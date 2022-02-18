@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
-import router from '@system.router';
+import router from '@ohos.events.emitter';
 import Utils from '../Utils.ets';
 
 export default function flexJsunit() {
@@ -95,6 +95,3 @@ export default function flexJsunit() {
     });
   })
 }
-
-
-
