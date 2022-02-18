@@ -36,6 +36,7 @@ export default {
         configService.setConfig(this)
         require('../../../test/List.test.js')
         core.execute()
+
         /**
          * var press = new PressureTest(core);
          * press.setPressTimes(10000);
