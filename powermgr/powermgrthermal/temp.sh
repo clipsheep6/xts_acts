@@ -22,13 +22,13 @@ do
         let "temp = temp + 2000"
         echo $temp
         echo $temp > $output
-        sleep 10
+        sleep 5
     else
         temp=40100
         let "temp = temp + 2000"
         echo $temp
         echo $temp > $output
-        sleep 10
+        sleep 5
     fi
     let "count = count + 1"
     echo $count
