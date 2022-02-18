@@ -10,11 +10,11 @@
 
 1. 手动推temp.sh 到设备中
 
-$ hdc_std file send temp.sh /data
+    $ hdc_std file send temp.sh /data
 
 2. 执行temp.sh
 
-$ sh temp.sh
+    $ sh temp.sh
 
 ### 进行压力测试请取消index.js中, 请在onShow()方法中做以下修改：
 取消下面三行代码的注释，并注释掉core.execute()
