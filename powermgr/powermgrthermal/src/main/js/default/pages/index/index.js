@@ -37,8 +37,6 @@ export default {
         require('../../../test/List.test.js')
         core.execute()
         /**
-         * note: //如果跑压力测试请将取消下面三行代码的注释，并注释掉core.execute()
-         * 并设置执行时间为: two hours
          * var press = new PressureTest(core);
          * press.setPressTimes(10000);
          * press.run();
