@@ -46,8 +46,8 @@ static BOOL AbilityMgrTestSuiteTearDown(void)
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0001
- * @tc.name      : testClearElement parameter legal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testClearElementLegal
+ * @tc.desc      : testClearElement parameter legal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testClearElementLegal, Function | MediumTest | Level0)
 {
@@ -73,8 +73,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testClearElementLegal, Function | MediumTest
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0002
- * @tc.name      : testClearElement parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testClearElementIllegal
+ * @tc.desc      : testClearElement parameter illegal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testClearElementIllegal, Function | MediumTest | Level0)
 {
@@ -100,8 +100,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testClearElementIllegal, Function | MediumTe
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0003
- * @tc.name      : testSetWantElement parameter legal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testSetWantElementLegal
+ * @tc.desc      : testSetWantElement parameter legal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantElementLegal, Function | MediumTest | Level0)
 {
@@ -127,8 +127,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantElementLegal, Function | MediumTe
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0004
- * @tc.name      : testSetWantElement parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testSetWantElementIllegal
+ * @tc.desc      : testSetWantElement parameter illegal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantElementIllegal, Function | MediumTest | Level2)
 {
@@ -150,8 +150,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantElementIllegal, Function | Medium
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0005
- * @tc.name      : testClearWant parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testClearWantIllegal
+ * @tc.desc      : testClearWant parameter illegal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testClearWantIllegal, Function | MediumTest | Level2)
 {
@@ -180,29 +180,29 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testClearWantIllegal, Function | MediumTest 
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0006
- * @tc.name      : testSetWantDate parameter legal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testSetWantDateLegal
+ * @tc.desc      : testSetWantDate parameter legal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantDateLegal, Function | MediumTest | Level0)
 {
     printf("------start testSetWantDateLegal------\n");
     Want want = { 0 };
     char *data = "test";
-    SetWantData(&want, (void *)data, strlen(data)+1);
+    SetWantData(&want, (void *)data, strlen(data) + 1);
     if (want.data != NULL) {
         TEST_ASSERT_EQUAL_STRING((char*)(want.data), data);
-        TEST_ASSERT_TRUE(want.dataLength == strlen(data)+1);
+        TEST_ASSERT_TRUE(want.dataLength == strlen(data) + 1);
     }
     ClearWant(&want);
     TEST_ASSERT_EQUAL_STRING(want.data, NULL);
-    TEST_ASSERT_TRUE(want.dataLength == strlen(data)+1);
+    TEST_ASSERT_TRUE(want.dataLength == strlen(data) + 1);
     printf("------end testSetWantDateLegal------\n");
 }
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0007
- * @tc.name      : testSetWantDate parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testSetWantDateIllegal
+ * @tc.desc      : testSetWantDate parameter illegal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantDateIllegal, Function | MediumTest | Level2)
 {
@@ -219,8 +219,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantDateIllegal, Function | MediumTes
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0008
- * @tc.name      : testStartAbility parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testStartAbilityIllegal
+ * @tc.desc      : testStartAbility parameter illegal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testStartAbilityIllegal, Function | MediumTest | Level0)
 {
@@ -232,8 +232,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testStartAbilityIllegal, Function | MediumTe
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0009
- * @tc.name      : testStartAbility parameter legal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testStartAbilityLegal
+ * @tc.desc      : testStartAbility parameter legal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testStartAbilityLegal, Function | MediumTest | Level0)
 {
@@ -257,8 +257,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testStartAbilityLegal, Function | MediumTest
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0010
- * @tc.name      : testSetIntParam parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testSetIntParamIllegal
+ * @tc.desc      : testSetIntParam parameter illegal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetIntParamIllegal, Function | MediumTest | Level0)
 {
@@ -270,8 +270,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetIntParamIllegal, Function | MediumTes
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0011
- * @tc.name      : testSetIntParam parameter legal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testSetIntParamLegal
+ * @tc.desc      : testSetIntParam parameter legal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetIntParamLegal, Function | MediumTest | Level0)
 {
@@ -286,8 +286,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetIntParamLegal, Function | MediumTest 
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0012
- * @tc.name      : testSetStrParam parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testSetStrParamIllegal
+ * @tc.desc      : testSetStrParam parameter illegal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetStrParamIllegal, Function | MediumTest | Level0)
 {
@@ -299,8 +299,8 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetStrParamIllegal, Function | MediumTes
 
 /**
  * @tc.number    : SUB_AAFWK_ABILITY_0013
- * @tc.name      : testSetStrParam parameter legal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testSetStrParamLegal
+ * @tc.desc      : testSetStrParam parameter legal test
  */
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetStrParamLegal, Function | MediumTest | Level2)
 {

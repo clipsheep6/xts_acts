@@ -44,10 +44,10 @@ static BOOL BundleMgrTestSuiteTearDown(void)
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0001
- * @tc.name      : testClearAbilityInfo parameter legal test with bundle name
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testClearAbilityInfoLegal
+ * @tc.desc      : testClearAbilityInfo parameter legal test with bundle name
  */
-LITE_TEST_CASE(BundleMgrTestSuite, testClearAbilityInfo, Function | MediumTest | Level2)
+LITE_TEST_CASE(BundleMgrTestSuite, testClearAbilityInfoLegal, Function | MediumTest | Level2)
 {
     printf("------start testClearAbilityInfo------\n");
     AbilityInfo abilityInfo;
@@ -61,8 +61,8 @@ LITE_TEST_CASE(BundleMgrTestSuite, testClearAbilityInfo, Function | MediumTest |
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0002
- * @tc.name      : testClearAbilityInfo parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testClearAbilityInfoIllegal
+ * @tc.desc      : testClearAbilityInfo parameter illegal test
  */
 LITE_TEST_CASE(BundleMgrTestSuite, testClearAbilityInfoIllegal, Function | MediumTest | Level2)
 {
@@ -77,10 +77,10 @@ LITE_TEST_CASE(BundleMgrTestSuite, testClearAbilityInfoIllegal, Function | Mediu
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0003
- * @tc.name      : testClearBundleInfo parameter legal test with bundle name
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testClearBundleInfoLegal
+ * @tc.desc      : testClearBundleInfo parameter legal test with bundle name
  */
-LITE_TEST_CASE(BundleMgrTestSuite, testClearBundleInfo, Function | MediumTest | Level2)
+LITE_TEST_CASE(BundleMgrTestSuite, testClearBundleInfoLegal, Function | MediumTest | Level2)
 {
     printf("------start testClearBundleInfo------\n");
     BundleInfo bundleInfo = { 0 };
@@ -94,8 +94,8 @@ LITE_TEST_CASE(BundleMgrTestSuite, testClearBundleInfo, Function | MediumTest | 
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0004
- * @tc.name      : testClearBundleInfo parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testClearBundleInfoIllegal
+ * @tc.desc      : testClearBundleInfo parameter illegal test
  */
 LITE_TEST_CASE(BundleMgrTestSuite, testClearBundleInfoIllegal, Function | MediumTest | Level2)
 {
@@ -110,10 +110,10 @@ LITE_TEST_CASE(BundleMgrTestSuite, testClearBundleInfoIllegal, Function | Medium
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0005
- * @tc.name      : ClearAbilityInfo parameter legal test with module info
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testClearModuleInfoLegal
+ * @tc.desc      : ClearAbilityInfo parameter legal test with module info
  */
-LITE_TEST_CASE(BundleMgrTestSuite, testClearModuleInfo, Function | MediumTest | Level1)
+LITE_TEST_CASE(BundleMgrTestSuite, testClearModuleInfoLegal, Function | MediumTest | Level1)
 {
     printf("------start testClearModuleInfo------\n");
     ModuleInfo moduleInfo = { 0 };
@@ -127,8 +127,8 @@ LITE_TEST_CASE(BundleMgrTestSuite, testClearModuleInfo, Function | MediumTest | 
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0006
- * @tc.name      : ClearAbilityInfo parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testClearModuleInfoIllegal
+ * @tc.desc      : ClearAbilityInfo parameter illegal test
  */
 LITE_TEST_CASE(BundleMgrTestSuite, testClearModuleInfoIllegal, Function | MediumTest | Level1)
 {
@@ -143,10 +143,10 @@ LITE_TEST_CASE(BundleMgrTestSuite, testClearModuleInfoIllegal, Function | Medium
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0007
- * @tc.name      : testSetElementAbilityName parameter legal test
- * @tc.desc      : [C- SOFTWARE -0100]
+ * @tc.name      : testSetElementAbilityNameLegal
+ * @tc.desc      : testSetElementAbilityName parameter legal test
  */
-LITE_TEST_CASE(BundleMgrTestSuite, testSetElementAbilityName, Function | MediumTest | Level0)
+LITE_TEST_CASE(BundleMgrTestSuite, testSetElementAbilityNameLegal, Function | MediumTest | Level0)
 {
     printf("------start testSetElementAbilityName------\n");
     Want want = { 0 };
@@ -162,8 +162,8 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementAbilityName, Function | MediumT
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0008
- * @tc.name      : testSetElementAbilityName parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0100]
+ * @tc.name      : testSetElementAbilityNameIllegal
+ * @tc.desc      : testSetElementAbilityName parameter illegal test
  */
 LITE_TEST_CASE(BundleMgrTestSuite, testSetElementAbilityNameIllegal, Function | MediumTest | Level2)
 {
@@ -186,10 +186,10 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementAbilityNameIllegal, Function | 
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0009
- * @tc.name      : testSetElementBundleName parameter legal test
- * @tc.desc      : [C- SOFTWARE -0100]
+ * @tc.name      : testSetElementBundleNameLegal
+ * @tc.desc      : testSetElementBundleName parameter legal test
  */
-LITE_TEST_CASE(BundleMgrTestSuite, testSetElementBundleName, Function | MediumTest | Level0)
+LITE_TEST_CASE(BundleMgrTestSuite, testSetElementBundleNameLegal, Function | MediumTest | Level0)
 {
     printf("------start testSetElementBundleName------\n");
     Want want = { 0 };
@@ -205,8 +205,8 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementBundleName, Function | MediumTe
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0010
- * @tc.name      : testSetElementBundleName parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0100]
+ * @tc.name      : testSetElementBundleNameIllegal
+ * @tc.desc      : testSetElementBundleName parameter illegal test
  */
 LITE_TEST_CASE(BundleMgrTestSuite, testSetElementBundleNameIllegal, Function | MediumTest | Level2)
 {
@@ -228,10 +228,10 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementBundleNameIllegal, Function | M
 }
 /**
  * @tc.number    : SUB_APPEXECFWK_0011
- * @tc.name      : testSetElementDeviceID parameter legal test
- * @tc.desc      : [C- SOFTWARE -0100]
+ * @tc.name      : testSetElementDeviceIDLegal
+ * @tc.desc      : testSetElementDeviceID parameter legal test
  */
-LITE_TEST_CASE(BundleMgrTestSuite, testSetElementDeviceID, Function | MediumTest | Level0)
+LITE_TEST_CASE(BundleMgrTestSuite, testSetElementDeviceIDLegal, Function | MediumTest | Level0)
 {
     printf("------start testSetElementDeviceID------\n");
     Want want = { 0 };
@@ -247,8 +247,8 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementDeviceID, Function | MediumTest
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0012
- * @tc.name      : testSetElementDeviceID parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0100]
+ * @tc.name      : testSetElementDeviceIDIllegal
+ * @tc.desc      : testSetElementDeviceID parameter illegal test
  */
 LITE_TEST_CASE(BundleMgrTestSuite, testSetElementDeviceIDIllegal, Function | MediumTest | Level2)
 {
@@ -271,8 +271,8 @@ LITE_TEST_CASE(BundleMgrTestSuite, testSetElementDeviceIDIllegal, Function | Med
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0013
- * @tc.name      : GetBundleInfo parameter illegal test.
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testGetBundleInfoIllegal
+ * @tc.desc      : GetBundleInfo parameter illegal test
  */
 LITE_TEST_CASE(BundleMgrTestSuite, testGetBundleInfoIllegal, Function | MediumTest | Level2)
 {
@@ -296,8 +296,8 @@ LITE_TEST_CASE(BundleMgrTestSuite, testGetBundleInfoIllegal, Function | MediumTe
 
 /**
  * @tc.number    : SUB_APPEXECFWK_0014
- * @tc.name      : GetBundleInfos parameter illegal test
- * @tc.desc      : [C- SOFTWARE -0200]
+ * @tc.name      : testGetBundleInfosIllegal
+ * @tc.desc      : GetBundleInfos parameter illegal test
  */
 LITE_TEST_CASE(BundleMgrTestSuite, testGetBundleInfosIllegal, Function | MediumTest | Level2)
 {
