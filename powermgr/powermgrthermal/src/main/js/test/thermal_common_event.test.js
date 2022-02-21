@@ -16,6 +16,7 @@ import commonEvent from '@ohos.commonEvent';
 
 describe('appInfoTest', function () {
     console.log("*************Thermal commonEvent Test Begin*************");
+
     /**
      * @tc.number ThermalCommonEventTest_001
      * @tc.name subscribe thermal level changed common event
