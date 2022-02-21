@@ -12,21 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import prompt from '@system.prompt';
-
 export default {
-  data: {
-    title: 'World'
-  },
-  onShow(){
-    // 通用属性
-    var prop1 =  this.$element("prop1");
-    var name1 = prop1.dataSet.name
-    var prop2 =  this.$refs.prop2;
-    var name2 = prop2.dataSet.name
-    prompt.showToast({
-      message: 'prop1--' + name1 + '\nprop2--' + name2
-    });
-  }
+    data: {
+        title: ""
+    },
+    onShow(){
+        // 通用属性
+        var prop1 =  this.$element("prop1");
+        var name1 = prop1.dataSet.a
+        var prop2 =  this.$refs.prop2;
+        var name2 = prop2.dataSet.a
+    }
 }
