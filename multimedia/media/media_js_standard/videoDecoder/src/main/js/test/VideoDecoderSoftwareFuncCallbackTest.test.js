@@ -193,6 +193,7 @@ describe('VideoDecoderFuncCallbackTest', function () {
             console.error('in case error getContent: ' + e);
         }
     }
+
     /* push inputbuffers into codec  */
     async function enqueueInputs(){
         console.info('in case: enqueueInputs in');
@@ -294,9 +295,9 @@ describe('VideoDecoderFuncCallbackTest', function () {
         });
     });
     eventEmitter.on('getDisplaySurface', (done) => {
-        videoPlayer.getDisplaySurface((err, surface) => {
+        videoPlayer.getDisplaySurface((err, outputSurface) => {
             if (typeof (err) == 'undefined') {
-                surfaceID = surface;
+                surfaceID = outputSurface;
                 console.info('case getDisplaySurface success!!');
                 eventEmitter.emit('setOutputSurface');
             }

@@ -162,6 +162,7 @@ describe('VideoDecoderFuncPromiseTest', function () {
         console.info('in case surfaceID ' + surfaceID);
         readSurfaceID.closeSync();
     }
+
     /* push inputbuffers into codec  */
     async function enqueueInputs(){
         console.info('in case: enqueueInputs in');
