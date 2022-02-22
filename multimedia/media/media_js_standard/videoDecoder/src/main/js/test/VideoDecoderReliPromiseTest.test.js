@@ -20,7 +20,7 @@ export
 const DECODE_STEP = {
     WAIT_FOR_EOS : 'waitForEOS',
     CONFIGURE : 'configure',
-    SET_SURFACE : 'setSurface',
+    SETSURFACE : 'setSurface',
     PREPARE : 'prepare',
     START : 'start',
     FLUSH : 'flush',
@@ -281,9 +281,9 @@ describe('VideoDecoderReliPromiseTest', function () {
                 console.info('in case error: createVideoPlayer fail');
             }
         }, failCallback).catch(failCatch);
-        await videoPlayer.getDisplaySurface().then((surface) => {
-            console.info('in case :  getDisplaySurface success and surfaceID is ' + surface);
-            surfaceID = surface;
+        await videoPlayer.getDisplaySurface().then((outputSurface) => {
+            console.info('in case :  getDisplaySurface success and surfaceID is ' + outputSurface);
+            surfaceID = outputSurface;
         }, failCallback).catch(failCatch);
     }
 
@@ -311,7 +311,7 @@ describe('VideoDecoderReliPromiseTest', function () {
                     toConfigure(mySteps, done, callbackExpectOK, failCatch);
                 }
                 break;
-            case DECODE_STEP.SET_SURFACE:
+            case DECODE_STEP.SETSURFACE:
                 mySteps.shift();
                 console.info(`case to setOutputSurface`);
                 if (mySteps[0] == DECODE_STEP.ERROR) {
@@ -459,7 +459,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_DECODER_FUNCTION_PROMISE_01_0100', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_ALL_OUTS);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_ALL_OUTS);
         workdoneAtEOS = true;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -473,7 +474,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_DECODER_FUNCTION_PROMISE_01_0200', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.FLUSH, DECODE_STEP.WAIT_FOR_ALL_OUTS);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.FLUSH, DECODE_STEP.WAIT_FOR_ALL_OUTS);
         workdoneAtEOS = true;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -487,7 +489,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_DECODER_FUNCTION_PROMISE_01_0300', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_ALL_OUTS);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_ALL_OUTS);
         eosFrameId = 50;
         workdoneAtEOS = true;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
@@ -502,7 +505,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_DECODER_FUNCTION_PROMISE_01_0400', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.STOP, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.STOP, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -515,8 +519,9 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_DECODER_FUNCTION_PROMISE_01_0500', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS,
-            DECODE_STEP.STOP, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.STOP, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.STOP, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.STOP,
+            DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -543,7 +548,8 @@ describe('VideoDecoderReliPromiseTest', function () {
     * @tc.level     : Level2
     */ 
     it('SUB_MEDIA_VIDEO_DECODER_API_CONFIGURE_PROMISE_0200', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.CONFIGURE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE,
+            DECODE_STEP.CONFIGURE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -556,7 +562,8 @@ describe('VideoDecoderReliPromiseTest', function () {
     * @tc.level     : Level2
     */ 
     it('SUB_MEDIA_VIDEO_DECODER_API_CONFIGURE_PROMISE_0300', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.CONFIGURE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.CONFIGURE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -569,7 +576,8 @@ describe('VideoDecoderReliPromiseTest', function () {
     * @tc.level     : Level2
     */ 
     it('SUB_MEDIA_VIDEO_DECODER_API_CONFIGURE_PROMISE_0400', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.FLUSH, DECODE_STEP.CONFIGURE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.FLUSH, DECODE_STEP.CONFIGURE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -582,7 +590,8 @@ describe('VideoDecoderReliPromiseTest', function () {
     * @tc.level     : Level2
     */ 
     it('SUB_MEDIA_VIDEO_DECODER_API_CONFIGURE_PROMISE_0500', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.STOP, DECODE_STEP.CONFIGURE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.STOP, DECODE_STEP.CONFIGURE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -595,7 +604,8 @@ describe('VideoDecoderReliPromiseTest', function () {
     * @tc.level     : Level2
     */ 
     it('SUB_MEDIA_VIDEO_DECODER_API_CONFIGURE_PROMISE_0600', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.CONFIGURE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.CONFIGURE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -661,7 +671,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_PREPARE_PROMISE_0200', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE,
+            DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -674,7 +685,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_PREPARE_PROMISE_0300', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE,
+            DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -687,7 +699,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_PREPARE_PROMISE_0400', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -700,7 +713,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_PREPARE_PROMISE_0500', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.FLUSH, DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.FLUSH, DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -713,7 +727,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_PREPARE_PROMISE_0600', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.STOP, DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.STOP, DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -726,7 +741,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_PREPARE_PROMISE_0700', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS ,
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS ,
             DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
@@ -741,7 +757,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_PREPARE_PROMISE_0800', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.RESET, DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.RESET, DECODE_STEP.PREPARE, DECODE_STEP.ERROR, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -780,7 +797,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_START_PROMISE_0300', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -793,7 +811,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_START_PROMISE_0400', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.START, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.START, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -806,7 +825,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_START_PROMISE_0500', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.FLUSH, DECODE_STEP.START, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.FLUSH, DECODE_STEP.START, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -819,7 +839,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_START_PROMISE_0600', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.STOP, DECODE_STEP.START, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.STOP, DECODE_STEP.START, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -832,7 +853,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_START_PROMISE_0700', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.START,
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.START,
             DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
@@ -847,7 +869,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_START_PROMISE_0800', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.RESET, DECODE_STEP.START, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.RESET, DECODE_STEP.START, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -886,7 +909,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_FLUSH_PROMISE_0300', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.FLUSH, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.FLUSH,
+            DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -899,7 +923,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_FLUSH_PROMISE_0400', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.FLUSH, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.FLUSH, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -912,7 +937,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_FLUSH_PROMISE_0500', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.FLUSH, DECODE_STEP.FLUSH, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.FLUSH, DECODE_STEP.FLUSH, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -925,7 +951,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_FLUSH_PROMISE_0600', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.STOP , DECODE_STEP.FLUSH, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.STOP , DECODE_STEP.FLUSH, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -938,7 +965,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_FLUSH_PROMISE_0700', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.FLUSH, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.FLUSH, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -952,7 +980,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_FLUSH_PROMISE_0800', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.RESET, DECODE_STEP.FLUSH, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.RESET, DECODE_STEP.FLUSH, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -991,7 +1020,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_STOP_PROMISE_0300', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.STOP, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.STOP,
+            DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -1004,7 +1034,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_STOP_PROMISE_0400', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.STOP, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.STOP, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -1017,7 +1048,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_STOP_PROMISE_0500', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.FLUSH, DECODE_STEP.STOP, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.FLUSH, DECODE_STEP.STOP, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -1030,7 +1062,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_STOP_PROMISE_0600', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.STOP, DECODE_STEP.STOP, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.STOP, DECODE_STEP.STOP, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -1043,7 +1076,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_STOP_PROMISE_0700', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.STOP, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.STOP, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -1057,7 +1091,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_STOP_PROMISE_0800', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.RESET, DECODE_STEP.STOP, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.RESET, DECODE_STEP.STOP, DECODE_STEP.ERROR, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -1096,7 +1131,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_RESET_PROMISE_0300', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.RESET,
+            DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -1109,7 +1145,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_RESET_PROMISE_0400', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -1122,7 +1159,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_RESET_PROMISE_0500', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.FLUSH, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.FLUSH, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -1135,7 +1173,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_RESET_PROMISE_0600', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.STOP, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.STOP, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -1148,7 +1187,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_RESET_PROMISE_0700', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -1162,7 +1202,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_RESET_PROMISE_0800', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.RESET, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.RESET, DECODE_STEP.RESET, DECODE_STEP.RELEASE);
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 
@@ -1175,7 +1216,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_EOS_PROMISE_0100', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.FLUSH, DECODE_STEP.STOP, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.FLUSH, DECODE_STEP.STOP, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -1189,7 +1231,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_EOS_PROMISE_0200', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.FLUSH, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.FLUSH, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -1203,7 +1246,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_EOS_PROMISE_0300', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.RESET, DECODE_STEP.CONFIGURE, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.RESET, DECODE_STEP.CONFIGURE, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -1217,7 +1261,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_EOS_PROMISE_0400', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.STOP, DECODE_STEP.START, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.STOP, DECODE_STEP.START, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
@@ -1231,7 +1276,8 @@ describe('VideoDecoderReliPromiseTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_DECODER_API_EOS_PROMISE_0500', 0, async function (done) {
-        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SET_SURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START, DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.STOP, DECODE_STEP.START, DECODE_STEP.STOP, DECODE_STEP.RELEASE);
+        let mySteps = new Array(DECODE_STEP.CONFIGURE, DECODE_STEP.SETSURFACE, DECODE_STEP.PREPARE, DECODE_STEP.START,
+            DECODE_STEP.WAIT_FOR_EOS, DECODE_STEP.STOP, DECODE_STEP.START, DECODE_STEP.STOP, DECODE_STEP.RELEASE);
         eosFrameId = 50;
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })

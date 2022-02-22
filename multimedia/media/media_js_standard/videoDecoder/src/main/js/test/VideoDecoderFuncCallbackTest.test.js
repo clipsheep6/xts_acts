@@ -297,9 +297,9 @@ describe('VideoDecoderFuncCallbackTest', function () {
         });
     });
     eventEmitter.on('getDisplaySurface', (done) => {
-        videoPlayer.getDisplaySurface((err, surface) => {
+        videoPlayer.getDisplaySurface((err, outputSurface) => {
             if (typeof (err) == 'undefined') {
-                surfaceID = surface;
+                surfaceID = outputSurface;
                 console.info('case getDisplaySurface success!!');
                 eventEmitter.emit('setOutputSurface');
             }
@@ -373,7 +373,11 @@ describe('VideoDecoderFuncCallbackTest', function () {
             expect(err).assertUndefined();
             console.info('in case : createVideoDecoderByMime success');
             videoDecodeProcessor = processor;
-            eventEmitter.emit('configure', mediaDescription, srcPath, function(){eventEmitter.emit('stop', done);}, done);
+            eventEmitter.emit('configure', mediaDescription, srcPath,
+            function() {
+                eventEmitter.emit('stop', done);
+            },
+            done);
         });
     })
 
@@ -401,7 +405,11 @@ describe('VideoDecoderFuncCallbackTest', function () {
             expect(err).assertUndefined();
             console.info('in case : createVideoDecoderByMime success');
             videoDecodeProcessor = processor;
-            eventEmitter.emit('configure', mediaDescription, srcPath, function(){eventEmitter.emit('stop', done);}, done);
+            eventEmitter.emit('configure', mediaDescription, srcPath,
+            function() {
+                eventEmitter.emit('stop', done);
+            },
+            done);
         });
     })
 
@@ -429,7 +437,11 @@ describe('VideoDecoderFuncCallbackTest', function () {
             expect(err).assertUndefined();
             console.info('in case : createVideoDecoderByMime success');
             videoDecodeProcessor = processor;
-            eventEmitter.emit('configure', mediaDescription, srcPath, function(){eventEmitter.emit('stop', done);}, done);
+            eventEmitter.emit('configure', mediaDescription, srcPath,
+            function() {
+                eventEmitter.emit('stop', done);
+            },
+            done);
         });
     })
 
@@ -457,7 +469,11 @@ describe('VideoDecoderFuncCallbackTest', function () {
             expect(err).assertUndefined();
             console.info('in case : createVideoDecoderByMime success');
             videoDecodeProcessor = processor;
-            eventEmitter.emit('configure', mediaDescription, srcPath, function(){eventEmitter.emit('stop', done);}, done);
+            eventEmitter.emit('configure', mediaDescription, srcPath,
+            function() {
+                eventEmitter.emit('stop', done);
+            },
+            done);
         });
     })
 })
