@@ -14,6 +14,6 @@
 import("//test/xts/tools/build/suite.gni")
 
 js_hap_suite("AssistContextApp") {
-test_hap_name = "AssistContextApp"
-hap_source_path = "hap/AssistContextApp.hap"
+  test_hap_name = "AssistContextApp"
+  hap_source_path = "hap/AssistContextApp.hap"
 }

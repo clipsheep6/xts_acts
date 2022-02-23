@@ -17,8 +17,8 @@ group("stage") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "contexttest:ActsAmsContextTest",
       "assistcontextapp:AssistContextApp",
+      "contexttest:ActsAmsContextTest",
     ]
   }
 }
