@@ -15,5 +15,5 @@ import("//test/xts/tools/build/suite.gni")
 
 js_hap_suite("ActsAmsContextTest") {
 test_hap_name = "ActsAmsContextTest"
-hap_source_path = "hap/ActsAmsContextTest"
+hap_source_path = "hap/ActsAmsContextTest.hap"
 }
