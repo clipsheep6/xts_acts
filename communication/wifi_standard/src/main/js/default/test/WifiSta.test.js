@@ -393,7 +393,9 @@ describe('ACTS_WifiTest', function() {
                     resolve()
                 });
         })
-        Promise.all([promiseOne, promiseTwo]).then(done)
+        await promiseOne.then(()=>{
+            return promiseTwo
+        }).then(done)
     })
 
     /**
