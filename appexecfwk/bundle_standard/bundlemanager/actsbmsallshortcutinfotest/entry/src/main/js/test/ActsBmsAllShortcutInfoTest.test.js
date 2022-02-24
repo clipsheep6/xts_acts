@@ -14,6 +14,7 @@
  */
 
 import bundle from '@ohos.bundle'
+import innerBundleManager from '@ohos.bundle.innerBundleManager'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 
 const NAMECOUNT = 10000;
@@ -21,12 +22,12 @@ const NAMECOUNT = 10000;
 describe('ActsBmsAllShortcutInfoTest', function () {
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_0100
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_0100
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: get the shortcut information of the hap with type of entry
      */
-    it('bms_getAllShortcutInfo_0100', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_0100==================');
+    it('bms_getShortcutInfos_0100', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_0100==================');
         var bundlePath = ['/data/test/bmsThirdBundleTest1.hap'];
         var bundleName = 'com.example.third1';
         let installer = await bundle.getBundleInstaller();
@@ -40,7 +41,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual("SUCCESS");
-            bundle.getAllShortcutInfo(bundleName).then(shortInfos => {
+            innerBundleManager.getShortcutInfos(bundleName).then(shortInfos => {
                 expect(typeof shortInfos).assertEqual('object');
                 expect(shortInfos.length).assertEqual(1);
                 for (var i = 0; i < shortInfos.length; i++) {
@@ -75,12 +76,12 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     });
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_0200
-     * @tc.name: test getAllShortcutInfo with callback
+     * @tc.number: bms_getShortcutInfos_0200
+     * @tc.name: test getShortcutInfos with callback
      * @tc.desc: get the shortcut information of the hap with type of entry
      */
-    it('bms_getAllShortcutInfo_0200', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_0200==================');
+    it('bms_getShortcutInfos_0200', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_0200==================');
         var bundlePath = ['/data/test/bmsThirdBundleTest1.hap'];
         var bundleName = 'com.example.third1';
         let installer = await bundle.getBundleInstaller();
@@ -94,7 +95,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual("SUCCESS");
-            bundle.getAllShortcutInfo(bundleName, async (result, shortcutInfos) => {
+            innerBundleManager.getShortcutInfos(bundleName, async (result, shortcutInfos) => {
                 expect(result).assertEqual(0);
                 expect(shortcutInfos.length).assertEqual(1);
                 checkShortcutIsExist(shortcutInfos, 'id.third1', 'third1');
@@ -112,13 +113,13 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_0300
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_0300
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: 1.install a hap with type of feature
      *           1.get the shortcut informations of two types of hap
      */
-    it('bms_getAllShortcutInfo_0300', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_0300==================');
+    it('bms_getShortcutInfos_0300', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_0300==================');
         var bundleName = 'com.example.third1';
         var bundlePath = ['/data/test/bmsThirdBundleTest1.hap', '/data/test/bmsThirdBundleTest3.hap'];
         let installer = await bundle.getBundleInstaller();
@@ -130,7 +131,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual("SUCCESS");
-            bundle.getAllShortcutInfo(bundleName).then(shortInfos => {
+            innerBundleManager.getShortcutInfos(bundleName).then(shortInfos => {
                 expect(typeof shortInfos).assertEqual('object');
                 expect(shortInfos.length).assertEqual(2);
                 checkShortcutIsExist(shortInfos, 'id.third1', 'third1');
@@ -149,12 +150,12 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_0400
-     * @tc.name: test getAllShortcutInfo with callback
+     * @tc.number: bms_getShortcutInfos_0400
+     * @tc.name: test getShortcutInfos with callback
      * @tc.desc: 1.get the shortcut informations of two types of hap
      */
-    it('bms_getAllShortcutInfo_0400', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_0400==================');
+    it('bms_getShortcutInfos_0400', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_0400==================');
         var bundlePath = ['/data/test/bmsThirdBundleTest1.hap', '/data/test/bmsThirdBundleTest3.hap'];
         var bundleName = 'com.example.third1';
         let installer = await bundle.getBundleInstaller();
@@ -166,7 +167,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual("SUCCESS");
-            bundle.getAllShortcutInfo(bundleName, async (result, shortInfos) => {
+            innerBundleManager.getShortcutInfos(bundleName, async (result, shortInfos) => {
                 expect(result).assertEqual(0);
                 expect(shortInfos.length).assertEqual(2);
                 checkShortcutIsExist(shortInfos, 'id.third1', 'third1');
@@ -185,14 +186,14 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_0500
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_0500
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: get the shortcut informations of an invalid hap
      */
-    it('bms_getAllShortcutInfo_0500', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_0500==================');
+    it('bms_getShortcutInfos_0500', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_0500==================');
         var bundleName = '';
-        bundle.getAllShortcutInfo(bundleName).then(data => {
+        innerBundleManager.getShortcutInfos(bundleName).then(data => {
             expect(typeof data).assertEqual('object');
             expect(data.length).assertEqual(0);
         });
@@ -200,14 +201,14 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_0600
-     * @tc.name: test getAllShortcutInfo with callback
+     * @tc.number: bms_getShortcutInfos_0600
+     * @tc.name: test getShortcutInfos with callback
      * @tc.desc: get the shortcut informations of an invalid hap
      */
-    it('bms_getAllShortcutInfo_0600', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_0600==================');
+    it('bms_getShortcutInfos_0600', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_0600==================');
         var bundleName = '';
-        bundle.getAllShortcutInfo(bundleName, (result, data) => {
+        innerBundleManager.getShortcutInfos(bundleName, (result, data) => {
             expect(result).assertEqual(1);
             expect(data.length).assertEqual(0);
         });
@@ -215,14 +216,14 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_0700
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_0700
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: 1.install a hap with low version
      *           2.install a hap with high version
      *           3.get the shortcut information of a hap with high version by bundlename
      */
-    it('bms_getAllShortcutInfo_0700', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_0700==================');
+    it('bms_getShortcutInfos_0700', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_0700==================');
         var bundlePath1 = ['/data/test/bmsThirdBundleTest1.hap'];
         var bundleName = 'com.example.third1';
         var bundlePath2 = ['/data/test/bmsThirdBundleTestA1.hap'];
@@ -244,7 +245,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
                 expect(data.statusMessage).assertEqual("SUCCESS");
-                bundle.getAllShortcutInfo(bundleName).then(shortInfos => {
+                innerBundleManager.getShortcutInfos(bundleName).then(shortInfos => {
                     expect(typeof shortInfos).assertEqual('object');
                     expect(shortInfos.length).assertEqual(1);
                     for (var i = 0; i < shortInfos.length; i++) {
@@ -280,12 +281,12 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_0800
-     * @tc.name: test getAllShortcutInfo with callback
+     * @tc.number: bms_getShortcutInfos_0800
+     * @tc.name: test getShortcutInfos with callback
      * @tc.desc: get the shortcut information of a hap with high version by bundlename
      */
-    it('bms_getAllShortcutInfo_0800', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_0800==================');
+    it('bms_getShortcutInfos_0800', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_0800==================');
         var bundleName = 'com.example.third1';
         var bundlePath1 = ['/data/test/bmsThirdBundleTest1.hap'];
         var bundlePath2 = ['/data/test/bmsThirdBundleTestA1.hap'];
@@ -306,7 +307,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             }, (err, data) => {
                 expect(data.status).assertEqual(0);
                 expect(data.statusMessage).assertEqual("SUCCESS");
-                bundle.getAllShortcutInfo(bundleName, async (result, shortInfos) => {
+                innerBundleManager.getShortcutInfos(bundleName, async (result, shortInfos) => {
                     expect(result).assertEqual(0);
                     expect(shortInfos.length).assertEqual(1);
                     for (var i = 0; i < shortInfos.length; i++) {
@@ -342,12 +343,12 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_0900
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_0900
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: get the shortcut information of a hap without shortcut in config.json
      */
-    it('bms_getAllShortcutInfo_0900', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_0900==================');
+    it('bms_getShortcutInfos_0900', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_0900==================');
         var bundleName = 'com.example.third2';
         var bundlePath = ['/data/test/bmsThirdBundleTest2.hap'];
         let installer = await bundle.getBundleInstaller();
@@ -359,7 +360,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual("SUCCESS");
-            bundle.getAllShortcutInfo(bundleName).then(data => {
+            innerBundleManager.getShortcutInfos(bundleName).then(data => {
                 expect(typeof data).assertEqual('object');
                 expect(data.length).assertEqual(0);
             });
@@ -376,12 +377,12 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_1000
-     * @tc.name: test getAllShortcutInfo with callback
+     * @tc.number: bms_getShortcutInfos_1000
+     * @tc.name: test getShortcutInfos with callback
      * @tc.desc: get the shortcut information of a hap without shortcut in config.json
      */
-    it('bms_getAllShortcutInfo_1000', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_1000==================');
+    it('bms_getShortcutInfos_1000', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_1000==================');
         var bundleName = 'com.example.third2';
         var bundlePath = ['/data/test/bmsThirdBundleTest2.hap'];
         let installer = await bundle.getBundleInstaller();
@@ -393,7 +394,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual("SUCCESS");
-            bundle.getAllShortcutInfo(bundleName, async (result, shortcutInfos) => {
+            innerBundleManager.getShortcutInfos(bundleName, async (result, shortcutInfos) => {
                 expect(result).assertEqual(0);
                 expect(shortcutInfos.length).assertEqual(0);
             });
@@ -410,14 +411,14 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_1100
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_1100
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: get the shortcut information of a system hap
      */
-    it('bms_getAllShortcutInfo_1100', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_1100==================');
+    it('bms_getShortcutInfos_1100', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_1100==================');
         var bundleName = 'com.example.system1';
-        bundle.getAllShortcutInfo(bundleName).then(data => {
+        innerBundleManager.getShortcutInfos(bundleName).then(data => {
             expect(typeof data).assertEqual('object');
             expect(data.length).assertEqual(1);
             checkShortcutIsExist(data, 'id.system1', 'system1');
@@ -426,14 +427,14 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_1200
-     * @tc.name: test getAllShortcutInfo with callback
+     * @tc.number: bms_getShortcutInfos_1200
+     * @tc.name: test getShortcutInfos with callback
      * @tc.desc: get the shortcut information of a system hap
      */
-    it('bms_getAllShortcutInfo_1200', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_1200==================');
+    it('bms_getShortcutInfos_1200', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_1200==================');
         var bundleName = 'com.example.system1';
-        bundle.getAllShortcutInfo(bundleName, (result, data) => {
+        innerBundleManager.getShortcutInfos(bundleName, (result, data) => {
             expect(result).assertEqual(0);
             expect(data.length).assertEqual(1);
             checkShortcutIsExist(data, 'id.system1', 'system1');
@@ -442,14 +443,14 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_1300
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_1300
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: get the shortcut information of a vendor hap
      */
-    it('bms_getAllShortcutInfo_1300', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_1300==================');
+    it('bms_getShortcutInfos_1300', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_1300==================');
         var bundleName = 'com.example.vendor1';
-        bundle.getAllShortcutInfo(bundleName).then(data => {
+        innerBundleManager.getShortcutInfos(bundleName).then(data => {
             expect(typeof data).assertEqual('object');
             expect(data.length).assertEqual(1);
             checkShortcutIsExist(data, 'id.vendor1', 'vendor1');
@@ -458,14 +459,14 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_1400
-     * @tc.name: test getAllShortcutInfo with callback
+     * @tc.number: bms_getShortcutInfos_1400
+     * @tc.name: test getShortcutInfos with callback
      * @tc.desc: get the shortcut information of a vendor hap
      */
-    it('bms_getAllShortcutInfo_1400', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_1400==================');
+    it('bms_getShortcutInfos_1400', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_1400==================');
         var bundleName = 'com.example.vendor1';
-        bundle.getAllShortcutInfo(bundleName, (result, data) => {
+        innerBundleManager.getShortcutInfos(bundleName, (result, data) => {
             expect(result).assertEqual(0);
             expect(data.length).assertEqual(1);
             checkShortcutIsExist(data, 'id.vendor1', 'vendor1');
@@ -474,14 +475,14 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_1500
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_1500
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: 1.install a normal hap
      *           2.get the shortcut information of this hap by bundlename
      *           3.get the shortcut information of this hap after uninstalling the hap
      */
-    it('bms_getAllShortcutInfo_1500', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_1500==================');
+    it('bms_getShortcutInfos_1500', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_1500==================');
         var bundlePath = ['/data/test/bmsThirdBundleTest1.hap'];
         var bundleName = 'com.example.third1';
         let installer = await bundle.getBundleInstaller();
@@ -493,7 +494,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual("SUCCESS");
-            bundle.getAllShortcutInfo(bundleName).then(shortcutInfos => {
+            innerBundleManager.getShortcutInfos(bundleName).then(shortcutInfos => {
                 checkShortcutIsExist(shortcutInfos, 'id.third1', 'third1');
             });
             installer.uninstall(bundleName, {
@@ -504,7 +505,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
                 expect(data.statusMessage).assertEqual("SUCCESS");
-                bundle.getAllShortcutInfo(bundleName).then(shortcutInfos => {
+                innerBundleManager.getShortcutInfos(bundleName).then(shortcutInfos => {
                     expect(shortcutInfos.length).assertEqual(0);
                 });
                 done();
@@ -513,12 +514,12 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_1600
-     * @tc.name: test getAllShortcutInfo with callback
+     * @tc.number: bms_getShortcutInfos_1600
+     * @tc.name: test getShortcutInfos with callback
      * @tc.desc: get the shortcut information of this hap after uninstalling the hap
      */
-    it('bms_getAllShortcutInfo_1600', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_1600==================');
+    it('bms_getShortcutInfos_1600', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_1600==================');
         var bundlePath = ['/data/test/bmsThirdBundleTest1.hap'];
         var bundleName = 'com.example.third1';
         let installer = await bundle.getBundleInstaller();
@@ -530,7 +531,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual("SUCCESS");
-            bundle.getAllShortcutInfo(bundleName).then(shortcutInfos => {
+            innerBundleManager.getShortcutInfos(bundleName).then(shortcutInfos => {
                 expect(typeof shortcutInfos).assertEqual('object');
                 expect(shortcutInfos.length).assertEqual(1);
                 checkShortcutIsExist(shortcutInfos, 'id.third1', 'third1');
@@ -543,7 +544,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
                 expect(err.code).assertEqual(0);
                 expect(data.status).assertEqual(0);
                 expect(data.statusMessage).assertEqual("SUCCESS");
-                bundle.getAllShortcutInfo(bundleName, async (result, data) => {
+                innerBundleManager.getShortcutInfos(bundleName, async (result, data) => {
                     expect(result).assertEqual(1);
                     expect(data.length).assertEqual(0);
                 });
@@ -553,12 +554,12 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_1700
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_1700
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: get the shortcut informations of this hap with two shortcuts in config.json by bundlename
      */
-    it('bms_getAllShortcutInfo_1700', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_1700==================');
+    it('bms_getShortcutInfos_1700', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_1700==================');
         var bundleName = 'com.example.third4';
         var bundlePath = ['/data/test/bmsThirdBundleTest4.hap'];
         let installer = await bundle.getBundleInstaller();
@@ -570,7 +571,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual("SUCCESS");
-            bundle.getAllShortcutInfo(bundleName).then(shortcutInfos => {
+            innerBundleManager.getShortcutInfos(bundleName).then(shortcutInfos => {
                 expect(typeof shortcutInfos).assertEqual('object');
                 expect(shortcutInfos.length).assertEqual(2);
                 checkShortcutInfo(shortcutInfos[0], 'third4A');
@@ -590,12 +591,12 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_1800
-     * @tc.name: test getAllShortcutInfo with callback
+     * @tc.number: bms_getShortcutInfos_1800
+     * @tc.name: test getShortcutInfos with callback
      * @tc.desc: get the shortcut informations of this hap with two shortcuts in config.json by bundlename
      */
-    it('bms_getAllShortcutInfo_1800', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_1800==================');
+    it('bms_getShortcutInfos_1800', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_1800==================');
         var bundleName = 'com.example.third4';
         let installer = await bundle.getBundleInstaller();
         installer.install(['/data/test/bmsThirdBundleTest4.hap'], {
@@ -606,7 +607,7 @@ describe('ActsBmsAllShortcutInfoTest', function () {
             expect(err.code).assertEqual(0);
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual("SUCCESS");
-            bundle.getAllShortcutInfo(bundleName, async (result, shortcutInfos) => {
+            innerBundleManager.getShortcutInfos(bundleName, async (result, shortcutInfos) => {
                 expect(result).assertEqual(0);
                 expect(shortcutInfos.length).assertEqual(2);
                 checkShortcutInfo(shortcutInfos[0], 'third4A');
@@ -626,28 +627,28 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_1900
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_1900
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: get the shortcut informations of an invalid bundleName
      */
-    it('bms_getAllShortcutInfo_1900', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_1900==================');
+    it('bms_getShortcutInfos_1900', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_1900==================');
         var bundleName = '!@#$%^&ERTYUhusdf7254_=-';
-        bundle.getAllShortcutInfo(bundleName).then((data) => {
+        innerBundleManager.getShortcutInfos(bundleName).then((data) => {
             expect(data.length).assertEqual(0);
         });
         done();
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_2000
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_2000
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: get the shortcut informations of an invalid bundleName
      */
-    it('bms_getAllShortcutInfo_2000', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_2000==================');
+    it('bms_getShortcutInfos_2000', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_2000==================');
         var bundleName = '!@#$%^&ERTYUhusdf7254_=-';
-        bundle.getAllShortcutInfo(bundleName, async (result, data) => {
+        innerBundleManager.getShortcutInfos(bundleName, async (result, data) => {
             expect(result).assertEqual(1);
             expect(data.length).assertEqual(0);
         });
@@ -655,17 +656,17 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_2100
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_2100
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: get the shortcut informations of an invalid long bundleName
      */
-    it('bms_getAllShortcutInfo_2100', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_2100==================');
+    it('bms_getShortcutInfos_2100', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_2100==================');
         var bundleName = 'test';
         for (var i = 0; i < NAMECOUNT; i++) {
             bundleName += 'test';
         }
-        bundle.getAllShortcutInfo(bundleName).then(data => {
+        innerBundleManager.getShortcutInfos(bundleName).then(data => {
             expect(typeof data).assertEqual('object');
             expect(data.length).assertEqual(0);
         });
@@ -673,17 +674,17 @@ describe('ActsBmsAllShortcutInfoTest', function () {
     })
 
     /*
-     * @tc.number: bms_getAllShortcutInfo_2200
-     * @tc.name: test getAllShortcutInfo with promise
+     * @tc.number: bms_getShortcutInfos_2200
+     * @tc.name: test getShortcutInfos with promise
      * @tc.desc: get the shortcut informations of an invalid long bundleName
      */
-    it('bms_getAllShortcutInfo_2200', 0, async function (done) {
-        console.info('=====================bms_getAllShortcutInfo_2200==================');
+    it('bms_getShortcutInfos_2200', 0, async function (done) {
+        console.info('=====================bms_getShortcutInfos_2200==================');
         var bundleName = 'test';
         for (var i = 0; i < NAMECOUNT; i++) {
             bundleName += 'test';
         }
-        bundle.getAllShortcutInfo(bundleName, async (result, data) => {
+        innerBundleManager.getShortcutInfos(bundleName, async (result, data) => {
             expect(result).assertEqual(1);
             expect(data.length).assertEqual(0);
         });
