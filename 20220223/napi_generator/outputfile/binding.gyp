@@ -2,10 +2,10 @@
 {
     "targets": [
         {
-          "target_name": "napitest",
+          "target_name": "power",
           "sources": [
-              "./napitest.cpp",
-              "./napitest_middle.cpp",
+              "./power.cpp",
+              "./power_middle.cpp",
               "./x_napi_tool.cpp"],
           "include_dirs": ["."],
           "cflags_cc": [ "-frtti","-std=c++17" ]

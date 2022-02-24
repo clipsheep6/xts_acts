@@ -1,10 +1,10 @@
 import("//build/ohos.gni")
 
-ohos_shared_library("napitest")
+ohos_shared_library("power")
 {
     sources = [
-        "napitest_middle.cpp",
-        "napitest.cpp",
+        "power_middle.cpp",
+        "power.cpp",
         "x_napi_tool.cpp",
     ]
     include_dirs = [
