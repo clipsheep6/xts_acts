@@ -12,7 +12,8 @@
     -   [C++语言用例执行指导（适用于小型系统、标准系统用例开发）](#section128222336544)
     -   [JS语言用例开发指导（适用于标准系统）](#section159801435165220)
     -   [JS语言用例编译打包指导（适用于标准系统）](#section445519106559)
-
+    -   [修改XTS编译不生效问题规避（适用于标准系统）](#section445519106294)
+    
 -   [相关仓](#section1371113476307)
 
 ## 简介<a name="section465982318513"></a>
@@ -650,7 +651,7 @@ hap包编译请参考 [标准系统 JS用例源码编译Hap包指导](https://gi
 ### 全量编译指导（适用于标准系统）<a name="section159801435165220"></a>
 
 1.  全量编译
-test/xts/acts目录下执行编译命令：
+    test/xts/acts目录下执行编译命令：
     ```./build.sh suite=acts system_size=standard ```
 
     测试用例输出目录：out/release/suites/acts/testcases
@@ -672,15 +673,45 @@ Windows工作台下安装python3.7及以上版本，确保工作台和测试设�
     ├── report                         # 测试报告生成目录
 
 用例执行
-1.  在Windows工作台上，找到从Linux服务器上拷贝下来的测试套件用例目录，在Windows命令窗口进入对应目录，直接执行acts\run.bat。
+1. 在Windows工作台上，找到从Linux服务器上拷贝下来的测试套件用例目录，在Windows命令窗口进入对应目录，直接执行acts\run.bat。
+
 2.  界面启动后，输入用例执行指令。
 
     全量执行：```run acts ```
 
     模块执行(具体模块可以查看\acts\testcases\)：```run –l ActsSamgrTest ```
 
-3.  查看测试报告。
-进入acts\reports\，获取当前的执行记录，打开“summary_report.html”可以获取到测试报告。
+3. 查看测试报告。
+   进入acts\reports\，获取当前的执行记录，打开“summary_report.html”可以获取到测试报告。
+
+### 修改XTS编译不生效问题规避（适用于标准系统）<a name="section445519106294"></a>
+
+标准系统XTS适配过程中，执行编译测试套命令，编译生成的hap包为修改前的测试hap，修改未生效，原因为 编译测试套只判断default下面是否存在修改，若无变动，则直接取缓存（/out/rk3568/obj/test）中的文件进行hap包的生成，不会重新编译，目前有两种规避方式：
+
+规避方式1：直接删除out目录或者删除out/rk3568/obj/test文件夹（以rk3568设备为例）。
+
+    rm -rf out
+    或
+    rm -rf out/rk3568/obj/test
+
+规避方式2：将test文件移动至default文件的下面，同时修改index.js中请求用例的路径。
+
+```
+├── BUILD.gn                                                  
+│ └──entry                                                      
+│ │ └──src                                                          
+│ │ │ └──main                                                         
+│ │ │ │ └──js                                                        
+│ │ │ │ │ └──default                                                    
+│ │ │ │ │ │ └──pages                                                    
+│ │ │ │ │ │ │ └──index                                                       
+│ │ │ │ │ │ │ │ └──index.js        # 入口文件
+│ │ │ │ │ │ └──test                # 测试代码存放目录  
+│ │ │ └── resources                # hap资源存放目录
+│ │ │ └── config.json              # hap配置文件
+```
+
+以上两种规避方式任其一种都可以解决修改XTS编译不生效的问题。
 
 ## 相关仓<a name="section1371113476307"></a>
 
@@ -688,3 +719,12 @@ xts\_acts
 
 xts\_tools
 
+
+
+
+
+
+
+
+
+  
