@@ -17,7 +17,7 @@ import bluetooth from '@ohos.bluetooth';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 
-var Btname = {
+let Btname = {
     NUM_TEST :'012345678901234567890123456789012345678901234567890123'+
     '45678901234567890123456789012345678901234567890123456789012345678901234567',
     NUM_TEST1 :'01234567890123456789012345678901234567890123456'
@@ -38,6 +38,12 @@ var Btname = {
     +'345678901234567890123456789012345678901234567890123456789012367890123456789012345568'
 }
 
+let caseName = {
+    OFF:0,
+    TURNING_ON:1,
+    ON:2,
+    TURNING_OFF:3
+}
 describe('bluetoothhostTest', function() {
 
     beforeAll(function () {
@@ -59,23 +65,23 @@ describe('bluetoothhostTest', function() {
     }
 
     async function tryToEnableBt() {
-        var sta = bluetooth.getState();
+        let sta = bluetooth.getState();
         switch(sta){
-            case 0:
-                var enable = bluetooth.enableBluetooth();
-                console.info('[bluetooth_js] enable0 = '+ JSON.stringify(enable));
+            case caseName.OFF:
+                let enable1 = bluetooth.enableBluetooth();
+                console.info('[bluetooth_js] enable0 = '+ JSON.stringify(enable1));
                 await sleep(3000);
                 break;
-            case 1:
+            case caseName.TURNING_ON:
                 console.info('[bluetooth_js] bt turning on:'+ JSON.stringify(sta));
                 await sleep(3000);
                 break;
-            case 2:
+            case caseName.ON:
                 console.info('[bluetooth_js] state is On:'+ JSON.stringify(sta));
                 break;
-            case 3:
-                var enable = bluetooth.enableBluetooth();
-                console.info('[bluetooth_js] enable0 = '+ JSON.stringify(enable));
+            case caseName.TURNING_OFF:
+                let enable2 = bluetooth.enableBluetooth();
+                console.info('[bluetooth_js] enable0 = '+ JSON.stringify(enable2));
                 await sleep(3000);
                 break;
             default:
@@ -85,52 +91,33 @@ describe('bluetoothhostTest', function() {
 
 
     /**
-     * @tc.number SUB_COMMUNACATION_bluetooth_ENABLE_0001
+     * @tc.number SUB_COMMUNACATION_bluetooth_GET_STATE_0001
      * @tc.name testEnableBluetooth
      * @tc.desc Test EnableBluetooth api by promise.
-     * @tc.author zhangyujie zwx1079266
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('SUB_COMMUNACATION_bluetooth_ENABLE_0001', 0, async function (done) {
-        console.info('[bluetooth_js] enable start');
-        await tryToEnableBt();
-        var state = bluetooth.getState();
-        expect(state).assertEqual(bluetooth.BluetoothState.STATE_ON);
-        expect(bluetooth.BluetoothState.STATE_OFF == 0).assertTrue();
-        expect(bluetooth.BluetoothState.STATE_TURNING_ON == 1).assertTrue();
-        expect(bluetooth.BluetoothState.STATE_TURNING_OFF == 3).assertTrue();
-        expect(bluetooth.BluetoothState.STATE_BLE_TURNING_ON == 4).assertTrue();
-        expect(bluetooth.BluetoothState.STATE_BLE_ON == 5).assertTrue();
-        expect(bluetooth.BluetoothState.STATE_BLE_TURNING_OFF == 6).assertTrue();
-        done();
-    })
-
-    /**
-     * @tc.number SUB_COMMUNACATION_bluetooth_GET_STATE_0001
-     * @tc.name testGetState
-     * @tc.desc Test GetState api by promise.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_GET_STATE_0001', 0, async function (done) {
-        console.info('[bluetooth_js] get state start');
+        console.info('[bluetooth_js] getState start');
         await tryToEnableBt();
-        var state = bluetooth.getState();
-        console.info('get bluetooth state end');
+        let state = bluetooth.getState();
         console.info('[bluetooth_js] get bluetooth state result = '+ JSON.stringify(state));
         expect(state).assertEqual(bluetooth.BluetoothState.STATE_ON);
+        expect(bluetooth.BluetoothState.STATE_OFF != state).assertTrue();
+        expect(bluetooth.BluetoothState.STATE_TURNING_ON != state).assertTrue();
+        expect(bluetooth.BluetoothState.STATE_TURNING_OFF != state).assertTrue();
+        expect(bluetooth.BluetoothState.STATE_BLE_TURNING_ON != state).assertTrue();
+        expect(bluetooth.BluetoothState.STATE_BLE_ON != state).assertTrue();
+        expect(bluetooth.BluetoothState.STATE_BLE_TURNING_OFF != state).assertTrue();
         done();
     })
+
 
     /**
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCALNAME_0001
      * @tc.name testClassicSetLocalName
      * @tc.desc Test ClassicSetLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -138,7 +125,7 @@ describe('bluetoothhostTest', function() {
     it('SUB_COMMUNACATION_bluetooth_SET_LOCALNAME_0001', 0, async function (done) {
         console.info('[bluetooth_js] set localname start');
         await tryToEnableBt();
-        var name = bluetooth.setLocalName('bluetooth_test');
+        let name = bluetooth.setLocalName('bluetooth_test');
         console.info('[bluetooth_js] appInfoTest enable bluetooth result = '+ JSON.stringify(name));
         expect(name).assertEqual(true);
         done();
@@ -148,7 +135,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_START_PAIR_0001
      * @tc.name testStartpair
      * @tc.desc Test Startpair api by promise.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -156,7 +142,7 @@ describe('bluetoothhostTest', function() {
     it('SUB_COMMUNACATION_bluetooth_START_PAIR_0001', 0, async function (done) {
         console.info('[bluetooth_js] Startpair test start ...');
         await tryToEnableBt();
-        var result = bluetooth.pairDevice("00:00:00:00:00:00");
+        let result = bluetooth.pairDevice("00:00:00:00:00:00");
         console.info("[bluetooth_js] onStartpair -> " + JSON.stringify(result));
         expect(result).assertFalse();
         done();
@@ -166,7 +152,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_GET_LOCALNAME_0001
      * @tc.name testClassicGetLocalName
      * @tc.desc Test ClassicGetLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -174,7 +159,7 @@ describe('bluetoothhostTest', function() {
     it('SUB_COMMUNACATION_bluetooth_GET_LOCALNAME_0001', 0, async function (done) {
         console.info('[bluetooth_js] get localName start');
         await tryToEnableBt();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         console.info('[bluetooth_js] get local Name result = ' + JSON.stringify(localName));
         expect(localName).assertEqual('bluetooth_test');
         done();
@@ -184,7 +169,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_BLUETOOTH_SCAN_MODE_0001
      * @tc.name testClassicSetBluetoothScanMode
      * @tc.desc Test ClassicSetBluetoothScanMode api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -192,7 +176,7 @@ describe('bluetoothhostTest', function() {
     it('SUB_COMMUNACATION_bluetooth_SET_BLUETOOTH_SCAN_MODE_0001', 0, async function (done) {
         console.info('[bluetooth_js] set scan mode start');
         await tryToEnableBt();
-        var result = bluetooth.setBluetoothScanMode(1,10000);
+        let result = bluetooth.setBluetoothScanMode(1,10000);
         expect(true).assertTrue(JSON.stringify(bluetooth.ScanDuty.SCAN_MODE_LOW_POWER) !=result );
         expect(true).assertTrue(JSON.stringify(bluetooth.ScanDuty.SCAN_MODE_BALANCED) != result);
         expect(true).assertTrue(JSON.stringify(bluetooth.ScanDuty.SCAN_MODE_BALANCED) != result );
@@ -204,7 +188,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_GET_BLUETOOTH_SCAN_MODE_0001
      * @tc.name testClassicGetBluetoothScanMode
      * @tc.desc Test ClassicGetBluetoothScanMode api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -212,9 +195,9 @@ describe('bluetoothhostTest', function() {
     it('SUB_COMMUNACATION_bluetooth_GET_BLUETOOTH_SCAN_MODE_0001', 0, async function (done) {
         console.info('[bluetooth_js] get scan mode start');
         await tryToEnableBt();
-        var result = bluetooth.setBluetoothScanMode(1,10000);
+        let result = bluetooth.setBluetoothScanMode(1,10000);
         expect(result).assertEqual(true);
-        var scanMode = bluetooth.getBluetoothScanMode();
+        let scanMode = bluetooth.getBluetoothScanMode();
         console.info('[bluetooth_js] get scan mode result2 = ' + JSON.stringify(scanMode));
         expect(scanMode).assertEqual(1);
         expect(true).assertTrue(bluetooth.ScanMode.SCAN_MODE_NONE != scanMode);
@@ -230,7 +213,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_GET_BT_CONNECT_STATE_0001
      * @tc.name testClassicGetBtConnectionState
      * @tc.desc Test ClassicGetBtConnectionState api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -238,7 +220,7 @@ describe('bluetoothhostTest', function() {
     it('SUB_COMMUNACATION_bluetooth_GET_BT_CONNECT_STATE_0001', 0, async function (done) {
         console.info('[bluetooth_js] get connection state start');
         await tryToEnableBt();
-        var connState = bluetooth.getBtConnectionState();
+        let connState = bluetooth.getBtConnectionState();
         console.info('[bluetooth_js] get bt connection state result' + JSON.stringify(connState));
         expect(connState).assertEqual(bluetooth.ProfileConnectionState.STATE_DISCONNECTED);
         expect(true).assertTrue(bluetooth.ProfileConnectionState.STATE_CONNECTING!= connState );
@@ -251,7 +233,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_START_BLUETOOTH_DISCOVERY_0001
      * @tc.name testClassicStartBluetoothDiscovery
      * @tc.desc Test ClassicStartBluetoothDiscovery api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -269,7 +250,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_STOP_BLUETOOTH_DISCOVERY_0001
      * @tc.name testClassicStopBluetoothDiscovery
      * @tc.desc Test ClassicStopBluetoothDiscovery api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -287,7 +267,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_GET_PAIRED_DEVICES_0001
      * @tc.name testClassicGetPairedDevices
      * @tc.desc Test ClassicGetPairedDevices api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -295,7 +274,7 @@ describe('bluetoothhostTest', function() {
     it('SUB_COMMUNACATION_bluetooth_GET_PAIRED_DEVICES_0001', 0, async function (done) {
         console.info('[bluetooth_js] get paired devices start');
         await tryToEnableBt();
-        var devices = bluetooth.getPairedDevices();
+        let devices = bluetooth.getPairedDevices();
         console.info('[bluetooth_js] get paired devices:' + JSON.stringify(devices) +'length:' + devices.length);
         expect(devices.length).assertEqual(0);
         done();
@@ -306,7 +285,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SPP_LISTEN_0001
      * @tc.name testSppListen
      * @tc.desc Test SppListen api by callback.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -332,7 +310,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SPP_ACCEPT_0001
      * @tc.name testSppAccept
      * @tc.desc Test SppAccept api by callbck.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -355,7 +332,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SPP_CLOSE_SERVER_SOCKET_0001
      * @tc.name testSppCloseServerSocket
      * @tc.desc Test SppCloseServerSocket api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -373,7 +349,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SPP_CONNECT_0001
      * @tc.name testSppConnect
      * @tc.desc Test SppConnect api by callback.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -398,7 +373,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SPP_WRITE_0001
      * @tc.name testSppWrite
      * @tc.desc Test SppWrite api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -419,7 +393,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_GET_REMO_DEV_NAME_0001
      * @tc.name testGetRemoteDeviceName
      * @tc.desc Test GetRemoteDeviceName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -437,7 +410,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_GET_REMO_DEV_CLASS_0001
      * @tc.name testGetRemoteDeviceClass
      * @tc.desc Test GetRemoteDeviceClass api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -457,7 +429,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_CANCEL_PAIRED_DEV_0001
      * @tc.name testCancelPairedDevice
      * @tc.desc Test CancelPairedDevice api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -476,18 +447,17 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0001
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0001', 0, async function (done) {
         await tryToEnableBt();
-        var state = bluetooth.getState();
+        let state = bluetooth.getState();
         expect(true).assertTrue(JSON.stringify(bluetooth.BluetoothState.STATE_ON)==state);
-        var name = bluetooth.setLocalName('');
+        let name = bluetooth.setLocalName('');
         expect(name).assertFalse();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(localName==name);
         console.info('[bluetooth_js] getLocalName result1 = ' + JSON.stringify(localName));
         done();
@@ -498,15 +468,14 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0002
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0002', 0, async function (done) {
         await tryToEnableBt();
-        var localName = bluetooth.getLocalName();
-        var name = bluetooth.setLocalName();
+        let localName = bluetooth.getLocalName();
+        let name = bluetooth.setLocalName();
         console.info('[bluetooth_js] getName result2 = '+ JSON.stringify(localName) +
         'setName result2 =' + JSON.stringify(name));
         expect(name).assertNull();
@@ -517,16 +486,15 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0003
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0003', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.NUM_TEST);
+        let name = bluetooth.setLocalName(Btname.NUM_TEST);
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.NUM_TEST == JSON.stringify(localName));
         done();
     })
@@ -535,16 +503,15 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0004
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0004', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.NUM_TEST1);
+        let name = bluetooth.setLocalName(Btname.NUM_TEST1);
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.NUM_TEST1 == JSON.stringify(localName));
         done();
     })
@@ -553,16 +520,15 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0005
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0005', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.LETTERS_TEST);
+        let name = bluetooth.setLocalName(Btname.LETTERS_TEST);
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.LETTERS_TEST == JSON.stringify(localName));
         done();
     })
@@ -572,16 +538,15 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0006
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0006', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.CHINESES_TEST);
+        let name = bluetooth.setLocalName(Btname.CHINESES_TEST);
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.CHINESES_TEST == JSON.stringify(localName));
         done();
     })
@@ -591,17 +556,16 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0007
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0007', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.SYMBOL_TEST);
+        let name = bluetooth.setLocalName(Btname.SYMBOL_TEST);
         console.info('[bluetooth_js] setLocalName result7 = '+ JSON.stringify(name));
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.SYMBOL_TEST == JSON.stringify(localName));
         done();
     })
@@ -610,17 +574,16 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0008
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0008', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.MIXES);
+        let name = bluetooth.setLocalName(Btname.MIXES);
         console.info('[bluetooth_js] setLocalName result8 = '+ JSON.stringify(name));
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.MIXES == JSON.stringify(localName));
         done();
     })
@@ -629,17 +592,16 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0009
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_0009', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.MIXES2);
+        let name = bluetooth.setLocalName(Btname.MIXES2);
         console.info('[bluetooth_js] setLocalName result9 = '+ JSON.stringify(name));
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.MIXES2 == JSON.stringify(localName));
         done();
     })
@@ -648,17 +610,16 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_00010
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_00010', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.MIXES3);
+        let name = bluetooth.setLocalName(Btname.MIXES3);
         console.info('[bluetooth_js] setLocalName result10 = '+ JSON.stringify(name));
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.MIXES3 == JSON.stringify(localName));
         done();
     })
@@ -667,17 +628,16 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_00011
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_00011', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.MIXES4);
+        let name = bluetooth.setLocalName(Btname.MIXES4);
         console.info('[bluetooth_js] setLocalName result11 = '+ JSON.stringify(name));
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.MIXES4 == JSON.stringify(localName));
         done();
     })
@@ -686,17 +646,16 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_00012
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_00012', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.MIXES5);
+        let name = bluetooth.setLocalName(Btname.MIXES5);
         console.info('[bluetooth_js] setLocalName result12 = '+ JSON.stringify(name));
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.MIXES5 == JSON.stringify(localName));
         done();
     })
@@ -705,17 +664,16 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_00013
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_00013', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.MIXES6);
+        let name = bluetooth.setLocalName(Btname.MIXES6);
         console.info('[bluetooth_js] setLocalName result13 = '+ JSON.stringify(name));
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.MIXES6 == JSON.stringify(localName));
         done();
     })
@@ -725,17 +683,16 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_00014
      * @tc.name testsetLocalName
      * @tc.desc Test setLocalName api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
     it('SUB_COMMUNACATION_bluetooth_SET_LOCAL_NAME_00014', 0, async function (done) {
         await tryToEnableBt();
-        var name = bluetooth.setLocalName(Btname.MIXES7);
+        let name = bluetooth.setLocalName(Btname.MIXES7);
         console.info('[bluetooth_js] setLocalName result14 = '+ JSON.stringify(name));
         expect(name).assertTrue();
-        var localName = bluetooth.getLocalName();
+        let localName = bluetooth.getLocalName();
         expect(true).assertTrue(Btname.MIXES7 == JSON.stringify(localName));
         done();
     })
@@ -746,7 +703,6 @@ describe('bluetoothhostTest', function() {
      * @tc.number SUB_COMMUNACATION_bluetooth_DISABLE_0001
      * @tc.name testdisablebluetooth
      * @tc.desc Test disablebluetooth api.
-     * @tc.author zhangyujie zwx1079266
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
@@ -757,10 +713,9 @@ describe('bluetoothhostTest', function() {
         let disable = bluetooth.disableBluetooth();
         console.info('[bluetooth_js] disable:' + JSON.stringify(disable));
         expect(disable).assertTrue();
-        var state = bluetooth.getState();
+        let state = bluetooth.getState();
         console.info('[bluetooth_js] bt state:' + JSON.stringify(state));
         done();
     })
 
 })
-
