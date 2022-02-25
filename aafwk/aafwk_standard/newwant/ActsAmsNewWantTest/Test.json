@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "120000",
+        "package": "com.example.newwanttest",
+        "shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAmsNewWantTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsAmsNewWantHapA.hap->/data/ActsAmsNewWantHapA.hap",
+                "ActsAmsNewWantHapApi7.hap->/data/ActsAmsNewWantHapApi7.hap",
+                "ActsAmsNewWantHapB.hap->/data/ActsAmsNewWantHapB.hap",
+		"ActsAmsNewWantHapC.hap->/data/ActsAmsNewWantHapC.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /data/*.hap"
+            ]
+        }
+    ]
+}
