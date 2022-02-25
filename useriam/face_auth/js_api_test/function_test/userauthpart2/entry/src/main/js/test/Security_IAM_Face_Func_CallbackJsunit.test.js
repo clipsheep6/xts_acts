@@ -13,16 +13,15 @@
  * limitations under the License.
  */
 
-
 import {describe, it, expect} from 'deccjsunit/index'
-import userAuth from '@ohos.userauth'
+import userIAM from '@ohos.UserIAM.userAuth'
 import userIDM from '@ohos.useridm'
 import pinAuth from '@ohos.pinauth'
 import * as publicFC from './Publicfunction-n.js'
 
 let UserIDM = userIDM.constructor()
 let PinAuth = pinAuth.constructor()
-let UserAuth = userAuth.constructor()
+let UserAuth = userIAM.constructor()
 
 let AuthType = {
     PIN : 1,
@@ -47,7 +46,7 @@ let SetPropertyType = {
 }
 
 let userID = {
-    User1 : 1000,
+    User1 : 100,
     User2 : 2,
     User3 : 3,
     User4 : 4,
@@ -65,7 +64,8 @@ let ResultCode = {
     BUSY : 7,
     INVALID_PARAMETERS : 8,
     LOCKED : 9,
-    NOT_ENROLLED : 10
+    NOT_ENROLLED : 10,
+    Authfail: 14
 }
 
 let GetPropertyType = {
@@ -755,7 +755,7 @@ describe('userauthTest', function () {
                             publicFC.publicdelCred(UserIDM,credentialId,token1, function (data) {
                                 console.info('testFace Face_AddCred_Func_0102 publicdelCred=' + JSON.stringify(data));
                                 delcredresult = data;
-                                expect(ResultCode.FAIL).assertEqual(delcredresult.authresult);
+                                expect(ResultCode.Authfail).assertEqual(delcredresult.delCredresult);
                                 publicFC.publicdelUser(UserIDM,token, function (data) {
                                     console.info('testFace Face_AddCred_Func_0102 delUser= ' + JSON.stringify(data));
                                     publicFC.publicCloseSession(UserIDM, function (data) {
@@ -780,5 +780,22 @@ describe('userauthTest', function () {
             console.log("testdelface102 fail " + e);
             expect(null).assertFail();
         }
+    })
+
+    it('Security_IAM_Face_Interface_check_FaceTipsCode', 0, async function (done) {
+        console.info('testFace Security_IAM_Face_Interface_check_FaceTipsCode start');
+        expect(1).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_TOO_BRIGHT);
+        expect(2).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_TOO_DARK);
+        expect(3).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_TOO_CLOSE);
+        expect(4).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_TOO_FAR);
+        expect(5).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_TOO_HIGH);
+        expect(6).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_TOO_LOW);
+        expect(7).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_TOO_RIGHT);
+        expect(8).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_TOO_LEFT);
+        expect(9).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_TOO_MUCH_MOTION);
+        expect(10).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_POOR_GAZE);
+        expect(11).assertEqual(userIAM.FaceTipsCode.FACE_AUTH_TIP_NOT_DETECTED);
+        console.info('testFace Security_IAM_Face_Interface_check_FaceTipsCode end');
+        done();
     })
 })
