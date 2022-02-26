@@ -1,0 +1,40 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "300000",
+        "package": "com.acts.actsprocessmanagejstest",
+        "shell-timeout": "300000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAmsProcessManageJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsAmsProcessManageSystemAppA.hap->/data/ActsAmsProcessManageSystemAppA.hap",
+                "ActsAmsProcessManageSystemAppAMulti.hap->/data/ActsAmsProcessManageSystemAppAMulti.hap",
+                "ActsAmsProcessManageSystemAppB.hap->/data/ActsAmsProcessManageSystemAppB.hap",
+		        "ActsAmsProcessManageVendorAppA.hap->/data/ActsAmsProcessManageVendorAppA.hap",
+                "ActsAmsProcessManageVendorAppService.hap->/data/ActsAmsProcessManageVendorAppService.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /data/*.hap"
+            ]
+        }
+    ]
+}

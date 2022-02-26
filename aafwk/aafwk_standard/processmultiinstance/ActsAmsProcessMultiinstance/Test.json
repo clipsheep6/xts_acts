@@ -1,0 +1,47 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "300000",
+        "package": "com.example.processmultiinstance",
+        "shell-timeout": "300000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAmsProcessMultiinstance.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsAmsProcessMultiinstanceHapAA.hap->/data/ActsAmsProcessMultiinstanceHapAA.hap",
+                "ActsAmsProcessMultiinstanceHapAB.hap->/data/ActsAmsProcessMultiinstanceHapAB.hap",
+                "ActsAmsProcessMultiinstanceHapAC.hap->/data/ActsAmsProcessMultiinstanceHapAC.hap",
+                "ActsAmsProcessMultiinstanceHapAD.hap->/data/ActsAmsProcessMultiinstanceHapAD.hap",
+                "ActsAmsProcessMultiinstanceHapAE.hap->/data/ActsAmsProcessMultiinstanceHapAE.hap",
+                "ActsAmsProcessMultiinstanceHapAF.hap->/data/ActsAmsProcessMultiinstanceHapAF.hap",
+                "ActsAmsProcessMultiinstanceHapBA.hap->/data/ActsAmsProcessMultiinstanceHapBA.hap",
+                "ActsAmsProcessMultiinstanceHapBB.hap->/data/ActsAmsProcessMultiinstanceHapBB.hap",
+                "ActsAmsProcessMultiinstanceHapBC.hap->/data/ActsAmsProcessMultiinstanceHapBC.hap",
+                "ActsAmsProcessMultiinstanceHapBD.hap->/data/ActsAmsProcessMultiinstanceHapBD.hap",
+                "ActsAmsProcessMultiinstanceHapBE.hap->/data/ActsAmsProcessMultiinstanceHapBE.hap",
+                "ActsAmsProcessMultiinstanceHapBF.hap->/data/ActsAmsProcessMultiinstanceHapBF.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /data/*.hap"
+            ]
+        }
+    ]
+}

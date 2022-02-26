@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "description_secondability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry_SecondAbility",
+      "value": "entry_SecondAbility"
+    },
+    {
+      "name": "description_thirdability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry_ThirdAbility",
+      "value": "entry_ThirdAbility"
+    }
+  ]
+}

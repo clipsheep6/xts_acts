@@ -1,0 +1,89 @@
+/*
+* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+import Ability from '@ohos.application.Ability'
+import commonEvent from '@ohos.commonevent'
+import appManager from '@ohos.application.appManager'
+
+var publishEventName = "event_VendorAppAToSystemAppA";
+var publishEventNameVendor = "event_from_ProcessManage_VendorAppA";
+var testAction;
+var testTarget;
+
+function onReceivedPublishCallBack() {
+    console.log("ACTS_ProcessManage VendorAppA onReceivedPublishCallBack");
+}
+
+function onReceivedHandleCallback(err, data) {
+    console.log("ACTS_ProcessManage VendorAppA onReceivedHandleCallback JSON.stringify data:"
+    + JSON.stringify(data));
+    console.log("ACTS_ProcessManage VendorAppA onReceivedHandleCallback data:"
+    + data);
+    console.log("ACTS_ProcessManage VendorAppA onReceivedHandleCallback err:"
+    + err);
+    commonEvent.publish(publishEventNameVendor,onReceivedPublishCallBack);
+}
+
+export default class MainAbility extends Ability {
+
+    onCreate(want, launchParam) {
+        // Ability is creating, initialize resources for this ability
+        console.log("ACTS_ProcessManage VendorAppA MainAbility onCreate")
+        globalThis.abilityWant = want;
+    }
+
+    onDestroy() {
+        // Ability is destroying, release resources for this ability
+        console.log("ACTS_ProcessManage VendorAppA MainAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log("ACTS_ProcessManage VendorAppA MainAbility onWindowStageCreate")
+        globalThis.abilityContext = this.context
+        windowStage.setUIContent(this.context, "pages/index", null)
+    }
+
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("ACTS_ProcessManage VendorAppA MainAbility onWindowStageDestroy")
+    }
+    async onForeground() {
+        // Ability has brought to foreground
+        console.log("ACTS_ProcessManage VendorAppA MainAbility onForeground")
+        globalThis.abilityContext = this.context
+        var abilityWant = globalThis.abilityWant;
+        console.log("ACTS_ProcessManage VendorAppA onForeground abilityWant:"
+        + JSON.stringify(abilityWant));
+        testAction = abilityWant.action;
+        console.log("ACTS_ProcessManage VendorAppA onForeground testAction:" + testAction);
+        testTarget = abilityWant.parameters.testTarget;
+        console.log("ACTS_ProcessManage VendorAppA onForeground testTarget:" + testTarget);
+        if (testAction == 'thirdpartykill') {
+            console.log("ACTS_ProcessManage VendorAppA onForeground testAction:" + testAction);
+            appManager.killProcessesByBundleName(testTarget, onReceivedHandleCallback);
+        }
+        if (testAction == 'thirdpartyclear') {
+            console.log("ACTS_ProcessManage VendorAppA onForeground testAction:" + testAction);
+            appManager.clearUpApplicationData(testTarget, onReceivedHandleCallback);
+        }
+        else{
+            commonEvent.publish(publishEventName, onReceivedPublishCallBack);
+        }
+    }
+    onBackground() {
+        // Ability has back to background
+        console.log("ACTS_ProcessManage VendorAppA MainAbility onBackground")
+    }
+};
