@@ -1,0 +1,21 @@
+{
+    "kits": [
+        {
+            "push": [
+                "NetworkManagerRegisterNetconnCallbackTest->/data/telephonycpptest/NetworkManagerRegisterNetconnCallbackTest"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/telephonycpptest/*"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "NetworkManagerRegisterNetconnCallbackTest",
+        "runtime-hint": "1s",
+        "native-test-device-path": "/data/telephonycpptest"
+    },
+    "description": "Configuration network_manager_register_netconn_callback_test basic Tests"
+}

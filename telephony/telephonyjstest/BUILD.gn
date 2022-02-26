@@ -11,13 +11,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import("//build/ohos_var.gni")
+
 group("telephonyjstest") {
   testonly = true
-  deps = [
-    "call_manager:call_manager",
-    "cellular_data:cellular_data",
-    "network_search:network_search",
-    "sim:sim",
-    "sms_mms:sms_mms",
-  ]
+   deps = [
+      "network_search:network_search",
+      "sms_mms:sms_mms",
+      "call_manager:call_manager",
+      "sim:sim",
+      "cellular_data:cellular_data",
+   ]
 }
