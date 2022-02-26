@@ -1,0 +1,1 @@
+require('./Geofence.test.js');
