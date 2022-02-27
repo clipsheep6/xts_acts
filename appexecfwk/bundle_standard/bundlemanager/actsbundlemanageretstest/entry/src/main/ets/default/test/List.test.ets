@@ -16,6 +16,10 @@
 import getabilityInfo from './GetabilityInfo.test.ets';
 import getApplicationInfoJsunit from './getApplicationInfoJsunit.test.ets';
 import getAllAppInfoJsunit from './getAllApplicationInfoJsunit.test.ets';
+import getBundleGidsJsUnit from './GetBundleGidsJsUnit.test.ets';
+import getAbilityLabelJsUnit from './GetAbilityLabelJsUnit.test.ets';
+import isAbilityEnableETSUnit from './IsAbilityEnabledETSUnit.ets';
+import isApplicationEnabledETSUnit from './IsApplicationEnabledETSUnit.ets';
 
 export default function testsuite() {
   //RM.007
@@ -23,4 +27,11 @@ export default function testsuite() {
   getAllAppInfoJsunit();
   //RM.006
   getabilityInfo();
+  //RM.014
+  getAbilityLabelJsUnit();
+  //RM.015
+  getBundleGidsJsUnit();
+  //RM.017
+  isAbilityEnableETSUnit();
+  isApplicationEnabledETSUnit();
 }
