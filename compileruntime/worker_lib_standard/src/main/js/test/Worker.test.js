@@ -1,13 +1,13 @@
 /*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License')
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -16,7 +16,7 @@
 // @ts-nocheck
 import app from '@system.app'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-import worker from '@ohos.worker'
+import worker from "@ohos.worker";
 
 describe('workerTest', function () {
 
@@ -145,7 +145,22 @@ describe('workerTest', function () {
         const buffer = new ArrayBuffer(8)
         expect(buffer.byteLength).assertEqual(8)
         ss.postMessage(buffer, [buffer])
-        expect(buffer.byteLength).assertEqual(0)
+        var length = undefined;
+        var exception = undefined;
+        try {
+            length = buffer.byteLength;
+        } catch (e) {
+            exception = e.message;
+        }
+
+        console.log("worker:: length is " + length)
+        console.log("worker:: exception is " + exception)
+
+        if (typeof exception == "undefined") {
+            expect(length).assertEqual(0)
+        } else {
+            expect(exception).assertEqual("IsDetachedBuffer")
+        }
     })
 
     // check worker handle error is ok
@@ -387,33 +402,33 @@ describe('workerTest', function () {
     it('worker_off_test_001', 0, function () {
         var ss = new worker.Worker("workers/worker.js");
 
-        var zhangsanTimes = 0;
+        var zhangsan_times = 0;
         ss.on("zhangsan", ()=>{
-            zhangsanTimes++;
+            zhangsan_times++;
         })
 
         ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsanTimes).assertEqual(1)
+        expect(zhangsan_times).assertEqual(1)
 
         ss.off("zhangsan")
 
         ss.dispatchEvent({type: "zhangsan"})
         ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsanTimes).assertEqual(1)
+        expect(zhangsan_times).assertEqual(1)
     })
 
     // check worker off function is ok
     it('worker_off_test_002', 0, function () {
         var ss = new worker.Worker("workers/worker.js");
 
-        var zhangsanTimes = 0;
+        var zhangsan_times = 0;
         ss.on("zhangsan", ()=>{
-            zhangsanTimes++;
+            zhangsan_times++;
         })
 
         ss.dispatchEvent({type: "zhangsan"})
         ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsanTimes).assertEqual(2)
+        expect(zhangsan_times).assertEqual(2)
 
         for (var i=0;i<3;i++)
         {
@@ -421,40 +436,40 @@ describe('workerTest', function () {
         }
 
         ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsanTimes).assertEqual(2)
+        expect(zhangsan_times).assertEqual(2)
     })
 
     // check worker removeEventListener function is ok
     it('worker_removeListener_test_001', 0, function () {
         var ss = new worker.Worker("workers/worker.js");
 
-        var zhangsanTimes = 0;
+        var zhangsan_times = 0;
         ss.addEventListener("zhangsan", ()=>{
-            zhangsanTimes++;
+            zhangsan_times++;
         })
 
         ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsanTimes).assertEqual(1)
+        expect(zhangsan_times).assertEqual(1)
 
         ss.removeEventListener("zhangsan")
 
         ss.dispatchEvent({type: "zhangsan"})
         ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsanTimes).assertEqual(1)
+        expect(zhangsan_times).assertEqual(1)
     })
 
     // check worker removeEventListener function is ok
     it('worker_removeListener_test_002', 0, function () {
         var ss = new worker.Worker("workers/worker.js");
 
-        var zhangsanTimes = 0;
+        var zhangsan_times = 0;
         ss.addEventListener("zhangsan", ()=>{
-            zhangsanTimes++;
+            zhangsan_times++;
         })
 
         ss.dispatchEvent({type: "zhangsan"})
         ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsanTimes).assertEqual(2)
+        expect(zhangsan_times).assertEqual(2)
 
         for (var i=0;i<3;i++)
         {
@@ -462,104 +477,63 @@ describe('workerTest', function () {
         }
 
         ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsanTimes).assertEqual(2)
+        expect(zhangsan_times).assertEqual(2)
+
     })
 
     // check worker removeAllListener function is ok
     it('worker_removeListener_test_003', 0, function () {
         var ss = new worker.Worker("workers/worker.js");
 
-        var zhangsanTimes = 0;
+        var zhangsan_times = 0;
         ss.addEventListener("zhangsan", ()=>{
-            zhangsanTimes++;
+            zhangsan_times++;
         })
 
-        var lisiTimes = 0;
+        var lisi_times = 0;
         ss.addEventListener("lisi", ()=>{
-            lisiTimes++;
+            lisi_times++;
         })
 
         ss.dispatchEvent({type: "zhangsan"})
         ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsanTimes).assertEqual(2)
+        expect(zhangsan_times).assertEqual(2)
 
         ss.dispatchEvent({type: "lisi"})
         ss.dispatchEvent({type: "lisi"})
-        expect(lisiTimes).assertEqual(2)
+        expect(lisi_times).assertEqual(2)
 
         ss.removeAllListener()
         ss.dispatchEvent({type: "zhangsan"})
         ss.dispatchEvent({type: "zhangsan"})
-        expect(zhangsanTimes).assertEqual(2)
+        expect(zhangsan_times).assertEqual(2)
 
         ss.dispatchEvent({type: "lisi"})
         ss.dispatchEvent({type: "lisi"})
-        expect(lisiTimes).assertEqual(2)
+        expect(lisi_times).assertEqual(2)
     })
 
     // check parentPort.close is ok
     it('worker_parentPortClose_test_001', 0, async function (done) {
         var ss = new worker.Worker("workers/worker_008.js");
         var res = 0
+        var flag = false;
 
-        ss.onmessage = function (e) {
+        ss.onexit = function (e) {
             res++;
+            flag = true;
         }
 
         ss.postMessage("abc")
-        await promiseCase()
-        expect(res).assertEqual(0)
+        while (!flag) {
+            await promiseCase()
+        }
+        expect(res).assertEqual(1)
         done()
     })
 
     // check parentPort.close is ok
     it('worker_parentPortClose_test_002', 0, async function (done) {
-        var ss1 = new worker.Worker("workers/worker_008.js");
-        var ss2 = new worker.Worker("workers/worker_008.js");
-        var res = 0
-        var times = 0
-
-        ss1.onmessage = function (e) {
-            res++;
-        }
-
-        ss1.postMessage("abc")
-        await promiseCase()
-        expect(res).assertEqual(0)
-
-        ss2.postMessage("hello world")
-        await promiseCase()
-        expect(res).assertEqual(0)
-
-        done()
-    })
-
-    // check parentPort.close is ok
-    it('worker_parentPortClose_test_003', 0, async function (done) {
-        var ss1 = new worker.Worker("workers/worker_008.js");
-        var ss2 = new worker.Worker("workers/worker_008.js");
-        var res = 0
-        var times = 0
-
-        ss1.onmessage = function (e) {
-            res++;
-        }
-
-        ss1.postMessage("abc")
-        await promiseCase()
-        expect(res).assertEqual(0)
-
-        ss2.addEventListener("zhangsan", ()=>{
-            times++;
-        })
-
-        ss2.dispatchEvent({type: "zhangsan"})
-        expect(times).assertEqual(1)
-        done()
-    })
-
-    // check parentPort.close is ok
-    it('worker_parentPortClose_test_004', 0, async function (done) {
         var ss = new worker.Worker("workers/worker_008.js");
         var res = 0
         var flag = false;
@@ -624,4 +598,5 @@ describe('workerTest', function () {
         expect(res).assertEqual(1)
         done()
     })
+
 })
