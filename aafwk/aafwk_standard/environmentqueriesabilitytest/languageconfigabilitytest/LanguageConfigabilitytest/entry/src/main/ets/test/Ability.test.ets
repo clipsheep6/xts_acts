@@ -635,6 +635,128 @@ export default function abilityTest(abilityContext) {
       });
     })
 
+    /*
+      * @tc.number: AMS_UpdateConfiguration_0900
+      * @tc.name: Connects a service ability, which is used to start a cloned page ability.
+      * @tc.desc: Check the event data of executor page ability publishes
+      */
+    it('ACTS_OnConfigurationUpdated_0900', 0, async function (done) {
+      console.log('ACTS_OnConfigurationUpdated_0900====<begin');
+      var subscriber;
+      var id;
+      var sizeDefault = {
+        size: "big"
+      };
+      var sizeChange = {
+        size: "small"
+      };
+      for(var i =0; i<10; i++){
+        await abilityManager.updateConfiguration(sizeDefault);
+        console.log("LanguageConfigAppA  1 called" + JSON.stringify(sizeDefault));
+      };
+      async function setLangConfig() {
+        await abilityManager.updateConfiguration(sizeChange);
+        console.log("LanguageConfigAppA 2  called" + JSON.stringify(sizeChange));
+        commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+        done();
+      }
+
+      function subscribeCallBack(err, data) {
+        console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
+
+        expect(data.event).assertEqual("UpdateLanguageFinish");
+        clearTimeout(id);
+        console.log('ACTS_OnConfigurationUpdated_0900 start set lang');
+        setLangConfig();
+      }
+
+      commonEvent.createSubscriber(subscriberInfoMultiInstance).then(async (data) => {
+        console.debug("====>Create Subscriber====>");
+        subscriber = data;
+        commonEvent.subscribe(subscriber, subscribeCallBack);
+      })
+
+      function unSubscribeCallback() {
+        console.debug("====>UnSubscribe CallBack====>");
+        done();
+      }
+      function timeout() {
+        console.log('StartLanguageConfigTester timeout');
+        commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+      }
+      id = setTimeout(timeout, START_ABILITY_TIMEOUT);
+      console.log('Start LanguageConfigTester ACTS_OnConfigurationUpdated_0900 timer id : ' + id);
+
+      console.log('LanguageConfigTester ACTS_OnConfigurationUpdated_0900 start Ability');
+      startAbilityProcess(abilityContext, {
+        startId: 0,
+        stepNum: 1,
+        nextStep: 0,
+        step: ["StartA1"]
+      });
+    })
+
+    /*
+      * @tc.number: AMS_UpdateConfiguration_1000
+      * @tc.name: Connects a service ability, which is used to start a cloned page ability.
+      * @tc.desc: Check the event data of executor page ability publishes
+      */
+    it('ACTS_OnConfigurationUpdated_1000', 0, async function (done) {
+      console.log('ACTS_OnConfigurationUpdated_1000====<begin');
+      var subscriber;
+      var id;
+      var configDefault = {
+        language: "zh-Hans"
+      };
+      var configChange = {
+        language: "en"
+      };
+      for(var i = 0; i<10; i++){
+        await abilityManager.updateConfiguration(configDefault);
+        console.log("LanguageConfigAppA  1 called" + JSON.stringify(configDefault));
+      }
+      async function setLangConfig() {
+        await abilityManager.updateConfiguration(configChange);
+        console.log("LanguageConfigAppA 2  called" + JSON.stringify(configChange));
+        commonEvent.unsubscribe(subscriber, unSubscribeCallback)
+      }
+
+      function subscribeCallBack(err, data) {
+        console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
+
+        expect(data.event).assertEqual("UpdateLanguageFinish");
+        clearTimeout(id);
+        console.log('ACTS_OnConfigurationUpdated_1000 start set lang');
+        setLangConfig();
+      }
+
+      commonEvent.createSubscriber(subscriberInfoMultiInstance).then(async (data) => {
+        console.debug("====>Create Subscriber====>");
+        subscriber = data;
+        commonEvent.subscribe(subscriber, subscribeCallBack);
+      })
+
+      function unSubscribeCallback() {
+        console.debug("====>UnSubscribe CallBack====>");
+        done();
+      }
+      function timeout() {
+        expect().assertFail();
+        console.log('StartLanguageConfigTester timeout');
+        commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+      }
+      id = setTimeout(timeout, START_ABILITY_TIMEOUT);
+      console.log('Start LanguageConfigTester ACTS_OnConfigurationUpdated_1000 timer id : ' + id);
+
+      console.log('LanguageConfigTester ACTS_OnConfigurationUpdated_1000 start Ability');
+      startAbilityProcess(abilityContext, {
+        startId: 0,
+        stepNum: 1,
+        nextStep: 0,
+        step: ["StartA1"]
+      });
+    })
+
 
 
   })
