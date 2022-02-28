@@ -71,9 +71,24 @@
       {
         "name":"ohos.permission.INSTALL_BUNDLE",
         "reason":"need use ohos.permission.INSTALL_BUNDLE"
+      },
+      {
+        "name":"ohos.permission.MANAGE_MISSIONS",
+        "reason":"need use ohos.permission.MANAGE_MISSIONS"
+      },
+      {
+        "name":"ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS",
+        "reason":"need use ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS"
+      },
+      {
+        "name":"ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+        "reason":"need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
+      },
+      {
+        "name":"ohos.permission.GET_RUNNING_INFO",
+        "reason":"need use ohos.permission.GET_RUNNING_INFO"
       }
     ],
-
     "js": [
       {
         "mode": {
