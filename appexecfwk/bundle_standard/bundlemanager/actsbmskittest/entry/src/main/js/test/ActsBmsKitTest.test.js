@@ -14,13 +14,12 @@
  */
 
 import bundle from '@ohos.bundle'
+import innerBundleManager from '@ohos.bundle.innerBundleManager'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import featureAbility from '@ohos.ability.featureability'
 import commonEvent from '@ohos.commonevent'
 
 const STRESSLEVEL = 20;
-const BUNDLE_NAME = 'com.example.actsbmskittest';
-const PERMISSION_NAME = 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED';
 const START_ABILITY_TIMEOUT = 3000;
 var subscriberInfo_0100 = {
     events: ['ACTS_Third1_Publish_CommonEvent'],
@@ -65,16 +64,16 @@ describe('ActsBmsKitTest', function () {
     })
 
     /*
-    * @tc.number: ActsBmsKit_getAllShortcutInfo_0100
-    * @tc.name: Pressure test interface getAllShortcutInfo by promise
+    * @tc.number: ActsBmsKit_getShortcutInfos_0100
+    * @tc.name: Pressure test interface getShortcutInfos by promise
     * @tc.desc: get the shortcut information of the hap
     */
-    it('ActsBmsKit_getAllShortcutInfo_0100', 0, async function (done) {
-        console.info('=====================ActsBmsKit_getAllShortcutInfo_0100==================');
+    it('ActsBmsKit_getShortcutInfos_0100', 0, async function (done) {
+        console.info('=====================ActsBmsKit_getShortcutInfos_0100==================');
         var bundleName = 'com.example.third1';
         let count;
         for (count = 0; count < STRESSLEVEL; count++) {
-            let data = await bundle.getAllShortcutInfo(bundleName);
+            let data = await innerBundleManager.getShortcutInfos(bundleName);
             expect(typeof data).assertEqual('object');
             expect(data.length).assertEqual(1);
             if (!checkShortcutIsExist(data, 'id.third1', 'third1'))
@@ -84,17 +83,17 @@ describe('ActsBmsKitTest', function () {
     });
 
     /*
-    * @tc.number: ActsBmsKit_getAllShortcutInfo_0200
-    * @tc.name: Pressure test interface getAllShortcutInfo by callback
+    * @tc.number: ActsBmsKit_getShortcutInfos_0200
+    * @tc.name: Pressure test interface getShortcutInfos by callback
     * @tc.desc: get the shortcut information of the hap
     */
-    it('ActsBmsKit_getAllShortcutInfo_0200', 0, async function (done) {
-        console.info('=====================ActsBmsKit_getAllShortcutInfo_0200==================');
+    it('ActsBmsKit_getShortcutInfos_0200', 0, async function (done) {
+        console.info('=====================ActsBmsKit_getShortcutInfos_0200==================');
         var bundleName = 'com.example.third1';
         let flag = true;
         let count = 0;
         for (let i = 0; i < STRESSLEVEL; i++) {
-            bundle.getAllShortcutInfo(bundleName, async (err, data) => {
+            innerBundleManager.getShortcutInfos(bundleName, async (err, data) => {
                 expect(data.length).assertEqual(1);
                 expect(err).assertEqual(0);
                 checkShortcutIsExist(data, 'id.third1', 'third1');
