@@ -176,7 +176,6 @@ export default function abilityTest(abilityContext) {
 
     function checkAliveProcess(data) {
       expect(checkRunningProcess('com.ohos.launcher', data, 'com.ohos.launcher')).assertTrue();
-      expect(checkRunningProcess('com.ohos.systemui', data, 'com.ohos.systemui')).assertTrue();
       expect(checkRunningProcess('com.example.actsinformationquerytest', data, 'com.example.actsinformationquerytest')).assertTrue();
     }
 
