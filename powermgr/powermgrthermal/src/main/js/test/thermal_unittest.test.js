@@ -56,12 +56,7 @@ function test15() {
             console.info("level is: " + level);
             expect(level == -1).assertTrue();
         })
-        await new Promise((resolve, reject)=>{
-            setTimeout(()=>{
-                thermal.unsubscribeThermalLevel();
-                resolve();
-            }, MSEC_1000 * 4);
-        })
+        thermal.unsubscribeThermalLevel();
         done();
     })
 }
