@@ -47,6 +47,7 @@ group("aafwk_standard") {
       "context:context",
       "featureability:featureability",
       "formmanager:formmanager",
+      "environmentqueriesabilitytest:environmentqueriesabilitytest",
       "newwant:newwant",
       "serviceability/sceneProject/particlestartability:ParticleStartAbility",
       "serviceability/sceneProject/particletestserver:ParticleTestServer",
