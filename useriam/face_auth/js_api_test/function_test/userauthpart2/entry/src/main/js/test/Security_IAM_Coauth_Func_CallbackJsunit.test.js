@@ -145,23 +145,27 @@ describe('userauthTest', function () {
                         console.info('Security_IAM_Coauth_Func_0102 addcredresult101 = ' + addcredresult101);
                         publicFC.publicauth(UserAuth, challenge1, AuthType.PIN, AuthTurstLevel.ATL1, function (data) {
                             let info101 = data.authresult;
+                            let token2 = data.authextr.token
                             console.info('Security_IAM_Coauth_Func_0102 publicauth info101 = ' + info101);
                             publicFC.publicauth(UserAuth, challenge2, AuthType.PIN, AuthTurstLevel.ATL1,
 							function (data) {
                                 let info1011 = data.authresult;
                                 console.info('Security_IAM_Coauth_Func_0102 publicauth info1011 = ' + info1011);
-                                expect(ResultCode.AUTH_FAIL).assertEqual(info101);
-                                expect(ResultCode.SUCCESS).assertEqual(info1011);
-                                let token = data.authextr.token
-                                publicFC.publicdelUser(UserIDM, token, function (data) {
+
+                                let token1 = data.authextr.token
+                                publicFC.publicdelUser(UserIDM, token2, function (data) {
                                     let deluserresult = data.delUserresult;
-                                    console.info('Security_IAM_Coauth_Func_0102 deluserresult = ' + deluserresult);
-                                    publicFC.publicCloseSession(UserIDM, function (data) {
-                                        console.info('Security_IAM_Coauth_Func_0102 CloseSession data = ' + data);
-                                        publicFC.publicunRegisterInputer(PinAuth, function (data) {
-                                            console.info('Security_IAM_Coauth_Func_0102 unRegister data = ' + data);
-                                            done();
+                                    expect(ResultCode.AUTH_FAIL).assertEqual(deluserresult);
+                                    publicFC.publicdelUser(UserIDM, token2, function (data) {
+                                        console.info('Security_IAM_Coauth_Func_0102 deluserresult = ' + deluserresult);
+                                        publicFC.publicCloseSession(UserIDM, function (data) {
+                                            console.info('Security_IAM_Coauth_Func_0102 CloseSession data = ' + data);
+                                            publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                                console.info('Security_IAM_Coauth_Func_0102 unRegister data = ' + data);
+                                                done();
+                                            })
                                         })
+                                    }, function (data) {
                                     })
                                 }, function (data) {
                                 })
@@ -293,7 +297,7 @@ describe('userauthTest', function () {
     //                                     expect(AuthSubType.PIN_SIX).assertEqual(AsyncCallback[0].authSubType);
     //                                     expect(AuthSubType.FACE_2D).assertEqual(AsyncCallback[1].authSubType);
     //                                     publicFC.publicdelUser(UserIDM,token,function(onresult){
-    //                                         console.log("testFaceCoauth_Func_0106delUser="+ onresult.delUserresult)
+    //                                         console.log("testFace Coauth_Func_0106delUser="+ onresult.delUserresult)
     //                                         publicFC.publicCloseSession(UserIDM,function(data){
     //                                             console.log("testFace Coauth_Func_0106 CloseSession = " + data)
     //                                             publicFC.publicunRegisterInputer(PinAuth)
@@ -342,10 +346,10 @@ describe('userauthTest', function () {
                                     expect(ResultCode.SUCCESS).assertEqual(AvailabeStatus);
                                     AvailabeStatus = publicFC.publicgetAvailabeStatus(
 									UserAuth,AuthType.FACE,AuthTurstLevel.ATL3)
-                                    expect(ResultCode.FAIL).assertEqual(AvailabeStatus);
+                                    expect(ResultCode.TRUST_LEVEL_NOT_SUPPORT).assertEqual(AvailabeStatus);
                                     AvailabeStatus = publicFC.publicgetAvailabeStatus(
 									UserAuth,AuthType.FACE,AuthTurstLevel.ATL4)
-                                    expect(ResultCode.FAIL).assertEqual(AvailabeStatus);
+                                    expect(ResultCode.TRUST_LEVEL_NOT_SUPPORT).assertEqual(AvailabeStatus);
                                     publicFC.publicdelUser(UserIDM,token,function(onresult){
                                         console.log("testFace Coauth_Func_0108 delUser = " + onresult.delUserresult)
                                         publicFC.publicCloseSession(UserIDM,function(data){
@@ -592,7 +596,7 @@ describe('userauthTest', function () {
                                                 expect(ResultCode.AUTH_FAIL).assertEqual(authresult5);
                                                 publicFC.publicgetProperty(UserAuth,GetPropertyRequestpin,
 												function(data){
-                                                    expect(0).assertEqual(data[0].remainTimes);
+                                                    expect(0).assertEqual(data.remainTimes);
                                                     publicFC.publicunRegisterInputer(PinAuth, async function (data) {
                                                         console.info("Coauth_Func_0113 unRegist = " + data);
                                                         await setTimeout(publicFC.publicRegisterInputer(
