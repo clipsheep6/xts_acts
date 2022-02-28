@@ -18,9 +18,12 @@ group("aafwk_standard") {
   if (is_standard_system) {
     deps = [
       "abilitymanager:actsabilitymanagertest",
+      "actsabilitydistributetest:ActsAbilityDistributeTest",
+      "actsabilitydistributetest:ActsAbilityDistributeTest",
       "amsabilitymanager/amsMissionSnapshotTest:ActsAmsMissionSnapshotTest",
       "amsabilitymanager/amsMissionSnapshotTestSingleton:ActsAmsMissionSnapshotTestSingleton",
       "amsabilitymanager/amsMissionSnapshotTestSingletonS:ActsAmsMissionSnapshotTestSingletonS",
+      "amsdatauriutils:ActsAmsDataUriUtilsTest",
       "amsdisplayIdtest:amsdisplayIdtest",
       "amsmultiapp/MultiAppPage:ActsAmsMultiPageApp",
       "amsmultiapp/MultiAppPageConnectService:ActsAmsMultiPageAppConnectService",
@@ -41,9 +44,7 @@ group("aafwk_standard") {
       "amsmultiapp/amsmultidataabilityclone:ActsAmsMultiDataAbilityClone",
       "amsmultiapp/amsmultidataabilityself:ActsAmsMultiDataAbilitySelf",
       "amszipfileunzipfilest:ActsAmsZipfileUnzipfileSTest",
-      "componentization:componentization",
       "context:context",
-      "environmentqueriesabilitytest:environmentqueriesabilitytest",
       "featureability:featureability",
       "formmanager:formmanager",
       "newwant:newwant",
