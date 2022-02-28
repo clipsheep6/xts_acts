@@ -14,6 +14,12 @@
  */
 
 export default class Utils {
+  static rect_left;
+  static rect_top;
+  static rect_right;
+  static rect_bottom;
+  static rect_value;
+
   static sleep(time) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -30,14 +36,15 @@ export default class Utils {
 
   /**
    * 接口调用时间
+   * @param msg
    * @param startTime 接口调用开始时间
    * @param endTime 接口调用结束时间
    */
-  static getDurationTime(msg, startTime, endTime) {
-    console.info(msg + 'Get Interface startTime: ' + startTime);
-    console.info(msg + 'Get Interface endTime: ' + endTime);
+  static getDurationTime(msg,startTime, endTime) {
+    console.info(msg+'Get Interface startTime: ' + startTime);
+    console.info(msg+'Get Interface endTime: ' + endTime);
     var duration = (endTime - startTime)
-    console.info(msg + 'Get Interface Duration: ' + duration);
+    console.info(msg+'Get Interface Duration: ' + duration);
     return duration;
   }
 }

@@ -35,7 +35,7 @@ export default function GetabilityInfo() {
     });
 
     /**
-     * @tc.number: bundle_GetabilityInfo_test_0100
+     * @tc.number: bundle_getAllApplicationInfo_test_0100
      * @tc.name: getAbilityInfo : The basic ability is enhanced to obtain the specified Ability information
      * @tc.desc: Check the return value of the interface (by promise)
      * @tc.level   0
@@ -60,7 +60,7 @@ export default function GetabilityInfo() {
     });
 
     /**
-     * @tc.number: bundle_GetabilityInfo_test_0200
+     * @tc.number: bundle_getAllApplicationInfo_test_0100
      * @tc.name: getAbilityInfo : The basic ability is enhanced to obtain the specified Ability information
      * @tc.desc: Check the return value of the interface (by callback)
      * @tc.level   0
@@ -84,7 +84,7 @@ export default function GetabilityInfo() {
     });
 
     /**
-     * @tc.number: bundle_GetabilityInfo_test_0300
+     * @tc.number: bundle_getAllApplicationInfo_test_0100
      * @tc.name: getAbilityInfo : The basic ability is enhanced to obtain the specified Ability information
      * @tc.desc: Check the return value of the interface (by promise)
      * @tc.level   0
@@ -111,7 +111,7 @@ export default function GetabilityInfo() {
     });
 
     /**
-     * @tc.number: bundle_GetabilityInfo_test_0400
+     * @tc.number: bundle_getAllApplicationInfo_test_0100
      * @tc.name: getAbilityInfo : The basic ability is enhanced to obtain the specified Ability information
      * @tc.desc: Check the return value of the interface (by promise)
      * @tc.level   0
@@ -129,6 +129,8 @@ export default function GetabilityInfo() {
       done();
       console.info('[bundle_GetabilityInfo_test_0400] END');
     });
+
+
 
     /**
      * 打印AbilityInfo属性信息

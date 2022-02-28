@@ -13,56 +13,15 @@
  * limitations under the License.
  */
 import file from '@system.file';
-import {Core, ExpectExtend, ReportExtend} from "deccjsunit/index.ets";
+import {Core, ExpectExtend, InstrumentLog, ReportExtend} from 'deccjsunit/index.ets';
 import testsuite from "../test/List.test.ets";
 import featureAbility from "@ohos.ability.featureAbility";
-
-async function startService2() {
-  var str = {
-    "want": {
-      "bundleName": "com.ohos.acecollaboration",
-      "abilityName": "com.ohos.acecollaboration.ServiceAbility2",
-    },
-  };
-  var data = featureAbility.startAbility(str);
-  console.info('particleAbility_connectAbility_test_0100 startAbility succeeded: ' + JSON.stringify(data));
-}
-async function startService3() {
-  var str = {
-    "want": {
-      "bundleName": "com.ohos.acecollaboration",
-      "abilityName": "com.ohos.acecollaboration.ServiceAbility3",
-    },
-  };
-  var data = featureAbility.startAbility(str);
-  console.info('particleAbility_connectAbility_test_0200 startAbility succeeded: ' + JSON.stringify(data));
-}
-async function startService4() {
-  var str = {
-    "want": {
-      "bundleName": "com.ohos.acecollaboration",
-      "abilityName": "com.ohos.acecollaboration.ServiceAbility4",
-    },
-  };
-  var data = featureAbility.startAbility(str);
-  console.info('particleAbility_connectAbility_test_0300 startAbility succeeded: ' + JSON.stringify(data));
-}
-async function startService5() {
-  var str = {
-    "want": {
-      "bundleName": "com.ohos.acecollaboration",
-      "abilityName": "com.ohos.acecollaboration.ServiceAbility5",
-    },
-  };
-  var data = featureAbility.startAbility(str);
-  console.info('particleAbility_connectAbility_test_0400 startAbility succeeded: ' + JSON.stringify(data));
-}
 
 @Entry
 @Component
 struct MyComponent {
   aboutToAppear() {
-    console.info("start run testcase!!!!")
+    console.info('start run testcase!!!!')
     featureAbility.getWant()
       .then((Want) => {
         const core = Core.getInstance();
@@ -92,41 +51,9 @@ struct MyComponent {
       alignItems: ItemAlign.Center,
       justifyContent: FlexAlign.Center
     }) {
-      Text('ACE ETS TEST 组件协同')
+      Text('ACE ETS TEST 包管理')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
-      Button('disconnectAbility_promise')
-        .fontSize(40)
-        .height(40)
-        .margin({ top: 20 })
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          startService2();
-        });
-      Button('disconnectAbility_callback')
-        .fontSize(40)
-        .height(40)
-        .margin({ top: 20 })
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          startService3();
-        });
-      Button('connectotherAbility')
-        .fontSize(40)
-        .height(40)
-        .margin({ top: 20 })
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          startService4();
-        });
-      Button('connectnull')
-        .fontSize(40)
-        .height(40)
-        .margin({ top: 20 })
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          startService5();
-        });
     }
     .width('100%')
     .height('100%')

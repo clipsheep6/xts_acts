@@ -13,18 +13,14 @@
  * limitations under the License.
  */
 
-import addContextAndAbilityJsunit from './addContextAndAbilityJsunit.test.ets';
-import getHapModuleInfoJsunit from './getHapModuleInfoJsunit.test.ets';
-import getAbilityInfoJsunit from './getAbilityInfoJsunit.test.ets';
-import getApplicationContext from './getApplicationContextJsunit.test.ets';
-import getAppVersionInfoJsunit from './getAppVersionInfoJsunit.test.ets';
-import ContextJsunit from './ContextJsunit.test.ets';
+import getabilityInfo from './GetabilityInfo.test.ets';
+import getApplicationInfoJsunit from './getApplicationInfoJsunit.test.ets';
+import getAllAppInfoJsunit from './getAllApplicationInfoJsunit.test.ets';
 
 export default function testsuite() {
-    addContextAndAbilityJsunit();
-    getHapModuleInfoJsunit();
-    getAbilityInfoJsunit();
-    getApplicationContext();
-    getAppVersionInfoJsunit();
-    ContextJsunit();
+  //RM.007
+  getApplicationInfoJsunit();
+  getAllAppInfoJsunit();
+  //RM.006
+  getabilityInfo();
 }
