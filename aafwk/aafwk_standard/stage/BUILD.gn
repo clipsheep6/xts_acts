@@ -16,10 +16,10 @@ import("//test/xts/tools/build/suite.gni")
 group("stage") {
   testonly = true
   if (is_standard_system) {
-    deps = [ 
-	  "stage_extension_service:StageExtensionServiceTest",
+    deps = [
       "stage_ability_test:StageAbilityTest",
-	  "stage_auxability_test:StageAuxabilityTest"
-	]
+      "stage_auxability_test:StageAuxabilityTest",
+      "stage_extension_service:StageExtensionServiceTest",
+    ]
   }
 }
