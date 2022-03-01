@@ -883,7 +883,7 @@ describe('aceJsTest', function () {
     it('testImageAnimatorComponent', 0, async function (done) {
         let result;
         let options = {
-            uri: 'pages/imageAnimator/index'
+            uri: 'pages/imageAnimator/router/index'
         }
         try {
             result = router.push(options)
@@ -894,7 +894,7 @@ describe('aceJsTest', function () {
         await sleep(5000)
         let pages = router.getState();
         console.info("[router.imageAnimator] getState" + JSON.stringify(pages));
-        expect("pages/imageAnimator/").assertEqual(pages.path);
+        expect("pages/imageAnimator/router/").assertEqual(pages.path);
         done();
     });
 
