@@ -29,7 +29,7 @@ describe('ActsBmsJsTest', function () {
         let abilityName = 'com.example.third2.MainAbility';
         var installer = await bundle.getBundleInstaller();
         installer.install(['/data/test/bmsThirdBundleTest2.hap'], {
-            userId: 0,
+            userId: 100,
             installFlag: 1,
             isKeepData: false
         }, onReceiveInstallEvent);
@@ -42,15 +42,15 @@ describe('ActsBmsJsTest', function () {
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
             let result = await bundle.getBundleInfo(bundleName, 1);
-            expect(result.abilityInfo.length).assertEqual(NUM_TWO);
-            if (result.abilityInfo.length == NUM_TWO) {
-                console.debug('========check abilityName ========' + JSON.stringify(result.abilityInfo));
-                expect(result.abilityInfo[0].name).assertEqual(abilityName);
-                expect(result.abilityInfo[0].srcLanguage).assertEqual('js');
-                expect(result.abilityInfo[0].srcPath).assertEqual('');
+            expect(result.abilityInfos.length).assertEqual(NUM_TWO);
+            if (result.abilityInfos.length == NUM_TWO) {
+                console.debug('========check abilityName ========' + JSON.stringify(result.abilityInfos));
+                expect(result.abilityInfos[0].name).assertEqual(abilityName);
+                expect(result.abilityInfos[0].srcLanguage).assertEqual('js');
+                expect(result.abilityInfos[0].srcPath).assertEqual('');
             }
             installer.uninstall(bundleName, {
-                userId: 0,
+                userId: 100,
                 installFlag: 1,
                 isKeepData: false
             }, (err, data) => {
@@ -76,7 +76,7 @@ describe('ActsBmsJsTest', function () {
         let abilityName2 = 'com.example.third5.BMainAbility';
         var installer = await bundle.getBundleInstaller();
         installer.install(['/data/test/bmsThirdBundleTest5.hap'], {
-            userId: 0,
+            userId: 100,
             installFlag: 1,
             isKeepData: false
         }, onReceiveInstallEvent);
@@ -90,18 +90,18 @@ describe('ActsBmsJsTest', function () {
             expect(data.statusMessage).assertEqual('SUCCESS');
             let result = await bundle.getBundleInfo(bundleName, 1)
             console.debug('==========bundleInfo==========' + JSON.stringify(result))
-            expect(result.abilityInfo.length).assertEqual(NUM_FOUR);
-            if (result.abilityInfo.length == NUM_FOUR) {
-                console.debug('========check abilityName ========' + JSON.stringify(result.abilityInfo));
-                expect(result.abilityInfo[0].name).assertEqual(abilityName1);
-                expect(result.abilityInfo[0].srcLanguage).assertEqual('js');
-                expect(result.abilityInfo[0].srcPath).assertEqual('');
-                expect(result.abilityInfo[1].name).assertEqual(abilityName2);
-                expect(result.abilityInfo[1].srcLanguage).assertEqual('js');
-                expect(result.abilityInfo[1].srcPath).assertEqual('');
+            expect(result.abilityInfos.length).assertEqual(NUM_FOUR);
+            if (result.abilityInfos.length == NUM_FOUR) {
+                console.debug('========check abilityName ========' + JSON.stringify(result.abilityInfos));
+                expect(result.abilityInfos[0].name).assertEqual(abilityName1);
+                expect(result.abilityInfos[0].srcLanguage).assertEqual('js');
+                expect(result.abilityInfos[0].srcPath).assertEqual('');
+                expect(result.abilityInfos[1].name).assertEqual(abilityName2);
+                expect(result.abilityInfos[1].srcLanguage).assertEqual('js');
+                expect(result.abilityInfos[1].srcPath).assertEqual('');
             }
             installer.uninstall(bundleName, {
-                userId: 0,
+                userId: 100,
                 installFlag: 1,
                 isKeepData: false
             }, (err, data) => {
@@ -125,7 +125,7 @@ describe('ActsBmsJsTest', function () {
         let abilityName = 'com.example.js.MainAbility';
         var installer = await bundle.getBundleInstaller();
         installer.install(['/data/test/bmsThirdBundleJs.hap'], {
-            userId: 0,
+            userId: 100,
             installFlag: 1,
             isKeepData: false
         }, onReceiveInstallEvent);
@@ -138,15 +138,15 @@ describe('ActsBmsJsTest', function () {
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
             let result = await bundle.getBundleInfo(bundleName, 1);
-            expect(result.abilityInfo.length).assertEqual(1);
-            if (result.abilityInfo.length == 1) {
-                console.debug('========check abilityName ========' + JSON.stringify(result.abilityInfo));
-                expect(result.abilityInfo[0].name).assertEqual(abilityName);
-                expect(result.abilityInfo[0].srcLanguage).assertEqual('js');
-                expect(result.abilityInfo[0].srcPath).assertEqual('default');
+            expect(result.abilityInfos.length).assertEqual(1);
+            if (result.abilityInfos.length == 1) {
+                console.debug('========check abilityName ========' + JSON.stringify(result.abilityInfos));
+                expect(result.abilityInfos[0].name).assertEqual(abilityName);
+                expect(result.abilityInfos[0].srcLanguage).assertEqual('js');
+                expect(result.abilityInfos[0].srcPath).assertEqual('default');
             }
             installer.uninstall(bundleName, {
-                userId: 0,
+                userId: 100,
                 installFlag: 1,
                 isKeepData: false
             }, (err, data) => {
@@ -171,7 +171,7 @@ describe('ActsBmsJsTest', function () {
         let abilityName = '.MainAbility';
         var installer = await bundle.getBundleInstaller();
         installer.install(['/data/test/bmsThirdBundleC.hap'], {
-            userId: 0,
+            userId: 100,
             installFlag: 1,
             isKeepData: false
         }, onReceiveInstallEvent);
@@ -184,15 +184,15 @@ describe('ActsBmsJsTest', function () {
             expect(data.status).assertEqual(0);
             expect(data.statusMessage).assertEqual('SUCCESS');
             let result = await bundle.getBundleInfo(bundleName, 1);
-            expect(result.abilityInfo.length).assertEqual(1);
-            if (result.abilityInfo.length == 1) {
-                console.debug('========check abilityName ========' + JSON.stringify(result.abilityInfo));
-                expect(result.abilityInfo[0].name).assertEqual(abilityName);
-                expect(result.abilityInfo[0].srcLanguage).assertEqual('c++');
-                expect(result.abilityInfo[0].srcPath).assertEqual('default/c++/');
+            expect(result.abilityInfos.length).assertEqual(1);
+            if (result.abilityInfos.length == 1) {
+                console.debug('========check abilityName ========' + JSON.stringify(result.abilityInfos));
+                expect(result.abilityInfos[0].name).assertEqual(abilityName);
+                expect(result.abilityInfos[0].srcLanguage).assertEqual('c++');
+                expect(result.abilityInfos[0].srcPath).assertEqual('default/c++/');
             }
             installer.uninstall(bundleName, {
-                userId: 0,
+                userId: 100,
                 installFlag: 1,
                 isKeepData: false
             }, (err, data) => {

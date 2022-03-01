@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/lite'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import xml from '@ohos.xml'
 describe('XmlSerializerXmlPullParserTest', function () {
 
@@ -119,7 +119,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testStartElement001', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note1");
         thatSer.endElement();
@@ -140,7 +140,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testStartElement002', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note1");
         thatSer.endElement();
@@ -163,7 +163,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testStartElement003', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note1");
         thatSer.startElement("note2");
@@ -186,7 +186,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testStartElement004', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note1");
         thatSer.startElement("note2");
@@ -211,7 +211,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testStartElement005', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note1");
         thatSer.startElement("note2");
@@ -236,7 +236,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetAttributes001', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance1", "high1");
@@ -258,7 +258,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetAttributes002', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance1", "high1");
@@ -281,7 +281,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetAttributes003', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance1", "high1");
@@ -305,7 +305,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetAttributes004', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance1", "high1");
@@ -330,7 +330,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetAttributes005', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance1", "high1");
@@ -355,7 +355,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testEndElement001', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.endElement();
@@ -376,7 +376,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testEndElement002', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance", "high");
@@ -398,7 +398,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testEndElement003', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("impo", "hi");
@@ -420,7 +420,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testEndElement004', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note1");
         thatSer.startElement("note2");
@@ -443,7 +443,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testEndElement005', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note2");
         thatSer.setAttributes("importance", "high");
@@ -465,7 +465,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetText001', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance", "high");
@@ -488,7 +488,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetText002', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance", "high");
@@ -511,7 +511,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetText003', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance", "high");
@@ -534,7 +534,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetText004', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance", "high");
@@ -557,7 +557,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetText005', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setAttributes("importance", "high");
@@ -580,7 +580,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testAddEmptyElement001', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.addEmptyElement("a");
@@ -602,7 +602,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testAddEmptyElement002', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.endElement();
@@ -624,7 +624,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testAddEmptyElement003', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.addEmptyElement("c");
         thatSer.startElement("note");
@@ -646,7 +646,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testAddEmptyElement004', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.addEmptyElement("d");
         var result = '<d/>';
@@ -666,7 +666,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testAddEmptyElement005', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.addEmptyElement("c");
@@ -689,7 +689,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetNamespace001', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.setDeclaration();
         thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
@@ -712,7 +712,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetNamespace002', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.setDeclaration();
         thatSer.setNamespace("b", "http://www.w3.org/TR/html4/");
@@ -735,7 +735,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetNamespace003', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.setDeclaration();
         thatSer.setNamespace("h", "http://www.111/");
@@ -758,14 +758,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetNamespace004', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
+        thatSer.setDeclaration();
         thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
         thatSer.startElement("note1");
         thatSer.startElement("note2");
         thatSer.endElement();
         thatSer.endElement();
-        var result = '<h:note1 xmlns:h="http://www.w3.org/TR/html4/">\r\n  <h:note2/>\r\n</h:note1>';
+        var result = '<?xml version="1.0" encoding="utf-8"?>\r\n<h:note1 xmlns:h="http://www.w3.org/TR/html4/">' +
+        '\r\n  <h:note2/>\r\n</h:note1>';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
         for (var i = 0; i < result.length; ++i) {
@@ -782,14 +784,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetNamespace005', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
+        thatSer.setDeclaration();
         thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
         thatSer.startElement("note1");
         thatSer.startElement("note2");
         thatSer.endElement();
         thatSer.endElement();
-        var result = '<h:note1 xmlns:h="http://www.w3.org/TR/html4/">\r\n  <h:note2/>\r\n</h:note1>';
+        var result = '<?xml version="1.0" encoding="utf-8"?>\r\n<h:note1 xmlns:h="http://www.w3.org/TR/html4/">' +
+        '\r\n  <h:note2/>\r\n</h:note1>';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
         for (var i = 0; i < result.length; ++i) {
@@ -799,17 +803,17 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCommnet001
-     * @tc.desc: Writes the commnet.
+     * @tc.name: testSetComment001
+     * @tc.desc: Writes the comment.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCommnet001', 0, function () {
+    it('testSetComment001', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
-        thatSer.setCommnet("Hi!");
+        thatSer.setComment("Hi!");
         thatSer.endElement();
         var result = '<note>\r\n  <!--Hi!-->\r\n</note>';
         var view = new Uint8Array(arrayBuffer);
@@ -821,17 +825,17 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCommnet002
-     * @tc.desc: Writes the commnet.
+     * @tc.name: testSetComment002
+     * @tc.desc: Writes the comment.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCommnet002', 0, function () {
+    it('testSetComment002', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
-        thatSer.setCommnet("Hello, World!");
+        thatSer.setComment("Hello, World!");
         thatSer.endElement();
         var result = '<note>\r\n  <!--Hello, World!-->\r\n</note>';
         var view = new Uint8Array(arrayBuffer);
@@ -843,16 +847,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCommnet003
-     * @tc.desc: Writes the commnet.
+     * @tc.name: testSetComment003
+     * @tc.desc: Writes the comment.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCommnet003', 0, function () {
+    it('testSetComment003', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCommnet("Hello, World!");
+        thatSer.setComment("Hello, World!");
         var result = '<!--Hello, World!-->';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
@@ -863,16 +867,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCommnet004
-     * @tc.desc: Writes the commnet.
+     * @tc.name: testSetComment004
+     * @tc.desc: Writes the comment.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCommnet004', 0, function () {
+    it('testSetComment004', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCommnet("Hello, World!");
+        thatSer.setComment("Hello, World!");
         var result = '<!--Hello, World!-->';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
@@ -883,16 +887,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCommnet005
-     * @tc.desc: Writes the commnet.
+     * @tc.name: testSetComment005
+     * @tc.desc: Writes the comment.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCommnet005', 0, function () {
+    it('testSetComment005', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCommnet("Hello, World!");
+        thatSer.setComment("Hello, World!");
         thatSer.startElement("note");
         thatSer.endElement();
         var result = '<!--Hello, World!-->\r\n<note/>';
@@ -912,7 +916,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetDocType001', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.setDocType('root SYSTEM');
         var result = '<!DOCTYPE root SYSTEM>';
@@ -932,7 +936,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetDocType002', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
         var result = '<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">';
@@ -952,7 +956,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetDocType003', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.endElement();
@@ -974,7 +978,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetDocType004', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
         thatSer.startElement("note");
@@ -996,7 +1000,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
      */
     it('testSetDocType005', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
@@ -1011,16 +1015,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCData001
+     * @tc.name: testSetCDATA001
      * @tc.desc: Writes the CDATA.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCData001', 0, function () {
+    it('testSetCDATA001', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCData('root SYSTEM')
+        thatSer.setCDATA('root SYSTEM')
         var result = '<![CDATA[root SYSTEM]]>';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
@@ -1031,16 +1035,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCData002
+     * @tc.name: testSetCDATA002
      * @tc.desc: Writes the CDATA.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCData002', 0, function () {
+    it('testSetCDATA002', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCData('root SYSTEM "http://www.test.org/test.dtd"')
+        thatSer.setCDATA('root SYSTEM "http://www.test.org/test.dtd"')
         var result = '<![CDATA[root SYSTEM "http://www.test.org/test.dtd"]]>';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
@@ -1051,18 +1055,18 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCData003
+     * @tc.name: testSetCDATA003
      * @tc.desc: Writes the CDATA.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCData003', 0, function () {
+    it('testSetCDATA003', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.endElement();
-        thatSer.setCData('root SYSTEM "http://www.test.org/test.dtd"')
+        thatSer.setCDATA('root SYSTEM "http://www.test.org/test.dtd"')
         var result = '<note/>\r\n<![CDATA[root SYSTEM "http://www.test.org/test.dtd"]]>';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
@@ -1073,16 +1077,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCData004
+     * @tc.name: testSetCDATA004
      * @tc.desc: Writes the CDATA.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCData004', 0, function () {
+    it('testSetCDATA004', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCData('root SYSTEM "http://www.test.org/test.dtd"')
+        thatSer.setCDATA('root SYSTEM "http://www.test.org/test.dtd"')
         thatSer.startElement("note");
         thatSer.endElement();
         var result = '<![CDATA[root SYSTEM "http://www.test.org/test.dtd"]]>\r\n<note/>';
@@ -1095,17 +1099,17 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCData005
+     * @tc.name: testSetCDATA005
      * @tc.desc: Writes the CDATA.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCData005', 0, function () {
+    it('testSetCDATA005', 0, function () {
         const myMAX = 2048;
-        var arrayBuffer = new ArrayBuffer(m_MAX);
+        var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
-        thatSer.setCData('root SYSTEM "http://www.test.org/test.dtd"')
+        thatSer.setCDATA('root SYSTEM "http://www.test.org/test.dtd"')
         thatSer.endElement();
         var result = '<note>\r\n  <![CDATA[root SYSTEM "http://www.test.org/test.dtd"]]>\r\n</note>';
         var view = new Uint8Array(arrayBuffer);
@@ -1305,14 +1309,14 @@ describe('XmlSerializerXmlPullParserTest', function () {
         var str1 = 'key:00110falsetruekey:216022notefalsefalsekey:1016420     falsetruekey:51470\r\nfuncrion ' +
         'matchwo(a,6)\r\n{\r\nreturn 1;\r\n}\r\nfalsetruekey:101870     falsetruekey:612870Hello, World!falsetruekey' +
         ':1013270     falsetruekey:224170companyfalsetruekey:424670 John falsefalsekey:925170amp;amp;falsetruekey' +
-        ':425670Hansfalsefalsekey:326670companyfalsetruekey:1017070     falsetruekey:227770titlefalsetruekey:428270' +
-        ' Happyfalsefalsekey:329070titlefalsetruekey:1019470     falsetruekey:2210170titlefalsetruekey:4210670 ' +
+        ':425670  Hansfalsefalsekey:326670companyfalsetruekey:1017070     falsetruekey:227770titlefalsetruekey:428' +
+        '270 Happyfalsefalsekey:329070titlefalsetruekey:1019470     falsetruekey:2210170titlefalsetruekey:4210670 ' +
         'Happyfalsefalsekey:3211470titlefalsetruekey:10111870     falsetruekey:2212470todofalsetruekey:4212870 ' +
         'Workfalsefalsekey:3213570todofalsetruekey:10113970     falsetruekey:2214570todofalsetruekey:4214970 ' +
         'Playfalsefalsekey:3215670todofalsetruekey:10116070     falsetruekey:8117270go therefalsetruekey' +
         ':10117670     falsetruekey:2217970afalsetruekey:2318370btruetruekey:3318370bfalsetruekey' +
         ':3218770afalsetruekey:10119170     falsetruekey:2223871h:tablefalsefalsekey:10224670         ' +
-        'falsetruekey:2325270h:trfalsetruekey:10326470falsetruekey:' +
+        'falsetruekey:2325270h:trfalsetruekey:10326470             falsetruekey:' +
         '2427070h:tdfalsetruekey:4427670 Applesfalsefalsekey:3428370h:tdfalsetruekey:10329570             ' +
         'falsetruekey:2430170h:tdfalsetruekey:4430870 Bananasfalsefalsekey:3431570h:tdfalsetruekey:10332370        ' +
         ' falsetruekey:3333070h:trfalsetruekey:10233470     falsetruekey:3234470h:tablefalsetruekey:' +

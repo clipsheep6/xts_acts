@@ -1,0 +1,123 @@
+{
+  "app": {
+    "bundleName": "com.open.harmony.acetest",
+    "vendor": "open",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 7,
+      "releaseType": "Release",
+      "target": 7
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.open.harmony.acetest",
+    "name": ".MyApplication",
+    "mainAbility": "com.open.harmony.acetest.MainAbility",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "formsEnabled": false,
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/actionSheet",
+          "pages/gauge",
+          "pages/ellipse",
+          "pages/systemRouterA",
+          "pages/systemRouterB",
+          "pages/marquee",
+          "pages/stepper",
+          "pages/gridContainer",
+          "pages/list",
+          "pages/general-properties/sizeSetting",
+          "pages/general-properties/positionSetting",
+          "pages/general-properties/shapeClipping",
+          "pages/general-properties/opacitySetting",
+          "pages/swiper",
+          "pages/enable",
+          "pages/general-properties/clickEvent",
+          "pages/general-properties/layoutConstraints",
+          "pages/general-properties/colorGradient",
+          "pages/areaChange",
+          "pages/general-properties/textStyle",
+          "pages/appear",
+          "pages/overlay",
+          "pages/general-properties/visibility",
+          "pages/zIndex",
+          "pages/general-properties/touchAble",
+          "pages/general-properties/imageEffects",
+          "pages/general-properties/transForm",
+          "pages/general-properties/touchAble",
+          "pages/general-properties/gridSettings",
+          "pages/general-properties/touch",
+          "pages/general-properties/border",
+          "pages/general-properties/background",
+          "pages/general-properties/flex",
+          "pages/swiper",
+          "pages/gridPage",
+          "pages/text",
+          "pages/badge",
+          "pages/canvas",
+          "pages/longPressGesture",
+          "pages/badge",
+          "pages/button",
+          "pages/gridPage",
+          "pages/general-properties/touchAble",
+          "pages/swiper",
+          "pages/general-properties/visibility",
+          "pages/general-properties/ResponseRegion",
+          "pages/general-properties/PanGesture",
+          "pages/QrCode",
+          "pages/tabs",
+          "pages/tapGesture",
+          "pages/progress",
+          "pages/animate"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

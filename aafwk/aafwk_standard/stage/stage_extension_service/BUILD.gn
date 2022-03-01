@@ -21,7 +21,7 @@ ohos_js_hap_suite("StageExtensionServiceTest") {
   ]
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "StageExtensionServiceTest"
+  hap_name = "ActsStageExtensionServiceTest"
 }
 ohos_js_assets("stage_extension_service_assets") {
   source_dir = "./entry/src/main/ets/MainAbility"

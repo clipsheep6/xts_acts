@@ -22,11 +22,17 @@ describe('LangTest', function () {
     let initPreferredLang = I18n.getPreferredLanguageList();
     let initLen = initPreferredLang.length;
 
+    /* *
+    * get the current preferred language list
+    */
     function getCurrentPreferredLang(){
         let value = I18n.getPreferredLanguageList();
         return value;
     }
 
+    /* *
+    * judge if the lang is in the preferred language list or not
+    */
     function isContainLang(langList, lang){
         let len = langList.length;
         for (let i = 0; i < len; i++){
@@ -37,6 +43,9 @@ describe('LangTest', function () {
         return false
     }
 
+    /* *
+    * clear the preferred language list if exists
+    */
     function clearLang(langList){
         let len = langList.length;
         while(len > 0){
@@ -50,23 +59,40 @@ describe('LangTest', function () {
         console.log('i18n_test_preferredlanguage_clearLang ' + I18n.getPreferredLanguageList());
     }
 
+    /* *
+    * execute this step after every testcase
+    */
     function restoreLang(){
         for(let j = 0; j < initLen; j++){
-            let value = I18n.addPreferredLanguage(initPreferredLang[j]);
+            let value = I18n.addPreferredLanguage(initPreferredLang[j], j);
             console.log('i18n_test_preferredlanguage_restoreLang ' + value);
             expect(value).assertTrue();
         }
+        let currLen = getCurrentPreferredLang().length;
+        while(currLen > initLen) {
+            let rem = I18n.removePreferredLanguage(currLen - 1);
+            console.log('i18n_test_preferredlanguage_restoreLang ' + rem);
+            currLen--;
+        }
+        console.log('i18n_test_preferredlanguage_restoreLang ' + I18n.getPreferredLanguageList());
     }
 
+    /* *
+    * execute this step before every testcase
+    */
     beforeEach(function(){
         console.log('i18n_test_preferredlanguage_beforeEach ' + getCurrentPreferredLang());
     })
 
+    /* *
+    * execute this step after every testcase
+    */
     afterEach(function(){
         let currLang = getCurrentPreferredLang();
         console.log('i18n_test_preferredlanguage_afterEach ' + currLang);
         clearLang(currLang);
         restoreLang();
+        I18n.set24HourClock(false);
     })
 
     /* *
@@ -78,37 +104,37 @@ describe('LangTest', function () {
         console.log('i18n_test_clock_0100 ' + 'start');
         let value = I18n.is24HourClock();
         console.log('i18n_test_clock_0100 ' + value);
-        expect(value).assertTrue();
+        expect(value).assertFalse();
     })
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_CLOCK_0200
-    * @tc.name test the set24HourClock interface with false param
+    * @tc.name test the set24HourClock interface with true param
     * @tc.desc check the value of set24HourClock method
     */
     it('i18n_test_clock_0200', 0, function () {
         console.log('i18n_test_clock_0200 ' + 'start');
-        let value = I18n.set24HourClock(false);
+        let value = I18n.set24HourClock(true);
         console.log('i18n_test_clock_0200 ' + value);
         expect(value).assertTrue();
         let value2 = I18n.is24HourClock();
         console.log('i18n_test_clock_0200 ' + value2);
-        expect(value2).assertFalse();
+        expect(value2).assertTrue();
     })
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_CLOCK_0300
-    * @tc.name test the set24HourClock interface with true param
+    * @tc.name test the set24HourClock interface with false param
     * @tc.desc check the value of set24HourClock method
     */
     it('i18n_test_clock_0300', 0, function () {
         console.log('i18n_test_clock_0300 ' + 'start');
-        let value = I18n.set24HourClock(true);
+        let value = I18n.set24HourClock(false);
         console.log('i18n_test_clock_0300 ' + value);
         expect(value).assertTrue();
         let value2 = I18n.is24HourClock();
         console.log('i18n_test_clock_0300 ' + value2);
-        expect(value).assertTrue();
+        expect(value2).assertFalse();
     })
 
     /* *
@@ -130,7 +156,7 @@ describe('LangTest', function () {
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_0100
-    * @tc.name test the getPreferredLanguageList interface
+    * @tc.name test the getPreferredLanguageList interface with default value
     * @tc.desc check the value of getPreferredLanguageList method
     */
     it('i18n_test_preferredlanguage_0100', 0, function () {
@@ -217,7 +243,7 @@ describe('LangTest', function () {
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_0400
-    * @tc.name test the addPreferredLanguage interface
+    * @tc.name test the addPreferredLanguage interface with en and index 1 param
     * @tc.desc check the value of addPreferredLanguage method
     */
     it('i18n_test_preferredlanguage_0400', 0, function () {
@@ -232,7 +258,7 @@ describe('LangTest', function () {
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_0500
-    * @tc.name test the addPreferredLanguage interface
+    * @tc.name test the addPreferredLanguage interface with ja and index -1 param
     * @tc.desc check the value of addPreferredLanguage method
     */
     it('i18n_test_preferredlanguage_0500', 0, function () {
@@ -247,7 +273,7 @@ describe('LangTest', function () {
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_0600
-    * @tc.name test the addPreferredLanguage interface
+    * @tc.name test the addPreferredLanguage interface with ko and index 100 param
     * @tc.desc check the value of addPreferredLanguage method
     */
     it('i18n_test_preferredlanguage_0600', 0, function () {
@@ -262,14 +288,14 @@ describe('LangTest', function () {
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_0700
-    * @tc.name test the addPreferredLanguage interface
-    * @tc.desc check the value of addPreferredLanguage method
+    * @tc.name test the removePreferredLanguage interface with 0 param
+    * @tc.desc check the value of removePreferredLanguage method
     */
     it('i18n_test_preferredlanguage_0700', 0, function () {
         console.log('i18n_test_preferredlanguage_0700 ' + 'start');
         let value = I18n.removePreferredLanguage(0);
         console.log('i18n_test_preferredlanguage_0700 ' + value);
-        expect(value).assertTrue();
+        expect(value).assertFalse();
         let list = I18n.getPreferredLanguageList();
         console.log('i18n_test_preferredlanguage_0700 ' + list);
         expect(list.length).assertLarger(0);
@@ -292,23 +318,41 @@ describe('LangTest', function () {
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_0800
-    * @tc.name test the addPreferredLanguage interface
-    * @tc.desc check the value of addPreferredLanguage method
+    * @tc.name test the removePreferredLanguage interface with -1 param
+    * @tc.desc check the value of removePreferredLanguage method
     */
     it('i18n_test_preferredlanguage_0800', 0, function () {
         console.log('i18n_test_preferredlanguage_0800 ' + 'start');
         let value = I18n.removePreferredLanguage(-1);
         console.log('i18n_test_preferredlanguage_0800 ' + value);
-        expect(value).assertTrue();
+        expect(value).assertFalse();
         let list = I18n.getPreferredLanguageList();
         console.log('i18n_test_preferredlanguage_0800 ' + list);
         expect(list.length).assertLarger(0);
     })
 
     /* *
+    * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_0820
+    * @tc.name test the removePreferredLanguage interface with -1 param after add ja
+    * @tc.desc check the value of removePreferredLanguage method
+    */
+    it('i18n_test_preferredlanguage_0820', 0, function () {
+        console.log('i18n_test_preferredlanguage_0820 ' + 'start');
+        let value = I18n.addPreferredLanguage('ja');
+        console.log('i18n_test_preferredlanguage_0500 ' + value);
+        expect(value).assertTrue();
+        let value2 = I18n.removePreferredLanguage(-1);
+        console.log('i18n_test_preferredlanguage_0820 ' + value2);
+        expect(value2).assertTrue();
+        let list = I18n.getPreferredLanguageList();
+        console.log('i18n_test_preferredlanguage_0820 ' + list);
+        expect(list.length).assertLarger(0);
+    })
+
+    /* *
     * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_0900
-    * @tc.name test the addPreferredLanguage interface
-    * @tc.desc check the value of addPreferredLanguage method
+    * @tc.name test the removePreferredLanguage interface with 0 param
+    * @tc.desc check the value of removePreferredLanguage method
     */
     it('i18n_test_preferredlanguage_0900', 0, function () {
         console.log('i18n_test_preferredlanguage_0900 ' + 'start');
@@ -318,14 +362,15 @@ describe('LangTest', function () {
         console.log('i18n_test_preferredlanguage_0900 ' + len);
         expect(len).assertLarger(0);
         let parm = len - 1;
+        console.log('i18n_test_preferredlanguage_0900 ' + parm);
         let value = I18n.removePreferredLanguage(parm);
         console.log('i18n_test_preferredlanguage_0900 ' + value);
-        expect(value).assertTrue();
+        expect(value).assertFalse();
     })
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_0920
-    * @tc.name test the addPreferredLanguage interface
+    * @tc.name test the addPreferredLanguage interface with it param
     * @tc.desc check the value of addPreferredLanguage method
     */
     it('i18n_test_preferredlanguage_0920', 0, function () {
@@ -348,8 +393,8 @@ describe('LangTest', function () {
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_0940
-    * @tc.name test the addPreferredLanguage interface
-    * @tc.desc check the value of addPreferredLanguage method
+    * @tc.name test the mixed interface with preferredlanguage
+    * @tc.desc check the value of preferredLanguage method
     */
     it('i18n_test_preferredlanguage_0940', 0, function () {
         let value = I18n.addPreferredLanguage('it');
@@ -371,7 +416,7 @@ describe('LangTest', function () {
         expect(value5).assertTrue();
         let value6 = I18n.addPreferredLanguage('en', 1);
         console.log('i18n_test_preferredlanguage_0940 ' + value6);
-        expect(value6).assertTrue();
+        expect(value6).assertFalse();
         let list2 = I18n.getPreferredLanguageList();
         console.log('i18n_test_preferredlanguage_0940 ' + list2);
         expect(list2[1]).assertEqual('en');
@@ -394,18 +439,66 @@ describe('LangTest', function () {
 
     /* *
     * @tc.number SUB_GLOBAL_I18N_JS_PREFERREDLANGUAGE_1000
-    * @tc.name test the addPreferredLanguage interface
-    * @tc.desc check the value of addPreferredLanguage method
+    * @tc.name test the getFirstPreferredLanguage interface
+    * @tc.desc check the value of getFirstPreferredLanguage method
     */
-//    it('i18n_test_preferredlanguage_1000', 0, function () {
-//        console.log('i18n_test_preferredlanguage_1000 ' + 'start');
-//        let value = I18n.getFirstPreferredLanguage();
-//        console.log('i18n_test_preferredlanguage_1000 ' + value);
-//        expect(value).assertEqual('en');
-//        let list = I18n.getPreferredLanguageList();
-//        console.log('i18n_test_preferredlanguage_1000 ' + list);
-//        expect(list.length).assertLarger(0);
-//    })
+    it('i18n_test_preferredlanguage_1000', 0, function () {
+        console.log('i18n_test_preferredlanguage_1000 ' + 'start');
+        let value = I18n.getFirstPreferredLanguage();
+        console.log('i18n_test_preferredlanguage_1000 ' + value);
+        expect(value).assertEqual('zh-Hans');
+        let list = I18n.getPreferredLanguageList();
+        console.log('i18n_test_preferredlanguage_1000 ' + list);
+        expect(list.length).assertLarger(0);
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_INTL_JS_TRANSFER_0100
+    * @tc.name transfer from lower to upper
+    * @tc.desc check the transfer result
+    */
+    it('transfer_test_0100', 0, function () {
+        let date = 'hello';
+        let value = date.toLocaleUpperCase('zh-CN');
+        console.log('transfer_test_0100 ' + value);
+        expect(value).assertEqual('HELLO');
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_INTL_JS_TRANSFER_0200
+    * @tc.name transfer from upper to lower
+    * @tc.desc check the transfer result
+    */
+    it('transfer_test_0200', 0, function () {
+        let date = 'WORLD';
+        let value = date.toLocaleLowerCase('zh-CN');
+        console.log('transfer_test_0200 ' + value);
+        expect(value).assertEqual('world');
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_INTL_JS_TRANSFER_0300
+    * @tc.name transfer to upper
+    * @tc.desc check the transfer result
+    */
+    it('transfer_test_0300', 0, function () {
+        let date = 'My name is Jack.';
+        let value = date.toLocaleUpperCase('en-US');
+        console.log('transfer_test_0300 ' + value);
+        expect(value).assertEqual('MY NAME IS JACK.');
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_INTL_JS_TRANSFER_0400
+    * @tc.name transfer to lower
+    * @tc.desc check the transfer result
+    */
+    it('transfer_test_0400', 0, function () {
+        let date = 'The sky is in BLUE-STYLE!';
+        let value = date.toLocaleLowerCase('en-US');
+        console.log('transfer_test_0400 ' + value);
+        expect(value).assertEqual('the sky is in blue-style!');
+    })
 
     console.log('*************end LangTest*************');
 })
