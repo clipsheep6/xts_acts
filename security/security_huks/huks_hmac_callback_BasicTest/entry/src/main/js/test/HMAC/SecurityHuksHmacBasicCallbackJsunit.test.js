@@ -79,8 +79,8 @@ function uint8ArrayToString(fileData) {
 }
 
 var handle = {};
-var handle_start;
-var handle_end;
+var handleStart;
+var handleEnd;
 
 function generateKey(srcKeyAlies, HuksOptions) {
     return new Promise((resolve, reject) => {
@@ -108,11 +108,11 @@ function init(srcKeyAlies, HuksOptions) {
                     console.log("test init err information: " + JSON.stringify(err))
                     reject(err)
                 } else {
-                    handle_start = data.handle1;
-                    handle_end = data.handle2;
+                    handleStart = data.handle1;
+                    handleEnd = data.handle2;
                     handle = {
-                        "handle1": handle_start,
-                        "handle2": handle_end
+                        "handle1": handleStart,
+                        "handle2": handleEnd
                     };
                     resolve(data);
                 }
