@@ -19,6 +19,7 @@ import pasteboard from '@ohos.pasteboard'
 
 describe('PasteBoardTest', function() {
     console.log('start################################start');
+    
     /**
      * @tc.number    SUB_pasteBoard_function_JS_API_0100
      * @tc.name      Adds PlainTextData
@@ -1258,7 +1259,7 @@ describe('PasteBoardTest', function() {
     
     /**
      * @tc.number    SUB_pasteBoard_function_JS_API_2900
-     * @tc.name      systemPasteboard.off:Set two　PlainText records
+     * @tc.name      systemPasteboard.off:Set two PlainText records
      * @tc.desc      Test pasteBoard API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -1421,7 +1422,7 @@ describe('PasteBoardTest', function() {
     
     /**
      * @tc.number    SUB_pasteBoard_function_JS_API_3200
-     * @tc.name      systemPasteboard.clear:Set two　PlainText records
+     * @tc.name      systemPasteboard.clear:Set two PlainText records
      * @tc.desc      Test pasteBoard API functionality.
      * @tc.size      : MEDIUM
      * @tc.type      : Function
