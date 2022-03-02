@@ -20,4 +20,4 @@ let Date63KB = 'eeeeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 let Data65b = 'eeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 let Data63b = 'eeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 
-export { Date65KB, Date63KB, Data_65b, Data63b }
+export { Date65KB, Date63KB, Data65b, Data63b }
