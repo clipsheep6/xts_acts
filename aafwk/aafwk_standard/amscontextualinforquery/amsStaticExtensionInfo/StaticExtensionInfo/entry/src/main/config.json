@@ -1,0 +1,146 @@
+{
+  "app": {
+    "bundleName": "com.example.staticextensioninfo",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.staticextensioninfo",
+    "name": ".MyApplication",
+    "reqCapabilities": ["video_support"],
+    "mainAbility": ".MainAbility",
+    "description": "$string:description_mainability",
+    "srcPath": "",
+    "deviceType": [
+      "phone"
+    ],
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "name1",
+          "value": "value1",
+          "extra": "$string:customizeData_description"
+        }
+      ]
+    },
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "name1",
+              "value": "value1",
+              "extra": "$string:customizeData_description"
+            }
+          ]
+        },
+        "permissions": ["staticextensioninfo_permisssion"],
+        "targetAbility": "com.test.demo.MainAbility",
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "formsEnabled": false,
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "backgroundModes": [
+          "dataTransfer",
+          "audioPlayback",
+          "audioRecording",
+          "location",
+          "bluetoothInteraction",
+          "multiDeviceConnection",
+          "wifiInteraction",
+          "voip",
+          "taskKeeping"
+        ],
+        "permissions": ["staticextensioninfo_permisssion"],
+        "visible": true,
+        "srcPath": "ServiceAbility",
+        "name": ".ServiceAbility",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability",
+        "type": "service",
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "name2",
+              "value": "value2",
+              "extra": "$string:customizeData_description"
+            }
+          ]
+        }
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name":"ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason":"need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name":"ohos.permission.GET_BUNDLE_INFO",
+        "reason":"need use ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name":"ohos.permission.CHANGE_ABILITY_ENABLED_STATE",
+        "reason":"need use ohos.permission.CHANGE_ABILITY_ENABLED_STATE"
+      },
+      {
+        "name":"ohos.permission.REMOVE_CACHE_FILES",
+        "reason":"need use ohos.permission.REMOVE_CACHE_FILES"
+      },
+      {
+        "name":"ohos.permission.LISTEN_BUNDLE_CHANGE",
+        "reason":"need use ohos.permission.LISTEN_BUNDLE_CHANGE"
+      },
+      {
+        "name":"ohos.permission.INSTALL_BUNDLE",
+        "reason":"need use ohos.permission.INSTALL_BUNDLE"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

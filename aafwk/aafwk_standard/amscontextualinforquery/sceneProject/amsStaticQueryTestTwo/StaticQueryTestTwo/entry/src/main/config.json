@@ -1,0 +1,141 @@
+{
+  "app": {
+    "bundleName": "com.example.staticquerytesttwo",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "removable": false
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.staticquerytesttwo",
+    "name": ".MyApplication",
+    "mainAbility": ".MainAbility",
+    "srcPath": "",
+    "deviceType": [
+      "phone"
+    ],
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "name1",
+          "value": "value1",
+          "extra": "$string:customizeData_description"
+        }
+      ]
+    },
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "name1",
+              "value": "value1",
+              "extra": "$string:customizeData_description"
+            }
+          ]
+        },
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "formsEnabled": false,
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "SecondAbility",
+        "name": ".SecondAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_secondability",
+        "formsEnabled": false,
+        "label": "$string:entry_SecondAbility",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name":"ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason":"need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name":"ohos.permission.GET_BUNDLE_INFO",
+        "reason":"need use ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name":"ohos.permission.CHANGE_ABILITY_ENABLED_STATE",
+        "reason":"need use ohos.permission.CHANGE_ABILITY_ENABLED_STATE"
+      },
+      {
+        "name":"ohos.permission.REMOVE_CACHE_FILES",
+        "reason":"need use ohos.permission.REMOVE_CACHE_FILES"
+      },
+      {
+        "name":"ohos.permission.LISTEN_BUNDLE_CHANGE",
+        "reason":"need use ohos.permission.LISTEN_BUNDLE_CHANGE"
+      },
+      {
+        "name":"ohos.permission.INSTALL_BUNDLE",
+        "reason":"need use ohos.permission.INSTALL_BUNDLE"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".SecondAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

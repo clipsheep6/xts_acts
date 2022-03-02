@@ -1,0 +1,41 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "500000",
+        "package": "com.example.amsabilitymultiinstancetest",
+        "shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "amsabilitymultiinstancetest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "AmsAbilityMultiInstanceAppA.hap->/data/test/AmsAbilityMultiInstanceAppA.hap",
+                "AmsAbilityMultiInstanceAppB.hap->/data/test/AmsAbilityMultiInstanceAppB.hap",
+                "AmsAbilityMultiInstanceAppC.hap->/data/test/AmsAbilityMultiInstanceAppC.hap",
+                "AmsAbilityMultiInstanceAppD.hap->/data/test/AmsAbilityMultiInstanceAppD.hap",
+                "AmsAbilityMultiInstanceAppE.hap->/data/test/AmsAbilityMultiInstanceAppE.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /data/test/*.hap"
+            ]
+        }
+    ]
+}
