@@ -134,10 +134,10 @@ describe('aceJsTest', function () {
          * @tc.desc      ACE
          */
         it('testInputComponent', 0, async function (done) {
-            console.info('testButtonComponent START');
+            console.info('testInputComponent START');
             let result;
             let options = {
-                uri: 'pages/input/index'
+                uri: 'pages/input/router/index'
             }
             try {
                 result = router.push(options)
@@ -148,7 +148,7 @@ describe('aceJsTest', function () {
             await sleep(1000)
             let pages = router.getState();
             console.info("[router.input] getState" + JSON.stringify(pages));
-            expect("pages/input/").assertEqual(pages.path);
+            expect("pages/input/router/").assertEqual(pages.path);
             done();
         });
 
@@ -161,7 +161,7 @@ describe('aceJsTest', function () {
             console.info('testSliderComponent START');
             let result;
             let options = {
-                uri: 'pages/slider/index'
+                uri: 'pages/slider/router/index'
             }
             try {
                 result = router.push(options)
@@ -172,7 +172,7 @@ describe('aceJsTest', function () {
             await sleep(1000)
             let pages = router.getState();
             console.info("[router.slider] getState" + JSON.stringify(pages));
-            expect("pages/slider/").assertEqual(pages.path);
+            expect("pages/slider/router/").assertEqual(pages.path);
             done();
         });
 
@@ -290,7 +290,7 @@ describe('aceJsTest', function () {
         it('testRatingComponent', 0, async function (done) {
             let result;
             let options = {
-                uri: 'pages/rating/index'
+                uri: 'pages/rating/router/index'
             }
             try {
                 result = router.push(options)
@@ -299,7 +299,7 @@ describe('aceJsTest', function () {
             }
             await sleep(1000)
             let pages = router.getState();
-            expect("pages/rating/").assertEqual(pages.path);
+            expect("pages/rating/router/").assertEqual(pages.path);
             done();
         });
 
@@ -311,7 +311,7 @@ describe('aceJsTest', function () {
         it('testSearchComponent', 0, async function (done) {
             let result;
             let options = {
-                uri: 'pages/search/index'
+                uri: 'pages/search/router/index'
             }
             try {
                 result = router.push(options)
@@ -320,7 +320,7 @@ describe('aceJsTest', function () {
             }
             await sleep(1000)
             let pages = router.getState();
-            expect("pages/search/").assertEqual(pages.path);
+            expect("pages/search/router/").assertEqual(pages.path);
             done();
         });
 
@@ -563,7 +563,7 @@ describe('aceJsTest', function () {
         it('testSelectComponent', 0, async function (done) {
             let result;
             let options = {
-                uri: 'pages/select/index'
+                uri: 'pages/select/router/index'
             }
             try {
                 result = router.push(options)
@@ -572,7 +572,7 @@ describe('aceJsTest', function () {
             }
             await sleep(1000)
             let pages = router.getState();
-            expect("pages/select/").assertEqual(pages.path);
+            expect("pages/select/router/").assertEqual(pages.path);
             done();
         });
 
@@ -883,7 +883,7 @@ describe('aceJsTest', function () {
     it('testImageAnimatorComponent', 0, async function (done) {
         let result;
         let options = {
-            uri: 'pages/imageAnimator/index'
+            uri: 'pages/imageAnimator/router/index'
         }
         try {
             result = router.push(options)
@@ -894,7 +894,7 @@ describe('aceJsTest', function () {
         await sleep(5000)
         let pages = router.getState();
         console.info("[router.imageAnimator] getState" + JSON.stringify(pages));
-        expect("pages/imageAnimator/").assertEqual(pages.path);
+        expect("pages/imageAnimator/router/").assertEqual(pages.path);
         done();
     });
 
