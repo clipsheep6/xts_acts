@@ -15,7 +15,6 @@
 
 import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../../../data.js'
 import * as Control from '../../../switchControl.js'
 
 let IV = '0000000000000000'
@@ -155,7 +154,7 @@ function stringToUint8Array(str) {
 	return tmpUint8Array
 }
 
-function Uint8ArrayToString(fileData) {
+function uint8ArrayToString(fileData) {
 	var dataString = ''
 	for (var i = 0; i < fileData.length; i++) {
 		dataString += String.fromCharCode(fileData[i])
@@ -279,7 +278,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 			)
 			console.log(
 				'test ' +
-					Uint8ArrayToString(
+					uint8ArrayToString(
 						new Uint8Array(
 							Array.from(tempHuksOptionsInData).slice(
 								dateSize * i,
@@ -295,16 +294,16 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 			HuksOptions.inData = new Uint8Array(
 				Array.from(tempHuksOptionsInData).slice(
 					dateSize * count,
-					Uint8ArrayToString(inDataArray).length
+					uint8ArrayToString(inDataArray).length
 				)
 			)
 			console.log(
 				'test ' +
-					Uint8ArrayToString(
+					uint8ArrayToString(
 						new Uint8Array(
 							Array.from(tempHuksOptionsInData).slice(
 								dateSize * count,
-								Uint8ArrayToString(inDataArray).length
+								uint8ArrayToString(inDataArray).length
 							)
 						)
 					)
@@ -379,34 +378,34 @@ async function finish(HuksOptions, isEncrypt) {
 			console.log(`test finish data: ${JSON.stringify(data)}`)
 			let finishData
 			if (encryptedData.length > 64) {
-				finishData = Uint8ArrayToString(
+				finishData = uint8ArrayToString(
 					updateResult.concat(Array.from(data.outData))
 				)
 				updateResult = updateResult.concat(Array.from(data.outData))
 			} else {
-				finishData = Uint8ArrayToString(updateResult)
+				finishData = uint8ArrayToString(updateResult)
 			}
 			if (isEncrypt) {
-				if (finishData === Uint8ArrayToString(encryptedData)) {
+				if (finishData === uint8ArrayToString(encryptedData)) {
 					console.log(
-						`test finish Encrypt fail ${Uint8ArrayToString(
+						`test finish Encrypt fail ${uint8ArrayToString(
 							encryptedData
 						)}`
 					)
 					console.log(
-						`test finish Encrypt fail ${Uint8ArrayToString(
+						`test finish Encrypt fail ${uint8ArrayToString(
 							finishData
 						)}`
 					)
 					expect(null).assertFail()
 				} else {
 					console.log(
-						`test finish Encrypt success ${Uint8ArrayToString(
+						`test finish Encrypt success ${uint8ArrayToString(
 							encryptedData
 						)}`
 					)
 					console.log(
-						`test finish Encrypt success ${Uint8ArrayToString(
+						`test finish Encrypt success ${uint8ArrayToString(
 							finishData
 						)}`
 					)
@@ -414,7 +413,7 @@ async function finish(HuksOptions, isEncrypt) {
 				}
 			}
 			if (!isEncrypt) {
-				if (finishData === Uint8ArrayToString(encryptedData)) {
+				if (finishData === uint8ArrayToString(encryptedData)) {
 					expect(data.errorCode == 0).assertTrue()
 				} else {
 					expect(null).assertFail()

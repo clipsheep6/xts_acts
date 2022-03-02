@@ -15,14 +15,14 @@
 
 import { describe, it, beforeEach, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../../../data.js'
+import Data from '../../../../../../../../../utils/data.json'
 
 let exportKeyFrist
 let exportKeySecond
 let handle = {}
 let handle1
 let handle2
-let finishData_1
+let finishDataFrist
 let finishDataSecond
 let srcData65 = Data.Date65KB
 let srcData65Kb = stringToUint8Array(srcData65)
@@ -258,7 +258,7 @@ function stringToUint8Array(str) {
 	return tmpUint8Array
 }
 
-function Uint8ArrayToString(fileData) {
+function uint8ArrayToString(fileData) {
 	var dataString = ''
 	for (var i = 0; i < fileData.length; i++) {
 		dataString += String.fromCharCode(fileData[i])
@@ -354,7 +354,7 @@ async function publicAgreeFinishAbortFunc(
 			.then((data) => {
 				console.log(`test finish data ${JSON.stringify(data)}`)
 				if (finishData == 1) {
-					finishData_1 = data.outData
+					finishDataFrist = data.outData
 				} else {
 					finishDataSecond = data.outData
 				}

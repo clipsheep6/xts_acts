@@ -15,7 +15,7 @@
 
 import { describe, it, afterEach, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../../../data.js'
+import Data from '../../../../../../../../../utils/data.json'
 
 let HksKeyAlg = {
 	HKS_ALG_ECC: 2,
@@ -138,7 +138,7 @@ function stringToUint8Array(str) {
 	return tmpUint8Array
 }
 
-function Uint8ArrayToString(fileData) {
+function uint8ArrayToString(fileData) {
 	var dataString = ''
 	for (var i = 0; i < fileData.length; i++) {
 		dataString += String.fromCharCode(fileData[i])
@@ -278,24 +278,24 @@ async function publicUpdateFunc(HuksOptions, isBigData) {
 	}
 	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = HuksOptions.inData
-	if (Uint8ArrayToString(inDataArray).length < dateSize) {
+	if (uint8ArrayToString(inDataArray).length < dateSize) {
 		await update(handle, HuksOptions)
 		HuksOptions.inData = tempHuksOptionsInData
 	} else {
 		let count = Math.floor(
-			Uint8ArrayToString(inDataArray).length / dateSize
+			uint8ArrayToString(inDataArray).length / dateSize
 		)
-		let remainder = Uint8ArrayToString(inDataArray).length % dateSize
+		let remainder = uint8ArrayToString(inDataArray).length % dateSize
 		console.log(
 			`test before update length: ${
-				Uint8ArrayToString(inDataArray).length
+				uint8ArrayToString(inDataArray).length
 			}`
 		)
 		console.log(`test before update count: ${count}`)
 		console.log(`test before update remainder: ${remainder}`)
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = stringToUint8Array(
-				Uint8ArrayToString(tempHuksOptionsInData).slice(
+				uint8ArrayToString(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
@@ -305,9 +305,9 @@ async function publicUpdateFunc(HuksOptions, isBigData) {
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = stringToUint8Array(
-				Uint8ArrayToString(tempHuksOptionsInData).slice(
+				uint8ArrayToString(tempHuksOptionsInData).slice(
 					dateSize * count,
-					Uint8ArrayToString(inDataArray).length
+					uint8ArrayToString(inDataArray).length
 				)
 			)
 			await update(handle, HuksOptions)

@@ -15,12 +15,12 @@
 
 import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../../../../data.js'
+import * as Data from '../../../../../../../../../../utils/data.json'
 
 let handle = {}
 let handle1
 let handle2
-let finishData_1
+let finishDataFrist
 let finishDataSecond
 let srcData63 = Data.Date63KB
 let srcData63Kb = stringToUint8Array(srcData63)
@@ -258,7 +258,7 @@ function stringToUint8Array(str) {
 	return tmpUint8Array
 }
 
-function Uint8ArrayToString(fileData) {
+function uint8ArrayToString(fileData) {
 	var dataString = ''
 	for (var i = 0; i < fileData.length; i++) {
 		dataString += String.fromCharCode(fileData[i])

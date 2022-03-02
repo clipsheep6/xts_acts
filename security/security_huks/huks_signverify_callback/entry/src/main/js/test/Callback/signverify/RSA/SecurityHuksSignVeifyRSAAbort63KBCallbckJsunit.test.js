@@ -15,7 +15,7 @@
 
 import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../../../data.js'
+import Data from '../../../../../../../../../utils/data.json'
 
 let HksKeyAlg = {
 	HKS_ALG_RSA: 1,
@@ -186,7 +186,7 @@ function stringToUint8Array(str) {
 	var tmpUint8Array = new Uint8Array(arr)
 	return tmpUint8Array
 }
-function Uint8ArrayToString(fileData) {
+function uint8ArrayToString(fileData) {
 	var dataString = ''
 	for (var i = 0; i < fileData.length; i++) {
 		dataString += String.fromCharCode(fileData[i])
@@ -332,23 +332,23 @@ async function publicUpdateFunc(HuksOptions, isBigData) {
 		dateSize = 64
 	}
 	let inDataArray = HuksOptions.inData
-	if (Uint8ArrayToString(inDataArray).length < dateSize) {
+	if (uint8ArrayToString(inDataArray).length < dateSize) {
 		await update(handle, HuksOptions)
 	} else {
 		let count = Math.floor(
-			Uint8ArrayToString(inDataArray).length / dateSize
+			uint8ArrayToString(inDataArray).length / dateSize
 		)
-		let remainder = Uint8ArrayToString(inDataArray).length % dateSize
+		let remainder = uint8ArrayToString(inDataArray).length % dateSize
 		console.log(
 			`test before update length: ${
-				Uint8ArrayToString(inDataArray).length
+				uint8ArrayToString(inDataArray).length
 			}`
 		)
 		console.log(`test before update count: ${count}`)
 		console.log(`test before update remainder: ${remainder}`)
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = stringToUint8Array(
-				Uint8ArrayToString(inDataArray).slice(
+				uint8ArrayToString(inDataArray).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
@@ -357,9 +357,9 @@ async function publicUpdateFunc(HuksOptions, isBigData) {
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = stringToUint8Array(
-				Uint8ArrayToString(inDataArray).slice(
+				uint8ArrayToString(inDataArray).slice(
 					dateSize * count,
-					Uint8ArrayToString(inDataArray).length
+					uint8ArrayToString(inDataArray).length
 				)
 			)
 			await update(handle, HuksOptions)

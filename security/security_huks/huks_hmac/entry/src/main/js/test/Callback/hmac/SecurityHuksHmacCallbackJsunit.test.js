@@ -15,7 +15,7 @@
 
 import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../../data.js'
+import Data from '../../../../../../../../utils/data.json'
 
 let HksKeyPurpose = {
 	HKS_KEY_PURPOSE_MAC: 128,
@@ -94,7 +94,7 @@ function stringToArray(str) {
 	return arr
 }
 
-function Uint8ArrayToString(fileData) {
+function uint8ArrayToString(fileData) {
 	var dataString = ''
 	for (var i = 0; i < fileData.length; i++) {
 		dataString += String.fromCharCode(fileData[i])

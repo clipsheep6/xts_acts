@@ -15,7 +15,7 @@
 
 import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../../../data.js'
+
 import * as Control from '../../../switchControl.js'
 
 let gInData5 = 'RSA_5'
@@ -201,7 +201,7 @@ function stringToUint8Array(str) {
 	return tmpUint8Array
 }
 
-function Uint8ArrayToString(fileData) {
+function uint8ArrayToString(fileData) {
 	var dataString = ''
 	for (var i = 0; i < fileData.length; i++) {
 		dataString += String.fromCharCode(fileData[i])
@@ -388,7 +388,7 @@ async function publicUpdateFunc(HuksOptions) {
 			)
 			console.log(
 				'test ' +
-					Uint8ArrayToString(
+					uint8ArrayToString(
 						new Uint8Array(
 							Array.from(tempHuksOptionsInData).slice(
 								dateSize * i,
@@ -404,17 +404,17 @@ async function publicUpdateFunc(HuksOptions) {
 			HuksOptions.inData = new Uint8Array(
 				Array.from(tempHuksOptionsInData).slice(
 					dateSize * count,
-					Uint8ArrayToString(inDataArray).length
+					uint8ArrayToString(inDataArray).length
 				)
 			)
 			await update(handle, HuksOptions)
 			console.log(
 				'test ' +
-					Uint8ArrayToString(
+					uint8ArrayToString(
 						new Uint8Array(
 							Array.from(tempHuksOptionsInData).slice(
 								dateSize * count,
-								Uint8ArrayToString(inDataArray).length
+								uint8ArrayToString(inDataArray).length
 							)
 						)
 					)
@@ -472,8 +472,8 @@ async function finish(HuksOptions, isEncrypt) {
 			if (isEncrypt) {
 				updateResult = Array.from(data.outData)
 				if (
-					Uint8ArrayToString(data.outData) ===
-					Uint8ArrayToString(encryptedData)
+					uint8ArrayToString(data.outData) ===
+					uint8ArrayToString(encryptedData)
 				) {
 					expect(null).assertFail()
 				} else {
@@ -482,8 +482,8 @@ async function finish(HuksOptions, isEncrypt) {
 			}
 			if (!isEncrypt) {
 				if (
-					Uint8ArrayToString(data.outData) ===
-					Uint8ArrayToString(encryptedData)
+					uint8ArrayToString(data.outData) ===
+					uint8ArrayToString(encryptedData)
 				) {
 					expect(data.errorCode == 0).assertTrue()
 				} else {
