@@ -15,7 +15,7 @@
 
 import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../data.js'
+import Data from '../../../../../../../utils/data.json'
 
 let IV = '0000000000000000'
 let AAD = '0000000000000000'

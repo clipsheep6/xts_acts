@@ -15,7 +15,7 @@
 
 import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../data.js'
+import Data from '../../../../../../../utils/data.json'
 
 let HksKeyAlg = {
 	HKS_ALG_RSA: 1,
@@ -564,11 +564,6 @@ async function publicSignVerifyFunc(
 }
 
 describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
-	/**
-	 * @tc.name: testSignVerifyRSA103
-	 * @tc.desc: alg-RSA  dig-DIGEST_MD5 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyRSA103', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize512SIGNPKCS1MD5KeyAlias003'
 		let HuksOptions = {

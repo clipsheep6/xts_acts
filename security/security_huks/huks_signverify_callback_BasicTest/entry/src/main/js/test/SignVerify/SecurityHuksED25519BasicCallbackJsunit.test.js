@@ -15,7 +15,7 @@
 
 import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../data.js'
+import Data from '../../../../../../../utils/data.json'
 
 let HksKeyAlg = {
 	HKS_ALG_ED25519: 102,
@@ -477,11 +477,6 @@ async function publicSignVerifyFunc(
 }
 
 describe('SecurityHuksSignVerifyED25519CallbackJsunit', function () {
-	/**
-	 * @tc.name: testSignVerifyED25519101
-	 * @tc.desc: alg-ED25519 keysize-KEY_SIZE_256 size-2048 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyED25519101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyED25519Size256SIGNKeyAlias001'
 		let HuksOptions = {
@@ -522,10 +517,6 @@ describe('SecurityHuksSignVerifyED25519CallbackJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyED25519Size256SIGNKeyAlias102
-	 * @tc.desc: alg-ED25519 keysize-KEY_SIZE_256 size-2048 inputdate-63kb  init>update>abort
-	 */
 	it('testSignVerifyED25519102', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyED25519Size256SIGNKeyAlias102'
 		let HuksOptions = {
@@ -550,10 +541,6 @@ describe('SecurityHuksSignVerifyED25519CallbackJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyED25519Size256SIGNKeyAlias103
-	 * @tc.desc: alg-ED25519 keysize-KEY_SIZE_256 size-2048 inputdate-65kb  init>update>finish
-	 */
 	it('testSignVerifyED25519103', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyED25519Size256SIGNKeyAlias103'
 		let HuksOptions = {
@@ -594,10 +581,6 @@ describe('SecurityHuksSignVerifyED25519CallbackJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyED25519Size256SIGNKeyAlias104
-	 * @tc.desc: alg-ED25519 keysize-KEY_SIZE_256 size-2048 inputdate-65kb  init>update>abort
-	 */
 	it('testSignVerifyED25519104', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyED25519Size256SIGNKeyAlias104'
 		let HuksOptions = {

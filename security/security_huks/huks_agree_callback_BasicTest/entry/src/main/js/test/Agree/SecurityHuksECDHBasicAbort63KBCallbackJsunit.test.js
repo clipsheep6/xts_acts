@@ -15,7 +15,7 @@
 
 import { describe, it, beforeEach, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../data.js'
+import Data from '../../../../../../../utils/data.json'
 
 let exportKeyFrist
 let exportKeySecond

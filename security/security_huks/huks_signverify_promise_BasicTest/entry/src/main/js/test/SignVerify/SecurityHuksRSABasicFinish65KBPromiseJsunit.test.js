@@ -15,7 +15,7 @@
 
 import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../data.js'
+import Data from '../../../../../../../utils/data.json'
 
 let handle = {}
 let finishOutData
@@ -451,11 +451,6 @@ async function publicSignVerifyFunc(
 }
 
 describe('SecurityHuksSignVerifyRSAPromiseJsunit', function () {
-	/**
-	 * @tc.name: testSignVerifyRSA003
-	 * @tc.desc: alg-RSA  dig-DIGEST_MD5 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyRSA003', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize512SIGNPKCS1MD5KeyAlias103'
 		let HuksOptions = {

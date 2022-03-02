@@ -15,7 +15,7 @@
 
 import { describe, it, afterEach, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../data.js'
+import Data from '../../../../../../../utils/data.json'
 
 let HksKeyAlg = {
 	HKS_ALG_ECC: 2,
@@ -503,11 +503,6 @@ describe('SecurityHuksSignVerifyECCCallbackJsunit', function () {
 		console.info('test afterEach called')
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECC104
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_224 dig-DIGEST_NONE inputdate-65kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECC104', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias004'
 		let HuksOptions = {

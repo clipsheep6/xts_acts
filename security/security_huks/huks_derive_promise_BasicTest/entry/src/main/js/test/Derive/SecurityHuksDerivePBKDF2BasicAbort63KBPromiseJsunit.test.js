@@ -15,7 +15,7 @@
 
 import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../data.js'
+import Data from '../../../../../../../utils/data.json'
 
 let handle = {}
 let handle1
@@ -397,11 +397,6 @@ async function publicDeriveFunc(
 }
 
 describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
-	/**
-	 * @tc.name: testDerivePBKDF2Abort63KBDerive001
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testDerivePBKDF2Abort63KBDerive001', 0, async function (done) {
 		const srcKeyAliesFirst =
 			'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_001'

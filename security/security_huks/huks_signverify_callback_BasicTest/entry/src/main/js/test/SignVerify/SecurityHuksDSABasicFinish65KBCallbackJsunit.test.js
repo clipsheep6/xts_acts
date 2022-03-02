@@ -15,7 +15,7 @@
 
 import { describe, it, afterEach, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../data.js'
+import Data from '../../../../../../../utils/data.json'
 
 let HksKeyAlg = {
 	HKS_ALG_DSA: 3,
@@ -486,11 +486,6 @@ async function publicSignVerifyFunc(
 }
 
 describe('SecurityHuksSignVerifyDSACallbackJsunit', function () {
-	/**
-	 * @tc.name: testSignVerifyDSASIGN103
-	 * @tc.desc: alg-DSA dig-DIGEST_SHA1  inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyDSA103', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyDSASIGNSHA1KeyAlias003'
 		const newSrcKeyAlies = 'testSignVerifyDSASIGNSHA1KeyAliasNew103'

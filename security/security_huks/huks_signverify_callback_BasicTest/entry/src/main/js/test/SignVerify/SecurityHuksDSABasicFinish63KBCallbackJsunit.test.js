@@ -15,7 +15,7 @@
 
 import { describe, it, afterEach, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
-import * as Data from '../data.js'
+import Data from '../../../../../../../utils/data.json'
 
 let DSA_COMMON_SIZE = 1024
 
@@ -492,11 +492,6 @@ async function publicSignVerifyFunc(
 }
 
 describe('SecurityHuksSignVerifyDSACallbackJsunit', function () {
-	/**
-	 * @tc.name: testSignVerifyDSA101
-	 * @tc.desc: alg-DSA dig-DIGEST_SHA1  inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyDSA101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyDSASIGNSHA1KeyAlias001'
 		const newSrcKeyAlies = 'testSignVerifyDSASIGNSHA1KeyAliasNew101'
