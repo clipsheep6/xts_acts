@@ -1,0 +1,37 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "120000",
+        "package": "com.example.actslanguageconfigabilitytest",
+        "shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "languageconfigabilitytest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsLanguageConfigAppTestA.hap->/data/test/ActsLanguageConfigAppTestA.hap",
+                "ActsLanguageConfigAppTestB.hap->/data/test/ActsLanguageConfigAppTestB.hap"            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 /data/test/*.hap"
+            ]
+        }
+    ]
+}
