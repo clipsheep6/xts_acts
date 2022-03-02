@@ -221,7 +221,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 		)} HuksOptions: ${JSON.stringify(HuksOptions)}`
 	)
 	let dateSize = 64
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = HuksOptions.inData
 	console.log(
 		'test update finish HuksOptions inData: ' +
@@ -235,7 +235,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 			thirdInderfaceName,
 			isEncrypt,
 			0,
-			_HuksOptions_inData.length
+			tempHuksOptionsInData.length
 		)
 	} else {
 		let count = Math.floor(Array.from(inDataArray).length / dateSize)
@@ -243,7 +243,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 		console.log('test count ' + count + 'remainder ' + remainder)
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = new Uint8Array(
-				Array.from(_HuksOptions_inData).slice(
+				Array.from(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
@@ -252,7 +252,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 				'test ' +
 					Uint8ArrayToString(
 						new Uint8Array(
-							Array.from(_HuksOptions_inData).slice(
+							Array.from(tempHuksOptionsInData).slice(
 								dateSize * i,
 								dateSize * (i + 1)
 							)
@@ -261,10 +261,10 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 			)
 			await update(handle, HuksOptions)
 		}
-		HuksOptions.inData = _HuksOptions_inData
+		HuksOptions.inData = tempHuksOptionsInData
 		if (remainder !== 0) {
 			HuksOptions.inData = new Uint8Array(
-				Array.from(_HuksOptions_inData).slice(
+				Array.from(tempHuksOptionsInData).slice(
 					dateSize * count,
 					Uint8ArrayToString(inDataArray).length
 				)
@@ -273,7 +273,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 				'test ' +
 					Uint8ArrayToString(
 						new Uint8Array(
-							Array.from(_HuksOptions_inData).slice(
+							Array.from(tempHuksOptionsInData).slice(
 								dateSize * count,
 								Uint8ArrayToString(inDataArray).length
 							)
@@ -288,7 +288,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 			thirdInderfaceName,
 			isEncrypt,
 			remainder,
-			_HuksOptions_inData.length
+			tempHuksOptionsInData.length
 		)
 	}
 }

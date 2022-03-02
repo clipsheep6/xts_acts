@@ -83,8 +83,8 @@ let HuksHmac = {
 	},
 }
 
-let srcData63Kb = Data.Date_63KB
-let srcData65Kb = Data.Date_65KB
+let srcData63Kb = Data.Date63KB
+let srcData65Kb = Data.Date65KB
 
 function stringToArray(str) {
 	var arr = []
@@ -103,8 +103,8 @@ function Uint8ArrayToString(fileData) {
 }
 
 var handle = {}
-var handle_start
-var handle_end
+var handleStart
+var handleEnd
 
 function generateKey(srcKeyAlies, HuksOptions) {
 	return new Promise((resolve, reject) => {
@@ -139,11 +139,11 @@ function init(srcKeyAlies, HuksOptions) {
 					)
 					reject(err)
 				} else {
-					handle_start = data.handle1
-					handle_end = data.handle2
+					handleStart = data.handle1
+					handleEnd = data.handle2
 					handle = {
-						handle1: handle_start,
-						handle2: handle_end,
+						handle1: handleStart,
+						handle2: handleEnd,
 					}
 					resolve(data)
 				}
@@ -239,7 +239,7 @@ function deleteKey(srcKeyAlies, HuksOptions) {
 
 async function publicHmacUpdate(HuksOptions) {
 	let dateSize = 64 * 1024
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = stringToArray(HuksOptions.inData)
 
 	if (HuksOptions.inData.length <= dateSize) {
@@ -254,13 +254,13 @@ async function publicHmacUpdate(HuksOptions) {
 				)
 				expect(null).assertFail()
 			})
-		HuksOptions.inData = _HuksOptions_inData
+		HuksOptions.inData = tempHuksOptionsInData
 	} else {
 		let count = Math.floor(inDataArray.length / dateSize)
 		let remainder = inDataArray.length % dateSize
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = new Uint8Array(
-				stringToArray(_HuksOptions_inData).slice(
+				stringToArray(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
@@ -278,7 +278,7 @@ async function publicHmacUpdate(HuksOptions) {
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = new Uint8Array(
-				stringToArray(_HuksOptions_inData).slice(
+				stringToArray(tempHuksOptionsInData).slice(
 					dateSize * count,
 					inDataArray.length
 				)

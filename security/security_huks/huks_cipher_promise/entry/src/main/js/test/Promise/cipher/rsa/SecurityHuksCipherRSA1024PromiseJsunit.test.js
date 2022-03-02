@@ -18,32 +18,32 @@ import huks from '@ohos.security.huks'
 import * as Data from '../../../data.js'
 import * as Control from '../../../switchControl.js'
 
-let g_inData_5 = 'RSA_5'
-let g_inData_12 = 'RSA_12_ttttt'
-let g_inData_14 = 'RSA_14_ttttttt'
-let g_inData_20 = 'RSA_20_ttttttttttttt'
-let g_inData_32 = 'RSA_32_ttttttttttttttttttttttttt'
-let g_inData_64 =
+let gInData5 = 'RSA_5'
+let gInData12 = 'RSA_12_ttttt'
+let gInData14 = 'RSA_14_ttttttt'
+let gInData20 = 'RSA_20_ttttttttttttt'
+let gInData32 = 'RSA_32_ttttttttttttttttttttttttt'
+let gInData64 =
 	'RSA_64_ttttttttttttttttttttttttttttttttttttttttttttttttttttttttt'
-let g_inData_96 =
+let gInData96 =
 	'RSA_96_ttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttt'
-let g_inData_128 =
+let gInData128 =
 	'RSA_128_tttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt'
-let g_inData_256 =
+let gInData256 =
 	'RSA_256_tttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt'
-let g_inData_384 =
+let gInData384 =
 	'RSA_384_tttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt'
-let g_inData_512 =
+let gInData512 =
 	'RSA_512_tttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
 	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
@@ -141,7 +141,7 @@ let HuksCipher002 = {
 		tag: HksTag.HKS_TAG_PADDING,
 		value: HksKeyPadding.HKS_PADDING_NONE,
 	},
-	HuksKeyRSAPADDINGPKCS1_V1_5: {
+	HuksKeyRSAPADDINGPKCS1V15: {
 		tag: HksTag.HKS_TAG_PADDING,
 		value: HksKeyPadding.HKS_PADDING_PKCS1_V1_5,
 	},
@@ -180,17 +180,17 @@ let HuksCipher002 = {
 }
 let defaultData = '0'
 
-let g_inData_5_array = stringToUint8Array(g_inData_5)
-let g_inData_12_array = stringToUint8Array(g_inData_12)
-let g_inData_14_array = stringToUint8Array(g_inData_14)
-let g_inData_20_array = stringToUint8Array(g_inData_20)
-let g_inData_32_array = stringToUint8Array(g_inData_32)
-let g_inData_64_array = stringToUint8Array(g_inData_64)
-let g_inData_96_array = stringToUint8Array(g_inData_96)
-let g_inData_128_array = stringToUint8Array(g_inData_128)
-let g_inData_256_array = stringToUint8Array(g_inData_256)
-let g_inData_384_array = stringToUint8Array(g_inData_384)
-let g_inData_512_array = stringToUint8Array(g_inData_512)
+let gInData5Array = stringToUint8Array(gInData5)
+let gInData12Array = stringToUint8Array(gInData12)
+let gInData14Array = stringToUint8Array(gInData14)
+let gInData20Array = stringToUint8Array(gInData20)
+let gInData32Array = stringToUint8Array(gInData32)
+let gInData64Array = stringToUint8Array(gInData64)
+let gInData96Array = stringToUint8Array(g_inData_96)
+let gInData128Array = stringToUint8Array(g_inData_128)
+let gInData256Array = stringToUint8Array(gInData256)
+let gInData384Array = stringToUint8Array(gInData384)
+let gInData512Array = stringToUint8Array(gInData512)
 
 function stringToUint8Array(str) {
 	var arr = []
@@ -309,7 +309,7 @@ async function publicUpdateFunc(HuksOptions) {
 		)} HuksOptions: ${JSON.stringify(HuksOptions)}`
 	)
 	let dateSize = 64
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = HuksOptions.inData
 	console.log(
 		'test update finish HuksOptions inData: ' +
@@ -323,7 +323,7 @@ async function publicUpdateFunc(HuksOptions) {
 		let remainder = Array.from(inDataArray).length % dateSize
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = new Uint8Array(
-				Array.from(_HuksOptions_inData).slice(
+				Array.from(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
@@ -332,7 +332,7 @@ async function publicUpdateFunc(HuksOptions) {
 				'test ' +
 					Uint8ArrayToString(
 						new Uint8Array(
-							Array.from(_HuksOptions_inData).slice(
+							Array.from(tempHuksOptionsInData).slice(
 								dateSize * i,
 								dateSize * (i + 1)
 							)
@@ -340,11 +340,11 @@ async function publicUpdateFunc(HuksOptions) {
 					)
 			)
 			await update(handle, HuksOptions)
-			HuksOptions.inData = _HuksOptions_inData
+			HuksOptions.inData = tempHuksOptionsInData
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = new Uint8Array(
-				Array.from(_HuksOptions_inData).slice(
+				Array.from(tempHuksOptionsInData).slice(
 					dateSize * count,
 					Uint8ArrayToString(inDataArray).length
 				)
@@ -354,7 +354,7 @@ async function publicUpdateFunc(HuksOptions) {
 				'test ' +
 					Uint8ArrayToString(
 						new Uint8Array(
-							Array.from(_HuksOptions_inData).slice(
+							Array.from(tempHuksOptionsInData).slice(
 								dateSize * count,
 								Uint8ArrayToString(inDataArray).length
 							)
@@ -553,7 +553,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 						HuksCipher002.HuksKeyRSABLOCKMODEECB,
 						HuksCipher002.HuksKeyRSADIGESTSHA256
 					),
-					inData: g_inData_128_array,
+					inData: gInData128Array,
 					outData: stringToUint8Array('0'),
 				}
 				await publicCipherFunc(
@@ -605,7 +605,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 						HuksCipher002.HuksKeyRSABLOCKMODEECB,
 						HuksCipher002.HuksKeyRSADIGESTSHA256
 					),
-					inData: g_inData_128_array,
+					inData: gInData128Array,
 					outData: stringToUint8Array('0'),
 				}
 				await publicCipherFunc(
@@ -637,7 +637,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 						HuksCipher002.HuksKeyRSABLOCKMODEECB,
 						HuksCipher002.HuksKeyRSADIGESTSHA256
 					),
-					inData: g_inData_128_array,
+					inData: gInData128Array,
 					outData: stringToUint8Array('0'),
 				}
 				await publicCipherFunc(
@@ -689,7 +689,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 						HuksCipher002.HuksKeyRSABLOCKMODEECB,
 						HuksCipher002.HuksKeyRSADIGESTSHA256
 					),
-					inData: g_inData_128_array,
+					inData: gInData128Array,
 					outData: stringToUint8Array('0'),
 				}
 				await publicCipherFunc(
@@ -721,7 +721,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 			genHuksOptions.properties.splice(
 				4,
 				1,
-				HuksCipher002.HuksKeyRSAPADDINGPKCS1_V1_5
+				HuksCipher002.HuksKeyRSAPADDINGPKCS1V15
 			)
 			genHuksOptions.properties.splice(
 				5,
@@ -734,11 +734,11 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 					HuksCipher002.HuksKeyAlgRSA,
 					HuksCipher002.HuksKeyPurposeENCRYPT,
 					HuksCipher002.HuksKeyRSASize1024,
-					HuksCipher002.HuksKeyRSAPADDINGPKCS1_V1_5,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
 					HuksCipher002.HuksKeyRSABLOCKMODEECB,
 					HuksCipher002.HuksKeyRSADIGESTSHA256
 				),
-				inData: g_inData_32_array,
+				inData: gInData32Array,
 				outData: stringToUint8Array('0'),
 			}
 			await publicCipherFunc(
@@ -754,7 +754,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 					HuksCipher002.HuksKeyAlgRSA,
 					HuksCipher002.HuksKeyPurposeDECRYPT,
 					HuksCipher002.HuksKeyRSASize1024,
-					HuksCipher002.HuksKeyRSAPADDINGPKCS1_V1_5,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
 					HuksCipher002.HuksKeyRSABLOCKMODEECB,
 					HuksCipher002.HuksKeyRSADIGESTSHA256
 				),
@@ -786,11 +786,11 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 					HuksCipher002.HuksKeyAlgRSA,
 					HuksCipher002.HuksKeyPurposeENCRYPT,
 					HuksCipher002.HuksKeyRSASize1024,
-					HuksCipher002.HuksKeyRSAPADDINGPKCS1_V1_5,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
 					HuksCipher002.HuksKeyRSABLOCKMODEECB,
 					HuksCipher002.HuksKeyRSADIGESTSHA256
 				),
-				inData: g_inData_32_array,
+				inData: gInData32Array,
 				outData: stringToUint8Array('0'),
 			}
 			await publicCipherFunc(
@@ -818,11 +818,11 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 					HuksCipher002.HuksKeyAlgRSA,
 					HuksCipher002.HuksKeyPurposeENCRYPT,
 					HuksCipher002.HuksKeyRSASize1024,
-					HuksCipher002.HuksKeyRSAPADDINGPKCS1_V1_5,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
 					HuksCipher002.HuksKeyRSABLOCKMODEECB,
 					HuksCipher002.HuksKeyRSADIGESTSHA256
 				),
-				inData: g_inData_32_array,
+				inData: gInData32Array,
 				outData: stringToUint8Array('0'),
 			}
 			await publicCipherFunc(
@@ -838,7 +838,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 					HuksCipher002.HuksKeyAlgRSA,
 					HuksCipher002.HuksKeyPurposeDECRYPT,
 					HuksCipher002.HuksKeyRSASize1024,
-					HuksCipher002.HuksKeyRSAPADDINGPKCS1_V1_5,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
 					HuksCipher002.HuksKeyRSABLOCKMODEECB,
 					HuksCipher002.HuksKeyRSADIGESTSHA256
 				),
@@ -870,11 +870,11 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 					HuksCipher002.HuksKeyAlgRSA,
 					HuksCipher002.HuksKeyPurposeENCRYPT,
 					HuksCipher002.HuksKeyRSASize1024,
-					HuksCipher002.HuksKeyRSAPADDINGPKCS1_V1_5,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
 					HuksCipher002.HuksKeyRSABLOCKMODEECB,
 					HuksCipher002.HuksKeyRSADIGESTSHA256
 				),
-				inData: g_inData_32_array,
+				inData: gInData32Array,
 				outData: stringToUint8Array('0'),
 			}
 			await publicCipherFunc(
@@ -918,7 +918,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA1
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -965,7 +965,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA1
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -992,7 +992,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA1
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1039,7 +1039,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA1
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1082,7 +1082,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA224
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1129,7 +1129,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA224
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1156,7 +1156,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA224
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1203,7 +1203,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA224
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1246,7 +1246,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA256
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1293,7 +1293,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA256
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1320,7 +1320,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA256
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1367,7 +1367,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA256
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1394,7 +1394,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA384
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1421,7 +1421,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA384
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1448,7 +1448,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA512
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(
@@ -1475,7 +1475,7 @@ describe('SecurityHuksCipherRSAPromiseJsunit', function () {
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA512
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: stringToUint8Array('0'),
 		}
 		await publicCipherFunc(

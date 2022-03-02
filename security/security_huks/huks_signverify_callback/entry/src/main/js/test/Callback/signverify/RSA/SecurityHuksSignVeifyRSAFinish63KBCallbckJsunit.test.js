@@ -105,13 +105,13 @@ let HuksSignVerify001 = {
 		tag: HksTag.HKS_TAG_PURPOSE,
 		value: HksKeyPurpose.HKS_KEY_PURPOSE_VERIFY,
 	},
-	HuksKeyRSAPurposeSING_VERIFY: {
+	HuksKeyRSAPurposeSINGVERIFY: {
 		tag: HksTag.HKS_TAG_PURPOSE,
 		value:
 			HksKeyPurpose.HKS_KEY_PURPOSE_SIGN |
 			HksKeyPurpose.HKS_KEY_PURPOSE_VERIFY,
 	},
-	HuksKeyRSAPADDINGPKCS1_V1_5: {
+	HuksKeyRSAPADDINGPKCS1V15: {
 		tag: HksTag.HKS_TAG_PADDING,
 		value: HksKeyPadding.HKS_PADDING_PKCS1_V1_5,
 	},
@@ -172,7 +172,7 @@ let HuksSignVerify001 = {
 let handle = {}
 let finishOutData
 let exportKey
-let srcData63 = Data.Date_63KB
+let srcData63 = Data.Date63KB
 let srcData63Kb = stringToUint8Array(srcData63)
 
 let srcData63B = Data.data63B
@@ -331,11 +331,11 @@ async function publicUpdateFunc(HuksOptions, isBigData) {
 	} else {
 		dateSize = 64
 	}
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = HuksOptions.inData
 	if (Uint8ArrayToString(inDataArray).length < dateSize) {
 		await update(handle, HuksOptions)
-		HuksOptions.inData = _HuksOptions_inData
+		HuksOptions.inData = tempHuksOptionsInData
 	} else {
 		let count = Math.floor(
 			Uint8ArrayToString(inDataArray).length / dateSize
@@ -350,23 +350,23 @@ async function publicUpdateFunc(HuksOptions, isBigData) {
 		console.log(`test before update remainder: ${remainder}`)
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = stringToUint8Array(
-				Uint8ArrayToString(_HuksOptions_inData).slice(
+				Uint8ArrayToString(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
 			)
 			await update(handle, HuksOptions)
-			HuksOptions.inData = _HuksOptions_inData
+			HuksOptions.inData = tempHuksOptionsInData
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = stringToUint8Array(
-				Uint8ArrayToString(_HuksOptions_inData).slice(
+				Uint8ArrayToString(tempHuksOptionsInData).slice(
 					dateSize * count,
 					Uint8ArrayToString(inDataArray).length
 				)
 			)
 			await update(handle, HuksOptions)
-			HuksOptions.inData = _HuksOptions_inData
+			HuksOptions.inData = tempHuksOptionsInData
 		}
 	}
 }
@@ -412,9 +412,9 @@ async function publicFinishFunc(HuksOptions) {
 		})
 }
 
-function finish(handle, HuksOptions_Finish) {
+function finish(handle, HuksOptionsFinish) {
 	return new Promise((resolve, reject) => {
-		huks.finish(handle, HuksOptions_Finish, function (err, data) {
+		huks.finish(handle, HuksOptionsFinish, function (err, data) {
 			if (err.code !== 0) {
 				console.log(
 					'test generateKey err information: ' + JSON.stringify(err)
@@ -439,9 +439,9 @@ async function publicAbortFucn(HuksOptions) {
 		})
 }
 
-function abort(handle, HuksOptions_Abort) {
+function abort(handle, HuksOptionsAbort) {
 	return new Promise((resolve, reject) => {
-		huks.abort(handle, HuksOptions_Abort, function (err, data) {
+		huks.abort(handle, HuksOptionsAbort, function (err, data) {
 			if (err.code !== 0) {
 				console.log(
 					'test abort err information: ' + JSON.stringify(err)
@@ -497,7 +497,7 @@ async function publicSignVerifyFunc(
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify001.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify001.HuksKeyRSAPurposeSINGVERIFY
 			)
 			console.log(
 				`test publicSignVerifyFunc GenerateHuksOptions: ${JSON.stringify(
@@ -530,7 +530,7 @@ async function publicSignVerifyFunc(
 				HuksOptions.properties.splice(
 					1,
 					1,
-					HuksSignVerify001.HuksKeyRSAPurposeSING_VERIFY
+					HuksSignVerify001.HuksKeyRSAPurposeSINGVERIFY
 				)
 				console.log(
 					`test before exportKey Gen_HuksOptions: ${JSON.stringify(
@@ -556,7 +556,7 @@ async function publicSignVerifyFunc(
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify001.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify001.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlies, HuksOptions)
 		} else if (!isSING) {
@@ -573,11 +573,6 @@ async function publicSignVerifyFunc(
 }
 
 describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
-	/**
-	 * @tc.name: testSignVerifyRSASize512SIGNPKCS1MD5101
-	 * @tc.desc: alg-RSA  dig-DIGEST_MD5 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyRSASize512SIGNPKCS1MD5101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize512SIGNPKCS1MD5KeyAlias001'
 		let HuksOptions = {
@@ -585,7 +580,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize512
 			),
 			inData: srcData63Kb,
@@ -603,7 +598,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize512
 			),
 			inData: srcData63Kb,
@@ -620,11 +615,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize512SIGNPKCS1NONE101
-	 * @tc.desc: alg-RSA  dig-DIGEST_NONE pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize512SIGNPKCS1NONE101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize512SIGNPKCS1NONEKeyAlias001'
 		let HuksOptions = {
@@ -632,7 +623,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize512
 			),
 			inData: srcData63Byte,
@@ -650,7 +641,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize512
 			),
 			inData: srcData63Byte,
@@ -667,11 +658,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize512SIGNPKCS1SHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize512SIGNPKCS1SHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize512SIGNPKCS1SHA1KeyAlias001'
 		let HuksOptions = {
@@ -679,7 +666,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize512
 			),
 			inData: srcData63Byte,
@@ -697,7 +684,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize512
 			),
 			inData: srcData63Byte,
@@ -714,11 +701,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize512SIGNPKCS1SHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize512SIGNPKCS1SHA224101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize512SIGNPKCS1SHA224KeyAlias001'
 		let HuksOptions = {
@@ -726,7 +709,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize512
 			),
 			inData: srcData63Byte,
@@ -744,7 +727,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize512
 			),
 			inData: srcData63Byte,
@@ -761,11 +744,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize512SIGNPKCS1SHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize512SIGNPKCS1SHA256101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize512SIGNPKCS1SHA256KeyAlias001'
 		let HuksOptions = {
@@ -773,7 +752,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize512
 			),
 			inData: srcData63Byte,
@@ -791,7 +770,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize512
 			),
 			inData: srcData63Byte,
@@ -808,11 +787,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize512SIGNPKCS1PSSSHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize512SIGNPKCS1PSSSHA1101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize512SIGNPKCS1PSSSHA1KeyAlias001'
@@ -856,11 +831,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize512SIGNPKCS1PSSSHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize512SIGNPKCS1PSSSHA224101',
 		0,
@@ -908,11 +879,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize512SIGNPKCS1PSSSHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize512SIGNPKCS1PSSSHA256101',
 		0,
@@ -960,11 +927,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize512SIGNPKCS1PSSSHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_512 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize512SIGNPKCS1PSSSHA384101',
 		0,
@@ -1012,11 +975,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1MD5101
-	 * @tc.desc: alg-RSA  dig-DIGEST_MD5 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize768SIGNPKCS1MD5101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize768SIGNPKCS1MD5KeyAlias001'
 		let HuksOptions = {
@@ -1024,7 +983,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1042,7 +1001,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1059,11 +1018,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1NONE101
-	 * @tc.desc: alg-RSA  dig-DIGEST_NONE pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize768SIGNPKCS1NONE101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize768SIGNPKCS1NONEKeyAlias001'
 		let HuksOptions = {
@@ -1071,7 +1026,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1089,7 +1044,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1106,11 +1061,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1SHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize768SIGNPKCS1SHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize768SIGNPKCS1SHA1KeyAlias001'
 		let HuksOptions = {
@@ -1118,7 +1069,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1136,7 +1087,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1153,11 +1104,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1SHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize768SIGNPKCS1SHA224101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize768SIGNPKCS1SHA224KeyAlias001'
 		let HuksOptions = {
@@ -1165,7 +1112,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1183,7 +1130,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1200,11 +1147,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1SHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize768SIGNPKCS1SHA256101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize768SIGNPKCS1SHA256KeyAlias001'
 		let HuksOptions = {
@@ -1212,7 +1155,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1230,7 +1173,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1247,11 +1190,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1SHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize768SIGNPKCS1SHA384101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize768SIGNPKCS1SHA384KeyAlias001'
 		const NewSrcKeyAlies =
@@ -1261,7 +1200,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA384,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1279,7 +1218,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA384,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1296,11 +1235,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1SHA512101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA512 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize768SIGNPKCS1SHA512101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize768SIGNPKCS1SHA512KeyAlias001'
 		let HuksOptions = {
@@ -1308,7 +1243,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA512,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1326,7 +1261,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA512,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize768
 			),
 			inData: srcData63Byte,
@@ -1343,11 +1278,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1PSSSHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize768SIGNPKCS1PSSSHA1101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize768SIGNPKCS1PSSSHA1KeyAlias001'
@@ -1391,11 +1322,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1PSSSHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize768SIGNPKCS1PSSSHA224101',
 		0,
@@ -1443,11 +1370,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1PSSSHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize768SIGNPKCS1PSSSHA256101',
 		0,
@@ -1495,11 +1418,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1PSSSHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize768SIGNPKCS1PSSSHA384101',
 		0,
@@ -1547,11 +1466,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize768SIGNPKCS1PSSSHA512101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA512 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_768 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize768SIGNPKCS1PSSSHA512101',
 		0,
@@ -1599,11 +1514,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1MD5101
-	 * @tc.desc: alg-RSA  dig-DIGEST_MD5 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize1024SIGNPKCS1MD5101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize1024SIGNPKCS1MD5KeyAlias001'
 		let HuksOptions = {
@@ -1611,7 +1522,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1629,7 +1540,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1646,11 +1557,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1NONE101
-	 * @tc.desc: alg-RSA  dig-DIGEST_NONE pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize1024SIGNPKCS1NONE101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize1024SIGNPKCS1NONEKeyAlias001'
 		let HuksOptions = {
@@ -1658,7 +1565,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1676,7 +1583,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1693,11 +1600,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1SHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize1024SIGNPKCS1SHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize1024SIGNPKCS1SHA1KeyAlias001'
 		let HuksOptions = {
@@ -1705,7 +1608,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1723,7 +1626,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1740,11 +1643,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1SHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize1024SIGNPKCS1SHA224101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize1024SIGNPKCS1SHA224KeyAlias001'
@@ -1753,7 +1652,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1771,7 +1670,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1788,11 +1687,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1SHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize1024SIGNPKCS1SHA256101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize1024SIGNPKCS1SHA256KeyAlias001'
@@ -1801,7 +1696,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1819,7 +1714,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1836,11 +1731,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1SHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize1024SIGNPKCS1SHA384101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize1024SIGNPKCS1SHA384KeyAlias001'
@@ -1849,7 +1740,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA384,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1867,7 +1758,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA384,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1884,11 +1775,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1SHA512101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA512 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize1024SIGNPKCS1SHA512101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize1024SIGNPKCS1SHA512KeyAlias001'
@@ -1897,7 +1784,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA512,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1915,7 +1802,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA512,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize1024
 			),
 			inData: srcData63Byte,
@@ -1932,11 +1819,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1PSSSHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize1024SIGNPKCS1PSSSHA1101',
 		0,
@@ -1984,11 +1867,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1PSSSHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize1024SIGNPKCS1PSSSHA224101',
 		0,
@@ -2036,11 +1915,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1PSSSHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize1024SIGNPKCS1PSSSHA256101',
 		0,
@@ -2088,11 +1963,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1PSSSHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize1024SIGNPKCS1PSSSHA384101',
 		0,
@@ -2140,11 +2011,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize1024SIGNPKCS1PSSSHA512101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA512 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_1024 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize1024SIGNPKCS1PSSSHA512101',
 		0,
@@ -2192,11 +2059,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1MD5101
-	 * @tc.desc: alg-RSA  dig-DIGEST_MD5 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize2048SIGNPKCS1MD5101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize2048SIGNPKCS1MD5KeyAlias001'
 		let HuksOptions = {
@@ -2204,7 +2067,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2222,7 +2085,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2239,11 +2102,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1NONE101
-	 * @tc.desc: alg-RSA  dig-DIGEST_NONE pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize2048SIGNPKCS1NONE101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize2048SIGNPKCS1NONEKeyAlias001'
 		let HuksOptions = {
@@ -2251,7 +2110,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2269,7 +2128,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2286,11 +2145,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1SHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize2048SIGNPKCS1SHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize2048SIGNPKCS1SHA1KeyAlias001'
 		let HuksOptions = {
@@ -2298,7 +2153,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2316,7 +2171,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2333,11 +2188,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1SHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize2048SIGNPKCS1SHA224101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize2048SIGNPKCS1SHA224KeyAlias001'
@@ -2346,7 +2197,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2364,7 +2215,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2381,11 +2232,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1SHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize2048SIGNPKCS1SHA256101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize2048SIGNPKCS1SHA256KeyAlias001'
@@ -2394,7 +2241,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2412,7 +2259,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2429,11 +2276,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1SHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize2048SIGNPKCS1SHA384101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize2048SIGNPKCS1SHA384KeyAlias001'
@@ -2442,7 +2285,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA384,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2460,7 +2303,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA384,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2477,11 +2320,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1SHA512101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA512 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize2048SIGNPKCS1SHA512101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize2048SIGNPKCS1SHA512KeyAlias001'
@@ -2490,7 +2329,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA512,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2508,7 +2347,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA512,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize2048
 			),
 			inData: srcData63Byte,
@@ -2525,11 +2364,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1PSSSHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize2048SIGNPKCS1PSSSHA1101',
 		0,
@@ -2577,11 +2412,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1PSSSHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize2048SIGNPKCS1PSSSHA224101',
 		0,
@@ -2629,11 +2460,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1PSSSHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize2048SIGNPKCS1PSSSHA256101',
 		0,
@@ -2681,11 +2508,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1PSSSHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize2048SIGNPKCS1PSSSHA384101',
 		0,
@@ -2733,11 +2556,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize2048SIGNPKCS1PSSSHA512101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA512 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_2048 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize2048SIGNPKCS1PSSSHA512101',
 		0,
@@ -2785,11 +2604,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1MD5101
-	 * @tc.desc: alg-RSA  dig-DIGEST_MD5 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize3072SIGNPKCS1MD5101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize3072SIGNPKCS1MD5KeyAlias001'
 		let HuksOptions = {
@@ -2797,7 +2612,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -2815,7 +2630,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -2832,11 +2647,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1NONE101
-	 * @tc.desc: alg-RSA  dig-DIGEST_NONE pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize3072SIGNPKCS1NONE101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize3072SIGNPKCS1NONEKeyAlias001'
 		let HuksOptions = {
@@ -2844,7 +2655,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -2862,7 +2673,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -2879,11 +2690,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1SHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize3072SIGNPKCS1SHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize3072SIGNPKCS1SHA1KeyAlias001'
 		let HuksOptions = {
@@ -2891,7 +2698,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -2909,7 +2716,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -2926,11 +2733,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1SHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize3072SIGNPKCS1SHA224101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize3072SIGNPKCS1SHA224KeyAlias001'
@@ -2939,7 +2742,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -2957,7 +2760,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -2974,11 +2777,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1SHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize3072SIGNPKCS1SHA256101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize3072SIGNPKCS1SHA256KeyAlias001'
@@ -2987,7 +2786,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -3005,7 +2804,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -3022,11 +2821,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1SHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize3072SIGNPKCS1SHA384101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize3072SIGNPKCS1SHA384KeyAlias001'
@@ -3035,7 +2830,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA384,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -3053,7 +2848,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA384,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -3070,11 +2865,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1SHA512101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA512 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize3072SIGNPKCS1SHA512101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize3072SIGNPKCS1SHA512KeyAlias001'
@@ -3083,7 +2874,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA512,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -3101,7 +2892,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA512,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize3072
 			),
 			inData: srcData63Byte,
@@ -3118,11 +2909,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1PSSSHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize3072SIGNPKCS1PSSSHA1101',
 		0,
@@ -3170,11 +2957,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1PSSSHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize3072SIGNPKCS1PSSSHA224101',
 		0,
@@ -3222,11 +3005,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1PSSSHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize3072SIGNPKCS1PSSSHA256101',
 		0,
@@ -3274,11 +3053,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1PSSSHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize3072SIGNPKCS1PSSSHA384101',
 		0,
@@ -3326,11 +3101,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize3072SIGNPKCS1PSSSHA512101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA512 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_3072 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize3072SIGNPKCS1PSSSHA512101',
 		0,
@@ -3378,11 +3149,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1MD5101
-	 * @tc.desc: alg-RSA  dig-DIGEST_MD5 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize4096SIGNPKCS1MD5101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize4096SIGNPKCS1MD5KeyAlias001'
 		let HuksOptions = {
@@ -3390,7 +3157,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3408,7 +3175,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestMD5,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3425,11 +3192,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1NONE101
-	 * @tc.desc: alg-RSA  dig-DIGEST_NONE pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize4096SIGNPKCS1NONE101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize4096SIGNPKCS1NONEKeyAlias001'
 		let HuksOptions = {
@@ -3437,7 +3200,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3455,7 +3218,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestNONE,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3472,11 +3235,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1SHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize4096SIGNPKCS1SHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyRSASize4096SIGNPKCS1SHA1KeyAlias001'
 		let HuksOptions = {
@@ -3484,7 +3243,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3502,7 +3261,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA1,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3519,11 +3278,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1SHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize4096SIGNPKCS1SHA224101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize4096SIGNPKCS1SHA224KeyAlias001'
@@ -3532,7 +3287,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3550,7 +3305,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA224,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3567,11 +3322,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1SHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize4096SIGNPKCS1SHA256101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize4096SIGNPKCS1SHA256KeyAlias001'
@@ -3580,7 +3331,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3598,7 +3349,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA256,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3615,11 +3366,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1SHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize4096SIGNPKCS1SHA384101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize4096SIGNPKCS1SHA384KeyAlias001'
@@ -3628,7 +3375,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA384,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3646,7 +3393,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA384,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3663,11 +3410,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1SHA512101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA512 pad-PADDING_PKCS1_V1_5 keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyRSASize4096SIGNPKCS1SHA512101', 0, async function (done) {
 		const srcKeyAlies =
 			'testSignVerifyRSASize4096SIGNPKCS1SHA512KeyAlias001'
@@ -3676,7 +3419,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeSIGN,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA512,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3694,7 +3437,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 				HuksSignVerify001.HuksKeyAlgRSA,
 				HuksSignVerify001.HuksKeyRSAPurposeVERIFY,
 				HuksSignVerify001.HuksTagPKCS1DigestSHA512,
-				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksSignVerify001.HuksKeyRSAPADDINGPKCS1V15,
 				HuksSignVerify001.HuksKeyRSASize4096
 			),
 			inData: srcData63Byte,
@@ -3711,11 +3454,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 		exportKey = 0
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1PSSSHA1101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA1 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize4096SIGNPKCS1PSSSHA1101',
 		0,
@@ -3763,11 +3502,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1PSSSHA224101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA224 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize4096SIGNPKCS1PSSSHA224101',
 		0,
@@ -3815,11 +3550,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1PSSSHA256101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA256 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize4096SIGNPKCS1PSSSHA256101',
 		0,
@@ -3867,11 +3598,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1PSSSHA384101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA384 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize4096SIGNPKCS1PSSSHA384101',
 		0,
@@ -3919,11 +3646,7 @@ describe('SecurityHuksSignVerifyRSACallbackJsunit', function () {
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testSignVerifyRSASize4096SIGNPKCS1PSSSHA512101
-	 * @tc.desc: alg-RSA  dig-DIGEST_SHA512 pad-PADDING_PKCS1_PSS keysize-KEY_SIZE_4096 size-2048 inputdate-65kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testSignVerifyRSASize4096SIGNPKCS1PSSSHA512101',
 		0,

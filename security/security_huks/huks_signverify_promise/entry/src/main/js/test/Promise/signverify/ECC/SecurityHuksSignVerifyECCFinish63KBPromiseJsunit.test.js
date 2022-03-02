@@ -112,7 +112,7 @@ let HuksSignVerify003 = {
 		tag: HksTag.HKS_TAG_KEY_SIZE,
 		value: HksKeySize.HKS_ECC_KEY_SIZE_521,
 	},
-	HuksKeyECCPurposeSING_VERIFY: {
+	HuksKeyECCPurposeSINGVERIFY: {
 		tag: HksTag.HKS_TAG_PURPOSE,
 		value:
 			HksKeyPurpose.HKS_KEY_PURPOSE_SIGN |
@@ -123,7 +123,7 @@ let HuksSignVerify003 = {
 let finishOutData
 let handle = {}
 let exportKey
-let srcData63 = Data.Date_63KB
+let srcData63 = Data.Date63KB
 let srcData63Kb = stringToUint8Array(srcData63)
 
 let srcData63B = Data.data63B
@@ -219,11 +219,11 @@ async function publicUpdateFunc(HuksOptions, isBigData) {
 	} else {
 		dateSize = 64
 	}
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = HuksOptions.inData
 	if (Uint8ArrayToString(inDataArray).length < dateSize) {
 		await update(handle, HuksOptions)
-		HuksOptions.inData = _HuksOptions_inData
+		HuksOptions.inData = tempHuksOptionsInData
 	} else {
 		let count = Math.floor(
 			Uint8ArrayToString(inDataArray).length / dateSize
@@ -238,23 +238,23 @@ async function publicUpdateFunc(HuksOptions, isBigData) {
 		console.log(`test before update remainder: ${remainder}`)
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = stringToUint8Array(
-				Uint8ArrayToString(_HuksOptions_inData).slice(
+				Uint8ArrayToString(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
 			)
 			await update(handle, HuksOptions)
-			HuksOptions.inData = _HuksOptions_inData
+			HuksOptions.inData = tempHuksOptionsInData
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = stringToUint8Array(
-				Uint8ArrayToString(_HuksOptions_inData).slice(
+				Uint8ArrayToString(tempHuksOptionsInData).slice(
 					dateSize * count,
 					Uint8ArrayToString(inDataArray).length
 				)
 			)
 			await update(handle, HuksOptions)
-			HuksOptions.inData = _HuksOptions_inData
+			HuksOptions.inData = tempHuksOptionsInData
 		}
 	}
 }
@@ -329,7 +329,7 @@ async function publicSignVerifyFunc(
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify003.HuksKeyECCPurposeSING_VERIFY
+				HuksSignVerify003.HuksKeyECCPurposeSINGVERIFY
 			)
 			console.log(
 				`test publicSignVerifyFunc GenerateHuksOptions: ${JSON.stringify(
@@ -362,7 +362,7 @@ async function publicSignVerifyFunc(
 				HuksOptions.properties.splice(
 					1,
 					1,
-					HuksSignVerify003.HuksKeyECCPurposeSING_VERIFY
+					HuksSignVerify003.HuksKeyECCPurposeSINGVERIFY
 				)
 				console.log(
 					`test before exportKey Gen_HuksOptions: ${JSON.stringify(
@@ -388,7 +388,7 @@ async function publicSignVerifyFunc(
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify003.HuksKeyECCPurposeSING_VERIFY
+				HuksSignVerify003.HuksKeyECCPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlies, HuksOptions)
 		} else if (!isSING) {
@@ -411,11 +411,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		console.info('test afterEach called')
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize224SIGNNONE001
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_224 dig-DIGEST_NONE inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize224SIGNNONE001', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -455,11 +450,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize256SIGNNONE001
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_256 dig-DIGEST_NONE inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize256SIGNNONE001', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize256SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -499,11 +489,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize384SIGNNONE001
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_384 dig-DIGEST_NONE inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize384SIGNNONE001', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize384SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -543,11 +528,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize521SIGNNONE001
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_521 dig-DIGEST_NONE inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize521SIGNNONE001', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize521SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -587,11 +567,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize224SIGNSHA1101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_224 dig-DIGEST_SHA1 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize224SIGNSHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -631,11 +606,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize256SIGNSHA1101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_256 dig-DIGEST_SHA1 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize256SIGNSHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize256SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -675,11 +645,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize384SIGNSHA1101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_384 dig-DIGEST_SHA1 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize384SIGNSHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize384SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -719,11 +684,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize521SIGNSHA1101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_521 dig-DIGEST_SHA1 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize521SIGNSHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize521SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -763,11 +723,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize224SIGNSHA1101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_224 dig-DIGEST_SHA224 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize224SIGNSHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -807,11 +762,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize256SIGNSHA1101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_256 dig-DIGEST_SHA224 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize256SIGNSHA1101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize256SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -851,11 +801,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize384SIGNSHA224101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_384 dig-DIGEST_SHA224 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize384SIGNSHA224101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize384SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -895,11 +840,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize521SIGNSHA224101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_521 dig-DIGEST_SHA224 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize521SIGNSHA224101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize521SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -938,11 +878,7 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		)
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyECCSize224SIGNSHA224101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_224 dig-DIGEST_SHA224 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyECCSize224SIGNSHA224101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -982,11 +918,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize224SIGNSHA256101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_224 dig-DIGEST_SHA256 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize224SIGNSHA256101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1026,11 +957,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize256SIGNSHA256101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_256 dig-DIGEST_SHA256 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize256SIGNSHA256101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize256SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1070,11 +996,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize384SIGNSHA256101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_384 dig-DIGEST_SHA256 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize384SIGNSHA256101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize384SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1114,11 +1035,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize521SIGNSHA256101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_521 dig-DIGEST_SHA256 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize521SIGNSHA256101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize521SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1158,11 +1074,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize224SIGNSHA384101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_224 dig-DIGEST_SHA384 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize224SIGNSHA384101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1202,11 +1113,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize256SIGNSHA384101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_256 dig-DIGEST_SHA384 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize256SIGNSHA384101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize256SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1246,11 +1152,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize384SIGNSHA384101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_384 dig-DIGEST_SHA384 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize384SIGNSHA384101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize384SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1291,11 +1192,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize521SIGNSHA384101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_521 dig-DIGEST_SHA384 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize521SIGNSHA384101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize521SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1335,11 +1231,7 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyECCSize224SIGNSHA384101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_224 dig-DIGEST_SHA384 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyECCSize224SIGNSHA384101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1379,11 +1271,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize256SIGNSHA384101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_256 dig-DIGEST_SHA384 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize256SIGNSHA384101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize256SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1423,11 +1310,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize384SIGNSHA384101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_384 dig-DIGEST_SHA384 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize384SIGNSHA384101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize384SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1467,11 +1349,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize521SIGNSHA384101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_521 dig-DIGEST_SHA384 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize521SIGNSHA384101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize521SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1510,11 +1387,7 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		)
 		done()
 	})
-	/**
-	 * @tc.name: testSignVerifyECCSize224SIGNSHA512101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_224 dig-DIGEST_SHA512 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testSignVerifyECCSize224SIGNSHA512101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1554,11 +1427,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize256SIGNSHA512101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_256 dig-DIGEST_SHA512 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize256SIGNSHA512101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize256SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1598,11 +1466,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize384SIGNSHA512101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_384 dig-DIGEST_SHA512 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize384SIGNSHA512101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize384SIGNNONEKeyAlias101'
 		let HuksOptions = {
@@ -1642,11 +1505,6 @@ describe('SecurityHuksSignVerifyECCPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyECCSize521SIGNSHA512101
-	 * @tc.desc: alg-ECC keysize-KEY_SIZE_521 dig-DIGEST_SHA512 inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyECCSize521SIGNSHA512101', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyECCSize521SIGNNONEKeyAlias101'
 		let HuksOptions = {

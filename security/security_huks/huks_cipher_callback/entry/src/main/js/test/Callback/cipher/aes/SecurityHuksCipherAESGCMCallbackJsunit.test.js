@@ -255,7 +255,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 		)} HuksOptions: ${JSON.stringify(HuksOptions)}`
 	)
 	let dateSize = 64
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = HuksOptions.inData
 	console.log(
 		'test update finish HuksOptions inData: ' +
@@ -269,7 +269,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 			thirdInderfaceName,
 			isEncrypt,
 			0,
-			_HuksOptions_inData.length
+			tempHuksOptionsInData.length
 		)
 	} else {
 		let count = Math.floor(Array.from(inDataArray).length / dateSize)
@@ -277,7 +277,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 		console.log('test count ' + count + 'remainder ' + remainder)
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = new Uint8Array(
-				Array.from(_HuksOptions_inData).slice(
+				Array.from(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
@@ -286,7 +286,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 				'test ' +
 					Uint8ArrayToString(
 						new Uint8Array(
-							Array.from(_HuksOptions_inData).slice(
+							Array.from(tempHuksOptionsInData).slice(
 								dateSize * i,
 								dateSize * (i + 1)
 							)
@@ -295,10 +295,10 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 			)
 			await update(handle, HuksOptions)
 		}
-		HuksOptions.inData = _HuksOptions_inData
+		HuksOptions.inData = tempHuksOptionsInData
 		if (remainder !== 0) {
 			HuksOptions.inData = new Uint8Array(
-				Array.from(_HuksOptions_inData).slice(
+				Array.from(tempHuksOptionsInData).slice(
 					dateSize * count,
 					Uint8ArrayToString(inDataArray).length
 				)
@@ -307,7 +307,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 				'test ' +
 					Uint8ArrayToString(
 						new Uint8Array(
-							Array.from(_HuksOptions_inData).slice(
+							Array.from(tempHuksOptionsInData).slice(
 								dateSize * count,
 								Uint8ArrayToString(inDataArray).length
 							)
@@ -322,7 +322,7 @@ async function publicUpdateFunc(HuksOptions, thirdInderfaceName, isEncrypt) {
 			thirdInderfaceName,
 			isEncrypt,
 			remainder,
-			_HuksOptions_inData.length
+			tempHuksOptionsInData.length
 		)
 	}
 }
@@ -434,9 +434,9 @@ async function finish(HuksOptions, isEncrypt) {
 		})
 }
 
-function finishCallback(handle, HuksOptions_Finish) {
+function finishCallback(handle, HuksOptionsFinish) {
 	return new Promise((resolve, reject) => {
-		huks.finish(handle, HuksOptions_Finish, function (err, data) {
+		huks.finish(handle, HuksOptionsFinish, function (err, data) {
 			if (err.code !== 0) {
 				console.log(
 					'test generateKey err information: ' + JSON.stringify(err)
@@ -461,9 +461,9 @@ async function abort(HuksOptions) {
 		})
 }
 
-function abortCallback(handle, HuksOptions_Abort) {
+function abortCallback(handle, HuksOptionsAbort) {
 	return new Promise((resolve, reject) => {
-		huks.abort(handle, HuksOptions_Abort, function (err, data) {
+		huks.abort(handle, HuksOptionsAbort, function (err, data) {
 			if (err.code !== 0) {
 				console.log(
 					'test abort err information: ' + JSON.stringify(err)

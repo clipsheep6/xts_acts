@@ -97,7 +97,7 @@ let HuksSignVerify002 = {
 		tag: HksTag.HKS_TAG_DIGEST,
 		value: HksKeyDigest.HKS_DIGEST_SHA512,
 	},
-	HuksKeyRSAPurposeSING_VERIFY: {
+	HuksKeyRSAPurposeSINGVERIFY: {
 		tag: HksTag.HKS_TAG_PURPOSE,
 		value:
 			HksKeyPurpose.HKS_KEY_PURPOSE_SIGN |
@@ -108,7 +108,7 @@ let HuksSignVerify002 = {
 let finishOutData
 var handle = {}
 let exportKey
-let srcData65 = Data.Date_65KB
+let srcData65 = Data.Date65KB
 let srcData65Kb = stringToUint8Array(srcData65)
 
 let srcData65B = Data.data65B
@@ -204,11 +204,11 @@ async function publicUpdateFunc(HuksOptions, isBigData) {
 	} else {
 		dateSize = 64
 	}
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = HuksOptions.inData
 	if (Uint8ArrayToString(inDataArray).length < dateSize) {
 		await update(handle, HuksOptions)
-		HuksOptions.inData = _HuksOptions_inData
+		HuksOptions.inData = tempHuksOptionsInData
 	} else {
 		let count = Math.floor(
 			Uint8ArrayToString(inDataArray).length / dateSize
@@ -223,23 +223,23 @@ async function publicUpdateFunc(HuksOptions, isBigData) {
 		console.log(`test before update remainder: ${remainder}`)
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = stringToUint8Array(
-				Uint8ArrayToString(_HuksOptions_inData).slice(
+				Uint8ArrayToString(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
 			)
 			await update(handle, HuksOptions)
-			HuksOptions.inData = _HuksOptions_inData
+			HuksOptions.inData = tempHuksOptionsInData
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = stringToUint8Array(
-				Uint8ArrayToString(_HuksOptions_inData).slice(
+				Uint8ArrayToString(tempHuksOptionsInData).slice(
 					dateSize * count,
 					Uint8ArrayToString(inDataArray).length
 				)
 			)
 			await update(handle, HuksOptions)
-			HuksOptions.inData = _HuksOptions_inData
+			HuksOptions.inData = tempHuksOptionsInData
 		}
 	}
 }
@@ -314,7 +314,7 @@ async function publicSignVerifyFunc(
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -353,7 +353,7 @@ async function publicSignVerifyFunc(
 				HuksOptions.properties.splice(
 					1,
 					1,
-					HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+					HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 				)
 				console.log(
 					`test before exportKey Gen_HuksOptions: ${JSON.stringify(
@@ -379,7 +379,7 @@ async function publicSignVerifyFunc(
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlies, HuksOptions)
 		} else if (!isSING) {
@@ -396,11 +396,6 @@ async function publicSignVerifyFunc(
 }
 
 describe('SecurityHuksSignVerifyDSAPromiseJsunit', function () {
-	/**
-	 * @tc.name: testSignVerifyDSASIGNSHA1103
-	 * @tc.desc: alg-DSA dig-DIGEST_SHA1  inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyDSASIGNSHA1103', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyDSASIGNSHA1KeyAlias103'
 		const newSrcKeyAlies = 'testSignVerifyDSASIGNSHA1KeyAliasNew103'
@@ -440,11 +435,6 @@ describe('SecurityHuksSignVerifyDSAPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyDSASIGNSHA224KeyAlias103
-	 * @tc.desc: alg-DSA dig-DIGEST_SHA224  inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyDSASIGNSHA224103', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyDSASIGNSHA224KeyAlias103'
 		const newSrcKeyAlies = 'testSignVerifyDSASIGNSHA224KeyAliasNew103'
@@ -484,11 +474,6 @@ describe('SecurityHuksSignVerifyDSAPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyDSASIGNSHA256KeyAlias103
-	 * @tc.desc: alg-DSA dig-DIGEST_SHA256  inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyDSASIGNSHA256103', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyDSASIGNSHA256KeyAlias103'
 		const newSrcKeyAlies = 'testSignVerifyDSASIGNSHA256KeyAliasNew103'
@@ -528,11 +513,6 @@ describe('SecurityHuksSignVerifyDSAPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyDSASIGNSHA384KeyAlias103
-	 * @tc.desc: alg-DSA dig-DIGEST_SHA384  inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyDSASIGNSHA384103', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyDSASIGNSHA384KeyAlias103'
 		const newSrcKeyAlies = 'testSignVerifyDSASIGNSHA384KeyAliasNew103'
@@ -572,11 +552,6 @@ describe('SecurityHuksSignVerifyDSAPromiseJsunit', function () {
 		done()
 	})
 
-	/**
-	 * @tc.name: testSignVerifyDSASIGNSHA512KeyAlias103
-	 * @tc.desc: alg-DSA dig-DIGEST_SHA512  inputdate-63kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testSignVerifyDSASIGNSHA512103', 0, async function (done) {
 		const srcKeyAlies = 'testSignVerifyDSASIGNSHA512KeyAlias103'
 		const newSrcKeyAlies = 'testSignVerifyDSASIGNSHA512KeyAliasNew103'

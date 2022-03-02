@@ -20,8 +20,8 @@ import * as Data from '../../data.js'
 var handle = {}
 var handle1
 var handle2
-let srcData63Kb = Data.Date_63KB
-let srcData65Kb = Data.Date_65KB
+let srcData63Kb = Data.Date63KB
+let srcData65Kb = Data.Date65KB
 let HksKeyPurpose = {
 	HKS_KEY_PURPOSE_MAC: 128,
 }
@@ -132,18 +132,18 @@ async function publicHmacInitFunc(srcKeyAlies, HuksOptions) {
 
 async function publicHmacUpdateFunc(HuksOptions) {
 	let dateSize = 64 * 1024
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = stringToArray(HuksOptions.inData)
 	if (inDataArray.length < dateSize) {
 		HuksOptions.inData = new Uint8Array(inDataArray)
 		await update(handle, HuksOptions)
-		HuksOptions.inData = _HuksOptions_inData
+		HuksOptions.inData = tempHuksOptionsInData
 	} else {
 		let count = Math.floor(inDataArray.length / dateSize)
 		let remainder = inDataArray.length % dateSize
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = new Uint8Array(
-				stringToArray(_HuksOptions_inData).slice(
+				stringToArray(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
@@ -152,7 +152,7 @@ async function publicHmacUpdateFunc(HuksOptions) {
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = new Uint8Array(
-				stringToArray(_HuksOptions_inData).slice(
+				stringToArray(tempHuksOptionsInData).slice(
 					dateSize * count,
 					inDataArray.length
 				)

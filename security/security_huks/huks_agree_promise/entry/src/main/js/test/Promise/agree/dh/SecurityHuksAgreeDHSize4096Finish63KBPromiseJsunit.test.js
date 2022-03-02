@@ -17,14 +17,14 @@ import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
 import * as Data from '../../../data.js'
 
-let exportKey_1
-let exportKey_2
+let exportKeyFrist
+let exportKeySecond
 let handle = {}
 let handle1
 let handle2
 let finishData_1
-let finishData_2
-let srcData63 = Data.Date_63KB
+let finishDataSecond
+let srcData63 = Data.Date63KB
 let srcData63Kb = stringToUint8Array(srcData63)
 
 let HksKeyAlg = {
@@ -131,23 +131,23 @@ let HuksAgree002 = {
 		tag: HksTag.HKS_TAG_PADDING,
 		value: HksKeyPadding.HKS_PADDING_PKCS7,
 	},
-	HuksKeyBLOCK_MODECBC: {
+	HuksKeyBLOCKMODECBC: {
 		tag: HksTag.HKS_TAG_BLOCK_MODE,
 		value: HksCipherMode.HKS_MODE_CBC,
 	},
-	HuksKeyBLOCK_MODECCM: {
+	HuksKeyBLOCKMODECCM: {
 		tag: HksTag.HKS_TAG_BLOCK_MODE,
 		value: HksCipherMode.HKS_MODE_CCM,
 	},
-	HuksKeyBLOCK_MODEECB: {
+	HuksKeyBLOCKMODEECB: {
 		tag: HksTag.HKS_TAG_BLOCK_MODE,
 		value: HksCipherMode.HKS_MODE_ECB,
 	},
-	HuksKeyBLOCK_MODECTR: {
+	HuksKeyBLOCKMODECTR: {
 		tag: HksTag.HKS_TAG_BLOCK_MODE,
 		value: HksCipherMode.HKS_MODE_CTR,
 	},
-	HuksKeyBLOCK_MODEGCM: {
+	HuksKeyBLOCKMODEGCM: {
 		tag: HksTag.HKS_TAG_BLOCK_MODE,
 		value: HksCipherMode.HKS_MODE_GCM,
 	},
@@ -215,7 +215,7 @@ let HuksAgree002 = {
 	},
 }
 
-let HuksOptions_63kb = {
+let HuksOptions63kb = {
 	properties: new Array(
 		HuksAgree002.HuksKeyAlgDH,
 		HuksAgree002.HuksKeyPurposeDH,
@@ -261,9 +261,9 @@ async function publicAgreeExport1Func(srcKeyAlies, HuksOptions, exportKey) {
 		.then((data) => {
 			console.log(`test exportKey data: ${JSON.stringify(data)}`)
 			if (exportKey == 1) {
-				exportKey_1 = data.outData
+				exportKeyFrist = data.outData
 			} else {
-				exportKey_2 = data.outData
+				exportKeySecond = data.outData
 			}
 		})
 		.catch((err) => {
@@ -296,9 +296,9 @@ async function publicAgreeInitFunc(srcKeyAlies, HuksOptions) {
 async function publicAgreeUpdateFunc(HuksOptions, exportKey) {
 	let _inData = HuksOptions.inData
 	if (exportKey == 1) {
-		HuksOptions.inData = exportKey_2
+		HuksOptions.inData = exportKeySecond
 	} else {
-		HuksOptions.inData = exportKey_1
+		HuksOptions.inData = exportKeyFrist
 	}
 	await huks
 		.update(handle, HuksOptions)
@@ -314,24 +314,24 @@ async function publicAgreeUpdateFunc(HuksOptions, exportKey) {
 }
 
 async function publicAgreeFinishAbortFunc(
-	HuksOptions_Finish,
+	HuksOptionsFinish,
 	thirdInderfaceName,
 	finishData
 ) {
 	if (thirdInderfaceName == 'finish') {
 		console.log(
-			`test befor finish HuksOptions_Finish ${JSON.stringify(
-				HuksOptions_Finish
+			`test befor finish HuksOptionsFinish ${JSON.stringify(
+				HuksOptionsFinish
 			)}`
 		)
 		await huks
-			.finish(handle, HuksOptions_Finish)
+			.finish(handle, HuksOptionsFinish)
 			.then((data) => {
 				console.log(`test finish data ${JSON.stringify(data)}`)
 				if (finishData == 1) {
 					finishData_1 = data.outData
 				} else {
-					finishData_2 = data.outData
+					finishDataSecond = data.outData
 				}
 				expect(data.errorCode == 0).assertTrue()
 			})
@@ -342,12 +342,12 @@ async function publicAgreeFinishAbortFunc(
 				expect(null).assertFail()
 			})
 	} else {
-		let HuksOptions_Abort = new Array({
+		let HuksOptionsAbort = new Array({
 			tag: HksTag.HKS_TAG_KEY_STORAGE_FLAG,
 			value: HksKeyStorageType.HKS_STORAGE_TEMP,
 		})
 		await huks
-			.abort(handle, HuksOptions_Abort)
+			.abort(handle, HuksOptionsAbort)
 			.then((data) => {
 				console.log(`test abort data ${JSON.stringify(data)}`)
 				expect(data.errorCode == 0).assertTrue()
@@ -377,81 +377,76 @@ async function publicAgreeDeleteFunc(srcKeyAlies, HuksOptions) {
 }
 
 async function publicAgreeFunc(
-	srcKeyAlies_1,
-	srcKeyAlies_2,
+	srcKeyAliesFrist,
+	srcKeyAliesSecond,
 	HuksOptions,
-	HuksOptions_Finish,
+	HuksOptionsFinish,
 	thirdInderfaceName
 ) {
 	try {
-		await publicAgreeGenFunc(srcKeyAlies_1, HuksOptions)
-		await publicAgreeGenFunc(srcKeyAlies_2, HuksOptions)
-		await publicAgreeExport1Func(srcKeyAlies_1, HuksOptions, 1)
-		await publicAgreeExport1Func(srcKeyAlies_2, HuksOptions, 2)
+		await publicAgreeGenFunc(srcKeyAliesFrist, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliesSecond, HuksOptions)
+		await publicAgreeExport1Func(srcKeyAliesFrist, HuksOptions, 1)
+		await publicAgreeExport1Func(srcKeyAliesSecond, HuksOptions, 2)
 
-		await publicAgreeInitFunc(srcKeyAlies_1, HuksOptions)
+		await publicAgreeInitFunc(srcKeyAliesFrist, HuksOptions)
 		await publicAgreeUpdateFunc(HuksOptions, 1)
 		console.log(
-			`test HuksOptions_Finish data ${JSON.stringify(
-				HuksOptions_Finish.properties
+			`test HuksOptionsFinish data ${JSON.stringify(
+				HuksOptionsFinish.properties
 			)}`
 		)
 		console.log(
-			`test HuksOptions_Finish data ${JSON.stringify(
-				HuksOptions_Finish.inData
+			`test HuksOptionsFinish data ${JSON.stringify(
+				HuksOptionsFinish.inData
 			)}`
 		)
 		await publicAgreeFinishAbortFunc(
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			thirdInderfaceName,
 			1
 		)
 
-		let _HuksOptions_Finish = HuksOptions_Finish
-		let HuksOptions_Finish_2 = _HuksOptions_Finish
-		HuksOptions_Finish_2.properties.splice(6, 1, {
+		let tempHuksOptionsFinish = HuksOptionsFinish
+		let HuksOptionsFinishSecond = tempHuksOptionsFinish
+		HuksOptionsFinishSecond.properties.splice(6, 1, {
 			tag: HksTag.HKS_TAG_KEY_ALIAS,
-			value: stringToUint8Array(srcKeyAlies_2 + 'final'),
+			value: stringToUint8Array(srcKeyAliesSecond + 'final'),
 		})
 
 		console.log(
-			`test HuksOptions_Finish2 data ${JSON.stringify(
-				HuksOptions_Finish_2.properties
+			`test HuksOptionsFinish2 data ${JSON.stringify(
+				HuksOptionsFinishSecond.properties
 			)}`
 		)
 		console.log(
-			`test HuksOptions_Finish2 data ${JSON.stringify(
-				HuksOptions_Finish_2.inData
+			`test HuksOptionsFinish2 data ${JSON.stringify(
+				HuksOptionsFinishSecond.inData
 			)}`
 		)
-		await publicAgreeInitFunc(srcKeyAlies_2, HuksOptions)
+		await publicAgreeInitFunc(srcKeyAliesSecond, HuksOptions)
 		await publicAgreeUpdateFunc(HuksOptions, 2)
 		await publicAgreeFinishAbortFunc(
-			HuksOptions_Finish_2,
+			HuksOptionsFinishSecond,
 			thirdInderfaceName,
 			2
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlies_1, HuksOptions)
-		await publicAgreeDeleteFunc(srcKeyAlies_2 + 'final', HuksOptions)
-		await publicAgreeDeleteFunc(srcKeyAlies_2, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliesFrist, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliesSecond + 'final', HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliesSecond, HuksOptions)
 	} catch (e) {
 		expect(null).assertFail()
 	}
 }
 
 describe('SecurityHuksAgreeDHPromiseJsunit', function () {
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree001
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree001', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_001'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_001'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -462,34 +457,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree002
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree002', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_002'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_002'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -499,34 +489,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree003
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_PKCS7 MODE-MODE_CBC size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree003', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_003'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_003'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -536,34 +521,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGPKCS7,
-				HuksAgree002.HuksKeyBLOCK_MODECBC
+				HuksAgree002.HuksKeyBLOCKMODECBC
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree004
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_PKCS7 MODE-MODE_CBC size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree004', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_004'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_004'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -573,34 +553,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGPKCS7,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree005
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_CCM size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree005', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_005'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_005'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -610,34 +585,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODECCM
+				HuksAgree002.HuksKeyBLOCKMODECCM
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree006
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_CCM size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree006', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_006'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_006'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -647,34 +617,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEGCM
+				HuksAgree002.HuksKeyBLOCKMODEGCM
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree007
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_CTR size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree007', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_007'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_007'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -684,34 +649,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODECTR
+				HuksAgree002.HuksKeyBLOCKMODECTR
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree008
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA256  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree008', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_008'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_008'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -721,34 +681,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA256,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree009
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA384  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree009', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_009'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_009'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -758,34 +713,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA384,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree010
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA512  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree010', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_010'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_010'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -795,34 +745,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA512,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree011
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_NONE  MODE-MODE_CBC size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree011', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_011'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_011'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -832,34 +777,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODECBC
+				HuksAgree002.HuksKeyBLOCKMODECBC
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree012
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_NONE  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree012', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_012'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_012'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -869,34 +809,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree013
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_PKCS7  MODE-MODE_CBC size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree013', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_013'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_013'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -906,34 +841,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGPKCS7,
-				HuksAgree002.HuksKeyBLOCK_MODECBC
+				HuksAgree002.HuksKeyBLOCKMODECBC
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree014
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_PKCS7  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree014', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_014'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_014'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -943,34 +873,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGPKCS7,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree015
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_NONE  MODE-MODE_CCM size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree015', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_015'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_015'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -980,34 +905,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODECCM
+				HuksAgree002.HuksKeyBLOCKMODECCM
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree016
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_NONE  MODE-MODE_GCM size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree016', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_016'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_016'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1017,34 +937,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEGCM
+				HuksAgree002.HuksKeyBLOCKMODEGCM
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree017
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_NONE  MODE-MODE_CTR size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree017', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_017'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_017'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1054,34 +969,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODECTR
+				HuksAgree002.HuksKeyBLOCKMODECTR
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree018
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA256  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree018', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_018'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_018'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1091,33 +1001,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA256,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree019
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA384  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testAgreeDHSize4096Finish63KBAgree019', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_019'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_019'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1127,34 +1033,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA384,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree020
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_SHA512  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree020', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_020'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_020'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1164,33 +1065,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA512,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree021
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_NONE  MODE-MODE_CBC size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testAgreeDHSize4096Finish63KBAgree021', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_021'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_021'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1200,34 +1097,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODECBC
+				HuksAgree002.HuksKeyBLOCKMODECBC
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree022
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_NONE  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree022', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_022'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_022'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1237,34 +1129,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree023
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_PKCS7  MODE-MODE_CBC size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree023', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_023'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_023'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1274,34 +1161,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGPKCS7,
-				HuksAgree002.HuksKeyBLOCK_MODECBC
+				HuksAgree002.HuksKeyBLOCKMODECBC
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree024
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_PKCS7  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree024', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_024'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_024'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1311,34 +1193,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGPKCS7,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree025
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_NONE  MODE-MODE_CCM size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree025', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_025'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_025'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1348,34 +1225,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODECCM
+				HuksAgree002.HuksKeyBLOCKMODECCM
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree026
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_NONE  MODE-MODE_GCM size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree026', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_026'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_026'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1385,34 +1257,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEGCM
+				HuksAgree002.HuksKeyBLOCKMODEGCM
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree027
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_NONE  MODE-MODE_CTR size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree027', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_027'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_027'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1422,34 +1289,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTNONE,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODECTR
+				HuksAgree002.HuksKeyBLOCKMODECTR
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree028
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA256  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree028', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_028'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_028'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1459,33 +1321,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA256,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree029
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_SHA512  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
+
 	it('testAgreeDHSize4096Finish63KBAgree029', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_029'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_029'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1495,34 +1353,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA512,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree030
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_HMAC  keysize-KEY_SIZE_256 PURPOSE-PURPOSE_MAC DIGEST-DIGEST_SHA1  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree030', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_030'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_030'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1532,34 +1385,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA1,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree031
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_HMAC  keysize-KEY_SIZE_256 PURPOSE-PURPOSE_MAC DIGEST-DIGEST_SHA224  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree031', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_031'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_031'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1569,34 +1417,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA224,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree032
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_HMAC  keysize-KEY_SIZE_256 PURPOSE-PURPOSE_MAC DIGEST-DIGEST_SHA256  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree032', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_032'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_032'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1606,34 +1449,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA256,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree033
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_HMAC  keysize-KEY_SIZE_256 PURPOSE-PURPOSE_MAC DIGEST-DIGEST_SHA384  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree033', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_033'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_033'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1643,34 +1481,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA384,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/**
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree034
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_HMAC  keysize-KEY_SIZE_256 PURPOSE-PURPOSE_MAC DIGEST-DIGEST_SHA512  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree034', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_034'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_034'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1680,34 +1513,29 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA512,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()
 	})
 
-	/*
-	 * @tc.name: testAgreeDHSize4096Finish63KBAgree035
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA384  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it('testAgreeDHSize4096Finish63KBAgree035', 0, async function (done) {
-		const srcKeyAlies_1 =
+		const srcKeyAliesFrist =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_01_035'
-		const srcKeyAlies_2 =
+		const srcKeyAliesSecond =
 			'testAgreeDHSize4096Finish63KBAgreeKeyAlias_02_035'
-		let HuksOptions_Finish = {
+		let HuksOptionsFinish = {
 			properties: new Array(
 				HuksAgree002.HuksKeySTORAGE,
 				HuksAgree002.HuksKeyISKEYALIAS,
@@ -1717,18 +1545,18 @@ describe('SecurityHuksAgreeDHPromiseJsunit', function () {
 				HuksAgree002.HuksKeyDIGESTSHA384,
 				{
 					tag: HksTag.HKS_TAG_KEY_ALIAS,
-					value: stringToUint8Array(srcKeyAlies_1),
+					value: stringToUint8Array(srcKeyAliesFrist),
 				},
 				HuksAgree002.HuksKeyPADDINGNONE,
-				HuksAgree002.HuksKeyBLOCK_MODEECB
+				HuksAgree002.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
 		await publicAgreeFunc(
-			srcKeyAlies_1,
-			srcKeyAlies_2,
-			HuksOptions_63kb,
-			HuksOptions_Finish,
+			srcKeyAliesFrist,
+			srcKeyAliesSecond,
+			HuksOptions63kb,
+			HuksOptionsFinish,
 			'finish'
 		)
 		done()

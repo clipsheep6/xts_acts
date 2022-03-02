@@ -21,8 +21,8 @@ let handle = {}
 let handle1
 let handle2
 let finishData_1
-let finishData_2
-let srcData63 = Data.Date_63KB
+let finishDataSecond
+let srcData63 = Data.Date63KB
 let srcData63Kb = stringToUint8Array(srcData63)
 
 let HksKeyAlg = {
@@ -217,29 +217,29 @@ let HuksDerive002 = {
 		tag: HksTag.HKS_TAG_DIGEST,
 		value: HksKeyDigest.HKS_DIGEST_SHA512,
 	},
-	HuksKeyBLOCK_MODECBC: {
+	HuksKeyBLOCKMODECBC: {
 		tag: HksTag.HKS_TAG_BLOCK_MODE,
 		value: HksCipherMode.HKS_MODE_CBC,
 	},
-	HuksKeyBLOCK_MODECCM: {
+	HuksKeyBLOCKMODECCM: {
 		tag: HksTag.HKS_TAG_BLOCK_MODE,
 		value: HksCipherMode.HKS_MODE_CCM,
 	},
-	HuksKeyBLOCK_MODEECB: {
+	HuksKeyBLOCKMODEECB: {
 		tag: HksTag.HKS_TAG_BLOCK_MODE,
 		value: HksCipherMode.HKS_MODE_ECB,
 	},
-	HuksKeyBLOCK_MODECTR: {
+	HuksKeyBLOCKMODECTR: {
 		tag: HksTag.HKS_TAG_BLOCK_MODE,
 		value: HksCipherMode.HKS_MODE_CTR,
 	},
-	HuksKeyBLOCK_MODEGCM: {
+	HuksKeyBLOCKMODEGCM: {
 		tag: HksTag.HKS_TAG_BLOCK_MODE,
 		value: HksCipherMode.HKS_MODE_GCM,
 	},
 }
 
-let HuksOptions_63kb = {
+let HuksOptions63kb = {
 	properties: new Array(
 		HuksDerive002.HuksKeyAlgAES,
 		HuksDerive002.HuksKeyPurposePBKDF2,
@@ -314,17 +314,17 @@ async function publicDeriveUpdateFunc(HuksOptions) {
 }
 
 async function publicDeriveFinishAbortFunc(
-	HuksOptions_Finish,
+	HuksOptionsFinish,
 	thirdInderfaceName
 ) {
 	if (thirdInderfaceName == 'finish') {
 		console.log(
-			`test befor finish HuksOptions_Finish ${JSON.stringify(
-				HuksOptions_Finish
+			`test befor finish HuksOptionsFinish ${JSON.stringify(
+				HuksOptionsFinish
 			)}`
 		)
 		await huks
-			.finish(handle, HuksOptions_Finish)
+			.finish(handle, HuksOptionsFinish)
 			.then((data) => {
 				console.log(`test finish data ${JSON.stringify(data)}`)
 				expect(data.errorCode == 0).assertTrue()
@@ -336,12 +336,12 @@ async function publicDeriveFinishAbortFunc(
 				expect(null).assertFail()
 			})
 	} else {
-		let HuksOptions_Abort = new Array({
+		let HuksOptionsAbort = new Array({
 			tag: HksTag.HKS_TAG_KEY_STORAGE_FLAG,
 			value: HksKeyStorageType.HKS_STORAGE_TEMP,
 		})
 		await huks
-			.abort(handle, HuksOptions_Abort)
+			.abort(handle, HuksOptionsAbort)
 			.then((data) => {
 				console.log(`test abort data ${JSON.stringify(data)}`)
 				expect(data.errorCode == 0).assertTrue()
@@ -376,7 +376,7 @@ async function publicDeriveDeleteFunc(srcKeyAlies, HuksOptions) {
 async function publicDeriveFunc(
 	srcKeyAlies,
 	HuksOptions,
-	HuksOptions_Finish,
+	HuksOptionsFinish,
 	thirdInderfaceName
 ) {
 	try {
@@ -386,10 +386,7 @@ async function publicDeriveFunc(
 
 		await publicDeriveInitFunc(srcKeyAlies, HuksOptions)
 		await publicDeriveUpdateFunc(HuksOptions)
-		await publicDeriveFinishAbortFunc(
-			HuksOptions_Finish,
-			thirdInderfaceName
-		)
+		await publicDeriveFinishAbortFunc(HuksOptionsFinish, thirdInderfaceName)
 
 		HuksOptions.properties.splice(0, 1, HuksDerive002.HuksKeyAlgAES)
 		HuksOptions.properties.splice(3, 1, HuksDerive002.HuksKeyPBKDF2Size128)
@@ -400,18 +397,13 @@ async function publicDeriveFunc(
 }
 
 describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive001
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_ECB size-2048 inputdate-500kb  init>update>finish
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive001',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_001'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -421,35 +413,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive002
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive002',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_002'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -459,35 +446,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive003
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_PKCS7 MODE-MODE_CBC size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive003',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_003'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -497,35 +479,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGPKCS7,
-					HuksDerive002.HuksKeyBLOCK_MODECBC
+					HuksDerive002.HuksKeyBLOCKMODECBC
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive004
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_PKCS7 MODE-MODE_CBC size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive004',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_004'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -535,35 +512,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGPKCS7,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive005
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_CCM size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive005',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_005'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -573,35 +545,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODECCM
+					HuksDerive002.HuksKeyBLOCKMODECCM
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive006
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_CCM size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive006',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_006'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -611,35 +578,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEGCM
+					HuksDerive002.HuksKeyBLOCKMODEGCM
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive007
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|PURPOSE_DECRYPT PADDING-PADDING_NONE MODE-MODE_CTR size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive007',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_007'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -649,35 +611,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODECTR
+					HuksDerive002.HuksKeyBLOCKMODECTR
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive008
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA256  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive008',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_008'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -687,35 +644,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA256,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive009
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA384  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive009',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_009'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -725,35 +677,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA384,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive010
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA512  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive010',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_010'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -763,35 +710,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA512,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive011
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_NONE  MODE-MODE_CBC size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive011',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_011'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -801,35 +743,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODECBC
+					HuksDerive002.HuksKeyBLOCKMODECBC
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive012
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_NONE  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive012',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_012'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -839,35 +776,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive013
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_PKCS7  MODE-MODE_CBC size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive013',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_013'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -877,35 +809,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGPKCS7,
-					HuksDerive002.HuksKeyBLOCK_MODECBC
+					HuksDerive002.HuksKeyBLOCKMODECBC
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive014
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_PKCS7  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive014',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_014'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -915,35 +842,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGPKCS7,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive015
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_NONE  MODE-MODE_CCM size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive015',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_015'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -953,35 +875,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODECCM
+					HuksDerive002.HuksKeyBLOCKMODECCM
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive016
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_NONE  MODE-MODE_GCM size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive016',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_016'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -991,35 +908,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEGCM
+					HuksDerive002.HuksKeyBLOCKMODEGCM
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive017
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_NONE  MODE-MODE_CTR size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive017',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_017'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1029,35 +941,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODECTR
+					HuksDerive002.HuksKeyBLOCKMODECTR
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive018
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA256  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive018',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_018'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1067,34 +974,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA256,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive019
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA384  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive019',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_019'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1104,35 +1007,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA384,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive020
-	 * @tc.desc: keysize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_SHA512  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive020',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_020'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1142,34 +1040,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA512,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive021
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_NONE  MODE-MODE_CBC size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive021',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_021'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1179,35 +1073,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODECBC
+					HuksDerive002.HuksKeyBLOCKMODECBC
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive022
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_NONE  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive022',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_022'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1217,35 +1106,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive023
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_PKCS7  MODE-MODE_CBC size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive023',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_023'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1255,35 +1139,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGPKCS7,
-					HuksDerive002.HuksKeyBLOCK_MODECBC
+					HuksDerive002.HuksKeyBLOCKMODECBC
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive024
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_PKCS7  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive024',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_024'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1293,35 +1172,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGPKCS7,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive025
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_NONE  MODE-MODE_CCM size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive025',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_025'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1331,35 +1205,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODECCM
+					HuksDerive002.HuksKeyBLOCKMODECCM
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive026
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_NONE  MODE-MODE_GCM size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive026',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_026'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1369,35 +1238,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEGCM
+					HuksDerive002.HuksKeyBLOCKMODEGCM
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive027
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT PADDING-PADDING_NONE  MODE-MODE_CTR size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive027',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_027'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1407,35 +1271,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTNONE,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODECTR
+					HuksDerive002.HuksKeyBLOCKMODECTR
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive028
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA256  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive028',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_028'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1445,34 +1304,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA256,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive029
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_ENCRYPT|DECRYPT DIGEST-DIGEST_SHA512  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
+
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive029',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_029'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1482,35 +1337,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA512,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive030
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_HMAC  keysize-KEY_SIZE_256 PURPOSE-PURPOSE_MAC DIGEST-DIGEST_SHA1  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive030',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_030'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1520,35 +1370,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA1,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive031
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_HMAC  keysize-KEY_SIZE_256 PURPOSE-PURPOSE_MAC DIGEST-DIGEST_SHA224  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive031',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_031'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1558,35 +1403,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA224,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive032
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_HMAC  keysize-KEY_SIZE_256 PURPOSE-PURPOSE_MAC DIGEST-DIGEST_SHA256  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive032',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_032'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1596,35 +1436,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA256,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive033
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_HMAC  keysize-KEY_SIZE_256 PURPOSE-PURPOSE_MAC DIGEST-DIGEST_SHA384  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive033',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_033'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1634,35 +1469,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA384,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/**
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive034
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_HMAC  keysize-KEY_SIZE_256 PURPOSE-PURPOSE_MAC DIGEST-DIGEST_SHA512  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive034',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_034'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1672,35 +1502,30 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA512,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
 		}
 	)
 
-	/*
-	 * @tc.name: testDerivePBKDF2Size128SHA256Abort63KBDerive035
-	 * @tc.desc: DHsize-KEY_SIZE_2048 FLAG-PERSISTENT  ALG-ALG_AES  keysize-KEY_SIZE_192 PURPOSE-PURPOSE_DERIVE/ENCRYPT|DECRYPT DIGEST-DIGEST_SHA384  MODE-MODE_ECB size-2048 inputdate-500kb  init>update>abort
-	 * @tc.type: FUNC
-	 */
 	it(
 		'testDerivePBKDF2Size128SHA256Abort63KBDerive035',
 		0,
 		async function (done) {
-			const srcKeyAlies_1 =
+			const srcKeyAliesFrist =
 				'testDerivePBKDF2Size128SHA256Abort63KBDeriveKeyAlias_01_035'
-			let HuksOptions_Finish = {
+			let HuksOptionsFinish = {
 				properties: new Array(
 					HuksDerive002.HuksKeySTORAGE,
 					HuksDerive002.HuksKeyISKEYALIAS,
@@ -1710,17 +1535,17 @@ describe('SecurityHuksDerivePBKDF2PromiseJsunit', function () {
 					HuksDerive002.HuksKeyDIGESTSHA384,
 					{
 						tag: HksTag.HKS_TAG_KEY_ALIAS,
-						value: stringToUint8Array(srcKeyAlies_1),
+						value: stringToUint8Array(srcKeyAliesFrist),
 					},
 					HuksDerive002.HuksKeyPADDINGNONE,
-					HuksDerive002.HuksKeyBLOCK_MODEECB
+					HuksDerive002.HuksKeyBLOCKMODEECB
 				),
 				inData: srcData63Kb,
 			}
 			await publicDeriveFunc(
-				srcKeyAlies_1,
-				HuksOptions_63kb,
-				HuksOptions_Finish,
+				srcKeyAliesFrist,
+				HuksOptions63kb,
+				HuksOptionsFinish,
 				'abort'
 			)
 			done()
