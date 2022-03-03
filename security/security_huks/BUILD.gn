@@ -26,6 +26,7 @@ group("security_huks") {
       "huks_signverify_callback:hukssignverify_callback_js_test",
       "huks_signverify_promise:hukssignverify_promise_js_test",
       "huks_xts_three_stage:ActsHuksThreeStageTest"
+	  "huks_xts_three_stage_fuzz:huks_three_stage_fuzz_test"
     ]
   }
 }

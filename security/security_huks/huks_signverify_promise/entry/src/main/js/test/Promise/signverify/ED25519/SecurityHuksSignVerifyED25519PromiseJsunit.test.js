@@ -96,6 +96,7 @@ let srcData63Kb = stringToUint8Array(srcData63)
 
 let srcData63B = Data.data63B
 let srcData63Byte = stringToUint8Array(srcData63B)
+
 let srcData65B = Data.data65B
 let srcData65Byte = stringToUint8Array(srcData65B)
 
@@ -468,7 +469,7 @@ describe('SecurityHuksSignVerifyED25519PromiseJsunit', function () {
 				HuksSignVerify004.HuksKeyED25519Size256,
 				HuksSignVerify004.HuksTagDigestSHA1
 			),
-			inData: srcData65Kb,
+			inData: srcData65Byte,
 		}
 		await publicSignVerifyFunc(
 			srcKeyAlies,
