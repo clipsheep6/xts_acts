@@ -41,11 +41,11 @@
 		{
             "type": "ShellKit",
             "run-command": [
-                "chmod -R 777 /data/media/*",
-                "setenforce 0"
+                "chmod -R 777 /data/media/*"
+                
             ],
             "teardown-command":[
-                "setenforce 1"
+               
             ]
         },
         {
