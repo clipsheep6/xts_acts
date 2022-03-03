@@ -38,6 +38,7 @@
             "run-command": [
                 "chmod -R 666 /data/media/*",
                 "setenforce 0"
+                
             ],
             "teardown-command":[
                 "setenforce 1"

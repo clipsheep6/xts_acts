@@ -39,11 +39,11 @@
                 "touch /data/accounts/account_0/appdata/recorder/test26.mp4",
                 "touch /data/accounts/account_0/appdata/recorder/test27.mp4",
                 "touch /data/accounts/account_0/appdata/recorder/testAPI.m4a",
-                "chmod -R 777 /data/accounts/account_0/appdata/recorder/*",
-                "setenforce 0"
+                "chmod -R 777 /data/accounts/account_0/appdata/recorder/*"
+                
             ],
             "teardown-command":[
-                "setenforce 1"
+               
             ]
         },
         {
