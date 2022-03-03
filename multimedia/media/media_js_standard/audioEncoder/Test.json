@@ -21,11 +21,11 @@
             "run-command": [
                 "mkdir -p /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/results/",
                 "chmod 777 -R /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder",
-                "chmod 777 /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/*",
-                "setenforce 0"
+                "chmod 777 /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/*"
+                
             ],
             "teardown-command":[
-                "setenforce 1"
+                
             ]
         },
         {

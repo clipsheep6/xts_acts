@@ -59,11 +59,10 @@
                 "touch /data/media/47.mp4",
                 "touch /data/media/48.mp4",
                 "touch /data/media/API.mp4",
-                "chmod -R 777 /data/media",
-                "setenforce 0"
+                "chmod -R 777 /data/media"
             ],
             "teardown-command":[
-                "setenforce 1"
+              
             ]
         },
         {

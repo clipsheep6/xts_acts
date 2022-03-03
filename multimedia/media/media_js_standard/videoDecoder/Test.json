@@ -22,11 +22,11 @@
 		{
             "type": "ShellKit",
             "run-command": [
-                "mkdir -p /data/accounts/account_0/appdata/ohos.acts.multimedia.videodecoder/shared/",
-                "setenforce 0"
+                "mkdir -p /data/accounts/account_0/appdata/ohos.acts.multimedia.videodecoder/shared/"
+              
             ],
             "teardown-command":[
-                "setenforce 1"
+               
             ]
         },
         {
