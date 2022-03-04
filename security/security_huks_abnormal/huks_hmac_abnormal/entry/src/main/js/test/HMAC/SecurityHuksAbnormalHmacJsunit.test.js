@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { describe, it, expect, beforeEach } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
 import Data from '../../../../../../../utils/Base/data/data.json'
@@ -83,20 +98,20 @@ async function publicHmacUpdateFunc(handle, HuksOptions, Type) {
 	)
 	console.log(`test start update Type ${Type}`)
 	let dateSize = 64 * 1024
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	console.log(`test start update`)
 	let inDataArray = Tools.stringToArray(HuksOptions.inData)
 	console.log(`test ${inDataArray.length}`)
 	if (inDataArray.length <= dateSize) {
 		HuksOptions.inData = new Uint8Array(inDataArray)
 		await update(handle, HuksOptions, Type)
-		HuksOptions.inData = _HuksOptions_inData
+		HuksOptions.inData = tempHuksOptionsInData
 	} else {
 		let count = Math.floor(inDataArray.length / dateSize)
 		let remainder = inDataArray.length % dateSize
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = new Uint8Array(
-				Tools.stringToArray(_HuksOptions_inData).slice(
+				Tools.stringToArray(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
@@ -105,7 +120,7 @@ async function publicHmacUpdateFunc(handle, HuksOptions, Type) {
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = new Uint8Array(
-				Tools.stringToArray(_HuksOptions_inData).slice(
+				Tools.stringToArray(tempHuksOptionsInData).slice(
 					dateSize * count,
 					inDataArray.length
 				)

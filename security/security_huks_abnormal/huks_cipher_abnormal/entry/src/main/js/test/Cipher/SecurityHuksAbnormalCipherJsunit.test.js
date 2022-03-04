@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { describe, it, expect, beforeEach } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
 import Data from '../../../../../../../utils/Base/data/data.json'
@@ -31,7 +46,7 @@ let HuksCipher002 = {
 		tag: Params.HksTag.HKS_TAG_KEY_SIZE,
 		value: Params.HksKeySize.HKS_KEY_SIZE_512,
 	},
-	HuksKeyRSAPADDINGPKCS1_V1_5: {
+	HuksKeyRSAPADDINGPKCS1V15: {
 		tag: Params.HksTag.HKS_TAG_PADDING,
 		value: Params.HksKeyPadding.HKS_PADDING_PKCS1_V1_5,
 	},
@@ -45,7 +60,7 @@ let HuksCipher002 = {
 	},
 }
 
-let g_inData_32_array = Tools.stringToUint8Array(g_inData_32)
+let gInData32Array = Tools.stringToUint8Array(g_inData_32)
 
 let srcData64 = Data.Data_64KB
 let srcData64Kb = Tools.stringToUint8Array(srcData64)
@@ -129,7 +144,7 @@ async function publicInitFunc(srcKeyAlies, HuksOptions, Type) {
 
 async function publicUpdateFunc(handle, HuksOptions, Type) {
 	let dateSize = 64
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = HuksOptions.inData
 	if (Array.from(inDataArray).length < dateSize) {
 		await update(handle, HuksOptions, Type)
@@ -139,19 +154,19 @@ async function publicUpdateFunc(handle, HuksOptions, Type) {
 		let remainder = Array.from(inDataArray).length % dateSize
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = new Uint8Array(
-				Array.from(_HuksOptions_inData).slice(
+				Array.from(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
 			)
 			await update(handle, HuksOptions, Type)
-			HuksOptions.inData = _HuksOptions_inData
+			HuksOptions.inData = tempHuksOptionsInData
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = new Uint8Array(
-				Array.from(_HuksOptions_inData).slice(
+				Array.from(tempHuksOptionsInData).slice(
 					dateSize * count,
-					Tools.Uint8ArrayToString(inDataArray).length
+					Tools.uint8ArrayToString(inDataArray).length
 				)
 			)
 			await update(handle, HuksOptions, Type)
@@ -206,8 +221,8 @@ async function finish(handle, HuksOptions, isEncrypt, Type) {
 				if (isEncrypt) {
 					updateResult = Array.from(data.outData)
 					if (
-						Tools.Uint8ArrayToString(data.outData) ===
-						Tools.Uint8ArrayToString(encryptedData)
+						Tools.uint8ArrayToString(data.outData) ===
+						Tools.uint8ArrayToString(encryptedData)
 					) {
 						expect(null).assertFail()
 					} else {
@@ -215,8 +230,8 @@ async function finish(handle, HuksOptions, isEncrypt, Type) {
 					}
 				} else {
 					if (
-						Tools.Uint8ArrayToString(data.outData) ===
-						Tools.Uint8ArrayToString(encryptedData)
+						Tools.uint8ArrayToString(data.outData) ===
+						Tools.uint8ArrayToString(encryptedData)
 					) {
 						expect(data.errorCode == 0).assertTrue()
 					} else {
@@ -288,7 +303,7 @@ async function publicCipher(
 describe('SecurityHuksAbnormalCipherJsunit', function () {
 	beforeEach(function () {
 		handle = {}
-		encryptedData = g_inData_32_array
+		encryptedData = gInData32Array
 		updateResult = new Array()
 		exportKey = {}
 		genHuksOptions = {
@@ -297,7 +312,7 @@ describe('SecurityHuksAbnormalCipherJsunit', function () {
 				HuksCipher002.HuksKeyPurpose,
 				HuksCipher002.HuksKeyRSASize512,
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
-				HuksCipher002.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
 				HuksCipher002.HuksKeyRSADIGESTSHA256
 			),
 			inData: Tools.stringToUint8Array('0'),
@@ -306,11 +321,11 @@ describe('SecurityHuksAbnormalCipherJsunit', function () {
 			properties: new Array(
 				HuksCipher002.HuksKeyAlgRSA,
 				HuksCipher002.HuksKeyRSASize512,
-				HuksCipher002.HuksKeyRSAPADDINGPKCS1_V1_5,
+				HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
 				HuksCipher002.HuksKeyRSABLOCKMODEECB,
 				HuksCipher002.HuksKeyRSADIGESTSHA256
 			),
-			inData: g_inData_32_array,
+			inData: gInData32Array,
 			outData: Tools.stringToUint8Array('0'),
 		}
 	})

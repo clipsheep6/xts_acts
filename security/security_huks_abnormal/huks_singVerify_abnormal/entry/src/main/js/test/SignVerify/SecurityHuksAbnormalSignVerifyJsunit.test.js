@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { describe, it, expect, beforeEach } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
 import Data from '../../../../../../../utils/Base/data/data.json'
@@ -32,7 +47,7 @@ let HuksSignVerify002 = {
 		tag: Params.HksTag.HKS_TAG_DIGEST,
 		value: Params.HksKeyDigest.HKS_DIGEST_SHA1,
 	},
-	HuksKeyRSAPurposeSING_VERIFY: {
+	HuksKeyRSAPurposeSINGVERIFY: {
 		tag: Params.HksTag.HKS_TAG_PURPOSE,
 		value:
 			Params.HksKeyPurpose.HKS_KEY_PURPOSE_SIGN |
@@ -123,35 +138,35 @@ async function publicInitFunc(keyAlias, HuksOptions, Type) {
 
 async function publicUpdateFunc(handle, HuksOptions, Type) {
 	let dateSize = 64
-	let _HuksOptions_inData = HuksOptions.inData
+	let tempHuksOptionsInData = HuksOptions.inData
 	let inDataArray = HuksOptions.inData
-	if (Tools.Uint8ArrayToString(inDataArray).length < dateSize) {
+	if (Tools.uint8ArrayToString(inDataArray).length < dateSize) {
 		await update(handle, HuksOptions, Type)
-		HuksOptions.inData = _HuksOptions_inData
+		HuksOptions.inData = tempHuksOptionsInData
 	} else {
 		let count = Math.floor(
-			Tools.Uint8ArrayToString(inDataArray).length / dateSize
+			Tools.uint8ArrayToString(inDataArray).length / dateSize
 		)
-		let remainder = Tools.Uint8ArrayToString(inDataArray).length % dateSize
+		let remainder = Tools.uint8ArrayToString(inDataArray).length % dateSize
 		for (let i = 0; i < count; i++) {
 			HuksOptions.inData = Tools.stringToUint8Array(
-				Tools.Uint8ArrayToString(_HuksOptions_inData).slice(
+				Tools.uint8ArrayToString(tempHuksOptionsInData).slice(
 					dateSize * i,
 					dateSize * (i + 1)
 				)
 			)
 			await update(handle, HuksOptions, Type)
-			HuksOptions.inData = _HuksOptions_inData
+			HuksOptions.inData = tempHuksOptionsInData
 		}
 		if (remainder !== 0) {
 			HuksOptions.inData = Tools.stringToUint8Array(
-				Tools.Uint8ArrayToString(_HuksOptions_inData).slice(
+				Tools.uint8ArrayToString(tempHuksOptionsInData).slice(
 					dateSize * count,
-					Tools.Uint8ArrayToString(inDataArray).length
+					Tools.uint8ArrayToString(inDataArray).length
 				)
 			)
 			await update(handle, HuksOptions, Type)
-			HuksOptions.inData = _HuksOptions_inData
+			HuksOptions.inData = tempHuksOptionsInData
 		}
 	}
 }
@@ -231,7 +246,7 @@ async function publicSignVerify(srcKeyAlias, HuksOptions, Type) {
 	HuksOptions.properties.splice(
 		1,
 		1,
-		HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+		HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 	)
 	HuksOptions.properties.splice(2, 0, HuksSignVerify002.HuksKeySIZE1024)
 
@@ -248,7 +263,7 @@ async function publicSignVerify(srcKeyAlias, HuksOptions, Type) {
 	HuksOptions.properties.splice(
 		1,
 		1,
-		HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+		HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 	)
 	console.log(
 		`test before exportKey Gen_HuksOptions: ${JSON.stringify(HuksOptions)}`
@@ -285,7 +300,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Fail')
 			done()
@@ -307,7 +322,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Fail')
 			done()
@@ -329,7 +344,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Fail')
 			done()
@@ -344,7 +359,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -365,7 +380,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -380,7 +395,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -405,7 +420,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -420,7 +435,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -443,7 +458,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -458,7 +473,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -482,7 +497,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -497,7 +512,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -521,7 +536,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -536,7 +551,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -560,7 +575,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -575,7 +590,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -598,7 +613,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -613,7 +628,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -637,7 +652,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -652,7 +667,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -676,7 +691,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -691,7 +706,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -715,7 +730,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -730,7 +745,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -751,7 +766,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -765,7 +780,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -786,7 +801,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -801,7 +816,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -824,7 +839,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -839,7 +854,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -862,7 +877,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -877,7 +892,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -899,7 +914,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -914,7 +929,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -936,7 +951,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -951,7 +966,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -975,7 +990,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -990,7 +1005,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -1013,7 +1028,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -1028,7 +1043,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			HuksOptions.properties.splice(
 				2,
@@ -1050,7 +1065,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -1079,7 +1094,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -1107,7 +1122,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -1135,7 +1150,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -1171,7 +1186,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1212,7 +1227,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1254,7 +1269,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1297,7 +1312,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1340,7 +1355,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1379,7 +1394,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1420,7 +1435,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1461,7 +1476,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1504,7 +1519,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1544,7 +1559,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1584,7 +1599,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1626,7 +1641,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1668,7 +1683,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1709,7 +1724,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1750,7 +1765,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1796,7 +1811,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			HuksOptions.properties.splice(
@@ -1834,7 +1849,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()
@@ -1864,7 +1879,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 
@@ -1895,7 +1910,7 @@ describe('SecurityHuksAbnormalSignVerifyJsunit', function () {
 			HuksOptions.properties.splice(
 				1,
 				1,
-				HuksSignVerify002.HuksKeyRSAPurposeSING_VERIFY
+				HuksSignVerify002.HuksKeyRSAPurposeSINGVERIFY
 			)
 			await publicDeleteKeyFunc(srcKeyAlias, HuksOptions, 'Success')
 			done()

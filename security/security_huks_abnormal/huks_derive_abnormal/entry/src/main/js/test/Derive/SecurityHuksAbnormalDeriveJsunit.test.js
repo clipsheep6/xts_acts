@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { describe, it, expect, beforeEach } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
 import Data from '../../../../../../../utils/Base/data/data.json'
@@ -69,14 +84,14 @@ let HuksDerive001 = {
 		tag: Params.HksTag.HKS_TAG_DIGEST,
 		value: Params.HksKeyDigest.HKS_DIGEST_NONE,
 	},
-	HuksKeyBLOCK_MODEECB: {
+	HuksKeyBLOCKMODEECB: {
 		tag: Params.HksTag.HKS_TAG_BLOCK_MODE,
 		value: Params.HksCipherMode.HKS_MODE_ECB,
 	},
 }
 
 let HuksOptions
-let HuksOptions_Finish
+let HuksOptionsFinish
 
 async function publicDeriveGenFunc(srcKeyAlies, HuksOptions) {
 	await huks
@@ -133,13 +148,13 @@ async function publicDeriveUpdateFunc(handle, HuksOptions, Type) {
 
 async function publicDeriveFinishAbortFunc(
 	handle,
-	HuksOptions_Finish,
+	HuksOptionsFinish,
 	thirdInderfaceName,
 	Type
 ) {
 	if (thirdInderfaceName == 'finish') {
 		await huks
-			.finish(handle, HuksOptions_Finish)
+			.finish(handle, HuksOptionsFinish)
 			.then((data) => {
 				console.log(`test finish data ${JSON.stringify(data)}`)
 				if (Type == 'Fail') {
@@ -155,7 +170,7 @@ async function publicDeriveFinishAbortFunc(
 				expect(null).assertFail()
 			})
 	} else {
-		let HuksOptions_Abort = new Array({
+		let HuksOptionsAbort = new Array({
 			tag: Params.HksTag.HKS_TAG_KEY_STORAGE_FLAG,
 			value: Params.HksKeyStorageType.HKS_STORAGE_TEMP,
 		})
@@ -205,7 +220,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 			),
 			inData: srcData63Kb,
 		}
-		HuksOptions_Finish = {
+		HuksOptionsFinish = {
 			properties: new Array(
 				HuksDerive001.HuksKeySTORAGE,
 				HuksDerive001.HuksKeyISKEYALIAS,
@@ -214,7 +229,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 				HuksDerive001.HuksKeyPurposeENCRYPTDECRYPT,
 				HuksDerive001.HuksKeyDIGESTNONE,
 				HuksDerive001.HuksKeyPADDINGNONE,
-				HuksDerive001.HuksKeyBLOCK_MODEECB
+				HuksDerive001.HuksKeyBLOCKMODEECB
 			),
 			inData: srcData63Kb,
 		}
@@ -222,7 +237,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1015', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1015'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -231,7 +246,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		await publicDeriveUpdateFunc(handle, HuksOptions, 'Fail')
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
@@ -240,7 +255,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1016', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1016'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -248,7 +263,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		HuksOptions.properties.splice(3, 1, HuksDerive001.HuksKeyDERIVEKEYSIZE)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
@@ -257,7 +272,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1017', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1017'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -265,7 +280,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		HuksOptions.properties.splice(3, 1, HuksDerive001.HuksKeyDERIVEKEYSIZE)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
@@ -274,7 +289,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1020', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1020'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -283,7 +298,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		HuksOptions.properties.splice(3, 1, HuksDerive001.HuksKeyDERIVEKEYSIZE)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
@@ -296,7 +311,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1021', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1021'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -307,7 +322,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		await publicDeriveUpdateFunc(handle, HuksOptions, 'Fail')
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
@@ -319,7 +334,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1022', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1022'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -329,13 +344,13 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		await publicDeriveUpdateFunc(handle, HuksOptions, 'Fail')
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
@@ -347,7 +362,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1023', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1023'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -357,13 +372,13 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		await publicDeriveUpdateFunc(handle, HuksOptions, 'Fail')
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
@@ -375,7 +390,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1024', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1024'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -385,7 +400,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		await publicDeriveUpdateFunc(handle, HuksOptions, 'Fail')
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
@@ -397,7 +412,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1025', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1025'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -408,7 +423,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		await publicDeriveUpdateFunc(handle, HuksOptions, 'Fail')
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
@@ -420,7 +435,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1026', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1026'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -430,13 +445,13 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		await publicDeriveUpdateFunc(handle, HuksOptions, 'Fail')
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
@@ -448,7 +463,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1027', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1027'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -458,13 +473,13 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		await publicDeriveUpdateFunc(handle, HuksOptions, 'Fail')
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
@@ -476,7 +491,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1028', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1028'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -485,7 +500,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		HuksOptions.properties.splice(3, 1, HuksDerive001.HuksKeyDERIVEKEYSIZE)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
@@ -497,7 +512,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1029', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1029'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -506,7 +521,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		HuksOptions.properties.splice(3, 1, HuksDerive001.HuksKeyDERIVEKEYSIZE)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
@@ -518,7 +533,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1030', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1030'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -527,7 +542,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		HuksOptions.properties.splice(3, 1, HuksDerive001.HuksKeyDERIVEKEYSIZE)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
@@ -540,7 +555,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1031', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1031'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -549,7 +564,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		HuksOptions.properties.splice(3, 1, HuksDerive001.HuksKeyDERIVEKEYSIZE)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
@@ -562,7 +577,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1032', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1032'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -571,13 +586,13 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		HuksOptions.properties.splice(3, 1, HuksDerive001.HuksKeyDERIVEKEYSIZE)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Fail'
 		)
@@ -589,7 +604,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1033', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1033'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -598,13 +613,13 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		HuksOptions.properties.splice(3, 1, HuksDerive001.HuksKeyDERIVEKEYSIZE)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Fail'
 		)
@@ -616,7 +631,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1034', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1034'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -628,7 +643,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		await publicDeriveUpdateFunc(handle, HuksOptions, 'Success')
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'finish',
 			'Success'
 		)
@@ -641,7 +656,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 
 	it('security_huks_third_abnormal_derive_1035', 0, async function (done) {
 		const srcKeyAlies = 'security_huks_third_abnormal_derive_1035'
-		HuksOptions_Finish.properties.splice(6, 0, {
+		HuksOptionsFinish.properties.splice(6, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
 			value: Tools.stringToUint8Array(srcKeyAlies),
 		})
@@ -653,7 +668,7 @@ describe('SecurityHuksAbnormalDeriveJsunit', function () {
 		await publicDeriveUpdateFunc(handle, HuksOptions, 'Success')
 		await publicDeriveFinishAbortFunc(
 			handle,
-			HuksOptions_Finish,
+			HuksOptionsFinish,
 			'abort',
 			'Success'
 		)
