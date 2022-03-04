@@ -25,7 +25,7 @@ let exportKeyFrist
 let exportKeySecond
 let handle = {}
 
-let srcData63 = Data.Data_63B
+let srcData63 = Data.Data_63KB
 let srcData63Kb = Tools.stringToUint8Array(srcData63)
 
 let srcData64 = Data.Data_64KB
@@ -191,7 +191,7 @@ async function publicAgreeFinishAbortFunc(
 			value: Params.HksKeyStorageType.HKS_STORAGE_TEMP,
 		})
 		await huks
-			.abort(handle, HuksOptions_Abort)
+			.abort(handle, HuksOptionsAbort)
 			.then((data) => {
 				console.log(`test abort data ${JSON.stringify(data)}`)
 				if (Type == 'Fail') {
@@ -382,7 +382,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		let srcKeyAliasThree = srcKeyAliasSecond + 'final'
-		await publicAgreeDeleteFunc(srcKeyAlias_3, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasThree, HuksOptions)
 		done()
 	})
 
@@ -1138,7 +1138,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		let srcKeyAliasThree = srcKeyAliasSecond + 'final'
-		await publicAgreeDeleteFunc(srcKeyAlias_3, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasThree, HuksOptions)
 		done()
 	})
 

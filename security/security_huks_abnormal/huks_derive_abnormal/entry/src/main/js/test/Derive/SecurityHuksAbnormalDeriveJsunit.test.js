@@ -175,7 +175,7 @@ async function publicDeriveFinishAbortFunc(
 			value: Params.HksKeyStorageType.HKS_STORAGE_TEMP,
 		})
 		await huks
-			.abort(handle, HuksOptions_Abort)
+			.abort(handle, HuksOptionsAbort)
 			.then((data) => {
 				console.log(`test abort data ${JSON.stringify(data)}`)
 				if (Type == 'Fail') {

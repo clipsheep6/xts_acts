@@ -217,7 +217,8 @@ async function finish(handle, HuksOptions, isEncrypt, Type) {
 			console.log(`test finish data: ${JSON.stringify(data)}`)
 			if (Type == 'Fail') {
 				expect(data.errorCode !== 0).assertTrue()
-			} else {
+			}
+			if (Type == 'Success') {
 				if (isEncrypt) {
 					updateResult = Array.from(data.outData)
 					if (
@@ -228,7 +229,8 @@ async function finish(handle, HuksOptions, isEncrypt, Type) {
 					} else {
 						expect(data.errorCode == 0).assertTrue()
 					}
-				} else {
+				}
+				if (!isEncrypt) {
 					if (
 						Tools.uint8ArrayToString(data.outData) ===
 						Tools.uint8ArrayToString(encryptedData)
@@ -754,32 +756,6 @@ describe('SecurityHuksAbnormalCipherJsunit', function () {
 		HuksOptions.properties.splice(1, 1, HuksCipher002.HuksKeyPurposeDECRYPT)
 		HuksOptions.inData = new Uint8Array(updateResult)
 		await publicFinishAbortFunc(handle, HuksOptions, 'abort', false, 'Fail')
-		await publicDeleteKeyFunc(srcKeyAlies, genHuksOptions, 'Success')
-		await publicDeleteKeyFunc(newSrcKeyAlies, genHuksOptions, 'Success')
-		done()
-	})
-
-	it('security_huks_third_abnormal_cipher_1043', 0, async function (done) {
-		const srcKeyAlies = 'security_huks_third_abnormal_cipher_1043'
-		const newSrcKeyAlies = 'security_huks_third_abnormal_cipher_new_1043'
-		await publicCipher(
-			srcKeyAlies,
-			newSrcKeyAlies,
-			genHuksOptions,
-			HuksOptions
-		)
-		HuksOptions.properties.splice(1, 1, HuksCipher002.HuksKeyPurposeDECRYPT)
-		HuksOptions.inData = new Uint8Array(updateResult)
-		HuksOptions.outData = Tools.stringToUint8Array('0')
-		await publicInitFunc(srcKeyAlies, HuksOptions, 'Success')
-		await publicFinishAbortFunc(
-			handle,
-			HuksOptions,
-			'finish',
-			false,
-			'Fail'
-		)
-		await publicUpdateFunc(handle, HuksOptions, 'Fail')
 		await publicDeleteKeyFunc(srcKeyAlies, genHuksOptions, 'Success')
 		await publicDeleteKeyFunc(newSrcKeyAlies, genHuksOptions, 'Success')
 		done()
