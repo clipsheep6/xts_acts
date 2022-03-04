@@ -29,3 +29,4 @@
 //require('./UsbPortJsunitEx.test.js')
 
 require('./UsbAutoJsunit.test.js')
+require('./UsbDevicePipeJsunit_A.test.js')
