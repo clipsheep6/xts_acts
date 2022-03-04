@@ -225,16 +225,16 @@ async function publicAgreeDeleteFunc(srcKeyAlias, HuksOptions) {
 }
 
 async function publicAgree(
-	srcKeyAlias_1,
+	srcKeyAliasFrist,
 	srcKeyAliasSecond,
 	HuksOptions,
 	HuksOptionsFinish
 ) {
-	await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+	await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 	await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-	await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+	await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 	await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
-	await publicAgreeInitFunc(srcKeyAlias_1, HuksOptions, 'Success')
+	await publicAgreeInitFunc(srcKeyAliasFrist, HuksOptions, 'Success')
 	await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Success')
 	await publicAgreeFinishAbortFunc(
 		handle,
@@ -276,7 +276,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasFrist = 'security_huksthird_abnormal_agree_1017_1'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 		await publicAgreeFinishAbortFunc(
 			handle,
@@ -303,13 +303,13 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1019_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
-		await publicAgreeInitFunc(srcKeyAlias_1, HuksOptions, 'Success')
+		await publicAgreeInitFunc(srcKeyAliasFrist, HuksOptions, 'Success')
 		await publicAgreeUpdateFunc(handle, HuksOptions, 2, 'Success')
 		await publicAgreeFinishAbortFunc(
 			handle,
@@ -318,7 +318,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Success'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		done()
 	})
 
@@ -327,13 +327,13 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1020_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
-		await publicAgreeInitFunc(srcKeyAlias_1, HuksOptions, 'Success')
+		await publicAgreeInitFunc(srcKeyAliasFrist, HuksOptions, 'Success')
 		await publicAgreeUpdateFunc(handle, HuksOptions, 2, 'Success')
 		await publicAgreeFinishAbortFunc(
 			handle,
@@ -342,7 +342,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Success'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		done()
 	})
 
@@ -351,13 +351,13 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1021_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
-		await publicAgreeInitFunc(srcKeyAlias_1, HuksOptions, 'Success')
+		await publicAgreeInitFunc(srcKeyAliasFrist, HuksOptions, 'Success')
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Success')
 		await publicAgreeFinishAbortFunc(
 			handle,
@@ -379,7 +379,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Success'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		let srcKeyAliasThree = srcKeyAliasSecond + 'final'
 		await publicAgreeDeleteFunc(srcKeyAlias_3, HuksOptions)
@@ -391,11 +391,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1023_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
@@ -406,7 +406,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -416,11 +416,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1024_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
@@ -432,7 +432,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -442,11 +442,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1025_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
@@ -463,7 +463,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -473,11 +473,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1026_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
@@ -494,7 +494,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -504,11 +504,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1027_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
@@ -519,7 +519,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -529,11 +529,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1028_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
@@ -545,7 +545,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -555,11 +555,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1029_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
@@ -576,7 +576,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -586,11 +586,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1030_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
@@ -607,7 +607,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -617,11 +617,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1031_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeFinishAbortFunc(
@@ -631,7 +631,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -641,11 +641,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1032_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeFinishAbortFunc(
@@ -655,7 +655,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -665,11 +665,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1033_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeFinishAbortFunc(
@@ -680,7 +680,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		)
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -690,11 +690,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1034_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeFinishAbortFunc(
@@ -705,7 +705,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		)
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -715,11 +715,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1035_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeFinishAbortFunc(
@@ -735,7 +735,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -745,11 +745,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1036_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
 		await publicAgreeFinishAbortFunc(
@@ -765,7 +765,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -775,14 +775,14 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1037_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
-		await publicAgreeInitFunc(srcKeyAlias_1, HuksOptions, 'Success')
+		await publicAgreeInitFunc(srcKeyAliasFrist, HuksOptions, 'Success')
 		HuksOptions.inData = srcData64Kb
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Success')
 		await publicAgreeFinishAbortFunc(
@@ -794,7 +794,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -804,14 +804,14 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1038_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
-		await publicAgreeInitFunc(srcKeyAlias_1, HuksOptions, 'Success')
+		await publicAgreeInitFunc(srcKeyAliasFrist, HuksOptions, 'Success')
 		HuksOptions.inData = srcData64Kb
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Success')
 		await publicAgreeFinishAbortFunc(
@@ -823,7 +823,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Fail')
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -833,21 +833,21 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1039_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
-		await publicAgreeGenFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeGenFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeGenFunc(srcKeyAliasSecond, HuksOptions)
-		await publicAgreeExportFunc(srcKeyAlias_1, HuksOptions, 1)
+		await publicAgreeExportFunc(srcKeyAliasFrist, HuksOptions, 1)
 		await publicAgreeExportFunc(srcKeyAliasSecond, HuksOptions, 2)
 
-		await publicAgreeInitFunc(srcKeyAlias_1, HuksOptions, 'Success')
+		await publicAgreeInitFunc(srcKeyAliasFrist, HuksOptions, 'Success')
 		HuksOptions.inData = srcData64Kb
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Success')
-		await publicAgreeInitFunc(srcKeyAlias_1, HuksOptions, 'Success')
+		await publicAgreeInitFunc(srcKeyAliasFrist, HuksOptions, 'Success')
 		HuksOptions.inData = srcData63Kb
 		await publicAgreeUpdateFunc(handle, HuksOptions, 1, 'Success')
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -857,11 +857,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1041_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -887,11 +887,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1042_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -916,11 +916,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1044_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -938,7 +938,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -948,11 +948,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1045_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -971,7 +971,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -981,11 +981,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1046_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -1009,7 +1009,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -1019,11 +1019,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1052_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -1040,7 +1040,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -1050,11 +1050,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1054_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -1062,7 +1062,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 2, 'Fail')
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -1072,11 +1072,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1056_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -1099,7 +1099,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 			'Fail'
 		)
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -1109,11 +1109,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1058_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -1135,7 +1135,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 2, 'Fail')
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		let srcKeyAliasThree = srcKeyAliasSecond + 'final'
 		await publicAgreeDeleteFunc(srcKeyAlias_3, HuksOptions)
@@ -1147,11 +1147,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1059_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -1173,7 +1173,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 
 		await publicAgreeUpdateFunc(handle, HuksOptions, 2, 'Fail')
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})
@@ -1183,11 +1183,11 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		let srcKeyAliasSecond = 'security_huksthird_abnormal_agree_1060_2'
 		HuksOptionsFinish.properties.splice(7, 0, {
 			tag: Params.HksTag.HKS_TAG_KEY_ALIAS,
-			value: Tools.stringToUint8Array(srcKeyAlias_1),
+			value: Tools.stringToUint8Array(srcKeyAliasFrist),
 		})
 
 		await publicAgree(
-			srcKeyAlias_1,
+			srcKeyAliasFrist,
 			srcKeyAliasSecond,
 			HuksOptions,
 			HuksOptionsFinish
@@ -1201,7 +1201,7 @@ describe('SecurityHuksAbnormalAgreeDHPromiseJsunit', function () {
 		HuksOptions.inData = srcData64Kb
 		await publicAgreeUpdateFunc(handle, HuksOptions, 2, 'Success')
 
-		await publicAgreeDeleteFunc(srcKeyAlias_1, HuksOptions)
+		await publicAgreeDeleteFunc(srcKeyAliasFrist, HuksOptions)
 		await publicAgreeDeleteFunc(srcKeyAliasSecond, HuksOptions)
 		done()
 	})

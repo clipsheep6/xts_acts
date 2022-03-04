@@ -21,7 +21,7 @@ import * as Tools from '../../../../../../../utils/Base/tools'
 
 let errString = '!@#$%^&*()_+'
 
-let g_inData_32 = 'RSA_32_ttttttttttttttttttttttttt'
+let gInData32 = 'RSA_32_ttttttttttttttttttttttttt'
 
 let HuksCipher002 = {
 	HuksKeyAlgRSA: {
@@ -60,7 +60,7 @@ let HuksCipher002 = {
 	},
 }
 
-let gInData32Array = Tools.stringToUint8Array(g_inData_32)
+let gInData32Array = Tools.stringToUint8Array(gInData32)
 
 let srcData64 = Data.Data_64KB
 let srcData64Kb = Tools.stringToUint8Array(srcData64)
