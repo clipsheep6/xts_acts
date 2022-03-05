@@ -13,13 +13,20 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-group("stage") {
-  testonly = true
-  if (is_standard_system) {
-    deps = [
-      "stage_ability_test:StageAbilityTest",
-      "stage_auxability_test:StageAuxabilityTest",
-      "stage_extension_service:StageExtensionServiceTest",
-    ]
-  }
+ohos_js_hap_suite("StageAbilityTest") {
+  hap_profile = "./entry/src/main/config.json"
+  deps = [
+    ":stage_ability_test_assets",
+    ":stage_ability_test_resources",
+  ]
+  ets2abc = true
+  certificate_profile = "./signature/openharmony_sx.p7b"
+  hap_name = "StageAbilityTest"
+}
+ohos_js_assets("stage_ability_test_assets") {
+  source_dir = "./entry/src/main/ets/MainAbility"
+}
+ohos_resources("stage_ability_test_resources") {
+  sources = [ "./entry/src/main/resources" ]
+  hap_profile = "./entry/src/main/config.json"
 }
