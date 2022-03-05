@@ -5183,19 +5183,17 @@ describe('ActsDataAbilityHelperTest', function () {
                 DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0303);
                 console.log('ACTS_OnOff_0300====<end');
                 done();
-            } else {
-                if (caller == "notifyChange") {
-                    currentAlertTimeout = setTimeout(() => {
-                        console.debug('ACTS_OnOff_0300====<setTimeout false done()');
-                        expect(false).assertTrue();
-                        console.log('ACTS_OnOff_0300====<end setTimeout');
-                        done();
-                    }, gSetTimeout);
-                } else {
-                    console.debug("=ACTS_OnOff_0300 flagCallback010203 ====>"
-                        + flagCallback01 + flagCallback02 + flagCallback03);
-                }
-            }
+            } else if (caller == "notifyChange") {
+				currentAlertTimeout = setTimeout(() => {
+					console.debug('ACTS_OnOff_0300====<setTimeout false done()');
+					expect(false).assertTrue();
+					console.log('ACTS_OnOff_0300====<end setTimeout');
+					done();
+				}, gSetTimeout);
+			} else {
+				console.debug("=ACTS_OnOff_0300 flagCallback010203 ====>"
+					+ flagCallback01 + flagCallback02 + flagCallback03);
+			}
         }
         try {
             expect(typeof (DAHelper)).assertEqual("object");
@@ -5260,18 +5258,16 @@ describe('ActsDataAbilityHelperTest', function () {
                 DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0403);
                 console.log('ACTS_OnOff_0400====<end');
                 done();
-            } else {
-                if (caller == "notifyChange") {
-                    currentAlertTimeout = setTimeout(() => {
-                        console.debug('ACTS_OnOff_0400====<setTimeout false done()');
-                        expect(false).assertTrue();
-                        done();
-                    }, gSetTimeout);
-                } else {
-                    console.debug("=ACTS_OnOff_0400 flagCallback010203 ====>"
-                        + flagCallback01 + flagCallback02 + flagCallback03);
-                }
-            }
+            } else if (caller == "notifyChange") {
+				currentAlertTimeout = setTimeout(() => {
+					console.debug('ACTS_OnOff_0400====<setTimeout false done()');
+					expect(false).assertTrue();
+					done();
+				}, gSetTimeout);
+			} else {
+				console.debug("=ACTS_OnOff_0400 flagCallback010203 ====>"
+					+ flagCallback01 + flagCallback02 + flagCallback03);
+			}
         }
         try {
             expect(typeof (DAHelper)).assertEqual("object");
