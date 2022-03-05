@@ -21,6 +21,7 @@ group("aafwk_standard") {
       "amsabilitymanager/amsMissionSnapshotTest:ActsAmsMissionSnapshotTest",
       "amsabilitymanager/amsMissionSnapshotTestSingleton:ActsAmsMissionSnapshotTestSingleton",
       "amsabilitymanager/amsMissionSnapshotTestSingletonS:ActsAmsMissionSnapshotTestSingletonS",
+      "amsdatauriutils:ActsAmsDataUriUtilsTest",
       "amsmultiapp/MultiAppPage:ActsAmsMultiPageApp",
       "amsmultiapp/MultiAppPageConnectService:ActsAmsMultiPageAppConnectService",
       "amsmultiapp/MultiAppPageConnect_Service:ActsAmsMultiAppPageConnectService",

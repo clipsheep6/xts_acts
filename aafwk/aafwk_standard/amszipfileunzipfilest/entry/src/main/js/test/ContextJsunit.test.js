@@ -1045,7 +1045,7 @@ it('FWK_ZipFile_2500', 0, async function (done) {
 /*
 * @tc.number: FWK_ZipFile_2600
 * @tc.name: zipFile 
-* @tc.desc: memLevel.MEM_LEVEL_MIN_MEMLEVEL
+* @tc.desc: memlevel.MEM_LEVEL_MIN_MEMLEVEL
 */
 it('FWK_ZipFile_2600', 0, async function (done) {
     console.log("==================FWK_ZipFile_2600 start==================");
@@ -1056,7 +1056,7 @@ it('FWK_ZipFile_2600', 0, async function (done) {
 
     try{
         var options = {};
-        options.memLevel = zlib.MemLevel.MEM_LEVEL_MIN_MEMLEVEL,
+        options.memlevel = zlib.MemLevel.MEM_LEVEL_MIN_MEMLEVEL,
         await zlib.zipFile(src, zipDest, options,
             (err, data) => {
                 var zipStat = fileio.statSync(zipDest);
@@ -1090,7 +1090,7 @@ it('FWK_ZipFile_2600', 0, async function (done) {
 /*
 * @tc.number: FWK_ZipFile_2700
 * @tc.name: zipFile 
-* @tc.desc: memLevel.MEM_LEVEL_MAX_MEMLEVEL
+* @tc.desc: memlevel.MEM_LEVEL_MAX_MEMLEVEL
 */
 it('FWK_ZipFile_2700', 0, async function (done) {
     console.log("==================FWK_ZipFile_2700 start==================");
@@ -1101,7 +1101,7 @@ it('FWK_ZipFile_2700', 0, async function (done) {
         
     try{
         var options = {};
-        options.memLevel = zlib.MemLevel.MEM_LEVEL_MAX_MEMLEVEL,
+        options.memlevel = zlib.MemLevel.MEM_LEVEL_MAX_MEMLEVEL,
         await zlib.zipFile(src, zipDest, options,
             (err, data) => {
                 var zipStat = fileio.statSync(zipDest);
@@ -1135,7 +1135,7 @@ it('FWK_ZipFile_2700', 0, async function (done) {
 /*
 * @tc.number: FWK_ZipFile_2800
 * @tc.name: zipFile 
-* @tc.desc: memLevel.MEM_LEVEL_DEFAULT_MEMLEVEL
+* @tc.desc: memlevel.MEM_LEVEL_DEFAULT_MEMLEVEL
 */
 it('FWK_ZipFile_2800', 0, async function (done) {
     console.log("==================FWK_ZipFile_2800 start==================");
@@ -1146,7 +1146,7 @@ it('FWK_ZipFile_2800', 0, async function (done) {
         
     try{
         var options = {};
-        options.memLevel = zlib.MemLevel.MEM_LEVEL_DEFAULT_MEMLEVEL,
+        options.memlevel = zlib.MemLevel.MEM_LEVEL_DEFAULT_MEMLEVEL,
         await zlib.zipFile(src, zipDest, options,
             (err, data) => {
                 var zipStat = fileio.statSync(zipDest);
@@ -1890,6 +1890,51 @@ it('FWK_ZipFile_5100', 0, async function (done) {
         done();
     }
     console.log("==================FWK_ZipFile_5100 end==================");
+})
+
+/*
+* @tc.number: FWK_ZipFile_5200
+* @tc.name: zipFile 
+* @tc.desc: strategy.COMPRESS_STRATEGY_FIXED
+*/
+it('FWK_ZipFile_5200', 0, async function (done) {
+    console.log("==================FWK_ZipFile_5200 start==================");
+    var src = "/data/test/ceshi.txt";
+    var zipDest = "/data/testA/ceshi.zip";
+    var unzipDir = "/data/testA/";
+    var unzipDest = "/data/testA/ceshi.txt";
+        
+    try{
+        var options = {};
+        options.strategy = zlib.CompressStrategy.COMPRESS_STRATEGY_FIXED,
+        await zlib.zipFile(src, zipDest, options,
+            (err, data) => {
+                var zipStat = fileio.statSync(zipDest);
+                var isFile = zipStat.isFile();
+                expect(isFile).assertTrue();
+                var srcSize = fileio.statSync(src).size;
+                var destSize = zipStat.size;
+                expect(srcSize>destSize).assertTrue();
+                expect(data).assertEqual(zlib.ErrorCode.ERROR_CODE_OK);
+                
+        zlib.unzipFile(zipDest, unzipDir, options,
+            (err, data) => {
+                var unzipStat = fileio.statSync(unzipDest);
+                var isFile = unzipStat.isFile();
+                expect(isFile).assertTrue();           
+                var destSize = unzipStat.size;
+                var originSize = fileio.statSync(src).size;
+                var result = (originSize == destSize);
+                expect(result).assertTrue();
+                expect(data).assertEqual(zlib.ErrorCode.ERROR_CODE_OK);
+                done();          
+            })
+        });        
+    } catch(err) {
+        console.error('FWK_ZipFile_5200 err:' + err);
+        done();
+    }
+    console.log("==================FWK_ZipFile_5200 end==================");
 })
 
 })
