@@ -29,18 +29,14 @@ describe('ActsDataAbilityHelperTest', function () {
         "salary": 2024.20,
     }
 
-    function sleep(delay) {
-        var start = (new Date()).getTime();
-        while ((new Date()).getTime() - start < delay) {
-            continue;
-        }
-    }
-
     beforeAll(async (done) => {
         console.debug('= ACTS_beforeAll ====<begin');
         try {
             DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
             console.debug('ACTS_beforeAll DAHelper ====>: ' + DAHelper + " ,JSON. " + JSON.stringify(DAHelper));
+            if(DAHelper == null){
+                console.debug('ACTS_beforeAll DAHelper ====>: DAHelper == null');
+            }
         } catch (err) {
             console.error('=ACTS_beforeAll acquireDataAbilityHelper catch(err)====>:' + err);
         }
@@ -65,6 +61,9 @@ describe('ActsDataAbilityHelperTest', function () {
             var abilityHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri)
             console.log('ACTS_AcquireDataAbilityHelper_0100 abilityHelper ====>: '
                 + abilityHelper + " ,JSON. " + JSON.stringify(abilityHelper))
+            if(DAHelper == null){
+                DAHelper = abilityHelper;
+            }
             expect(typeof (abilityHelper)).assertEqual("object");
         } catch (err) {
             console.error('=ACTS_GetDataAbilityHelper_0100 acquireDataAbilityHelper catch(err)====>:' + err);
@@ -345,13 +344,13 @@ describe('ActsDataAbilityHelperTest', function () {
         console.log('Insert_0700 DAHelper ====<: ' + JSON.stringify(DAHelper) + "," + DAHelper)
         var currentAlertTimeout;
         try {
-            function onAsyncCallback_Insert_0700(err) {
+            function onAsyncCallbackInsert0700(err) {
                 expect(err.code).assertEqual(0);
-                console.log('ACTS_Insert_0700====<onAsyncCallback_Insert_0700');
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_Insert_0700);
+                console.log('ACTS_Insert_0700====<onAsyncCallbackInsert0700');
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallbackInsert0700);
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_Insert_0700);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallbackInsert0700);
             DAHelper.insert(dataAbilityUri, valueBucket)
                 .then((data) => {
                     console.debug("=ACTS_Insert_0700 then data====>"
@@ -383,13 +382,13 @@ describe('ActsDataAbilityHelperTest', function () {
         console.log('featureAbility getDataAbilityHelper ====>: ' + DAHelper)
         var currentAlertTimeout;
         try {
-            function onAsyncCallback_Insert_0800(err) {
+            function onAsyncCallbackInsert0800(err) {
                 expect(err.code).assertEqual(0);
-                console.log('ACTS_Insert_0800====<onAsyncCallback_Insert_0800');
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_Insert_0800);
+                console.log('ACTS_Insert_0800====<onAsyncCallbackInsert0800');
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallbackInsert0800);
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_Insert_0800);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallbackInsert0800);
             await DAHelper.insert(dataAbilityUri, valueBucket,
                 (err, data) => {
                     console.debug("=ACTS_Insert_0800 err,data=======>"
@@ -1897,15 +1896,15 @@ describe('ActsDataAbilityHelperTest', function () {
         console.log('featureAbility Update getDataAbilityHelper ====>: ' + DAHelper)
         var currentAlertTimeout;
         try {
-            function onAsyncCallback_Update_0700(err) {
+            function onAsyncCallbackUpdate0700(err) {
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
-                console.log('ACTS_Update_0700====<onAsyncCallback_Update_0700');
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_Update_0700);
+                console.log('ACTS_Update_0700====<onAsyncCallbackUpdate0700');
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallbackUpdate0700);
                 console.log('ACTS_Update_0700====<end');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_Update_0700);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallbackUpdate0700);
             let predicates = new ohosDataAbility.DataAbilityPredicates();
             predicates.equalTo('contact_id', 1);
             predicates.limitAs(10);
@@ -1951,15 +1950,15 @@ describe('ActsDataAbilityHelperTest', function () {
         console.log('featureAbility Update getDataAbilityHelper ====>: ' + DAHelper)
         var currentAlertTimeout;
         try {
-            function onAsyncCallback_Update_0800(err) {
+            function onAsyncCallbackUpdate0800(err) {
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
-                console.log('ACTS_Update_0800====<onAsyncCallback_Update_0800');
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_Update_0800);
+                console.log('ACTS_Update_0800====<onAsyncCallbackUpdate0800');
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallbackUpdate0800);
                 console.log('ACTS_Update_0800====<end');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_Update_0800);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallbackUpdate0800);
             let predicates = new ohosDataAbility.DataAbilityPredicates();
             predicates.equalTo('contact_id', 1);
             predicates.limitAs(10);
@@ -2454,15 +2453,15 @@ describe('ActsDataAbilityHelperTest', function () {
         console.log('ACTS_Delete_0700====<begin');
         var currentAlertTimeout;
         try {
-            function onAsyncCallback_Delete_0700(err) {
+            function onAsyncCallbackDelete0700(err) {
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
-                console.log('ACTS_Delete_0700====<onAsyncCallback_Delete_0700');
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_Delete_0700);
+                console.log('ACTS_Delete_0700====<onAsyncCallbackDelete0700');
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallbackDelete0700);
                 console.log('ACTS_Delete_0700====<end');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_Delete_0700);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallbackDelete0700);
             let predicates = new ohosDataAbility.DataAbilityPredicates();
             predicates.equalTo('contact_id', 1);
             predicates.limitAs(10);
@@ -2507,15 +2506,15 @@ describe('ActsDataAbilityHelperTest', function () {
         console.log('featureAbility getDataAbilityHelper ====>: ' + DAHelper)
         var currentAlertTimeout;
         try {
-            function onAsyncCallback_Delete_0800(err) {
+            function onAsyncCallbackDelete0800(err) {
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
-                console.log('ACTS_Delete_0800====<onAsyncCallback_Insert_0800');
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_Delete_0800);
+                console.log('ACTS_Delete_0800====<onAsyncCallbackDelete0800');
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallbackDelete0800);
                 console.log('ACTS_Delete_0800====<end');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_Delete_0800);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallbackDelete0800);
             let predicates = new ohosDataAbility.DataAbilityPredicates();
             predicates.equalTo('contact_id', 1);
             predicates.limitAs(10);
@@ -2919,7 +2918,7 @@ describe('ActsDataAbilityHelperTest', function () {
                     for (var i = 0; i < data.length; i++) {
                         expect(typeof (data[i])).assertEqual("string");
                         console.log('=ACTS_GetFileTypes_0400 for ====>: '
-                             + err.code + " data[" + i + "]: " + data[i]);
+                            + err.code + " data[" + i + "]: " + data[i]);
                         if (i == 0) {
                             expect(data[i]).assertEqual("image/png");
                         }
@@ -5068,14 +5067,14 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_0100(err) {
+            function onAsyncCallback0100(err) {
                 expect(err.code).assertEqual(0);
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_0100);
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0100);
                 console.log('ACTS_OnOff_0100====<end');
                 gSetTimeout = 500;
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_0100);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback0100);
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
@@ -5109,17 +5108,17 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_0200(err) {
-                console.debug("=ACTS_OnOff_0200 onAsyncCallback_0200=======>");
+            function onAsyncCallback0200(err) {
+                console.debug("=ACTS_OnOff_0200 onAsyncCallback0200=======>");
                 expect(false).assertTrue();
                 clearTimeout(currentAlertTimeout);
                 console.log('ACTS_OnOff_0200====<end callback_0200');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_0200);
-            sleep(3000);
-            DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_0200);
-            sleep(100);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback0200);
+
+            DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0200);
+
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
                 DAHelper.notifyChange(
@@ -5340,11 +5339,8 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback0502);
             DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback0503);
 
-            sleep(3000);
-
             DAHelper.off("dataChange", dataAbilityUri);
 
-            sleep(3000);
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
                 DAHelper.notifyChange(
@@ -5389,7 +5385,7 @@ describe('ActsDataAbilityHelperTest', function () {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
             var flagCallback01 = 0;
-            function onAsyncCallback_0600(err) {
+            function onAsyncCallback0600(err) {
                 expect(err.code).assertEqual(0);
                 flagCallback01++;
                 waitDone(flagCallback01)
@@ -5397,14 +5393,14 @@ describe('ActsDataAbilityHelperTest', function () {
             var DAHelper2 = featureAbility.acquireDataAbilityHelper(dataAbilityUri2);
             expect(typeof (DAHelper2)).assertEqual("object");
 
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_0600);
-            DAHelper2.on("dataChange", dataAbilityUri2, onAsyncCallback_0600);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback0600);
+            DAHelper2.on("dataChange", dataAbilityUri2, onAsyncCallback0600);
 
             function waitDone(caller) {
                 console.debug("=ACTS_OnOff_0600 caller ====>" + caller);
                 if (flagCallback01 == 2) {
-                    DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_0600);
-                    DAHelper2.off("dataChange", dataAbilityUri2, onAsyncCallback_0600);
+                    DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0600);
+                    DAHelper2.off("dataChange", dataAbilityUri2, onAsyncCallback0600);
                     console.log('ACTS_OnOff_0600====<end');
                     done();
                 } else {
@@ -5421,8 +5417,8 @@ describe('ActsDataAbilityHelperTest', function () {
                             console.debug("=ACTS_OnOff_0600 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
-                            DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_0600);
-                            DAHelper2.off("dataChange", dataAbilityUri2, onAsyncCallback_0600);
+                            DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0600);
+                            DAHelper2.off("dataChange", dataAbilityUri2, onAsyncCallback0600);
                             console.log('ACTS_OnOff_0600====<end 1 err.code != 0');
                             done();
                         } else {
@@ -5433,8 +5429,8 @@ describe('ActsDataAbilityHelperTest', function () {
                                         console.debug("=ACTS_OnOff_0600 err=======>"
                                             + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                                         expect(false).assertTrue();
-                                        DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_0600);
-                                        DAHelper2.off("dataChange", dataAbilityUri2, onAsyncCallback_0600);
+                                        DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0600);
+                                        DAHelper2.off("dataChange", dataAbilityUri2, onAsyncCallback0600);
                                         console.log('ACTS_OnOff_0600====<end 2 err.code != 0');
                                         done();
                                     } else {
@@ -5464,7 +5460,7 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_0700(err) {
+            function onAsyncCallback0700(err) {
                 expect(err.code).assertEqual(0);
                 console.log('ACTS_OnOff_0700====<end callback_0700');
                 done();
@@ -5472,8 +5468,8 @@ describe('ActsDataAbilityHelperTest', function () {
             var DAHelper2 = featureAbility.acquireDataAbilityHelper(dataAbilityUri2);
             expect(typeof (DAHelper2)).assertEqual("object");
 
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_0700);
-            DAHelper2.on("dataChange", dataAbilityUri2, onAsyncCallback_0700);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback0700);
+            DAHelper2.on("dataChange", dataAbilityUri2, onAsyncCallback0700);
 
             DAHelper.off("dataChange", dataAbilityUri);
             DAHelper2.off("dataChange", dataAbilityUri2);
@@ -5487,8 +5483,8 @@ describe('ActsDataAbilityHelperTest', function () {
                             console.debug("=ACTS_OnOff_0700 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
-                            DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_0700);
-                            DAHelper2.off("dataChange", dataAbilityUri2, onAsyncCallback_0700);
+                            DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0700);
+                            DAHelper2.off("dataChange", dataAbilityUri2, onAsyncCallback0700);
                             console.log('ACTS_OnOff_0700====<end err.code != 0');
                             done();
                         } else {
@@ -5523,11 +5519,11 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_0800(err) {
+            function onAsyncCallback0800(err) {
                 expect(false).assertTrue();
                 console.log('ACTS_OnOff_0800====<end callback_0800');
             }
-            DAHelper.on("error_dataChange", dataAbilityUri, onAsyncCallback_0800);
+            DAHelper.on("error_dataChange", dataAbilityUri, onAsyncCallback0800);
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
@@ -5560,16 +5556,16 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_0900(err) {
+            function onAsyncCallback0900(err) {
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_0900);
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0900);
                 console.log('ACTS_OnOff_0900====<end');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_0900);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback0900);
 
-            DAHelper.off("error_dataChange", dataAbilityUri, onAsyncCallback_0900);
+            DAHelper.off("error_dataChange", dataAbilityUri, onAsyncCallback0900);
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
@@ -5611,14 +5607,14 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_1000(err) {
+            function onAsyncCallback1000(err) {
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_1000);
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1000);
                 console.log('ACTS_OnOff_1000====<end');
                 done();
             }
-            DAHelper.on("dataChange", undefined, onAsyncCallback_1000);
+            DAHelper.on("dataChange", undefined, onAsyncCallback1000);
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
@@ -5651,17 +5647,17 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_1100(err) {
-                console.debug("=ACTS_OnOff_1100 onAsyncCallback_1100=======>");
+            function onAsyncCallback1100(err) {
+                console.debug("=ACTS_OnOff_1100 onAsyncCallback1100=======>");
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_1100);
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1100);
                 console.log('ACTS_OnOff_1100====<end');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_1100);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback1100);
 
-            DAHelper.off("dataChange", undefined, onAsyncCallback_1100);
+            DAHelper.off("dataChange", undefined, onAsyncCallback1100);
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
@@ -5703,14 +5699,14 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_1200(err) {
-                console.debug("=ACTS_OnOff_1200 onAsyncCallback_1200=======>");
+            function onAsyncCallback1200(err) {
+                console.debug("=ACTS_OnOff_1200 onAsyncCallback1200=======>");
                 expect(false).assertTrue();
                 clearTimeout(currentAlertTimeout);
                 console.log('ACTS_OnOff_1200====<end');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_1200);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback1200);
 
 
             setTimeout(mySetTimeout, gSetTimeout);
@@ -5721,7 +5717,7 @@ describe('ActsDataAbilityHelperTest', function () {
                         if (err.code != 0) {
                             console.debug("=ACTS_OnOff_1200 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
-                            DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_1200);
+                            DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1200);
                             console.log('ACTS_OnOff_1200====<end err.code');
                             done();
                         } else {
@@ -5784,14 +5780,14 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_1400(err) {
-                console.debug("=ACTS_OnOff_1400 onAsyncCallback_1400=======>");
+            function onAsyncCallback1400(err) {
+                console.debug("=ACTS_OnOff_1400 onAsyncCallback1400=======>");
                 expect(err.code).assertEqual(0);
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_1400);
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1400);
                 console.log('ACTS_OnOff_1400====<end');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_1400);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback1400);
 
             DAHelper.off("dataChange", dataAbilityUri, undefined);
 
@@ -5823,11 +5819,11 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_1500(err) {
-                console.debug("=ACTS_OnOff_1500 onAsyncCallback_1500=======>");
+            function onAsyncCallback1500(err) {
+                console.debug("=ACTS_OnOff_1500 onAsyncCallback1500=======>");
                 expect(false).assertTrue();
             }
-            DAHelper.on(undefined, dataAbilityUri, onAsyncCallback_1500);
+            DAHelper.on(undefined, dataAbilityUri, onAsyncCallback1500);
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
@@ -5861,17 +5857,17 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_1600(err) {
-                console.debug("=ACTS_OnOff_1600 onAsyncCallback_1600=======>");
+            function onAsyncCallback1600(err) {
+                console.debug("=ACTS_OnOff_1600 onAsyncCallback1600=======>");
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_1600);
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1600);
                 console.log('ACTS_OnOff_1600====<end');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_1600);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback1600);
 
-            DAHelper.off(undefined, dataAbilityUri, onAsyncCallback_1600);
+            DAHelper.off(undefined, dataAbilityUri, onAsyncCallback1600);
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
@@ -5914,15 +5910,15 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_1700(err) {
+            function onAsyncCallback1700(err) {
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_1700);
-                console.log('ACTS_OnOff_1700====<end onAsyncCallback_1700 ');
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1700);
+                console.log('ACTS_OnOff_1700====<end onAsyncCallback1700 ');
                 gSetTimeout = 500;
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri2, onAsyncCallback_1700);
+            DAHelper.on("dataChange", dataAbilityUri2, onAsyncCallback1700);
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
@@ -5934,13 +5930,13 @@ describe('ActsDataAbilityHelperTest', function () {
                             console.debug("=ACTS_OnOff_1700 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
-                            DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_1700);
+                            DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1700);
                             gSetTimeout = 500;
                             done();
                         } else {
                             currentAlertTimeout = setTimeout(() => {
                                 expect(err.code).assertEqual(0);
-                                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_1700);
+                                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1700);
                                 console.log('ACTS_OnOff_1700====<end');
                                 gSetTimeout = 500;
                                 done();
@@ -5969,17 +5965,17 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
-            function onAsyncCallback_1800(err) {
-                console.debug("=ACTS_OnOff_1800 onAsyncCallback_1800=======>");
+            function onAsyncCallback1800(err) {
+                console.debug("=ACTS_OnOff_1800 onAsyncCallback1800=======>");
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
-                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback_1800);
+                DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1800);
                 console.log('ACTS_OnOff_1800====<end');
                 done();
             }
-            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback_1800);
+            DAHelper.on("dataChange", dataAbilityUri, onAsyncCallback1800);
 
-            DAHelper.off("dataChange", dataAbilityUri2, onAsyncCallback_1800);
+            DAHelper.off("dataChange", dataAbilityUri2, onAsyncCallback1800);
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
