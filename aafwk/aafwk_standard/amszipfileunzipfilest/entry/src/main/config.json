@@ -48,7 +48,7 @@
         "name": "com.example.amsZipfileUnzipfileST.ServiceAbility",
         "icon": "$media:icon",
         "description": "$string:serviceability_description",
-        "type": "service"
+        "type": "page"
       },
       {
         "name": "com.example.amsZipfileUnzipfileST.ServiceAbility",

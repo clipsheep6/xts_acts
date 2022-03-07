@@ -31,7 +31,7 @@
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:app_name",
-        "type": "service",
+        "type": "page",
         "visible": true,
         "uri": "serviceability://com.amsst.stserviceabilityserver",
         "launchType": "standard"

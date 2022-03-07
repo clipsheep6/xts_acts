@@ -45,6 +45,7 @@ group("aafwk_standard") {
       "amszipfileunzipfilest:ActsAmsZipfileUnzipfileSTest",
       "context:context",
       "featureability:featureability",
+      "form:form",
       "formmanager:formmanager",
       "serviceability/sceneProject/particlestartability:ParticleStartAbility",
       "serviceability/sceneProject/particletestserver:ParticleTestServer",
