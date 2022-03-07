@@ -10,18 +10,22 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import("//build/ohos_var.gni")
 import("//test/xts/tools/build/suite.gni")
 
-group("security") {
+group("huks") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "access_token/AccessTokenTest_NoPermission_js:ActsAccessTokenJSApiTestNoPermission",
-      "access_token/AccessTokenTest_Normal_js:ActsAccessTokenJSApiTestNormal",
-      "huks",
-      "huks_standard",
-      "security_huks",
+      "huks_agree_callback:huksagree_callback_js_test",
+      "huks_agree_promise:huksagree_promise_js_test",
+      "huks_cipher_callback:hukscipher_callback_js_test",
+      "huks_cipher_promise:hukscipher_promise_js_test",
+      "huks_derive_callback:huksderive_callback_js_test",
+      "huks_derive_promise:huksderive_promise_js_test",
+      "huks_hmac:hukshmac_js_test",
+      "huks_signverify_callback:hukssignverify_callback_js_test",
+      "huks_signverify_promise:hukssignverify_promise_js_test",
+      "huks_xts_three_stage:ActsHuksThreeStageTest",
     ]
   }
 }
