@@ -19,5 +19,12 @@ group("telephonyjstest") {
     "network_search:network_search",
     "sim:sim",
     "sms_mms:sms_mms",
+    "contact_function:ActsContactFunctionEtsTest",
+    "contact_function_merge:ActsContactFunctionMergeEtsTest",
+    "contact_performance:ActsContactPerformanceEtsTest",
+    "contact_stability:ActsContactStabilityEtsTest",
+    "netmanager_http:ActsNetManagerHttpEtsTest",
+    "netmanager_socket:ActsNetManagerSocketEtsTest",
+    "new_add:ActsNewAddEtsTest",
   ]
 }
