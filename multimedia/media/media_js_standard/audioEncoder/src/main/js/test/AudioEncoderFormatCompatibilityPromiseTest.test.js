@@ -18,8 +18,9 @@ import Fileio from '@ohos.fileio'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('AudioEncoderFormatCompatibilityPromise', function () {
-    const AUDIOPATH =  '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/S32LE.pcm';
-    const BASIC_PATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/results/encode_func_promise_';
+    const RESOURCEPATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/'
+    const AUDIOPATH =  RESOURCEPATH + 'S32LE.pcm';
+    const BASIC_PATH = RESOURCEPATH + 'results/encode_func_promise_';
     let audioEncodeProcessor;
     let readStreamSync;
     let eosframenum = 0;
@@ -357,6 +358,7 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
             console.info(`case error called,errCode is ${err.code}`);
             console.info(`case error called,errMessage is ${err.message}`);
             expect().assertFail();
+            done();
         });
 
     }
