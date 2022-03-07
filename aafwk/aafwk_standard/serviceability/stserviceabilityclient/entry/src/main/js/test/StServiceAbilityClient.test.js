@@ -95,7 +95,7 @@ describe('ActsStServiceAbilityTest', function () {
                 + " ,err=" + err + " ,data=" + data);
         });
     }
-    let g_setTimeout = 1000
+    let gSetTimeout = 1000
     beforeAll(async (done) => {
         console.debug('= ACTS_beforeAll ====<begin');
         console.debug('= ACTS_beforeAll ====<end');
@@ -104,12 +104,12 @@ describe('ActsStServiceAbilityTest', function () {
     beforeEach(async (done) => {
         setTimeout(function () {
             done();
-        }, g_setTimeout);
+        }, gSetTimeout);
     })
     afterEach(async (done) => {
         setTimeout(function () {
             done();
-        }, g_setTimeout);
+        }, gSetTimeout);
     })
     afterAll((done) => {
         console.debug('= ACTS_afterAll ====<begin');
@@ -117,7 +117,7 @@ describe('ActsStServiceAbilityTest', function () {
             console.debug('= ACTS_afterAll ====<end');
             featureAbility.terminateSelf();
             done();
-        }, g_setTimeout);
+        }, gSetTimeout);
     })
 
     /*
