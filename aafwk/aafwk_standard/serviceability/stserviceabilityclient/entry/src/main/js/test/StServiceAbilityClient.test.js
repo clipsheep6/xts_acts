@@ -21,7 +21,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 
 describe('ActsStServiceAbilityTest', function () {
     let bundleName = "com.amsst.stserviceabilityserver";
-    let abilityName = "com.amsst.stserviceabilityserver.MainAbility";
+    let abilityName = "com.amsst.stserviceabilityserver.ServiceAbility";
 
     var subscriber_0100;
     var CommonEventSubscribeInfo_0100 = {
@@ -121,31 +121,6 @@ describe('ActsStServiceAbilityTest', function () {
     })
 
     /*
-    * @tc.number: ACTS_featureAbilityEnum_0100
-    * @tc.name: Enum the client resource of the Data ability.
-    * @tc.desc: Check the return value of the interface (by AsyncCallback)
-    */
-    it('ACTS_featureAbilityEnum_0100', 0, async function (done) {
-        console.log('ACTS_featureAbilityEnum_0100====<begin');
-        try {
-            expect(featureAbility.ContinuationState.LOCAL_RUNNING).assertEqual(0);
-            expect(featureAbility.ContinuationState.REMOTE_RUNNING).assertEqual(1);
-            expect(featureAbility.ContinuationState.REPLICA_RUNNING).assertEqual(2);
-            
-            expect(abilityManager.ProcessErrCode.NO_ERROR).assertEqual(0);
-            expect(abilityManager.ProcessErrCode.CRASHED).assertEqual(1);
-            expect(abilityManager.ProcessErrCode.NO_RESPONSE).assertEqual(2);
-
-            console.log('ACTS_featureAbilityEnum_0100====<end');
-            done();
-        } catch (err) {
-            expect("catch(err)").assertEqual(err);
-            console.log('ACTS_featureAbilityEnum_0100====<end catch(err)');
-            done();
-        }
-    })
-
-    /*
     * @tc.number: ACTS_JsServiceAbility_0100
     * @tc.name: featureAbility.startAbility : Use page to test startAbiltiy service.
     * @tc.desc: Check the return value of the interface (by Promise)
@@ -178,13 +153,6 @@ describe('ActsStServiceAbilityTest', function () {
                         abilityName: abilityName,
                         action: "PageStartService_0100",
                     },
-abilityStartSetting: 
-{
-    featureAbility.AbilityStartSetting.BOUNDS_KEY : [100,200,300,400],
-    featureAbility.AbilityStartSetting.WINDOW_MODE_KEY :
-         featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED,
-    featureAbility.AbilityStartSetting.DISPLAY_ID_KEY : 1,
-},
                 }
             ).then(data => {
                 console.debug("=ACTS_JsServiceAbility_0100 .then(data)=======>"
@@ -192,7 +160,7 @@ abilityStartSetting:
                     + " ,data=" + data);
             }).catch(err => {
                 expect(".catch").assertEqual(err);
-                console.debug('ACTS_JsServiceAbility_0100====<end .catch(err)');
+                console.debug('ACTS_JsServiceAbility_0100====<end .catch(err):'+ JSON.stringify(err));
                 done();
             })
         } catch (err) {
@@ -234,13 +202,6 @@ abilityStartSetting:
                         bundleName: bundleName,
                         abilityName: abilityName,
                         action: "PageStartService_0200",
-                    },
-                    abilityStartSetting: 
-                    {
-                        featureAbility.AbilityStartSetting.BOUNDS_KEY : [100,200,300,400],
-                        featureAbility.AbilityStartSetting.WINDOW_MODE_KEY :
-                             featureAbility.AbilityWindowConfiguration.WINDOW_MODE_FULLSCREEN,
-                        featureAbility.AbilityStartSetting.DISPLAY_ID_KEY : 1,
                     },
                 }, (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_0200 startAbility (err,data)=======>"
@@ -285,13 +246,6 @@ abilityStartSetting:
                                     abilityName: abilityName,
                                     action: "PageStartService_0301",
                                 },
-                                abilityStartSetting: 
-                                {
-                                    featureAbility.AbilityStartSetting.BOUNDS_KEY : [100,200,300,400],
-                                    featureAbility.AbilityStartSetting.WINDOW_MODE_KEY :
-                                         featureAbility.AbilityWindowConfiguration.WINDOW_MODE_SPLIT_PRIMARY,
-                                    featureAbility.AbilityStartSetting.DISPLAY_ID_KEY : 1,
-                                },
                             }
                         ).then(data => {
                             console.debug("=ACTS_JsServiceAbility_0300 .then(data) 2=======>"
@@ -318,13 +272,6 @@ abilityStartSetting:
                         bundleName: bundleName,
                         abilityName: abilityName,
                         action: "PageStartService_0300",
-                    },
-                    abilityStartSetting: 
-                    {
-                        featureAbility.AbilityStartSetting.BOUNDS_KEY : [100,200,300,400],
-                        featureAbility.AbilityStartSetting.WINDOW_MODE_KEY :
-                             featureAbility.AbilityWindowConfiguration.WINDOW_MODE_SPLIT_SECONDARY,
-                        featureAbility.AbilityStartSetting.DISPLAY_ID_KEY : 1,
                     },
                 }
             ).then(data => {
@@ -371,13 +318,6 @@ abilityStartSetting:
                                     bundleName: bundleName,
                                     abilityName: abilityName,
                                     action: "PageStartService_0401",
-                                },
-                                abilityStartSetting: 
-                                {
-                                    featureAbility.AbilityStartSetting.BOUNDS_KEY : [100,200,300,400],
-                                    featureAbility.AbilityStartSetting.WINDOW_MODE_KEY :
-                                         featureAbility.AbilityWindowConfiguration.WINDOW_MODE_FLOATING,
-                                    featureAbility.AbilityStartSetting.DISPLAY_ID_KEY : 1,
                                 },
                             }, (err, data) => {
                                 console.debug("=ACTS_JsServiceAbility_0400 startAbility (err,data) 2=======>"
