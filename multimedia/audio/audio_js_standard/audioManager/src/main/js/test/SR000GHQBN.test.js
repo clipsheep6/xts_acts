@@ -1577,4 +1577,36 @@ describe('audioManger', function () {
         done();
     })
 
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_DeviceType_001
+                * @tc.name      : DeviceType - INVALID
+                * @tc.desc      : DeviceType - INVALID
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_DeviceType_001', 0, async function (done) {
+
+        expect(audio.DeviceType.INVALID).assertEqual(0);
+        await sleep(50);
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_DeviceType_002
+                * @tc.name      : DeviceType - WIRED_HEADSET
+                * @tc.desc      : DeviceType - WIRED_HEADSET
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_DeviceType_001', 0, async function (done) {
+
+        expect(audio.DeviceType.WIRED_HEADSET).assertEqual(3);
+        await sleep(50);
+        done();
+    })
+
+
+
 })
