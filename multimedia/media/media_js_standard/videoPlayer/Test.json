@@ -24,7 +24,7 @@
         },
         {
             "test-file-name": [
-                "VideoPlayerJsTest.hap"
+                "ActsVideoPlayerJsTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
