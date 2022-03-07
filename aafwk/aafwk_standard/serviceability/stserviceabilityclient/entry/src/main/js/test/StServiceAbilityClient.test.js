@@ -23,64 +23,64 @@ describe('ActsStServiceAbilityTest', function () {
     let bundleName = "com.amsst.stserviceabilityserver";
     let abilityName = "com.amsst.stserviceabilityserver.ServiceAbility";
 
-    var subscriber_0100;
-    var CommonEventSubscribeInfo_0100 = {
+    var subscriber0100;
+    var CommonEventSubscribeInfo0100 = {
         events: ["ACTS_SerivceAbilityServer_onCommand_PageStartService_0100",
         ],
     };
-    var subscriber_0200;
-    var CommonEventSubscribeInfo_0200 = {
+    var subscriber0200;
+    var CommonEventSubscribeInfo0200 = {
         events: ["ACTS_SerivceAbilityServer_onCommand_PageStartService_0200",
         ],
     };
-    var subscriber_0300;
-    var CommonEventSubscribeInfo_0300 = {
+    var subscriber0300;
+    var CommonEventSubscribeInfo0300 = {
         events: ["ACTS_SerivceAbilityServer_onCommand_PageStartService_0300",
             "ACTS_SerivceAbilityServer_onCommand_PageStartService_0301",
         ],
     };
-    var subscriber_0400;
-    var CommonEventSubscribeInfo_0400 = {
+    var subscriber0400;
+    var CommonEventSubscribeInfo0400 = {
         events: ["ACTS_SerivceAbilityServer_onCommand_PageStartService_0400",
             "ACTS_SerivceAbilityServer_onCommand_PageStartService_0401",
         ],
     };
-    var subscriber_0500;
-    var CommonEventSubscribeInfo_0500 = {
+    var subscriber0500;
+    var CommonEventSubscribeInfo0500 = {
         events: ["ACTS_SerivceAbilityServer_onConnect_PageConnectService_0500",
             "ACTS_SerivceAbilityServer_onDisConnect",
         ],
     };
-    var subscriber_0600;
-    var CommonEventSubscribeInfo_0600 = {
+    var subscriber0600;
+    var CommonEventSubscribeInfo0600 = {
         events: ["ACTS_SerivceAbilityServer_onConnect_PageConnectService_0600",
             "ACTS_SerivceAbilityServer_onDisConnect",
         ],
     };
-    var subscriber_0900;
-    var CommonEventSubscribeInfo_0900 = {
+    var subscriber0900;
+    var CommonEventSubscribeInfo0900 = {
         events: ["ACTS_SerivceAbilityServerSecond_onCommand_ServiceStartService_0900",
         ],
     };
-    var subscriber_1000;
-    var CommonEventSubscribeInfo_1000 = {
+    var subscriber1000;
+    var CommonEventSubscribeInfo1000 = {
         events: ["ACTS_SerivceAbilityServerSecond_onCommand_ServiceStartService_1000",
         ],
     };
-    var subscriber_1300;
-    var CommonEventSubscribeInfo_1300 = {
+    var subscriber1300;
+    var CommonEventSubscribeInfo1300 = {
         events: ["ACTS_SerivceAbilityServerSecond_onConnect_ServiceConnectService_1300",
             "ACTS_SerivceAbilityServerSecond_onDisConnect",
         ],
     };
-    var subscriber_1400;
-    var CommonEventSubscribeInfo_1400 = {
+    var subscriber1400;
+    var CommonEventSubscribeInfo1400 = {
         events: ["ACTS_SerivceAbilityServerSecond_onConnect_ServiceConnectService_1400",
             "ACTS_SerivceAbilityServerSecond_onDisConnect",
         ],
     };
-    var subscriber_1500;
-    var CommonEventSubscribeInfo_1500 = {
+    var subscriber1500;
+    var CommonEventSubscribeInfo1500 = {
         events: ["ACTS_SerivceAbilityServerSecond_onConnect_ServiceConnectService_1500",
             "ACTS_SerivceAbilityServer_onDisConnect",
         ],
@@ -128,19 +128,19 @@ describe('ActsStServiceAbilityTest', function () {
     it('ACTS_JsServiceAbility_0100', 0, async function (done) {
         console.debug('ACTS_JsServiceAbility_0100====<begin');
         try {
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_0100).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo0100).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_0100 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_0100 = data;
-                await commonEvent.subscribe(subscriber_0100, async (err, data) => {
+                subscriber0100 = data;
+                await commonEvent.subscribe(subscriber0100, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_0100 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
                         + " ,err=" + err + " ,data=" + data);
                     expect("ACTS_SerivceAbilityServer_onCommand_PageStartService_0100").assertEqual(
                         data.event);
-                    unsubscribe("ACTS_JsServiceAbility_0100_unsubscribe", subscriber_0100);
+                    unsubscribe("ACTS_JsServiceAbility_0100_unsubscribe", subscriber0100);
                     console.debug('ACTS_JsServiceAbility_0100====<end');
                     done();
                 });
@@ -178,19 +178,19 @@ describe('ActsStServiceAbilityTest', function () {
     it('ACTS_JsServiceAbility_0200', 0, async function (done) {
         console.debug('ACTS_JsServiceAbility_0200====<begin');
         try {
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_0200).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo0200).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_0200 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_0200 = data;
-                await commonEvent.subscribe(subscriber_0200, async (err, data) => {
+                subscriber0200 = data;
+                await commonEvent.subscribe(subscriber0200, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_0200 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
                         + " ,err=" + err + " ,data=" + data);
                     expect("ACTS_SerivceAbilityServer_onCommand_PageStartService_0200").assertEqual(
                         data.event);
-                    unsubscribe("ACTS_JsServiceAbility_0200_unsubscribe", subscriber_0200);
+                    unsubscribe("ACTS_JsServiceAbility_0200_unsubscribe", subscriber0200);
                     console.debug('ACTS_JsServiceAbility_0200====<end');
                     done()
                 });
@@ -225,12 +225,12 @@ describe('ActsStServiceAbilityTest', function () {
     it('ACTS_JsServiceAbility_0300', 0, async function (done) {
         console.debug('ACTS_JsServiceAbility_0300====<begin');
         try {
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_0300).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo0300).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_0300 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_0300 = data;
-                await commonEvent.subscribe(subscriber_0300, async (err, data) => {
+                subscriber0300 = data;
+                await commonEvent.subscribe(subscriber0300, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_0300 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
@@ -259,7 +259,7 @@ describe('ActsStServiceAbilityTest', function () {
                     } else {
                         expect("ACTS_SerivceAbilityServer_onCommand_PageStartService_0301").assertEqual(
                             data.event);
-                        unsubscribe("ACTS_JsServiceAbility_0300_unsubscribe", subscriber_0300);
+                        unsubscribe("ACTS_JsServiceAbility_0300_unsubscribe", subscriber0300);
                         console.debug('ACTS_JsServiceAbility_0300====<end');
                         done();
                     }
@@ -298,12 +298,12 @@ describe('ActsStServiceAbilityTest', function () {
     it('ACTS_JsServiceAbility_0400', 0, async function (done) {
         console.debug('ACTS_JsServiceAbility_0400====<begin');
         try {
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_0400).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo0400).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_0400 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_0400 = data;
-                await commonEvent.subscribe(subscriber_0400, async (err, data) => {
+                subscriber0400 = data;
+                await commonEvent.subscribe(subscriber0400, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_0400 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
@@ -329,7 +329,7 @@ describe('ActsStServiceAbilityTest', function () {
                     } else {
                         expect("ACTS_SerivceAbilityServer_onCommand_PageStartService_0401").assertEqual(
                             data.event);
-                        unsubscribe("ACTS_JsServiceAbility_0400_unsubscribe", subscriber_0400);
+                        unsubscribe("ACTS_JsServiceAbility_0400_unsubscribe", subscriber0400);
                         console.debug('ACTS_JsServiceAbility_0400====<end');
                         done();
                     }
@@ -366,12 +366,12 @@ describe('ActsStServiceAbilityTest', function () {
         console.log('ACTS_JsServiceAbility_0500====<begin');
         try {
             var mConnIdJsPromise;
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_0500).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo0500).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_0500 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_0500 = data;
-                await commonEvent.subscribe(subscriber_0500, async (err, data) => {
+                subscriber0500 = data;
+                await commonEvent.subscribe(subscriber0500, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_0500 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
@@ -387,7 +387,7 @@ describe('ActsStServiceAbilityTest', function () {
                         })
                     } else {
                         expect("ACTS_SerivceAbilityServer_onDisConnect").assertEqual(data.event);
-                        unsubscribe("ACTS_JsServiceAbility_0500_unsubscribe", subscriber_0500);
+                        unsubscribe("ACTS_JsServiceAbility_0500_unsubscribe", subscriber0500);
                         console.debug('ACTS_JsServiceAbility_0500====<end');
                         done();
                     }
@@ -442,12 +442,12 @@ describe('ActsStServiceAbilityTest', function () {
         console.log('ACTS_JsServiceAbility_0600====<begin');
         try {
             var mConnIdJsAsyncCallback;
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_0600).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo0600).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_0600 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_0600 = data;
-                await commonEvent.subscribe(subscriber_0600, async (err, data) => {
+                subscriber0600 = data;
+                await commonEvent.subscribe(subscriber0600, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_0600 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
@@ -462,7 +462,7 @@ describe('ActsStServiceAbilityTest', function () {
                     } else {
                         expect("ACTS_SerivceAbilityServer_onDisConnect").assertEqual(
                             data.event);
-                        unsubscribe("ACTS_JsServiceAbility_0600_unsubscribe", subscriber_0600);
+                        unsubscribe("ACTS_JsServiceAbility_0600_unsubscribe", subscriber0600);
                         console.log('ACTS_JsServiceAbility_0600====<end')
                         done();
                     }
@@ -521,19 +521,19 @@ describe('ActsStServiceAbilityTest', function () {
     it('ACTS_JsServiceAbility_0900', 0, async function (done) {
         console.debug('ACTS_JsServiceAbility_0900====<begin');
         try {
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_0900).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo0900).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_0900 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_0900 = data;
-                await commonEvent.subscribe(subscriber_0900, async (err, data) => {
+                subscriber0900 = data;
+                await commonEvent.subscribe(subscriber0900, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_0900 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
                         + " ,err=" + err + " ,data=" + data);
                     expect("ACTS_SerivceAbilityServerSecond_onCommand_ServiceStartService_0900").assertEqual(
                         data.event);
-                    unsubscribe("ACTS_JsServiceAbility_0900_unsubscribe", subscriber_0900);
+                    unsubscribe("ACTS_JsServiceAbility_0900_unsubscribe", subscriber0900);
                     console.debug('ACTS_JsServiceAbility_0900====<end');
                     done();
                 });
@@ -571,19 +571,19 @@ describe('ActsStServiceAbilityTest', function () {
     it('ACTS_JsServiceAbility_1000', 0, async function (done) {
         console.debug('ACTS_JsServiceAbility_1000====<begin');
         try {
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_1000).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo1000).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_1000 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_1000 = data;
-                await commonEvent.subscribe(subscriber_1000, async (err, data) => {
+                subscriber1000 = data;
+                await commonEvent.subscribe(subscriber1000, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_1000 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
                         + " ,err=" + err + " ,data=" + data);
                     expect("ACTS_SerivceAbilityServerSecond_onCommand_ServiceStartService_1000").assertEqual(
                         data.event);
-                    unsubscribe("ACTS_JsServiceAbility_1000_unsubscribe", subscriber_1000);
+                    unsubscribe("ACTS_JsServiceAbility_1000_unsubscribe", subscriber1000);
                     console.debug('ACTS_JsServiceAbility_1000====<end');
                     done()
                 });
@@ -619,12 +619,12 @@ describe('ActsStServiceAbilityTest', function () {
         console.log('ACTS_JsServiceAbility_1300====<begin');
         try {
             var mConnIdJsPromise;
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_1300).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo1300).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_1300 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_1300 = data;
-                await commonEvent.subscribe(subscriber_1300, async (err, data) => {
+                subscriber1300 = data;
+                await commonEvent.subscribe(subscriber1300, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_1300 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
@@ -639,7 +639,7 @@ describe('ActsStServiceAbilityTest', function () {
                     } else {
                         expect("ACTS_SerivceAbilityServerSecond_onDisConnect").assertEqual(
                             data.event);
-                        unsubscribe("ACTS_JsServiceAbility_1300_unsubscribe", subscriber_1300);
+                        unsubscribe("ACTS_JsServiceAbility_1300_unsubscribe", subscriber1300);
                         console.log('ACTS_JsServiceAbility_1300====<end')
                         done();
                     }
@@ -659,7 +659,7 @@ describe('ActsStServiceAbilityTest', function () {
             function onDisconnectCallback(element) {
                 console.debug('ACTS_JsServiceAbility_1300_onDisconnectCallback ====> element='
                     + JSON.stringify(element) + " , " + element);
-                unsubscribe("ACTS_JsServiceAbility_1300_unsubscribe", subscriber_1300);
+                unsubscribe("ACTS_JsServiceAbility_1300_unsubscribe", subscriber1300);
                 console.log('ACTS_JsServiceAbility_1300====<end onDisconnectCallback')
                 done();
             }
@@ -697,12 +697,12 @@ describe('ActsStServiceAbilityTest', function () {
         console.log('ACTS_JsServiceAbility_1400====<begin');
         try {
             var mConnIdJsAsyncCallback;
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_1400).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo1400).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_1400 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_1400 = data;
-                await commonEvent.subscribe(subscriber_1400, async (err, data) => {
+                subscriber1400 = data;
+                await commonEvent.subscribe(subscriber1400, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_1400 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
@@ -717,7 +717,7 @@ describe('ActsStServiceAbilityTest', function () {
                     } else {
                         expect("ACTS_SerivceAbilityServerSecond_onDisConnect").assertEqual(
                             data.event);
-                        unsubscribe("ACTS_JsServiceAbility_1400_unsubscribe", subscriber_1400);
+                        unsubscribe("ACTS_JsServiceAbility_1400_unsubscribe", subscriber1400);
                         console.log('ACTS_JsServiceAbility_1400====<end')
                         done();
                     }
@@ -772,12 +772,12 @@ describe('ActsStServiceAbilityTest', function () {
         console.log('ACTS_JsServiceAbility_1500====<begin');
         try {
             var mConnIdJsPromise;
-            commonEvent.createSubscriber(CommonEventSubscribeInfo_1500).then(async (data) => {
+            commonEvent.createSubscriber(CommonEventSubscribeInfo1500).then(async (data) => {
                 console.debug("=ACTS_JsServiceAbility_1500 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
                     + " ,data=" + data);
-                subscriber_1500 = data;
-                await commonEvent.subscribe(subscriber_1500, async (err, data) => {
+                subscriber1500 = data;
+                await commonEvent.subscribe(subscriber1500, async (err, data) => {
                     console.debug("=ACTS_JsServiceAbility_1500 subscribe (err,data)=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】")
                         + ("json data【") + JSON.stringify(data) + (" 】")
@@ -794,7 +794,7 @@ describe('ActsStServiceAbilityTest', function () {
                     } else {
                         expect("ACTS_SerivceAbilityServer_onDisConnect").assertEqual(
                             data.event);
-                        unsubscribe("ACTS_JsServiceAbility_1500_unsubscribe", subscriber_1500);
+                        unsubscribe("ACTS_JsServiceAbility_1500_unsubscribe", subscriber1500);
                         console.log('ACTS_JsServiceAbility_1500====<end')
                         done();
                     }
@@ -812,7 +812,7 @@ describe('ActsStServiceAbilityTest', function () {
             function onDisconnectCallback(element) {
                 console.debug('ACTS_JsServiceAbility_1500_onDisconnectCallback ====> element='
                     + JSON.stringify(element) + " , " + element);
-                unsubscribe("ACTS_JsServiceAbility_1500_unsubscribe", subscriber_1500);
+                unsubscribe("ACTS_JsServiceAbility_1500_unsubscribe", subscriber1500);
                 console.log('ACTS_JsServiceAbility_1500====<end onDisconnectCallback')
                 done();
             }
