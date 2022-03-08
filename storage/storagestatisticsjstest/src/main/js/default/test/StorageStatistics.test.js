@@ -26,6 +26,7 @@ import {
 } from "./Common";
 
 describe("storageStatistics", function () {
+
     /**
      * @tc.number SUB_DF_VOLUME_GET_TOTAL_SIZE_OF_VOLUME_0000
      * @tc.name storage_statistics_test_get_total_size_of_volume_async_000
