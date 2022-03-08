@@ -19,6 +19,7 @@ group("osaccount_hap") {
     deps = [
       "actsosaccountpermissiontest:osaccount_permission",
       "actsosaccountsystemtest:ActsOsAccountSystemTest",
+	  "actsosaccountdomaintest:ActsOsAccountDomainTest"
       "actsosaccountthirdpartytest:ActsOsAccountThirdPartyTest",
       "sceneProject:osaccount_scene",
     ]
