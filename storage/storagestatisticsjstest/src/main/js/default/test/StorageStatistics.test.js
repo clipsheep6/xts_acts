@@ -23,7 +23,214 @@ import {
 } from "./Common";
 
 describe("storageStatistics", function () {
-    
+    /**
+     * @tc.number SUB_DF_VOLUME_GET_TOTAL_SIZE_OF_VOLUME_0000
+     * @tc.name storage_statistics_test_get_total_size_of_volume_async_000
+     * @tc.desc Test getTotalSizeOfVolume() interfaces.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it("storage_statistics_test_get_total_size_of_volume_async_000", 0, async function (done) {
+        try {
+            let totalSize = await storageStatistics.getTotalSizeOfVolume("123");
+            console.log(`promise totalSize ===---=== ${totalSize}/1024 = ${totalSize / 1024}`);
+            expect(isIntNum(totalSize) && !isNegativeNum(totalSize)).assertTrue();
+        } catch (e) {
+            console.log("storage_statistics_test_get_total_size_of_volume_async_000 has failed for " + e);
+            expect(null).assertFail();
+        }
+        done();
+    });
+
+    /**
+     * @tc.number SUB_DF_VOLUME_GET_TOTAL_SIZE_OF_VOLUME_0010
+     * @tc.name storage_statistics_test_get_total_size_of_volume_async_001
+     * @tc.desc Test getTotalSizeOfVolume() interfaces.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it("storage_statistics_test_get_total_size_of_volume_async_001", 0, async function (done) {
+        try {
+            storageStatistics.getTotalSizeOfVolume("123", (error, totalSize) => {
+                console.log(`callback totalSize ===---=== ${totalSize}/1024 = ${totalSize / 1024}`);
+                expect(isIntNum(totalSize) && !isNegativeNum(totalSize)).assertTrue();
+            });
+        } catch (e) {
+            console.log("storage_statistics_test_get_total_size_of_volume_async_001 has failed for " + e);
+            expect(null).assertFail();
+        }
+        done();
+    });
+
+    /**
+     * @tc.number SUB_DF_VOLUME_GET_TOTAL_SIZE_OF_VOLUME_0020
+     * @tc.name storage_statistics_test_get_total_size_of_volume_async_002
+     * @tc.desc Test getTotalSizeOfVolume() interfaces.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it("storage_statistics_test_get_total_size_of_volume_async_002", 0, async function (done) {
+        try {
+            await storageStatistics.getTotalSizeOfVolume(123);
+            expect(null).assertFail();
+        } catch (err) {
+            console.log("storage_statistics_test_get_total_size_of_volume_async_002 has failed for " + err.message);
+            expect(!!err).assertTrue();
+        }
+        done();
+    });
+
+    /**
+     * @tc.number SUB_DF_VOLUME_GET_TOTAL_SIZE_OF_VOLUME_0030
+     * @tc.name storage_statistics_test_get_total_size_of_volume_async_003
+     * @tc.desc Test getTotalSizeOfVolume() interfaces.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it("storage_statistics_test_get_total_size_of_volume_async_003", 0, async function (done) {
+        try {
+            await storageStatistics.getTotalSizeOfVolume();
+            expect(null).assertFail();
+        } catch (err) {
+            console.log("storage_statistics_test_get_total_size_of_volume_async_003 has failed for " + err);
+            expect(!!err).assertTrue();
+        }
+        done();
+    });
+
+    /**
+     * @tc.number SUB_DF_VOLUME_GET_TOTAL_SIZE_OF_VOLUME_0040
+     * @tc.name storage_statistics_test_get_total_size_of_volume_async_004
+     * @tc.desc Test getTotalSizeOfVolume() interfaces.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it("storage_statistics_test_get_total_size_of_volume_async_004", 0, async function (done) {
+        try {
+            let totalSize = await storageStatistics.getTotalSizeOfVolume("1234");
+            console.log(`async_004 totalSize ===---=== ${totalSize}`);
+            expect(totalSize == -1).assertFail();
+        } catch (err) {
+            console.log("storage_statistics_test_get_total_size_of_volume_async_004 has failed for " + err);
+            expect(!!err).assertTrue();
+        }
+        done();
+    });
+
+    /**
+     * @tc.number SUB_DF_VOLUME_GET_FREE_SIZE_OF_VOLUME_0000
+     * @tc.name storage_statistics_test_get_free_size_of_volume_async_000
+     * @tc.desc Test getFreeSizeOfVolume() interfaces.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it("storage_statistics_test_get_free_size_of_volume_async_000", 0, async function (done) {
+        try {
+            let freeSize = await storageStatistics.getFreeSizeOfVolume("123");
+            console.log(`promise freeSize ===---=== ${freeSize}/1024 = ${freeSize / 1024}`);
+            expect(isIntNum(freeSize) && !isNegativeNum(freeSize)).assertTrue();
+        } catch (e) {
+            console.log("storage_statistics_test_get_free_size_of_volume_async_000 has failed for " + e);
+            expect(null).assertFail();
+        }
+        done();
+    });
+
+    /**
+     * @tc.number SUB_DF_VOLUME_GET_FREE_SIZE_OF_VOLUME_0010
+     * @tc.name storage_statistics_test_get_free_size_of_volume_async_001
+     * @tc.desc Test getFreeSizeOfVolume() interfaces.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it("storage_statistics_test_get_free_size_of_volume_async_001", 0, async function (done) {
+        try {
+            storageStatistics.getFreeSizeOfVolume("123", (error, freeSize) => {
+                console.log(`callback freeSize ===---=== ${freeSize}/1024 = ${freeSize / 1024}`);
+                expect(isIntNum(freeSize) && !isNegativeNum(freeSize)).assertTrue();
+            });
+        } catch (e) {
+            console.log("storage_statistics_test_get_free_size_of_volume_async_001 has failed for " + e);
+            expect(null).assertFail();
+        }
+        done();
+    });
+
+    /**
+     * @tc.number SUB_DF_VOLUME_GET_FREE_SIZE_OF_VOLUME_0020
+     * @tc.name storage_statistics_test_get_free_size_of_volume_async_002
+     * @tc.desc Test getFreeSizeOfVolume() interfaces.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it("storage_statistics_test_get_free_size_of_volume_async_002", 0, async function (done) {
+        try {
+            let freeSize = await storageStatistics.getFreeSizeOfVolume("1234");
+            console.log(`async_002 freeSize ===---=== ${freeSize}`);
+            expect(freeSize == -1).assertTrue();
+        } catch (err) {
+            console.log("storage_statistics_test_get_free_size_of_volume_async_002 has failed for " + err);
+            expect(!!err).assertTrue();
+        }
+        done();
+    });
+
+    /**
+     * @tc.number SUB_DF_VOLUME_GET_FREE_SIZE_OF_VOLUME_0030
+     * @tc.name storage_statistics_test_get_free_size_of_volume_async_003
+     * @tc.desc Test getFreeSizeOfVolume() interfaces.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it("storage_statistics_test_get_free_size_of_volume_async_003", 0, async function (done) {
+        try {
+            await storageStatistics.getFreeSizeOfVolume();
+            expect(null).assertFail();
+        } catch (err) {
+            console.log("storage_statistics_test_get_free_size_of_volume_async_003 has failed for " + err);
+            expect(!!err).assertTrue();
+        }
+        done();
+    });
+
+    /**
+     * @tc.number SUB_DF_VOLUME_GET_FREE_SIZE_OF_VOLUME_0040
+     * @tc.name storage_statistics_test_get_free_size_of_volume_async_004
+     * @tc.desc Test getFreeSizeOfVolume() interfaces.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it("storage_statistics_test_get_free_size_of_volume_async_004", 0, async function (done) {
+        try {
+            await storageStatistics.getFreeSizeOfVolume();
+            expect(null).assertFail();
+        } catch (err) {
+            console.log("storage_statistics_test_get_free_size_of_volume_async_004 has failed for " + err);
+            expect(!!err).assertTrue();
+        }
+        done();
+    });
+
     /**
    	 * @tc.number SUB_DF_STORAGE_STATISTICS_GET_BUNDLE_STAT_0000
    	 * @tc.name storage_statistics_test_get_bundle_stat_async_000
