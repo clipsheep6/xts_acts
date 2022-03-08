@@ -96,7 +96,7 @@ describe("storageStatistics", function () {
             done();
         } catch (error) {
             console.log("storage_statistics_test_get_total_size_of_volume_async_002 has failed for " + error.message);
-            expect(isInclude(error, "not a function")).assertTrue();
+            expect(isInclude(error, "not a function") || isInclude(error, "is not callable")).assertTrue();
             done();
         }
     });
