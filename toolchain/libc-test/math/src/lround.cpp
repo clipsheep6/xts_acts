@@ -1,0 +1,74 @@
+#include <stdint.h>
+#include <stdio.h>
+#include "mtest.h"
+#include "gtest/gtest.h"
+/**  
+* @brief  register a test suit named "LroundSuite"  
+* @param  test subsystem name is libc 
+* @param  example module name is  Functional
+* @param  test suit name is  LroundSuite
+*/
+
+using namespace std;
+using namespace testing::ext;
+class LroundSuite: public testing::Test {
+protected:
+// Preset action of the test suite, which is executed before the first test case
+    static void SetUpTestCase(void){
+    }
+    // Test suite cleanup action, which is executed after the last test case
+    static void TearDownTestCase(void){
+    }
+    // Preset action of the test case
+    virtual void SetUp()
+    {
+    }
+    // Cleanup action of the test case
+    virtual void TearDown()
+    {
+    }
+};
+
+/**
+ * @tc.name      : LroundSuite001
+ * @tc.desc      : Test LroundSuite001 3 items whth async flush
+ * @tc.level     : Level 1
+ */
+static struct d_i t[] = {
+#include "sanity/lround.h"
+#include "special/lround.h"
+
+};
+
+HWTEST_F(LroundSuite, LroundTest, Function | MediumTest | Level2)
+{
+	//#pragma STDC FENV_ACCESS ON
+	long long yi;
+	int e, i, err = 0;
+	struct d_i *p;
+
+	for (i = 0; i < sizeof t/sizeof *t; i++) {
+		p = t + i;
+
+		if (p->r < 0)
+			continue;
+		fesetround(p->r);
+		feclearexcept(FE_ALL_EXCEPT);
+		yi = lround(p->x);
+		e = fetestexcept(INEXACT|INVALID|DIVBYZERO|UNDERFLOW|OVERFLOW);
+
+		EXPECT_FALSE(!checkexcept(e, p->e, p->r) && (e|INEXACT) != p->e);
+		if (!checkexcept(e, p->e, p->r) && (e|INEXACT) != p->e) {
+			printf("%s:%d: bad fp exception: %s lround(%a)=%lld, want %s",
+				p->file, p->line, rstr(p->r), p->x, p->i, estr(p->e));
+			printf(" got %s\n", estr(e));
+			err++;
+		}
+		EXPECT_FALSE(!(p->e&INVALID) && yi != p->i);
+		if (!(p->e&INVALID) && yi != p->i) {
+			printf("%s:%d: %s lround(%a) want %lld got %lld\n",
+				p->file, p->line, rstr(p->r), p->x, p->i, yi);
+			err++;
+		}
+	}
+}

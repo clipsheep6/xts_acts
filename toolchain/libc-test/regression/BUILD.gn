@@ -1,0 +1,141 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#import("//build/test.gni")
+import("//test/xts/tools/build/suite.gni")
+
+#module_output_path = "hits/huks_standard"
+########################################################
+config("module_private_config") {
+  visibility = [ ":*" ]
+  include_dirs = [
+    "//utils/native/base/include",
+    "//third_party/bounds_checking_function/include",
+    "//third_party/musl/porting/linux/user/include",
+    #"unittest/include",
+    #"include",
+    "//test/xts/acts/security_lite/huks/common/include",
+    #"../../../../../../third_party/musl/libc-test/src/common",
+  ]
+}
+
+########################################################
+ohos_moduletest_suite("ActToolChainRegressionTest") {
+  configs = [ ":module_private_config" ]
+  cflags_cc = [ "-DHILOG_ENABLE" ]
+  defines = [ "_STANDARD_SYSTEM_" ]
+
+  sources = [
+    "include/fdfill.cpp",
+    "include/utf8.cpp",
+    "include/print.cpp",
+    "include/rand.cpp",
+    "include/setrlim.cpp",
+    "include/vmfill.cpp",
+    "include/memfill.cpp",
+    #"include/tgmath.cpp",
+    #"include/search.cpp",
+    #"src/daemon-failure.cpp",
+    "src/dn_expand-empty.cpp",
+    "src/dn_expand-ptr-0.cpp",
+    #"src/execle-env.cpp",
+    "src/fflush-exit.cpp",
+    "src/fgets-eof.cpp",
+    "src/fgetwc-buffering.cpp",
+    #"src/flockfile-list.cpp",
+    "src/fpclassify-invalid-ld80.cpp",
+    "src/ftello-unflushed-append.cpp",
+    "src/getpwnam_r-crash.cpp",
+    "src/getpwnam_r-errno.cpp",
+    "src/iconv-roundtrips.cpp",
+    "src/inet_ntop-v4mapped.cpp",
+    "src/inet_pton-empty-last-field.cpp",
+    "src/iswspace-null.cpp",
+    "src/lrand48-signextend.cpp",
+    "src/lseek-large.cpp",
+    "src/malloc-0.cpp",
+    #"src/malloc-brk-fail.cpp",
+    #"src/malloc-oom.cpp",
+    "src/mbsrtowcs-overflow.cpp",
+    "src/memmem-oob-read.cpp",
+    "src/memmem-oob.cpp",
+    "src/mkdtemp-failure.cpp",
+    "src/mkstemp-failure.cpp",
+    "src/printf-1e9-oob.cpp",
+    "src/printf-fmt-g-round.cpp",
+    "src/printf-fmt-g-zeros.cpp",
+    "src/printf-fmt-n.cpp",
+    "src/pthread_atfork-errno-clobber.cpp",
+    "src/pthread_cancel-sem_wait.cpp",
+    "src/pthread_cond_wait-cancel_ignored.cpp",
+    "src/pthread_cond-smasher.cpp",
+    "src/pthread_condattr_setclock.cpp",
+    #"src/pthread_create-oom.cpp",
+    "src/pthread_exit-cancel.cpp",
+    #"src/pthread_exit-dtor.cpp",
+    #"src/pthread_once-deadlock.cpp",
+    "src/pthread_rwlock-ebusy.cpp",
+    "src/pthread-robust-detach.cpp",
+    "src/putenv-doublefree.cpp",
+    "src/raise-race.cpp",
+    "src/regex-backref-0.cpp",
+    "src/regex-bracket-icase.cpp",
+    "src/regex-ere-backref.cpp",
+    "src/regex-escaped-high-byte.cpp",
+    "src/regex-negated-range.cpp",
+    "src/regexec-nosub.cpp",
+    "src/rewind-clear-error.cpp",
+    "src/rlimit-open-files.cpp",
+    "src/scanf-bytes-consumed.cpp",
+    "src/scanf-match-literal-eof.cpp",
+    "src/scanf-nullbyte-char.cpp",
+    #"src/sem_close-unmap.cpp",
+    #"src/setenv-oom.cpp",
+    "src/setvbuf-unget.cpp",
+    "src/sigaltstack.cpp",
+    "src/sigprocmask-internal.cpp",
+    "src/sigreturn.cpp",
+    "src/sscanf-eof.cpp",
+    "src/statvfs.cpp",
+    "src/strverscmp.cpp",
+    "src/syscall-sign-extend.cpp",
+    "src/uselocale-0.cpp",
+    "src/wcsncpy-read-overflow.cpp",
+    "src/wcsstr-false-negative.cpp",
+  ]
+
+  include_dirs = [
+    "//utils/native/base/include",
+    "//third_party/bounds_checking_function/include",
+    "include",
+    "include/api",
+    "include/common",
+    "//third_party/musl/porting/linux/user/include",
+    #"//third_party/musl/libc-test/src/common",
+    "//third_party/musl/porting/linux/user/src/sched",
+    #"//third_party/musl/include",
+    #"//test/xts/tools/lite/hctest/include",
+  ]
+
+  deps = [
+    #"//base/security/huks/interfaces/innerkits/huks_standard/main:libhukssdk",
+    #"//test/xts/acts/security_lite/huks/common:huks_test_common",
+    "//third_party/bounds_checking_function:libsec_static",
+    "//utils/native/base:utils",
+  ]
+}
+
+#group("ToolChaintest") {
+#   testonly = true
+#   deps = [ ":ActToolChainRegressionTest" ]
+#}

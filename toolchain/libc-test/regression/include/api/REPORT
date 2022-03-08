@@ -1,0 +1,34 @@
+src/common/runtest.c:29: src/api/main.exe exec failed: No such file or directory
+FAIL src/api/main.exe [status 1]
+gcc: error: src/api/unistd.o: No such file or directory
+src/api/unistd.c: In function ‘f’:
+src/api/unistd.c:87:3: error: ‘_CS_POSIX_V7_THREADS_CFLAGS’ undeclared (first use in this function); did you mean ‘_CS_POSIX_V7_LP64_OFF64_CFLAGS’?
+ C(_CS_POSIX_V7_THREADS_CFLAGS)
+   ^
+src/api/unistd.c:5:21: note: in definition of macro ‘C’
+ #define C(n) switch(n){case n:;}
+                     ^
+src/api/unistd.c:87:3: note: each undeclared identifier is reported only once for each function it appears in
+ C(_CS_POSIX_V7_THREADS_CFLAGS)
+   ^
+src/api/unistd.c:5:21: note: in definition of macro ‘C’
+ #define C(n) switch(n){case n:;}
+                     ^
+src/api/unistd.c:88:3: error: ‘_CS_POSIX_V7_THREADS_LDFLAGS’ undeclared (first use in this function); did you mean ‘_CS_POSIX_V7_THREADS_CFLAGS’?
+ C(_CS_POSIX_V7_THREADS_LDFLAGS)
+   ^
+src/api/unistd.c:5:21: note: in definition of macro ‘C’
+ #define C(n) switch(n){case n:;}
+                     ^
+src/api/unistd.c:117:3: error: ‘_PC_TIMESTAMP_RESOLUTION’ undeclared (first use in this function); did you mean ‘__TIMESTAMP__’?
+ C(_PC_TIMESTAMP_RESOLUTION)
+   ^
+src/api/unistd.c:5:21: note: in definition of macro ‘C’
+ #define C(n) switch(n){case n:;}
+                     ^
+src/api/unistd.c:238:3: error: ‘_SC_XOPEN_UUCP’ undeclared (first use in this function); did you mean ‘_SC_XOPEN_UNIX’?
+ C(_SC_XOPEN_UUCP)
+   ^
+src/api/unistd.c:5:21: note: in definition of macro ‘C’
+ #define C(n) switch(n){case n:;}
+                     ^

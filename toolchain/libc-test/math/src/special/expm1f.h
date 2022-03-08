@@ -1,0 +1,7 @@
+TT(RN,          0x0p+0,          0x0p+0,          0x0p+0, 0)
+TT(RN,         -0x0p+0,         -0x0p+0,          0x0p+0, 0)
+TT(RN,          0x1p+0,   0x1.b7e152p+0,   0x1.3aea26p-2, INEXACT)
+TT(RN,         -0x1p+0,  -0x1.43a54ep-1,   0x1.3a621ap-3, INEXACT)
+TT(RN,             inf,             inf,          0x0p+0, 0)
+TT(RN,            -inf,         -0x1p+0,          0x0p+0, 0)
+TT(RN,             NAN,             NAN,          0x0p+0, 0)

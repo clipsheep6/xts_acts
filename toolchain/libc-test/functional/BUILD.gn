@@ -1,0 +1,136 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#import("//build/test.gni")
+import("//test/xts/tools/build/suite.gni")
+
+#module_output_path = "hits/huks_standard"
+########################################################
+config("module_private_config") {
+  visibility = [ ":*" ]
+  include_dirs = [
+    "//utils/native/base/include",
+    "//third_party/bounds_checking_function/include",
+    "//third_party/musl/porting/linux/user/include",
+    #"unittest/include",
+    #"include",
+    "//test/xts/acts/security_lite/huks/common/include",
+    #"../../../../../../third_party/musl/libc-test/src/common",
+  ]
+}
+
+########################################################
+ohos_moduletest_suite("ActToolChainFunctionTest") {
+  configs = [ ":module_private_config" ]
+  cflags_cc = [ "-DHILOG_ENABLE" ]
+  defines = [ "_STANDARD_SYSTEM_" ]
+
+  sources = [
+    "include/print.cpp",
+    "include/rand.cpp",
+    "include/setrlim.cpp",
+    #"include/tgmath.cpp",
+    #"include/search.cpp",
+    "src/basename.cpp",
+    "src/clocale_mbfuncs.cpp",
+    "src/clock_gettime.cpp",
+    "src/crypt.cpp",
+    "src/dirname.cpp",
+    "src/env.cpp",
+    "src/fcntl.cpp",
+    "src/fdopen.cpp",
+    "src/fnmatch.cpp",
+    "src/fscanf.cpp",
+    "src/fwscanf.cpp",
+    "src/iconv_open.cpp",
+    "src/inet_pton.cpp",
+    #"src/ipc_msg.cpp",
+    #"src/ipc_sem.cpp",
+    #"src/ipc_shm.cpp",
+    "src/mbc.cpp",
+    "src/memstream.cpp",
+    "src/popen.cpp",
+    "src/pthread_cancel-points.cpp",
+    "src/pthread_cancel.cpp",
+    #"src/pthread_cond.cpp",
+    "src/pthread_gettid_np.cpp",
+    "src/pthread_mutex_pi.cpp",
+    "src/pthread_mutex.cpp",
+    #"src/pthread_robust.cpp",
+    #"src/pthread_tsd.cpp",
+    "src/qsort.cpp",
+    "src/random.cpp",
+    "src/sched_setscheduler.cpp",
+    "src/search_hsearch.cpp",
+    "src/search_insque.cpp",
+    "src/search_lsearch.cpp",
+    "src/search_tsearch.cpp",
+    "src/sem_init.cpp",
+    #"src/sem_open.cpp",
+    #"src/setjmp.cpp",
+    "src/snprintf.cpp",
+    "src/socket.cpp",
+    "src/spawn.cpp",
+    "src/stat.cpp",
+    "src/strftime.cpp",
+    "src/string_memcpy.cpp",
+    #"src/string_memmem.cpp",
+    "src/string_memset.cpp",
+    "src/string_strchr.cpp",
+    "src/string_strcspn.cpp",
+    "src/string_strstr.cpp",
+    "src/string.cpp",
+    "src/strptime.cpp",
+    "src/strtod_long.cpp",
+    "src/strtod_simple.cpp",
+    "src/strtod.cpp",
+    "src/strtof.cpp",
+    "src/strtol.cpp",
+    "src/strtold.cpp",
+    "src/swprintf.cpp",
+    #"src/tgmath.cpp",
+    "src/time.cpp",
+    "src/tls_local_exec.cpp",
+    #"src/udiv.cpp",
+    "src/ungetc.cpp",
+    "src/utime.cpp",
+    "src/vfork.cpp",
+    "src/wcsstr.cpp",
+    "src/wcstol.cpp",
+  ]
+
+  include_dirs = [
+    "//utils/native/base/include",
+    "//third_party/bounds_checking_function/include",
+    "include",
+    "include/api",
+    "include/common",
+    "//third_party/musl/porting/linux/user/include",
+    #"//third_party/musl/libc-test/src/common",
+    "//third_party/musl/porting/linux/user/src/sched",
+    #"//third_party/musl/include",
+    #"//test/xts/tools/lite/hctest/include",
+  ]
+
+  deps = [
+    #"//base/security/huks/interfaces/innerkits/huks_standard/main:libhukssdk",
+    #"//test/xts/acts/security_lite/huks/common:huks_test_common",
+    "//third_party/bounds_checking_function:libsec_static",
+    "//utils/native/base:utils",
+  ]
+}
+
+#group("ToolChaintest") {
+#   testonly = true
+#   deps = [ ":ActToolChainFunctionTest" ]
+#}

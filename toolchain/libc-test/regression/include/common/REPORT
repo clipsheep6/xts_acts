@@ -1,0 +1,7 @@
+/usr/bin/ld: src/common/runtest.o: Relocations in generic ELF (EM: 40)
+/usr/bin/ld: src/common/runtest.o: Relocations in generic ELF (EM: 40)
+/usr/bin/ld: src/common/runtest.o: Relocations in generic ELF (EM: 40)
+/usr/bin/ld: src/common/runtest.o: Relocations in generic ELF (EM: 40)
+/usr/bin/ld: src/common/runtest.o: Relocations in generic ELF (EM: 40)
+src/common/runtest.o: error adding symbols: File in wrong format
+clang-10: error: linker command failed with exit code 1 (use -v to see invocation)

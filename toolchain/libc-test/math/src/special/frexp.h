@@ -1,0 +1,12 @@
+TT(RN,                  0x0p+0,                  0x0p+0,          0x0p+0,           0, 0)
+TT(RN,                 -0x0p+0,                 -0x0p+0,          0x0p+0,           0, 0)
+TT(RN,                  0x1p-1,                  0x1p-1,          0x0p+0,           0, 0)
+TT(RN,                 -0x1p-1,                 -0x1p-1,          0x0p+0,           0, 0)
+TT(RN,                  0x1p+0,                  0x1p-1,          0x0p+0,           1, 0)
+TT(RN,                 -0x1p+0,                 -0x1p-1,          0x0p+0,           1, 0)
+TT(RN,                  0x1p+1,                  0x1p-1,          0x0p+0,           2, 0)
+TT(RN,                 -0x1p+1,                 -0x1p-1,          0x0p+0,           2, 0)
+// TODO: exp is unspecified for these inputs
+TT(RN,                     inf,                     inf,          0x0p+0,           0, 0)
+TT(RN,                    -inf,                    -inf,          0x0p+0,           0, 0)
+TT(RN,                     NAN,                     NAN,          0x0p+0,           0, 0)
