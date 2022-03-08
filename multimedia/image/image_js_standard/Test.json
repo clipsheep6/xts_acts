@@ -45,7 +45,7 @@
         },
         {
             "test-file-name": [
-                "ImageJsTest.hap"
+                "ActsImageJsTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
