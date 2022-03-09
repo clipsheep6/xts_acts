@@ -33,6 +33,9 @@ group("publish_test") {
       "publishvibra:ActsAnsPublishVibraTest",
       "unsubscribe:ActsAnsUnSubscriberTest",
       "wantagent:wantagent",
+      "publish:ActsAnsNotificationPublish",
+      "sub:ActsAnsSubTest",
+      "actsansgetallactive:ActsAnsGetAllActiveTest"
     ]
   }
 }
