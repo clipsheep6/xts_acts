@@ -20,7 +20,6 @@ group("compileruntime") {
       "containerLine_lib_standard:containerLine_js_test",
       "containerRelation_lib_standard:containerRelation_js_test",
       "convertxml_lib_standard:convertxml_js_test",
-
       "process_lib_standard:process_js_test",
       "uri_lib_standard:uri_js_test",
       "url_lib_standard:url_js_test",
