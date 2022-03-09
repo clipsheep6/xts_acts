@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -226,7 +226,6 @@ export function scenceInCallingNull (options) {
     });
 }
 
-// holding call scence,use it should base on scenceInCalling,get the infomation at CALL_STATUS_HOLDING state
 export function scenceInHolding (options) {
     console.log(`scenceInHolding options ${toString(options)}`);
     return new Promise(async (resolve, reject) => {
@@ -293,7 +292,6 @@ export function scenceInUnHolding (options) {
     });
 }
 
-// hunup call scence,use it should base on scenceInCalling,specific state arrive,get the infomation at this state
 export function scenceInHangup (options) {
     console.log(`scenceInHangup options ${toString(options)}`);
     return new Promise(async (resolve, reject) => {
