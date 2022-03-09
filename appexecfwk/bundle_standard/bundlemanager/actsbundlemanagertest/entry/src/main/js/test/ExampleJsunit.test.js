@@ -2296,7 +2296,7 @@ describe('ActsBundleManagerTest', function () {
                             expect(datainfo.applicationInfo.supportedModes).assertEqual(0)
                             expect(datainfo.orientation).assertEqual(2)
                             expect(datainfo.applicationInfo.enabled).assertEqual(true)
-                            for (var j = 0; j < datainfo.applicationInfo.moduleInfos; j++) {
+                            for (var j = 0; j < datainfo.applicationInfo.moduleInfos.length; j++) {
                                 expect(datainfo.applicationInfo.moduleInfos[j].moduleName).assertEqual("entry")
                             }
                             queryResultCount++
