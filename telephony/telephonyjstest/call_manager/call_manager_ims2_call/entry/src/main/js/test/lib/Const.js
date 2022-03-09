@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// export const AUTO_ACCEPT_NUMBER = '17615117737';
 export const AUTO_ACCEPT_NUMBER = '10010';
 export const AUTO_ACCEPT_NUMBER2 = '10010';
 export const NOT_ACCEPT_NUMBER = '17160409240';
