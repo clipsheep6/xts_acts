@@ -14,9 +14,9 @@
  */
 
 import {describe, it, expect} from 'deccjsunit/index'
-import userAuth from '@ohos.userauth'
-import userIDM from '@ohos.useridm'
-import pinAuth from '@ohos.pinauth'
+import userAuth from '@ohos.userAuth'
+import userIDM from '@ohos.userIDM'
+import pinAuth from '@ohos.pinAuth'
 import * as publicFC from './Publicfunction-n'
 
 
@@ -144,8 +144,8 @@ describe('userauthTest', function () {
                             console.info('testFace Interface_MTBF_0101 publicauthUser = ' + JSON.stringify(data));
                             faceinfo101 = data;
                             expect(ResultCode.SUCCESS).assertEqual(faceinfo101.authresult);
-//                            publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, function (data) {
-//                                console.info('testFace Interface_MTBF_0101 addCredential = ' + JSON.stringify(data));
+                            publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, function (data) {
+                                console.info('testFace Interface_MTBF_0101 addCredential = ' + JSON.stringify(data));
                                 let EnrolledCredInfo ;
                                 publicFC.publicgetAuthInfo(UserIDM, AuthType.PIN, function (data) {
                                     console.info('testFace Interface_MTBF_0101 getAuthInfo' + JSON.stringify(data));
@@ -156,14 +156,14 @@ describe('userauthTest', function () {
                                         console.info('testFace Interface getProperty data' + JSON.stringify(data));
                                         ExecutorProperty101 = data;
                                         expect(ResultCode.SUCCESS).assertEqual(ExecutorProperty101.result);
-//                                        expect(AuthSubType.PIN_SIX).assertEqual(ExecutorProperty101.authSubType);
-//                                        publicFC.publicsetProperty(UserAuth,SetPropertyType1, function (data) {
-//                                            console.info('testFace Interface setProperty'+ JSON.stringify(data));
-//                                            publicFC.publicsetProperty(UserAuth,SetPropertyType0, function (data) {
-//                                                console.info('testFace setProperty data' + JSON.stringify(data));
-//                                                let AvailabeStatus = publicFC.publicgetAvailabeStatus(
-//                                                UserAuth,AuthType.FACE,AuthTurstLevel.ATL1)
-//                                                expect(ResultCode.SUCCESS).assertEqual(AvailabeStatus);
+                                        expect(AuthSubType.PIN_SIX).assertEqual(ExecutorProperty101.authSubType);
+                                        publicFC.publicsetProperty(UserAuth,SetPropertyType1, function (data) {
+                                            console.info('testFace Interface setProperty'+ JSON.stringify(data));
+                                            publicFC.publicsetProperty(UserAuth,SetPropertyType0, function (data) {
+                                                console.info('testFace setProperty data' + JSON.stringify(data));
+                                                let AvailabeStatus = publicFC.publicgetAvailabeStatus(
+                                                UserAuth,AuthType.PIN,AuthTurstLevel.ATL1)
+                                                expect(ResultCode.SUCCESS).assertEqual(AvailabeStatus);
                                                 publicFC.publicdelUser(UserIDM,token, function (data) {
                                                     console.info('testFace Interface delUser='+ JSON.stringify(data));
                                                     publicFC.publicCloseSession(UserIDM, function (data) {
@@ -175,12 +175,12 @@ describe('userauthTest', function () {
                                                     })
                                                 }, function (data) {
                                                 })
-//                                            })
-//                                        })
+                                            })
+                                        })
                                     })
                                 })
-//                            }, function (data) {
-//                            })
+                            }, function (data) {
+                            })
                         }, function (data) {
                         })
                     }, function (data) {
