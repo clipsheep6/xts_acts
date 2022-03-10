@@ -50,6 +50,7 @@ group("aafwk_standard") {
       "amszipfileunzipfilest:ActsAmsZipfileUnzipfileSTest",
       "context:context",
       "featureability:featureability",
+      "form:form",
       "formmanager:formmanager",
       "lanuageConfigapi7:lanuageConfigapi7",
       "serviceability/sceneProject/particlestartability:ParticleStartAbility",

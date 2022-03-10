@@ -1,0 +1,68 @@
+{
+  "app": {
+    "bundleName": "com.example.formprovider",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.formprovider",
+    "name": ".MyApplication",
+    "mainAbility": ".FormAbility",
+    "srcPath": "",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "name": ".FormAbility",
+        "srcPath": "FormAbility",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "label": "$string:entry_MainAbility",
+        "type": "service",
+        "launchType": "singleton",
+        "formsEnabled": true,
+        "forms": [
+          {
+            "jsComponentName": "CardA",
+            "isDefault": true,
+            "scheduledUpdateTime": "10:30",
+            "formVisibleNotify": true,
+            "defaultDimension": "2*2",
+            "name": "CardA",
+            "description": "This is a form widget",
+            "colorMode": "auto",
+            "type": "JS",
+            "supportDimensions": [
+              "2*2"
+            ],
+            "updateEnabled": true,
+            "updateDuration": 1
+          }
+        ],
+        "srcLanguage": "js"
+      }
+    ],
+    "js": [
+      {
+        "pages": ["pages/index/index"],
+        "name": "CardA",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        },
+        "type": "form"
+      }
+    ]
+  }
+}

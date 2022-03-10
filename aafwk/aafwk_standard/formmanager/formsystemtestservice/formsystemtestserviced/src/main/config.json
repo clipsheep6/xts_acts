@@ -41,7 +41,7 @@
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:entry_MainAbility",
-        "type": "service",
+        "type": "page",
         "launchType": "standard",
         "formsEnabled": true,
         "srcLanguage": "c++"
