@@ -70,6 +70,7 @@ describe('ActsAnsWantAgentOneTest', function () {
                             if (err.code == 0) {
                                 console.info('----trigger success!----');
                                 console.info('== trigger data  ' + JSON.stringify(data) );
+                                var info = data.wantAgent
                                 expect(data.finalCode).assertEqual(0);
                                 expect(data.finalData).assertEqual("");
                                 expect(data.want.deviceId).assertEqual("");
@@ -78,6 +79,10 @@ describe('ActsAnsWantAgentOneTest', function () {
                                 expect(data.want.uri).assertEqual("key={true,true,false}");
                                 expect(JSON.stringify(data.want.entities)).assertEqual(JSON.stringify(["entity1"]));
                                 expect(data.want.action).assertEqual("action1");
+                                expect(typeof(info)).assertEqual("object");
+                                expect(typeof(data.extraInfo)).assertEqual("object");
+                                console.info('== trigger info  ' + JSON.stringify(info) );
+                                console.info('== trigger extraInfo ' + JSON.stringify(data.extraInfo) );
                             } else {
                                 console.info('----trigger failed!----');
                                 console.info('== trigger data  ' + JSON.stringify(data) );
@@ -106,7 +111,7 @@ describe('ActsAnsWantAgentOneTest', function () {
      * @tc.name: getWantAgent(OperationType.START_ABILITY)
      * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[ONE_TIME_FLAG]
      */
-    it('ACTS_SetWant_0200', 0, async function (done) {
+    it('ACTS_SetWant_Flag_0200', 0, async function (done) {
         console.info('----ACTS_SetWant_0200 start----');
         var agentInfo = {
             wants: [
@@ -159,7 +164,7 @@ describe('ActsAnsWantAgentOneTest', function () {
      * @tc.name: getWantAgent(OperationType.START_ABILITY)
      * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[NO_BUILD_FLAG]
      */
-    it('ACTS_SetWant_0300', 0, async function (done) {
+    it('ACTS_SetWant_Flag_0300', 0, async function (done) {
         console.info('----ACTS_SetWant_0300 start----');
         var agentInfo = {
             wants: [
@@ -212,7 +217,7 @@ describe('ActsAnsWantAgentOneTest', function () {
      * @tc.name: getWantAgent(OperationType.START_ABILITY)
      * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[CANCEL_PRESENT_FLAG]
      */
-    it('ACTS_SetWant_0400', 0, async function (done) {
+    it('ACTS_SetWant_Flag_0400', 0, async function (done) {
         console.info('----ACTS_SetWant_0400 start----');
         var agentInfo = {
             wants: [
@@ -265,7 +270,7 @@ describe('ActsAnsWantAgentOneTest', function () {
      * @tc.name: getWantAgent(OperationType.START_ABILITY)
      * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[CONSTANT_FLAG]
      */
-    it('ACTS_SetWant_0500', 0, async function (done) {
+    it('ACTS_SetWant_Flag_0500', 0, async function (done) {
         console.info('----ACTS_SetWant_0500 start----');
         var agentInfo = {
             wants: [
@@ -292,6 +297,266 @@ describe('ActsAnsWantAgentOneTest', function () {
             operationType: OperationType.START_ABILITY,
             requestCode: 0,
             wantAgentFlags:[WantAgentFlags.CONSTANT_FLAG]
+        }
+        console.info('----getWantAgent before----');
+        await wantAgent.getWantAgent(agentInfo,
+            (err, data) => {
+                if (err.code == 0) {
+                    WantAgent = data;
+                    console.info('----getWantAgent success!----');
+                    console.info(data);
+                    expect(typeof(data)).assertEqual("object");
+                } else {
+                    console.info('----getWantAgent failed!----');
+                    console.info(data);
+                    expect(typeof(data)).assertEqual("object");
+                }
+                done();
+            }
+
+        );
+        console.info('----getWantAgent after----');
+    })
+    /*
+     * @tc.number: ACTS_SetWant_0600
+     * @tc.name: getWantAgent(OperationType.START_ABILITY)
+     * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[REPLACE_ELEMENT]
+     */
+    it('ACTS_SetWant_Flag_0600', 0, async function (done) {
+        console.info('----ACTS_SetWant_0600 start----');
+        var agentInfo = {
+            wants: [
+                    {
+                        deviceId: "",
+                        bundleName: "com.example.WantAgentTest1",
+                        abilityName: "com.example.test.MainAbility",
+                        action: "action1",
+                        entities: ["entity1"],
+                        type: "MIMETYPE",
+                        uri: "key={true,true,false}",
+                        parameters:
+                        {
+                            mykey0: 2222,
+                            mykey1: [1, 2, 3],
+                            mykey2: "[1, 2, 3]",
+                            mykey3: "ssssssssssssssssssssssssss",
+                            mykey4: [false, true, false],
+                            mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                            mykey6: true,
+                        }
+                    },
+            ],
+            operationType: OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags:[WantAgentFlags.REPLACE_ELEMENT]
+        }
+        console.info('----getWantAgent before----');
+        await wantAgent.getWantAgent(agentInfo,
+            (err, data) => {
+                if (err.code == 0) {
+                    WantAgent = data;
+                    console.info('----getWantAgent success!----');
+                    console.info(data);
+                    expect(typeof(data)).assertEqual("object");
+                } else {
+                    console.info('----getWantAgent failed!----');
+                    console.info(data);
+                    expect(typeof(data)).assertEqual("object");
+                }
+                done();
+            }
+
+        );
+        console.info('----getWantAgent after----');
+    })
+    /*
+     * @tc.number: ACTS_SetWant_0700
+     * @tc.name: getWantAgent(OperationType.START_ABILITY)
+     * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[REPLACE_ACTION]
+     */
+    it('ACTS_SetWant_Flag_0700', 0, async function (done) {
+        console.info('----ACTS_SetWant_0700 start----');
+        var agentInfo = {
+            wants: [
+                    {
+                        deviceId: "",
+                        bundleName: "com.example.WantAgentTest1",
+                        abilityName: "com.example.test.MainAbility",
+                        action: "action1",
+                        entities: ["entity1"],
+                        type: "MIMETYPE",
+                        uri: "key={true,true,false}",
+                        parameters:
+                        {
+                            mykey0: 2222,
+                            mykey1: [1, 2, 3],
+                            mykey2: "[1, 2, 3]",
+                            mykey3: "ssssssssssssssssssssssssss",
+                            mykey4: [false, true, false],
+                            mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                            mykey6: true,
+                        }
+                    },
+            ],
+            operationType: OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags:[WantAgentFlags.REPLACE_ACTION]
+        }
+        console.info('----getWantAgent before----');
+        await wantAgent.getWantAgent(agentInfo,
+            (err, data) => {
+                if (err.code == 0) {
+                    WantAgent = data;
+                    console.info('----getWantAgent success!----');
+                    console.info(data);
+                    expect(typeof(data)).assertEqual("object");
+                } else {
+                    console.info('----getWantAgent failed!----');
+                    console.info(data);
+                    expect(typeof(data)).assertEqual("object");
+                }
+                done();
+            }
+
+        );
+        console.info('----getWantAgent after----');
+    })
+    /*
+     * @tc.number: ACTS_SetWant_0800
+     * @tc.name: getWantAgent(OperationType.START_ABILITY)
+     * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[REPLACE_URI]
+     */
+    it('ACTS_SetWant_Flag_0800', 0, async function (done) {
+        console.info('----ACTS_SetWant_0800 start----');
+        var agentInfo = {
+            wants: [
+                    {
+                        deviceId: "",
+                        bundleName: "com.example.WantAgentTest1",
+                        abilityName: "com.example.test.MainAbility",
+                        action: "action1",
+                        entities: ["entity1"],
+                        type: "MIMETYPE",
+                        uri: "key={true,true,false}",
+                        parameters:
+                        {
+                            mykey0: 2222,
+                            mykey1: [1, 2, 3],
+                            mykey2: "[1, 2, 3]",
+                            mykey3: "ssssssssssssssssssssssssss",
+                            mykey4: [false, true, false],
+                            mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                            mykey6: true,
+                        }
+                    },
+            ],
+            operationType: OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags:[WantAgentFlags.REPLACE_URI]
+        }
+        console.info('----getWantAgent before----');
+        await wantAgent.getWantAgent(agentInfo,
+            (err, data) => {
+                if (err.code == 0) {
+                    WantAgent = data;
+                    console.info('----getWantAgent success!----');
+                    console.info(data);
+                    expect(typeof(data)).assertEqual("object");
+                } else {
+                    console.info('----getWantAgent failed!----');
+                    console.info(data);
+                    expect(typeof(data)).assertEqual("object");
+                }
+                done();
+            }
+
+        );
+        console.info('----getWantAgent after----');
+    })
+    /*
+     * @tc.number: ACTS_SetWant_0900
+     * @tc.name: getWantAgent(OperationType.START_ABILITY)
+     * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[REPLACE_ENTITIES]
+     */
+    it('ACTS_SetWant_Flag_0900', 0, async function (done) {
+        console.info('----ACTS_SetWant_0500 start----');
+        var agentInfo = {
+            wants: [
+                    {
+                        deviceId: "",
+                        bundleName: "com.example.WantAgentTest1",
+                        abilityName: "com.example.test.MainAbility",
+                        action: "action1",
+                        entities: ["entity1"],
+                        type: "MIMETYPE",
+                        uri: "key={true,true,false}",
+                        parameters:
+                        {
+                            mykey0: 2222,
+                            mykey1: [1, 2, 3],
+                            mykey2: "[1, 2, 3]",
+                            mykey3: "ssssssssssssssssssssssssss",
+                            mykey4: [false, true, false],
+                            mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                            mykey6: true,
+                        }
+                    },
+            ],
+            operationType: OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags:[WantAgentFlags.REPLACE_ENTITIES]
+        }
+        console.info('----getWantAgent before----');
+        await wantAgent.getWantAgent(agentInfo,
+            (err, data) => {
+                if (err.code == 0) {
+                    WantAgent = data;
+                    console.info('----getWantAgent success!----');
+                    console.info(data);
+                    expect(typeof(data)).assertEqual("object");
+                } else {
+                    console.info('----getWantAgent failed!----');
+                    console.info(data);
+                    expect(typeof(data)).assertEqual("object");
+                }
+                done();
+            }
+
+        );
+        console.info('----getWantAgent after----');
+    })
+    /*
+     * @tc.number: ACTS_SetWant_1000
+     * @tc.name: getWantAgent(OperationType.START_ABILITY)
+     * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[REPLACE_BUNDLE]
+     */
+    it('ACTS_SetWant_Flag_1000', 0, async function (done) {
+        console.info('----ACTS_SetWant_1000 start----');
+        var agentInfo = {
+            wants: [
+                    {
+                        deviceId: "",
+                        bundleName: "com.example.WantAgentTest1",
+                        abilityName: "com.example.test.MainAbility",
+                        action: "action1",
+                        entities: ["entity1"],
+                        type: "MIMETYPE",
+                        uri: "key={true,true,false}",
+                        parameters:
+                        {
+                            mykey0: 2222,
+                            mykey1: [1, 2, 3],
+                            mykey2: "[1, 2, 3]",
+                            mykey3: "ssssssssssssssssssssssssss",
+                            mykey4: [false, true, false],
+                            mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                            mykey6: true,
+                        }
+                    },
+            ],
+            operationType: OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags:[WantAgentFlags.REPLACE_BUNDLE]
         }
         console.info('----getWantAgent before----');
         await wantAgent.getWantAgent(agentInfo,
