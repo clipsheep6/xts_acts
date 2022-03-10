@@ -22,6 +22,7 @@ var bundleName = "com.amsst.stserviceabilityserversecond"
 var abilityName = "com.amsst.stserviceabilityserversecond.ServiceAbility"
 
 describe('ActsStServiceAbilityTest', function () {
+    
     /*
     * @tc.number: ACTS_JsServiceAbility_0100
     * @tc.name: featureAbility.startAbility : Use page to test startAbiltiy service.
@@ -103,6 +104,7 @@ describe('ActsStServiceAbilityTest', function () {
          console.debug('ACTS_JsServiceAbility_0200====<end');
         done();
     })
+    
     /*
     * @tc.number: ACTS_JsServiceAbility_0300
     * @tc.name: featureAbility.startAbility : Use page to test startAbiltiy service.
@@ -137,6 +139,7 @@ describe('ActsStServiceAbilityTest', function () {
         console.debug('ACTS_JsServiceAbility_0300====<end');
         done();
     })
+    
     /*
     * @tc.number: ACTS_JsServiceAbility_0400
     * @tc.name: featureAbility.startAbility : Use page to test startAbiltiy service.

@@ -317,7 +317,8 @@ describe('ActsAnsWantAgentOneTest', function () {
         );
         console.info('----getWantAgent after----');
     })
-    /*
+    
+     /*
      * @tc.number: ACTS_SetWant_0600
      * @tc.name: getWantAgent(OperationType.START_ABILITY)
      * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[REPLACE_ELEMENT]
@@ -369,7 +370,8 @@ describe('ActsAnsWantAgentOneTest', function () {
         );
         console.info('----getWantAgent after----');
     })
-    /*
+    
+     /*
      * @tc.number: ACTS_SetWant_0700
      * @tc.name: getWantAgent(OperationType.START_ABILITY)
      * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[REPLACE_ACTION]
@@ -421,7 +423,8 @@ describe('ActsAnsWantAgentOneTest', function () {
         );
         console.info('----getWantAgent after----');
     })
-    /*
+    
+     /*
      * @tc.number: ACTS_SetWant_0800
      * @tc.name: getWantAgent(OperationType.START_ABILITY)
      * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[REPLACE_URI]
@@ -473,7 +476,8 @@ describe('ActsAnsWantAgentOneTest', function () {
         );
         console.info('----getWantAgent after----');
     })
-    /*
+    
+     /*
      * @tc.number: ACTS_SetWant_0900
      * @tc.name: getWantAgent(OperationType.START_ABILITY)
      * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[REPLACE_ENTITIES]
@@ -525,7 +529,8 @@ describe('ActsAnsWantAgentOneTest', function () {
         );
         console.info('----getWantAgent after----');
     })
-    /*
+    
+     /*
      * @tc.number: ACTS_SetWant_1000
      * @tc.name: getWantAgent(OperationType.START_ABILITY)
      * @tc.desc: verify the function of getWantAgent(OperationType.START_ABILITY)[REPLACE_BUNDLE]
