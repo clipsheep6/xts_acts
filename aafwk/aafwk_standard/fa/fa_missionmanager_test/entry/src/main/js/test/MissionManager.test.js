@@ -33,14 +33,13 @@ describe('missionManager', function () {
     }
     var listKey = [""];
     var Subscriber = "";
-    /*
+        /*
          * @tc.number  SUB_AA_OpenHarmony_MissionManager_6500
          * @tc.name    The timestamp of the verification ability will change
          * @tc.desc    Function test
          * @tc.level   0
          */
     it('SUB_AA_OpenHarmony_MissionManager_6500', 0, async function (done) {
-        console.log("------------start SUB_AA_OpenHarmony_MissionManager_6500-------------");
         listKey = [""];
         function SubscribeCallBack(error, data) {
             console.log(" Subscribe CallBack data:" + JSON.stringify(data));
@@ -50,7 +49,6 @@ describe('missionManager', function () {
             }
         }
         commonEvent.createSubscriber(ability1LifeEventsonHide).then(async (data) => {
-            console.debug("SUB_AA_OpenHarmony_MissionManager_6500====>Create Subscriber====>");
             Subscriber = data;
             await commonEvent.subscribe(Subscriber, SubscribeCallBack);
         });
@@ -60,14 +58,15 @@ describe('missionManager', function () {
                     bundleName: "com.example.missionmanager",
                     abilityName: "com.example.entry2.MainAbility"
                 } }, (error, data) => {
-                console.log('SUB_AA_OpenHarmony_MissionManager_6500 - startAbility1: ' + JSON.stringify(error) + ", " + JSON.stringify(data))
+                console.log('SUB_AA_OpenHarmony_MissionManager_6500 - startAbility1: '
+                + JSON.stringify(error) + ", " + JSON.stringify(data))
             });
         }, 1000)
         setTimeout(()=>{
             missionManager.getMissionInfos('', 100, (error, data) => {
                 console.log("SUB_AA_OpenHarmony_MissionManager_6500, twosgetMissionInfos:" + JSON.stringify(data));
                 for (var i = 0;i < data.length; i++) {
-                    console.log('aaaaaaaaaaaaa' + JSON.stringify(data[i].missionId)+":::::::"+data[i]["want"].abilityName);
+                    console.log('aaaa' + JSON.stringify(data[i].missionId)+"::"+data[i]["want"].abilityName);
                     if (data[i].want.abilityName == "com.example.entry2.MainAbility"){
                         console.log("uuuuu"+ JSON.stringify(data[i].want.abilityName));
                         missionIds.push(data[i].missionId);
@@ -84,7 +83,8 @@ describe('missionManager', function () {
                     bundleName: "com.example.missionmanager",
                     abilityName: "com.example.entry2.MainAbility2"
                 } }, (error, data) => {
-                console.log('SUB_AA_OpenHarmony_MissionManager_6500 - startAbility2: ' + JSON.stringify(error) + ", " + JSON.stringify(data))
+                console.log('SUB_AA_OpenHarmony_MissionManager_6500 - startAbility2: ' +
+                JSON.stringify(error) + ", " + JSON.stringify(data))
                 console.log("print listKey111" + listKey);
                 setTimeout(function () {
                     expect(listKey[0] == "onHide").assertTrue();
@@ -121,7 +121,8 @@ describe('missionManager', function () {
                     bundleName: "com.example.myapplication3",
                     abilityName: "com.example.entry2.MainAbility1"
                 } }, (error, data) => {
-                console.log('SUB_AA_OpenHarmony_MissionManager_6400 - startAbility: ' + JSON.stringify(error) + ", " + JSON.stringify(data))
+                console.log('SUB_AA_OpenHarmony_MissionManager_6400 - startAbility: '
+                + JSON.stringify(error) + ", " + JSON.stringify(data))
             });
         }, 1000)
         console.log("------------end start SUB_AA_OpenHarmony_MissionManager_6400-------------");
@@ -156,7 +157,8 @@ describe('missionManager', function () {
                     bundleName: "com.example.myapplication3",
                     abilityName: "com.example.entry2.MainAbility1"
                 } }, (error, data) => {
-                console.log('SUB_AA_OpenHarmony_MissionManager_6300 - startAbility: ' + JSON.stringify(error) + ", " + JSON.stringify(data))
+                console.log('SUB_AA_OpenHarmony_MissionManager_6300 - startAbility: '
+                + JSON.stringify(error) + ", " + JSON.stringify(data))
             });
         }, 1000)
         console.log("------------end start SUB_AA_OpenHarmony_MissionManager_6300-------------");
