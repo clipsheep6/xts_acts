@@ -828,4 +828,35 @@ describe('mediaLibraryTestPromise.test.js', function () {
             done();
         }
     });
+
+      /**
+     * @tc.number    : SUB__MEDIA_MIDIALIBRARY_PROMISE_CREATEASSET_001
+     * @tc.name      : createAsset
+     * @tc.desc      : Create File Asset image (does not exist)
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+       it('SUB__MEDIA_MIDIALIBRARY_PROMISE_CREATEASSET_009', 0, async function (done) {
+        try {
+            const path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE);
+            const filePath = path  + "image/";
+            const fileAssets = await media.getFileAssets(videosfetchOp);
+            const dataList = await fileAssets.getAllObject();
+            const asset1 = dataList[0];
+            const creatAsset1 = await media.createAsset(imageType, jpgName, filePath);
+            const fd1 = await asset1.open('rw');
+            const creatAssetFd1 = await creatAsset1.open('rw');
+            await copyFile(fd1, creatAssetFd1);
+            await creatAsset1.close(creatAssetFd1);
+            await asset1.close(fd1);
+            console.info('MediaLibraryTest : createAsset 009 passed');
+            expect(true).assertTrue();
+            done();
+        } catch (error) {
+            console.info(`MediaLibraryTest : createAsset 009 failed, error: ${error}`);
+            expect(false).assertTrue();
+            done();
+        }
+    });
 });
