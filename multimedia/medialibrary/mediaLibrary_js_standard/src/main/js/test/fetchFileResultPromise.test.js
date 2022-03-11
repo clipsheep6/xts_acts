@@ -529,8 +529,8 @@ describe('fetch.file.result.promise.test.js', async function () {
             let fetchFileResult = await media.getFileAssets(getAllObjectLimitTwoOp);
             var targetObjects = await fetchFileResult.getAllObject();
             expect(0 < targetObjects.length <= 2).assertTrue();
-            console.info('MediaLibraryTest :  FETCHRESULT getAllObject 008_02 targetObjects.length:' + targetObjects.length);
-            console.info('MediaLibraryTest :  FETCHRESULT getAllObject 008_02 end');
+            console.info('MediaLibraryTest :  getAllObject 008_02 targetObjects.length:' + targetObjects.length);
+            console.info('MediaLibraryTest :  getAllObject 008_02 end');
         } catch (error) {
             console.info('MediaLibraryTest : FETCHRESULT getAllObject 008_02 failed, message = ' + error);
             expect(false).assertTrue();

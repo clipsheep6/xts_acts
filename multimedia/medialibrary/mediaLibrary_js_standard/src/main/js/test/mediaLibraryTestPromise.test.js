@@ -830,7 +830,7 @@ describe('mediaLibraryTestPromise.test.js', function () {
     });
 
       /**
-     * @tc.number    : SUB__MEDIA_MIDIALIBRARY_PROMISE_CREATEASSET_001
+     * @tc.number    : SUB__MEDIA_MIDIALIBRARY_PROMISE_CREATEASSET_009
      * @tc.name      : createAsset
      * @tc.desc      : Create File Asset image (does not exist)
      * @tc.size      : MEDIUM
