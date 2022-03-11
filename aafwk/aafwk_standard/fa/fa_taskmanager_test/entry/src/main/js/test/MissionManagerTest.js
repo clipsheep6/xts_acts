@@ -20,6 +20,7 @@ import missionManager  from '@ohos.application.missionManager';
 describe('ShiAbilityDisableTest', function () {
     var result
     console.log("ShiAbilityDisableTest --- start");
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_4000
      * @tc.name    The interface parameter local id and is 1
@@ -34,6 +35,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_4100
      * @tc.name    Interface parameter does not exist and 1
@@ -48,6 +50,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_4200
      * @tc.name    Interface parameter null and 1
@@ -62,6 +65,7 @@ describe('ShiAbilityDisableTest', function () {
             done();
         })
     })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_4300
      * @tc.name    Interface parameter null and 10
@@ -76,6 +80,7 @@ describe('ShiAbilityDisableTest', function () {
             done();
         })
     })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_4400
      * @tc.name    Interface parameter null and 1000
@@ -90,6 +95,7 @@ describe('ShiAbilityDisableTest', function () {
             done();
         })
     })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_4500
      * @tc.name    Interface parameter null and null
@@ -104,6 +110,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_4600
      * @tc.name    Interface parameter null and string 1
@@ -118,6 +125,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_4700
      * @tc.name    Interface parameter null and floating point number
@@ -132,6 +140,7 @@ describe('ShiAbilityDisableTest', function () {
             done();
         })
     })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_4800
      * @tc.name    Interface parameter null and null
@@ -145,6 +154,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_4900
      * @tc.name    Interface parameter does not exist and null
@@ -159,6 +169,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_5000
      * @tc.name    Interface parameter does not exist and 1
@@ -173,6 +184,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_5100
      * @tc.name    Interface parameter null and null
@@ -186,6 +198,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_5200
      * @tc.name    Interface parameter null and id
@@ -201,6 +214,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_5300
      * @tc.name    Interface parameter null and null
@@ -215,6 +229,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_5400
      * @tc.name    Interface parameter null and string
@@ -229,6 +244,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_5500
      * @tc.name    Interface parameter null and float
@@ -242,6 +258,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_5600
      * @tc.name    Interface parameter undefined
@@ -255,6 +272,7 @@ describe('ShiAbilityDisableTest', function () {
         expect(result != undefined).assertTrue();
         done();
     })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_5700
      * @tc.name    Interface parameter Empty object
@@ -269,6 +287,7 @@ describe('ShiAbilityDisableTest', function () {
         expect(result != undefined).assertTrue();
         done();
     })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_5800
      * @tc.name    Multiple registration listening
@@ -296,6 +315,7 @@ describe('ShiAbilityDisableTest', function () {
             done();
         }
     })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_5900
      * @tc.name    Interface parameter non-existent
@@ -313,6 +333,7 @@ describe('ShiAbilityDisableTest', function () {
         })
         console.log("---------start SUB_AA_OpenHarmony_MissionManager_5900------------")
     })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_6000
      * @tc.name    Interface parameter Registered ID
@@ -327,6 +348,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_6100
      * @tc.name    Interface parameter Unregistered ID
@@ -341,6 +363,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_6200
      * @tc.name    Interface parameter undefined
@@ -356,6 +379,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_6300
      * @tc.name    Interface parameter null
@@ -370,6 +394,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_6400
      * @tc.name    Interface parameter string
@@ -384,6 +409,7 @@ describe('ShiAbilityDisableTest', function () {
              done();
          })
      })
+     
     /*
      * @tc.number  SUB_AA_OpenHarmony_MissionManager_6500
      * @tc.name    Interface parameter float

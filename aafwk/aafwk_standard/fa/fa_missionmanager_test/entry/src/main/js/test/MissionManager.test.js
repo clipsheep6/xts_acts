@@ -33,6 +33,7 @@ describe('missionManager', function () {
     }
     var listKey = [""];
     var Subscriber = "";
+    
         /*
          * @tc.number  SUB_AA_OpenHarmony_MissionManager_6500
          * @tc.name    The timestamp of the verification ability will change

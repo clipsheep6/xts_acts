@@ -15,7 +15,7 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index";
 import missionManager  from '@ohos.application.missionManager';
-import ability_featureAbility from '@ohos.ability.featureAbility';
+import abilityFeatureAbility from '@ohos.ability.featureAbility';
 import commonEvent from '@ohos.commonEvent';
 
 var START_ABILITY_TIMEOUT = 5000;
@@ -40,7 +40,7 @@ describe('LockTest', function () {
      */
     it('SUB_AA_OpenHarmony_Lock_0700', 0, async function (done) {
         console.info('=======SUB_AA_OpenHarmony_Lock_0700 step1 start=====startActivity=====');
-        ability_featureAbility.startAbility({ want: {
+        abilityFeatureAbility.startAbility({ want: {
             bundleName: "com.example.lock",
             abilityName: "com.example.lock.Ability1"
         } })
@@ -48,27 +48,27 @@ describe('LockTest', function () {
                 console.info('SUB_AA_OpenHarmony_Lock_0300 startAbility1: ' +
                 JSON.stringify(data));
                 console.info('SUB_AA_OpenHarmony_Lock_0300 - startAbility2 start: ')
-                ability_featureAbility.startAbility({ "want": {
+                abilityFeatureAbility.startAbility({ "want": {
                     bundleName: "com.example.lock",
                     abilityName: "com.example.lock.Ability2"
                 } }, (error, data) => {
                     console.log('SUB_AA_OpenHarmony_Lock_0300 - startAbility2: ' +
                     JSON.stringify(error) + ", " + JSON.stringify(data))
                     console.info('SUB_AA_OpenHarmony_Lock_0300 - startAbility3 start');
-                    ability_featureAbility.startAbility({ "want": {
+                    abilityFeatureAbility.startAbility({ "want": {
                         bundleName: "com.example.lock",
                         abilityName: "com.example.lock.Ability3"
                     } }, (error, data) => {
                         console.log('SUB_AA_OpenHarmony_Lock_0300 - startAbility3: ' +
                         JSON.stringify(error) + ", " + JSON.stringify(data))
                         console.info('SUB_AA_OpenHarmony_Lock_0300 - startAbility4 start');
-                        ability_featureAbility.startAbility({ "want": {
+                        abilityFeatureAbility.startAbility({ "want": {
                             bundleName: "com.example.lock",
                             abilityName: "com.example.lock.Ability4"
                         } }, (error, data) => {
                             console.log('SUB_AA_OpenHarmony_Lock_0300 - startAbility4: ' +
                             JSON.stringify(error) + ", " + JSON.stringify(data))
-                            getMissionInfos1_0700();
+                            getMissionInfosOne();
                         });
                     });
                 });
@@ -81,7 +81,7 @@ describe('LockTest', function () {
         }, 5000);
     })
 
-    function getMissionInfos1_0700() {
+    function getMissionInfosOne() {
         console.log('=======SUB_AA_OpenHarmony_Lock_0700 step2 start==========getMissionInfos=====');
         missionArray = [];
         missionManager.getMissionInfos('', 500, (err, data) => {
@@ -124,11 +124,11 @@ describe('LockTest', function () {
             }
             console.log("###" + JSON.stringify(missionArray));
             expect(missionArray.length == 5).assertTrue();
-            lockMission_0700();
+            lockMissionMy();
         })
     }
 
-    function lockMission_0700() {
+    function lockMissionMy() {
         console.log('===============SUB_AA_OpenHarmony_Lock_0700 step3 start=====lockMission======');
         console.log('SUB_AA_OpenHarmony_Lock_0700 missionArray' + JSON.stringify(missionArray));
         var i;
@@ -144,7 +144,7 @@ describe('LockTest', function () {
                     expect(data == undefined).assertTrue();
                     j++;
                     if (j == 3) {
-                        getMissionInfos_status();
+                        getMissionInfosTest();
                         //clearAllMission();
                     }
                 })
@@ -152,9 +152,9 @@ describe('LockTest', function () {
         }
     }
 
-    function unlockMission_0700_test() {
+    function unlockMissionTest() {
         console.log('===============SUB_AA_OpenHarmony_Lock_0700 step6 start=====unLockMission======');
-        console.log("unlockMission_0700 start " + JSON.stringify(missionArray));
+        console.log("unlockMissionMy start " + JSON.stringify(missionArray));
         missionManager.unlockMission(missionArray[1].id, (err, data) => {
             console.log('SUB_AA_OpenHarmony_Lock_0700 unlockMission err:'
             + JSON.stringify(err) + " data: " + JSON.stringify(data));
@@ -162,11 +162,11 @@ describe('LockTest', function () {
         });
     }
 
-    function getMissionInfos_status(){
-        console.log('==========SUB_AA_OpenHarmony_Lock_0700 step5 start=====getMissionInfos_status======');
+    function getMissionInfosTest(){
+        console.log('==========SUB_AA_OpenHarmony_Lock_0700 step5 start=====getMissionInfosTest======');
         missionArray = []
         missionManager.getMissionInfos('', 500, (err, data) => {
-            console.log('getMissionInfos2_0700 getMissionInfos4 err: '
+            console.log('getMissionInfosTwo getMissionInfos4 err: '
             + JSON.stringify(err) + " data: " + JSON.stringify(data));
             expect(err.code == 0).assertTrue();
             var i;
@@ -194,24 +194,24 @@ describe('LockTest', function () {
             console.log("###" + JSON.stringify(missionArray));
             console.log("###" + JSON.stringify(missionArray.length));
             expect(missionArray.length == 2).assertTrue();
-            unlockMission_0700_test();
+            unlockMissionTest();
         })
     }
 
     function clearAllMission(done) {
         console.log('==========SUB_AA_OpenHarmony_Lock_0700 step4 start=====clearAllMissions======');
         missionManager.clearAllMissions((err, data) => {
-            console.log('getMissionInfos2_0700 clearAllMission err: '
+            console.log('getMissionInfosTwo clearAllMission err: '
             + JSON.stringify(err) + " data: " + JSON.stringify(data));
-            getMissionInfos2_0700();
+            getMissionInfosTwo();
         });
     }
 
-    function getMissionInfos2_0700(done) {
+    function getMissionInfosTwo(done) {
         console.log('==========SUB_AA_OpenHarmony_Lock_0700 step5 start=====getMissionInfos======');
         missionArray = []
         missionManager.getMissionInfos('', 500, (err, data) => {
-            console.log('getMissionInfos2_0700 getMissionInfo err: '
+            console.log('getMissionInfosTwo getMissionInfo err: '
             + JSON.stringify(err) + " data: " + JSON.stringify(data));
             expect(err.code == 0).assertTrue();
             var i;
@@ -243,13 +243,13 @@ describe('LockTest', function () {
             console.log("###" + JSON.stringify(missionArray.length));
             done();
             expect(missionArray.length == 2).assertTrue();
-            //unlockMission_0700();
+            //unlockMissionMy();
         })
     }
 
-    function unlockMission_0700() {
+    function unlockMissionMy() {
         console.log('===========SUB_AA_OpenHarmony_Lock_0700 step6 start=====unLockMission======');
-        console.log("unlockMission_0700 start " + JSON.stringify(missionArray));
+        console.log("unlockMissionMy start " + JSON.stringify(missionArray));
         missionManager.unlockMission(missionArray[1].id, (err, data) => {
             console.log('SUB_AA_OpenHarmony_Lock_0700 unlockMission err:'
             + JSON.stringify(err) + " data: " + JSON.stringify(data));
@@ -260,7 +260,7 @@ describe('LockTest', function () {
 
     function clearAllMission2(done) {
         console.log('===========SUB_AA_OpenHarmony_Lock_0700 step7 start=====clearAllMissions======');
-        var SUB_AA_OpenHarmony_Lock_0700 = {
+        var myEvents = {
             events:
             [
                 "Ability1_onShow",
@@ -290,7 +290,7 @@ describe('LockTest', function () {
 
             }
         };
-        commonEvent.createSubscriber(SUB_AA_OpenHarmony_Lock_0700).then(async (data) => {
+        commonEvent.createSubscriber(myEvents).then(async (data) => {
             console.debug("SUB_AA_OpenHarmony_Lock_0400====>Create Subscriber====>");
             Subscriber = data;
             console.log("SUB_AA_OpenHarmony_Lock_0700 Subscriber " + JSON.stringify(Subscriber));
@@ -315,14 +315,14 @@ describe('LockTest', function () {
 
         missionManager.clearAllMissions();
         sleep(500);
-        getMissionInfos3_0700();
+        getMissionInfosThree();
     }
 
-    function getMissionInfos3_0700(done) {
+    function getMissionInfosThree(done) {
         console.log('===========SUB_AA_OpenHarmony_Lock_0700 step8 start=====getMissonInfos======');
         missionArray = [];
         missionManager.getMissionInfos('', 500, (err, data) => {
-            console.log('getMissionInfos3_0700 getMissionInfo err: '
+            console.log('getMissionInfosThree getMissionInfo err: '
             + JSON.stringify(err) + " data: " + JSON.stringify(data));
             expect(err.code == 0).assertTrue();
             var i;

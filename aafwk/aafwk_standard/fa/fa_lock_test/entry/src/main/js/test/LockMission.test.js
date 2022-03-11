@@ -225,6 +225,7 @@ describe('missionManager', function () {
         }, 1000)
         console.log("------------end SUB_AA_OpenHarmony_Lock_2600-------------");
     })
+
     /*
      * @tc.number  SUB_AA_OpenHarmony_Lock_2000
      * @tc.name    Repeat lock
