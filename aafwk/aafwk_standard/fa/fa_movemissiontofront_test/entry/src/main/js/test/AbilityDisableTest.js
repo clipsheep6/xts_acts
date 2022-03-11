@@ -16,9 +16,9 @@
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index"
 import missionManager  from '@ohos.application.missionManager';
-import ability_featureAbility from '@ohos.ability.featureAbility';
+import featureAbility from '@ohos.ability.featureAbility';
 import bundleManager from '@ohos.bundle';
-import app_manager from "@ohos.application.appManager"
+import appManager from "@ohos.application.appManager"
 import commonEvent from '@ohos.commonEvent';
 import {onDestroys} from "../MainAbility2/app.js"
 import abilityManager from '@ohos.application.abilityManager'
@@ -26,7 +26,7 @@ import ConfigurationConstant from "@ohos.application.ConfigurationConstant";
 
 function startAility(){
     setTimeout(()=>{
-        ability_featureAbility.startAbility({ want: {
+        featureAbility.startAbility({ want: {
             bundleName: "com.example.abilitydisable",
             abilityName: "com.example.abilitydisable.MainAbility2"
         } }, (error, data) => {
@@ -35,7 +35,7 @@ function startAility(){
         });
     },100)
     setTimeout(()=>{
-        ability_featureAbility.startAbility({ want: {
+        featureAbility.startAbility({ want: {
             bundleName: "com.example.abilitydisable",
             abilityName: "com.example.abilitydisable.MainAbility3"
         } }, (error, data) => {
@@ -63,7 +63,7 @@ function clearAllMissions(){
 
 function fns(){
         setTimeout(()=>{
-            ability_featureAbility.startAbility({ want: {
+            featureAbility.startAbility({ want: {
                 bundleName: "com.example.abilitydisable",
                 abilityName: "com.example.abilitydisable.MainAbility2"
             } }, (error, data) => {
@@ -73,7 +73,7 @@ function fns(){
             });
         },100)
         setTimeout(()=>{
-            ability_featureAbility.startAbility({ want: {
+            featureAbility.startAbility({ want: {
                 bundleName: "com.example.abilitydisable",
                 abilityName: "com.example.abilitydisable.MainAbility4"
             } }, (error, data) => {
@@ -83,7 +83,7 @@ function fns(){
             });
         },300)
         setTimeout(()=>{
-            ability_featureAbility.startAbility({ want: {
+            featureAbility.startAbility({ want: {
                 bundleName: "com.example.abilitydisable",
                 abilityName: "com.example.abilitydisable.MainAbility3"
             } }, (error, data) => {
@@ -201,10 +201,10 @@ function fns(){
 describe('AbilityDisableTests', function () {
     let mainAbility1ListS =  new Array()
     let lists = new Array()
-    function subscriberCallBack_mainAbility2_Destory(err,data){
+    function subscriberCallBackMainAbility2Destory(err,data){
         console.log("Subscribe2 CallBack data:" + JSON.stringify(data));
         lists.push(data["event"]);
-        console.log("subscriberCallBack_mainAbility2_Destory lists:"+lists);
+        console.log("subscriberCallBackMainAbility2Destory lists:"+lists);
     };
     function subscriberCallBack_mainAbility1_Destory(err,data){
         console.log("Subscribe3 CallBack data:" + JSON.stringify(data));
@@ -248,7 +248,7 @@ describe('AbilityDisableTests', function () {
             console.log("Create Subscriber2=======>："+JSON.stringify(data));
             Subscriber2 = data;
             console.log("data2 is:" + JSON.stringify(Subscriber2));
-            await commonEvent.subscribe(Subscriber2,subscriberCallBack_mainAbility2_Destory)
+            await commonEvent.subscribe(Subscriber2,subscriberCallBackMainAbility2Destory)
         });
         commonEvent.createSubscriber(ability1LifeEvents).then(async (data)=>{
             console.log("Create Subscriber1=======>："+JSON.stringify(data));
@@ -257,7 +257,7 @@ describe('AbilityDisableTests', function () {
             await commonEvent.subscribe(Subscriber1,subscriberCallBack_mainAbility1_Destory)
         });
         setTimeout(()=>{
-            ability_featureAbility.startAbility({ want: {
+            featureAbility.startAbility({ want: {
                 bundleName: "com.example.abilitydisable",
                 abilityName: "com.example.abilitydisable.MainAbility2"
             } }, (error, data) => {
@@ -266,7 +266,7 @@ describe('AbilityDisableTests', function () {
             });
         },500)
         setTimeout(()=>{
-            ability_featureAbility.startAbility({ want: {
+            featureAbility.startAbility({ want: {
                 bundleName: "com.example.abilitydisable",
                 abilityName: "com.example.abilitydisable.MainAbility3"
             } }, (error, data) => {
@@ -275,13 +275,14 @@ describe('AbilityDisableTests', function () {
             });
         },1000);
         setTimeout(()=>{
-            console.log("1111subscriberCallBack_mainAbility2_Destory lists:"+lists);
+            console.log("1111subscriberCallBackMainAbility2Destory lists:"+lists);
             expect(lists.indexOf(JSON.stringify("singletonEntryAbulity2_onShow"))!=-1).assertTrue();
             expect(lists.indexOf(JSON.stringify("ApplicationMainAbility2_onCreate"))!=-1).assertTrue();
         },2500)
         setTimeout(()=>{
             missionManager.getMissionInfos("", 100, (err, data) => {
-                console.log('SUB_AA_OpenHarmony_MoveMissionToFront_2900 getMissionInfos errCode: '+ JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('SUB_AA_OpenHarmony_MoveMissionToFront_2900 getMissionInfos errCode: '+ 
+		JSON.stringify(err) + " data: " + JSON.stringify(data));
                 for (var i = 0;i < data.length; i++) {
                     if(data[i].want["abilityName"] == "com.example.abilitydisable.MainAbility2"){
                         mainAbility1missinds.push(data[i]["missionId"])
@@ -328,7 +329,7 @@ describe('AbilityDisableTests', function () {
             console.log("Create Subscriber2=======>："+JSON.stringify(data));
             Subscriber2 = data;
             console.log("data2 is:" + JSON.stringify(Subscriber2));
-            await commonEvent.subscribe(Subscriber2,subscriberCallBack_mainAbility2_Destory)
+            await commonEvent.subscribe(Subscriber2,subscriberCallBackMainAbility2Destory)
         });
         commonEvent.createSubscriber(ability1LifeEvents).then(async (data)=>{
             console.log("Create Subscriber1=======>："+JSON.stringify(data));
@@ -338,7 +339,7 @@ describe('AbilityDisableTests', function () {
         });
 
         setTimeout(()=>{
-            ability_featureAbility.startAbility({ want: {
+            featureAbility.startAbility({ want: {
                 bundleName: "com.example.abilitydisable",
                 abilityName: "com.example.abilitydisable.MainAbility2"
             } }, (error, data) => {
@@ -347,7 +348,7 @@ describe('AbilityDisableTests', function () {
             });
         },500);
         setTimeout(()=>{
-            ability_featureAbility.startAbility({ want: {
+            featureAbility.startAbility({ want: {
                 bundleName: "com.example.abilitydisable",
                 abilityName: "com.example.abilitydisable.MainAbility3"
             } }, (error, data) => {
@@ -356,18 +357,24 @@ describe('AbilityDisableTests', function () {
             });
         },1000);
         setTimeout(()=>{
-            console.log("1111subscriberCallBack_mainAbility2_lists:singletonEntryAbulity2_onShow:"+lists);
-            console.log("+++++++++++++++++"+lists.indexOf("singletonEntryAbulity2_onShow")+"+++++++"+lists.indexOf("ApplicationMainAbility2_onCreate")+lists)
+            console.log("1111subscriberCallBack_mainAbility2_lists:
+	singletonEntryAbulity2_onShow:"+lists);
+            console.log("+++++++++++++++++"+lists.indexOf("singletonEntryAbulity2_onShow")
+	+"+++++++"+lists.indexOf("ApplicationMainAbility2_onCreate")+lists)
             expect(lists.indexOf(JSON.stringify("singletonEntryAbulity2_onShow"))!=-1).assertTrue();
             expect(lists.indexOf(JSON.stringify("ApplicationMainAbility2_onCreate"))!=-1).assertTrue();
         },2500);
         setTimeout(()=>{
             missionManager.getMissionInfos("", 100, (err, data) => {
-                console.log('SUB_AA_OpenHarmony_MoveMissionToFront_3000 getMissionInfos errCode: '+ JSON.stringify(err) + " data: " + JSON.stringify(data));
+                console.log('SUB_AA_OpenHarmony_MoveMissionToFront_3000 
+		getMissionInfos errCode: '+ 
+	JSON.stringify(err) + " data: " + JSON.stringify(data));
                 for (var i = 0;i < data.length; i++) {
-                    console.log("bundleName222222："+data[i].want["abilityName"]+"data[i]['lockedState']::::"+data[i]['lockedState']);
+                    console.log("bundleName222222："+data[i].want["abilityName"]+
+			"data[i]['lockedState']::::"+data[i]['lockedState']);
                     if(data[i].want["abilityName"] == "com.example.abilitydisable.MainAbility3"){
-                        console.log('data[i]["missionId"]'+data[i]["missionId"] + "::::"+data[i].want["abilityName"]);
+                        console.log('data[i]["missionId"]'+data[i]["missionId"] + "::::"+
+			data[i].want["abilityName"]);
                         mainAbility1missinds.push(data[i]["missionId"])
                     }
                 }
@@ -375,17 +382,24 @@ describe('AbilityDisableTests', function () {
             });
         },3000);
         setTimeout(()=>{
-            console.log('SUB_AA_OpenHarmony_MoveMissionToFront_3000 moveMissionToFront dataCode:++++++');
+            console.log('SUB_AA_OpenHarmony_MoveMissionToFront_3000 
+		moveMissionToFront dataCode:++++++');
             missionManager.moveMissionToFront(parseInt(mainAbility1missinds[0]),{
                 parameters:{ "windowMode":100 }}).then((data)=>{
-                console.log('SUB_AA_OpenHarmony_MoveMissionToFront_3000 moveMissionToFront dataCode:'+ " data:" + JSON.stringify(data));
+                console.log('SUB_AA_OpenHarmony_MoveMissionToFront_3000 
+		moveMissionToFront dataCode:'+ 
+		" data:" + JSON.stringify(data));
             }).catch((err)=>{
-                console.log('SUB_AA_OpenHarmony_MoveMissionToFront_3000 moveMissionToFront errCode:'+ " err:" + JSON.stringify(err));
+                console.log('SUB_AA_OpenHarmony_MoveMissionToFront_3000 
+		moveMissionToFront errCode:'+ 
+		" err:" + JSON.stringify(err));
             });
         },3888);
         setTimeout(()=>{
             console.log("1111subscriberCallBack_mainAbility1_Destory lists:"+ mainAbility1ListS);
-            console.log("+++++++++++++++++"+mainAbility1ListS.indexOf("mainAbility1ListS_onShow")+"+++++++"+mainAbility1ListS.indexOf("ApplicationMainAbility2_onCreate")+mainAbility1ListS)
+            console.log("+++++++++++++++++"+mainAbility1ListS.indexOf("mainAbility1ListS_onShow")
+		+"+++++++"+mainAbility1ListS.indexOf("ApplicationMainAbility2_onCreate")
+		+mainAbility1ListS)
             expect(mainAbility1ListS.indexOf(JSON.stringify("singletonEntryAbulity1_onInactive"))==-1).assertTrue();
             expect(mainAbility1ListS.indexOf(JSON.stringify("singletonEntryAbulity1_onHide"))==-1).assertTrue();
         },3999);

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import commonEvent from '@ohos.commonEvent';
-import ability_featureAbility from '@ohos.ability.featureAbility';
+import abilityFeatureAbility from '@ohos.ability.featureAbility';
 export default {
     onCreate() {
         commonEvent.publish("ApplicationMainAbility1_onCreate",()=>{

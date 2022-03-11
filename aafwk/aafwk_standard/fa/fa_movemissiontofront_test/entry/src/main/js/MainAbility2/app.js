@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import ability_featureAbility from '@ohos.ability.featureAbility';
+import featureAbility from '@ohos.ability.featureAbility';
 import commonEvent from '@ohos.commonEvent';
 
 export default {
@@ -24,7 +24,7 @@ export default {
         console.info("ApplicationMainAbility2 onCreate");
         setTimeout(()=>{
             console.info("ApplicationMainAbility2 terminateSelf");
-            ability_featureAbility.terminateSelf().then((data)=>{
+            featureAbility.terminateSelf().then((data)=>{
                 console.log("ApplicationMainAbility2 terminateSelf data：" + JSON.stringify(data) )
             }).catch((error)=>{
                 console.log("ApplicationMainAbility2 terminateSelf error：" + JSON.stringify(error) )
