@@ -28,8 +28,9 @@ group("fa") {
       "fa_missionmanager_test:FaMissionmanagerTest",
       "fa_statelistener_test:FaStatelistenerTest",
       "fa_taskmanager_test:FaTaskmanagerTest",
-      "fa_taskmanager_test:FaTaskmanagerTest",
+      "fa_lock_test:FaLockTest",
       "fa_taskswiting_test:FaTaskswitingTest",
+      "fa_movemissiontofront_test:FaMissionmanagerTest",
     ]
   }
 }

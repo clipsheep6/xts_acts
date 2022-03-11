@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,16 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import router from '@system.router'
-
+import commonEvent from '@ohos.commonEvent';
+import ability_featureAbility from '@ohos.ability.featureAbility';
 export default {
-    data: {
-        title: 'World'
+    onCreate() {
+        commonEvent.publish("ApplicationMainAbility1_onCreate",()=>{
+            console.log("ApplicationMainAbility1_onCreate publish callBack ApplicationMainAbility1_onCreate");
+        });
+
     },
-    onclick: function () {
-        router.replace({
-            uri: "pages/index/index"
-        })
+    onDestroy() {
+        console.info("Application onDestroy");
+    },
+    onForgeGround(){
+        console.info("Application onForgeGround");
     }
-}
+};
