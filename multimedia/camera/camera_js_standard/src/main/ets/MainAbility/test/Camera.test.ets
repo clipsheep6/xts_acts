@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import cameraTestCase from '../test/CameraJSUnitEnum.test.test'
-import cameraTestCase from '../test/CameraJSUnitCameraFormat.test'
-import cameraTestCase from '../test/CameraJSUnitPhotoPromise.test'
-import cameraTestCase from '../test/CameraJSUnitPhotoAsync.test'
-import cameraTestCase from '../test/CameraJSUnitVideoPromise.test'
-import cameraTestCase from '../test/CameraJSUnitVideoAsync.test'
+import cameraJSUnitEnum from './CameraJSUnitEnum.test.ets'
+import cameraJSUnitCameraFormat from './CameraJSUnitCameraFormat.test.ets'
+import cameraJSUnitPhotoPromise from './CameraJSUnitPhotoPromise.test.ets'
+import cameraJSUnitPhotoAsync from './CameraJSUnitPhotoAsync.test.ets'
+import cameraJSUnitVideoPromise from './CameraJSUnitVideoPromise.test.ets'
+import cameraJSUnitVideoAsync from './CameraJSUnitVideoAsync.test.ets'
 
 
 let TAG = 'CameraModuleTest: '
@@ -26,6 +26,12 @@ let TAG = 'CameraModuleTest: '
 export default function cameraKit(surfaceId:any) {
   console.info(TAG + 'Entering cameraKit')
   console.info(TAG + 'surfaceId: ' +surfaceId)
-  cameraTestCase(surfaceId)
+  
+  cameraJSUnitPhotoPromise(surfaceId)
+  cameraJSUnitPhotoAsync(surfaceId)
+  cameraJSUnitVideoPromise(surfaceId)
+  cameraJSUnitVideoAsync(surfaceId)
+  cameraJSUnitEnum(surfaceId)
+  cameraJSUnitCameraFormat(surfaceId)
 //  cameraService()
 }

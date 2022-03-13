@@ -82,7 +82,6 @@ struct CameraIndex {
         id: '',
         type: 'surface',
         libraryname: '',
-        source: '',
         controller: mXComponentController
       })
         .onLoad(() => {
