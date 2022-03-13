@@ -8,6 +8,13 @@
     },
     "kits": [
         {
+            "test-file-name": [
+                "ActsVideoDecoderJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
             "type": "PushKit",
             "pre-push": [
             ],
@@ -26,13 +33,6 @@
             ],
             "teardown-command":[
             ]
-        },
-        {
-            "test-file-name": [
-                "ActsVideoDecoderJsTest.hap"
-            ],
-            "type": "AppInstallKit",
-            "cleanup-apps": true
         }
     ]
 }

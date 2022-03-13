@@ -16,7 +16,7 @@
         },
         {
             "test-file-name": [
-                "VideoRecorderJsTest.hap"
+                "ActsVideoRecorderJsTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

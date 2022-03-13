@@ -216,9 +216,7 @@ describe('RecorderLocalTestAudioAPI', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_RECORDER_createAudioRecorder_API_0100', 0, async function (done) {
-        audioConfig.uri = fdPath;
-        let testAudioRecorder;
-        expect(testAudioRecorder).assertNull();
+        let testAudioRecorder = undefined;
         testAudioRecorder= media.createAudioRecorder();
         expect(testAudioRecorder != undefined).assertTrue();
         done();
@@ -233,6 +231,7 @@ describe('RecorderLocalTestAudioAPI', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0100', 0, async function (done) {
+        audioConfig.uri = fdPath;
         let testAudioRecorder= media.createAudioRecorder();
         expect(testAudioRecorder != null).assertTrue();
         testAudioRecorder.prepare(audioConfig);

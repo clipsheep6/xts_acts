@@ -8,6 +8,13 @@
     },
     "kits": [
         {
+            "test-file-name": [
+                "ActsAudioDecoderJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
             "type": "PushKit",
             "pre-push": [
             ],
@@ -29,13 +36,6 @@
             ],
             "teardown-command":[
             ]
-        },
-        {
-            "test-file-name": [
-                "ActsAudioDecoderJsTest.hap"
-            ],
-            "type": "AppInstallKit",
-            "cleanup-apps": true
         }
     ]
 }
