@@ -21,7 +21,7 @@ import bundle from '@ohos.bundle'
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
-const TAG = "CameraModuleTest: ";
+const TAG = "CameraModuleTest - cameraJSUnitEnum: ";
 
 // Define global variables
 
@@ -54,7 +54,7 @@ var permissionNameUser = "ohos.permission.CAMERA";
 var tokenID = undefined
 
 
-export default function cameraTestCase(surfaceId:any) {
+export default function cameraJSUnitEnum(surfaceId:any) {
 
 	async function getImageReceiverSurfaceId() {
     console.log(TAG + 'Entering create Image receiver')
@@ -69,30 +69,67 @@ export default function cameraTestCase(surfaceId:any) {
     }
   }
 
+  function sleep(time) {
+      console.info(TAG + "Entering sleep -> Promise constructor");
+      return new Promise(resolve => setTimeout(resolve, time * 1000));
+    }
+
+  async function applyPermission() {
+      let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.cameratest', 0, 100);
+      let atManager = abilityAccessCtrl.createAtManager();
+      if (atManager != null) {
+          let tokenID = appInfo.accessTokenId;
+          console.info('[permission] case accessTokenID is ' + tokenID);
+          let permissionName1 = 'ohos.permission.CAMERA';
+          let permissionName2 = 'ohos.permission.MICROPHONE';
+          let permissionName3 = 'ohos.permission.MEDIA_LOCATION';
+          let permissionName4 = 'ohos.permission.READ_MEDIA';
+          let permissionName5 = 'ohos.permission.WRITE_MEDIA';
+          await atManager.grantUserGrantedPermission(tokenID, permissionName1, 1).then((result) => {
+              console.info('[permission] case grantUserGrantedPermission success :' + result);
+          }).catch((err) => {
+              console.info('[permission] case grantUserGrantedPermission failed :' + err);
+          });
+          await atManager.grantUserGrantedPermission(tokenID, permissionName2, 1).then((result) => {
+              console.info('[permission] case grantUserGrantedPermission success :' + result);
+          }).catch((err) => {
+              console.info('[permission] case grantUserGrantedPermission failed :' + err);
+          });
+          await atManager.grantUserGrantedPermission(tokenID, permissionName3, 1).then((result) => {
+              console.info('[permission] case grantUserGrantedPermission success :' + result);
+          }).catch((err) => {
+              console.info('[permission] case grantUserGrantedPermission failed :' + err);
+          });
+          await atManager.grantUserGrantedPermission(tokenID, permissionName4, 1).then((result) => {
+              console.info('[permission] case grantUserGrantedPermission success :' + result);
+          }).catch((err) => {
+              console.info('[permission] case grantUserGrantedPermission failed :' + err);
+          });
+          await atManager.grantUserGrantedPermission(tokenID, permissionName5, 1).then((result) => {
+              console.info('[permission] case grantUserGrantedPermission success :' + result);
+          }).catch((err) => {
+              console.info('[permission] case grantUserGrantedPermission failed :' + err);
+          });
+      } else {
+          console.info('[permission] case apply permission failed, createAtManager failed');
+      }
+  }
+
+
 describe('Enum-Verification', function () {
     var camerasArray;
+    
+    beforeAll(async function (done) {
+        await applyPermission();
+        console.info(TAG + 'beforeAll case');
+        await sleep(2)
+        done()
+    });
 
-    console.log('##########start AccessTokenTests');
-    beforeAll(async function (done){
-        var appInfo = await bundle.getApplicationInfo('com.example.cameramoduletestetsv2',0 ,100);
-        tokenID = appInfo.accessTokenId;
-        console.info(TAG + "AccessTokenTest accessTokenId:" + appInfo.accessTokenId + ", name:"+ appInfo.name
-			+ ", bundleName:" + appInfo.bundleName)
-        sleep(TIMEOUT);
-        console.info(TAG + "Grant permission start");
-        var atManager = abilityAccessCtrl.createAtManager();
-        var result = await atManager.grantUserGrantedPermission(tokenID, permissionNameUser,
-			PermissionFlag.PERMISSION_USER_FIXED); 
-        console.info(TAG + "Grant permission finish, result:" + result + ", TokenID:" + tokenID);
-        done();
-    })
-    afterEach(function(){
-    })
-	
-       function sleep(ms) {
-        console.info(TAG + "Entering sleep -> Promise constructor");
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    afterEach(async function() {
+      await sleep(1)
+      console.info(TAG + "after each finished");
+    });
 
     /**
       * @tc.number    : GET_CAMERA_MANAGER_TC_001
