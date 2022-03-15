@@ -334,11 +334,11 @@ describe('ActsSubscriberTestUnorder', async function (done) {
         console.info("===============ActsSubscriberTestUnorder_0700==========================>");
         var commonEventSubscribeInfo = {
             events: ["publish_event0700"],
-            publisherPermission:"publish_event0700_permission"
+            publisherPermission:"ohos.permission.USE_BLUETOOTH"
         };
 
         var commonEventPublishData = {
-            subscriberPermissions:["publish_event0700_permission"],
+            subscriberPermissions:["ohos.permission.USE_BLUETOOTH"],
             isOrdered: false,
             isSticky: false,
         }
@@ -442,7 +442,7 @@ describe('ActsSubscriberTestUnorder', async function (done) {
         };
 
         var commonEventPublishData = {
-            subscriberPermissions:["publish_event0900_permission"],
+            subscriberPermissions:["ohos.permission.USE_BLUETOOTH"],
             isOrdered: false,
             isSticky: true
         }
