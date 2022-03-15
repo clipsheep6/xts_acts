@@ -152,7 +152,7 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-     it('TC_001-4', 0, async function (done) {
+    it('TC_001-4', 0, async function (done) {
         const Color = new ArrayBuffer(96);
         let opts = { alphaType: 3, editable: false, pixelFormat: 2, scaleMode: 2, size: { height: 2, width: 3 } }
         image.createPixelMap(Color, opts, pixelmap => {
@@ -222,7 +222,7 @@ describe('Image', function () {
                 }
 
                 const readBuffer = new ArrayBuffer(96);
-                pixelmap.readPixelsToBuffer(readBuffer).then (() => {
+                pixelmap.readPixelsToBuffer(readBuffer).then(() => {
                     var bufferArr = new Uint8Array(readBuffer);
                     var res = true;
                     for (var i = 0; i < bufferArr.length; i++) {
@@ -788,7 +788,7 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
     */
-     it('TC_022-1', 0, async function (done) {
+    it('TC_022-1', 0, async function (done) {
         const color = new ArrayBuffer(96);
         let opts = { alphaType: 0, editable: true, pixelFormat: 3, scaleMode: 1, size: { height: 4, width: 6 } }
         image.createPixelMap(color, opts, pixelmap => {
@@ -868,7 +868,7 @@ describe('Image', function () {
                 const writeColor = new ArrayBuffer(96);
                 pixelmap.writeBufferToPixels(writeColor).then(() => {
                     const readBuffer = new ArrayBuffer(96);
-                    pixelmap.readPixelsToBuffer(readBuffer).then (() => {
+                    pixelmap.readPixelsToBuffer(readBuffer).then(() => {
                         var bufferArr = new Uint8Array(readBuffer);
                         var res = true;
                         for (var i = 0; i < bufferArr.length; i++) {
@@ -1053,7 +1053,7 @@ describe('Image', function () {
             console.info('TC_25-1 success');
             done();
         })
-        pixelmap.getBytesNumberPerRow().then( num => {
+        pixelmap.getBytesNumberPerRow().then(num => {
             console.info('TC_025-1 num is ' + num);
             expect(num == expectNum).assertTrue();
             done();
@@ -1086,7 +1086,7 @@ describe('Image', function () {
             console.info('TC_026-1 success');
             done();
         })
-        pixelmap.getPixelBytesNumber().then( num => {
+        pixelmap.getPixelBytesNumber().then(num => {
             console.info('TC_026-1 num is ' + num);
             expect(num == expectNum).assertTrue();
             done();
@@ -1112,7 +1112,7 @@ describe('Image', function () {
     it('TC_027', 0, async function (done) {
         const color = new ArrayBuffer(96);
         let opts = { alphaType: 0, editable: true, pixelFormat: 3, scaleMode: 1, size: { height: 4, width: 6 } }
-        image.createPixelMap(color, opts).then( pixelmap => {
+        image.createPixelMap(color, opts).then(pixelmap => {
                 if (pixelmap == null) {
                     console.info('TC_027 createPixelMap failed');
                     expect(false).assertTrue()
@@ -1893,7 +1893,7 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */   
-     it('TC_047-5', 0, async function (done) {
+    it('TC_047-5', 0, async function (done) {
         const imageSourceApi = image.createImageSource('/data/local/tmp/test.gif');
         if (imageSourceApi == null) {
             console.info('TC_047-5 create image source failed');
@@ -1903,7 +1903,7 @@ describe('Image', function () {
             imageSourceApi.getImageInfo(-1)
             .then((error,imageInfo) => { 
                 expect(imageInfo == null).assertTrue();
-                console.info('TC_047-5 suc');
+                console.info('TC_047-5 success');
                 done();
             })
         }
@@ -6096,5 +6096,5 @@ describe('Image', function () {
                 done();
             })
         }
-    })    
+    })
 })
