@@ -99,7 +99,7 @@ describe('ActsAmsTestSecondScene', function () {
                 ' + error.code + ', data length [' + data.length + ']');
             }
         );
-        setTimeout(done(), 5000);
+        done();
     });
 
     function timeout(done) {
