@@ -78,6 +78,10 @@ describe('ActsGetWantTest', function () {
                 bundleName: "com.example.actsgetwantalltesthap",
                 abilityName: "com.example.actsgetwantalltesthap.MainAbility",
                 action: "action2",
+                parameters:
+                {
+                    mykey5: [""],
+                },
             }
         },
             (err, data) => {
@@ -106,6 +110,10 @@ describe('ActsGetWantTest', function () {
                 entities: ["entity1"],
                 type: "MIMETYPE",
                 uri: "key={true,true,false}",
+                parameters:
+                {
+                    mykey5: [""],
+                },
             },
         },
             (err, data) => {
@@ -370,7 +378,6 @@ describe('ActsGetWantTest', function () {
                     expect(data.want.entities[0]).assertEqual("entity1");
                     expect(data.want.type).assertEqual("MIMETYPE");
                     expect(data.want.uri).assertEqual("key={true,true,false}");
-                    expect(data.want.flags).assertEqual(wantConstant.Flags.FLAG_ABILITY_CONTINUATION );
                     expect(data.want.parameters.mykey0).assertEqual(0.1);
                     expect(data.want.parameters.mykey1[0]).assertEqual(0.1);
                     expect(data.want.parameters.mykey1[1]).assertEqual(0.2);
