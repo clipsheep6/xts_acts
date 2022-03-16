@@ -169,7 +169,7 @@ describe('screenshot_test', function () {
 			};
 			screenshot.save(screenshotOptions).then((data) => {
 				console.log('jsunittest screenShotSaveTest4 screenshot.save success, data :' + JSON.stringify(data));
-				expect(!!data).assertTrue()
+				expect(!!data).assertTrue();
 				done();
 			}, (err) => {
 				console.log('jsunittest screenShotSaveTest4 screenshot.save failed, err : ' + JSON.stringify(err));
