@@ -17,7 +17,7 @@ group("want") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "actsgetwantalltest:ActsGetWantAllTest1",
+      "actsgetwantalltest:ActsGetWantAllTest",
       "sceneProject/actsgetwantalltesthap:ActsGetWantAllTestHap",
     ]
   }
