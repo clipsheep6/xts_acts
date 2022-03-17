@@ -20,7 +20,6 @@ import events_emitter from '@ohos.events.emitter';
 
 export default function placementJsunit(){
   describe('placementTest', function (){
-
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/placement',

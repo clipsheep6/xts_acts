@@ -29,7 +29,7 @@ export default function enumsVerticalAlignJsunit() {
         router.clear();
         let pages = router.getState();
         console.info('beforeEach get enumsVerticalAlign state pages:' + JSON.stringify(pages));
-        if (!('enumsFlexItem' == pages.name)) {
+        if (!('enumsVerticalAlign' == pages.name)) {
           console.info('beforeEach get enumsVerticalAlign state pages.name:' + JSON.stringify(pages.name));
           let result = await router.push(options);
           await Utils.sleep(2000);
@@ -52,7 +52,7 @@ export default function enumsVerticalAlignJsunit() {
       let strJson = getInspectorByKey('VerticalAlign');
       console.info("enumsVerticalAlignTest_0100 component strJson:" + strJson);
       let obj = JSON.parse(strJson);
-      console.info("enumsVerticalAlignTest_0100 component obj is: " + JSON.stringify(obj));
+      console.info("enumsVerticalAlignTest_0100 component obj is: " + JSON.stringify(obj.$attrs.alignItems));
       expect(obj.$attrs.alignItems).assertEqual('VerticalAlign.Center');
       console.info('enumsVerticalAlignTest_0100 END');
       done();

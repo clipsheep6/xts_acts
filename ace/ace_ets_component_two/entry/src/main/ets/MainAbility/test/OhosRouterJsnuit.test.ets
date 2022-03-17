@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
-
 
 export default function OhosRouterJsunit() {
   describe('ohosRouterTest', function () {
@@ -57,7 +55,7 @@ export default function OhosRouterJsunit() {
         await Utils.sleep(1000);
         console.info("[ohosRouterTest001] push page success " + JSON.stringify(result));
         let pages = router.getState();
-        expect(pages.index).assertEqual(2);
+        expect(pages.index).assertEqual(3);
         expect(pages.name).assertEqual('ohosRouterA');
         expect(pages.path).assertEqual('pages/');
       } catch (err) {

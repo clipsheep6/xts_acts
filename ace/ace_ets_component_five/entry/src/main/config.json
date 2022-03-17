@@ -73,7 +73,10 @@
           "pages/positionSetting",
           "pages/shapeClipping",
           "pages/transForm",
-          "pages/visibility"
+          "pages/visibility",
+          "pages/enumsFlexAlign",
+          "pages/enumsVerticalAlign",
+          "pages/enumsHorizontalAlign"
         ],
         "name": ".MainAbility",
         "window": {

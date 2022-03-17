@@ -19,57 +19,61 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 
 export default function sourceTypeJsunit() {
-  beforeEach(async function (done) {
-    console.info("sourceType beforeEach start");
-    let options = {
-      uri: 'pages/sourceType',
-    }
-    try {
-      router.clear();
-      let pages = router.getState();
-      console.info("get sourceType state pages:" + JSON.stringify(pages));
-      if (!("sourceType" == pages.name)) {
-        console.info("get sourceType state pages.name:" + JSON.stringify(pages.name));
-        let result = await router.push(options);
-        await Utils.sleep(2000);
-        console.info("push sourceType page result:" + JSON.stringify(result));
+  describe('appInfoTest', function () {
+    beforeEach(async function (done) {
+      console.info("sourceType beforeEach start");
+      let options = {
+        uri: 'pages/sourceType',
       }
-    } catch (err) {
-      console.error("push sourceType page error:" + err);
-    }
-    done()
-  });
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get sourceType state pages:" + JSON.stringify(pages));
+        if (!("sourceType" == pages.name)) {
+          console.info("get sourceType state pages.name:" + JSON.stringify(pages.name));
+          let result = await router.push(options);
+          await Utils.sleep(2000);
+          console.info("push sourceType page result:" + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push sourceType page error:" + err);
+      }
+      done()
+    });
 
-  afterEach(async function () {
-    await Utils.sleep(1000);
-    console.info("sourceType after each called");
-  });
+    afterEach(async function () {
+      await Utils.sleep(1000);
+      console.info("sourceType after each called");
+    });
 
-  it('sourceTypeTest_0100', 0, async function (done) {
-    await Utils.sleep(1000)
-    let rect = await Utils.getComponentRect('button')
-    console.info("sourceTypeTest_0100 rectInfo is " + JSON.stringify(rect));
-    let x_value = rect.left + (rect.right - rect.left) / 2
-    let y_value = rect.top + (rect.bottom - rect.top) / 2
-    console.info("sourceTypeTest_0100 onTouch location is: " + "[x]=== " + x_value + "   [y]===" + y_value);
-    let point: TouchObject = { id: 1, x: x_value, y: y_value, type: TouchType.Down}
-    var callback = (eventData) => {
-      console.info("sourceTypeTest_0100 get event state result is: " + JSON.stringify(eventData));
-      let event = JSON.parse(eventData.data.event);
-      expect(event.source).assertEqual(0)
-    }
-    var innerEvent = {
-      eventId: 198,
-      priority: events_emitter.EventPriority.LOW
-    }
-    try {
-      events_emitter.on(innerEvent, callback)
-    } catch (err) {
-      console.info("sourceTypeTest_0100 on events_emitter err : " + JSON.stringify(err));
-    }
-    console.info('sourceTypeTest_0100 sendTouchEvent :' + sendTouchEvent(point));
-    await Utils.sleep(1000)
-    console.info('sourceTypeTest_0100 testSendTouchEvent END');
-    done();
-  });
+    it('sourceTypeTest_0100', 0, async function (done) {
+      await Utils.sleep(1000)
+      let rect = await Utils.getComponentRect('button')
+      console.info("sourceTypeTest_0100 rectInfo is " + JSON.stringify(rect));
+      let x_value = rect.left + (rect.right - rect.left) / 2
+      let y_value = rect.top + (rect.bottom - rect.top) / 2
+      console.info("sourceTypeTest_0100 onTouch location is: " + "[x]=== " + x_value + "   [y]===" + y_value);
+      let point: TouchObject = {
+        id: 1, x: x_value, y: y_value, type: TouchType.Down
+      }
+      var callback = (eventData) => {
+        console.info("sourceTypeTest_0100 get event state result is: " + JSON.stringify(eventData));
+        let event = JSON.parse(eventData.data.event);
+        expect(event.source).assertEqual(0)
+      }
+      var innerEvent = {
+        eventId: 198,
+        priority: events_emitter.EventPriority.LOW
+      }
+      try {
+        events_emitter.on(innerEvent, callback)
+      } catch (err) {
+        console.info("sourceTypeTest_0100 on events_emitter err : " + JSON.stringify(err));
+      }
+      console.info('sourceTypeTest_0100 sendTouchEvent :' + sendTouchEvent(point));
+      await Utils.sleep(1000)
+      console.info('sourceTypeTest_0100 testSendTouchEvent END');
+      done();
+    });
+  })
 }

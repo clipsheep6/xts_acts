@@ -34,16 +34,16 @@ import imageAnimatorJsunit from './ImageAnimatorJsunit.test.ets'
 import animationStatusJsunit from './AnimationStatusJsunit.test.ets';
 import curvesJsunit from './CurvesJsunit.test.ets';
 import gradientDirectionJsunit from './GradientDirectionJsunit.test.ets';
-import enmusFlexAlignJsunit from './EnmusFlexAlignJsunit.test.ets';
 import ohosRouterJsunit from './OhosRouterJsnuit.test.ets';
 import flexDirectionJsunit from './FlexDirectionJsunit.test.ets';
 import flexWrapJsunit from './FlexWrapJsunit.test.ets';
 import datePickerJsunit from './DatePickerJsunit.test.ets';
-import enmusVerticalAlignJsunit from './EnmusVerticalAlignJsunit.test.ets';
-import enmusHorizontalAlignJsunit from './EnmusHorizontalAlignJsunit.test.ets';
 import direction2Jsunit from './Direction2Jsunit.test.ets';
 
 export default function testsuite() {
+  navigationJsunit();
+  ohosRouterJsunit();
+  pageTransitionJsunit();
   datePickerJsunit();
   flexWrapJsunit();
   flexDirectionJsunit();
@@ -52,10 +52,8 @@ export default function testsuite() {
   directionJsunit();
   direction2Jsunit();
   animationStatusJsunit();
-  enmusHorizontalAlignJsunit();
-  enmusVerticalAlignJsunit();
-  enmusFlexAlignJsunit();
-  ohosRouterJsunit();
+  searchJsunit();
+  scrollBarJsunit();
   bindMenuJsunit();
   bindPopupJsunit();
   configurationJsunit();
@@ -64,14 +62,10 @@ export default function testsuite() {
   loadingProgressJsunit();
   listItemJsunit();
   navigatorCodeJsunit();
-  navigationJsunit();
-  pageTransitionJsunit();
   pieceJsunit();
   placementJsunit();
   radioJsunit();
   rowJsunit();
   systempromptJsunit();
   sourceTypeJsunit();
-  searchJsunit();
-  scrollBarJsunit();
 }

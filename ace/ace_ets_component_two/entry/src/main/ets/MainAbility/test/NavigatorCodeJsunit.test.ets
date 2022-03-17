@@ -20,31 +20,32 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 
 export default function navigatorCodeJsunit() {
-  beforeEach(async function (done) {
-    console.info("NavigatorClick beforeEach start");
-    let options = {
-      uri: 'pages/NavigatorCode',
-    }
-    try {
-      router.clear();
-      let pages = router.getState();
-      console.info("get NavigatorClick state pages:" + JSON.stringify(pages));
-      if (!("NavigatorClick" == pages.name)) {
-        console.info("get NavigatorClick state pages.name:" + JSON.stringify(pages.name));
-        let result = await router.push(options);
-        await Utils.sleep(2000);
-        console.info("push NavigatorClick page result:" + JSON.stringify(result));
+  describe('NavigatorClickTest', function () {
+    beforeEach(async function (done) {
+      console.info("NavigatorClick beforeEach start");
+      let options = {
+        uri: 'pages/NavigatorCode',
       }
-    } catch (err) {
-      console.error("push NavigatorClick page error:" + JSON.stringify(result));
-    }
-    done()
-  });
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get NavigatorClick state pages:" + JSON.stringify(pages));
+        if (!("NavigatorClick" == pages.name)) {
+          console.info("get NavigatorClick state pages.name:" + JSON.stringify(pages.name));
+          let result = await router.push(options);
+          await Utils.sleep(2000);
+          console.info("push NavigatorClick page result:" + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push NavigatorClick page error:" + JSON.stringify(result));
+      }
+      done()
+    });
 
-  afterEach(async function () {
-    await Utils.sleep(1000);
-    console.info("NavigatorClick after each called");
-  });
+    afterEach(async function () {
+      await Utils.sleep(1000);
+      console.info("NavigatorClick after each called");
+    });
 
     it('test_NavigatorClick_001', 0, async function (done) {
       console.info('[test_NavigatorClick_001] START');
@@ -83,24 +84,25 @@ export default function navigatorCodeJsunit() {
       done();
     });
 
-  it('test_NavigatorClick_003', 0, async function (done) {
-    await Utils.sleep(1000)
-    var callback = (eventData) => {
-      console.info("[test_NavigatorClick_003] get event state result is: " + JSON.stringify(eventData));
-      expect(eventData.data.ACTION).assertEqual(10)
-    }
-    var innerEvent = {
-      eventId: 139,
-      priority: events_emitter.EventPriority.LOW
-    }
-    try {
-      events_emitter.on(innerEvent, callback)
-    } catch (err) {
-      console.info("[test_NavigatorClick_003] on events_emitter err : " + JSON.stringify(err));
-    }
-    console.info('[test_NavigatorClick_003] sendEventByKey ' + JSON.stringify(sendEventByKey('button', 10, "")));
-    await Utils.sleep(1000)
-    console.info('[test_NavigatorClick_003] testSendTouchEvent END');
-    done();
-  });
+    it('test_NavigatorClick_003', 0, async function (done) {
+      await Utils.sleep(1000)
+      var callback = (eventData) => {
+        console.info("[test_NavigatorClick_003] get event state result is: " + JSON.stringify(eventData));
+        expect(eventData.data.ACTION).assertEqual(10)
+      }
+      var innerEvent = {
+        eventId: 139,
+        priority: events_emitter.EventPriority.LOW
+      }
+      try {
+        events_emitter.on(innerEvent, callback)
+      } catch (err) {
+        console.info("[test_NavigatorClick_003] on events_emitter err : " + JSON.stringify(err));
+      }
+      console.info('[test_NavigatorClick_003] sendEventByKey ' + JSON.stringify(sendEventByKey('button', 10, "")));
+      await Utils.sleep(1000)
+      console.info('[test_NavigatorClick_003] testSendTouchEvent END');
+      done();
+    });
+  })
 }
