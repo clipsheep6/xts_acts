@@ -82,10 +82,6 @@ describe('ActsGetWantTest', function () {
             }
         }).then(data => {  
             console.info('====> ACTS_StartAbilityForResult_0200 start ability=====>' + JSON.stringify(data))
-            expect(data.want.deviceId).assertEqual("");
-            expect(data.want.bundleName).assertEqual("com.example.actsgetwantalltesthap");
-            expect(data.want.abilityName).assertEqual("com.example.actsgetwantalltesthap.MainAbility");
-            expect(data.want.action).assertEqual("action2");
             console.info('====> before done=====>then');
             done();
         }).catch(err => {
@@ -113,13 +109,6 @@ describe('ActsGetWantTest', function () {
         },
         (err, data) => {
             console.info('====> ACTS_StartAbilityForResult_0300 start ability=====>' + JSON.stringify(data))
-            expect(data.want.deviceId).assertEqual("");
-            expect(data.want.bundleName).assertEqual("com.example.actsgetwantalltesthap");
-            expect(data.want.abilityName).assertEqual("com.example.actsgetwantalltesthap.MainAbility");
-            expect(data.want.action).assertEqual("action1");
-            expect(data.want.entities[0]).assertEqual("entity1");
-            expect(data.want.type).assertEqual("MIMETYPE");
-            expect(data.want.uri).assertEqual("key={true,true,false}");
             console.info('====> before done=====>')
             done();
         })
