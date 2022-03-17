@@ -17,7 +17,6 @@
 import router from '@system.router';
 import events_emitter from '@ohos.emitter';
 
-
 @Entry
 @Component
 struct SystemRouterB {

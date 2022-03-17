@@ -16,7 +16,6 @@
 
 import events_emitter from '@ohos.emitter'
 
-
 @Entry
 @Component
 struct ProgressExample {

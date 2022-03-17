@@ -17,6 +17,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@system.router';
 import Utils from './Utils.ets';
 import events_emitter from '@ohos.events.emitter';
+
 export default function touchAbleJsunit() {
   describe('touchAbleTest', function () {
     beforeEach(async function (done) {

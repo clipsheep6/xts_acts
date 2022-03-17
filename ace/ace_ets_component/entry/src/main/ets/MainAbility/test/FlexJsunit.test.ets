@@ -17,6 +17,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 import router from '@system.router';
+
 export default function flexJsunit() {
   describe('flexTest', function () {
     beforeEach(async function (done) {

@@ -17,6 +17,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
+
 export default function stepperJsunit() {
   describe('stepperTest', function () {
     beforeEach(async function (done) {

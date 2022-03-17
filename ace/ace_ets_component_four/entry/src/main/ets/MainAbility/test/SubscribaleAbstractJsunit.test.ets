@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets";
-import utils from './Utils';
 
 export default function SubscribaleAbstractJsunit() {
   describe('SubscribaleAbstract', function () {

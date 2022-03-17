@@ -17,7 +17,6 @@ import events_emitter from '@ohos.emitter'
 
 @Entry
 @Component
-
 struct AnimationExample {
   @State btn1: boolean = false
   @State duration:number = 100

@@ -25,7 +25,7 @@ struct ImageExample {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-      Text($r('app.string.string_hello'))
+      Text('string_hello')
         .fontSize(this.fontSize)
         .fontColor(this.fontColor)
         .textAlign(this.textAlign)

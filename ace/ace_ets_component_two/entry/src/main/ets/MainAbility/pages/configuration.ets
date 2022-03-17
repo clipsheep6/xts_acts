@@ -15,6 +15,7 @@
  */
 import Configuration from '@system.configuration';
 import events_emitter from '@ohos.emitter';
+
 @Entry
 @Component
 struct promptExample {

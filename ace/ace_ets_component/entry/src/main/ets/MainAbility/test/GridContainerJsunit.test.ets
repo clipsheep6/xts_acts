@@ -17,6 +17,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
+
 export default function girdContainerJsunit() {
   describe('appInfoTest', function () {
     beforeEach(async function (done) {
