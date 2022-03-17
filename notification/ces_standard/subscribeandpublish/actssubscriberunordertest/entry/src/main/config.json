@@ -48,17 +48,14 @@
     ],
     "reqPermissions": [
       {
-        "name": "publish_event0700_permission",
-        "reason": "ceshi"
+        "name": "ohos.permission.USE_BLUETOOTH",
+        "reason": "use ohos.permission.USE_BLUETOOTH"
       },
       {
         "name": "publish_event0800_publisherPermission",
         "reason": "ceshi"
       },
-      {
-        "name": "publish_event0900_permission",
-        "reason": "ceshi"
-      },
+
       {
         "name": "ohos.permission.COMMONEVENT_STICKY",
         "reason": "ceshi"
