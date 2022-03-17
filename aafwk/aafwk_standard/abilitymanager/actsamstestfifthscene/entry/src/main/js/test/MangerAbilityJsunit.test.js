@@ -258,6 +258,8 @@ describe('ActsAmsTestFifthScene', function () {
             done();
         }).catch(err => {
             console.log('Acts_Ams_test_0700 getMissionInfos failed: ' + err);
+            expect(err.code).assertEqual(2097182);
+            done();
         });
     })
 })
