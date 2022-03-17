@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-import events_emitter from '@ohos.emitter';
-
 @Entry
 @Component
 struct GlobalExample {
