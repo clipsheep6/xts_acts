@@ -17,7 +17,6 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter'
 import Utils from './Utils';
-
 export default function enableJsunit() {
   describe('appInfoTest', function () {
     beforeEach(async function (done) {
@@ -67,7 +66,7 @@ export default function enableJsunit() {
           }
         }
         var innerEvent = {
-          eventId: 82,
+          eventId: 93,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[testEnable02] start to publish emit");
@@ -78,7 +77,7 @@ export default function enableJsunit() {
       await Utils.sleep(2000);
       let strJson = getInspectorByKey('enabled');
       let obj = JSON.parse(strJson);
-      console.info("[testEnable02] obj is: " + JSON.stringify(obj));
+      console.info("[testEnable02] obj is: " + JSON.stringify(obj.$attrs.enabled));
       expect(obj.$attrs.enabled).assertEqual(false);
       console.info('testEnable02 END');
       done();

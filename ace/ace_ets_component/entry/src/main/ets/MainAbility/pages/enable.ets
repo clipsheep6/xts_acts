@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import events_emitter from '@ohos.events.emitter'
+
+import events_emitter from '@ohos.emitter'
 
 @Entry
 @Component
@@ -24,7 +25,7 @@ struct EnabledExample {
   onPageShow() {
     console.info('[enabled] page show called ');
     var stateChangeEvent = {
-      eventId: 82,
+      eventId: 93,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack);
