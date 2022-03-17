@@ -271,8 +271,7 @@ describe('ActsAmsCallBackFifthScene', function () {
             (error, info) => {
                 console.info('Acts_Ams_test_8000 killProcessesByBundleName error.code: \
                 ' + error.code + ',data  [' + info + ']');
-                expect(typeof (info)).assertEqual("number");
-                expect(info).assertEqual(0);
+                expect(error.code).assertEqual(2097182);
                 done();
             }
         );
