@@ -1045,7 +1045,7 @@ describe('ActsGetWantTest', function () {
          */
         it('SUB_AA_OpenHarmony_wantConstantEnumeration_0300',0, async function (done) {
         console.log("SUB_AA_OpenHarmony_wantConstantEnumeration_0300 --- start")
-        let app = wantConstant.Action.ACTION_APP_ACCOUNT_OAUTH
+        let app = wantConstant.ACTION_APP_ACCOUNT_OAUTH
         expect(app).assertEqual("ohos.account.appAccount.action.oauth")
         console.log("SUB_AA_OpenHarmony_wantConstantEnumeration_0300 --- end")
         done()
