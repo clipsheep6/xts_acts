@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+
 import events_emitter from '@ohos.emitter'
 
 @Entry
@@ -23,7 +24,7 @@ struct zIndexExample {
   onPageShow() {
     console.info('[zIndex] page show called ');
     var stateChangeEvent = {
-      eventId: 84,
+      eventId: 236,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack);

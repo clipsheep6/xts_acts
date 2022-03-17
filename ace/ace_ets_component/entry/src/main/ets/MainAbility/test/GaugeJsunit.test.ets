@@ -17,7 +17,6 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
-
 export default function gaugeJsunit() {
   describe('appInfoTest', function () {
     beforeEach(async function (done) {
@@ -69,7 +68,7 @@ export default function gaugeJsunit() {
           }
         }
         var innerEvent = {
-          eventId: 1,
+          eventId: 102,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[testGauge002] start to publish emit");
@@ -81,7 +80,7 @@ export default function gaugeJsunit() {
       let strJsonNew = getInspectorByKey('gauge');
       let objNew = JSON.parse(strJsonNew);
       console.info("[testGauge002] component objNew is: " + JSON.stringify(objNew));
-      expect(objNew.$attrs.gauge).assertEqual('10.00');
+      expect(objNew.$attrs.value).assertEqual('10.00');
       done();
     });
 
@@ -95,7 +94,7 @@ export default function gaugeJsunit() {
           }
         }
         var innerEvent = {
-          eventId: 1,
+          eventId: 102,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[testGauge003] start to publish emit");
@@ -121,7 +120,7 @@ export default function gaugeJsunit() {
           }
         }
         var innerEvent = {
-          eventId: 1,
+          eventId: 102,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[testGauge004] start to publish emit");
@@ -147,7 +146,7 @@ export default function gaugeJsunit() {
           }
         }
         var innerEvent = {
-          eventId: 1,
+          eventId: 102,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[testGauge005] start to publish emit");
@@ -173,7 +172,7 @@ export default function gaugeJsunit() {
           }
         }
         var innerEvent = {
-          eventId: 2,
+          eventId: 103,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[testGauge006] start to publish emit");

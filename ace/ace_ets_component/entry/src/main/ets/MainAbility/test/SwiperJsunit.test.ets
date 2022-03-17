@@ -17,7 +17,6 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
-
 export default function swiperJsunit() {
   describe('swiperTest', function () {
     beforeEach(async function (done) {
@@ -51,6 +50,8 @@ export default function swiperJsunit() {
       console.info("swiperTest_0100 component strJson:" + strJson);
       let obj = JSON.parse(strJson);
       console.info("swiperTest_0100 component obj is: " + JSON.stringify(obj));
+      console.info("swiperTest_0100 obj.$attrs.index: " + obj.$attrs.index);
+      console.info("swiperTest_0100 obj.$attrs.indicatorStyle: " + obj.$attrs.indicatorStyle);
       expect(obj.$type).assertEqual('Swiper');
       expect(obj.$attrs.index).assertEqual('1');
       done();
@@ -98,7 +99,7 @@ export default function swiperJsunit() {
       console.info("swiperTest_0500 component strJson:" + strJson);
       let obj = JSON.parse(strJson);
       console.info("swiperTest_0500 component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.itemSpace).assertEqual('0.000000vp');
+      expect(obj.$attrs.itemSpace).assertEqual('0.00vp');
       expect(obj.$attrs.disableSwipe).assertEqual('false');
       console.info('swiperTest_0500 END');
       done();
@@ -114,7 +115,7 @@ export default function swiperJsunit() {
           }
         }
         let indexEvent = {
-          eventId: 17,
+          eventId: 207,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("swiperTest_0600 start to publish emit");
@@ -140,7 +141,7 @@ export default function swiperJsunit() {
         expect(indexEvent.data.ACTION).assertEqual(true);
       }
       let indexEvent = {
-        eventId: 18,
+        eventId: 205,
         priority: events_emitter.EventPriority.LOW
       }
       try {
@@ -162,7 +163,7 @@ export default function swiperJsunit() {
         expect(indexEvent.data.ACTION).assertEqual(true);
       }
       let indexEvent = {
-        eventId: 19,
+        eventId: 206,
         priority: events_emitter.EventPriority.LOW
       }
       try {
@@ -184,7 +185,7 @@ export default function swiperJsunit() {
         expect(indexEventOne.data.ACTION).assertEqual(true);
       }
       let indexEventOne = {
-        eventId: 19,
+        eventId: 206,
         priority: events_emitter.EventPriority.LOW
       }
       try {
@@ -199,7 +200,7 @@ export default function swiperJsunit() {
         expect(indexEvent.data.ACTION).assertEqual(true);
       }
       let indexEvent = {
-        eventId: 20,
+        eventId: 204,
         priority: events_emitter.EventPriority.LOW
       }
       try {
@@ -221,7 +222,7 @@ export default function swiperJsunit() {
           }
         }
         let indexEvent = {
-          eventId: 55,
+          eventId: 208,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("swiperTest_1000 start to publish emit");
@@ -250,7 +251,7 @@ export default function swiperJsunit() {
           }
         }
         let indexEvent = {
-          eventId: 56,
+          eventId: 209,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("swiperTest_1100 start to publish emit");
@@ -278,7 +279,7 @@ export default function swiperJsunit() {
           }
         }
         let indexEvent = {
-          eventId: 57,
+          eventId: 210,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("swiperTest_1200 start to publish emit");
@@ -291,7 +292,7 @@ export default function swiperJsunit() {
       let objNew = JSON.parse(strJsonNew);
       console.info("swiperTest_1200 component objNew is: " + JSON.stringify(objNew));
       expect(objNew.$attrs.duration).assertEqual('500.000000');
-      expect(objNew.$attrs.itemSpace).assertEqual('1.000000vp');
+      expect(objNew.$attrs.itemSpace).assertEqual('1.00vp');
       console.info('swiperTest_1200 END');
       done();
     });
