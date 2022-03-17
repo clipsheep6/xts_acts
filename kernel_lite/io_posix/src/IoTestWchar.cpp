@@ -334,10 +334,12 @@ HWTEST_F(IoTest, testMbsinit, Function | MediumTest | Level1)
 {
     mbstate_t *ps = nullptr;
     int ret = mbsinit(ps);
+    int mem_ret = -1;
     EXPECT_NE(ret, 0);
 
     mbstate_t psF;
-    memset_s(&psF, sizeof(psF), 0, sizeof(psF));
+    mem_ret = memset_s(&psF, sizeof(psF), 0, sizeof(psF));
+    EXPECT_EQ(0, mem_ret);
     ret = mbsinit(&psF);
     EXPECT_NE(ret, 0);
 }

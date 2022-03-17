@@ -811,8 +811,10 @@ HWTEST_F(IpcMqTest, testMqGetAttrEBADFEINVAL, Function | MediumTest | Level2)
     mqd_t queue;
     struct mq_attr mqstat = { 0 };
     char qName[MQ_NAME_LEN];
+    int mem_ret = -1;
 
-    memset_s(&mqstat, sizeof(mqstat), 0, sizeof(mqstat));
+    mem_ret = memset_s(&mqstat, sizeof(mqstat), 0, sizeof(mqstat));
+    EXPECT_EQ(0, mem_ret);
 
     sprintf(qName, "testMqSendEINVAL_%d", GetRandom(10000));
     queue = mq_open(qName, O_CREAT | O_RDWR | O_NONBLOCK, S_IRUSR | S_IWUSR, NULL);
@@ -839,13 +841,16 @@ HWTEST_F(IpcMqTest, testMqSetAttrEBADFEINVAL, Function | MediumTest | Level2)
     char qName[MQ_NAME_LEN];
     mqd_t queue;
     struct mq_attr gMqstat = { 0 }, sMqstat = { 0 };
+    int mem_ret = -1;
 
     sprintf(qName, "testMqSetAttrEBADFEINVAL_%d", GetRandom(10000));
     queue = mq_open(qName, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR, NULL);
     ASSERT_TRUE(queue != (mqd_t)-1) << "ERROR: mq_open() == (mqd_t)-1";
 
-    memset_s(&gMqstat, sizeof(gMqstat), 0, sizeof(gMqstat));
-    memset_s(&sMqstat, sizeof(sMqstat), 0, sizeof(sMqstat));
+    mem_ret = memset_s(&gMqstat, sizeof(gMqstat), 0, sizeof(gMqstat));
+    EXPECT_EQ(0, mem_ret);
+    mem_ret = memset_s(&sMqstat, sizeof(sMqstat), 0, sizeof(sMqstat));
+    EXPECT_EQ(0, mem_ret);
     EXPECT_TRUE(mq_getattr(queue, &gMqstat) == 0) << "ERROR: mq_getattr() != 0";
 
     sMqstat.mq_flags |= O_NONBLOCK;
