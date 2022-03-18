@@ -38,8 +38,49 @@ describe('window_api_test', function() {
             console.log('jsunittest faModelOnOffTest1 listenerStatus 1: ' + listenerStatus);
         }
         window.on('systemBarTintChange', callback);
-        setTimeout(() => {
-            window.getTopWindow((err, data) => {
+        window.getTopWindow((err, data) => {
+            if (err.code != 0) {
+                console.log('jsunittest faModelOnOffTest1 getTopWindow callback fail ' + JSON.stringify(err.code));
+                expect().assertFail();
+                done();
+            }
+            expect(data != null).assertTrue();
+            data.setLayoutFullScreen(true, (err) => {
+                if (err.code != 0) {
+                    console.log('jsunittest faModelOnOffTest1 setLayoutFullScreen callback fail ' + JSON.stringify(err.code));
+                    expect().assertFail();
+                    done();
+                } else {
+                    setTimeout(() => {
+                        expect(listenerStatus == 1).assertTrue();
+                        window.off('systemBarTintChange');
+                        listenerStatus = 0;
+                        data.setLayoutFullScreen(false, (err) => {
+                            console.log('jsunittest faModelOnOffTest1 listenerStatus 2:' + listenerStatus);
+                            if (err.code != 0 || listenerStatus == 1) {
+                                console.log('jsunittest faModelOnOffTest1 setLayoutFullScreen callback fail ' + JSON.stringify(err.code));
+                                expect().assertFail();
+                                done();
+                            } else {
+                                console.log('jsunittest faModelOnOffTest1 listenerStatus 3:' + listenerStatus);
+                                console.log('jsunittest faModelOnOffTest1 off callback success');
+                                done();
+                            }
+                        })
+                    }, 2000);
+                }
+            })
+        })
+    })
+        console.log('jsunittest faModelOnOffTest1 begin');
+        var listenerStatus; //1表示开启 其他为关闭
+        var callback = (data) => {
+            console.log('jsunittest faModelOnOffTest1 create callback ' + JSON.stringify(data));
+            listenerStatus = 1;
+            console.log('jsunittest faModelOnOffTest1 listenerStatus 1: ' + listenerStatus);
+        }
+        window.on('systemBarTintChange', callback);
+		window.getTopWindow((err, data) => {
                 if (err.code != 0) {
                     console.log('jsunittest faModelOnOffTest1 getTopWindow callback fail ' + JSON.stringify(err.code));
                     expect().assertFail();
@@ -52,11 +93,11 @@ describe('window_api_test', function() {
                         expect().assertFail();
                         done();
                     } else {
-                        expect(listenerStatus == 1).assertTrue();
+						setTimeout(() => {
+						expect(listenerStatus == 1).assertTrue();
                         window.off('systemBarTintChange');
                         listenerStatus = 0;
-                    }
-                    data.setLayoutFullScreen(false, (err) => {
+						data.setLayoutFullScreen(false, (err) => {
                         console.log('jsunittest faModelOnOffTest1 listenerStatus 2:' + listenerStatus);
                         if (err.code != 0 || listenerStatus == 1) {
                             console.log('jsunittest faModelOnOffTest1 setLayoutFullScreen callback fail ' + JSON.stringify(err.code));
@@ -67,11 +108,13 @@ describe('window_api_test', function() {
                             console.log('jsunittest faModelOnOffTest1 off callback success');
                             done();
                         }
-                    })
+						})
+						}, 1000);
+                    }
+                    
                 })
-
             })
-        }, 1000);
+       
     })
 
     /**
@@ -101,7 +144,6 @@ describe('window_api_test', function() {
                 if (err.code != 0) {
                     console.log('jsunittest faModelOnOffTest2 setLayoutFullScreen callback fail ' + JSON.stringify(err.code));
                     expect().assertFail();
-                    done();
                 } else {
                     setTimeout((async function() {
                         console.log('jsunittest faModelOnOffTest2 listenerStatus 111: ' + listenerStatus);
@@ -759,7 +801,7 @@ describe('window_api_test', function() {
                 console.log('jsunittest faModelSetColorSpaceTest4 setColorSpace callback begin' + JSON.stringify(err));
                 if (err.code != 0) {
                     console.log('jsunittest faModelSetColorSpaceTest4 setColorSpace callback fail' + JSON.stringify(err.code));
-                    expect(err.code).assertEqual(120);
+                    expect(err.code).assertEqual(130);
                     done();
                 } else {
                     expect().assertFail();
