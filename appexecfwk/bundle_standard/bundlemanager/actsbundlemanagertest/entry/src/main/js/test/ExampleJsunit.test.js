@@ -2165,7 +2165,6 @@ describe('ActsBundleManagerTest', function () {
                         }
                     }
                 }).catch(err => {
-                    console.info("kkkkkqueryAbilityByWantFail"+JSON.stringify(err))
                     expect(err).assertFail();
                 })
             installData.uninstall(NAME1, {
