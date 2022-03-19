@@ -12,10 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-require('./getPermission.test.js')
 require('./albumGetFileAssetsCallback.test.js')
 require('./albumGetFileAssetsPromise.test.js')
+
 require('./distributedCallback.test.js')
 require('./distributedPromise.test.js')
 require('./favoriteTestCallBack.test.js')
@@ -40,7 +39,7 @@ require('./getAllPeersTestCallback.test.js')
 require('./getAllPeersTestPromise.test.js')
 require('./mediaLibraryTestCallBack.test.js')
 require('./mediaLibraryTestPromise.test.js')
-require('./mediaLibraryTestPromiseOnOff.test.js')
+//require('./mediaLibraryTestPromiseOnOff.test.js')
 require('./albumTestCallBack.test.js')
 require('./albumTestPromise.test.js')
 
