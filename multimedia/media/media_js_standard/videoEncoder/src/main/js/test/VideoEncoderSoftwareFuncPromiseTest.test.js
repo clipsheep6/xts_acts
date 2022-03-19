@@ -56,7 +56,7 @@ describe('videoSoftwareEncoderFuncPromise', function () {
         console.info('afterEach case');
         if (videoEncodeProcessor != null){
             await videoEncodeProcessor.release().then(() => {
-                console.info("case release success"); 
+                console.info('case release success'); 
             }, failCallback).catch(failCatch);
             videoEncodeProcessor = null;
         }
@@ -89,7 +89,7 @@ describe('videoSoftwareEncoderFuncPromise', function () {
 
     function writeFile(path, buf, len){
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -111,7 +111,7 @@ describe('videoSoftwareEncoderFuncPromise', function () {
             let outputObject = outputQueue.shift();
             outputCnt += 1;
             if (outputObject.flags == 1) {
-                console.info("last frame, make choice");
+                console.info('last frame, make choice');
                 mediaTest.closeStream(surfaceID);
                 sawOutputEOS = true;
                 if (stopAtEOS) {
@@ -128,7 +128,7 @@ describe('videoSoftwareEncoderFuncPromise', function () {
             } else {
                 console.info('not last frame, write data to file');
                 writeFile(path, outputObject.data, outputObject.length);
-                console.info("write to file success");
+                console.info('write to file success');
                 videoEncodeProcessor.freeOutputBuffer(outputObject).then(() => {
                     console.info('release output success');
                 });
@@ -143,7 +143,7 @@ describe('videoSoftwareEncoderFuncPromise', function () {
             console.info('outBuffer.flags: ' + outBuffer.flags);
             if (needGetMediaDes) {
                 videoEncodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
-                    console.info("get OutputMediaDescription success");
+                    console.info('get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes = false;
                 }, failCallback).catch(failCatch);
@@ -188,7 +188,7 @@ describe('videoSoftwareEncoderFuncPromise', function () {
 
     async function toGetVideoEncoderCaps(width, height) {
         await videoEncodeProcessor.getVideoEncoderCaps().then((videoCaps) => {
-            console.info("case get getVideoEncoderCaps success");
+            console.info('case get getVideoEncoderCaps success');
             printVideoCaps(videoCaps, width, height);
         }, failCallback).catch(failCatch);
     }
@@ -214,7 +214,7 @@ describe('videoSoftwareEncoderFuncPromise', function () {
         supportedComplexity [${videoCaps.supportedComplexity.min},  ${videoCaps.supportedComplexity.max}]
         `);
         await videoCaps.getPreferredFrameRate(width, height).then((valueRange) => {
-            console.info("case getPreferredFrameRate valueRange success");
+            console.info('case getPreferredFrameRate valueRange success');
             if (typeof (valueRange) != 'undefined') {
                 console.info('getPreferredFrameRate.min: ' + valueRange.min);
                 console.info('getPreferredFrameRate.max: ' + valueRange.max);
@@ -224,7 +224,7 @@ describe('videoSoftwareEncoderFuncPromise', function () {
             }
         }, failCallback).catch(failCatch);
         await videoCaps.getSupportedFrameRate(width, height).then((valueRange) => {
-            console.info("case getSupportedFrameRate valueRange success");
+            console.info('case getSupportedFrameRate valueRange success');
             if (typeof (valueRange) != 'undefined') {
                 console.info('getSupportedFrameRate.min: ' + valueRange.min);
                 console.info('getSupportedFrameRate.max: ' + valueRange.max);
@@ -234,7 +234,7 @@ describe('videoSoftwareEncoderFuncPromise', function () {
             }
         }, failCallback).catch(failCatch);
         await videoCaps.isSizeSupported(width, height).then((trueORfalse) => {
-            console.info("case isSizeSupported valueRange for width:" + width + ", height: " + height);
+            console.info('case isSizeSupported valueRange for width:' + width + ', height: ' + height);
             if (typeof (trueORfalse) != 'undefined') {
                 console.info('videoCaps.isSizeSupported: ' + trueORfalse);
             } else {
@@ -275,46 +275,46 @@ describe('videoSoftwareEncoderFuncPromise', function () {
 
     async function toConfigure(mediaDescription) {
         await videoEncodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success"); 
+            console.info('case configure success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toPrepare() {
         await videoEncodeProcessor.prepare().then(() => {
-            console.info("case prepare success"); 
+            console.info('case prepare success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toStart() {
         await videoEncodeProcessor.start().then(() => {
-            console.info("case start success"); 
+            console.info('case start success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toFlush() {
         outputQueue = [];
         await videoEncodeProcessor.flush().then(() => {
-            console.info("case flush success"); 
+            console.info('case flush success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toStop() {
         await videoEncodeProcessor.stop().then(() => {
-            console.info("case stop success"); 
+            console.info('case stop success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toReset() {
         resetParam();
         await videoEncodeProcessor.reset().then(() => {
-            console.info("case reset success"); 
+            console.info('case reset success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toRelease() {
         resetParam();
         await videoEncodeProcessor.release().then(() => {
-            console.info("case release success"); 
+            console.info('case release success'); 
             videoEncodeProcessor = null;
         }, failCallback).catch(failCatch);
     }
@@ -328,18 +328,18 @@ describe('videoSoftwareEncoderFuncPromise', function () {
         * @tc.level     : Level0
     */ 
     it('SUB_MEDIA_VIDEO_SOFTWARE_ENCODER_FUNCTION_PROMISE_00_0100', 0, async function (done) {
-        console.info("case test stop after last frame");
+        console.info('case test stop after last frame');
         let savepath = BASIC_PATH + '0000.es';
         let name= 'avenc_mpeg4';
         let width = 320;
         let height = 240;
         let framerate = 30;
         let mediaDescription = {
-            "codec_mime": 'video/mp4v-es',
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'codec_mime': 'video/mp4v-es',
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         await media.getMediaCapability().then((mediaCaps)  => {
             console.info('getMediaCapability success');
@@ -351,7 +351,7 @@ describe('videoSoftwareEncoderFuncPromise', function () {
                         console.info('print first videoCaps from videoCapsArray');
                         printVideoCaps(videoCaps, width, height);
                     } else {
-                        console.info("case videoCapsArray is not defined");
+                        console.info('case videoCapsArray is not defined');
                         expect().assertFail();
                         done();
                     }
@@ -359,9 +359,9 @@ describe('videoSoftwareEncoderFuncPromise', function () {
                 mediaCaps.findVideoEncoder(mediaDescription).then((codecname)  => {
                     console.info('findVideoEncoder success');
                     if (typeof (codecname) != 'undefined') {
-                        console.info("case codecname " + codecname);
+                        console.info('case codecname ' + codecname);
                     } else {
-                        console.info("case codecname is not defined");
+                        console.info('case codecname is not defined');
                         expect().assertFail();
                         done();
                     }
@@ -393,17 +393,17 @@ describe('videoSoftwareEncoderFuncPromise', function () {
     * @tc.level     : Level1
     */ 
     it('SUB_MEDIA_VIDEO_SOFTWARE_ENCODER_FUNCTION_PROMISE_01_0100', 0, async function (done) {
-        console.info("case test stop at runnning state and reset");
+        console.info('case test stop at runnning state and reset');
         let savepath = BASIC_PATH + '0100.es';
         let mime = 'video/mp4v-es';
         let width = 320;
         let height = 240;
         let framerate = 30;
         let mediaDescription = {
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         await toCreateByMime(mime, done);
         await toGetVideoEncoderCaps(width, height);
@@ -432,17 +432,17 @@ describe('videoSoftwareEncoderFuncPromise', function () {
     * @tc.level     : Level1
     */ 
     it('SUB_MEDIA_VIDEO_SOFTWARE_ENCODER_FUNCTION_PROMISE_01_0200', 0, async function (done) {
-        console.info("test stop at end of stream and restart");
+        console.info('test stop at end of stream and restart');
         let savepath = BASIC_PATH + '0200.es';
         let mime = 'video/mp4v-es';
         let width = 320;
         let height = 240;
         let framerate = 30;
         let mediaDescription = {
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         frameTotal = 10;
         stopAtEOS = true;
@@ -472,17 +472,17 @@ describe('videoSoftwareEncoderFuncPromise', function () {
     * @tc.level     : Level1
     */ 
     it('SUB_MEDIA_VIDEO_SOFTWARE_ENCODER_FUNCTION_PROMISE_01_0300', 0, async function (done) {
-        console.info("test stop at runnning state and restart");
+        console.info('test stop at runnning state and restart');
         let savepath = BASIC_PATH + '0300.es';
         let mime = 'video/mp4v-es';
         let width = 320;
         let height = 240;
         let framerate = 30;
         let mediaDescription = {
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         frameTotal = 1000;
         await toCreateByMime(mime, done);
@@ -513,17 +513,17 @@ describe('videoSoftwareEncoderFuncPromise', function () {
         * @tc.level     : Level1
     */ 
     it('SUB_MEDIA_VIDEO_SOFTWARE_ENCODER_FUNCTION_PROMISE_01_0400', 0, async function (done) {
-        console.info("case test flush at running state");
+        console.info('case test flush at running state');
         let savepath = BASIC_PATH + '0400.es';
         let mime = 'video/mp4v-es';
         let width = 320;
         let height = 240;
         let framerate = 30;
         let mediaDescription = {
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         frameTotal = 500;
         await toCreateByMime(mime, done);
@@ -549,17 +549,17 @@ describe('videoSoftwareEncoderFuncPromise', function () {
         * @tc.level     : Level1
     */ 
    it('SUB_MEDIA_VIDEO_SOFTWARE_ENCODER_FUNCTION_PROMISE_01_0500', 0, async function (done) {
-        console.info("case test flush at end of stream");
+        console.info('case test flush at end of stream');
         let savepath = BASIC_PATH + '0500.es';
         let mime = 'video/mp4v-es';
         let width = 320;
         let height = 240;
         let framerate = 30;
         let mediaDescription = {
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         flushAtEOS = true;
         frameTotal = 10;
@@ -588,17 +588,17 @@ describe('videoSoftwareEncoderFuncPromise', function () {
         * @tc.level     : Level0
     */ 
    it('SUB_MEDIA_VIDEO_SOFTWARE_ENCODER_FUNCTION_PROMISE_01_0600', 0, async function (done) {
-        console.info("case test reconfigure");
+        console.info('case test reconfigure');
         let savepath = BASIC_PATH + '0600.es';
         let mime = 'video/mp4v-es';
         let width = 320;
         let height = 240;
         let framerate = 30;
         let mediaDescription = {
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         resetAtEOS = true;
         frameTotal = 10;
@@ -618,10 +618,10 @@ describe('videoSoftwareEncoderFuncPromise', function () {
         height = 240;
         framerate = 30;
         let mediaDescription2 = {
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         let savepath2 = BASIC_PATH + '0601.es';
         toSetStreamParam(width, height, framerate, frameTotal);
@@ -642,17 +642,17 @@ describe('videoSoftwareEncoderFuncPromise', function () {
         * @tc.level     : Level0
     */ 
    it('SUB_MEDIA_VIDEO_SOFTWARE_ENCODER_FUNCTION_PROMISE_01_0700', 0, async function (done) {
-        console.info("case test recreate videoencoder");
+        console.info('case test recreate videoencoder');
         let savepath = BASIC_PATH + '0700.es';
         let mime = 'video/mp4v-es';
         let width = 320;
         let height = 240;
         let framerate = 30;
         let mediaDescription = {
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         resetAtEOS = true;
         frameTotal = 10;
@@ -673,10 +673,10 @@ describe('videoSoftwareEncoderFuncPromise', function () {
         height = 240;
         framerate = 30;
         let mediaDescription2 = {
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         let savepath2 = BASIC_PATH + '0701.es';
         await toCreateByMime(mime, done);

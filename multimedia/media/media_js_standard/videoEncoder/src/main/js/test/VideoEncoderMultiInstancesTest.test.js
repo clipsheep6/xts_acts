@@ -58,7 +58,7 @@ describe('videoEncoderSoftwareMultiInstances', function () {
         console.info('afterEach case');
         if (videoEncodeProcessor != null){
             await videoEncodeProcessor.release().then(() => {
-                console.info("case release success"); 
+                console.info('case release success'); 
                 videoEncodeProcessor = null;
             }, failCallback).catch(failCatch);
         }
@@ -91,7 +91,7 @@ describe('videoEncoderSoftwareMultiInstances', function () {
 
     function writeFile(path, buf, len){
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -113,7 +113,7 @@ describe('videoEncoderSoftwareMultiInstances', function () {
             let outputObject = outputQueue.shift();
             outputCnt += 1;
             if (outputObject.flags == 1) {
-                console.info("case last frame");
+                console.info('case last frame');
                 mediaTest.closeStream(surfaceID);
                 toRelease();
                 nextStep();
@@ -121,7 +121,7 @@ describe('videoEncoderSoftwareMultiInstances', function () {
             } else {
                 console.info('not last frame, write data to file');
                 writeFile(path, outputObject.data, outputObject.length);
-                console.info("write to file success");
+                console.info('write to file success');
                 videoEncodeProcessor.freeOutputBuffer(outputObject).then(() => {
                     console.info('release output success');
                 });
@@ -136,7 +136,7 @@ describe('videoEncoderSoftwareMultiInstances', function () {
             console.info('outBuffer.flags: ' + outBuffer.flags);
             if (needGetMediaDes) {
                 videoEncodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
-                    console.info("get OutputMediaDescription success");
+                    console.info('get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes = false;
                 }, failCallback).catch(failCatch);
@@ -181,8 +181,8 @@ describe('videoEncoderSoftwareMultiInstances', function () {
 
     async function toGetVideoEncoderCaps() {
         await videoEncodeProcessor.getVideoEncoderCaps().then((videoCaps) => {
-            console.info("case get getVideoEncoderCaps success");
-            console.info("print videoCaps: " + videoCaps)
+            console.info('case get getVideoEncoderCaps success');
+            console.info('print videoCaps: ' + videoCaps)
         }, failCallback).catch(failCatch);
     }
 
@@ -217,44 +217,44 @@ describe('videoEncoderSoftwareMultiInstances', function () {
 
     async function toConfigure(mediaDescription) {
         await videoEncodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success"); 
+            console.info('case configure success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toPrepare() {
         await videoEncodeProcessor.prepare().then(() => {
-            console.info("case prepare success"); 
+            console.info('case prepare success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toStart() {
         await videoEncodeProcessor.start().then(() => {
-            console.info("case start success"); 
+            console.info('case start success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toFlush() {
         outputQueue = [];
         await videoEncodeProcessor.flush().then(() => {
-            console.info("case flush success"); 
+            console.info('case flush success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toStop() {
         await videoEncodeProcessor.stop().then(() => {
-            console.info("case stop success"); 
+            console.info('case stop success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toReset() {
         await videoEncodeProcessor.reset().then(() => {
-            console.info("case reset success"); 
+            console.info('case reset success'); 
         }, failCallback).catch(failCatch);
     }
 
     async function toRelease() {
         await videoEncodeProcessor.release().then(() => {
-            console.info("case release success"); 
+            console.info('case release success'); 
             videoEncodeProcessor = null;
         }, failCallback).catch(failCatch);
     }
@@ -269,24 +269,24 @@ describe('videoEncoderSoftwareMultiInstances', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_SOFTWARE_ENCODER_MULTIINSTANCE_0100', 0, async function (done) {
-        console.info("case test multiple encoder instances");
+        console.info('case test multiple encoder instances');
         let savepath = BASIC_PATH + '0100.es';
         let mime = 'video/mp4v-es';
         let width = 320;
         let height = 240;
         let framerate = 30;
         let mediaDescription = {
-            "width": width, 
-            "height": height,
-            "pixel_format": 3,
-            "frame_rate" : framerate,
+            'width': width, 
+            'height': height,
+            'pixel_format': 3,
+            'frame_rate' : framerate,
         }
         let array = new Array();
 
         eventEmitter.once('nextStep', async () => {
             for (let j = 1; j < 3; j++) {
                 await array[j].release().then(() => {
-                    console.info("case release encoder " + j);
+                    console.info('case release encoder ' + j);
                     array[j] = null;
                 }, failCallback).catch(failCatch);
             }
@@ -306,7 +306,7 @@ describe('videoEncoderSoftwareMultiInstances', function () {
         for (let i = 1; i <= 3; i += 1) {
             await media.createVideoEncoderByMime(mime).then((processor) => {
                 if (typeof(processor) != 'undefined') {
-                    console.info("case create createVideoEncoder success: " + i);
+                    console.info('case create createVideoEncoder success: ' + i);
                     if (i == 3) {
                         videoEncodeProcessor = processor;
                         runCase();
@@ -314,7 +314,7 @@ describe('videoEncoderSoftwareMultiInstances', function () {
                     array[i] = processor;
                     }
                 } else {
-                    console.info("case create createVideoEncoder failed: " + i);
+                    console.info('case create createVideoEncoder failed: ' + i);
                     expect().assertFail();
                     done();
                 }
