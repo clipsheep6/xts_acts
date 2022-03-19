@@ -77,7 +77,7 @@ describe('AudioDecoderFormatCallback', function () {
 
     function writeFile(path, buf, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -97,7 +97,7 @@ describe('AudioDecoderFormatCallback', function () {
     }
 
     function getContent(buf, len) {
-        console.log("start get content");
+        console.log('start get content');
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
         console.log('lengthreal: ' + lengthreal);
@@ -147,15 +147,15 @@ describe('AudioDecoderFormatCallback', function () {
                 sawOutputEOS = true;
                 audioDecodeProcessor.stop((err) => {
                     expect(err).assertUndefined();
-                    console.log("stop success");
+                    console.log('stop success');
                     inputQueue = [];
                     outputQueue = [];
                     audioDecodeProcessor.reset((err) => {
                         expect(err).assertUndefined();
-                        console.log("reset success");
+                        console.log('reset success');
                         audioDecodeProcessor.release((err) => {
                             expect(err).assertUndefined();
-                            console.log("case release success");
+                            console.log('case release success');
                             audioDecodeProcessor = null;
                             done();
                         })
@@ -163,7 +163,7 @@ describe('AudioDecoderFormatCallback', function () {
                 })
             } else {
                 writeFile(savepath, outputobject.data, outputobject.length);
-                console.log("write to file success");
+                console.log('write to file success');
             }
             audioDecodeProcessor.freeOutputBuffer(outputobject, () => {
                 console.info('release output success');
@@ -174,15 +174,15 @@ describe('AudioDecoderFormatCallback', function () {
     function setCallback(savepath, done) {
         console.info('case callback');
         audioDecodeProcessor.on('needInputData', async(inBuffer) => {
-            console.info("inputBufferAvailable");
+            console.info('inputBufferAvailable');
             inputQueue.push(inBuffer);
             await enqueueAllInputs(inputQueue);
         });
         audioDecodeProcessor.on('newOutputData', async(outBuffer) => {
-            console.info("outputBufferAvailable");
+            console.info('outputBufferAvailable');
             if (needGetMediaDes) {
                 audioDecodeProcessor.getOutputMediaDescription((err, MediaDescription) => {
-                    console.log("get OutputMediaDescription success");
+                    console.log('get OutputMediaDescription success');
                     console.log('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes=false;
                 })
@@ -207,13 +207,13 @@ describe('AudioDecoderFormatCallback', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0100', 0, async function (done) {
-        console.log("case test aac format");
+        console.log('case test aac format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'aac_01.pcm';
         needGetMediaDes = true;
@@ -281,7 +281,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.log("AudioCaps: " + Audiocaps);
+                console.log('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -324,13 +324,13 @@ describe('AudioDecoderFormatCallback', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0101', 0, async function (done) {
-        console.log("case test aac format");
+        console.log('case test aac format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'aac_02.pcm';
         needGetMediaDes = true;
@@ -398,7 +398,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.log("AudioCaps: " + Audiocaps);
+                console.log('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -441,13 +441,13 @@ describe('AudioDecoderFormatCallback', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0200', 0, async function (done) {
-        console.log("case test flac format");
+        console.log('case test flac format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-                    "channel_count": 1,
-                    "sample_rate": 48000,
-                    "audio_sample_format": 1,
+                    'channel_count': 1,
+                    'sample_rate': 48000,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'flac_01.pcm';
         needGetMediaDes = true;
@@ -472,7 +472,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.log("AudioCaps: " + Audiocaps);
+                console.log('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -515,13 +515,13 @@ describe('AudioDecoderFormatCallback', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0201', 0, async function (done) {
-        console.log("case test flac format");
+        console.log('case test flac format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-                    "channel_count": 1,
-                    "sample_rate": 48000,
-                    "audio_sample_format": 1,
+                    'channel_count': 1,
+                    'sample_rate': 48000,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'flac_02.pcm';
         needGetMediaDes = true;
@@ -546,7 +546,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.log("AudioCaps: " + Audiocaps);
+                console.log('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -589,13 +589,13 @@ describe('AudioDecoderFormatCallback', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0300', 0, async function (done) {
-        console.log("test mp3 format");
+        console.log('test mp3 format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 2,
-            "sample_rate": 44100,
-            "audio_sample_format": 1,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'mp3_01.pcm';
         needGetMediaDes = true;
@@ -607,7 +607,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.log("AudioCaps: " + Audiocaps);
+                console.log('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -650,13 +650,13 @@ describe('AudioDecoderFormatCallback', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0301', 0, async function (done) {
-        console.log("test mp3 format");
+        console.log('test mp3 format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 2,
-            "sample_rate": 44100,
-            "audio_sample_format": 1,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'mp3_02.pcm';
         needGetMediaDes = true;
@@ -668,7 +668,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.log("AudioCaps: " + Audiocaps);
+                console.log('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -711,13 +711,13 @@ describe('AudioDecoderFormatCallback', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0400', 0, async function (done) {
-        console.log("test vorbis format");
+        console.log('test vorbis format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 1,
+            'channel_count': 1,
+            'sample_rate': 48000,
+            'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'vorbis_01.pcm';
         needGetMediaDes = true;
@@ -772,7 +772,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.log("AudioCaps: " + Audiocaps);
+                console.log('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -815,13 +815,13 @@ describe('AudioDecoderFormatCallback', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_CALLBACK_01_0401', 0, async function (done) {
-        console.log("test vorbis format");
+        console.log('test vorbis format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 1,
+            'channel_count': 1,
+            'sample_rate': 48000,
+            'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'vorbis_02.pcm';
         needGetMediaDes = true;
@@ -876,7 +876,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.log("AudioCaps: " + Audiocaps);
+                console.log('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });

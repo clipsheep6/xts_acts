@@ -143,9 +143,9 @@ describe('AudioDecoderReliabilityPromise', function () {
     let ES_LENGTH = 500;
     let mime = 'audio/mp4a-latm';
     let mediaDescription = {
-                "channel_count": 2,
-                "sample_rate": 44100,
-                "audio_sample_format": 1,
+                'channel_count': 2,
+                'sample_rate': 44100,
+                'audio_sample_format': 1,
     };
     let expectError = false;
 
@@ -314,14 +314,14 @@ describe('AudioDecoderReliabilityPromise', function () {
             console.info(`case createAudioDecoder 1`);
             audioDecodeProcessor = processor;
             setCallback(savepath, done);
-            console.info("case start api test");
+            console.info('case start api test');
             nextStep(mySteps, done);
         })
     }
 
     function writeFile(path, buf, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -341,7 +341,7 @@ describe('AudioDecoderReliabilityPromise', function () {
     }
 
     function getContent(buf, len) {
-        console.info("case start get content");
+        console.info('case start get content');
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
         console.info('lengthreal: ' + lengthreal);
@@ -349,14 +349,14 @@ describe('AudioDecoderReliabilityPromise', function () {
 
     async function doneWork() {
         await audioDecodeProcessor.stop().then(() => {
-            console.info("case stop success");
+            console.info('case stop success');
         }, failCallback).catch(failCatch);
         resetParam();
         await audioDecodeProcessor.reset().then(() => {
-            console.info("case reset success");
+            console.info('case reset success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.release().then(() => {
-            console.info("case release success");
+            console.info('case release success');
         }, failCallback).catch(failCatch);
         audioDecodeProcessor = null;
     }
@@ -370,10 +370,10 @@ describe('AudioDecoderReliabilityPromise', function () {
     }
 
     function nextStep(mySteps, done) {
-        console.info("case myStep[0]: " + mySteps[0]);
+        console.info('case myStep[0]: ' + mySteps[0]);
         if (mySteps[0] == END) {
             audioDecodeProcessor.release().then(() => {
-                console.info("case release success");
+                console.info('case release success');
                 audioDecodeProcessor = null;
                 done();
             }, failCallback).catch(failCatch);
@@ -513,7 +513,7 @@ describe('AudioDecoderReliabilityPromise', function () {
                 inputobject.length = 0;
                 sawInputEOS = true;
             } else {
-                console.info("case read frame from file");
+                console.info('case read frame from file');
                 inputobject.timeMs = timestamp;
                 inputobject.offset = 0;
                 inputobject.length = ES[frameCnt];
@@ -537,12 +537,11 @@ describe('AudioDecoderReliabilityPromise', function () {
                     await doneWork();
                     done();
                 } else {
-                    console.info("sawOutputEOS = true")
+                    console.info('sawOutputEOS = true')
                 }
             }
             else{
-                writeFile(savapath, outputobject.data, outputobject.length);
-                console.info("write to file success");
+                console.info('not last frame, continue');
             }
             audioDecodeProcessor.freeOutputBuffer(outputobject).then(() => {
                 console.info('release output success');
@@ -561,7 +560,7 @@ describe('AudioDecoderReliabilityPromise', function () {
             console.info('outputBufferAvailable');
             if (needGetMediaDes) {
                 audioDecodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
-                    console.info("get OutputMediaDescription success");
+                    console.info('get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes=false;
                 }, failCallback).catch(failCatch);}

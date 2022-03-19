@@ -87,7 +87,7 @@ describe('AudioDecoderFormatPromise', function () {
 
     function writeFile(path, buf, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -107,7 +107,7 @@ describe('AudioDecoderFormatPromise', function () {
     }
 
     function getContent(buf, len) {
-        console.log("start get content");
+        console.log('start get content');
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
         console.log('lengthreal: ' + lengthreal);
@@ -145,7 +145,7 @@ describe('AudioDecoderFormatPromise', function () {
             }
             frameCnt += 1;
             audioDecodeProcessor.pushInputData(inputobject).then(() => {
-                console.info("queueInput success")
+                console.info('queueInput success')
             })
         }
     }
@@ -156,12 +156,12 @@ describe('AudioDecoderFormatPromise', function () {
             if (outputobject.flags == 1) {
                 sawOutputEOS = true;
                 await audioDecodeProcessor.stop().then(() => {
-                    console.log("stop success");
+                    console.log('stop success');
                 }, failCallback).catch(failCatch);
                 inputQueue = [];
                 outputQueue = [];
                 await audioDecodeProcessor.reset().then(() => {
-                    console.log("reset success");
+                    console.log('reset success');
                 }, failCallback).catch(failCatch);
                 await audioDecodeProcessor.release().then(() => {
                     console.info('release success');
@@ -171,7 +171,7 @@ describe('AudioDecoderFormatPromise', function () {
             }
             else{
                 writeFile(savepath, outputobject.data, outputobject.length);
-                console.log("write to file success");
+                console.log('write to file success');
             }
             audioDecodeProcessor.freeOutputBuffer(outputobject).then(() => {
                 console.info('release output success');
@@ -182,15 +182,15 @@ describe('AudioDecoderFormatPromise', function () {
     function setCallback(savepath, done) {
         console.info('case callback');
         audioDecodeProcessor.on('needInputData', async(inBuffer) => {
-            console.info("inputBufferAvailable");
+            console.info('inputBufferAvailable');
             inputQueue.push(inBuffer);
             await enqueueAllInputs(inputQueue);
         });
         audioDecodeProcessor.on('newOutputData', async(outBuffer) => {
-            console.info("outputBufferAvailable");
+            console.info('outputBufferAvailable');
             if (needGetMediaDes) {
                 audioDecodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
-                    console.log("get OutputMediaDescription success");
+                    console.log('get OutputMediaDescription success');
                     console.log('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes=false;
                 }, failCallback).catch(failCatch);}
@@ -214,11 +214,11 @@ describe('AudioDecoderFormatPromise', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_PROMISE_01_0100', 0, async function (done) {
-        console.log("case test aac format");
+        console.log('case test aac format');
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'aac_01.pcm';
         needGetMediaDes = true;
@@ -283,23 +283,23 @@ describe('AudioDecoderFormatPromise', function () {
             383, 381, 399, 359, 386, 455, 368, 406, 377, 339, 381, 377, 373, 371, 338];
         ES_LENGTH = 1000;
         await media.createAudioDecoderByMime('audio/mp4a-latm').then((processor) => {
-            console.log("create createAudioDecoder success");
+            console.log('create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.log("get AudioDecoderCaps success");
-            console.log("print AudioCaps: " + AudioCaps);
+            console.log('get AudioDecoderCaps success');
+            console.log('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.log("configure success");
+            console.log('configure success');
             readFile(AUDIOPATH1);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.log("prepare success");
+            console.log('prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.log("start success");
+            console.log('start success');
         }, failCallback).catch(failCatch);
     })
 
@@ -312,11 +312,11 @@ describe('AudioDecoderFormatPromise', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_PROMISE_01_0101', 0, async function (done) {
-        console.log("case test aac format");
+        console.log('case test aac format');
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'aac_02.pcm';
         needGetMediaDes = true;
@@ -381,23 +381,23 @@ describe('AudioDecoderFormatPromise', function () {
             383, 381, 399, 359, 386, 455, 368, 406, 377, 339, 381, 377, 373, 371, 338];
         ES_LENGTH = 1000;
         await media.createAudioDecoderByName('avdec_aac').then((processor) => {
-            console.log("create createAudioDecoder success");
+            console.log('create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.log("get AudioDecoderCaps success");
-            console.log("print AudioCaps: " + AudioCaps);
+            console.log('get AudioDecoderCaps success');
+            console.log('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.log("configure success");
+            console.log('configure success');
             readFile(AUDIOPATH1);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.log("prepare success");
+            console.log('prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.log("start success");
+            console.log('start success');
         }, failCallback).catch(failCatch);
     })
 
@@ -410,11 +410,11 @@ describe('AudioDecoderFormatPromise', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_PROMISE_01_0200', 0, async function (done) {
-        console.log("case test flac format");
+        console.log('case test flac format');
         let mediaDescription = {
-                    "channel_count": 1,
-                    "sample_rate": 48000,
-                    "audio_sample_format": 1,
+                    'channel_count': 1,
+                    'sample_rate': 48000,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'flac_01.pcm';
         needGetMediaDes = true;
@@ -436,24 +436,24 @@ describe('AudioDecoderFormatPromise', function () {
             4671, 5204, 5027, 4977, 3922, 5904];
         ES_LENGTH = 200;
         await media.createAudioDecoderByMime('audio/flac').then((processor) => {
-            console.log("create createAudioDecoder success");
+            console.log('create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.log("get AudioDecoderCaps success");
-            console.log("print AudioCaps: " + AudioCaps);
+            console.log('get AudioDecoderCaps success');
+            console.log('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
-        console.log("start configure");
+        console.log('start configure');
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.log("configure success");
+            console.log('configure success');
             readFile(AUDIOPATH2);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.log("prepare success");
+            console.log('prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.log("start success");
+            console.log('start success');
         }, failCallback).catch(failCatch);
     })
 
@@ -466,11 +466,11 @@ describe('AudioDecoderFormatPromise', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_PROMISE_01_0201', 0, async function (done) {
-        console.log("case test flac format");
+        console.log('case test flac format');
         let mediaDescription = {
-                    "channel_count": 1,
-                    "sample_rate": 48000,
-                    "audio_sample_format": 1,
+                    'channel_count': 1,
+                    'sample_rate': 48000,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'flac_02.pcm';
         needGetMediaDes = true;
@@ -492,24 +492,24 @@ describe('AudioDecoderFormatPromise', function () {
             4671, 5204, 5027, 4977, 3922, 5904];
         ES_LENGTH = 200;
         await media.createAudioDecoderByName('avdec_flac').then((processor) => {
-            console.log("create createAudioDecoder success");
+            console.log('create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.log("get AudioDecoderCaps success");
-            console.log("print AudioCaps: " + AudioCaps);
+            console.log('get AudioDecoderCaps success');
+            console.log('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
-        console.log("start configure");
+        console.log('start configure');
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.log("configure success");
+            console.log('configure success');
             readFile(AUDIOPATH2);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.log("prepare success");
+            console.log('prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.log("start success");
+            console.log('start success');
         }, failCallback).catch(failCatch);
     })
 
@@ -522,11 +522,11 @@ describe('AudioDecoderFormatPromise', function () {
         * @tc.level     : Level0
     */
    it('SUB_MEDIA_AUDIO_DECODER_FORMAT_PROMISE_01_0300', 0, async function (done) {
-        console.log("case test mp3 format");
+        console.log('case test mp3 format');
         let mediaDescription = {
-            "channel_count": 2,
-            "sample_rate": 44100,
-            "audio_sample_format": 1,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'mp3_01.pcm';
         needGetMediaDes = true;
@@ -534,23 +534,23 @@ describe('AudioDecoderFormatPromise', function () {
         ES = [0, 1044];
         ES_LENGTH = 1000;
         await media.createAudioDecoderByMime('audio/mpeg').then((processor) => {
-            console.log("create createAudioDecoder success");
+            console.log('create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.log("get AudioDecoderCaps success");
-            console.log("print AudioCaps: " + AudioCaps);
+            console.log('get AudioDecoderCaps success');
+            console.log('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.log("configure success");
+            console.log('configure success');
             readFile(AUDIOPATH3);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.log("prepare success");
+            console.log('prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.log("start success");
+            console.log('start success');
         }, failCallback).catch(failCatch);
     })
 
@@ -563,11 +563,11 @@ describe('AudioDecoderFormatPromise', function () {
         * @tc.level     : Level0
     */
    it('SUB_MEDIA_AUDIO_DECODER_FORMAT_PROMISE_01_0301', 0, async function (done) {
-        console.log("case test mp3 format");
+        console.log('case test mp3 format');
         let mediaDescription = {
-            "channel_count": 2,
-            "sample_rate": 44100,
-            "audio_sample_format": 1,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'mp3_02.pcm';
         needGetMediaDes = true;
@@ -575,23 +575,23 @@ describe('AudioDecoderFormatPromise', function () {
         ES = [0, 1044];
         ES_LENGTH = 1000;
         await media.createAudioDecoderByName('avdec_mp3').then((processor) => {
-            console.log("create createAudioDecoder success");
+            console.log('create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.log("get AudioDecoderCaps success");
-            console.log("print AudioCaps: " + AudioCaps);
+            console.log('get AudioDecoderCaps success');
+            console.log('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.log("configure success");
+            console.log('configure success');
             readFile(AUDIOPATH3);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.log("prepare success");
+            console.log('prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.log("start success");
+            console.log('start success');
         }, failCallback).catch(failCatch);
     })
 
@@ -604,11 +604,11 @@ describe('AudioDecoderFormatPromise', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_PROMISE_01_0400', 0, async function (done) {
-        console.log("case test vorbis format");
+        console.log('case test vorbis format');
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 1,
+            'channel_count': 1,
+            'sample_rate': 48000,
+            'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'vorbis_01.pcm';
         needGetMediaDes = true;
@@ -660,23 +660,23 @@ describe('AudioDecoderFormatPromise', function () {
             155, 167, 178];
         ES_LENGTH = 757;
         await media.createAudioDecoderByMime('audio/vorbis').then((processor) => {
-            console.log("create createAudioDecoder success");
+            console.log('create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.log("get AudioDecoderCaps success");
-            console.log("print AudioCaps: " + AudioCaps);
+            console.log('get AudioDecoderCaps success');
+            console.log('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.log("configure success");
+            console.log('configure success');
             readFile(AUDIOPATH4);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.log("prepare success");
+            console.log('prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.log("start success");
+            console.log('start success');
         }, failCallback).catch(failCatch);
     })
 
@@ -689,11 +689,11 @@ describe('AudioDecoderFormatPromise', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FORMAT_PROMISE_01_0401', 0, async function (done) {
-        console.log("case test vorbis format");
+        console.log('case test vorbis format');
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 1,
+            'channel_count': 1,
+            'sample_rate': 48000,
+            'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + 'vorbis_02.pcm';
         needGetMediaDes = true;
@@ -745,23 +745,23 @@ describe('AudioDecoderFormatPromise', function () {
             155, 167, 178];
         ES_LENGTH = 757;
         await media.createAudioDecoderByName('avdec_vorbis').then((processor) => {
-            console.log("create createAudioDecoder success");
+            console.log('create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.log("get AudioDecoderCaps success");
-            console.log("print AudioCaps: " + AudioCaps);
+            console.log('get AudioDecoderCaps success');
+            console.log('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.log("configure success");
+            console.log('configure success');
             readFile(AUDIOPATH4);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.log("prepare success");
+            console.log('prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.log("start success");
+            console.log('start success');
         }, failCallback).catch(failCatch);
     })
 })

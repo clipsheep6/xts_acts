@@ -73,15 +73,15 @@ describe('AudioDecoderEnum', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_ENUM_AudioCaps_0100', 0, async function (done) {
-        console.info("case test Test Interface AudioCaps");
+        console.info('case test Test Interface AudioCaps');
         let audioDecodeProcessor;
         let audioCaps;
         await media.createAudioDecoderByName('avdec_aac').then((processor) => {
-            console.log("create createAudioDecoder success");
+            console.log('create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.log("get AudioDecoderCaps success");
+            console.log('get AudioDecoderCaps success');
             audioCaps = AudioCaps;
         }, failCallback).catch(failCatch);
         // check AudioCaps

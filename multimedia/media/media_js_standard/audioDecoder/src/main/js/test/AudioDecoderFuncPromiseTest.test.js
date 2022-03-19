@@ -288,7 +288,7 @@ describe('AudioDecoderFuncPromise', function () {
 
     function writeFile(path, buf, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -308,21 +308,21 @@ describe('AudioDecoderFuncPromise', function () {
     }
 
     function getContent(buf, len) {
-        console.info("case start get content");
+        console.info('case start get content');
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
     }
 
     async function stopWork() {
         await audioDecodeProcessor.stop().then(() => {
-            console.info("case stop success")
+            console.info('case stop success')
         }, failCallback).catch(failCatch);
     }
 
     async function resetWork() {
         resetParam();
         await audioDecodeProcessor.reset().then(() => {
-            console.info("case reset success");
+            console.info('case reset success');
             if (needrelease) {
                 audioDecodeProcessor = null;
             }
@@ -333,7 +333,7 @@ describe('AudioDecoderFuncPromise', function () {
         inputQueue = [];
         outputQueue = [];
         await audioDecodeProcessor.flush().then(() => {
-            console.info("case flush at inputeos success");
+            console.info('case flush at inputeos success');
             resetParam();
             readFile(AUDIOPATH);
             workdoneAtEOS =true;
@@ -342,14 +342,14 @@ describe('AudioDecoderFuncPromise', function () {
 
     async function doneWork() {
         await audioDecodeProcessor.stop().then(() => {
-            console.info("case stop success");
+            console.info('case stop success');
         }, failCallback).catch(failCatch);
         resetParam();
         await audioDecodeProcessor.reset().then(() => {
-            console.info("case reset success");
+            console.info('case reset success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.release().then(() => {
-            console.info("case release success");
+            console.info('case release success');
         }, failCallback).catch(failCatch);
         audioDecodeProcessor = null;
     }
@@ -371,7 +371,7 @@ describe('AudioDecoderFuncPromise', function () {
                 inputobject.length = 0;
                 sawInputEOS = true;
             } else {
-                console.info("case read frame from file");
+                console.info('case read frame from file');
                 inputobject.timeMs = timestamp;
                 inputobject.offset = 0;
                 inputobject.length = ES[frameCnt];
@@ -391,7 +391,7 @@ describe('AudioDecoderFuncPromise', function () {
             let outputobject = queue.shift();
             if (outputobject.flags == 1) {
                 sawOutputEOS = true;
-                console.info("sawOutputEOS == true");
+                console.info('sawOutputEOS == true');
                 if (stopAtEOS) {
                     await stopWork();
                 } else if (resetAtEOS) {
@@ -402,12 +402,12 @@ describe('AudioDecoderFuncPromise', function () {
                     await doneWork();
                     done();
                 } else {
-                    console.info("saw output EOS");
+                    console.info('saw output EOS');
                 }
             }
             else{
                 writeFile(savapath, outputobject.data, outputobject.length);
-                console.info("write to file success");
+                console.info('write to file success');
             }
             audioDecodeProcessor.freeOutputBuffer(outputobject).then(() => {
                 console.info('release output success');
@@ -424,10 +424,10 @@ describe('AudioDecoderFuncPromise', function () {
         });
         audioDecodeProcessor.on('newOutputData', async(outBuffer) => {
             console.info('outputBufferAvailable');
-            console.info("outputbuffer.flags: " + outBuffer.flags);
+            console.info('outputbuffer.flags: ' + outBuffer.flags);
             if (needGetMediaDes) {
                 audioDecodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
-                    console.info("get OutputMediaDescription success");
+                    console.info('get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes=false;
                 }, failCallback).catch(failCatch);}
@@ -451,11 +451,11 @@ describe('AudioDecoderFuncPromise', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_00_0100', 0, async function (done) {
-        console.info("case test set EOS after last frame and reset");
+        console.info('case test set EOS after last frame and reset');
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + '0000.pcm';
         workdoneAtEOS = true;
@@ -480,23 +480,23 @@ describe('AudioDecoderFuncPromise', function () {
             }
         }, failCallback).catch(failCatch);
         await media.createAudioDecoderByName('avdec_aac').then((processor) => {
-            console.info("case create createAudioDecoder success");
+            console.info('case create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.info("case get AudioDecoderCaps success");
-            console.info("print AudioCaps: " + AudioCaps);
+            console.info('case get AudioDecoderCaps success');
+            console.info('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success");
+            console.info('case configure success');
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.info("case prepare success");
+            console.info('case prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.info("case start success");
+            console.info('case start success');
         }, failCallback).catch(failCatch);
     })
 
@@ -509,34 +509,34 @@ describe('AudioDecoderFuncPromise', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0100', 0, async function (done) {
-        console.info("case test set EOS manually before last frame and reset");
+        console.info('case test set EOS manually before last frame and reset');
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + '0100.pcm';
         eosframenum = 500;
         workdoneAtEOS = true;
         await media.createAudioDecoderByMime('audio/mp4a-latm').then((processor) => {
-            console.info("case create createAudioDecoder success");
+            console.info('case create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
-        console.info("get AudioDecoderCaps:");
+        console.info('get AudioDecoderCaps:');
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.info("case get AudioDecoderCaps success");
-            console.info("print AudioCaps: " + AudioCaps);
+            console.info('case get AudioDecoderCaps success');
+            console.info('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success");
+            console.info('case configure success');
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.info("case prepare success");
+            console.info('case prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.info("case start success");
+            console.info('case start success');
         }, failCallback).catch(failCatch);
     })
 
@@ -549,38 +549,38 @@ describe('AudioDecoderFuncPromise', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0200', 0, async function (done) {
-        console.info("case test flush at running state");
+        console.info('case test flush at running state');
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + '0200.pcm';
         workdoneAtEOS = true;
         await media.createAudioDecoderByMime('audio/mp4a-latm').then((processor) => {
-            console.info("case create createAudioDecoder success");
+            console.info('case create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.info("case get AudioDecoderCaps success");
-            console.info("print AudioCaps: " + AudioCaps);
+            console.info('case get AudioDecoderCaps success');
+            console.info('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success");
+            console.info('case configure success');
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.info("case prepare success");
+            console.info('case prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.info("case start success");
+            console.info('case start success');
         }, failCallback).catch(failCatch);
         await sleep(3000).then(() => {
             inputQueue = [];
             outputQueue = [];
             audioDecodeProcessor.flush().then(() => {
-                console.info("case flush after 5s");
+                console.info('case flush after 5s');
             }, failCallback).catch(failCatch);
         })
     })
@@ -594,33 +594,33 @@ describe('AudioDecoderFuncPromise', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0300', 0, async function (done) {
-        console.info("case test flush at EOS state");
+        console.info('case test flush at EOS state');
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + '0300.pcm';
         eosframenum = 200;
         flushAtEOS = true;
         await media.createAudioDecoderByMime('audio/mp4a-latm').then((processor) => {
-            console.info("case create createAudioDecoder success");
+            console.info('case create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.info("case get AudioDecoderCaps success");
-            console.info("print AudioCaps: " + AudioCaps);
+            console.info('case get AudioDecoderCaps success');
+            console.info('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success");
+            console.info('case configure success');
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.info("case prepare success");
+            console.info('case prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.info("case start success");
+            console.info('case start success');
         }, failCallback).catch(failCatch);
     })
 
@@ -633,42 +633,42 @@ describe('AudioDecoderFuncPromise', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0400', 0, async function (done) {
-        console.info("case test stop at running state and reset");
+        console.info('case test stop at running state and reset');
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + '0400.pcm';
         await media.createAudioDecoderByMime('audio/mp4a-latm').then((processor) => {
-            console.info("case create createAudioDecoder success");
+            console.info('case create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.info("case get AudioDecoderCaps success");
-            console.info("print AudioCaps: " + AudioCaps);
+            console.info('case get AudioDecoderCaps success');
+            console.info('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success");
+            console.info('case configure success');
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.info("case prepare success");
+            console.info('case prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.info("case start success");
+            console.info('case start success');
         }, failCallback).catch(failCatch);
         await sleep(5000).then(() => {
             audioDecodeProcessor.stop().then(() => {
-                console.info("case stop after 5s success");
+                console.info('case stop after 5s success');
             }, failCallback).catch(failCatch);});
         resetParam();
         await audioDecodeProcessor.reset().then(() => {
-            console.info("case reset success");
+            console.info('case reset success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.release().then(() => {
-            console.info("case release success");
+            console.info('case release success');
         }, failCallback).catch(failCatch);
         audioDecodeProcessor = null;
         done();
@@ -683,46 +683,46 @@ describe('AudioDecoderFuncPromise', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0500', 0, async function (done) {
-        console.info("case test stop and restart");
+        console.info('case test stop and restart');
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + '0500.pcm';
         eosframenum = 200;
         await media.createAudioDecoderByMime('audio/mp4a-latm').then((processor) => {
-            console.info("case create createAudioDecoder success");
+            console.info('case create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.info("case get AudioDecoderCaps success");
-            console.info("print AudioCaps: " + AudioCaps);
+            console.info('case get AudioDecoderCaps success');
+            console.info('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success");
+            console.info('case configure success');
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.info("case prepare success");
+            console.info('case prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.info("case start success");
+            console.info('case start success');
         }, failCallback).catch(failCatch);
         await sleep(5000).then(() => {
-            console.info("case stop decoding after 5s");
+            console.info('case stop decoding after 5s');
         });
         await audioDecodeProcessor.stop().then(() => {
-            console.info("case stop after 5s success");
+            console.info('case stop after 5s success');
         }, failCallback).catch(failCatch);
         await sleep(2000).then(() => {
-            console.info("case restart decoding after 2s");
+            console.info('case restart decoding after 2s');
             resetParam();
             readFile(AUDIOPATH);
         });
         await audioDecodeProcessor.start().then(() => {
-            console.info("case restart after 3s success");
+            console.info('case restart after 3s success');
             workdoneAtEOS = true;
             enqueueAllInputs(inputQueue);
         }, failCallback).catch(failCatch);
@@ -737,44 +737,44 @@ describe('AudioDecoderFuncPromise', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0600', 0, async function (done) {
-        console.info("case test reconfigure codec for new file with the same format");
+        console.info('case test reconfigure codec for new file with the same format');
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let mediaDescription2 = {
-            "channel_count": 1,
-            "sample_rate": 16000,
-            "audio_sample_format": 1,
+            'channel_count': 1,
+            'sample_rate': 16000,
+            'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + '0600.pcm';
         eosframenum = 200;
         resetAtEOS = true;
         await media.createAudioDecoderByMime('audio/mp4a-latm').then((processor) => {
-            console.info("case create createAudioDecoder success");
+            console.info('case create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.info("case get AudioDecoderCaps success");
-            console.info("print AudioCaps: " + AudioCaps);
+            console.info('case get AudioDecoderCaps success');
+            console.info('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success");
+            console.info('case configure success');
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.info("case prepare success");
+            console.info('case prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.info("case start success");
+            console.info('case start success');
         }, failCallback).catch(failCatch);
         await sleep(10000).then(() => {
-            console.info("case start configure 2");
+            console.info('case start configure 2');
         });
         await audioDecodeProcessor.configure(mediaDescription2).then(() => {
-            console.info("case configure 2 success");
+            console.info('case configure 2 success');
             resetParam();
             readFile(AUDIOPATH2);
         }, failCallback).catch(failCatch);
@@ -798,10 +798,10 @@ describe('AudioDecoderFuncPromise', function () {
         samplerate = 16;
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.info("case prepare2 success");
+            console.info('case prepare2 success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.info("case start2 success");
+            console.info('case start2 success');
         }, failCallback).catch(failCatch);
     })
 
@@ -814,49 +814,49 @@ describe('AudioDecoderFuncPromise', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_PROMISE_01_0700', 0, async function (done) {
-        console.info("case test reconfigure codec for new file with different formats");
+        console.info('case test reconfigure codec for new file with different formats');
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let mediaDescription2 = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 1,
+            'channel_count': 1,
+            'sample_rate': 48000,
+            'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + '0700.pcm';
         eosframenum = 200;
         resetAtEOS = true;
         needrelease = true;
         await media.createAudioDecoderByMime('audio/mp4a-latm').then((processor) => {
-            console.info("case create createAudioDecoder success");
+            console.info('case create createAudioDecoder success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.getAudioDecoderCaps().then((AudioCaps) => {
-            console.info("case get AudioDecoderCaps success");
-            console.info("print AudioCaps: " + AudioCaps);
+            console.info('case get AudioDecoderCaps success');
+            console.info('print AudioCaps: ' + AudioCaps);
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success");
+            console.info('case configure success');
             readFile(AUDIOPATH);
         }, failCallback).catch(failCatch);
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.info("case prepare success");
+            console.info('case prepare success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.info("case start success");
+            console.info('case start success');
         }, failCallback).catch(failCatch);
         await sleep(10000).then(() => {
-            console.info("start createaudiodecoder 2");
+            console.info('start createaudiodecoder 2');
         });
         await media.createAudioDecoderByMime('audio/flac').then((processor) => {
-            console.info("case create createAudioDecoder flac success");
+            console.info('case create createAudioDecoder flac success');
             audioDecodeProcessor = processor;
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription2).then(() => {
-            console.info("case configure 2 success");
+            console.info('case configure 2 success');
             resetParam();
             readFile(AUDIOPATH3);
         }, failCallback).catch(failCatch);
@@ -874,10 +874,10 @@ describe('AudioDecoderFuncPromise', function () {
         samplerate = 48;
         setCallback(savepath, done);
         await audioDecodeProcessor.prepare().then(() => {
-            console.info("case prepare2 success");
+            console.info('case prepare2 success');
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.start().then(() => {
-            console.info("case start2 success");
+            console.info('case start2 success');
         }, failCallback).catch(failCatch);
     })
 })

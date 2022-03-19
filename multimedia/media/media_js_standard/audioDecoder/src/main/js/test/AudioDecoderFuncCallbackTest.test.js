@@ -278,7 +278,7 @@ describe('AudioDecoderFuncCallback', function () {
 
     function writeFile(path, buf, len){
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -298,7 +298,7 @@ describe('AudioDecoderFuncCallback', function () {
     }
 
     function getContent(buf, len){
-        console.info("start get content");
+        console.info('start get content');
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
         console.info('lengthreal: ' + lengthreal);
@@ -307,7 +307,7 @@ describe('AudioDecoderFuncCallback', function () {
     async function stopWork() {
         audioDecodeProcessor.stop((err) => {
             expect(err).assertUndefined();
-            console.info("case stop success")
+            console.info('case stop success')
         })
     }
 
@@ -315,11 +315,11 @@ describe('AudioDecoderFuncCallback', function () {
         resetParam();
         audioDecodeProcessor.reset((err) => {
             expect(err).assertUndefined();
-            console.info("case reset success");
+            console.info('case reset success');
             if (needrelease) {
                 audioDecodeProcessor.release((err) => {
                     expect(err).assertUndefined();
-                    console.log("case release success");
+                    console.log('case release success');
                     audioDecodeProcessor = null;
                 })
             }
@@ -331,7 +331,7 @@ describe('AudioDecoderFuncCallback', function () {
         outputQueue = [];
         audioDecodeProcessor.flush((err) => {
             expect(err).assertUndefined();
-            console.info("case flush at inputeos success");
+            console.info('case flush at inputeos success');
             resetParam();
             readFile(AUDIOPATH);
             workdoneAtEOS =true;
@@ -341,14 +341,14 @@ describe('AudioDecoderFuncCallback', function () {
     async function doneWork(done) {
         audioDecodeProcessor.stop((err) => {
             expect(err).assertUndefined();
-            console.info("case stop success");
+            console.info('case stop success');
             resetParam();
             audioDecodeProcessor.reset((err) => {
                 expect(err).assertUndefined();
-                console.log("case reset success");
+                console.log('case reset success');
                 audioDecodeProcessor.release((err) => {
                     expect(err).assertUndefined();
-                    console.log("case release success");
+                    console.log('case release success');
                     audioDecodeProcessor = null;
                     done();
                 })
@@ -367,7 +367,7 @@ describe('AudioDecoderFuncCallback', function () {
     async function enqueueAllInputs(queue){
         while (queue.length > 0 && !sawInputEOS){
             let inputobject = queue.shift();
-            console.info("frameCnt:" + frameCnt);
+            console.info('frameCnt:' + frameCnt);
             if (frameCnt == eosframenum || frameCnt == ES_LENGTH + 1){
                 inputobject.flags = 1;
                 inputobject.timeMs = 0;
@@ -375,7 +375,7 @@ describe('AudioDecoderFuncCallback', function () {
                 sawInputEOS = true;
             }
             else{
-                console.info("read frame from file");
+                console.info('read frame from file');
                 inputobject.timeMs = timestamp;
                 inputobject.offset = 0;
                 inputobject.length = ES[frameCnt];
@@ -404,12 +404,12 @@ describe('AudioDecoderFuncCallback', function () {
                 } else if (workdoneAtEOS) {
                     await doneWork(done);
                 } else {
-                    console.info("saw output EOS");
+                    console.info('saw output EOS');
                 }
             }
             else{
                 writeFile(savepath, outputobject.data, outputobject.length);
-                console.info("write to file success");
+                console.info('write to file success');
             }
             audioDecodeProcessor.freeOutputBuffer(outputobject, () => {
                 console.info('release output success');
@@ -429,7 +429,7 @@ describe('AudioDecoderFuncCallback', function () {
             if (needGetMediaDes){
                 audioDecodeProcessor.getOutputMediaDescription((err, MediaDescription) => {
                     expect(err).assertUndefined();
-                    console.info("get OutputMediaDescription success");
+                    console.info('get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes=false;
                 });
@@ -454,13 +454,13 @@ describe('AudioDecoderFuncCallback', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_CALLBACK_00_0100', 0, async function (done) {
-        console.info("case test set EOS after last frame and reset");
+        console.info('case test set EOS after last frame and reset');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         workdoneAtEOS = true;
         needGetMediaDes = true;
@@ -469,7 +469,7 @@ describe('AudioDecoderFuncCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -535,13 +535,13 @@ describe('AudioDecoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_CALLBACK_01_0100', 0, async function (done) {
-        console.info("case test set EOS manually before last frame and reset");
+        console.info('case test set EOS manually before last frame and reset');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 2,
-            "sample_rate": 44100,
-            "audio_sample_format": 1,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
         eosframenum = 500;
         workdoneAtEOS = true;
@@ -550,7 +550,7 @@ describe('AudioDecoderFuncCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -583,9 +583,9 @@ describe('AudioDecoderFuncCallback', function () {
                 expect(err).assertUndefined();
                 console.info('getAudioDecoderCaps success');
                 if (typeof (audioCaps) != 'undefined') {
-                    console.info("case audioCaps " + audioCaps);
+                    console.info('case audioCaps ' + audioCaps);
                 } else {
-                    console.info("case audioCaps is not defined");
+                    console.info('case audioCaps is not defined');
                 }
             })
         })
@@ -606,13 +606,13 @@ describe('AudioDecoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_CALLBACK_01_0200', 0, async function (done) {
-        console.info("case test flush at running state");
+        console.info('case test flush at running state');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 2,
-            "sample_rate": 44100,
-            "audio_sample_format": 1,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
         workdoneAtEOS = true;
         let savepath = BASIC_PATH + '0200.pcm';
@@ -620,7 +620,7 @@ describe('AudioDecoderFuncCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -672,13 +672,13 @@ describe('AudioDecoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_CALLBACK_01_0300', 0, async function (done) {
-        console.info("case test flush at EOS state");
+        console.info('case test flush at EOS state');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         eosframenum = 200;
         flushAtEOS = true;
@@ -688,7 +688,7 @@ describe('AudioDecoderFuncCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -731,20 +731,20 @@ describe('AudioDecoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_CALLBACK_01_0400', 0, async function (done) {
-        console.info("case test stop at running state and reset");
+        console.info('case test stop at running state and reset');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         let savepath = BASIC_PATH + '0400.pcm';
         eventEmitter.on('getAudioDecoderCaps', () => {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -813,13 +813,13 @@ describe('AudioDecoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_CALLBACK_01_0500', 0, async function (done) {
-        console.info("case test start - stop - restart");
+        console.info('case test start - stop - restart');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 2,
-            "sample_rate": 44100,
-            "audio_sample_format": 1,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
         eosframenum = 200;
         let savepath = BASIC_PATH + '0500.pcm';
@@ -827,7 +827,7 @@ describe('AudioDecoderFuncCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -892,28 +892,28 @@ describe('AudioDecoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_CALLBACK_01_0600', 0, async function (done) {
-        console.info("case test reconfigure codec for new file with the same format");
+        console.info('case test reconfigure codec for new file with the same format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-                    "channel_count": 2,
-                    "sample_rate": 44100,
-                    "audio_sample_format": 1,
+                    'channel_count': 2,
+                    'sample_rate': 44100,
+                    'audio_sample_format': 1,
         }
         eosframenum = 200;
         resetAtEOS = true;
         let savepath = BASIC_PATH + '0600.pcm';
         let mediaDescription2 = {
-            "channel_count": 1,
-            "sample_rate": 16000,
-            "audio_sample_format": 1,
+            'channel_count': 1,
+            'sample_rate': 16000,
+            'audio_sample_format': 1,
         }
         let hasreconfigured = false;
         eventEmitter.on('getAudioDecoderCaps', () => {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -990,18 +990,18 @@ describe('AudioDecoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_DECODER_FUNCTION_CALLBACK_01_0700', 0, async function (done) {
-        console.info("case test reconfigure codec for new file with different format");
+        console.info('case test reconfigure codec for new file with different format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 2,
-            "sample_rate": 44100,
-            "audio_sample_format": 1,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
         let mediaDescription2 = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 1,
+            'channel_count': 1,
+            'sample_rate': 48000,
+            'audio_sample_format': 1,
         }
         let hasrecreate = false;
         eosframenum = 200;
@@ -1012,7 +1012,7 @@ describe('AudioDecoderFuncCallback', function () {
             audioDecodeProcessor.getAudioDecoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioDecoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });

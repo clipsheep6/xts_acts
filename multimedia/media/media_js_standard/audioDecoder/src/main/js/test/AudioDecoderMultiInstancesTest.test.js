@@ -84,7 +84,7 @@ describe('AudioDecoderMultiInstances', function () {
 
     function writeFile(path, buf, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -104,21 +104,21 @@ describe('AudioDecoderMultiInstances', function () {
     }
 
     function getContent(buf, len) {
-        console.info("case start get content");
+        console.info('case start get content');
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
     }
 
     async function stopWork(audioDecodeProcessor) {
         await audioDecodeProcessor.stop().then(() => {
-            console.info("case stop success")
+            console.info('case stop success')
         }, failCallback).catch(failCatch);
     }
 
     async function resetWork(audioDecodeProcessor) {
         resetParam();
         await audioDecodeProcessor.reset().then(() => {
-            console.info("case reset success");
+            console.info('case reset success');
             if (needrelease) {
                 audioDecodeProcessor = null;
             }
@@ -129,7 +129,7 @@ describe('AudioDecoderMultiInstances', function () {
         inputQueue = [];
         outputQueue = [];
         await audioDecodeProcessor.flush().then(() => {
-            console.info("case flush at inputeos success");
+            console.info('case flush at inputeos success');
             resetParam();
             readFile(AUDIOPATH);
             workdoneAtEOS =true;
@@ -138,11 +138,11 @@ describe('AudioDecoderMultiInstances', function () {
 
     async function doneWork(audioDecodeProcessor) {
         await audioDecodeProcessor.stop().then(() => {
-            console.info("case stop success");
+            console.info('case stop success');
         }, failCallback).catch(failCatch);
         resetParam();
         await audioDecodeProcessor.reset().then(() => {
-            console.info("case reset success");
+            console.info('case reset success');
         }, failCallback).catch(failCatch);
         audioDecodeProcessor = null;
     }
@@ -164,7 +164,7 @@ describe('AudioDecoderMultiInstances', function () {
                 inputobject.length = 0;
                 sawInputEOS = true;
             } else {
-                console.info("case read frame from file");
+                console.info('case read frame from file');
                 inputobject.timeMs = timestamp;
                 inputobject.offset = 0;
                 inputobject.length = ES[frameCnt];
@@ -184,7 +184,7 @@ describe('AudioDecoderMultiInstances', function () {
             let outputobject = queue.shift();
             if (outputobject.flags == 1) {
                 sawOutputEOS = true;
-                console.info("sawOutputEOS == true");
+                console.info('sawOutputEOS == true');
                 if (stopAtEOS) {
                     await stopWork(audioDecodeProcessor);
                 } else if (resetAtEOS) {
@@ -195,12 +195,12 @@ describe('AudioDecoderMultiInstances', function () {
                     await doneWork(audioDecodeProcessor);
                     done();
                 } else {
-                    console.info("saw output EOS");
+                    console.info('saw output EOS');
                 }
             }
             else{
                 writeFile(savapath, outputobject.data, outputobject.length);
-                console.info("write to file success");
+                console.info('write to file success');
             }
             audioDecodeProcessor.freeOutputBuffer(outputobject).then(() => {
                 console.info('release output success');
@@ -217,10 +217,10 @@ describe('AudioDecoderMultiInstances', function () {
         });
         audioDecodeProcessor.on('newOutputData', async(outBuffer) => {
             console.info('outputBufferAvailable');
-            console.info("outputbuffer.flags: " + outBuffer.flags);
+            console.info('outputbuffer.flags: ' + outBuffer.flags);
             if (needGetMediaDes) {
                 audioDecodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
-                    console.info("get OutputMediaDescription success");
+                    console.info('get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes=false;
                 }, failCallback).catch(failCatch);}
@@ -244,15 +244,15 @@ describe('AudioDecoderMultiInstances', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_DECODER_MULTIINSTANCE_0100', 0, async function (done) {
-        console.info("case test multiple instances");
+        console.info('case test multiple instances');
         let array = new Array();
         for (let i = 0; i < 2; i += 1) {
             await media.createAudioDecoderByMime('audio/mp4a-latm').then((processor) => {
                 if (typeof(processor) != 'undefined') {
-                    console.info("case create createAudioDecoder success: " + i);
+                    console.info('case create createAudioDecoder success: ' + i);
                     array[i] = processor;
                 } else {
-                    console.info("case create createAudioDecoder failed: " + i);
+                    console.info('case create createAudioDecoder failed: ' + i);
                 }
             }, failCallback).catch(failCatch);
         }
@@ -260,7 +260,7 @@ describe('AudioDecoderMultiInstances', function () {
         for (let j = 0; j < 2; j++) {
             resetParam();
             await array[j].reset().then(() => {
-                console.info("reset decoder " + j);
+                console.info('reset decoder ' + j);
             }, failCallback).catch(failCatch);
             await array[j].release().then(() => {
                 console.info('release success');
