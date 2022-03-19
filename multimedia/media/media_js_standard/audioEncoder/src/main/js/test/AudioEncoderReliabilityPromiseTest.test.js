@@ -19,7 +19,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 
 describe('AudioEncoderSTTPromise', function () {
     const RESOURCEPATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/'
-    const AUDIOPATH = RESOURCEPATH + 'S32LE.pcm';
+    const AUDIOPATH = RESOURCEPATH + 'S16LE.pcm';
     const BASIC_PATH = RESOURCEPATH + 'results/encode_reliability_promise_';
     const END = 0;
     const CONFIGURE = 1;
@@ -54,9 +54,9 @@ describe('AudioEncoderSTTPromise', function () {
     let ES_LENGTH = 200;
     let mime = 'audio/mp4a-latm';
     let mediaDescription = {
-                "channel_count": 1,
-                "sample_rate": 48000,
-                "audio_sample_format": 3,
+                'channel_count': 2,
+                'sample_rate': 44100,
+                'audio_sample_format': 1,
     };
     let expectError = false;
 
@@ -133,14 +133,14 @@ describe('AudioEncoderSTTPromise', function () {
             console.info(`case createAudioEncoder 1`);
             audioEncodeProcessor = processor;
             setCallback(savepath, done);
-            console.info("case start api test");
+            console.info('case start api test');
             nextStep(mySteps, done);
         }, failCallback).catch(failCatch);
     }
 
     function writeHead(path, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let head = new ArrayBuffer(7);
             addADTStoPacket(head, len);
             let num = writestream.writeSync(head, {length:7});
@@ -153,7 +153,7 @@ describe('AudioEncoderSTTPromise', function () {
 
     function writeFile(path, buf, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -172,7 +172,7 @@ describe('AudioEncoderSTTPromise', function () {
     }
 
     function getContent(buf, len) {
-        console.info("case start get content");
+        console.info('case start get content');
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
         console.info('lengthreal: ' + lengthreal);
@@ -180,11 +180,11 @@ describe('AudioEncoderSTTPromise', function () {
 
     function addADTStoPacket(head, len) {
         let view = new Uint8Array(head);
-        console.info("start add ADTS to Packet");
+        console.info('start add ADTS to Packet');
         let packetLen = len + 7; // 7: head length
         let profile = 2; // 2: AAC LC  
-        let freqIdx = 3; // 3: 48000HZ 
-        let chanCfg = 1; // 1: 1 channel
+        let freqIdx = 4; // 3: 44100HZ 
+        let chanCfg = 2; // 2: 2 channel
         view[0] = 0xFF;
         view[1] = 0xF9;
         view[2] = ((profile - 1) << 6) + (freqIdx << 2) + (chanCfg >> 2);
@@ -196,14 +196,14 @@ describe('AudioEncoderSTTPromise', function () {
 
     async function doneWork() {
         await audioEncodeProcessor.stop().then(() => {
-            console.info("case stop success");
+            console.info('case stop success');
         }, failCallback).catch(failCatch);
         resetParam();
         await audioEncodeProcessor.reset().then(() => {
-            console.info("case reset success");
+            console.info('case reset success');
         }, failCallback).catch(failCatch);
         await audioEncodeProcessor.release().then(() => {
-            console.info("case release success");
+            console.info('case release success');
         }, failCallback).catch(failCatch);
         audioEncodeProcessor = null;
     }
@@ -218,10 +218,10 @@ describe('AudioEncoderSTTPromise', function () {
     }
 
     function nextStep(mySteps, done) {
-        console.info("case myStep[0]: " + mySteps[0]);
+        console.info('case myStep[0]: ' + mySteps[0]);
         if (mySteps[0] == END) {
             audioEncodeProcessor.release().then(() => {
-                console.info("case release success");
+                console.info('case release success');
                 audioEncodeProcessor = null;
                 done();
             }, failCallback).catch(failCatch);
@@ -355,15 +355,15 @@ describe('AudioEncoderSTTPromise', function () {
     async function enqueueInputs(queue) {
         while (queue.length > 0 && !sawInputEOS) {
             let inputobject = queue.shift();
-            console.info("case frameCnt:" + frameCnt);
+            console.info('case frameCnt:' + frameCnt);
             if (frameCnt == EOSFrameNum || frameCnt == ES_LENGTH + 1) {
-                console.info("case EOS frame seperately")
+                console.info('case EOS frame seperately')
                 inputobject.flags = 1;
                 inputobject.timeMs = 0;
                 inputobject.length = 0;
                 sawInputEOS = true;
             } else {
-                console.info("case read frame from file");
+                console.info('case read frame from file');
                 inputobject.timeMs = timestamp;
                 inputobject.offset = 0;
                 inputobject.length = ES_SIZE[1];
@@ -391,9 +391,7 @@ describe('AudioEncoderSTTPromise', function () {
                 }
             }
             else{
-                writeHead(savepath, outputobject.length);
-                writeFile(savepath, outputobject.data, outputobject.length);
-                console.info("write to file success");
+                console.info('not last frame, continue');
             }
             audioEncodeProcessor.freeOutputBuffer(outputobject).then(() => {
                 console.info('release output success');
@@ -412,7 +410,7 @@ describe('AudioEncoderSTTPromise', function () {
             console.info('outputBufferAvailable');
             if (needGetMediaDes) {
                 audioEncodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
-                    console.info("get OutputMediaDescription success");
+                    console.info('get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes=false;
                 }, failCallback).catch(failCatch);

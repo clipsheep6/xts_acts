@@ -19,8 +19,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 
 describe('AudioEncoderFuncCallback', function () {
     const RESOURCEPATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/'
-    const AUDIOPATH = RESOURCEPATH + 'S32LE.pcm';
-    const AUDIOPATH2 = RESOURCEPATH + 'S32LE_2.pcm';
+    const AUDIOPATH = RESOURCEPATH + 'S16LE.pcm';
     const BASIC_PATH = RESOURCEPATH + 'results/encode_func_callback_';
     let audioEncodeProcessor;
     let readStreamSync;
@@ -61,7 +60,7 @@ describe('AudioEncoderFuncCallback', function () {
         sawOutputEOS = false;
         inputQueue = [];
         outputQueue = [];
-        ES_LENGTH = 2000;
+        ES_LENGTH = 1500;
     })
 
     afterEach(async function() {
@@ -97,7 +96,7 @@ describe('AudioEncoderFuncCallback', function () {
 
     function writeHead(path, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let head = new ArrayBuffer(7);
             addADTStoPacket(head, len);
             let num = writestream.writeSync(head, {length:7});
@@ -110,7 +109,7 @@ describe('AudioEncoderFuncCallback', function () {
     }
     function writeFile(path, buf, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -136,11 +135,11 @@ describe('AudioEncoderFuncCallback', function () {
 
     function addADTStoPacket(head, len) {
         let view = new Uint8Array(head)
-        console.info("start add ADTS to Packet");
+        console.info('start add ADTS to Packet');
         let packetLen = len + 7; // 7: head length
         let profile = 2; // 2: AAC LC  
-        let freqIdx = 3; // 3: 48000HZ 
-        let chanCfg = 1; // 1: 1 channel
+        let freqIdx = 4; // 4: 44100HZ 
+        let chanCfg = 2; // 2: 2 channel
         view[0] = 0xFF;
         view[1] = 0xF9;
         view[2] = ((profile - 1) << 6) + (freqIdx << 2) + (chanCfg >> 2);
@@ -153,7 +152,7 @@ describe('AudioEncoderFuncCallback', function () {
     async function stopWork() {
         audioEncodeProcessor.stop((err) => {
             expect(err).assertUndefined();
-            console.info("case stop success")
+            console.info('case stop success')
         })
     }
 
@@ -161,7 +160,7 @@ describe('AudioEncoderFuncCallback', function () {
         resetParam();
         audioEncodeProcessor.reset((err) => {
             expect(err).assertUndefined();
-            console.info("case reset success");
+            console.info('case reset success');
             if (needrelease) {
                 audioEncodeProcessor = null
             }
@@ -173,7 +172,7 @@ describe('AudioEncoderFuncCallback', function () {
         outputQueue = [];
         audioEncodeProcessor.flush((err) => {
             expect(err).assertUndefined();
-            console.info("case flush at inputeos success");
+            console.info('case flush at inputeos success');
             resetParam();
             readFile(AUDIOPATH);
             workdoneAtEOS =true;
@@ -183,13 +182,13 @@ describe('AudioEncoderFuncCallback', function () {
     async function doneWork(done) {
         audioEncodeProcessor.stop((err) => {
             expect(err).assertUndefined();
-            console.info("case stop success");
+            console.info('case stop success');
             resetParam();
             audioEncodeProcessor.reset((err) => {
                 expect(err).assertUndefined();
                 audioEncodeProcessor.release((err) => {
                     expect(err).assertUndefined();
-                    console.log("case release success");
+                    console.log('case release success');
                     audioEncodeProcessor = null;
                     done();
                 })
@@ -209,13 +208,13 @@ describe('AudioEncoderFuncCallback', function () {
         while (queue.length > 0 && !sawInputEOS) {
             let inputobject = queue.shift();
             if (frameCnt == eosframenum || frameCnt == ES_LENGTH + 1) {
-                console.info("EOS frame seperately")
+                console.info('EOS frame seperately')
                 inputobject.flags = 1;
                 inputobject.timeMs = 0;
                 inputobject.length = 0;
                 sawInputEOS = true;
             } else {
-                console.info("read frame from file");
+                console.info('read frame from file');
                 inputobject.timeMs = timestamp;
                 inputobject.offset = 0;
                 inputobject.length = ES[1];
@@ -244,13 +243,13 @@ describe('AudioEncoderFuncCallback', function () {
                 } else if (workdoneAtEOS) {
                     await doneWork(done);
                 } else {
-                    console.info("sawOutputEOS = true");
+                    console.info('sawOutputEOS = true');
                 }
             }
             else{
                 writeHead(savepath, outputobject.length);
                 writeFile(savepath, outputobject.data, outputobject.length);
-                console.info("write to file success");
+                console.info('write to file success');
             }
             audioEncodeProcessor.freeOutputBuffer(outputobject, () => {
                 console.info('release output success');
@@ -270,7 +269,7 @@ describe('AudioEncoderFuncCallback', function () {
             if (needGetMediaDes) {
                 audioEncodeProcessor.getOutputMediaDescription((err, MediaDescription) => {
                     expect(err).assertUndefined();
-                    console.info("case get OutputMediaDescription success");
+                    console.info('case get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes=false;
                 });
@@ -295,18 +294,18 @@ describe('AudioEncoderFuncCallback', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_00_0100', 0, async function (done) {
-        console.info("test set EOS after last frame and reset");
+        console.info('test set EOS after last frame and reset');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 3,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
         let mediaDescription2 = {
-            "codec_mime": 'audio/mp4a-latm',
+            'codec_mime': 'audio/mp4a-latm',
         }
-        let savepath = BASIC_PATH + 'callback0000.es';
+        let savepath = BASIC_PATH + '0000.aac';
         needGetMediaDes = true;
         workdoneAtEOS = true;
         eventEmitter.on('getAudioEncoderCaps', () => {
@@ -346,18 +345,18 @@ describe('AudioEncoderFuncCallback', function () {
                 expect(err).assertUndefined();
                 console.info('getAudioDecoderCaps success');
                 if (typeof (audioCaps) != 'undefined') {
-                    console.info("case audioCaps " + audioCaps);
+                    console.info('case audioCaps ' + audioCaps);
                 } else {
-                    console.info("case audioCaps is not defined");
+                    console.info('case audioCaps is not defined');
                 }
             })
             mediaCaps.findAudioEncoder(mediaDescription2, (err, codecname) => {
                 expect(err).assertUndefined();
                 console.info('findAudioEncoder success');
                 if (typeof (codecname) != 'undefined') {
-                    console.info("case codecname " + codecname);
+                    console.info('case codecname ' + codecname);
                 } else {
-                    console.info("case codecname is not defined");
+                    console.info('case codecname is not defined');
                 }
             })
         })
@@ -378,22 +377,22 @@ describe('AudioEncoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0100', 0, async function (done) {
-        console.info("case test set EOS manually before last frame and reset");
+        console.info('case test set EOS manually before last frame and reset');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 3,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
-        let savepath = BASIC_PATH + 'callback0100.es';
+        let savepath = BASIC_PATH + '0100.aac';
         eosframenum = 500;
         workdoneAtEOS = true;
         eventEmitter.on('getAudioEncoderCaps', () => {
             audioEncodeProcessor.getAudioEncoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioEncoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -436,21 +435,21 @@ describe('AudioEncoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0200', 0, async function (done) {
-        console.info("case test flush at running state");
+        console.info('case test flush at running state');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 3,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
-        let savepath = BASIC_PATH + 'callback0200.es';
+        let savepath = BASIC_PATH + '0200.aac';
         workdoneAtEOS = true;
         eventEmitter.on('getAudioEncoderCaps', () => {
             audioEncodeProcessor.getAudioEncoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioEncoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -502,22 +501,22 @@ describe('AudioEncoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0300', 0, async function (done) {
-        console.info("case test flush at EOS state");
+        console.info('case test flush at EOS state');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 3,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
-        let savepath = BASIC_PATH + 'callback0300.es';
+        let savepath = BASIC_PATH + '0300.aac';
         eosframenum = 500;
         flushAtEOS = true;
         eventEmitter.on('getAudioEncoderCaps', () => {
             audioEncodeProcessor.getAudioEncoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioEncoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -560,20 +559,20 @@ describe('AudioEncoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0400', 0, async function (done) {
-        console.info("case test stop at running state and reset");
+        console.info('case test stop at running state and reset');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 3,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
-        let savepath = BASIC_PATH + 'callback0400.es';
+        let savepath = BASIC_PATH + '0400.aac';
         eventEmitter.on('getAudioEncoderCaps', () => {
             audioEncodeProcessor.getAudioEncoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioEncoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -642,21 +641,21 @@ describe('AudioEncoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0500', 0, async function (done) {
-        console.info("case test stop and restart");
+        console.info('case test stop and restart');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 3,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
-        let savepath = BASIC_PATH + 'callback0500.es';
+        let savepath = BASIC_PATH + '0500.aac';
         eosframenum = 100;
         eventEmitter.on('getAudioEncoderCaps', () => {
             audioEncodeProcessor.getAudioEncoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioEncoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -721,28 +720,28 @@ describe('AudioEncoderFuncCallback', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0600', 0, async function (done) {
-        console.info("case test reconfigure for new file with the same format");
+        console.info('case test reconfigure for new file with the same format');
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 3,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
-        let savepath = BASIC_PATH + 'callback0600.es';
+        let savepath = BASIC_PATH + '0600.aac';
         eosframenum = 100;
         resetAtEOS = true;
         let mediaDescription2 = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_sample_format": 3,
+            'channel_count': 2,
+            'sample_rate': 44100,
+            'audio_sample_format': 1,
         }
         let hasreconfigured = false;
         eventEmitter.on('getAudioEncoderCaps', () => {
             audioEncodeProcessor.getAudioEncoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
                 console.info(`case getAudioEncoderCaps 1`);
-                console.info("AudioCaps: " + Audiocaps);
+                console.info('AudioCaps: ' + Audiocaps);
                 eventEmitter.emit('configure', mediaDescription);
             })
         });
@@ -777,8 +776,8 @@ describe('AudioEncoderFuncCallback', function () {
                     expect(err).assertUndefined();
                     console.info(`case configure 2`);
                     resetParam();
-                    readFile(AUDIOPATH2)
-                    savepath = BASIC_PATH + 'callback0601.es';
+                    readFile(AUDIOPATH)
+                    savepath = BASIC_PATH + '0601.aac';
                     workdoneAtEOS = true;
                     hasreconfigured = true;
                     eventEmitter.emit('prepare');

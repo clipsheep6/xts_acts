@@ -19,7 +19,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 
 describe('AudioEncoderFuncPromise', function () {
     const RESOURCEPATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/'
-    const AUDIOPATH = RESOURCEPATH + 'S32LE.pcm';
+    const AUDIOPATH = RESOURCEPATH + 'S16LE.pcm';
     let readStreamSync;
     let eosframenum = 0;
     let stopAtEOS = false;
@@ -35,7 +35,7 @@ describe('AudioEncoderFuncPromise', function () {
     let inputQueue = [];
     let outputQueue = [];
     const ES = [0, 4096];
-    let ES_LENGTH = 2000;
+    let ES_LENGTH = 1500;
 
     beforeAll(function() {
         console.info('beforeAll case');
@@ -57,7 +57,7 @@ describe('AudioEncoderFuncPromise', function () {
         sawOutputEOS = false;
         inputQueue = [];
         outputQueue = [];
-        ES_LENGTH = 2000;
+        ES_LENGTH = 1500;
     })
 
     afterEach(function() {
@@ -97,7 +97,7 @@ describe('AudioEncoderFuncPromise', function () {
 
     function writeHead(path, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let head = new ArrayBuffer(7);
             addADTStoPacket(head, len);
             let num = writestream.writeSync(head, {length:7});
@@ -110,7 +110,7 @@ describe('AudioEncoderFuncPromise', function () {
 
     function writeFile(path, buf, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -129,7 +129,7 @@ describe('AudioEncoderFuncPromise', function () {
     }
 
     function getContent(buf, len) {
-        console.info("case start get content");
+        console.info('case start get content');
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
         console.info('lengthreal: ' + lengthreal);
@@ -137,7 +137,7 @@ describe('AudioEncoderFuncPromise', function () {
 
     function addADTStoPacket(head, len) {
         let view = new Uint8Array(head);
-        console.info("start add ADTS to Packet");
+        console.info('start add ADTS to Packet');
         let packetLen = len + 7; // 7: head length
         let profile = 2; // 2: AAC LC  
         let freqIdx = 3; // 3: 48000HZ 
@@ -153,14 +153,14 @@ describe('AudioEncoderFuncPromise', function () {
 
     async function stopWork(audioEncodeProcessor) {
         await audioEncodeProcessor.stop().then(() => {
-            console.info("case stop success")
+            console.info('case stop success')
         }, failCallback).catch(failCatch);
     }
 
     async function resetWork(audioEncodeProcessor) {
         resetParam();
         await audioEncodeProcessor.reset().then(() => {
-            console.info("case reset success");
+            console.info('case reset success');
             if (needrelease) {
                 audioEncodeProcessor = null;
             }
@@ -171,7 +171,7 @@ describe('AudioEncoderFuncPromise', function () {
         inputQueue = [];
         outputQueue = [];
         await audioEncodeProcessor.flush().then(() => {
-            console.info("case flush at inputeos success");
+            console.info('case flush at inputeos success');
             resetParam();
             readFile(AUDIOPATH);
             workdoneAtEOS =true;
@@ -180,11 +180,11 @@ describe('AudioEncoderFuncPromise', function () {
 
     async function doneWork(audioEncodeProcessor) {
         await audioEncodeProcessor.stop().then(() => {
-            console.info("case stop success");
+            console.info('case stop success');
         }, failCallback).catch(failCatch);
         resetParam();
         await audioEncodeProcessor.reset().then(() => {
-            console.info("case reset success");
+            console.info('case reset success');
         }, failCallback).catch(failCatch);
         audioEncodeProcessor = null;
     }
@@ -201,15 +201,15 @@ describe('AudioEncoderFuncPromise', function () {
     async function enqueueInputs(audioEncodeProcessor, queue) {
         while (queue.length > 0 && !sawInputEOS) {
             let inputobject = queue.shift();
-            console.info("case frameCnt:" + frameCnt);
+            console.info('case frameCnt:' + frameCnt);
             if (frameCnt == eosframenum || frameCnt == ES_LENGTH + 1) {
-                console.info("case EOS frame separately")
+                console.info('case EOS frame separately')
                 inputobject.flags = 1;
                 inputobject.timeMs = 0;
                 inputobject.length = 0;
                 sawInputEOS = true;
             } else {
-                console.info("case read frame from file");
+                console.info('case read frame from file');
                 inputobject.timeMs = timestamp;
                 inputobject.offset = 0;
                 inputobject.length = ES[1];
@@ -245,7 +245,7 @@ describe('AudioEncoderFuncPromise', function () {
             else{
                 writeHead(savepath, outputobject.length);
                 writeFile(savepath, outputobject.data, outputobject.length);
-                console.info("write to file success");
+                console.info('write to file success');
             }
             audioEncodeProcessor.freeOutputBuffer(outputobject).then(() => {
                 console.info('release output success');
@@ -264,7 +264,7 @@ describe('AudioEncoderFuncPromise', function () {
             console.info('outputBufferAvailable');
             if (needgetMediaDes) {
                 audioEncodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
-                    console.info("get OutputMediaDescription success");
+                    console.info('get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needgetMediaDes=false;
                 }, failCallback).catch(failCatch);
@@ -289,15 +289,15 @@ describe('AudioEncoderFuncPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_MULTIINSTANCE_0100', 0, async function (done) {
-        console.info("case test multiple encoder instances");
+        console.info('case test multiple encoder instances');
         let array = new Array();
         for (let i = 0; i < 2; i += 1) {
             await media.createAudioEncoderByMime('audio/mp4a-latm').then((processor) => {
                 if (typeof(processor) != 'undefined') {
-                    console.info("case create createAudioEncoder success: " + i);
+                    console.info('case create createAudioEncoder success: ' + i);
                     array[i] = processor;
                 } else {
-                    console.info("case create createAudioEncoder failed: " + i);
+                    console.info('case create createAudioEncoder failed: ' + i);
                 }
             }, failCallback).catch(failCatch);
         }
@@ -305,10 +305,10 @@ describe('AudioEncoderFuncPromise', function () {
         for (let j = 0; j < 2; j++) {
             resetParam();
             await array[j].reset().then(() => {
-                console.info("reset encoder " + j);
+                console.info('reset encoder ' + j);
             }, failCallback).catch(failCatch);
             await array[j].release().then(() => {
-                console.info("case release success");
+                console.info('case release success');
                 array[j] = null;
             }, failCallback).catch(failCatch);
         }

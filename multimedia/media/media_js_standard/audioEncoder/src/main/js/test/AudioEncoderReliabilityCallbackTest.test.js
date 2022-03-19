@@ -19,7 +19,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 
 describe('AudioEncoderSTTCallback', function () {
     const RESOURCEPATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/'
-    const AUDIOPATH = RESOURCEPATH + 'S32LE.pcm';
+    const AUDIOPATH = RESOURCEPATH + 'S16LE.pcm';
     const BASIC_PATH = RESOURCEPATH + 'results/encode_reliability_callback_';
     const END = 0;
     const CONFIGURE = 1;
@@ -54,9 +54,9 @@ describe('AudioEncoderSTTCallback', function () {
     let ES_LENGTH = 200;
     let mime = 'audio/mp4a-latm';
     let mediaDescription = {
-                "channel_count": 1,
-                "sample_rate": 48000,
-                "audio_sample_format": 3,
+                'channel_count': 2,
+                'sample_rate': 44100,
+                'audio_sample_format': 1,
     };
 
     beforeAll(function() {
@@ -116,14 +116,14 @@ describe('AudioEncoderSTTCallback', function () {
             console.info(`case createAudioEncoder 1`);
             audioEncodeProcessor = processor;
             setCallback(savepath, done);
-            console.info("case start api test");
+            console.info('case start api test');
             nextStep(mySteps, mediaDescription, done);
         })
     }
 
     function writeHead(path, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let head = new ArrayBuffer(7);
             addADTStoPacket(head, len);
             let num = writestream.writeSync(head, {length:7});
@@ -136,7 +136,7 @@ describe('AudioEncoderSTTCallback', function () {
     }
     function writeFile(path, buf, len) {
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -162,11 +162,11 @@ describe('AudioEncoderSTTCallback', function () {
 
     function addADTStoPacket(head, len) {
         let view = new Uint8Array(head)
-        console.info("start add ADTS to Packet");
+        console.info('start add ADTS to Packet');
         let packetLen = len + 7; // 7: head length
         let profile = 2; // 2: AAC LC  
-        let freqIdx = 3; // 3: 48000HZ 
-        let chanCfg = 1; // 1: 1 channel
+        let freqIdx = 4; // 3: 44100HZ 
+        let chanCfg = 2; // 2: 2 channel
         view[0] = 0xFF;
         view[1] = 0xF9;
         view[2] = ((profile - 1) << 6) + (freqIdx << 2) + (chanCfg >> 2);
@@ -179,14 +179,14 @@ describe('AudioEncoderSTTCallback', function () {
     async function doneWork(done) {
         audioEncodeProcessor.stop((err) => {
             expect(err).assertUndefined();
-            console.info("case stop success");
+            console.info('case stop success');
             resetParam();
             audioEncodeProcessor.reset((err) => {
                 expect(err).assertUndefined();
-                console.log("case reset success");
+                console.log('case reset success');
                 audioEncodeProcessor.release((err) => {
                     expect(err).assertUndefined();
-                    console.log("case release success");
+                    console.log('case release success');
                     audioEncodeProcessor = null;
                     done();
                 })
@@ -203,11 +203,11 @@ describe('AudioEncoderSTTCallback', function () {
     }
 
     function nextStep(mySteps, mediaDescription, done) {
-        console.info("case myStep[0]: " + mySteps[0]);
+        console.info('case myStep[0]: ' + mySteps[0]);
         if (mySteps[0] == END) {
             audioEncodeProcessor.release((err) => {
                 expect(err).assertUndefined();
-                console.log("case release success");
+                console.log('case release success');
                 audioEncodeProcessor = null;
                 done();
             })
@@ -353,13 +353,13 @@ describe('AudioEncoderSTTCallback', function () {
         while (queue.length > 0 && !sawInputEOS) {
             let inputobject = queue.shift();
             if (frameCnt == EOSFrameNum || frameCnt == ES_LENGTH + 1) {
-                console.info("EOS frame seperately")
+                console.info('EOS frame seperately')
                 inputobject.flags = 1;
                 inputobject.timeMs = 0;
                 inputobject.length = 0;
                 sawInputEOS = true;
             } else {
-                console.info("read frame from file");
+                console.info('read frame from file');
                 inputobject.timeMs = timestamp;
                 inputobject.offset = 0;
                 inputobject.length = ES_SIZE[1];
@@ -382,13 +382,11 @@ describe('AudioEncoderSTTCallback', function () {
                 if (workdoneAtEOS) {
                     await doneWork(done);
                 } else {
-                    console.info("sawOutputEOS = true");
+                    console.info('sawOutputEOS = true');
                 }
             }
             else{
-                writeHead(savepath, outputobject.length);
-                writeFile(savepath, outputobject.data, outputobject.length);
-                console.info("write to file success");
+                console.info('not last frame, continue');
             }
             audioEncodeProcessor.freeOutputBuffer(outputobject, () => {
                 console.info('release output success');
@@ -408,7 +406,7 @@ describe('AudioEncoderSTTCallback', function () {
             if (needGetMediaDes) {
                 audioEncodeProcessor.getOutputMediaDescription((err, MediaDescription) => {
                     expect(err).assertUndefined();
-                    console.info("case get OutputMediaDescription success");
+                    console.info('case get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes=false;
                 });

@@ -35,6 +35,7 @@ describe('VideoDecoderEnum', function () {
     const eventEmitter = new events.EventEmitter();
     const BASIC_PATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/';
     let ES_FRAME_SIZE = [];
+    let temp = 0;
     const H264_FRAME_SIZE_60FPS_320 =
     [ 2106, 11465];
     beforeAll(function() {
@@ -98,7 +99,14 @@ describe('VideoDecoderEnum', function () {
     }
 
     async function toDisplayPage() {
-        let path = 'pages/display/display';
+        let path = '';
+        if (temp == 0) {
+            path = 'pages/display/display';
+            temp = 1;
+        } else {
+            path = 'pages/display2/display2';
+            temp = 0;
+        }
         let options = {
             uri: path,
         }
@@ -243,8 +251,8 @@ describe('VideoDecoderEnum', function () {
     }
     async function toGetVideoDecoderCaps() {
         await videoDecodeProcessor.getVideoDecoderCaps().then((videoCaps) => {
-            console.info("case get getVideoDecoderCaps success");
-            console.info("print videoCaps: " + videoCaps)
+            console.info('case get getVideoDecoderCaps success');
+            console.info('print videoCaps: ' + videoCaps)
         }, failCallback).catch(failCatch);
     }
     async function toCreateVideoDecoderByName(name, done) {

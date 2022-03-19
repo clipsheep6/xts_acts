@@ -46,6 +46,7 @@ describe('VideoDecoderReliCallbackTest', function () {
     let inputEosFlag = false;
     let workdoneAtEOS = false;
     let surfaceID = '';
+    let temp = 0;
     const BASIC_PATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/';
     const SRCPATH = BASIC_PATH + 'out_320_240_10s.h264';
     let mediaDescription = {
@@ -112,14 +113,17 @@ describe('VideoDecoderReliCallbackTest', function () {
     afterAll(function() {
         console.info('afterAll case');
     })
+
     let failCallback = function(err) {
         console.info(`in case error failCallback called, errMessage is ${err.message}`);
         expect(err == undefined).assertTrue();
     }
+
     let failCatch = function(err) {
         console.info(`in case error failCatch called,errMessage is ${err.message}`);
         expect(err == undefined).assertTrue();
     }
+
     function printError(err, expectFail) {
         expect((err != undefined) == expectFail).assertTrue();
         if (expectFail == false && err != undefined) {
@@ -127,11 +131,20 @@ describe('VideoDecoderReliCallbackTest', function () {
             console.info(`in case error failCatch called,errMessage is ${err.message}`);
         }
     }
+
     function msleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
+
     async function toDisplayPage() {
-        let path = 'pages/display/display';
+        let path = '';
+        if (temp == 0) {
+            path = 'pages/display/display';
+            temp = 1;
+        } else {
+            path = 'pages/display2/display2';
+            temp = 0;
+        }
         let options = {
             uri: path,
         }
@@ -141,6 +154,7 @@ describe('VideoDecoderReliCallbackTest', function () {
             console.error('in case toDisplayPage' + e);
         }
     }
+
     function readFile(path){
         console.info('in case : read file start execution');
         try {
@@ -228,6 +242,7 @@ describe('VideoDecoderReliCallbackTest', function () {
             toNextStep(mySteps, done);
         })            
     }
+
     function toPrepare(mySteps, done, expectFail) {
         videoDecodeProcessor.prepare((err) => {
             console.info(`case prepare callback`);
@@ -235,6 +250,7 @@ describe('VideoDecoderReliCallbackTest', function () {
             toNextStep(mySteps, done);
         });
     }
+
     function toStart(mySteps, done, expectFail) {
         let timeDelay = 0;
         videoDecodeProcessor.start((err) => {
@@ -248,6 +264,7 @@ describe('VideoDecoderReliCallbackTest', function () {
             }, timeDelay);
         });
     }
+
     function toFlush(mySteps, done, expectFail) {
         videoDecodeProcessor.flush((err) => {
             console.info(`case flush callback`);
@@ -262,6 +279,7 @@ describe('VideoDecoderReliCallbackTest', function () {
             toNextStep(mySteps, done);
         });
     }
+
     function toStop(mySteps, done, expectFail) {
         videoDecodeProcessor.stop((err) => {
             console.info(`case stop callback`);
@@ -269,6 +287,7 @@ describe('VideoDecoderReliCallbackTest', function () {
             toNextStep(mySteps, done);
         });
     }
+    
     function toReset(mySteps, done, expectFail) {
         videoDecodeProcessor.reset((err) => {
             console.info(`case reset callback`);
@@ -276,6 +295,7 @@ describe('VideoDecoderReliCallbackTest', function () {
             toNextStep(mySteps, done);
         });
     }
+
     function toSetOutputSurface(mySteps, done, expectFail) {
         videoDecodeProcessor.setOutputSurface(surfaceID, true, (err) => {
             console.info('case setOutputSurface callback, surfaceID ' + surfaceID);
@@ -283,6 +303,7 @@ describe('VideoDecoderReliCallbackTest', function () {
             toNextStep(mySteps, done);
         });
     }
+    
     function toNextStep(mySteps, done) {
         console.info('case myStep[0]: ' + mySteps[0]);
         if (mySteps[0] == DECODE_STEP.RELEASE) {

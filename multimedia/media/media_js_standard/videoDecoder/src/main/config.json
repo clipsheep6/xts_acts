@@ -62,7 +62,8 @@
           {
               "pages": [
                   "pages/index/index",
-                  "pages/display/display"
+                  "pages/display/display",
+                  "pages/display2/display2"
               ],
               "name": "default",
               "window": {

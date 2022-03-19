@@ -30,6 +30,7 @@ describe('VideoDecoderFuncPromiseTest', function () {
     let isCodecData = false;
     let inputEosFlag = false;
     let surfaceID = '';
+    let temp = 0;
     const events = require('events');
     const eventEmitter = new events.EventEmitter();
     const BASIC_PATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/';
@@ -155,8 +156,16 @@ describe('VideoDecoderFuncPromiseTest', function () {
     function msleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
+    
     async function toDisplayPage() {
-        let path = 'pages/display/display';
+        let path = '';
+        if (temp == 0) {
+            path = 'pages/display/display';
+            temp = 1;
+        } else {
+            path = 'pages/display2/display2';
+            temp = 0;
+        }
         let options = {
             uri: path,
         }
@@ -166,6 +175,7 @@ describe('VideoDecoderFuncPromiseTest', function () {
             console.error('in case toDisplayPage' + e);
         }
     }
+
     function readFile(path){
         console.info('in case : read file start execution');
         try {

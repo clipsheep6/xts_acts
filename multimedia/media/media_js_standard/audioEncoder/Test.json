@@ -1,5 +1,5 @@
 {
-    "description": "Configuration for audioPlayer Tests",
+    "description": "Configuration for audioEncoder Tests",
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "2000000",

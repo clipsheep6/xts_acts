@@ -290,7 +290,7 @@ describe('videoEncoderSoftwareMultiInstances', function () {
                     array[j] = null;
                 }, failCallback).catch(failCatch);
             }
-            console.info('release 16 encoders success');
+            console.info('release encoders success');
             done();
         });
         async function runCase() {

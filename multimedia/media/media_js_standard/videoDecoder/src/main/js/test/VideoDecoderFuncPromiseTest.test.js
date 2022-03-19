@@ -34,6 +34,7 @@ describe('VideoDecoderFuncPromiseTest', function () {
     const eventEmitter = new events.EventEmitter();
     const BASIC_PATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/';
     let ES_FRAME_SIZE = [];
+    let temp = 0;
     const H264_FRAME_SIZE_60FPS_320 =
     [ 2106, 11465, 321, 72, 472, 68, 76, 79, 509, 90, 677, 88, 956, 99, 347, 77, 452, 681, 81, 1263, 94, 106, 97,
         998, 97, 797, 93, 1343, 150, 116, 117, 926, 1198, 128, 110, 78, 1582, 158, 135, 112, 1588, 165, 132,
@@ -133,15 +134,25 @@ describe('VideoDecoderFuncPromiseTest', function () {
         console.info(`in case error failCallback called, errMessage is ${error.message}`);
         expect(err).assertUndefined();
     }
+
     let failCatch = function(err) {
         console.info(`in case error failCatch called,errMessage is ${error.message}`);
         expect(err).assertUndefined();
     }
+
     function msleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
+
     async function toDisplayPage() {
-        let path = 'pages/display/display';
+        let path = '';
+        if (temp == 0) {
+            path = 'pages/display/display';
+            temp = 1;
+        } else {
+            path = 'pages/display2/display2';
+            temp = 0;
+        }
         let options = {
             uri: path,
         }
@@ -151,6 +162,7 @@ describe('VideoDecoderFuncPromiseTest', function () {
             console.error('in case toDisplayPage' + e);
         }
     }
+
     function readFile(path){
         console.info('in case : read file start execution');
         try {
@@ -174,6 +186,7 @@ describe('VideoDecoderFuncPromiseTest', function () {
             console.error('in case error getContent ' + e);
         }
     }
+
     function getSurfaceID() {
         let surfaceIDTest = new ArrayBuffer(20);
         let readSurfaceID = Fileio.createStreamSync('/data/media/surfaceID.txt', 'rb');
@@ -282,7 +295,7 @@ describe('VideoDecoderFuncPromiseTest', function () {
     }
     async function toGetVideoDecoderCaps() {
         await videoDecodeProcessor.getVideoDecoderCaps().then((videoCaps) => {
-            console.info("case get getVideoDecoderCaps success");
+            console.info('case get getVideoDecoderCaps success');
             console.info(`print videoCaps: 
             codecInfo.name ${videoCaps.codecInfo.name}
             codecInfo.type ${videoCaps.codecInfo.type}

@@ -46,6 +46,7 @@ describe('VideoDecoderSoftwareReliPromiseTest', function () {
     let inputEosFlag = false;
     let workdoneAtEOS = false;
     let surfaceID = '';
+    let temp = 0;
     const BASIC_PATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/';
     const SRCPATH = BASIC_PATH + 'out_320_240_10s.h264';
     let mediaDescription = {
@@ -134,11 +135,20 @@ describe('VideoDecoderSoftwareReliPromiseTest', function () {
         expect(err != undefined).assertTrue();
         toNextStep(mySteps, done);
     }
+    
     function msleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
+
     async function toDisplayPage() {
-        let path = 'pages/display/display';
+        let path = '';
+        if (temp == 0) {
+            path = 'pages/display/display';
+            temp = 1;
+        } else {
+            path = 'pages/display2/display2';
+            temp = 0;
+        }
         let options = {
             uri: path,
         }
@@ -148,6 +158,7 @@ describe('VideoDecoderSoftwareReliPromiseTest', function () {
             console.error('in case toDisplayPage' + e);
         }
     }
+
     function readFile(path){
         console.info('in case : read file start execution');
         try {
