@@ -1011,7 +1011,6 @@ describe('ActsRpcJsTest', function(){
         try{
             var data = rpc.MessageParcel.create();
             console.log("SUB_Softbus_IPC_MessageParcel_2900: create object successfully.");
-
             var errorBooleanArryData = [true, 'abc', false];
             var errorWriteBooleanArrayResult = data.writeBooleanArray(errorBooleanArryData);
             console.log("SUB_Softbus_IPC_MessageParcel_2900: run writeShortArray success, result is "
