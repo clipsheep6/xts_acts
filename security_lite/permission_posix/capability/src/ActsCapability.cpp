@@ -35,11 +35,11 @@ int CapInit()
 {
     // Init capabilities
     struct __user_cap_header_struct capheader;
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    (void)memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM];
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+    (void)memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
              0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
     capdata[0].permitted = LINUX_FULL_CAP;
     capdata[0].effective = LINUX_FULL_CAP;
@@ -55,12 +55,18 @@ int CapInit()
 int DropCAPCHOWN()
 {
     struct __user_cap_header_struct capheader = { 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPCHOWN memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPCHOWN memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_CHOWN
     capdata[CAP_TO_INDEX(CAP_CHOWN)].permitted &= ~CAP_TO_MASK(CAP_CHOWN);
     capdata[CAP_TO_INDEX(CAP_CHOWN)].effective &= ~CAP_TO_MASK(CAP_CHOWN);
@@ -75,12 +81,18 @@ int DropCAPCHOWN()
 int DropCAPDACOVERRIDE()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPDACOVERRIDE memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPDACOVERRIDE memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_DAC_OVERRIDE
     capdata[CAP_TO_INDEX(CAP_DAC_OVERRIDE)].permitted &= ~CAP_TO_MASK(CAP_DAC_OVERRIDE);
     capdata[CAP_TO_INDEX(CAP_DAC_OVERRIDE)].effective &= ~CAP_TO_MASK(CAP_DAC_OVERRIDE);
@@ -95,12 +107,18 @@ int DropCAPDACOVERRIDE()
 int DropCAPDACREADSEARCH()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPDACREADSEARCH memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPDACREADSEARCH memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_DAC_READ_SEARCH
     capdata[CAP_TO_INDEX(CAP_DAC_READ_SEARCH)].permitted &= ~CAP_TO_MASK(CAP_DAC_READ_SEARCH);
     capdata[CAP_TO_INDEX(CAP_DAC_READ_SEARCH)].effective &= ~CAP_TO_MASK(CAP_DAC_READ_SEARCH);
@@ -115,12 +133,18 @@ int DropCAPDACREADSEARCH()
 int DropCAPDACOVERRIDEAndREADSEARCH()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPDACOVERRIDEAndREADSEARCH memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPDACOVERRIDEAndREADSEARCH memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_DAC_OVERRIDE and CAP_DAC_READ_SEARCH
     capdata[CAP_TO_INDEX(CAP_DAC_READ_SEARCH)].permitted &= ~CAP_TO_MASK(CAP_DAC_READ_SEARCH);
     capdata[CAP_TO_INDEX(CAP_DAC_READ_SEARCH)].effective &= ~CAP_TO_MASK(CAP_DAC_READ_SEARCH);
@@ -138,12 +162,18 @@ int DropCAPDACOVERRIDEAndREADSEARCH()
 int DropCAPFOWNER()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPFOWNER memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPFOWNER memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_FOWNER
     capdata[CAP_TO_INDEX(CAP_FOWNER)].permitted &= ~CAP_TO_MASK(CAP_FOWNER);
     capdata[CAP_TO_INDEX(CAP_FOWNER)].effective &= ~CAP_TO_MASK(CAP_FOWNER);
@@ -158,12 +188,18 @@ int DropCAPFOWNER()
 int DropCAPKILL()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPKILL memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPKILL memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_KILL
     capdata[CAP_TO_INDEX(CAP_KILL)].permitted &= ~CAP_TO_MASK(CAP_KILL);
     capdata[CAP_TO_INDEX(CAP_KILL)].effective &= ~CAP_TO_MASK(CAP_KILL);
@@ -178,12 +214,18 @@ int DropCAPKILL()
 int DropCAPSETGID()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPSETGID memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPSETGID memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_SETGID
     capdata[CAP_TO_INDEX(CAP_SETGID)].permitted &= ~CAP_TO_MASK(CAP_SETGID);
     capdata[CAP_TO_INDEX(CAP_SETGID)].effective &= ~CAP_TO_MASK(CAP_SETGID);
@@ -198,12 +240,18 @@ int DropCAPSETGID()
 int DropCAPSETUID()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPSETUID memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPSETUID memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_SETUID
     capdata[CAP_TO_INDEX(CAP_SETUID)].permitted &= ~CAP_TO_MASK(CAP_SETUID);
     capdata[CAP_TO_INDEX(CAP_SETUID)].effective &= ~CAP_TO_MASK(CAP_SETUID);
@@ -218,12 +266,18 @@ int DropCAPSETUID()
 int DropCAPSETPCAP()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPSETPCAP memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPSETPCAP memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_SETPCAP
     capdata[CAP_TO_INDEX(CAP_SETPCAP)].permitted &= ~CAP_TO_MASK(CAP_SETPCAP);
     capdata[CAP_TO_INDEX(CAP_SETPCAP)].effective &= ~CAP_TO_MASK(CAP_SETPCAP);
@@ -238,12 +292,18 @@ int DropCAPSETPCAP()
 int DropCAPSYSNICE()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPSYSNICE memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPSYSNICE memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_SYS_NICE
     capdata[CAP_TO_INDEX(CAP_SYS_NICE)].permitted &= ~CAP_TO_MASK(CAP_SYS_NICE);
     capdata[CAP_TO_INDEX(CAP_SYS_NICE)].effective &= ~CAP_TO_MASK(CAP_SYS_NICE);
@@ -258,12 +318,18 @@ int DropCAPSYSNICE()
 int DropCAPSYSTIME()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropCAPSYSTIME memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropCAPSYSTIME memset_s failed");
+        return FALSE;
+    };
     // Drop the capabilities of CAP_SYS_TIME
     capdata[CAP_TO_INDEX(CAP_SYS_TIME)].permitted &= ~CAP_TO_MASK(CAP_SYS_TIME);
     capdata[CAP_TO_INDEX(CAP_SYS_TIME)].effective &= ~CAP_TO_MASK(CAP_SYS_TIME);
@@ -278,12 +344,18 @@ int DropCAPSYSTIME()
 int DropAllCAP()
 {
     struct __user_cap_header_struct capheader = { 0, 0 };
-    memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct));
+    if(memset_s(&capheader, sizeof(struct __user_cap_header_struct), 0, sizeof(struct __user_cap_header_struct)) != 0){
+        LOG("DropAllCAP memset_s failed");
+        return FALSE;
+    };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     capheader.pid = 0;
     struct __user_cap_data_struct capdata[CAP_NUM] = { { 0 }, { 0 } };
-    memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
-             0, CAP_NUM * sizeof(struct __user_cap_data_struct));
+    if(memset_s(capdata, CAP_NUM * sizeof(struct __user_cap_data_struct),
+             0xff, CAP_NUM * sizeof(struct __user_cap_data_struct) != 0)){
+        LOG("DropAllCAP memset_s failed");
+        return FALSE;
+    };
     // Drop all the capabilities
     capdata[0].permitted = NO_CAP;
     capdata[0].effective = NO_CAP;
