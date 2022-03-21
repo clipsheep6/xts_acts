@@ -13,7 +13,7 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_js_hap_suite(ActsInputMethodEtsTest) {
+ohos_js_hap_suite("ActsInputMethodEtsTest") {
   hap_profile = "./entry/src/main/config.json"
   deps = [
     ":inputMethod_ets_assets",
