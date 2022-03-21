@@ -48,7 +48,7 @@ export default function aboutToDisappearJsunit() {
 
     it('bindMenuTest_0100', 0, async function (done) {
       console.info('bindMenuTest_0100 START');
-      console.info("bindMenuTest_0100 text click result is: " + JSON.stringify(sendEventByKey('text',10,"")));
+      console.info("bindMenuTest_0100 text click result is: " + JSON.stringify(sendEventByKey('text', 10, "")));
       await Utils.sleep(1500);
       let callback = (indexEvent) => {
         console.info("bindMenuTest_0100 get state result is: " + JSON.stringify(indexEvent));
@@ -63,7 +63,7 @@ export default function aboutToDisappearJsunit() {
       } catch (err) {
         console.info("bindMenuTest_0100 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("bindMenuTest_0100 button click result is: " + JSON.stringify(sendEventByKey('button',10,"")));
+      console.info("bindMenuTest_0100 button click result is: " + JSON.stringify(sendEventByKey('button', 10, "")));
       await Utils.sleep(1000);
       console.info('bindMenuTest_0100 END');
       done();

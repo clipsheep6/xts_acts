@@ -109,5 +109,117 @@ export default function loadingProgressJsunit() {
       console.info('testLoadingProgress_600 END');
       done();
     });
+
+    it('testLoadingProgress_700', 0, async function (done) {
+      console.info('testLoadingProgress_700 START');
+      await Utils.sleep(1000);
+      try {
+        let eventData = {
+          data: {
+            "color": "Yellow",
+          }
+        }
+        var innerEvent = {
+          eventId: 442,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testLoadingProgress_700 start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("testLoadingProgress_700 change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('LP');
+      let obj = JSON.parse(strJson);
+      console.info("testLoadingProgress_700 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.color).assertEqual(undefined);
+      console.info('testLoadingProgress_700 END');
+      done();
+    });
+
+    it('testLoadingProgress_800', 0, async function (done) {
+      console.info('testLoadingProgress_800 START');
+      await Utils.sleep(1000);
+      try {
+        let eventData = {
+          data: {
+            "color": "Red"
+          }
+        }
+        var innerEvent = {
+          eventId: 442,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testLoadingProgress_800 start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("testLoadingProgress_800 change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('LP');
+      let obj = JSON.parse(strJson);
+      console.info("testLoadingProgress_800 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.color).assertEqual(undefined);
+      console.info('testLoadingProgress_800 END');
+      done();
+    });
+
+    it('testLoadingProgress_900', 0, async function (done) {
+      console.info('testLoadingProgress_900 START');
+      await Utils.sleep(1000);
+      try {
+        let eventData = {
+          data: {
+            "color": "Color.Green"
+          }
+        }
+        var innerEvent = {
+          eventId: 442,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testLoadingProgress_900 start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("testLoadingProgress_900 change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('LP');
+      let obj = JSON.parse(strJson);
+      console.info("testLoadingProgress_900 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.color).assertEqual(undefined);
+      console.info('testLoadingProgress_900 END');
+      done();
+    });
+
+    it('testLoadingProgress_1000', 0, async function (done) {
+      console.info('testLoadingProgress_1000 START');
+      await Utils.sleep(1000);
+      try {
+        let eventData = {
+          data: {
+            "color": Color.Black
+          }
+        }
+        var innerEvent = {
+          eventId: 442,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testLoadingProgress_1000 start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("testLoadingProgress_1000 change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('LP');
+      let obj = JSON.parse(strJson);
+      console.info("testLoadingProgress_1000 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.color).assertEqual(undefined);
+      console.info('testLoadingProgress_1000 END');
+      done();
+    });
   })
 }
+
+
+
+

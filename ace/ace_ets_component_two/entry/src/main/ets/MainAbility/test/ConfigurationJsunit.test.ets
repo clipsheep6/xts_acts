@@ -18,8 +18,8 @@ import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
-export default function transFormJsunit() {
-  describe('appInfoTest', function () {
+export default function configurationJsunit() {
+  describe('configurationTest', function () {
     beforeEach(async function (done) {
       console.info("prompt beforeEach start");
       let options = {

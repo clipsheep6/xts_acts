@@ -20,7 +20,7 @@ import router from '@system.router';
 @Component
 struct SystemRouterA {
   build() {
-    Flex({direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center}) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('A Page')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
@@ -28,7 +28,7 @@ struct SystemRouterA {
         .key('pushButtonA')
         .backgroundColor('#FF0B8FE2')
         .fontSize(20)
-        .margin({top: 20})
+        .margin({ top: 20 })
         .onClick(() => {
           router.push({
             uri: 'pages/systemRouterB',
@@ -41,7 +41,7 @@ struct SystemRouterA {
         .key('ReplaceButtonA')
         .backgroundColor('#FF0B8FE2')
         .fontSize(20)
-        .margin({top: 20})
+        .margin({ top: 20 })
         .onClick(() => {
           router.replace({
             uri: 'pages/systemRouterB',

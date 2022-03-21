@@ -21,12 +21,13 @@ import events_emitter from '@ohos.emitter';
 @Component
 struct SystemRouterB {
   build() {
-    Flex({direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center}) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('B Page')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
     }.width('100%').height('100%')
   }
+
   onPageShow() {
     let params = router.getParams();
     if (params && params.data) {
@@ -34,6 +35,7 @@ struct SystemRouterB {
       this.getRouterParams(params.data);
     }
   }
+
   getRouterParams(data) {
     try {
       let paramsData = {

@@ -19,7 +19,7 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function ohosMatrix4Jsunit() {
-  describe('appInfoTest', function () {
+  describe('ohosMatrix4Test', function () {
     beforeEach(async function (done) {
       console.info("ohosMatrix4 beforeEach start");
       let options = {

@@ -16,7 +16,7 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets";
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter'
-import Utils from './Utils';
+import Utils from './Utils.ets';
 
 export default function videoJsunit() {
   describe('videoTest', function () {
@@ -206,5 +206,26 @@ export default function videoJsunit() {
       done();
     });
 
+    it('testVideo08', 0, async function (done) {
+      console.info('[testVideo08] START');
+      let callback = (paramsEvent) => {
+        console.info("[testVideo08] get state result is: " + JSON.stringify(paramsEvent));
+        expect(paramsEvent.data.fullScreenState).assertEqual(1);
+      }
+      let paramsEvent = {
+        eventId: 500,
+        priority: events_emitter.EventPriority.LOW
+      }
+      try {
+        events_emitter.on(paramsEvent, callback);
+      } catch (err) {
+        console.info("[testVideo08] on events_emitter err : " + JSON.stringify(err));
+      }
+      console.info("[testVideo08] click requestFullScreen result is: "
+      + JSON.stringify(sendEventByKey('RequestFullScreen', 10, "")));
+      console.info('[testVideo08] END');
+      await Utils.sleep(2000);
+      done();
+    });
   });
 }

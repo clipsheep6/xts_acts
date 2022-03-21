@@ -16,14 +16,14 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 
 export default function subscribedAbstractPropertyJsunit() {
-  describe('appInfoTest', function () {
+  describe('subscribedAbstractPropertyTest', function () {
     it('subscribedAbstractProperty0100', 0, async function (done) {
       console.info('[subscribedAbstractProperty0100] START');
-      if(true){
+      if (true) {
         done();
         return;
       }
-      const subscribedAbstractProperty  = new SubscribedAbstractProperty('subscribtest');
+      const subscribedAbstractProperty = new SubscribedAbstractProperty('subscribtest');
       let number = subscribedAbstractProperty.numberOfSubscrbers();
       subscribedAbstractProperty.notifyPropertyRead();
       subscribedAbstractProperty.notifyHasChanged('subscribtest');

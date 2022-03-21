@@ -19,7 +19,7 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function navigationJsunit() {
-  describe('appInfoTest', function () {
+  describe('navigationTest', function () {
     beforeEach(async function (done) {
       console.info("navigation beforeEach start");
       let options = {
@@ -73,7 +73,7 @@ export default function navigationJsunit() {
       } catch (err) {
         console.info("testNavigation_200 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("testNavigation_200 click result is: " + JSON.stringify(sendEventByKey('NavigationContent1',10,"")));
+      console.info("testNavigation_200 click result is: " + JSON.stringify(sendEventByKey('NavigationContent1', 10, "")));
       await Utils.sleep(2000);
       console.info('testNavigation_200 END');
       done();
@@ -102,3 +102,6 @@ export default function navigationJsunit() {
     });
   })
 }
+
+
+

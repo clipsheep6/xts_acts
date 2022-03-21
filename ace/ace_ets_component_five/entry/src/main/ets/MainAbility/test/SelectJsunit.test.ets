@@ -19,7 +19,7 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function selectJsunit() {
-  describe('appInfoTest', function () {
+  describe('selectTest', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/select',

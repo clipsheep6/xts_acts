@@ -17,11 +17,32 @@
 @Entry
 @Component
 struct RadioExample {
+  @State checked: boolean = false
+  private stateChangCallBack = (eventData) => {
+    console.info("radio page stateChangCallBack");
+    if (eventData != null) {
+      console.info("radio page state change called:" + JSON.stringify(eventData));
+      if (eventData.data.checked != null) {
+        this.checked = eventData.data.checked;
+      }
+    }
+  }
+
+  onPageShow() {
+    console.info('radio page show called');
+    var stateChangeEventSix = {
+      eventId: 40,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventSix, this.stateChangCallBack)
+  }
+
   build() {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Column() {
         Text('Radio1')
-        Radio({ value: 'Radio1', group: 'radioGroup' }).checked(true)
+        Radio({ value: 'Radio1', group: 'radioGroup' })
+          .checked(this.checked)
           .height(50)
           .width(50)
           .key('radio1')
@@ -29,9 +50,11 @@ struct RadioExample {
             console.log('Radio1 status is ' + value)
           })
       }
+
       Column() {
         Text('Radio2')
-        Radio({ value: 'Radio2', group: 'radioGroup' }).checked(false)
+        Radio({ value: 'Radio2', group: 'radioGroup' })
+          .checked(this.checked)
           .height(50)
           .width(50)
           .key('radio2')
@@ -39,9 +62,11 @@ struct RadioExample {
             console.log('Radio2 status is ' + value)
           })
       }
+
       Column() {
         Text('Radio3')
-        Radio({ value: 'Radio3', group: 'radioGroup' }).checked(false)
+        Radio({ value: 'Radio3', group: 'radioGroup' })
+          .checked(this.checked)
           .height(50)
           .width(49)
           .key('radio3')
@@ -52,3 +77,7 @@ struct RadioExample {
     }.padding({ top: 30 })
   }
 }
+
+
+
+

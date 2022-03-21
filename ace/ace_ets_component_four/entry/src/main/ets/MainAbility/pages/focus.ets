@@ -27,10 +27,12 @@ struct FocusableExample {
   @State focusable: boolean = false
 
   build() {
-    Column({ space:20 }){
+    Column({ space: 20 }) {
       Button(this.textOne)
         .backgroundColor(this.oneButtonColor)
-        .width(300).height(70).fontColor(Color.Black)
+        .width(300)
+        .height(70)
+        .fontColor(Color.Black)
         .focusable(this.focusable)
         .onFocus(() => {
           this.textOne = 'First Button onFocus'
@@ -42,7 +44,9 @@ struct FocusableExample {
         })
       Button(this.textTwo)
         .backgroundColor(this.twoButtonColor)
-        .width(300).height(70).fontColor(Color.Black)
+        .width(300)
+        .height(70)
+        .fontColor(Color.Black)
         .focusable(this.focusable)
         .onFocus(() => {
           this.textTwo = 'Second Button onFocus'
@@ -54,27 +58,29 @@ struct FocusableExample {
         })
       Button(this.textThree)
         .backgroundColor(this.threeButtonColor)
-        .width(300).height(70).fontColor(Color.Black)
+        .width(300)
+        .height(70)
+        .fontColor(Color.Black)
         .focusable(this.focusable)
         .onFocus(() => {
           this.textThree = 'Third Button onFocus'
           this.threeButtonColor = '#AFEEEE'
         })
-        .onFocusMove(()=>{
+        .onFocusMove(() => {
           console.info('on FocusMove Start!')
         })
         .onBlur(() => {
           this.textThree = 'Third Button onBlur'
           this.threeButtonColor = '#FFC0CB'
         })
-    }.width('100%').margin({ top:20 })
+    }.width('100%').margin({ top: 20 })
   }
 
-  onPageShow(){
+  onPageShow() {
     console.info('focus page show called');
     var stateChangeEvent = {
       eventId: 101,
-      priority:events_emitter.EventPriority.LOW
+      priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack)
   }

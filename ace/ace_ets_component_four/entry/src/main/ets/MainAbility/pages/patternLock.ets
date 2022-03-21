@@ -27,7 +27,7 @@ struct PatternLockExample {
   @State backgroundColor: Color = "#FF008000";
   @State autoReset: boolean = true;
   private patternLockController: PatternLockController = new PatternLockController()
-  @State onActionCalled :boolean = false
+  @State onActionCalled: boolean = false
 
   onPageShow() {
     console.info('[PatternLock] page show called');
@@ -43,19 +43,19 @@ struct PatternLockExample {
     console.info("[PatternLock] page stateChangCallBack");
     if (eventData != null) {
       console.info("[PatternLock] page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.sideLength != null) {
+      if (eventData.data.sideLength != null) {
         this.sideLength = eventData.data.sideLength;
       }
-      if(eventData.data.circleRadius != null) {
+      if (eventData.data.circleRadius != null) {
         this.circleRadius = eventData.data.circleRadius;
       }
-      if(eventData.data.pathStrokeWidth != null) {
+      if (eventData.data.pathStrokeWidth != null) {
         this.pathStrokeWidth = eventData.data.pathStrokeWidth;
       }
-      if(eventData.data.backgroundColor != null) {
+      if (eventData.data.backgroundColor != null) {
         this.backgroundColor = eventData.data.backgroundColor;
       }
-      if(eventData.data.autoReset != null) {
+      if (eventData.data.autoReset != null) {
         this.autoReset = eventData.data.autoReset;
       }
     }

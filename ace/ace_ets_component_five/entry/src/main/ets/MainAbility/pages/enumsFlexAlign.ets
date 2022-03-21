@@ -18,6 +18,7 @@
 @Component
 struct JustifyContentFlex {
   @State justifyContent: FlexAlign = FlexAlign.Center
+
   build() {
     Flex({ justifyContent: this.justifyContent }) {
       Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)

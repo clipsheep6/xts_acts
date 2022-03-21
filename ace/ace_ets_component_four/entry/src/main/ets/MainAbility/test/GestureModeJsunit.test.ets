@@ -17,8 +17,8 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@system.router';
 import Utils from './Utils';
 
-export default function fontWeightJsunit() {
-  describe('fontWeightTest', function () {
+export default function gestureModeJsunit() {
+  describe('gestureModeTest', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/gestureMode',
@@ -27,10 +27,10 @@ export default function fontWeightJsunit() {
         router.clear();
         let pages = router.getState();
         console.info("get gestureMode state success " + JSON.stringify(pages));
-        if (!("panel" == pages.name)) {
+        if (!("gestureMode" == pages.name)) {
           console.info("get gestureMode state success " + JSON.stringify(pages.name));
           let result = await router.push(options);
-          await Utils.sleep(4000);
+          await Utils.sleep(2000);
           console.info("push gestureMode page success " + JSON.stringify(result));
         }
       } catch (err) {
@@ -44,14 +44,14 @@ export default function fontWeightJsunit() {
       console.info("gestureMode after each called");
     });
 
-      it('fillModeText_0100', 0, async function (done) {
-        console.info('fillModeText_0100 START');
-        let strJson = getInspectorByKey('gestureMode');
-        console.info("fillModeText_0100 component strJson:" + strJson);
-        let obj = JSON.parse(strJson);
-        console.info("fillModeText_0100 component obj is: " + JSON.stringify(obj));
-        expect(obj.$type).assertEqual('Flex');
-        done();
-      });
+    it('gestureModeTest_0100', 0, async function (done) {
+      console.info('gestureModeTest_0100 START');
+      let strJson = getInspectorByKey('gestureMode');
+      console.info("gestureModeTest_0100 component strJson:" + strJson);
+      let obj = JSON.parse(strJson);
+      console.info("gestureModeTest_0100 component obj is: " + JSON.stringify(obj));
+      expect(obj.$type).assertEqual('Flex');
+      done();
+    });
   })
 }

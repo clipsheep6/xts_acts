@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import events_emitter from '@ohos.emitter';
+import events_emitter from '@ohos.emitter'
 
 @Entry
 @Component
@@ -22,8 +22,13 @@ struct geometryTransitionExample {
   @State show: string = "show"
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,}) {
-      Button(this.show).width(80).height(30).backgroundColor(0x317aff).margin({bottom:50}).key('button')
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, }) {
+      Button(this.show)
+        .width(80)
+        .height(30)
+        .backgroundColor(0x317aff)
+        .margin({ bottom: 50 })
+        .key('button')
         .onClick(() => {
           try {
             var backData = {
@@ -42,9 +47,9 @@ struct geometryTransitionExample {
           }
           animateTo({ duration: 1000 }, () => {
             this.btn1 = !this.btn1
-            if(this.btn1){
+            if (this.btn1) {
               this.show = "hide"
-            }else{
+            } else {
               this.show = "show"
             }
           })
@@ -54,6 +59,6 @@ struct geometryTransitionExample {
           Image($rawfile('ic_health_heart.png')).width("80%").height(300)
         }.geometryTransition('geometryTransition')
       }
-    }.height(400).width("100%").padding({top:100})
+    }.height(400).width("100%").padding({ top: 100 })
   }
 }

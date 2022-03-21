@@ -15,10 +15,10 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
-import Utils from './Utils';
+import Utils from './Utils.ets';
 
 export default function textPickerJsunit() {
-  describe('appInfoTest', function () {
+  describe('textPickerTest', function () {
     beforeEach(async function (done) {
       console.info("button beforeEach start");
       let options = {
@@ -62,7 +62,7 @@ export default function textPickerJsunit() {
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('textPickerDialog');
       let obj = JSON.parse(strJson);
-      if(true){
+      if (true) {
         done();
         return;
       }

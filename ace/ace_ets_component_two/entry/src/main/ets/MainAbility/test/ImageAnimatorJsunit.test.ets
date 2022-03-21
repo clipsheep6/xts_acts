@@ -18,31 +18,31 @@ import router from '@system.router';
 import events_emitter from '@ohos.events.emitter'
 import Utils from './Utils.ets';
 
-export default function imageAnimatorJsunit(){
-  describe('imageAnimatorTest', function (){
+export default function imageAnimatorJsunit() {
+  describe('imageAnimatorTest', function () {
     beforeEach(async function (done) {
       console.info("imageAnimator beforeEach start");
       let options = {
         uri: 'pages/imageAnimator',
       }
       let result;
-      try{
+      try {
         router.clear();
         let pages = router.getState();
         console.info("get imageAnimator state pages: " + JSON.stringify(pages));
-        if(!("imageAnimator" == pages.name)){
+        if (!("imageAnimator" == pages.name)) {
           console.info("get imageAnimator state pages.name: " + JSON.stringify(pages.name));
           result = await router.push(options);
           await Utils.sleep(2000);
           console.info("push imageAnimator page result: " + JSON.stringify(result));
         }
-      }catch(err){
+      } catch (err) {
         console.error("push imageAnimator page error: " + err);
       }
       done()
     });
 
-    afterEach(async function(){
+    afterEach(async function () {
       await Utils.sleep(1000);
       console.info("imageAnimator after each called");
     })
@@ -63,7 +63,7 @@ export default function imageAnimatorJsunit(){
       } catch (err) {
         console.info("imageAnimatorTest_0100 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("imageAnimatorTest_0100 click result is: " + JSON.stringify(sendEventByKey('button',10,"")));
+      console.info("imageAnimatorTest_0100 click result is: " + JSON.stringify(sendEventByKey('button', 10, "")));
       await Utils.sleep(1000);
       console.info('imageAnimatorTest_0100 END');
       done();
@@ -86,7 +86,7 @@ export default function imageAnimatorJsunit(){
       } catch (err) {
         console.info("imageAnimatorTest_0200 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("imageAnimatorTest_0200 click result is: " + JSON.stringify(sendEventByKey('button1',10,"")));
+      console.info("imageAnimatorTest_0200 click result is: " + JSON.stringify(sendEventByKey('button1', 10, "")));
       await Utils.sleep(1000);
       console.info('imageAnimatorTest_0200 END');
       done();
@@ -109,7 +109,7 @@ export default function imageAnimatorJsunit(){
       } catch (err) {
         console.info("imageAnimatorTest_0300 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("imageAnimatorTest_0300 click result is: " + JSON.stringify(sendEventByKey('button2',10,"")));
+      console.info("imageAnimatorTest_0300 click result is: " + JSON.stringify(sendEventByKey('button2', 10, "")));
       await Utils.sleep(1000);
       console.info('imageAnimatorTest_0300 END');
       done();
@@ -131,7 +131,7 @@ export default function imageAnimatorJsunit(){
       } catch (err) {
         console.info("imageAnimatorTest_0400 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("imageAnimatorTest_0400 click result is: " + JSON.stringify(sendEventByKey('button3',10,"")));
+      console.info("imageAnimatorTest_0400 click result is: " + JSON.stringify(sendEventByKey('button3', 10, "")));
       await Utils.sleep(1000);
       console.info('imageAnimatorTest_0400 END');
       done();
@@ -153,7 +153,7 @@ export default function imageAnimatorJsunit(){
       } catch (err) {
         console.info("imageAnimatorTest_0500 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("imageAnimatorTest_0500 click result is: " + JSON.stringify(sendEventByKey('button4',10,"")));
+      console.info("imageAnimatorTest_0500 click result is: " + JSON.stringify(sendEventByKey('button4', 10, "")));
       await Utils.sleep(1000);
       console.info('imageAnimatorTest_0500 END');
       done();
@@ -164,7 +164,7 @@ export default function imageAnimatorJsunit(){
       await Utils.sleep(1500);
       let callback = (indexEvent) => {
         console.info("imageAnimatorTest_0600 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.string).assertEqual('repeat');
+        expect(indexEvent.data.string).assertEqual('Repeat');
       }
       let indexEvent = {
         eventId: 114,
@@ -175,7 +175,7 @@ export default function imageAnimatorJsunit(){
       } catch (err) {
         console.info("imageAnimatorTest_0600 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("imageAnimatorTest_0600 click result is: " + JSON.stringify(sendEventByKey('button',10,"")));
+      console.info("imageAnimatorTest_0600 click result is: " + JSON.stringify(sendEventByKey('button', 10, "")));
       await Utils.sleep(1000);
       console.info('imageAnimatorTest_0600 END');
       done();
@@ -212,9 +212,61 @@ export default function imageAnimatorJsunit(){
       } catch (err) {
         console.info("imageAnimatorTest_0700 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("imageAnimatorTest_0700 click result is: " + JSON.stringify(sendEventByKey('button5',10,"")));
+      console.info("imageAnimatorTest_0700 click result is: " + JSON.stringify(sendEventByKey('button5', 10, "")));
       await Utils.sleep(1000);
       console.info('imageAnimatorTest_0700 END');
+      done();
+    });
+
+    it('imageAnimatorTest_0800', 0, async function (done) {
+      console.info('[imageAnimatorTest_0800] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "preDecode": "@"
+          }
+        }
+        var innerEvent = {
+          eventId: 562,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[imageAnimatorTest_0800] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[imageAnimatorTest_0800] change component color error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      var strJson = getInspectorByKey('imageAnimatorKey');
+      var obj = JSON.parse(strJson);
+      console.info("[imageAnimatorTest_0800] component obj is: " + JSON.stringify(obj.$attrs.preDecode));
+      expect(obj.$attrs.preDecode).assertEqual('0');
+      done();
+    });
+
+    it('imageAnimatorTest_0900', 0, async function (done) {
+      console.info('[imageAnimatorTest_0900] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "iterations": "@"
+          }
+        }
+        var innerEvent = {
+          eventId: 563,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[imageAnimatorTest_0900] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[imageAnimatorTest_0900] change component color error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      var strJson = getInspectorByKey('imageAnimatorKey');
+      var obj = JSON.parse(strJson);
+      console.info("[imageAnimatorTest_0900] component obj is: " + JSON.stringify(obj.$attrs.iterations));
+      expect(obj.$attrs.iterations).assertEqual('0');
       done();
     });
   })

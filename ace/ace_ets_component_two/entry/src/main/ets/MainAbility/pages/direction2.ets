@@ -18,10 +18,11 @@ import events_emitter from '@ohos.emitter';
 @Entry
 @Component
 struct PositionExample {
-  @State direction:Direction = Direction.Ltr
+  @State direction: Direction = Direction.Ltr
+
   build() {
     Column() {
-      Column({space: 10}) {
+      Column({ space: 10 }) {
         Text('align').fontSize(9).fontColor(0xCCCCCC).width('90%')
         Text('top start')
           .align(Alignment.TopStart)
@@ -57,6 +58,18 @@ struct PositionExample {
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEventOne, this.stateChangCallBack)
+
+    var stateChangeEventOneA = {
+      eventId: 1182,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventOneA, this.stateChangCallBack)
+
+    var stateChangeEventOneB = {
+      eventId: 1183,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventOneB, this.stateChangCallBack)
   }
 
   private stateChangCallBack = (eventData) => {

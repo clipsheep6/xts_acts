@@ -15,8 +15,8 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets";
 
-export default function SubscribaleAbstractJsunit() {
-  describe('SubscribaleAbstract', function () {
+export default function subscribaleAbstractJsunit() {
+  describe('subscribaleAbstract', function () {
 
     /**
     * @tc.number  stateManagement_SubscribaleAbstract_setOrCreate_0100
@@ -76,7 +76,8 @@ export default function SubscribaleAbstractJsunit() {
                          key: "layoutDirection", defaultValue: LayoutDirection.LTR
                        }]
       };
-      persistentStorage.PersistProps(persistProp);IPropertySubscriber
+      persistentStorage.PersistProps(persistProp);
+      IPropertySubscriber
       persistentStorage.DeleteProp("colorMode");
       expect(true).assertTrue();
       console.info('[stateManagement_PersistentStorage_0100] END');
@@ -92,7 +93,7 @@ export default function SubscribaleAbstractJsunit() {
       done();
       return;
       console.info('[stateManagement_IPropertySubscriber_0100] Start');
-      let iPropertySubscriber =new IPropertySubscriber();
+      let iPropertySubscriber = new IPropertySubscriber();
       let id = iPropertySubscriber.id();
       let aboutToBeDeleted = iPropertySubscriber.aboutToBeDeleted();
       expect(true).assertTrue();
@@ -109,7 +110,7 @@ export default function SubscribaleAbstractJsunit() {
       done();
       return;
       console.info('[stateManagement_IPropertySubscriber_0100] Start');
-      let iPropertySubscriber =new IPropertySubscriber();
+      let iPropertySubscriber = new IPropertySubscriber();
       let id = iPropertySubscriber.id();
       let aboutToBeDeleted = iPropertySubscriber.aboutToBeDeleted();
       expect(true).assertTrue();

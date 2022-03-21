@@ -18,8 +18,8 @@ import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
 
-export default function directionJsunit(){
-  describe('directionTest', function (){
+export default function directionJsunit() {
+  describe('directionTest', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/direction',

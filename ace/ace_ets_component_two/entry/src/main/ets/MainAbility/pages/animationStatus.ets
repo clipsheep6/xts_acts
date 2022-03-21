@@ -21,9 +21,30 @@ struct ImageAnimatorExample {
   @State state: AnimationStatus = AnimationStatus.Initial;
   @State reverse: boolean = false;
   @State iterations: number = 1;
+  private stateChangCallBack = (eventData) => {
+    if (eventData != null) {
+      console.info("ImageAnimator page state change called:" + JSON.stringify(eventData));
+      var stateValue = eventData.data.state;
+      if (stateValue != null) {
+        this.state = stateValue;
+        console.info("state:" + this.state);
+      }
+    } else {
+      console.info("ImageAnimator page color not change called:" + JSON.stringify(eventData));
+    }
+  }
+
+  onPageShow() {
+    console.info('ImageAnimator page show called');
+    var stateChangeEvent = {
+      eventId: 801,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
+  }
 
   build() {
-    Column({ space:5 }) {
+    Column({ space: 5 }) {
       ImageAnimator()
         .key('ImageAnimator')
         .images([
@@ -60,10 +81,16 @@ struct ImageAnimatorExample {
             left: 0
           }
         ])
-        .state(this.state).reverse(this.reverse).fixedSize(false).preDecode(2)
-        .fillMode(FillMode.None).iterations(this.iterations).width(325).height(210)
-        .margin({top:100})
-        .onStart(() => { 
+        .state(this.state)
+        .reverse(this.reverse)
+        .fixedSize(false)
+        .preDecode(2)
+        .fillMode(FillMode.None)
+        .iterations(this.iterations)
+        .width(325)
+        .height(210)
+        .margin({ top: 100 })
+        .onStart(() => {
           console.info('Start')
         })
         .onPause(() => {

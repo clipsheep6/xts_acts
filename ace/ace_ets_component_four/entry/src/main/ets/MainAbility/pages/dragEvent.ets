@@ -34,19 +34,31 @@ struct DragExample {
   @Builder pixelMapBuilder() {
     Column() {
       Text(this.text)
-        .width('50%').height(60).fontSize(16).borderRadius(10)
-        .textAlign(TextAlign.Center).backgroundColor(Color.Yellow)
+        .width('50%')
+        .height(60)
+        .fontSize(16)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .backgroundColor(Color.Yellow)
     }
   }
 
   build() {
     Column() {
       Text('There are three Text elements here')
-        .fontSize(12).fontColor(0xCCCCCC).width('90%')
-        .textAlign(TextAlign.Start).margin(5)
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+        .textAlign(TextAlign.Start)
+        .margin(5)
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
-        Text('apple').width('25%').height(35).fontSize(16).key('apple')
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('apple')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .key('apple')
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.appleVisible)
           .onDragStart(() => {
             this.bool = true
@@ -70,8 +82,13 @@ struct DragExample {
             }
             return this.pixelMapBuilder
           })
-        Text('orange').width('25%').height(35).fontSize(16).key('orange')
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('orange')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .key('orange')
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.orangeVisible)
           .onDragStart(() => {
             this.bool = true
@@ -79,8 +96,13 @@ struct DragExample {
             this.orangeVisible = Visibility.Hidden
             return this.pixelMapBuilder
           })
-        Text('banana').width('25%').height(35).fontSize(16).key('banana')
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('banana')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .key('banana')
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.bananaVisible)
           .onDragStart((event: DragEvent, extraParams: string) => {
             console.log('Text onDragStarts, ' + extraParams)
@@ -89,8 +111,13 @@ struct DragExample {
             this.bananaVisible = Visibility.Hidden
             return this.pixelMapBuilder
           })
-        Text('mango').width('25%').height(35).fontSize(16).key('mango')
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('mango')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .key('mango')
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.mangoVisible)
           .onDragStart(() => {
             this.bool = true
@@ -98,8 +125,13 @@ struct DragExample {
             this.mangoVisible = Visibility.Hidden
             return this.pixelMapBuilder
           })
-        Text('strawberry').width('25%').height(35).fontSize(16).key('strawberry')
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('strawberry')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .key('strawberry')
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.strawberryVisible)
           .onDragStart(() => {
             this.bool = true
@@ -109,15 +141,22 @@ struct DragExample {
           })
       }.border({ width: 1 }).width('90%').padding({ top: 10, bottom: 10 }).margin(10)
 
-      Text('This is a List element').fontSize(12)
-        .fontColor(0xCCCCCC).width('90%')
-        .textAlign(TextAlign.Start).margin(15)
+      Text('This is a List element')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+        .textAlign(TextAlign.Start)
+        .margin(15)
       List({ space: 20, initialIndex: 0 }) {
         ForEach(this.numbers, (item) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height(80).fontSize(16).borderRadius(10)
-              .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+              .width('100%')
+              .height(80)
+              .fontSize(16)
+              .borderRadius(10)
+              .textAlign(TextAlign.Center)
+              .backgroundColor(0xAFEEEE)
           }.key('listItem')
           .onDragStart((event: DragEvent, extraParams: string) => {
             console.log('ListItem onDragStarts, ' + extraParams)
@@ -130,7 +169,9 @@ struct DragExample {
         }, item => item)
       }
       .editMode(true)
-      .height('50%').width('90%').border({ width: 1 })
+      .height('50%')
+      .width('90%')
+      .border({ width: 1 })
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
       .onDragEnter((event: DragEvent, extraParams: string) => {
         console.log('List onDragEnter, ' + extraParams + ',' + event.getX() + ',' + event.getY())

@@ -30,14 +30,15 @@ import colorGradientJsunit from './ColorGradientJsunit.test.ets';
 import enmusFlexAlignJsunit from './EnmusFlexAlignJsunit.test.ets';
 import enmusVerticalAlignJsunit from './EnmusVerticalAlignJsunit.test.ets';
 import enmusHorizontalAlignJsunit from './EnmusHorizontalAlignJsunit.test.ets';
+import swipeGestureJsunit from './SwipeGestureJsunit.test.ets';
 
 export default function testsuite() {
   checkboxJsunit();
+  sliderJsunit();
   selectJsunit();
   fillModeJsunit();
   enumsImageJsunit();
   ohosMatrix4Jsunit();
-  sliderJsunit();
   edgeEffectJsunit();
   checkboxGroupJsunit();
   transFormJsunit();
@@ -49,5 +50,6 @@ export default function testsuite() {
   shapeClippingJsunit();
   enmusHorizontalAlignJsunit();
   enmusFlexAlignJsunit();
+  swipeGestureJsunit();
   enmusVerticalAlignJsunit();
 }

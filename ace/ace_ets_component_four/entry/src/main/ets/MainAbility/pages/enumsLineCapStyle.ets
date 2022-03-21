@@ -13,10 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import events_emitter from '@ohos.emitter'
 
 @Entry
 @Component
-struct ShapeExample {
+struct LineCapExample {
+  @State capStyle: LineCapStyle = LineCapStyle.Butt
+
+  onPageShow() {
+    console.info('[lineCapStyle] page show called');
+    var changeEvent = {
+      eventId: 2010,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(changeEvent, this.stateChangCallBack);
+    var changeEvent = {
+      eventId: 2020,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(changeEvent, this.stateChangCallBack);
+    var changeEvent = {
+      eventId: 2030,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(changeEvent, this.stateChangCallBack);
+  }
+
+  private stateChangCallBack = (eventData) => {
+    console.info("[stateChangCallBack] stateChangCallBack ");
+    if (eventData != null) {
+      console.info("[stateChangCallBack] state change called: " + JSON.stringify(eventData));
+      if (eventData.data.capStyle != null) {
+        this.capStyle = eventData.data.capStyle;
+      }
+    }
+  }
+
   build() {
     Column({ space: 5 }) {
       Shape() {
@@ -25,9 +57,14 @@ struct ShapeExample {
         Path().width(300).height(10).commands('M0 0 L900 0').offset({ x: 0, y: 120 })
       }
       .viewPort({ x: -2, y: -2, width: 304, height: 130 })
-      .fill(0x317Af7).stroke(Color.Black).strokeWidth(4)
-      .strokeDashArray([20]).strokeDashOffset(10).strokeLineCap(LineCapStyle.Butt)
-      .strokeLineJoin(LineJoinStyle.Round).antiAlias(true)
+      .fill(0x317Af7)
+      .stroke(Color.Black)
+      .strokeWidth(4)
+      .strokeDashArray([20])
+      .strokeDashOffset(10)
+      .strokeLineCap(this.capStyle)
+      .strokeLineJoin(LineJoinStyle.Round)
+      .antiAlias(true)
       .key('Butt')
     }.width('100%').margin({ top: 15 })
   }

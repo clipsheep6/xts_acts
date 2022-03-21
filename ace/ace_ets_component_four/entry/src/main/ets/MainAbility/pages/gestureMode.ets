@@ -24,17 +24,28 @@ struct GestureGroupExample {
   @State mode: GestureMode = GestureMode.Sequence
 
   build() {
-    Flex({ direction: FlexDirection.Column, mode:this.mode, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+    Flex({
+      direction: FlexDirection.Column,
+      mode: this.mode,
+      alignItems: ItemAlign.Center,
+      justifyContent: FlexAlign.SpaceBetween
+    }) {
       Text('sequence gesture\n' + 'LongPress onAction:' + this.count + '\nPanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
     }
     .key('gestureMode')
     .translate({ x: this.offsetX, y: this.offsetY, z: 5 })
-    .height(100).width(200).padding(10).margin(80).border({ width: 1, style: this.borderStyle })
+    .height(100)
+    .width(200)
+    .padding(10)
+    .margin(80)
+    .border({ width: 1, style: this.borderStyle })
     .gesture(
     GestureGroup(GestureMode.Sequence,
     LongPressGesture({ repeat: true })
       .onAction((event: GestureEvent) => {
-        if (event.repeat) {this.count++}
+        if (event.repeat) {
+          this.count++
+        }
         console.log('LongPress onAction')
       })
       .onActionEnd(() => {

@@ -15,10 +15,10 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets";
 import router from '@system.router';
-import Utils from './Utils';
+import Utils from './Utils.ets';
 
 export default function polylineJsunit() {
-  describe('appInfoTest', function () {
+  describe('polylineTest', function () {
     beforeEach(async function (done) {
       console.info("polyline beforeEach start");
       let options = {

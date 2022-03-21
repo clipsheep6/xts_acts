@@ -18,10 +18,9 @@ import events_emitter from '@ohos.emitter'
 @Entry
 @Component
 struct SliderExample {
-  @State value:string=10
-  @State font:object={size: 30, weight:400, family: 'serif', style: FontStyle.Normal }
+  @State value: string= 10
+  @State font: object= { size: 30, weight: 400, family: 'serif', style: FontStyle.Normal }
   @State fontColor: Color= 0xCCCCCC
-
   private stateChangCallBack = (eventData) => {
     console.info("select page state change called:" + JSON.stringify(eventData));
     if (eventData != null) {
@@ -48,19 +47,19 @@ struct SliderExample {
 
   build() {
     Column() {
-      Select([{value:'aaa',icon: "/images/img.png"},
-              {value:'bbb',icon: "/images/img.png"},
-              {value:'ccc',icon: "/images/img.png"},
-              {value:'ddd',icon: "/images/img.png"}])
+      Select([{ value: 'aaa', icon: "/images/img.png" },
+              { value: 'bbb', icon: "/images/img.png" },
+              { value: 'ccc', icon: "/images/img.png" },
+              { value: 'ddd', icon: "/images/img.png" }])
         .selected(2)
         .value('TTT')
         .value(this.value)
         .font(this.font)
         .fontColor(this.fontColor)
-        .selectedOptionFont({size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
-        .optionFont({size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
+        .selectedOptionFont({ size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
+        .optionFont({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
         .key('select')
-        .onSelected((index:number)=>{
+        .onSelected((index: number) => {
           console.info("Select:" + index)
         })
     }

@@ -18,7 +18,7 @@ import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
 
-export default function OhosRouterJsunit() {
+export default function ohosRouterJsunit() {
   describe('ohosRouterTest', function () {
     beforeEach(async function (done) {
       let options = {
@@ -140,7 +140,7 @@ export default function OhosRouterJsunit() {
       done();
     });
 
-    it('ohosRouterTest005', 0, async function(done) {
+    it('ohosRouterTest005', 0, async function (done) {
       console.info('[ohosRouterTest005] START');
       let options = {
         uri: 'pages/ohosRouterA'

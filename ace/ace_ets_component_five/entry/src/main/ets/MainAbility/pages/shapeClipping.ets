@@ -20,23 +20,21 @@ import events_emitter from '@ohos.emitter';
 @Component
 struct ClipAndMaskExample {
   @State isMaskRect: boolean = true;
-  @State isClipCircle:boolean = true;
+  @State isClipCircle: boolean = true;
   @State maskType: CommonShapeMethod= new Rect({ width: 280, height: 280 });
   @State clipType: CommonShapeMethod= new Circle({ width: 280, height: 280 });
-
   private stateChangCallBack = (eventData) => {
     if (eventData != null) {
       console.info("shapeClipping page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.maskValue != null) {
+      if (eventData.data.maskValue != null) {
         this.maskType = new Circle({ width: 280, height: 280 });
       }
     }
   }
-
   private shapeChangCallBack = (eventData) => {
     if (eventData != null) {
       console.info("shapeClipping page shape change called:" + JSON.stringify(eventData));
-      if(eventData.data.clipValue != null) {
+      if (eventData.data.clipValue != null) {
         this.clipType = new Rect({ width: 280, height: 280 });
       }
     }

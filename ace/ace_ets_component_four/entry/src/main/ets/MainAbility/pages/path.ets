@@ -23,11 +23,20 @@ struct PathExample {
   @State widthOne: number = 300
   @State heightOne: number = 10
 
-
   onPageShow() {
     console.info('[path] page show called ');
     var stateChangeEvent = {
-      eventId: 151,
+      eventId: 3000,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
+    var stateChangeEvent = {
+      eventId: 3010,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
+    var stateChangeEvent = {
+      eventId: 3020,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack);
@@ -46,14 +55,19 @@ struct PathExample {
       if (eventData.data.height != null) {
         this.heightOne = eventData.data.height;
       }
-
     }
   }
 
   build() {
     Column({ space: 5 }) {
       Text('Straight line').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Path().width(this.widthOne).height(this.heightOne).commands(this.commandsOne).stroke(Color.Black).key('path1').strokeWidth(3)
+      Path()
+        .width(this.widthOne)
+        .height(this.heightOne)
+        .commands(this.commandsOne)
+        .stroke(Color.Black)
+        .key('path1')
+        .strokeWidth(3)
 
       Text('Straight line graph').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Flex({ justifyContent: FlexAlign.SpaceAround }) {

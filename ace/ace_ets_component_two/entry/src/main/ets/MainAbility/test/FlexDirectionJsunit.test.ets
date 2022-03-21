@@ -18,7 +18,7 @@ import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
-export default function flexDirectionJsunit(){
+export default function flexDirectionJsunit() {
   describe('flexDirectionTest', function () {
     beforeEach(async function (done) {
       console.info("text beforeEach start");
@@ -146,7 +146,7 @@ export default function flexDirectionJsunit(){
       expect(objNew.$attrs.backgroundColor).assertEqual("#FFF5DEB3");
       console.info('flexDirection_0700 END');
       done();
-      });
+    });
 
     it('flexDirection_0800', 0, async function (done) {
       console.info('flexDirection_0800 START');
@@ -205,6 +205,36 @@ export default function flexDirectionJsunit(){
       expect(objNew.$attrs.height).assertEqual('55.00vp');
       expect(objNew.$attrs.backgroundColor).assertEqual("#FF000990");
       console.info('flexDirection_0900 END');
+      done();
+    });
+
+    it('flexDirection_1000', 0, async function (done) {
+      console.info('flexDirection_1000 START');
+      try {
+        let eventData = {
+          data: {
+            "width": "-60%",
+            "height": "-55",
+            "backgroundColor": "#PP000990",
+          }
+        }
+        let indexEvent = {
+          eventId: 5699,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("flexDirection_1000 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("flexDirection_1000 change component data error: " + err.message);
+      }
+      await Utils.sleep(3000);
+      let strJsonNew = getInspectorByKey('Column');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("flexDirection_1000 component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.width).assertEqual('0.00%');
+      expect(objNew.$attrs.height).assertEqual('0.00vp');
+      expect(objNew.$attrs.backgroundColor).assertEqual("#FF000000");
+      console.info('flexDirection_1000 END');
       done();
     });
   })

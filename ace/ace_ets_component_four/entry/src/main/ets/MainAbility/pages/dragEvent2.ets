@@ -33,20 +33,31 @@ struct Drag2Example {
   @Builder pixelMapBuilder() {
     Column() {
       Text(this.text)
-        .width('50%').height(60).fontSize(16).borderRadius(10)
-        .textAlign(TextAlign.Center).backgroundColor(Color.Yellow)
+        .width('50%')
+        .height(60)
+        .fontSize(16)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .backgroundColor(Color.Yellow)
     }
   }
-
 
   build() {
     Column() {
       Text('There are three Text elements here')
-        .fontSize(12).fontColor(0xCCCCCC).width('90%')
-        .textAlign(TextAlign.Start).margin(5)
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+        .textAlign(TextAlign.Start)
+        .margin(5)
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
-        Text('apple').width('25%').height(35).fontSize(16).key('apple')
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('apple')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .key('apple')
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.appleVisible)
           .onDragStart(() => {
             console.log('Ting--onDragStart--apple')
@@ -55,8 +66,12 @@ struct Drag2Example {
             this.appleVisible = Visibility.Hidden
             return this.pixelMapBuilder
           })
-        Text('orange').width('25%').height(35).fontSize(16)
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('orange')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.orangeVisible)
           .onDragStart(() => {
             console.log('Ting--onDragStart--orange')
@@ -65,8 +80,12 @@ struct Drag2Example {
             this.orangeVisible = Visibility.Hidden
             return this.pixelMapBuilder
           })
-        Text('banana').width('25%').height(35).fontSize(16)
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('banana')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.bananaVisible)
           .onItemDragStart((event: ItemDragInfo, itemIndex: number) => {
             console.info('Ting--onItemDragStart' + event.x)
@@ -79,24 +98,31 @@ struct Drag2Example {
             this.text = 'banana'
             this.bananaVisible = Visibility.Hidden
             let obj = {
-              "builder" : this.pixelMapBuilder(),
+              "builder": this.pixelMapBuilder(),
               "extraInfo": "aaa",
-              "pixelMap" :PixelMapMock.release()
+              "pixelMap": PixelMapMock.release()
             }
             return this.pixelMapBuilder();
           })
       }.border({ width: 1 }).width('90%').padding({ top: 10, bottom: 10 }).margin(10)
 
-      Text('This is a List element').fontSize(12)
-        .fontColor(0xCCCCCC).width('90%')
-        .textAlign(TextAlign.Start).margin(15)
+      Text('This is a List element')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+        .textAlign(TextAlign.Start)
+        .margin(15)
 
       List({ space: 20, initialIndex: 0 }) {
         ForEach(this.numbers, (item) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height(80).fontSize(16).borderRadius(10)
-              .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+              .width('100%')
+              .height(80)
+              .fontSize(16)
+              .borderRadius(10)
+              .textAlign(TextAlign.Center)
+              .backgroundColor(0xAFEEEE)
           }.key('listItem')
           .onDragStart((event: DragEvent, extraParams: string) => {
             console.log('Ting--onDragStart--ListItem')
@@ -111,7 +137,9 @@ struct Drag2Example {
       }
       .editMode(true)
       .restoreId(this.id)
-      .height('50%').width('90%').border({ width: 1 })
+      .height('50%')
+      .width('90%')
+      .border({ width: 1 })
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
       .onDragEnter((event: DragEvent, extraParams: string) => {
         console.log('Ting--onDragEnter')

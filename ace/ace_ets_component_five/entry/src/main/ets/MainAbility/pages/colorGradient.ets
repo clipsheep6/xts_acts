@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import events_emitter from '@ohos.emitter';
 
 @Entry
@@ -35,10 +34,9 @@ struct ColorGradientExample {
   @State radialGradientValue: object = {
     center: [50, 50],
     radius: 60,
-    colors:[[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]],
+    colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]],
     repeating: true
   };
-
   private stateChangCallBack = (eventData) => {
     console.info("[ColorGradient] page stateChangCallBack");
     if (eventData != null) {
@@ -63,17 +61,23 @@ struct ColorGradientExample {
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack);
 
-    var stateChangeEvent = {
+    var stateChangeEvent1 = {
       eventId: 6,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
+    events_emitter.on(stateChangeEvent1, this.stateChangCallBack);
 
-    var stateChangeEvent = {
+    var stateChangeEvent2 = {
       eventId: 7,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
+    events_emitter.on(stateChangeEvent2, this.stateChangCallBack);
+
+    var stateChangeEvent3 = {
+      eventId: 1114,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEvent3, this.stateChangCallBack);
   }
 
   build() {

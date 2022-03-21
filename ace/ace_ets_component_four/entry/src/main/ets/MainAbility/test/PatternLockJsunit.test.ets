@@ -16,10 +16,10 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter'
-import Utils from './Utils';
+import Utils from './Utils.ets';
 
 export default function patternLockJsunit() {
-  describe('appInfoTest', function () {
+  describe('patternLockTest', function () {
     beforeEach(async function (done) {
       console.info("patternLock beforeEach start");
       let options = {
@@ -63,7 +63,7 @@ export default function patternLockJsunit() {
       } catch (err) {
         console.info("testPatternLock_01 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("testPatternLock_01 click result is: " + JSON.stringify(sendEventByKey('button1',10,"")));
+      console.info("testPatternLock_01 click result is: " + JSON.stringify(sendEventByKey('button1', 10, "")));
       await Utils.sleep(1000);
       console.info('testPatternLock_01 END');
       done();

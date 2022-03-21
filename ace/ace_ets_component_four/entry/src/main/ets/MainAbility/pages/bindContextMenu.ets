@@ -18,6 +18,7 @@
 @Component
 struct MenuExample {
   @State responseType: ResponseType = RightClick;
+
   @Builder ContextMenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Text('text3')
@@ -35,6 +36,6 @@ struct MenuExample {
     }
     .width('100%')
     .margin({ top: 5 })
-    .bindContextMenu(this.ContextMenuBuilder(),this.responseType)
+    .bindContextMenu(this.ContextMenuBuilder(), this.responseType)
   }
 }

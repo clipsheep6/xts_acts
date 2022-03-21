@@ -19,15 +19,14 @@ import events_emitter from '@ohos.emitter'
 @Entry
 @Component
 struct SideBarExample {
-  normalIcon : Resource = ($rawfile("ic_health_heart.png"))
+  normalIcon: Resource = ($rawfile("ic_health_heart.png"))
   selectedIcon: Resource = ($rawfile("test.png"))
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
   @State widthValue: number = 10
   @State heightValue: number = 10
   @State controlButton: ButtonStyle = ButtonStyle.left
-  @State iconsValue: object= { shown: string=10, hidden: string=10, switching:string=10 };
-
+  @State iconsValue: object= { shown: string = 10, hidden: string = 10, switching: string = 10 };
   private stateChangCallBack = (eventData) => {
     if (eventData != null) {
       console.info("sideBar page state change called:" + JSON.stringify(eventData));
@@ -45,6 +44,7 @@ struct SideBarExample {
       }
     }
   }
+
   onPageShow() {
     console.info('sideBar page show called');
     var stateChangeEvent = {
@@ -53,9 +53,9 @@ struct SideBarExample {
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
+
   build() {
-    SideBarContainer(SideBarContainerType.Embed)
-    {
+    SideBarContainer(SideBarContainerType.Embed) {
       Column() {
         ForEach(this.arr, (item, index) => {
           Column({ space: 5 }) {
@@ -71,11 +71,13 @@ struct SideBarExample {
         }, item => item)
       }.width('100%')
       .backgroundColor('#19000000')
+
       RowSplit() {
-        Column(){
+        Column() {
           Text('Split page one').fontSize(30)
         }
-        Column(){
+
+        Column() {
           Text('Split page two').fontSize(30)
         }
       }.width('100%')

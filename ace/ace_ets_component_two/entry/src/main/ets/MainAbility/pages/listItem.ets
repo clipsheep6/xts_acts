@@ -36,19 +36,28 @@ struct ListItemExample {
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEventOne, this.stateChangCallBack);
+
+    var stateChangeEventTwo = {
+      eventId: 1241,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventTwo, this.stateChangCallBack);
+
+    var stateChangeEventThree = {
+      eventId: 1231,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventThree, this.stateChangCallBack);
   }
 
   private stateChangCallBack = (eventData) => {
     console.info("[ListItem] page stateChangCallBack");
     if (eventData != null) {
       console.info("[ListItem] page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.sticky != null) {
+      if (eventData.data.sticky != null) {
         this.sticky = eventData.data.sticky;
       }
-    }
-    if (eventData != null) {
-      console.info("[ListItem] page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.editMode != null) {
+      if (eventData.data.editMode != null) {
         this.editMode = eventData.data.editMode;
       }
     }
@@ -59,8 +68,12 @@ struct ListItemExample {
       List({ space: 20, initialIndex: 0 }) {
         ListItem() {
           Text('sticky:Normal , click me edit list')
-            .width('100%').height(40).fontSize(12).fontColor(0xFFFFFF)
-            .textAlign(TextAlign.Center).backgroundColor(0x696969)
+            .width('100%')
+            .height(40)
+            .fontSize(12)
+            .fontColor(0xFFFFFF)
+            .textAlign(TextAlign.Center)
+            .backgroundColor(0x696969)
             .onClick(() => {
               this.editFlag = !this.editFlag
             })
@@ -69,8 +82,12 @@ struct ListItemExample {
         ForEach(this.arr, (item) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }.editable(this.editFlag)
         }, item => item)
       }
@@ -78,7 +95,7 @@ struct ListItemExample {
       .editMode(this.editMode)
       .onItemDelete((index: number) => {
         console.info(this.arr[index - 1] + 'Delete')
-        this.arr.splice(index - 1,1)
+        this.arr.splice(index - 1, 1)
         this.editFlag = false
         return true
       })
@@ -86,3 +103,6 @@ struct ListItemExample {
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }
+
+
+

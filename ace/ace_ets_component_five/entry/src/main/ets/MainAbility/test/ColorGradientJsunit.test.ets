@@ -194,5 +194,94 @@ export default function colorGradientJsunit() {
       console.info('[testColorGradient006] END');
       done();
     });
+
+    it('testColorGradient007', 0, async function (done) {
+      console.info('[testColorGradient007] START');
+      await Utils.sleep(1000);
+      let linearGradientValue = {
+        angle: -70,
+        colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]],
+      };
+      try {
+        var eventData = {
+          data: {
+            "linearGradientValue": JSON.stringify(linearGradientValue)
+          }
+        }
+        var innerEvent = {
+          eventId: 1114,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testColorGradient007] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testColorGradient007] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('linearGradient');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testColorGradient007] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.linearGradient.angle).assertEqual('-70.00px');
+      done();
+    });
+
+    it('testColorGradient008', 0, async function (done) {
+      console.info('[testColorGradient008] START');
+      await Utils.sleep(1000);
+      let linearGradientValue = {
+        direction: 1111111
+      };
+      try {
+        var eventData = {
+          data: {
+            "linearGradientValue": JSON.stringify(linearGradientValue)
+          }
+        }
+        var innerEvent = {
+          eventId: 1114,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testColorGradient008] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testColorGradient008] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('linearGradient');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testColorGradient008] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.linearGradient.direction).assertEqual('GradientDirection.None');
+      done();
+    });
+
+    it('testColorGradient009', 0, async function (done) {
+      console.info('[testColorGradient009] START');
+      await Utils.sleep(1000);
+      let sweepGradientValue = {
+        start: -10,
+        colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]],
+      };
+      try {
+        var eventData = {
+          data: {
+            "sweepGradientValue": JSON.stringify(sweepGradientValue)
+          }
+        }
+        var innerEvent = {
+          eventId: 1114,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testColorGradient009] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testColorGradient009] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('sweepGradient');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testColorGradient009] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.sweepGradient.start).assertEqual('-10.00px');
+      done();
+    });
   })
 }

@@ -49,10 +49,10 @@ struct OhosPrompt {
                 color: '#666666',
               }
             ],
-            success: function(data) {
+            success: function (data) {
               console.info('dialog success callback，click button : ' + data.tapIndex);
             },
-            fail: function(data) {
+            fail: function (data) {
               console.info('dialog fail callback' + data.errMsg);
             },
           })
@@ -65,10 +65,10 @@ struct OhosPrompt {
                 color: '#666666',
               },
             ],
-            success: function(data) {
+            success: function (data) {
               console.info('dialog success callback，click button : ' + data.index);
             },
-            cancel: function() {
+            cancel: function () {
               console.info('dialog cancel callback');
             },
           });

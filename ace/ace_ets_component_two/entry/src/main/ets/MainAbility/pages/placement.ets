@@ -32,16 +32,19 @@ struct PlacementExample {
       Text('Custom Popup').fontSize(12)
     }.width(100).height(50).backgroundColor(Color.White).key('image')
   }
+
   @Builder popupBuilderOne() {
     Row({ space: 2 }) {
       Text('Custom PopupOne').fontSize(12)
     }.width(100).height(50).backgroundColor(Color.White).key('image1')
   }
+
   @Builder popupBuilderTwo() {
     Row({ space: 2 }) {
       Text('Custom PopupTwo').fontSize(12)
     }.width(100).height(50).backgroundColor(Color.White).key('image2')
   }
+
   @Builder popupBuilderThree() {
     Row({ space: 2 }) {
       Text('Custom PopupThree').fontSize(12)
@@ -54,10 +57,10 @@ struct PlacementExample {
         .key('button')
         .onClick(() => {
           this.customPopup = !this.customPopup
-          try{
+          try {
             var backData = {
-              data:{
-                "placement":this.placement
+              data: {
+                "placement": this.placement
               }
             }
             var backEvent = {
@@ -66,7 +69,7 @@ struct PlacementExample {
             }
             console.info("button start to emit action state")
             events_emitter.emit(backEvent, backData)
-          }catch(err){
+          } catch (err) {
             console.info("button emit action state err: " + JSON.stringify(err.message))
           }
         })
@@ -88,10 +91,10 @@ struct PlacementExample {
         .key('button1')
         .onClick(() => {
           this.customPopupOne = !this.customPopupOne
-          try{
+          try {
             var backDataOne = {
-              data:{
-                "placement":this.placementOne
+              data: {
+                "placement": this.placementOne
               }
             }
             var backEventOne = {
@@ -100,7 +103,7 @@ struct PlacementExample {
             }
             console.info("button1 start to emit action state")
             events_emitter.emit(backEventOne, backDataOne)
-          }catch(err){
+          } catch (err) {
             console.info("button1 emit action state err: " + JSON.stringify(err.message))
           }
         })
@@ -122,10 +125,10 @@ struct PlacementExample {
         .key('button2')
         .onClick(() => {
           this.customPopupTwo = !this.customPopupTwo
-          try{
+          try {
             var backDataTwo = {
-              data:{
-                "placement":this.placementTwo
+              data: {
+                "placement": this.placementTwo
               }
             }
             var backEventTwo = {
@@ -134,7 +137,7 @@ struct PlacementExample {
             }
             console.info("button2 start to emit action state")
             events_emitter.emit(backEventTwo, backDataTwo)
-          }catch(err){
+          } catch (err) {
             console.info("button2 emit action state err: " + JSON.stringify(err.message))
           }
         })
@@ -156,10 +159,10 @@ struct PlacementExample {
         .key('button3')
         .onClick(() => {
           this.customPopupThree = !this.customPopupThree
-          try{
+          try {
             var backDataThree = {
-              data:{
-                "placement":this.placementThree
+              data: {
+                "placement": this.placementThree
               }
             }
             var backEventThree = {
@@ -168,7 +171,7 @@ struct PlacementExample {
             }
             console.info("button3 start to emit action state")
             events_emitter.emit(backEventThree, backDataThree)
-          }catch(err){
+          } catch (err) {
             console.info("button3 emit action state err: " + JSON.stringify(err.message))
           }
         })
@@ -188,3 +191,6 @@ struct PlacementExample {
     }.width('100%').padding({ top: 5 })
   }
 }
+
+
+

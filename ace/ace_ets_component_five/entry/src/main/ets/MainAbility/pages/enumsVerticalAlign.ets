@@ -23,7 +23,11 @@ struct RowExample {
       Row() {
         Row().width('50%').height(50).backgroundColor(0x00FFFF)
         Row().width('50%').height(50).backgroundColor(0xAFEEEE)
-      }.alignItems(VerticalAlign.Center).width('90%').height(100).border({ width: 1 })
+      }
+      .alignItems(VerticalAlign.Center)
+      .width('90%')
+      .height(100)
+      .border({ width: 1 })
       .key('VerticalAlign')
     }.width('100%')
   }

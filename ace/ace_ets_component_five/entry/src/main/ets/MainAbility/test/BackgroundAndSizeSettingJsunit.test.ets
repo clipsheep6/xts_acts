@@ -87,44 +87,125 @@ export default function backgroundAndSizeSettingJsunit() {
 
     it('testBackgroundAndSizeSetting_0300', 0, async function (done) {
       console.info('testBackgroundAndSizeSetting_0300 START');
-      await Utils.sleep(4000);
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "color": 0x80000000
+          }
+        }
+        var innerEvent = {
+          eventId: 2,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testBackgroundAndSizeSetting_0300 start pages");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("testBackgroundAndSizeSetting_0300 change component data error: " + err.message);
+      }
+      await Utils.sleep(3000);
       let strJson = getInspectorByKey('backgroundColor');
       console.info("testBackgroundAndSizeSetting_0300 component strJson:" + strJson);
       let obj = JSON.parse(strJson);
-      console.info("testBackgroundAndSizeSetting_0300 component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.borderWidth).assertEqual("1.00vp");
-      console.info('testBackgroundAndSizeSetting_0300 END');
+      console.info("testBackgroundAndSizeSetting_0300 rowDirection: " + obj.$attrs.direction);
+      expect(obj.$attrs.backgroundColor).assertEqual("#FFEEEE00");
       done();
     });
 
     it('testBackgroundAndSizeSetting_0400', 0, async function (done) {
-      console.info('[testBackgroundAndSizeSetting_0400] START');
+      console.info('testBackgroundAndSizeSetting_0400 START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "color": 0x7FFFFFFF
+          }
+        }
+        var innerEvent = {
+          eventId: 2,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testBackgroundAndSizeSetting_0400 start pages");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("testBackgroundAndSizeSetting_0400 change component data error: " + err.message);
+      }
+      await Utils.sleep(3000);
+      let strJson = getInspectorByKey('backgroundColor');
+      console.info("testBackgroundAndSizeSetting_0400 component strJson:" + strJson);
+      let obj = JSON.parse(strJson);
+      console.info("testBackgroundAndSizeSetting_0400 rowDirection: " + obj.$attrs.direction);
+      expect(obj.$attrs.backgroundColor).assertEqual("#FFEEEE00");
+      done();
+    });
+
+    it('testBackgroundAndSizeSetting_0500', 0, async function (done) {
+      console.info('testBackgroundAndSizeSetting_0500 START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "color": 'error'
+          }
+        }
+        var innerEvent = {
+          eventId: 2,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testBackgroundAndSizeSetting_0500 start pages");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("testBackgroundAndSizeSetting_0500 change component data error: " + err.message);
+      }
+      await Utils.sleep(3000);
+      let strJson = getInspectorByKey('backgroundColor');
+      console.info("testBackgroundAndSizeSetting_0500 component strJson:" + strJson);
+      let obj = JSON.parse(strJson);
+      console.info("testBackgroundAndSizeSetting_0500 rowDirection: " + obj.$attrs.direction);
+      expect(obj.$attrs.backgroundColor).assertEqual("#FFEEEE00");
+      done();
+    });
+
+    it('testBackgroundAndSizeSetting_0600', 0, async function (done) {
+      console.info('testBackgroundAndSizeSetting_0600 START');
+      await Utils.sleep(4000);
+      let strJson = getInspectorByKey('backgroundColor');
+      console.info("testBackgroundAndSizeSetting_0600 component strJson:" + strJson);
+      let obj = JSON.parse(strJson);
+      console.info("testBackgroundAndSizeSetting_0600 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.borderWidth).assertEqual("1.00vp");
+      console.info('testBackgroundAndSizeSetting_0600 END');
+      done();
+    });
+
+    it('testBackgroundAndSizeSetting_0700', 0, async function (done) {
+      console.info('[testBackgroundAndSizeSetting_0700] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('centerRow');
-      console.info("[testBackgroundAndSizeSetting_0400] component strJson:" + strJson);
+      console.info("[testBackgroundAndSizeSetting_0700] component strJson:" + strJson);
       let obj = JSON.parse(strJson);
       expect(obj.$attrs.width).assertEqual('80.00vp');
       expect(obj.$attrs.height).assertEqual('80.00vp');
       expect(obj.$attrs.padding).assertEqual('20.00vp');
       expect(obj.$attrs.margin).assertEqual('20.00vp');
-      console.info('[testBackgroundAndSizeSetting_0400] END');
+      console.info('[testBackgroundAndSizeSetting_0700] END');
       done();
     });
 
-    it('testBackgroundAndSizeSetting_0500', 0, async function (done) {
-      console.info('[testBackgroundAndSizeSetting_0500] START');
+    it('testBackgroundAndSizeSetting_0800', 0, async function (done) {
+      console.info('[testBackgroundAndSizeSetting_0800] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('innerRow');
-      console.info("[testBackgroundAndSizeSetting_0500] component strJson:" + strJson);
+      console.info("[testBackgroundAndSizeSetting_0800] component strJson:" + strJson);
       let obj = JSON.parse(strJson);
       expect(obj.$attrs.width).assertEqual('100.00%');
       expect(obj.$attrs.height).assertEqual('100.00%');
-      console.info('[testBackgroundAndSizeSetting_0500] END');
+      console.info('[testBackgroundAndSizeSetting_0800] END');
       done();
     });
 
-    it('testBackgroundAndSizeSetting_0600', 0, async function (done) {
-      console.info('[testBackgroundAndSizeSetting_0600] START');
+    it('testBackgroundAndSizeSetting_0900', 0, async function (done) {
+      console.info('[testBackgroundAndSizeSetting_0900] START');
       try {
         let eventData = {
           data: {
@@ -138,25 +219,25 @@ export default function backgroundAndSizeSettingJsunit() {
           eventId: 34,
           priority: events_emitter.EventPriority.LOW
         }
-        console.info("[testBackgroundAndSizeSetting_0600] start to publish emit");
+        console.info("[testBackgroundAndSizeSetting_0900] start to publish emit");
         events_emitter.emit(indexEvent, eventData);
       } catch (err) {
-        console.log("[testBackgroundAndSizeSetting_0600] change component data error: " + err.message);
+        console.log("[testBackgroundAndSizeSetting_0900] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('centerRow');
-      console.info("[testBackgroundAndSizeSetting_0600] component strJson:" + strJson);
+      console.info("[testBackgroundAndSizeSetting_0900] component strJson:" + strJson);
       let obj = JSON.parse(strJson);
       expect(obj.$attrs.width).assertEqual('200.00vp');
       expect(obj.$attrs.height).assertEqual('200.00vp');
       expect(obj.$attrs.padding).assertEqual('10.00vp');
       expect(obj.$attrs.margin).assertEqual('40.00vp');
-      console.info('[testBackgroundAndSizeSetting_0600] END');
+      console.info('[testBackgroundAndSizeSetting_0900] END');
       done();
     });
 
-    it('testBackgroundAndSizeSetting_0700', 0, async function (done) {
-      console.info('[testBackgroundAndSizeSetting_0700] START');
+    it('testBackgroundAndSizeSetting_1000', 0, async function (done) {
+      console.info('[testBackgroundAndSizeSetting_1000] START');
       await Utils.sleep(1000);
       try {
         let eventData = {
@@ -169,34 +250,34 @@ export default function backgroundAndSizeSettingJsunit() {
           eventId: 35,
           priority: events_emitter.EventPriority.LOW
         }
-        console.info("[testBackgroundAndSizeSetting_0700] start to publish emit");
+        console.info("[testBackgroundAndSizeSetting_1000] start to publish emit");
         events_emitter.emit(indexEvent, eventData);
       } catch (err) {
-        console.log("[testBackgroundAndSizeSetting_0700] change component data error: " + err.message);
+        console.log("[testBackgroundAndSizeSetting_1000] change component data error: " + err.message);
       }
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('innerRow');
-      console.info("[testBackgroundAndSizeSetting_0700] component strJson:" + strJson);
+      console.info("[testBackgroundAndSizeSetting_1000] component strJson:" + strJson);
       let obj = JSON.parse(strJson);
       expect(obj.$attrs.width).assertEqual('80.00%');
       expect(obj.$attrs.height).assertEqual('80.00%');
-      console.info('[testBackgroundAndSizeSetting_0700] END');
+      console.info('[testBackgroundAndSizeSetting_1000] END');
       done();
     });
 
-    it('testBackgroundAndSizeSetting_0800', 0, async function (done) {
-      console.info('[testBackgroundAndSizeSetting_0800] START');
+    it('testBackgroundAndSizeSetting_1100', 0, async function (done) {
+      console.info('[testBackgroundAndSizeSetting_1100] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('layoutWeight1');
-      console.info("[testBackgroundAndSizeSetting_0800] component strJson:" + strJson);
+      console.info("[testBackgroundAndSizeSetting_1100] component strJson:" + strJson);
       let obj = JSON.parse(strJson);
       expect(obj.$attrs.layoutWeight).assertEqual(1);
-      console.info('[testBackgroundAndSizeSetting_0800] END');
+      console.info('[testBackgroundAndSizeSetting_1100] END');
       done();
     });
 
-    it('testBackgroundAndSizeSetting_0900', 0, async function (done) {
-      console.info('[testBackgroundAndSizeSetting_0900] START');
+    it('testBackgroundAndSizeSetting_1200', 0, async function (done) {
+      console.info('[testBackgroundAndSizeSetting_1200] START');
       await Utils.sleep(1000);
       try {
         let eventData = {
@@ -208,17 +289,17 @@ export default function backgroundAndSizeSettingJsunit() {
           eventId: 36,
           priority: events_emitter.EventPriority.LOW
         }
-        console.info("[testBackgroundAndSizeSetting_0900] start to publish emit");
+        console.info("[testBackgroundAndSizeSetting_1200] start to publish emit");
         events_emitter.emit(indexEvent, eventData);
       } catch (err) {
-        console.log("[testBackgroundAndSizeSetting_0900] change component data error: " + err.message);
+        console.log("[testBackgroundAndSizeSetting_1200] change component data error: " + err.message);
       }
       await Utils.sleep(2000);
       let strJson = getInspectorByKey('layoutWeight1');
-      console.info("[testBackgroundAndSizeSetting_0900] component strJson:" + strJson);
+      console.info("[testBackgroundAndSizeSetting_1200] component strJson:" + strJson);
       let obj = JSON.parse(strJson);
       expect(obj.$attrs.layoutWeight).assertEqual(3);
-      console.info('[testBackgroundAndSizeSetting_0900] END');
+      console.info('[testBackgroundAndSizeSetting_1200] END');
       done();
     });
   })

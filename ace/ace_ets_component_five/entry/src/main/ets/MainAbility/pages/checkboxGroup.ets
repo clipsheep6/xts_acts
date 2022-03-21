@@ -19,12 +19,11 @@ import events_emitter from '@ohos.emitter'
 @Component
 struct CheckboxGroupExample {
   @State select: boolean = false
-
   private stateChangCallBack = (eventData) => {
     console.info("checkboxGroup page stateChangCallBack");
     if (eventData != null) {
       console.info("checkboxGroup page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.select != null) {
+      if (eventData.data.select != null) {
         this.select = eventData.data.select;
       }
     }
@@ -42,10 +41,10 @@ struct CheckboxGroupExample {
   build() {
     Scroll() {
       Column() {
-        CheckboxGroup({group : 'checkboxGroup'})
+        CheckboxGroup({ group: 'checkboxGroup' })
           .selectedColor(0xed6f21)
           .key('CheckboxGroup')
-          .onChange((itemName:CheckboxGroupResult) => {
+          .onChange((itemName: CheckboxGroupResult) => {
             console.info("TextPicker::dialogResult is" + JSON.stringify(itemName))
           })
         Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })

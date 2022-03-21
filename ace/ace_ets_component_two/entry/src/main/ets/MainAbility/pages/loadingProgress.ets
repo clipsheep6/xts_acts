@@ -19,21 +19,20 @@ import events_emitter from '@ohos.emitter';
 @Component
 struct LoadingProgressExample {
   @State color: color = Color.Blue
-
   private stateChangCallBack = (eventData) => {
     console.info("LoadingProgress page stateChangCallBack");
     if (eventData != null) {
       console.info("LoadingProgress page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.color != null) {
+      if (eventData.data.color != null) {
         this.color = eventData.data.color;
       }
-      }
     }
+  }
 
   onPageShow() {
     console.info('LoadingProgress page show called');
     var stateChangeEvent = {
-      eventId: 124,
+      eventId: 442,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack)
@@ -47,7 +46,11 @@ struct LoadingProgressExample {
         .width('90%')
         .key('LP')
       LoadingProgress()
-        .color(Color.Black)
+        .color(this.color)
     }.width('100%').margin({ top: 6 })
   }
 }
+
+
+
+

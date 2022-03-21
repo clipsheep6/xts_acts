@@ -24,11 +24,22 @@ struct ImageAnimatorExample {
   @State reverse: boolean = false
   @State iterations: number = 1
   @State fixedSize: boolean = false
-
+  private stateChangCallBack = (eventData) => {
+    if (eventData != null) {
+      console.info("ImageAnimator page state change called:" + JSON.stringify(eventData));
+      var iterationsValue = eventData.data.iterations;
+      if (iterations != null) {
+        this.iterations = iterationsValue;
+      }
+    } else {
+      console.info("ImageAnimator not change called:" + JSON.stringify(eventData));
+    }
+  }
 
   build() {
-    Column({ space:5 }) {
+    Column({ space: 5 }) {
       ImageAnimator()
+        .key("imageAnimatorKey")
         .images([
           {
             src: '/comment/bg1.jpg',
@@ -63,9 +74,15 @@ struct ImageAnimatorExample {
             left: 0
           }
         ])
-        .state(this.state).reverse(this.reverse).fixedSize(this.fixedSize).preDecode(this.preDecode)
-        .fillMode(this.fillMode).iterations(this.iterations).width(325).height(210)
-        .margin({top:100})
+        .state(this.state)
+        .reverse(this.reverse)
+        .fixedSize(this.fixedSize)
+        .preDecode(this.preDecode)
+        .fillMode(this.fillMode)
+        .iterations(this.iterations)
+        .width(325)
+        .height(210)
+        .margin({ top: 100 })
         .onStart(() => {
           console.info('Start')
         })
@@ -154,6 +171,7 @@ struct ImageAnimatorExample {
           }
         })
       }
+
       Row() {
         Button('reverse').key('button3').width(100).padding(5).onClick(() => {
           this.reverse = !this.reverse
@@ -212,10 +230,17 @@ struct ImageAnimatorExample {
       }
     }.width('100%').height('100%').backgroundColor(0xF1F3F5)
   }
+
   onPageShow() {
     console.info('imageAnimator page show called');
     var stateChangeEvent = {
       eventId: 121,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+
+    var stateChangeEvent = {
+      eventId: 563,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack)
@@ -226,6 +251,10 @@ struct ImageAnimatorExample {
       console.info("imageAnimator page state change called:" + JSON.stringify(eventData));
       if (eventData.data.preDecode != null) {
         this.preDecode = eventData.data.preDecode;
+      }
+      var iterationsValue = eventData.data.iterations;
+      if (iterationsValue != null) {
+        this.iterations = iterationsValue;
       }
     }
   }

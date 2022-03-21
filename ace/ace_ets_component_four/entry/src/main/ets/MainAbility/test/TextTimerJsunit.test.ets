@@ -15,10 +15,10 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
-import Utils from './Utils';
+import Utils from './Utils.ets';
 
 export default function textTimerJsunit() {
-  describe('appInfoTest', function () {
+  describe('textTimerTest', function () {
     beforeEach(async function (done) {
       console.info("textTimer beforeEach start");
       let options = {
@@ -54,7 +54,7 @@ export default function textTimerJsunit() {
       console.info("[textTimer0100] component obj is: " + JSON.stringify(obj));
       console.info("[textTimer0100] expect(obj.$type) is: " + (obj.$type));
       console.info("[textTimer0100] obj.$attrs.type is: " + (obj.$attrs.type));
-      if(true){
+      if (true) {
         done();
         return;
       }
@@ -66,7 +66,7 @@ export default function textTimerJsunit() {
       console.info('[textTimer0100] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('textTimer');
-      if(true){
+      if (true) {
         done();
         return;
       }
@@ -79,7 +79,7 @@ export default function textTimerJsunit() {
       console.info('[textTimer0300] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('textTimer');
-      if(true){
+      if (true) {
         done();
         return;
       }

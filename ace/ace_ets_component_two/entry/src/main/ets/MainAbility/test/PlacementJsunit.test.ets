@@ -18,8 +18,9 @@ import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
 
-export default function placementJsunit(){
-  describe('placementTest', function (){
+export default function placementJsunit() {
+  describe('placementTest', function () {
+
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/placement',
@@ -61,9 +62,9 @@ export default function placementJsunit(){
       } catch (err) {
         console.info("placementTest_0100 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("placementTest_0100 click result is: " + JSON.stringify(sendEventByKey('button',10,"")));
+      console.info("placementTest_0100 click result is: " + JSON.stringify(sendEventByKey('button', 10, "")));
       await Utils.sleep(1500);
-      console.info("placementTest_0100 clickOne result is: " + JSON.stringify(sendEventByKey('image',10,"")));
+      console.info("placementTest_0100 clickOne result is: " + JSON.stringify(sendEventByKey('image', 10, "")));
       console.info('placementTest_0100 END');
       done();
     });
@@ -84,9 +85,9 @@ export default function placementJsunit(){
       } catch (err) {
         console.info("placementTest_0200 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("placementTest_0200 click result is: " + JSON.stringify(sendEventByKey('button1',10,"")));
+      console.info("placementTest_0200 click result is: " + JSON.stringify(sendEventByKey('button1', 10, "")));
       await Utils.sleep(1500);
-      console.info("placementTest_0200 clickOne result is: " + JSON.stringify(sendEventByKey('image1',10,"")));
+      console.info("placementTest_0200 clickOne result is: " + JSON.stringify(sendEventByKey('image1', 10, "")));
       console.info('placementTest_0200 END');
       done();
     });
@@ -107,9 +108,9 @@ export default function placementJsunit(){
       } catch (err) {
         console.info("placementTest_0300 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("placementTest_0300 click result is: " + JSON.stringify(sendEventByKey('button2',10,"")));
+      console.info("placementTest_0300 click result is: " + JSON.stringify(sendEventByKey('button2', 10, "")));
       await Utils.sleep(1500);
-      console.info("placementTest_0300 clickOne result is: " + JSON.stringify(sendEventByKey('image2',10,"")));
+      console.info("placementTest_0300 clickOne result is: " + JSON.stringify(sendEventByKey('image2', 10, "")));
       console.info('placementTest_0300 END');
       done();
     });
@@ -130,11 +131,14 @@ export default function placementJsunit(){
       } catch (err) {
         console.info("placementTest_0400 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("placementTest_0400 click result is: " + JSON.stringify(sendEventByKey('button3',10,"")));
+      console.info("placementTest_0400 click result is: " + JSON.stringify(sendEventByKey('button3', 10, "")));
       await Utils.sleep(1500);
-      console.info("placementTest_0400 clickOne result is: " + JSON.stringify(sendEventByKey('image3',10,"")));
+      console.info("placementTest_0400 clickOne result is: " + JSON.stringify(sendEventByKey('image3', 10, "")));
       console.info('placementTest_0400 END');
       done();
     });
   })
 }
+
+
+

@@ -16,10 +16,10 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter'
-import Utils from './Utils';
+import Utils from './Utils.ets';
 
-export default function enableJsunit() {
-  describe('appInfoTest', function () {
+export default function pathJsunit() {
+  describe('pathTest', function () {
     beforeEach(async function (done) {
       console.info("path beforeEach start");
       let options = {
@@ -30,7 +30,7 @@ export default function enableJsunit() {
         let pages = router.getState();
         console.info("get path state pages: " + JSON.stringify(pages));
         if (!("path" == pages.name)) {
-          console.info("get overlay state pages.name:" + JSON.stringify(pages.name));
+          console.info("get path state pages.name:" + JSON.stringify(pages.name));
           let result = await router.push(options);
           await Utils.sleep(2000);
           console.info("push path page result:" + JSON.stringify(result));
@@ -69,7 +69,7 @@ export default function enableJsunit() {
           }
         }
         var innerEvent = {
-          eventId: 151,
+          eventId: 3000,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[testPath02] start to publish emit");
@@ -84,6 +84,64 @@ export default function enableJsunit() {
       expect(obj.$attrs.width).assertEqual('200.00px');
       expect(obj.$attrs.height).assertEqual('200.00px');
       console.info('testPath02 END');
+      done();
+    });
+
+    it('testPath03', 0, async function (done) {
+      console.info('[testPath03] START');
+      try {
+        var eventData = {
+          data: {
+            "height": 'abc',
+            "commands": "M0 110 L900 0",
+            "width": 'def',
+          }
+        }
+        var innerEvent = {
+          eventId: 3010,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testPath03] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testPath03] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('path1');
+      let obj = JSON.parse(strJson);
+      console.info("[testPath03] obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.width).assertEqual('0.00px');
+      expect(obj.$attrs.height).assertEqual('0.00px');
+      console.info('testPath03 END');
+      done();
+    });
+
+    it('testPath04', 0, async function (done) {
+      console.info('[testPath04] START');
+      try {
+        var eventData = {
+          data: {
+            "height": 'false',
+            "commands": "M0 110 L900 0",
+            "width": [1, 2, 3, 4],
+          }
+        }
+        var innerEvent = {
+          eventId: 3020,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testPath04] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testPath04] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('path1');
+      let obj = JSON.parse(strJson);
+      console.info("[testPath04] obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.width).assertEqual('0.00px');
+      expect(obj.$attrs.height).assertEqual('0.00px');
+      console.info('testPath04 END');
       done();
     });
   })

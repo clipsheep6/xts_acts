@@ -21,6 +21,7 @@ class BasicDataSource implements IDataSource {
   public totalCount(): number {
     return 0
   }
+
   public getData(index: number): any {
     return undefined
   }
@@ -31,6 +32,7 @@ class BasicDataSource implements IDataSource {
       this.listeners.push(listener)
     }
   }
+
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
@@ -44,21 +46,25 @@ class BasicDataSource implements IDataSource {
       listener.onDataReloaded()
     })
   }
+
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdded(index)
     })
   }
+
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChanged(index)
     })
   }
+
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDeleted(index)
     })
   }
+
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMoved(from, to)
@@ -72,6 +78,7 @@ class MyDataSource extends BasicDataSource {
   public totalCount(): number {
     return this.dataArray.length
   }
+
   public getData(index: number): any {
     return this.dataArray[index]
   }
@@ -80,6 +87,7 @@ class MyDataSource extends BasicDataSource {
     this.dataArray.splice(index, 0, data)
     this.notifyDataAdd(index)
   }
+
   public pushData(data: string): void {
     this.dataArray.push(data)
     this.notifyDataAdd(this.dataArray.length - 1)
@@ -90,16 +98,17 @@ class MyDataSource extends BasicDataSource {
 @Component
 struct MyComponent {
   private data: MyDataSource = new MyDataSource()
+
   build() {
-    List({space: 3}) {
+    List({ space: 3 }) {
       LazyForEach(this.data, (item: string) => {
         ListItem() {
           Row() {
             Image(item).width("30%").height(50)
-            Text(item).fontSize(20).margin({left:10})
-          }.margin({left: 10, right: 10})
+            Text(item).fontSize(20).margin({ left: 10 })
+          }.margin({ left: 10, right: 10 })
         }
-        .onClick(()=>{
+        .onClick(() => {
           this.data.pushData('/path/image' + this.data.totalCount())
         })
       }, item => item)

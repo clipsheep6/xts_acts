@@ -18,8 +18,8 @@ import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
-export default function fillModeJsunit(){
-  describe('fillModeTest', function (){
+export default function fillModeJsunit() {
+  describe('fillModeTest', function () {
     beforeEach(async function (done) {
       console.info('fillModeTest beforeEach called');
       let options = {
@@ -62,7 +62,7 @@ export default function fillModeJsunit(){
       } catch (err) {
         console.info("fillModeTest_0100 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("fillModeTest_0100 click result is: " + JSON.stringify(sendEventByKey('button',10,"")));
+      console.info("fillModeTest_0100 click result is: " + JSON.stringify(sendEventByKey('button', 10, "")));
       await Utils.sleep(1000);
       console.info('fillModeTest_0100 END');
       done();
@@ -84,7 +84,7 @@ export default function fillModeJsunit(){
       } catch (err) {
         console.info("fillModeTest_0200 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("fillModeTest_0200 click result is: " + JSON.stringify(sendEventByKey('button1',10,"")));
+      console.info("fillModeTest_0200 click result is: " + JSON.stringify(sendEventByKey('button1', 10, "")));
       await Utils.sleep(1000);
       console.info('fillModeTest_0200 END');
       done();
@@ -106,7 +106,7 @@ export default function fillModeJsunit(){
       } catch (err) {
         console.info("fillModeTest_0300 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("fillModeTest_0300 click result is: " + JSON.stringify(sendEventByKey('button2',10,"")));
+      console.info("fillModeTest_0300 click result is: " + JSON.stringify(sendEventByKey('button2', 10, "")));
       await Utils.sleep(1000);
       console.info('fillModeTest_0300 END');
       done();

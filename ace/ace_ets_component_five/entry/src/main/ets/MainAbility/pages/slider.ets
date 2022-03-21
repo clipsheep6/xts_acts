@@ -25,7 +25,6 @@ struct SliderExample {
   @State stepValue: number = 1
   @State decorationValue: Axis = Axis.Vertical
   @State value: number = 40
-
   private stateChangCallBack = (eventData) => {
     console.info("slider page state change called:" + JSON.stringify(eventData));
     if (eventData != null) {

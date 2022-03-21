@@ -71,18 +71,18 @@ struct Second {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center}) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('current milliseconds is' + this.accumulateTime)
         .fontSize(this.fontSize)
         .fontColor(this.fontColor)
-      TextClock({timeZoneOffset: -8, controller: this.controller})
+      TextClock({ timeZoneOffset: -8, controller: this.controller })
         .key('textClock')
         .format(this.format)
         .fontSize(this.fontSize)
         .fontColor(this.fontColor)
         .onDateChange((value: number) => {
           this.accumulateTime = value
-          this.onActionCalled= true;
+          this.onActionCalled = true;
           console.info('onChange current action state is: ' + this.onActionCalled);
           try {
             var backData = {
@@ -104,12 +104,12 @@ struct Second {
         .fontSize(30)
       Button("start TextClock")
         .margin({ bottom: 10 })
-        .onClick(()=>{
+        .onClick(() => {
           this.controller.start()
         })
       Button("stop TextClock")
         .key('button')
-        .onClick(()=>{
+        .onClick(() => {
           this.controller.stop()
           this.onActionCalledOne = true;
           console.info('button2 current action state is: ' + this.onActionCalledOne);

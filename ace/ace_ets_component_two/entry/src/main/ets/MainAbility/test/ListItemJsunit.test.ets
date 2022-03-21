@@ -95,7 +95,7 @@ export default function listItemJsunit() {
     });
 
     it('testListItem04', 0, async function (done) {
-      console.info('[testEllipse03] START');
+      console.info('[testListItem04] START');
       try {
         var eventData = {
           data: {
@@ -119,5 +119,60 @@ export default function listItemJsunit() {
       console.info('testListItem04 END');
       done();
     });
+
+    it('testListItem05', 0, async function (done) {
+      console.info('[testListItem05] START');
+      try {
+        var eventData = {
+          data: {
+            "editMode": true
+          }
+        }
+        var innerEvent = {
+          eventId: 1231,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testListItem05] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testListItem05] change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJson = getInspectorByKey('List');
+      let obj = JSON.parse(strJson);
+      console.info("[testListItem05] obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.editMode).assertEqual('true');
+      console.info('testListItem05 END');
+      done();
+    });
+
+    it('testListItem06', 0, async function (done) {
+      console.info('[testListItem06] START');
+      try {
+        var eventData = {
+          data: {
+            "sticky": Sticky.Normal
+          }
+        }
+        var innerEvent = {
+          eventId: 1221,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testListItem06] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testListItem06] change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJson = getInspectorByKey('ListItem');
+      let obj = JSON.parse(strJson);
+      console.info("[testListItem06] obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.sticky).assertEqual('Sticky.None');
+      console.info('testListItem06 END');
+      done();
+    });
   })
 }
+
+
+

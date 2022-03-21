@@ -21,27 +21,26 @@ import events_emitter from '@ohos.emitter'
 struct BorderExample {
   @State borderStyle: BorderStyle = BorderStyle.Auto;
   @State borderRadius: number = 70;
-
   private stateChangCallBack = (eventData) => {
     if (eventData != null) {
       console.info("Border page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.border != null) {
+      if (eventData.data.border != null) {
         this.border = eventData.data.border;
       }
-      if(eventData.data.borderStyle != null) {
+      if (eventData.data.borderStyle != null) {
         this.borderStyle = eventData.data.borderStyle;
       }
-      if(eventData.data.borderWidth != null) {
+      if (eventData.data.borderWidth != null) {
         this.borderWidth = eventData.data.borderWidth;
       }
-      if(eventData.data.borderColor != null) {
+      if (eventData.data.borderColor != null) {
         this.borderColor = eventData.data.borderColor;
       }
-      if(eventData.data.borderRadius != null) {
+      if (eventData.data.borderRadius != null) {
         this.borderRadius = eventData.data.borderRadius;
       }
       console.info("Border borderStyle state change called:" + JSON.stringify(eventData));
-      switch(eventData.data.borderStyle) {
+      switch (eventData.data.borderStyle) {
         case 'Dotted':
           this.borderStyle = BorderStyle.Dotted;
           break;
@@ -57,7 +56,6 @@ struct BorderExample {
     }
   }
 
-
   onPageShow() {
     console.info('border page show called');
     var stateChangeEvent = {
@@ -70,19 +68,32 @@ struct BorderExample {
   build() {
     Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
       Text('dashed')
-        .borderStyle(BorderStyle.Dashed).borderWidth(5)
+        .borderStyle(BorderStyle.Dashed)
+        .borderWidth(5)
         .borderColor(0xAFEEEE)
-        .borderRadius(this.borderRadius).key("borderRadius")
-        .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
+        .borderRadius(this.borderRadius)
+        .key("borderRadius")
+        .width(120)
+        .height(120)
+        .textAlign(TextAlign.Center)
+        .fontSize(16)
       Text('Solid')
-        .borderStyle(BorderStyle.Solid).borderWidth(5).key("borderWidth")
+        .borderStyle(BorderStyle.Solid)
+        .borderWidth(5)
+        .key("borderWidth")
         .borderColor(0xEE0000)
         .borderRadius(10)
-        .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
+        .width(120)
+        .height(120)
+        .textAlign(TextAlign.Center)
+        .fontSize(16)
       Text('dotted')
         .border({ width: 5, color: 0x317AF7, radius: 8, style: BorderStyle.Dotted })
         .key("borderColor")
-        .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
+        .width(120)
+        .height(120)
+        .textAlign(TextAlign.Center)
+        .fontSize(16)
     }.width('100%').height(150)
   }
 }
