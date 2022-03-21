@@ -13,12 +13,12 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-group("ActsKillProcessWithAccountApi7") {
+group("ActsKillProcessWithAccountApi7Test") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "ActsKillProcessWithAccountApi7Test:ActsKillProcessWithAccountApi7Test",
-      "ActsKillProcessWithAccountCloseApi7:ActsKillProcessWithAccountCloseApi7",
+      "actskillprocesswithaccountapi7:ActsKillProcessWithAccountApi7Test",
+      "actskillprocesswithaccountclose:ActsKillProcessWithAccountCloseApi7",
     ]
   }
 }
