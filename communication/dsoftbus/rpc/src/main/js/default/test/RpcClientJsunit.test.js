@@ -127,7 +127,6 @@ describe('ActsRpcClientJsTest', function(){
         constructor(descriptor) {
             super(descriptor)
         }
-
         onRemoteRequest(code, data, reply, option) {
             console.info("TestAbilityStub: onRemoteRequest called, code: " + code)
             let descriptor = data.readInterfaceToken()
