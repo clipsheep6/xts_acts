@@ -56,12 +56,6 @@ describe('videoEncoderSoftwareMultiInstances', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (videoEncodeProcessor != null){
-            await videoEncodeProcessor.release().then(() => {
-                console.info('case release success'); 
-                videoEncodeProcessor = null;
-            }, failCallback).catch(failCatch);
-        }
     })
 
     afterAll(function() {
@@ -255,8 +249,8 @@ describe('videoEncoderSoftwareMultiInstances', function () {
     async function toRelease() {
         await videoEncodeProcessor.release().then(() => {
             console.info('case release success'); 
-            videoEncodeProcessor = null;
         }, failCallback).catch(failCatch);
+        videoEncodeProcessor = null;
     }
 
 
@@ -287,8 +281,8 @@ describe('videoEncoderSoftwareMultiInstances', function () {
             for (let j = 1; j < 3; j++) {
                 await array[j].release().then(() => {
                     console.info('case release encoder ' + j);
-                    array[j] = null;
                 }, failCallback).catch(failCatch);
+                array[j] = null;
             }
             console.info('release encoders success');
             done();

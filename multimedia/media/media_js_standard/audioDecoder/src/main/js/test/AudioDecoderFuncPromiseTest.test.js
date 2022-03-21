@@ -246,12 +246,6 @@ describe('AudioDecoderFuncPromise', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (audioDecodeProcessor != null) {
-            await audioDecodeProcessor.release().then(() => {
-                console.info('audioDecodeProcessor release success');
-                audioDecodeProcessor = null;
-            }, failCallback).catch(failCatch);
-        }
     })
 
     afterAll(function() {
@@ -323,10 +317,12 @@ describe('AudioDecoderFuncPromise', function () {
         resetParam();
         await audioDecodeProcessor.reset().then(() => {
             console.info('case reset success');
-            if (needrelease) {
-                audioDecodeProcessor = null;
-            }
         }, failCallback).catch(failCatch);
+        if (needrelease) {
+            await audioDecodeProcessor.release().then(() => {
+                console.info('case re success');
+            }, failCallback).catch(failCatch);
+        }
     }
 
     async function flushWork() {
@@ -351,7 +347,6 @@ describe('AudioDecoderFuncPromise', function () {
         await audioDecodeProcessor.release().then(() => {
             console.info('case release success');
         }, failCallback).catch(failCatch);
-        audioDecodeProcessor = null;
     }
 
     function sleep(time) {

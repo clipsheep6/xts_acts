@@ -83,12 +83,6 @@ describe('AudioEncoderSTTCallback', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (audioEncodeProcessor != null) {
-            await audioEncodeProcessor.release().then(() => {
-                console.info('audioEncodeProcessor release success');
-                audioEncodeProcessor = null;
-            }, failCallback).catch(failCatch);
-        }
     })
 
     afterAll(function() {
@@ -187,7 +181,6 @@ describe('AudioEncoderSTTCallback', function () {
                 audioEncodeProcessor.release((err) => {
                     expect(err).assertUndefined();
                     console.log('case release success');
-                    audioEncodeProcessor = null;
                     done();
                 })
             })
@@ -208,7 +201,6 @@ describe('AudioEncoderSTTCallback', function () {
             audioEncodeProcessor.release((err) => {
                 expect(err).assertUndefined();
                 console.log('case release success');
-                audioEncodeProcessor = null;
                 done();
             })
         }

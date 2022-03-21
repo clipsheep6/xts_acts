@@ -63,12 +63,6 @@ describe('AudioDecoderFormatCallback', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (audioDecodeProcessor != null) {
-            await audioDecodeProcessor.release().then(() => {
-                console.info('audioDecodeProcessor release success');
-                audioDecodeProcessor = null;
-            }, failCallback).catch(failCatch);
-        }
     })
 
     afterAll(function() {
@@ -156,7 +150,6 @@ describe('AudioDecoderFormatCallback', function () {
                         audioDecodeProcessor.release((err) => {
                             expect(err).assertUndefined();
                             console.log('case release success');
-                            audioDecodeProcessor = null;
                             done();
                         })
                     })

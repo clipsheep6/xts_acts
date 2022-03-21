@@ -65,12 +65,6 @@ describe('AudioEncoderFuncCallback', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (audioEncodeProcessor != null) {
-            await audioEncodeProcessor.release().then(() => {
-                console.info('audioEncodeProcessor release success');
-                audioEncodeProcessor = null;
-            }, failCallback).catch(failCatch);
-        }
     })
 
     afterAll(function() {
@@ -162,7 +156,10 @@ describe('AudioEncoderFuncCallback', function () {
             expect(err).assertUndefined();
             console.info('case reset success');
             if (needrelease) {
-                audioEncodeProcessor = null
+                audioEncodeProcessor.release((err) => {
+                    expect(err).assertUndefined();
+                    console.info('case release success');
+                })
             }
         })
     }
@@ -189,7 +186,6 @@ describe('AudioEncoderFuncCallback', function () {
                 audioEncodeProcessor.release((err) => {
                     expect(err).assertUndefined();
                     console.log('case release success');
-                    audioEncodeProcessor = null;
                     done();
                 })
             })
@@ -620,7 +616,6 @@ describe('AudioEncoderFuncCallback', function () {
             audioEncodeProcessor.release((err) => {
                 expect(err).assertUndefined();
                 console.info(`case release 1`);
-                audioEncodeProcessor = null;
                 done();
             })
         });

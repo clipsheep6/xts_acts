@@ -85,12 +85,6 @@ describe('AudioEncoderSTTPromise', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (audioEncodeProcessor != null) {
-            await audioEncodeProcessor.release().then(() => {
-                console.info('audioEncodeProcessor release success');
-                audioEncodeProcessor = null;
-            }, failCallback).catch(failCatch);
-        }
     })
 
     afterAll(function() {
@@ -205,7 +199,6 @@ describe('AudioEncoderSTTPromise', function () {
         await audioEncodeProcessor.release().then(() => {
             console.info('case release success');
         }, failCallback).catch(failCatch);
-        audioEncodeProcessor = null;
     }
 
 
@@ -222,7 +215,6 @@ describe('AudioEncoderSTTPromise', function () {
         if (mySteps[0] == END) {
             audioEncodeProcessor.release().then(() => {
                 console.info('case release success');
-                audioEncodeProcessor = null;
                 done();
             }, failCallback).catch(failCatch);
         }

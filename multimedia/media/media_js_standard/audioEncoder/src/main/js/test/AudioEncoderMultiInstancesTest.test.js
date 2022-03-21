@@ -161,9 +161,6 @@ describe('AudioEncoderMultiInstances', function () {
         resetParam();
         await audioEncodeProcessor.reset().then(() => {
             console.info('case reset success');
-            if (needrelease) {
-                audioEncodeProcessor = null;
-            }
         }, failCallback).catch(failCatch);
     }
 
@@ -186,7 +183,9 @@ describe('AudioEncoderMultiInstances', function () {
         await audioEncodeProcessor.reset().then(() => {
             console.info('case reset success');
         }, failCallback).catch(failCatch);
-        audioEncodeProcessor = null;
+        await audioEncodeProcessor.release().then(() => {
+            console.info('case release success');
+        }, failCallback).catch(failCatch);
     }
 
 

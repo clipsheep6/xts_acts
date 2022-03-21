@@ -68,7 +68,6 @@ describe('AudioEncoderFuncPromise', function () {
         if (audioEncodeProcessor != null) {
             await audioEncodeProcessor.release().then(() => {
                 console.info('audioEncodeProcessor release success');
-                audioEncodeProcessor = null;
             }, failCallback).catch(failCatch);
         }
     })
@@ -170,10 +169,12 @@ describe('AudioEncoderFuncPromise', function () {
         resetParam();
         await audioEncodeProcessor.reset().then(() => {
             console.info('case reset success');
-            if (needrelease) {
-                audioEncodeProcessor = null;
-            }
         }, failCallback).catch(failCatch);
+        if (needrelease) {
+            await audioEncodeProcessor.release().then(() => {
+                console.info('case release success');
+            }, failCallback).catch(failCatch);
+        }
     }
 
     async function flushWork() {
@@ -198,7 +199,6 @@ describe('AudioEncoderFuncPromise', function () {
         await audioEncodeProcessor.release().then(() => {
             console.info('case release success');
         }, failCallback).catch(failCatch);
-        audioEncodeProcessor = null;
     }
 
 
@@ -526,7 +526,6 @@ describe('AudioEncoderFuncPromise', function () {
         await audioEncodeProcessor.release().then(() => {
             console.info('case release success');
         }, failCallback).catch(failCatch);
-        audioEncodeProcessor = null;
         done();
     })
 

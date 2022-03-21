@@ -264,12 +264,6 @@ describe('AudioDecoderReliabilityPromise', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (audioDecodeProcessor != null) {
-            await audioDecodeProcessor.release().then(() => {
-                console.info('audioDecodeProcessor release success');
-                audioDecodeProcessor = null;
-            }, failCallback).catch(failCatch);
-        }
     })
 
     afterAll(function() {
@@ -358,7 +352,6 @@ describe('AudioDecoderReliabilityPromise', function () {
         await audioDecodeProcessor.release().then(() => {
             console.info('case release success');
         }, failCallback).catch(failCatch);
-        audioDecodeProcessor = null;
     }
 
     function sleep(time) {
@@ -374,7 +367,6 @@ describe('AudioDecoderReliabilityPromise', function () {
         if (mySteps[0] == END) {
             audioDecodeProcessor.release().then(() => {
                 console.info('case release success');
-                audioDecodeProcessor = null;
                 done();
             }, failCallback).catch(failCatch);
         }

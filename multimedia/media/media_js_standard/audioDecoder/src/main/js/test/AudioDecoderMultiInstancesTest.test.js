@@ -264,8 +264,8 @@ describe('AudioDecoderMultiInstances', function () {
             }, failCallback).catch(failCatch);
             await array[j].release().then(() => {
                 console.info('release success');
-                array[j] = null;
             }, failCallback).catch(failCatch);
+            array[j] = null;
         }
         done();
     })
