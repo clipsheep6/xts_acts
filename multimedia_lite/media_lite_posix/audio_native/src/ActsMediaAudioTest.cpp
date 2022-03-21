@@ -20,7 +20,6 @@ using namespace std;
 using namespace OHOS::Audio;
 using namespace testing::ext;
 
-
 namespace OHOS {
 
 const int32_t SAMPLE_RATE = 24000;
