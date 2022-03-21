@@ -20,7 +20,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 describe('audioManager',async function () {
 	console.info('AudioFrameworkTest: Create systemSoundManager Object JS Framework');
 	const systemSoundManager = audio.getSystemSoundManager();
-	const mediaLibInstance = mediaLibrary.getMediaLibrary();
+	
 	let ringtonePlayer;
 	var minVol = 0;
 	var maxVol = 1;
