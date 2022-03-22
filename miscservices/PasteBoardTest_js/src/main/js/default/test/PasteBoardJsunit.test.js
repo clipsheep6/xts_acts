@@ -19,6 +19,7 @@ import pasteboard from '@ohos.pasteboard'
 
 describe('PasteBoardTest', function() {
     console.log('start################################start');
+
     /**
      * @tc.number    SUB_pasteBoard_function_JS_API_0100
      * @tc.name      Adds PlainTextData
