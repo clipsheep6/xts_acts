@@ -83,6 +83,12 @@ describe('videoEncoderReliabilityPromise', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
+        if (videoEncodeProcessor != null) {
+            await videoEncodeProcessor.release().then(() => {
+                console.info(`case release 1`);
+                videoEncodeProcessor = null;
+            }, failCallback).catch(failCatch);
+        }
     })
 
     afterAll(function() {

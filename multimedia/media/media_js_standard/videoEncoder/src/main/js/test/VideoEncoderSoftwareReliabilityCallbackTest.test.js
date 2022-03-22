@@ -78,6 +78,12 @@ describe('VideoEncoderSoftwareReliCallbackTest', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
+        if (videoEncodeProcessor != null) {
+            await videoEncodeProcessor.release().then(() => {
+                console.info('in case : videoEncodeProcessor release success');
+            }, failCallback).catch(failCatch);
+            videoEncodeProcessor = null;
+        }
         toStopStream();
     })
 
@@ -257,6 +263,7 @@ describe('VideoEncoderSoftwareReliCallbackTest', function () {
                 videoEncodeProcessor.release((err) => {
                     printError(err, false);
                     console.info('in case : videoEncodeProcessor release callback');
+                    videoEncodeProcessor = null;
                     console.info('case to done');
                     done();
                 });
@@ -375,6 +382,7 @@ describe('VideoEncoderSoftwareReliCallbackTest', function () {
                 videoEncodeProcessor.release((err) => {
                     printError(err, false);
                     console.info('case release callback');
+                    videoEncodeProcessor = null;
                     nextStep();
                 })
             })
@@ -1302,6 +1310,7 @@ describe('VideoEncoderSoftwareReliCallbackTest', function () {
                     videoEncodeProcessor.release((err) => {
                         expect(err).assertUndefined();
                         console.info('case release callback');
+                        videoEncodeProcessor = null;
                         done();
                     })
                 }
@@ -1375,6 +1384,7 @@ describe('VideoEncoderSoftwareReliCallbackTest', function () {
                     videoEncodeProcessor.release((err) => {
                         expect(err).assertUndefined();
                         console.info('case release callback');
+                        videoEncodeProcessor = null;
                         done();
                     })
                 }
@@ -1423,6 +1433,7 @@ describe('VideoEncoderSoftwareReliCallbackTest', function () {
             videoEncodeProcessor.release((err) => {
                 expect(err).assertUndefined();
                 console.info(`case release 1`);
+                videoEncodeProcessor = null;
                 loopCnt += 1;
                 if (loopCnt < 50) {
                     console.info('case create-release current loop: ' + loopCnt);
@@ -1516,6 +1527,7 @@ describe('VideoEncoderSoftwareReliCallbackTest', function () {
             videoEncodeProcessor.release((err) => {
                 expect(err).assertUndefined();
                 console.info(`case release 1`);
+                videoEncodeProcessor = null;
                 loopCnt += 1;
                 if (loopCnt < 50) {
                     console.info('case create-release current loop: ' + loopCnt);
