@@ -25,6 +25,8 @@ struct VideoCreateComponent {
   @State controlsss: boolean = true;
   myVideoController: VideoController = new VideoController();
   @State startStaus: boolean = true;
+  @State fullScreen: boolean = true;
+  private clickFullScreenBtn: boolean = false;
 
   onPageShow() {
     console.info('[list] page show called');
@@ -54,6 +56,26 @@ struct VideoCreateComponent {
 
   build() {
     Column() {
+      Row() {
+        Button("requestFullscreen")
+          .onClick(() => {
+            console.info("[video] requestFullscreen---" + this.fullScreen);
+            this.clickFullScreenBtn = true;
+            this.myVideoController.requestFullscreen(this.fullScreen);
+          })
+          .height(60)
+          .key('RequestFullScreen')
+        Button("exitFullscreen")
+          .margin({ left: 100 })
+          .height(60)
+          .onClick(() => {
+            console.info("[video] exitFullscreen---");
+            this.myVideoController.exitFullscreen();
+          })
+          .key('ExitFullscreen')
+      }
+      .margin({ top: 60 })
+
       Video({
         src: this.srcs,
         previewUri: this.previewUris,
@@ -65,6 +87,27 @@ struct VideoCreateComponent {
         .height(500)
         .autoPlay(this.autoPlays)
         .controls(this.controlsss)
+        .onFullscreenChange((e) => {
+          console.info('[video] onFullscreenChange:' + e.fullscreen);
+          if (this.clickFullScreenBtn) {
+            try {
+              let fullScreenData = {
+                data: {
+                  "fullScreenState": e.fullscreen
+                }
+              }
+              let fullScreenEvent = {
+                eventId: 500,
+                priority: eventsEmitter.EventPriority.LOW
+              }
+              console.info("[video] fullScreen change emit");
+              eventsEmitter.emit(fullScreenEvent, fullScreenData);
+            } catch (err) {
+              console.info("[video] emit action state err: " + JSON.stringify(err.message));
+            }
+            this.clickFullScreenBtn = false;
+          }
+        })
 
       Row() {
         Button("start").onClick(() => {

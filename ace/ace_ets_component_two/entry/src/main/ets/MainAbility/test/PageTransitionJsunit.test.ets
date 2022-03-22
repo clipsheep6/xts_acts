@@ -112,9 +112,87 @@ export default function pageTransitionJsunit() {
       } catch (err) {
         console.info("pageTransitionTest_0400 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("pageTransitionTest_0400 click result is: " + JSON.stringify(sendEventByKey('Navigator',10,"")));
+      console.info("pageTransitionTest_0400 click result is: " + JSON.stringify(sendEventByKey('Navigator', 10, "")));
       await Utils.sleep(2000);
       console.info('pageTransitionTest_0400 END');
+      done();
+    });
+
+    it('pageTransitionTest_0500', 0, async function (done) {
+      console.info('pageTransitionTest_0500 START');
+      try {
+        let eventData = {
+          data: {
+            "scale": -6,
+            "opacity": 'a'
+          }
+        }
+        let indexEvent = {
+          eventId: 10010,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("pageTransitionTest_0500 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("pageTransitionTest_0500 change component data error: " + err.message);
+      }
+      let callback = (indexEventOne) => {
+        console.info("pageTransitionTest_0500 get state result is: " + JSON.stringify(indexEventOne.data.scale));
+        console.info("pageTransitionTest_0500 get state result is: " + JSON.stringify(indexEventOne.data.opacity));
+        expect(indexEventOne.data.scale).assertEqual(0);
+        expect(indexEventOne.data.opacity).assertEqual(0);
+      }
+      let indexEventOne = {
+        eventId: 10008,
+        priority: events_emitter.EventPriority.LOW
+      }
+      try {
+        events_emitter.on(indexEventOne, callback);
+      } catch (err) {
+        console.info("pageTransitionTest_0500 on events_emitter err : " + JSON.stringify(err));
+      }
+      console.info("pageTransitionTest_0500 click result is: " + JSON.stringify(sendEventByKey('Navigator1', 10, "")));
+      await Utils.sleep(2000);
+      console.info('pageTransitionTest_0500 END');
+      done();
+    });
+
+    it('pageTransitionTest_0600', 0, async function (done) {
+      console.info('pageTransitionTest_0600 START');
+      try {
+        let eventData = {
+          data: {
+            "scale": 88888888888,
+            "opacity": 'a'
+          }
+        }
+        let indexEvent = {
+          eventId: 100011,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("pageTransitionTest_0600 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("pageTransitionTest_0600 change component data error: " + err.message);
+      }
+      let callback = (indexEventOne) => {
+        console.info("pageTransitionTest_0600 get state result is: " + JSON.stringify(indexEventOne.data.scale));
+        console.info("pageTransitionTest_0600 get state result is: " + JSON.stringify(indexEventOne.data.opacity));
+        expect(indexEventOne.data.scale).assertEqual(0);
+        expect(indexEventOne.data.opacity).assertEqual(0);
+      }
+      let indexEventOne = {
+        eventId: 10009,
+        priority: events_emitter.EventPriority.LOW
+      }
+      try {
+        events_emitter.on(indexEventOne, callback);
+      } catch (err) {
+        console.info("pageTransitionTest_0600 on events_emitter err : " + JSON.stringify(err));
+      }
+      console.info("pageTransitionTest_0600 click result is: " + JSON.stringify(sendEventByKey('Navigator2', 10, "")));
+      await Utils.sleep(2000);
+      console.info('pageTransitionTest_0600 END');
       done();
     });
   })

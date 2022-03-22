@@ -17,7 +17,7 @@
 @Entry
 @Component
 struct AlignItemsFlex {
-  @State alignItems : ItemAlign = ItemAlign.Auto
+  @State alignItems: ItemAlign = ItemAlign.Auto
 
   build() {
     Flex({ alignItems: this.alignItems }) {
@@ -26,7 +26,7 @@ struct AlignItemsFlex {
       Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
     }
     .key('itemAlign')
-    .size({width: '90%', height: 80})
+    .size({ width: '90%', height: 80 })
     .padding(10)
     .backgroundColor(0xAFEEEE)
   }

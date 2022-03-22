@@ -19,6 +19,7 @@
 struct ContentTable {
   private foodItem: FoodData
   @State fontWeight: FontWeight = FontWeight.Medium
+
   @Builder IngredientItem(title:string, name: string, value: string) {
     Flex() {
       Text(title)
@@ -38,7 +39,7 @@ struct ContentTable {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent:  FlexAlign.SpaceBetween, alignItems: ItemAlign.Start }) {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Start }) {
       this.IngredientItem('Calories', 'Calories', this.foodItem.calories + 'kcal')
       this.IngredientItem('Nutrition', 'Protein', this.foodItem.protein + 'g')
       this.IngredientItem('', 'Fat', this.foodItem.fat + 'g')

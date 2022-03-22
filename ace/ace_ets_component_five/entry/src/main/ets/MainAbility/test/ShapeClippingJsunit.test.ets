@@ -19,7 +19,7 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 
 export default function shapeClippingJsunit() {
-  describe('borderTest', function () {
+  describe('shapeClippingTest', function () {
     beforeEach(async function (done) {
       console.info("shapeClipping beforeEach start");
       let options = {
@@ -124,6 +124,57 @@ export default function shapeClippingJsunit() {
       let clip = JSON.parse(objNew.$attrs.clip);
       expect(clip.shape).assertEqual('Rect');
       console.info('[testShapeClipping004] END');
+      done();
+    });
+
+    it('testShapeClipping005', 0, async function (done) {
+      console.info('[testShapeClipping005] START');
+      try {
+        var eventData = {
+          data: {
+            "clipValue": 1
+          }
+        }
+        var innerEvent = {
+          eventId: 33,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testShapeClipping005] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testShapeClipping005] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('image_clip');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testShapeClipping005] component objNew is: " + JSON.stringify(objNew));
+      let clip = JSON.parse(objNew.$attrs.clip);
+      expect(clip.shape).assertEqual('Rect');
+      done();
+    });
+
+    it('testShapeClipping006', 0, async function (done) {
+      console.info('[testShapeClipping006] START');
+      try {
+        var eventData = {
+          data: {
+            "maskValue": 0
+          }
+        }
+        var innerEvent = {
+          eventId: 32,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testShapeClipping006] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testShapeClipping006] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('image_mask');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testShapeClipping006] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.mask.shape).assertEqual('Circle');
       done();
     });
   })

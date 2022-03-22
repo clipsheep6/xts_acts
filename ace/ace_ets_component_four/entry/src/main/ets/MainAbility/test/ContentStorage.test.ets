@@ -15,8 +15,8 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets";
 
-export default function ContentStorageJsunit() {
-  describe('ContentStorage', function () {
+export default function contentStorageJsunit() {
+  describe('contentStorage', function () {
     let contentStorage = new ContentStorage();
 
     /**

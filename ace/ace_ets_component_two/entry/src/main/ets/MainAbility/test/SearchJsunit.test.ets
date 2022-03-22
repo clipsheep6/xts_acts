@@ -19,7 +19,7 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function searchJsunit() {
-  describe('appInfoTest', function () {
+  describe('searchTest', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/search',
@@ -78,6 +78,214 @@ export default function searchJsunit() {
       let objNew = JSON.parse(strJsonNew);
       console.info("[testSearch002] component objNew is: " + JSON.stringify(objNew));
       expect(objNew.$attrs.searchButton).assertEqual('5');
+      done();
+    });
+
+    it('testSearch003', 0, async function (done) {
+      console.info('[testSearch003] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "searchButton": "A"
+          }
+        }
+        var innerEvent = {
+          eventId: 190,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testSearch003] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testSearch003] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('search');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testSearch003] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.searchButton).assertEqual('A');
+      done();
+    });
+
+    it('testSearch004', 0, async function (done) {
+      console.info('[testSearch004] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "searchButton": "0"
+          }
+        }
+        var innerEvent = {
+          eventId: 190,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testSearch004] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testSearch004] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('search');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testSearch004] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.searchButton).assertEqual('0');
+      done();
+    });
+
+    it('testSearch005', 0, async function (done) {
+      console.info('[testSearch005] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "searchButton": "你好"
+          }
+        }
+        var innerEvent = {
+          eventId: 190,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testSearch005] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testSearch005] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('search');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testSearch005] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.searchButton).assertEqual('你好');
+      done();
+    });
+
+    it('testSearch006', 0, async function (done) {
+      console.info('[testSearch006] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "searchButton": "0.12"
+          }
+        }
+        var innerEvent = {
+          eventId: 190,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testSearch006] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testSearch006] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('search');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testSearch006] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.searchButton).assertEqual('0.12');
+      done();
+    });
+
+    it('testSearch007', 0, async function (done) {
+      console.info('[testSearch007] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "searchButton": null
+          }
+        }
+        var innerEvent = {
+          eventId: 190,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testSearch007] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testSearch007] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('search');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testSearch007] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.searchButton).assertEqual('0.12');
+      done();
+    });
+
+    it('testSearch008', 0, async function (done) {
+      console.info('[testSearch008] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "searchButton": "1A2b"
+          }
+        }
+        var innerEvent = {
+          eventId: 190,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testSearch008] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testSearch008] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('search');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testSearch008] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.searchButton).assertEqual("1A2b");
+      done();
+    });
+
+    it('testSearch009', 0, async function (done) {
+      console.info('[testSearch009] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "searchButton": "你好abc"
+          }
+        }
+        var innerEvent = {
+          eventId: 190,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testSearch009] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testSearch009] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('search');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testSearch009] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.searchButton).assertEqual("你好abc");
+      done();
+    });
+
+    it('testSearch010', 0, async function (done) {
+      console.info('[testSearch010] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "searchButton": "0.123你好abc"
+          }
+        }
+        var innerEvent = {
+          eventId: 190,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testSearch010] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testSearch010] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('search');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testSearch010] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.searchButton).assertEqual("0.123你好abc");
       done();
     });
   })

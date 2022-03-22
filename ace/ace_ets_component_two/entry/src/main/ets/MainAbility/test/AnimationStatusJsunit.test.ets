@@ -18,8 +18,8 @@ import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
 
-export default function  animationStatusJsunit() {
-  describe('animationStatus', function () {
+export default function animationStatusJsunit() {
+  describe('animationStatusTest', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/animationStatus',
@@ -84,7 +84,7 @@ export default function  animationStatusJsunit() {
       } catch (err) {
         console.info("animationStatus03 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("animationStatus03 click result is: " + JSON.stringify(sendEventByKey('button2',10,"")));
+      console.info("animationStatus03 click result is: " + JSON.stringify(sendEventByKey('button2', 10, "")));
       await Utils.sleep(1000);
       console.info('animationStatus03 END');
       done();
@@ -106,9 +106,36 @@ export default function  animationStatusJsunit() {
       } catch (err) {
         console.info("animationStatus04 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("animationStatus04 click result is: " + JSON.stringify(sendEventByKey('button3',10,"")));
+      console.info("animationStatus04 click result is: " + JSON.stringify(sendEventByKey('button3', 10, "")));
       await Utils.sleep(1000);
       console.info('animationStatus04 END');
+      done();
+    });
+
+    it('animationStatus05', 0, async function (done) {
+      console.info('[animationStatus05] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "state": "AnimationStatus.none"
+          }
+        }
+        var innerEvent = {
+          eventId: 801,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[animationStatus05] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[animationStatus05] change component color error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('ImageAnimator');
+      let obj = JSON.parse(strJson);
+      console.info("[animationStatus05] obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.state).assertEqual('AnimationStatus.Initial');
+      console.info('[animationStatus05] END');
       done();
     });
   })

@@ -18,11 +18,15 @@ import events_emitter from '@ohos.emitter'
 @Entry
 @Component
 struct PlayModeExample {
-  @State playMode:PlayMode = PlayMode.Normal
+  @State playMode: PlayMode = PlayMode.Normal
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,}) {
-      Button(this.show).width(80).height(30).backgroundColor(0x317aff).margin({bottom:20})
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, }) {
+      Button(this.show)
+        .width(80)
+        .height(30)
+        .backgroundColor(0x317aff)
+        .margin({ bottom: 20 })
         .key('button')
         .onClick(() => {
           this.playMode = PlayMode.AlternateReverse
@@ -42,6 +46,6 @@ struct PlayModeExample {
             console.info("button emit action state err: " + JSON.stringify(err.message))
           }
         })
-    }.height(400).width("100%").padding({top:100})
+    }.height(400).width("100%").padding({ top: 100 })
   }
 }

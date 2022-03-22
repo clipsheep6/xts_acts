@@ -18,8 +18,8 @@ import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
 
-export default function edgeEffectJsunit(){
-  describe('edgeEffectTest', function (){
+export default function edgeEffectJsunit() {
+  describe('edgeEffectTest', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/edgeEffect',
@@ -78,6 +78,84 @@ export default function edgeEffectJsunit(){
       console.info("edgeEffectTest_0200 component objNew is: " + JSON.stringify(objNew));
       expect(objNew.$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
       console.info('edgeEffectTest_0200 END');
+      done();
+    });
+
+    it('edgeEffectTest_0300', 0, async function (done) {
+      console.info('edgeEffectTest_0300 START');
+      try {
+        let eventData = {
+          data: {
+            "edgeEffect": 1111111,
+          }
+        }
+        let indexEvent = {
+          eventId: 1191,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("edgeEffectTest_0300 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("edgeEffectTest_0300 change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJsonNew = getInspectorByKey('list');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("edgeEffectTest_0300 component objNew is: " + JSON.stringify(objNew.$attrs.edgeEffect));
+      expect(objNew.$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
+      console.info('edgeEffectTest_0300 END');
+      done();
+    });
+
+    it('edgeEffectTest_0400', 0, async function (done) {
+      console.info('edgeEffectTest_0400 START');
+      try {
+        let eventData = {
+          data: {
+            "edgeEffect": 'dasdasdw',
+          }
+        }
+        let indexEvent = {
+          eventId: 1192,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("edgeEffectTest_0400 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("edgeEffectTest_0400 change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJsonNew = getInspectorByKey('list');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("edgeEffectTest_0400 component objNew is: " + JSON.stringify(objNew.$attrs.edgeEffect));
+      expect(objNew.$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
+      console.info('edgeEffectTest_0400 END');
+      done();
+    });
+
+    it('edgeEffectTest_0500', 0, async function (done) {
+      console.info('edgeEffectTest_0500 START');
+      try {
+        let eventData = {
+          data: {
+            "edgeEffect": '-1',
+          }
+        }
+        let indexEvent = {
+          eventId: 1194,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("edgeEffectTest_0500 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("edgeEffectTest_0500 change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJsonNew = getInspectorByKey('list');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("edgeEffectTest_0500 component objNew is: " + JSON.stringify(objNew.$attrs.edgeEffect));
+      expect(objNew.$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
+      console.info('edgeEffectTest_0500 END');
       done();
     });
   })

@@ -63,7 +63,6 @@
           "pages/gridPage",
           "pages/span",
           "pages/text",
-          "pages/badge",
           "pages/canvas",
           "pages/longPressGesture",
           "pages/button",
@@ -77,19 +76,10 @@
           "pages/animate",
           "pages/rating",
           "pages/canvas2",
-          "pages/shape",
-          "pages/motionPath",
-          "pages/scrollCode",
-          "pages/transition",
-          "pages/priorityGesture",
-          "pages/parallelGesture",
-          "pages/blank",
           "pages/sharedTransition",
           "pages/sharedTransition2",
           "pages/line",
-          "pages/circle",
-          "pages/aboutToDisappear",
-          "pages/timeStamp"
+          "pages/circle"
         ],
         "name": ".MainAbility",
         "window": {

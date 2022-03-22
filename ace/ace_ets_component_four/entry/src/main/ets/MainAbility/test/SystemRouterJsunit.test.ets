@@ -15,7 +15,7 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
-import Utils from './Utils';
+import Utils from './Utils.ets';
 import events_emitter from '@ohos.events.emitter';
 
 export default function systemRouterJsunit() {
@@ -114,7 +114,7 @@ export default function systemRouterJsunit() {
       done();
     });
 
-    it('systemRouterTest005', 0, async function(done) {
+    it('systemRouterTest005', 0, async function (done) {
       console.info('[systemRouterTest005] START');
       let options = {
         uri: 'pages/systemRouterA'
@@ -142,7 +142,7 @@ export default function systemRouterJsunit() {
         console.info("[systemRouterTest005] on events_emitter err : " + JSON.stringify(err));
       }
       console.info("[systemRouterTest005] click replace button result is: "
-        + JSON.stringify(sendEventByKey('ReplaceButtonA', 10, "")));
+      + JSON.stringify(sendEventByKey('ReplaceButtonA', 10, "")));
       done();
     });
   });

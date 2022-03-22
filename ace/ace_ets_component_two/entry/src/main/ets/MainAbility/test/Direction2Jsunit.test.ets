@@ -18,8 +18,8 @@ import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
 
-export default function direction2Jsunit(){
-  describe('direction2Test', function (){
+export default function direction2Jsunit() {
+  describe('direction2Test', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/direction2',
@@ -86,7 +86,7 @@ export default function direction2Jsunit(){
       try {
         let eventData = {
           data: {
-            "direction":  Direction.Auto,
+            "direction": Direction.Auto,
           }
         }
         let indexEvent = {
@@ -104,6 +104,58 @@ export default function direction2Jsunit(){
       console.info("direction2Test_0300 component objNew is: " + JSON.stringify(objNew));
       expect(objNew.$attrs.direction).assertEqual('Direction.Auto');
       console.info('direction2Test_0300 END');
+      done();
+    });
+
+    it('direction2Test_0400', 0, async function (done) {
+      console.info('direction2Test_0400 START');
+      try {
+        let eventData = {
+          data: {
+            "direction": "aaaaaaaa",
+          }
+        }
+        let indexEvent = {
+          eventId: 1182,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("direction2Test_0400 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("direction2Test_0400 change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJsonNew = getInspectorByKey('direction');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("direction2Test_0400 component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.direction).assertEqual('Direction.Ltr');
+      console.info('direction2Test_0400 END');
+      done();
+    });
+
+    it('direction2Test_0500', 0, async function (done) {
+      console.info('direction2Test_0500 START');
+      try {
+        let eventData = {
+          data: {
+            "direction": 111111111111,
+          }
+        }
+        let indexEvent = {
+          eventId: 1183,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("direction2Test_0500 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("direction2Test_0500 change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJsonNew = getInspectorByKey('direction');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("direction2Test_0500 component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.direction).assertEqual('Direction.Ltr');
+      console.info('direction2Test_0500 END');
       done();
     });
   })

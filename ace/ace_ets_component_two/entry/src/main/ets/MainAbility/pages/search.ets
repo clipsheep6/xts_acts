@@ -21,9 +21,8 @@ struct SearchExample {
   @State changevalue: string= ''
   @State submitvalue: string= ''
   @State controller: SearchController= new SearchController()
-  @State textFont:Font=10
-  @State searchButton:number=10
-
+  @State textFont: Font= 10
+  @State searchButton: number= 10
   private stateChangCallBack = (eventData) => {
     console.info("search page state change called:" + JSON.stringify(eventData));
     if (eventData != null) {
@@ -70,13 +69,6 @@ struct SearchExample {
     }
   }
 }
-
-
-
-
-
-
-
 
 
 

@@ -30,8 +30,8 @@ import pathJsunit from './PathJsunit.test.ets';
 import enumsLineCapStyleJsunit from './EnmusLineCapStyleJsunit.test.ets';
 import enmusItemAlignJsunit from './EnmusItemAlignJsunit.test.ets';
 import playModeJsunit from './PlayModeJsunit.test.ets';
-import GestureModeJsunit from './GestureModeJsunit.test.ets';
-import PanDirectionJsunit from './PanDirectionJsunit.test.ets';
+import gestureModeJsunit from './GestureModeJsunit.test.ets';
+import panDirectionJsunit from './PanDirectionJsunit.test.ets';
 import basicJsunit from './BasicJsunit.test.ets';
 import focusJsunit from './FocusJsunit.test.ets';
 import textAreaJsunit from './TextAreaJsunit.test.ets';
@@ -45,11 +45,13 @@ import polylineJsunit from './PolylineJsunit.test.ets';
 import imageJsunit from './ImageJsunit.test.ets';
 
 export default function testsuite() {
-  videoJsunit();
+  textAreaJsunit();
   enmusItemAlignJsunit();
   patternLockJsunit();
   dragEventJsunit();
+  textInputJsunit();
   polygonJsunit();
+  gestureModeJsunit();
   customDialogControllerJsunit();
   ohosPromptJsunit();
   richTextJsunit();
@@ -65,15 +67,13 @@ export default function testsuite() {
   pathJsunit();
   enumsLineCapStyleJsunit();
   playModeJsunit();
-  GestureModeJsunit();
   basicJsunit();
   focusJsunit();
-  textAreaJsunit();
-  textInputJsunit();
   polylineJsunit();
   calendarJsunit();
-  PanDirectionJsunit();
+  panDirectionJsunit();
   geometryTransitionJsunit();
   systemRouterJsunit();
+  videoJsunit();
   systemAppJsunit();
 }

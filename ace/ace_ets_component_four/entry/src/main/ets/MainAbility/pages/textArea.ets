@@ -73,7 +73,7 @@ struct TextAreaExample2 {
 
   build() {
     Column() {
-      TextArea({ placeholder: 'input your word', text: this.text})
+      TextArea({ placeholder: 'input your word', text: this.text })
         .key('textArea')
         .placeholderColor("rgb(0,0,225)")
         .placeholderFont({ size: 30, weight: 100, family: 'cursive', style: FontStyle.Italic })
@@ -85,7 +85,7 @@ struct TextAreaExample2 {
         .fontFamily("sans-serif")
         .fontStyle(FontStyle.Normal)
         .fontColor(this.fontColor)
-        .inputFilter('^[\u4E00-\u9FA5A-Za-z0-9_]+$',(value: string) => {
+        .inputFilter('^[\u4E00-\u9FA5A-Za-z0-9_]+$', (value: string) => {
         })
         .onChange((value: string) => {
           this.text = value

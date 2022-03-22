@@ -19,7 +19,7 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function pieceJsunit() {
-  describe('appInfoTest', function () {
+  describe('pieceTest', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/PieceCode',
@@ -61,7 +61,7 @@ export default function pieceJsunit() {
       } catch (err) {
         console.info("test_pieceCode_01 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("test_pieceCode_01 click result is: " + JSON.stringify(sendEventByKey('button1',10,"")));
+      console.info("test_pieceCode_01 click result is: " + JSON.stringify(sendEventByKey('button1', 10, "")));
       await Utils.sleep(1000);
       var callback1 = (eventData) => {
         console.info("test_pieceCode_01 get event state result is: " + JSON.stringify(eventData));

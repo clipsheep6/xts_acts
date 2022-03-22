@@ -20,6 +20,7 @@ import events_emitter from '@ohos.emitter';
 struct DatePickerExample01 {
   private selectedDate: Date = new Date('2021-08-08')
   @State useMilitaryTime: boolean = true
+
   build() {
     Column() {
       DatePicker({
@@ -36,7 +37,7 @@ struct DatePickerExample01 {
           try {
             var backData = {
               data: {
-                "useMilitaryTime" : this.useMilitaryTime,
+                "useMilitaryTime": this.useMilitaryTime,
               }
             }
             var backEvent = {

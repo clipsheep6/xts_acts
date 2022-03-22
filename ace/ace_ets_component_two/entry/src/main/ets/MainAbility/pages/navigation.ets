@@ -26,7 +26,6 @@ struct NavigationExample {
   @State hideBackButton: boolean = false
   @State onActionCalled: boolean = false
   @State titleMode: NavigationTitleMode = NavigationTitleMode.Free
-
   private stateChangCallBack = (eventData) => {
     if (eventData != null) {
       console.info("tabs page state change called:" + JSON.stringify(eventData));
@@ -103,7 +102,10 @@ struct NavigationExample {
         .width('100%')
 
         Button(this.hideBar ? "tool bar" : "hide bar")
-          .backgroundColor(0x2788D9).width(200).height(100).fontSize(20)
+          .backgroundColor(0x2788D9)
+          .width(200)
+          .height(100)
+          .fontSize(20)
           .key('NavigationContent1')
           .onClick(() => {
             this.hideBar = !this.hideBar;
@@ -149,3 +151,6 @@ struct NavigationExample {
     }
   }
 }
+
+
+

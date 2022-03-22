@@ -18,8 +18,8 @@ import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
-export default function gridJsunit() {
-  describe('GradientDirectionTest', function () {
+export default function gradientDirectionJsunit() {
+  describe('gradientDirectionTest', function () {
     beforeEach(async function (done) {
       console.info('beforeEach ===================GradientDirection test beforeEach called===================');
       let options = {

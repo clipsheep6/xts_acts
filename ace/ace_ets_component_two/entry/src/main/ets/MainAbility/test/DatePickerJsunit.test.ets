@@ -19,7 +19,7 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function datePickerJsunit() {
-  describe('appInfoTest', function () {
+  describe('datePickerTest', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/datePicker',
@@ -97,7 +97,7 @@ export default function datePickerJsunit() {
       } catch (err) {
         console.info("datePickerTest_0300 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("datePickerTest_0300 click result is: " + JSON.stringify(sendEventByKey('datePicker',10,"")));
+      console.info("datePickerTest_0300 click result is: " + JSON.stringify(sendEventByKey('datePicker', 10, "")));
       await Utils.sleep(2000);
       console.info('datePickerTest_0300 END');
       done();

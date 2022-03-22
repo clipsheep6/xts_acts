@@ -17,8 +17,8 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@system.router';
 import Utils from './Utils';
 
-export default function transFormJsunit() {
-  describe('appInfoTest', function () {
+export default function systempromptJsunit() {
+  describe('systempromptTest', function () {
     beforeEach(async function (done) {
       console.info("prompt beforeEach start");
       let options = {
@@ -47,7 +47,7 @@ export default function transFormJsunit() {
     it('promptTest_0100', 0, async function (done) {
       console.info('promptTest_0100 is start');
       await Utils.sleep(1500);
-      console.info("promptTest_0100 click result is: " + JSON.stringify(sendEventByKey('button1',10,"")));
+      console.info("promptTest_0100 click result is: " + JSON.stringify(sendEventByKey('button1', 10, "")));
       await Utils.sleep(1500);
       console.info('promptTest_0100 END');
       done();
@@ -55,7 +55,7 @@ export default function transFormJsunit() {
     it('promptTest_0200', 0, async function (done) {
       console.info('promptTest_0200 is start');
       await Utils.sleep(1500);
-      console.info("promptTest_0200 click result is: " + JSON.stringify(sendEventByKey('button2',10,"")));
+      console.info("promptTest_0200 click result is: " + JSON.stringify(sendEventByKey('button2', 10, "")));
       await Utils.sleep(1500);
       console.info('promptTest_0200 END');
       done();

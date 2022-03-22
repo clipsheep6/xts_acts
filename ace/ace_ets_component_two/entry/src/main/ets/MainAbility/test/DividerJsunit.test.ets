@@ -92,5 +92,57 @@ export default function dividerJsunit() {
       console.info('dividerTest_0300 END');
       done();
     });
+
+    it('dividerTest_0400', 0, async function (done) {
+      console.info('dividerTest_0301 START');
+      try {
+        let eventData = {
+          data: {
+            "color": '-1',
+          }
+        }
+        let indexEvent = {
+          eventId: 10006,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("dividerTest_0400 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("dividerTest_0301 change component data error: " + err.message);
+      }
+      await Utils.sleep(3000);
+      let strJsonNew = getInspectorByKey('Divider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("dividerTest_0400 component objNew is: " + JSON.stringify(objNew.$attrs.color));
+      expect(objNew.$attrs.color).assertEqual('#FFFFFFFF');
+      console.info('dividerTest_0400 END');
+      done();
+    });
+
+    it('dividerTest_0500', 0, async function (done) {
+      console.info('dividerTest_0500 START');
+      try {
+        let eventData = {
+          data: {
+            "color": 'a',
+          }
+        }
+        let indexEvent = {
+          eventId: 10007,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("dividerTest_0500 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("dividerTest_0500 change component data error: " + err.message);
+      }
+      await Utils.sleep(3000);
+      let strJsonNew = getInspectorByKey('Divider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("dividerTest_0500 component objNew is: " + JSON.stringify(objNew.$attrs.color));
+      expect(objNew.$attrs.color).assertEqual('#FF000000');
+      console.info('dividerTest_0500 END');
+      done();
+    });
   })
 }

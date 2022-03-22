@@ -15,6 +15,7 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
+import events_emitter from '@ohos.events.emitter'
 import Utils from './Utils';
 
 export default function enumsImageJsunit() {
@@ -54,6 +55,90 @@ export default function enumsImageJsunit() {
       console.info('obj.$attrs.strokeLineCap' + obj.$attrs.strokeLineCap)
       expect(obj.$attrs.strokeLineCap).assertEqual('LineCapStyle.Butt');
       console.info('enumsLineCapStyleTest_0100 END');
+      done();
+    });
+
+    it('enumsLineCapStyleTest_0200', 0, async function (done) {
+      console.info('enumsLineCapStyleTest_0200 START');
+      try {
+        var eventData = {
+          data: {
+            "capStyle": LineCapStyle.Round
+          }
+        }
+        var innerEvent = {
+          eventId: 2010,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[enumsLineCapStyleTest_0200] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[enumsLineCapStyleTest_0200] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('Butt');
+      console.info("enumsLineCapStyleTest_0200 component strJson:" + strJson);
+      let obj = JSON.parse(strJson);
+      console.info("enumsLineCapStyleTest_0200 component obj is: " + JSON.stringify(obj));
+      console.info('obj.$attrs.strokeLineCap' + obj.$attrs.strokeLineCap)
+      expect(obj.$attrs.strokeLineCap).assertEqual('LineCapStyle.Round');
+      console.info('enumsLineCapStyleTest_0200 END');
+      done();
+    });
+
+    it('enumsLineCapStyleTest_0300', 0, async function (done) {
+      console.info('enumsLineCapStyleTest_0300 START');
+      try {
+        var eventData = {
+          data: {
+            "capStyle": LineCapStyle.six
+          }
+        }
+        var innerEvent = {
+          eventId: 2020,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[enumsLineCapStyleTest_0300] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[enumsLineCapStyleTest_0300] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('Butt');
+      console.info("enumsLineCapStyleTest_0300 component strJson:" + strJson);
+      let obj = JSON.parse(strJson);
+      console.info("enumsLineCapStyleTest_0300 component obj is: " + JSON.stringify(obj));
+      console.info('obj.$attrs.strokeLineCap' + obj.$attrs.strokeLineCap)
+      expect(obj.$attrs.strokeLineCap).assertEqual('LineCapStyle.Round');
+      console.info('enumsLineCapStyleTest_0300 END');
+      done();
+    });
+
+    it('enumsLineCapStyleTest_0400', 0, async function (done) {
+      console.info('enumsLineCapStyleTest_0400 START');
+      try {
+        var eventData = {
+          data: {
+            "capStyle": 212131
+          }
+        }
+        var innerEvent = {
+          eventId: 2030,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[enumsLineCapStyleTest_0400] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[enumsLineCapStyleTest_0400] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('Butt');
+      console.info("enumsLineCapStyleTest_0400 component strJson:" + strJson);
+      let obj = JSON.parse(strJson);
+      console.info("enumsLineCapStyleTest_0400 component obj is: " + JSON.stringify(obj));
+      console.info('obj.$attrs.strokeLineCap' + obj.$attrs.strokeLineCap)
+      expect(obj.$attrs.strokeLineCap).assertEqual('LineCapStyle.Butt');
+      console.info('enumsLineCapStyleTest_0400 END');
       done();
     });
   })

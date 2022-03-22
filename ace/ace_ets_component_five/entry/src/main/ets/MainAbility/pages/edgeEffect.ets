@@ -29,8 +29,12 @@ struct ListExample {
           ForEach(this.arr, (item) => {
             ListItem() {
               Text('' + item)
-                .width('100%').height(100).fontSize(16)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+                .width('100%')
+                .height(100)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
             }.editable(true)
           }, item => item)
         }
@@ -50,7 +54,8 @@ struct ListExample {
           console.info(JSON.stringify(this.arr))
           this.editFlag = false
           return true
-        }).width('90%')
+        })
+        .width('90%')
       }.width('100%')
 
       Button('edit list')
@@ -60,13 +65,31 @@ struct ListExample {
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 
-   onPageShow() {
+  onPageShow() {
     console.info('edgeEffect page show called');
     var stateChangeEvent = {
       eventId: 91,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+
+    var stateChangeEventOne = {
+      eventId: 1191,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventOne, this.stateChangCallBack)
+
+    var stateChangeEventTwo = {
+      eventId: 1192,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventTwo, this.stateChangCallBack)
+
+    var stateChangeEventThree = {
+      eventId: 1194,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventThree, this.stateChangCallBack)
   }
 
   private stateChangCallBack = (eventData) => {

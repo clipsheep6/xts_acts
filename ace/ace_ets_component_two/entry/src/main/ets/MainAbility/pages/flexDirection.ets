@@ -26,12 +26,12 @@ struct flexDirectionExample {
     Column() {
       Column({ space: 5 }) {
         Text('direction:Row').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Flex({ direction:FlexDirection.Row }) {
+        Flex({ direction: FlexDirection.Row }) {
           Text('1').width(this.width).height(this.height).backgroundColor(this.backgroundColor)
           Text('2').width(this.width).height(this.height).backgroundColor(this.backgroundColor)
           Text('3').width(this.width).height(this.height).backgroundColor(this.backgroundColor)
           Text('4').width(this.width).height(this.height).backgroundColor(this.backgroundColor)
-          .key('Row')
+            .key('Row')
         }.height(70).width('90%').padding(10).backgroundColor(0xAFEEEE)
 
         Text('direction:Column').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -40,7 +40,7 @@ struct flexDirectionExample {
           Text('2').width(this.width).height(this.height).backgroundColor(this.backgroundColor)
           Text('3').width(this.width).height(this.height).backgroundColor(this.backgroundColor)
           Text('4').width(this.width).height(this.height).backgroundColor(this.backgroundColor)
-          .key('Column')
+            .key('Column')
         }
         .height(160)
         .width('90%')
@@ -53,7 +53,7 @@ struct flexDirectionExample {
           Text('2').width(this.width).height(this.height).backgroundColor(this.backgroundColor)
           Text('3').width(this.width).height(this.height).backgroundColor(this.backgroundColor)
           Text('4').width(this.width).height(this.height).backgroundColor(this.backgroundColor)
-          .key('ColumnReverse')
+            .key('ColumnReverse')
         }
         .height(160)
         .width('90%')
@@ -62,6 +62,7 @@ struct flexDirectionExample {
       }.width('100%').margin({ top: 5 })
     }.width('100%')
   }
+
   onPageShow() {
     console.info('flexDirection page show called');
     var stateChangeEvent1 = {
@@ -79,6 +80,11 @@ struct flexDirectionExample {
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent3, this.stateChangCallBack)
+    var stateChangeEvent4 = {
+      eventId: 5699,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEvent4, this.stateChangCallBack)
   }
 
   private stateChangCallBack = (eventData) => {

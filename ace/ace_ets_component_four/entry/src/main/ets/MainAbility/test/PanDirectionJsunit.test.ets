@@ -15,9 +15,9 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets"
 import router from '@system.router';
-import Utils from './Utils';
+import Utils from './Utils.ets';
 
-export default function fontWeightJsunit() {
+export default function panDirectionJsunit() {
   describe('panDirectionTest', function () {
     beforeEach(async function (done) {
       let options = {

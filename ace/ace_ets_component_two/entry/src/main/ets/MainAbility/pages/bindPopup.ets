@@ -122,6 +122,111 @@ struct PopupExample {
           }
         })
         .position({ x: 100, y: 350 })
+
+      Button('custom popup')
+        .key('button3')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+          try {
+            var backData = {
+              data: {
+                "maskColor": this.maskColor,
+                "enableArrow": this.enableArrow
+              }
+            }
+            var backEvent = {
+              eventId: 10003,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("button start to emit action state")
+            events_emitter.emit(backEvent, backData)
+          } catch (err) {
+            console.info("button emit action state err: " + JSON.stringify(err.message))
+          }
+        })
+        .bindPopup(this.customPopup, {
+          builder: this.popupBuilder,
+          placement: Placement.Bottom,
+          maskColor: this.maskColor,
+          popupColor: Color.White,
+          enableArrow: this.enableArrow,
+          onStateChange: (e) => {
+            if (!e.isVisible) {
+              this.customPopup = false
+            }
+          }
+        })
+        .position({ x: 100, y: 350 })
+
+      Button('custom popup')
+        .key('button4')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+          try {
+            var backData = {
+              data: {
+                "maskColor": this.maskColor,
+                "enableArrow": this.enableArrow
+              }
+            }
+            var backEvent = {
+              eventId: 10004,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("button start to emit action state")
+            events_emitter.emit(backEvent, backData)
+          } catch (err) {
+            console.info("button emit action state err: " + JSON.stringify(err.message))
+          }
+        })
+        .bindPopup(this.customPopup, {
+          builder: this.popupBuilder,
+          placement: Placement.Bottom,
+          maskColor: this.maskColor,
+          popupColor: Color.White,
+          enableArrow: this.enableArrow,
+          onStateChange: (e) => {
+            if (!e.isVisible) {
+              this.customPopup = false
+            }
+          }
+        })
+        .position({ x: 100, y: 350 })
+
+      Button('custom popup')
+        .key('button5')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+          try {
+            var backData = {
+              data: {
+                "maskColor": this.maskColor,
+                "enableArrow": this.enableArrow
+              }
+            }
+            var backEvent = {
+              eventId: 10005,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("button start to emit action state")
+            events_emitter.emit(backEvent, backData)
+          } catch (err) {
+            console.info("button emit action state err: " + JSON.stringify(err.message))
+          }
+        })
+        .bindPopup(this.customPopup, {
+          builder: this.popupBuilder,
+          placement: Placement.Bottom,
+          maskColor: this.maskColor,
+          popupColor: Color.White,
+          enableArrow: this.enableArrow,
+          onStateChange: (e) => {
+            if (!e.isVisible) {
+              this.customPopup = false
+            }
+          }
+        })
+        .position({ x: 100, y: 350 })
     }.width('100%').padding({ top: 5 })
   }
 
@@ -132,6 +237,24 @@ struct PopupExample {
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+
+    var stateChangeEventa = {
+      eventId: 10000,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventa, this.stateChangCallBack)
+
+    var stateChangeEventb = {
+      eventId: 10001,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventb, this.stateChangCallBack)
+
+    var stateChangeEventc = {
+      eventId: 10002,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventc, this.stateChangCallBack)
   }
 
   private stateChangCallBack = (eventData) => {

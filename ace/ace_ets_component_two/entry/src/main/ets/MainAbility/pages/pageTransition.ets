@@ -21,7 +21,7 @@ struct PageTransitionExample1 {
   @State scale: number = 1
   @State opacity: number = 1
   @State active: boolean = false
-  @State type: RouteType	 = NavigationType.Push
+  @State type: RouteType   = NavigationType.Push
 
   build() {
     Column() {
@@ -37,13 +37,69 @@ struct PageTransitionExample1 {
         try {
           var backData = {
             data: {
-              "scale" : this.scale,
-              "opacity" : this.opacity,
+              "scale": this.scale,
+              "opacity": this.opacity,
               "type": this.type
             }
           }
           var backEvent = {
             eventId: 144,
+            priority: events_emitter.EventPriority.LOW
+          }
+          console.info("pageTransition start to emit action state")
+          events_emitter.emit(backEvent, backData)
+        } catch (err) {
+          console.info("pageTransition emit action state err: " + JSON.stringify(err.message))
+        }
+      })
+
+      Navigator({ target: 'pages/pageTransition2', type: this.type }) {
+        Image($rawfile('ic_health_heart.png'))
+          .width("100%")
+          .height("100%")
+      }
+      .key('Navigator1')
+      .onClick(() => {
+        this.active = true
+        console.info('pageTransition current action state is: ' + this.active);
+        try {
+          var backData = {
+            data: {
+              "scale": this.scale,
+              "opacity": this.opacity,
+              "type": this.type
+            }
+          }
+          var backEvent = {
+            eventId: 10008,
+            priority: events_emitter.EventPriority.LOW
+          }
+          console.info("pageTransition start to emit action state")
+          events_emitter.emit(backEvent, backData)
+        } catch (err) {
+          console.info("pageTransition emit action state err: " + JSON.stringify(err.message))
+        }
+      })
+
+      Navigator({ target: 'pages/pageTransition2', type: this.type }) {
+        Image($rawfile('ic_health_heart.png'))
+          .width("100%")
+          .height("100%")
+      }
+      .key('Navigator2')
+      .onClick(() => {
+        this.active = true
+        console.info('pageTransition current action state is: ' + this.active);
+        try {
+          var backData = {
+            data: {
+              "scale": this.scale,
+              "opacity": this.opacity,
+              "type": this.type
+            }
+          }
+          var backEvent = {
+            eventId: 10009,
             priority: events_emitter.EventPriority.LOW
           }
           console.info("pageTransition start to emit action state")
@@ -70,20 +126,30 @@ struct PageTransitionExample1 {
 
   onPageShow() {
     console.info('active page show called');
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
-
     var stateChangeEventOne = {
       eventId: 145,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEventOne, this.stateChangCallBack)
+
+    var stateChangeEventtwo = {
+      eventId: 10010,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventtwo, this.stateChangCallBack)
+
+    var stateChangeEventthree = {
+      eventId: 10011,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEventthree, this.stateChangCallBack)
   }
 
   private stateChangCallBack = (eventData) => {
     if (eventData != null) {
       console.info("active page state change called:" + JSON.stringify(eventData));
       if (eventData.data.scale != null) {
-       this.scale = parseInt(eventData.data.scale);
+        this.scale = parseInt(eventData.data.scale);
       }
       if (eventData.data.opacity != null) {
         this.opacity = parseInt(eventData.data.opacity);

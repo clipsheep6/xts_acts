@@ -15,7 +15,7 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets";
 import router from '@system.router';
-import Utils from './Utils';
+import Utils from './Utils.ets';
 
 export default function AppStorageJsunit() {
   describe('appStorage', function () {
@@ -167,7 +167,7 @@ export default function AppStorageJsunit() {
         .assertTrue;
         console.info('[stateManagement_Environment_EnvProps_0100] enable = ' + enable);
         console.info('[stateManagement_Environment_EnvProps_0100] enable1 = ' + enable1);
-      } catch(err) {
+      } catch (err) {
         console.info('[stateManagement_Environment_EnvProps_0100] err = ' + err);
       }
       console.info('[stateManagement_Environment_EnvProps_0100] END');

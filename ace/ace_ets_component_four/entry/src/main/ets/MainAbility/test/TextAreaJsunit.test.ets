@@ -16,10 +16,10 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index.ets";
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
-import Utils from './Utils';
+import Utils from './Utils.ets';
 
 export default function textAreaJsunit() {
-  describe('appInfoTest', function () {
+  describe('textAreaTest', function () {
     beforeEach(async function (done) {
       console.info("textArea beforeEach start");
       let options = {

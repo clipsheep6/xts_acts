@@ -97,6 +97,62 @@ export default function borderJsunit() {
       console.info('testBorder_0300 END');
       done();
     });
+
+    it('testBorder_0400', 0, async function (done) {
+      console.info('testBorder_0400 START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "borderRadius": 'error'
+          }
+        }
+        var innerEvent = {
+          eventId: 3,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testBorder_0400] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testBorder_0400] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('borderRadius');
+      console.info("testBorder_0400 component strJson:" + strJson);
+      let obj = JSON.parse(strJson);
+      console.info("testBorder_0400 component obj is: " + obj.$attrs.borderRadius);
+      expect(obj.$attrs.borderRadius).assertEqual("0.0vp");
+      console.info('testBorder_0400 END');
+      done();
+    });
+
+    it('testBorder_0500', 0, async function (done) {
+      console.info('testBorder_0500 START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "borderRadius": 0x80000000
+          }
+        }
+        var innerEvent = {
+          eventId: 3,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testBorder_0500] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testBorder_0500] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('borderRadius');
+      console.info("testBorder_0500 component strJson:" + strJson);
+      let obj = JSON.parse(strJson);
+      console.info("testBorder_0500 component obj is: " + obj.$attrs.borderRadius);
+      expect(obj.$attrs.borderRadius).assertEqual("-2147483648.00vp");
+      console.info('testBorder_0500 END');
+      done();
+    });
   })
 }
 

@@ -18,8 +18,8 @@ import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
 
-export default function customPopupOptionJsunit(){
-  describe('bindPopupTest', function (){
+export default function customPopupOptionJsunit() {
+  describe('bindPopupTest', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/bindPopup',
@@ -62,9 +62,9 @@ export default function customPopupOptionJsunit(){
       } catch (err) {
         console.info("bindPopupTest_0100 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("bindPopupTest_0100 click result is: " + JSON.stringify(sendEventByKey('button',10,"")));
+      console.info("bindPopupTest_0100 click result is: " + JSON.stringify(sendEventByKey('button', 10, "")));
       await Utils.sleep(1000);
-      console.info("bindPopupTest_0100 click Two result is: " + JSON.stringify(sendEventByKey('image',10,"")));
+      console.info("bindPopupTest_0100 click Two result is: " + JSON.stringify(sendEventByKey('image', 10, "")));
       await Utils.sleep(1000);
       console.info('bindPopupTest_0100 END');
       done();
@@ -103,31 +103,109 @@ export default function customPopupOptionJsunit(){
       } catch (err) {
         console.info("bindPopupTest_0200 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("bindPopupTest_0200 click result is: " + JSON.stringify(sendEventByKey('button1',10,"")));
+      console.info("bindPopupTest_0200 click result is: " + JSON.stringify(sendEventByKey('button1', 10, "")));
       await Utils.sleep(1000);
       console.info('bindPopupTest_0200 END');
       done();
     });
 
     it('bindPopupTest_0300', 0, async function (done) {
-      console.info('bindPopupTest_0300 START');
+      console.info('bindPopupTest_0201 START');
+      try {
+        let eventData = {
+          data: {
+            "enableArrow": false12,
+            "maskColor": 0
+          }
+        }
+        let indexEvent = {
+          eventId: 10000,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("bindPopupTest_0300 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("bindPopupTest_0300 change component data error: " + err.message);
+      }
+      await Utils.sleep(1500);
+      let callbackOne = (indexEventOne) => {
+        console.info("bindPopupTest_0300 get state result is: " + JSON.stringify(indexEventOne));
+        expect(indexEventOne.data.enableArrow).assertEqual(false);
+        expect(indexEventOne.data.maskColor).assertEqual(855638025);
+      }
+      let indexEventOne = {
+        eventId: 10003,
+        priority: events_emitter.EventPriority.LOW
+      }
+      try {
+        events_emitter.on(indexEventOne, callbackOne);
+      } catch (err) {
+        console.info("bindPopupTest_0300 on events_emitter err : " + JSON.stringify(err));
+      }
+      console.info("bindPopupTest_0300 click result is: " + JSON.stringify(sendEventByKey('button3', 10, "")));
+      await Utils.sleep(1000);
+      console.info('bindPopupTest_0300 END');
+      done();
+    });
+
+    it('bindPopupTest_0400', 0, async function (done) {
+      console.info('bindPopupTest_0400 START');
+      try {
+        let eventData = {
+          data: {
+            "enableArrow": a,
+            "maskColor": -1
+          }
+        }
+        let indexEvent = {
+          eventId: 10001,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("bindPopupTest_0400 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("bindPopupTest_0400 change component data error: " + err.message);
+      }
+      await Utils.sleep(1500);
+      let callbackOne = (indexEventOne) => {
+        console.info("bindPopupTest_0400 get state result is: " + JSON.stringify(indexEventOne));
+        expect(indexEventOne.data.enableArrow).assertEqual(false);
+        expect(indexEventOne.data.maskColor).assertEqual(855638025);
+      }
+      let indexEventOne = {
+        eventId: 10004,
+        priority: events_emitter.EventPriority.LOW
+      }
+      try {
+        events_emitter.on(indexEventOne, callbackOne);
+      } catch (err) {
+        console.info("bindPopupTest_0400 on events_emitter err : " + JSON.stringify(err));
+      }
+      console.info("bindPopupTest_0400 click result is: " + JSON.stringify(sendEventByKey('button3', 10, "")));
+      await Utils.sleep(1000);
+      console.info('bindPopupTest_0400 END');
+      done();
+    });
+
+    it('bindPopupTest_0500', 0, async function (done) {
+      console.info('bindPopupTest_0500 START');
       await Utils.sleep(1500);
       let callback = (indexEvent) => {
-        console.info("bindPopupTest_0300 get state result is: " + JSON.stringify(indexEvent));
+        console.info("bindPopupTest_0500 get state result is: " + JSON.stringify(indexEvent));
         expect(indexEvent.data.placementOnTop).assertEqual(false);
       }
       let indexEvent = {
-        eventId: 65,
+        eventId: 10005,
         priority: events_emitter.EventPriority.LOW
       }
       try {
         events_emitter.on(indexEvent, callback);
       } catch (err) {
-        console.info("bindPopupTest_0300 on events_emitter err : " + JSON.stringify(err));
+        console.info("bindPopupTest_0500 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("bindPopupTest_0300 click result is: " + JSON.stringify(sendEventByKey('button2',10,"")));
+      console.info("bindPopupTest_0500 click result is: " + JSON.stringify(sendEventByKey('button2', 10, "")));
       await Utils.sleep(1000);
-      console.info('bindPopupTest_0300 END');
+      console.info('bindPopupTest_0500 END');
       done();
     });
   })

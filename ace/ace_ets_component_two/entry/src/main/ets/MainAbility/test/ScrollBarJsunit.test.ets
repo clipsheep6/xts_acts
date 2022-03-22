@@ -19,7 +19,7 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function scrollBarJsunit() {
-  describe('appInfoTest', function () {
+  describe('scrollBarTest', function () {
     beforeEach(async function (done) {
       let options = {
         uri: 'pages/scrollBar',
@@ -101,7 +101,7 @@ export default function scrollBarJsunit() {
       try {
         let eventData = {
           data: {
-            "stateValue":"BarState.On"
+            "stateValue": "BarState.On"
           }
         }
         let indexEvent = {
@@ -149,3 +149,7 @@ export default function scrollBarJsunit() {
     });
   })
 }
+
+
+
+

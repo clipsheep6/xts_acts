@@ -31,7 +31,6 @@ struct TransformExample {
   @State translateValue: object= { x: 100, y: 5 }
   @State scaleValue: object= { x: 2, y: 0.5 }
   @State transformValue: object= Matrix4.identity().translate({ x: 100, y: 100, z: 30 })
-
   private stateChangCallBack = (eventData) => {
     console.info("transFormExample page state change called:" + JSON.stringify(eventData));
     if (eventData != null) {

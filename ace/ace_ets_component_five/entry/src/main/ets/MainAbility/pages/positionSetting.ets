@@ -20,16 +20,33 @@ import events_emitter from '@ohos.emitter';
 struct PositionSetting {
   @State align: Alignment = Alignment.TopStart;
   @State direction: Direction = Direction.Rtl;
-  @State position1: {x: string, y: string} = {x: 25, y: 15};
-  @State position2: {x: string, y: string} = {x: '50%', y: '70%'};
-  @State anchor: {x: string, y: string} = {x: 25, y: 25};
-  @State offset: {x: string, y: string} = {x: 10, y: 15};
+  @State position1: {
+    x: string,
+    y: string
+  } = { x: 25, y: 15 };
+  @State position2: {
+    x: string,
+    y: string
+  } = { x: '50%', y: '70%' };
+  @State anchor: {
+    x: string,
+    y: string
+  } = { x: 25, y: 25 };
+  @State offset: {
+    x: string,
+    y: string
+  } = { x: 10, y: 15 };
   @State opacityValue: string = 1;
 
   build() {
     Column() {
-      Column({space: 10}) {
-        Text('opacity(1)').fontSize(20).fontColor(Color.Black).width('90%').opacity(`${this.opacityValue}`).key("opacity")
+      Column({ space: 10 }) {
+        Text('opacity(1)')
+          .fontSize(20)
+          .fontColor(Color.Black)
+          .width('90%')
+          .opacity(`${this.opacityValue}`)
+          .key("opacity")
         Text('top start')
           .align(this.align)
           .height(50)
@@ -58,8 +75,10 @@ struct PositionSetting {
             .fontSize(20)
           Text(`2 position(${this.position1.x}, ${this.position1.y})`)
             .size({ width: '60%', height: '30' })
-            .backgroundColor(0xbbb2cb).border({ width: 1 })
-            .fontSize(20).align(Alignment.Start)
+            .backgroundColor(0xbbb2cb)
+            .border({ width: 1 })
+            .fontSize(20)
+            .align(Alignment.Start)
             .position({ x: this.position1.x, y: this.position1.y })
             .key('position1')
           Text('3')
@@ -69,7 +88,8 @@ struct PositionSetting {
           Text(`4 position(${this.position2.x}, ${this.position2.y})`)
             .size({ width: '50%', height: '50' })
             .backgroundColor(0xbbb2cb)
-            .border({ width: 1 }).fontSize(20)
+            .border({ width: 1 })
+            .fontSize(20)
             .position({ x: this.position2.x, y: this.position2.y })
             .key('position2')
         }.width('90%').height(100).border({ width: 1, style: BorderStyle.Dashed })
@@ -93,19 +113,26 @@ struct PositionSetting {
         Row() {
           Text('1').size({ width: '15%', height: '100' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(20)
           Text(`2\noffset(${this.offset.x}, ${this.offset.y})`)
-            .size({ width: 170, height: '50' }).backgroundColor(0xbbb2cb).border({ width: 1 })
-            .fontSize(20).align(Alignment.Start)
+            .size({ width: 170, height: '50' })
+            .backgroundColor(0xbbb2cb)
+            .border({ width: 1 })
+            .fontSize(20)
+            .align(Alignment.Start)
             .offset({ x: this.offset.x, y: this.offset.y })
             .key('offset')
           Text('3').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(20)
           Text('4\noffset(-10%, 20%)')
-            .size({ width: 170, height: '50' }) .backgroundColor(0xbbb2cb).border({ width: 1 }).fontSize(20)
+            .size({ width: 170, height: '50' })
+            .backgroundColor(0xbbb2cb)
+            .border({ width: 1 })
+            .fontSize(20)
             .offset({ x: '-10%', y: '50%' })
         }.width('90%').height(100).border({ width: 1, style: BorderStyle.Dashed })
       }
     }
     .width('100%').margin({ top: 5 })
   }
+
   onPageShow() {
     let stateChangeEvent = {
       eventId: 25,
@@ -137,6 +164,7 @@ struct PositionSetting {
     }
     events_emitter.on(offsetChangeEvent, this.stateChangCallBack);
   }
+
   stateChangCallBack = (eventData) => {
     console.info("position page stateChangCallBack" + JSON.stringify(eventData));
     if (eventData) {

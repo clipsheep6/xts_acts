@@ -18,7 +18,8 @@ import events_emitter from '@ohos.emitter';
 @Entry
 @Component
 struct Index {
-  @State direction:FlexDirection = FlexDirection.Column
+  @State direction: FlexDirection = FlexDirection.Column
+
   build() {
     Flex({ direction: this.direction, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('Hello World')

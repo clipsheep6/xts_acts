@@ -30,43 +30,40 @@ struct BackgroundExample {
   @State sizeHeight: string = '100%';
   @State layoutWeight1: string = 1;
   @State layoutWeight2: string = 2;
-
   private stateChangCallBack = (eventData) => {
     if (eventData != null) {
       console.info("gauge page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.colorValues != null) {
+      if (eventData.data.colorValues != null) {
         this.colorValues = JSON.parse(eventData.data.colorValues);
       }
-      if(eventData.data.width != null) {
+      if (eventData.data.width != null) {
         this.width = eventData.data.width;
       }
-      if(eventData.data.height != null) {
+      if (eventData.data.height != null) {
         this.height = eventData.data.height;
       }
-      if(eventData.data.srcValue != null) {
+      if (eventData.data.srcValue != null) {
         this.srcValue = eventData.data.srcValue;
       }
     }
   }
-
   private stateChangCallBackTwo = (eventData) => {
     if (eventData != null) {
       console.info("Background page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.backgroundColor != null) {
+      if (eventData.data.backgroundColor != null) {
         this.backgroundColor = eventData.data.backgroundColor;
       }
-      if(eventData.data.backgroundImage != null) {
+      if (eventData.data.backgroundImage != null) {
         this.backgroundImage = eventData.data.backgroundImage;
       }
-      if(eventData.data.backgroundImageSize != null) {
+      if (eventData.data.backgroundImageSize != null) {
         this.backgroundImageSize = eventData.data.backgroundImageSize;
       }
-      if(eventData.data.backgroundImagePosition != null) {
+      if (eventData.data.backgroundImagePosition != null) {
         this.backgroundImagePosition = eventData.data.backgroundImagePosition;
       }
     }
   }
-
   private stateChangCallBackOne = (eventData) => {
     console.info("size page stateChangCallBack" + JSON.stringify(eventData));
     if (eventData) {
@@ -76,7 +73,6 @@ struct BackgroundExample {
       this.margin = eventData.data.margin;
     }
   }
-
   private sizeChangCallBack = (eventData) => {
     console.info("size page sizeChangCallBack" + JSON.stringify(eventData));
     if (eventData) {
@@ -84,7 +80,6 @@ struct BackgroundExample {
       this.sizeHeight = eventData.data.height;
     }
   }
-
   private weightChangCallBack = (eventData) => {
     console.info("size page weightChangCallBack" + JSON.stringify(eventData));
     if (eventData) {
@@ -125,10 +120,23 @@ struct BackgroundExample {
     events_emitter.on(weightChangeEvent, this.weightChangCallBack)
   }
 
+  onPageHide() {
+    console.info('on page hide called');
+  }
+
+  onBackPress() {
+    console.info('on back press called');
+  }
+
   build() {
     Column({ space: 5 }) {
       Text('background color').fontSize(9).width('90%').fontColor(0xFF0000).key("fontColor")
-      Row().width('90%').height(50).backgroundColor(0xEEEE00).key("backgroundColor").border({ width: 1 })
+      Row()
+        .width('90%')
+        .height(50)
+        .backgroundColor(0xEEEE00)
+        .key("backgroundColor")
+        .border({ width: 1 })
       Text('background image repeat along X').fontSize(9).width('90%').fontColor(0xCCCCCC)
       Row()
         .backgroundImage('/images/bg.jpg', ImageRepeat.X)
@@ -145,7 +153,8 @@ struct BackgroundExample {
         .border({ width: 1 })
       Text('background image size').fontSize(9).width('90%').fontColor(0xFF0000)
       Row()
-        .width('90%').height(150)
+        .width('90%')
+        .height(150)
         .backgroundImage('/images/bg.jpg', ImageRepeat.NoRepeat)
         .backgroundImageSize({ width: 1000, height: 500 })
         .border({ width: 1 })
@@ -221,10 +230,10 @@ struct BackgroundExample {
         .width('90%')
       Row() {
         Row()
-          .constraintSize({minWidth: '10%', maxWidth: '50%', height: 70})
+          .constraintSize({ minWidth: '10%', maxWidth: '50%', height: 70 })
           .backgroundColor(0xFFA500)
         Row()
-          .size({width: '30%', height:70})
+          .size({ width: '30%', height: 70 })
           .backgroundColor(0xAFEEEE)
       }.size({ width: '90%', height: 140 })
       .backgroundColor(0xAFEEEE)

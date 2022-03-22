@@ -35,10 +35,16 @@ struct ohosMatrix4 {
   @State matrix1: object= Matrix4.identity().transformPoint([100, 10])
   @State matrix2: object = Matrix4.identity().translate({ x: 300 }).copy()
   @State matrix3: object = Matrix4.identity().scale({ x: 3 }).copy()
-  @State matrix4: object = Matrix4.identity().rotate({x:1, y:1, z:2, angle:30})
-  @State matrix5: object = Matrix4.identity().scale({x:5, y:1, z:1, centerX:50, centerY:50})
-  @State matrix6: object = Matrix4.identity().translate({x:100, y:200, z:30})
-
+  @State matrix4: object = Matrix4.identity().rotate({ x: 1, y: 1, z: 2, angle: 30 })
+  @State matrix5: object = Matrix4.identity()
+    .scale({
+      x: 5,
+      y: 1,
+      z: 1,
+      centerX: 50,
+      centerY: 50
+    })
+  @State matrix6: object = Matrix4.identity().translate({ x: 100, y: 200, z: 30 })
   private stateChangCallBack = (eventData) => {
     console.info("transFormExample page state change called:" + JSON.stringify(eventData));
     if (eventData != null) {
@@ -134,12 +140,14 @@ struct ohosMatrix4 {
         .height(100)
         .margin({ top: 5 })
         .key('rotate6')
-      Image('/images/bg.jpg').transform(this.matrix4)
+      Image('/images/bg.jpg')
+        .transform(this.matrix4)
         .padding(5)
         .width("40%")
         .height(100)
         .key('rotate7')
-      Image('/images/bg.jpg').transform(this.matrix5)
+      Image('/images/bg.jpg')
+        .transform(this.matrix5)
         .padding(5)
         .width("40%")
         .height(100)

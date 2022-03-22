@@ -26,7 +26,7 @@ struct fillModeExample {
   @State fixedSize: boolean = false
 
   build() {
-    Column({ space:5 }) {
+    Column({ space: 5 }) {
       ImageAnimator()
         .images([
           {
@@ -62,9 +62,15 @@ struct fillModeExample {
             left: 0
           }
         ])
-        .state(this.state).reverse(this.reverse).fixedSize(this.fixedSize).preDecode(this.preDecode)
-        .fillMode(this.fillMode).iterations(this.iterations).width(325).height(210)
-        .margin({top:100})
+        .state(this.state)
+        .reverse(this.reverse)
+        .fixedSize(this.fixedSize)
+        .preDecode(this.preDecode)
+        .fillMode(this.fillMode)
+        .iterations(this.iterations)
+        .width(325)
+        .height(210)
+        .margin({ top: 100 })
         .onStart(() => {
           console.info('Start')
         })
@@ -139,6 +145,7 @@ struct fillModeExample {
           }
         })
       }
+
       Row() {
         Button('reverse').key('button3').width(100).padding(5).onClick(() => {
           this.reverse = !this.reverse

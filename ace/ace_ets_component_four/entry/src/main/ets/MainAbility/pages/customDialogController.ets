@@ -50,7 +50,6 @@ struct CustomDialogUser {
   @State customStyle: boolean = false
   @State alignment: DialogAlignment = DialogAlignment.Default
   @State onClickValue: boolean = false
-
   private stateChangCallBack = (eventData) => {
     console.info("checkboxGroup page stateChangCallBack");
     if (eventData != null) {
@@ -80,9 +79,11 @@ struct CustomDialogUser {
   onCancel() {
     console.info('Callback when the first button is clicked')
   }
+
   onAccept() {
     console.info('Callback when the second button is clicked')
   }
+
   existApp() {
     console.info('Click the callback in the blank area')
   }

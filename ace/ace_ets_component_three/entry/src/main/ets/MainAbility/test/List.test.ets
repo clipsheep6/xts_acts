@@ -15,7 +15,6 @@
 import gridJsunit from './GridJsunit.test.ets';
 import canvasJsunit from './CanvasJsunit.test.ets';
 import textJsunit from './TextJsunit.test.ets';
-import badgeJsunit from './BadgeJsunit.test.ets';
 import longPressGestureJsUnit from './LongPressGesture.test.ets';
 import buttonJsunit from './ButtonJsunit.test.ets';
 import responseRegionJsunit from './ResponseRegionJsunit.test.ets';
@@ -30,21 +29,11 @@ import spanJsunit from './SpanJsunit.test.ets';
 import ratingJsunit from './RatingJsunit.test.ets';
 import canvas2Jsunit from './Canvas2Jsunit.test.ets';
 import toggleJsunit from './ToggleJsunit.test.ets';
-import shapeJsunit from './ShapeJsunit.test.ets';
-import motionPathJsunit from './MotionPathJsunit.test.ets';
-import scrollCodeJsunit from './ScrollCodeJsunit.test.ets';
-import transitionJsunit from './TransitionJsunit.test.ets';
-import priorityGestureJsunit from './PriorityGestureJsunit.test.ets';
-import parallelGestureJsunit from './ParallelGestureJsunit.test.ets';
-import blankJsunit from './BlankJsunit.test.ets';
 import sharedTransitionJsunit from './SharedTransitionJsunit.test.ets';
 import lineJsunit from './LineJsunit.test.ets';
 import circleJsunit from './CircleJsunit.test.ets';
-import aboutToDisappearJsunit from './AboutToDisappearJsunit.test.ets';
-import timeStampJsunit from './TimeStampJsunit.test.ets';
 
 export default function testsuite() {
-  badgeJsunit();
   lineJsunit();
   progressJsunit();
   textJsunit();
@@ -64,14 +53,5 @@ export default function testsuite() {
   spanJsunit();
   ratingJsunit();
   toggleJsunit();
-  shapeJsunit();
-  motionPathJsunit();
-  scrollCodeJsunit();
-  transitionJsunit();
-  priorityGestureJsunit();
-  parallelGestureJsunit();
-  blankJsunit();
   sharedTransitionJsunit();
-  aboutToDisappearJsunit();
-  timeStampJsunit();
 }

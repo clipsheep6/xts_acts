@@ -110,5 +110,87 @@ export default function rowJsunit() {
       console.info('testRow_600 END');
       done();
     });
+
+    it('testRow_700', 0, async function (done) {
+      console.info('[testRow_700] START');
+      try {
+        let eventData = {
+          data: {
+            "alignItems": "VerticalAlign.Bottom",
+          }
+        }
+        let indexEvent = {
+          eventId: 41,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testRow_700 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("testRow_700 change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('Row');
+      let obj = JSON.parse(strJson);
+      console.info("testRow_700 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.alignItems).assertEqual("VerticalAlign.Center");
+      console.info('testRow_700 END');
+      done();
+    });
+
+    it('testRow_800', 0, async function (done) {
+      console.info('[testRow_800] START');
+      try {
+        let eventData = {
+          data: {
+            "alignItems": "VerticalAlign.Top",
+          }
+        }
+        let indexEvent = {
+          eventId: 41,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testRow_800 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("testRow_800 change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('Row');
+      let obj = JSON.parse(strJson);
+      console.info("testRow_800 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.alignItems).assertEqual("VerticalAlign.Center");
+      console.info('testRow_800 END');
+      done();
+    });
+
+    it('testRow_900', 0, async function (done) {
+      console.info('[testRow_900] START');
+      try {
+        let eventData = {
+          data: {
+            "alignItems": "VerticalAlign.Center",
+          }
+        }
+        let indexEvent = {
+          eventId: 41,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testRow_900 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("testRow_900 change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('Row');
+      let obj = JSON.parse(strJson);
+      console.info("testRow_900 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.alignItems).assertEqual("VerticalAlign.Center");
+      console.info('testRow_900 END');
+      done();
+    });
   })
 }
+
+
+
+

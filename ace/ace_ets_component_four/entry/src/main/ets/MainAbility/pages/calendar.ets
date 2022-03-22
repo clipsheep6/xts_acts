@@ -89,7 +89,6 @@ struct CalendarComponentExample {
   @State currentData_: MonthData = { year: 2022, month: 3, data: [this.calendarDay1] };
   @State preData_: MonthData = { year: 2022, month: 3, data: [this.calendarDay2] };
   @State nextData_: MonthData = { year: 2022, month: 3, data: [this.calendarDay3] };
-
   @State colSpace: number = 5;
   @State dailyFiveRowSpace: number = 4;
   @State dailySixRowSpace: number = 5;
@@ -103,7 +102,7 @@ struct CalendarComponentExample {
   @State weekStyle: WeekStyle = {
     weekColor: Color.black,
     weekendDayColor: Color.red,
-    weekendLunarColor:  Color.green,
+    weekendLunarColor: Color.green,
     weekFontSize: 1,
     weekHeight: 2,
     weekWidth: 3,

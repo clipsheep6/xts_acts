@@ -19,7 +19,7 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function flexWrapJsunit() {
-  describe('appInfoTest', function () {
+  describe('flexWrapTest', function () {
     beforeEach(async function (done) {
       console.info("text beforeEach start");
       let options = {
@@ -97,6 +97,36 @@ export default function flexWrapJsunit() {
       expect(objNew.$attrs.backgroundColor).assertEqual("#FFF5DEB3");
       console.info('flexWrap_0300 END');
       done();
-      });
+    });
+
+    it('flexWrap_0400', 0, async function (done) {
+      console.info('flexWrap_0400 START');
+      try {
+        let eventData = {
+          data: {
+            "width": "-60%",
+            "height": "-55",
+            "backgroundColor": "#PP000990",
+          }
+        }
+        let indexEvent = {
+          eventId: 5698,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("flexWrap_0400 start to publish emit");
+        events_emitter.emit(indexEvent, eventData);
+      } catch (err) {
+        console.log("flexWrap_0400 change component data error: " + err.message);
+      }
+      await Utils.sleep(3000);
+      let strJsonNew = getInspectorByKey('WrapReverse');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("flexWrap_0400 component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.width).assertEqual('0.00%');
+      expect(objNew.$attrs.height).assertEqual('0.00vp');
+      expect(objNew.$attrs.backgroundColor).assertEqual("#FF000000");
+      console.info('flexWrap_0400 END');
+      done();
+    });
   })
 }

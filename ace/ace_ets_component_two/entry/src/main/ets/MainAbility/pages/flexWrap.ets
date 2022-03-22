@@ -39,6 +39,7 @@ struct FlexWrapExample {
       }.width('100%').margin({ top: 5 })
     }.width('100%')
   }
+
   onPageShow() {
     console.info('flexDirection page show called');
     var stateChangeEvent = {
@@ -46,7 +47,13 @@ struct FlexWrapExample {
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+    var stateChangeEvent1 = {
+      eventId: 5698,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEvent1, this.stateChangCallBack)
   }
+
   private stateChangCallBack = (eventData) => {
     if (eventData != null) {
       console.info("swiper page state change called:" + JSON.stringify(eventData));

@@ -20,7 +20,7 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 
 export default function navigatorCodeJsunit() {
-  describe('NavigatorClickTest', function () {
+  describe('navigatorCodeTest', function () {
     beforeEach(async function (done) {
       console.info("NavigatorClick beforeEach start");
       let options = {

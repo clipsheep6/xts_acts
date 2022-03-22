@@ -17,12 +17,11 @@
 @Entry
 @Component
 struct BackgroundExample {
-
   build() {
     Column({ space: 5 }) {
       Text('background image repeat along Y').fontSize(9).width('90%').fontColor(0xCCCCCC)
       Row()
-        .backgroundImage('/images/download.png',ImageRepeat.Y)
+        .backgroundImage('/images/download.png', ImageRepeat.Y)
         .backgroundImageSize(ImageSize.Auto)
         .width('90%')
         .height(500)

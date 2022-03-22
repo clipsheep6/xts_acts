@@ -53,7 +53,7 @@ export default function radioJsunit() {
       console.info("testRadio_100_component obj is: " + JSON.stringify(obj));
       console.info("testRadio_100_obj.$attrs.value: " + obj.$attrs.value);
       expect(obj.$type).assertEqual('Radio');
-      expect(obj.$attrs.checked).assertEqual('true');
+      expect(obj.$attrs.checked).assertEqual('false');
       console.info('testRadio_100 END');
       done();
     });
@@ -81,5 +81,83 @@ export default function radioJsunit() {
       console.info('testRadio_300 END');
       done();
     });
+
+    it('testRadio_400', 0, async function (done) {
+      console.info('testRadio_400 START');
+      try {
+        let eventData = {
+          data: {
+            "checked": false
+          }
+        }
+        var innerEvent = {
+          eventId: 40,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testRadio_400 start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("testRadio_400 change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('radio1');
+      let obj = JSON.parse(strJson);
+      console.info("testRadio_400 component obj is: " + JSON.stringify(obj));
+      console.info('testRadio_400 END');
+      done();
+    });
+
+    it('testRadio_500', 0, async function (done) {
+      console.info('testRadio_500 START');
+      try {
+        let eventData = {
+          data: {
+            "checked": true
+          }
+        }
+        var innerEvent = {
+          eventId: 40,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testRadio_500 start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("testRadio_500 change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('radio2');
+      let obj = JSON.parse(strJson);
+      console.info("testRadio_500 component obj is: " + JSON.stringify(obj));
+      console.info('testRadio_500 END');
+      done();
+    });
+
+    it('testRadio_600', 0, async function (done) {
+      console.info('testRadio_600 START');
+      try {
+        let eventData = {
+          data: {
+            "checked": false
+          }
+        }
+        var innerEvent = {
+          eventId: 40,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("testRadio_600 start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("testRadio_600 change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('radio3');
+      let obj = JSON.parse(strJson);
+      console.info("testRadio_600 component obj is: " + JSON.stringify(obj));
+      console.info('testRadio_600 END');
+      done();
+    });
   })
 }
+
+
+

@@ -68,8 +68,8 @@ struct TextAreaExample2 {
         .fontFamily("sans-serif")
         .fontStyle(FontStyle.Normal)
         .fontColor(this.fontColor)
-        .inputFilter('^[\u4E00-\u9FA5A-Za-z0-9_]+$',(value: string) => {
-          console.info("hyb"+value)
+        .inputFilter('^[\u4E00-\u9FA5A-Za-z0-9_]+$', (value: string) => {
+          console.info("hyb" + value)
         })
         .onChange((value: string) => {
           this.text = value

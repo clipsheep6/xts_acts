@@ -24,7 +24,7 @@ struct MouseEventExample {
   @State eventAction: string = ''
 
   build() {
-    Column({ space:20 }) {
+    Column({ space: 20 }) {
       Button(this.hoverText)
         .onHover((isHover: boolean) => {
           if (isHover) {
