@@ -74,7 +74,7 @@ describe('ActsAmsTestFirstScene', function () {
                 ' + error.code + ', data length [' + data.length + ']');
             }
         );
-        done();
+        setTimeout(done(), 5000);
     });
 
     function timeout(done) {
@@ -118,6 +118,7 @@ describe('ActsAmsTestFirstScene', function () {
             expect(info[i].uid).assertLarger(0);
         }
         done();
+        setTimeout(timeout, 5000);
     })
 
     
@@ -138,6 +139,7 @@ describe('ActsAmsTestFirstScene', function () {
         });
         console.info('Acts_Ams_test_1100 moveMissionToFront data  [' + info + ']');
         done();
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -168,6 +170,49 @@ describe('ActsAmsTestFirstScene', function () {
             expect(typeof (data[i].iconPath)).assertEqual("string");
         }
         done();
+        setTimeout(timeout, 5000);
+    })
+
+    /*
+    * @tc.number    : Acts_Ams_test_0700
+    * @tc.name      : clearMission : Remove Mission
+    * @tc.desc      : Remove Mission(by Promise)
+    */
+    it('Acts_Ams_test_0700', 0, async function (done) {
+        var maxnum = 10;
+        var result = await missionManager.getMissionInfos("", maxnum);
+        for (var i = 0; i < result.length; i++) {
+            console.info('Acts_Ams_test_0700 getMissionInfos result[' + i + "]: " + JSON.stringify(result[i]));
+        }
+        var info = await missionManager.clearMission(result[0].missionId).catch(err => {
+            console.log('Acts_Ams_test_0700 clearMission failed: ' + err);
+            expect(err).assertEqual(0);
+        });
+        console.info('Acts_Ams_test_0700 clearMission data  [' + info + ']');
+        done();
+        setTimeout(timeout, 5000);
+    })
+
+    /*
+    * @tc.number    : Acts_Ams_test_11100
+    * @tc.name      : clearMissions: delete Missions
+    * @tc.desc      : delete Missions(by Promise)
+    */
+    it('Acts_Ams_test_11100', 0, async function (done) {
+        var maxnum = 10;
+        var result = await missionManager.getMissionInfos("", maxnum);
+        for (var i = 0; i < result.length; i++) {
+            console.info('Acts_Ams_test_11100 getMissionInfos result[' + i + "]: " + JSON.stringify(result[i]));
+        }
+        expect(result.length).assertEqual(1);
+        var missionID = result[0].missionId + 1;
+        var info = await missionManager.clearMission(missionID).catch(err => {
+            console.log('Acts_Ams_test_11100 clearMission failed: ' + err);
+            expect(err).assertEqual(0);
+        });
+        console.info('Acts_Ams_test_11100 clearMissions data  [' + info + ']');
+        done();
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -180,5 +225,6 @@ describe('ActsAmsTestFirstScene', function () {
         console.info('Acts_Ams_test_1500 killProcessesByBundleName data  [' + info + ']');
         expect(info).assertEqual(0);
         done();
+        setTimeout(timeout, 5000);
     })
 })
