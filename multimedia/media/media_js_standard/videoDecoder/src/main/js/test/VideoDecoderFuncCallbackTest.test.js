@@ -29,6 +29,7 @@ describe('VideoDecoderFuncCallbackTest', function () {
     let isCodecData = false;
     let inputEosFlag = false;
     let surfaceID = '';
+    let temp = 0;
     const events = require('events');
     const eventEmitter = new events.EventEmitter();
     const BASIC_PATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/';
@@ -49,13 +50,6 @@ describe('VideoDecoderFuncCallbackTest', function () {
         187, 137, 136, 1314, 134, 118, 2005, 194, 129, 147, 1566, 185, 132, 131, 1236, 174, 137, 106, 11049,
         574, 126, 1242, 188, 130, 119, 1450, 187, 137, 141, 1116, 124, 1848, 138, 122, 1605, 186, 127, 140,
         1798, 170, 124, 121, 1666, 157, 128, 130, 1678, 135, 118, 1804, 169, 135, 125, 1837, 168, 124, 124];
-    const H263_FRAME_SIZE =
-    [ 96618, 3515, 4132, 4336, 4646, 3497, 4430, 5437, 7560, 4613, 4876, 4734, 53617, 4079, 4507, 5222, 6244,
-      5843, 6601, 6622, 6751, 6539, 7666, 7706, 53977, 7311, 12906, 10308, 26791, 15983, 34794, 22110, 37165,
-      24267, 36171, 18330, 53228, 7893, 13088, 9502, 8485, 9207, 8681, 9202, 8537, 7603, 9726, 8191, 51872,
-      5535, 6146, 6341, 6933, 9365, 7828, 6547, 7638, 7009, 7025, 8873, 51045, 5056, 4858, 4887, 9614, 5953,
-      5972, 6116, 6060, 6296, 6239, 6400, 50928, 4937, 5054, 5371, 6728, 6286, 6524, 6646, 6549, 6036, 6214,
-      5866, 51109, 4778, 5273, 6327];
     const MPEG2_FRAME_SIZE =
     [ 38462, 55096, 8660, 3417, 1197, 2209, 984, 718, 783, 623, 659, 694, 14174, 580, 421, 495, 480, 476, 534,
       660, 699, 601, 603, 720, 12585, 555, 532, 776, 789, 762, 766, 732, 671, 735, 777, 948, 12650, 827, 766,
@@ -99,8 +93,9 @@ describe('VideoDecoderFuncCallbackTest', function () {
         console.info('beforeEach case');
         await toDisplayPage().then(() => {
         }, failCallback).catch(failCatch);
-        await msleep(1000).then(() => {
+        await msleep(5000).then(() => {
         }, failCallback).catch(failCatch);
+        videoDecodeProcessor = null;
         frameCountIn = 0;
         frameCountOut = 0;
         timestamp = 0;
@@ -113,12 +108,6 @@ describe('VideoDecoderFuncCallbackTest', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (videoDecodeProcessor != null) {
-            await videoDecodeProcessor.release().then(() => {
-                console.info('in case : videoDecodeProcessor release success');
-            }, failCallback).catch(failCatch);
-            videoDecodeProcessor = null;
-        }
         await router.clear().then(() => {
         }, failCallback).catch(failCatch);
     })
@@ -142,7 +131,14 @@ describe('VideoDecoderFuncCallbackTest', function () {
     }
 
     async function toDisplayPage() {
-        let path = 'pages/display/display';
+        let path = '';
+        if (temp == 0) {
+            path = 'pages/display/display';
+            temp = 1;
+        } else {
+            path = 'pages/display2/display2';
+            temp = 0;
+        }
         let options = {
             uri: path,
         }

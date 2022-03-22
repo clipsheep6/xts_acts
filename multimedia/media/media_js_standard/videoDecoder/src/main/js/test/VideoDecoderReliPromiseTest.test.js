@@ -46,6 +46,7 @@ describe('VideoDecoderReliPromiseTest', function () {
     let inputEosFlag = false;
     let workdoneAtEOS = false;
     let surfaceID = '';
+    let temp = 0;
     const BASIC_PATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/';
     const SRCPATH = BASIC_PATH + 'out_320_240_10s.h264';
     let mediaDescription = {
@@ -82,8 +83,9 @@ describe('VideoDecoderReliPromiseTest', function () {
         console.info('beforeEach case');
         await toDisplayPage().then(() => {
         }, failCallback).catch(failCatch);
-        await msleep(1000).then(() => {
+        await msleep(5000).then(() => {
         }, failCallback).catch(failCatch);
+        videoDecodeProcessor = null;
         frameCountIn = 0;
         frameCountOut = 0;
         timestamp = 0;
@@ -99,12 +101,6 @@ describe('VideoDecoderReliPromiseTest', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (videoDecodeProcessor != null) {
-            await videoDecodeProcessor.release().then(() => {
-                console.info('in case : videoDecodeProcessor release success');
-            }, failCallback).catch(failCatch);
-            videoDecodeProcessor = null;
-        }
         await router.clear().then(() => {
         }, failCallback).catch(failCatch);
     })
@@ -133,11 +129,20 @@ describe('VideoDecoderReliPromiseTest', function () {
         expect(err != undefined).assertTrue();
         toNextStep(mySteps, done);
     }
+
     function msleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
+
     async function toDisplayPage() {
-        let path = 'pages/display/display';
+        let path = '';
+        if (temp == 0) {
+            path = 'pages/display/display';
+            temp = 1;
+        } else {
+            path = 'pages/display2/display2';
+            temp = 0;
+        }
         let options = {
             uri: path,
         }
@@ -147,6 +152,7 @@ describe('VideoDecoderReliPromiseTest', function () {
             console.error('in case toDisplayPage' + e);
         }
     }
+
     function readFile(path){
         console.info('in case : read file start execution');
         try {
