@@ -53,10 +53,10 @@ describe('videoEncoderReliabilityPromise', function () {
     let height = 240;
     let framerate = 30;
     let mediaDescription = {
-        "width": width, 
-        "height": height,
-        "pixel_format": 3,
-        "frame_rate" : framerate,
+        'width': width, 
+        'height': height,
+        'pixel_format': 3,
+        'frame_rate' : framerate,
     }
     let mime = 'video/mp4v-es';
 
@@ -123,7 +123,7 @@ describe('videoEncoderReliabilityPromise', function () {
 
     function writeFile(path, buf, len){
         try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
+            let writestream = Fileio.createStreamSync(path, 'ab+');
             let num = writestream.writeSync(buf, {length:len});
             writestream.flushSync();
             writestream.closeSync();
@@ -141,7 +141,7 @@ describe('videoEncoderReliabilityPromise', function () {
     }
     
     async function nextStep(mySteps, done) {
-        console.info("case myStep[0]: " + mySteps[0]);
+        console.info('case myStep[0]: ' + mySteps[0]);
         if (mySteps[0] == END) {
             done();
         }
@@ -230,22 +230,22 @@ describe('videoEncoderReliabilityPromise', function () {
             let outputObject = outputQueue.shift();
             outputCnt += 1;
             if (outputObject.flags == 1) {
-                console.info("saw output EOS");
+                console.info('saw output EOS');
                 sawOutputEOS = true;
                 if (workdoneAtEOS) {
                     mediaTest.closeStream(surfaceID);
                     await toReset();
                     await videoEncodeProcessor.release().then(() => {
-                        console.info("case release success"); 
+                        console.info('case release success'); 
                     }, failCallback).catch(failCatch);
                     videoEncodeProcessor = null;
                     done();
                 } else {
-                    console.info("sawOutputEOS = true;");
+                    console.info('sawOutputEOS = true;');
                 }
             } else {
                 writeFile(path, outputObject.data, outputObject.length);
-                console.info("write to file success");
+                console.info('write to file success');
                 videoEncodeProcessor.freeOutputBuffer(outputObject).then(() => {
                     console.info('release output success');
                     frameCountOut++;
@@ -262,7 +262,7 @@ describe('videoEncoderReliabilityPromise', function () {
             console.info('outBuffer.flags :' + outBuffer.flags);
             if (needGetMediaDes) {
                 videoEncodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
-                    console.info("get OutputMediaDescription success");
+                    console.info('get OutputMediaDescription success');
                     console.info('get outputMediaDescription : ' + MediaDescription);
                     needGetMediaDes = false;
                 }, failCallback).catch(failCatch);
@@ -284,7 +284,7 @@ describe('videoEncoderReliabilityPromise', function () {
             console.info(`case createVideoEncoder 1`);
             videoEncodeProcessor = processor;
             setCallback(savepath, done);
-            console.info("case start api test");
+            console.info('case start api test');
             nextStep(mySteps, done);
         }, failCallback).catch(failCatch);
     }
@@ -330,7 +330,7 @@ describe('videoEncoderReliabilityPromise', function () {
             }, (err) => {failCallbackTrue(err,  mySteps, done)}).catch(failCatch);
         } else {
             await videoEncodeProcessor.configure(mediaDescription).then(() => {
-                console.info("case configure success"); 
+                console.info('case configure success'); 
             }, failCallback).catch(failCatch);
         }
         nextStep(mySteps, done);
@@ -346,7 +346,7 @@ describe('videoEncoderReliabilityPromise', function () {
             }, (err) => {failCallbackTrue(err,  mySteps, done)}).catch(failCatch);
         } else {
             await videoEncodeProcessor.prepare().then(() => {
-                console.info("case prepare success"); 
+                console.info('case prepare success'); 
             }, failCallback).catch(failCatch);
         }
         nextStep(mySteps, done);
@@ -366,7 +366,7 @@ describe('videoEncoderReliabilityPromise', function () {
                 workdoneAtEOS = true;
             }
             await videoEncodeProcessor.start().then(() => {
-                console.info("case start success"); 
+                console.info('case start success'); 
             }, failCallback).catch(failCatch);
         }
         nextStep(mySteps, done);
@@ -382,7 +382,7 @@ describe('videoEncoderReliabilityPromise', function () {
             }, (err) => {failCallbackTrue(err,  mySteps, done)}).catch(failCatch);
         } else {
             await videoEncodeProcessor.flush().then(() => {
-                console.info("case flush success"); 
+                console.info('case flush success'); 
             }, failCallback).catch(failCatch);
             if (flushAtEOS) {
                 mediaTest.closeStream(surfaceID);
@@ -403,7 +403,7 @@ describe('videoEncoderReliabilityPromise', function () {
             }, (err) => {failCallbackTrue(err,  mySteps, done)}).catch(failCatch);
         } else {
             await videoEncodeProcessor.stop().then(() => {
-                console.info("case stop success"); 
+                console.info('case stop success'); 
             }, failCallback).catch(failCatch);
         }
         nextStep(mySteps, done);
@@ -411,7 +411,7 @@ describe('videoEncoderReliabilityPromise', function () {
 
     async function toReset() {
         await videoEncodeProcessor.reset().then(() => {
-            console.info("case reset success"); 
+            console.info('case reset success'); 
         }, failCallback).catch(failCatch);
     }
 
@@ -426,7 +426,7 @@ describe('videoEncoderReliabilityPromise', function () {
             videoEncodeProcessor = null;
         } else {
             await videoEncodeProcessor.release().then(() => {
-                console.info("case release success"); 
+                console.info('case release success'); 
             }, failCallback).catch(failCatch);
             if (mySteps[0] != RELEASE) {
                 videoEncodeProcessor = null;
@@ -1381,14 +1381,14 @@ describe('videoEncoderReliabilityPromise', function () {
         for (let j = 1; j < 51; j++) {
             console.info('case configure-reset current loop: ' + j);
             await videoEncodeProcessor.configure(mediaDescription).then(() => {
-                console.info("case configure success"); 
+                console.info('case configure success'); 
             }, failCallback).catch(failCatch);
             await videoEncodeProcessor.reset().then(() => {
-                console.info("case reset success"); 
+                console.info('case reset success'); 
             }, failCallback).catch(failCatch);
         }
         await videoEncodeProcessor.release().then(() => {
-            console.info("case release success"); 
+            console.info('case release success'); 
         }, failCallback).catch(failCatch);
         videoEncodeProcessor = null;
         done();
@@ -1415,23 +1415,23 @@ describe('videoEncoderReliabilityPromise', function () {
             }
         })
         await videoEncodeProcessor.configure(mediaDescription).then(() => {
-            console.info("case configure success"); 
+            console.info('case configure success'); 
         }, failCallback).catch(failCatch);
         await toGetInputSurface();
         await videoEncodeProcessor.prepare().then(() => {
-            console.info("case prepare success"); 
+            console.info('case prepare success'); 
         }, failCallback).catch(failCatch);
         for (let j = 1; j < 51; j++) {
             console.info('case start-stop current loop: ' + j);
             await videoEncodeProcessor.start().then(() => {
-                console.info("case start success"); 
+                console.info('case start success'); 
             }, failCallback).catch(failCatch);
             await videoEncodeProcessor.stop().then(() => {
-                console.info("case stop success"); 
+                console.info('case stop success'); 
             }, failCallback).catch(failCatch);
         }
         await videoEncodeProcessor.release().then(() => {
-            console.info("case release success"); 
+            console.info('case release success'); 
         }, failCallback).catch(failCatch);
         videoEncodeProcessor = null;
         done();
@@ -1460,7 +1460,7 @@ describe('videoEncoderReliabilityPromise', function () {
                 }
             })
             await videoEncodeProcessor.release().then(() => {
-                console.info("case release success"); 
+                console.info('case release success'); 
             }, failCallback).catch(failCatch);
             videoEncodeProcessor = null;
         }
@@ -1490,26 +1490,26 @@ describe('videoEncoderReliabilityPromise', function () {
                 }
             })
             await videoEncodeProcessor.configure(mediaDescription).then(() => {
-                console.info("case configure success"); 
+                console.info('case configure success'); 
             }, failCallback).catch(failCatch);
             await toGetInputSurface();
             await videoEncodeProcessor.prepare().then(() => {
-                console.info("case prepare success"); 
+                console.info('case prepare success'); 
             }, failCallback).catch(failCatch);
             await videoEncodeProcessor.start().then(() => {
-                console.info("case start success"); 
+                console.info('case start success'); 
             }, failCallback).catch(failCatch);
             await videoEncodeProcessor.flush().then(() => {
-                console.info("case flush success"); 
+                console.info('case flush success'); 
             }, failCallback).catch(failCatch);
             await videoEncodeProcessor.stop().then(() => {
-                console.info("case stop success"); 
+                console.info('case stop success'); 
             }, failCallback).catch(failCatch);
             await videoEncodeProcessor.reset().then(() => {
-                console.info("case reset success"); 
+                console.info('case reset success'); 
             }, failCallback).catch(failCatch);
             await videoEncodeProcessor.release().then(() => {
-                console.info("case release success"); 
+                console.info('case release success'); 
             }, failCallback).catch(failCatch);
             videoEncodeProcessor = null;
         }
