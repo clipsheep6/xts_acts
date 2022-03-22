@@ -18,7 +18,7 @@ import audio from '@ohos.multimedia.audio';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
 describe('audioApiResponseTime', function () {
-    console.info('AudioFrameworkTestPerf: Running AudioManger API Perfomance Test');
+    console.info('AudioFrameworkTestPerf: Running AudioManger API Performance Test');
     var AUDIO_MEDIA = 3;
     var AUDIO_RINGTONE = 2;
     var MAX_VOL = 15;

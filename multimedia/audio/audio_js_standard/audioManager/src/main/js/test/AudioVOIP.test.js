@@ -23,7 +23,7 @@ describe('audioRenderer', function () {
 
     var dateTime = new Date().getTime();
     const dirPath = '/data/media/RecTest'+dateTime;
-    var fpath = dirPath+'/capture_js.pcm';
+    
     console.info('AudioFrameworkRecLog: Recording files Path: '+dirPath);
 
     const audioManager = audio.getAudioManager();
@@ -404,7 +404,7 @@ describe('audioRenderer', function () {
         console.info('AudioFrameworkRenderLog: resultFlag : Renderer : '+resultFlagRec);
         console.info('AudioFrameworkRenderLog: resultFlag : Capturer : '+resultFlagRen);
 
-        if (resultFlagRec = true){
+        if (resultFlagRec == true){
             expect(resultFlagRen).assertTrue();
         }
         else{
