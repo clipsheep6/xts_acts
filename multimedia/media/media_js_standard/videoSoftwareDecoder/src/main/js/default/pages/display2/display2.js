@@ -13,8 +13,21 @@
  * limitations under the License.
  */
 
-require('./VideoDecoderFuncCallbackTest.test.js')
-require('./VideoDecoderFuncPromiseTest.test.js')
-require('./VideoDecoderReliCallbackTest.test.js')
-require('./VideoDecoderReliPromiseTest.test.js')
-require('./VideoDecoderEnumTest.test.js')
+import {Core, ExpectExtend} from 'deccjsunit/index'
+
+export default {
+    data: {
+        title: ""
+    },
+    onInit() {
+        console.info('onInit finish')
+        this.title = this.$t('strings.world');
+    },
+    onShow() {
+    },
+    onReady() {
+    },
+    LoadXcomponent() {
+        globalThis.value = this.$element('XcomponentId').getXComponentSurfaceId();
+    },
+}

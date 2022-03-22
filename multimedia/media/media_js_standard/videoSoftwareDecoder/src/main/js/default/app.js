@@ -13,8 +13,11 @@
  * limitations under the License.
  */
 
-require('./VideoDecoderFuncCallbackTest.test.js')
-require('./VideoDecoderFuncPromiseTest.test.js')
-require('./VideoDecoderReliCallbackTest.test.js')
-require('./VideoDecoderReliPromiseTest.test.js')
-require('./VideoDecoderEnumTest.test.js')
+export default {
+    onCreate() {
+        console.info('AceApplication onCreate');
+    },
+    onDestroy() {
+        console.info('AceApplication onDestroy');
+    }
+};

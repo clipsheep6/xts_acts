@@ -83,8 +83,9 @@ describe('VideoDecoderReliCallbackTest', function () {
         console.info('beforeEach case');
         await toDisplayPage().then(() => {
         }, failCallback).catch(failCatch);
-        await msleep(1000).then(() => {
+        await msleep(5000).then(() => {
         }, failCallback).catch(failCatch);
+        videoDecodeProcessor = null;
         frameCountIn = 0;
         frameCountOut = 0;
         timestamp = 0;
@@ -100,12 +101,6 @@ describe('VideoDecoderReliCallbackTest', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (videoDecodeProcessor != null) {
-            await videoDecodeProcessor.release().then(() => {
-                console.info('in case : videoDecodeProcessor release success');
-            }, failCallback).catch(failCatch);
-            videoDecodeProcessor = null;
-        }
         await router.clear().then(() => {
         }, failCallback).catch(failCatch);
     })

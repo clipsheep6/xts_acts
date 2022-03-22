@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-require('./VideoDecoderFuncCallbackTest.test.js')
-require('./VideoDecoderFuncPromiseTest.test.js')
-require('./VideoDecoderReliCallbackTest.test.js')
-require('./VideoDecoderReliPromiseTest.test.js')
-require('./VideoDecoderEnumTest.test.js')
+require('./VideoDecoderSoftwareFuncCallbackTest.test.js')
+require('./VideoDecoderSoftwareFuncPromiseTest.test.js')
+require('./VideoDecoderSoftwareReliCallbackTest.test.js')
+require('./VideoDecoderSoftwareReliPromiseTest.test.js')

@@ -54,12 +54,6 @@ describe('VideoEncoderSoftwareFuncCallbackTest', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (videoEncodeProcessor != null) {
-            await videoEncodeProcessor.release().then(() => {
-                console.info('case videoEncodeProcessor release');
-            }, failCallback).catch(failCatch);
-            videoEncodeProcessor = null;
-        }
     })
 
     afterAll(function() {
@@ -250,7 +244,6 @@ describe('VideoEncoderSoftwareFuncCallbackTest', function () {
             toStopStream();
             expect(err).assertUndefined();
             console.info('in case : release success');
-            videoEncodeProcessor = null;
             done();
         });
     });

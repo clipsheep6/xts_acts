@@ -65,11 +65,6 @@ describe('AudioEncoderFuncPromise', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (audioEncodeProcessor != null) {
-            await audioEncodeProcessor.release().then(() => {
-                console.info('audioEncodeProcessor release success');
-            }, failCallback).catch(failCatch);
-        }
     })
 
     afterAll(function() {

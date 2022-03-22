@@ -54,12 +54,6 @@ describe('videoSoftwareEncoderFuncPromise', function () {
 
     afterEach(async function() {
         console.info('afterEach case');
-        if (videoEncodeProcessor != null){
-            await videoEncodeProcessor.release().then(() => {
-                console.info('case release success'); 
-            }, failCallback).catch(failCatch);
-            videoEncodeProcessor = null;
-        }
     })
 
     afterAll(function() {
@@ -315,8 +309,8 @@ describe('videoSoftwareEncoderFuncPromise', function () {
         resetParam();
         await videoEncodeProcessor.release().then(() => {
             console.info('case release success'); 
-            videoEncodeProcessor = null;
         }, failCallback).catch(failCatch);
+        videoEncodeProcessor = null;
     }
 
     /* *
