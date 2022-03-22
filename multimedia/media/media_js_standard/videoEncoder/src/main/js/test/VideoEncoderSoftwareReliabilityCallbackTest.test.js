@@ -128,7 +128,6 @@ describe('VideoEncoderSoftwareReliCallbackTest', function () {
                 return;
             }
             frameCountOut++;
-            writeFile(path, outputObject.data, outputObject.length);
             videoEncodeProcessor.freeOutputBuffer(outputObject, (err) => {
                 if (typeof(err) == 'undefined') {
                     console.debug('in case release output count:' + frameCountOut);
