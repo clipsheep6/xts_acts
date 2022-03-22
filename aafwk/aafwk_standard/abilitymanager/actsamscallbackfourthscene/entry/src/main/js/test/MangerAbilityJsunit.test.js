@@ -127,7 +127,7 @@ describe('ActsAmsCallBackFourthScene', function () {
                 ' + error.code + ', data length [' + data.length + ']');
             }
         );
-        done();
+        setTimeout(done(), 5000);
     });
 
     function timeout(done) {
@@ -175,6 +175,8 @@ describe('ActsAmsCallBackFourthScene', function () {
                 }
                 done();
             });
+        setTimeout(timeout, 5000);
+
     })
 
     /*
@@ -189,7 +191,7 @@ describe('ActsAmsCallBackFourthScene', function () {
                 console.info('Acts_Ams_test_5400 getMissionInfos error.code : \
                 ' + error.code + ',data length [' + data.length + ']');
                 expect(Array.isArray(data)).assertEqual(true);
-                expect(data.length).assertEqual(4);
+                expect(data.length).assertEqual(5);
                 for (var i = 0; i < data.length; i++) {
                     console.info('Acts_Ams_test_5400 getMissionInfos data[' + i + "]: " + JSON.stringify(data[i]));
                     expect(typeof (data[i].missionId)).assertEqual("number");
@@ -209,6 +211,7 @@ describe('ActsAmsCallBackFourthScene', function () {
                 }
                 done();
             });
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -219,23 +222,17 @@ describe('ActsAmsCallBackFourthScene', function () {
     it('Acts_Ams_test_5600', 0, async function (done) {
         var maxnum = 30;
         var result = await missionManager.getMissionInfos("", maxnum);
-        let id = 0;
         for (var i = 0; i < result.length; i++) {
             console.info('Acts_Ams_test_5600 getMissionInfos result[' + i + "]: " + JSON.stringify(result[i]));
-            if (result[i].want.abilityName != 'com.example.actsamscallbackfourthscene.MainAbility' &&
-                result[i].runningState == 0) {
-                console.info('5600 id[' + result[i].missionId + "] ");
-                id = result[i].missionId;
-                break;
-            }
         }
-        missionManager.clearMission(id,
+        missionManager.clearMission(result[0].missionId,
             (error, info) => {
                 console.info('Acts_Ams_test_5600 clearMission error.code \
                 ' + error.code + ',data  [' + info + ']');
                 expect(error.code).assertEqual(0);
                 done();
             });
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -256,6 +253,7 @@ describe('ActsAmsCallBackFourthScene', function () {
                 expect(error.code).assertEqual(0);
                 done();
             });
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -265,11 +263,14 @@ describe('ActsAmsCallBackFourthScene', function () {
      */
     it('Acts_Ams_test_6400', 0, async function (done) {
         appManager.killProcessesByBundleName('xxxxxxxxx',
-            (error) => {
-                console.info('Acts_Ams_test_6400 killProcessesByBundleName error.code ' + error.code);
-                expect(error.code).assertEqual(2097215);
+            (error, info) => {
+                console.info('Acts_Ams_test_6400 killProcessesByBundleName error.code \
+                ' + error.code + ',data  [' + info + ']');
+                expect(typeof (info)).assertEqual("number");
+                expect(info).assertEqual(2097215);
                 done();
             });
+        setTimeout(timeout, 5000);
     })
 
     /*
@@ -290,5 +291,6 @@ describe('ActsAmsCallBackFourthScene', function () {
                 expect(error.code).assertEqual(0);
                 done();
             });
+        setTimeout(timeout, 5000);
     })
 })

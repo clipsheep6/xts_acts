@@ -940,6 +940,7 @@ describe('ActsFeatureAbilityTest', function () {
                 },
             },
             (error, data) => {
+                expect(data).assertEqual(0);
                 console.log('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
 
             },
@@ -1036,6 +1037,7 @@ describe('ActsFeatureAbilityTest', function () {
                 },
             },
             (error, data) => {
+                expect(data).assertEqual(0);
                 console.log('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
 
             },
@@ -1121,6 +1123,7 @@ describe('ActsFeatureAbilityTest', function () {
                 },
             },
             (error, data) => {
+                expect(data).assertEqual(0);
                 console.log('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
 
             },
@@ -1181,6 +1184,306 @@ describe('ActsFeatureAbilityTest', function () {
         done();
     })
 
+    /**
+     * @tc.number: ACTS_StartAbilityForResult_0200
+     * @tc.name: StartAbilityForResult : Start other ability for result.
+     * @tc.desc: Pass the parameters, Check the return value of the interface (by Promise)
+     */
+    it('ACTS_StartAbilityForResult_0200', 0, async function (done) {
+        var promise = await featureAbility.startAbilityForResult(
+            {
+                want:
+                {
+                    action: "action.system.home",
+                    entities: ["entity.system.home"],
+                    type: "MIMETYPE",
+                    options: {
+                        // indicates the grant to perform read operations on the URI
+                        authReadUriPermission: true,
+                        // indicates the grant to perform write operations on the URI
+                        authWriteUriPermission: true,
+                        // support forward intent result to origin ability
+                        abilityForwardResult: true,
+                        // used for marking the ability start-up is triggered by continuation
+                        abilityContinuation: true,
+                        // specifies whether a component does not belong to ohos
+                        notOhosComponent: true,
+                        // specifies whether an ability is started
+                        abilityFormEnabled: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPersistableUriPermission: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPrefixUriPermission: true,
+                        // support distributed scheduling system start up multiple devices
+                        abilitySliceMultiDevice: true,
+                        // indicates that an ability using the service template is started regardless of whether the
+                        // host application has been started.
+                        startForegroundAbility: true,
+                        // install the specified ability if it's not installed.
+                        installOnDemand: true,
+                        // return result to origin ability slice
+                        abilitySliceForwardResult: true,
+                        // install the specified ability with background mode if it's not installed.
+                        installWithBackgroundMode: true
+                    },
+                    deviceId: "",
+                    bundleName: "com.example.startabilityforresult",
+                    abilityName: "com.example.startabilityforresult.MainAbility",
+                    uri: "",
+                    parameters:
+                    {
+                        mykey0: 1111,
+                        mykey1: [1, 2, 3],
+                        mykey2: "[1, 2, 3]",
+                        mykey3: "xxxxxxxxxxxxxxxxxxxxxx",
+                        mykey4: [1, 15],
+                        mykey5: [false, true, false],
+                        mykey6: ["aaaaaa", "bbbbb", "ccccccccccc"],
+                        mykey7: true,
+                    },
+                }
+            }
+        );
+        checkOnAbilityResult(promise);
+        done();
+    })
+
+    /**
+     * @tc.number: ACTS_StartAbilityForResult_0300
+     * @tc.name: StartAbilityForResult : Start other ability for result.
+     * @tc.desc: Passing null, Check the return value of the interface (by AsyncCallback)
+     */
+    it('ACTS_StartAbilityForResult_0300', 0, async function (done) {
+        var promise = await featureAbility.startAbilityForResult(
+            {
+                want:
+                {
+                    action: "",
+                    entities: [""],
+                    type: "",
+                    options: {
+                        // indicates the grant to perform read operations on the URI
+                        authReadUriPermission: true,
+                        // indicates the grant to perform write operations on the URI
+                        authWriteUriPermission: true,
+                        // support forward intent result to origin ability
+                        abilityForwardResult: true,
+                        // used for marking the ability start-up is triggered by continuation
+                        abilityContinuation: true,
+                        // specifies whether a component does not belong to ohos
+                        notOhosComponent: true,
+                        // specifies whether an ability is started
+                        abilityFormEnabled: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPersistableUriPermission: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPrefixUriPermission: true,
+                        // support distributed scheduling system start up multiple devices
+                        abilitySliceMultiDevice: true,
+                        // indicates that an ability using the service template is started regardless of whether the
+                        // host application has been started.
+                        startForegroundAbility: true,
+                        // install the specified ability if it's not installed.
+                        installOnDemand: true,
+                        // return result to origin ability slice
+                        abilitySliceForwardResult: true,
+                        // install the specified ability with background mode if it's not installed.
+                        installWithBackgroundMode: true
+                    },
+                    deviceId: "",
+                    bundleName: "com.example.startabilityforresult",
+                    abilityName: "com.example.startabilityforresult.MainAbility",
+                    uri: ""
+                }
+            }
+        );
+        checkOnAbilityResult(promise);
+        done();
+    })
+
+    /**
+     * @tc.number: ACTS_StartAbilityForResult_0400
+     * @tc.name: StartAbilityForResult : Start other ability for result.
+     * @tc.desc: Check the return value of the interface (by AsyncCallback)
+     */
+    it('ACTS_StartAbilityForResult_0400', 0, async function (done) {
+        featureAbility.startAbilityForResult(
+            {
+                want:
+                {
+                    action: "action.system.home",
+                    entities: ["entity.system.home"],
+                    type: "MIMETYPE",
+                    options: {
+                        // indicates the grant to perform read operations on the URI
+                        authReadUriPermission: true,
+                        // indicates the grant to perform write operations on the URI
+                        authWriteUriPermission: true,
+                        // support forward intent result to origin ability
+                        abilityForwardResult: true,
+                        // used for marking the ability start-up is triggered by continuation
+                        abilityContinuation: true,
+                        // specifies whether a component does not belong to ohos
+                        notOhosComponent: true,
+                        // specifies whether an ability is started
+                        abilityFormEnabled: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPersistableUriPermission: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPrefixUriPermission: true,
+                        // support distributed scheduling system start up multiple devices
+                        abilitySliceMultiDevice: true,
+                        // indicates that an ability using the service template is started regardless of whether the
+                        // host application has been started.
+                        startForegroundAbility: true,
+                        // install the specified ability if it's not installed.
+                        installOnDemand: true,
+                        // return result to origin ability slice
+                        abilitySliceForwardResult: true,
+                        // install the specified ability with background mode if it's not installed.
+                        installWithBackgroundMode: true
+                    },
+                    deviceId: "",
+                    bundleName: "com.example.startabilityforresult",
+                    abilityName: "com.example.startabilityforresult.MainAbility",
+                    uri: ""
+                }
+            },
+            (error, result) => {
+                console.log('featureAbilityTest ACTS_StartAbilityForResult_0400 first asyncCallback ' +
+                    'errCode : ' + error + " result: " + result)
+                checkOnAbilityResult(result);
+                done();
+            }
+        );
+    })
+
+    /**
+     * @tc.number: ACTS_StartAbilityForResult_0500
+     * @tc.name: StartAbilityForResult : Start other ability for result.
+     * @tc.desc: Pass the parameters, Check the return value of the interface (by AsyncCallback)
+     */
+    it('ACTS_StartAbilityForResult_0500', 0, async function (done) {
+        featureAbility.startAbilityForResult(
+            {
+                want:
+                {
+                    action: "action.system.home",
+                    entities: ["entity.system.home"],
+                    type: "MIMETYPE",
+                    options: {
+                        // indicates the grant to perform read operations on the URI
+                        authReadUriPermission: true,
+                        // indicates the grant to perform write operations on the URI
+                        authWriteUriPermission: true,
+                        // support forward intent result to origin ability
+                        abilityForwardResult: true,
+                        // used for marking the ability start-up is triggered by continuation
+                        abilityContinuation: true,
+                        // specifies whether a component does not belong to ohos
+                        notOhosComponent: true,
+                        // specifies whether an ability is started
+                        abilityFormEnabled: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPersistableUriPermission: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPrefixUriPermission: true,
+                        // support distributed scheduling system start up multiple devices
+                        abilitySliceMultiDevice: true,
+                        // indicates that an ability using the service template is started regardless of whether the
+                        // host application has been started.
+                        startForegroundAbility: true,
+                        // install the specified ability if it's not installed.
+                        installOnDemand: true,
+                        // return result to origin ability slice
+                        abilitySliceForwardResult: true,
+                        // install the specified ability with background mode if it's not installed.
+                        installWithBackgroundMode: true
+                    },
+                    deviceId: "",
+                    bundleName: "com.example.startabilityforresult",
+                    abilityName: "com.example.startabilityforresult.MainAbility",
+                    uri: "",
+                    parameters:
+                    {
+                        mykey0: 1111,
+                        mykey1: [1, 2, 3],
+                        mykey2: "[1, 2, 3]",
+                        mykey3: "xxxxxxxxxxxxxxxxxxxxxx",
+                        mykey4: [1, 15],
+                        mykey5: [false, true, false],
+                        mykey6: ["aaaaaa", "bbbbb", "ccccccccccc"],
+                        mykey7: true,
+                    },
+                }
+            },
+            (error, result) => {
+                checkOnAbilityResult(result);
+                console.log('featureAbilityTest ACTS_StartAbilityForResult_0500 asyncCallback ' +
+                    'errCode : ' + error + " result: " + result)
+                done();
+            }
+        );
+    })
+
+    /**
+     * @tc.number: ACTS_StartAbilityForResult_0600
+     * @tc.name: StartAbilityForResult : Start other ability for result.
+     * @tc.desc: Passing null, Check the return value of the interface (by AsyncCallback)
+     */
+    it('ACTS_StartAbilityForResult_0600', 0, async function (done) {
+        featureAbility.startAbilityForResult(
+            {
+                want:
+                {
+                    action: "",
+                    entities: [""],
+                    type: "",
+                    options: {
+                        // indicates the grant to perform read operations on the URI
+                        authReadUriPermission: true,
+                        // indicates the grant to perform write operations on the URI
+                        authWriteUriPermission: true,
+                        // support forward intent result to origin ability
+                        abilityForwardResult: true,
+                        // used for marking the ability start-up is triggered by continuation
+                        abilityContinuation: true,
+                        // specifies whether a component does not belong to ohos
+                        notOhosComponent: true,
+                        // specifies whether an ability is started
+                        abilityFormEnabled: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPersistableUriPermission: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPrefixUriPermission: true,
+                        // support distributed scheduling system start up multiple devices
+                        abilitySliceMultiDevice: true,
+                        // indicates that an ability using the service template is started regardless of whether the
+                        // host application has been started.
+                        startForegroundAbility: true,
+                        // install the specified ability if it's not installed.
+                        installOnDemand: true,
+                        // return result to origin ability slice
+                        abilitySliceForwardResult: true,
+                        // install the specified ability with background mode if it's not installed.
+                        installWithBackgroundMode: true
+                    },
+                    deviceId: "",
+                    bundleName: "com.example.startabilityforresult",
+                    abilityName: "com.example.startabilityforresult.MainAbility",
+                    uri: ""
+                },
+            },
+            (error, result) => {
+                checkOnAbilityResult(result);
+                console.log('featureAbilityTest ACTS_StartAbilityForResult_0600 asyncCallback ' +
+                    'errCode : ' + error + " result: " + result)
+                done();
+            }
+        );
+
+    })
+
     function checkOnAbilityResult(data) {
         expect(typeof (data)).assertEqual("object");
         expect(typeof (data.resultCode)).assertEqual("number");
@@ -1193,6 +1496,7 @@ describe('ActsFeatureAbilityTest', function () {
         expect(typeof (data.want.uri)).assertEqual("string");
 
         console.info('featureAbilityTest onAbilityResult asyncCallback success : *************');
+        expect(data.resultCode).assertEqual(1);
         console.info('resultCode : ' + data.resultCode);
         console.info('want.action : ' + data.want.action);
         console.info('want.entities.length : ' + data.want.entities.length);
@@ -1417,6 +1721,168 @@ describe('ActsFeatureAbilityTest', function () {
             }
         );
         expect(typeof (promise)).assertEqual("object");
+    })
+
+    /*
+     * @tc.number: ACTS_FinishWithResult_0100
+     * @tc.name: FinishWithResult : Called when startAbilityForResultis called to start
+     * an ability and the result is returned.
+     * @tc.desc: Check the return value of the interface (by promise)
+     */
+    it('ACTS_FinishWithResult_0100', 0, async function (done) {
+        var promise = await featureAbility.startAbilityForResult(
+            {
+                want:
+                {
+                    action: "action.system.home",
+                    entities: ["entity.system.home"],
+                    type: "MIMETYPE",
+                    options: {
+                        // indicates the grant to perform read operations on the URI
+                        authReadUriPermission: true,
+                        // indicates the grant to perform write operations on the URI
+                        authWriteUriPermission: true,
+                        // support forward intent result to origin ability
+                        abilityForwardResult: true,
+                        // used for marking the ability start-up is triggered by continuation
+                        abilityContinuation: true,
+                        // specifies whether a component does not belong to ohos
+                        notOhosComponent: true,
+                        // specifies whether an ability is started
+                        abilityFormEnabled: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPersistableUriPermission: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPrefixUriPermission: true,
+                        // support distributed scheduling system start up multiple devices
+                        abilitySliceMultiDevice: true,
+                        // indicates that an ability using the service template is started regardless of whether the
+                        // host application has been started.
+                        startForegroundAbility: true,
+                        // install the specified ability if it's not installed.
+                        installOnDemand: true,
+                        // return result to origin ability slice
+                        abilitySliceForwardResult: true,
+                        // install the specified ability with background mode if it's not installed.
+                        installWithBackgroundMode: true
+                    },
+                    deviceId: "",
+                    bundleName: "com.example.finishwithresultpromiseparameterstest",
+                    abilityName: "com.example.finishwithresultpromiseparameterstest.MainAbility",
+                    uri: ""
+                }
+            }
+        );
+        checkOnAbilityResult(promise);
+        done();
+    })
+
+    /**
+     * @tc.number: ACTS_FinishWithResult_0200
+     * @tc.name: FinishWithResult : Called when startAbilityForResultis called to start 
+     * an ability and the result is returned.
+     * @tc.desc: Check the return value of the interface (by promise)
+     */
+    it('ACTS_FinishWithResult_0200', 0, async function (done) {
+        var promise = await featureAbility.startAbilityForResult(
+            {
+                want:
+                {
+                    action: "action.system.home",
+                    entities: ["entity.system.home"],
+                    type: "MIMETYPE",
+                    options: {
+                        // indicates the grant to perform read operations on the URI
+                        authReadUriPermission: true,
+                        // indicates the grant to perform write operations on the URI
+                        authWriteUriPermission: true,
+                        // support forward intent result to origin ability
+                        abilityForwardResult: true,
+                        // used for marking the ability start-up is triggered by continuation
+                        abilityContinuation: true,
+                        // specifies whether a component does not belong to ohos
+                        notOhosComponent: true,
+                        // specifies whether an ability is started
+                        abilityFormEnabled: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPersistableUriPermission: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPrefixUriPermission: true,
+                        // support distributed scheduling system start up multiple devices
+                        abilitySliceMultiDevice: true,
+                        // indicates that an ability using the service template is started regardless of whether the
+                        // host application has been started.
+                        startForegroundAbility: true,
+                        // install the specified ability if it's not installed.
+                        installOnDemand: true,
+                        // return result to origin ability slice
+                        abilitySliceForwardResult: true,
+                        // install the specified ability with background mode if it's not installed.
+                        installWithBackgroundMode: true
+                    },
+                    deviceId: "",
+                    bundleName: "com.example.finishwithresulttest",
+                    abilityName: "com.example.finishwithresulttest.MainAbility",
+                    uri: ""
+                }
+            }
+        );
+        checkOnAbilityResult(promise);
+        done();
+    })
+
+    /**
+     * @tc.number: ACTS_FinishWithResult_0300
+     * @tc.name: FinishWithResult : Called when startAbilityForResultis called to start 
+     * an ability and the result is returned.
+     * @tc.desc: Check the return value of the interface (by promise)
+     */
+    it('ACTS_FinishWithResult_0300', 0, async function (done) {
+        var promise = await featureAbility.startAbilityForResult(
+            {
+                want:
+                {
+                    action: "action.system.home",
+                    entities: ["entity.system.home"],
+                    type: "MIMETYPE",
+                    options: {
+                        // indicates the grant to perform read operations on the URI
+                        authReadUriPermission: true,
+                        // indicates the grant to perform write operations on the URI
+                        authWriteUriPermission: true,
+                        // support forward intent result to origin ability
+                        abilityForwardResult: true,
+                        // used for marking the ability start-up is triggered by continuation
+                        abilityContinuation: true,
+                        // specifies whether a component does not belong to ohos
+                        notOhosComponent: true,
+                        // specifies whether an ability is started
+                        abilityFormEnabled: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPersistableUriPermission: true,
+                        // indicates the grant for possible persisting on the URI.
+                        authPrefixUriPermission: true,
+                        // support distributed scheduling system start up multiple devices
+                        abilitySliceMultiDevice: true,
+                        // indicates that an ability using the service template is started regardless of whether the
+                        // host application has been started.
+                        startForegroundAbility: true,
+                        // install the specified ability if it's not installed.
+                        installOnDemand: true,
+                        // return result to origin ability slice
+                        abilitySliceForwardResult: true,
+                        // install the specified ability with background mode if it's not installed.
+                        installWithBackgroundMode: true
+                    },
+                    deviceId: "",
+                    bundleName: "com.example.finishwithresultemptytest",
+                    abilityName: "com.example.finishwithresultemptytest.MainAbility",
+                    uri: ""
+                }
+            }
+        );
+        checkOnAbilityResult(promise);
+        done();
     })
 
     // checkAbilityName
@@ -2304,6 +2770,7 @@ describe('ActsFeatureAbilityTest', function () {
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
                 console.log('ACTS_StartAbility_1400 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
+                expect(err.code == 0).assertTrue();
                 done();
             });
         }catch(error){

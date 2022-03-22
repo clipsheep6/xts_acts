@@ -178,6 +178,25 @@ describe('ActsAmsTestThirdScene', function () {
     })
 
     /*
+     * @tc.number    : Acts_Ams_test_3900
+     * @tc.name      : clearMission : Remove Mission
+     * @tc.desc      : Remove Mission(by Promise)
+     */
+    it('Acts_Ams_test_3900', 0, async function (done) {
+        var maxnum = 20;
+        var result = await missionManager.getMissionInfos("", maxnum);
+        for (var i = 0; i < result.length; i++) {
+            console.info('Acts_Ams_test_3900 getMissionInfos result[' + i + "]: " + JSON.stringify(result[i]));
+        }
+        var info = await missionManager.clearMission(result[1].missionId).catch(err => {
+            console.log('Acts_Ams_test_3900 clearMission failed: ' + err);
+            expect(err).assertEqual(0);
+        });
+        console.info('Acts_Ams_test_3900 clearMission data  [' + info + ']');
+        done();
+    })
+
+    /*
      * @tc.number    : Acts_Ams_test_4300
      * @tc.name      : moveMissionToFront : Move Mission To Top
      * @tc.desc      : Move Mission To Top(by Promise)
@@ -197,18 +216,33 @@ describe('ActsAmsTestThirdScene', function () {
     })
 
     /*
+     * @tc.number    : Acts_Ams_test_4500
+     * @tc.name      : clearMissions: Remove Missions
+     * @tc.desc      : Remove Missions(by Promise)
+     */
+    it('Acts_Ams_test_4500', 0, async function (done) {
+        var maxnum = 20;
+        var result = await missionManager.getMissionInfos("", maxnum);
+        for (var i = 0; i < result.length; i++) {
+            console.info('Acts_Ams_test_4500 getMissionInfos result[' + i + "]: " + JSON.stringify(result[i]));
+        }
+        var info = await missionManager.clearMission(result[0].missionId).catch(err => {
+            console.log('Acts_Ams_test_4500 clearMission failed: ' + err);
+            expect(err).assertEqual(0);
+        });
+        console.info('Acts_Ams_test_4500 clearMission data  [' + info + ']');
+        done();
+    })
+
+    /*
      * @tc.number    : Acts_Ams_test_4700
      * @tc.name      : killProcessesByBundleName : Kill Processes By BundleName
      * @tc.desc      : Kill Processes By BundleName(by Promise)
      */
     it('Acts_Ams_test_4700', 0, async function (done) {
-        console.info('Acts_test_4700 killProcessesByBundleName data');
-        appManager.killProcessesByBundleName('XXXXXXXX').then(data => {
-            console.log('Acts_test_4700 success: ' + data);
-        }).catch(err => {
-            console.log('Acts_test_4700 failed: ' + err.code);
-            expect(err.code).assertEqual(2097215);
-            done();
-        });
+        var info = await appManager.killProcessesByBundleName('XXXXXXXX');
+        console.info('Acts_Ams_test_4700 killProcessesByBundleName data  [' + info + ']');
+        expect(info.code).assertEqual(2097215);
+        done();
     })
 })
