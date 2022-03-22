@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -121,7 +121,14 @@ function sleep(ms) {
 
 describe('userauthTest', function () {
 
-    it('Security_IAM_Face_AddCred_DFX_0103', 2, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_Face_AddCred_DFX_0103
+        * @tc.name      : Can't add face with no pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 3
+    */
+    it('Security_IAM_Face_AddCred_DFX_0103', 3, async function (done) {
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
             publicFC.publicOpenSession(UserIDM, function (data) {
@@ -168,6 +175,13 @@ describe('userauthTest', function () {
         }
     })
 
+    /*
+        * @tc.number    : Security_IAM_Face_AddCred_DFX_0104
+        * @tc.name      : Can't add face with no pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+    */
     it('Security_IAM_Face_AddCred_DFX_0104', 2, async function (done) {
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
@@ -214,7 +228,14 @@ describe('userauthTest', function () {
         }
     })
 
-    it('Security_IAM_Face_Delet_DFX_0104', 2, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_Face_Delet_DFX_0104
+        * @tc.name      : Delete face with no pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 3
+    */
+    it('Security_IAM_Face_Delet_DFX_0104', 3, async function (done) {
 		console.info('testFace Security_IAM_Face_Delet_DFX_0104 start');
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
@@ -244,7 +265,14 @@ describe('userauthTest', function () {
         }
     })
 
-    it('Security_IAM_Face_Delet_DFX_0105', 2, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_Face_Delet_DFX_0105
+        * @tc.name      : Delete face with no face
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+    */
+    it('Security_IAM_Face_Delet_DFX_0105', 1, async function (done) {
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
             publicFC.publicOpenSession(UserIDM, function (data) {
@@ -290,7 +318,14 @@ describe('userauthTest', function () {
         }
     })
 
-    it('Security_IAM_Face_Auth_DFX_0101', 2, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_Face_Auth_DFX_0101
+        * @tc.name      : Auth face with no pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 3
+    */
+    it('Security_IAM_Face_Auth_DFX_0101', 3, async function (done) {
         console.info('testFace Security_IAM_Face_Auth_DFX_0101 start');
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
@@ -320,6 +355,13 @@ describe('userauthTest', function () {
         }
     })
 
+    /*
+        * @tc.number    : Security_IAM_Face_Auth_DFX_0102
+        * @tc.name      : Auth face with no face
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 3
+    */
     it('Security_IAM_Face_Auth_DFX_0102', 2, async function (done) {
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
@@ -364,7 +406,14 @@ describe('userauthTest', function () {
         }
     })
 
-    it('Security_IAM_Face_Auth_DFX_0104', 2, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_Face_Auth_DFX_0104
+        * @tc.name      : Auth face after delete pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 4
+    */
+    it('Security_IAM_Face_Auth_DFX_0104', 4, async function (done) {
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
             publicFC.publicOpenSession(UserIDM, function (data) {
@@ -413,6 +462,13 @@ describe('userauthTest', function () {
         }
     })
 
+    /*
+        * @tc.number    : Security_IAM_Face_AddCred_DFX_0101
+        * @tc.name      : Can't add face by old token
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 4
+    */
     it('Security_IAM_Face_AddCred_DFX_0101', 0, async function (done) {
         try {
             publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata)
@@ -471,7 +527,14 @@ describe('userauthTest', function () {
         }
     })
 
-    it('Security_IAM_Face_Delet_DFX_0101', 0, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_Face_AddCred_DFX_0101
+        * @tc.name      : Can't delete face by wrong token
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+    */
+    it('Security_IAM_Face_Delet_DFX_0101', 2, async function (done) {
         try {
             publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata)
             let challenge ;

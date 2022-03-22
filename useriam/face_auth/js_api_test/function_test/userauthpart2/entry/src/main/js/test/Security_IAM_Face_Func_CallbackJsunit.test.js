@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -121,7 +121,14 @@ function sleep(ms) {
 
 describe('userauthTest', function () {
 
-    it('Security_IAM_Face_AddCred_Func_0101', 0, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_Face_AddCred_DFX_0101
+        * @tc.name      : Test add face, auth face, authuser face, delete face
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+    */
+    it('Security_IAM_Face_AddCred_Func_0101', 1, async function (done) {
         try {
             publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata)
             let challenge ;
@@ -186,7 +193,14 @@ describe('userauthTest', function () {
         }
     })
 
-    it('Security_IAM_Face_AddCred_Func_0103', 0, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_Face_AddCred_Func_0103
+        * @tc.name      : Cancel add face
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+    */
+    it('Security_IAM_Face_AddCred_Func_0103', 1, async function (done) {
         try {
             publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata)
             let challenge ;
@@ -208,7 +222,7 @@ describe('userauthTest', function () {
                         }, function (onacquireinfo) {
                         })
                         let cancelresult = publicFC.publiccancel(UserIDM,challenge);
-                        await sleep(2500);
+                        await sleep(2000);
                         if(cancelresult == 1){
                             console.info('Face_AddCred_Func_0103 cancel1 authresult = ' + addfaceresult.addCredresult);
                             expect(ResultCode.SUCCESS).assertEqual(addfaceresult.addCredresult);
@@ -782,7 +796,14 @@ describe('userauthTest', function () {
 //        }
 //    })
 
-    it('Security_IAM_Face_AddCred_Func_0102', 2, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_Face_AddCred_Func_0102
+        * @tc.name      : Can't add face by wrong token
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 3
+    */
+    it('Security_IAM_Face_AddCred_Func_0102', 3, async function (done) {
         try {
             publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
             let challenge ;
