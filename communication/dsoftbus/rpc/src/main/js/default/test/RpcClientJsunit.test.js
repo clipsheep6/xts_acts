@@ -127,7 +127,6 @@ describe('ActsRpcClientJsTest', function(){
         constructor(descriptor) {
             super(descriptor)
         }
-
         onRemoteRequest(code, data, reply, option) {
             console.info("TestAbilityStub: onRemoteRequest called, code: " + code)
             let descriptor = data.readInterfaceToken()
@@ -2626,7 +2625,8 @@ describe('ActsRpcClientJsTest', function(){
             })
             console.log("---------------------end SUB_Softbus_IPC_MessageParcel_9300---------------------------");
         })
-    
+   
+ 
 
     /*
      * @tc.number  SUB_Softbus_IPC_MessageParcel_9400
@@ -3526,7 +3526,6 @@ describe('ActsRpcClientJsTest', function(){
     console.log("---------------------start SUB_Softbus_IPC_Ashmem_2300---------------------------");
     try{
         let ashmem = rpc.Ashmem.createAshmem("JsAshmemTest", 1024);
-
         let resultwrite = ashmem.setProtection(rpc.Ashmem.PROT_EXEC)
         console.log("SUB_Softbus_IPC_Ashmem_2300: run setProtection success, resultwrite is " + resultwrite);
         expect(resultwrite == true).assertTrue();
