@@ -17,7 +17,7 @@ import {Core, ExpectExtend} from 'deccjsunit/index'
 
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = this.$t('strings.world');

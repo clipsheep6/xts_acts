@@ -14,9 +14,9 @@
  */
 
 
-import app from '@system.app'
-import device from '@system.device'
-import router from '@system.router'
+// import app from '@system.app'
+// import device from '@system.device'
+// import router from '@system.router'
 import {Core} from 'deccjsunit/index'
 
 export default {

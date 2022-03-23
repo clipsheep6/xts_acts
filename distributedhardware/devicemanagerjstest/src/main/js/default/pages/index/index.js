@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import app from '@system.app'
+// import app from '@system.app'
 
 import {Core} from 'deccjsunit/index'
 
