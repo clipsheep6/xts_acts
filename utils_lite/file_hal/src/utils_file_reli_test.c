@@ -111,14 +111,13 @@ LITE_TEST_CASE(UtilsFileReliTestSuite, testDeleteFileAfterMaxFilesOpened, Functi
 {
     // Open 32 files
     int fd32[MAX_NUM_OF_OPENED_FILES] = {0};
-    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++)
-    {
+    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++) {
         int j = i + 1;
         char fileName32[LENGTH_OF_FILE_NAME_BUF] = {0};
         int size = sprintf_s(fileName32, sizeof(fileName32), "%s%d", "testReli101-", j);
         if (size < 0) {
         TEST_ASSERT_EQUAL_INT(0, 1);
-        }
+    }
         fd32[i] = UtilsFileOpen(fileName32, O_RDWR_FS | O_CREAT_FS, 0);
         UtilsFileWrite(fd32[i], g_def, strlen(g_def));
     }
@@ -128,12 +127,10 @@ LITE_TEST_CASE(UtilsFileReliTestSuite, testDeleteFileAfterMaxFilesOpened, Functi
     int ret = UtilsFileDelete(fileName1);
     TEST_ASSERT_EQUAL_INT(0, ret);
     // Delete all files
-    for (int i = 1; i < MAX_NUM_OF_OPENED_FILES; i++)
-    { 
+    for (int i = 1; i < MAX_NUM_OF_OPENED_FILES; i++) { 
         UtilsFileClose(fd32[i]);
     } 
-    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++)
-    {
+    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++) {
         int j = i + 1;
         char fileName32[LENGTH_OF_FILE_NAME_BUF] = {0};
         int size = sprintf_s(fileName32, sizeof(fileName32), "%s%d", "testReli101-", j);
@@ -153,8 +150,7 @@ LITE_TEST_CASE(UtilsFileReliTestSuite, testCopyFileAfterMaxFilesOpened, Function
 {
     // Open 32 files
     int fd32[MAX_NUM_OF_OPENED_FILES] = {0};
-    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++)
-    {
+    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++) {
         int j = i + 1;
         char fileName32[LENGTH_OF_FILE_NAME_BUF] = {0};
         int size = sprintf_s(fileName32, sizeof(fileName32), "%s%d", "testReli101-", j);
@@ -178,12 +174,10 @@ LITE_TEST_CASE(UtilsFileReliTestSuite, testCopyFileAfterMaxFilesOpened, Function
     ret = UtilsFileCopy(fileName1, fileNameCopy);
     TEST_ASSERT_EQUAL_INT(0, ret);
     // Delete all files
-    for (int i = 2; i < MAX_NUM_OF_OPENED_FILES; i++)
-    { 
+    for (int i = 2; i < MAX_NUM_OF_OPENED_FILES; i++) { 
         UtilsFileClose(fd32[i]);
     }
-    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++)
-    {
+    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++) {
         int j = i + 1;
         char fileName32[LENGTH_OF_FILE_NAME_BUF] = {0};
         int size = sprintf_s(fileName32, sizeof(fileName32), "%s%d", "testReli101-", j);
@@ -204,8 +198,7 @@ LITE_TEST_CASE(UtilsFileReliTestSuite, testMoveFileAfterMaxFilesOpened, Function
 {
     // Open 32 files
     int fd32[MAX_NUM_OF_OPENED_FILES] = {0};
-    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++)
-    {
+    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++) {
         int j = i + 1;
         char fileName32[LENGTH_OF_FILE_NAME_BUF] = {0};
         int size = sprintf_s(fileName32, sizeof(fileName32), "%s%d", "testReli101-", j);
@@ -229,12 +222,10 @@ LITE_TEST_CASE(UtilsFileReliTestSuite, testMoveFileAfterMaxFilesOpened, Function
     ret = UtilsFileMove(fileName1, fileNameMove);
     TEST_ASSERT_EQUAL_INT(0, ret);
     // Delete all files
-    for (int i = 2; i < MAX_NUM_OF_OPENED_FILES; i++)
-    { 
+    for (int i = 2; i < MAX_NUM_OF_OPENED_FILES; i++) { 
         UtilsFileClose(fd32[i]);
     }
-    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++)
-    {
+    for (int i = 0; i < MAX_NUM_OF_OPENED_FILES; i++) {
         int j = i + 1;
         char fileName32[LENGTH_OF_FILE_NAME_BUF] = {0};
         int size = sprintf_s(fileName32, sizeof(fileName32), "%s%d", "testReli101-", j);
