@@ -36,7 +36,7 @@ using namespace testing::ext;
 namespace OHOS {
 /* *
  * get current dir
- * @return  string current file path of the test suits
+ * @return  string current file path of the test suites
  */
 string GetCurDir()
 {
@@ -134,7 +134,7 @@ int32_t SetupAudioSource(const Recorder &rec)
 }
 
 /* *
- * creat Recorder
+ * create Recorder
  */
 Recorder *SampleCreateRecorder()
 {
@@ -189,9 +189,9 @@ Recorder *SampleCreateRecorder()
  */
 class SampleFrameStateCallback : public FrameStateCallback {
     /* *
-     * check file exist
+     * check whether a file exists
      *
-     * @param filename the filename
+     * @param filename the name of the file to check
      * @return  check result
      */
     int32_t FileCheck(const string &filename)
