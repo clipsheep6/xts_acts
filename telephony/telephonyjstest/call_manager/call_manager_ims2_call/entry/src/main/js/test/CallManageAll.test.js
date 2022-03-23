@@ -130,9 +130,7 @@ var timing = 0;
 var endTime = 0;
 describe('CallManageImsCall', function () {
     beforeAll(async function (done) {
-        observer.on('callStateChange', {slotId: DEFAULT_SLOT_ID}, function (error, data) {});
         try {
-            await call.enableImsSwitch(DEFAULT_SLOT_ID);
             console.log('Telephony_CallManager enableImsSwitch success');
             await call.setCallPreferenceMode(DEFAULT_SLOT_ID, CALL_MODE_IMS);
             console.log('Telephony_CallManager setCallPreferenceMode success');
