@@ -166,7 +166,7 @@ describe('VideoEncoderSoftwareFuncCallbackTest', function () {
     eventEmitter.on('getVideoEncoderCaps', (done) => {
         videoEncodeProcessor.getVideoEncoderCaps((err, videoCaps) => {
             expect(err).assertUndefined();
-            console.info("case get getVideoEncoderCaps success");
+            console.info('case get getVideoEncoderCaps success');
             console.info(`print videoCaps: 
             codecInfo.name ${videoCaps.codecInfo.name}
             codecInfo.type ${videoCaps.codecInfo.type}
@@ -267,7 +267,7 @@ describe('VideoEncoderSoftwareFuncCallbackTest', function () {
         let decPath = BASIC_PATH + 'SUB_MEDIA_VIDEO_SOFTWARE_ENCODER_FUNCTION_CALLBACK_00_0100.es';
         let mime = 'video/mp4v-es';
         let mediaDescription = {
-            "codec_mime": 'video/mp4v-es',
+            'codec_mime': 'video/mp4v-es',
             'width': 320, 
             'height': 240,
             'pixel_format': 3,
@@ -280,9 +280,9 @@ describe('VideoEncoderSoftwareFuncCallbackTest', function () {
                 expect(err).assertUndefined();
                 console.info('getVideoDecoderCaps success');
                 if (typeof (videoCapsArray) != 'undefined') {
-                    console.info("case videoCapsArray" + videoCapsArray);
+                    console.info('case videoCapsArray' + videoCapsArray);
                 } else {
-                    console.info("case videoCapsArray is not defined");
+                    console.info('case videoCapsArray is not defined');
                     expect().assertFail();
                     done();
                 }
@@ -291,9 +291,9 @@ describe('VideoEncoderSoftwareFuncCallbackTest', function () {
                 expect(err).assertUndefined();
                 console.info('findVideoEncoder success');
                 if (typeof (codecname) != 'undefined') {
-                    console.info("case codecname " + codecname);
+                    console.info('case codecname ' + codecname);
                 } else {
-                    console.info("case codecname is not defined");
+                    console.info('case codecname is not defined');
                     expect().assertFail();
                     done();
                 }
