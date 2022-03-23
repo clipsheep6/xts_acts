@@ -29,7 +29,7 @@
 				"./resource/image/test_hw.jpg ->/data/local/tmp",
 				"./resource/image/test_large.webp ->/data/local/tmp",
 				"./resource/image/hasNoExif.jpg ->/data/local/tmp",
-				"./resource/image/Moving_test.gif ->/data/local/tmp",
+				"./resource/image/moving_test.gif ->/data/local/tmp",
 				"./resource/image/test.9.png ->/data/local/tmp"
             ]
         },
@@ -37,6 +37,7 @@
             "type": "ShellKit",
             "run-command": [
                 "chmod -R 666 /data/media/*",
+                "chmod -R 666 /data/local/*",
                 "setenforce 0"
             ],
             "teardown-command":[
@@ -45,7 +46,7 @@
         },
         {
             "test-file-name": [
-                "ImageJsTest.hap"
+                "ActsImageJsTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
