@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "connect"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "serviceability2_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "hap sample empty service"
+    }
+  ]
+}
