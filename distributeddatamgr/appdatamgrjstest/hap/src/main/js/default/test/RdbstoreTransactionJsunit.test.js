@@ -74,7 +74,6 @@ describe('rdbStoreInsertTest', function () {
             console.log(TAG + "testRdbTransactionInsert0001 result count " + resultSet.rowCount)
             expect(1).assertEqual(resultSet.rowCount)
             resultSet.close()
-//            resultSet == null;
         } catch (e) {
             console.log(TAG + e);
             expect(null).assertFail()
