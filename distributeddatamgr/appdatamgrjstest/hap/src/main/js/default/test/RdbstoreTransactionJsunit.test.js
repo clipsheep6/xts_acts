@@ -40,7 +40,7 @@ describe('rdbStoreInsertTest', function () {
         console.info(TAG + 'afterEach')
         await rdbStore.executeSql("DELETE FROM test");
         rdbStore = null
-        await dataRdb.deleteRdbStore("Delete.db");
+        await dataRdb.deleteRdbStore("RdbInsertTest.db");
     })
 
     afterAll(async function () {
@@ -74,7 +74,6 @@ describe('rdbStoreInsertTest', function () {
             console.log(TAG + "testRdbTransactionInsert0001 result count " + resultSet.rowCount)
             expect(1).assertEqual(resultSet.rowCount)
             resultSet.close()
-//            resultSet == null;
         } catch (e) {
             console.log(TAG + e);
             expect(null).assertFail()
@@ -371,6 +370,78 @@ describe('rdbStoreInsertTest', function () {
         }
         done()
         console.log(TAG + "************* testRdbTransactionMulti0003 end *************");
+    })
+	
+	 /**
+     * @tc.name rdb update test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Transaction_Update_0010
+     * @tc.desc the classical transaction scenario, when we update or commit the value,
+     *     db returns an exception, we need to catch exception and rollback.
+     */
+    it('testRdbTransactionUpdate0001', 0, async function (done) {
+        console.log(TAG + "************* testRdbTransactionUpdate0001 start *************");
+            var u8 = new Uint8Array([1, 2, 3])
+            try {
+                rdbStore.beginTransaction()
+                const valueBucket = {
+                    "name": "lisi",
+                    "age": 18,
+                    "salary": 100.5,
+                    "blobType": u8,
+                }
+                await rdbStore.insert("test", valueBucket)
+
+                rdbStore.commit()
+
+                let predicates = new dataRdb.RdbPredicates("test");
+                let resultSet = await rdbStore.query(predicates)
+                console.log(TAG + "testRdbTransactionUpdate0001 result count " + resultSet.rowCount)
+                expect(1).assertEqual(resultSet.rowCount)
+            } catch (e) {
+                console.log(TAG + e);
+                expect(null).assertFail()
+                console.log(TAG + "testRdbTransactionUpdate0001 failed");
+            }
+            {
+                var u8 = new Uint8Array([4, 5, 6])
+                const valueBucket = {
+                    "name": "zhangsan",
+                    "age": 20,
+                    "salary": 200.5,
+                    "blobType": u8,
+                }
+                let predicates = await new dataRdb.RdbPredicates("test")
+                await predicates.equalTo("id", "1")
+                let updatePromise = rdbStore.update(valueBucket, predicates)
+                updatePromise.then(async (ret) => {
+                    await expect(1).assertEqual(ret);
+                    await console.log(TAG + "testRdbTransactionUpdate0001 update done: " + ret);
+                    let resultSet = await rdbStore.query(predicates)
+
+                    expect(true).assertEqual(resultSet.goToFirstRow())
+                    const id = await resultSet.getLong(resultSet.getColumnIndex("id"))
+                    const name = await resultSet.getString(resultSet.getColumnIndex("name"))
+                    const age = await resultSet.getLong(resultSet.getColumnIndex("age"))
+                    const salary = await resultSet.getDouble(resultSet.getColumnIndex("salary"))
+                    const blobType = await resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+
+                    await expect(1).assertEqual(id);
+                    await expect("zhangsan").assertEqual(name);
+                    await expect(20).assertEqual(age);
+                    await expect(200.5).assertEqual(salary);
+                    await expect(4).assertEqual(blobType[0]);
+                    await expect(5).assertEqual(blobType[1]);
+                    await expect(6).assertEqual(blobType[2]);
+                    console.log(TAG + "{id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", blobType=" + blobType);
+                    await expect(false).assertEqual(resultSet.goToNextRow())
+                    resultSet = null
+                }).catch((err) => {
+                    console.log(TAG + "testRdbTransactionUpdate0001 update error");
+                    expect(null).assertFail();
+                })
+            }
+            done()
+        console.log(TAG + "************* testRdbTransactionUpdate0001 end   *************");
     })
 
     /**

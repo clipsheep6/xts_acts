@@ -102,7 +102,6 @@ describe('rdbStoreInsertTest', function () {
             })
             await insertPromise
         }
-        //sql删除
         {
             let executeSqlPromise = rdbStore.executeSql("DELETE FROM test WHERE age = ? OR age = ?", ["18", "20"])
             executeSqlPromise.then(async (resultSet) => {
