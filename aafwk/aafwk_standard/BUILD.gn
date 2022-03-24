@@ -23,8 +23,6 @@ group("aafwk_standard") {
       "ActsKillProcessWithAccountApi7:ActsKillProcessWithAccountApi7",
       "ActsStServiceAbilityClientCaseTest:ActsStServiceAbilityClientCaseTest",
       "abilitymanager:actsabilitymanagertest",
-      "actsabilitydistributetest:ActsAbilityDistributeTest",
-      "actsabilitydistributetest:ActsAbilityDistributeTest",
       "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
       "amsabilitymanager/amsMissionSnapshotTest:ActsAmsMissionSnapshotTest",
       "amsabilitymanager/amsMissionSnapshotTestSingleton:ActsAmsMissionSnapshotTestSingleton",
