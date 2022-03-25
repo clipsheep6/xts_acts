@@ -80,7 +80,7 @@ HWTEST_F(SecurityDataHuksHashRandomHmacTestSuite, securityDataHash1100, Function
     src.data = (uint8_t *)"123456";
     src.size = NUM6;
     dst.data = (uint8_t *)malloc(NUM65);
-    if (dst.data == NULL) {
+    if (dst.data == nullptr) {
         EXPECT_EQ(0, 1);
     }
     dst.size = NUM65;
@@ -101,7 +101,7 @@ HWTEST_F(SecurityDataHuksHashRandomHmacTestSuite, securityDataHash1110, Function
     src.data = (uint8_t *)"123456";
     src.size = NUM6;
     dst.data = (uint8_t *)malloc(NUM65);
-    if (dst.data == NULL) {
+    if (dst.data == nullptr) {
         EXPECT_EQ(0, 1);
     }
     dst.size = NUM65;
@@ -299,7 +299,7 @@ HWTEST_F(SecurityDataHuksHashRandomHmacTestSuite, securityDataGenerateRandom1200
     struct hks_blob random = { 0 };
 
     random.data = (uint8_t *)calloc(1, NUM64);
-    if (random.data == NULL) {
+    if (random.data == nullptr) {
         EXPECT_EQ(0, 1);
         return;
     }
@@ -338,7 +338,7 @@ HWTEST_F(SecurityDataHuksHashRandomHmacTestSuite, securityDataGenerateRandom1220
     int32_t status;
     struct hks_blob random = { 0 };
 
-    random.data = NULL;
+    random.data = nullptr;
     random.size = NUM32;
     random.type = HKS_BLOB_TYPE_KEY;
 
@@ -358,7 +358,7 @@ HWTEST_F(SecurityDataHuksHashRandomHmacTestSuite, securityDataGenerateRandom1230
     struct hks_blob random = { 0 };
 
     random.data = (uint8_t *)malloc(NUM1025);
-    if (random.data == NULL) {
+    if (random.data == nullptr) {
         EXPECT_EQ(0, 1);
     }
     random.size = NUM1025;

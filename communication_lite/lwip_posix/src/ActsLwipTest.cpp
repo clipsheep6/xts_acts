@@ -958,7 +958,7 @@ HWTEST_F(ActsLwipTest, testInetNtopIpv4Abnormal, Function | MediumTest | Level2)
     for (int i = 0; i < 2; i++) {
         inputAddr.s_addr = (i == 0 ? -1 : 4294967296);
         ret = inet_ntop(AF_INET, &inputAddr, rstBuff, sizeof(rstBuff));
-        ASSERT_TRUE(ret != NULL);
+        ASSERT_TRUE(ret != nullptr);
         EXPECT_STREQ(expectStr[i], ret);
         EXPECT_STREQ(expectStr[i], rstBuff);
     }
@@ -984,7 +984,7 @@ HWTEST_F(ActsLwipTest, testInetNtopIpv6Normal, Function | MediumTest | Level2)
         ASSERT_EQ(1, iret);
         ret = inet_ntop(AF_INET6, &inputAddr, rstBuff, sizeof(rstBuff));
         if (ret == nullptr) {
-            EXPECT_TRUE(ret != NULL) << "ErrInfo:inet_ntop NULL [" << expectAddrs[i] << "]";
+            EXPECT_TRUE(ret != nullptr) << "ErrInfo:inet_ntop nullptr [" << expectAddrs[i] << "]";
         } else {
             printf("inet_ntop expect [%s]: ret[%s], buf[%s]\n", expectAddrs[i], ret, rstBuff);
             EXPECT_STREQ(expectAddrs[i], ret);
@@ -1009,7 +1009,7 @@ HWTEST_F(ActsLwipTest, testInetNtopIpv6Abnormal, Function | MediumTest | Level2)
             inputAddr.s6_addr[j] = (i == 0 ? -1 : 256);
         }
         ret = inet_ntop(AF_INET6, &inputAddr, rstBuff, sizeof(rstBuff));
-        ASSERT_TRUE(ret != NULL);
+        ASSERT_TRUE(ret != nullptr);
         EXPECT_STREQ(expectStr[i], ret);
         EXPECT_STREQ(expectStr[i], rstBuff);
     }
@@ -1030,9 +1030,9 @@ HWTEST_F(ActsLwipTest, testInetNtopInvalidFamily, Function | MediumTest | Level2
     iret = inet_pton(AF_INET6, "1::", &inputAddr);
     ASSERT_EQ(1, iret);
     ret = inet_ntop(AF_IPX, &inputAddr, rstBuff, sizeof(rstBuff));
-    EXPECT_TRUE(ret == NULL);
+    EXPECT_TRUE(ret == nullptr);
     ret = inet_ntop(-1, &inputAddr, rstBuff, sizeof(rstBuff));
-    EXPECT_TRUE(ret == NULL);
+    EXPECT_TRUE(ret == nullptr);
 }
 
 /**

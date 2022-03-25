@@ -92,7 +92,7 @@ HWTEST_P(IpcSignalTest, testAllSigDescription, Function | MediumTest | Level3)
     if (pid == 0) { // child
         // redirect stderr to a file, so we can check the content.
         char* outfile = WRITABLE_TEST_DIR "stderr.txt";
-        if (freopen(outfile, "w", stderr) == NULL) {
+        if (freopen(outfile, "w", stderr) == nullptr) {
             LOG("redirect stderr fail, freopen errno=%d\n", errno);
             exit(1);
         }
@@ -287,7 +287,7 @@ HWTEST_F(IpcSignalTest, testAbortHandler, Function | MediumTest | Level1)
         Msleep(50);
         WaitProcKilled(pid, SIGABRT);
 
-        int *shared = static_cast<int*>(shmat(mShmid, NULL, 0));
+        int *shared = static_cast<int*>(shmat(mShmid, nullptr, 0));
         if (shared == reinterpret_cast<int*>(-1)) {
             LOG("shmat fail, errno = %d", errno);
             ADD_FAILURE();
@@ -1723,7 +1723,7 @@ HWTEST_F(IpcSignalTest, testPsignal, Function | MediumTest | Level2)
     if (pid == 0) { // child
         // redirect stderr to a file, so we can check the content.
         char* outfile = WRITABLE_TEST_DIR "stderr.txt";
-        if (freopen(outfile, "w", stderr) == NULL) {
+        if (freopen(outfile, "w", stderr) == nullptr) {
             LOG("redirect stderr fail, freopen errno=%d\n", errno);
             exit(1);
         }
@@ -1746,7 +1746,7 @@ HWTEST_F(IpcSignalTest, testPsignalError1, Function | MediumTest | Level3)
     ASSERT_TRUE(pid >= 0) << "======== Fork Error! =========";
     if (pid == 0) { // child
         char* outfile = WRITABLE_TEST_DIR "stderr.txt";
-        if (freopen(outfile, "w", stderr) == NULL) {
+        if (freopen(outfile, "w", stderr) == nullptr) {
             LOG("redirect stderr fail, freopen errno=%d\n", errno);
             exit(1);
         }
@@ -1769,7 +1769,7 @@ HWTEST_F(IpcSignalTest, testPsignalError2, Function | MediumTest | Level3)
     ASSERT_TRUE(pid >= 0) << "======== Fork Error! =========";
     if (pid == 0) { // child
         char* outfile = WRITABLE_TEST_DIR "stderr.txt";
-        if (freopen(outfile, "w", stderr) == NULL) {
+        if (freopen(outfile, "w", stderr) == nullptr) {
             LOG("redirect stderr fail, freopen errno=%d\n", errno);
             exit(1);
         }
