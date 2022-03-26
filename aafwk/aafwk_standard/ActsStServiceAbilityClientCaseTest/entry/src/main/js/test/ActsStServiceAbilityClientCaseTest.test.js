@@ -20,8 +20,8 @@ import commonEvent from '@ohos.commonevent'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 
 describe('ActsStServiceAbilityTest', function () {
-    let bundleName = "com.amsst.stserviceabilityserver";
-    let abilityName = "com.amsst.stserviceabilityserver.ServiceAbility";
+    let bundleName = "com.example.service";
+    let abilityName = "com.example.service.ServiceAbility";
 
  
     var subscriber0600;
