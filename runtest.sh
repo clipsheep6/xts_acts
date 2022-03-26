@@ -152,7 +152,7 @@ run_test()
         if [ ! -z "$MAPPED_MODULE_NAME" ]; then
           echo -e "\033[32mTest module name of build_target "$MODULE_NAME is" "$MAPPED_MODULE_NAME"\033[0m"
         else
-          echo -e "\033[31mTest module "$MODULE_NAME" dose not exist!\033[0m"
+          echo -e "\033[31mTest module "$MODULE_NAME" does not exist!\033[0m"
           exit 1
         fi
     fi
