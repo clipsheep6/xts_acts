@@ -1,0 +1,11 @@
+{
+  "strings": {
+    "hello": "您好 MainAbility2 js",
+    "world": "世界 MainAbility2 js",
+    "page": "第二页 MainAbility2",
+    "next": "下一页 MainAbility2",
+    "back": "返回 MainAbility2"
+  },
+  "Files": {
+  }
+}
