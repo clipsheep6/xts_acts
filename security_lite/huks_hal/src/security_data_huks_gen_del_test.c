@@ -45,7 +45,7 @@ void HksBlobDestroyT1(struct hks_blob *blob)
         return;
     }
     if (blob && blob->data) {
-        memset_s(blob->data, blob->size, 0, blob->size);
+        (void)memset_s(blob->data, blob->size, 0, blob->size);
         HKS_FREE_PTR1(blob->data);
     }
     blob->data = NULL;
@@ -117,7 +117,7 @@ void BuildBlobData(struct hks_blob *param, const char *str, uint8_t type, uint32
         if (buff == NULL) {
             return;
         }
-        memset_s(buff, size + NUM2, 0, size + NUM2);
+        (void)memset_s(buff, size + NUM2, 0, size + NUM2);
         HexStringToByte(str, size * NUM2, buff);
         param->data = (uint8_t *)buff;
     }
