@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry2_MainAbility",
+      "value": "entry2_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "description_serviceability2",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_serviceability3",
+      "value": "hap sample empty service"
+    }
+  ]
+}
