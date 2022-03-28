@@ -351,12 +351,13 @@ describe('ActsBmsModuleUsageRecordTest', function () {
     */
     it('bms_getModuleUsageRecordTest_0900', 0, async function (done) {
         console.debug('=====================bms_getModuleUsageRecordTest_0900==================');
-        await bundle.getModuleUsageRecords(0, (err, data) => {
-            console.debug('============err.code==========' + err.code);
-            expect(err.code).assertEqual(-1);
-            expect(data.length).assertEqual(0);
-            done();
-        });
+        var promise = bundle.getModuleUsageRecords(0);
+        promise.then(data => {
+            expect().assertFail();
+        }).catch(err => {
+            expect(err).assertEqual(-1);
+        })
+        done();
     })
 
     /*
