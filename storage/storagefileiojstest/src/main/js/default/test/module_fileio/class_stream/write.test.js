@@ -14,7 +14,7 @@
  */
 
 import {
-  fileio, FILE_CONTENT, prepareFile, nextFileName1, nextFileName,
+  fileio, FILE_CONTENT, prepareFile, nextFileName,
   describe, it, expect,
 } from '../../Common';
 
@@ -59,7 +59,7 @@ describe('fileio_stream', function () {
    * @tc.require
    */
   it('fileio_test_stream_write_async_001', 0, async function (done) {
-    let fpath = nextFileName1('fileio_test_stream_write_async_001');
+    let fpath = await nextFileName('fileio_test_stream_write_async_001');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
