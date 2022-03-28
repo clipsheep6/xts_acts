@@ -798,7 +798,7 @@ describe('Image', function () {
                     var readArr = new Uint8Array(readArea.pixels);
                     var res = true;
                     for (var i = 0; i < readArr.length; i++) {
-                        if (readArr[i] == 0) {
+                        if (readArr[i] != tc_022buf[i]) {
                             res = false;
                             console.info('TC_022-1 failed');
                             expect(false).assertTrue();
