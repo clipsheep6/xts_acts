@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "description_mainability2",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry_MainAbility2",
+      "value": "entry_MainAbility2"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_serviceability2",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_mainabilityengine1500",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry_MainAbilityEngine1500",
+      "value": "entry_MainAbilityEngine1500"
+    },
+    {
+      "name": "description_serviceabilityengine1500",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_engine1500serviceability",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_mainability0500",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry_MainAbility0500",
+      "value": "entry_MainAbility0500"
+    }
+  ]
+}
