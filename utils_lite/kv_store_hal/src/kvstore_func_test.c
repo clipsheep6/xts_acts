@@ -96,9 +96,9 @@ BOOL SetKVFiles (int num, const char* key, const char* value)
         } else {
             TEST_ASSERT_EQUAL_INT(-1, ret);
         }
-        memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
-        memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
-        memset_s(valuetemp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+        (void)memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
+        (void)memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+        (void)memset_s(valuetemp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
         IoTWatchDogKick();
     }
     IoTWatchDogKick();
@@ -142,9 +142,9 @@ BOOL ReadKVFiles (int num, const char* key, const char* value)
         } else {
             TEST_ASSERT_EQUAL_INT(-1, ret);
         }
-        memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
-        memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
-        memset_s(valuetemp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+        (void)memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
+        (void)memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+        (void)memset_s(valuetemp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
         IoTWatchDogKick();
     }
     IoTWatchDogKick();
@@ -172,7 +172,7 @@ BOOL DeleteKVFiles (int num, const char* key)
         } else {
             TEST_ASSERT_EQUAL_INT(-1, ret);
         }
-        memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
+        (void)memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
         IoTWatchDogKick();
     }
     IoTWatchDogKick();
@@ -573,7 +573,7 @@ LITE_TEST_CASE(KvStoreFuncTestSuite, testKvStoreClearCache001, Function | Medium
     ret = ClearKVCache();
     TEST_ASSERT_EQUAL_INT(0, ret);
     // Get the value of key
-    memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+    (void)memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
     ret = UtilsGetValue(key, temp, MAX_VALUE_LEN_TEST);
     TEST_ASSERT_GREATER_THAN_INT(0, ret);
     TEST_ASSERT_EQUAL_STRING(value, temp);
@@ -607,7 +607,7 @@ LITE_TEST_CASE(KvStoreFuncTestSuite, testKvStoreClearCache002, Function | Medium
     ret = ClearKVCache();
     TEST_ASSERT_EQUAL_INT(0, ret);
     // Get the value of key
-    memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+    (void)memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
     ret = UtilsGetValue(key, temp, MAX_VALUE_LEN_TEST);
     TEST_ASSERT_GREATER_THAN_INT(0, ret);
     TEST_ASSERT_EQUAL_STRING(value1, temp);
