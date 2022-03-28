@@ -104,7 +104,7 @@ static BOOL PutKVs(int num, const char* key, const char* content)
             return FALSE;
         }
 
-        memset_s(&value, sizeof(value), 0, sizeof(value));
+        (void)memset_s(&value, sizeof(value), 0, sizeof(value));
         value.num = i;
 
         int ret = strcpy_s(value.content, sizeof(value.content), content);
@@ -117,7 +117,7 @@ static BOOL PutKVs(int num, const char* key, const char* content)
             TEST_ASSERT_EQUAL_INT(DBM_OVER_MAX_LIMITS, status);
         }
 
-        memset_s(&value1, sizeof(value1), 0, sizeof(value1));
+        (void)memset_s(&value1, sizeof(value1), 0, sizeof(value1));
         unsigned int realValLen = 0;
         status = DBM_Get(g_KVStoreHandle, keytemp, &value1, sizeof(value1), &realValLen);
         if (i <= MAX_KEY_NUM_TEST) {
@@ -130,7 +130,7 @@ static BOOL PutKVs(int num, const char* key, const char* content)
             TEST_ASSERT_EQUAL_INT(DBM_NOT_FOUND, status);
         }
 
-        memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
+        (void)memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
         IoTWatchDogKick();
     }
     IoTWatchDogKick();
@@ -157,13 +157,13 @@ static BOOL GetKVs(int num, const char* key, const char* content)
             return FALSE;
         }
 
-        memset_s(&value, sizeof(value), 0, sizeof(value));
+        (void)memset_s(&value, sizeof(value), 0, sizeof(value));
         value.num = loop;
 
         int ret = strcpy_s(value.content, sizeof(value.content), content);
         TEST_ASSERT_EQUAL_INT(0, ret);
 
-        memset_s(&value1, sizeof(value1), 0, sizeof(value1));
+        (void)memset_s(&value1, sizeof(value1), 0, sizeof(value1));
         unsigned int realValLen = 0;
         status = DBM_Get(g_KVStoreHandle, keytemp, &value1, sizeof(value1), &realValLen);
         if (loop <= MAX_KEY_NUM_TEST) {
@@ -176,7 +176,7 @@ static BOOL GetKVs(int num, const char* key, const char* content)
             TEST_ASSERT_EQUAL_INT(DBM_NOT_FOUND, status);
         }
 
-        memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
+        (void)memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
         IoTWatchDogKick();
     }
     IoTWatchDogKick();
@@ -202,7 +202,7 @@ static BOOL DeleteKVs(int num, const char* key)
         status = DBM_Delete(g_KVStoreHandle, keytemp);
         TEST_ASSERT_EQUAL_INT(DBM_OK, status); // same as > L2, if key not existed, still return OK
 
-        memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
+        (void)memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
         IoTWatchDogKick();
     }
     IoTWatchDogKick();
@@ -222,7 +222,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue001, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -254,7 +254,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue002, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -278,7 +278,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue003, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -302,7 +302,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue004, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -326,7 +326,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue005, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -347,7 +347,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue006, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -368,7 +368,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue007, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -389,7 +389,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue008, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -410,7 +410,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue009, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -431,7 +431,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue010, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -452,7 +452,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue011, Function | Mediu
         int num;
         char content[507];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -476,7 +476,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue012, Function | Mediu
         int num;
         char content[509];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -497,7 +497,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue013, Function | Mediu
         int num;
         char content[512];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -518,7 +518,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue014, Function | Mediu
         int num;
         char content[512];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -539,7 +539,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue015, Function | Mediu
         int num;
         char content[508];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "！@#￥%……&*（）——+~《》？，。、“‘；：、12345767890");
 
@@ -563,7 +563,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue016, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "Hello world !");
 
@@ -584,7 +584,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreSetValue017, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "                                                   ");
 
@@ -608,14 +608,14 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreGetValue001, Function | Mediu
         int num;
         char content[200];
     } value, value1;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "It is never too old to learn");
 
     status = DBM_Put(g_KVStoreHandle, key, (void*)&value, sizeof(value));
     TEST_ASSERT_EQUAL_INT(DBM_OK, status);
 
-    memset_s(&value1, sizeof(value1), 0, sizeof(value1));
+    (void)memset_s(&value1, sizeof(value1), 0, sizeof(value1));
     unsigned int realValLen = 0;
     status = DBM_Get(g_KVStoreHandle, key, &value1, sizeof(value1), &realValLen);
     TEST_ASSERT_EQUAL_INT(DBM_OK, status);
@@ -641,14 +641,14 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreGetValue002, Function | Mediu
         int num;
         char content[200];
     } value, value1;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "！@#￥%……&*（）——+~《》？，。、“‘；：、12345767890");
 
     status = DBM_Put(g_KVStoreHandle, key, (void*)&value, sizeof(value));
     TEST_ASSERT_EQUAL_INT(DBM_OK, status);
 
-    memset_s(&value1, sizeof(value1), 0, sizeof(value1));
+    (void)memset_s(&value1, sizeof(value1), 0, sizeof(value1));
     unsigned int realValLen = 0;
     status = DBM_Get(g_KVStoreHandle, key, &value1, sizeof(value1), &realValLen);
     TEST_ASSERT_EQUAL_INT(DBM_OK, status);
@@ -674,7 +674,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreGetValue003, Function | Mediu
         int num;
         char content[200];
     } value, value1, value2;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "It is never too old to learn");
 
@@ -682,7 +682,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreGetValue003, Function | Mediu
     TEST_ASSERT_EQUAL_INT(DBM_OK, status);
 
     // Update the value of key
-    memset_s(&value1, sizeof(value1), 0, sizeof(value1));
+    (void)memset_s(&value1, sizeof(value1), 0, sizeof(value1));
     value1.num = 1;
     strcpy_s(value1.content, sizeof(value1.content), "Two tigers Two tigers two tiger running so fast");
 
@@ -692,7 +692,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreGetValue003, Function | Mediu
     printf("Update One: begin[%d] finish[%d] use[%d]\n", tickCount1, tickCount2, tickCount2 - tickCount1);
     TEST_ASSERT_EQUAL_INT(DBM_OK, status);
 
-    memset_s(&value2, sizeof(value2), 0, sizeof(value2));
+    (void)memset_s(&value2, sizeof(value2), 0, sizeof(value2));
     unsigned int realValLen = 0;
     status = DBM_Get(g_KVStoreHandle, key, &value2, sizeof(value2), &realValLen);
     TEST_ASSERT_EQUAL_INT(DBM_OK, status);
@@ -718,7 +718,7 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreGetValue004, Function | Mediu
         int num;
         char content[200];
     } value;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
 
     unsigned int realValLen = 0;
     status = DBM_Get(g_KVStoreHandle, key, &value, sizeof(value), &realValLen);
@@ -738,14 +738,14 @@ LITE_TEST_CASE(DBMKvStoreFuncTestSuite, testKvStoreGetValue005, Function | Mediu
         int num;
         char content[200];
     } value, value1;
-    memset_s(&value, sizeof(value), 0, sizeof(value));
+    (void)memset_s(&value, sizeof(value), 0, sizeof(value));
     value.num = 1;
     strcpy_s(value.content, sizeof(value.content), "                                                 ");
 
     status = DBM_Put(g_KVStoreHandle, key, (void*)&value, sizeof(value));
     TEST_ASSERT_EQUAL_INT(DBM_OK, status);
 
-    memset_s(&value1, sizeof(value1), 0, sizeof(value1));
+    (void)memset_s(&value1, sizeof(value1), 0, sizeof(value1));
     unsigned int realValLen = 0;
     status = DBM_Get(g_KVStoreHandle, key, &value1, sizeof(value1), &realValLen);
     TEST_ASSERT_EQUAL_INT(DBM_OK, status);

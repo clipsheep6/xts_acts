@@ -92,9 +92,9 @@ bool KvStoreTest::TouchKVFiles (int num, const char* key, const char* value) con
         } else {
             EXPECT_EQ(ret, -1);
         }
-        memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
-        memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
-        memset_s(valuetemp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+        (void)memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
+        (void)memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+        (void)memset_s(valuetemp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
     }
     return true;
 }
@@ -132,9 +132,9 @@ bool KvStoreTest::ReadKVFiles (int num, const char* key, const char* value) cons
         } else {
             EXPECT_EQ(ret, -1);
         }
-        memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
-        memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
-        memset_s(valuetemp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+        (void)memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
+        (void)memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+        (void)memset_s(valuetemp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
     }
     return true;
 }
@@ -160,7 +160,7 @@ bool KvStoreTest::DeleteKVFiles (int num, const char* key) const
         } else {
             EXPECT_EQ(ret, -1);
         }
-        memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
+        (void)memset_s(keytemp, MAX_KEY_LEN_TEST, 0, MAX_KEY_LEN_TEST);
     }
     return true;
 }
@@ -495,7 +495,7 @@ HWTEST_F(KvStoreTest, testClearKVCache001, Function | MediumTest | Level0)
     ret = ClearKVCache();
     EXPECT_EQ(ret, 0);
     // Get the value of key
-    memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+    (void)memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
     ret = UtilsGetValue(key, temp, MAX_VALUE_LEN_TEST);
     EXPECT_GT(ret, 0);
     EXPECT_STREQ(value, temp);
@@ -525,7 +525,7 @@ HWTEST_F(KvStoreTest, testClearKVCache002, Function | MediumTest | Level1)
     ret = ClearKVCache();
     EXPECT_EQ(ret, 0);
     // Get the value of key
-    memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
+    (void)memset_s(temp, MAX_VALUE_LEN_TEST, 0, MAX_VALUE_LEN_TEST);
     ret = UtilsGetValue(key, temp, MAX_VALUE_LEN_TEST);
     EXPECT_GT(ret, 0);
     EXPECT_STREQ(value1, temp);
