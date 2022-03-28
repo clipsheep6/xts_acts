@@ -941,6 +941,7 @@ HWTEST_F(AbilityMgrTest, testPostTask, Function | MediumTest | Level1)
     string hapPath = g_testPath + "testnative_hispark_taurus_liteos.hap";
 #endif
     AbilityEventHandler eventHandler1;
+    
     auto task = [this, hapPath]{
         sem_init(&g_sem, 0, 0);
         InstallParam installParam = { .installLocation = 1, .keepData = false };
