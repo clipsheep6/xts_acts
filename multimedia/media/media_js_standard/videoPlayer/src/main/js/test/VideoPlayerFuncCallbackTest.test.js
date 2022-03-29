@@ -99,7 +99,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
             path = 'pages/surfaceTest/surfaceTest';
             temp = 1;
         } else {
-            path = 'pages/surfaceTest/surfaceTest2';
+            path = 'pages/surfaceTest2/surfaceTest2';
             temp = 0;
         }
         let options = {
@@ -156,8 +156,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         });
 
         videoPlayer.on('bufferingUpdate', (infoType, value) => {
-            console.info('case bufferingUpdate success infoType is ' + infoType);
-            console.info('case bufferingUpdate success value is ' + value);
+            console.info('case bufferingUpdate success');
         });
 
         videoPlayer.on('startRenderFrame', () => {
