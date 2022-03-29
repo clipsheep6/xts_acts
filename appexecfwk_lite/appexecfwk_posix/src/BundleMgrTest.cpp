@@ -52,7 +52,9 @@ static void TestBundleStateCallback(const uint8_t resultCode, const void *result
 static string GetCurDir()
 {
     string filePath = "";
-    if (!(char *buffer = getcwd(NULL, 0))) {
+    char *buffer;
+    buffer = getcwd(NULL, 0);
+    if (!buffer) {
         perror("get file path error");
     } else {
         printf("Current Dir: %s\r\n", buffer);
