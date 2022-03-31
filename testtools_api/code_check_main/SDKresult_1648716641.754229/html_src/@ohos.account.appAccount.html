@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>账号子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>account</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.account.appAccount</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>appAccount</td><td>declare namespace appAccount {
+    
+    function createAppAccountManager(): AppAccountManager;
+
+    
+    interface AppAccountManager {
+        
+        addAccount(name: string, callback: AsyncCallback<void>): void;
+        addAccount(name: string, extraInfo: string, callback: AsyncCallback<void>): void;
+        addAccount(name: string, extraInfo?: string): Promise<void>;
+
+        
+        addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+
+        
+        deleteAccount(name: string, callback: AsyncCallback<void>): void;
+        deleteAccount(name: string): Promise<void>;
+
+        
+        disableAppAccess(name: string, bundleName: string, callback: AsyncCallback<void>): void;
+        disableAppAccess(name: string, bundleName: string): Promise<void>;
+
+        
+        enableAppAccess(name: string, bundleName: string, callback: AsyncCallback<void>): void;
+        enableAppAccess(name: string, bundleName: string): Promise<void>;
+
+        
+        checkAppAccountSyncEnable(name: string, callback: AsyncCallback<boolean>): void;
+        checkAppAccountSyncEnable(name: string): Promise<boolean>;
+
+        
+        setAccountCredential(name: string, credentialType: string, credential: string,
+                             callback: AsyncCallback<void>): void;
+        setAccountCredential(name: string, credentialType: string, credential: string): Promise<void>;
+
+        
+        setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback<void>): void;
+        setAccountExtraInfo(name: string, extraInfo: string): Promise<void>;
+
+        
+        setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback<void>): void;
+        setAppAccountSyncEnable(name: string, isEnable: boolean): Promise<void>;
+
+        
+        setAssociatedData(name: string, key: string, value: string, callback: AsyncCallback<void>): void;
+        setAssociatedData(name: string, key: string, value: string): Promise<void>;
+
+        
+        getAllAccessibleAccounts(callback: AsyncCallback<Array<AppAccountInfo>>): void;
+        getAllAccessibleAccounts(): Promise<Array<AppAccountInfo>>;
+
+        
+        getAllAccounts(owner: string, callback: AsyncCallback<Array<AppAccountInfo>>): void;
+        getAllAccounts(owner: string): Promise<Array<AppAccountInfo>>;
+         
+        
+        getAccountCredential(name: string, credentialType: string, callback: AsyncCallback<string>): void;
+        getAccountCredential(name: string, credentialType: string): Promise<string>;
+
+        
+        getAccountExtraInfo(name: string, callback: AsyncCallback<string>): void;
+        getAccountExtraInfo(name: string): Promise<string>;
+
+        
+        getAssociatedData(name: string, key: string, callback: AsyncCallback<string>): void;
+        getAssociatedData(name: string, key: string): Promise<string>;
+
+        
+        on(type: 'change', owners: Array<string>, callback: Callback<Array<AppAccountInfo>>): void;
+
+        
+        off(type: 'change', callback?: Callback<Array<AppAccountInfo>>): void;
+
+        
+        authenticate(name: string, owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+
+        
+        getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCallback<string>): void;
+        getOAuthToken(name: string, owner: string, authType: string): Promise<string>;
+
+        
+        setOAuthToken(name: string, authType: string, token: string, callback: AsyncCallback<void>): void;
+        setOAuthToken(name: string, authType: string, token: string): Promise<void>;
+
+        
+        deleteOAuthToken(name: string, owner: string, authType: string, token: string, callback: AsyncCallback<void>): void;
+        deleteOAuthToken(name: string, owner: string, authType: string, token: string): Promise<void>;
+
+        
+        setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback<void>): void;
+        setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean): Promise<void>;
+
+        
+        checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, callback: AsyncCallback<boolean>): void;
+        checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): Promise<boolean>;
+
+        
+        getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback<Array<OAuthTokenInfo>>): void;
+        getAllOAuthTokens(name: string, owner: string): Promise<Array<OAuthTokenInfo>>;
+
+        
+        getOAuthList(name: string, authType: string, callback: AsyncCallback<Array<string>>): void;
+        getOAuthList(name: string, authType: string): Promise<Array<string>>;
+
+        
+        getAuthenticatorCallback(sessionId: string, callback: AsyncCallback<AuthenticatorCallback>): void;
+        getAuthenticatorCallback(sessionId: string): Promise<AuthenticatorCallback>;
+
+        
+        getAuthenticatorInfo(owner: string, callback: AsyncCallback<AuthenticatorInfo>): void;
+        getAuthenticatorInfo(owner: string): Promise<AuthenticatorInfo>;
+    }
+
+    
+    interface AppAccountInfo {
+        
+        owner: string;
+
+        
+        name: string;
+    }
+
+    
+    interface OAuthTokenInfo {
+        
+        authType: string;
+
+        
+        token: string;
+    }
+
+    
+    interface AuthenticatorInfo {
+        
+        owner: string;
+
+        
+        iconId: number;
+
+        
+        labelId: number;
+    }
+
+    
+    enum Constants {
+        ACTION_ADD_ACCOUNT_IMPLICITLY = "addAccountImplicitly",
+        ACTION_AUTHENTICATE = "authenticate",
+        KEY_NAME = "name",
+        KEY_OWNER = "owner",
+        KEY_TOKEN = "token",
+        KEY_ACTION = "action",
+        KEY_AUTH_TYPE = "authType",
+        KEY_SESSION_ID = "sessionId",
+        KEY_CALLER_PID = "callerPid",
+        KEY_CALLER_UID = "callerUid",
+        KEY_CALLER_BUNDLE_NAME = "callerBundleName",
+    }
+
+    
+    enum ResultCode {
+        SUCCESS = 0,
+        ERROR_ACCOUNT_NOT_EXIST = 10001,
+        ERROR_APP_ACCOUNT_SERVICE_EXCEPTION = 10002,
+        ERROR_INVALID_PASSWORD = 10003,
+        ERROR_INVALID_REQUEST = 10004,
+        ERROR_INVALID_RESPONSE = 10005,
+        ERROR_NETWORK_EXCEPTION = 10006,
+        ERROR_OAUTH_AUTHENTICATOR_NOT_EXIST = 10007,
+        ERROR_OAUTH_CANCELED = 10008,
+        ERROR_OAUTH_LIST_TOO_LARGE = 10009,
+        ERROR_OAUTH_SERVICE_BUSY = 10010,
+        ERROR_OAUTH_SERVICE_EXCEPTION = 10011,
+        ERROR_OAUTH_SESSION_NOT_EXIST = 10012,
+        ERROR_OAUTH_TIMEOUT = 10013,
+        ERROR_OAUTH_TOKEN_NOT_EXIST = 10014,
+        ERROR_OAUTH_TOKEN_TOO_MANY = 10015,
+        ERROR_OAUTH_UNSUPPORT_ACTION = 10016,
+        ERROR_OAUTH_UNSUPPORT_AUTH_TYPE = 10017,
+        ERROR_PERMISSION_DENIED = 10018
+    }
+
+    
+    interface AuthenticatorCallback {
+        
+        onResult: (code: number, result: {[key: string]: any}) => void;
+
+        
+        onRequestRedirected: (request: Want) => void;
+    }
+
+    
+    class Authenticator {
+        
+        addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+
+        
+        authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+    }
+}</td><td>appAccount</td><td>None</td><td>0</td><td>1504</td><tr><tr><td>appAccount</td><td>function createAppAccountManager(): AppAccountManager;</td><td>createAppAccountManager</td><td>None</td><td>0</td><td>338</td><tr><tr><td>AppAccountManager</td><td>interface AppAccountManager {
+        
+        addAccount(name: string, callback: AsyncCallback<void>): void;
+        addAccount(name: string, extraInfo: string, callback: AsyncCallback<void>): void;
+        addAccount(name: string, extraInfo?: string): Promise<void>;
+
+        
+        addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+
+        
+        deleteAccount(name: string, callback: AsyncCallback<void>): void;
+        deleteAccount(name: string): Promise<void>;
+
+        
+        disableAppAccess(name: string, bundleName: string, callback: AsyncCallback<void>): void;
+        disableAppAccess(name: string, bundleName: string): Promise<void>;
+
+        
+        enableAppAccess(name: string, bundleName: string, callback: AsyncCallback<void>): void;
+        enableAppAccess(name: string, bundleName: string): Promise<void>;
+
+        
+        checkAppAccountSyncEnable(name: string, callback: AsyncCallback<boolean>): void;
+        checkAppAccountSyncEnable(name: string): Promise<boolean>;
+
+        
+        setAccountCredential(name: string, credentialType: string, credential: string,
+                             callback: AsyncCallback<void>): void;
+        setAccountCredential(name: string, credentialType: string, credential: string): Promise<void>;
+
+        
+        setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback<void>): void;
+        setAccountExtraInfo(name: string, extraInfo: string): Promise<void>;
+
+        
+        setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback<void>): void;
+        setAppAccountSyncEnable(name: string, isEnable: boolean): Promise<void>;
+
+        
+        setAssociatedData(name: string, key: string, value: string, callback: AsyncCallback<void>): void;
+        setAssociatedData(name: string, key: string, value: string): Promise<void>;
+
+        
+        getAllAccessibleAccounts(callback: AsyncCallback<Array<AppAccountInfo>>): void;
+        getAllAccessibleAccounts(): Promise<Array<AppAccountInfo>>;
+
+        
+        getAllAccounts(owner: string, callback: AsyncCallback<Array<AppAccountInfo>>): void;
+        getAllAccounts(owner: string): Promise<Array<AppAccountInfo>>;
+         
+        
+        getAccountCredential(name: string, credentialType: string, callback: AsyncCallback<string>): void;
+        getAccountCredential(name: string, credentialType: string): Promise<string>;
+
+        
+        getAccountExtraInfo(name: string, callback: AsyncCallback<string>): void;
+        getAccountExtraInfo(name: string): Promise<string>;
+
+        
+        getAssociatedData(name: string, key: string, callback: AsyncCallback<string>): void;
+        getAssociatedData(name: string, key: string): Promise<string>;
+
+        
+        on(type: 'change', owners: Array<string>, callback: Callback<Array<AppAccountInfo>>): void;
+
+        
+        off(type: 'change', callback?: Callback<Array<AppAccountInfo>>): void;
+
+        
+        authenticate(name: string, owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+
+        
+        getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCallback<string>): void;
+        getOAuthToken(name: string, owner: string, authType: string): Promise<string>;
+
+        
+        setOAuthToken(name: string, authType: string, token: string, callback: AsyncCallback<void>): void;
+        setOAuthToken(name: string, authType: string, token: string): Promise<void>;
+
+        
+        deleteOAuthToken(name: string, owner: string, authType: string, token: string, callback: AsyncCallback<void>): void;
+        deleteOAuthToken(name: string, owner: string, authType: string, token: string): Promise<void>;
+
+        
+        setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback<void>): void;
+        setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean): Promise<void>;
+
+        
+        checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, callback: AsyncCallback<boolean>): void;
+        checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): Promise<boolean>;
+
+        
+        getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback<Array<OAuthTokenInfo>>): void;
+        getAllOAuthTokens(name: string, owner: string): Promise<Array<OAuthTokenInfo>>;
+
+        
+        getOAuthList(name: string, authType: string, callback: AsyncCallback<Array<string>>): void;
+        getOAuthList(name: string, authType: string): Promise<Array<string>>;
+
+        
+        getAuthenticatorCallback(sessionId: string, callback: AsyncCallback<AuthenticatorCallback>): void;
+        getAuthenticatorCallback(sessionId: string): Promise<AuthenticatorCallback>;
+
+        
+        getAuthenticatorInfo(owner: string, callback: AsyncCallback<AuthenticatorInfo>): void;
+        getAuthenticatorInfo(owner: string): Promise<AuthenticatorInfo>;
+    }</td><td>AppAccountManager</td><td>20</td><td>0</td><td>348</td><tr><tr><td>AppAccountManager</td><td>addAccount(name: string, callback: AsyncCallback<void>): void;</td><td>addAccount</td><td>21</td><td>2</td><td>416</td><tr><tr><td>AppAccountManager</td><td>addAccount(name: string, extraInfo: string, callback: AsyncCallback<void>): void;</td><td>addAccount</td><td>21</td><td>3</td><td>416</td><tr><tr><td>AppAccountManager</td><td>addAccount(name: string, extraInfo?: string): Promise<void>;</td><td>addAccount</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AppAccountManager</td><td>addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;</td><td>addAccountImplicitly</td><td>21</td><td>4</td><td>3</td><tr><tr><td>AppAccountManager</td><td>deleteAccount(name: string, callback: AsyncCallback<void>): void;</td><td>deleteAccount</td><td>21</td><td>2</td><td>398</td><tr><tr><td>AppAccountManager</td><td>deleteAccount(name: string): Promise<void>;</td><td>deleteAccount</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AppAccountManager</td><td>disableAppAccess(name: string, bundleName: string, callback: AsyncCallback<void>): void;</td><td>disableAppAccess</td><td>21</td><td>3</td><td>35</td><tr><tr><td>AppAccountManager</td><td>disableAppAccess(name: string, bundleName: string): Promise<void>;</td><td>disableAppAccess</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AppAccountManager</td><td>enableAppAccess(name: string, bundleName: string, callback: AsyncCallback<void>): void;</td><td>enableAppAccess</td><td>21</td><td>3</td><td>69</td><tr><tr><td>AppAccountManager</td><td>enableAppAccess(name: string, bundleName: string): Promise<void>;</td><td>enableAppAccess</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AppAccountManager</td><td>checkAppAccountSyncEnable(name: string, callback: AsyncCallback<boolean>): void;</td><td>checkAppAccountSyncEnable</td><td>21</td><td>2</td><td>56</td><tr><tr><td>AppAccountManager</td><td>checkAppAccountSyncEnable(name: string): Promise<boolean>;</td><td>checkAppAccountSyncEnable</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AppAccountManager</td><td>setAccountCredential(name: string, credentialType: string, credential: string,
+                             callback: AsyncCallback<void>): void;</td><td>setAccountCredential</td><td>21</td><td>4</td><td>58</td><tr><tr><td>AppAccountManager</td><td>setAccountCredential(name: string, credentialType: string, credential: string): Promise<void>;</td><td>setAccountCredential</td><td>21</td><td>3</td><td>0</td><tr><tr><td>AppAccountManager</td><td>setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback<void>): void;</td><td>setAccountExtraInfo</td><td>21</td><td>3</td><td>52</td><tr><tr><td>AppAccountManager</td><td>setAccountExtraInfo(name: string, extraInfo: string): Promise<void>;</td><td>setAccountExtraInfo</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AppAccountManager</td><td>setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback<void>): void;</td><td>setAppAccountSyncEnable</td><td>21</td><td>3</td><td>45</td><tr><tr><td>AppAccountManager</td><td>setAppAccountSyncEnable(name: string, isEnable: boolean): Promise<void>;</td><td>setAppAccountSyncEnable</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AppAccountManager</td><td>setAssociatedData(name: string, key: string, value: string, callback: AsyncCallback<void>): void;</td><td>setAssociatedData</td><td>21</td><td>4</td><td>91</td><tr><tr><td>AppAccountManager</td><td>setAssociatedData(name: string, key: string, value: string): Promise<void>;</td><td>setAssociatedData</td><td>21</td><td>3</td><td>10</td><tr><tr><td>AppAccountManager</td><td>getAllAccessibleAccounts(callback: AsyncCallback<Array<AppAccountInfo>>): void;</td><td>getAllAccessibleAccounts</td><td>21</td><td>1</td><td>67</td><tr><tr><td>AppAccountManager</td><td>getAllAccessibleAccounts(): Promise<Array<AppAccountInfo>>;</td><td>getAllAccessibleAccounts</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AppAccountManager</td><td>getAllAccounts(owner: string, callback: AsyncCallback<Array<AppAccountInfo>>): void;</td><td>getAllAccounts</td><td>21</td><td>2</td><td>78</td><tr><tr><td>AppAccountManager</td><td>getAllAccounts(owner: string): Promise<Array<AppAccountInfo>>;</td><td>getAllAccounts</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AppAccountManager</td><td>getAccountCredential(name: string, credentialType: string, callback: AsyncCallback<string>): void;</td><td>getAccountCredential</td><td>21</td><td>3</td><td>34</td><tr><tr><td>AppAccountManager</td><td>getAccountCredential(name: string, credentialType: string): Promise<string>;</td><td>getAccountCredential</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AppAccountManager</td><td>getAccountExtraInfo(name: string, callback: AsyncCallback<string>): void;</td><td>getAccountExtraInfo</td><td>21</td><td>2</td><td>52</td><tr><tr><td>AppAccountManager</td><td>getAccountExtraInfo(name: string): Promise<string>;</td><td>getAccountExtraInfo</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AppAccountManager</td><td>getAssociatedData(name: string, key: string, callback: AsyncCallback<string>): void;</td><td>getAssociatedData</td><td>21</td><td>3</td><td>73</td><tr><tr><td>AppAccountManager</td><td>getAssociatedData(name: string, key: string): Promise<string>;</td><td>getAssociatedData</td><td>21</td><td>2</td><td>10</td><tr><tr><td>AppAccountManager</td><td>on(type: 'change', owners: Array<string>, callback: Callback<Array<AppAccountInfo>>): void;</td><td>on</td><td>21</td><td>3</td><td>8941</td><tr><tr><td>AppAccountManager</td><td>off(type: 'change', callback?: Callback<Array<AppAccountInfo>>): void;</td><td>off</td><td>21</td><td>2</td><td>202</td><tr><tr><td>AppAccountManager</td><td>authenticate(name: string, owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;</td><td>authenticate</td><td>21</td><td>5</td><td>0</td><tr><tr><td>AppAccountManager</td><td>getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCallback<string>): void;</td><td>getOAuthToken</td><td>21</td><td>4</td><td>242</td><tr><tr><td>AppAccountManager</td><td>getOAuthToken(name: string, owner: string, authType: string): Promise<string>;</td><td>getOAuthToken</td><td>21</td><td>3</td><td>0</td><tr><tr><td>AppAccountManager</td><td>setOAuthToken(name: string, authType: string, token: string, callback: AsyncCallback<void>): void;</td><td>setOAuthToken</td><td>21</td><td>4</td><td>269</td><tr><tr><td>AppAccountManager</td><td>setOAuthToken(name: string, authType: string, token: string): Promise<void>;</td><td>setOAuthToken</td><td>21</td><td>3</td><td>0</td><tr><tr><td>AppAccountManager</td><td>deleteOAuthToken(name: string, owner: string, authType: string, token: string, callback: AsyncCallback<void>): void;</td><td>deleteOAuthToken</td><td>21</td><td>5</td><td>84</td><tr><tr><td>AppAccountManager</td><td>deleteOAuthToken(name: string, owner: string, authType: string, token: string): Promise<void>;</td><td>deleteOAuthToken</td><td>21</td><td>4</td><td>0</td><tr><tr><td>AppAccountManager</td><td>setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback<void>): void;</td><td>setOAuthTokenVisibility</td><td>21</td><td>5</td><td>95</td><tr><tr><td>AppAccountManager</td><td>setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean): Promise<void>;</td><td>setOAuthTokenVisibility</td><td>21</td><td>4</td><td>0</td><tr><tr><td>AppAccountManager</td><td>checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, callback: AsyncCallback<boolean>): void;</td><td>checkOAuthTokenVisibility</td><td>21</td><td>4</td><td>89</td><tr><tr><td>AppAccountManager</td><td>checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): Promise<boolean>;</td><td>checkOAuthTokenVisibility</td><td>21</td><td>3</td><td>0</td><tr><tr><td>AppAccountManager</td><td>getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback<Array<OAuthTokenInfo>>): void;</td><td>getAllOAuthTokens</td><td>21</td><td>3</td><td>57</td><tr><tr><td>AppAccountManager</td><td>getAllOAuthTokens(name: string, owner: string): Promise<Array<OAuthTokenInfo>>;</td><td>getAllOAuthTokens</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AppAccountManager</td><td>getOAuthList(name: string, authType: string, callback: AsyncCallback<Array<string>>): void;</td><td>getOAuthList</td><td>21</td><td>3</td><td>66</td><tr><tr><td>AppAccountManager</td><td>getOAuthList(name: string, authType: string): Promise<Array<string>>;</td><td>getOAuthList</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AppAccountManager</td><td>getAuthenticatorCallback(sessionId: string, callback: AsyncCallback<AuthenticatorCallback>): void;</td><td>getAuthenticatorCallback</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AppAccountManager</td><td>getAuthenticatorCallback(sessionId: string): Promise<AuthenticatorCallback>;</td><td>getAuthenticatorCallback</td><td>21</td><td>1</td><td>6</td><tr><tr><td>AppAccountManager</td><td>getAuthenticatorInfo(owner: string, callback: AsyncCallback<AuthenticatorInfo>): void;</td><td>getAuthenticatorInfo</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AppAccountManager</td><td>getAuthenticatorInfo(owner: string): Promise<AuthenticatorInfo>;</td><td>getAuthenticatorInfo</td><td>21</td><td>1</td><td>11</td><tr><tr><td>AppAccountInfo</td><td>interface AppAccountInfo {
+        
+        owner: string;
+
+        
+        name: string;
+    }</td><td>AppAccountInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AppAccountInfo</td><td>owner: string</td><td>owner</td><td>22</td><td>1</td><td>118</td><tr><tr><td>AppAccountInfo</td><td>name: string</td><td>name</td><td>22</td><td>1</td><td>738</td><tr><tr><td>OAuthTokenInfo</td><td>interface OAuthTokenInfo {
+        
+        authType: string;
+
+        
+        token: string;
+    }</td><td>OAuthTokenInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>OAuthTokenInfo</td><td>authType: string</td><td>authType</td><td>22</td><td>1</td><td>349</td><tr><tr><td>OAuthTokenInfo</td><td>token: string</td><td>token</td><td>22</td><td>1</td><td>237</td><tr><tr><td>AuthenticatorInfo</td><td>interface AuthenticatorInfo {
+        
+        owner: string;
+
+        
+        iconId: number;
+
+        
+        labelId: number;
+    }</td><td>AuthenticatorInfo</td><td>20</td><td>0</td><td>11</td><tr><tr><td>AuthenticatorInfo</td><td>owner: string</td><td>owner</td><td>22</td><td>1</td><td>118</td><tr><tr><td>AuthenticatorInfo</td><td>iconId: number</td><td>iconId</td><td>22</td><td>1</td><td>0</td><tr><tr><td>AuthenticatorInfo</td><td>labelId: number</td><td>labelId</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>enum Constants {
+        ACTION_ADD_ACCOUNT_IMPLICITLY = "addAccountImplicitly",
+        ACTION_AUTHENTICATE = "authenticate",
+        KEY_NAME = "name",
+        KEY_OWNER = "owner",
+        KEY_TOKEN = "token",
+        KEY_ACTION = "action",
+        KEY_AUTH_TYPE = "authType",
+        KEY_SESSION_ID = "sessionId",
+        KEY_CALLER_PID = "callerPid",
+        KEY_CALLER_UID = "callerUid",
+        KEY_CALLER_BUNDLE_NAME = "callerBundleName",
+    }</td><td>Constants</td><td>40</td><td>0</td><td>0</td><tr><tr><td>Constants</td><td>ACTION_ADD_ACCOUNT_IMPLICITLY = "addAccountImplicitly",</td><td>ACTION_ADD_ACCOUNT_IMPLICITLY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>ACTION_AUTHENTICATE = "authenticate",</td><td>ACTION_AUTHENTICATE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>KEY_NAME = "name",</td><td>KEY_NAME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>KEY_OWNER = "owner",</td><td>KEY_OWNER</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>KEY_TOKEN = "token",</td><td>KEY_TOKEN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>KEY_ACTION = "action",</td><td>KEY_ACTION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>KEY_AUTH_TYPE = "authType",</td><td>KEY_AUTH_TYPE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>KEY_SESSION_ID = "sessionId",</td><td>KEY_SESSION_ID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>KEY_CALLER_PID = "callerPid",</td><td>KEY_CALLER_PID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>KEY_CALLER_UID = "callerUid",</td><td>KEY_CALLER_UID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Constants</td><td>KEY_CALLER_BUNDLE_NAME = "callerBundleName",</td><td>KEY_CALLER_BUNDLE_NAME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>enum ResultCode {
+        SUCCESS = 0,
+        ERROR_ACCOUNT_NOT_EXIST = 10001,
+        ERROR_APP_ACCOUNT_SERVICE_EXCEPTION = 10002,
+        ERROR_INVALID_PASSWORD = 10003,
+        ERROR_INVALID_REQUEST = 10004,
+        ERROR_INVALID_RESPONSE = 10005,
+        ERROR_NETWORK_EXCEPTION = 10006,
+        ERROR_OAUTH_AUTHENTICATOR_NOT_EXIST = 10007,
+        ERROR_OAUTH_CANCELED = 10008,
+        ERROR_OAUTH_LIST_TOO_LARGE = 10009,
+        ERROR_OAUTH_SERVICE_BUSY = 10010,
+        ERROR_OAUTH_SERVICE_EXCEPTION = 10011,
+        ERROR_OAUTH_SESSION_NOT_EXIST = 10012,
+        ERROR_OAUTH_TIMEOUT = 10013,
+        ERROR_OAUTH_TOKEN_NOT_EXIST = 10014,
+        ERROR_OAUTH_TOKEN_TOO_MANY = 10015,
+        ERROR_OAUTH_UNSUPPORT_ACTION = 10016,
+        ERROR_OAUTH_UNSUPPORT_AUTH_TYPE = 10017,
+        ERROR_PERMISSION_DENIED = 10018
+    }</td><td>ResultCode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ResultCode</td><td>SUCCESS = 0,</td><td>SUCCESS</td><td>42</td><td>1</td><td>15</td><tr><tr><td>ResultCode</td><td>ERROR_ACCOUNT_NOT_EXIST = 10001,</td><td>ERROR_ACCOUNT_NOT_EXIST</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_APP_ACCOUNT_SERVICE_EXCEPTION = 10002,</td><td>ERROR_APP_ACCOUNT_SERVICE_EXCEPTION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_INVALID_PASSWORD = 10003,</td><td>ERROR_INVALID_PASSWORD</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_INVALID_REQUEST = 10004,</td><td>ERROR_INVALID_REQUEST</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_INVALID_RESPONSE = 10005,</td><td>ERROR_INVALID_RESPONSE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_NETWORK_EXCEPTION = 10006,</td><td>ERROR_NETWORK_EXCEPTION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_AUTHENTICATOR_NOT_EXIST = 10007,</td><td>ERROR_OAUTH_AUTHENTICATOR_NOT_EXIST</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_CANCELED = 10008,</td><td>ERROR_OAUTH_CANCELED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_LIST_TOO_LARGE = 10009,</td><td>ERROR_OAUTH_LIST_TOO_LARGE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_SERVICE_BUSY = 10010,</td><td>ERROR_OAUTH_SERVICE_BUSY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_SERVICE_EXCEPTION = 10011,</td><td>ERROR_OAUTH_SERVICE_EXCEPTION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_SESSION_NOT_EXIST = 10012,</td><td>ERROR_OAUTH_SESSION_NOT_EXIST</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_TIMEOUT = 10013,</td><td>ERROR_OAUTH_TIMEOUT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_TOKEN_NOT_EXIST = 10014,</td><td>ERROR_OAUTH_TOKEN_NOT_EXIST</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_TOKEN_TOO_MANY = 10015,</td><td>ERROR_OAUTH_TOKEN_TOO_MANY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_UNSUPPORT_ACTION = 10016,</td><td>ERROR_OAUTH_UNSUPPORT_ACTION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_OAUTH_UNSUPPORT_AUTH_TYPE = 10017,</td><td>ERROR_OAUTH_UNSUPPORT_AUTH_TYPE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>ERROR_PERMISSION_DENIED = 10018</td><td>ERROR_PERMISSION_DENIED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthenticatorCallback</td><td>interface AuthenticatorCallback {
+        
+        onResult: (code: number, result: {[key: string]: any}) => void;
+
+        
+        onRequestRedirected: (request: Want) => void;
+    }</td><td>AuthenticatorCallback</td><td>20</td><td>0</td><td>6</td><tr><tr><td>AuthenticatorCallback</td><td>onResult: (code: number, result: {[key: string]: any}) => void;</td><td>onResult</td><td>21</td><td>2</td><td>3</td><tr><tr><td>AuthenticatorCallback</td><td>onRequestRedirected: (request: Want) => void;</td><td>onRequestRedirected</td><td>21</td><td>1</td><td>5</td><tr><tr><td>Authenticator</td><td>class Authenticator {
+        
+        addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+
+        
+        authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+    }</td><td>Authenticator</td><td>10</td><td>0</td><td>20</td><tr><tr><td>Authenticator</td><td>addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;</td><td>addAccountImplicitly</td><td>11</td><td>4</td><td>3</td><tr><tr><td>Authenticator</td><td>authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;</td><td>authenticate</td><td>11</td><td>5</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

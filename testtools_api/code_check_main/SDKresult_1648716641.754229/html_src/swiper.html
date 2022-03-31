@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>swiper</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>SwiperController</td><td>declare class SwiperController {
+  
+  constructor();
+
+  
+  showNext();
+
+  
+  showPrevious();
+
+  
+  finishAnimation(callback?: () => void);
+}</td><td>SwiperController</td><td>10</td><td>0</td><td>4</td><tr><tr><td>SwiperController</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>SwiperController</td><td>showNext();</td><td>showNext</td><td>11</td><td>0</td><td>6</td><tr><tr><td>SwiperController</td><td>showPrevious();</td><td>showPrevious</td><td>11</td><td>0</td><td>6</td><tr><tr><td>SwiperController</td><td>finishAnimation(callback?: () => void);</td><td>finishAnimationcallback</td><td>11</td><td>1</td><td>0</td><tr><tr><td>SwiperController</td><td>finishAnimation(callback?: () => void);</td><td>finishAnimationcallback</td><td>11</td><td>1</td><td>0</td><tr><tr><td>SwiperDisplayMode</td><td>declare enum SwiperDisplayMode {
+  
+  Stretch,
+
+  
+  AutoLinear,
+}</td><td>SwiperDisplayMode</td><td>40</td><td>0</td><td>7</td><tr><tr><td>SwiperDisplayMode</td><td>Stretch,</td><td>Stretch</td><td>42</td><td>1</td><td>16</td><tr><tr><td>SwiperDisplayMode</td><td>AutoLinear,</td><td>AutoLinear</td><td>42</td><td>1</td><td>11</td><tr><tr><td>SwiperInterface</td><td>interface SwiperInterface {
+  
+  (controller?: SwiperController): SwiperAttribute;
+}</td><td>SwiperInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SwiperInterface</td><td>(controller?: SwiperController): SwiperAttribute</td><td>controller</td><td>22</td><td>1</td><td>50</td><tr><tr><td>IndicatorStyle</td><td>declare interface IndicatorStyle {
+  
+  left?: Length;
+
+  
+  top?: Length;
+
+  
+  right?: Length;
+
+  
+  bottom?: Length;
+
+  
+  size?: Length;
+
+  
+  mask?: boolean;
+
+  
+  color?: ResourceColor;
+
+  
+  selectedColor?: ResourceColor;
+}</td><td>IndicatorStyle</td><td>20</td><td>0</td><td>0</td><tr><tr><td>IndicatorStyle</td><td>left?: Length</td><td>left</td><td>22</td><td>1</td><td>341</td><tr><tr><td>IndicatorStyle</td><td>top?: Length</td><td>top</td><td>22</td><td>1</td><td>607</td><tr><tr><td>IndicatorStyle</td><td>right?: Length</td><td>right</td><td>22</td><td>1</td><td>132</td><tr><tr><td>IndicatorStyle</td><td>bottom?: Length</td><td>bottom</td><td>22</td><td>1</td><td>95</td><tr><tr><td>IndicatorStyle</td><td>size?: Length</td><td>size</td><td>22</td><td>1</td><td>1127</td><tr><tr><td>IndicatorStyle</td><td>mask?: boolean</td><td>mask</td><td>22</td><td>1</td><td>40</td><tr><tr><td>IndicatorStyle</td><td>color?: ResourceColor</td><td>color</td><td>22</td><td>1</td><td>276</td><tr><tr><td>IndicatorStyle</td><td>selectedColor?: ResourceColor</td><td>selectedColor</td><td>22</td><td>1</td><td>36</td><tr><tr><td>SwiperAttribute</td><td>declare class SwiperAttribute extends CommonMethod<SwiperAttribute> {
+  
+  index(value: number): SwiperAttribute;
+
+  
+  autoPlay(value: boolean): SwiperAttribute;
+
+  
+  interval(value: number): SwiperAttribute;
+
+  
+  indicator(value: boolean): SwiperAttribute;
+
+  
+  loop(value: boolean): SwiperAttribute;
+
+  
+  duration(value: number): SwiperAttribute;
+
+  
+  vertical(value: boolean): SwiperAttribute;
+
+  
+  itemSpace(value: number | string): SwiperAttribute;
+
+  
+  displayMode(value: SwiperDisplayMode): SwiperAttribute;
+
+  
+  cachedCount(value: number): SwiperAttribute;
+
+  
+  displayCount(value: number | string): SwiperAttribute;
+
+  
+  effectMode(value: EdgeEffect): SwiperAttribute;
+
+  
+  disableSwipe(value: boolean): SwiperAttribute;
+
+  
+  curve(value: Curve | string): SwiperAttribute;
+  
+  onChange(event: (index: number) => void): SwiperAttribute;
+
+  
+  indicatorStyle(value?: IndicatorStyle): SwiperAttribute;
+}</td><td>SwiperAttribute</td><td>None</td><td>0</td><td>0</td><tr><tr><td>SwiperAttribute</td><td>index(value: number): SwiperAttribute;</td><td>index</td><td>None</td><td>1</td><td>1502</td><tr><tr><td>SwiperAttribute</td><td>autoPlay(value: boolean): SwiperAttribute;</td><td>autoPlay</td><td>None</td><td>1</td><td>23</td><tr><tr><td>SwiperAttribute</td><td>interval(value: number): SwiperAttribute;</td><td>interval</td><td>None</td><td>1</td><td>28</td><tr><tr><td>SwiperAttribute</td><td>indicator(value: boolean): SwiperAttribute;</td><td>indicator</td><td>None</td><td>1</td><td>111</td><tr><tr><td>SwiperAttribute</td><td>loop(value: boolean): SwiperAttribute;</td><td>loop</td><td>None</td><td>1</td><td>85</td><tr><tr><td>SwiperAttribute</td><td>duration(value: number): SwiperAttribute;</td><td>duration</td><td>None</td><td>1</td><td>240</td><tr><tr><td>SwiperAttribute</td><td>vertical(value: boolean): SwiperAttribute;</td><td>vertical</td><td>None</td><td>1</td><td>121</td><tr><tr><td>SwiperAttribute</td><td>itemSpace(value: number | string): SwiperAttribute;</td><td>itemSpace</td><td>None</td><td>1</td><td>12</td><tr><tr><td>SwiperAttribute</td><td>displayMode(value: SwiperDisplayMode): SwiperAttribute;</td><td>displayMode</td><td>None</td><td>1</td><td>17</td><tr><tr><td>SwiperAttribute</td><td>cachedCount(value: number): SwiperAttribute;</td><td>cachedCount</td><td>None</td><td>1</td><td>2</td><tr><tr><td>SwiperAttribute</td><td>displayCount(value: number | string): SwiperAttribute;</td><td>displayCount</td><td>None</td><td>1</td><td>3</td><tr><tr><td>SwiperAttribute</td><td>effectMode(value: EdgeEffect): SwiperAttribute;</td><td>effectMode</td><td>None</td><td>1</td><td>1</td><tr><tr><td>SwiperAttribute</td><td>disableSwipe(value: boolean): SwiperAttribute;</td><td>disableSwipe</td><td>None</td><td>1</td><td>4</td><tr><tr><td>SwiperAttribute</td><td>curve(value: Curve | string): SwiperAttribute;</td><td>curve</td><td>None</td><td>1</td><td>51</td><tr><tr><td>SwiperAttribute</td><td>onChange(event: (index: number) => void): SwiperAttribute;</td><td>onChangeevent</td><td>None</td><td>2</td><td>0</td><tr><tr><td>SwiperAttribute</td><td>onChange(event: (index: number) => void): SwiperAttribute;</td><td>onChangeevent</td><td>None</td><td>2</td><td>0</td><tr><tr><td>SwiperAttribute</td><td>indicatorStyle(value?: IndicatorStyle): SwiperAttribute;</td><td>indicatorStyle</td><td>None</td><td>1</td><td>3</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

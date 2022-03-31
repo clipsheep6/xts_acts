@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>全球化子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>global</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.resourceManager</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>resourceManager</td><td>declare namespace resourceManager {
+
+export enum Direction {
+    
+    DIRECTION_VERTICAL = 0,
+
+    
+    DIRECTION_HORIZONTAL = 1
+}
+
+
+export enum DeviceType {
+    
+    DEVICE_TYPE_PHONE = 0x00,
+
+    
+    DEVICE_TYPE_TABLET = 0x01,
+
+    
+    DEVICE_TYPE_CAR = 0x02,
+
+    
+    DEVICE_TYPE_PC = 0x03,
+
+    
+    DEVICE_TYPE_TV = 0x04,
+
+    
+    DEVICE_TYPE_WEARABLE = 0x06
+}
+
+
+export enum ScreenDensity {
+    
+    SCREEN_SDPI = 120,
+
+    
+    SCREEN_MDPI = 160,
+
+    
+    SCREEN_LDPI = 240,
+
+    
+    SCREEN_XLDPI = 320,
+
+    
+    SCREEN_XXLDPI = 480,
+
+    
+    SCREEN_XXXLDPI = 640
+}
+
+
+export class Configuration {
+    
+    direction: Direction
+
+    
+    locale: string
+}
+
+
+export class DeviceCapability {
+    
+    screenDensity: ScreenDensity
+
+    
+    deviceType: DeviceType
+}
+
+
+export interface AsyncCallback<T> {
+    (err: Error, data: T): void;
+}
+
+
+export function getResourceManager(callback: AsyncCallback<ResourceManager>): void;
+
+
+export function getResourceManager(bundleName: string, callback: AsyncCallback<ResourceManager>): void;
+
+
+export function getResourceManager(): Promise<ResourceManager>;
+
+
+export function getResourceManager(bundleName: string): Promise<ResourceManager>;
+
+
+export interface ResourceManager {
+    
+    getString(resId: number, callback: AsyncCallback<string>): void;
+
+    
+    getString(resId: number): Promise<string>;
+
+    
+    getStringArray(resId: number, callback: AsyncCallback<Array<string>>): void;
+
+    
+   getStringArray(resId: number): Promise<Array<string>>;
+
+    
+    getMedia(resId: number, callback: AsyncCallback<Uint8Array>): void;
+
+    
+    getMedia(resId: number): Promise<Uint8Array>;
+
+    
+   getMediaBase64(resId: number, callback: AsyncCallback<string>): void;
+
+    
+    getMediaBase64(resId: number): Promise<string>;
+
+    
+    getDeviceCapability(callback: AsyncCallback<DeviceCapability>): void;
+
+    
+    getDeviceCapability(): Promise<DeviceCapability>;
+
+    
+    getConfiguration(callback: AsyncCallback<Configuration>): void;
+
+    
+    getConfiguration(): Promise<Configuration>;
+
+    
+    getPluralString(resId: number, num: number, callback: AsyncCallback<string>): void;
+
+    
+    getPluralString(resId: number, num: number): Promise<string>;
+
+    
+    getRawFile(path: string, callback: AsyncCallback<Uint8Array>): void;
+
+    
+    getRawFile(path: string): Promise<Uint8Array>;
+
+    
+    getRawFileDescriptor(path: string, callback: AsyncCallback<RawFileDescriptor>): void;
+
+     
+    getRawFileDescriptor(path: string): Promise<RawFileDescriptor>;
+
+    
+    closeRawFileDescriptor(path: string, callback: AsyncCallback<void>): void;
+
+    
+     closeRawFileDescriptor(path: string): Promise<void>;
+
+    
+    release();
+}
+}</td><td>resourceManager</td><td>None</td><td>0</td><td>1</td><tr><tr><td>Direction</td><td>export enum Direction {
+    
+    DIRECTION_VERTICAL = 0,
+
+    
+    DIRECTION_HORIZONTAL = 1
+}</td><td>Direction</td><td>40</td><td>0</td><td>2</td><tr><tr><td>Direction</td><td>DIRECTION_VERTICAL = 0,</td><td>DIRECTION_VERTICAL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Direction</td><td>DIRECTION_HORIZONTAL = 1</td><td>DIRECTION_HORIZONTAL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DeviceType</td><td>export enum DeviceType {
+    
+    DEVICE_TYPE_PHONE = 0x00,
+
+    
+    DEVICE_TYPE_TABLET = 0x01,
+
+    
+    DEVICE_TYPE_CAR = 0x02,
+
+    
+    DEVICE_TYPE_PC = 0x03,
+
+    
+    DEVICE_TYPE_TV = 0x04,
+
+    
+    DEVICE_TYPE_WEARABLE = 0x06
+}</td><td>DeviceType</td><td>40</td><td>0</td><td>6</td><tr><tr><td>DeviceType</td><td>DEVICE_TYPE_PHONE = 0x00,</td><td>DEVICE_TYPE_PHONE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DeviceType</td><td>DEVICE_TYPE_TABLET = 0x01,</td><td>DEVICE_TYPE_TABLET</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DeviceType</td><td>DEVICE_TYPE_CAR = 0x02,</td><td>DEVICE_TYPE_CAR</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DeviceType</td><td>DEVICE_TYPE_PC = 0x03,</td><td>DEVICE_TYPE_PC</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DeviceType</td><td>DEVICE_TYPE_TV = 0x04,</td><td>DEVICE_TYPE_TV</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DeviceType</td><td>DEVICE_TYPE_WEARABLE = 0x06</td><td>DEVICE_TYPE_WEARABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScreenDensity</td><td>export enum ScreenDensity {
+    
+    SCREEN_SDPI = 120,
+
+    
+    SCREEN_MDPI = 160,
+
+    
+    SCREEN_LDPI = 240,
+
+    
+    SCREEN_XLDPI = 320,
+
+    
+    SCREEN_XXLDPI = 480,
+
+    
+    SCREEN_XXXLDPI = 640
+}</td><td>ScreenDensity</td><td>40</td><td>0</td><td>6</td><tr><tr><td>ScreenDensity</td><td>SCREEN_SDPI = 120,</td><td>SCREEN_SDPI</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScreenDensity</td><td>SCREEN_MDPI = 160,</td><td>SCREEN_MDPI</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScreenDensity</td><td>SCREEN_LDPI = 240,</td><td>SCREEN_LDPI</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScreenDensity</td><td>SCREEN_XLDPI = 320,</td><td>SCREEN_XLDPI</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScreenDensity</td><td>SCREEN_XXLDPI = 480,</td><td>SCREEN_XXLDPI</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScreenDensity</td><td>SCREEN_XXXLDPI = 640</td><td>SCREEN_XXXLDPI</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Configuration</td><td>export class Configuration {
+    
+    direction: Direction
+
+    
+    locale: string
+}</td><td>Configuration</td><td>10</td><td>0</td><td>4</td><tr><tr><td>DeviceCapability</td><td>export class DeviceCapability {
+    
+    screenDensity: ScreenDensity
+
+    
+    deviceType: DeviceType
+}</td><td>DeviceCapability</td><td>10</td><td>0</td><td>6</td><tr><tr><td>AsyncCallback</td><td>export interface AsyncCallback<T> {
+    (err: Error, data: T): void;
+}</td><td>AsyncCallback</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AsyncCallback</td><td>(err: Error, data: T): void</td><td>err</td><td>22</td><td>1</td><td>266</td><tr><tr><td>ResourceManager</td><td>export interface ResourceManager {
+    
+    getString(resId: number, callback: AsyncCallback<string>): void;
+
+    
+    getString(resId: number): Promise<string>;
+
+    
+    getStringArray(resId: number, callback: AsyncCallback<Array<string>>): void;
+
+    
+   getStringArray(resId: number): Promise<Array<string>>;
+
+    
+    getMedia(resId: number, callback: AsyncCallback<Uint8Array>): void;
+
+    
+    getMedia(resId: number): Promise<Uint8Array>;
+
+    
+   getMediaBase64(resId: number, callback: AsyncCallback<string>): void;
+
+    
+    getMediaBase64(resId: number): Promise<string>;
+
+    
+    getDeviceCapability(callback: AsyncCallback<DeviceCapability>): void;
+
+    
+    getDeviceCapability(): Promise<DeviceCapability>;
+
+    
+    getConfiguration(callback: AsyncCallback<Configuration>): void;
+
+    
+    getConfiguration(): Promise<Configuration>;
+
+    
+    getPluralString(resId: number, num: number, callback: AsyncCallback<string>): void;
+
+    
+    getPluralString(resId: number, num: number): Promise<string>;
+
+    
+    getRawFile(path: string, callback: AsyncCallback<Uint8Array>): void;
+
+    
+    getRawFile(path: string): Promise<Uint8Array>;
+
+    
+    getRawFileDescriptor(path: string, callback: AsyncCallback<RawFileDescriptor>): void;
+
+     
+    getRawFileDescriptor(path: string): Promise<RawFileDescriptor>;
+
+    
+    closeRawFileDescriptor(path: string, callback: AsyncCallback<void>): void;
+
+    
+     closeRawFileDescriptor(path: string): Promise<void>;
+
+    
+    release();
+}</td><td>ResourceManager</td><td>20</td><td>0</td><td>30</td><tr><tr><td>ResourceManager</td><td>getString(resId: number, callback: AsyncCallback<string>): void;</td><td>getString</td><td>21</td><td>2</td><td>11</td><tr><tr><td>ResourceManager</td><td>getString(resId: number): Promise<string>;</td><td>getString</td><td>21</td><td>1</td><td>2</td><tr><tr><td>ResourceManager</td><td>getStringArray(resId: number, callback: AsyncCallback<Array<string>>): void;</td><td>getStringArray</td><td>21</td><td>2</td><td>3</td><tr><tr><td>ResourceManager</td><td>getStringArray(resId: number): Promise<Array<string>>;</td><td>getStringArray</td><td>21</td><td>1</td><td>1</td><tr><tr><td>ResourceManager</td><td>getMedia(resId: number, callback: AsyncCallback<Uint8Array>): void;</td><td>getMedia</td><td>21</td><td>2</td><td>6</td><tr><tr><td>ResourceManager</td><td>getMedia(resId: number): Promise<Uint8Array>;</td><td>getMedia</td><td>21</td><td>1</td><td>2</td><tr><tr><td>ResourceManager</td><td>getMediaBase64(resId: number, callback: AsyncCallback<string>): void;</td><td>getMediaBase64</td><td>21</td><td>2</td><td>3</td><tr><tr><td>ResourceManager</td><td>getMediaBase64(resId: number): Promise<string>;</td><td>getMediaBase64</td><td>21</td><td>1</td><td>1</td><tr><tr><td>ResourceManager</td><td>getDeviceCapability(callback: AsyncCallback<DeviceCapability>): void;</td><td>getDeviceCapability</td><td>21</td><td>1</td><td>5</td><tr><tr><td>ResourceManager</td><td>getDeviceCapability(): Promise<DeviceCapability>;</td><td>getDeviceCapability</td><td>21</td><td>0</td><td>1</td><tr><tr><td>ResourceManager</td><td>getConfiguration(callback: AsyncCallback<Configuration>): void;</td><td>getConfiguration</td><td>21</td><td>1</td><td>3</td><tr><tr><td>ResourceManager</td><td>getConfiguration(): Promise<Configuration>;</td><td>getConfiguration</td><td>21</td><td>0</td><td>1</td><tr><tr><td>ResourceManager</td><td>getPluralString(resId: number, num: number, callback: AsyncCallback<string>): void;</td><td>getPluralString</td><td>21</td><td>3</td><td>7</td><tr><tr><td>ResourceManager</td><td>getPluralString(resId: number, num: number): Promise<string>;</td><td>getPluralString</td><td>21</td><td>2</td><td>1</td><tr><tr><td>ResourceManager</td><td>getRawFile(path: string, callback: AsyncCallback<Uint8Array>): void;</td><td>getRawFile</td><td>21</td><td>2</td><td>17</td><tr><tr><td>ResourceManager</td><td>getRawFile(path: string): Promise<Uint8Array>;</td><td>getRawFile</td><td>21</td><td>1</td><td>2</td><tr><tr><td>ResourceManager</td><td>getRawFileDescriptor(path: string, callback: AsyncCallback<RawFileDescriptor>): void;</td><td>getRawFileDescriptor</td><td>21</td><td>2</td><td>8</td><tr><tr><td>ResourceManager</td><td>getRawFileDescriptor(path: string): Promise<RawFileDescriptor>;</td><td>getRawFileDescriptor</td><td>21</td><td>1</td><td>1</td><tr><tr><td>ResourceManager</td><td>closeRawFileDescriptor(path: string, callback: AsyncCallback<void>): void;</td><td>closeRawFileDescriptor</td><td>21</td><td>2</td><td>9</td><tr><tr><td>ResourceManager</td><td>closeRawFileDescriptor(path: string): Promise<void>;</td><td>closeRawFileDescriptor</td><td>21</td><td>1</td><td>1</td><tr><tr><td>ResourceManager</td><td>release();</td><td>release</td><td>21</td><td>0</td><td>4</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

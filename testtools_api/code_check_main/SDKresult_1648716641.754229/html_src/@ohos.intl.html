@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>全球化子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>global</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.intl</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>intl</td><td>declare namespace intl {
+
+export interface LocaleOptions {
+    
+    calendar: string;
+
+    
+    collation: string;
+    
+    
+    hourCycle: string;
+    
+    
+    numberingSystem: string;
+    
+    
+    numeric: boolean;
+    
+    
+    caseFirst: string;
+}
+
+
+export class Locale {
+    
+   constructor();
+
+    
+   constructor(locale: string, options?: LocaleOptions);
+
+    
+    language: string
+
+    
+    script: string
+
+    
+    region: string
+
+    
+    baseName: string
+
+    
+    caseFirst: string
+
+    
+    calendar: string
+
+    
+    collation: string
+
+    
+    hourCycle:  string
+
+    
+    numberingSystem: string
+
+    
+    numeric: boolean
+
+    
+    toString(): string;
+
+    
+    maximize(): Locale;
+
+    
+    minimize(): Locale;
+}
+
+
+export interface DateTimeOptions {
+    
+    locale: string
+
+    
+    dateStyle: string
+
+    
+    timeStyle: string
+
+    
+    hourCycle: string
+
+    
+    timeZone: string
+
+    
+    numberingSystem: string
+
+    
+    hour12: boolean
+
+    
+    weekday: string
+
+    
+    era: string
+
+    
+    year: string
+
+    
+    month: string
+
+    
+    day: string
+
+    
+    hour: string
+
+    
+    minute: string
+
+    
+    second: string
+
+    
+    timeZoneName: string
+
+    
+    dayPeriod: string
+
+    
+    localeMatcher: string
+
+    
+    formatMatcher: string
+}
+
+
+export class DateTimeFormat {
+    
+    constructor();
+
+    
+    constructor(locale: string | Array<string>, options?: DateTimeOptions);
+
+    
+    format(date: Date): string;
+
+    
+    formatRange(startDate: Date, endDate: Date): string;
+
+    
+    resolvedOptions(): DateTimeOptions;
+}
+
+
+export interface NumberOptions {
+    
+    locale: string
+
+    
+    currency: string
+
+    
+    currencySign: string
+
+    
+    currencyDisplay: string
+
+    
+    unit: string
+
+    
+    unitDisplay: string
+
+    
+    unitUsage: string
+
+    
+    signDisplay: string
+
+    
+    compactDisplay: string
+
+    
+    notation: string
+
+    
+    localeMatcher: string
+
+    
+    style: string
+
+    
+    numberingSystem: string
+
+    
+    useGrouping: boolean
+
+    
+    minimumIntegerDigits: number
+
+    
+    minimumFractionDigits: number
+
+    
+    maximumFractionDigits: number
+
+    
+    minimumSignificantDigits: number
+
+    
+    maximumSignificantDigits: number
+}
+
+
+export class NumberFormat {
+    
+    constructor();
+
+    
+    constructor(locale: string | Array<string>, options?: NumberOptions);
+
+    
+    format(number: number): string;
+
+    
+    resolvedOptions(): NumberOptions;
+}
+
+
+export interface CollatorOptions {
+    
+    localeMatcher: string;
+
+    
+    usage: string;
+
+    
+    sensitivity: string;
+
+    
+    ignorePunctuation: boolean;
+
+    
+    collation: string;
+
+    
+    numeric: boolean;
+
+    
+    caseFirst: string;
+}
+
+
+export class Collator {
+    
+    constructor();
+    
+    constructor(locale: string | Array<string>, options?: CollatorOptions);
+
+    
+    compare(first: string, second: string): number;
+
+    
+    resolvedOptions(): CollatorOptions;
+}
+
+
+export interface PluralRulesOptions {
+    
+    localeMatcher: string;
+
+    
+    type: string;
+
+    
+    minimumIntegerDigits: number;
+
+    
+    minimumFractionDigits: number;
+
+    
+    maximumFractionDigits: number;
+
+    
+    minimumSignificantDigits: number;
+
+    
+    maximumSignificantDigits: number;
+}
+
+
+export class PluralRules {
+    
+    constructor();
+
+    
+    constructor(locale: string | Array<string>, options?: PluralRulesOptions);
+
+    
+    select(n: number): string;
+}
+
+
+ export interface RelativeTimeFormatInputOptions {
+    
+    localeMatcher: string;
+
+    
+    numeric: string;
+
+    
+    style: string;
+}
+
+
+export interface RelativeTimeFormatResolvedOptions {
+    
+    locale: string;
+
+    
+    style: string;
+
+    
+    numeric: string;
+
+    
+    numberingSystem: string;
+}
+
+
+export class RelativeTimeFormat {
+    
+    constructor();
+
+    
+    constructor(locale: string | Array<string>, options?: RelativeTimeFormatInputOptions);
+
+    
+    format(value: number, unit: string): string;
+
+    
+    formatToParts(value: number, unit: string): Array<object>;
+
+    
+    resolvedOptions(): RelativeTimeFormatResolvedOptions;
+}
+}</td><td>intl</td><td>None</td><td>0</td><td>9</td><tr><tr><td>LocaleOptions</td><td>export interface LocaleOptions {
+    
+    calendar: string;
+
+    
+    collation: string;
+    
+    
+    hourCycle: string;
+    
+    
+    numberingSystem: string;
+    
+    
+    numeric: boolean;
+    
+    
+    caseFirst: string;
+}</td><td>LocaleOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LocaleOptions</td><td>calendar: string</td><td>calendar</td><td>22</td><td>1</td><td>134</td><tr><tr><td>LocaleOptions</td><td>collation: string</td><td>collation</td><td>22</td><td>1</td><td>17</td><tr><tr><td>LocaleOptions</td><td>hourCycle: string</td><td>hourCycle</td><td>22</td><td>1</td><td>8</td><tr><tr><td>LocaleOptions</td><td>numberingSystem: string</td><td>numberingSystem</td><td>22</td><td>1</td><td>14</td><tr><tr><td>LocaleOptions</td><td>numeric: boolean</td><td>numeric</td><td>22</td><td>1</td><td>46</td><tr><tr><td>LocaleOptions</td><td>caseFirst: string</td><td>caseFirst</td><td>22</td><td>1</td><td>16</td><tr><tr><td>Locale</td><td>export class Locale {
+    
+   constructor();
+
+    
+   constructor(locale: string, options?: LocaleOptions);
+
+    
+    language: string
+
+    
+    script: string
+
+    
+    region: string
+
+    
+    baseName: string
+
+    
+    caseFirst: string
+
+    
+    calendar: string
+
+    
+    collation: string
+
+    
+    hourCycle:  string
+
+    
+    numberingSystem: string
+
+    
+    numeric: boolean
+
+    
+    toString(): string;
+
+    
+    maximize(): Locale;
+
+    
+    minimize(): Locale;
+}</td><td>Locale</td><td>10</td><td>0</td><td>76</td><tr><tr><td>Locale</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Locale</td><td>constructor(locale: string, options?: LocaleOptions)</td><td>constructor</td><td>11</td><td>2</td><td>0</td><tr><tr><td>Locale</td><td>toString(): string;</td><td>toString</td><td>11</td><td>0</td><td>59</td><tr><tr><td>Locale</td><td>maximize(): Locale;</td><td>maximize</td><td>11</td><td>0</td><td>33</td><tr><tr><td>Locale</td><td>minimize(): Locale;</td><td>minimize</td><td>11</td><td>0</td><td>31</td><tr><tr><td>DateTimeOptions</td><td>export interface DateTimeOptions {
+    
+    locale: string
+
+    
+    dateStyle: string
+
+    
+    timeStyle: string
+
+    
+    hourCycle: string
+
+    
+    timeZone: string
+
+    
+    numberingSystem: string
+
+    
+    hour12: boolean
+
+    
+    weekday: string
+
+    
+    era: string
+
+    
+    year: string
+
+    
+    month: string
+
+    
+    day: string
+
+    
+    hour: string
+
+    
+    minute: string
+
+    
+    second: string
+
+    
+    timeZoneName: string
+
+    
+    dayPeriod: string
+
+    
+    localeMatcher: string
+
+    
+    formatMatcher: string
+}</td><td>DateTimeOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>DateTimeFormat</td><td>export class DateTimeFormat {
+    
+    constructor();
+
+    
+    constructor(locale: string | Array<string>, options?: DateTimeOptions);
+
+    
+    format(date: Date): string;
+
+    
+    formatRange(startDate: Date, endDate: Date): string;
+
+    
+    resolvedOptions(): DateTimeOptions;
+}</td><td>DateTimeFormat</td><td>10</td><td>0</td><td>41</td><tr><tr><td>DateTimeFormat</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>DateTimeFormat</td><td>constructor(locale: string | Array<string>, options?: DateTimeOptions)</td><td>constructor</td><td>11</td><td>2</td><td>0</td><tr><tr><td>DateTimeFormat</td><td>format(date: Date): string;</td><td>format</td><td>11</td><td>1</td><td>285</td><tr><tr><td>DateTimeFormat</td><td>formatRange(startDate: Date, endDate: Date): string;</td><td>formatRange</td><td>11</td><td>2</td><td>9</td><tr><tr><td>DateTimeFormat</td><td>resolvedOptions(): DateTimeOptions;</td><td>resolvedOptions</td><td>11</td><td>0</td><td>82</td><tr><tr><td>NumberOptions</td><td>export interface NumberOptions {
+    
+    locale: string
+
+    
+    currency: string
+
+    
+    currencySign: string
+
+    
+    currencyDisplay: string
+
+    
+    unit: string
+
+    
+    unitDisplay: string
+
+    
+    unitUsage: string
+
+    
+    signDisplay: string
+
+    
+    compactDisplay: string
+
+    
+    notation: string
+
+    
+    localeMatcher: string
+
+    
+    style: string
+
+    
+    numberingSystem: string
+
+    
+    useGrouping: boolean
+
+    
+    minimumIntegerDigits: number
+
+    
+    minimumFractionDigits: number
+
+    
+    maximumFractionDigits: number
+
+    
+    minimumSignificantDigits: number
+
+    
+    maximumSignificantDigits: number
+}</td><td>NumberOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>NumberFormat</td><td>export class NumberFormat {
+    
+    constructor();
+
+    
+    constructor(locale: string | Array<string>, options?: NumberOptions);
+
+    
+    format(number: number): string;
+
+    
+    resolvedOptions(): NumberOptions;
+}</td><td>NumberFormat</td><td>10</td><td>0</td><td>71</td><tr><tr><td>NumberFormat</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>NumberFormat</td><td>constructor(locale: string | Array<string>, options?: NumberOptions)</td><td>constructor</td><td>11</td><td>2</td><td>0</td><tr><tr><td>NumberFormat</td><td>format(number: number): string;</td><td>format</td><td>11</td><td>1</td><td>285</td><tr><tr><td>NumberFormat</td><td>resolvedOptions(): NumberOptions;</td><td>resolvedOptions</td><td>11</td><td>0</td><td>82</td><tr><tr><td>CollatorOptions</td><td>export interface CollatorOptions {
+    
+    localeMatcher: string;
+
+    
+    usage: string;
+
+    
+    sensitivity: string;
+
+    
+    ignorePunctuation: boolean;
+
+    
+    collation: string;
+
+    
+    numeric: boolean;
+
+    
+    caseFirst: string;
+}</td><td>CollatorOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CollatorOptions</td><td>localeMatcher: string</td><td>localeMatcher</td><td>22</td><td>1</td><td>12</td><tr><tr><td>CollatorOptions</td><td>usage: string</td><td>usage</td><td>22</td><td>1</td><td>3</td><tr><tr><td>CollatorOptions</td><td>sensitivity: string</td><td>sensitivity</td><td>22</td><td>1</td><td>6</td><tr><tr><td>CollatorOptions</td><td>ignorePunctuation: boolean</td><td>ignorePunctuation</td><td>22</td><td>1</td><td>3</td><tr><tr><td>CollatorOptions</td><td>collation: string</td><td>collation</td><td>22</td><td>1</td><td>17</td><tr><tr><td>CollatorOptions</td><td>numeric: boolean</td><td>numeric</td><td>22</td><td>1</td><td>46</td><tr><tr><td>CollatorOptions</td><td>caseFirst: string</td><td>caseFirst</td><td>22</td><td>1</td><td>16</td><tr><tr><td>Collator</td><td>export class Collator {
+    
+    constructor();
+    
+    constructor(locale: string | Array<string>, options?: CollatorOptions);
+
+    
+    compare(first: string, second: string): number;
+
+    
+    resolvedOptions(): CollatorOptions;
+}</td><td>Collator</td><td>10</td><td>0</td><td>23</td><tr><tr><td>Collator</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Collator</td><td>constructor(locale: string | Array<string>, options?: CollatorOptions)</td><td>constructor</td><td>11</td><td>2</td><td>0</td><tr><tr><td>Collator</td><td>compare(first: string, second: string): number;</td><td>compare</td><td>11</td><td>2</td><td>39</td><tr><tr><td>Collator</td><td>resolvedOptions(): CollatorOptions;</td><td>resolvedOptions</td><td>11</td><td>0</td><td>82</td><tr><tr><td>PluralRulesOptions</td><td>export interface PluralRulesOptions {
+    
+    localeMatcher: string;
+
+    
+    type: string;
+
+    
+    minimumIntegerDigits: number;
+
+    
+    minimumFractionDigits: number;
+
+    
+    maximumFractionDigits: number;
+
+    
+    minimumSignificantDigits: number;
+
+    
+    maximumSignificantDigits: number;
+}</td><td>PluralRulesOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PluralRulesOptions</td><td>localeMatcher: string</td><td>localeMatcher</td><td>22</td><td>1</td><td>12</td><tr><tr><td>PluralRulesOptions</td><td>type: string</td><td>type</td><td>22</td><td>1</td><td>26</td><tr><tr><td>PluralRulesOptions</td><td>minimumIntegerDigits: number</td><td>minimumIntegerDigits</td><td>22</td><td>1</td><td>7</td><tr><tr><td>PluralRulesOptions</td><td>minimumFractionDigits: number</td><td>minimumFractionDigits</td><td>22</td><td>1</td><td>5</td><tr><tr><td>PluralRulesOptions</td><td>maximumFractionDigits: number</td><td>maximumFractionDigits</td><td>22</td><td>1</td><td>7</td><tr><tr><td>PluralRulesOptions</td><td>minimumSignificantDigits: number</td><td>minimumSignificantDigits</td><td>22</td><td>1</td><td>5</td><tr><tr><td>PluralRulesOptions</td><td>maximumSignificantDigits: number</td><td>maximumSignificantDigits</td><td>22</td><td>1</td><td>5</td><tr><tr><td>PluralRules</td><td>export class PluralRules {
+    
+    constructor();
+
+    
+    constructor(locale: string | Array<string>, options?: PluralRulesOptions);
+
+    
+    select(n: number): string;
+}</td><td>PluralRules</td><td>10</td><td>0</td><td>24</td><tr><tr><td>PluralRules</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>PluralRules</td><td>constructor(locale: string | Array<string>, options?: PluralRulesOptions)</td><td>constructor</td><td>11</td><td>2</td><td>0</td><tr><tr><td>PluralRules</td><td>select(n: number): string;</td><td>select</td><td>11</td><td>1</td><td>21</td><tr><tr><td>RelativeTimeFormatInputOptions</td><td>export interface RelativeTimeFormatInputOptions {
+    
+    localeMatcher: string;
+
+    
+    numeric: string;
+
+    
+    style: string;
+}</td><td>RelativeTimeFormatInputOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>RelativeTimeFormatInputOptions</td><td>localeMatcher: string</td><td>localeMatcher</td><td>22</td><td>1</td><td>12</td><tr><tr><td>RelativeTimeFormatInputOptions</td><td>numeric: string</td><td>numeric</td><td>22</td><td>1</td><td>46</td><tr><tr><td>RelativeTimeFormatInputOptions</td><td>style: string</td><td>style</td><td>22</td><td>1</td><td>42</td><tr><tr><td>RelativeTimeFormatResolvedOptions</td><td>export interface RelativeTimeFormatResolvedOptions {
+    
+    locale: string;
+
+    
+    style: string;
+
+    
+    numeric: string;
+
+    
+    numberingSystem: string;
+}</td><td>RelativeTimeFormatResolvedOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>RelativeTimeFormatResolvedOptions</td><td>locale: string</td><td>locale</td><td>22</td><td>1</td><td>289</td><tr><tr><td>RelativeTimeFormatResolvedOptions</td><td>style: string</td><td>style</td><td>22</td><td>1</td><td>42</td><tr><tr><td>RelativeTimeFormatResolvedOptions</td><td>numeric: string</td><td>numeric</td><td>22</td><td>1</td><td>46</td><tr><tr><td>RelativeTimeFormatResolvedOptions</td><td>numberingSystem: string</td><td>numberingSystem</td><td>22</td><td>1</td><td>14</td><tr><tr><td>RelativeTimeFormat</td><td>export class RelativeTimeFormat {
+    
+    constructor();
+
+    
+    constructor(locale: string | Array<string>, options?: RelativeTimeFormatInputOptions);
+
+    
+    format(value: number, unit: string): string;
+
+    
+    formatToParts(value: number, unit: string): Array<object>;
+
+    
+    resolvedOptions(): RelativeTimeFormatResolvedOptions;
+}</td><td>RelativeTimeFormat</td><td>10</td><td>0</td><td>21</td><tr><tr><td>RelativeTimeFormat</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RelativeTimeFormat</td><td>constructor(locale: string | Array<string>, options?: RelativeTimeFormatInputOptions)</td><td>constructor</td><td>11</td><td>2</td><td>0</td><tr><tr><td>RelativeTimeFormat</td><td>format(value: number, unit: string): string;</td><td>format</td><td>11</td><td>2</td><td>285</td><tr><tr><td>RelativeTimeFormat</td><td>formatToParts(value: number, unit: string): Array<object>;</td><td>formatToParts</td><td>11</td><td>2</td><td>6</td><tr><tr><td>RelativeTimeFormat</td><td>resolvedOptions(): RelativeTimeFormatResolvedOptions;</td><td>resolvedOptions</td><td>11</td><td>0</td><td>82</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

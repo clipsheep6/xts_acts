@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>tabs</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>BarMode</td><td>declare enum BarMode {
+  
+  Scrollable,
+
+  
+  Fixed,
+}</td><td>BarMode</td><td>40</td><td>0</td><td>15</td><tr><tr><td>BarMode</td><td>Scrollable,</td><td>Scrollable</td><td>42</td><td>1</td><td>11</td><tr><tr><td>BarMode</td><td>Fixed,</td><td>Fixed</td><td>42</td><td>1</td><td>49</td><tr><tr><td>BarPosition</td><td>declare enum BarPosition {
+  
+  Start,
+
+  
+  End,
+}</td><td>BarPosition</td><td>40</td><td>0</td><td>7</td><tr><tr><td>BarPosition</td><td>Start,</td><td>Start</td><td>42</td><td>1</td><td>671</td><tr><tr><td>BarPosition</td><td>End,</td><td>End</td><td>42</td><td>1</td><td>440</td><tr><tr><td>TabsController</td><td>declare class TabsController {
+  
+  constructor();
+
+  
+  changeIndex(value: number): void;
+}</td><td>TabsController</td><td>10</td><td>0</td><td>4</td><tr><tr><td>TabsController</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>TabsController</td><td>changeIndex(value: number): void;</td><td>changeIndex</td><td>11</td><td>1</td><td>2</td><tr><tr><td>TabsInterface</td><td>interface TabsInterface {
+  
+  (value?: { barPosition?: BarPosition; index?: number; controller?: TabsController }): TabsAttribute;
+}</td><td>TabsInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>TabsInterface</td><td>(value?: { barPosition?: BarPosition</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>TabsInterface</td><td>index?: number</td><td>index</td><td>22</td><td>1</td><td>1502</td><tr><tr><td>TabsInterface</td><td>controller?: TabsController }): TabsAttribute</td><td>controller</td><td>22</td><td>1</td><td>50</td><tr><tr><td>TabsAttribute</td><td>declare class TabsAttribute extends CommonMethod<TabsAttribute> {
+  
+  vertical(value: boolean): TabsAttribute;
+
+  
+  scrollable(value: boolean): TabsAttribute;
+
+  
+  barMode(value: BarMode): TabsAttribute;
+
+  
+  barWidth(value: Length): TabsAttribute;
+
+  
+  barHeight(value: Length): TabsAttribute;
+
+  
+  animationDuration(value: number): TabsAttribute;
+
+  
+  onChange(event: (index: number) => void): TabsAttribute;
+}</td><td>TabsAttribute</td><td>None</td><td>0</td><td>0</td><tr><tr><td>TabsAttribute</td><td>vertical(value: boolean): TabsAttribute;</td><td>vertical</td><td>None</td><td>1</td><td>121</td><tr><tr><td>TabsAttribute</td><td>scrollable(value: boolean): TabsAttribute;</td><td>scrollable</td><td>None</td><td>1</td><td>114</td><tr><tr><td>TabsAttribute</td><td>barMode(value: BarMode): TabsAttribute;</td><td>barMode</td><td>None</td><td>1</td><td>11</td><tr><tr><td>TabsAttribute</td><td>barWidth(value: Length): TabsAttribute;</td><td>barWidth</td><td>None</td><td>1</td><td>9</td><tr><tr><td>TabsAttribute</td><td>barHeight(value: Length): TabsAttribute;</td><td>barHeight</td><td>None</td><td>1</td><td>9</td><tr><tr><td>TabsAttribute</td><td>animationDuration(value: number): TabsAttribute;</td><td>animationDuration</td><td>None</td><td>1</td><td>7</td><tr><tr><td>TabsAttribute</td><td>onChange(event: (index: number) => void): TabsAttribute;</td><td>onChangeevent</td><td>None</td><td>2</td><td>0</td><tr><tr><td>TabsAttribute</td><td>onChange(event: (index: number) => void): TabsAttribute;</td><td>onChangeevent</td><td>None</td><td>2</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

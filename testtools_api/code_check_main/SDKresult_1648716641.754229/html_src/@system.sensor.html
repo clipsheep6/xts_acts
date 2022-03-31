@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>泛Sensor服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>sensors</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@system.sensor</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>AccelerometerResponse</td><td>export interface AccelerometerResponse {
+  
+  x: number;
+
+  
+  y: number;
+
+  
+  z: number;
+}</td><td>AccelerometerResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AccelerometerResponse</td><td>x: number</td><td>x</td><td>22</td><td>1</td><td>1068</td><tr><tr><td>AccelerometerResponse</td><td>y: number</td><td>y</td><td>22</td><td>1</td><td>1495</td><tr><tr><td>AccelerometerResponse</td><td>z: number</td><td>z</td><td>22</td><td>1</td><td>245</td><tr><tr><td>subscribeAccelerometerOptions</td><td>export interface subscribeAccelerometerOptions {
+  
+  interval: string;
+
+  
+  success: (data: AccelerometerResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+}</td><td>subscribeAccelerometerOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>subscribeAccelerometerOptions</td><td>success: (data: AccelerometerResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>subscribeAccelerometerOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>subscribeAccelerometerOptions</td><td>interval: string</td><td>interval</td><td>22</td><td>1</td><td>8</td><tr><tr><td>CompassResponse</td><td>export interface CompassResponse {
+  
+  direction: number;
+}</td><td>CompassResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CompassResponse</td><td>direction: number</td><td>direction</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SubscribeCompassOptions</td><td>export interface SubscribeCompassOptions {
+  
+  success: (data: CompassResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+}</td><td>SubscribeCompassOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SubscribeCompassOptions</td><td>success: (data: CompassResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>SubscribeCompassOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>ProximityResponse</td><td>export interface ProximityResponse {
+  
+  distance: number;
+}</td><td>ProximityResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ProximityResponse</td><td>distance: number</td><td>distance</td><td>22</td><td>1</td><td>6</td><tr><tr><td>SubscribeProximityOptions</td><td>export interface SubscribeProximityOptions {
+  
+  success: (data: ProximityResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+}</td><td>SubscribeProximityOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SubscribeProximityOptions</td><td>success: (data: ProximityResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>SubscribeProximityOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>LightResponse</td><td>export interface LightResponse {
+  
+  intensity: number;
+}</td><td>LightResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LightResponse</td><td>intensity: number</td><td>intensity</td><td>22</td><td>1</td><td>16</td><tr><tr><td>SubscribeLightOptions</td><td>export interface SubscribeLightOptions {
+  
+  success: (data: LightResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+}</td><td>SubscribeLightOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SubscribeLightOptions</td><td>success: (data: LightResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>SubscribeLightOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>StepCounterResponse</td><td>export interface StepCounterResponse {
+  
+  steps: number;
+}</td><td>StepCounterResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>StepCounterResponse</td><td>steps: number</td><td>steps</td><td>22</td><td>1</td><td>6</td><tr><tr><td>SubscribeStepCounterOptions</td><td>export interface SubscribeStepCounterOptions {
+  
+  success: (data: StepCounterResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+}</td><td>SubscribeStepCounterOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SubscribeStepCounterOptions</td><td>success: (data: StepCounterResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>SubscribeStepCounterOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>BarometerResponse</td><td>export interface BarometerResponse {
+  
+  pressure: number;
+}</td><td>BarometerResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>BarometerResponse</td><td>pressure: number</td><td>pressure</td><td>22</td><td>1</td><td>6</td><tr><tr><td>SubscribeBarometerOptions</td><td>export interface SubscribeBarometerOptions {
+  
+  success: (data: BarometerResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+}</td><td>SubscribeBarometerOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SubscribeBarometerOptions</td><td>success: (data: BarometerResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>SubscribeBarometerOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>HeartRateResponse</td><td>export interface HeartRateResponse {
+  
+  heartRate: number;
+}</td><td>HeartRateResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>HeartRateResponse</td><td>heartRate: number</td><td>heartRate</td><td>22</td><td>1</td><td>6</td><tr><tr><td>SubscribeHeartRateOptions</td><td>export interface SubscribeHeartRateOptions {
+  
+  success: (data: HeartRateResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+}</td><td>SubscribeHeartRateOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SubscribeHeartRateOptions</td><td>success: (data: HeartRateResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>SubscribeHeartRateOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>OnBodyStateResponse</td><td>export interface OnBodyStateResponse {
+  
+  value: boolean;
+}</td><td>OnBodyStateResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>OnBodyStateResponse</td><td>value: boolean</td><td>value</td><td>22</td><td>1</td><td>6</td><tr><tr><td>SubscribeOnBodyStateOptions</td><td>export interface SubscribeOnBodyStateOptions {
+  
+  success: (data: OnBodyStateResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+}</td><td>SubscribeOnBodyStateOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SubscribeOnBodyStateOptions</td><td>success: (data: OnBodyStateResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>SubscribeOnBodyStateOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>GetOnBodyStateOptions</td><td>export interface GetOnBodyStateOptions {
+  
+  success: (data: OnBodyStateResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>GetOnBodyStateOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>GetOnBodyStateOptions</td><td>success: (data: OnBodyStateResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>GetOnBodyStateOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>GetOnBodyStateOptions</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>DeviceOrientationResponse</td><td>export interface DeviceOrientationResponse {
+  
+  alpha: number;
+
+  
+  beta: number;
+
+  
+  gamma: number;
+}</td><td>DeviceOrientationResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>DeviceOrientationResponse</td><td>alpha: number</td><td>alpha</td><td>22</td><td>1</td><td>0</td><tr><tr><td>DeviceOrientationResponse</td><td>beta: number</td><td>beta</td><td>22</td><td>1</td><td>0</td><tr><tr><td>DeviceOrientationResponse</td><td>gamma: number</td><td>gamma</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SubscribeDeviceOrientationOptions</td><td>export interface SubscribeDeviceOrientationOptions {
+  
+  interval: string;
+
+  
+  success: (data: DeviceOrientationResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+}</td><td>SubscribeDeviceOrientationOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SubscribeDeviceOrientationOptions</td><td>success: (data: DeviceOrientationResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>SubscribeDeviceOrientationOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>SubscribeDeviceOrientationOptions</td><td>interval: string</td><td>interval</td><td>22</td><td>1</td><td>8</td><tr><tr><td>GyroscopeResponse</td><td>export interface GyroscopeResponse {
+  
+  x: number;
+
+  
+  y: number;
+
+  
+  z: number;
+}</td><td>GyroscopeResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>GyroscopeResponse</td><td>x: number</td><td>x</td><td>22</td><td>1</td><td>1068</td><tr><tr><td>GyroscopeResponse</td><td>y: number</td><td>y</td><td>22</td><td>1</td><td>1495</td><tr><tr><td>GyroscopeResponse</td><td>z: number</td><td>z</td><td>22</td><td>1</td><td>245</td><tr><tr><td>SubscribeGyroscopeOptions</td><td>export interface SubscribeGyroscopeOptions {
+  
+  interval: string;
+
+  
+  success: (data: GyroscopeResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+}</td><td>SubscribeGyroscopeOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SubscribeGyroscopeOptions</td><td>success: (data: GyroscopeResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>181</td><tr><tr><td>SubscribeGyroscopeOptions</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>55</td><tr><tr><td>SubscribeGyroscopeOptions</td><td>interval: string</td><td>interval</td><td>22</td><td>1</td><td>8</td><tr><tr><td>Sensor</td><td>export default class Sensor {
+  
+  static subscribeAccelerometer(options: subscribeAccelerometerOptions): void;
+
+  
+  static unsubscribeAccelerometer(): void;
+
+  
+  static subscribeCompass(options: SubscribeCompassOptions): void;
+
+  
+  static unsubscribeCompass(): void;
+
+  
+  static subscribeProximity(options: SubscribeProximityOptions): void;
+
+  
+  static unsubscribeProximity(): void;
+
+  
+  static subscribeLight(options: SubscribeLightOptions): void;
+
+  
+  static unsubscribeLight(): void;
+
+  
+  static subscribeStepCounter(options: SubscribeStepCounterOptions): void;
+
+  
+  static unsubscribeStepCounter(): void;
+
+  
+  static subscribeBarometer(options: SubscribeBarometerOptions): void;
+
+  
+  static unsubscribeBarometer(): void;
+
+  
+  static subscribeHeartRate(options: SubscribeHeartRateOptions): void;
+
+  
+  static unsubscribeHeartRate(): void;
+
+  
+  static subscribeOnBodyState(options: SubscribeOnBodyStateOptions): void;
+
+  
+  static unsubscribeOnBodyState(): void;
+
+  
+  static getOnBodyState(options: GetOnBodyStateOptions): void;
+
+  
+  static subscribeDeviceOrientation(options: SubscribeDeviceOrientationOptions): void;
+
+  
+  static unsubscribeDeviceOrientation(): void;
+
+  
+  static subscribeGyroscope(options: SubscribeGyroscopeOptions): void;
+
+  
+  static unsubscribeGyroscope(): void;
+}</td><td>Sensor</td><td>10</td><td>0</td><td>1124</td><tr><tr><td>Sensor</td><td>static subscribeAccelerometer(options: subscribeAccelerometerOptions): void;</td><td>subscribeAccelerometer</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static unsubscribeAccelerometer(): void;</td><td>unsubscribeAccelerometer</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Sensor</td><td>static subscribeCompass(options: SubscribeCompassOptions): void;</td><td>subscribeCompass</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static unsubscribeCompass(): void;</td><td>unsubscribeCompass</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Sensor</td><td>static subscribeProximity(options: SubscribeProximityOptions): void;</td><td>subscribeProximity</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static unsubscribeProximity(): void;</td><td>unsubscribeProximity</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Sensor</td><td>static subscribeLight(options: SubscribeLightOptions): void;</td><td>subscribeLight</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static unsubscribeLight(): void;</td><td>unsubscribeLight</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Sensor</td><td>static subscribeStepCounter(options: SubscribeStepCounterOptions): void;</td><td>subscribeStepCounter</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static unsubscribeStepCounter(): void;</td><td>unsubscribeStepCounter</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Sensor</td><td>static subscribeBarometer(options: SubscribeBarometerOptions): void;</td><td>subscribeBarometer</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static unsubscribeBarometer(): void;</td><td>unsubscribeBarometer</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Sensor</td><td>static subscribeHeartRate(options: SubscribeHeartRateOptions): void;</td><td>subscribeHeartRate</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static unsubscribeHeartRate(): void;</td><td>unsubscribeHeartRate</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Sensor</td><td>static subscribeOnBodyState(options: SubscribeOnBodyStateOptions): void;</td><td>subscribeOnBodyState</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static unsubscribeOnBodyState(): void;</td><td>unsubscribeOnBodyState</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Sensor</td><td>static getOnBodyState(options: GetOnBodyStateOptions): void;</td><td>getOnBodyState</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static subscribeDeviceOrientation(options: SubscribeDeviceOrientationOptions): void;</td><td>subscribeDeviceOrientation</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static unsubscribeDeviceOrientation(): void;</td><td>unsubscribeDeviceOrientation</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Sensor</td><td>static subscribeGyroscope(options: SubscribeGyroscopeOptions): void;</td><td>subscribeGyroscope</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sensor</td><td>static unsubscribeGyroscope(): void;</td><td>unsubscribeGyroscope</td><td>11</td><td>0</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>短距通信子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>communication</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.bluetooth</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>bluetooth</td><td>declare namespace bluetooth {
+    
+    function getState(): BluetoothState;
+
+    
+    function getBtConnectionState(): ProfileConnectionState;
+
+    
+    function pairDevice(deviceId: string): boolean;
+
+    
+    function cancelPairedDevice(deviceId: string): boolean;
+
+    
+    function getRemoteDeviceName(deviceId: string): string;
+
+    
+    function getRemoteDeviceClass(deviceId: string): DeviceClass;
+
+    
+    function enableBluetooth(): boolean;
+
+    
+    function disableBluetooth(): boolean;
+
+    
+    function getLocalName(): string;
+
+    
+    function getPairedDevices(): Array<string>;
+
+    
+    function getProfileConnState(profileId: ProfileId): ProfileConnectionState;
+
+    
+    function setDevicePairingConfirmation(device: string, accept: boolean): boolean;
+
+    
+    function setLocalName(name: string): boolean;
+
+    
+    function setBluetoothScanMode(mode: ScanMode, duration: number): boolean;
+
+    
+    function getBluetoothScanMode(): ScanMode;
+
+    
+    function startBluetoothDiscovery(): boolean;
+
+    
+    function stopBluetoothDiscovery(): boolean;
+
+    
+    function on(type: "bluetoothDeviceFind", callback: Callback<Array<string>>): void;
+
+    
+    function off(type: "bluetoothDeviceFind", callback?: Callback<Array<string>>): void;
+
+    
+    function on(type: "bondStateChange", callback: Callback<BondStateParam>): void;
+
+    
+    function off(type: "bondStateChange", callback?: Callback<BondStateParam>): void;
+
+    
+    function on(type: "pinRequired", callback: Callback<PinRequiredParam>): void;
+
+    
+    function off(type: "pinRequired", callback?: Callback<PinRequiredParam>): void;
+
+    
+    function on(type: "stateChange", callback: Callback<BluetoothState>): void;
+
+    
+    function off(type: "stateChange", callback?: Callback<BluetoothState>): void;
+
+    
+    function sppListen(name: string, option: SppOption, callback: AsyncCallback<number>): void;
+
+    
+    function sppAccept(serverSocket: number, callback: AsyncCallback<number>): void;
+
+    
+    function sppConnect(device: string, option: SppOption, callback: AsyncCallback<number>): void;
+
+    
+    function sppCloseServerSocket(socket: number): void;
+
+    
+    function sppCloseClientSocket(socket: number): void;
+
+    
+    function sppWrite(clientSocket: number, data: ArrayBuffer): boolean;
+
+    
+    function on(type: "sppRead", clientSocket: number, callback: Callback<ArrayBuffer>): void;
+
+    
+    function off(type: "sppRead", clientSocket: number, callback?: Callback<ArrayBuffer>): void;
+
+    
+    function getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile;
+
+    
+    interface BaseProfile {
+        
+        getConnectionDevices(): Array<string>;
+
+        
+        getDeviceState(device: string): ProfileConnectionState;
+    }
+
+    
+    interface A2dpSourceProfile extends BaseProfile {
+        
+        connect(device: string): boolean;
+
+        
+        disconnect(device: string): boolean;
+
+        
+        on(type: "connectionStateChange", callback: Callback<StateChangeParam>): void;
+
+        
+        off(type: "connectionStateChange", callback?: Callback<StateChangeParam>): void;
+
+        
+        getPlayingState(device: string): PlayingState;
+    }
+
+    
+    interface HandsFreeAudioGatewayProfile extends BaseProfile {
+        
+        connect(device: string): boolean;
+
+        
+        disconnect(device: string): boolean;
+
+        
+        on(type: "connectionStateChange", callback: Callback<StateChangeParam>): void;
+
+        
+        off(type: "connectionStateChange", callback?: Callback<StateChangeParam>): void;
+    }
+
+    namespace BLE {
+        
+        function createGattServer(): GattServer;
+
+        
+        function createGattClientDevice(deviceId: string): GattClientDevice;
+
+        
+        function getConnectedBLEDevices(): Array<string>;
+
+        
+        function startBLEScan(filters: Array<ScanFilter>, options?: ScanOptions): void;
+
+        
+        function stopBLEScan(): void;
+
+        
+        function on(type: "BLEDeviceFind", callback: Callback<Array<ScanResult>>): void;
+
+        
+        function off(type: "BLEDeviceFind", callback?: Callback<Array<ScanResult>>): void;
+    }
+
+    
+    interface GattServer {
+        
+        startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void;
+
+        
+        stopAdvertising(): void;
+
+        
+        addService(service: GattService): boolean;
+
+        
+        removeService(serviceUuid: string): boolean;
+
+        
+        close(): void;
+
+        
+        notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): boolean;
+
+        
+        sendResponse(serverResponse: ServerResponse): boolean;
+
+        
+        on(type: "characteristicRead", callback: Callback<CharacteristicReadReq>): void;
+
+        
+        off(type: "characteristicRead", callback?: Callback<CharacteristicReadReq>): void;
+
+        
+        on(type: "characteristicWrite", callback: Callback<CharacteristicWriteReq>): void;
+
+        
+        off(type: "characteristicWrite", callback?: Callback<CharacteristicWriteReq>): void;
+
+        
+        on(type: "descriptorRead", callback: Callback<DescriptorReadReq>): void;
+
+        
+        off(type: "descriptorRead", callback?: Callback<DescriptorReadReq>): void;
+
+        
+        on(type: "descriptorWrite", callback: Callback<DescriptorWriteReq>): void;
+
+        
+        off(type: "descriptorWrite", callback?: Callback<DescriptorWriteReq>): void;
+
+        
+        on(type: "connectStateChange", callback: Callback<BLEConnectChangedState>): void;
+
+        
+        off(type: "connectStateChange", callback?: Callback<BLEConnectChangedState>): void;
+    }
+
+    
+    interface GattClientDevice {
+
+        
+        connect(): boolean;
+
+        
+        disconnect(): boolean;
+
+        
+        close(): boolean;
+
+        
+        getDeviceName(callback: AsyncCallback<string>): void;
+        getDeviceName(): Promise<string>;
+
+        
+        getServices(callback: AsyncCallback<Array<GattService>>): void;
+        getServices(): Promise<Array<GattService>>;
+
+        
+        readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback<BLECharacteristic>): void;
+        readCharacteristicValue(characteristic: BLECharacteristic): Promise<BLECharacteristic>;
+
+        
+        readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback<BLEDescriptor>): void;
+        readDescriptorValue(descriptor: BLEDescriptor): Promise<BLEDescriptor>;
+
+        
+        writeCharacteristicValue(characteristic: BLECharacteristic): boolean;
+
+        
+        writeDescriptorValue(descriptor: BLEDescriptor): boolean;
+
+        
+        getRssiValue(callback: AsyncCallback<number>): void;
+        getRssiValue(): Promise<number>;
+
+        
+        setBLEMtuSize(mtu: number): boolean;
+
+        
+        setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolean): boolean;
+
+        
+        on(type: "BLECharacteristicChange", callback: Callback<BLECharacteristic>): void;
+
+        
+        off(type: "BLECharacteristicChange", callback?: Callback<BLECharacteristic>): void;
+
+        
+        on(type: "BLEConnectionStateChange", callback: Callback<BLEConnectChangedState>): void;
+
+        
+        off(type: "BLEConnectionStateChange", callback?: Callback<BLEConnectChangedState>): void;
+    }
+
+    
+    interface GattService {
+        
+        serviceUuid: string;
+        
+        isPrimary: boolean;
+        
+        characteristics: Array<BLECharacteristic>;
+        
+        includeServices?: Array<GattService>;
+    }
+
+    
+    interface BLECharacteristic {
+        
+        serviceUuid: string;
+        
+        characteristicUuid: string;
+        
+        characteristicValue: ArrayBuffer;
+        
+        descriptors: Array<BLEDescriptor>;
+    }
+
+    
+    interface BLEDescriptor {
+        
+        serviceUuid: string;
+        
+        characteristicUuid: string;
+        
+        descriptorUuid: string;
+        
+        descriptorValue: ArrayBuffer;
+    }
+
+    
+    interface NotifyCharacteristic {
+        
+        serviceUuid: string;
+        
+        characteristicUuid: string;
+        
+        characteristicValue: ArrayBuffer;
+        
+        confirm: boolean;
+    }
+
+    
+    interface CharacteristicReadReq {
+        
+        deviceId: string;
+        
+        transId: number;
+        
+        offset: number;
+        
+        characteristicUuid: string;
+        
+        serviceUuid: string;
+    }
+
+    
+    interface CharacteristicWriteReq {
+        
+        deviceId: string;
+        
+        transId: number;
+        
+        offset: number;
+        
+        isPrep: boolean;
+        
+        needRsp: boolean;
+        
+        value: ArrayBuffer;
+        
+        characteristicUuid: string;
+        
+        serviceUuid: string;
+    }
+
+    
+    interface DescriptorReadReq {
+        
+        deviceId: string;
+        
+        transId: number;
+        
+        offset: number;
+        
+        descriptorUuid: string;
+        
+        characteristicUuid: string;
+        
+        serviceUuid: string;
+    }
+
+    
+    interface DescriptorWriteReq {
+        
+        deviceId: string;
+        
+        transId: number;
+        
+        offset: number;
+        
+        isPrep: boolean;
+        
+        needRsp: boolean;
+        
+        value: ArrayBuffer;
+        
+        descriptorUuid: string;
+        
+        characteristicUuid: string;
+        
+        serviceUuid: string;
+    }
+
+    
+    interface ServerResponse {
+        
+        deviceId: string;
+        
+        transId: number;
+        
+        status: number;
+        
+        offset: number;
+        
+        value: ArrayBuffer;
+    }
+
+    
+    interface BLEConnectChangedState {
+        
+        deviceId: string;
+        
+        state: ProfileConnectionState;
+    }
+
+    
+    interface ScanResult {
+        
+        deviceId: string;
+        
+        rssi: number;
+        
+        data: ArrayBuffer;
+    }
+
+    
+    interface AdvertiseSetting {
+        
+        interval?: number;
+        
+        txPower?: number;
+        
+        connectable?: boolean;
+    }
+
+    
+    interface AdvertiseData {
+        
+        serviceUuids: Array<string>;
+        
+        manufactureData: Array<ManufactureData>;
+        
+        serviceData: Array<ServiceData>;
+    }
+
+    
+    interface ManufactureData {
+        
+        manufactureId: number;
+        
+        manufactureValue: ArrayBuffer;
+    }
+
+    
+    interface ServiceData {
+        
+        serviceUuid: string;
+        
+        serviceValue: ArrayBuffer;
+    }
+
+    
+    interface ScanFilter {
+        
+        deviceId?: string;
+        
+        name?: string;
+        
+        serviceUuid?: string;
+    }
+
+    
+    interface ScanOptions {
+        
+        interval?: number;
+        
+        dutyMode?: ScanDuty;
+        
+        matchMode?: MatchMode;
+    }
+
+    
+    interface SppOption {
+        
+        uuid: string;
+        
+        secure: boolean;
+        
+        type: SppType;
+    }
+
+    
+    interface PinRequiredParam {
+        deviceId: string;
+        pinCode: string;
+    }
+
+    
+    interface DeviceClass {
+        majorClass: MajorClass;
+        majorMinorClass: MajorMinorClass;
+        classOfDevice: number;
+    }
+
+    
+    interface BondStateParam {
+        deviceId: string;
+        state: BondState;
+    }
+
+    enum ScanDuty {
+        
+        SCAN_MODE_LOW_POWER = 0,
+        
+        SCAN_MODE_BALANCED = 1,
+        
+        SCAN_MODE_LOW_LATENCY = 2
+    }
+
+    enum MatchMode {
+        
+        MATCH_MODE_AGGRESSIVE = 1,
+        
+        MATCH_MODE_STICKY = 2
+    }
+
+    enum ProfileConnectionState {
+        
+        STATE_DISCONNECTED = 0,
+        
+        STATE_CONNECTING = 1,
+        
+        STATE_CONNECTED = 2,
+        
+        STATE_DISCONNECTING = 3
+    }
+
+    enum BluetoothState {
+        
+        STATE_OFF = 0,
+        
+        STATE_TURNING_ON = 1,
+        
+        STATE_ON = 2,
+        
+        STATE_TURNING_OFF = 3,
+        
+        STATE_BLE_TURNING_ON = 4,
+        
+        STATE_BLE_ON = 5,
+        
+        STATE_BLE_TURNING_OFF = 6
+    }
+
+    
+    enum SppType {
+        
+        SPP_RFCOMM
+    }
+
+    
+    enum ScanMode {
+        
+        SCAN_MODE_NONE = 0,
+        
+        SCAN_MODE_CONNECTABLE = 1,
+        
+        SCAN_MODE_GENERAL_DISCOVERABLE = 2,
+        
+        SCAN_MODE_LIMITED_DISCOVERABLE = 3,
+        
+        SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE = 4,
+        
+        SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE = 5
+    }
+
+    
+    enum BondState {
+        
+        BOND_STATE_INVALID = 0,
+        
+        BOND_STATE_BONDING = 1,
+        
+        BOND_STATE_BONDED = 2
+    }
+
+    
+    enum MajorClass {
+        MAJOR_MISC = 0x0000,
+        MAJOR_COMPUTER = 0x0100,
+        MAJOR_PHONE = 0x0200,
+        MAJOR_NETWORKING = 0x0300,
+        MAJOR_AUDIO_VIDEO = 0x0400,
+        MAJOR_PERIPHERAL = 0x0500,
+        MAJOR_IMAGING = 0x0600,
+        MAJOR_WEARABLE = 0x0700,
+        MAJOR_TOY = 0x0800,
+        MAJOR_HEALTH = 0x0900,
+        MAJOR_UNCATEGORIZED = 0x1F00
+    }
+
+    
+    enum MajorMinorClass {
+        // The Minor Device Class field
+        // Computer Major Class
+        COMPUTER_UNCATEGORIZED = 0x0100,
+        COMPUTER_DESKTOP = 0x0104,
+        COMPUTER_SERVER = 0x0108,
+        COMPUTER_LAPTOP = 0x010C,
+        COMPUTER_HANDHELD_PC_PDA = 0x0110,
+        COMPUTER_PALM_SIZE_PC_PDA = 0x0114,
+        COMPUTER_WEARABLE = 0x0118,
+        COMPUTER_TABLET = 0x011C,
+
+        // Phone Major Class
+        PHONE_UNCATEGORIZED = 0x0200,
+        PHONE_CELLULAR = 0x0204,
+        PHONE_CORDLESS = 0x0208,
+        PHONE_SMART = 0x020C,
+        PHONE_MODEM_OR_GATEWAY = 0x0210,
+        PHONE_ISDN = 0x0214,
+
+        // LAN/Network Access Point Major Class
+        NETWORK_FULLY_AVAILABLE = 0x0300,
+        NETWORK_1_TO_17_UTILIZED = 0x0320,
+        NETWORK_17_TO_33_UTILIZED = 0x0340,
+        NETWORK_33_TO_50_UTILIZED = 0x0360,
+        NETWORK_60_TO_67_UTILIZED = 0x0380,
+        NETWORK_67_TO_83_UTILIZED = 0x03A0,
+        NETWORK_83_TO_99_UTILIZED = 0x03C0,
+        NETWORK_NO_SERVICE = 0x03E0,
+
+        // Audio/Video Major Class
+        AUDIO_VIDEO_UNCATEGORIZED = 0x0400,
+        AUDIO_VIDEO_WEARABLE_HEADSET = 0x0404,
+        AUDIO_VIDEO_HANDSFREE = 0x0408,
+        AUDIO_VIDEO_MICROPHONE = 0x0410,
+        AUDIO_VIDEO_LOUDSPEAKER = 0x0414,
+        AUDIO_VIDEO_HEADPHONES = 0x0418,
+        AUDIO_VIDEO_PORTABLE_AUDIO = 0x041C,
+        AUDIO_VIDEO_CAR_AUDIO = 0x0420,
+        AUDIO_VIDEO_SET_TOP_BOX = 0x0424,
+        AUDIO_VIDEO_HIFI_AUDIO = 0x0428,
+        AUDIO_VIDEO_VCR = 0x042C,
+        AUDIO_VIDEO_VIDEO_CAMERA = 0x0430,
+        AUDIO_VIDEO_CAMCORDER = 0x0434,
+        AUDIO_VIDEO_VIDEO_MONITOR = 0x0438,
+        AUDIO_VIDEO_VIDEO_DISPLAY_AND_LOUDSPEAKER = 0x043C,
+        AUDIO_VIDEO_VIDEO_CONFERENCING = 0x0440,
+        AUDIO_VIDEO_VIDEO_GAMING_TOY = 0x0448,
+
+        // Peripheral Major Class
+        PERIPHERAL_NON_KEYBOARD_NON_POINTING = 0x0500,
+        PERIPHERAL_KEYBOARD = 0x0540,
+        PERIPHERAL_POINTING_DEVICE = 0x0580,
+        PERIPHERAL_KEYBOARD_POINTING = 0x05C0,
+        PERIPHERAL_UNCATEGORIZED = 0x0500,
+        PERIPHERAL_JOYSTICK = 0x0504,
+        PERIPHERAL_GAMEPAD = 0x0508,
+        PERIPHERAL_REMOTE_CONTROL = 0x05C0,
+        PERIPHERAL_SENSING_DEVICE = 0x0510,
+        PERIPHERAL_DIGITIZER_TABLET = 0x0514,
+        PERIPHERAL_CARD_READER = 0x0518,
+        PERIPHERAL_DIGITAL_PEN = 0x051C,
+        PERIPHERAL_SCANNER_RFID = 0x0520,
+        PERIPHERAL_GESTURAL_INPUT = 0x0522,
+
+        // Imaging Major Class
+        IMAGING_UNCATEGORIZED = 0x0600,
+        IMAGING_DISPLAY = 0x0610,
+        IMAGING_CAMERA = 0x0620,
+        IMAGING_SCANNER = 0x0640,
+        IMAGING_PRINTER = 0x0680,
+
+        // Wearable Major Class
+        WEARABLE_UNCATEGORIZED = 0x0700,
+        WEARABLE_WRIST_WATCH = 0x0704,
+        WEARABLE_PAGER = 0x0708,
+        WEARABLE_JACKET = 0x070C,
+        WEARABLE_HELMET = 0x0710,
+        WEARABLE_GLASSES = 0x0714,
+
+        // Minor Device Class field - Toy Major Class
+        TOY_UNCATEGORIZED = 0x0800,
+        TOY_ROBOT = 0x0804,
+        TOY_VEHICLE = 0x0808,
+        TOY_DOLL_ACTION_FIGURE = 0x080C,
+        TOY_CONTROLLER = 0x0810,
+        TOY_GAME = 0x0814,
+
+        // Minor Device Class field - Health
+        HEALTH_UNCATEGORIZED = 0x0900,
+        HEALTH_BLOOD_PRESSURE = 0x0904,
+        HEALTH_THERMOMETER = 0x0908,
+        HEALTH_WEIGHING = 0x090C,
+        HEALTH_GLUCOSE = 0x0910,
+        HEALTH_PULSE_OXIMETER = 0x0914,
+        HEALTH_PULSE_RATE = 0x0918,
+        HEALTH_DATA_DISPLAY = 0x091C,
+        HEALTH_STEP_COUNTER = 0x0920,
+        HEALTH_BODY_COMPOSITION_ANALYZER = 0x0924,
+        HEALTH_PEAK_FLOW_MOITOR = 0x0928,
+        HEALTH_MEDICATION_MONITOR = 0x092C,
+        HEALTH_KNEE_PROSTHESIS = 0x0930,
+        HEALTH_ANKLE_PROSTHESIS = 0x0934,
+        HEALTH_GENERIC_HEALTH_MANAGER = 0x0938,
+        HEALTH_PERSONAL_MOBILITY_DEVICE = 0x093C,
+    }
+
+    
+    interface StateChangeParam {
+        
+        deviceId: string;
+
+        
+        state: ProfileConnectionState;
+    }
+
+    
+    enum PlayingState {
+        STATE_NOT_PLAYING,
+        STATE_PLAYING,
+    }
+
+    
+    enum ProfileId {
+        PROFILE_A2DP_SOURCE = 1,
+        PROFILE_HANDS_FREE_AUDIO_GATEWAY = 4,
+    }
+}</td><td>bluetooth</td><td>None</td><td>0</td><td>415</td><tr><tr><td>bluetooth</td><td>function getState(): BluetoothState;</td><td>getState</td><td>None</td><td>0</td><td>10</td><tr><tr><td>bluetooth</td><td>function getBtConnectionState(): ProfileConnectionState;</td><td>getBtConnectionState</td><td>None</td><td>0</td><td>1</td><tr><tr><td>bluetooth</td><td>function pairDevice(deviceId: string): boolean;</td><td>pairDevice</td><td>None</td><td>1</td><td>3</td><tr><tr><td>bluetooth</td><td>function cancelPairedDevice(deviceId: string): boolean;</td><td>cancelPairedDevice</td><td>None</td><td>1</td><td>3</td><tr><tr><td>bluetooth</td><td>function getRemoteDeviceName(deviceId: string): string;</td><td>getRemoteDeviceName</td><td>None</td><td>1</td><td>3</td><tr><tr><td>bluetooth</td><td>function getRemoteDeviceClass(deviceId: string): DeviceClass;</td><td>getRemoteDeviceClass</td><td>None</td><td>1</td><td>3</td><tr><tr><td>bluetooth</td><td>function enableBluetooth(): boolean;</td><td>enableBluetooth</td><td>None</td><td>0</td><td>6</td><tr><tr><td>bluetooth</td><td>function disableBluetooth(): boolean;</td><td>disableBluetooth</td><td>None</td><td>0</td><td>1</td><tr><tr><td>bluetooth</td><td>function getLocalName(): string;</td><td>getLocalName</td><td>None</td><td>0</td><td>16</td><tr><tr><td>bluetooth</td><td>function getPairedDevices(): Array<string>;</td><td>getPairedDevices</td><td>None</td><td>0</td><td>1</td><tr><tr><td>bluetooth</td><td>function getProfileConnState(profileId: ProfileId): ProfileConnectionState;</td><td>getProfileConnState</td><td>None</td><td>1</td><td>0</td><tr><tr><td>bluetooth</td><td>function setDevicePairingConfirmation(device: string, accept: boolean): boolean;</td><td>setDevicePairingConfirmation</td><td>None</td><td>2</td><td>1</td><tr><tr><td>bluetooth</td><td>function setLocalName(name: string): boolean;</td><td>setLocalName</td><td>None</td><td>1</td><td>51</td><tr><tr><td>bluetooth</td><td>function setBluetoothScanMode(mode: ScanMode, duration: number): boolean;</td><td>setBluetoothScanMode</td><td>None</td><td>2</td><td>2</td><tr><tr><td>bluetooth</td><td>function getBluetoothScanMode(): ScanMode;</td><td>getBluetoothScanMode</td><td>None</td><td>0</td><td>1</td><tr><tr><td>bluetooth</td><td>function startBluetoothDiscovery(): boolean;</td><td>startBluetoothDiscovery</td><td>None</td><td>0</td><td>2</td><tr><tr><td>bluetooth</td><td>function stopBluetoothDiscovery(): boolean;</td><td>stopBluetoothDiscovery</td><td>None</td><td>0</td><td>2</td><tr><tr><td>bluetooth</td><td>function on(type: "bluetoothDeviceFind", callback: Callback<Array<string>>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>bluetooth</td><td>function off(type: "bluetoothDeviceFind", callback?: Callback<Array<string>>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>bluetooth</td><td>function on(type: "bondStateChange", callback: Callback<BondStateParam>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>bluetooth</td><td>function off(type: "bondStateChange", callback?: Callback<BondStateParam>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>bluetooth</td><td>function on(type: "pinRequired", callback: Callback<PinRequiredParam>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>bluetooth</td><td>function off(type: "pinRequired", callback?: Callback<PinRequiredParam>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>bluetooth</td><td>function on(type: "stateChange", callback: Callback<BluetoothState>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>bluetooth</td><td>function off(type: "stateChange", callback?: Callback<BluetoothState>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>bluetooth</td><td>function sppListen(name: string, option: SppOption, callback: AsyncCallback<number>): void;</td><td>sppListen</td><td>None</td><td>3</td><td>2</td><tr><tr><td>bluetooth</td><td>function sppAccept(serverSocket: number, callback: AsyncCallback<number>): void;</td><td>sppAccept</td><td>None</td><td>2</td><td>1</td><tr><tr><td>bluetooth</td><td>function sppConnect(device: string, option: SppOption, callback: AsyncCallback<number>): void;</td><td>sppConnect</td><td>None</td><td>3</td><td>1</td><tr><tr><td>bluetooth</td><td>function sppCloseServerSocket(socket: number): void;</td><td>sppCloseServerSocket</td><td>None</td><td>1</td><td>2</td><tr><tr><td>bluetooth</td><td>function sppCloseClientSocket(socket: number): void;</td><td>sppCloseClientSocket</td><td>None</td><td>1</td><td>0</td><tr><tr><td>bluetooth</td><td>function sppWrite(clientSocket: number, data: ArrayBuffer): boolean;</td><td>sppWrite</td><td>None</td><td>2</td><td>2</td><tr><tr><td>bluetooth</td><td>function on(type: "sppRead", clientSocket: number, callback: Callback<ArrayBuffer>): void;</td><td>on</td><td>None</td><td>3</td><td>3899</td><tr><tr><td>bluetooth</td><td>function off(type: "sppRead", clientSocket: number, callback?: Callback<ArrayBuffer>): void;</td><td>off</td><td>None</td><td>3</td><td>96</td><tr><tr><td>bluetooth</td><td>function getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile;</td><td>getProfile</td><td>None</td><td>1</td><td>0</td><tr><tr><td>BaseProfile</td><td>interface BaseProfile {
+        
+        getConnectionDevices(): Array<string>;
+
+        
+        getDeviceState(device: string): ProfileConnectionState;
+    }</td><td>BaseProfile</td><td>20</td><td>0</td><td>0</td><tr><tr><td>BaseProfile</td><td>getConnectionDevices(): Array<string>;</td><td>getConnectionDevices</td><td>21</td><td>0</td><td>0</td><tr><tr><td>BaseProfile</td><td>getDeviceState(device: string): ProfileConnectionState;</td><td>getDeviceState</td><td>21</td><td>1</td><td>0</td><tr><tr><td>A2dpSourceProfile</td><td>interface A2dpSourceProfile extends BaseProfile {
+        
+        connect(device: string): boolean;
+
+        
+        disconnect(device: string): boolean;
+
+        
+        on(type: "connectionStateChange", callback: Callback<StateChangeParam>): void;
+
+        
+        off(type: "connectionStateChange", callback?: Callback<StateChangeParam>): void;
+
+        
+        getPlayingState(device: string): PlayingState;
+    }</td><td>A2dpSourceProfile</td><td>None</td><td>0</td><td>0</td><tr><tr><td>A2dpSourceProfile</td><td>connect(device: string): boolean;</td><td>connect</td><td>None</td><td>1</td><td>67</td><tr><tr><td>A2dpSourceProfile</td><td>disconnect(device: string): boolean;</td><td>disconnect</td><td>None</td><td>1</td><td>5</td><tr><tr><td>A2dpSourceProfile</td><td>on(type: "connectionStateChange", callback: Callback<StateChangeParam>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>A2dpSourceProfile</td><td>off(type: "connectionStateChange", callback?: Callback<StateChangeParam>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>A2dpSourceProfile</td><td>getPlayingState(device: string): PlayingState;</td><td>getPlayingState</td><td>None</td><td>1</td><td>0</td><tr><tr><td>HandsFreeAudioGatewayProfile</td><td>interface HandsFreeAudioGatewayProfile extends BaseProfile {
+        
+        connect(device: string): boolean;
+
+        
+        disconnect(device: string): boolean;
+
+        
+        on(type: "connectionStateChange", callback: Callback<StateChangeParam>): void;
+
+        
+        off(type: "connectionStateChange", callback?: Callback<StateChangeParam>): void;
+    }</td><td>HandsFreeAudioGatewayProfile</td><td>None</td><td>0</td><td>0</td><tr><tr><td>HandsFreeAudioGatewayProfile</td><td>connect(device: string): boolean;</td><td>connect</td><td>None</td><td>1</td><td>67</td><tr><tr><td>HandsFreeAudioGatewayProfile</td><td>disconnect(device: string): boolean;</td><td>disconnect</td><td>None</td><td>1</td><td>5</td><tr><tr><td>HandsFreeAudioGatewayProfile</td><td>on(type: "connectionStateChange", callback: Callback<StateChangeParam>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>HandsFreeAudioGatewayProfile</td><td>off(type: "connectionStateChange", callback?: Callback<StateChangeParam>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>BLE</td><td>namespace BLE {
+        
+        function createGattServer(): GattServer;
+
+        
+        function createGattClientDevice(deviceId: string): GattClientDevice;
+
+        
+        function getConnectedBLEDevices(): Array<string>;
+
+        
+        function startBLEScan(filters: Array<ScanFilter>, options?: ScanOptions): void;
+
+        
+        function stopBLEScan(): void;
+
+        
+        function on(type: "BLEDeviceFind", callback: Callback<Array<ScanResult>>): void;
+
+        
+        function off(type: "BLEDeviceFind", callback?: Callback<Array<ScanResult>>): void;
+    }</td><td>BLE</td><td>35</td><td>0</td><td>122</td><tr><tr><td>BLE</td><td>function createGattServer(): GattServer;</td><td>createGattServer</td><td>35</td><td>0</td><td>12</td><tr><tr><td>BLE</td><td>function createGattClientDevice(deviceId: string): GattClientDevice;</td><td>createGattClientDevice</td><td>35</td><td>1</td><td>16</td><tr><tr><td>BLE</td><td>function getConnectedBLEDevices(): Array<string>;</td><td>getConnectedBLEDevices</td><td>35</td><td>0</td><td>2</td><tr><tr><td>BLE</td><td>function startBLEScan(filters: Array<ScanFilter>, options?: ScanOptions): void;</td><td>startBLEScan</td><td>35</td><td>2</td><td>1</td><tr><tr><td>BLE</td><td>function stopBLEScan(): void;</td><td>stopBLEScan</td><td>35</td><td>0</td><td>1</td><tr><tr><td>BLE</td><td>function on(type: "BLEDeviceFind", callback: Callback<Array<ScanResult>>): void;</td><td>on</td><td>35</td><td>2</td><td>3899</td><tr><tr><td>BLE</td><td>function off(type: "BLEDeviceFind", callback?: Callback<Array<ScanResult>>): void;</td><td>off</td><td>35</td><td>2</td><td>96</td><tr><tr><td>GattServer</td><td>interface GattServer {
+        
+        startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void;
+
+        
+        stopAdvertising(): void;
+
+        
+        addService(service: GattService): boolean;
+
+        
+        removeService(serviceUuid: string): boolean;
+
+        
+        close(): void;
+
+        
+        notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): boolean;
+
+        
+        sendResponse(serverResponse: ServerResponse): boolean;
+
+        
+        on(type: "characteristicRead", callback: Callback<CharacteristicReadReq>): void;
+
+        
+        off(type: "characteristicRead", callback?: Callback<CharacteristicReadReq>): void;
+
+        
+        on(type: "characteristicWrite", callback: Callback<CharacteristicWriteReq>): void;
+
+        
+        off(type: "characteristicWrite", callback?: Callback<CharacteristicWriteReq>): void;
+
+        
+        on(type: "descriptorRead", callback: Callback<DescriptorReadReq>): void;
+
+        
+        off(type: "descriptorRead", callback?: Callback<DescriptorReadReq>): void;
+
+        
+        on(type: "descriptorWrite", callback: Callback<DescriptorWriteReq>): void;
+
+        
+        off(type: "descriptorWrite", callback?: Callback<DescriptorWriteReq>): void;
+
+        
+        on(type: "connectStateChange", callback: Callback<BLEConnectChangedState>): void;
+
+        
+        off(type: "connectStateChange", callback?: Callback<BLEConnectChangedState>): void;
+    }</td><td>GattServer</td><td>20</td><td>0</td><td>12</td><tr><tr><td>GattServer</td><td>startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void;</td><td>startAdvertising</td><td>21</td><td>3</td><td>1</td><tr><tr><td>GattServer</td><td>stopAdvertising(): void;</td><td>stopAdvertising</td><td>21</td><td>0</td><td>1</td><tr><tr><td>GattServer</td><td>addService(service: GattService): boolean;</td><td>addService</td><td>21</td><td>1</td><td>9</td><tr><tr><td>GattServer</td><td>removeService(serviceUuid: string): boolean;</td><td>removeService</td><td>21</td><td>1</td><td>3</td><tr><tr><td>GattServer</td><td>close(): void;</td><td>close</td><td>21</td><td>0</td><td>34</td><tr><tr><td>GattServer</td><td>notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): boolean;</td><td>notifyCharacteristicChanged</td><td>21</td><td>2</td><td>3</td><tr><tr><td>GattServer</td><td>sendResponse(serverResponse: ServerResponse): boolean;</td><td>sendResponse</td><td>21</td><td>1</td><td>5</td><tr><tr><td>GattServer</td><td>on(type: "characteristicRead", callback: Callback<CharacteristicReadReq>): void;</td><td>on</td><td>21</td><td>2</td><td>3899</td><tr><tr><td>GattServer</td><td>off(type: "characteristicRead", callback?: Callback<CharacteristicReadReq>): void;</td><td>off</td><td>21</td><td>2</td><td>96</td><tr><tr><td>GattServer</td><td>on(type: "characteristicWrite", callback: Callback<CharacteristicWriteReq>): void;</td><td>on</td><td>21</td><td>2</td><td>3899</td><tr><tr><td>GattServer</td><td>off(type: "characteristicWrite", callback?: Callback<CharacteristicWriteReq>): void;</td><td>off</td><td>21</td><td>2</td><td>96</td><tr><tr><td>GattServer</td><td>on(type: "descriptorRead", callback: Callback<DescriptorReadReq>): void;</td><td>on</td><td>21</td><td>2</td><td>3899</td><tr><tr><td>GattServer</td><td>off(type: "descriptorRead", callback?: Callback<DescriptorReadReq>): void;</td><td>off</td><td>21</td><td>2</td><td>96</td><tr><tr><td>GattServer</td><td>on(type: "descriptorWrite", callback: Callback<DescriptorWriteReq>): void;</td><td>on</td><td>21</td><td>2</td><td>3899</td><tr><tr><td>GattServer</td><td>off(type: "descriptorWrite", callback?: Callback<DescriptorWriteReq>): void;</td><td>off</td><td>21</td><td>2</td><td>96</td><tr><tr><td>GattServer</td><td>on(type: "connectStateChange", callback: Callback<BLEConnectChangedState>): void;</td><td>on</td><td>21</td><td>2</td><td>3899</td><tr><tr><td>GattServer</td><td>off(type: "connectStateChange", callback?: Callback<BLEConnectChangedState>): void;</td><td>off</td><td>21</td><td>2</td><td>96</td><tr><tr><td>GattClientDevice</td><td>interface GattClientDevice {
+
+        
+        connect(): boolean;
+
+        
+        disconnect(): boolean;
+
+        
+        close(): boolean;
+
+        
+        getDeviceName(callback: AsyncCallback<string>): void;
+        getDeviceName(): Promise<string>;
+
+        
+        getServices(callback: AsyncCallback<Array<GattService>>): void;
+        getServices(): Promise<Array<GattService>>;
+
+        
+        readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback<BLECharacteristic>): void;
+        readCharacteristicValue(characteristic: BLECharacteristic): Promise<BLECharacteristic>;
+
+        
+        readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback<BLEDescriptor>): void;
+        readDescriptorValue(descriptor: BLEDescriptor): Promise<BLEDescriptor>;
+
+        
+        writeCharacteristicValue(characteristic: BLECharacteristic): boolean;
+
+        
+        writeDescriptorValue(descriptor: BLEDescriptor): boolean;
+
+        
+        getRssiValue(callback: AsyncCallback<number>): void;
+        getRssiValue(): Promise<number>;
+
+        
+        setBLEMtuSize(mtu: number): boolean;
+
+        
+        setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolean): boolean;
+
+        
+        on(type: "BLECharacteristicChange", callback: Callback<BLECharacteristic>): void;
+
+        
+        off(type: "BLECharacteristicChange", callback?: Callback<BLECharacteristic>): void;
+
+        
+        on(type: "BLEConnectionStateChange", callback: Callback<BLEConnectChangedState>): void;
+
+        
+        off(type: "BLEConnectionStateChange", callback?: Callback<BLEConnectChangedState>): void;
+    }</td><td>GattClientDevice</td><td>20</td><td>0</td><td>16</td><tr><tr><td>GattClientDevice</td><td>connect(): boolean;</td><td>connect</td><td>21</td><td>0</td><td>67</td><tr><tr><td>GattClientDevice</td><td>disconnect(): boolean;</td><td>disconnect</td><td>21</td><td>0</td><td>5</td><tr><tr><td>GattClientDevice</td><td>close(): boolean;</td><td>close</td><td>21</td><td>0</td><td>34</td><tr><tr><td>GattClientDevice</td><td>getDeviceName(callback: AsyncCallback<string>): void;</td><td>getDeviceName</td><td>21</td><td>1</td><td>0</td><tr><tr><td>GattClientDevice</td><td>getDeviceName(): Promise<string>;</td><td>getDeviceName</td><td>21</td><td>0</td><td>1</td><tr><tr><td>GattClientDevice</td><td>getServices(callback: AsyncCallback<Array<GattService>>): void;</td><td>getServices</td><td>21</td><td>1</td><td>5</td><tr><tr><td>GattClientDevice</td><td>getServices(): Promise<Array<GattService>>;</td><td>getServices</td><td>21</td><td>0</td><td>1</td><tr><tr><td>GattClientDevice</td><td>readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback<BLECharacteristic>): void;</td><td>readCharacteristicValue</td><td>21</td><td>2</td><td>2</td><tr><tr><td>GattClientDevice</td><td>readCharacteristicValue(characteristic: BLECharacteristic): Promise<BLECharacteristic>;</td><td>readCharacteristicValue</td><td>21</td><td>1</td><td>1</td><tr><tr><td>GattClientDevice</td><td>readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback<BLEDescriptor>): void;</td><td>readDescriptorValue</td><td>21</td><td>2</td><td>2</td><tr><tr><td>GattClientDevice</td><td>readDescriptorValue(descriptor: BLEDescriptor): Promise<BLEDescriptor>;</td><td>readDescriptorValue</td><td>21</td><td>1</td><td>1</td><tr><tr><td>GattClientDevice</td><td>writeCharacteristicValue(characteristic: BLECharacteristic): boolean;</td><td>writeCharacteristicValue</td><td>21</td><td>1</td><td>3</td><tr><tr><td>GattClientDevice</td><td>writeDescriptorValue(descriptor: BLEDescriptor): boolean;</td><td>writeDescriptorValue</td><td>21</td><td>1</td><td>3</td><tr><tr><td>GattClientDevice</td><td>getRssiValue(callback: AsyncCallback<number>): void;</td><td>getRssiValue</td><td>21</td><td>1</td><td>2</td><tr><tr><td>GattClientDevice</td><td>getRssiValue(): Promise<number>;</td><td>getRssiValue</td><td>21</td><td>0</td><td>1</td><tr><tr><td>GattClientDevice</td><td>setBLEMtuSize(mtu: number): boolean;</td><td>setBLEMtuSize</td><td>21</td><td>1</td><td>3</td><tr><tr><td>GattClientDevice</td><td>setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolean): boolean;</td><td>setNotifyCharacteristicChanged</td><td>21</td><td>2</td><td>3</td><tr><tr><td>GattClientDevice</td><td>on(type: "BLECharacteristicChange", callback: Callback<BLECharacteristic>): void;</td><td>on</td><td>21</td><td>2</td><td>3899</td><tr><tr><td>GattClientDevice</td><td>off(type: "BLECharacteristicChange", callback?: Callback<BLECharacteristic>): void;</td><td>off</td><td>21</td><td>2</td><td>96</td><tr><tr><td>GattClientDevice</td><td>on(type: "BLEConnectionStateChange", callback: Callback<BLEConnectChangedState>): void;</td><td>on</td><td>21</td><td>2</td><td>3899</td><tr><tr><td>GattClientDevice</td><td>off(type: "BLEConnectionStateChange", callback?: Callback<BLEConnectChangedState>): void;</td><td>off</td><td>21</td><td>2</td><td>96</td><tr><tr><td>GattService</td><td>interface GattService {
+        
+        serviceUuid: string;
+        
+        isPrimary: boolean;
+        
+        characteristics: Array<BLECharacteristic>;
+        
+        includeServices?: Array<GattService>;
+    }</td><td>GattService</td><td>20</td><td>0</td><td>0</td><tr><tr><td>GattService</td><td>serviceUuid: string</td><td>serviceUuid</td><td>22</td><td>1</td><td>27</td><tr><tr><td>GattService</td><td>isPrimary: boolean</td><td>isPrimary</td><td>22</td><td>1</td><td>1</td><tr><tr><td>GattService</td><td>characteristics: Array<BLECharacteristic></td><td>characteristics</td><td>22</td><td>1</td><td>4</td><tr><tr><td>GattService</td><td>includeServices?: Array<GattService></td><td>includeServices</td><td>22</td><td>1</td><td>1</td><tr><tr><td>BLECharacteristic</td><td>interface BLECharacteristic {
+        
+        serviceUuid: string;
+        
+        characteristicUuid: string;
+        
+        characteristicValue: ArrayBuffer;
+        
+        descriptors: Array<BLEDescriptor>;
+    }</td><td>BLECharacteristic</td><td>20</td><td>0</td><td>5</td><tr><tr><td>BLECharacteristic</td><td>serviceUuid: string</td><td>serviceUuid</td><td>22</td><td>1</td><td>27</td><tr><tr><td>BLECharacteristic</td><td>characteristicUuid: string</td><td>characteristicUuid</td><td>22</td><td>1</td><td>11</td><tr><tr><td>BLECharacteristic</td><td>characteristicValue: ArrayBuffer</td><td>characteristicValue</td><td>22</td><td>1</td><td>5</td><tr><tr><td>BLECharacteristic</td><td>descriptors: Array<BLEDescriptor></td><td>descriptors</td><td>22</td><td>1</td><td>24</td><tr><tr><td>BLEDescriptor</td><td>interface BLEDescriptor {
+        
+        serviceUuid: string;
+        
+        characteristicUuid: string;
+        
+        descriptorUuid: string;
+        
+        descriptorValue: ArrayBuffer;
+    }</td><td>BLEDescriptor</td><td>20</td><td>0</td><td>1</td><tr><tr><td>BLEDescriptor</td><td>serviceUuid: string</td><td>serviceUuid</td><td>22</td><td>1</td><td>27</td><tr><tr><td>BLEDescriptor</td><td>characteristicUuid: string</td><td>characteristicUuid</td><td>22</td><td>1</td><td>11</td><tr><tr><td>BLEDescriptor</td><td>descriptorUuid: string</td><td>descriptorUuid</td><td>22</td><td>1</td><td>13</td><tr><tr><td>BLEDescriptor</td><td>descriptorValue: ArrayBuffer</td><td>descriptorValue</td><td>22</td><td>1</td><td>9</td><tr><tr><td>NotifyCharacteristic</td><td>interface NotifyCharacteristic {
+        
+        serviceUuid: string;
+        
+        characteristicUuid: string;
+        
+        characteristicValue: ArrayBuffer;
+        
+        confirm: boolean;
+    }</td><td>NotifyCharacteristic</td><td>20</td><td>0</td><td>7</td><tr><tr><td>NotifyCharacteristic</td><td>serviceUuid: string</td><td>serviceUuid</td><td>22</td><td>1</td><td>27</td><tr><tr><td>NotifyCharacteristic</td><td>characteristicUuid: string</td><td>characteristicUuid</td><td>22</td><td>1</td><td>11</td><tr><tr><td>NotifyCharacteristic</td><td>characteristicValue: ArrayBuffer</td><td>characteristicValue</td><td>22</td><td>1</td><td>5</td><tr><tr><td>NotifyCharacteristic</td><td>confirm: boolean</td><td>confirm</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CharacteristicReadReq</td><td>interface CharacteristicReadReq {
+        
+        deviceId: string;
+        
+        transId: number;
+        
+        offset: number;
+        
+        characteristicUuid: string;
+        
+        serviceUuid: string;
+    }</td><td>CharacteristicReadReq</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CharacteristicReadReq</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>CharacteristicReadReq</td><td>transId: number</td><td>transId</td><td>22</td><td>1</td><td>13</td><tr><tr><td>CharacteristicReadReq</td><td>offset: number</td><td>offset</td><td>22</td><td>1</td><td>14</td><tr><tr><td>CharacteristicReadReq</td><td>characteristicUuid: string</td><td>characteristicUuid</td><td>22</td><td>1</td><td>11</td><tr><tr><td>CharacteristicReadReq</td><td>serviceUuid: string</td><td>serviceUuid</td><td>22</td><td>1</td><td>27</td><tr><tr><td>CharacteristicWriteReq</td><td>interface CharacteristicWriteReq {
+        
+        deviceId: string;
+        
+        transId: number;
+        
+        offset: number;
+        
+        isPrep: boolean;
+        
+        needRsp: boolean;
+        
+        value: ArrayBuffer;
+        
+        characteristicUuid: string;
+        
+        serviceUuid: string;
+    }</td><td>CharacteristicWriteReq</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CharacteristicWriteReq</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>CharacteristicWriteReq</td><td>transId: number</td><td>transId</td><td>22</td><td>1</td><td>13</td><tr><tr><td>CharacteristicWriteReq</td><td>offset: number</td><td>offset</td><td>22</td><td>1</td><td>14</td><tr><tr><td>CharacteristicWriteReq</td><td>isPrep: boolean</td><td>isPrep</td><td>22</td><td>1</td><td>4</td><tr><tr><td>CharacteristicWriteReq</td><td>needRsp: boolean</td><td>needRsp</td><td>22</td><td>1</td><td>5</td><tr><tr><td>CharacteristicWriteReq</td><td>value: ArrayBuffer</td><td>value</td><td>22</td><td>1</td><td>39</td><tr><tr><td>CharacteristicWriteReq</td><td>characteristicUuid: string</td><td>characteristicUuid</td><td>22</td><td>1</td><td>11</td><tr><tr><td>CharacteristicWriteReq</td><td>serviceUuid: string</td><td>serviceUuid</td><td>22</td><td>1</td><td>27</td><tr><tr><td>DescriptorReadReq</td><td>interface DescriptorReadReq {
+        
+        deviceId: string;
+        
+        transId: number;
+        
+        offset: number;
+        
+        descriptorUuid: string;
+        
+        characteristicUuid: string;
+        
+        serviceUuid: string;
+    }</td><td>DescriptorReadReq</td><td>20</td><td>0</td><td>0</td><tr><tr><td>DescriptorReadReq</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>DescriptorReadReq</td><td>transId: number</td><td>transId</td><td>22</td><td>1</td><td>13</td><tr><tr><td>DescriptorReadReq</td><td>offset: number</td><td>offset</td><td>22</td><td>1</td><td>14</td><tr><tr><td>DescriptorReadReq</td><td>descriptorUuid: string</td><td>descriptorUuid</td><td>22</td><td>1</td><td>13</td><tr><tr><td>DescriptorReadReq</td><td>characteristicUuid: string</td><td>characteristicUuid</td><td>22</td><td>1</td><td>11</td><tr><tr><td>DescriptorReadReq</td><td>serviceUuid: string</td><td>serviceUuid</td><td>22</td><td>1</td><td>27</td><tr><tr><td>DescriptorWriteReq</td><td>interface DescriptorWriteReq {
+        
+        deviceId: string;
+        
+        transId: number;
+        
+        offset: number;
+        
+        isPrep: boolean;
+        
+        needRsp: boolean;
+        
+        value: ArrayBuffer;
+        
+        descriptorUuid: string;
+        
+        characteristicUuid: string;
+        
+        serviceUuid: string;
+    }</td><td>DescriptorWriteReq</td><td>20</td><td>0</td><td>0</td><tr><tr><td>DescriptorWriteReq</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>DescriptorWriteReq</td><td>transId: number</td><td>transId</td><td>22</td><td>1</td><td>13</td><tr><tr><td>DescriptorWriteReq</td><td>offset: number</td><td>offset</td><td>22</td><td>1</td><td>14</td><tr><tr><td>DescriptorWriteReq</td><td>isPrep: boolean</td><td>isPrep</td><td>22</td><td>1</td><td>4</td><tr><tr><td>DescriptorWriteReq</td><td>needRsp: boolean</td><td>needRsp</td><td>22</td><td>1</td><td>5</td><tr><tr><td>DescriptorWriteReq</td><td>value: ArrayBuffer</td><td>value</td><td>22</td><td>1</td><td>39</td><tr><tr><td>DescriptorWriteReq</td><td>descriptorUuid: string</td><td>descriptorUuid</td><td>22</td><td>1</td><td>13</td><tr><tr><td>DescriptorWriteReq</td><td>characteristicUuid: string</td><td>characteristicUuid</td><td>22</td><td>1</td><td>11</td><tr><tr><td>DescriptorWriteReq</td><td>serviceUuid: string</td><td>serviceUuid</td><td>22</td><td>1</td><td>27</td><tr><tr><td>ServerResponse</td><td>interface ServerResponse {
+        
+        deviceId: string;
+        
+        transId: number;
+        
+        status: number;
+        
+        offset: number;
+        
+        value: ArrayBuffer;
+    }</td><td>ServerResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ServerResponse</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>ServerResponse</td><td>transId: number</td><td>transId</td><td>22</td><td>1</td><td>13</td><tr><tr><td>ServerResponse</td><td>status: number</td><td>status</td><td>22</td><td>1</td><td>10</td><tr><tr><td>ServerResponse</td><td>offset: number</td><td>offset</td><td>22</td><td>1</td><td>14</td><tr><tr><td>ServerResponse</td><td>value: ArrayBuffer</td><td>value</td><td>22</td><td>1</td><td>39</td><tr><tr><td>BLEConnectChangedState</td><td>interface BLEConnectChangedState {
+        
+        deviceId: string;
+        
+        state: ProfileConnectionState;
+    }</td><td>BLEConnectChangedState</td><td>20</td><td>0</td><td>0</td><tr><tr><td>BLEConnectChangedState</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>BLEConnectChangedState</td><td>state: ProfileConnectionState</td><td>state</td><td>22</td><td>1</td><td>42</td><tr><tr><td>ScanResult</td><td>interface ScanResult {
+        
+        deviceId: string;
+        
+        rssi: number;
+        
+        data: ArrayBuffer;
+    }</td><td>ScanResult</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ScanResult</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>ScanResult</td><td>rssi: number</td><td>rssi</td><td>22</td><td>1</td><td>12</td><tr><tr><td>ScanResult</td><td>data: ArrayBuffer</td><td>data</td><td>22</td><td>1</td><td>800</td><tr><tr><td>AdvertiseSetting</td><td>interface AdvertiseSetting {
+        
+        interval?: number;
+        
+        txPower?: number;
+        
+        connectable?: boolean;
+    }</td><td>AdvertiseSetting</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AdvertiseSetting</td><td>interval?: number</td><td>interval</td><td>22</td><td>1</td><td>1</td><tr><tr><td>AdvertiseSetting</td><td>txPower?: number</td><td>txPower</td><td>22</td><td>1</td><td>1</td><tr><tr><td>AdvertiseSetting</td><td>connectable?: boolean</td><td>connectable</td><td>22</td><td>1</td><td>1</td><tr><tr><td>AdvertiseData</td><td>interface AdvertiseData {
+        
+        serviceUuids: Array<string>;
+        
+        manufactureData: Array<ManufactureData>;
+        
+        serviceData: Array<ServiceData>;
+    }</td><td>AdvertiseData</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AdvertiseData</td><td>serviceUuids: Array<string></td><td>serviceUuids</td><td>22</td><td>1</td><td>2</td><tr><tr><td>AdvertiseData</td><td>manufactureData: Array<ManufactureData></td><td>manufactureData</td><td>22</td><td>1</td><td>2</td><tr><tr><td>AdvertiseData</td><td>serviceData: Array<ServiceData></td><td>serviceData</td><td>22</td><td>1</td><td>2</td><tr><tr><td>ManufactureData</td><td>interface ManufactureData {
+        
+        manufactureId: number;
+        
+        manufactureValue: ArrayBuffer;
+    }</td><td>ManufactureData</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ManufactureData</td><td>manufactureId: number</td><td>manufactureId</td><td>22</td><td>1</td><td>2</td><tr><tr><td>ManufactureData</td><td>manufactureValue: ArrayBuffer</td><td>manufactureValue</td><td>22</td><td>1</td><td>9</td><tr><tr><td>ServiceData</td><td>interface ServiceData {
+        
+        serviceUuid: string;
+        
+        serviceValue: ArrayBuffer;
+    }</td><td>ServiceData</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ServiceData</td><td>serviceUuid: string</td><td>serviceUuid</td><td>22</td><td>1</td><td>27</td><tr><tr><td>ServiceData</td><td>serviceValue: ArrayBuffer</td><td>serviceValue</td><td>22</td><td>1</td><td>9</td><tr><tr><td>ScanFilter</td><td>interface ScanFilter {
+        
+        deviceId?: string;
+        
+        name?: string;
+        
+        serviceUuid?: string;
+    }</td><td>ScanFilter</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ScanFilter</td><td>deviceId?: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>ScanFilter</td><td>name?: string</td><td>name</td><td>22</td><td>1</td><td>232</td><tr><tr><td>ScanFilter</td><td>serviceUuid?: string</td><td>serviceUuid</td><td>22</td><td>1</td><td>27</td><tr><tr><td>ScanOptions</td><td>interface ScanOptions {
+        
+        interval?: number;
+        
+        dutyMode?: ScanDuty;
+        
+        matchMode?: MatchMode;
+    }</td><td>ScanOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ScanOptions</td><td>interval?: number</td><td>interval</td><td>22</td><td>1</td><td>1</td><tr><tr><td>ScanOptions</td><td>dutyMode?: ScanDuty</td><td>dutyMode</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ScanOptions</td><td>matchMode?: MatchMode</td><td>matchMode</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SppOption</td><td>interface SppOption {
+        
+        uuid: string;
+        
+        secure: boolean;
+        
+        type: SppType;
+    }</td><td>SppOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SppOption</td><td>uuid: string</td><td>uuid</td><td>22</td><td>1</td><td>3</td><tr><tr><td>SppOption</td><td>secure: boolean</td><td>secure</td><td>22</td><td>1</td><td>3</td><tr><tr><td>SppOption</td><td>type: SppType</td><td>type</td><td>22</td><td>1</td><td>41</td><tr><tr><td>PinRequiredParam</td><td>interface PinRequiredParam {
+        deviceId: string;
+        pinCode: string;
+    }</td><td>PinRequiredParam</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PinRequiredParam</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>PinRequiredParam</td><td>pinCode: string</td><td>pinCode</td><td>22</td><td>1</td><td>0</td><tr><tr><td>DeviceClass</td><td>interface DeviceClass {
+        majorClass: MajorClass;
+        majorMinorClass: MajorMinorClass;
+        classOfDevice: number;
+    }</td><td>DeviceClass</td><td>20</td><td>0</td><td>5</td><tr><tr><td>DeviceClass</td><td>majorClass: MajorClass</td><td>majorClass</td><td>22</td><td>1</td><td>3</td><tr><tr><td>DeviceClass</td><td>majorMinorClass: MajorMinorClass</td><td>majorMinorClass</td><td>22</td><td>1</td><td>2</td><tr><tr><td>DeviceClass</td><td>classOfDevice: number</td><td>classOfDevice</td><td>22</td><td>1</td><td>2</td><tr><tr><td>BondStateParam</td><td>interface BondStateParam {
+        deviceId: string;
+        state: BondState;
+    }</td><td>BondStateParam</td><td>20</td><td>0</td><td>0</td><tr><tr><td>BondStateParam</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>BondStateParam</td><td>state: BondState</td><td>state</td><td>22</td><td>1</td><td>42</td><tr><tr><td>ScanDuty</td><td>enum ScanDuty {
+        
+        SCAN_MODE_LOW_POWER = 0,
+        
+        SCAN_MODE_BALANCED = 1,
+        
+        SCAN_MODE_LOW_LATENCY = 2
+    }</td><td>ScanDuty</td><td>40</td><td>0</td><td>3</td><tr><tr><td>ScanDuty</td><td>SCAN_MODE_LOW_POWER = 0,</td><td>SCAN_MODE_LOW_POWER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScanDuty</td><td>SCAN_MODE_BALANCED = 1,</td><td>SCAN_MODE_BALANCED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ScanDuty</td><td>SCAN_MODE_LOW_LATENCY = 2</td><td>SCAN_MODE_LOW_LATENCY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>MatchMode</td><td>enum MatchMode {
+        
+        MATCH_MODE_AGGRESSIVE = 1,
+        
+        MATCH_MODE_STICKY = 2
+    }</td><td>MatchMode</td><td>40</td><td>0</td><td>1</td><tr><tr><td>MatchMode</td><td>MATCH_MODE_AGGRESSIVE = 1,</td><td>MATCH_MODE_AGGRESSIVE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MatchMode</td><td>MATCH_MODE_STICKY = 2</td><td>MATCH_MODE_STICKY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ProfileConnectionState</td><td>enum ProfileConnectionState {
+        
+        STATE_DISCONNECTED = 0,
+        
+        STATE_CONNECTING = 1,
+        
+        STATE_CONNECTED = 2,
+        
+        STATE_DISCONNECTING = 3
+    }</td><td>ProfileConnectionState</td><td>40</td><td>0</td><td>4</td><tr><tr><td>ProfileConnectionState</td><td>STATE_DISCONNECTED = 0,</td><td>STATE_DISCONNECTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ProfileConnectionState</td><td>STATE_CONNECTING = 1,</td><td>STATE_CONNECTING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ProfileConnectionState</td><td>STATE_CONNECTED = 2,</td><td>STATE_CONNECTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ProfileConnectionState</td><td>STATE_DISCONNECTING = 3</td><td>STATE_DISCONNECTING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BluetoothState</td><td>enum BluetoothState {
+        
+        STATE_OFF = 0,
+        
+        STATE_TURNING_ON = 1,
+        
+        STATE_ON = 2,
+        
+        STATE_TURNING_OFF = 3,
+        
+        STATE_BLE_TURNING_ON = 4,
+        
+        STATE_BLE_ON = 5,
+        
+        STATE_BLE_TURNING_OFF = 6
+    }</td><td>BluetoothState</td><td>40</td><td>0</td><td>9</td><tr><tr><td>BluetoothState</td><td>STATE_OFF = 0,</td><td>STATE_OFF</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BluetoothState</td><td>STATE_TURNING_ON = 1,</td><td>STATE_TURNING_ON</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BluetoothState</td><td>STATE_ON = 2,</td><td>STATE_ON</td><td>42</td><td>1</td><td>3</td><tr><tr><td>BluetoothState</td><td>STATE_TURNING_OFF = 3,</td><td>STATE_TURNING_OFF</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BluetoothState</td><td>STATE_BLE_TURNING_ON = 4,</td><td>STATE_BLE_TURNING_ON</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BluetoothState</td><td>STATE_BLE_ON = 5,</td><td>STATE_BLE_ON</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BluetoothState</td><td>STATE_BLE_TURNING_OFF = 6</td><td>STATE_BLE_TURNING_OFF</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SppType</td><td>enum SppType {
+        
+        SPP_RFCOMM
+    }</td><td>SppType</td><td>40</td><td>0</td><td>1</td><tr><tr><td>ScanMode</td><td>enum ScanMode {
+        
+        SCAN_MODE_NONE = 0,
+        
+        SCAN_MODE_CONNECTABLE = 1,
+        
+        SCAN_MODE_GENERAL_DISCOVERABLE = 2,
+        
+        SCAN_MODE_LIMITED_DISCOVERABLE = 3,
+        
+        SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE = 4,
+        
+        SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE = 5
+    }</td><td>ScanMode</td><td>40</td><td>0</td><td>9</td><tr><tr><td>ScanMode</td><td>SCAN_MODE_NONE = 0,</td><td>SCAN_MODE_NONE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScanMode</td><td>SCAN_MODE_CONNECTABLE = 1,</td><td>SCAN_MODE_CONNECTABLE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>ScanMode</td><td>SCAN_MODE_GENERAL_DISCOVERABLE = 2,</td><td>SCAN_MODE_GENERAL_DISCOVERABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScanMode</td><td>SCAN_MODE_LIMITED_DISCOVERABLE = 3,</td><td>SCAN_MODE_LIMITED_DISCOVERABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScanMode</td><td>SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE = 4,</td><td>SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ScanMode</td><td>SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE = 5</td><td>SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BondState</td><td>enum BondState {
+        
+        BOND_STATE_INVALID = 0,
+        
+        BOND_STATE_BONDING = 1,
+        
+        BOND_STATE_BONDED = 2
+    }</td><td>BondState</td><td>40</td><td>0</td><td>3</td><tr><tr><td>BondState</td><td>BOND_STATE_INVALID = 0,</td><td>BOND_STATE_INVALID</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BondState</td><td>BOND_STATE_BONDING = 1,</td><td>BOND_STATE_BONDING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BondState</td><td>BOND_STATE_BONDED = 2</td><td>BOND_STATE_BONDED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>enum MajorClass {
+        MAJOR_MISC = 0x0000,
+        MAJOR_COMPUTER = 0x0100,
+        MAJOR_PHONE = 0x0200,
+        MAJOR_NETWORKING = 0x0300,
+        MAJOR_AUDIO_VIDEO = 0x0400,
+        MAJOR_PERIPHERAL = 0x0500,
+        MAJOR_IMAGING = 0x0600,
+        MAJOR_WEARABLE = 0x0700,
+        MAJOR_TOY = 0x0800,
+        MAJOR_HEALTH = 0x0900,
+        MAJOR_UNCATEGORIZED = 0x1F00
+    }</td><td>MajorClass</td><td>40</td><td>0</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_MISC = 0x0000,</td><td>MAJOR_MISC</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_COMPUTER = 0x0100,</td><td>MAJOR_COMPUTER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_PHONE = 0x0200,</td><td>MAJOR_PHONE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_NETWORKING = 0x0300,</td><td>MAJOR_NETWORKING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_AUDIO_VIDEO = 0x0400,</td><td>MAJOR_AUDIO_VIDEO</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_PERIPHERAL = 0x0500,</td><td>MAJOR_PERIPHERAL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_IMAGING = 0x0600,</td><td>MAJOR_IMAGING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_WEARABLE = 0x0700,</td><td>MAJOR_WEARABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_TOY = 0x0800,</td><td>MAJOR_TOY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_HEALTH = 0x0900,</td><td>MAJOR_HEALTH</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorClass</td><td>MAJOR_UNCATEGORIZED = 0x1F00</td><td>MAJOR_UNCATEGORIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>enum MajorMinorClass {
+        // The Minor Device Class field
+        // Computer Major Class
+        COMPUTER_UNCATEGORIZED = 0x0100,
+        COMPUTER_DESKTOP = 0x0104,
+        COMPUTER_SERVER = 0x0108,
+        COMPUTER_LAPTOP = 0x010C,
+        COMPUTER_HANDHELD_PC_PDA = 0x0110,
+        COMPUTER_PALM_SIZE_PC_PDA = 0x0114,
+        COMPUTER_WEARABLE = 0x0118,
+        COMPUTER_TABLET = 0x011C,
+
+        // Phone Major Class
+        PHONE_UNCATEGORIZED = 0x0200,
+        PHONE_CELLULAR = 0x0204,
+        PHONE_CORDLESS = 0x0208,
+        PHONE_SMART = 0x020C,
+        PHONE_MODEM_OR_GATEWAY = 0x0210,
+        PHONE_ISDN = 0x0214,
+
+        // LAN/Network Access Point Major Class
+        NETWORK_FULLY_AVAILABLE = 0x0300,
+        NETWORK_1_TO_17_UTILIZED = 0x0320,
+        NETWORK_17_TO_33_UTILIZED = 0x0340,
+        NETWORK_33_TO_50_UTILIZED = 0x0360,
+        NETWORK_60_TO_67_UTILIZED = 0x0380,
+        NETWORK_67_TO_83_UTILIZED = 0x03A0,
+        NETWORK_83_TO_99_UTILIZED = 0x03C0,
+        NETWORK_NO_SERVICE = 0x03E0,
+
+        // Audio/Video Major Class
+        AUDIO_VIDEO_UNCATEGORIZED = 0x0400,
+        AUDIO_VIDEO_WEARABLE_HEADSET = 0x0404,
+        AUDIO_VIDEO_HANDSFREE = 0x0408,
+        AUDIO_VIDEO_MICROPHONE = 0x0410,
+        AUDIO_VIDEO_LOUDSPEAKER = 0x0414,
+        AUDIO_VIDEO_HEADPHONES = 0x0418,
+        AUDIO_VIDEO_PORTABLE_AUDIO = 0x041C,
+        AUDIO_VIDEO_CAR_AUDIO = 0x0420,
+        AUDIO_VIDEO_SET_TOP_BOX = 0x0424,
+        AUDIO_VIDEO_HIFI_AUDIO = 0x0428,
+        AUDIO_VIDEO_VCR = 0x042C,
+        AUDIO_VIDEO_VIDEO_CAMERA = 0x0430,
+        AUDIO_VIDEO_CAMCORDER = 0x0434,
+        AUDIO_VIDEO_VIDEO_MONITOR = 0x0438,
+        AUDIO_VIDEO_VIDEO_DISPLAY_AND_LOUDSPEAKER = 0x043C,
+        AUDIO_VIDEO_VIDEO_CONFERENCING = 0x0440,
+        AUDIO_VIDEO_VIDEO_GAMING_TOY = 0x0448,
+
+        // Peripheral Major Class
+        PERIPHERAL_NON_KEYBOARD_NON_POINTING = 0x0500,
+        PERIPHERAL_KEYBOARD = 0x0540,
+        PERIPHERAL_POINTING_DEVICE = 0x0580,
+        PERIPHERAL_KEYBOARD_POINTING = 0x05C0,
+        PERIPHERAL_UNCATEGORIZED = 0x0500,
+        PERIPHERAL_JOYSTICK = 0x0504,
+        PERIPHERAL_GAMEPAD = 0x0508,
+        PERIPHERAL_REMOTE_CONTROL = 0x05C0,
+        PERIPHERAL_SENSING_DEVICE = 0x0510,
+        PERIPHERAL_DIGITIZER_TABLET = 0x0514,
+        PERIPHERAL_CARD_READER = 0x0518,
+        PERIPHERAL_DIGITAL_PEN = 0x051C,
+        PERIPHERAL_SCANNER_RFID = 0x0520,
+        PERIPHERAL_GESTURAL_INPUT = 0x0522,
+
+        // Imaging Major Class
+        IMAGING_UNCATEGORIZED = 0x0600,
+        IMAGING_DISPLAY = 0x0610,
+        IMAGING_CAMERA = 0x0620,
+        IMAGING_SCANNER = 0x0640,
+        IMAGING_PRINTER = 0x0680,
+
+        // Wearable Major Class
+        WEARABLE_UNCATEGORIZED = 0x0700,
+        WEARABLE_WRIST_WATCH = 0x0704,
+        WEARABLE_PAGER = 0x0708,
+        WEARABLE_JACKET = 0x070C,
+        WEARABLE_HELMET = 0x0710,
+        WEARABLE_GLASSES = 0x0714,
+
+        // Minor Device Class field - Toy Major Class
+        TOY_UNCATEGORIZED = 0x0800,
+        TOY_ROBOT = 0x0804,
+        TOY_VEHICLE = 0x0808,
+        TOY_DOLL_ACTION_FIGURE = 0x080C,
+        TOY_CONTROLLER = 0x0810,
+        TOY_GAME = 0x0814,
+
+        // Minor Device Class field - Health
+        HEALTH_UNCATEGORIZED = 0x0900,
+        HEALTH_BLOOD_PRESSURE = 0x0904,
+        HEALTH_THERMOMETER = 0x0908,
+        HEALTH_WEIGHING = 0x090C,
+        HEALTH_GLUCOSE = 0x0910,
+        HEALTH_PULSE_OXIMETER = 0x0914,
+        HEALTH_PULSE_RATE = 0x0918,
+        HEALTH_DATA_DISPLAY = 0x091C,
+        HEALTH_STEP_COUNTER = 0x0920,
+        HEALTH_BODY_COMPOSITION_ANALYZER = 0x0924,
+        HEALTH_PEAK_FLOW_MOITOR = 0x0928,
+        HEALTH_MEDICATION_MONITOR = 0x092C,
+        HEALTH_KNEE_PROSTHESIS = 0x0930,
+        HEALTH_ANKLE_PROSTHESIS = 0x0934,
+        HEALTH_GENERIC_HEALTH_MANAGER = 0x0938,
+        HEALTH_PERSONAL_MOBILITY_DEVICE = 0x093C,
+    }</td><td>MajorMinorClass</td><td>40</td><td>0</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>COMPUTER_UNCATEGORIZED = 0x0100,</td><td>COMPUTER_UNCATEGORIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>COMPUTER_DESKTOP = 0x0104,</td><td>COMPUTER_DESKTOP</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>COMPUTER_SERVER = 0x0108,</td><td>COMPUTER_SERVER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>COMPUTER_LAPTOP = 0x010C,</td><td>COMPUTER_LAPTOP</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>COMPUTER_HANDHELD_PC_PDA = 0x0110,</td><td>COMPUTER_HANDHELD_PC_PDA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>COMPUTER_PALM_SIZE_PC_PDA = 0x0114,</td><td>COMPUTER_PALM_SIZE_PC_PDA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>COMPUTER_WEARABLE = 0x0118,</td><td>COMPUTER_WEARABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>COMPUTER_TABLET = 0x011C,</td><td>COMPUTER_TABLET</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PHONE_UNCATEGORIZED = 0x0200,</td><td>PHONE_UNCATEGORIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PHONE_CELLULAR = 0x0204,</td><td>PHONE_CELLULAR</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PHONE_CORDLESS = 0x0208,</td><td>PHONE_CORDLESS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PHONE_SMART = 0x020C,</td><td>PHONE_SMART</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PHONE_MODEM_OR_GATEWAY = 0x0210,</td><td>PHONE_MODEM_OR_GATEWAY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PHONE_ISDN = 0x0214,</td><td>PHONE_ISDN</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>NETWORK_FULLY_AVAILABLE = 0x0300,</td><td>NETWORK_FULLY_AVAILABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>NETWORK_1_TO_17_UTILIZED = 0x0320,</td><td>NETWORK_1_TO_17_UTILIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>NETWORK_17_TO_33_UTILIZED = 0x0340,</td><td>NETWORK_17_TO_33_UTILIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>NETWORK_33_TO_50_UTILIZED = 0x0360,</td><td>NETWORK_33_TO_50_UTILIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>NETWORK_60_TO_67_UTILIZED = 0x0380,</td><td>NETWORK_60_TO_67_UTILIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>NETWORK_67_TO_83_UTILIZED = 0x03A0,</td><td>NETWORK_67_TO_83_UTILIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>NETWORK_83_TO_99_UTILIZED = 0x03C0,</td><td>NETWORK_83_TO_99_UTILIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>NETWORK_NO_SERVICE = 0x03E0,</td><td>NETWORK_NO_SERVICE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_UNCATEGORIZED = 0x0400,</td><td>AUDIO_VIDEO_UNCATEGORIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_WEARABLE_HEADSET = 0x0404,</td><td>AUDIO_VIDEO_WEARABLE_HEADSET</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_HANDSFREE = 0x0408,</td><td>AUDIO_VIDEO_HANDSFREE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_MICROPHONE = 0x0410,</td><td>AUDIO_VIDEO_MICROPHONE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_LOUDSPEAKER = 0x0414,</td><td>AUDIO_VIDEO_LOUDSPEAKER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_HEADPHONES = 0x0418,</td><td>AUDIO_VIDEO_HEADPHONES</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_PORTABLE_AUDIO = 0x041C,</td><td>AUDIO_VIDEO_PORTABLE_AUDIO</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_CAR_AUDIO = 0x0420,</td><td>AUDIO_VIDEO_CAR_AUDIO</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_SET_TOP_BOX = 0x0424,</td><td>AUDIO_VIDEO_SET_TOP_BOX</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_HIFI_AUDIO = 0x0428,</td><td>AUDIO_VIDEO_HIFI_AUDIO</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_VCR = 0x042C,</td><td>AUDIO_VIDEO_VCR</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_VIDEO_CAMERA = 0x0430,</td><td>AUDIO_VIDEO_VIDEO_CAMERA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_CAMCORDER = 0x0434,</td><td>AUDIO_VIDEO_CAMCORDER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_VIDEO_MONITOR = 0x0438,</td><td>AUDIO_VIDEO_VIDEO_MONITOR</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_VIDEO_DISPLAY_AND_LOUDSPEAKER = 0x043C,</td><td>AUDIO_VIDEO_VIDEO_DISPLAY_AND_LOUDSPEAKER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_VIDEO_CONFERENCING = 0x0440,</td><td>AUDIO_VIDEO_VIDEO_CONFERENCING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>AUDIO_VIDEO_VIDEO_GAMING_TOY = 0x0448,</td><td>AUDIO_VIDEO_VIDEO_GAMING_TOY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_NON_KEYBOARD_NON_POINTING = 0x0500,</td><td>PERIPHERAL_NON_KEYBOARD_NON_POINTING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_KEYBOARD = 0x0540,</td><td>PERIPHERAL_KEYBOARD</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_POINTING_DEVICE = 0x0580,</td><td>PERIPHERAL_POINTING_DEVICE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_KEYBOARD_POINTING = 0x05C0,</td><td>PERIPHERAL_KEYBOARD_POINTING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_UNCATEGORIZED = 0x0500,</td><td>PERIPHERAL_UNCATEGORIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_JOYSTICK = 0x0504,</td><td>PERIPHERAL_JOYSTICK</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_GAMEPAD = 0x0508,</td><td>PERIPHERAL_GAMEPAD</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_REMOTE_CONTROL = 0x05C0,</td><td>PERIPHERAL_REMOTE_CONTROL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_SENSING_DEVICE = 0x0510,</td><td>PERIPHERAL_SENSING_DEVICE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_DIGITIZER_TABLET = 0x0514,</td><td>PERIPHERAL_DIGITIZER_TABLET</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_CARD_READER = 0x0518,</td><td>PERIPHERAL_CARD_READER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_DIGITAL_PEN = 0x051C,</td><td>PERIPHERAL_DIGITAL_PEN</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_SCANNER_RFID = 0x0520,</td><td>PERIPHERAL_SCANNER_RFID</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>PERIPHERAL_GESTURAL_INPUT = 0x0522,</td><td>PERIPHERAL_GESTURAL_INPUT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>IMAGING_UNCATEGORIZED = 0x0600,</td><td>IMAGING_UNCATEGORIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>IMAGING_DISPLAY = 0x0610,</td><td>IMAGING_DISPLAY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>IMAGING_CAMERA = 0x0620,</td><td>IMAGING_CAMERA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>IMAGING_SCANNER = 0x0640,</td><td>IMAGING_SCANNER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>IMAGING_PRINTER = 0x0680,</td><td>IMAGING_PRINTER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>WEARABLE_UNCATEGORIZED = 0x0700,</td><td>WEARABLE_UNCATEGORIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>WEARABLE_WRIST_WATCH = 0x0704,</td><td>WEARABLE_WRIST_WATCH</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>WEARABLE_PAGER = 0x0708,</td><td>WEARABLE_PAGER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>WEARABLE_JACKET = 0x070C,</td><td>WEARABLE_JACKET</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>WEARABLE_HELMET = 0x0710,</td><td>WEARABLE_HELMET</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>WEARABLE_GLASSES = 0x0714,</td><td>WEARABLE_GLASSES</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>TOY_UNCATEGORIZED = 0x0800,</td><td>TOY_UNCATEGORIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>TOY_ROBOT = 0x0804,</td><td>TOY_ROBOT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>TOY_VEHICLE = 0x0808,</td><td>TOY_VEHICLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>TOY_DOLL_ACTION_FIGURE = 0x080C,</td><td>TOY_DOLL_ACTION_FIGURE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>TOY_CONTROLLER = 0x0810,</td><td>TOY_CONTROLLER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>TOY_GAME = 0x0814,</td><td>TOY_GAME</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_UNCATEGORIZED = 0x0900,</td><td>HEALTH_UNCATEGORIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_BLOOD_PRESSURE = 0x0904,</td><td>HEALTH_BLOOD_PRESSURE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_THERMOMETER = 0x0908,</td><td>HEALTH_THERMOMETER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_WEIGHING = 0x090C,</td><td>HEALTH_WEIGHING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_GLUCOSE = 0x0910,</td><td>HEALTH_GLUCOSE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_PULSE_OXIMETER = 0x0914,</td><td>HEALTH_PULSE_OXIMETER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_PULSE_RATE = 0x0918,</td><td>HEALTH_PULSE_RATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_DATA_DISPLAY = 0x091C,</td><td>HEALTH_DATA_DISPLAY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_STEP_COUNTER = 0x0920,</td><td>HEALTH_STEP_COUNTER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_BODY_COMPOSITION_ANALYZER = 0x0924,</td><td>HEALTH_BODY_COMPOSITION_ANALYZER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_PEAK_FLOW_MOITOR = 0x0928,</td><td>HEALTH_PEAK_FLOW_MOITOR</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_MEDICATION_MONITOR = 0x092C,</td><td>HEALTH_MEDICATION_MONITOR</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_KNEE_PROSTHESIS = 0x0930,</td><td>HEALTH_KNEE_PROSTHESIS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_ANKLE_PROSTHESIS = 0x0934,</td><td>HEALTH_ANKLE_PROSTHESIS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_GENERIC_HEALTH_MANAGER = 0x0938,</td><td>HEALTH_GENERIC_HEALTH_MANAGER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MajorMinorClass</td><td>HEALTH_PERSONAL_MOBILITY_DEVICE = 0x093C,</td><td>HEALTH_PERSONAL_MOBILITY_DEVICE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>StateChangeParam</td><td>interface StateChangeParam {
+        
+        deviceId: string;
+
+        
+        state: ProfileConnectionState;
+    }</td><td>StateChangeParam</td><td>20</td><td>0</td><td>0</td><tr><tr><td>StateChangeParam</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>19</td><tr><tr><td>StateChangeParam</td><td>state: ProfileConnectionState</td><td>state</td><td>22</td><td>1</td><td>42</td><tr><tr><td>PlayingState</td><td>enum PlayingState {
+        STATE_NOT_PLAYING,
+        STATE_PLAYING,
+    }</td><td>PlayingState</td><td>40</td><td>0</td><td>0</td><tr><tr><td>PlayingState</td><td>STATE_NOT_PLAYING,</td><td>STATE_NOT_PLAYING</td><td>42</td><td>1</td><td>0</td><tr><tr><td>PlayingState</td><td>STATE_PLAYING,</td><td>STATE_PLAYING</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ProfileId</td><td>enum ProfileId {
+        PROFILE_A2DP_SOURCE = 1,
+        PROFILE_HANDS_FREE_AUDIO_GATEWAY = 4,
+    }</td><td>ProfileId</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ProfileId</td><td>PROFILE_A2DP_SOURCE = 1,</td><td>PROFILE_A2DP_SOURCE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ProfileId</td><td>PROFILE_HANDS_FREE_AUDIO_GATEWAY = 4,</td><td>PROFILE_HANDS_FREE_AUDIO_GATEWAY</td><td>42</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

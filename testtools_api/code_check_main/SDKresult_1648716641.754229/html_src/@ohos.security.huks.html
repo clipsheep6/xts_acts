@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>安全子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>security</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.security.huks</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>huks</td><td>declare namespace huks {
+    
+    function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;
+    function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>;
+
+    
+    function deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;
+    function deleteKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>;
+
+    
+    function     function 
+    
+    function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;
+    function exportKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>;
+
+    
+    function getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;
+    function getKeyProperties(keyAlias: string, options: HuksOptions) : Promise<HuksResult>;
+
+    
+    function isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback<boolean>) : void;
+    function isKeyExist(keyAlias: string, options: HuksOptions) : Promise<boolean>;
+
+    
+    function init(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksHandle>) : void;
+    function init(keyAlias: string, options: HuksOptions) : Promise<HuksHandle>;
+
+    
+    function update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;
+    function update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise<HuksResult>;
+
+    
+    function finish(handle: number, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;
+    function finish(handle: number, options: HuksOptions) : Promise<HuksResult>;
+
+    
+    function abort(handle: number, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;
+    function abort(handle: number, options: HuksOptions) : Promise<HuksResult>;
+
+    
+    function getSdkVersion(options: HuksOptions) : string;
+
+    
+    export interface HuksParam {
+        tag: HuksTag;
+        value: boolean | number | bigint | Uint8Array;
+    }
+
+    
+    export interface HuksHandle {
+        errorCode: number;
+        handle: number;
+        token?: Uint8Array;
+    }
+
+    
+    export interface HuksOptions {
+        properties?: Array<HuksParam>;
+        inData?: Uint8Array;
+    }
+
+    
+    export interface HuksResult {
+        errorCode: number;
+        outData?: Uint8Array;
+        properties?: Array<HuksParam>;
+        certChains?: Array<string>;
+    }
+
+    
+    export enum HuksErrorCode {
+        HUKS_SUCCESS = 0,
+        HUKS_FAILURE = -1,
+        HUKS_ERROR_BAD_STATE = -2,
+        HUKS_ERROR_INVALID_ARGUMENT = -3,
+        HUKS_ERROR_NOT_SUPPORTED = -4,
+        HUKS_ERROR_NO_PERMISSION = -5,
+        HUKS_ERROR_INSUFFICIENT_DATA = -6,
+        HUKS_ERROR_BUFFER_TOO_SMALL = -7,
+        HUKS_ERROR_INSUFFICIENT_MEMORY = -8,
+        HUKS_ERROR_COMMUNICATION_FAILURE = -9,
+        HUKS_ERROR_STORAGE_FAILURE = -10,
+        HUKS_ERROR_HARDWARE_FAILURE = -11,
+        HUKS_ERROR_ALREADY_EXISTS = -12,
+        HUKS_ERROR_NOT_EXIST = -13,
+        HUKS_ERROR_NULL_POINTER = -14,
+        HUKS_ERROR_FILE_SIZE_FAIL = -15,
+        HUKS_ERROR_READ_FILE_FAIL = -16,
+        HUKS_ERROR_INVALID_PUBLIC_KEY = -17,
+        HUKS_ERROR_INVALID_PRIVATE_KEY = -18,
+        HUKS_ERROR_INVALID_KEY_INFO = -19,
+        HUKS_ERROR_HASH_NOT_EQUAL = -20,
+        HUKS_ERROR_MALLOC_FAIL = -21,
+        HUKS_ERROR_WRITE_FILE_FAIL = -22,
+        HUKS_ERROR_REMOVE_FILE_FAIL = -23,
+        HUKS_ERROR_OPEN_FILE_FAIL = -24,
+        HUKS_ERROR_CLOSE_FILE_FAIL = -25,
+        HUKS_ERROR_MAKE_DIR_FAIL = -26,
+        HUKS_ERROR_INVALID_KEY_FILE = -27,
+        HUKS_ERROR_IPC_MSG_FAIL = -28,
+        HUKS_ERROR_REQUEST_OVERFLOWS = -29,
+        HUKS_ERROR_PARAM_NOT_EXIST = -30,
+        HUKS_ERROR_CRYPTO_ENGINE_ERROR = -31,
+        HUKS_ERROR_COMMUNICATION_TIMEOUT = -32,
+        HUKS_ERROR_IPC_INIT_FAIL = -33,
+        HUKS_ERROR_IPC_DLOPEN_FAIL = -34,
+        HUKS_ERROR_EFUSE_READ_FAIL = -35,
+        HUKS_ERROR_NEW_ROOT_KEY_MATERIAL_EXIST = -36,
+        HUKS_ERROR_UPDATE_ROOT_KEY_MATERIAL_FAIL = -37,
+        HUKS_ERROR_VERIFICATION_FAILED = -38,
+
+        HUKS_ERROR_CHECK_GET_ALG_FAIL = -100,
+        HUKS_ERROR_CHECK_GET_KEY_SIZE_FAIL = -101,
+        HUKS_ERROR_CHECK_GET_PADDING_FAIL = -102,
+        HUKS_ERROR_CHECK_GET_PURPOSE_FAIL = -103,
+        HUKS_ERROR_CHECK_GET_DIGEST_FAIL =  -104,
+        HUKS_ERROR_CHECK_GET_MODE_FAIL = -105,
+        HUKS_ERROR_CHECK_GET_NONCE_FAIL = -106,
+        HUKS_ERROR_CHECK_GET_AAD_FAIL = -107,
+        HUKS_ERROR_CHECK_GET_IV_FAIL = -108,
+        HUKS_ERROR_CHECK_GET_AE_TAG_FAIL = -109,
+        HUKS_ERROR_CHECK_GET_SALT_FAIL = -110,
+        HUKS_ERROR_CHECK_GET_ITERATION_FAIL = -111,
+        HUKS_ERROR_INVALID_ALGORITHM = -112,
+        HUKS_ERROR_INVALID_KEY_SIZE = -113,
+        HUKS_ERROR_INVALID_PADDING = -114,
+        HUKS_ERROR_INVALID_PURPOSE = -115,
+        HUKS_ERROR_INVALID_MODE = -116,
+        HUKS_ERROR_INVALID_DIGEST =  -117,
+        HUKS_ERROR_INVALID_SIGNATURE_SIZE = -118,
+        HUKS_ERROR_INVALID_IV = -119,
+        HUKS_ERROR_INVALID_AAD = -120,
+        HUKS_ERROR_INVALID_NONCE = -121,
+        HUKS_ERROR_INVALID_AE_TAG = -122,
+        HUKS_ERROR_INVALID_SALT = -123,
+        HUKS_ERROR_INVALID_ITERATION = -124,
+        HUKS_ERROR_INVALID_OPERATION = -125,
+
+        HUKS_ERROR_INTERNAL_ERROR = -999,
+        HUKS_ERROR_UNKNOWN_ERROR = -1000,
+    }
+
+    
+    export enum HuksKeyPurpose {
+        HUKS_KEY_PURPOSE_ENCRYPT = 1,                   
+        HUKS_KEY_PURPOSE_DECRYPT = 2,                   
+        HUKS_KEY_PURPOSE_SIGN = 4,                      
+        HUKS_KEY_PURPOSE_VERIFY = 8,                    
+        HUKS_KEY_PURPOSE_DERIVE = 16,                   
+        HUKS_KEY_PURPOSE_WRAP = 32,                     
+        HUKS_KEY_PURPOSE_UNWRAP = 64,                   
+        HUKS_KEY_PURPOSE_MAC = 128,                     
+        HUKS_KEY_PURPOSE_AGREE = 256,                   
+    }
+
+    
+    export enum HuksKeyDigest {
+        HUKS_DIGEST_NONE = 0,
+        HUKS_DIGEST_MD5 = 1,
+        HUKS_DIGEST_SHA1 = 10,
+        HUKS_DIGEST_SHA224 = 11,
+        HUKS_DIGEST_SHA256 = 12,
+        HUKS_DIGEST_SHA384 = 13,
+        HUKS_DIGEST_SHA512 = 14,
+    }
+
+    
+    export enum HuksKeyPadding {
+        HUKS_PADDING_NONE = 0,
+        HUKS_PADDING_OAEP = 1,
+        HUKS_PADDING_PSS = 2,
+        HUKS_PADDING_PKCS1_V1_5 = 3,
+        HUKS_PADDING_PKCS5 = 4,
+        HUKS_PADDING_PKCS7 = 5,
+    }
+
+    
+    export enum HuksCipherMode {
+        HUKS_MODE_ECB = 1,
+        HUKS_MODE_CBC = 2,
+        HUKS_MODE_CTR = 3,
+        HUKS_MODE_OFB = 4,
+        HUKS_MODE_CCM = 31,
+        HUKS_MODE_GCM = 32,
+    }
+
+    
+    export enum HuksKeySize {
+        HUKS_RSA_KEY_SIZE_512 = 512,
+        HUKS_RSA_KEY_SIZE_768 = 768,
+        HUKS_RSA_KEY_SIZE_1024 = 1024,
+        HUKS_RSA_KEY_SIZE_2048 = 2048,
+        HUKS_RSA_KEY_SIZE_3072 = 3072,
+        HUKS_RSA_KEY_SIZE_4096 = 4096,
+
+        HUKS_ECC_KEY_SIZE_224 = 224,
+        HUKS_ECC_KEY_SIZE_256 = 256,
+        HUKS_ECC_KEY_SIZE_384 = 384,
+        HUKS_ECC_KEY_SIZE_521 = 521,
+
+        HUKS_AES_KEY_SIZE_128 = 128,
+        HUKS_AES_KEY_SIZE_192 = 192,
+        HUKS_AES_KEY_SIZE_256 = 256,
+        HUKS_AES_KEY_SIZE_512 = 512,
+
+        HUKS_CURVE25519_KEY_SIZE_256 = 256,
+
+        HUKS_DH_KEY_SIZE_2048 = 2048,
+        HUKS_DH_KEY_SIZE_3072 = 3072,
+        HUKS_DH_KEY_SIZE_4096 = 4096,
+    }
+
+    
+    export enum HuksKeyAlg {
+        HUKS_ALG_RSA = 1,
+        HUKS_ALG_ECC = 2,
+        HUKS_ALG_DSA = 3,
+
+        HUKS_ALG_AES = 20,
+        HUKS_ALG_HMAC = 50,
+        HUKS_ALG_HKDF = 51,
+        HUKS_ALG_PBKDF2 = 52,
+
+        HUKS_ALG_ECDH = 100,
+        HUKS_ALG_X25519 = 101,
+        HUKS_ALG_ED25519 = 102,
+        HUKS_ALG_DH = 103,
+    }
+
+    
+    export enum HuksKeyGenerateType {
+        HUKS_KEY_GENERATE_TYPE_DEFAULT = 0,
+        HUKS_KEY_GENERATE_TYPE_DERIVE = 1,
+        HUKS_KEY_GENERATE_TYPE_AGREE = 2,
+    }
+
+    
+    export enum HuksKeyFlag {
+        HUKS_KEY_FLAG_IMPORT_KEY = 1,
+        HUKS_KEY_FLAG_GENERATE_KEY = 2,
+        HUKS_KEY_FLAG_AGREE_KEY = 3,
+        HUKS_KEY_FLAG_DERIVE_KEY = 4,
+    }
+
+    
+    export enum HuksKeyStorageType {
+        HUKS_STORAGE_TEMP = 0,
+        HUKS_STORAGE_PERSISTENT = 1,
+    }
+
+    
+    export enum HuksSendType {
+        HUKS_SEND_TYPE_ASYNC = 0,
+        HUKS_SEND_TYPE_SYNC = 1,
+    }
+
+    
+    declare enum HuksTagType {
+        HUKS_TAG_TYPE_INVALID = 0 << 28,
+        HUKS_TAG_TYPE_INT = 1 << 28,
+        HUKS_TAG_TYPE_UINT = 2 << 28,
+        HUKS_TAG_TYPE_ULONG = 3 << 28,
+        HUKS_TAG_TYPE_BOOL = 4 << 28,
+        HUKS_TAG_TYPE_BYTES = 5 << 28,
+    }
+
+    
+    export enum HuksTag {
+        
+        HUKS_TAG_INVALID = HuksTagType.HUKS_TAG_TYPE_INVALID | 0,
+
+        
+        HUKS_TAG_ALGORITHM = HuksTagType.HUKS_TAG_TYPE_UINT | 1,
+        HUKS_TAG_PURPOSE = HuksTagType.HUKS_TAG_TYPE_UINT | 2,
+        HUKS_TAG_KEY_SIZE = HuksTagType.HUKS_TAG_TYPE_UINT | 3,
+        HUKS_TAG_DIGEST = HuksTagType.HUKS_TAG_TYPE_UINT | 4,
+        HUKS_TAG_PADDING = HuksTagType.HUKS_TAG_TYPE_UINT | 5,
+        HUKS_TAG_BLOCK_MODE = HuksTagType.HUKS_TAG_TYPE_UINT | 6,
+        HUKS_TAG_KEY_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 7,
+        HUKS_TAG_ASSOCIATED_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 8,
+        HUKS_TAG_NONCE = HuksTagType.HUKS_TAG_TYPE_BYTES | 9,
+        HUKS_TAG_IV = HuksTagType.HUKS_TAG_TYPE_BYTES | 10,
+
+        
+        HUKS_TAG_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 11,
+        HUKS_TAG_SALT = HuksTagType.HUKS_TAG_TYPE_BYTES | 12,
+        HUKS_TAG_PWD = HuksTagType.HUKS_TAG_TYPE_BYTES | 13,
+        HUKS_TAG_ITERATION = HuksTagType.HUKS_TAG_TYPE_UINT | 14,
+
+        HUKS_TAG_KEY_GENERATE_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 15, 
+        HUKS_TAG_DERIVE_MAIN_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 16,
+        HUKS_TAG_DERIVE_FACTOR = HuksTagType.HUKS_TAG_TYPE_BYTES | 17,
+        HUKS_TAG_DERIVE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT | 18,
+        HUKS_TAG_AGREE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT | 19,
+        HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 20,
+        HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 21,
+        HUKS_TAG_AGREE_PUBLIC_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 22,
+        HUKS_TAG_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 23,
+        HUKS_TAG_DERIVE_KEY_SIZE = HuksTagType.HUKS_TAG_TYPE_UINT | 24,
+
+        
+        HUKS_TAG_ACTIVE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 201,
+
+        
+        HUKS_TAG_ORIGINATION_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 202,
+
+        
+        HUKS_TAG_USAGE_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 203,
+
+        
+        HUKS_TAG_CREATION_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 204,
+
+        
+        HUKS_TAG_ALL_USERS = HuksTagType.HUKS_TAG_TYPE_BOOL | 301,
+        HUKS_TAG_USER_ID = HuksTagType.HUKS_TAG_TYPE_UINT | 302,
+        HUKS_TAG_NO_AUTH_REQUIRED = HuksTagType.HUKS_TAG_TYPE_BOOL | 303,
+        HUKS_TAG_USER_AUTH_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 304,
+        HUKS_TAG_AUTH_TIMEOUT = HuksTagType.HUKS_TAG_TYPE_UINT | 305,
+        HUKS_TAG_AUTH_TOKEN = HuksTagType.HUKS_TAG_TYPE_BYTES | 306,
+
+        
+        HUKS_TAG_ATTESTATION_CHALLENGE = HuksTagType.HUKS_TAG_TYPE_BYTES | 501,
+        HUKS_TAG_ATTESTATION_APPLICATION_ID = HuksTagType.HUKS_TAG_TYPE_BYTES | 502,
+        HUKS_TAG_ATTESTATION_ID_BRAND = HuksTagType.HUKS_TAG_TYPE_BYTES | 503,
+        HUKS_TAG_ATTESTATION_ID_DEVICE = HuksTagType.HUKS_TAG_TYPE_BYTES | 504,
+        HUKS_TAG_ATTESTATION_ID_PRODUCT = HuksTagType.HUKS_TAG_TYPE_BYTES | 505,
+        HUKS_TAG_ATTESTATION_ID_SERIAL = HuksTagType.HUKS_TAG_TYPE_BYTES | 506,
+        HUKS_TAG_ATTESTATION_ID_IMEI = HuksTagType.HUKS_TAG_TYPE_BYTES | 507,
+        HUKS_TAG_ATTESTATION_ID_MEID = HuksTagType.HUKS_TAG_TYPE_BYTES | 508,
+        HUKS_TAG_ATTESTATION_ID_MANUFACTURER = HuksTagType.HUKS_TAG_TYPE_BYTES | 509,
+        HUKS_TAG_ATTESTATION_ID_MODEL = HuksTagType.HUKS_TAG_TYPE_BYTES | 510,
+        HUKS_TAG_ATTESTATION_ID_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 511,
+        HUKS_TAG_ATTESTATION_ID_SOCID = HuksTagType.HUKS_TAG_TYPE_BYTES | 512,
+        HUKS_TAG_ATTESTATION_ID_UDID = HuksTagType.HUKS_TAG_TYPE_BYTES | 513,
+        HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 514,
+        HUKS_TAG_ATTESTATION_ID_VERSION_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 515,
+
+        
+        HUKS_TAG_IS_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 1001,
+        HUKS_TAG_KEY_STORAGE_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 1002, 
+        HUKS_TAG_IS_ALLOWED_WRAP = HuksTagType.HUKS_TAG_TYPE_BOOL | 1003,
+        HUKS_TAG_KEY_WRAP_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 1004,
+        HUKS_TAG_KEY_AUTH_ID = HuksTagType.HUKS_TAG_TYPE_BYTES | 1005,
+        HUKS_TAG_KEY_ROLE = HuksTagType.HUKS_TAG_TYPE_UINT | 1006,
+        HUKS_TAG_KEY_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 1007, 
+        HUKS_TAG_IS_ASYNCHRONIZED = HuksTagType.HUKS_TAG_TYPE_UINT | 1008,
+        HUKS_TAG_SECURE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 1009,
+        HUKS_TAG_SECURE_KEY_UUID = HuksTagType.HUKS_TAG_TYPE_BYTES | 1010,
+        HUKS_TAG_KEY_DOMAIN = HuksTagType.HUKS_TAG_TYPE_UINT | 1011,
+
+        
+        HUKS_TAG_PROCESS_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES | 10001,
+        HUKS_TAG_PACKAGE_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES | 10002,
+        HUKS_TAG_ACCESS_TIME = HuksTagType.HUKS_TAG_TYPE_UINT | 10003,
+        HUKS_TAG_USES_TIME = HuksTagType.HUKS_TAG_TYPE_UINT | 10004,
+        HUKS_TAG_CRYPTO_CTX = HuksTagType.HUKS_TAG_TYPE_ULONG | 10005,
+        HUKS_TAG_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 10006,
+        HUKS_TAG_KEY_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT | 10007,
+        HUKS_TAG_PAYLOAD_LEN = HuksTagType.HUKS_TAG_TYPE_UINT | 10008,
+        HUKS_TAG_AE_TAG = HuksTagType.HUKS_TAG_TYPE_BYTES | 10009,
+        HUKS_TAG_IS_KEY_HANDLE = HuksTagType.HUKS_TAG_TYPE_ULONG | 10010,
+
+        
+        HUKS_TAG_OS_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT | 10101,
+        HUKS_TAG_OS_PATCHLEVEL = HuksTagType.HUKS_TAG_TYPE_UINT | 10102,
+
+        
+        HUKS_TAG_SYMMETRIC_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20001,
+        HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20002,
+        HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20003,
+    }
+}</td><td>huks</td><td>None</td><td>0</td><td>4153</td><tr><tr><td>huks</td><td>function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;</td><td>generateKey</td><td>None</td><td>3</td><td>1458</td><tr><tr><td>huks</td><td>function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>;</td><td>generateKey</td><td>None</td><td>2</td><td>60</td><tr><tr><td>huks</td><td>function deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;</td><td>deleteKey</td><td>None</td><td>3</td><td>527</td><tr><tr><td>huks</td><td>function deleteKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>;</td><td>deleteKey</td><td>None</td><td>2</td><td>60</td><tr><tr><td>huks</td><td>function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;</td><td>exportKey</td><td>None</td><td>3</td><td>933</td><tr><tr><td>huks</td><td>function exportKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>;</td><td>exportKey</td><td>None</td><td>2</td><td>37</td><tr><tr><td>huks</td><td>function getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;</td><td>getKeyProperties</td><td>None</td><td>3</td><td>69</td><tr><tr><td>huks</td><td>function getKeyProperties(keyAlias: string, options: HuksOptions) : Promise<HuksResult>;</td><td>getKeyProperties</td><td>None</td><td>2</td><td>0</td><tr><tr><td>huks</td><td>function isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback<boolean>) : void;</td><td>isKeyExist</td><td>None</td><td>3</td><td>90</td><tr><tr><td>huks</td><td>function isKeyExist(keyAlias: string, options: HuksOptions) : Promise<boolean>;</td><td>isKeyExist</td><td>None</td><td>2</td><td>0</td><tr><tr><td>huks</td><td>function init(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksHandle>) : void;</td><td>init</td><td>None</td><td>3</td><td>270</td><tr><tr><td>huks</td><td>function init(keyAlias: string, options: HuksOptions) : Promise<HuksHandle>;</td><td>init</td><td>None</td><td>2</td><td>64</td><tr><tr><td>huks</td><td>function update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;</td><td>update</td><td>None</td><td>4</td><td>517</td><tr><tr><td>huks</td><td>function update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise<HuksResult>;</td><td>update</td><td>None</td><td>3</td><td>66</td><tr><tr><td>huks</td><td>function finish(handle: number, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;</td><td>finish</td><td>None</td><td>3</td><td>744</td><tr><tr><td>huks</td><td>function finish(handle: number, options: HuksOptions) : Promise<HuksResult>;</td><td>finish</td><td>None</td><td>2</td><td>64</td><tr><tr><td>huks</td><td>function abort(handle: number, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;</td><td>abort</td><td>None</td><td>3</td><td>313</td><tr><tr><td>huks</td><td>function abort(handle: number, options: HuksOptions) : Promise<HuksResult>;</td><td>abort</td><td>None</td><td>2</td><td>64</td><tr><tr><td>huks</td><td>function getSdkVersion(options: HuksOptions) : string;</td><td>getSdkVersion</td><td>None</td><td>1</td><td>4</td><tr><tr><td>HuksParam</td><td>export interface HuksParam {
+        tag: HuksTag;
+        value: boolean | number | bigint | Uint8Array;
+    }</td><td>HuksParam</td><td>20</td><td>0</td><td>0</td><tr><tr><td>HuksParam</td><td>tag: HuksTag</td><td>tag</td><td>22</td><td>1</td><td>1916</td><tr><tr><td>HuksParam</td><td>value: boolean | number | bigint | Uint8Array</td><td>value</td><td>22</td><td>1</td><td>1988</td><tr><tr><td>HuksHandle</td><td>export interface HuksHandle {
+        errorCode: number;
+        handle: number;
+        token?: Uint8Array;
+    }</td><td>HuksHandle</td><td>20</td><td>0</td><td>0</td><tr><tr><td>HuksHandle</td><td>errorCode: number</td><td>errorCode</td><td>22</td><td>1</td><td>1906</td><tr><tr><td>HuksHandle</td><td>handle: number</td><td>handle</td><td>22</td><td>1</td><td>1128</td><tr><tr><td>HuksHandle</td><td>token?: Uint8Array</td><td>token</td><td>22</td><td>1</td><td>89</td><tr><tr><td>HuksOptions</td><td>export interface HuksOptions {
+        properties?: Array<HuksParam>;
+        inData?: Uint8Array;
+    }</td><td>HuksOptions</td><td>20</td><td>0</td><td>3327</td><tr><tr><td>HuksOptions</td><td>properties?: Array<HuksParam></td><td>properties</td><td>22</td><td>1</td><td>845</td><tr><tr><td>HuksOptions</td><td>inData?: Uint8Array</td><td>inData</td><td>22</td><td>1</td><td>900</td><tr><tr><td>HuksResult</td><td>export interface HuksResult {
+        errorCode: number;
+        outData?: Uint8Array;
+        properties?: Array<HuksParam>;
+        certChains?: Array<string>;
+    }</td><td>HuksResult</td><td>20</td><td>0</td><td>0</td><tr><tr><td>HuksResult</td><td>errorCode: number</td><td>errorCode</td><td>22</td><td>1</td><td>1906</td><tr><tr><td>HuksResult</td><td>outData?: Uint8Array</td><td>outData</td><td>22</td><td>1</td><td>425</td><tr><tr><td>HuksResult</td><td>properties?: Array<HuksParam></td><td>properties</td><td>22</td><td>1</td><td>845</td><tr><tr><td>HuksResult</td><td>certChains?: Array<string></td><td>certChains</td><td>22</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>export enum HuksErrorCode {
+        HUKS_SUCCESS = 0,
+        HUKS_FAILURE = -1,
+        HUKS_ERROR_BAD_STATE = -2,
+        HUKS_ERROR_INVALID_ARGUMENT = -3,
+        HUKS_ERROR_NOT_SUPPORTED = -4,
+        HUKS_ERROR_NO_PERMISSION = -5,
+        HUKS_ERROR_INSUFFICIENT_DATA = -6,
+        HUKS_ERROR_BUFFER_TOO_SMALL = -7,
+        HUKS_ERROR_INSUFFICIENT_MEMORY = -8,
+        HUKS_ERROR_COMMUNICATION_FAILURE = -9,
+        HUKS_ERROR_STORAGE_FAILURE = -10,
+        HUKS_ERROR_HARDWARE_FAILURE = -11,
+        HUKS_ERROR_ALREADY_EXISTS = -12,
+        HUKS_ERROR_NOT_EXIST = -13,
+        HUKS_ERROR_NULL_POINTER = -14,
+        HUKS_ERROR_FILE_SIZE_FAIL = -15,
+        HUKS_ERROR_READ_FILE_FAIL = -16,
+        HUKS_ERROR_INVALID_PUBLIC_KEY = -17,
+        HUKS_ERROR_INVALID_PRIVATE_KEY = -18,
+        HUKS_ERROR_INVALID_KEY_INFO = -19,
+        HUKS_ERROR_HASH_NOT_EQUAL = -20,
+        HUKS_ERROR_MALLOC_FAIL = -21,
+        HUKS_ERROR_WRITE_FILE_FAIL = -22,
+        HUKS_ERROR_REMOVE_FILE_FAIL = -23,
+        HUKS_ERROR_OPEN_FILE_FAIL = -24,
+        HUKS_ERROR_CLOSE_FILE_FAIL = -25,
+        HUKS_ERROR_MAKE_DIR_FAIL = -26,
+        HUKS_ERROR_INVALID_KEY_FILE = -27,
+        HUKS_ERROR_IPC_MSG_FAIL = -28,
+        HUKS_ERROR_REQUEST_OVERFLOWS = -29,
+        HUKS_ERROR_PARAM_NOT_EXIST = -30,
+        HUKS_ERROR_CRYPTO_ENGINE_ERROR = -31,
+        HUKS_ERROR_COMMUNICATION_TIMEOUT = -32,
+        HUKS_ERROR_IPC_INIT_FAIL = -33,
+        HUKS_ERROR_IPC_DLOPEN_FAIL = -34,
+        HUKS_ERROR_EFUSE_READ_FAIL = -35,
+        HUKS_ERROR_NEW_ROOT_KEY_MATERIAL_EXIST = -36,
+        HUKS_ERROR_UPDATE_ROOT_KEY_MATERIAL_FAIL = -37,
+        HUKS_ERROR_VERIFICATION_FAILED = -38,
+
+        HUKS_ERROR_CHECK_GET_ALG_FAIL = -100,
+        HUKS_ERROR_CHECK_GET_KEY_SIZE_FAIL = -101,
+        HUKS_ERROR_CHECK_GET_PADDING_FAIL = -102,
+        HUKS_ERROR_CHECK_GET_PURPOSE_FAIL = -103,
+        HUKS_ERROR_CHECK_GET_DIGEST_FAIL =  -104,
+        HUKS_ERROR_CHECK_GET_MODE_FAIL = -105,
+        HUKS_ERROR_CHECK_GET_NONCE_FAIL = -106,
+        HUKS_ERROR_CHECK_GET_AAD_FAIL = -107,
+        HUKS_ERROR_CHECK_GET_IV_FAIL = -108,
+        HUKS_ERROR_CHECK_GET_AE_TAG_FAIL = -109,
+        HUKS_ERROR_CHECK_GET_SALT_FAIL = -110,
+        HUKS_ERROR_CHECK_GET_ITERATION_FAIL = -111,
+        HUKS_ERROR_INVALID_ALGORITHM = -112,
+        HUKS_ERROR_INVALID_KEY_SIZE = -113,
+        HUKS_ERROR_INVALID_PADDING = -114,
+        HUKS_ERROR_INVALID_PURPOSE = -115,
+        HUKS_ERROR_INVALID_MODE = -116,
+        HUKS_ERROR_INVALID_DIGEST =  -117,
+        HUKS_ERROR_INVALID_SIGNATURE_SIZE = -118,
+        HUKS_ERROR_INVALID_IV = -119,
+        HUKS_ERROR_INVALID_AAD = -120,
+        HUKS_ERROR_INVALID_NONCE = -121,
+        HUKS_ERROR_INVALID_AE_TAG = -122,
+        HUKS_ERROR_INVALID_SALT = -123,
+        HUKS_ERROR_INVALID_ITERATION = -124,
+        HUKS_ERROR_INVALID_OPERATION = -125,
+
+        HUKS_ERROR_INTERNAL_ERROR = -999,
+        HUKS_ERROR_UNKNOWN_ERROR = -1000,
+    }</td><td>HuksErrorCode</td><td>40</td><td>0</td><td>1519</td><tr><tr><td>HuksErrorCode</td><td>HUKS_SUCCESS = 0,</td><td>HUKS_SUCCESS</td><td>42</td><td>1</td><td>657</td><tr><tr><td>HuksErrorCode</td><td>HUKS_FAILURE = -1,</td><td>HUKS_FAILURE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_BAD_STATE = -2,</td><td>HUKS_ERROR_BAD_STATE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_ARGUMENT = -3,</td><td>HUKS_ERROR_INVALID_ARGUMENT</td><td>42</td><td>1</td><td>140</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_NOT_SUPPORTED = -4,</td><td>HUKS_ERROR_NOT_SUPPORTED</td><td>42</td><td>1</td><td>18</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_NO_PERMISSION = -5,</td><td>HUKS_ERROR_NO_PERMISSION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INSUFFICIENT_DATA = -6,</td><td>HUKS_ERROR_INSUFFICIENT_DATA</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_BUFFER_TOO_SMALL = -7,</td><td>HUKS_ERROR_BUFFER_TOO_SMALL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INSUFFICIENT_MEMORY = -8,</td><td>HUKS_ERROR_INSUFFICIENT_MEMORY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_COMMUNICATION_FAILURE = -9,</td><td>HUKS_ERROR_COMMUNICATION_FAILURE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_STORAGE_FAILURE = -10,</td><td>HUKS_ERROR_STORAGE_FAILURE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_HARDWARE_FAILURE = -11,</td><td>HUKS_ERROR_HARDWARE_FAILURE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_ALREADY_EXISTS = -12,</td><td>HUKS_ERROR_ALREADY_EXISTS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_NOT_EXIST = -13,</td><td>HUKS_ERROR_NOT_EXIST</td><td>42</td><td>1</td><td>20</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_NULL_POINTER = -14,</td><td>HUKS_ERROR_NULL_POINTER</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_FILE_SIZE_FAIL = -15,</td><td>HUKS_ERROR_FILE_SIZE_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_READ_FILE_FAIL = -16,</td><td>HUKS_ERROR_READ_FILE_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_PUBLIC_KEY = -17,</td><td>HUKS_ERROR_INVALID_PUBLIC_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_PRIVATE_KEY = -18,</td><td>HUKS_ERROR_INVALID_PRIVATE_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_KEY_INFO = -19,</td><td>HUKS_ERROR_INVALID_KEY_INFO</td><td>42</td><td>1</td><td>18</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_HASH_NOT_EQUAL = -20,</td><td>HUKS_ERROR_HASH_NOT_EQUAL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_MALLOC_FAIL = -21,</td><td>HUKS_ERROR_MALLOC_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_WRITE_FILE_FAIL = -22,</td><td>HUKS_ERROR_WRITE_FILE_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_REMOVE_FILE_FAIL = -23,</td><td>HUKS_ERROR_REMOVE_FILE_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_OPEN_FILE_FAIL = -24,</td><td>HUKS_ERROR_OPEN_FILE_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CLOSE_FILE_FAIL = -25,</td><td>HUKS_ERROR_CLOSE_FILE_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_MAKE_DIR_FAIL = -26,</td><td>HUKS_ERROR_MAKE_DIR_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_KEY_FILE = -27,</td><td>HUKS_ERROR_INVALID_KEY_FILE</td><td>42</td><td>1</td><td>10</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_IPC_MSG_FAIL = -28,</td><td>HUKS_ERROR_IPC_MSG_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_REQUEST_OVERFLOWS = -29,</td><td>HUKS_ERROR_REQUEST_OVERFLOWS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_PARAM_NOT_EXIST = -30,</td><td>HUKS_ERROR_PARAM_NOT_EXIST</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CRYPTO_ENGINE_ERROR = -31,</td><td>HUKS_ERROR_CRYPTO_ENGINE_ERROR</td><td>42</td><td>1</td><td>12</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_COMMUNICATION_TIMEOUT = -32,</td><td>HUKS_ERROR_COMMUNICATION_TIMEOUT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_IPC_INIT_FAIL = -33,</td><td>HUKS_ERROR_IPC_INIT_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_IPC_DLOPEN_FAIL = -34,</td><td>HUKS_ERROR_IPC_DLOPEN_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_EFUSE_READ_FAIL = -35,</td><td>HUKS_ERROR_EFUSE_READ_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_NEW_ROOT_KEY_MATERIAL_EXIST = -36,</td><td>HUKS_ERROR_NEW_ROOT_KEY_MATERIAL_EXIST</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_UPDATE_ROOT_KEY_MATERIAL_FAIL = -37,</td><td>HUKS_ERROR_UPDATE_ROOT_KEY_MATERIAL_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_VERIFICATION_FAILED = -38,</td><td>HUKS_ERROR_VERIFICATION_FAILED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_ALG_FAIL = -100,</td><td>HUKS_ERROR_CHECK_GET_ALG_FAIL</td><td>42</td><td>1</td><td>14</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_KEY_SIZE_FAIL = -101,</td><td>HUKS_ERROR_CHECK_GET_KEY_SIZE_FAIL</td><td>42</td><td>1</td><td>24</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_PADDING_FAIL = -102,</td><td>HUKS_ERROR_CHECK_GET_PADDING_FAIL</td><td>42</td><td>1</td><td>6</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_PURPOSE_FAIL = -103,</td><td>HUKS_ERROR_CHECK_GET_PURPOSE_FAIL</td><td>42</td><td>1</td><td>8</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_DIGEST_FAIL =  -104,</td><td>HUKS_ERROR_CHECK_GET_DIGEST_FAIL</td><td>42</td><td>1</td><td>2</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_MODE_FAIL = -105,</td><td>HUKS_ERROR_CHECK_GET_MODE_FAIL</td><td>42</td><td>1</td><td>6</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_NONCE_FAIL = -106,</td><td>HUKS_ERROR_CHECK_GET_NONCE_FAIL</td><td>42</td><td>1</td><td>4</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_AAD_FAIL = -107,</td><td>HUKS_ERROR_CHECK_GET_AAD_FAIL</td><td>42</td><td>1</td><td>4</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_IV_FAIL = -108,</td><td>HUKS_ERROR_CHECK_GET_IV_FAIL</td><td>42</td><td>1</td><td>4</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_AE_TAG_FAIL = -109,</td><td>HUKS_ERROR_CHECK_GET_AE_TAG_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_SALT_FAIL = -110,</td><td>HUKS_ERROR_CHECK_GET_SALT_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_CHECK_GET_ITERATION_FAIL = -111,</td><td>HUKS_ERROR_CHECK_GET_ITERATION_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_ALGORITHM = -112,</td><td>HUKS_ERROR_INVALID_ALGORITHM</td><td>42</td><td>1</td><td>116</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_KEY_SIZE = -113,</td><td>HUKS_ERROR_INVALID_KEY_SIZE</td><td>42</td><td>1</td><td>72</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_PADDING = -114,</td><td>HUKS_ERROR_INVALID_PADDING</td><td>42</td><td>1</td><td>110</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_PURPOSE = -115,</td><td>HUKS_ERROR_INVALID_PURPOSE</td><td>42</td><td>1</td><td>234</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_MODE = -116,</td><td>HUKS_ERROR_INVALID_MODE</td><td>42</td><td>1</td><td>10</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_DIGEST =  -117,</td><td>HUKS_ERROR_INVALID_DIGEST</td><td>42</td><td>1</td><td>26</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_SIGNATURE_SIZE = -118,</td><td>HUKS_ERROR_INVALID_SIGNATURE_SIZE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_IV = -119,</td><td>HUKS_ERROR_INVALID_IV</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_AAD = -120,</td><td>HUKS_ERROR_INVALID_AAD</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_NONCE = -121,</td><td>HUKS_ERROR_INVALID_NONCE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_AE_TAG = -122,</td><td>HUKS_ERROR_INVALID_AE_TAG</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_SALT = -123,</td><td>HUKS_ERROR_INVALID_SALT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_ITERATION = -124,</td><td>HUKS_ERROR_INVALID_ITERATION</td><td>42</td><td>1</td><td>2</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INVALID_OPERATION = -125,</td><td>HUKS_ERROR_INVALID_OPERATION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_INTERNAL_ERROR = -999,</td><td>HUKS_ERROR_INTERNAL_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksErrorCode</td><td>HUKS_ERROR_UNKNOWN_ERROR = -1000,</td><td>HUKS_ERROR_UNKNOWN_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksKeyPurpose</td><td>export enum HuksKeyPurpose {
+        HUKS_KEY_PURPOSE_ENCRYPT = 1,                   
+        HUKS_KEY_PURPOSE_DECRYPT = 2,                   
+        HUKS_KEY_PURPOSE_SIGN = 4,                      
+        HUKS_KEY_PURPOSE_VERIFY = 8,                    
+        HUKS_KEY_PURPOSE_DERIVE = 16,                   
+        HUKS_KEY_PURPOSE_WRAP = 32,                     
+        HUKS_KEY_PURPOSE_UNWRAP = 64,                   
+        HUKS_KEY_PURPOSE_MAC = 128,                     
+        HUKS_KEY_PURPOSE_AGREE = 256,                   
+    }</td><td>HuksKeyPurpose</td><td>40</td><td>0</td><td>789</td><tr><tr><td>HuksKeyPurpose</td><td>HUKS_KEY_PURPOSE_ENCRYPT = 1,</td><td>HUKS_KEY_PURPOSE_ENCRYPT</td><td>42</td><td>1</td><td>99</td><tr><tr><td>HuksKeyPurpose</td><td>HUKS_KEY_PURPOSE_DECRYPT = 2,</td><td>HUKS_KEY_PURPOSE_DECRYPT</td><td>42</td><td>1</td><td>83</td><tr><tr><td>HuksKeyPurpose</td><td>HUKS_KEY_PURPOSE_SIGN = 4,</td><td>HUKS_KEY_PURPOSE_SIGN</td><td>42</td><td>1</td><td>72</td><tr><tr><td>HuksKeyPurpose</td><td>HUKS_KEY_PURPOSE_VERIFY = 8,</td><td>HUKS_KEY_PURPOSE_VERIFY</td><td>42</td><td>1</td><td>71</td><tr><tr><td>HuksKeyPurpose</td><td>HUKS_KEY_PURPOSE_DERIVE = 16,</td><td>HUKS_KEY_PURPOSE_DERIVE</td><td>42</td><td>1</td><td>63</td><tr><tr><td>HuksKeyPurpose</td><td>HUKS_KEY_PURPOSE_WRAP = 32,</td><td>HUKS_KEY_PURPOSE_WRAP</td><td>42</td><td>1</td><td>22</td><tr><tr><td>HuksKeyPurpose</td><td>HUKS_KEY_PURPOSE_UNWRAP = 64,</td><td>HUKS_KEY_PURPOSE_UNWRAP</td><td>42</td><td>1</td><td>22</td><tr><tr><td>HuksKeyPurpose</td><td>HUKS_KEY_PURPOSE_MAC = 128,</td><td>HUKS_KEY_PURPOSE_MAC</td><td>42</td><td>1</td><td>73</td><tr><tr><td>HuksKeyPurpose</td><td>HUKS_KEY_PURPOSE_AGREE = 256,</td><td>HUKS_KEY_PURPOSE_AGREE</td><td>42</td><td>1</td><td>33</td><tr><tr><td>HuksKeyDigest</td><td>export enum HuksKeyDigest {
+        HUKS_DIGEST_NONE = 0,
+        HUKS_DIGEST_MD5 = 1,
+        HUKS_DIGEST_SHA1 = 10,
+        HUKS_DIGEST_SHA224 = 11,
+        HUKS_DIGEST_SHA256 = 12,
+        HUKS_DIGEST_SHA384 = 13,
+        HUKS_DIGEST_SHA512 = 14,
+    }</td><td>HuksKeyDigest</td><td>40</td><td>0</td><td>557</td><tr><tr><td>HuksKeyDigest</td><td>HUKS_DIGEST_NONE = 0,</td><td>HUKS_DIGEST_NONE</td><td>42</td><td>1</td><td>114</td><tr><tr><td>HuksKeyDigest</td><td>HUKS_DIGEST_MD5 = 1,</td><td>HUKS_DIGEST_MD5</td><td>42</td><td>1</td><td>45</td><tr><tr><td>HuksKeyDigest</td><td>HUKS_DIGEST_SHA1 = 10,</td><td>HUKS_DIGEST_SHA1</td><td>42</td><td>1</td><td>100</td><tr><tr><td>HuksKeyDigest</td><td>HUKS_DIGEST_SHA224 = 11,</td><td>HUKS_DIGEST_SHA224</td><td>42</td><td>1</td><td>68</td><tr><tr><td>HuksKeyDigest</td><td>HUKS_DIGEST_SHA256 = 12,</td><td>HUKS_DIGEST_SHA256</td><td>42</td><td>1</td><td>86</td><tr><tr><td>HuksKeyDigest</td><td>HUKS_DIGEST_SHA384 = 13,</td><td>HUKS_DIGEST_SHA384</td><td>42</td><td>1</td><td>72</td><tr><tr><td>HuksKeyDigest</td><td>HUKS_DIGEST_SHA512 = 14,</td><td>HUKS_DIGEST_SHA512</td><td>42</td><td>1</td><td>72</td><tr><tr><td>HuksKeyPadding</td><td>export enum HuksKeyPadding {
+        HUKS_PADDING_NONE = 0,
+        HUKS_PADDING_OAEP = 1,
+        HUKS_PADDING_PSS = 2,
+        HUKS_PADDING_PKCS1_V1_5 = 3,
+        HUKS_PADDING_PKCS5 = 4,
+        HUKS_PADDING_PKCS7 = 5,
+    }</td><td>HuksKeyPadding</td><td>40</td><td>0</td><td>558</td><tr><tr><td>HuksKeyPadding</td><td>HUKS_PADDING_NONE = 0,</td><td>HUKS_PADDING_NONE</td><td>42</td><td>1</td><td>148</td><tr><tr><td>HuksKeyPadding</td><td>HUKS_PADDING_OAEP = 1,</td><td>HUKS_PADDING_OAEP</td><td>42</td><td>1</td><td>100</td><tr><tr><td>HuksKeyPadding</td><td>HUKS_PADDING_PSS = 2,</td><td>HUKS_PADDING_PSS</td><td>42</td><td>1</td><td>104</td><tr><tr><td>HuksKeyPadding</td><td>HUKS_PADDING_PKCS1_V1_5 = 3,</td><td>HUKS_PADDING_PKCS1_V1_5</td><td>42</td><td>1</td><td>144</td><tr><tr><td>HuksKeyPadding</td><td>HUKS_PADDING_PKCS5 = 4,</td><td>HUKS_PADDING_PKCS5</td><td>42</td><td>1</td><td>26</td><tr><tr><td>HuksKeyPadding</td><td>HUKS_PADDING_PKCS7 = 5,</td><td>HUKS_PADDING_PKCS7</td><td>42</td><td>1</td><td>36</td><tr><tr><td>HuksCipherMode</td><td>export enum HuksCipherMode {
+        HUKS_MODE_ECB = 1,
+        HUKS_MODE_CBC = 2,
+        HUKS_MODE_CTR = 3,
+        HUKS_MODE_OFB = 4,
+        HUKS_MODE_CCM = 31,
+        HUKS_MODE_GCM = 32,
+    }</td><td>HuksCipherMode</td><td>40</td><td>0</td><td>321</td><tr><tr><td>HuksCipherMode</td><td>HUKS_MODE_ECB = 1,</td><td>HUKS_MODE_ECB</td><td>42</td><td>1</td><td>151</td><tr><tr><td>HuksCipherMode</td><td>HUKS_MODE_CBC = 2,</td><td>HUKS_MODE_CBC</td><td>42</td><td>1</td><td>97</td><tr><tr><td>HuksCipherMode</td><td>HUKS_MODE_CTR = 3,</td><td>HUKS_MODE_CTR</td><td>42</td><td>1</td><td>18</td><tr><tr><td>HuksCipherMode</td><td>HUKS_MODE_OFB = 4,</td><td>HUKS_MODE_OFB</td><td>42</td><td>1</td><td>2</td><tr><tr><td>HuksCipherMode</td><td>HUKS_MODE_CCM = 31,</td><td>HUKS_MODE_CCM</td><td>42</td><td>1</td><td>10</td><tr><tr><td>HuksCipherMode</td><td>HUKS_MODE_GCM = 32,</td><td>HUKS_MODE_GCM</td><td>42</td><td>1</td><td>43</td><tr><tr><td>HuksKeySize</td><td>export enum HuksKeySize {
+        HUKS_RSA_KEY_SIZE_512 = 512,
+        HUKS_RSA_KEY_SIZE_768 = 768,
+        HUKS_RSA_KEY_SIZE_1024 = 1024,
+        HUKS_RSA_KEY_SIZE_2048 = 2048,
+        HUKS_RSA_KEY_SIZE_3072 = 3072,
+        HUKS_RSA_KEY_SIZE_4096 = 4096,
+
+        HUKS_ECC_KEY_SIZE_224 = 224,
+        HUKS_ECC_KEY_SIZE_256 = 256,
+        HUKS_ECC_KEY_SIZE_384 = 384,
+        HUKS_ECC_KEY_SIZE_521 = 521,
+
+        HUKS_AES_KEY_SIZE_128 = 128,
+        HUKS_AES_KEY_SIZE_192 = 192,
+        HUKS_AES_KEY_SIZE_256 = 256,
+        HUKS_AES_KEY_SIZE_512 = 512,
+
+        HUKS_CURVE25519_KEY_SIZE_256 = 256,
+
+        HUKS_DH_KEY_SIZE_2048 = 2048,
+        HUKS_DH_KEY_SIZE_3072 = 3072,
+        HUKS_DH_KEY_SIZE_4096 = 4096,
+    }</td><td>HuksKeySize</td><td>40</td><td>0</td><td>675</td><tr><tr><td>HuksKeySize</td><td>HUKS_RSA_KEY_SIZE_512 = 512,</td><td>HUKS_RSA_KEY_SIZE_512</td><td>42</td><td>1</td><td>84</td><tr><tr><td>HuksKeySize</td><td>HUKS_RSA_KEY_SIZE_768 = 768,</td><td>HUKS_RSA_KEY_SIZE_768</td><td>42</td><td>1</td><td>58</td><tr><tr><td>HuksKeySize</td><td>HUKS_RSA_KEY_SIZE_1024 = 1024,</td><td>HUKS_RSA_KEY_SIZE_1024</td><td>42</td><td>1</td><td>58</td><tr><tr><td>HuksKeySize</td><td>HUKS_RSA_KEY_SIZE_2048 = 2048,</td><td>HUKS_RSA_KEY_SIZE_2048</td><td>42</td><td>1</td><td>56</td><tr><tr><td>HuksKeySize</td><td>HUKS_RSA_KEY_SIZE_3072 = 3072,</td><td>HUKS_RSA_KEY_SIZE_3072</td><td>42</td><td>1</td><td>55</td><tr><tr><td>HuksKeySize</td><td>HUKS_RSA_KEY_SIZE_4096 = 4096,</td><td>HUKS_RSA_KEY_SIZE_4096</td><td>42</td><td>1</td><td>55</td><tr><tr><td>HuksKeySize</td><td>HUKS_ECC_KEY_SIZE_224 = 224,</td><td>HUKS_ECC_KEY_SIZE_224</td><td>42</td><td>1</td><td>45</td><tr><tr><td>HuksKeySize</td><td>HUKS_ECC_KEY_SIZE_256 = 256,</td><td>HUKS_ECC_KEY_SIZE_256</td><td>42</td><td>1</td><td>41</td><tr><tr><td>HuksKeySize</td><td>HUKS_ECC_KEY_SIZE_384 = 384,</td><td>HUKS_ECC_KEY_SIZE_384</td><td>42</td><td>1</td><td>29</td><tr><tr><td>HuksKeySize</td><td>HUKS_ECC_KEY_SIZE_521 = 521,</td><td>HUKS_ECC_KEY_SIZE_521</td><td>42</td><td>1</td><td>31</td><tr><tr><td>HuksKeySize</td><td>HUKS_AES_KEY_SIZE_128 = 128,</td><td>HUKS_AES_KEY_SIZE_128</td><td>42</td><td>1</td><td>42</td><tr><tr><td>HuksKeySize</td><td>HUKS_AES_KEY_SIZE_192 = 192,</td><td>HUKS_AES_KEY_SIZE_192</td><td>42</td><td>1</td><td>21</td><tr><tr><td>HuksKeySize</td><td>HUKS_AES_KEY_SIZE_256 = 256,</td><td>HUKS_AES_KEY_SIZE_256</td><td>42</td><td>1</td><td>21</td><tr><tr><td>HuksKeySize</td><td>HUKS_AES_KEY_SIZE_512 = 512,</td><td>HUKS_AES_KEY_SIZE_512</td><td>42</td><td>1</td><td>10</td><tr><tr><td>HuksKeySize</td><td>HUKS_CURVE25519_KEY_SIZE_256 = 256,</td><td>HUKS_CURVE25519_KEY_SIZE_256</td><td>42</td><td>1</td><td>20</td><tr><tr><td>HuksKeySize</td><td>HUKS_DH_KEY_SIZE_2048 = 2048,</td><td>HUKS_DH_KEY_SIZE_2048</td><td>42</td><td>1</td><td>17</td><tr><tr><td>HuksKeySize</td><td>HUKS_DH_KEY_SIZE_3072 = 3072,</td><td>HUKS_DH_KEY_SIZE_3072</td><td>42</td><td>1</td><td>16</td><tr><tr><td>HuksKeySize</td><td>HUKS_DH_KEY_SIZE_4096 = 4096,</td><td>HUKS_DH_KEY_SIZE_4096</td><td>42</td><td>1</td><td>16</td><tr><tr><td>HuksKeyAlg</td><td>export enum HuksKeyAlg {
+        HUKS_ALG_RSA = 1,
+        HUKS_ALG_ECC = 2,
+        HUKS_ALG_DSA = 3,
+
+        HUKS_ALG_AES = 20,
+        HUKS_ALG_HMAC = 50,
+        HUKS_ALG_HKDF = 51,
+        HUKS_ALG_PBKDF2 = 52,
+
+        HUKS_ALG_ECDH = 100,
+        HUKS_ALG_X25519 = 101,
+        HUKS_ALG_ED25519 = 102,
+        HUKS_ALG_DH = 103,
+    }</td><td>HuksKeyAlg</td><td>40</td><td>0</td><td>832</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_RSA = 1,</td><td>HUKS_ALG_RSA</td><td>42</td><td>1</td><td>235</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_ECC = 2,</td><td>HUKS_ALG_ECC</td><td>42</td><td>1</td><td>101</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_DSA = 3,</td><td>HUKS_ALG_DSA</td><td>42</td><td>1</td><td>37</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_AES = 20,</td><td>HUKS_ALG_AES</td><td>42</td><td>1</td><td>36</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_HMAC = 50,</td><td>HUKS_ALG_HMAC</td><td>42</td><td>1</td><td>22</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_HKDF = 51,</td><td>HUKS_ALG_HKDF</td><td>42</td><td>1</td><td>20</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_PBKDF2 = 52,</td><td>HUKS_ALG_PBKDF2</td><td>42</td><td>1</td><td>20</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_ECDH = 100,</td><td>HUKS_ALG_ECDH</td><td>42</td><td>1</td><td>22</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_X25519 = 101,</td><td>HUKS_ALG_X25519</td><td>42</td><td>1</td><td>22</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_ED25519 = 102,</td><td>HUKS_ALG_ED25519</td><td>42</td><td>1</td><td>17</td><tr><tr><td>HuksKeyAlg</td><td>HUKS_ALG_DH = 103,</td><td>HUKS_ALG_DH</td><td>42</td><td>1</td><td>23</td><tr><tr><td>HuksKeyGenerateType</td><td>export enum HuksKeyGenerateType {
+        HUKS_KEY_GENERATE_TYPE_DEFAULT = 0,
+        HUKS_KEY_GENERATE_TYPE_DERIVE = 1,
+        HUKS_KEY_GENERATE_TYPE_AGREE = 2,
+    }</td><td>HuksKeyGenerateType</td><td>40</td><td>0</td><td>3</td><tr><tr><td>HuksKeyGenerateType</td><td>HUKS_KEY_GENERATE_TYPE_DEFAULT = 0,</td><td>HUKS_KEY_GENERATE_TYPE_DEFAULT</td><td>42</td><td>1</td><td>3</td><tr><tr><td>HuksKeyGenerateType</td><td>HUKS_KEY_GENERATE_TYPE_DERIVE = 1,</td><td>HUKS_KEY_GENERATE_TYPE_DERIVE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksKeyGenerateType</td><td>HUKS_KEY_GENERATE_TYPE_AGREE = 2,</td><td>HUKS_KEY_GENERATE_TYPE_AGREE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksKeyFlag</td><td>export enum HuksKeyFlag {
+        HUKS_KEY_FLAG_IMPORT_KEY = 1,
+        HUKS_KEY_FLAG_GENERATE_KEY = 2,
+        HUKS_KEY_FLAG_AGREE_KEY = 3,
+        HUKS_KEY_FLAG_DERIVE_KEY = 4,
+    }</td><td>HuksKeyFlag</td><td>40</td><td>0</td><td>0</td><tr><tr><td>HuksKeyFlag</td><td>HUKS_KEY_FLAG_IMPORT_KEY = 1,</td><td>HUKS_KEY_FLAG_IMPORT_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksKeyFlag</td><td>HUKS_KEY_FLAG_GENERATE_KEY = 2,</td><td>HUKS_KEY_FLAG_GENERATE_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksKeyFlag</td><td>HUKS_KEY_FLAG_AGREE_KEY = 3,</td><td>HUKS_KEY_FLAG_AGREE_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksKeyFlag</td><td>HUKS_KEY_FLAG_DERIVE_KEY = 4,</td><td>HUKS_KEY_FLAG_DERIVE_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksKeyStorageType</td><td>export enum HuksKeyStorageType {
+        HUKS_STORAGE_TEMP = 0,
+        HUKS_STORAGE_PERSISTENT = 1,
+    }</td><td>HuksKeyStorageType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>HuksKeyStorageType</td><td>HUKS_STORAGE_TEMP = 0,</td><td>HUKS_STORAGE_TEMP</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksKeyStorageType</td><td>HUKS_STORAGE_PERSISTENT = 1,</td><td>HUKS_STORAGE_PERSISTENT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksSendType</td><td>export enum HuksSendType {
+        HUKS_SEND_TYPE_ASYNC = 0,
+        HUKS_SEND_TYPE_SYNC = 1,
+    }</td><td>HuksSendType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>HuksSendType</td><td>HUKS_SEND_TYPE_ASYNC = 0,</td><td>HUKS_SEND_TYPE_ASYNC</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksSendType</td><td>HUKS_SEND_TYPE_SYNC = 1,</td><td>HUKS_SEND_TYPE_SYNC</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTagType</td><td>declare enum HuksTagType {
+        HUKS_TAG_TYPE_INVALID = 0 << 28,
+        HUKS_TAG_TYPE_INT = 1 << 28,
+        HUKS_TAG_TYPE_UINT = 2 << 28,
+        HUKS_TAG_TYPE_ULONG = 3 << 28,
+        HUKS_TAG_TYPE_BOOL = 4 << 28,
+        HUKS_TAG_TYPE_BYTES = 5 << 28,
+    }</td><td>HuksTagType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>HuksTagType</td><td>HUKS_TAG_TYPE_INVALID = 0 << 28,</td><td>HUKS_TAG_TYPE_INVALID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTagType</td><td>HUKS_TAG_TYPE_INT = 1 << 28,</td><td>HUKS_TAG_TYPE_INT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTagType</td><td>HUKS_TAG_TYPE_UINT = 2 << 28,</td><td>HUKS_TAG_TYPE_UINT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTagType</td><td>HUKS_TAG_TYPE_ULONG = 3 << 28,</td><td>HUKS_TAG_TYPE_ULONG</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTagType</td><td>HUKS_TAG_TYPE_BOOL = 4 << 28,</td><td>HUKS_TAG_TYPE_BOOL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTagType</td><td>HUKS_TAG_TYPE_BYTES = 5 << 28,</td><td>HUKS_TAG_TYPE_BYTES</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>export enum HuksTag {
+        
+        HUKS_TAG_INVALID = HuksTagType.HUKS_TAG_TYPE_INVALID | 0,
+
+        
+        HUKS_TAG_ALGORITHM = HuksTagType.HUKS_TAG_TYPE_UINT | 1,
+        HUKS_TAG_PURPOSE = HuksTagType.HUKS_TAG_TYPE_UINT | 2,
+        HUKS_TAG_KEY_SIZE = HuksTagType.HUKS_TAG_TYPE_UINT | 3,
+        HUKS_TAG_DIGEST = HuksTagType.HUKS_TAG_TYPE_UINT | 4,
+        HUKS_TAG_PADDING = HuksTagType.HUKS_TAG_TYPE_UINT | 5,
+        HUKS_TAG_BLOCK_MODE = HuksTagType.HUKS_TAG_TYPE_UINT | 6,
+        HUKS_TAG_KEY_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 7,
+        HUKS_TAG_ASSOCIATED_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 8,
+        HUKS_TAG_NONCE = HuksTagType.HUKS_TAG_TYPE_BYTES | 9,
+        HUKS_TAG_IV = HuksTagType.HUKS_TAG_TYPE_BYTES | 10,
+
+        
+        HUKS_TAG_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 11,
+        HUKS_TAG_SALT = HuksTagType.HUKS_TAG_TYPE_BYTES | 12,
+        HUKS_TAG_PWD = HuksTagType.HUKS_TAG_TYPE_BYTES | 13,
+        HUKS_TAG_ITERATION = HuksTagType.HUKS_TAG_TYPE_UINT | 14,
+
+        HUKS_TAG_KEY_GENERATE_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 15, 
+        HUKS_TAG_DERIVE_MAIN_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 16,
+        HUKS_TAG_DERIVE_FACTOR = HuksTagType.HUKS_TAG_TYPE_BYTES | 17,
+        HUKS_TAG_DERIVE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT | 18,
+        HUKS_TAG_AGREE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT | 19,
+        HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 20,
+        HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 21,
+        HUKS_TAG_AGREE_PUBLIC_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 22,
+        HUKS_TAG_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 23,
+        HUKS_TAG_DERIVE_KEY_SIZE = HuksTagType.HUKS_TAG_TYPE_UINT | 24,
+
+        
+        HUKS_TAG_ACTIVE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 201,
+
+        
+        HUKS_TAG_ORIGINATION_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 202,
+
+        
+        HUKS_TAG_USAGE_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 203,
+
+        
+        HUKS_TAG_CREATION_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 204,
+
+        
+        HUKS_TAG_ALL_USERS = HuksTagType.HUKS_TAG_TYPE_BOOL | 301,
+        HUKS_TAG_USER_ID = HuksTagType.HUKS_TAG_TYPE_UINT | 302,
+        HUKS_TAG_NO_AUTH_REQUIRED = HuksTagType.HUKS_TAG_TYPE_BOOL | 303,
+        HUKS_TAG_USER_AUTH_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 304,
+        HUKS_TAG_AUTH_TIMEOUT = HuksTagType.HUKS_TAG_TYPE_UINT | 305,
+        HUKS_TAG_AUTH_TOKEN = HuksTagType.HUKS_TAG_TYPE_BYTES | 306,
+
+        
+        HUKS_TAG_ATTESTATION_CHALLENGE = HuksTagType.HUKS_TAG_TYPE_BYTES | 501,
+        HUKS_TAG_ATTESTATION_APPLICATION_ID = HuksTagType.HUKS_TAG_TYPE_BYTES | 502,
+        HUKS_TAG_ATTESTATION_ID_BRAND = HuksTagType.HUKS_TAG_TYPE_BYTES | 503,
+        HUKS_TAG_ATTESTATION_ID_DEVICE = HuksTagType.HUKS_TAG_TYPE_BYTES | 504,
+        HUKS_TAG_ATTESTATION_ID_PRODUCT = HuksTagType.HUKS_TAG_TYPE_BYTES | 505,
+        HUKS_TAG_ATTESTATION_ID_SERIAL = HuksTagType.HUKS_TAG_TYPE_BYTES | 506,
+        HUKS_TAG_ATTESTATION_ID_IMEI = HuksTagType.HUKS_TAG_TYPE_BYTES | 507,
+        HUKS_TAG_ATTESTATION_ID_MEID = HuksTagType.HUKS_TAG_TYPE_BYTES | 508,
+        HUKS_TAG_ATTESTATION_ID_MANUFACTURER = HuksTagType.HUKS_TAG_TYPE_BYTES | 509,
+        HUKS_TAG_ATTESTATION_ID_MODEL = HuksTagType.HUKS_TAG_TYPE_BYTES | 510,
+        HUKS_TAG_ATTESTATION_ID_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 511,
+        HUKS_TAG_ATTESTATION_ID_SOCID = HuksTagType.HUKS_TAG_TYPE_BYTES | 512,
+        HUKS_TAG_ATTESTATION_ID_UDID = HuksTagType.HUKS_TAG_TYPE_BYTES | 513,
+        HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 514,
+        HUKS_TAG_ATTESTATION_ID_VERSION_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 515,
+
+        
+        HUKS_TAG_IS_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 1001,
+        HUKS_TAG_KEY_STORAGE_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 1002, 
+        HUKS_TAG_IS_ALLOWED_WRAP = HuksTagType.HUKS_TAG_TYPE_BOOL | 1003,
+        HUKS_TAG_KEY_WRAP_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 1004,
+        HUKS_TAG_KEY_AUTH_ID = HuksTagType.HUKS_TAG_TYPE_BYTES | 1005,
+        HUKS_TAG_KEY_ROLE = HuksTagType.HUKS_TAG_TYPE_UINT | 1006,
+        HUKS_TAG_KEY_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 1007, 
+        HUKS_TAG_IS_ASYNCHRONIZED = HuksTagType.HUKS_TAG_TYPE_UINT | 1008,
+        HUKS_TAG_SECURE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 1009,
+        HUKS_TAG_SECURE_KEY_UUID = HuksTagType.HUKS_TAG_TYPE_BYTES | 1010,
+        HUKS_TAG_KEY_DOMAIN = HuksTagType.HUKS_TAG_TYPE_UINT | 1011,
+
+        
+        HUKS_TAG_PROCESS_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES | 10001,
+        HUKS_TAG_PACKAGE_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES | 10002,
+        HUKS_TAG_ACCESS_TIME = HuksTagType.HUKS_TAG_TYPE_UINT | 10003,
+        HUKS_TAG_USES_TIME = HuksTagType.HUKS_TAG_TYPE_UINT | 10004,
+        HUKS_TAG_CRYPTO_CTX = HuksTagType.HUKS_TAG_TYPE_ULONG | 10005,
+        HUKS_TAG_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 10006,
+        HUKS_TAG_KEY_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT | 10007,
+        HUKS_TAG_PAYLOAD_LEN = HuksTagType.HUKS_TAG_TYPE_UINT | 10008,
+        HUKS_TAG_AE_TAG = HuksTagType.HUKS_TAG_TYPE_BYTES | 10009,
+        HUKS_TAG_IS_KEY_HANDLE = HuksTagType.HUKS_TAG_TYPE_ULONG | 10010,
+
+        
+        HUKS_TAG_OS_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT | 10101,
+        HUKS_TAG_OS_PATCHLEVEL = HuksTagType.HUKS_TAG_TYPE_UINT | 10102,
+
+        
+        HUKS_TAG_SYMMETRIC_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20001,
+        HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20002,
+        HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20003,
+    }</td><td>HuksTag</td><td>40</td><td>0</td><td>388</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_INVALID = HuksTagType.HUKS_TAG_TYPE_INVALID | 0,</td><td>HUKS_TAG_INVALID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ALGORITHM = HuksTagType.HUKS_TAG_TYPE_UINT | 1,</td><td>HUKS_TAG_ALGORITHM</td><td>42</td><td>1</td><td>20</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_PURPOSE = HuksTagType.HUKS_TAG_TYPE_UINT | 2,</td><td>HUKS_TAG_PURPOSE</td><td>42</td><td>1</td><td>20</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_SIZE = HuksTagType.HUKS_TAG_TYPE_UINT | 3,</td><td>HUKS_TAG_KEY_SIZE</td><td>42</td><td>1</td><td>16</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_DIGEST = HuksTagType.HUKS_TAG_TYPE_UINT | 4,</td><td>HUKS_TAG_DIGEST</td><td>42</td><td>1</td><td>17</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_PADDING = HuksTagType.HUKS_TAG_TYPE_UINT | 5,</td><td>HUKS_TAG_PADDING</td><td>42</td><td>1</td><td>7</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_BLOCK_MODE = HuksTagType.HUKS_TAG_TYPE_UINT | 6,</td><td>HUKS_TAG_BLOCK_MODE</td><td>42</td><td>1</td><td>8</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 7,</td><td>HUKS_TAG_KEY_TYPE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ASSOCIATED_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 8,</td><td>HUKS_TAG_ASSOCIATED_DATA</td><td>42</td><td>1</td><td>2</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_NONCE = HuksTagType.HUKS_TAG_TYPE_BYTES | 9,</td><td>HUKS_TAG_NONCE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_IV = HuksTagType.HUKS_TAG_TYPE_BYTES | 10,</td><td>HUKS_TAG_IV</td><td>42</td><td>1</td><td>2</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 11,</td><td>HUKS_TAG_INFO</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_SALT = HuksTagType.HUKS_TAG_TYPE_BYTES | 12,</td><td>HUKS_TAG_SALT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_PWD = HuksTagType.HUKS_TAG_TYPE_BYTES | 13,</td><td>HUKS_TAG_PWD</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ITERATION = HuksTagType.HUKS_TAG_TYPE_UINT | 14,</td><td>HUKS_TAG_ITERATION</td><td>42</td><td>1</td><td>1</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_GENERATE_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 15,</td><td>HUKS_TAG_KEY_GENERATE_TYPE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_DERIVE_MAIN_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 16,</td><td>HUKS_TAG_DERIVE_MAIN_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_DERIVE_FACTOR = HuksTagType.HUKS_TAG_TYPE_BYTES | 17,</td><td>HUKS_TAG_DERIVE_FACTOR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_DERIVE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT | 18,</td><td>HUKS_TAG_DERIVE_ALG</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_AGREE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT | 19,</td><td>HUKS_TAG_AGREE_ALG</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 20,</td><td>HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 21,</td><td>HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_AGREE_PUBLIC_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 22,</td><td>HUKS_TAG_AGREE_PUBLIC_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 23,</td><td>HUKS_TAG_KEY_ALIAS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_DERIVE_KEY_SIZE = HuksTagType.HUKS_TAG_TYPE_UINT | 24,</td><td>HUKS_TAG_DERIVE_KEY_SIZE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ACTIVE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 201,</td><td>HUKS_TAG_ACTIVE_DATETIME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ORIGINATION_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 202,</td><td>HUKS_TAG_ORIGINATION_EXPIRE_DATETIME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_USAGE_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 203,</td><td>HUKS_TAG_USAGE_EXPIRE_DATETIME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_CREATION_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG | 204,</td><td>HUKS_TAG_CREATION_DATETIME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ALL_USERS = HuksTagType.HUKS_TAG_TYPE_BOOL | 301,</td><td>HUKS_TAG_ALL_USERS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_USER_ID = HuksTagType.HUKS_TAG_TYPE_UINT | 302,</td><td>HUKS_TAG_USER_ID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_NO_AUTH_REQUIRED = HuksTagType.HUKS_TAG_TYPE_BOOL | 303,</td><td>HUKS_TAG_NO_AUTH_REQUIRED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_USER_AUTH_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 304,</td><td>HUKS_TAG_USER_AUTH_TYPE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_AUTH_TIMEOUT = HuksTagType.HUKS_TAG_TYPE_UINT | 305,</td><td>HUKS_TAG_AUTH_TIMEOUT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_AUTH_TOKEN = HuksTagType.HUKS_TAG_TYPE_BYTES | 306,</td><td>HUKS_TAG_AUTH_TOKEN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_CHALLENGE = HuksTagType.HUKS_TAG_TYPE_BYTES | 501,</td><td>HUKS_TAG_ATTESTATION_CHALLENGE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_APPLICATION_ID = HuksTagType.HUKS_TAG_TYPE_BYTES | 502,</td><td>HUKS_TAG_ATTESTATION_APPLICATION_ID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_BRAND = HuksTagType.HUKS_TAG_TYPE_BYTES | 503,</td><td>HUKS_TAG_ATTESTATION_ID_BRAND</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_DEVICE = HuksTagType.HUKS_TAG_TYPE_BYTES | 504,</td><td>HUKS_TAG_ATTESTATION_ID_DEVICE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_PRODUCT = HuksTagType.HUKS_TAG_TYPE_BYTES | 505,</td><td>HUKS_TAG_ATTESTATION_ID_PRODUCT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_SERIAL = HuksTagType.HUKS_TAG_TYPE_BYTES | 506,</td><td>HUKS_TAG_ATTESTATION_ID_SERIAL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_IMEI = HuksTagType.HUKS_TAG_TYPE_BYTES | 507,</td><td>HUKS_TAG_ATTESTATION_ID_IMEI</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_MEID = HuksTagType.HUKS_TAG_TYPE_BYTES | 508,</td><td>HUKS_TAG_ATTESTATION_ID_MEID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_MANUFACTURER = HuksTagType.HUKS_TAG_TYPE_BYTES | 509,</td><td>HUKS_TAG_ATTESTATION_ID_MANUFACTURER</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_MODEL = HuksTagType.HUKS_TAG_TYPE_BYTES | 510,</td><td>HUKS_TAG_ATTESTATION_ID_MODEL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_ALIAS = HuksTagType.HUKS_TAG_TYPE_BYTES | 511,</td><td>HUKS_TAG_ATTESTATION_ID_ALIAS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_SOCID = HuksTagType.HUKS_TAG_TYPE_BYTES | 512,</td><td>HUKS_TAG_ATTESTATION_ID_SOCID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_UDID = HuksTagType.HUKS_TAG_TYPE_BYTES | 513,</td><td>HUKS_TAG_ATTESTATION_ID_UDID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 514,</td><td>HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ATTESTATION_ID_VERSION_INFO = HuksTagType.HUKS_TAG_TYPE_BYTES | 515,</td><td>HUKS_TAG_ATTESTATION_ID_VERSION_INFO</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_IS_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 1001,</td><td>HUKS_TAG_IS_KEY_ALIAS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_STORAGE_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 1002,</td><td>HUKS_TAG_KEY_STORAGE_FLAG</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_IS_ALLOWED_WRAP = HuksTagType.HUKS_TAG_TYPE_BOOL | 1003,</td><td>HUKS_TAG_IS_ALLOWED_WRAP</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_WRAP_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT | 1004,</td><td>HUKS_TAG_KEY_WRAP_TYPE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_AUTH_ID = HuksTagType.HUKS_TAG_TYPE_BYTES | 1005,</td><td>HUKS_TAG_KEY_AUTH_ID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_ROLE = HuksTagType.HUKS_TAG_TYPE_UINT | 1006,</td><td>HUKS_TAG_KEY_ROLE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT | 1007,</td><td>HUKS_TAG_KEY_FLAG</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_IS_ASYNCHRONIZED = HuksTagType.HUKS_TAG_TYPE_UINT | 1008,</td><td>HUKS_TAG_IS_ASYNCHRONIZED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_SECURE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL | 1009,</td><td>HUKS_TAG_SECURE_KEY_ALIAS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_SECURE_KEY_UUID = HuksTagType.HUKS_TAG_TYPE_BYTES | 1010,</td><td>HUKS_TAG_SECURE_KEY_UUID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_DOMAIN = HuksTagType.HUKS_TAG_TYPE_UINT | 1011,</td><td>HUKS_TAG_KEY_DOMAIN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_PROCESS_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES | 10001,</td><td>HUKS_TAG_PROCESS_NAME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_PACKAGE_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES | 10002,</td><td>HUKS_TAG_PACKAGE_NAME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ACCESS_TIME = HuksTagType.HUKS_TAG_TYPE_UINT | 10003,</td><td>HUKS_TAG_ACCESS_TIME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_USES_TIME = HuksTagType.HUKS_TAG_TYPE_UINT | 10004,</td><td>HUKS_TAG_USES_TIME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_CRYPTO_CTX = HuksTagType.HUKS_TAG_TYPE_ULONG | 10005,</td><td>HUKS_TAG_CRYPTO_CTX</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES | 10006,</td><td>HUKS_TAG_KEY</td><td>42</td><td>1</td><td>19</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_KEY_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT | 10007,</td><td>HUKS_TAG_KEY_VERSION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_PAYLOAD_LEN = HuksTagType.HUKS_TAG_TYPE_UINT | 10008,</td><td>HUKS_TAG_PAYLOAD_LEN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_AE_TAG = HuksTagType.HUKS_TAG_TYPE_BYTES | 10009,</td><td>HUKS_TAG_AE_TAG</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_IS_KEY_HANDLE = HuksTagType.HUKS_TAG_TYPE_ULONG | 10010,</td><td>HUKS_TAG_IS_KEY_HANDLE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_OS_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT | 10101,</td><td>HUKS_TAG_OS_VERSION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_OS_PATCHLEVEL = HuksTagType.HUKS_TAG_TYPE_UINT | 10102,</td><td>HUKS_TAG_OS_PATCHLEVEL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_SYMMETRIC_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20001,</td><td>HUKS_TAG_SYMMETRIC_KEY_DATA</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20002,</td><td>HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HuksTag</td><td>HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA = HuksTagType.HUKS_TAG_TYPE_BYTES | 20003,</td><td>HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA</td><td>42</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>语言编译器运行时子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>compileruntime</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.worker</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>WorkerOptions</td><td>export interface WorkerOptions {
+  
+  type?: "classic" | "module";
+
+  
+  name?: string;
+
+  
+  shared?: boolean;
+}</td><td>WorkerOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WorkerOptions</td><td>type?: "classic" | "module"</td><td>type</td><td>22</td><td>1</td><td>456</td><tr><tr><td>WorkerOptions</td><td>name?: string</td><td>name</td><td>22</td><td>1</td><td>1240</td><tr><tr><td>WorkerOptions</td><td>shared?: boolean</td><td>shared</td><td>22</td><td>1</td><td>13</td><tr><tr><td>Event</td><td>export interface Event {
+  
+  readonly type: string;
+
+  
+  readonly timeStamp: number;
+}</td><td>Event</td><td>20</td><td>0</td><td>51</td><tr><tr><td>Event</td><td>readonly type: string</td><td>type</td><td>22</td><td>1</td><td>456</td><tr><tr><td>Event</td><td>readonly timeStamp: number</td><td>timeStamp</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ErrorEvent</td><td>export interface ErrorEvent extends Event {
+  
+  readonly message: string;
+
+  
+  readonly filename: string;
+
+  
+  readonly lineno: number;
+
+  
+  readonly colno: number;
+
+  
+  readonly error: Object;
+}</td><td>ErrorEvent</td><td>None</td><td>0</td><td>0</td><tr><tr><td>ErrorEvent</td><td>readonly message: string</td><td>message</td><td>22</td><td>1</td><td>150</td><tr><tr><td>ErrorEvent</td><td>readonly filename: string</td><td>filename</td><td>22</td><td>1</td><td>2</td><tr><tr><td>ErrorEvent</td><td>readonly lineno: number</td><td>lineno</td><td>22</td><td>1</td><td>1</td><tr><tr><td>ErrorEvent</td><td>readonly colno: number</td><td>colno</td><td>22</td><td>1</td><td>2</td><tr><tr><td>ErrorEvent</td><td>readonly error: Object</td><td>error</td><td>22</td><td>1</td><td>46</td><tr><tr><td>MessageEvent</td><td>export interface MessageEvent<T> extends Event {
+  
+  readonly data: T;
+}</td><td>MessageEvent</td><td>None</td><td>0</td><td>0</td><tr><tr><td>MessageEvent</td><td>readonly data: T</td><td>data</td><td>22</td><td>1</td><td>123</td><tr><tr><td>PostMessageOptions</td><td>export interface PostMessageOptions {
+  
+  transfer?: Object[];
+}</td><td>PostMessageOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PostMessageOptions</td><td>transfer?: Object[]</td><td>transfer</td><td>22</td><td>1</td><td>1</td><tr><tr><td>EventListener</td><td>export interface EventListener {
+  
+  (evt: Event): void | Promise<void>;
+}</td><td>EventListener</td><td>20</td><td>0</td><td>18</td><tr><tr><td>EventListener</td><td>(evt: Event): void | Promise<void></td><td>evt</td><td>22</td><td>1</td><td>0</td><tr><tr><td>EventTarget</td><td>export interface EventTarget {
+  
+  addEventListener(
+    type: string,
+    listener: EventListener
+  ): void;
+
+  
+  dispatchEvent(event: Event): boolean;
+
+  
+  removeEventListener(
+    type: string,
+    callback?: EventListener
+  ): void;
+
+  
+  removeAllListener(): void;
+}</td><td>EventTarget</td><td>20</td><td>0</td><td>0</td><tr><tr><td>EventTarget</td><td>addEventListener(
+    type: string,
+    listener: EventListener
+  ): void;</td><td>addEventListener</td><td>21</td><td>2</td><td>14</td><tr><tr><td>EventTarget</td><td>dispatchEvent(event: Event): boolean;</td><td>dispatchEvent</td><td>21</td><td>1</td><td>33</td><tr><tr><td>EventTarget</td><td>removeEventListener(
+    type: string,
+    callback?: EventListener
+  ): void;</td><td>removeEventListener</td><td>21</td><td>2</td><td>4</td><tr><tr><td>EventTarget</td><td>removeAllListener(): void;</td><td>removeAllListener</td><td>21</td><td>0</td><td>2</td><tr><tr><td>WorkerGlobalScope</td><td>declare interface WorkerGlobalScope extends EventTarget {
+  
+  readonly name: string;
+
+  
+  onerror?: (ev: ErrorEvent) => void;
+  readonly self: WorkerGlobalScope & typeof globalThis;
+}</td><td>WorkerGlobalScope</td><td>None</td><td>0</td><td>0</td><tr><tr><td>WorkerGlobalScope</td><td>onerror?: (ev: ErrorEvent) => void;</td><td>onerror</td><td>None</td><td>1</td><td>9</td><tr><tr><td>WorkerGlobalScope</td><td>readonly name: string</td><td>name</td><td>22</td><td>1</td><td>1240</td><tr><tr><td>WorkerGlobalScope</td><td>readonly self: WorkerGlobalScope & typeof globalThis</td><td>self</td><td>22</td><td>1</td><td>0</td><tr><tr><td>DedicatedWorkerGlobalScope</td><td>export interface DedicatedWorkerGlobalScope extends WorkerGlobalScope {
+  
+  onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) => void;
+
+  
+  onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) => void;
+
+  
+  close(): void;
+
+  
+  postMessage(messageObject: Object, transfer: Transferable[]): void;
+  postMessage(messageObject: Object, options?: PostMessageOptions): void;
+}</td><td>DedicatedWorkerGlobalScope</td><td>None</td><td>0</td><td>0</td><tr><tr><td>DedicatedWorkerGlobalScope</td><td>onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) => void;</td><td>onmessage</td><td>None</td><td>2</td><td>55</td><tr><tr><td>DedicatedWorkerGlobalScope</td><td>onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) => void;</td><td>onmessageerror</td><td>None</td><td>2</td><td>8</td><tr><tr><td>DedicatedWorkerGlobalScope</td><td>close(): void;</td><td>close</td><td>None</td><td>0</td><td>19</td><tr><tr><td>DedicatedWorkerGlobalScope</td><td>postMessage(messageObject: Object, transfer: Transferable[]): void;</td><td>postMessage</td><td>None</td><td>2</td><td>84</td><tr><tr><td>DedicatedWorkerGlobalScope</td><td>postMessage(messageObject: Object, options?: PostMessageOptions): void;</td><td>postMessage</td><td>None</td><td>2</td><td>84</td><tr><tr><td>worker</td><td>declare namespace worker {
+  class Worker extends EventTarget {
+    
+    constructor(scriptURL: string, options?: WorkerOptions);
+
+    
+    onexit?: (code: number) => void;
+
+    
+    onerror?: (err: ErrorEvent) => void;
+
+    
+    onmessage?: (event: MessageEvent) => void;
+
+    
+    onmessageerror?: (event: MessageEvent) => void;
+
+    
+    postMessage(message: Object, transfer: ArrayBuffer[]): void;
+    postMessage(message: Object, options?: PostMessageOptions): void;
+
+    
+    on(type: string, listener: EventListener): void;
+
+    
+    once(type: string, listener: EventListener): void;
+
+    
+    off(type: string, listener?: EventListener): void;
+
+    
+    terminate(): void;
+  }
+  const parentPort: DedicatedWorkerGlobalScope;
+}</td><td>worker</td><td>None</td><td>0</td><td>338</td><tr><tr><td>worker</td><td>const parentPort: DedicatedWorkerGlobalScope</td><td>parentPort</td><td>31</td><td>1</td><td>102</td><tr><tr><td>Worker</td><td>class Worker extends EventTarget {
+    
+    constructor(scriptURL: string, options?: WorkerOptions);
+
+    
+    onexit?: (code: number) => void;
+
+    
+    onerror?: (err: ErrorEvent) => void;
+
+    
+    onmessage?: (event: MessageEvent) => void;
+
+    
+    onmessageerror?: (event: MessageEvent) => void;
+
+    
+    postMessage(message: Object, transfer: ArrayBuffer[]): void;
+    postMessage(message: Object, options?: PostMessageOptions): void;
+
+    
+    on(type: string, listener: EventListener): void;
+
+    
+    once(type: string, listener: EventListener): void;
+
+    
+    off(type: string, listener?: EventListener): void;
+
+    
+    terminate(): void;
+  }</td><td>Worker</td><td>None</td><td>0</td><td>48</td><tr><tr><td>Worker</td><td>constructor(scriptURL: string, options?: WorkerOptions)</td><td>constructor</td><td>None</td><td>2</td><td>32</td><tr><tr><td>Worker</td><td>onexit?: (code: number) => void;</td><td>onexit</td><td>None</td><td>1</td><td>41</td><tr><tr><td>Worker</td><td>onerror?: (err: ErrorEvent) => void;</td><td>onerror</td><td>None</td><td>1</td><td>9</td><tr><tr><td>Worker</td><td>onmessage?: (event: MessageEvent) => void;</td><td>onmessage</td><td>None</td><td>1</td><td>55</td><tr><tr><td>Worker</td><td>onmessageerror?: (event: MessageEvent) => void;</td><td>onmessageerror</td><td>None</td><td>1</td><td>8</td><tr><tr><td>Worker</td><td>postMessage(message: Object, transfer: ArrayBuffer[]): void;</td><td>postMessage</td><td>None</td><td>2</td><td>84</td><tr><tr><td>Worker</td><td>postMessage(message: Object, options?: PostMessageOptions): void;</td><td>postMessage</td><td>None</td><td>2</td><td>84</td><tr><tr><td>Worker</td><td>on(type: string, listener: EventListener): void;</td><td>on</td><td>None</td><td>2</td><td>3803</td><tr><tr><td>Worker</td><td>once(type: string, listener: EventListener): void;</td><td>once</td><td>None</td><td>2</td><td>9</td><tr><tr><td>Worker</td><td>off(type: string, listener?: EventListener): void;</td><td>off</td><td>None</td><td>2</td><td>21</td><tr><tr><td>Worker</td><td>terminate(): void;</td><td>terminate</td><td>None</td><td>0</td><td>69</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>事件通知子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>notification</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.commonEvent</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>commonEvent</td><td>declare namespace commonEvent {
+  
+  function publish(event: string, callback: AsyncCallback<void>): void;
+
+  
+  function publish(event: string, options: CommonEventPublishData, callback: AsyncCallback<void>): void;
+
+  
+   function publishAsUser(event: string, userId: number, callback: AsyncCallback<void>): void;
+
+  
+  function publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback<void>): void;
+
+  
+  function createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback<CommonEventSubscriber>): void;
+
+  
+  function createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise<CommonEventSubscriber>;
+
+  
+  function subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEventData>): void;
+
+  
+  function unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback<void>): void;
+
+  
+  export enum Support {
+    
+    COMMON_EVENT_BOOT_COMPLETED = "usual.event.BOOT_COMPLETED",
+
+    
+    COMMON_EVENT_LOCKED_BOOT_COMPLETED = "usual.event.LOCKED_BOOT_COMPLETED",
+
+    
+    COMMON_EVENT_SHUTDOWN = "usual.event.SHUTDOWN",
+
+    
+    COMMON_EVENT_BATTERY_CHANGED = "usual.event.BATTERY_CHANGED",
+
+    
+    COMMON_EVENT_BATTERY_LOW = "usual.event.BATTERY_LOW",
+
+    
+    COMMON_EVENT_BATTERY_OKAY = "usual.event.BATTERY_OKAY",
+
+    
+    COMMON_EVENT_POWER_CONNECTED = "usual.event.POWER_CONNECTED",
+
+    
+    COMMON_EVENT_POWER_DISCONNECTED = "usual.event.POWER_DISCONNECTED",
+
+    
+    COMMON_EVENT_SCREEN_OFF = "usual.event.SCREEN_OFF",
+
+    
+    COMMON_EVENT_SCREEN_ON = "usual.event.SCREEN_ON",
+
+    
+     COMMON_EVENT_THERMAL_LEVEL_CHANGED = "usual.event.THERMAL_LEVEL_CHANGED",
+
+    
+    COMMON_EVENT_USER_PRESENT = "usual.event.USER_PRESENT",
+
+    
+    COMMON_EVENT_TIME_TICK = "usual.event.TIME_TICK",
+
+    
+    COMMON_EVENT_TIME_CHANGED = "usual.event.TIME_CHANGED",
+
+    
+    COMMON_EVENT_DATE_CHANGED = "usual.event.DATE_CHANGED",
+
+    
+    COMMON_EVENT_TIMEZONE_CHANGED = "usual.event.TIMEZONE_CHANGED",
+
+    
+    COMMON_EVENT_CLOSE_SYSTEM_DIALOGS = "usual.event.CLOSE_SYSTEM_DIALOGS",
+
+    
+    COMMON_EVENT_PACKAGE_ADDED = "usual.event.PACKAGE_ADDED",
+
+    
+    COMMON_EVENT_PACKAGE_REPLACED = "usual.event.PACKAGE_REPLACED",
+
+    
+    COMMON_EVENT_MY_PACKAGE_REPLACED = "usual.event.MY_PACKAGE_REPLACED",
+
+    
+    COMMON_EVENT_PACKAGE_REMOVED = "usual.event.PACKAGE_REMOVED",
+
+    
+    COMMON_EVENT_BUNDLE_REMOVED = "usual.event.BUNDLE_REMOVED",
+
+    
+    COMMON_EVENT_PACKAGE_FULLY_REMOVED = "usual.event.PACKAGE_FULLY_REMOVED",
+
+    
+    COMMON_EVENT_PACKAGE_CHANGED = "usual.event.PACKAGE_CHANGED",
+
+    
+    COMMON_EVENT_PACKAGE_RESTARTED = "usual.event.PACKAGE_RESTARTED",
+
+    
+    COMMON_EVENT_PACKAGE_DATA_CLEARED = "usual.event.PACKAGE_DATA_CLEARED",
+
+    
+    COMMON_EVENT_PACKAGES_SUSPENDED = "usual.event.PACKAGES_SUSPENDED",
+
+    
+    COMMON_EVENT_PACKAGES_UNSUSPENDED = "usual.event.PACKAGES_UNSUSPENDED",
+
+    
+    COMMON_EVENT_MY_PACKAGE_SUSPENDED = "usual.event.MY_PACKAGE_SUSPENDED",
+
+    
+    COMMON_EVENT_MY_PACKAGE_UNSUSPENDED = "usual.event.MY_PACKAGE_UNSUSPENDED",
+
+    
+    COMMON_EVENT_UID_REMOVED = "usual.event.UID_REMOVED",
+
+    
+    COMMON_EVENT_PACKAGE_FIRST_LAUNCH = "usual.event.PACKAGE_FIRST_LAUNCH",
+
+    
+    COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION =
+        "usual.event.PACKAGE_NEEDS_VERIFICATION",
+
+    
+    COMMON_EVENT_PACKAGE_VERIFIED = "usual.event.PACKAGE_VERIFIED",
+
+    
+    COMMON_EVENT_EXTERNAL_APPLICATIONS_AVAILABLE =
+        "usual.event.EXTERNAL_APPLICATIONS_AVAILABLE",
+
+    
+    COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE =
+        "usual.event.EXTERNAL_APPLICATIONS_UNAVAILABLE",
+
+    
+    COMMON_EVENT_CONFIGURATION_CHANGED = "usual.event.CONFIGURATION_CHANGED",
+
+    
+    COMMON_EVENT_LOCALE_CHANGED = "usual.event.LOCALE_CHANGED",
+
+    
+    COMMON_EVENT_MANAGE_PACKAGE_STORAGE = "usual.event.MANAGE_PACKAGE_STORAGE",
+
+    
+    COMMON_EVENT_DRIVE_MODE = "common.event.DRIVE_MODE",
+
+    
+    COMMON_EVENT_HOME_MODE = "common.event.HOME_MODE",
+
+    
+    COMMON_EVENT_OFFICE_MODE = "common.event.OFFICE_MODE",
+
+    
+    COMMON_EVENT_USER_STARTED = "usual.event.USER_STARTED",
+
+    
+    COMMON_EVENT_USER_BACKGROUND = "usual.event.USER_BACKGROUND",
+
+    
+    COMMON_EVENT_USER_FOREGROUND = "usual.event.USER_FOREGROUND",
+
+    
+    COMMON_EVENT_USER_SWITCHED = "usual.event.USER_SWITCHED",
+
+    
+    COMMON_EVENT_USER_STARTING = "usual.event.USER_STARTING",
+
+    
+    COMMON_EVENT_USER_UNLOCKED = "usual.event.USER_UNLOCKED",
+
+    
+    COMMON_EVENT_USER_STOPPING = "usual.event.USER_STOPPING",
+
+    
+    COMMON_EVENT_USER_STOPPED = "usual.event.USER_STOPPED",
+
+    
+    COMMON_EVENT_HWID_LOGIN = "common.event.HWID_LOGIN",
+
+    
+    COMMON_EVENT_HWID_LOGOUT = "common.event.HWID_LOGOUT",
+
+    
+    COMMON_EVENT_HWID_TOKEN_INVALID = "common.event.HWID_TOKEN_INVALID",
+
+    
+    COMMON_EVENT_HWID_LOGOFF = "common.event.HWID_LOGOFF",
+
+    
+    COMMON_EVENT_WIFI_POWER_STATE = "usual.event.wifi.POWER_STATE",
+
+    
+    COMMON_EVENT_WIFI_SCAN_FINISHED = "usual.event.wifi.SCAN_FINISHED",
+
+    
+    COMMON_EVENT_WIFI_RSSI_VALUE = "usual.event.wifi.RSSI_VALUE",
+
+    
+    COMMON_EVENT_WIFI_CONN_STATE = "usual.event.wifi.CONN_STATE",
+
+    
+    COMMON_EVENT_WIFI_HOTSPOT_STATE = "usual.event.wifi.HOTSPOT_STATE",
+
+    
+    COMMON_EVENT_WIFI_AP_STA_JOIN = "usual.event.wifi.WIFI_HS_STA_JOIN",
+
+    
+    COMMON_EVENT_WIFI_AP_STA_LEAVE = "usual.event.wifi.WIFI_HS_STA_LEAVE",
+
+    
+    COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE = "usual.event.wifi.mplink.STATE_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_CONN_STATE = "usual.event.wifi.p2p.CONN_STATE_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_STATE_CHANGED = "usual.event.wifi.p2p.STATE_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED =
+        "usual.event.wifi.p2p.DEVICES_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED =
+        "usual.event.wifi.p2p.PEER_DISCOVERY_STATE_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED =
+        "usual.event.wifi.p2p.CURRENT_DEVICE_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED =
+        "usual.event.wifi.p2p.GROUP_STATE_CHANGED",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE =
+        "usual.event.bluetooth.handsfree.ag.CONNECT_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE =
+        "usual.event.bluetooth.handsfree.ag.CURRENT_DEVICE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE =
+        "usual.event.bluetooth.handsfree.ag.AUDIO_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsource.CONNECT_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE =
+        "usual.event.bluetooth.a2dpsource.CURRENT_DEVICE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsource.PLAYING_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsource.AVRCP_CONNECT_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE =
+        "usual.event.bluetooth.a2dpsource.CODEC_VALUE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED =
+        "usual.event.bluetooth.remotedevice.DISCOVERED",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE =
+        "usual.event.bluetooth.remotedevice.CLASS_VALUE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED =
+        "usual.event.bluetooth.remotedevice.ACL_CONNECTED",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED =
+        "usual.event.bluetooth.remotedevice.ACL_DISCONNECTED",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE =
+        "usual.event.bluetooth.remotedevice.NAME_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE =
+        "usual.event.bluetooth.remotedevice.PAIR_STATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE =
+        "usual.event.bluetooth.remotedevice.BATTERY_VALUE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT =
+        "usual.event.bluetooth.remotedevice.SDP_RESULT",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE =
+        "usual.event.bluetooth.remotedevice.UUID_VALUE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ =
+        "usual.event.bluetooth.remotedevice.PAIRING_REQ",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL =
+        "usual.event.bluetooth.remotedevice.PAIRING_CANCEL",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ =
+        "usual.event.bluetooth.remotedevice.CONNECT_REQ",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY =
+        "usual.event.bluetooth.remotedevice.CONNECT_REPLY",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_CANCEL =
+        "usual.event.bluetooth.remotedevice.CONNECT_CANCEL",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_CONNECT_STATE_UPDATE =
+        "usual.event.bluetooth.handsfreeunit.CONNECT_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE =
+        "usual.event.bluetooth.handsfreeunit.AUDIO_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT =
+        "usual.event.bluetooth.handsfreeunit.AG_COMMON_EVENT",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE =
+        "usual.event.bluetooth.handsfreeunit.AG_CALL_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE =
+        "usual.event.bluetooth.host.STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE =
+        "usual.event.bluetooth.host.REQ_DISCOVERABLE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE = "usual.event.bluetooth.host.REQ_ENABLE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE =
+        "usual.event.bluetooth.host.REQ_DISABLE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE =
+        "usual.event.bluetooth.host.SCAN_MODE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED =
+        "usual.event.bluetooth.host.DISCOVERY_STARTED",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED =
+        "usual.event.bluetooth.host.DISCOVERY_FINISHED",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE =
+        "usual.event.bluetooth.host.NAME_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsink.CONNECT_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE",
+
+    
+    COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED =
+        "usual.event.nfc.action.ADAPTER_STATE_CHANGED",
+
+    
+    COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED =
+        "usual.event.nfc.action.RF_FIELD_ON_DETECTED",
+
+    
+    COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED =
+        "usual.event.nfc.action.RF_FIELD_OFF_DETECTED",
+
+    
+    COMMON_EVENT_DISCHARGING = "usual.event.DISCHARGING",
+
+    
+    COMMON_EVENT_CHARGING = "usual.event.CHARGING",
+
+    
+    COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED = "usual.event.DEVICE_IDLE_MODE_CHANGED",
+
+    
+    COMMON_EVENT_POWER_SAVE_MODE_CHANGED = "usual.event.POWER_SAVE_MODE_CHANGED",
+
+    
+    COMMON_EVENT_USER_ADDED = "usual.event.USER_ADDED",
+
+    
+    COMMON_EVENT_USER_REMOVED = "usual.event.USER_REMOVED",
+
+    
+    COMMON_EVENT_ABILITY_ADDED = "common.event.ABILITY_ADDED",
+
+    
+    COMMON_EVENT_ABILITY_REMOVED = "common.event.ABILITY_REMOVED",
+
+    
+    COMMON_EVENT_ABILITY_UPDATED = "common.event.ABILITY_UPDATED",
+
+    
+    COMMON_EVENT_LOCATION_MODE_STATE_CHANGED =
+        "usual.event.location.MODE_STATE_CHANGED",
+
+    
+    COMMON_EVENT_IVI_SLEEP = "common.event.IVI_SLEEP",
+
+    
+    COMMON_EVENT_IVI_PAUSE = "common.event.IVI_PAUSE",
+
+    
+    COMMON_EVENT_IVI_STANDBY = "common.event.IVI_STANDBY",
+
+    
+    COMMON_EVENT_IVI_LASTMODE_SAVE = "common.event.IVI_LASTMODE_SAVE",
+
+    
+    COMMON_EVENT_IVI_VOLTAGE_ABNORMAL = "common.event.IVI_VOLTAGE_ABNORMAL",
+
+    
+    COMMON_EVENT_IVI_HIGH_TEMPERATURE = "common.event.IVI_HIGH_TEMPERATURE",
+
+    
+    COMMON_EVENT_IVI_EXTREME_TEMPERATURE = "common.event.IVI_EXTREME_TEMPERATURE",
+
+    
+    COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL = "common.event.IVI_TEMPERATURE_ABNORMAL",
+
+    
+    COMMON_EVENT_IVI_VOLTAGE_RECOVERY = "common.event.IVI_VOLTAGE_RECOVERY",
+
+    
+    COMMON_EVENT_IVI_TEMPERATURE_RECOVERY = "common.event.IVI_TEMPERATURE_RECOVERY",
+
+    
+    COMMON_EVENT_IVI_ACTIVE = "common.event.IVI_ACTIVE",
+
+    
+    COMMON_EVENT_USB_DEVICE_ATTACHED =
+        "usual.event.hardware.usb.action.USB_DEVICE_ATTACHED",
+
+    
+    COMMON_EVENT_USB_DEVICE_DETACHED =
+        "usual.event.hardware.usb.action.USB_DEVICE_DETACHED",
+
+    
+    COMMON_EVENT_USB_ACCESSORY_ATTACHED =
+        "usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED",
+
+    
+    COMMON_EVENT_USB_ACCESSORY_DETACHED =
+        "usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED",
+
+    
+    COMMON_EVENT_DISK_REMOVED = "usual.event.data.DISK_REMOVED",
+
+    
+    COMMON_EVENT_DISK_UNMOUNTED = "usual.event.data.DISK_UNMOUNTED",
+
+    
+    COMMON_EVENT_DISK_MOUNTED = "usual.event.data.DISK_MOUNTED",
+
+    
+    COMMON_EVENT_DISK_BAD_REMOVAL = "usual.event.data.DISK_BAD_REMOVAL",
+
+    
+    COMMON_EVENT_DISK_UNMOUNTABLE = "usual.event.data.DISK_UNMOUNTABLE",
+
+    
+    COMMON_EVENT_DISK_EJECT = "usual.event.data.DISK_EJECT",
+
+    
+    COMMON_EVENT_VOLUME_REMOVED = "usual.event.data.VOLUME_REMOVED",
+
+    
+    COMMON_EVENT_VOLUME_UNMOUNTED = "usual.event.data.VOLUME_UNMOUNTED",
+
+    
+    COMMON_EVENT_VOLUME_MOUNTED = "usual.event.data.VOLUME_MOUNTED",
+
+    
+    COMMON_EVENT_VOLUME_BAD_REMOVAL = "usual.event.data.VOLUME_BAD_REMOVAL",
+
+    
+    COMMON_EVENT_VOLUME_EJECT = "usual.event.data.VOLUME_EJECT",
+
+    
+    COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED =
+        "usual.event.data.VISIBLE_ACCOUNTS_UPDATED",
+
+    
+    COMMON_EVENT_ACCOUNT_DELETED = "usual.event.data.ACCOUNT_DELETED",
+
+    
+    COMMON_EVENT_FOUNDATION_READY = "common.event.FOUNDATION_READY",
+
+    
+    COMMON_EVENT_AIRPLANE_MODE_CHANGED = "usual.event.AIRPLANE_MODE",
+
+    
+    COMMON_EVENT_SPLIT_SCREEN = "common.event.SPLIT_SCREEN"
+  }
+}</td><td>commonEvent</td><td>None</td><td>0</td><td>239</td><tr><tr><td>commonEvent</td><td>function publish(event: string, callback: AsyncCallback<void>): void;</td><td>publish</td><td>None</td><td>2</td><td>1008</td><tr><tr><td>commonEvent</td><td>function publish(event: string, options: CommonEventPublishData, callback: AsyncCallback<void>): void;</td><td>publish</td><td>None</td><td>3</td><td>1008</td><tr><tr><td>commonEvent</td><td>function publishAsUser(event: string, userId: number, callback: AsyncCallback<void>): void;</td><td>publishAsUser</td><td>None</td><td>3</td><td>2</td><tr><tr><td>commonEvent</td><td>function publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback<void>): void;</td><td>publishAsUser</td><td>None</td><td>4</td><td>2</td><tr><tr><td>commonEvent</td><td>function createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback<CommonEventSubscriber>): void;</td><td>createSubscriber</td><td>None</td><td>2</td><td>107</td><tr><tr><td>commonEvent</td><td>function createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise<CommonEventSubscriber>;</td><td>createSubscriber</td><td>None</td><td>1</td><td>3</td><tr><tr><td>commonEvent</td><td>function subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEventData>): void;</td><td>subscribe</td><td>None</td><td>2</td><td>1575</td><tr><tr><td>commonEvent</td><td>function unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback<void>): void;</td><td>unsubscribe</td><td>None</td><td>2</td><td>410</td><tr><tr><td>Support</td><td>export enum Support {
+    
+    COMMON_EVENT_BOOT_COMPLETED = "usual.event.BOOT_COMPLETED",
+
+    
+    COMMON_EVENT_LOCKED_BOOT_COMPLETED = "usual.event.LOCKED_BOOT_COMPLETED",
+
+    
+    COMMON_EVENT_SHUTDOWN = "usual.event.SHUTDOWN",
+
+    
+    COMMON_EVENT_BATTERY_CHANGED = "usual.event.BATTERY_CHANGED",
+
+    
+    COMMON_EVENT_BATTERY_LOW = "usual.event.BATTERY_LOW",
+
+    
+    COMMON_EVENT_BATTERY_OKAY = "usual.event.BATTERY_OKAY",
+
+    
+    COMMON_EVENT_POWER_CONNECTED = "usual.event.POWER_CONNECTED",
+
+    
+    COMMON_EVENT_POWER_DISCONNECTED = "usual.event.POWER_DISCONNECTED",
+
+    
+    COMMON_EVENT_SCREEN_OFF = "usual.event.SCREEN_OFF",
+
+    
+    COMMON_EVENT_SCREEN_ON = "usual.event.SCREEN_ON",
+
+    
+     COMMON_EVENT_THERMAL_LEVEL_CHANGED = "usual.event.THERMAL_LEVEL_CHANGED",
+
+    
+    COMMON_EVENT_USER_PRESENT = "usual.event.USER_PRESENT",
+
+    
+    COMMON_EVENT_TIME_TICK = "usual.event.TIME_TICK",
+
+    
+    COMMON_EVENT_TIME_CHANGED = "usual.event.TIME_CHANGED",
+
+    
+    COMMON_EVENT_DATE_CHANGED = "usual.event.DATE_CHANGED",
+
+    
+    COMMON_EVENT_TIMEZONE_CHANGED = "usual.event.TIMEZONE_CHANGED",
+
+    
+    COMMON_EVENT_CLOSE_SYSTEM_DIALOGS = "usual.event.CLOSE_SYSTEM_DIALOGS",
+
+    
+    COMMON_EVENT_PACKAGE_ADDED = "usual.event.PACKAGE_ADDED",
+
+    
+    COMMON_EVENT_PACKAGE_REPLACED = "usual.event.PACKAGE_REPLACED",
+
+    
+    COMMON_EVENT_MY_PACKAGE_REPLACED = "usual.event.MY_PACKAGE_REPLACED",
+
+    
+    COMMON_EVENT_PACKAGE_REMOVED = "usual.event.PACKAGE_REMOVED",
+
+    
+    COMMON_EVENT_BUNDLE_REMOVED = "usual.event.BUNDLE_REMOVED",
+
+    
+    COMMON_EVENT_PACKAGE_FULLY_REMOVED = "usual.event.PACKAGE_FULLY_REMOVED",
+
+    
+    COMMON_EVENT_PACKAGE_CHANGED = "usual.event.PACKAGE_CHANGED",
+
+    
+    COMMON_EVENT_PACKAGE_RESTARTED = "usual.event.PACKAGE_RESTARTED",
+
+    
+    COMMON_EVENT_PACKAGE_DATA_CLEARED = "usual.event.PACKAGE_DATA_CLEARED",
+
+    
+    COMMON_EVENT_PACKAGES_SUSPENDED = "usual.event.PACKAGES_SUSPENDED",
+
+    
+    COMMON_EVENT_PACKAGES_UNSUSPENDED = "usual.event.PACKAGES_UNSUSPENDED",
+
+    
+    COMMON_EVENT_MY_PACKAGE_SUSPENDED = "usual.event.MY_PACKAGE_SUSPENDED",
+
+    
+    COMMON_EVENT_MY_PACKAGE_UNSUSPENDED = "usual.event.MY_PACKAGE_UNSUSPENDED",
+
+    
+    COMMON_EVENT_UID_REMOVED = "usual.event.UID_REMOVED",
+
+    
+    COMMON_EVENT_PACKAGE_FIRST_LAUNCH = "usual.event.PACKAGE_FIRST_LAUNCH",
+
+    
+    COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION =
+        "usual.event.PACKAGE_NEEDS_VERIFICATION",
+
+    
+    COMMON_EVENT_PACKAGE_VERIFIED = "usual.event.PACKAGE_VERIFIED",
+
+    
+    COMMON_EVENT_EXTERNAL_APPLICATIONS_AVAILABLE =
+        "usual.event.EXTERNAL_APPLICATIONS_AVAILABLE",
+
+    
+    COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE =
+        "usual.event.EXTERNAL_APPLICATIONS_UNAVAILABLE",
+
+    
+    COMMON_EVENT_CONFIGURATION_CHANGED = "usual.event.CONFIGURATION_CHANGED",
+
+    
+    COMMON_EVENT_LOCALE_CHANGED = "usual.event.LOCALE_CHANGED",
+
+    
+    COMMON_EVENT_MANAGE_PACKAGE_STORAGE = "usual.event.MANAGE_PACKAGE_STORAGE",
+
+    
+    COMMON_EVENT_DRIVE_MODE = "common.event.DRIVE_MODE",
+
+    
+    COMMON_EVENT_HOME_MODE = "common.event.HOME_MODE",
+
+    
+    COMMON_EVENT_OFFICE_MODE = "common.event.OFFICE_MODE",
+
+    
+    COMMON_EVENT_USER_STARTED = "usual.event.USER_STARTED",
+
+    
+    COMMON_EVENT_USER_BACKGROUND = "usual.event.USER_BACKGROUND",
+
+    
+    COMMON_EVENT_USER_FOREGROUND = "usual.event.USER_FOREGROUND",
+
+    
+    COMMON_EVENT_USER_SWITCHED = "usual.event.USER_SWITCHED",
+
+    
+    COMMON_EVENT_USER_STARTING = "usual.event.USER_STARTING",
+
+    
+    COMMON_EVENT_USER_UNLOCKED = "usual.event.USER_UNLOCKED",
+
+    
+    COMMON_EVENT_USER_STOPPING = "usual.event.USER_STOPPING",
+
+    
+    COMMON_EVENT_USER_STOPPED = "usual.event.USER_STOPPED",
+
+    
+    COMMON_EVENT_HWID_LOGIN = "common.event.HWID_LOGIN",
+
+    
+    COMMON_EVENT_HWID_LOGOUT = "common.event.HWID_LOGOUT",
+
+    
+    COMMON_EVENT_HWID_TOKEN_INVALID = "common.event.HWID_TOKEN_INVALID",
+
+    
+    COMMON_EVENT_HWID_LOGOFF = "common.event.HWID_LOGOFF",
+
+    
+    COMMON_EVENT_WIFI_POWER_STATE = "usual.event.wifi.POWER_STATE",
+
+    
+    COMMON_EVENT_WIFI_SCAN_FINISHED = "usual.event.wifi.SCAN_FINISHED",
+
+    
+    COMMON_EVENT_WIFI_RSSI_VALUE = "usual.event.wifi.RSSI_VALUE",
+
+    
+    COMMON_EVENT_WIFI_CONN_STATE = "usual.event.wifi.CONN_STATE",
+
+    
+    COMMON_EVENT_WIFI_HOTSPOT_STATE = "usual.event.wifi.HOTSPOT_STATE",
+
+    
+    COMMON_EVENT_WIFI_AP_STA_JOIN = "usual.event.wifi.WIFI_HS_STA_JOIN",
+
+    
+    COMMON_EVENT_WIFI_AP_STA_LEAVE = "usual.event.wifi.WIFI_HS_STA_LEAVE",
+
+    
+    COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE = "usual.event.wifi.mplink.STATE_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_CONN_STATE = "usual.event.wifi.p2p.CONN_STATE_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_STATE_CHANGED = "usual.event.wifi.p2p.STATE_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED =
+        "usual.event.wifi.p2p.DEVICES_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED =
+        "usual.event.wifi.p2p.PEER_DISCOVERY_STATE_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED =
+        "usual.event.wifi.p2p.CURRENT_DEVICE_CHANGE",
+
+    
+    COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED =
+        "usual.event.wifi.p2p.GROUP_STATE_CHANGED",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE =
+        "usual.event.bluetooth.handsfree.ag.CONNECT_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE =
+        "usual.event.bluetooth.handsfree.ag.CURRENT_DEVICE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE =
+        "usual.event.bluetooth.handsfree.ag.AUDIO_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsource.CONNECT_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE =
+        "usual.event.bluetooth.a2dpsource.CURRENT_DEVICE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsource.PLAYING_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsource.AVRCP_CONNECT_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE =
+        "usual.event.bluetooth.a2dpsource.CODEC_VALUE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED =
+        "usual.event.bluetooth.remotedevice.DISCOVERED",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE =
+        "usual.event.bluetooth.remotedevice.CLASS_VALUE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED =
+        "usual.event.bluetooth.remotedevice.ACL_CONNECTED",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED =
+        "usual.event.bluetooth.remotedevice.ACL_DISCONNECTED",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE =
+        "usual.event.bluetooth.remotedevice.NAME_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE =
+        "usual.event.bluetooth.remotedevice.PAIR_STATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE =
+        "usual.event.bluetooth.remotedevice.BATTERY_VALUE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT =
+        "usual.event.bluetooth.remotedevice.SDP_RESULT",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE =
+        "usual.event.bluetooth.remotedevice.UUID_VALUE",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ =
+        "usual.event.bluetooth.remotedevice.PAIRING_REQ",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL =
+        "usual.event.bluetooth.remotedevice.PAIRING_CANCEL",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ =
+        "usual.event.bluetooth.remotedevice.CONNECT_REQ",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY =
+        "usual.event.bluetooth.remotedevice.CONNECT_REPLY",
+
+    
+    COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_CANCEL =
+        "usual.event.bluetooth.remotedevice.CONNECT_CANCEL",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_CONNECT_STATE_UPDATE =
+        "usual.event.bluetooth.handsfreeunit.CONNECT_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE =
+        "usual.event.bluetooth.handsfreeunit.AUDIO_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT =
+        "usual.event.bluetooth.handsfreeunit.AG_COMMON_EVENT",
+
+    
+    COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE =
+        "usual.event.bluetooth.handsfreeunit.AG_CALL_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE =
+        "usual.event.bluetooth.host.STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE =
+        "usual.event.bluetooth.host.REQ_DISCOVERABLE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE = "usual.event.bluetooth.host.REQ_ENABLE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE =
+        "usual.event.bluetooth.host.REQ_DISABLE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE =
+        "usual.event.bluetooth.host.SCAN_MODE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED =
+        "usual.event.bluetooth.host.DISCOVERY_STARTED",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED =
+        "usual.event.bluetooth.host.DISCOVERY_FINISHED",
+
+    
+    COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE =
+        "usual.event.bluetooth.host.NAME_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsink.CONNECT_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE",
+
+    
+    COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE =
+        "usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE",
+
+    
+    COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED =
+        "usual.event.nfc.action.ADAPTER_STATE_CHANGED",
+
+    
+    COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED =
+        "usual.event.nfc.action.RF_FIELD_ON_DETECTED",
+
+    
+    COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED =
+        "usual.event.nfc.action.RF_FIELD_OFF_DETECTED",
+
+    
+    COMMON_EVENT_DISCHARGING = "usual.event.DISCHARGING",
+
+    
+    COMMON_EVENT_CHARGING = "usual.event.CHARGING",
+
+    
+    COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED = "usual.event.DEVICE_IDLE_MODE_CHANGED",
+
+    
+    COMMON_EVENT_POWER_SAVE_MODE_CHANGED = "usual.event.POWER_SAVE_MODE_CHANGED",
+
+    
+    COMMON_EVENT_USER_ADDED = "usual.event.USER_ADDED",
+
+    
+    COMMON_EVENT_USER_REMOVED = "usual.event.USER_REMOVED",
+
+    
+    COMMON_EVENT_ABILITY_ADDED = "common.event.ABILITY_ADDED",
+
+    
+    COMMON_EVENT_ABILITY_REMOVED = "common.event.ABILITY_REMOVED",
+
+    
+    COMMON_EVENT_ABILITY_UPDATED = "common.event.ABILITY_UPDATED",
+
+    
+    COMMON_EVENT_LOCATION_MODE_STATE_CHANGED =
+        "usual.event.location.MODE_STATE_CHANGED",
+
+    
+    COMMON_EVENT_IVI_SLEEP = "common.event.IVI_SLEEP",
+
+    
+    COMMON_EVENT_IVI_PAUSE = "common.event.IVI_PAUSE",
+
+    
+    COMMON_EVENT_IVI_STANDBY = "common.event.IVI_STANDBY",
+
+    
+    COMMON_EVENT_IVI_LASTMODE_SAVE = "common.event.IVI_LASTMODE_SAVE",
+
+    
+    COMMON_EVENT_IVI_VOLTAGE_ABNORMAL = "common.event.IVI_VOLTAGE_ABNORMAL",
+
+    
+    COMMON_EVENT_IVI_HIGH_TEMPERATURE = "common.event.IVI_HIGH_TEMPERATURE",
+
+    
+    COMMON_EVENT_IVI_EXTREME_TEMPERATURE = "common.event.IVI_EXTREME_TEMPERATURE",
+
+    
+    COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL = "common.event.IVI_TEMPERATURE_ABNORMAL",
+
+    
+    COMMON_EVENT_IVI_VOLTAGE_RECOVERY = "common.event.IVI_VOLTAGE_RECOVERY",
+
+    
+    COMMON_EVENT_IVI_TEMPERATURE_RECOVERY = "common.event.IVI_TEMPERATURE_RECOVERY",
+
+    
+    COMMON_EVENT_IVI_ACTIVE = "common.event.IVI_ACTIVE",
+
+    
+    COMMON_EVENT_USB_DEVICE_ATTACHED =
+        "usual.event.hardware.usb.action.USB_DEVICE_ATTACHED",
+
+    
+    COMMON_EVENT_USB_DEVICE_DETACHED =
+        "usual.event.hardware.usb.action.USB_DEVICE_DETACHED",
+
+    
+    COMMON_EVENT_USB_ACCESSORY_ATTACHED =
+        "usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED",
+
+    
+    COMMON_EVENT_USB_ACCESSORY_DETACHED =
+        "usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED",
+
+    
+    COMMON_EVENT_DISK_REMOVED = "usual.event.data.DISK_REMOVED",
+
+    
+    COMMON_EVENT_DISK_UNMOUNTED = "usual.event.data.DISK_UNMOUNTED",
+
+    
+    COMMON_EVENT_DISK_MOUNTED = "usual.event.data.DISK_MOUNTED",
+
+    
+    COMMON_EVENT_DISK_BAD_REMOVAL = "usual.event.data.DISK_BAD_REMOVAL",
+
+    
+    COMMON_EVENT_DISK_UNMOUNTABLE = "usual.event.data.DISK_UNMOUNTABLE",
+
+    
+    COMMON_EVENT_DISK_EJECT = "usual.event.data.DISK_EJECT",
+
+    
+    COMMON_EVENT_VOLUME_REMOVED = "usual.event.data.VOLUME_REMOVED",
+
+    
+    COMMON_EVENT_VOLUME_UNMOUNTED = "usual.event.data.VOLUME_UNMOUNTED",
+
+    
+    COMMON_EVENT_VOLUME_MOUNTED = "usual.event.data.VOLUME_MOUNTED",
+
+    
+    COMMON_EVENT_VOLUME_BAD_REMOVAL = "usual.event.data.VOLUME_BAD_REMOVAL",
+
+    
+    COMMON_EVENT_VOLUME_EJECT = "usual.event.data.VOLUME_EJECT",
+
+    
+    COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED =
+        "usual.event.data.VISIBLE_ACCOUNTS_UPDATED",
+
+    
+    COMMON_EVENT_ACCOUNT_DELETED = "usual.event.data.ACCOUNT_DELETED",
+
+    
+    COMMON_EVENT_FOUNDATION_READY = "common.event.FOUNDATION_READY",
+
+    
+    COMMON_EVENT_AIRPLANE_MODE_CHANGED = "usual.event.AIRPLANE_MODE",
+
+    
+    COMMON_EVENT_SPLIT_SCREEN = "common.event.SPLIT_SCREEN"
+  }</td><td>Support</td><td>40</td><td>0</td><td>233</td><tr><tr><td>Support</td><td>COMMON_EVENT_BOOT_COMPLETED = "usual.event.BOOT_COMPLETED",</td><td>COMMON_EVENT_BOOT_COMPLETED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_LOCKED_BOOT_COMPLETED = "usual.event.LOCKED_BOOT_COMPLETED",</td><td>COMMON_EVENT_LOCKED_BOOT_COMPLETED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_SHUTDOWN = "usual.event.SHUTDOWN",</td><td>COMMON_EVENT_SHUTDOWN</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BATTERY_CHANGED = "usual.event.BATTERY_CHANGED",</td><td>COMMON_EVENT_BATTERY_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BATTERY_LOW = "usual.event.BATTERY_LOW",</td><td>COMMON_EVENT_BATTERY_LOW</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BATTERY_OKAY = "usual.event.BATTERY_OKAY",</td><td>COMMON_EVENT_BATTERY_OKAY</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_POWER_CONNECTED = "usual.event.POWER_CONNECTED",</td><td>COMMON_EVENT_POWER_CONNECTED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_POWER_DISCONNECTED = "usual.event.POWER_DISCONNECTED",</td><td>COMMON_EVENT_POWER_DISCONNECTED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_SCREEN_OFF = "usual.event.SCREEN_OFF",</td><td>COMMON_EVENT_SCREEN_OFF</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_SCREEN_ON = "usual.event.SCREEN_ON",</td><td>COMMON_EVENT_SCREEN_ON</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_THERMAL_LEVEL_CHANGED = "usual.event.THERMAL_LEVEL_CHANGED",</td><td>COMMON_EVENT_THERMAL_LEVEL_CHANGED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_PRESENT = "usual.event.USER_PRESENT",</td><td>COMMON_EVENT_USER_PRESENT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_TIME_TICK = "usual.event.TIME_TICK",</td><td>COMMON_EVENT_TIME_TICK</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_TIME_CHANGED = "usual.event.TIME_CHANGED",</td><td>COMMON_EVENT_TIME_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_DATE_CHANGED = "usual.event.DATE_CHANGED",</td><td>COMMON_EVENT_DATE_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_TIMEZONE_CHANGED = "usual.event.TIMEZONE_CHANGED",</td><td>COMMON_EVENT_TIMEZONE_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_CLOSE_SYSTEM_DIALOGS = "usual.event.CLOSE_SYSTEM_DIALOGS",</td><td>COMMON_EVENT_CLOSE_SYSTEM_DIALOGS</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGE_ADDED = "usual.event.PACKAGE_ADDED",</td><td>COMMON_EVENT_PACKAGE_ADDED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGE_REPLACED = "usual.event.PACKAGE_REPLACED",</td><td>COMMON_EVENT_PACKAGE_REPLACED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_MY_PACKAGE_REPLACED = "usual.event.MY_PACKAGE_REPLACED",</td><td>COMMON_EVENT_MY_PACKAGE_REPLACED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGE_REMOVED = "usual.event.PACKAGE_REMOVED",</td><td>COMMON_EVENT_PACKAGE_REMOVED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BUNDLE_REMOVED = "usual.event.BUNDLE_REMOVED",</td><td>COMMON_EVENT_BUNDLE_REMOVED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGE_FULLY_REMOVED = "usual.event.PACKAGE_FULLY_REMOVED",</td><td>COMMON_EVENT_PACKAGE_FULLY_REMOVED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGE_CHANGED = "usual.event.PACKAGE_CHANGED",</td><td>COMMON_EVENT_PACKAGE_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGE_RESTARTED = "usual.event.PACKAGE_RESTARTED",</td><td>COMMON_EVENT_PACKAGE_RESTARTED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGE_DATA_CLEARED = "usual.event.PACKAGE_DATA_CLEARED",</td><td>COMMON_EVENT_PACKAGE_DATA_CLEARED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGES_SUSPENDED = "usual.event.PACKAGES_SUSPENDED",</td><td>COMMON_EVENT_PACKAGES_SUSPENDED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGES_UNSUSPENDED = "usual.event.PACKAGES_UNSUSPENDED",</td><td>COMMON_EVENT_PACKAGES_UNSUSPENDED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_MY_PACKAGE_SUSPENDED = "usual.event.MY_PACKAGE_SUSPENDED",</td><td>COMMON_EVENT_MY_PACKAGE_SUSPENDED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_MY_PACKAGE_UNSUSPENDED = "usual.event.MY_PACKAGE_UNSUSPENDED",</td><td>COMMON_EVENT_MY_PACKAGE_UNSUSPENDED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_UID_REMOVED = "usual.event.UID_REMOVED",</td><td>COMMON_EVENT_UID_REMOVED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGE_FIRST_LAUNCH = "usual.event.PACKAGE_FIRST_LAUNCH",</td><td>COMMON_EVENT_PACKAGE_FIRST_LAUNCH</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION =</td><td>COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_PACKAGE_VERIFIED = "usual.event.PACKAGE_VERIFIED",</td><td>COMMON_EVENT_PACKAGE_VERIFIED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_EXTERNAL_APPLICATIONS_AVAILABLE =</td><td>COMMON_EVENT_EXTERNAL_APPLICATIONS_AVAILABLE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE =</td><td>COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_CONFIGURATION_CHANGED = "usual.event.CONFIGURATION_CHANGED",</td><td>COMMON_EVENT_CONFIGURATION_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_LOCALE_CHANGED = "usual.event.LOCALE_CHANGED",</td><td>COMMON_EVENT_LOCALE_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_MANAGE_PACKAGE_STORAGE = "usual.event.MANAGE_PACKAGE_STORAGE",</td><td>COMMON_EVENT_MANAGE_PACKAGE_STORAGE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_DRIVE_MODE = "common.event.DRIVE_MODE",</td><td>COMMON_EVENT_DRIVE_MODE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_HOME_MODE = "common.event.HOME_MODE",</td><td>COMMON_EVENT_HOME_MODE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_OFFICE_MODE = "common.event.OFFICE_MODE",</td><td>COMMON_EVENT_OFFICE_MODE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_STARTED = "usual.event.USER_STARTED",</td><td>COMMON_EVENT_USER_STARTED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_BACKGROUND = "usual.event.USER_BACKGROUND",</td><td>COMMON_EVENT_USER_BACKGROUND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_FOREGROUND = "usual.event.USER_FOREGROUND",</td><td>COMMON_EVENT_USER_FOREGROUND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_SWITCHED = "usual.event.USER_SWITCHED",</td><td>COMMON_EVENT_USER_SWITCHED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_STARTING = "usual.event.USER_STARTING",</td><td>COMMON_EVENT_USER_STARTING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_UNLOCKED = "usual.event.USER_UNLOCKED",</td><td>COMMON_EVENT_USER_UNLOCKED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_STOPPING = "usual.event.USER_STOPPING",</td><td>COMMON_EVENT_USER_STOPPING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_STOPPED = "usual.event.USER_STOPPED",</td><td>COMMON_EVENT_USER_STOPPED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_HWID_LOGIN = "common.event.HWID_LOGIN",</td><td>COMMON_EVENT_HWID_LOGIN</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_HWID_LOGOUT = "common.event.HWID_LOGOUT",</td><td>COMMON_EVENT_HWID_LOGOUT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_HWID_TOKEN_INVALID = "common.event.HWID_TOKEN_INVALID",</td><td>COMMON_EVENT_HWID_TOKEN_INVALID</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_HWID_LOGOFF = "common.event.HWID_LOGOFF",</td><td>COMMON_EVENT_HWID_LOGOFF</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_POWER_STATE = "usual.event.wifi.POWER_STATE",</td><td>COMMON_EVENT_WIFI_POWER_STATE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_SCAN_FINISHED = "usual.event.wifi.SCAN_FINISHED",</td><td>COMMON_EVENT_WIFI_SCAN_FINISHED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_RSSI_VALUE = "usual.event.wifi.RSSI_VALUE",</td><td>COMMON_EVENT_WIFI_RSSI_VALUE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_CONN_STATE = "usual.event.wifi.CONN_STATE",</td><td>COMMON_EVENT_WIFI_CONN_STATE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_HOTSPOT_STATE = "usual.event.wifi.HOTSPOT_STATE",</td><td>COMMON_EVENT_WIFI_HOTSPOT_STATE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_AP_STA_JOIN = "usual.event.wifi.WIFI_HS_STA_JOIN",</td><td>COMMON_EVENT_WIFI_AP_STA_JOIN</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_AP_STA_LEAVE = "usual.event.wifi.WIFI_HS_STA_LEAVE",</td><td>COMMON_EVENT_WIFI_AP_STA_LEAVE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE = "usual.event.wifi.mplink.STATE_CHANGE",</td><td>COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_P2P_CONN_STATE = "usual.event.wifi.p2p.CONN_STATE_CHANGE",</td><td>COMMON_EVENT_WIFI_P2P_CONN_STATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_P2P_STATE_CHANGED = "usual.event.wifi.p2p.STATE_CHANGE",</td><td>COMMON_EVENT_WIFI_P2P_STATE_CHANGED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED =</td><td>COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED =</td><td>COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED =</td><td>COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED =</td><td>COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_CANCEL =</td><td>COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_CANCEL</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_CONNECT_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_CONNECT_STATE_UPDATE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT =</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE =</td><td>COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE = "usual.event.bluetooth.host.REQ_ENABLE",</td><td>COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE =</td><td>COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED =</td><td>COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED =</td><td>COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE =</td><td>COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED =</td><td>COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED =</td><td>COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED =</td><td>COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_DISCHARGING = "usual.event.DISCHARGING",</td><td>COMMON_EVENT_DISCHARGING</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_CHARGING = "usual.event.CHARGING",</td><td>COMMON_EVENT_CHARGING</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED = "usual.event.DEVICE_IDLE_MODE_CHANGED",</td><td>COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_POWER_SAVE_MODE_CHANGED = "usual.event.POWER_SAVE_MODE_CHANGED",</td><td>COMMON_EVENT_POWER_SAVE_MODE_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_ADDED = "usual.event.USER_ADDED",</td><td>COMMON_EVENT_USER_ADDED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_USER_REMOVED = "usual.event.USER_REMOVED",</td><td>COMMON_EVENT_USER_REMOVED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_ABILITY_ADDED = "common.event.ABILITY_ADDED",</td><td>COMMON_EVENT_ABILITY_ADDED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_ABILITY_REMOVED = "common.event.ABILITY_REMOVED",</td><td>COMMON_EVENT_ABILITY_REMOVED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_ABILITY_UPDATED = "common.event.ABILITY_UPDATED",</td><td>COMMON_EVENT_ABILITY_UPDATED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_LOCATION_MODE_STATE_CHANGED =</td><td>COMMON_EVENT_LOCATION_MODE_STATE_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_SLEEP = "common.event.IVI_SLEEP",</td><td>COMMON_EVENT_IVI_SLEEP</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_PAUSE = "common.event.IVI_PAUSE",</td><td>COMMON_EVENT_IVI_PAUSE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_STANDBY = "common.event.IVI_STANDBY",</td><td>COMMON_EVENT_IVI_STANDBY</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_LASTMODE_SAVE = "common.event.IVI_LASTMODE_SAVE",</td><td>COMMON_EVENT_IVI_LASTMODE_SAVE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_VOLTAGE_ABNORMAL = "common.event.IVI_VOLTAGE_ABNORMAL",</td><td>COMMON_EVENT_IVI_VOLTAGE_ABNORMAL</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_HIGH_TEMPERATURE = "common.event.IVI_HIGH_TEMPERATURE",</td><td>COMMON_EVENT_IVI_HIGH_TEMPERATURE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_EXTREME_TEMPERATURE = "common.event.IVI_EXTREME_TEMPERATURE",</td><td>COMMON_EVENT_IVI_EXTREME_TEMPERATURE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL = "common.event.IVI_TEMPERATURE_ABNORMAL",</td><td>COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_VOLTAGE_RECOVERY = "common.event.IVI_VOLTAGE_RECOVERY",</td><td>COMMON_EVENT_IVI_VOLTAGE_RECOVERY</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_TEMPERATURE_RECOVERY = "common.event.IVI_TEMPERATURE_RECOVERY",</td><td>COMMON_EVENT_IVI_TEMPERATURE_RECOVERY</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_IVI_ACTIVE = "common.event.IVI_ACTIVE",</td><td>COMMON_EVENT_IVI_ACTIVE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_USB_DEVICE_ATTACHED =</td><td>COMMON_EVENT_USB_DEVICE_ATTACHED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_USB_DEVICE_DETACHED =</td><td>COMMON_EVENT_USB_DEVICE_DETACHED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_USB_ACCESSORY_ATTACHED =</td><td>COMMON_EVENT_USB_ACCESSORY_ATTACHED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_USB_ACCESSORY_DETACHED =</td><td>COMMON_EVENT_USB_ACCESSORY_DETACHED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_DISK_REMOVED = "usual.event.data.DISK_REMOVED",</td><td>COMMON_EVENT_DISK_REMOVED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_DISK_UNMOUNTED = "usual.event.data.DISK_UNMOUNTED",</td><td>COMMON_EVENT_DISK_UNMOUNTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_DISK_MOUNTED = "usual.event.data.DISK_MOUNTED",</td><td>COMMON_EVENT_DISK_MOUNTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_DISK_BAD_REMOVAL = "usual.event.data.DISK_BAD_REMOVAL",</td><td>COMMON_EVENT_DISK_BAD_REMOVAL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_DISK_UNMOUNTABLE = "usual.event.data.DISK_UNMOUNTABLE",</td><td>COMMON_EVENT_DISK_UNMOUNTABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_DISK_EJECT = "usual.event.data.DISK_EJECT",</td><td>COMMON_EVENT_DISK_EJECT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_VOLUME_REMOVED = "usual.event.data.VOLUME_REMOVED",</td><td>COMMON_EVENT_VOLUME_REMOVED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Support</td><td>COMMON_EVENT_VOLUME_UNMOUNTED = "usual.event.data.VOLUME_UNMOUNTED",</td><td>COMMON_EVENT_VOLUME_UNMOUNTED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Support</td><td>COMMON_EVENT_VOLUME_MOUNTED = "usual.event.data.VOLUME_MOUNTED",</td><td>COMMON_EVENT_VOLUME_MOUNTED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Support</td><td>COMMON_EVENT_VOLUME_BAD_REMOVAL = "usual.event.data.VOLUME_BAD_REMOVAL",</td><td>COMMON_EVENT_VOLUME_BAD_REMOVAL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Support</td><td>COMMON_EVENT_VOLUME_EJECT = "usual.event.data.VOLUME_EJECT",</td><td>COMMON_EVENT_VOLUME_EJECT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Support</td><td>COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED =</td><td>COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_ACCOUNT_DELETED = "usual.event.data.ACCOUNT_DELETED",</td><td>COMMON_EVENT_ACCOUNT_DELETED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_FOUNDATION_READY = "common.event.FOUNDATION_READY",</td><td>COMMON_EVENT_FOUNDATION_READY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Support</td><td>COMMON_EVENT_AIRPLANE_MODE_CHANGED = "usual.event.AIRPLANE_MODE",</td><td>COMMON_EVENT_AIRPLANE_MODE_CHANGED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Support</td><td>COMMON_EVENT_SPLIT_SCREEN = "common.event.SPLIT_SCREEN"</td><td>COMMON_EVENT_SPLIT_SCREEN</td><td>42</td><td>1</td><td>1</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

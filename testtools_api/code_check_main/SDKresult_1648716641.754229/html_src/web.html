@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>web</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>MessageLevel</td><td>declare enum MessageLevel {
+  
+  Debug,
+
+  
+  Error,
+
+  
+  Info,
+
+  
+  Log,
+
+  
+  Warn,
+}</td><td>MessageLevel</td><td>40</td><td>0</td><td>6</td><tr><tr><td>MessageLevel</td><td>Debug,</td><td>Debug</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MessageLevel</td><td>Error,</td><td>Error</td><td>42</td><td>1</td><td>36</td><tr><tr><td>MessageLevel</td><td>Info,</td><td>Info</td><td>42</td><td>1</td><td>127</td><tr><tr><td>MessageLevel</td><td>Log,</td><td>Log</td><td>42</td><td>1</td><td>10</td><tr><tr><td>MessageLevel</td><td>Warn,</td><td>Warn</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MixedMode</td><td>declare enum MixedMode {
+  
+  All,
+
+  
+  Compatible,
+
+  
+  None,
+}</td><td>MixedMode</td><td>40</td><td>0</td><td>5</td><tr><tr><td>MixedMode</td><td>All,</td><td>All</td><td>42</td><td>1</td><td>613</td><tr><tr><td>MixedMode</td><td>Compatible,</td><td>Compatible</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MixedMode</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>HitTestType</td><td>declare enum HitTestType {
+  
+  EditText,
+
+  
+  Email,
+
+  
+  HttpAnchor,
+
+  
+  HttpAnchorImg,
+
+  
+  Img,
+
+  
+  Map,
+
+  
+  Phone,
+
+  
+  Unknown,
+}</td><td>HitTestType</td><td>40</td><td>0</td><td>10</td><tr><tr><td>HitTestType</td><td>EditText,</td><td>EditText</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HitTestType</td><td>Email,</td><td>Email</td><td>42</td><td>1</td><td>29</td><tr><tr><td>HitTestType</td><td>HttpAnchor,</td><td>HttpAnchor</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HitTestType</td><td>HttpAnchorImg,</td><td>HttpAnchorImg</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HitTestType</td><td>Img,</td><td>Img</td><td>42</td><td>1</td><td>4</td><tr><tr><td>HitTestType</td><td>Map,</td><td>Map</td><td>42</td><td>1</td><td>26</td><tr><tr><td>HitTestType</td><td>Phone,</td><td>Phone</td><td>42</td><td>1</td><td>2</td><tr><tr><td>HitTestType</td><td>Unknown,</td><td>Unknown</td><td>42</td><td>1</td><td>5</td><tr><tr><td>CacheMode</td><td>declare enum CacheMode {
+  
+  None,
+
+  
+  Online,
+
+  
+  Only,
+}</td><td>CacheMode</td><td>40</td><td>0</td><td>5</td><tr><tr><td>CacheMode</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>CacheMode</td><td>Online,</td><td>Online</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CacheMode</td><td>Only,</td><td>Only</td><td>42</td><td>1</td><td>9</td><tr><tr><td>JsResult</td><td>declare class JsResult {
+  
+  constructor();
+
+  
+  handleCancel(): void;
+
+  
+  handleConfirm(): void;
+}</td><td>JsResult</td><td>10</td><td>0</td><td>0</td><tr><tr><td>JsResult</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>JsResult</td><td>handleCancel(): void;</td><td>handleCancel</td><td>11</td><td>0</td><td>3</td><tr><tr><td>JsResult</td><td>handleConfirm(): void;</td><td>handleConfirm</td><td>11</td><td>0</td><td>3</td><tr><tr><td>ConsoleMessage</td><td>declare class ConsoleMessage {
+  
+  constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel);
+
+  
+  getMessage(): string;
+
+  
+  getSourceId(): string;
+
+  
+  getLineNumber(): number;
+
+  
+  getMessageLevel(): MessageLevel;
+}</td><td>ConsoleMessage</td><td>10</td><td>0</td><td>0</td><tr><tr><td>ConsoleMessage</td><td>constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel)</td><td>constructor</td><td>11</td><td>4</td><td>80</td><tr><tr><td>ConsoleMessage</td><td>getMessage(): string;</td><td>getMessage</td><td>11</td><td>0</td><td>2</td><tr><tr><td>ConsoleMessage</td><td>getSourceId(): string;</td><td>getSourceId</td><td>11</td><td>0</td><td>1</td><tr><tr><td>ConsoleMessage</td><td>getLineNumber(): number;</td><td>getLineNumber</td><td>11</td><td>0</td><td>1</td><tr><tr><td>ConsoleMessage</td><td>getMessageLevel(): MessageLevel;</td><td>getMessageLevel</td><td>11</td><td>0</td><td>1</td><tr><tr><td>WebResourceRequest</td><td>declare class WebResourceRequest {
+  
+  constructor();
+
+  
+  getRequestHeader(): Array<Header>;
+
+  
+  getRequestUrl(): string;
+
+  
+  isRequestGesture(): boolean;
+
+  
+  isMainFrame(): boolean;
+
+  
+  isRedirect(): boolean;
+}</td><td>WebResourceRequest</td><td>10</td><td>0</td><td>0</td><tr><tr><td>WebResourceRequest</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>WebResourceRequest</td><td>getRequestHeader(): Array<Header>;</td><td>getRequestHeader</td><td>11</td><td>0</td><td>2</td><tr><tr><td>WebResourceRequest</td><td>getRequestUrl(): string;</td><td>getRequestUrl</td><td>11</td><td>0</td><td>2</td><tr><tr><td>WebResourceRequest</td><td>isRequestGesture(): boolean;</td><td>isRequestGesture</td><td>11</td><td>0</td><td>2</td><tr><tr><td>WebResourceRequest</td><td>isMainFrame(): boolean;</td><td>isMainFrame</td><td>11</td><td>0</td><td>2</td><tr><tr><td>WebResourceRequest</td><td>isRedirect(): boolean;</td><td>isRedirect</td><td>11</td><td>0</td><td>2</td><tr><tr><td>WebResourceResponse</td><td>declare class WebResourceResponse {
+  
+  constructor();
+
+  
+  getResponseData(): string;
+
+  
+  getResponseEncoding(): string;
+
+  
+  getResponseMimeType(): string;
+
+  
+  getReasonMessage(): string;
+
+  
+  getResponseHeader() : Array<Header>;
+
+  
+  getResponseCode(): number;
+}</td><td>WebResourceResponse</td><td>10</td><td>0</td><td>0</td><tr><tr><td>WebResourceResponse</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>WebResourceResponse</td><td>getResponseData(): string;</td><td>getResponseData</td><td>11</td><td>0</td><td>0</td><tr><tr><td>WebResourceResponse</td><td>getResponseEncoding(): string;</td><td>getResponseEncoding</td><td>11</td><td>0</td><td>0</td><tr><tr><td>WebResourceResponse</td><td>getResponseMimeType(): string;</td><td>getResponseMimeType</td><td>11</td><td>0</td><td>0</td><tr><tr><td>WebResourceResponse</td><td>getReasonMessage(): string;</td><td>getReasonMessage</td><td>11</td><td>0</td><td>0</td><tr><tr><td>WebResourceResponse</td><td>getResponseHeader() : Array<Header>;</td><td>getResponseHeader</td><td>11</td><td>0</td><td>0</td><tr><tr><td>WebResourceResponse</td><td>getResponseCode(): number;</td><td>getResponseCode</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Header</td><td>declare interface Header {
+  
+  headerKey: string;
+
+  
+  headerValue: string;
+}</td><td>Header</td><td>20</td><td>0</td><td>11</td><tr><tr><td>Header</td><td>headerKey: string</td><td>headerKey</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Header</td><td>headerValue: string</td><td>headerValue</td><td>22</td><td>1</td><td>0</td><tr><tr><td>WebResourceError</td><td>declare class WebResourceError {
+  
+  constructor();
+
+  
+  getErrorInfo(): string;
+
+  
+  getErrorCode(): number;
+}</td><td>WebResourceError</td><td>10</td><td>0</td><td>0</td><tr><tr><td>WebResourceError</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>WebResourceError</td><td>getErrorInfo(): string;</td><td>getErrorInfo</td><td>11</td><td>0</td><td>2</td><tr><tr><td>WebResourceError</td><td>getErrorCode(): number;</td><td>getErrorCode</td><td>11</td><td>0</td><td>2</td><tr><tr><td>JsGeolocation</td><td>declare class JsGeolocation {
+  
+  constructor();
+
+  
+  invoke(origin: string, allow: boolean, retain: boolean): void;
+}</td><td>JsGeolocation</td><td>10</td><td>0</td><td>0</td><tr><tr><td>JsGeolocation</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>JsGeolocation</td><td>invoke(origin: string, allow: boolean, retain: boolean): void;</td><td>invoke</td><td>11</td><td>3</td><td>2</td><tr><tr><td>WebCookie</td><td>declare class WebCookie {
+  
+  constructor();
+
+  
+  setCookie();
+
+  
+  saveCookie();
+}</td><td>WebCookie</td><td>10</td><td>0</td><td>2</td><tr><tr><td>WebCookie</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>WebCookie</td><td>setCookie();</td><td>setCookie</td><td>11</td><td>0</td><td>1</td><tr><tr><td>WebCookie</td><td>saveCookie();</td><td>saveCookie</td><td>11</td><td>0</td><td>1</td><tr><tr><td>WebController</td><td>declare class WebController {
+  
+  constructor();
+
+  
+  onInactive(): void;
+
+  
+  onActive(): void;
+
+  
+  zoom(factor: number): void;
+
+  
+  clearHistory(): void;
+
+  
+  runJavaScript(options: { script: string, callback?: (result: string) => void });
+
+  
+  loadData(options: { data: string, mimeType: string, encoding: string, baseUrl?: string, historyUrl?: string });
+
+  
+  loadUrl(options: { url: string | Resource, headers?: Array<Header> });
+
+  
+  refresh();
+
+  
+  stop();
+
+  
+  registerJavaScriptProxy(options: { object: object, name: string, methodList: Array<string> });
+
+  
+  deleteJavaScriptRegister(name: string);
+
+  
+  getHitTest(): HitTestType;
+
+  
+  requestFocus();
+
+  
+  accessBackward(): boolean;
+
+  
+  accessForward(): boolean;
+
+  
+  accessStep(step: number): boolean;
+
+  
+  backward();
+
+  
+  forward();
+}</td><td>WebController</td><td>10</td><td>0</td><td>2</td><tr><tr><td>WebController</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>WebController</td><td>onInactive(): void;</td><td>onInactive</td><td>11</td><td>0</td><td>1</td><tr><tr><td>WebController</td><td>onActive(): void;</td><td>onActive</td><td>11</td><td>0</td><td>1</td><tr><tr><td>WebController</td><td>zoom(factor: number): void;</td><td>zoom</td><td>11</td><td>1</td><td>3</td><tr><tr><td>WebController</td><td>clearHistory(): void;</td><td>clearHistory</td><td>11</td><td>0</td><td>1</td><tr><tr><td>WebController</td><td>runJavaScript(options: { script: string, callback?: (result: string) => void });</td><td>runJavaScriptoptions</td><td>11</td><td>1</td><td>0</td><tr><tr><td>WebController</td><td>runJavaScript(options: { script: string, callback?: (result: string) => void });</td><td>runJavaScriptoptions</td><td>11</td><td>4</td><td>0</td><tr><tr><td>WebController</td><td>loadData(options: { data: string, mimeType: string, encoding: string, baseUrl?: string, historyUrl?: string });</td><td>loadData</td><td>11</td><td>1</td><td>1</td><tr><tr><td>WebController</td><td>loadUrl(options: { url: string | Resource, headers?: Array<Header> });</td><td>loadUrl</td><td>11</td><td>1</td><td>1</td><tr><tr><td>WebController</td><td>refresh();</td><td>refresh</td><td>11</td><td>0</td><td>223</td><tr><tr><td>WebController</td><td>stop();</td><td>stop</td><td>11</td><td>0</td><td>20</td><tr><tr><td>WebController</td><td>registerJavaScriptProxy(options: { object: object, name: string, methodList: Array<string> });</td><td>registerJavaScriptProxy</td><td>11</td><td>1</td><td>1</td><tr><tr><td>WebController</td><td>deleteJavaScriptRegister(name: string);</td><td>deleteJavaScriptRegister</td><td>11</td><td>1</td><td>1</td><tr><tr><td>WebController</td><td>getHitTest(): HitTestType;</td><td>getHitTest</td><td>11</td><td>0</td><td>19</td><tr><tr><td>WebController</td><td>requestFocus();</td><td>requestFocus</td><td>11</td><td>0</td><td>1</td><tr><tr><td>WebController</td><td>accessBackward(): boolean;</td><td>accessBackward</td><td>11</td><td>0</td><td>4</td><tr><tr><td>WebController</td><td>accessForward(): boolean;</td><td>accessForward</td><td>11</td><td>0</td><td>4</td><tr><tr><td>WebController</td><td>accessStep(step: number): boolean;</td><td>accessStep</td><td>11</td><td>1</td><td>4</td><tr><tr><td>WebController</td><td>backward();</td><td>backward</td><td>11</td><td>0</td><td>1</td><tr><tr><td>WebController</td><td>forward();</td><td>forward</td><td>11</td><td>0</td><td>45</td><tr><tr><td>WebOptions</td><td>declare interface WebOptions {
+  
+  src: string | Resource;
+  
+  controller: WebController;
+}</td><td>WebOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WebOptions</td><td>src: string | Resource</td><td>src</td><td>22</td><td>1</td><td>90</td><tr><tr><td>WebOptions</td><td>controller: WebController</td><td>controller</td><td>22</td><td>1</td><td>50</td><tr><tr><td>WebInterface</td><td>interface WebInterface {
+  
+  (value: WebOptions): WebAttribute;
+}</td><td>WebInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WebInterface</td><td>(value: WebOptions): WebAttribute</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>WebAttribute</td><td>declare class WebAttribute extends CommonMethod<WebAttribute> {
+  
+  javaScriptAccess(javaScriptAccess: boolean): WebAttribute;
+
+  
+  fileAccess(fileAccess: boolean): WebAttribute;
+
+  
+  onlineImageAccess(onlineImageAccess: boolean): WebAttribute;
+
+  
+  domStorageAccess(domStorageAccess: boolean): WebAttribute;
+
+  
+  imageAccess(imageAccess: boolean): WebAttribute;
+
+  
+  mixedMode(mixedMode: MixedMode): WebAttribute;
+
+  
+  zoomAccess(zoomAccess: boolean): WebAttribute;
+
+  
+  geolocationAccess(geolocationAccess: boolean): WebAttribute;
+
+  
+  javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array<string>,
+    controller: WebController }): WebAttribute;
+
+  
+  password(password: boolean): WebAttribute;
+
+  
+  cacheMode(cacheMode: CacheMode): WebAttribute;
+
+  
+  tableData(tableData: boolean): WebAttribute;
+
+  
+  wideViewModeAccess(wideViewModeAccess: boolean): WebAttribute;
+
+  
+  overviewModeAccess(overviewModeAccess: boolean): WebAttribute;
+
+  
+  textZoomAtio(textZoomAtio: number): WebAttribute;
+
+  
+  databaseAccess(databaseAccess: boolean): WebAttribute;
+
+  
+  userAgent(userAgent: string): WebAttribute;
+
+  
+  onPageEnd(callback: (event?: { url: string }) => void): WebAttribute;
+
+  
+  onPageBegin(callback: (event?: { url: string }) => void): WebAttribute;
+
+  
+  onProgressChange(callback: (event?: { newProgress: number }) => void): WebAttribute;
+
+  
+  onTitleReceive(callback: (event?: { title: string }) => void): WebAttribute;
+
+  
+  onGeolocationHide(callback: () => void): WebAttribute;
+
+  
+  onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void): WebAttribute;
+
+  
+  onRequestSelected(callback: () => void): WebAttribute;
+
+  
+  onAlert(callback: (event?: { url: string, message: string, result: JsResult }) => boolean): WebAttribute;
+
+  
+  onBeforeUnload(callback: (event?: { url: string, message: string, result: JsResult }) => boolean): WebAttribute;
+
+  
+  onConfirm(callback: (event?: { url: string, message: string, result: JsResult }) => boolean): WebAttribute;
+
+  
+  onConsole(callback: (event?: { message: ConsoleMessage }) => boolean): WebAttribute;
+
+  
+  onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void): WebAttribute;
+
+  
+  onHttpErrorReceive(callback: (event?: { request: WebResourceRequest,
+    response: WebResourceResponse }) => void): WebAttribute;
+
+  
+  onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string,
+    contentLength: number }) => void): WebAttribute;
+
+  
+  onRefreshAccessedHistory(callback: (event?: { url: string, refreshed: boolean }) => void): WebAttribute;
+
+  
+  onUrlLoadIntercept(callback: (event?: { data: string | WebResourceRequest }) => boolean): WebAttribute;
+
+  
+  onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void): WebAttribute;
+
+  
+  onRenderExited(callback: (event?: { detail: object }) => boolean): WebAttribute;
+
+  
+  onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void): WebAttribute;
+}</td><td>WebAttribute</td><td>None</td><td>0</td><td>0</td><tr><tr><td>WebAttribute</td><td>javaScriptAccess(javaScriptAccess: boolean): WebAttribute;</td><td>javaScriptAccess</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>fileAccess(fileAccess: boolean): WebAttribute;</td><td>fileAccess</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>onlineImageAccess(onlineImageAccess: boolean): WebAttribute;</td><td>onlineImageAccess</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>domStorageAccess(domStorageAccess: boolean): WebAttribute;</td><td>domStorageAccess</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>imageAccess(imageAccess: boolean): WebAttribute;</td><td>imageAccess</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>mixedMode(mixedMode: MixedMode): WebAttribute;</td><td>mixedMode</td><td>None</td><td>1</td><td>6</td><tr><tr><td>WebAttribute</td><td>zoomAccess(zoomAccess: boolean): WebAttribute;</td><td>zoomAccess</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>geolocationAccess(geolocationAccess: boolean): WebAttribute;</td><td>geolocationAccess</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array<string>,
+    controller: WebController }): WebAttribute;</td><td>javaScriptProxy</td><td>None</td><td>1</td><td>1</td><tr><tr><td>WebAttribute</td><td>password(password: boolean): WebAttribute;</td><td>password</td><td>None</td><td>1</td><td>80</td><tr><tr><td>WebAttribute</td><td>cacheMode(cacheMode: CacheMode): WebAttribute;</td><td>cacheMode</td><td>None</td><td>1</td><td>6</td><tr><tr><td>WebAttribute</td><td>tableData(tableData: boolean): WebAttribute;</td><td>tableData</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>wideViewModeAccess(wideViewModeAccess: boolean): WebAttribute;</td><td>wideViewModeAccess</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>overviewModeAccess(overviewModeAccess: boolean): WebAttribute;</td><td>overviewModeAccess</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>textZoomAtio(textZoomAtio: number): WebAttribute;</td><td>textZoomAtio</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>databaseAccess(databaseAccess: boolean): WebAttribute;</td><td>databaseAccess</td><td>None</td><td>1</td><td>3</td><tr><tr><td>WebAttribute</td><td>userAgent(userAgent: string): WebAttribute;</td><td>userAgent</td><td>None</td><td>1</td><td>2</td><tr><tr><td>WebAttribute</td><td>onPageEnd(callback: (event?: { url: string }) => void): WebAttribute;</td><td>onPageEndcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onPageEnd(callback: (event?: { url: string }) => void): WebAttribute;</td><td>onPageEndcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onPageBegin(callback: (event?: { url: string }) => void): WebAttribute;</td><td>onPageBegincallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onPageBegin(callback: (event?: { url: string }) => void): WebAttribute;</td><td>onPageBegincallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onProgressChange(callback: (event?: { newProgress: number }) => void): WebAttribute;</td><td>onProgressChangecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onProgressChange(callback: (event?: { newProgress: number }) => void): WebAttribute;</td><td>onProgressChangecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onTitleReceive(callback: (event?: { title: string }) => void): WebAttribute;</td><td>onTitleReceivecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onTitleReceive(callback: (event?: { title: string }) => void): WebAttribute;</td><td>onTitleReceivecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onGeolocationHide(callback: () => void): WebAttribute;</td><td>onGeolocationHidecallback</td><td>None</td><td>1</td><td>0</td><tr><tr><td>WebAttribute</td><td>onGeolocationHide(callback: () => void): WebAttribute;</td><td>onGeolocationHidecallback</td><td>None</td><td>1</td><td>0</td><tr><tr><td>WebAttribute</td><td>onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void): WebAttribute;</td><td>onGeolocationShowcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void): WebAttribute;</td><td>onGeolocationShowcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onRequestSelected(callback: () => void): WebAttribute;</td><td>onRequestSelectedcallback</td><td>None</td><td>1</td><td>0</td><tr><tr><td>WebAttribute</td><td>onRequestSelected(callback: () => void): WebAttribute;</td><td>onRequestSelectedcallback</td><td>None</td><td>1</td><td>0</td><tr><tr><td>WebAttribute</td><td>onAlert(callback: (event?: { url: string, message: string, result: JsResult }) => boolean): WebAttribute;</td><td>onAlertcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onAlert(callback: (event?: { url: string, message: string, result: JsResult }) => boolean): WebAttribute;</td><td>onAlertcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onBeforeUnload(callback: (event?: { url: string, message: string, result: JsResult }) => boolean): WebAttribute;</td><td>onBeforeUnloadcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onBeforeUnload(callback: (event?: { url: string, message: string, result: JsResult }) => boolean): WebAttribute;</td><td>onBeforeUnloadcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onConfirm(callback: (event?: { url: string, message: string, result: JsResult }) => boolean): WebAttribute;</td><td>onConfirmcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onConfirm(callback: (event?: { url: string, message: string, result: JsResult }) => boolean): WebAttribute;</td><td>onConfirmcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onConsole(callback: (event?: { message: ConsoleMessage }) => boolean): WebAttribute;</td><td>onConsolecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onConsole(callback: (event?: { message: ConsoleMessage }) => boolean): WebAttribute;</td><td>onConsolecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void): WebAttribute;</td><td>onErrorReceivecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void): WebAttribute;</td><td>onErrorReceivecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onHttpErrorReceive(callback: (event?: { request: WebResourceRequest,
+    response: WebResourceResponse }) => void): WebAttribute;</td><td>onHttpErrorReceivecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onHttpErrorReceive(callback: (event?: { request: WebResourceRequest,
+    response: WebResourceResponse }) => void): WebAttribute;</td><td>onHttpErrorReceivecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string,
+    contentLength: number }) => void): WebAttribute;</td><td>onDownloadStartcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string,
+    contentLength: number }) => void): WebAttribute;</td><td>onDownloadStartcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onRefreshAccessedHistory(callback: (event?: { url: string, refreshed: boolean }) => void): WebAttribute;</td><td>onRefreshAccessedHistorycallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onRefreshAccessedHistory(callback: (event?: { url: string, refreshed: boolean }) => void): WebAttribute;</td><td>onRefreshAccessedHistorycallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onUrlLoadIntercept(callback: (event?: { data: string | WebResourceRequest }) => boolean): WebAttribute;</td><td>onUrlLoadInterceptcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onUrlLoadIntercept(callback: (event?: { data: string | WebResourceRequest }) => boolean): WebAttribute;</td><td>onUrlLoadInterceptcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void): WebAttribute;</td><td>onSslErrorReceivecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void): WebAttribute;</td><td>onSslErrorReceivecallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onRenderExited(callback: (event?: { detail: object }) => boolean): WebAttribute;</td><td>onRenderExitedcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onRenderExited(callback: (event?: { detail: object }) => boolean): WebAttribute;</td><td>onRenderExitedcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void): WebAttribute;</td><td>onFileSelectorShowcallback</td><td>None</td><td>2</td><td>0</td><tr><tr><td>WebAttribute</td><td>onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void): WebAttribute;</td><td>onFileSelectorShowcallback</td><td>None</td><td>2</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

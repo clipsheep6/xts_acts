@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>USB服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>usb</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.usb</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>usb</td><td>declare namespace usb {
+    
+    function getDevices(): Array<Readonly<USBDevice>>;
+
+    
+    function connectDevice(device: USBDevice): Readonly<USBDevicePipe>;
+
+    
+    function hasRight(deviceName: string): boolean;
+
+    
+    function requestRight(deviceName: string): Promise<boolean>;
+
+    
+    function claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number;
+
+    
+    function releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number;
+
+    
+    function setConfiguration(pipe: USBDevicePipe, config: USBConfig): number;
+
+    
+    function setInterface(pipe: USBDevicePipe, iface: USBInterface): number;
+
+    
+    function getRawDescriptor(pipe: USBDevicePipe): Uint8Array;
+
+    
+    function getFileDescriptor(pipe: USBDevicePipe): number;
+
+    
+    function controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise<number>;
+
+    
+    function bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array,
+        timeout?: number): Promise<number>;
+
+    
+    function closePipe(pipe: USBDevicePipe): number;
+
+    
+    interface USBEndpoint {
+        
+        address: number;
+
+        
+        attributes: number;
+
+        
+        interval: number;
+
+        
+        maxPacketSize: number;
+
+        
+        direction: USBRequestDirection;
+
+        
+        number: number;
+
+        
+        type: number;
+
+        
+        interfaceId: number;
+    }
+
+
+    
+    interface USBInterface {
+        
+        id: number;
+
+        
+        protocol: number;
+
+        
+        clazz: number;
+
+        
+        subClass: number;
+
+        
+        alternateSetting: number;
+
+        
+        name: string;
+
+        
+        endpoints: Array<USBEndpoint>;
+    }
+
+    
+    interface USBConfig {
+        
+        id: number;
+
+        
+        attributes: number;
+
+        
+        maxPower: number;
+
+        
+        name: string;
+
+        
+        isRemoteWakeup: boolean;
+
+        
+        isSelfPowered: boolean;
+
+        
+        interfaces: Array<USBInterface>;
+    }
+
+    
+    interface USBDevice {
+        
+        busNum: number;
+        
+        devAddress: number;
+        
+        serial: string;
+        
+        name: string;
+        
+        manufacturerName: string;
+        
+        productName: string;
+        
+        version: string;
+        
+        vendorId: number;
+        
+        productId: number;
+        
+        clazz: number;
+        
+        subClass: number;
+        
+        protocol: number;
+        
+        configs: Array<USBConfig>;
+    }
+
+    
+    interface USBDevicePipe {
+        
+        busNum: number;
+        
+        devAddress: number;
+    }
+
+    
+    interface USBControlParams {
+        
+        request: number;
+        
+        target: USBRequestTargetType;
+        
+        reqType: USBControlRequestType;
+        
+        value: number;
+        
+        index: number;
+        
+        data: Uint8Array;
+    }
+
+    
+    enum USBRequestTargetType {
+        
+        USB_REQUEST_TARGET_DEVICE = 0,
+        
+        USB_REQUEST_TARGET_INTERFACE,
+        
+        USB_REQUEST_TARGET_ENDPOINT,
+        
+        USB_REQUEST_TARGET_OTHER
+    }
+
+    
+    enum USBControlRequestType {
+        
+        USB_REQUEST_TYPE_STANDARD = 0,
+        
+        USB_REQUEST_TYPE_CLASS,
+        
+        USB_REQUEST_TYPE_VENDOR
+    }
+
+    
+    enum USBRequestDirection {
+        
+        USB_REQUEST_DIR_TO_DEVICE = 0,
+        
+        USB_REQUEST_DIR_FROM_DEVICE = 0x80
+    }
+}</td><td>usb</td><td>None</td><td>0</td><td>1284</td><tr><tr><td>usb</td><td>function getDevices(): Array<Readonly<USBDevice>>;</td><td>getDevices</td><td>None</td><td>0</td><td>6</td><tr><tr><td>usb</td><td>function connectDevice(device: USBDevice): Readonly<USBDevicePipe>;</td><td>connectDevice</td><td>None</td><td>1</td><td>63</td><tr><tr><td>usb</td><td>function hasRight(deviceName: string): boolean;</td><td>hasRight</td><td>None</td><td>1</td><td>47</td><tr><tr><td>usb</td><td>function requestRight(deviceName: string): Promise<boolean>;</td><td>requestRight</td><td>None</td><td>1</td><td>16</td><tr><tr><td>usb</td><td>function claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number;</td><td>claimInterface</td><td>None</td><td>3</td><td>29</td><tr><tr><td>usb</td><td>function releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number;</td><td>releaseInterface</td><td>None</td><td>2</td><td>14</td><tr><tr><td>usb</td><td>function setConfiguration(pipe: USBDevicePipe, config: USBConfig): number;</td><td>setConfiguration</td><td>None</td><td>2</td><td>17</td><tr><tr><td>usb</td><td>function setInterface(pipe: USBDevicePipe, iface: USBInterface): number;</td><td>setInterface</td><td>None</td><td>2</td><td>19</td><tr><tr><td>usb</td><td>function getRawDescriptor(pipe: USBDevicePipe): Uint8Array;</td><td>getRawDescriptor</td><td>None</td><td>1</td><td>3</td><tr><tr><td>usb</td><td>function getFileDescriptor(pipe: USBDevicePipe): number;</td><td>getFileDescriptor</td><td>None</td><td>1</td><td>12</td><tr><tr><td>usb</td><td>function controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise<number>;</td><td>controlTransfer</td><td>None</td><td>3</td><td>2</td><tr><tr><td>usb</td><td>function bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array,
+        timeout?: number): Promise<number>;</td><td>bulkTransfer</td><td>None</td><td>4</td><td>0</td><tr><tr><td>usb</td><td>function closePipe(pipe: USBDevicePipe): number;</td><td>closePipe</td><td>None</td><td>1</td><td>37</td><tr><tr><td>USBEndpoint</td><td>interface USBEndpoint {
+        
+        address: number;
+
+        
+        attributes: number;
+
+        
+        interval: number;
+
+        
+        maxPacketSize: number;
+
+        
+        direction: USBRequestDirection;
+
+        
+        number: number;
+
+        
+        type: number;
+
+        
+        interfaceId: number;
+    }</td><td>USBEndpoint</td><td>20</td><td>0</td><td>0</td><tr><tr><td>USBEndpoint</td><td>address: number</td><td>address</td><td>22</td><td>1</td><td>1</td><tr><tr><td>USBEndpoint</td><td>attributes: number</td><td>attributes</td><td>22</td><td>1</td><td>2</td><tr><tr><td>USBEndpoint</td><td>interval: number</td><td>interval</td><td>22</td><td>1</td><td>0</td><tr><tr><td>USBEndpoint</td><td>maxPacketSize: number</td><td>maxPacketSize</td><td>22</td><td>1</td><td>6</td><tr><tr><td>USBEndpoint</td><td>direction: USBRequestDirection</td><td>direction</td><td>22</td><td>1</td><td>6</td><tr><tr><td>USBEndpoint</td><td>number: number</td><td>number</td><td>22</td><td>1</td><td>19</td><tr><tr><td>USBEndpoint</td><td>type: number</td><td>type</td><td>22</td><td>1</td><td>7</td><tr><tr><td>USBEndpoint</td><td>interfaceId: number</td><td>interfaceId</td><td>22</td><td>1</td><td>0</td><tr><tr><td>USBInterface</td><td>interface USBInterface {
+        
+        id: number;
+
+        
+        protocol: number;
+
+        
+        clazz: number;
+
+        
+        subClass: number;
+
+        
+        alternateSetting: number;
+
+        
+        name: string;
+
+        
+        endpoints: Array<USBEndpoint>;
+    }</td><td>USBInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>USBInterface</td><td>id: number</td><td>id</td><td>22</td><td>1</td><td>32</td><tr><tr><td>USBInterface</td><td>protocol: number</td><td>protocol</td><td>22</td><td>1</td><td>9</td><tr><tr><td>USBInterface</td><td>clazz: number</td><td>clazz</td><td>22</td><td>1</td><td>10</td><tr><tr><td>USBInterface</td><td>subClass: number</td><td>subClass</td><td>22</td><td>1</td><td>4</td><tr><tr><td>USBInterface</td><td>alternateSetting: number</td><td>alternateSetting</td><td>22</td><td>1</td><td>1</td><tr><tr><td>USBInterface</td><td>name: string</td><td>name</td><td>22</td><td>1</td><td>65</td><tr><tr><td>USBInterface</td><td>endpoints: Array<USBEndpoint></td><td>endpoints</td><td>22</td><td>1</td><td>9</td><tr><tr><td>USBConfig</td><td>interface USBConfig {
+        
+        id: number;
+
+        
+        attributes: number;
+
+        
+        maxPower: number;
+
+        
+        name: string;
+
+        
+        isRemoteWakeup: boolean;
+
+        
+        isSelfPowered: boolean;
+
+        
+        interfaces: Array<USBInterface>;
+    }</td><td>USBConfig</td><td>20</td><td>0</td><td>3</td><tr><tr><td>USBConfig</td><td>id: number</td><td>id</td><td>22</td><td>1</td><td>32</td><tr><tr><td>USBConfig</td><td>attributes: number</td><td>attributes</td><td>22</td><td>1</td><td>2</td><tr><tr><td>USBConfig</td><td>maxPower: number</td><td>maxPower</td><td>22</td><td>1</td><td>1</td><tr><tr><td>USBConfig</td><td>name: string</td><td>name</td><td>22</td><td>1</td><td>65</td><tr><tr><td>USBConfig</td><td>isRemoteWakeup: boolean</td><td>isRemoteWakeup</td><td>22</td><td>1</td><td>0</td><tr><tr><td>USBConfig</td><td>isSelfPowered: boolean</td><td>isSelfPowered</td><td>22</td><td>1</td><td>1</td><tr><tr><td>USBConfig</td><td>interfaces: Array<USBInterface></td><td>interfaces</td><td>22</td><td>1</td><td>95</td><tr><tr><td>USBDevice</td><td>interface USBDevice {
+        
+        busNum: number;
+        
+        devAddress: number;
+        
+        serial: string;
+        
+        name: string;
+        
+        manufacturerName: string;
+        
+        productName: string;
+        
+        version: string;
+        
+        vendorId: number;
+        
+        productId: number;
+        
+        clazz: number;
+        
+        subClass: number;
+        
+        protocol: number;
+        
+        configs: Array<USBConfig>;
+    }</td><td>USBDevice</td><td>20</td><td>0</td><td>0</td><tr><tr><td>USBDevice</td><td>busNum: number</td><td>busNum</td><td>22</td><td>1</td><td>9</td><tr><tr><td>USBDevice</td><td>devAddress: number</td><td>devAddress</td><td>22</td><td>1</td><td>9</td><tr><tr><td>USBDevice</td><td>serial: string</td><td>serial</td><td>22</td><td>1</td><td>3</td><tr><tr><td>USBDevice</td><td>name: string</td><td>name</td><td>22</td><td>1</td><td>65</td><tr><tr><td>USBDevice</td><td>manufacturerName: string</td><td>manufacturerName</td><td>22</td><td>1</td><td>3</td><tr><tr><td>USBDevice</td><td>productName: string</td><td>productName</td><td>22</td><td>1</td><td>3</td><tr><tr><td>USBDevice</td><td>version: string</td><td>version</td><td>22</td><td>1</td><td>21</td><tr><tr><td>USBDevice</td><td>vendorId: number</td><td>vendorId</td><td>22</td><td>1</td><td>3</td><tr><tr><td>USBDevice</td><td>productId: number</td><td>productId</td><td>22</td><td>1</td><td>3</td><tr><tr><td>USBDevice</td><td>clazz: number</td><td>clazz</td><td>22</td><td>1</td><td>10</td><tr><tr><td>USBDevice</td><td>subClass: number</td><td>subClass</td><td>22</td><td>1</td><td>4</td><tr><tr><td>USBDevice</td><td>protocol: number</td><td>protocol</td><td>22</td><td>1</td><td>9</td><tr><tr><td>USBDevice</td><td>configs: Array<USBConfig></td><td>configs</td><td>22</td><td>1</td><td>136</td><tr><tr><td>USBDevicePipe</td><td>interface USBDevicePipe {
+        
+        busNum: number;
+        
+        devAddress: number;
+    }</td><td>USBDevicePipe</td><td>20</td><td>0</td><td>0</td><tr><tr><td>USBDevicePipe</td><td>busNum: number</td><td>busNum</td><td>22</td><td>1</td><td>9</td><tr><tr><td>USBDevicePipe</td><td>devAddress: number</td><td>devAddress</td><td>22</td><td>1</td><td>9</td><tr><tr><td>USBControlParams</td><td>interface USBControlParams {
+        
+        request: number;
+        
+        target: USBRequestTargetType;
+        
+        reqType: USBControlRequestType;
+        
+        value: number;
+        
+        index: number;
+        
+        data: Uint8Array;
+    }</td><td>USBControlParams</td><td>20</td><td>0</td><td>0</td><tr><tr><td>USBControlParams</td><td>request: number</td><td>request</td><td>22</td><td>1</td><td>70</td><tr><tr><td>USBControlParams</td><td>target: USBRequestTargetType</td><td>target</td><td>22</td><td>1</td><td>0</td><tr><tr><td>USBControlParams</td><td>reqType: USBControlRequestType</td><td>reqType</td><td>22</td><td>1</td><td>6</td><tr><tr><td>USBControlParams</td><td>value: number</td><td>value</td><td>22</td><td>1</td><td>13</td><tr><tr><td>USBControlParams</td><td>index: number</td><td>index</td><td>22</td><td>1</td><td>22</td><tr><tr><td>USBControlParams</td><td>data: Uint8Array</td><td>data</td><td>22</td><td>1</td><td>95</td><tr><tr><td>USBRequestTargetType</td><td>enum USBRequestTargetType {
+        
+        USB_REQUEST_TARGET_DEVICE = 0,
+        
+        USB_REQUEST_TARGET_INTERFACE,
+        
+        USB_REQUEST_TARGET_ENDPOINT,
+        
+        USB_REQUEST_TARGET_OTHER
+    }</td><td>USBRequestTargetType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>USBRequestTargetType</td><td>USB_REQUEST_TARGET_DEVICE = 0,</td><td>USB_REQUEST_TARGET_DEVICE</td><td>42</td><td>1</td><td>8</td><tr><tr><td>USBRequestTargetType</td><td>USB_REQUEST_TARGET_INTERFACE,</td><td>USB_REQUEST_TARGET_INTERFACE</td><td>42</td><td>1</td><td>4</td><tr><tr><td>USBRequestTargetType</td><td>USB_REQUEST_TARGET_ENDPOINT,</td><td>USB_REQUEST_TARGET_ENDPOINT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>USBControlRequestType</td><td>enum USBControlRequestType {
+        
+        USB_REQUEST_TYPE_STANDARD = 0,
+        
+        USB_REQUEST_TYPE_CLASS,
+        
+        USB_REQUEST_TYPE_VENDOR
+    }</td><td>USBControlRequestType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>USBControlRequestType</td><td>USB_REQUEST_TYPE_STANDARD = 0,</td><td>USB_REQUEST_TYPE_STANDARD</td><td>42</td><td>1</td><td>12</td><tr><tr><td>USBControlRequestType</td><td>USB_REQUEST_TYPE_CLASS,</td><td>USB_REQUEST_TYPE_CLASS</td><td>42</td><td>1</td><td>4</td><tr><tr><td>USBRequestDirection</td><td>enum USBRequestDirection {
+        
+        USB_REQUEST_DIR_TO_DEVICE = 0,
+        
+        USB_REQUEST_DIR_FROM_DEVICE = 0x80
+    }</td><td>USBRequestDirection</td><td>40</td><td>0</td><td>0</td><tr><tr><td>USBRequestDirection</td><td>USB_REQUEST_DIR_TO_DEVICE = 0,</td><td>USB_REQUEST_DIR_TO_DEVICE</td><td>42</td><td>1</td><td>11</td><tr><tr><td>USBRequestDirection</td><td>USB_REQUEST_DIR_FROM_DEVICE = 0x80</td><td>USB_REQUEST_DIR_FROM_DEVICE</td><td>42</td><td>1</td><td>13</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

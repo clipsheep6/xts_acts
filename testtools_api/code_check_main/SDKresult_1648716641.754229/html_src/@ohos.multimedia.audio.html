@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>媒体子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>multimedia</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.multimedia.audio</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>audio</td><td>declare namespace audio {
+
+  
+  function getAudioManager(): AudioManager;
+
+  
+  function createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer>): void;
+
+  
+  function createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer>;
+
+  
+  function createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback<AudioRenderer>): void;
+
+  
+  function createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer>;
+
+  
+  enum AudioState {
+    
+    STATE_INVALID = -1,
+    
+    STATE_NEW,
+    
+    STATE_PREPARED,
+    
+    STATE_RUNNING,
+    
+    STATE_STOPPED,
+    
+    STATE_RELEASED,
+    
+    STATE_PAUSED
+  }
+
+  
+  enum AudioVolumeType {
+    
+    VOICE_CALL = 0,
+    
+    RINGTONE = 2,
+    
+    MEDIA = 3,
+    
+    VOICE_ASSISTANT = 9,
+  }
+
+  
+  enum DeviceFlag {
+    
+    OUTPUT_DEVICES_FLAG = 1,
+    
+    INPUT_DEVICES_FLAG = 2,
+    
+    ALL_DEVICES_FLAG = 3,
+  }
+
+  
+  enum DeviceRole {
+    
+    INPUT_DEVICE = 1,
+    
+    OUTPUT_DEVICE = 2,
+  }
+
+  
+  enum DeviceType {
+    
+    INVALID = 0,
+    
+    EARPIECE = 1,
+    
+    SPEAKER = 2,
+    
+    WIRED_HEADSET = 3,
+    
+    WIRED_HEADPHONES = 4,
+    
+    BLUETOOTH_SCO = 7,
+    
+    BLUETOOTH_A2DP = 8,
+    
+    MIC = 15,
+    
+    USB_HEADSET = 22,
+  }
+
+  
+   enum ActiveDeviceType {
+    
+    SPEAKER = 2,
+    
+    BLUETOOTH_SCO = 7,
+  }
+
+  
+  enum AudioRingMode {
+    
+    RINGER_MODE_SILENT = 0,
+    
+    RINGER_MODE_VIBRATE = 1,
+    
+    RINGER_MODE_NORMAL = 2,
+  }
+
+  
+  enum AudioSampleFormat {
+    
+    SAMPLE_FORMAT_INVALID = -1,
+    
+    SAMPLE_FORMAT_U8 = 0,
+    
+    SAMPLE_FORMAT_S16LE = 1,
+    
+    SAMPLE_FORMAT_S24LE = 2,
+    
+    SAMPLE_FORMAT_S32LE = 3,
+  }
+
+  
+  enum AudioChannel {
+    
+    CHANNEL_1 = 0x1 << 0,
+    
+    CHANNEL_2 = 0x1 << 1
+  }
+
+  
+  enum AudioSamplingRate {
+    
+    SAMPLE_RATE_8000 = 8000,
+    
+    SAMPLE_RATE_11025 = 11025,
+    
+    SAMPLE_RATE_12000 = 12000,
+    
+    SAMPLE_RATE_16000 = 16000,
+    
+    SAMPLE_RATE_22050 = 22050,
+    
+    SAMPLE_RATE_24000 = 24000,
+    
+    SAMPLE_RATE_32000 = 32000,
+    
+    SAMPLE_RATE_44100 = 44100,
+    
+    SAMPLE_RATE_48000 = 48000,
+    
+    SAMPLE_RATE_64000 = 64000,
+    
+    SAMPLE_RATE_96000 = 96000
+  }
+
+  
+  enum AudioEncodingType {
+    
+    ENCODING_TYPE_INVALID = -1,
+    
+    ENCODING_TYPE_RAW = 0
+  }
+
+  
+  enum ContentType {
+    
+    CONTENT_TYPE_UNKNOWN = 0,
+    
+    CONTENT_TYPE_SPEECH = 1,
+    
+    CONTENT_TYPE_MUSIC = 2,
+    
+    CONTENT_TYPE_MOVIE = 3,
+    
+    CONTENT_TYPE_SONIFICATION = 4,
+    
+    CONTENT_TYPE_RINGTONE = 5,
+  }
+
+  
+  enum StreamUsage {
+    
+    STREAM_USAGE_UNKNOWN = 0,
+    
+    STREAM_USAGE_MEDIA = 1,
+    
+    STREAM_USAGE_VOICE_COMMUNICATION = 2,
+    
+    STREAM_USAGE_NOTIFICATION_RINGTONE = 6
+  }
+
+  
+  interface AudioStreamInfo {
+    
+    samplingRate: AudioSamplingRate;
+    
+    channels: AudioChannel;
+    
+    sampleFormat: AudioSampleFormat;
+    
+    encodingType: AudioEncodingType;
+  }
+
+  
+  interface AudioRendererInfo {
+    
+    content: ContentType;
+    
+    usage: StreamUsage;
+    
+    rendererFlags: number;
+  }
+
+  
+  interface AudioRendererOptions {
+    
+    streamInfo: AudioStreamInfo;
+    
+    rendererInfo: AudioRendererInfo;
+  }
+
+  
+  enum AudioRendererRate {
+    
+    RENDER_RATE_NORMAL = 0,
+    
+    RENDER_RATE_DOUBLE = 1,
+    
+    RENDER_RATE_HALF = 2
+  }
+
+  
+  enum InterruptType {
+    
+    INTERRUPT_TYPE_BEGIN = 1,
+
+    
+    INTERRUPT_TYPE_END = 2
+  }
+
+  
+  enum InterruptHint {
+    
+    INTERRUPT_HINT_NONE = 0,
+    
+    INTERRUPT_HINT_RESUME = 1,
+
+    
+    INTERRUPT_HINT_PAUSE = 2,
+
+    
+    INTERRUPT_HINT_STOP = 3,
+
+    
+    INTERRUPT_HINT_DUCK = 4,
+
+    
+    INTERRUPT_HINT_UNDUCK = 5,
+  }
+
+  
+  enum InterruptForceType {
+    
+    INTERRUPT_FORCE = 0,
+    
+    INTERRUPT_SHARE
+  }
+
+  
+  interface InterruptEvent {
+    
+    eventType: InterruptType;
+
+    
+    forceType: InterruptForceType;
+
+    
+    hintType: InterruptHint;
+  }
+
+  
+  enum InterruptActionType {
+
+    
+    TYPE_ACTIVATED = 0,
+
+    
+    TYPE_INTERRUPT = 1
+  }
+
+  
+  enum DeviceChangeType {
+    
+    CONNECT = 0,
+
+    
+    DISCONNECT = 1,
+  }
+
+  
+  enum AudioScene {
+    
+    AUDIO_SCENE_DEFAULT = 0,
+    
+    AUDIO_SCENE_RINGING,
+    
+    AUDIO_SCENE_PHONE_CALL,
+    
+    AUDIO_SCENE_VOICE_CHAT
+  }
+
+  
+  interface AudioManager {
+    
+    setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback<void>): void;
+    
+    setVolume(volumeType: AudioVolumeType, volume: number): Promise<void>;
+    
+    getVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;
+    
+    getVolume(volumeType: AudioVolumeType): Promise<number>;
+    
+    getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;
+    
+    getMinVolume(volumeType: AudioVolumeType): Promise<number>;
+    
+    getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;
+    
+    getMaxVolume(volumeType: AudioVolumeType): Promise<number>;
+    
+    getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors>): void;
+    
+    getDevices(deviceFlag: DeviceFlag): Promise<AudioDeviceDescriptors>;
+    
+    mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void>): void;
+    
+    mute(volumeType: AudioVolumeType, mute: boolean): Promise<void>;
+    
+    isMute(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void;
+    
+    isMute(volumeType: AudioVolumeType): Promise<boolean>;
+    
+    isActive(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void;
+    
+    isActive(volumeType: AudioVolumeType): Promise<boolean>;
+    
+    setMicrophoneMute(mute: boolean, callback: AsyncCallback<void>): void;
+    
+    setMicrophoneMute(mute: boolean): Promise<void>;
+    
+    isMicrophoneMute(callback: AsyncCallback<boolean>): void;
+    
+    isMicrophoneMute(): Promise<boolean>;
+    
+    setRingerMode(mode: AudioRingMode, callback: AsyncCallback<void>): void;
+    
+    setRingerMode(mode: AudioRingMode): Promise<void>;
+    
+    getRingerMode(callback: AsyncCallback<AudioRingMode>): void;
+    
+    getRingerMode(): Promise<AudioRingMode>;
+    
+    setAudioParameter(key: string, value: string, callback: AsyncCallback<void>): void;
+    
+    setAudioParameter(key: string, value: string): Promise<void>;
+    
+    getAudioParameter(key: string, callback: AsyncCallback<string>): void;
+    
+    getAudioParameter(key: string): Promise<string>;
+    
+    setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback<void>): void;
+    
+    setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise<void>;
+    
+    isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback<boolean>): void;
+    
+    isDeviceActive(deviceType: ActiveDeviceType): Promise<boolean>;
+    
+    on(type: 'volumeChange', callback: Callback<VolumeEvent>): void;
+    
+    on(type: 'ringerModeChange', callback: Callback<AudioRingMode>): void;
+    
+    setAudioScene(scene: AudioScene, callback: AsyncCallback<void> ): void;
+    
+    setAudioScene(scene: AudioScene): Promise<void>;
+    
+    getAudioScene(callback: AsyncCallback<AudioScene>): void;
+    
+    getAudioScene(): Promise<AudioScene>;
+    
+    on(type: 'deviceChange', callback: Callback<DeviceChangeAction>): void;
+
+    
+    off(type: 'deviceChange', callback?: Callback<DeviceChangeAction>): void;
+
+    
+    on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback<InterruptAction>): void;
+
+    
+    off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback<InterruptAction>): void;
+  }
+
+  
+  interface AudioDeviceDescriptor {
+    
+    readonly deviceRole: DeviceRole;
+    
+    readonly deviceType: DeviceType;
+  }
+
+  
+  type AudioDeviceDescriptors = Array<Readonly<AudioDeviceDescriptor>>;
+
+  
+  interface VolumeEvent {
+    
+    volumeType: AudioVolumeType;
+    
+    volume: number;
+    
+    updateUi: boolean;
+  }
+
+  
+  interface InterruptAction {
+
+    
+    actionType: InterruptActionType;
+
+    
+    type?: InterruptType;
+
+    
+    hint?: InterruptHint;
+
+    
+    activated?: boolean;
+  }
+
+  
+  interface AudioInterrupt {
+
+    
+    streamUsage: StreamUsage;
+
+    
+    contentType: ContentType;
+
+    
+    pauseWhenDucked: boolean;
+  }
+
+  
+  interface DeviceChangeAction {
+    
+    type: DeviceChangeType;
+
+    
+    deviceDescriptors: AudioDeviceDescriptors;
+  }
+
+  
+  interface AudioRenderer {
+    
+    readonly state: AudioState;
+    
+    getRendererInfo(callback: AsyncCallback<AudioRendererInfo>): void;
+    
+    getRendererInfo(): Promise<AudioRendererInfo>;
+    
+    getStreamInfo(callback: AsyncCallback<AudioStreamInfo>): void;
+    
+    getStreamInfo(): Promise<AudioStreamInfo>;
+    
+    start(callback: AsyncCallback<void>): void;
+    
+    start(): Promise<void>;
+    
+    write(buffer: ArrayBuffer, callback: AsyncCallback<number>): void;
+    
+    write(buffer: ArrayBuffer): Promise<number>;
+    
+    getAudioTime(callback: AsyncCallback<number>): void;
+    
+    getAudioTime(): Promise<number>;
+    
+    drain(callback: AsyncCallback<void>): void;
+    
+    drain(): Promise<void>;
+    
+    pause(callback: AsyncCallback<void>): void;
+    
+    pause(): Promise<void>;
+    
+    stop(callback: AsyncCallback<void>): void;
+    
+    stop(): Promise<void>;
+    
+    release(callback: AsyncCallback<void>): void;
+    
+    release(): Promise<void>;
+    
+    getBufferSize(callback: AsyncCallback<number>): void;
+    
+    getBufferSize(): Promise<number>;
+    
+    setRenderRate(rate: AudioRendererRate, callback: AsyncCallback<void>): void;
+    
+    setRenderRate(rate: AudioRendererRate): Promise<void>;
+    
+    getRenderRate(callback: AsyncCallback<AudioRendererRate>): void;
+    
+    getRenderRate(): Promise<AudioRendererRate>;
+    
+    on(type: 'interrupt', callback: Callback<InterruptEvent>): void;
+    
+    on(type: "markReach", frame: number, callback: (position: number) => {}): void;
+    
+    off(type: "markReach"): void;
+    
+    on(type: "periodReach", frame: number, callback: (position: number) => {}): void;
+    
+    off(type: "periodReach"): void;
+    
+    on(type: "stateChange", callback: Callback<AudioState>): void;
+  }
+
+  
+  enum SourceType {
+    
+    SOURCE_TYPE_INVALID = -1,
+    
+    SOURCE_TYPE_MIC = 0,
+    
+    SOURCE_TYPE_VOICE_COMMUNICATION = 7
+  }
+
+  
+  interface AudioCapturerInfo {
+    
+    source: SourceType;
+    
+    capturerFlags: number;
+  }
+
+  
+  interface AudioCapturerOptions {
+    
+    streamInfo: AudioStreamInfo;
+    
+    capturerInfo: AudioCapturerInfo;
+  }
+
+  
+  interface AudioCapturer {
+    
+    readonly state: AudioState;
+    
+    getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo>): void;
+    
+    getCapturerInfo(): Promise<AudioCapturerInfo>;
+
+    
+    getStreamInfo(callback: AsyncCallback<AudioStreamInfo>): void;
+    
+    getStreamInfo(): Promise<AudioStreamInfo>;
+
+    
+    start(callback: AsyncCallback<void>): void;
+    
+    start(): Promise<void>;
+
+    
+    read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer>): void;
+    
+    read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer>;
+
+    
+    getAudioTime(callback: AsyncCallback<number>): void;
+    
+    getAudioTime(): Promise<number>;
+
+    
+    stop(callback: AsyncCallback<void>): void;
+    
+    stop(): Promise<void>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+    
+    release(): Promise<void>;
+
+    
+    getBufferSize(callback: AsyncCallback<number>): void;
+    
+    getBufferSize(): Promise<number>;
+
+    
+    on(type: "markReach", frame: number, callback: (position: number) => {}): void;
+    
+    off(type: "markReach"): void;
+
+    
+    on(type: "periodReach", frame: number, callback: (position: number) => {}): void;
+    
+    off(type: "periodReach"): void;
+
+    
+    on(type: "stateChange", callback: Callback<AudioState>): void;
+  }
+}</td><td>audio</td><td>None</td><td>0</td><td>6214</td><tr><tr><td>audio</td><td>function getAudioManager(): AudioManager;</td><td>getAudioManager</td><td>None</td><td>0</td><td>51</td><tr><tr><td>audio</td><td>function createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer>): void;</td><td>createAudioCapturer</td><td>None</td><td>2</td><td>35</td><tr><tr><td>audio</td><td>function createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer>;</td><td>createAudioCapturer</td><td>None</td><td>1</td><td>24</td><tr><tr><td>audio</td><td>function createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback<AudioRenderer>): void;</td><td>createAudioRenderer</td><td>None</td><td>2</td><td>2</td><tr><tr><td>audio</td><td>function createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer>;</td><td>createAudioRenderer</td><td>None</td><td>1</td><td>59</td><tr><tr><td>AudioState</td><td>enum AudioState {
+    
+    STATE_INVALID = -1,
+    
+    STATE_NEW,
+    
+    STATE_PREPARED,
+    
+    STATE_RUNNING,
+    
+    STATE_STOPPED,
+    
+    STATE_RELEASED,
+    
+    STATE_PAUSED
+  }</td><td>AudioState</td><td>40</td><td>0</td><td>80</td><tr><tr><td>AudioState</td><td>STATE_INVALID = -1,</td><td>STATE_INVALID</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AudioState</td><td>STATE_NEW,</td><td>STATE_NEW</td><td>42</td><td>1</td><td>13</td><tr><tr><td>AudioState</td><td>STATE_PREPARED,</td><td>STATE_PREPARED</td><td>42</td><td>1</td><td>14</td><tr><tr><td>AudioState</td><td>STATE_RUNNING,</td><td>STATE_RUNNING</td><td>42</td><td>1</td><td>15</td><tr><tr><td>AudioState</td><td>STATE_STOPPED,</td><td>STATE_STOPPED</td><td>42</td><td>1</td><td>19</td><tr><tr><td>AudioState</td><td>STATE_RELEASED,</td><td>STATE_RELEASED</td><td>42</td><td>1</td><td>15</td><tr><tr><td>AudioVolumeType</td><td>enum AudioVolumeType {
+    
+    VOICE_CALL = 0,
+    
+    RINGTONE = 2,
+    
+    MEDIA = 3,
+    
+    VOICE_ASSISTANT = 9,
+  }</td><td>AudioVolumeType</td><td>40</td><td>0</td><td>72</td><tr><tr><td>AudioVolumeType</td><td>VOICE_CALL = 0,</td><td>VOICE_CALL</td><td>42</td><td>1</td><td>13</td><tr><tr><td>AudioVolumeType</td><td>RINGTONE = 2,</td><td>RINGTONE</td><td>42</td><td>1</td><td>237</td><tr><tr><td>AudioVolumeType</td><td>MEDIA = 3,</td><td>MEDIA</td><td>42</td><td>1</td><td>3735</td><tr><tr><td>AudioVolumeType</td><td>VOICE_ASSISTANT = 9,</td><td>VOICE_ASSISTANT</td><td>42</td><td>1</td><td>40</td><tr><tr><td>DeviceFlag</td><td>enum DeviceFlag {
+    
+    OUTPUT_DEVICES_FLAG = 1,
+    
+    INPUT_DEVICES_FLAG = 2,
+    
+    ALL_DEVICES_FLAG = 3,
+  }</td><td>DeviceFlag</td><td>40</td><td>0</td><td>14</td><tr><tr><td>DeviceFlag</td><td>OUTPUT_DEVICES_FLAG = 1,</td><td>OUTPUT_DEVICES_FLAG</td><td>42</td><td>1</td><td>39</td><tr><tr><td>DeviceFlag</td><td>INPUT_DEVICES_FLAG = 2,</td><td>INPUT_DEVICES_FLAG</td><td>42</td><td>1</td><td>39</td><tr><tr><td>DeviceFlag</td><td>ALL_DEVICES_FLAG = 3,</td><td>ALL_DEVICES_FLAG</td><td>42</td><td>1</td><td>38</td><tr><tr><td>DeviceRole</td><td>enum DeviceRole {
+    
+    INPUT_DEVICE = 1,
+    
+    OUTPUT_DEVICE = 2,
+  }</td><td>DeviceRole</td><td>40</td><td>0</td><td>2</td><tr><tr><td>DeviceRole</td><td>INPUT_DEVICE = 1,</td><td>INPUT_DEVICE</td><td>42</td><td>1</td><td>43</td><tr><tr><td>DeviceRole</td><td>OUTPUT_DEVICE = 2,</td><td>OUTPUT_DEVICE</td><td>42</td><td>1</td><td>41</td><tr><tr><td>DeviceType</td><td>enum DeviceType {
+    
+    INVALID = 0,
+    
+    EARPIECE = 1,
+    
+    SPEAKER = 2,
+    
+    WIRED_HEADSET = 3,
+    
+    WIRED_HEADPHONES = 4,
+    
+    BLUETOOTH_SCO = 7,
+    
+    BLUETOOTH_A2DP = 8,
+    
+    MIC = 15,
+    
+    USB_HEADSET = 22,
+  }</td><td>DeviceType</td><td>40</td><td>0</td><td>60</td><tr><tr><td>DeviceType</td><td>INVALID = 0,</td><td>INVALID</td><td>42</td><td>1</td><td>25</td><tr><tr><td>DeviceType</td><td>EARPIECE = 1,</td><td>EARPIECE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceType</td><td>SPEAKER = 2,</td><td>SPEAKER</td><td>42</td><td>1</td><td>89</td><tr><tr><td>DeviceType</td><td>WIRED_HEADSET = 3,</td><td>WIRED_HEADSET</td><td>42</td><td>1</td><td>5</td><tr><tr><td>DeviceType</td><td>WIRED_HEADPHONES = 4,</td><td>WIRED_HEADPHONES</td><td>42</td><td>1</td><td>0</td><tr><tr><td>DeviceType</td><td>BLUETOOTH_SCO = 7,</td><td>BLUETOOTH_SCO</td><td>42</td><td>1</td><td>93</td><tr><tr><td>DeviceType</td><td>BLUETOOTH_A2DP = 8,</td><td>BLUETOOTH_A2DP</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceType</td><td>MIC = 15,</td><td>MIC</td><td>42</td><td>1</td><td>83</td><tr><tr><td>DeviceType</td><td>USB_HEADSET = 22,</td><td>USB_HEADSET</td><td>42</td><td>1</td><td>4</td><tr><tr><td>ActiveDeviceType</td><td>enum ActiveDeviceType {
+    
+    SPEAKER = 2,
+    
+    BLUETOOTH_SCO = 7,
+  }</td><td>ActiveDeviceType</td><td>40</td><td>0</td><td>28</td><tr><tr><td>ActiveDeviceType</td><td>SPEAKER = 2,</td><td>SPEAKER</td><td>42</td><td>1</td><td>89</td><tr><tr><td>ActiveDeviceType</td><td>BLUETOOTH_SCO = 7,</td><td>BLUETOOTH_SCO</td><td>42</td><td>1</td><td>93</td><tr><tr><td>AudioRingMode</td><td>enum AudioRingMode {
+    
+    RINGER_MODE_SILENT = 0,
+    
+    RINGER_MODE_VIBRATE = 1,
+    
+    RINGER_MODE_NORMAL = 2,
+  }</td><td>AudioRingMode</td><td>40</td><td>0</td><td>20</td><tr><tr><td>AudioRingMode</td><td>RINGER_MODE_SILENT = 0,</td><td>RINGER_MODE_SILENT</td><td>42</td><td>1</td><td>29</td><tr><tr><td>AudioRingMode</td><td>RINGER_MODE_VIBRATE = 1,</td><td>RINGER_MODE_VIBRATE</td><td>42</td><td>1</td><td>28</td><tr><tr><td>AudioRingMode</td><td>RINGER_MODE_NORMAL = 2,</td><td>RINGER_MODE_NORMAL</td><td>42</td><td>1</td><td>26</td><tr><tr><td>AudioSampleFormat</td><td>enum AudioSampleFormat {
+    
+    SAMPLE_FORMAT_INVALID = -1,
+    
+    SAMPLE_FORMAT_U8 = 0,
+    
+    SAMPLE_FORMAT_S16LE = 1,
+    
+    SAMPLE_FORMAT_S24LE = 2,
+    
+    SAMPLE_FORMAT_S32LE = 3,
+  }</td><td>AudioSampleFormat</td><td>40</td><td>0</td><td>188</td><tr><tr><td>AudioSampleFormat</td><td>SAMPLE_FORMAT_INVALID = -1,</td><td>SAMPLE_FORMAT_INVALID</td><td>42</td><td>1</td><td>1</td><tr><tr><td>AudioSampleFormat</td><td>SAMPLE_FORMAT_U8 = 0,</td><td>SAMPLE_FORMAT_U8</td><td>42</td><td>1</td><td>6</td><tr><tr><td>AudioSampleFormat</td><td>SAMPLE_FORMAT_S16LE = 1,</td><td>SAMPLE_FORMAT_S16LE</td><td>42</td><td>1</td><td>68</td><tr><tr><td>AudioSampleFormat</td><td>SAMPLE_FORMAT_S24LE = 2,</td><td>SAMPLE_FORMAT_S24LE</td><td>42</td><td>1</td><td>11</td><tr><tr><td>AudioSampleFormat</td><td>SAMPLE_FORMAT_S32LE = 3,</td><td>SAMPLE_FORMAT_S32LE</td><td>42</td><td>1</td><td>96</td><tr><tr><td>AudioChannel</td><td>enum AudioChannel {
+    
+    CHANNEL_1 = 0x1 << 0,
+    
+    CHANNEL_2 = 0x1 << 1
+  }</td><td>AudioChannel</td><td>40</td><td>0</td><td>185</td><tr><tr><td>AudioChannel</td><td>CHANNEL_1 = 0x1 << 0,</td><td>CHANNEL_1</td><td>42</td><td>1</td><td>22</td><tr><tr><td>AudioChannel</td><td>CHANNEL_2 = 0x1 << 1</td><td>CHANNEL_2</td><td>42</td><td>1</td><td>159</td><tr><tr><td>AudioSamplingRate</td><td>enum AudioSamplingRate {
+    
+    SAMPLE_RATE_8000 = 8000,
+    
+    SAMPLE_RATE_11025 = 11025,
+    
+    SAMPLE_RATE_12000 = 12000,
+    
+    SAMPLE_RATE_16000 = 16000,
+    
+    SAMPLE_RATE_22050 = 22050,
+    
+    SAMPLE_RATE_24000 = 24000,
+    
+    SAMPLE_RATE_32000 = 32000,
+    
+    SAMPLE_RATE_44100 = 44100,
+    
+    SAMPLE_RATE_48000 = 48000,
+    
+    SAMPLE_RATE_64000 = 64000,
+    
+    SAMPLE_RATE_96000 = 96000
+  }</td><td>AudioSamplingRate</td><td>40</td><td>0</td><td>185</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_8000 = 8000,</td><td>SAMPLE_RATE_8000</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_11025 = 11025,</td><td>SAMPLE_RATE_11025</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_12000 = 12000,</td><td>SAMPLE_RATE_12000</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_16000 = 16000,</td><td>SAMPLE_RATE_16000</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_22050 = 22050,</td><td>SAMPLE_RATE_22050</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_24000 = 24000,</td><td>SAMPLE_RATE_24000</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_32000 = 32000,</td><td>SAMPLE_RATE_32000</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_44100 = 44100,</td><td>SAMPLE_RATE_44100</td><td>42</td><td>1</td><td>62</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_48000 = 48000,</td><td>SAMPLE_RATE_48000</td><td>42</td><td>1</td><td>94</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_64000 = 64000,</td><td>SAMPLE_RATE_64000</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AudioSamplingRate</td><td>SAMPLE_RATE_96000 = 96000</td><td>SAMPLE_RATE_96000</td><td>42</td><td>1</td><td>5</td><tr><tr><td>AudioEncodingType</td><td>enum AudioEncodingType {
+    
+    ENCODING_TYPE_INVALID = -1,
+    
+    ENCODING_TYPE_RAW = 0
+  }</td><td>AudioEncodingType</td><td>40</td><td>0</td><td>188</td><tr><tr><td>AudioEncodingType</td><td>ENCODING_TYPE_INVALID = -1,</td><td>ENCODING_TYPE_INVALID</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AudioEncodingType</td><td>ENCODING_TYPE_RAW = 0</td><td>ENCODING_TYPE_RAW</td><td>42</td><td>1</td><td>181</td><tr><tr><td>ContentType</td><td>enum ContentType {
+    
+    CONTENT_TYPE_UNKNOWN = 0,
+    
+    CONTENT_TYPE_SPEECH = 1,
+    
+    CONTENT_TYPE_MUSIC = 2,
+    
+    CONTENT_TYPE_MOVIE = 3,
+    
+    CONTENT_TYPE_SONIFICATION = 4,
+    
+    CONTENT_TYPE_RINGTONE = 5,
+  }</td><td>ContentType</td><td>40</td><td>0</td><td>113</td><tr><tr><td>ContentType</td><td>CONTENT_TYPE_UNKNOWN = 0,</td><td>CONTENT_TYPE_UNKNOWN</td><td>42</td><td>1</td><td>10</td><tr><tr><td>ContentType</td><td>CONTENT_TYPE_SPEECH = 1,</td><td>CONTENT_TYPE_SPEECH</td><td>42</td><td>1</td><td>36</td><tr><tr><td>ContentType</td><td>CONTENT_TYPE_MUSIC = 2,</td><td>CONTENT_TYPE_MUSIC</td><td>42</td><td>1</td><td>10</td><tr><tr><td>ContentType</td><td>CONTENT_TYPE_MOVIE = 3,</td><td>CONTENT_TYPE_MOVIE</td><td>42</td><td>1</td><td>10</td><tr><tr><td>ContentType</td><td>CONTENT_TYPE_SONIFICATION = 4,</td><td>CONTENT_TYPE_SONIFICATION</td><td>42</td><td>1</td><td>10</td><tr><tr><td>ContentType</td><td>CONTENT_TYPE_RINGTONE = 5,</td><td>CONTENT_TYPE_RINGTONE</td><td>42</td><td>1</td><td>37</td><tr><tr><td>StreamUsage</td><td>enum StreamUsage {
+    
+    STREAM_USAGE_UNKNOWN = 0,
+    
+    STREAM_USAGE_MEDIA = 1,
+    
+    STREAM_USAGE_VOICE_COMMUNICATION = 2,
+    
+    STREAM_USAGE_NOTIFICATION_RINGTONE = 6
+  }</td><td>StreamUsage</td><td>40</td><td>0</td><td>113</td><tr><tr><td>StreamUsage</td><td>STREAM_USAGE_UNKNOWN = 0,</td><td>STREAM_USAGE_UNKNOWN</td><td>42</td><td>1</td><td>12</td><tr><tr><td>StreamUsage</td><td>STREAM_USAGE_MEDIA = 1,</td><td>STREAM_USAGE_MEDIA</td><td>42</td><td>1</td><td>12</td><tr><tr><td>StreamUsage</td><td>STREAM_USAGE_VOICE_COMMUNICATION = 2,</td><td>STREAM_USAGE_VOICE_COMMUNICATION</td><td>42</td><td>1</td><td>38</td><tr><tr><td>StreamUsage</td><td>STREAM_USAGE_NOTIFICATION_RINGTONE = 6</td><td>STREAM_USAGE_NOTIFICATION_RINGTONE</td><td>42</td><td>1</td><td>38</td><tr><tr><td>AudioStreamInfo</td><td>interface AudioStreamInfo {
+    
+    samplingRate: AudioSamplingRate;
+    
+    channels: AudioChannel;
+    
+    sampleFormat: AudioSampleFormat;
+    
+    encodingType: AudioEncodingType;
+  }</td><td>AudioStreamInfo</td><td>20</td><td>0</td><td>324</td><tr><tr><td>AudioStreamInfo</td><td>samplingRate: AudioSamplingRate</td><td>samplingRate</td><td>22</td><td>1</td><td>247</td><tr><tr><td>AudioStreamInfo</td><td>channels: AudioChannel</td><td>channels</td><td>22</td><td>1</td><td>243</td><tr><tr><td>AudioStreamInfo</td><td>sampleFormat: AudioSampleFormat</td><td>sampleFormat</td><td>22</td><td>1</td><td>235</td><tr><tr><td>AudioStreamInfo</td><td>encodingType: AudioEncodingType</td><td>encodingType</td><td>22</td><td>1</td><td>235</td><tr><tr><td>AudioRendererInfo</td><td>interface AudioRendererInfo {
+    
+    content: ContentType;
+    
+    usage: StreamUsage;
+    
+    rendererFlags: number;
+  }</td><td>AudioRendererInfo</td><td>20</td><td>0</td><td>378</td><tr><tr><td>AudioRendererInfo</td><td>content: ContentType</td><td>content</td><td>22</td><td>1</td><td>405</td><tr><tr><td>AudioRendererInfo</td><td>usage: StreamUsage</td><td>usage</td><td>22</td><td>1</td><td>445</td><tr><tr><td>AudioRendererInfo</td><td>rendererFlags: number</td><td>rendererFlags</td><td>22</td><td>1</td><td>319</td><tr><tr><td>AudioRendererOptions</td><td>interface AudioRendererOptions {
+    
+    streamInfo: AudioStreamInfo;
+    
+    rendererInfo: AudioRendererInfo;
+  }</td><td>AudioRendererOptions</td><td>20</td><td>0</td><td>228</td><tr><tr><td>AudioRendererOptions</td><td>streamInfo: AudioStreamInfo</td><td>streamInfo</td><td>22</td><td>1</td><td>201</td><tr><tr><td>AudioRendererOptions</td><td>rendererInfo: AudioRendererInfo</td><td>rendererInfo</td><td>22</td><td>1</td><td>111</td><tr><tr><td>AudioRendererRate</td><td>enum AudioRendererRate {
+    
+    RENDER_RATE_NORMAL = 0,
+    
+    RENDER_RATE_DOUBLE = 1,
+    
+    RENDER_RATE_HALF = 2
+  }</td><td>AudioRendererRate</td><td>40</td><td>0</td><td>10</td><tr><tr><td>AudioRendererRate</td><td>RENDER_RATE_NORMAL = 0,</td><td>RENDER_RATE_NORMAL</td><td>42</td><td>1</td><td>15</td><tr><tr><td>AudioRendererRate</td><td>RENDER_RATE_DOUBLE = 1,</td><td>RENDER_RATE_DOUBLE</td><td>42</td><td>1</td><td>21</td><tr><tr><td>AudioRendererRate</td><td>RENDER_RATE_HALF = 2</td><td>RENDER_RATE_HALF</td><td>42</td><td>1</td><td>9</td><tr><tr><td>InterruptType</td><td>enum InterruptType {
+    
+    INTERRUPT_TYPE_BEGIN = 1,
+
+    
+    INTERRUPT_TYPE_END = 2
+  }</td><td>InterruptType</td><td>40</td><td>0</td><td>6</td><tr><tr><td>InterruptType</td><td>INTERRUPT_TYPE_BEGIN = 1,</td><td>INTERRUPT_TYPE_BEGIN</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InterruptType</td><td>INTERRUPT_TYPE_END = 2</td><td>INTERRUPT_TYPE_END</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InterruptHint</td><td>enum InterruptHint {
+    
+    INTERRUPT_HINT_NONE = 0,
+    
+    INTERRUPT_HINT_RESUME = 1,
+
+    
+    INTERRUPT_HINT_PAUSE = 2,
+
+    
+    INTERRUPT_HINT_STOP = 3,
+
+    
+    INTERRUPT_HINT_DUCK = 4,
+
+    
+    INTERRUPT_HINT_UNDUCK = 5,
+  }</td><td>InterruptHint</td><td>40</td><td>0</td><td>18</td><tr><tr><td>InterruptHint</td><td>INTERRUPT_HINT_NONE = 0,</td><td>INTERRUPT_HINT_NONE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InterruptHint</td><td>INTERRUPT_HINT_RESUME = 1,</td><td>INTERRUPT_HINT_RESUME</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InterruptHint</td><td>INTERRUPT_HINT_PAUSE = 2,</td><td>INTERRUPT_HINT_PAUSE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InterruptHint</td><td>INTERRUPT_HINT_STOP = 3,</td><td>INTERRUPT_HINT_STOP</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InterruptHint</td><td>INTERRUPT_HINT_DUCK = 4,</td><td>INTERRUPT_HINT_DUCK</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InterruptHint</td><td>INTERRUPT_HINT_UNDUCK = 5,</td><td>INTERRUPT_HINT_UNDUCK</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InterruptForceType</td><td>enum InterruptForceType {
+    
+    INTERRUPT_FORCE = 0,
+    
+    INTERRUPT_SHARE
+  }</td><td>InterruptForceType</td><td>40</td><td>0</td><td>6</td><tr><tr><td>InterruptForceType</td><td>INTERRUPT_FORCE = 0,</td><td>INTERRUPT_FORCE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InterruptEvent</td><td>interface InterruptEvent {
+    
+    eventType: InterruptType;
+
+    
+    forceType: InterruptForceType;
+
+    
+    hintType: InterruptHint;
+  }</td><td>InterruptEvent</td><td>20</td><td>0</td><td>0</td><tr><tr><td>InterruptEvent</td><td>eventType: InterruptType</td><td>eventType</td><td>22</td><td>1</td><td>0</td><tr><tr><td>InterruptEvent</td><td>forceType: InterruptForceType</td><td>forceType</td><td>22</td><td>1</td><td>0</td><tr><tr><td>InterruptEvent</td><td>hintType: InterruptHint</td><td>hintType</td><td>22</td><td>1</td><td>0</td><tr><tr><td>InterruptActionType</td><td>enum InterruptActionType {
+
+    
+    TYPE_ACTIVATED = 0,
+
+    
+    TYPE_INTERRUPT = 1
+  }</td><td>InterruptActionType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>InterruptActionType</td><td>TYPE_ACTIVATED = 0,</td><td>TYPE_ACTIVATED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>InterruptActionType</td><td>TYPE_INTERRUPT = 1</td><td>TYPE_INTERRUPT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>DeviceChangeType</td><td>enum DeviceChangeType {
+    
+    CONNECT = 0,
+
+    
+    DISCONNECT = 1,
+  }</td><td>DeviceChangeType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>DeviceChangeType</td><td>CONNECT = 0,</td><td>CONNECT</td><td>42</td><td>1</td><td>20</td><tr><tr><td>DeviceChangeType</td><td>DISCONNECT = 1,</td><td>DISCONNECT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AudioScene</td><td>enum AudioScene {
+    
+    AUDIO_SCENE_DEFAULT = 0,
+    
+    AUDIO_SCENE_RINGING,
+    
+    AUDIO_SCENE_PHONE_CALL,
+    
+    AUDIO_SCENE_VOICE_CHAT
+  }</td><td>AudioScene</td><td>40</td><td>0</td><td>974</td><tr><tr><td>AudioScene</td><td>AUDIO_SCENE_DEFAULT = 0,</td><td>AUDIO_SCENE_DEFAULT</td><td>42</td><td>1</td><td>67</td><tr><tr><td>AudioScene</td><td>AUDIO_SCENE_RINGING,</td><td>AUDIO_SCENE_RINGING</td><td>42</td><td>1</td><td>34</td><tr><tr><td>AudioScene</td><td>AUDIO_SCENE_PHONE_CALL,</td><td>AUDIO_SCENE_PHONE_CALL</td><td>42</td><td>1</td><td>33</td><tr><tr><td>AudioManager</td><td>interface AudioManager {
+    
+    setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback<void>): void;
+    
+    setVolume(volumeType: AudioVolumeType, volume: number): Promise<void>;
+    
+    getVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;
+    
+    getVolume(volumeType: AudioVolumeType): Promise<number>;
+    
+    getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;
+    
+    getMinVolume(volumeType: AudioVolumeType): Promise<number>;
+    
+    getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;
+    
+    getMaxVolume(volumeType: AudioVolumeType): Promise<number>;
+    
+    getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors>): void;
+    
+    getDevices(deviceFlag: DeviceFlag): Promise<AudioDeviceDescriptors>;
+    
+    mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void>): void;
+    
+    mute(volumeType: AudioVolumeType, mute: boolean): Promise<void>;
+    
+    isMute(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void;
+    
+    isMute(volumeType: AudioVolumeType): Promise<boolean>;
+    
+    isActive(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void;
+    
+    isActive(volumeType: AudioVolumeType): Promise<boolean>;
+    
+    setMicrophoneMute(mute: boolean, callback: AsyncCallback<void>): void;
+    
+    setMicrophoneMute(mute: boolean): Promise<void>;
+    
+    isMicrophoneMute(callback: AsyncCallback<boolean>): void;
+    
+    isMicrophoneMute(): Promise<boolean>;
+    
+    setRingerMode(mode: AudioRingMode, callback: AsyncCallback<void>): void;
+    
+    setRingerMode(mode: AudioRingMode): Promise<void>;
+    
+    getRingerMode(callback: AsyncCallback<AudioRingMode>): void;
+    
+    getRingerMode(): Promise<AudioRingMode>;
+    
+    setAudioParameter(key: string, value: string, callback: AsyncCallback<void>): void;
+    
+    setAudioParameter(key: string, value: string): Promise<void>;
+    
+    getAudioParameter(key: string, callback: AsyncCallback<string>): void;
+    
+    getAudioParameter(key: string): Promise<string>;
+    
+    setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback<void>): void;
+    
+    setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise<void>;
+    
+    isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback<boolean>): void;
+    
+    isDeviceActive(deviceType: ActiveDeviceType): Promise<boolean>;
+    
+    on(type: 'volumeChange', callback: Callback<VolumeEvent>): void;
+    
+    on(type: 'ringerModeChange', callback: Callback<AudioRingMode>): void;
+    
+    setAudioScene(scene: AudioScene, callback: AsyncCallback<void> ): void;
+    
+    setAudioScene(scene: AudioScene): Promise<void>;
+    
+    getAudioScene(callback: AsyncCallback<AudioScene>): void;
+    
+    getAudioScene(): Promise<AudioScene>;
+    
+    on(type: 'deviceChange', callback: Callback<DeviceChangeAction>): void;
+
+    
+    off(type: 'deviceChange', callback?: Callback<DeviceChangeAction>): void;
+
+    
+    on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback<InterruptAction>): void;
+
+    
+    off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback<InterruptAction>): void;
+  }</td><td>AudioManager</td><td>20</td><td>0</td><td>51</td><tr><tr><td>AudioManager</td><td>setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback<void>): void;</td><td>setVolume</td><td>21</td><td>3</td><td>162</td><tr><tr><td>AudioManager</td><td>setVolume(volumeType: AudioVolumeType, volume: number): Promise<void>;</td><td>setVolume</td><td>21</td><td>2</td><td>9</td><tr><tr><td>AudioManager</td><td>getVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;</td><td>getVolume</td><td>21</td><td>2</td><td>61</td><tr><tr><td>AudioManager</td><td>getVolume(volumeType: AudioVolumeType): Promise<number>;</td><td>getVolume</td><td>21</td><td>1</td><td>11</td><tr><tr><td>AudioManager</td><td>getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;</td><td>getMinVolume</td><td>21</td><td>2</td><td>92</td><tr><tr><td>AudioManager</td><td>getMinVolume(volumeType: AudioVolumeType): Promise<number>;</td><td>getMinVolume</td><td>21</td><td>1</td><td>6</td><tr><tr><td>AudioManager</td><td>getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;</td><td>getMaxVolume</td><td>21</td><td>2</td><td>92</td><tr><tr><td>AudioManager</td><td>getMaxVolume(volumeType: AudioVolumeType): Promise<number>;</td><td>getMaxVolume</td><td>21</td><td>1</td><td>6</td><tr><tr><td>AudioManager</td><td>getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors>): void;</td><td>getDevices</td><td>21</td><td>2</td><td>177</td><tr><tr><td>AudioManager</td><td>getDevices(deviceFlag: DeviceFlag): Promise<AudioDeviceDescriptors>;</td><td>getDevices</td><td>21</td><td>1</td><td>3</td><tr><tr><td>AudioManager</td><td>mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void>): void;</td><td>mute</td><td>21</td><td>3</td><td>78</td><tr><tr><td>AudioManager</td><td>mute(volumeType: AudioVolumeType, mute: boolean): Promise<void>;</td><td>mute</td><td>21</td><td>2</td><td>6</td><tr><tr><td>AudioManager</td><td>isMute(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void;</td><td>isMute</td><td>21</td><td>2</td><td>14</td><tr><tr><td>AudioManager</td><td>isMute(volumeType: AudioVolumeType): Promise<boolean>;</td><td>isMute</td><td>21</td><td>1</td><td>6</td><tr><tr><td>AudioManager</td><td>isActive(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void;</td><td>isActive</td><td>21</td><td>2</td><td>137</td><tr><tr><td>AudioManager</td><td>isActive(volumeType: AudioVolumeType): Promise<boolean>;</td><td>isActive</td><td>21</td><td>1</td><td>29</td><tr><tr><td>AudioManager</td><td>setMicrophoneMute(mute: boolean, callback: AsyncCallback<void>): void;</td><td>setMicrophoneMute</td><td>21</td><td>2</td><td>32</td><tr><tr><td>AudioManager</td><td>setMicrophoneMute(mute: boolean): Promise<void>;</td><td>setMicrophoneMute</td><td>21</td><td>1</td><td>2</td><tr><tr><td>AudioManager</td><td>isMicrophoneMute(callback: AsyncCallback<boolean>): void;</td><td>isMicrophoneMute</td><td>21</td><td>1</td><td>24</td><tr><tr><td>AudioManager</td><td>isMicrophoneMute(): Promise<boolean>;</td><td>isMicrophoneMute</td><td>21</td><td>0</td><td>2</td><tr><tr><td>AudioManager</td><td>setRingerMode(mode: AudioRingMode, callback: AsyncCallback<void>): void;</td><td>setRingerMode</td><td>21</td><td>2</td><td>117</td><tr><tr><td>AudioManager</td><td>setRingerMode(mode: AudioRingMode): Promise<void>;</td><td>setRingerMode</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AudioManager</td><td>getRingerMode(callback: AsyncCallback<AudioRingMode>): void;</td><td>getRingerMode</td><td>21</td><td>1</td><td>18</td><tr><tr><td>AudioManager</td><td>getRingerMode(): Promise<AudioRingMode>;</td><td>getRingerMode</td><td>21</td><td>0</td><td>6</td><tr><tr><td>AudioManager</td><td>setAudioParameter(key: string, value: string, callback: AsyncCallback<void>): void;</td><td>setAudioParameter</td><td>21</td><td>3</td><td>90</td><tr><tr><td>AudioManager</td><td>setAudioParameter(key: string, value: string): Promise<void>;</td><td>setAudioParameter</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AudioManager</td><td>getAudioParameter(key: string, callback: AsyncCallback<string>): void;</td><td>getAudioParameter</td><td>21</td><td>2</td><td>130</td><tr><tr><td>AudioManager</td><td>getAudioParameter(key: string): Promise<string>;</td><td>getAudioParameter</td><td>21</td><td>1</td><td>11</td><tr><tr><td>AudioManager</td><td>setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback<void>): void;</td><td>setDeviceActive</td><td>21</td><td>3</td><td>138</td><tr><tr><td>AudioManager</td><td>setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise<void>;</td><td>setDeviceActive</td><td>21</td><td>2</td><td>10</td><tr><tr><td>AudioManager</td><td>isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback<boolean>): void;</td><td>isDeviceActive</td><td>21</td><td>2</td><td>99</td><tr><tr><td>AudioManager</td><td>isDeviceActive(deviceType: ActiveDeviceType): Promise<boolean>;</td><td>isDeviceActive</td><td>21</td><td>1</td><td>9</td><tr><tr><td>AudioManager</td><td>on(type: 'volumeChange', callback: Callback<VolumeEvent>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioManager</td><td>on(type: 'ringerModeChange', callback: Callback<AudioRingMode>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioManager</td><td>setAudioScene(scene: AudioScene, callback: AsyncCallback<void> ): void;</td><td>setAudioScene</td><td>21</td><td>2</td><td>334</td><tr><tr><td>AudioManager</td><td>setAudioScene(scene: AudioScene): Promise<void>;</td><td>setAudioScene</td><td>21</td><td>1</td><td>14</td><tr><tr><td>AudioManager</td><td>getAudioScene(callback: AsyncCallback<AudioScene>): void;</td><td>getAudioScene</td><td>21</td><td>1</td><td>281</td><tr><tr><td>AudioManager</td><td>getAudioScene(): Promise<AudioScene>;</td><td>getAudioScene</td><td>21</td><td>0</td><td>42</td><tr><tr><td>AudioManager</td><td>on(type: 'deviceChange', callback: Callback<DeviceChangeAction>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioManager</td><td>off(type: 'deviceChange', callback?: Callback<DeviceChangeAction>): void;</td><td>off</td><td>21</td><td>2</td><td>125</td><tr><tr><td>AudioManager</td><td>on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback<InterruptAction>): void;</td><td>on</td><td>21</td><td>3</td><td>41984</td><tr><tr><td>AudioManager</td><td>off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback<InterruptAction>): void;</td><td>off</td><td>21</td><td>3</td><td>125</td><tr><tr><td>AudioDeviceDescriptor</td><td>interface AudioDeviceDescriptor {
+    
+    readonly deviceRole: DeviceRole;
+    
+    readonly deviceType: DeviceType;
+  }</td><td>AudioDeviceDescriptor</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AudioDeviceDescriptor</td><td>readonly deviceRole: DeviceRole</td><td>deviceRole</td><td>22</td><td>1</td><td>65</td><tr><tr><td>AudioDeviceDescriptor</td><td>readonly deviceType: DeviceType</td><td>deviceType</td><td>22</td><td>1</td><td>73</td><tr><tr><td>VolumeEvent</td><td>interface VolumeEvent {
+    
+    volumeType: AudioVolumeType;
+    
+    volume: number;
+    
+    updateUi: boolean;
+  }</td><td>VolumeEvent</td><td>20</td><td>0</td><td>36</td><tr><tr><td>VolumeEvent</td><td>volumeType: AudioVolumeType</td><td>volumeType</td><td>22</td><td>1</td><td>8</td><tr><tr><td>VolumeEvent</td><td>volume: number</td><td>volume</td><td>22</td><td>1</td><td>119</td><tr><tr><td>VolumeEvent</td><td>updateUi: boolean</td><td>updateUi</td><td>22</td><td>1</td><td>8</td><tr><tr><td>InterruptAction</td><td>interface InterruptAction {
+
+    
+    actionType: InterruptActionType;
+
+    
+    type?: InterruptType;
+
+    
+    hint?: InterruptHint;
+
+    
+    activated?: boolean;
+  }</td><td>InterruptAction</td><td>20</td><td>0</td><td>0</td><tr><tr><td>InterruptAction</td><td>actionType: InterruptActionType</td><td>actionType</td><td>22</td><td>1</td><td>0</td><tr><tr><td>InterruptAction</td><td>type?: InterruptType</td><td>type</td><td>22</td><td>1</td><td>3051</td><tr><tr><td>InterruptAction</td><td>hint?: InterruptHint</td><td>hint</td><td>22</td><td>1</td><td>0</td><tr><tr><td>InterruptAction</td><td>activated?: boolean</td><td>activated</td><td>22</td><td>1</td><td>0</td><tr><tr><td>AudioInterrupt</td><td>interface AudioInterrupt {
+
+    
+    streamUsage: StreamUsage;
+
+    
+    contentType: ContentType;
+
+    
+    pauseWhenDucked: boolean;
+  }</td><td>AudioInterrupt</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AudioInterrupt</td><td>streamUsage: StreamUsage</td><td>streamUsage</td><td>22</td><td>1</td><td>0</td><tr><tr><td>AudioInterrupt</td><td>contentType: ContentType</td><td>contentType</td><td>22</td><td>1</td><td>5</td><tr><tr><td>AudioInterrupt</td><td>pauseWhenDucked: boolean</td><td>pauseWhenDucked</td><td>22</td><td>1</td><td>0</td><tr><tr><td>DeviceChangeAction</td><td>interface DeviceChangeAction {
+    
+    type: DeviceChangeType;
+
+    
+    deviceDescriptors: AudioDeviceDescriptors;
+  }</td><td>DeviceChangeAction</td><td>20</td><td>0</td><td>0</td><tr><tr><td>DeviceChangeAction</td><td>type: DeviceChangeType</td><td>type</td><td>22</td><td>1</td><td>3051</td><tr><tr><td>DeviceChangeAction</td><td>deviceDescriptors: AudioDeviceDescriptors</td><td>deviceDescriptors</td><td>22</td><td>1</td><td>0</td><tr><tr><td>AudioRenderer</td><td>interface AudioRenderer {
+    
+    readonly state: AudioState;
+    
+    getRendererInfo(callback: AsyncCallback<AudioRendererInfo>): void;
+    
+    getRendererInfo(): Promise<AudioRendererInfo>;
+    
+    getStreamInfo(callback: AsyncCallback<AudioStreamInfo>): void;
+    
+    getStreamInfo(): Promise<AudioStreamInfo>;
+    
+    start(callback: AsyncCallback<void>): void;
+    
+    start(): Promise<void>;
+    
+    write(buffer: ArrayBuffer, callback: AsyncCallback<number>): void;
+    
+    write(buffer: ArrayBuffer): Promise<number>;
+    
+    getAudioTime(callback: AsyncCallback<number>): void;
+    
+    getAudioTime(): Promise<number>;
+    
+    drain(callback: AsyncCallback<void>): void;
+    
+    drain(): Promise<void>;
+    
+    pause(callback: AsyncCallback<void>): void;
+    
+    pause(): Promise<void>;
+    
+    stop(callback: AsyncCallback<void>): void;
+    
+    stop(): Promise<void>;
+    
+    release(callback: AsyncCallback<void>): void;
+    
+    release(): Promise<void>;
+    
+    getBufferSize(callback: AsyncCallback<number>): void;
+    
+    getBufferSize(): Promise<number>;
+    
+    setRenderRate(rate: AudioRendererRate, callback: AsyncCallback<void>): void;
+    
+    setRenderRate(rate: AudioRendererRate): Promise<void>;
+    
+    getRenderRate(callback: AsyncCallback<AudioRendererRate>): void;
+    
+    getRenderRate(): Promise<AudioRendererRate>;
+    
+    on(type: 'interrupt', callback: Callback<InterruptEvent>): void;
+    
+    on(type: "markReach", frame: number, callback: (position: number) => {}): void;
+    
+    off(type: "markReach"): void;
+    
+    on(type: "periodReach", frame: number, callback: (position: number) => {}): void;
+    
+    off(type: "periodReach"): void;
+    
+    on(type: "stateChange", callback: Callback<AudioState>): void;
+  }</td><td>AudioRenderer</td><td>20</td><td>0</td><td>971</td><tr><tr><td>AudioRenderer</td><td>getRendererInfo(callback: AsyncCallback<AudioRendererInfo>): void;</td><td>getRendererInfo</td><td>21</td><td>1</td><td>13</td><tr><tr><td>AudioRenderer</td><td>getRendererInfo(): Promise<AudioRendererInfo>;</td><td>getRendererInfo</td><td>21</td><td>0</td><td>40</td><tr><tr><td>AudioRenderer</td><td>getStreamInfo(callback: AsyncCallback<AudioStreamInfo>): void;</td><td>getStreamInfo</td><td>21</td><td>1</td><td>66</td><tr><tr><td>AudioRenderer</td><td>getStreamInfo(): Promise<AudioStreamInfo>;</td><td>getStreamInfo</td><td>21</td><td>0</td><td>15</td><tr><tr><td>AudioRenderer</td><td>start(callback: AsyncCallback<void>): void;</td><td>start</td><td>21</td><td>1</td><td>1221</td><tr><tr><td>AudioRenderer</td><td>start(): Promise<void>;</td><td>start</td><td>21</td><td>0</td><td>128</td><tr><tr><td>AudioRenderer</td><td>write(buffer: ArrayBuffer, callback: AsyncCallback<number>): void;</td><td>write</td><td>21</td><td>2</td><td>310</td><tr><tr><td>AudioRenderer</td><td>write(buffer: ArrayBuffer): Promise<number>;</td><td>write</td><td>21</td><td>1</td><td>3</td><tr><tr><td>AudioRenderer</td><td>getAudioTime(callback: AsyncCallback<number>): void;</td><td>getAudioTime</td><td>21</td><td>1</td><td>51</td><tr><tr><td>AudioRenderer</td><td>getAudioTime(): Promise<number>;</td><td>getAudioTime</td><td>21</td><td>0</td><td>17</td><tr><tr><td>AudioRenderer</td><td>drain(callback: AsyncCallback<void>): void;</td><td>drain</td><td>21</td><td>1</td><td>39</td><tr><tr><td>AudioRenderer</td><td>drain(): Promise<void>;</td><td>drain</td><td>21</td><td>0</td><td>17</td><tr><tr><td>AudioRenderer</td><td>pause(callback: AsyncCallback<void>): void;</td><td>pause</td><td>21</td><td>1</td><td>179</td><tr><tr><td>AudioRenderer</td><td>pause(): Promise<void>;</td><td>pause</td><td>21</td><td>0</td><td>23</td><tr><tr><td>AudioRenderer</td><td>stop(callback: AsyncCallback<void>): void;</td><td>stop</td><td>21</td><td>1</td><td>833</td><tr><tr><td>AudioRenderer</td><td>stop(): Promise<void>;</td><td>stop</td><td>21</td><td>0</td><td>99</td><tr><tr><td>AudioRenderer</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>AudioRenderer</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>AudioRenderer</td><td>getBufferSize(callback: AsyncCallback<number>): void;</td><td>getBufferSize</td><td>21</td><td>1</td><td>51</td><tr><tr><td>AudioRenderer</td><td>getBufferSize(): Promise<number>;</td><td>getBufferSize</td><td>21</td><td>0</td><td>9</td><tr><tr><td>AudioRenderer</td><td>setRenderRate(rate: AudioRendererRate, callback: AsyncCallback<void>): void;</td><td>setRenderRate</td><td>21</td><td>2</td><td>15</td><tr><tr><td>AudioRenderer</td><td>setRenderRate(rate: AudioRendererRate): Promise<void>;</td><td>setRenderRate</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AudioRenderer</td><td>getRenderRate(callback: AsyncCallback<AudioRendererRate>): void;</td><td>getRenderRate</td><td>21</td><td>1</td><td>16</td><tr><tr><td>AudioRenderer</td><td>getRenderRate(): Promise<AudioRendererRate>;</td><td>getRenderRate</td><td>21</td><td>0</td><td>4</td><tr><tr><td>AudioRenderer</td><td>on(type: 'interrupt', callback: Callback<InterruptEvent>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioRenderer</td><td>on(type: "markReach", frame: number, callback: (position: number) => {}): void;</td><td>on</td><td>21</td><td>4</td><td>41984</td><tr><tr><td>AudioRenderer</td><td>on(type: "markReach", frame: number, callback: (position: number) => {}): void;</td><td>on</td><td>21</td><td>4</td><td>41984</td><tr><tr><td>AudioRenderer</td><td>off(type: "markReach"): void;</td><td>off</td><td>21</td><td>1</td><td>125</td><tr><tr><td>AudioRenderer</td><td>on(type: "periodReach", frame: number, callback: (position: number) => {}): void;</td><td>on</td><td>21</td><td>4</td><td>41984</td><tr><tr><td>AudioRenderer</td><td>on(type: "periodReach", frame: number, callback: (position: number) => {}): void;</td><td>on</td><td>21</td><td>4</td><td>41984</td><tr><tr><td>AudioRenderer</td><td>off(type: "periodReach"): void;</td><td>off</td><td>21</td><td>1</td><td>125</td><tr><tr><td>AudioRenderer</td><td>on(type: "stateChange", callback: Callback<AudioState>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioRenderer</td><td>readonly state: AudioState</td><td>state</td><td>22</td><td>1</td><td>1920</td><tr><tr><td>SourceType</td><td>enum SourceType {
+    
+    SOURCE_TYPE_INVALID = -1,
+    
+    SOURCE_TYPE_MIC = 0,
+    
+    SOURCE_TYPE_VOICE_COMMUNICATION = 7
+  }</td><td>SourceType</td><td>40</td><td>0</td><td>105</td><tr><tr><td>SourceType</td><td>SOURCE_TYPE_INVALID = -1,</td><td>SOURCE_TYPE_INVALID</td><td>42</td><td>1</td><td>3</td><tr><tr><td>SourceType</td><td>SOURCE_TYPE_MIC = 0,</td><td>SOURCE_TYPE_MIC</td><td>42</td><td>1</td><td>71</td><tr><tr><td>SourceType</td><td>SOURCE_TYPE_VOICE_COMMUNICATION = 7</td><td>SOURCE_TYPE_VOICE_COMMUNICATION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AudioCapturerInfo</td><td>interface AudioCapturerInfo {
+    
+    source: SourceType;
+    
+    capturerFlags: number;
+  }</td><td>AudioCapturerInfo</td><td>20</td><td>0</td><td>102</td><tr><tr><td>AudioCapturerInfo</td><td>source: SourceType</td><td>source</td><td>22</td><td>1</td><td>345</td><tr><tr><td>AudioCapturerInfo</td><td>capturerFlags: number</td><td>capturerFlags</td><td>22</td><td>1</td><td>104</td><tr><tr><td>AudioCapturerOptions</td><td>interface AudioCapturerOptions {
+    
+    streamInfo: AudioStreamInfo;
+    
+    capturerInfo: AudioCapturerInfo;
+  }</td><td>AudioCapturerOptions</td><td>20</td><td>0</td><td>128</td><tr><tr><td>AudioCapturerOptions</td><td>streamInfo: AudioStreamInfo</td><td>streamInfo</td><td>22</td><td>1</td><td>201</td><tr><tr><td>AudioCapturerOptions</td><td>capturerInfo: AudioCapturerInfo</td><td>capturerInfo</td><td>22</td><td>1</td><td>90</td><tr><tr><td>AudioCapturer</td><td>interface AudioCapturer {
+    
+    readonly state: AudioState;
+    
+    getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo>): void;
+    
+    getCapturerInfo(): Promise<AudioCapturerInfo>;
+
+    
+    getStreamInfo(callback: AsyncCallback<AudioStreamInfo>): void;
+    
+    getStreamInfo(): Promise<AudioStreamInfo>;
+
+    
+    start(callback: AsyncCallback<void>): void;
+    
+    start(): Promise<void>;
+
+    
+    read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer>): void;
+    
+    read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer>;
+
+    
+    getAudioTime(callback: AsyncCallback<number>): void;
+    
+    getAudioTime(): Promise<number>;
+
+    
+    stop(callback: AsyncCallback<void>): void;
+    
+    stop(): Promise<void>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+    
+    release(): Promise<void>;
+
+    
+    getBufferSize(callback: AsyncCallback<number>): void;
+    
+    getBufferSize(): Promise<number>;
+
+    
+    on(type: "markReach", frame: number, callback: (position: number) => {}): void;
+    
+    off(type: "markReach"): void;
+
+    
+    on(type: "periodReach", frame: number, callback: (position: number) => {}): void;
+    
+    off(type: "periodReach"): void;
+
+    
+    on(type: "stateChange", callback: Callback<AudioState>): void;
+  }</td><td>AudioCapturer</td><td>20</td><td>0</td><td>735</td><tr><tr><td>AudioCapturer</td><td>getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo>): void;</td><td>getCapturerInfo</td><td>21</td><td>1</td><td>26</td><tr><tr><td>AudioCapturer</td><td>getCapturerInfo(): Promise<AudioCapturerInfo>;</td><td>getCapturerInfo</td><td>21</td><td>0</td><td>6</td><tr><tr><td>AudioCapturer</td><td>getStreamInfo(callback: AsyncCallback<AudioStreamInfo>): void;</td><td>getStreamInfo</td><td>21</td><td>1</td><td>66</td><tr><tr><td>AudioCapturer</td><td>getStreamInfo(): Promise<AudioStreamInfo>;</td><td>getStreamInfo</td><td>21</td><td>0</td><td>15</td><tr><tr><td>AudioCapturer</td><td>start(callback: AsyncCallback<void>): void;</td><td>start</td><td>21</td><td>1</td><td>1221</td><tr><tr><td>AudioCapturer</td><td>start(): Promise<void>;</td><td>start</td><td>21</td><td>0</td><td>128</td><tr><tr><td>AudioCapturer</td><td>read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer>): void;</td><td>read</td><td>21</td><td>3</td><td>492</td><tr><tr><td>AudioCapturer</td><td>read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer>;</td><td>read</td><td>21</td><td>2</td><td>21</td><tr><tr><td>AudioCapturer</td><td>getAudioTime(callback: AsyncCallback<number>): void;</td><td>getAudioTime</td><td>21</td><td>1</td><td>51</td><tr><tr><td>AudioCapturer</td><td>getAudioTime(): Promise<number>;</td><td>getAudioTime</td><td>21</td><td>0</td><td>17</td><tr><tr><td>AudioCapturer</td><td>stop(callback: AsyncCallback<void>): void;</td><td>stop</td><td>21</td><td>1</td><td>833</td><tr><tr><td>AudioCapturer</td><td>stop(): Promise<void>;</td><td>stop</td><td>21</td><td>0</td><td>99</td><tr><tr><td>AudioCapturer</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>AudioCapturer</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>AudioCapturer</td><td>getBufferSize(callback: AsyncCallback<number>): void;</td><td>getBufferSize</td><td>21</td><td>1</td><td>51</td><tr><tr><td>AudioCapturer</td><td>getBufferSize(): Promise<number>;</td><td>getBufferSize</td><td>21</td><td>0</td><td>9</td><tr><tr><td>AudioCapturer</td><td>off(type: "markReach"): void;</td><td>off</td><td>21</td><td>1</td><td>125</td><tr><tr><td>AudioCapturer</td><td>off(type: "periodReach"): void;</td><td>off</td><td>21</td><td>1</td><td>125</td><tr><tr><td>AudioCapturer</td><td>on(type: "stateChange", callback: Callback<AudioState>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioCapturer</td><td>readonly state: AudioState</td><td>state</td><td>22</td><td>1</td><td>1920</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

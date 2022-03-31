@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>分布式数据管理子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>distributeddatamgr</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.data.storage</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>storage</td><td>declare namespace storage {
+    
+
+    function getStorageSync(path: string): Storage;
+    function getStorage(path: string, callback: AsyncCallback<Storage>): void;
+    function getStorage(path: string): Promise<Storage>;
+
+    
+    function deleteStorageSync(path: string): void;
+    function deleteStorage(path: string, callback: AsyncCallback<void>): void;
+    function deleteStorage(path: string): Promise<void>;
+
+    
+    function removeStorageFromCacheSync(path: string): void;
+    function removeStorageFromCache(path: string, callback: AsyncCallback<void>): void;
+    function removeStorageFromCache(path: string): Promise<void>;
+
+    
+    interface Storage {
+        
+        getSync(key: string, defValue: ValueType): ValueType;
+        get(key: string, defValue: ValueType, callback: AsyncCallback<ValueType>): void;
+        get(key: string, defValue: ValueType): Promise<ValueType>;
+
+        
+        hasSync(key: string): boolean;
+        has(key: string, callback: AsyncCallback<boolean>): boolean;
+        has(key: string): Promise<boolean>;
+
+        
+        putSync(key: string, value: ValueType): void;
+        put(key: string, value: ValueType, callback: AsyncCallback<void>): void;
+        put(key: string, value: ValueType): Promise<void>;
+
+        
+        deleteSync(key: string): void;
+        delete(key: string, callback: AsyncCallback<void>): void;
+        delete(key: string): Promise<void>;
+
+        
+        clearSync(): void;
+        clear(callback: AsyncCallback<void>): void;
+        clear(): Promise<void>;
+
+        
+        flushSync(): void;
+        flush(callback: AsyncCallback<void>): void;
+        flush(): Promise<void>;
+
+        
+        on(type: 'change', callback: Callback<StorageObserver>): void;
+
+        
+        off(type: 'change', callback: Callback<StorageObserver>): void;
+    }
+
+    
+    type ValueType = number | string | boolean;
+
+    
+    interface StorageObserver {
+        
+        key: string;
+    }
+
+    
+    const MAX_KEY_LENGTH: 80;
+
+    
+    const MAX_VALUE_LENGTH: 8192;
+}</td><td>storage</td><td>None</td><td>0</td><td>42</td><tr><tr><td>storage</td><td>function getStorageSync(path: string): Storage;</td><td>getStorageSync</td><td>None</td><td>1</td><td>9</td><tr><tr><td>storage</td><td>function getStorage(path: string, callback: AsyncCallback<Storage>): void;</td><td>getStorage</td><td>None</td><td>2</td><td>9</td><tr><tr><td>storage</td><td>function getStorage(path: string): Promise<Storage>;</td><td>getStorage</td><td>None</td><td>1</td><td>1</td><tr><tr><td>storage</td><td>function deleteStorageSync(path: string): void;</td><td>deleteStorageSync</td><td>None</td><td>1</td><td>5</td><tr><tr><td>storage</td><td>function deleteStorage(path: string, callback: AsyncCallback<void>): void;</td><td>deleteStorage</td><td>None</td><td>2</td><td>6</td><tr><tr><td>storage</td><td>function deleteStorage(path: string): Promise<void>;</td><td>deleteStorage</td><td>None</td><td>1</td><td>0</td><tr><tr><td>storage</td><td>function removeStorageFromCacheSync(path: string): void;</td><td>removeStorageFromCacheSync</td><td>None</td><td>1</td><td>1</td><tr><tr><td>storage</td><td>function removeStorageFromCache(path: string, callback: AsyncCallback<void>): void;</td><td>removeStorageFromCache</td><td>None</td><td>2</td><td>2</td><tr><tr><td>storage</td><td>function removeStorageFromCache(path: string): Promise<void>;</td><td>removeStorageFromCache</td><td>None</td><td>1</td><td>0</td><tr><tr><td>storage</td><td>const MAX_KEY_LENGTH: 80</td><td>MAX_KEY_LENGTH</td><td>31</td><td>1</td><td>2</td><tr><tr><td>storage</td><td>const MAX_VALUE_LENGTH: 8192</td><td>MAX_VALUE_LENGTH</td><td>31</td><td>1</td><td>5</td><tr><tr><td>Storage</td><td>interface Storage {
+        
+        getSync(key: string, defValue: ValueType): ValueType;
+        get(key: string, defValue: ValueType, callback: AsyncCallback<ValueType>): void;
+        get(key: string, defValue: ValueType): Promise<ValueType>;
+
+        
+        hasSync(key: string): boolean;
+        has(key: string, callback: AsyncCallback<boolean>): boolean;
+        has(key: string): Promise<boolean>;
+
+        
+        putSync(key: string, value: ValueType): void;
+        put(key: string, value: ValueType, callback: AsyncCallback<void>): void;
+        put(key: string, value: ValueType): Promise<void>;
+
+        
+        deleteSync(key: string): void;
+        delete(key: string, callback: AsyncCallback<void>): void;
+        delete(key: string): Promise<void>;
+
+        
+        clearSync(): void;
+        clear(callback: AsyncCallback<void>): void;
+        clear(): Promise<void>;
+
+        
+        flushSync(): void;
+        flush(callback: AsyncCallback<void>): void;
+        flush(): Promise<void>;
+
+        
+        on(type: 'change', callback: Callback<StorageObserver>): void;
+
+        
+        off(type: 'change', callback: Callback<StorageObserver>): void;
+    }</td><td>Storage</td><td>20</td><td>0</td><td>31</td><tr><tr><td>Storage</td><td>getSync(key: string, defValue: ValueType): ValueType;</td><td>getSync</td><td>21</td><td>2</td><td>55</td><tr><tr><td>Storage</td><td>get(key: string, defValue: ValueType, callback: AsyncCallback<ValueType>): void;</td><td>get</td><td>21</td><td>3</td><td>1110</td><tr><tr><td>Storage</td><td>get(key: string, defValue: ValueType): Promise<ValueType>;</td><td>get</td><td>21</td><td>2</td><td>85</td><tr><tr><td>Storage</td><td>hasSync(key: string): boolean;</td><td>hasSync</td><td>21</td><td>1</td><td>6</td><tr><tr><td>Storage</td><td>has(key: string, callback: AsyncCallback<boolean>): boolean;</td><td>has</td><td>21</td><td>2</td><td>16</td><tr><tr><td>Storage</td><td>has(key: string): Promise<boolean>;</td><td>has</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Storage</td><td>putSync(key: string, value: ValueType): void;</td><td>putSync</td><td>21</td><td>2</td><td>52</td><tr><tr><td>Storage</td><td>put(key: string, value: ValueType, callback: AsyncCallback<void>): void;</td><td>put</td><td>21</td><td>3</td><td>578</td><tr><tr><td>Storage</td><td>put(key: string, value: ValueType): Promise<void>;</td><td>put</td><td>21</td><td>2</td><td>54</td><tr><tr><td>Storage</td><td>deleteSync(key: string): void;</td><td>deleteSync</td><td>21</td><td>1</td><td>3</td><tr><tr><td>Storage</td><td>delete(key: string, callback: AsyncCallback<void>): void;</td><td>delete</td><td>21</td><td>2</td><td>224</td><tr><tr><td>Storage</td><td>delete(key: string): Promise<void>;</td><td>delete</td><td>21</td><td>1</td><td>31</td><tr><tr><td>Storage</td><td>clearSync(): void;</td><td>clearSync</td><td>21</td><td>0</td><td>34</td><tr><tr><td>Storage</td><td>clear(callback: AsyncCallback<void>): void;</td><td>clear</td><td>21</td><td>1</td><td>35</td><tr><tr><td>Storage</td><td>clear(): Promise<void>;</td><td>clear</td><td>21</td><td>0</td><td>1</td><tr><tr><td>Storage</td><td>flushSync(): void;</td><td>flushSync</td><td>21</td><td>0</td><td>23</td><tr><tr><td>Storage</td><td>flush(callback: AsyncCallback<void>): void;</td><td>flush</td><td>21</td><td>1</td><td>29</td><tr><tr><td>Storage</td><td>flush(): Promise<void>;</td><td>flush</td><td>21</td><td>0</td><td>0</td><tr><tr><td>Storage</td><td>on(type: 'change', callback: Callback<StorageObserver>): void;</td><td>on</td><td>21</td><td>2</td><td>9120</td><tr><tr><td>Storage</td><td>off(type: 'change', callback: Callback<StorageObserver>): void;</td><td>off</td><td>21</td><td>2</td><td>78</td><tr><tr><td>StorageObserver</td><td>interface StorageObserver {
+        
+        key: string;
+    }</td><td>StorageObserver</td><td>20</td><td>0</td><td>0</td><tr><tr><td>StorageObserver</td><td>key: string</td><td>key</td><td>22</td><td>1</td><td>586</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

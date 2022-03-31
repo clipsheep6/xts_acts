@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>电话服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>telephony</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.telephony.sms</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>sms</td><td>declare namespace sms {
+  
+  function splitMessage(content: string, callback: AsyncCallback<Array<string>>): void;
+  function splitMessage(content: string): Promise<Array<string>>;
+
+  
+  function createMessage(pdu: Array<number>, specification: string, callback: AsyncCallback<ShortMessage>): void;
+  function createMessage(pdu: Array<number>, specification: string): Promise<ShortMessage>;
+
+  
+  function sendMessage(options: SendMessageOptions): void;
+
+  
+  function setDefaultSmsSlotId(slotId: number, callback: AsyncCallback<void>): void;
+  function setDefaultSmsSlotId(slotId: number): Promise<void>;
+
+  
+  function getDefaultSmsSlotId(callback: AsyncCallback<number>): void;
+  function getDefaultSmsSlotId(): Promise<number>;
+
+  
+  function setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback<void>): void;
+  function setSmscAddr(slotId: number, smscAddr: string): Promise<void>;
+
+  
+  function getSmscAddr(slotId: number, callback: AsyncCallback<string>): void;
+  function getSmscAddr(slotId: number): Promise<string>;
+
+  
+  function hasSmsCapability(): boolean;
+
+  
+  function addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void>): void;
+  function addSimMessage(options: SimMessageOptions): Promise<void>;
+
+  
+  function delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void>): void;
+  function delSimMessage(slotId: number, msgIndex: number): Promise<void>;
+
+  
+  function updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void>): void;
+  function updateSimMessage(options: UpdateSimMessageOptions): Promise<void>;
+
+  
+  function getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage>>): void;
+  function getAllSimMessages(slotId: number): Promise<Array<SimShortMessage>>;
+
+  
+  function setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void>): void;
+  function setCBConfig(options: CBConfigOptions): Promise<void>;
+
+  
+  function getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback: AsyncCallback<SmsSegmentsInfo>): void;
+  function getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise<SmsSegmentsInfo>;
+
+  
+  function isImsSmsSupported(callback: AsyncCallback<boolean>): void;
+  function isImsSmsSupported(): Promise<boolean>;
+
+  
+  function getImsShortMessageFormat(callback: AsyncCallback<string>): void;
+  function getImsShortMessageFormat(): Promise<string>;
+
+  
+  function decodeMms(mmsFilePathName: string | Array<number>, callback: AsyncCallback<MmsInformation>): void;
+  function decodeMms(mmsFilePathName: string | Array<number>): Promise<MmsInformation>;
+
+  
+  function encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number>>): void;
+  function encodeMms(mms: MmsInformation): Promise<Array<number>>;
+
+  
+  export interface MmsInformation {
+    messageType: MessageType;
+    mmsType: MmsSendReq | MmsSendConf | MmsNotificationInd | MmsRespInd | MmsRetrieveConf | MmsAcknowledgeInd | MmsDeliveryInd | MmsReadOrigInd | MmsReadRecInd;
+    attachment?: Array<MmsAttachment>;
+  }
+
+  
+  export interface MmsSendReq {
+    from: MmsAddress;
+    transactionId: string;
+    contentType: string;
+    version: MmsVersionType;
+    to?: Array<MmsAddress>;
+    date?: number;
+    cc?: Array<MmsAddress>;
+    bcc?: Array<MmsAddress>;
+    subject?: string;
+    messageClass?: number;
+    expiry?: number;
+    priority?: MmsPriorityType;
+    senderVisibility?: number;
+    deliveryReport?: number;
+    readReport?: number;
+  }
+
+  
+  export interface MmsSendConf {
+    responseState: number;
+    transactionId: string;
+    version: MmsVersionType;
+    messageId?: string;
+  }
+
+  
+  export interface MmsNotificationInd {
+    transactionId: string;
+    messageClass: number;
+    messageSize: number;
+    expiry: number;
+    contentLocation: string;
+    version: MmsVersionType;
+    from?: MmsAddress;
+    subject?: string;
+    deliveryReport?: number;
+    contentClass?: number;
+  }
+
+  
+  export interface MmsRespInd {
+    transactionId: string;
+    status: number;
+    version: MmsVersionType;
+    reportAllowed?: ReportType;
+  }
+
+  
+  export interface MmsRetrieveConf {
+    transactionId: string;
+    messageId: string;
+    date: number;
+    contentType: string;
+    to: Array<MmsAddress>;
+    version: MmsVersionType;
+    from?: MmsAddress;
+    cc?: Array<MmsAddress>;
+    subject?: string;
+    priority?: MmsPriorityType;
+    deliveryReport?: number;
+    readReport?: number;
+    retrieveStatus?: number;
+    retrieveText?: string;
+  }
+
+  
+  export interface MmsAcknowledgeInd {
+    transactionId: string;
+    version: MmsVersionType;
+    reportAllowed?: ReportType;
+  }
+
+  
+  export interface MmsDeliveryInd {
+    messageId: string;
+    date: number;
+    to: Array<MmsAddress>;
+    status: number;
+    version: MmsVersionType;
+  }
+
+  
+  export interface MmsReadOrigInd {
+    version: MmsVersionType;
+    messageId: string;
+    to: Array<MmsAddress>;
+    from: MmsAddress;
+    date: number;
+    readStatus: number;
+  }
+
+  
+  export interface MmsReadRecInd {
+    version: MmsVersionType;
+    messageId: string;
+    to: Array<MmsAddress>;
+    from: MmsAddress;
+    readStatus: number;
+    date?: number;
+  }
+
+  
+  export interface MmsAttachment {
+    contentId: string;
+    contentLocation: string;
+    contentDisposition: DispositionType;
+    contentTransferEncoding: string;
+    contentType: string;
+    isSmil: boolean;
+    path?: string;
+    inBuff?: Array<number>;
+    fileName?: string;
+    charset?: MmsCharSets;
+  }
+
+  
+  export interface MmsAddress {
+    address: string;
+    charset: MmsCharSets;
+  }
+
+  
+  export enum MessageType {
+    TYPE_MMS_SEND_REQ = 128,
+    TYPE_MMS_SEND_CONF,
+    TYPE_MMS_NOTIFICATION_IND,
+    TYPE_MMS_RESP_IND,
+    TYPE_MMS_RETRIEVE_CONF,
+    TYPE_MMS_ACKNOWLEDGE_IND,
+    TYPE_MMS_DELIVERY_IND,
+    TYPE_MMS_READ_REC_IND,
+    TYPE_MMS_READ_ORIG_IND,
+  }
+
+  
+  export enum MmsPriorityType {
+    MMS_LOW = 128,
+    MMS_NORMAL,
+    MMS_HIGH,
+  }
+
+  
+  export enum MmsVersionType {
+    MMS_VERSION_1_0 = 0x10,
+    MMS_VERSION_1_1,
+    MMS_VERSION_1_2,
+    MMS_VERSION_1_3,
+  }
+
+  
+  export enum MmsCharSets {
+    BIG5 = 0X07EA,
+    ISO_10646_UCS_2 = 0X03E8,
+    ISO_8859_1 = 0X04,
+    ISO_8859_2,
+    ISO_8859_3,
+    ISO_8859_4,
+    ISO_8859_5,
+    ISO_8859_6,
+    ISO_8859_7,
+    ISO_8859_8,
+    ISO_8859_9,
+    SHIFT_JIS = 0X11,
+    US_ASCII = 0X03,
+    UTF_8 = 0X6A,
+  }
+
+  
+  export enum DispositionType {
+    FROM_DATA = 0,
+    ATTACHMENT,
+    INLINE,
+  }
+
+  
+  export enum ReportType {
+    MMS_YES = 128,
+    MMS_NO,
+  }
+
+  
+  export interface CBConfigOptions {
+    slotId: number;
+    enable: boolean;
+    startMessageId: number;
+    endMessageId: number;
+    ranType: RanType;
+  }
+
+  
+  export interface SimMessageOptions {
+    slotId: number;
+    smsc: string;
+    pdu: string;
+    status: SimMessageStatus;
+  }
+
+  
+  export interface UpdateSimMessageOptions {
+    slotId: number;
+    msgIndex: number;
+    newStatus: SimMessageStatus;
+    pdu: string;
+    smsc: string;
+  }
+
+  export interface ShortMessage {
+    
+    visibleMessageBody: string;
+    
+    visibleRawAddress: string;
+    
+    messageClass: ShortMessageClass;
+    
+    protocolId: number;
+    
+    scAddress: string;
+    
+    scTimestamp: number;
+    
+    isReplaceMessage: boolean;
+    
+    hasReplyPath: boolean;
+    
+    pdu: Array<number>;
+    
+    status: number;
+    
+    isSmsStatusReportMessage: boolean;
+  }
+
+  
+  export interface SimShortMessage {
+    shortMessage: ShortMessage;
+
+    
+    simMessageStatus: SimMessageStatus;
+    
+    indexOnSim: number;
+  }
+
+  
+  export enum SimMessageStatus {
+    
+    SIM_MESSAGE_STATUS_FREE = 0,
+    
+    SIM_MESSAGE_STATUS_READ = 1,
+    
+    SIM_MESSAGE_STATUS_UNREAD = 3,
+    
+    SIM_MESSAGE_STATUS_SENT = 5,
+    
+    SIM_MESSAGE_STATUS_UNSENT = 7,
+  }
+
+  export enum ShortMessageClass {
+    
+    UNKNOWN,
+    
+    INSTANT_MESSAGE,
+    
+    OPTIONAL_MESSAGE,
+    
+    SIM_MESSAGE,
+    
+    FORWARD_MESSAGE
+  }
+
+  export interface SendMessageOptions {
+    
+    slotId: number;
+    
+    destinationHost: string;
+    
+    serviceCenter?: string;
+    
+    content: string | Array<number>;
+    
+    destinationPort?: number;
+    
+    sendCallback?: AsyncCallback<ISendShortMessageCallback>;
+    
+    deliveryCallback?: AsyncCallback<IDeliveryShortMessageCallback>;
+  }
+
+  export interface ISendShortMessageCallback {
+    
+    result: SendSmsResult;
+    
+    url: string;
+    
+    isLastPart: boolean;
+  }
+
+  export interface IDeliveryShortMessageCallback {
+    
+    pdu: Array<number>;
+  }
+
+  export enum SendSmsResult {
+    
+    SEND_SMS_SUCCESS = 0,
+
+    
+    SEND_SMS_FAILURE_UNKNOWN = 1,
+
+    
+    SEND_SMS_FAILURE_RADIO_OFF = 2,
+
+    
+    SEND_SMS_FAILURE_SERVICE_UNAVAILABLE = 3
+  }
+
+  
+  export enum RanType {
+    TYPE_GSM = 1, // GSM
+    TYPE_CDMA = 2, // CDMA
+  }
+
+  
+  export interface SmsSegmentsInfo {
+    splitCount: number;
+    encodeCount: number;
+    encodeCountRemaining: number;
+    scheme: SmsEncodingScheme;
+  }
+
+  
+  export enum SmsEncodingScheme {
+    SMS_ENCODING_UNKNOWN = 0,
+    SMS_ENCODING_7BIT,
+    SMS_ENCODING_8BIT,
+    SMS_ENCODING_16BIT,
+  }
+}</td><td>sms</td><td>None</td><td>0</td><td>128</td><tr><tr><td>sms</td><td>function splitMessage(content: string, callback: AsyncCallback<Array<string>>): void;</td><td>splitMessage</td><td>None</td><td>2</td><td>14</td><tr><tr><td>sms</td><td>function splitMessage(content: string): Promise<Array<string>>;</td><td>splitMessage</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sms</td><td>function createMessage(pdu: Array<number>, specification: string, callback: AsyncCallback<ShortMessage>): void;</td><td>createMessage</td><td>None</td><td>3</td><td>15</td><tr><tr><td>sms</td><td>function createMessage(pdu: Array<number>, specification: string): Promise<ShortMessage>;</td><td>createMessage</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sms</td><td>function sendMessage(options: SendMessageOptions): void;</td><td>sendMessage</td><td>None</td><td>1</td><td>12</td><tr><tr><td>sms</td><td>function setDefaultSmsSlotId(slotId: number, callback: AsyncCallback<void>): void;</td><td>setDefaultSmsSlotId</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sms</td><td>function setDefaultSmsSlotId(slotId: number): Promise<void>;</td><td>setDefaultSmsSlotId</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sms</td><td>function getDefaultSmsSlotId(callback: AsyncCallback<number>): void;</td><td>getDefaultSmsSlotId</td><td>None</td><td>1</td><td>10</td><tr><tr><td>sms</td><td>function getDefaultSmsSlotId(): Promise<number>;</td><td>getDefaultSmsSlotId</td><td>None</td><td>0</td><td>0</td><tr><tr><td>sms</td><td>function setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback<void>): void;</td><td>setSmscAddr</td><td>None</td><td>3</td><td>8</td><tr><tr><td>sms</td><td>function setSmscAddr(slotId: number, smscAddr: string): Promise<void>;</td><td>setSmscAddr</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sms</td><td>function getSmscAddr(slotId: number, callback: AsyncCallback<string>): void;</td><td>getSmscAddr</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sms</td><td>function getSmscAddr(slotId: number): Promise<string>;</td><td>getSmscAddr</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sms</td><td>function hasSmsCapability(): boolean;</td><td>hasSmsCapability</td><td>None</td><td>0</td><td>4</td><tr><tr><td>sms</td><td>function addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void>): void;</td><td>addSimMessage</td><td>None</td><td>2</td><td>40</td><tr><tr><td>sms</td><td>function addSimMessage(options: SimMessageOptions): Promise<void>;</td><td>addSimMessage</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sms</td><td>function delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void>): void;</td><td>delSimMessage</td><td>None</td><td>3</td><td>11</td><tr><tr><td>sms</td><td>function delSimMessage(slotId: number, msgIndex: number): Promise<void>;</td><td>delSimMessage</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sms</td><td>function updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void>): void;</td><td>updateSimMessage</td><td>None</td><td>2</td><td>8</td><tr><tr><td>sms</td><td>function updateSimMessage(options: UpdateSimMessageOptions): Promise<void>;</td><td>updateSimMessage</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sms</td><td>function getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage>>): void;</td><td>getAllSimMessages</td><td>None</td><td>2</td><td>25</td><tr><tr><td>sms</td><td>function getAllSimMessages(slotId: number): Promise<Array<SimShortMessage>>;</td><td>getAllSimMessages</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sms</td><td>function setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void>): void;</td><td>setCBConfig</td><td>None</td><td>2</td><td>14</td><tr><tr><td>sms</td><td>function setCBConfig(options: CBConfigOptions): Promise<void>;</td><td>setCBConfig</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sms</td><td>function getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback: AsyncCallback<SmsSegmentsInfo>): void;</td><td>getSmsSegmentsInfo</td><td>None</td><td>4</td><td>23</td><tr><tr><td>sms</td><td>function getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise<SmsSegmentsInfo>;</td><td>getSmsSegmentsInfo</td><td>None</td><td>3</td><td>0</td><tr><tr><td>sms</td><td>function isImsSmsSupported(callback: AsyncCallback<boolean>): void;</td><td>isImsSmsSupported</td><td>None</td><td>1</td><td>10</td><tr><tr><td>sms</td><td>function isImsSmsSupported(): Promise<boolean>;</td><td>isImsSmsSupported</td><td>None</td><td>0</td><td>0</td><tr><tr><td>sms</td><td>function getImsShortMessageFormat(callback: AsyncCallback<string>): void;</td><td>getImsShortMessageFormat</td><td>None</td><td>1</td><td>12</td><tr><tr><td>sms</td><td>function getImsShortMessageFormat(): Promise<string>;</td><td>getImsShortMessageFormat</td><td>None</td><td>0</td><td>0</td><tr><tr><td>sms</td><td>function decodeMms(mmsFilePathName: string | Array<number>, callback: AsyncCallback<MmsInformation>): void;</td><td>decodeMms</td><td>None</td><td>2</td><td>24</td><tr><tr><td>sms</td><td>function decodeMms(mmsFilePathName: string | Array<number>): Promise<MmsInformation>;</td><td>decodeMms</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sms</td><td>function encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number>>): void;</td><td>encodeMms</td><td>None</td><td>2</td><td>94</td><tr><tr><td>sms</td><td>function encodeMms(mms: MmsInformation): Promise<Array<number>>;</td><td>encodeMms</td><td>None</td><td>1</td><td>0</td><tr><tr><td>MmsInformation</td><td>export interface MmsInformation {
+    messageType: MessageType;
+    mmsType: MmsSendReq | MmsSendConf | MmsNotificationInd | MmsRespInd | MmsRetrieveConf | MmsAcknowledgeInd | MmsDeliveryInd | MmsReadOrigInd | MmsReadRecInd;
+    attachment?: Array<MmsAttachment>;
+  }</td><td>MmsInformation</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsInformation</td><td>messageType: MessageType</td><td>messageType</td><td>22</td><td>1</td><td>24</td><tr><tr><td>MmsInformation</td><td>mmsType: MmsSendReq | MmsSendConf | MmsNotificationInd | MmsRespInd | MmsRetrieveConf | MmsAcknowledgeInd | MmsDeliveryInd | MmsReadOrigInd | MmsReadRecInd</td><td>mmsType</td><td>22</td><td>1</td><td>149</td><tr><tr><td>MmsInformation</td><td>attachment?: Array<MmsAttachment></td><td>attachment</td><td>22</td><td>1</td><td>34</td><tr><tr><td>MmsSendReq</td><td>export interface MmsSendReq {
+    from: MmsAddress;
+    transactionId: string;
+    contentType: string;
+    version: MmsVersionType;
+    to?: Array<MmsAddress>;
+    date?: number;
+    cc?: Array<MmsAddress>;
+    bcc?: Array<MmsAddress>;
+    subject?: string;
+    messageClass?: number;
+    expiry?: number;
+    priority?: MmsPriorityType;
+    senderVisibility?: number;
+    deliveryReport?: number;
+    readReport?: number;
+  }</td><td>MmsSendReq</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsSendReq</td><td>from: MmsAddress</td><td>from</td><td>22</td><td>1</td><td>297</td><tr><tr><td>MmsSendReq</td><td>transactionId: string</td><td>transactionId</td><td>22</td><td>1</td><td>14</td><tr><tr><td>MmsSendReq</td><td>contentType: string</td><td>contentType</td><td>22</td><td>1</td><td>12</td><tr><tr><td>MmsSendReq</td><td>version: MmsVersionType</td><td>version</td><td>22</td><td>1</td><td>110</td><tr><tr><td>MmsSendReq</td><td>to?: Array<MmsAddress></td><td>to</td><td>22</td><td>1</td><td>2819</td><tr><tr><td>MmsSendReq</td><td>date?: number</td><td>date</td><td>22</td><td>1</td><td>1591</td><tr><tr><td>MmsSendReq</td><td>cc?: Array<MmsAddress></td><td>cc</td><td>22</td><td>1</td><td>840</td><tr><tr><td>MmsSendReq</td><td>bcc?: Array<MmsAddress></td><td>bcc</td><td>22</td><td>1</td><td>4</td><tr><tr><td>MmsSendReq</td><td>subject?: string</td><td>subject</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MmsSendReq</td><td>messageClass?: number</td><td>messageClass</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsSendReq</td><td>expiry?: number</td><td>expiry</td><td>22</td><td>1</td><td>4</td><tr><tr><td>MmsSendReq</td><td>priority?: MmsPriorityType</td><td>priority</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsSendReq</td><td>senderVisibility?: number</td><td>senderVisibility</td><td>22</td><td>1</td><td>2</td><tr><tr><td>MmsSendReq</td><td>deliveryReport?: number</td><td>deliveryReport</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MmsSendReq</td><td>readReport?: number</td><td>readReport</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsSendConf</td><td>export interface MmsSendConf {
+    responseState: number;
+    transactionId: string;
+    version: MmsVersionType;
+    messageId?: string;
+  }</td><td>MmsSendConf</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsSendConf</td><td>responseState: number</td><td>responseState</td><td>22</td><td>1</td><td>2</td><tr><tr><td>MmsSendConf</td><td>transactionId: string</td><td>transactionId</td><td>22</td><td>1</td><td>14</td><tr><tr><td>MmsSendConf</td><td>version: MmsVersionType</td><td>version</td><td>22</td><td>1</td><td>110</td><tr><tr><td>MmsSendConf</td><td>messageId?: string</td><td>messageId</td><td>22</td><td>1</td><td>16</td><tr><tr><td>MmsNotificationInd</td><td>export interface MmsNotificationInd {
+    transactionId: string;
+    messageClass: number;
+    messageSize: number;
+    expiry: number;
+    contentLocation: string;
+    version: MmsVersionType;
+    from?: MmsAddress;
+    subject?: string;
+    deliveryReport?: number;
+    contentClass?: number;
+  }</td><td>MmsNotificationInd</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsNotificationInd</td><td>transactionId: string</td><td>transactionId</td><td>22</td><td>1</td><td>14</td><tr><tr><td>MmsNotificationInd</td><td>messageClass: number</td><td>messageClass</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsNotificationInd</td><td>messageSize: number</td><td>messageSize</td><td>22</td><td>1</td><td>2</td><tr><tr><td>MmsNotificationInd</td><td>expiry: number</td><td>expiry</td><td>22</td><td>1</td><td>4</td><tr><tr><td>MmsNotificationInd</td><td>contentLocation: string</td><td>contentLocation</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MmsNotificationInd</td><td>version: MmsVersionType</td><td>version</td><td>22</td><td>1</td><td>110</td><tr><tr><td>MmsNotificationInd</td><td>from?: MmsAddress</td><td>from</td><td>22</td><td>1</td><td>297</td><tr><tr><td>MmsNotificationInd</td><td>subject?: string</td><td>subject</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MmsNotificationInd</td><td>deliveryReport?: number</td><td>deliveryReport</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MmsNotificationInd</td><td>contentClass?: number</td><td>contentClass</td><td>22</td><td>1</td><td>2</td><tr><tr><td>MmsRespInd</td><td>export interface MmsRespInd {
+    transactionId: string;
+    status: number;
+    version: MmsVersionType;
+    reportAllowed?: ReportType;
+  }</td><td>MmsRespInd</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsRespInd</td><td>transactionId: string</td><td>transactionId</td><td>22</td><td>1</td><td>14</td><tr><tr><td>MmsRespInd</td><td>status: number</td><td>status</td><td>22</td><td>1</td><td>99</td><tr><tr><td>MmsRespInd</td><td>version: MmsVersionType</td><td>version</td><td>22</td><td>1</td><td>110</td><tr><tr><td>MmsRespInd</td><td>reportAllowed?: ReportType</td><td>reportAllowed</td><td>22</td><td>1</td><td>4</td><tr><tr><td>MmsRetrieveConf</td><td>export interface MmsRetrieveConf {
+    transactionId: string;
+    messageId: string;
+    date: number;
+    contentType: string;
+    to: Array<MmsAddress>;
+    version: MmsVersionType;
+    from?: MmsAddress;
+    cc?: Array<MmsAddress>;
+    subject?: string;
+    priority?: MmsPriorityType;
+    deliveryReport?: number;
+    readReport?: number;
+    retrieveStatus?: number;
+    retrieveText?: string;
+  }</td><td>MmsRetrieveConf</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsRetrieveConf</td><td>transactionId: string</td><td>transactionId</td><td>22</td><td>1</td><td>14</td><tr><tr><td>MmsRetrieveConf</td><td>messageId: string</td><td>messageId</td><td>22</td><td>1</td><td>16</td><tr><tr><td>MmsRetrieveConf</td><td>date: number</td><td>date</td><td>22</td><td>1</td><td>1591</td><tr><tr><td>MmsRetrieveConf</td><td>contentType: string</td><td>contentType</td><td>22</td><td>1</td><td>12</td><tr><tr><td>MmsRetrieveConf</td><td>to: Array<MmsAddress></td><td>to</td><td>22</td><td>1</td><td>2819</td><tr><tr><td>MmsRetrieveConf</td><td>version: MmsVersionType</td><td>version</td><td>22</td><td>1</td><td>110</td><tr><tr><td>MmsRetrieveConf</td><td>from?: MmsAddress</td><td>from</td><td>22</td><td>1</td><td>297</td><tr><tr><td>MmsRetrieveConf</td><td>cc?: Array<MmsAddress></td><td>cc</td><td>22</td><td>1</td><td>840</td><tr><tr><td>MmsRetrieveConf</td><td>subject?: string</td><td>subject</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MmsRetrieveConf</td><td>priority?: MmsPriorityType</td><td>priority</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsRetrieveConf</td><td>deliveryReport?: number</td><td>deliveryReport</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MmsRetrieveConf</td><td>readReport?: number</td><td>readReport</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsRetrieveConf</td><td>retrieveStatus?: number</td><td>retrieveStatus</td><td>22</td><td>1</td><td>4</td><tr><tr><td>MmsRetrieveConf</td><td>retrieveText?: string</td><td>retrieveText</td><td>22</td><td>1</td><td>4</td><tr><tr><td>MmsAcknowledgeInd</td><td>export interface MmsAcknowledgeInd {
+    transactionId: string;
+    version: MmsVersionType;
+    reportAllowed?: ReportType;
+  }</td><td>MmsAcknowledgeInd</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsAcknowledgeInd</td><td>transactionId: string</td><td>transactionId</td><td>22</td><td>1</td><td>14</td><tr><tr><td>MmsAcknowledgeInd</td><td>version: MmsVersionType</td><td>version</td><td>22</td><td>1</td><td>110</td><tr><tr><td>MmsAcknowledgeInd</td><td>reportAllowed?: ReportType</td><td>reportAllowed</td><td>22</td><td>1</td><td>4</td><tr><tr><td>MmsDeliveryInd</td><td>export interface MmsDeliveryInd {
+    messageId: string;
+    date: number;
+    to: Array<MmsAddress>;
+    status: number;
+    version: MmsVersionType;
+  }</td><td>MmsDeliveryInd</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsDeliveryInd</td><td>messageId: string</td><td>messageId</td><td>22</td><td>1</td><td>16</td><tr><tr><td>MmsDeliveryInd</td><td>date: number</td><td>date</td><td>22</td><td>1</td><td>1591</td><tr><tr><td>MmsDeliveryInd</td><td>to: Array<MmsAddress></td><td>to</td><td>22</td><td>1</td><td>2819</td><tr><tr><td>MmsDeliveryInd</td><td>status: number</td><td>status</td><td>22</td><td>1</td><td>99</td><tr><tr><td>MmsDeliveryInd</td><td>version: MmsVersionType</td><td>version</td><td>22</td><td>1</td><td>110</td><tr><tr><td>MmsReadOrigInd</td><td>export interface MmsReadOrigInd {
+    version: MmsVersionType;
+    messageId: string;
+    to: Array<MmsAddress>;
+    from: MmsAddress;
+    date: number;
+    readStatus: number;
+  }</td><td>MmsReadOrigInd</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsReadOrigInd</td><td>version: MmsVersionType</td><td>version</td><td>22</td><td>1</td><td>110</td><tr><tr><td>MmsReadOrigInd</td><td>messageId: string</td><td>messageId</td><td>22</td><td>1</td><td>16</td><tr><tr><td>MmsReadOrigInd</td><td>to: Array<MmsAddress></td><td>to</td><td>22</td><td>1</td><td>2819</td><tr><tr><td>MmsReadOrigInd</td><td>from: MmsAddress</td><td>from</td><td>22</td><td>1</td><td>297</td><tr><tr><td>MmsReadOrigInd</td><td>date: number</td><td>date</td><td>22</td><td>1</td><td>1591</td><tr><tr><td>MmsReadOrigInd</td><td>readStatus: number</td><td>readStatus</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MmsReadRecInd</td><td>export interface MmsReadRecInd {
+    version: MmsVersionType;
+    messageId: string;
+    to: Array<MmsAddress>;
+    from: MmsAddress;
+    readStatus: number;
+    date?: number;
+  }</td><td>MmsReadRecInd</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsReadRecInd</td><td>version: MmsVersionType</td><td>version</td><td>22</td><td>1</td><td>110</td><tr><tr><td>MmsReadRecInd</td><td>messageId: string</td><td>messageId</td><td>22</td><td>1</td><td>16</td><tr><tr><td>MmsReadRecInd</td><td>to: Array<MmsAddress></td><td>to</td><td>22</td><td>1</td><td>2819</td><tr><tr><td>MmsReadRecInd</td><td>from: MmsAddress</td><td>from</td><td>22</td><td>1</td><td>297</td><tr><tr><td>MmsReadRecInd</td><td>readStatus: number</td><td>readStatus</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MmsReadRecInd</td><td>date?: number</td><td>date</td><td>22</td><td>1</td><td>1591</td><tr><tr><td>MmsAttachment</td><td>export interface MmsAttachment {
+    contentId: string;
+    contentLocation: string;
+    contentDisposition: DispositionType;
+    contentTransferEncoding: string;
+    contentType: string;
+    isSmil: boolean;
+    path?: string;
+    inBuff?: Array<number>;
+    fileName?: string;
+    charset?: MmsCharSets;
+  }</td><td>MmsAttachment</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsAttachment</td><td>contentId: string</td><td>contentId</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsAttachment</td><td>contentLocation: string</td><td>contentLocation</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MmsAttachment</td><td>contentDisposition: DispositionType</td><td>contentDisposition</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsAttachment</td><td>contentTransferEncoding: string</td><td>contentTransferEncoding</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsAttachment</td><td>contentType: string</td><td>contentType</td><td>22</td><td>1</td><td>12</td><tr><tr><td>MmsAttachment</td><td>isSmil: boolean</td><td>isSmil</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsAttachment</td><td>path?: string</td><td>path</td><td>22</td><td>1</td><td>11</td><tr><tr><td>MmsAttachment</td><td>inBuff?: Array<number></td><td>inBuff</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsAttachment</td><td>fileName?: string</td><td>fileName</td><td>22</td><td>1</td><td>6</td><tr><tr><td>MmsAttachment</td><td>charset?: MmsCharSets</td><td>charset</td><td>22</td><td>1</td><td>46</td><tr><tr><td>MmsAddress</td><td>export interface MmsAddress {
+    address: string;
+    charset: MmsCharSets;
+  }</td><td>MmsAddress</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MmsAddress</td><td>address: string</td><td>address</td><td>22</td><td>1</td><td>138</td><tr><tr><td>MmsAddress</td><td>charset: MmsCharSets</td><td>charset</td><td>22</td><td>1</td><td>46</td><tr><tr><td>MessageType</td><td>export enum MessageType {
+    TYPE_MMS_SEND_REQ = 128,
+    TYPE_MMS_SEND_CONF,
+    TYPE_MMS_NOTIFICATION_IND,
+    TYPE_MMS_RESP_IND,
+    TYPE_MMS_RETRIEVE_CONF,
+    TYPE_MMS_ACKNOWLEDGE_IND,
+    TYPE_MMS_DELIVERY_IND,
+    TYPE_MMS_READ_REC_IND,
+    TYPE_MMS_READ_ORIG_IND,
+  }</td><td>MessageType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>MessageType</td><td>TYPE_MMS_SEND_REQ = 128,</td><td>TYPE_MMS_SEND_REQ</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MessageType</td><td>TYPE_MMS_SEND_CONF,</td><td>TYPE_MMS_SEND_CONF</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MessageType</td><td>TYPE_MMS_NOTIFICATION_IND,</td><td>TYPE_MMS_NOTIFICATION_IND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MessageType</td><td>TYPE_MMS_RESP_IND,</td><td>TYPE_MMS_RESP_IND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MessageType</td><td>TYPE_MMS_RETRIEVE_CONF,</td><td>TYPE_MMS_RETRIEVE_CONF</td><td>42</td><td>1</td><td>4</td><tr><tr><td>MessageType</td><td>TYPE_MMS_ACKNOWLEDGE_IND,</td><td>TYPE_MMS_ACKNOWLEDGE_IND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MessageType</td><td>TYPE_MMS_DELIVERY_IND,</td><td>TYPE_MMS_DELIVERY_IND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MessageType</td><td>TYPE_MMS_READ_REC_IND,</td><td>TYPE_MMS_READ_REC_IND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MessageType</td><td>TYPE_MMS_READ_ORIG_IND,</td><td>TYPE_MMS_READ_ORIG_IND</td><td>42</td><td>1</td><td>6</td><tr><tr><td>MmsPriorityType</td><td>export enum MmsPriorityType {
+    MMS_LOW = 128,
+    MMS_NORMAL,
+    MMS_HIGH,
+  }</td><td>MmsPriorityType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>MmsPriorityType</td><td>MMS_LOW = 128,</td><td>MMS_LOW</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MmsPriorityType</td><td>MMS_NORMAL,</td><td>MMS_NORMAL</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MmsPriorityType</td><td>MMS_HIGH,</td><td>MMS_HIGH</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MmsVersionType</td><td>export enum MmsVersionType {
+    MMS_VERSION_1_0 = 0x10,
+    MMS_VERSION_1_1,
+    MMS_VERSION_1_2,
+    MMS_VERSION_1_3,
+  }</td><td>MmsVersionType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>MmsVersionType</td><td>MMS_VERSION_1_0 = 0x10,</td><td>MMS_VERSION_1_0</td><td>42</td><td>1</td><td>4</td><tr><tr><td>MmsVersionType</td><td>MMS_VERSION_1_1,</td><td>MMS_VERSION_1_1</td><td>42</td><td>1</td><td>8</td><tr><tr><td>MmsVersionType</td><td>MMS_VERSION_1_2,</td><td>MMS_VERSION_1_2</td><td>42</td><td>1</td><td>10</td><tr><tr><td>MmsVersionType</td><td>MMS_VERSION_1_3,</td><td>MMS_VERSION_1_3</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MmsCharSets</td><td>export enum MmsCharSets {
+    BIG5 = 0X07EA,
+    ISO_10646_UCS_2 = 0X03E8,
+    ISO_8859_1 = 0X04,
+    ISO_8859_2,
+    ISO_8859_3,
+    ISO_8859_4,
+    ISO_8859_5,
+    ISO_8859_6,
+    ISO_8859_7,
+    ISO_8859_8,
+    ISO_8859_9,
+    SHIFT_JIS = 0X11,
+    US_ASCII = 0X03,
+    UTF_8 = 0X6A,
+  }</td><td>MmsCharSets</td><td>40</td><td>0</td><td>2</td><tr><tr><td>MmsCharSets</td><td>BIG5 = 0X07EA,</td><td>BIG5</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>ISO_10646_UCS_2 = 0X03E8,</td><td>ISO_10646_UCS_2</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>ISO_8859_1 = 0X04,</td><td>ISO_8859_1</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>ISO_8859_2,</td><td>ISO_8859_2</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>ISO_8859_3,</td><td>ISO_8859_3</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>ISO_8859_4,</td><td>ISO_8859_4</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>ISO_8859_5,</td><td>ISO_8859_5</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>ISO_8859_6,</td><td>ISO_8859_6</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>ISO_8859_7,</td><td>ISO_8859_7</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>ISO_8859_8,</td><td>ISO_8859_8</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>ISO_8859_9,</td><td>ISO_8859_9</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>SHIFT_JIS = 0X11,</td><td>SHIFT_JIS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>US_ASCII = 0X03,</td><td>US_ASCII</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MmsCharSets</td><td>UTF_8 = 0X6A,</td><td>UTF_8</td><td>42</td><td>1</td><td>47</td><tr><tr><td>DispositionType</td><td>export enum DispositionType {
+    FROM_DATA = 0,
+    ATTACHMENT,
+    INLINE,
+  }</td><td>DispositionType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>DispositionType</td><td>FROM_DATA = 0,</td><td>FROM_DATA</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DispositionType</td><td>ATTACHMENT,</td><td>ATTACHMENT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DispositionType</td><td>INLINE,</td><td>INLINE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ReportType</td><td>export enum ReportType {
+    MMS_YES = 128,
+    MMS_NO,
+  }</td><td>ReportType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ReportType</td><td>MMS_YES = 128,</td><td>MMS_YES</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ReportType</td><td>MMS_NO,</td><td>MMS_NO</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CBConfigOptions</td><td>export interface CBConfigOptions {
+    slotId: number;
+    enable: boolean;
+    startMessageId: number;
+    endMessageId: number;
+    ranType: RanType;
+  }</td><td>CBConfigOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CBConfigOptions</td><td>slotId: number</td><td>slotId</td><td>22</td><td>1</td><td>113</td><tr><tr><td>CBConfigOptions</td><td>enable: boolean</td><td>enable</td><td>22</td><td>1</td><td>91</td><tr><tr><td>CBConfigOptions</td><td>startMessageId: number</td><td>startMessageId</td><td>22</td><td>1</td><td>3</td><tr><tr><td>CBConfigOptions</td><td>endMessageId: number</td><td>endMessageId</td><td>22</td><td>1</td><td>3</td><tr><tr><td>CBConfigOptions</td><td>ranType: RanType</td><td>ranType</td><td>22</td><td>1</td><td>3</td><tr><tr><td>SimMessageOptions</td><td>export interface SimMessageOptions {
+    slotId: number;
+    smsc: string;
+    pdu: string;
+    status: SimMessageStatus;
+  }</td><td>SimMessageOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SimMessageOptions</td><td>slotId: number</td><td>slotId</td><td>22</td><td>1</td><td>113</td><tr><tr><td>SimMessageOptions</td><td>smsc: string</td><td>smsc</td><td>22</td><td>1</td><td>11</td><tr><tr><td>SimMessageOptions</td><td>pdu: string</td><td>pdu</td><td>22</td><td>1</td><td>14</td><tr><tr><td>SimMessageOptions</td><td>status: SimMessageStatus</td><td>status</td><td>22</td><td>1</td><td>99</td><tr><tr><td>UpdateSimMessageOptions</td><td>export interface UpdateSimMessageOptions {
+    slotId: number;
+    msgIndex: number;
+    newStatus: SimMessageStatus;
+    pdu: string;
+    smsc: string;
+  }</td><td>UpdateSimMessageOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>UpdateSimMessageOptions</td><td>slotId: number</td><td>slotId</td><td>22</td><td>1</td><td>113</td><tr><tr><td>UpdateSimMessageOptions</td><td>msgIndex: number</td><td>msgIndex</td><td>22</td><td>1</td><td>2</td><tr><tr><td>UpdateSimMessageOptions</td><td>newStatus: SimMessageStatus</td><td>newStatus</td><td>22</td><td>1</td><td>2</td><tr><tr><td>UpdateSimMessageOptions</td><td>pdu: string</td><td>pdu</td><td>22</td><td>1</td><td>14</td><tr><tr><td>UpdateSimMessageOptions</td><td>smsc: string</td><td>smsc</td><td>22</td><td>1</td><td>11</td><tr><tr><td>ShortMessage</td><td>export interface ShortMessage {
+    
+    visibleMessageBody: string;
+    
+    visibleRawAddress: string;
+    
+    messageClass: ShortMessageClass;
+    
+    protocolId: number;
+    
+    scAddress: string;
+    
+    scTimestamp: number;
+    
+    isReplaceMessage: boolean;
+    
+    hasReplyPath: boolean;
+    
+    pdu: Array<number>;
+    
+    status: number;
+    
+    isSmsStatusReportMessage: boolean;
+  }</td><td>ShortMessage</td><td>20</td><td>0</td><td>14</td><tr><tr><td>ShortMessage</td><td>visibleMessageBody: string</td><td>visibleMessageBody</td><td>22</td><td>1</td><td>3</td><tr><tr><td>ShortMessage</td><td>visibleRawAddress: string</td><td>visibleRawAddress</td><td>22</td><td>1</td><td>3</td><tr><tr><td>ShortMessage</td><td>messageClass: ShortMessageClass</td><td>messageClass</td><td>22</td><td>1</td><td>6</td><tr><tr><td>ShortMessage</td><td>protocolId: number</td><td>protocolId</td><td>22</td><td>1</td><td>2</td><tr><tr><td>ShortMessage</td><td>scAddress: string</td><td>scAddress</td><td>22</td><td>1</td><td>3</td><tr><tr><td>ShortMessage</td><td>scTimestamp: number</td><td>scTimestamp</td><td>22</td><td>1</td><td>2</td><tr><tr><td>ShortMessage</td><td>isReplaceMessage: boolean</td><td>isReplaceMessage</td><td>22</td><td>1</td><td>2</td><tr><tr><td>ShortMessage</td><td>hasReplyPath: boolean</td><td>hasReplyPath</td><td>22</td><td>1</td><td>2</td><tr><tr><td>ShortMessage</td><td>pdu: Array<number></td><td>pdu</td><td>22</td><td>1</td><td>14</td><tr><tr><td>ShortMessage</td><td>status: number</td><td>status</td><td>22</td><td>1</td><td>99</td><tr><tr><td>ShortMessage</td><td>isSmsStatusReportMessage: boolean</td><td>isSmsStatusReportMessage</td><td>22</td><td>1</td><td>2</td><tr><tr><td>SimShortMessage</td><td>export interface SimShortMessage {
+    shortMessage: ShortMessage;
+
+    
+    simMessageStatus: SimMessageStatus;
+    
+    indexOnSim: number;
+  }</td><td>SimShortMessage</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SimShortMessage</td><td>shortMessage: ShortMessage</td><td>shortMessage</td><td>22</td><td>1</td><td>25</td><tr><tr><td>SimShortMessage</td><td>simMessageStatus: SimMessageStatus</td><td>simMessageStatus</td><td>22</td><td>1</td><td>1</td><tr><tr><td>SimShortMessage</td><td>indexOnSim: number</td><td>indexOnSim</td><td>22</td><td>1</td><td>2</td><tr><tr><td>SimMessageStatus</td><td>export enum SimMessageStatus {
+    
+    SIM_MESSAGE_STATUS_FREE = 0,
+    
+    SIM_MESSAGE_STATUS_READ = 1,
+    
+    SIM_MESSAGE_STATUS_UNREAD = 3,
+    
+    SIM_MESSAGE_STATUS_SENT = 5,
+    
+    SIM_MESSAGE_STATUS_UNSENT = 7,
+  }</td><td>SimMessageStatus</td><td>40</td><td>0</td><td>0</td><tr><tr><td>SimMessageStatus</td><td>SIM_MESSAGE_STATUS_FREE = 0,</td><td>SIM_MESSAGE_STATUS_FREE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>SimMessageStatus</td><td>SIM_MESSAGE_STATUS_READ = 1,</td><td>SIM_MESSAGE_STATUS_READ</td><td>42</td><td>1</td><td>2</td><tr><tr><td>SimMessageStatus</td><td>SIM_MESSAGE_STATUS_UNREAD = 3,</td><td>SIM_MESSAGE_STATUS_UNREAD</td><td>42</td><td>1</td><td>2</td><tr><tr><td>SimMessageStatus</td><td>SIM_MESSAGE_STATUS_SENT = 5,</td><td>SIM_MESSAGE_STATUS_SENT</td><td>42</td><td>1</td><td>6</td><tr><tr><td>SimMessageStatus</td><td>SIM_MESSAGE_STATUS_UNSENT = 7,</td><td>SIM_MESSAGE_STATUS_UNSENT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ShortMessageClass</td><td>export enum ShortMessageClass {
+    
+    UNKNOWN,
+    
+    INSTANT_MESSAGE,
+    
+    OPTIONAL_MESSAGE,
+    
+    SIM_MESSAGE,
+    
+    FORWARD_MESSAGE
+  }</td><td>ShortMessageClass</td><td>40</td><td>0</td><td>2</td><tr><tr><td>ShortMessageClass</td><td>UNKNOWN,</td><td>UNKNOWN</td><td>42</td><td>1</td><td>27</td><tr><tr><td>ShortMessageClass</td><td>INSTANT_MESSAGE,</td><td>INSTANT_MESSAGE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ShortMessageClass</td><td>OPTIONAL_MESSAGE,</td><td>OPTIONAL_MESSAGE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ShortMessageClass</td><td>SIM_MESSAGE,</td><td>SIM_MESSAGE</td><td>42</td><td>1</td><td>14</td><tr><tr><td>SendMessageOptions</td><td>export interface SendMessageOptions {
+    
+    slotId: number;
+    
+    destinationHost: string;
+    
+    serviceCenter?: string;
+    
+    content: string | Array<number>;
+    
+    destinationPort?: number;
+    
+    sendCallback?: AsyncCallback<ISendShortMessageCallback>;
+    
+    deliveryCallback?: AsyncCallback<IDeliveryShortMessageCallback>;
+  }</td><td>SendMessageOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SendMessageOptions</td><td>slotId: number</td><td>slotId</td><td>22</td><td>1</td><td>113</td><tr><tr><td>SendMessageOptions</td><td>destinationHost: string</td><td>destinationHost</td><td>22</td><td>1</td><td>2</td><tr><tr><td>SendMessageOptions</td><td>serviceCenter?: string</td><td>serviceCenter</td><td>22</td><td>1</td><td>1</td><tr><tr><td>SendMessageOptions</td><td>content: string | Array<number></td><td>content</td><td>22</td><td>1</td><td>416</td><tr><tr><td>SendMessageOptions</td><td>destinationPort?: number</td><td>destinationPort</td><td>22</td><td>1</td><td>1</td><tr><tr><td>SendMessageOptions</td><td>sendCallback?: AsyncCallback<ISendShortMessageCallback></td><td>sendCallback</td><td>22</td><td>1</td><td>5</td><tr><tr><td>SendMessageOptions</td><td>deliveryCallback?: AsyncCallback<IDeliveryShortMessageCallback></td><td>deliveryCallback</td><td>22</td><td>1</td><td>4</td><tr><tr><td>ISendShortMessageCallback</td><td>export interface ISendShortMessageCallback {
+    
+    result: SendSmsResult;
+    
+    url: string;
+    
+    isLastPart: boolean;
+  }</td><td>ISendShortMessageCallback</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ISendShortMessageCallback</td><td>result: SendSmsResult</td><td>result</td><td>22</td><td>1</td><td>1757</td><tr><tr><td>ISendShortMessageCallback</td><td>url: string</td><td>url</td><td>22</td><td>1</td><td>1</td><tr><tr><td>ISendShortMessageCallback</td><td>isLastPart: boolean</td><td>isLastPart</td><td>22</td><td>1</td><td>1</td><tr><tr><td>IDeliveryShortMessageCallback</td><td>export interface IDeliveryShortMessageCallback {
+    
+    pdu: Array<number>;
+  }</td><td>IDeliveryShortMessageCallback</td><td>20</td><td>0</td><td>0</td><tr><tr><td>IDeliveryShortMessageCallback</td><td>pdu: Array<number></td><td>pdu</td><td>22</td><td>1</td><td>14</td><tr><tr><td>SendSmsResult</td><td>export enum SendSmsResult {
+    
+    SEND_SMS_SUCCESS = 0,
+
+    
+    SEND_SMS_FAILURE_UNKNOWN = 1,
+
+    
+    SEND_SMS_FAILURE_RADIO_OFF = 2,
+
+    
+    SEND_SMS_FAILURE_SERVICE_UNAVAILABLE = 3
+  }</td><td>SendSmsResult</td><td>40</td><td>0</td><td>2</td><tr><tr><td>SendSmsResult</td><td>SEND_SMS_SUCCESS = 0,</td><td>SEND_SMS_SUCCESS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SendSmsResult</td><td>SEND_SMS_FAILURE_UNKNOWN = 1,</td><td>SEND_SMS_FAILURE_UNKNOWN</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SendSmsResult</td><td>SEND_SMS_FAILURE_RADIO_OFF = 2,</td><td>SEND_SMS_FAILURE_RADIO_OFF</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SendSmsResult</td><td>SEND_SMS_FAILURE_SERVICE_UNAVAILABLE = 3</td><td>SEND_SMS_FAILURE_SERVICE_UNAVAILABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RanType</td><td>export enum RanType {
+    TYPE_GSM = 1, // GSM
+    TYPE_CDMA = 2, // CDMA
+  }</td><td>RanType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>RanType</td><td>TYPE_GSM = 1, // GSM</td><td>TYPE_GSM</td><td>42</td><td>1</td><td>8</td><tr><tr><td>RanType</td><td>TYPE_CDMA = 2, // CDMA</td><td>TYPE_CDMA</td><td>42</td><td>1</td><td>3</td><tr><tr><td>SmsSegmentsInfo</td><td>export interface SmsSegmentsInfo {
+    splitCount: number;
+    encodeCount: number;
+    encodeCountRemaining: number;
+    scheme: SmsEncodingScheme;
+  }</td><td>SmsSegmentsInfo</td><td>20</td><td>0</td><td>23</td><tr><tr><td>SmsSegmentsInfo</td><td>splitCount: number</td><td>splitCount</td><td>22</td><td>1</td><td>4</td><tr><tr><td>SmsSegmentsInfo</td><td>encodeCount: number</td><td>encodeCount</td><td>22</td><td>1</td><td>7</td><tr><tr><td>SmsSegmentsInfo</td><td>encodeCountRemaining: number</td><td>encodeCountRemaining</td><td>22</td><td>1</td><td>3</td><tr><tr><td>SmsSegmentsInfo</td><td>scheme: SmsEncodingScheme</td><td>scheme</td><td>22</td><td>1</td><td>3</td><tr><tr><td>SmsEncodingScheme</td><td>export enum SmsEncodingScheme {
+    SMS_ENCODING_UNKNOWN = 0,
+    SMS_ENCODING_7BIT,
+    SMS_ENCODING_8BIT,
+    SMS_ENCODING_16BIT,
+  }</td><td>SmsEncodingScheme</td><td>40</td><td>0</td><td>2</td><tr><tr><td>SmsEncodingScheme</td><td>SMS_ENCODING_UNKNOWN = 0,</td><td>SMS_ENCODING_UNKNOWN</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SmsEncodingScheme</td><td>SMS_ENCODING_7BIT,</td><td>SMS_ENCODING_7BIT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>SmsEncodingScheme</td><td>SMS_ENCODING_8BIT,</td><td>SMS_ENCODING_8BIT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SmsEncodingScheme</td><td>SMS_ENCODING_16BIT,</td><td>SMS_ENCODING_16BIT</td><td>42</td><td>1</td><td>1</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

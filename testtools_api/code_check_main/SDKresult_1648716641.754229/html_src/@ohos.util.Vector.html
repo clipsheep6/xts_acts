@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>公共基础类库</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>compileruntime</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.util.Vector</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>Vector</td><td>declare class Vector<T> {
+  
+  constructor();
+  
+  length: number;
+  
+  add(element: T): boolean;
+  
+  insert(element: T, index: number): void;
+  
+  has(element: T): boolean;
+  
+  get(index: number): T;
+  
+  getIndexOf(element: T): number;
+  
+  getFirstElement(): T;
+  
+  getLastElement(): T;
+  
+  removeByIndex(index: number): T;
+  
+  remove(element: T): boolean;
+  
+  set(index: number, element: T): T;
+  
+  getLastIndexOf(element: T): number;
+  
+  getLastIndexFrom(element: T, index: number): number;
+  
+  getIndexFrom(element: T, index: number): number;
+  
+  removeByRange(fromIndex: number, toIndex: number): void;
+  
+  replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector<T>) => T,
+  thisArg?: Object): void;
+  
+  forEach(callbackfn: (value: T, index?: number, vector?: Vector<T>) => void,
+  thisArg?: Object): void;
+  
+  sort(comparator?: (firstValue: T, secondValue: T) => number): void;
+  
+  subVector(fromIndex: number, toIndex: number): Vector<T>;
+  
+  clear(): void;
+  
+  clone(): Vector<T>;
+  
+  setLength(newSize: number): void;
+  
+  getCapacity(): number;
+  
+  convertToArray(): Array<T>;
+  
+  isEmpty(): boolean;
+  
+  increaseCapacityTo(newCapacity: number): void;
+  
+  toString(): string;
+  
+  trimToCurrentLength(): void;
+  
+  copyToArray(array: Array<T>): void;
+  
+  [Symbol.iterator](): IterableIterator<T>;
+}</td><td>Vector</td><td>10</td><td>0</td><td>80</td><tr><tr><td>Vector</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>32</td><tr><tr><td>Vector</td><td>add(element: T): boolean;</td><td>add</td><td>11</td><td>1</td><td>1442</td><tr><tr><td>Vector</td><td>insert(element: T, index: number): void;</td><td>insert</td><td>11</td><td>2</td><td>109</td><tr><tr><td>Vector</td><td>has(element: T): boolean;</td><td>has</td><td>11</td><td>1</td><td>544</td><tr><tr><td>Vector</td><td>get(index: number): T;</td><td>get</td><td>11</td><td>1</td><td>517</td><tr><tr><td>Vector</td><td>getIndexOf(element: T): number;</td><td>getIndexOf</td><td>11</td><td>1</td><td>19</td><tr><tr><td>Vector</td><td>getFirstElement(): T;</td><td>getFirstElement</td><td>11</td><td>0</td><td>10</td><tr><tr><td>Vector</td><td>getLastElement(): T;</td><td>getLastElement</td><td>11</td><td>0</td><td>3</td><tr><tr><td>Vector</td><td>removeByIndex(index: number): T;</td><td>removeByIndex</td><td>11</td><td>1</td><td>12</td><tr><tr><td>Vector</td><td>remove(element: T): boolean;</td><td>remove</td><td>11</td><td>1</td><td>93</td><tr><tr><td>Vector</td><td>set(index: number, element: T): T;</td><td>set</td><td>11</td><td>2</td><td>666</td><tr><tr><td>Vector</td><td>getLastIndexOf(element: T): number;</td><td>getLastIndexOf</td><td>11</td><td>1</td><td>8</td><tr><tr><td>Vector</td><td>getLastIndexFrom(element: T, index: number): number;</td><td>getLastIndexFrom</td><td>11</td><td>2</td><td>1</td><tr><tr><td>Vector</td><td>getIndexFrom(element: T, index: number): number;</td><td>getIndexFrom</td><td>11</td><td>2</td><td>1</td><tr><tr><td>Vector</td><td>removeByRange(fromIndex: number, toIndex: number): void;</td><td>removeByRange</td><td>11</td><td>2</td><td>11</td><tr><tr><td>Vector</td><td>replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector<T>) => T,
+  thisArg?: Object): void;</td><td>replaceAllElements</td><td>11</td><td>5</td><td>4</td><tr><tr><td>Vector</td><td>replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector<T>) => T,
+  thisArg?: Object): void;</td><td>replaceAllElements</td><td>11</td><td>4</td><td>4</td><tr><tr><td>Vector</td><td>forEach(callbackfn: (value: T, index?: number, vector?: Vector<T>) => void,
+  thisArg?: Object): void;</td><td>forEach</td><td>11</td><td>5</td><td>72</td><tr><tr><td>Vector</td><td>forEach(callbackfn: (value: T, index?: number, vector?: Vector<T>) => void,
+  thisArg?: Object): void;</td><td>forEach</td><td>11</td><td>4</td><td>72</td><tr><tr><td>Vector</td><td>sort(comparator?: (firstValue: T, secondValue: T) => number): void;</td><td>sortcomparator</td><td>11</td><td>3</td><td>0</td><tr><tr><td>Vector</td><td>sort(comparator?: (firstValue: T, secondValue: T) => number): void;</td><td>sortcomparator</td><td>11</td><td>3</td><td>0</td><tr><tr><td>Vector</td><td>subVector(fromIndex: number, toIndex: number): Vector<T>;</td><td>subVector</td><td>11</td><td>2</td><td>4</td><tr><tr><td>Vector</td><td>clear(): void;</td><td>clear</td><td>11</td><td>0</td><td>30</td><tr><tr><td>Vector</td><td>clone(): Vector<T>;</td><td>clone</td><td>11</td><td>0</td><td>10</td><tr><tr><td>Vector</td><td>setLength(newSize: number): void;</td><td>setLength</td><td>11</td><td>1</td><td>2</td><tr><tr><td>Vector</td><td>getCapacity(): number;</td><td>getCapacity</td><td>11</td><td>0</td><td>24</td><tr><tr><td>Vector</td><td>convertToArray(): Array<T>;</td><td>convertToArray</td><td>11</td><td>0</td><td>6</td><tr><tr><td>Vector</td><td>isEmpty(): boolean;</td><td>isEmpty</td><td>11</td><td>0</td><td>34</td><tr><tr><td>Vector</td><td>increaseCapacityTo(newCapacity: number): void;</td><td>increaseCapacityTo</td><td>11</td><td>1</td><td>10</td><tr><tr><td>Vector</td><td>toString(): string;</td><td>toString</td><td>11</td><td>0</td><td>131</td><tr><tr><td>Vector</td><td>trimToCurrentLength(): void;</td><td>trimToCurrentLength</td><td>11</td><td>0</td><td>2</td><tr><tr><td>Vector</td><td>copyToArray(array: Array<T>): void;</td><td>copyToArray</td><td>11</td><td>1</td><td>1</td><tr><tr><td>Vector</td><td>length: number</td><td>length</td><td>12</td><td>1</td><td>327</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

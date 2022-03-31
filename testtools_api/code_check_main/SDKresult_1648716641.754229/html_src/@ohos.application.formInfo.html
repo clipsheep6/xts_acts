@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>元能力子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>aafwk</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.application.formInfo</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>formInfo</td><td>declare namespace formInfo {
+    
+    interface FormInfo {
+        
+        bundleName: string;
+
+        
+        moduleName: string;
+
+        
+        abilityName: string;
+
+        
+        name: string;
+
+        
+        description: string;
+
+        
+        type: FormType;
+
+        
+        jsComponentName: string;
+
+        
+        colorMode: ColorMode;
+
+        
+        isDefault: boolean;
+
+        
+        updateEnabled: boolean;
+
+        
+        formVisibleNotify: boolean;
+
+        
+        relatedBundleName: string;
+
+        
+        scheduledUpdateTime: string;
+
+        
+        formConfigAbility: string;
+
+        
+        updateDuration: number;
+
+        
+        defaultDimension: number;
+
+        
+        supportDimensions: Array<number>;
+
+        
+        customizeData: {[key: string]: [value: string]};
+    }
+
+    
+    enum FormType {
+        
+        JS = 1
+    }
+
+    
+    enum ColorMode {
+        
+        MODE_AUTO = -1,
+
+        
+        MODE_DARK = 0,
+
+        
+        MODE_LIGHT = 1
+    }
+
+    
+    interface FormStateInfo {
+        
+        formState: FormState;
+
+        
+        want: Want;
+    }
+
+    
+    enum FormState {
+        
+        UNKNOWN = -1,
+
+        
+        DEFAULT = 0,
+
+        
+        READY = 1,
+    }
+
+    
+    enum FormParam {
+        
+        IDENTITY_KEY = "ohos.extra.param.key.form_identity",
+
+        
+        DIMENSION_KEY = "ohos.extra.param.key.form_dimension",
+
+        
+        NAME_KEY = "ohos.extra.param.key.form_name",
+
+        
+        MODULE_NAME_KEY = "ohos.extra.param.key.module_name",
+
+        
+        WIDTH_KEY = "ohos.extra.param.key.form_width",
+
+        
+        HEIGHT_KEY = "ohos.extra.param.key.form_height",
+
+        
+        TEMPORARY_KEY = "ohos.extra.param.key.form_temporary"
+    }
+}</td><td>formInfo</td><td>None</td><td>0</td><td>0</td><tr><tr><td>FormInfo</td><td>interface FormInfo {
+        
+        bundleName: string;
+
+        
+        moduleName: string;
+
+        
+        abilityName: string;
+
+        
+        name: string;
+
+        
+        description: string;
+
+        
+        type: FormType;
+
+        
+        jsComponentName: string;
+
+        
+        colorMode: ColorMode;
+
+        
+        isDefault: boolean;
+
+        
+        updateEnabled: boolean;
+
+        
+        formVisibleNotify: boolean;
+
+        
+        relatedBundleName: string;
+
+        
+        scheduledUpdateTime: string;
+
+        
+        formConfigAbility: string;
+
+        
+        updateDuration: number;
+
+        
+        defaultDimension: number;
+
+        
+        supportDimensions: Array<number>;
+
+        
+        customizeData: {[key: string]: [value: string]};
+    }</td><td>FormInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FormInfo</td><td>bundleName: string</td><td>bundleName</td><td>22</td><td>1</td><td>953</td><tr><tr><td>FormInfo</td><td>moduleName: string</td><td>moduleName</td><td>22</td><td>1</td><td>586</td><tr><tr><td>FormInfo</td><td>abilityName: string</td><td>abilityName</td><td>22</td><td>1</td><td>339</td><tr><tr><td>FormInfo</td><td>name: string</td><td>name</td><td>22</td><td>1</td><td>454</td><tr><tr><td>FormInfo</td><td>description: string</td><td>description</td><td>22</td><td>1</td><td>128</td><tr><tr><td>FormInfo</td><td>type: FormType</td><td>type</td><td>22</td><td>1</td><td>2091</td><tr><tr><td>FormInfo</td><td>jsComponentName: string</td><td>jsComponentName</td><td>22</td><td>1</td><td>10</td><tr><tr><td>FormInfo</td><td>colorMode: ColorMode</td><td>colorMode</td><td>22</td><td>1</td><td>19</td><tr><tr><td>FormInfo</td><td>isDefault: boolean</td><td>isDefault</td><td>22</td><td>1</td><td>10</td><tr><tr><td>FormInfo</td><td>updateEnabled: boolean</td><td>updateEnabled</td><td>22</td><td>1</td><td>10</td><tr><tr><td>FormInfo</td><td>formVisibleNotify: boolean</td><td>formVisibleNotify</td><td>22</td><td>1</td><td>10</td><tr><tr><td>FormInfo</td><td>relatedBundleName: string</td><td>relatedBundleName</td><td>22</td><td>1</td><td>0</td><tr><tr><td>FormInfo</td><td>scheduledUpdateTime: string</td><td>scheduledUpdateTime</td><td>22</td><td>1</td><td>10</td><tr><tr><td>FormInfo</td><td>formConfigAbility: string</td><td>formConfigAbility</td><td>22</td><td>1</td><td>0</td><tr><tr><td>FormInfo</td><td>updateDuration: number</td><td>updateDuration</td><td>22</td><td>1</td><td>10</td><tr><tr><td>FormInfo</td><td>defaultDimension: number</td><td>defaultDimension</td><td>22</td><td>1</td><td>10</td><tr><tr><td>FormInfo</td><td>supportDimensions: Array<number></td><td>supportDimensions</td><td>22</td><td>1</td><td>20</td><tr><tr><td>FormInfo</td><td>customizeData: {[key: string]: [value: string]}</td><td>customizeData</td><td>22</td><td>1</td><td>24</td><tr><tr><td>FormType</td><td>enum FormType {
+        
+        JS = 1
+    }</td><td>FormType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>FormType</td><td>JS = 1</td><td>JS</td><td>42</td><td>1</td><td>954</td><tr><tr><td>ColorMode</td><td>enum ColorMode {
+        
+        MODE_AUTO = -1,
+
+        
+        MODE_DARK = 0,
+
+        
+        MODE_LIGHT = 1
+    }</td><td>ColorMode</td><td>40</td><td>0</td><td>3</td><tr><tr><td>ColorMode</td><td>MODE_AUTO = -1,</td><td>MODE_AUTO</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ColorMode</td><td>MODE_DARK = 0,</td><td>MODE_DARK</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ColorMode</td><td>MODE_LIGHT = 1</td><td>MODE_LIGHT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>FormStateInfo</td><td>interface FormStateInfo {
+        
+        formState: FormState;
+
+        
+        want: Want;
+    }</td><td>FormStateInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FormStateInfo</td><td>formState: FormState</td><td>formState</td><td>22</td><td>1</td><td>0</td><tr><tr><td>FormStateInfo</td><td>want: Want</td><td>want</td><td>22</td><td>1</td><td>981</td><tr><tr><td>FormState</td><td>enum FormState {
+        
+        UNKNOWN = -1,
+
+        
+        DEFAULT = 0,
+
+        
+        READY = 1,
+    }</td><td>FormState</td><td>40</td><td>0</td><td>0</td><tr><tr><td>FormState</td><td>UNKNOWN = -1,</td><td>UNKNOWN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FormState</td><td>DEFAULT = 0,</td><td>DEFAULT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>FormState</td><td>READY = 1,</td><td>READY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FormParam</td><td>enum FormParam {
+        
+        IDENTITY_KEY = "ohos.extra.param.key.form_identity",
+
+        
+        DIMENSION_KEY = "ohos.extra.param.key.form_dimension",
+
+        
+        NAME_KEY = "ohos.extra.param.key.form_name",
+
+        
+        MODULE_NAME_KEY = "ohos.extra.param.key.module_name",
+
+        
+        WIDTH_KEY = "ohos.extra.param.key.form_width",
+
+        
+        HEIGHT_KEY = "ohos.extra.param.key.form_height",
+
+        
+        TEMPORARY_KEY = "ohos.extra.param.key.form_temporary"
+    }</td><td>FormParam</td><td>40</td><td>0</td><td>0</td><tr><tr><td>FormParam</td><td>IDENTITY_KEY = "ohos.extra.param.key.form_identity",</td><td>IDENTITY_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FormParam</td><td>DIMENSION_KEY = "ohos.extra.param.key.form_dimension",</td><td>DIMENSION_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FormParam</td><td>NAME_KEY = "ohos.extra.param.key.form_name",</td><td>NAME_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FormParam</td><td>MODULE_NAME_KEY = "ohos.extra.param.key.module_name",</td><td>MODULE_NAME_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FormParam</td><td>WIDTH_KEY = "ohos.extra.param.key.form_width",</td><td>WIDTH_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FormParam</td><td>HEIGHT_KEY = "ohos.extra.param.key.form_height",</td><td>HEIGHT_KEY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FormParam</td><td>TEMPORARY_KEY = "ohos.extra.param.key.form_temporary"</td><td>TEMPORARY_KEY</td><td>42</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

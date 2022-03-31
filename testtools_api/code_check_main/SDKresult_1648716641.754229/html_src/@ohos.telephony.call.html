@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>电话服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>telephony</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.telephony.call</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>call</td><td>declare namespace call {
+  
+  function dial(phoneNumber: string, callback: AsyncCallback<boolean>): void;
+  function dial(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean>): void;
+  function dial(phoneNumber: string, options?: DialOptions): Promise<boolean>;
+
+  
+  function makeCall(phoneNumber: string, callback: AsyncCallback<void>): void;
+  function makeCall(phoneNumber: string): Promise<void>;
+
+  
+  function hasCall(callback: AsyncCallback<boolean>): void;
+  function hasCall(): Promise<boolean>;
+
+  
+  function getCallState(callback: AsyncCallback<CallState>): void;
+  function getCallState(): Promise<CallState>;
+
+  
+  function muteRinger(callback: AsyncCallback<void>): void;
+  function muteRinger(): Promise<void>;
+
+  
+  function hasVoiceCapability(): boolean;
+
+  
+  function isEmergencyPhoneNumber(phoneNumber: string, callback: AsyncCallback<boolean>): void;
+  function isEmergencyPhoneNumber(phoneNumber: string, options: EmergencyNumberOptions, callback: AsyncCallback<boolean>): void;
+  function isEmergencyPhoneNumber(phoneNumber: string, options?: EmergencyNumberOptions): Promise<boolean>;
+
+  
+  function formatPhoneNumber(phoneNumber: string, callback: AsyncCallback<string>): void;
+  function formatPhoneNumber(phoneNumber: string, options: NumberFormatOptions, callback: AsyncCallback<string>): void;
+  function formatPhoneNumber(phoneNumber: string, options?: NumberFormatOptions): Promise<string>;
+
+  
+  function formatPhoneNumberToE164(phoneNumber: string, countryCode: string, callback: AsyncCallback<string>): void;
+  function formatPhoneNumberToE164(phoneNumber: string, countryCode: string): Promise<string>;
+
+  
+  function answer(callId: number, callback: AsyncCallback<void>): void;
+  function answer(callId: number): Promise<void>;
+
+  
+  function hangup(callId: number, callback: AsyncCallback<void>): void;
+  function hangup(callId: number): Promise<void>;
+
+  
+  function reject(callId: number, callback: AsyncCallback<void>): void;
+  function reject(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void>): void;
+  function reject(callId: number, options?: RejectMessageOptions): Promise<void>;
+
+  
+  function holdCall(callId: number, callback: AsyncCallback<void>): void;
+  function holdCall(callId: number): Promise<void>;
+
+  
+  function unHoldCall(callId: number, callback: AsyncCallback<void>): void;
+  function unHoldCall(callId: number): Promise<void>;
+
+  
+  function switchCall(callId: number, callback: AsyncCallback<void>): void;
+  function switchCall(callId: number): Promise<void>;
+
+  
+  function combineConference(callId: number, callback: AsyncCallback<void>): void;
+  function combineConference(callId: number): Promise<void>;
+
+  
+  function getMainCallId(callId: number, callback: AsyncCallback<number>): void;
+  function getMainCallId(callId: number): Promise<number>;
+
+  
+  function getSubCallIdList(callId: number, callback: AsyncCallback<Array<string>>): void;
+  function getSubCallIdList(callId: number): Promise<Array<string>>;
+
+  
+  function getCallIdListForConference(callId: number, callback: AsyncCallback<Array<string>>): void;
+  function getCallIdListForConference(callId: number): Promise<Array<string>>;
+
+  
+  function getCallWaitingStatus(slotId: number, callback: AsyncCallback<CallWaitingStatus>): void;
+  function getCallWaitingStatus(slotId: number): Promise<CallWaitingStatus>;
+
+  
+  function setCallWaiting(slotId: number, activate: boolean, callback: AsyncCallback<void>): void;
+  function setCallWaiting(slotId: number, activate: boolean): Promise<void>;
+
+  
+  function startDTMF(callId: number, character: string, callback: AsyncCallback<void>): void;
+  function startDTMF(callId: number, character: string): Promise<void>;
+
+  
+  function stopDTMF(callId: number, callback: AsyncCallback<void>): void;
+  function stopDTMF(callId: number): Promise<void>;
+
+  
+  function isInEmergencyCall(callback: AsyncCallback<boolean>): void;
+  function isInEmergencyCall(): Promise<boolean>;
+
+  
+  function on(type: 'callDetailsChange', callback: Callback<CallAttributeOptions>): void;
+
+  
+  function off(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions>): void;
+
+  
+  function on(type: 'callEventChange', callback: Callback<CallEventOptions>): void;
+
+  
+  function off(type: 'callEventChange', callback?: Callback<CallEventOptions>): void;
+
+  
+  function on(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails>): void;
+
+  
+  function off(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails>): void;
+
+  
+  function isNewCallAllowed(callback: AsyncCallback<boolean>): void;
+  function isNewCallAllowed(): Promise<boolean>;
+
+  
+  function separateConference(callId: number, callback: AsyncCallback<void>): void;
+  function separateConference(callId: number): Promise<void>;
+
+  
+  function getCallRestrictionStatus(slotId: number, type: CallRestrictionType, callback: AsyncCallback<RestrictionStatus>): void;
+  function getCallRestrictionStatus(slotId: number, type: CallRestrictionType): Promise<RestrictionStatus>;
+
+  
+  function setCallRestriction(slotId: number, info: CallRestrictionInfo, callback: AsyncCallback<void>): void;
+  function setCallRestriction(slotId: number, info: CallRestrictionInfo): Promise<void>;
+
+  
+  function getCallTransferInfo(slotId: number, type: CallTransferType, callback: AsyncCallback<CallTransferResult>): void;
+  function getCallTransferInfo(slotId: number, type: CallTransferType): Promise<CallTransferResult>;
+
+  
+  function setCallTransfer(slotId: number, info: CallTransferInfo, callback: AsyncCallback<void>): void;
+  function setCallTransfer(slotId: number, info: CallTransferInfo): Promise<void>;
+
+  
+  function isRinging(callback: AsyncCallback<boolean>): void;
+  function isRinging(): Promise<boolean>;
+
+  
+  function setMuted(callback: AsyncCallback<void>): void;
+  function setMuted(): Promise<void>;
+
+  
+  function cancelMuted(callback: AsyncCallback<void>): void;
+  function cancelMuted(): Promise<void>;
+
+  
+  function setAudioDevice(device: AudioDevice, callback: AsyncCallback<void>): void;
+  function setAudioDevice(device: AudioDevice): Promise<void>;
+
+  
+  function joinConference(mainCallId: number, callNumberList: Array<string>, callback: AsyncCallback<void>): void;
+  function joinConference(mainCallId: number, callNumberList: Array<string>): Promise<void>;
+
+  
+  function updateImsCallMode(callId: number, mode: ImsCallMode, callback: AsyncCallback<void>): void;
+  function updateImsCallMode(callId: number, mode: ImsCallMode): Promise<void>;
+
+  
+  function enableImsSwitch(slotId: number, callback: AsyncCallback<void>): void;
+  function enableImsSwitch(slotId: number): Promise<void>;
+
+  
+  function disableImsSwitch(slotId: number, callback: AsyncCallback<void>): void;
+  function disableImsSwitch(slotId: number): Promise<void>;
+
+  
+  function isImsSwitchEnabled(slotId: number, callback: AsyncCallback<boolean>): void;
+  function isImsSwitchEnabled(slotId: number): Promise<boolean>;
+
+  
+  export enum ImsCallMode {
+    CALL_MODE_AUDIO_ONLY = 0,
+    CALL_MODE_SEND_ONLY,
+    CALL_MODE_RECEIVE_ONLY,
+    CALL_MODE_SEND_RECEIVE,
+    CALL_MODE_VIDEO_PAUSED,
+  }
+
+  
+  export enum AudioDevice {
+    DEVICE_MIC,
+    DEVICE_SPEAKER,
+    DEVICE_WIRED_HEADSET,
+    DEVICE_BLUETOOTH_SCO
+  }
+
+  
+  export enum CallRestrictionType {
+    RESTRICTION_TYPE_ALL_INCOMING = 0,
+    RESTRICTION_TYPE_ALL_OUTGOING,
+    RESTRICTION_TYPE_INTERNATIONAL,
+    RESTRICTION_TYPE_INTERNATIONAL_EXCLUDING_HOME,
+    RESTRICTION_TYPE_ROAMING_INCOMING,
+    RESTRICTION_TYPE_ALL_CALLS,
+    RESTRICTION_TYPE_OUTGOING_SERVICES,
+    RESTRICTION_TYPE_INCOMING_SERVICES,
+  }
+
+  
+  export interface CallTransferInfo {
+    transferNum: string;
+    type: CallTransferType;
+    settingType: CallTransferSettingType;
+  }
+
+  
+  export enum CallTransferType {
+    TRANSFER_TYPE_UNCONDITIONAL = 0,
+    TRANSFER_TYPE_BUSY,
+    TRANSFER_TYPE_NO_REPLY,
+    TRANSFER_TYPE_NOT_REACHABLE,
+  }
+
+  
+  export enum CallTransferSettingType {
+    CALL_TRANSFER_DISABLE = 0,
+    CALL_TRANSFER_ENABLE = 1,
+    CALL_TRANSFER_REGISTRATION = 3,
+    CALL_TRANSFER_ERASURE = 4,
+  }
+
+  
+  export interface CallAttributeOptions {
+    accountNumber: string;
+    speakerphoneOn: boolean;
+    accountId: number;
+    videoState: VideoStateType;
+    startTime: number;
+    isEcc: boolean;
+    callType: CallType;
+    callId: number;
+    callState: DetailedCallState;
+    conferenceState: ConferenceState;
+  }
+
+  
+  export enum ConferenceState {
+    TEL_CONFERENCE_IDLE = 0,
+    TEL_CONFERENCE_ACTIVE,
+    TEL_CONFERENCE_DISCONNECTING,
+    TEL_CONFERENCE_DISCONNECTED,
+  }
+
+  
+  export enum CallType {
+    TYPE_CS = 0, // CS
+    TYPE_IMS = 1, // IMS
+    TYPE_OTT = 2, // OTT
+    TYPE_ERR_CALL = 3, // OTHER
+  }
+
+  
+  export enum VideoStateType {
+    TYPE_VOICE = 0, // Voice
+    TYPE_VIDEO, // Video
+  }
+
+  
+  export enum DetailedCallState {
+    CALL_STATUS_ACTIVE = 0,
+    CALL_STATUS_HOLDING,
+    CALL_STATUS_DIALING,
+    CALL_STATUS_ALERTING,
+    CALL_STATUS_INCOMING,
+    CALL_STATUS_WAITING,
+    CALL_STATUS_DISCONNECTED,
+    CALL_STATUS_DISCONNECTING,
+    CALL_STATUS_IDLE,
+  }
+
+  
+  export interface CallRestrictionInfo {
+    type: CallRestrictionType;
+    password: string;
+    mode: CallRestrictionMode;
+  }
+
+  
+  export enum CallRestrictionMode {
+    RESTRICTION_MODE_DEACTIVATION = 0,
+    RESTRICTION_MODE_ACTIVATION,
+  }
+
+  
+  export interface CallEventOptions {
+    eventId: CallAbilityEventId,
+  }
+
+  
+  export enum CallAbilityEventId {
+    EVENT_DIAL_NO_CARRIER = 1,
+    EVENT_INVALID_FDN_NUMBER,
+  }
+
+  export enum CallState {
+    
+    CALL_STATE_UNKNOWN = -1,
+
+    
+    CALL_STATE_IDLE = 0,
+
+    
+    CALL_STATE_RINGING = 1,
+
+    
+    CALL_STATE_OFFHOOK = 2
+  }
+
+  export interface DialOptions {
+    
+    extras?: boolean;
+    
+    accountId?: number;
+    
+    videoState?: VideoStateType;
+    
+    dialScene?: DialScene;
+    
+    dialType?: DialType;
+  }
+
+  
+  export enum DialScene {
+    CALL_NORMAL = 0,
+    CALL_PRIVILEGED = 1,
+    CALL_EMERGENCY = 2,
+  }
+
+  
+  export enum DialType {
+    DIAL_CARRIER_TYPE = 0,
+    DIAL_VOICE_MAIL_TYPE = 1,
+    DIAL_OTT_TYPE = 2,
+  }
+
+  
+  export interface RejectMessageOptions {
+    messageContent: string;
+  }
+
+  
+  export interface CallTransferResult {
+    status: TransferStatus;
+    number: string;
+  }
+
+  
+  export enum CallWaitingStatus {
+    CALL_WAITING_DISABLE = 0,
+    CALL_WAITING_ENABLE = 1
+  }
+
+  
+  export enum RestrictionStatus {
+    RESTRICTION_DISABLE = 0,
+    RESTRICTION_ENABLE = 1
+  }
+
+  
+  export enum TransferStatus {
+    TRANSFER_DISABLE = 0,
+    TRANSFER_ENABLE = 1
+  }
+
+  
+  export interface EmergencyNumberOptions {
+    slotId?: number;
+  }
+
+  
+  export interface NumberFormatOptions {
+    countryCode?: string;
+  }
+
+  
+  export enum DisconnectedDetails {
+    UNASSIGNED_NUMBER = 1,
+    NO_ROUTE_TO_DESTINATION = 3,
+    CHANNEL_UNACCEPTABLE = 6,
+    OPERATOR_DETERMINED_BARRING = 8,
+    NORMAL_CALL_CLEARING = 16,
+    USER_BUSY = 17,
+    NO_USER_RESPONDING = 18,
+    USER_ALERTING_NO_ANSWER = 19,
+    CALL_REJECTED = 21,
+    NUMBER_CHANGED = 22,
+    DESTINATION_OUT_OF_ORDER = 27,
+    INVALID_NUMBER_FORMAT = 28,
+    NETWORK_OUT_OF_ORDER = 38,
+    TEMPORARY_FAILURE = 41,
+    INVALID_PARAMETER = 1025,
+    SIM_NOT_EXIT = 1026,
+    SIM_PIN_NEED = 1027,
+    CALL_NOT_ALLOW = 1029,
+    SIM_INVALID = 1045,
+    UNKNOWN = 1279,
+  };
+}</td><td>call</td><td>None</td><td>0</td><td>1730</td><tr><tr><td>call</td><td>function dial(phoneNumber: string, callback: AsyncCallback<boolean>): void;</td><td>dial</td><td>None</td><td>2</td><td>97</td><tr><tr><td>call</td><td>function dial(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean>): void;</td><td>dial</td><td>None</td><td>3</td><td>97</td><tr><tr><td>call</td><td>function dial(phoneNumber: string, options?: DialOptions): Promise<boolean>;</td><td>dial</td><td>None</td><td>2</td><td>5</td><tr><tr><td>call</td><td>function makeCall(phoneNumber: string, callback: AsyncCallback<void>): void;</td><td>makeCall</td><td>None</td><td>2</td><td>1</td><tr><tr><td>call</td><td>function makeCall(phoneNumber: string): Promise<void>;</td><td>makeCall</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function hasCall(callback: AsyncCallback<boolean>): void;</td><td>hasCall</td><td>None</td><td>1</td><td>12</td><tr><tr><td>call</td><td>function hasCall(): Promise<boolean>;</td><td>hasCall</td><td>None</td><td>0</td><td>0</td><tr><tr><td>call</td><td>function getCallState(callback: AsyncCallback<CallState>): void;</td><td>getCallState</td><td>None</td><td>1</td><td>14</td><tr><tr><td>call</td><td>function getCallState(): Promise<CallState>;</td><td>getCallState</td><td>None</td><td>0</td><td>0</td><tr><tr><td>call</td><td>function muteRinger(callback: AsyncCallback<void>): void;</td><td>muteRinger</td><td>None</td><td>1</td><td>9</td><tr><tr><td>call</td><td>function muteRinger(): Promise<void>;</td><td>muteRinger</td><td>None</td><td>0</td><td>1</td><tr><tr><td>call</td><td>function hasVoiceCapability(): boolean;</td><td>hasVoiceCapability</td><td>None</td><td>0</td><td>1</td><tr><tr><td>call</td><td>function isEmergencyPhoneNumber(phoneNumber: string, callback: AsyncCallback<boolean>): void;</td><td>isEmergencyPhoneNumber</td><td>None</td><td>2</td><td>12</td><tr><tr><td>call</td><td>function isEmergencyPhoneNumber(phoneNumber: string, options: EmergencyNumberOptions, callback: AsyncCallback<boolean>): void;</td><td>isEmergencyPhoneNumber</td><td>None</td><td>3</td><td>12</td><tr><tr><td>call</td><td>function isEmergencyPhoneNumber(phoneNumber: string, options?: EmergencyNumberOptions): Promise<boolean>;</td><td>isEmergencyPhoneNumber</td><td>None</td><td>2</td><td>0</td><tr><tr><td>call</td><td>function formatPhoneNumber(phoneNumber: string, callback: AsyncCallback<string>): void;</td><td>formatPhoneNumber</td><td>None</td><td>2</td><td>25</td><tr><tr><td>call</td><td>function formatPhoneNumber(phoneNumber: string, options: NumberFormatOptions, callback: AsyncCallback<string>): void;</td><td>formatPhoneNumber</td><td>None</td><td>3</td><td>25</td><tr><tr><td>call</td><td>function formatPhoneNumber(phoneNumber: string, options?: NumberFormatOptions): Promise<string>;</td><td>formatPhoneNumber</td><td>None</td><td>2</td><td>0</td><tr><tr><td>call</td><td>function formatPhoneNumberToE164(phoneNumber: string, countryCode: string, callback: AsyncCallback<string>): void;</td><td>formatPhoneNumberToE164</td><td>None</td><td>3</td><td>12</td><tr><tr><td>call</td><td>function formatPhoneNumberToE164(phoneNumber: string, countryCode: string): Promise<string>;</td><td>formatPhoneNumberToE164</td><td>None</td><td>2</td><td>0</td><tr><tr><td>call</td><td>function answer(callId: number, callback: AsyncCallback<void>): void;</td><td>answer</td><td>None</td><td>2</td><td>30</td><tr><tr><td>call</td><td>function answer(callId: number): Promise<void>;</td><td>answer</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function hangup(callId: number, callback: AsyncCallback<void>): void;</td><td>hangup</td><td>None</td><td>2</td><td>63</td><tr><tr><td>call</td><td>function hangup(callId: number): Promise<void>;</td><td>hangup</td><td>None</td><td>1</td><td>7</td><tr><tr><td>call</td><td>function reject(callId: number, callback: AsyncCallback<void>): void;</td><td>reject</td><td>None</td><td>2</td><td>103</td><tr><tr><td>call</td><td>function reject(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void>): void;</td><td>reject</td><td>None</td><td>3</td><td>103</td><tr><tr><td>call</td><td>function reject(callId: number, options?: RejectMessageOptions): Promise<void>;</td><td>reject</td><td>None</td><td>2</td><td>2</td><tr><tr><td>call</td><td>function holdCall(callId: number, callback: AsyncCallback<void>): void;</td><td>holdCall</td><td>None</td><td>2</td><td>15</td><tr><tr><td>call</td><td>function holdCall(callId: number): Promise<void>;</td><td>holdCall</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function unHoldCall(callId: number, callback: AsyncCallback<void>): void;</td><td>unHoldCall</td><td>None</td><td>2</td><td>17</td><tr><tr><td>call</td><td>function unHoldCall(callId: number): Promise<void>;</td><td>unHoldCall</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function switchCall(callId: number, callback: AsyncCallback<void>): void;</td><td>switchCall</td><td>None</td><td>2</td><td>13</td><tr><tr><td>call</td><td>function switchCall(callId: number): Promise<void>;</td><td>switchCall</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function combineConference(callId: number, callback: AsyncCallback<void>): void;</td><td>combineConference</td><td>None</td><td>2</td><td>9</td><tr><tr><td>call</td><td>function combineConference(callId: number): Promise<void>;</td><td>combineConference</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function getMainCallId(callId: number, callback: AsyncCallback<number>): void;</td><td>getMainCallId</td><td>None</td><td>2</td><td>12</td><tr><tr><td>call</td><td>function getMainCallId(callId: number): Promise<number>;</td><td>getMainCallId</td><td>None</td><td>1</td><td>0</td><tr><tr><td>call</td><td>function getSubCallIdList(callId: number, callback: AsyncCallback<Array<string>>): void;</td><td>getSubCallIdList</td><td>None</td><td>2</td><td>12</td><tr><tr><td>call</td><td>function getSubCallIdList(callId: number): Promise<Array<string>>;</td><td>getSubCallIdList</td><td>None</td><td>1</td><td>0</td><tr><tr><td>call</td><td>function getCallIdListForConference(callId: number, callback: AsyncCallback<Array<string>>): void;</td><td>getCallIdListForConference</td><td>None</td><td>2</td><td>11</td><tr><tr><td>call</td><td>function getCallIdListForConference(callId: number): Promise<Array<string>>;</td><td>getCallIdListForConference</td><td>None</td><td>1</td><td>0</td><tr><tr><td>call</td><td>function getCallWaitingStatus(slotId: number, callback: AsyncCallback<CallWaitingStatus>): void;</td><td>getCallWaitingStatus</td><td>None</td><td>2</td><td>13</td><tr><tr><td>call</td><td>function getCallWaitingStatus(slotId: number): Promise<CallWaitingStatus>;</td><td>getCallWaitingStatus</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function setCallWaiting(slotId: number, activate: boolean, callback: AsyncCallback<void>): void;</td><td>setCallWaiting</td><td>None</td><td>3</td><td>13</td><tr><tr><td>call</td><td>function setCallWaiting(slotId: number, activate: boolean): Promise<void>;</td><td>setCallWaiting</td><td>None</td><td>2</td><td>1</td><tr><tr><td>call</td><td>function startDTMF(callId: number, character: string, callback: AsyncCallback<void>): void;</td><td>startDTMF</td><td>None</td><td>3</td><td>10</td><tr><tr><td>call</td><td>function startDTMF(callId: number, character: string): Promise<void>;</td><td>startDTMF</td><td>None</td><td>2</td><td>0</td><tr><tr><td>call</td><td>function stopDTMF(callId: number, callback: AsyncCallback<void>): void;</td><td>stopDTMF</td><td>None</td><td>2</td><td>9</td><tr><tr><td>call</td><td>function stopDTMF(callId: number): Promise<void>;</td><td>stopDTMF</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function isInEmergencyCall(callback: AsyncCallback<boolean>): void;</td><td>isInEmergencyCall</td><td>None</td><td>1</td><td>16</td><tr><tr><td>call</td><td>function isInEmergencyCall(): Promise<boolean>;</td><td>isInEmergencyCall</td><td>None</td><td>0</td><td>0</td><tr><tr><td>call</td><td>function on(type: 'callDetailsChange', callback: Callback<CallAttributeOptions>): void;</td><td>on</td><td>None</td><td>2</td><td>35526</td><tr><tr><td>call</td><td>function off(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions>): void;</td><td>off</td><td>None</td><td>2</td><td>403</td><tr><tr><td>call</td><td>function on(type: 'callEventChange', callback: Callback<CallEventOptions>): void;</td><td>on</td><td>None</td><td>2</td><td>35526</td><tr><tr><td>call</td><td>function off(type: 'callEventChange', callback?: Callback<CallEventOptions>): void;</td><td>off</td><td>None</td><td>2</td><td>403</td><tr><tr><td>call</td><td>function on(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails>): void;</td><td>on</td><td>None</td><td>2</td><td>35526</td><tr><tr><td>call</td><td>function off(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails>): void;</td><td>off</td><td>None</td><td>2</td><td>403</td><tr><tr><td>call</td><td>function isNewCallAllowed(callback: AsyncCallback<boolean>): void;</td><td>isNewCallAllowed</td><td>None</td><td>1</td><td>9</td><tr><tr><td>call</td><td>function isNewCallAllowed(): Promise<boolean>;</td><td>isNewCallAllowed</td><td>None</td><td>0</td><td>1</td><tr><tr><td>call</td><td>function separateConference(callId: number, callback: AsyncCallback<void>): void;</td><td>separateConference</td><td>None</td><td>2</td><td>9</td><tr><tr><td>call</td><td>function separateConference(callId: number): Promise<void>;</td><td>separateConference</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function getCallRestrictionStatus(slotId: number, type: CallRestrictionType, callback: AsyncCallback<RestrictionStatus>): void;</td><td>getCallRestrictionStatus</td><td>None</td><td>3</td><td>10</td><tr><tr><td>call</td><td>function getCallRestrictionStatus(slotId: number, type: CallRestrictionType): Promise<RestrictionStatus>;</td><td>getCallRestrictionStatus</td><td>None</td><td>2</td><td>0</td><tr><tr><td>call</td><td>function setCallRestriction(slotId: number, info: CallRestrictionInfo, callback: AsyncCallback<void>): void;</td><td>setCallRestriction</td><td>None</td><td>3</td><td>14</td><tr><tr><td>call</td><td>function setCallRestriction(slotId: number, info: CallRestrictionInfo): Promise<void>;</td><td>setCallRestriction</td><td>None</td><td>2</td><td>0</td><tr><tr><td>call</td><td>function getCallTransferInfo(slotId: number, type: CallTransferType, callback: AsyncCallback<CallTransferResult>): void;</td><td>getCallTransferInfo</td><td>None</td><td>3</td><td>12</td><tr><tr><td>call</td><td>function getCallTransferInfo(slotId: number, type: CallTransferType): Promise<CallTransferResult>;</td><td>getCallTransferInfo</td><td>None</td><td>2</td><td>0</td><tr><tr><td>call</td><td>function setCallTransfer(slotId: number, info: CallTransferInfo, callback: AsyncCallback<void>): void;</td><td>setCallTransfer</td><td>None</td><td>3</td><td>11</td><tr><tr><td>call</td><td>function setCallTransfer(slotId: number, info: CallTransferInfo): Promise<void>;</td><td>setCallTransfer</td><td>None</td><td>2</td><td>0</td><tr><tr><td>call</td><td>function isRinging(callback: AsyncCallback<boolean>): void;</td><td>isRinging</td><td>None</td><td>1</td><td>9</td><tr><tr><td>call</td><td>function isRinging(): Promise<boolean>;</td><td>isRinging</td><td>None</td><td>0</td><td>1</td><tr><tr><td>call</td><td>function setMuted(callback: AsyncCallback<void>): void;</td><td>setMuted</td><td>None</td><td>1</td><td>9</td><tr><tr><td>call</td><td>function setMuted(): Promise<void>;</td><td>setMuted</td><td>None</td><td>0</td><td>1</td><tr><tr><td>call</td><td>function cancelMuted(callback: AsyncCallback<void>): void;</td><td>cancelMuted</td><td>None</td><td>1</td><td>9</td><tr><tr><td>call</td><td>function cancelMuted(): Promise<void>;</td><td>cancelMuted</td><td>None</td><td>0</td><td>1</td><tr><tr><td>call</td><td>function setAudioDevice(device: AudioDevice, callback: AsyncCallback<void>): void;</td><td>setAudioDevice</td><td>None</td><td>2</td><td>9</td><tr><tr><td>call</td><td>function setAudioDevice(device: AudioDevice): Promise<void>;</td><td>setAudioDevice</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function joinConference(mainCallId: number, callNumberList: Array<string>, callback: AsyncCallback<void>): void;</td><td>joinConference</td><td>None</td><td>3</td><td>9</td><tr><tr><td>call</td><td>function joinConference(mainCallId: number, callNumberList: Array<string>): Promise<void>;</td><td>joinConference</td><td>None</td><td>2</td><td>1</td><tr><tr><td>call</td><td>function updateImsCallMode(callId: number, mode: ImsCallMode, callback: AsyncCallback<void>): void;</td><td>updateImsCallMode</td><td>None</td><td>3</td><td>14</td><tr><tr><td>call</td><td>function updateImsCallMode(callId: number, mode: ImsCallMode): Promise<void>;</td><td>updateImsCallMode</td><td>None</td><td>2</td><td>0</td><tr><tr><td>call</td><td>function enableImsSwitch(slotId: number, callback: AsyncCallback<void>): void;</td><td>enableImsSwitch</td><td>None</td><td>2</td><td>16</td><tr><tr><td>call</td><td>function enableImsSwitch(slotId: number): Promise<void>;</td><td>enableImsSwitch</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function disableImsSwitch(slotId: number, callback: AsyncCallback<void>): void;</td><td>disableImsSwitch</td><td>None</td><td>2</td><td>13</td><tr><tr><td>call</td><td>function disableImsSwitch(slotId: number): Promise<void>;</td><td>disableImsSwitch</td><td>None</td><td>1</td><td>1</td><tr><tr><td>call</td><td>function isImsSwitchEnabled(slotId: number, callback: AsyncCallback<boolean>): void;</td><td>isImsSwitchEnabled</td><td>None</td><td>2</td><td>13</td><tr><tr><td>call</td><td>function isImsSwitchEnabled(slotId: number): Promise<boolean>;</td><td>isImsSwitchEnabled</td><td>None</td><td>1</td><td>1</td><tr><tr><td>ImsCallMode</td><td>export enum ImsCallMode {
+    CALL_MODE_AUDIO_ONLY = 0,
+    CALL_MODE_SEND_ONLY,
+    CALL_MODE_RECEIVE_ONLY,
+    CALL_MODE_SEND_RECEIVE,
+    CALL_MODE_VIDEO_PAUSED,
+  }</td><td>ImsCallMode</td><td>40</td><td>0</td><td>14</td><tr><tr><td>ImsCallMode</td><td>CALL_MODE_AUDIO_ONLY = 0,</td><td>CALL_MODE_AUDIO_ONLY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ImsCallMode</td><td>CALL_MODE_SEND_ONLY,</td><td>CALL_MODE_SEND_ONLY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ImsCallMode</td><td>CALL_MODE_RECEIVE_ONLY,</td><td>CALL_MODE_RECEIVE_ONLY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ImsCallMode</td><td>CALL_MODE_SEND_RECEIVE,</td><td>CALL_MODE_SEND_RECEIVE</td><td>42</td><td>1</td><td>6</td><tr><tr><td>ImsCallMode</td><td>CALL_MODE_VIDEO_PAUSED,</td><td>CALL_MODE_VIDEO_PAUSED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>AudioDevice</td><td>export enum AudioDevice {
+    DEVICE_MIC,
+    DEVICE_SPEAKER,
+    DEVICE_WIRED_HEADSET,
+    DEVICE_BLUETOOTH_SCO
+  }</td><td>AudioDevice</td><td>40</td><td>0</td><td>15</td><tr><tr><td>AudioDevice</td><td>DEVICE_MIC,</td><td>DEVICE_MIC</td><td>42</td><td>1</td><td>4</td><tr><tr><td>AudioDevice</td><td>DEVICE_SPEAKER,</td><td>DEVICE_SPEAKER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>AudioDevice</td><td>DEVICE_WIRED_HEADSET,</td><td>DEVICE_WIRED_HEADSET</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallRestrictionType</td><td>export enum CallRestrictionType {
+    RESTRICTION_TYPE_ALL_INCOMING = 0,
+    RESTRICTION_TYPE_ALL_OUTGOING,
+    RESTRICTION_TYPE_INTERNATIONAL,
+    RESTRICTION_TYPE_INTERNATIONAL_EXCLUDING_HOME,
+    RESTRICTION_TYPE_ROAMING_INCOMING,
+    RESTRICTION_TYPE_ALL_CALLS,
+    RESTRICTION_TYPE_OUTGOING_SERVICES,
+    RESTRICTION_TYPE_INCOMING_SERVICES,
+  }</td><td>CallRestrictionType</td><td>40</td><td>0</td><td>2</td><tr><tr><td>CallRestrictionType</td><td>RESTRICTION_TYPE_ALL_INCOMING = 0,</td><td>RESTRICTION_TYPE_ALL_INCOMING</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CallRestrictionType</td><td>RESTRICTION_TYPE_ALL_OUTGOING,</td><td>RESTRICTION_TYPE_ALL_OUTGOING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallRestrictionType</td><td>RESTRICTION_TYPE_INTERNATIONAL,</td><td>RESTRICTION_TYPE_INTERNATIONAL</td><td>42</td><td>1</td><td>2</td><tr><tr><td>CallRestrictionType</td><td>RESTRICTION_TYPE_INTERNATIONAL_EXCLUDING_HOME,</td><td>RESTRICTION_TYPE_INTERNATIONAL_EXCLUDING_HOME</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallRestrictionType</td><td>RESTRICTION_TYPE_ROAMING_INCOMING,</td><td>RESTRICTION_TYPE_ROAMING_INCOMING</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CallRestrictionType</td><td>RESTRICTION_TYPE_ALL_CALLS,</td><td>RESTRICTION_TYPE_ALL_CALLS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallRestrictionType</td><td>RESTRICTION_TYPE_OUTGOING_SERVICES,</td><td>RESTRICTION_TYPE_OUTGOING_SERVICES</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallRestrictionType</td><td>RESTRICTION_TYPE_INCOMING_SERVICES,</td><td>RESTRICTION_TYPE_INCOMING_SERVICES</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallTransferInfo</td><td>export interface CallTransferInfo {
+    transferNum: string;
+    type: CallTransferType;
+    settingType: CallTransferSettingType;
+  }</td><td>CallTransferInfo</td><td>20</td><td>0</td><td>16</td><tr><tr><td>CallTransferInfo</td><td>transferNum: string</td><td>transferNum</td><td>22</td><td>1</td><td>5</td><tr><tr><td>CallTransferInfo</td><td>type: CallTransferType</td><td>type</td><td>22</td><td>1</td><td>843</td><tr><tr><td>CallTransferInfo</td><td>settingType: CallTransferSettingType</td><td>settingType</td><td>22</td><td>1</td><td>7</td><tr><tr><td>CallTransferType</td><td>export enum CallTransferType {
+    TRANSFER_TYPE_UNCONDITIONAL = 0,
+    TRANSFER_TYPE_BUSY,
+    TRANSFER_TYPE_NO_REPLY,
+    TRANSFER_TYPE_NOT_REACHABLE,
+  }</td><td>CallTransferType</td><td>40</td><td>0</td><td>5</td><tr><tr><td>CallTransferType</td><td>TRANSFER_TYPE_UNCONDITIONAL = 0,</td><td>TRANSFER_TYPE_UNCONDITIONAL</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CallTransferType</td><td>TRANSFER_TYPE_BUSY,</td><td>TRANSFER_TYPE_BUSY</td><td>42</td><td>1</td><td>5</td><tr><tr><td>CallTransferType</td><td>TRANSFER_TYPE_NO_REPLY,</td><td>TRANSFER_TYPE_NO_REPLY</td><td>42</td><td>1</td><td>4</td><tr><tr><td>CallTransferType</td><td>TRANSFER_TYPE_NOT_REACHABLE,</td><td>TRANSFER_TYPE_NOT_REACHABLE</td><td>42</td><td>1</td><td>4</td><tr><tr><td>CallTransferSettingType</td><td>export enum CallTransferSettingType {
+    CALL_TRANSFER_DISABLE = 0,
+    CALL_TRANSFER_ENABLE = 1,
+    CALL_TRANSFER_REGISTRATION = 3,
+    CALL_TRANSFER_ERASURE = 4,
+  }</td><td>CallTransferSettingType</td><td>40</td><td>0</td><td>10</td><tr><tr><td>CallTransferSettingType</td><td>CALL_TRANSFER_DISABLE = 0,</td><td>CALL_TRANSFER_DISABLE</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CallTransferSettingType</td><td>CALL_TRANSFER_ENABLE = 1,</td><td>CALL_TRANSFER_ENABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallTransferSettingType</td><td>CALL_TRANSFER_REGISTRATION = 3,</td><td>CALL_TRANSFER_REGISTRATION</td><td>42</td><td>1</td><td>5</td><tr><tr><td>CallTransferSettingType</td><td>CALL_TRANSFER_ERASURE = 4,</td><td>CALL_TRANSFER_ERASURE</td><td>42</td><td>1</td><td>5</td><tr><tr><td>CallAttributeOptions</td><td>export interface CallAttributeOptions {
+    accountNumber: string;
+    speakerphoneOn: boolean;
+    accountId: number;
+    videoState: VideoStateType;
+    startTime: number;
+    isEcc: boolean;
+    callType: CallType;
+    callId: number;
+    callState: DetailedCallState;
+    conferenceState: ConferenceState;
+  }</td><td>CallAttributeOptions</td><td>20</td><td>0</td><td>7</td><tr><tr><td>CallAttributeOptions</td><td>accountNumber: string</td><td>accountNumber</td><td>22</td><td>1</td><td>4</td><tr><tr><td>CallAttributeOptions</td><td>speakerphoneOn: boolean</td><td>speakerphoneOn</td><td>22</td><td>1</td><td>4</td><tr><tr><td>CallAttributeOptions</td><td>accountId: number</td><td>accountId</td><td>22</td><td>1</td><td>20</td><tr><tr><td>CallAttributeOptions</td><td>videoState: VideoStateType</td><td>videoState</td><td>22</td><td>1</td><td>20</td><tr><tr><td>CallAttributeOptions</td><td>startTime: number</td><td>startTime</td><td>22</td><td>1</td><td>36</td><tr><tr><td>CallAttributeOptions</td><td>isEcc: boolean</td><td>isEcc</td><td>22</td><td>1</td><td>4</td><tr><tr><td>CallAttributeOptions</td><td>callType: CallType</td><td>callType</td><td>22</td><td>1</td><td>4</td><tr><tr><td>CallAttributeOptions</td><td>callId: number</td><td>callId</td><td>22</td><td>1</td><td>177</td><tr><tr><td>CallAttributeOptions</td><td>callState: DetailedCallState</td><td>callState</td><td>22</td><td>1</td><td>63</td><tr><tr><td>CallAttributeOptions</td><td>conferenceState: ConferenceState</td><td>conferenceState</td><td>22</td><td>1</td><td>4</td><tr><tr><td>ConferenceState</td><td>export enum ConferenceState {
+    TEL_CONFERENCE_IDLE = 0,
+    TEL_CONFERENCE_ACTIVE,
+    TEL_CONFERENCE_DISCONNECTING,
+    TEL_CONFERENCE_DISCONNECTED,
+  }</td><td>ConferenceState</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ConferenceState</td><td>TEL_CONFERENCE_IDLE = 0,</td><td>TEL_CONFERENCE_IDLE</td><td>42</td><td>1</td><td>4</td><tr><tr><td>ConferenceState</td><td>TEL_CONFERENCE_ACTIVE,</td><td>TEL_CONFERENCE_ACTIVE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ConferenceState</td><td>TEL_CONFERENCE_DISCONNECTING,</td><td>TEL_CONFERENCE_DISCONNECTING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ConferenceState</td><td>TEL_CONFERENCE_DISCONNECTED,</td><td>TEL_CONFERENCE_DISCONNECTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallType</td><td>export enum CallType {
+    TYPE_CS = 0, // CS
+    TYPE_IMS = 1, // IMS
+    TYPE_OTT = 2, // OTT
+    TYPE_ERR_CALL = 3, // OTHER
+  }</td><td>CallType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>CallType</td><td>TYPE_CS = 0, // CS</td><td>TYPE_CS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallType</td><td>TYPE_IMS = 1, // IMS</td><td>TYPE_IMS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallType</td><td>TYPE_OTT = 2, // OTT</td><td>TYPE_OTT</td><td>42</td><td>1</td><td>5</td><tr><tr><td>CallType</td><td>TYPE_ERR_CALL = 3, // OTHER</td><td>TYPE_ERR_CALL</td><td>42</td><td>1</td><td>3</td><tr><tr><td>VideoStateType</td><td>export enum VideoStateType {
+    TYPE_VOICE = 0, // Voice
+    TYPE_VIDEO, // Video
+  }</td><td>VideoStateType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>VideoStateType</td><td>TYPE_VOICE = 0, // Voice</td><td>TYPE_VOICE</td><td>42</td><td>1</td><td>21</td><tr><tr><td>VideoStateType</td><td>TYPE_VIDEO, // Video</td><td>TYPE_VIDEO</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DetailedCallState</td><td>export enum DetailedCallState {
+    CALL_STATUS_ACTIVE = 0,
+    CALL_STATUS_HOLDING,
+    CALL_STATUS_DIALING,
+    CALL_STATUS_ALERTING,
+    CALL_STATUS_INCOMING,
+    CALL_STATUS_WAITING,
+    CALL_STATUS_DISCONNECTED,
+    CALL_STATUS_DISCONNECTING,
+    CALL_STATUS_IDLE,
+  }</td><td>DetailedCallState</td><td>40</td><td>0</td><td>0</td><tr><tr><td>DetailedCallState</td><td>CALL_STATUS_ACTIVE = 0,</td><td>CALL_STATUS_ACTIVE</td><td>42</td><td>1</td><td>5</td><tr><tr><td>DetailedCallState</td><td>CALL_STATUS_HOLDING,</td><td>CALL_STATUS_HOLDING</td><td>42</td><td>1</td><td>5</td><tr><tr><td>DetailedCallState</td><td>CALL_STATUS_DIALING,</td><td>CALL_STATUS_DIALING</td><td>42</td><td>1</td><td>26</td><tr><tr><td>DetailedCallState</td><td>CALL_STATUS_ALERTING,</td><td>CALL_STATUS_ALERTING</td><td>42</td><td>1</td><td>3</td><tr><tr><td>DetailedCallState</td><td>CALL_STATUS_INCOMING,</td><td>CALL_STATUS_INCOMING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DetailedCallState</td><td>CALL_STATUS_WAITING,</td><td>CALL_STATUS_WAITING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DetailedCallState</td><td>CALL_STATUS_DISCONNECTED,</td><td>CALL_STATUS_DISCONNECTED</td><td>42</td><td>1</td><td>9</td><tr><tr><td>DetailedCallState</td><td>CALL_STATUS_DISCONNECTING,</td><td>CALL_STATUS_DISCONNECTING</td><td>42</td><td>1</td><td>3</td><tr><tr><td>DetailedCallState</td><td>CALL_STATUS_IDLE,</td><td>CALL_STATUS_IDLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallRestrictionInfo</td><td>export interface CallRestrictionInfo {
+    type: CallRestrictionType;
+    password: string;
+    mode: CallRestrictionMode;
+  }</td><td>CallRestrictionInfo</td><td>20</td><td>0</td><td>8</td><tr><tr><td>CallRestrictionInfo</td><td>type: CallRestrictionType</td><td>type</td><td>22</td><td>1</td><td>843</td><tr><tr><td>CallRestrictionInfo</td><td>password: string</td><td>password</td><td>22</td><td>1</td><td>27</td><tr><tr><td>CallRestrictionInfo</td><td>mode: CallRestrictionMode</td><td>mode</td><td>22</td><td>1</td><td>112</td><tr><tr><td>CallRestrictionMode</td><td>export enum CallRestrictionMode {
+    RESTRICTION_MODE_DEACTIVATION = 0,
+    RESTRICTION_MODE_ACTIVATION,
+  }</td><td>CallRestrictionMode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>CallRestrictionMode</td><td>RESTRICTION_MODE_DEACTIVATION = 0,</td><td>RESTRICTION_MODE_DEACTIVATION</td><td>42</td><td>1</td><td>3</td><tr><tr><td>CallRestrictionMode</td><td>RESTRICTION_MODE_ACTIVATION,</td><td>RESTRICTION_MODE_ACTIVATION</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CallEventOptions</td><td>export interface CallEventOptions {
+    eventId: CallAbilityEventId,
+  }</td><td>CallEventOptions</td><td>20</td><td>0</td><td>4</td><tr><tr><td>CallAbilityEventId</td><td>export enum CallAbilityEventId {
+    EVENT_DIAL_NO_CARRIER = 1,
+    EVENT_INVALID_FDN_NUMBER,
+  }</td><td>CallAbilityEventId</td><td>40</td><td>0</td><td>10</td><tr><tr><td>CallAbilityEventId</td><td>EVENT_DIAL_NO_CARRIER = 1,</td><td>EVENT_DIAL_NO_CARRIER</td><td>42</td><td>1</td><td>4</td><tr><tr><td>CallAbilityEventId</td><td>EVENT_INVALID_FDN_NUMBER,</td><td>EVENT_INVALID_FDN_NUMBER</td><td>42</td><td>1</td><td>4</td><tr><tr><td>CallState</td><td>export enum CallState {
+    
+    CALL_STATE_UNKNOWN = -1,
+
+    
+    CALL_STATE_IDLE = 0,
+
+    
+    CALL_STATE_RINGING = 1,
+
+    
+    CALL_STATE_OFFHOOK = 2
+  }</td><td>CallState</td><td>40</td><td>0</td><td>14</td><tr><tr><td>CallState</td><td>CALL_STATE_UNKNOWN = -1,</td><td>CALL_STATE_UNKNOWN</td><td>42</td><td>1</td><td>3</td><tr><tr><td>CallState</td><td>CALL_STATE_IDLE = 0,</td><td>CALL_STATE_IDLE</td><td>42</td><td>1</td><td>7</td><tr><tr><td>CallState</td><td>CALL_STATE_RINGING = 1,</td><td>CALL_STATE_RINGING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallState</td><td>CALL_STATE_OFFHOOK = 2</td><td>CALL_STATE_OFFHOOK</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DialOptions</td><td>export interface DialOptions {
+    
+    extras?: boolean;
+    
+    accountId?: number;
+    
+    videoState?: VideoStateType;
+    
+    dialScene?: DialScene;
+    
+    dialType?: DialType;
+  }</td><td>DialOptions</td><td>20</td><td>0</td><td>2</td><tr><tr><td>DialOptions</td><td>extras?: boolean</td><td>extras</td><td>22</td><td>1</td><td>5</td><tr><tr><td>DialOptions</td><td>accountId?: number</td><td>accountId</td><td>22</td><td>1</td><td>20</td><tr><tr><td>DialOptions</td><td>videoState?: VideoStateType</td><td>videoState</td><td>22</td><td>1</td><td>20</td><tr><tr><td>DialOptions</td><td>dialScene?: DialScene</td><td>dialScene</td><td>22</td><td>1</td><td>16</td><tr><tr><td>DialOptions</td><td>dialType?: DialType</td><td>dialType</td><td>22</td><td>1</td><td>16</td><tr><tr><td>DialScene</td><td>export enum DialScene {
+    CALL_NORMAL = 0,
+    CALL_PRIVILEGED = 1,
+    CALL_EMERGENCY = 2,
+  }</td><td>DialScene</td><td>40</td><td>0</td><td>0</td><tr><tr><td>DialScene</td><td>CALL_NORMAL = 0,</td><td>CALL_NORMAL</td><td>42</td><td>1</td><td>5</td><tr><tr><td>DialScene</td><td>CALL_PRIVILEGED = 1,</td><td>CALL_PRIVILEGED</td><td>42</td><td>1</td><td>17</td><tr><tr><td>DialScene</td><td>CALL_EMERGENCY = 2,</td><td>CALL_EMERGENCY</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DialType</td><td>export enum DialType {
+    DIAL_CARRIER_TYPE = 0,
+    DIAL_VOICE_MAIL_TYPE = 1,
+    DIAL_OTT_TYPE = 2,
+  }</td><td>DialType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>DialType</td><td>DIAL_CARRIER_TYPE = 0,</td><td>DIAL_CARRIER_TYPE</td><td>42</td><td>1</td><td>15</td><tr><tr><td>DialType</td><td>DIAL_VOICE_MAIL_TYPE = 1,</td><td>DIAL_VOICE_MAIL_TYPE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DialType</td><td>DIAL_OTT_TYPE = 2,</td><td>DIAL_OTT_TYPE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RejectMessageOptions</td><td>export interface RejectMessageOptions {
+    messageContent: string;
+  }</td><td>RejectMessageOptions</td><td>20</td><td>0</td><td>3</td><tr><tr><td>RejectMessageOptions</td><td>messageContent: string</td><td>messageContent</td><td>22</td><td>1</td><td>2</td><tr><tr><td>CallTransferResult</td><td>export interface CallTransferResult {
+    status: TransferStatus;
+    number: string;
+  }</td><td>CallTransferResult</td><td>20</td><td>0</td><td>8</td><tr><tr><td>CallTransferResult</td><td>status: TransferStatus</td><td>status</td><td>22</td><td>1</td><td>99</td><tr><tr><td>CallTransferResult</td><td>number: string</td><td>number</td><td>22</td><td>1</td><td>1139</td><tr><tr><td>CallWaitingStatus</td><td>export enum CallWaitingStatus {
+    CALL_WAITING_DISABLE = 0,
+    CALL_WAITING_ENABLE = 1
+  }</td><td>CallWaitingStatus</td><td>40</td><td>0</td><td>14</td><tr><tr><td>CallWaitingStatus</td><td>CALL_WAITING_DISABLE = 0,</td><td>CALL_WAITING_DISABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CallWaitingStatus</td><td>CALL_WAITING_ENABLE = 1</td><td>CALL_WAITING_ENABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RestrictionStatus</td><td>export enum RestrictionStatus {
+    RESTRICTION_DISABLE = 0,
+    RESTRICTION_ENABLE = 1
+  }</td><td>RestrictionStatus</td><td>40</td><td>0</td><td>10</td><tr><tr><td>RestrictionStatus</td><td>RESTRICTION_DISABLE = 0,</td><td>RESTRICTION_DISABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RestrictionStatus</td><td>RESTRICTION_ENABLE = 1</td><td>RESTRICTION_ENABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>TransferStatus</td><td>export enum TransferStatus {
+    TRANSFER_DISABLE = 0,
+    TRANSFER_ENABLE = 1
+  }</td><td>TransferStatus</td><td>40</td><td>0</td><td>0</td><tr><tr><td>TransferStatus</td><td>TRANSFER_DISABLE = 0,</td><td>TRANSFER_DISABLE</td><td>42</td><td>1</td><td>7</td><tr><tr><td>TransferStatus</td><td>TRANSFER_ENABLE = 1</td><td>TRANSFER_ENABLE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>EmergencyNumberOptions</td><td>export interface EmergencyNumberOptions {
+    slotId?: number;
+  }</td><td>EmergencyNumberOptions</td><td>20</td><td>0</td><td>3</td><tr><tr><td>EmergencyNumberOptions</td><td>slotId?: number</td><td>slotId</td><td>22</td><td>1</td><td>113</td><tr><tr><td>NumberFormatOptions</td><td>export interface NumberFormatOptions {
+    countryCode?: string;
+  }</td><td>NumberFormatOptions</td><td>20</td><td>0</td><td>3</td><tr><tr><td>NumberFormatOptions</td><td>countryCode?: string</td><td>countryCode</td><td>22</td><td>1</td><td>3</td><tr><tr><td>DisconnectedDetails</td><td>export enum DisconnectedDetails {
+    UNASSIGNED_NUMBER = 1,
+    NO_ROUTE_TO_DESTINATION = 3,
+    CHANNEL_UNACCEPTABLE = 6,
+    OPERATOR_DETERMINED_BARRING = 8,
+    NORMAL_CALL_CLEARING = 16,
+    USER_BUSY = 17,
+    NO_USER_RESPONDING = 18,
+    USER_ALERTING_NO_ANSWER = 19,
+    CALL_REJECTED = 21,
+    NUMBER_CHANGED = 22,
+    DESTINATION_OUT_OF_ORDER = 27,
+    INVALID_NUMBER_FORMAT = 28,
+    NETWORK_OUT_OF_ORDER = 38,
+    TEMPORARY_FAILURE = 41,
+    INVALID_PARAMETER = 1025,
+    SIM_NOT_EXIT = 1026,
+    SIM_PIN_NEED = 1027,
+    CALL_NOT_ALLOW = 1029,
+    SIM_INVALID = 1045,
+    UNKNOWN = 1279,
+  }</td><td>DisconnectedDetails</td><td>40</td><td>0</td><td>60</td><tr><tr><td>DisconnectedDetails</td><td>UNASSIGNED_NUMBER = 1,</td><td>UNASSIGNED_NUMBER</td><td>42</td><td>1</td><td>3</td><tr><tr><td>DisconnectedDetails</td><td>NO_ROUTE_TO_DESTINATION = 3,</td><td>NO_ROUTE_TO_DESTINATION</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DisconnectedDetails</td><td>CHANNEL_UNACCEPTABLE = 6,</td><td>CHANNEL_UNACCEPTABLE</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DisconnectedDetails</td><td>OPERATOR_DETERMINED_BARRING = 8,</td><td>OPERATOR_DETERMINED_BARRING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DisconnectedDetails</td><td>NORMAL_CALL_CLEARING = 16,</td><td>NORMAL_CALL_CLEARING</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DisconnectedDetails</td><td>USER_BUSY = 17,</td><td>USER_BUSY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DisconnectedDetails</td><td>NO_USER_RESPONDING = 18,</td><td>NO_USER_RESPONDING</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DisconnectedDetails</td><td>USER_ALERTING_NO_ANSWER = 19,</td><td>USER_ALERTING_NO_ANSWER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DisconnectedDetails</td><td>CALL_REJECTED = 21,</td><td>CALL_REJECTED</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DisconnectedDetails</td><td>NUMBER_CHANGED = 22,</td><td>NUMBER_CHANGED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DisconnectedDetails</td><td>DESTINATION_OUT_OF_ORDER = 27,</td><td>DESTINATION_OUT_OF_ORDER</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DisconnectedDetails</td><td>INVALID_NUMBER_FORMAT = 28,</td><td>INVALID_NUMBER_FORMAT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DisconnectedDetails</td><td>NETWORK_OUT_OF_ORDER = 38,</td><td>NETWORK_OUT_OF_ORDER</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DisconnectedDetails</td><td>TEMPORARY_FAILURE = 41,</td><td>TEMPORARY_FAILURE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DisconnectedDetails</td><td>INVALID_PARAMETER = 1025,</td><td>INVALID_PARAMETER</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DisconnectedDetails</td><td>SIM_NOT_EXIT = 1026,</td><td>SIM_NOT_EXIT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DisconnectedDetails</td><td>SIM_PIN_NEED = 1027,</td><td>SIM_PIN_NEED</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DisconnectedDetails</td><td>CALL_NOT_ALLOW = 1029,</td><td>CALL_NOT_ALLOW</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DisconnectedDetails</td><td>SIM_INVALID = 1045,</td><td>SIM_INVALID</td><td>42</td><td>1</td><td>5</td><tr><tr><td>DisconnectedDetails</td><td>UNKNOWN = 1279,</td><td>UNKNOWN</td><td>42</td><td>1</td><td>27</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

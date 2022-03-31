@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>公共基础类库</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>compileruntime</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.util</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>util</td><td>declare namespace util {
+    
+    function printf(format: string, ...args: Object[]): string;
+
+    
+    function getErrorString(errno: number): string;
+
+    
+    function callbackWrapper(original: Function): (err: Object, value: Object) => void;
+
+    
+    function promiseWrapper(original: (err: Object, value: Object) => void): Object;
+
+    class TextDecoder {
+        
+        readonly encoding: string;
+
+        
+        readonly fatal: boolean;
+
+        
+        readonly ignoreBOM = false;
+
+        
+        constructor(
+            encoding?: string,
+            options?: { fatal?: boolean; ignoreBOM?: boolean },
+        );
+
+        
+        decode(input: Uint8Array, options?: { stream?: false }): string;
+    }
+
+    class TextEncoder {
+        
+        readonly encoding = "utf-8";
+
+        
+        constructor();
+
+        
+        encode(input?: string): Uint8Array;
+
+        
+        encodeInto(
+            input: string,
+            dest: Uint8Array,
+        ): { read: number; written: number };
+    }
+
+    class RationalNumber {
+        
+        constructor(numerator: number, denominator: number);
+        
+        static createRationalFromString(rationalString: string): RationalNumber​;
+        
+        compareTo(another :RationalNumber): number;
+        
+        equals(obj: Object): boolean;
+        
+        valueOf(): number;
+        
+        static getCommonDivisor(number1: number, number2: number): number;
+        
+        getDenominator(): number;
+        
+        getNumerator(): number;
+        
+        isFinite() : boolean;
+        
+        isNaN(): boolean;
+        
+        isZero(): boolean;
+        
+        toString(): string;
+    }
+
+    class LruBuffer {
+        
+        constructor(capacity?:number);
+        
+        updateCapacity(newCapacity: number):void
+        
+        toString():string
+        
+        length:number
+        
+        getCapacity(): number;
+        
+        clear(): void;
+        
+        getCreateCount(): number;
+        
+        getMissCount(): number;
+        
+        getRemovalCount(): number;
+        
+        getMatchCount(): number;
+        
+        getPutCount(): number;
+        
+        isEmpty(): boolean;
+        
+        get(key: K): V | undefined;
+        
+        put(key: K, value: V): V;
+        
+        values(): V[];
+        
+        keys(): K[];
+        
+        remove(key: K): V | undefined;
+        
+        afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void;
+        
+        contains(key: K): boolean;
+        
+        createDefault(key: K): V;
+        
+        entries(): IterableIterator<[K, V]>;
+        
+        [Symbol.iterator](): IterableIterator<[K, V]>;
+    }
+    interface ScopeComparable {
+        
+        compareTo(other: ScopeComparable): boolean;
+    }
+    
+    type ScopeType = ScopeComparable | number;
+
+    class Scope{
+        
+        constructor(lowerObj: ScopeType, upperObj: ScopeType);
+        
+        toString(): string;
+        
+        intersect(range: Scope): Scope;
+        
+        intersect(lowerObj: ScopeType, upperObj: ScopeType): Scope;
+        
+        getUpper(): ScopeType;
+        
+        getLower(): ScopeType;
+        
+        expand(lowerObj: ScopeType, upperObj: ScopeType): Scope;
+        
+        expand(range: Scope): Scope;
+        
+        expand(value: ScopeType): Scope;
+        
+        contains(value: ScopeType): boolean;
+        
+        contains(range: Scope): boolean;
+        
+        clamp(value: ScopeType): ScopeType;
+    }
+
+    class Base64{
+        
+        constructor();
+        
+        encodeSync(src: Uint8Array): Uint8Array;
+        
+        encodeToStringSync(src: Uint8Array): string;
+        
+        decodeSync(src: Uint8Array | string): Uint8Array;
+        
+        encode(src: Uint8Array): Promise<Uint8Array>;
+        
+         encodeToString(src: Uint8Array): Promise<string>;
+        
+        decode(src: Uint8Array | string): Promise<Uint8Array>;
+    }
+
+    class types{
+        
+        constructor();
+        
+        isAnyArrayBuffer(value: Object): boolean;
+        
+        isArrayBufferView(value: Object): boolean;
+        
+        isArgumentsObject(value: Object): boolean;
+        
+        isArrayBuffer(value: Object): boolean;
+        
+        isAsyncFunction(value: Object): boolean;
+        
+        isBigInt64Array(value: Object): boolean;
+        
+        isBigUint64Array(value: Object): boolean;
+        
+        isBooleanObject(value: Object): boolean;
+        
+        isBoxedPrimitive(value: Object): boolean;
+        
+        isDataView(value: Object): boolean;
+        
+        isDate(value: Object): boolean;
+        
+        isExternal(value: Object): boolean;
+        
+        isFloat32Array(value: Object): boolean;
+        
+        isFloat64Array(value: Object): boolean;
+        
+        isGeneratorFunction(value: Object): boolean;
+        
+        isGeneratorObject(value: Object): boolean;
+        
+        isInt8Array(value: Object): boolean;
+        
+        isInt16Array(value: Object): boolean;
+        
+        isInt32Array(value: Object): boolean;
+        
+        isMap(value: Object): boolean;
+        
+        isMapIterator(value: Object): boolean;
+        
+        isModuleNamespaceObject(value: Object): boolean;
+        
+        isNativeError(value: Object): boolean;
+        
+        isNumberObject(value: Object): boolean;
+        
+        isPromise(value: Object): boolean;
+        
+        isProxy(value: Object): boolean;
+        
+        isRegExp(value: Object): boolean;
+        
+        isSet(value: Object): boolean;
+        
+        isSetIterator(value: Object): boolean;
+        
+        isSharedArrayBuffer(value: Object): boolean;
+        
+        isStringObject(value: Object): boolean;
+        
+        isSymbolObject(value: Object): boolean;
+        
+        isTypedArray(value: Object): boolean;
+        
+        isUint8Array(value: Object): boolean;
+        
+        isUint8ClampedArray(value: Object): boolean;
+        
+        isUint16Array(value: Object): boolean;
+        
+        isUint32Array(value: Object): boolean;
+        
+        isWeakMap(value: Object): boolean;
+        
+        isWeakSet(value: Object): boolean;
+    }
+}</td><td>util</td><td>None</td><td>0</td><td>483</td><tr><tr><td>util</td><td>function printf(format: string, ...args: Object[]): string;</td><td>printf</td><td>None</td><td>2</td><td>5</td><tr><tr><td>util</td><td>function getErrorString(errno: number): string;</td><td>getErrorString</td><td>None</td><td>1</td><td>5</td><tr><tr><td>util</td><td>function callbackWrapper(original: Function): (err: Object, value: Object) => void;</td><td>callbackWrapper</td><td>None</td><td>1</td><td>6</td><tr><tr><td>util</td><td>function callbackWrapper(original: Function): (err: Object, value: Object) => void;</td><td>callbackWrapperoriginal</td><td>None</td><td>4</td><td>0</td><tr><tr><td>util</td><td>function promiseWrapper(original: (err: Object, value: Object) => void): Object;</td><td>promiseWrapperoriginal</td><td>None</td><td>3</td><td>0</td><tr><tr><td>util</td><td>function promiseWrapper(original: (err: Object, value: Object) => void): Object;</td><td>promiseWrapperoriginal</td><td>None</td><td>3</td><td>0</td><tr><tr><td>TextDecoder</td><td>class TextDecoder {
+        
+        readonly encoding: string;
+
+        
+        readonly fatal: boolean;
+
+        
+        readonly ignoreBOM = false;
+
+        
+        constructor(
+            encoding?: string,
+            options?: { fatal?: boolean; ignoreBOM?: boolean },
+        );
+
+        
+        decode(input: Uint8Array, options?: { stream?: false }): string;
+    }</td><td>TextDecoder</td><td>10</td><td>0</td><td>20</td><tr><tr><td>TextDecoder</td><td>constructor(
+            encoding?: string,
+            options?: { fatal?: boolean; ignoreBOM?: boolean },
+        )</td><td>constructor</td><td>11</td><td>2</td><td>32</td><tr><tr><td>TextDecoder</td><td>decode(input: Uint8Array, options?: { stream?: false }): string;</td><td>decode</td><td>11</td><td>2</td><td>40</td><tr><tr><td>TextDecoder</td><td>readonly encoding: string</td><td>encoding</td><td>12</td><td>1</td><td>124</td><tr><tr><td>TextDecoder</td><td>readonly fatal: boolean</td><td>fatal</td><td>12</td><td>1</td><td>22</td><tr><tr><td>TextEncoder</td><td>class TextEncoder {
+        
+        readonly encoding = "utf-8";
+
+        
+        constructor();
+
+        
+        encode(input?: string): Uint8Array;
+
+        
+        encodeInto(
+            input: string,
+            dest: Uint8Array,
+        ): { read: number; written: number };
+    }</td><td>TextEncoder</td><td>10</td><td>0</td><td>18</td><tr><tr><td>TextEncoder</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>32</td><tr><tr><td>TextEncoder</td><td>encode(input?: string): Uint8Array;</td><td>encode</td><td>11</td><td>1</td><td>82</td><tr><tr><td>TextEncoder</td><td>encodeInto(
+            input: string,
+            dest: Uint8Array,
+        ): { read: number;</td><td>encodeInto</td><td>11</td><td>2</td><td>8</td><tr><tr><td>TextEncoder</td><td>written: number }</td><td>written</td><td>12</td><td>1</td><td>8</td><tr><tr><td>RationalNumber</td><td>class RationalNumber {
+        
+        constructor(numerator: number, denominator: number);
+        
+        static createRationalFromString(rationalString: string): RationalNumber​;
+        
+        compareTo(another :RationalNumber): number;
+        
+        equals(obj: Object): boolean;
+        
+        valueOf(): number;
+        
+        static getCommonDivisor(number1: number, number2: number): number;
+        
+        getDenominator(): number;
+        
+        getNumerator(): number;
+        
+        isFinite() : boolean;
+        
+        isNaN(): boolean;
+        
+        isZero(): boolean;
+        
+        toString(): string;
+    }</td><td>RationalNumber</td><td>10</td><td>0</td><td>154</td><tr><tr><td>RationalNumber</td><td>constructor(numerator: number, denominator: number)</td><td>constructor</td><td>11</td><td>2</td><td>32</td><tr><tr><td>RationalNumber</td><td>static createRationalFromString(rationalString: string): RationalNumber​;</td><td>createRationalFromString</td><td>11</td><td>1</td><td>5</td><tr><tr><td>RationalNumber</td><td>compareTo(another :RationalNumber): number;</td><td>compareTo</td><td>11</td><td>1</td><td>6</td><tr><tr><td>RationalNumber</td><td>equals(obj: Object): boolean;</td><td>equals</td><td>11</td><td>1</td><td>10</td><tr><tr><td>RationalNumber</td><td>valueOf(): number;</td><td>valueOf</td><td>11</td><td>0</td><td>10</td><tr><tr><td>RationalNumber</td><td>static getCommonDivisor(number1: number, number2: number): number;</td><td>getCommonDivisor</td><td>11</td><td>2</td><td>5</td><tr><tr><td>RationalNumber</td><td>getDenominator(): number;</td><td>getDenominator</td><td>11</td><td>0</td><td>6</td><tr><tr><td>RationalNumber</td><td>getNumerator(): number;</td><td>getNumerator</td><td>11</td><td>0</td><td>5</td><tr><tr><td>RationalNumber</td><td>isFinite() : boolean;</td><td>isFinite</td><td>11</td><td>0</td><td>5</td><tr><tr><td>RationalNumber</td><td>isNaN(): boolean;</td><td>isNaN</td><td>11</td><td>0</td><td>5</td><tr><tr><td>RationalNumber</td><td>isZero(): boolean;</td><td>isZero</td><td>11</td><td>0</td><td>5</td><tr><tr><td>RationalNumber</td><td>toString(): string;</td><td>toString</td><td>11</td><td>0</td><td>131</td><tr><tr><td>LruBuffer</td><td>class LruBuffer {
+        
+        constructor(capacity?:number);
+        
+        updateCapacity(newCapacity: number):void
+        
+        toString():string
+        
+        length:number
+        
+        getCapacity(): number;
+        
+        clear(): void;
+        
+        getCreateCount(): number;
+        
+        getMissCount(): number;
+        
+        getRemovalCount(): number;
+        
+        getMatchCount(): number;
+        
+        getPutCount(): number;
+        
+        isEmpty(): boolean;
+        
+        get(key: K): V | undefined;
+        
+        put(key: K, value: V): V;
+        
+        values(): V[];
+        
+        keys(): K[];
+        
+        remove(key: K): V | undefined;
+        
+        afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void;
+        
+        contains(key: K): boolean;
+        
+        createDefault(key: K): V;
+        
+        entries(): IterableIterator<[K, V]>;
+        
+        [Symbol.iterator](): IterableIterator<[K, V]>;
+    }</td><td>LruBuffer</td><td>10</td><td>0</td><td>337</td><tr><tr><td>LruBuffer</td><td>constructor(capacity?:number)</td><td>constructor</td><td>11</td><td>1</td><td>32</td><tr><tr><td>LruBuffer</td><td>updateCapacity(newCapacity: number):void
+        
+        toString():string
+        
+        length:number
+        
+        getCapacity(): number;</td><td>updateCapacity</td><td>11</td><td>1</td><td>15</td><tr><tr><td>LruBuffer</td><td>toString():string
+        
+        length:number
+        
+        getCapacity(): number;</td><td>toString</td><td>11</td><td>0</td><td>131</td><tr><tr><td>LruBuffer</td><td>getCapacity(): number;</td><td>getCapacity</td><td>11</td><td>0</td><td>24</td><tr><tr><td>LruBuffer</td><td>clear(): void;</td><td>clear</td><td>11</td><td>0</td><td>30</td><tr><tr><td>LruBuffer</td><td>getCreateCount(): number;</td><td>getCreateCount</td><td>11</td><td>0</td><td>5</td><tr><tr><td>LruBuffer</td><td>getMissCount(): number;</td><td>getMissCount</td><td>11</td><td>0</td><td>6</td><tr><tr><td>LruBuffer</td><td>getRemovalCount(): number;</td><td>getRemovalCount</td><td>11</td><td>0</td><td>5</td><tr><tr><td>LruBuffer</td><td>getMatchCount(): number;</td><td>getMatchCount</td><td>11</td><td>0</td><td>6</td><tr><tr><td>LruBuffer</td><td>getPutCount(): number;</td><td>getPutCount</td><td>11</td><td>0</td><td>5</td><tr><tr><td>LruBuffer</td><td>isEmpty(): boolean;</td><td>isEmpty</td><td>11</td><td>0</td><td>34</td><tr><tr><td>LruBuffer</td><td>get(key: K): V | undefined;</td><td>get</td><td>11</td><td>1</td><td>517</td><tr><tr><td>LruBuffer</td><td>put(key: K, value: V): V;</td><td>put</td><td>11</td><td>2</td><td>313</td><tr><tr><td>LruBuffer</td><td>values(): V[];</td><td>values</td><td>11</td><td>0</td><td>71</td><tr><tr><td>LruBuffer</td><td>keys(): K[];</td><td>keys</td><td>11</td><td>0</td><td>38</td><tr><tr><td>LruBuffer</td><td>remove(key: K): V | undefined;</td><td>remove</td><td>11</td><td>1</td><td>93</td><tr><tr><td>LruBuffer</td><td>afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void;</td><td>afterRemoval</td><td>11</td><td>4</td><td>10</td><tr><tr><td>LruBuffer</td><td>contains(key: K): boolean;</td><td>contains</td><td>11</td><td>1</td><td>45</td><tr><tr><td>LruBuffer</td><td>createDefault(key: K): V;</td><td>createDefault</td><td>11</td><td>1</td><td>11</td><tr><tr><td>LruBuffer</td><td>entries(): IterableIterator<[K, V]>;</td><td>entries</td><td>11</td><td>0</td><td>23</td><tr><tr><td>ScopeComparable</td><td>interface ScopeComparable {
+        
+        compareTo(other: ScopeComparable): boolean;
+    }</td><td>ScopeComparable</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ScopeComparable</td><td>compareTo(other: ScopeComparable): boolean;</td><td>compareTo</td><td>21</td><td>1</td><td>6</td><tr><tr><td>Scope</td><td>class Scope{
+        
+        constructor(lowerObj: ScopeType, upperObj: ScopeType);
+        
+        toString(): string;
+        
+        intersect(range: Scope): Scope;
+        
+        intersect(lowerObj: ScopeType, upperObj: ScopeType): Scope;
+        
+        getUpper(): ScopeType;
+        
+        getLower(): ScopeType;
+        
+        expand(lowerObj: ScopeType, upperObj: ScopeType): Scope;
+        
+        expand(range: Scope): Scope;
+        
+        expand(value: ScopeType): Scope;
+        
+        contains(value: ScopeType): boolean;
+        
+        contains(range: Scope): boolean;
+        
+        clamp(value: ScopeType): ScopeType;
+    }</td><td>Scope</td><td>10</td><td>0</td><td>6</td><tr><tr><td>Scope</td><td>constructor(lowerObj: ScopeType, upperObj: ScopeType)</td><td>constructor</td><td>11</td><td>2</td><td>32</td><tr><tr><td>Scope</td><td>toString(): string;</td><td>toString</td><td>11</td><td>0</td><td>131</td><tr><tr><td>Scope</td><td>intersect(range: Scope): Scope;</td><td>intersect</td><td>11</td><td>1</td><td>20</td><tr><tr><td>Scope</td><td>intersect(lowerObj: ScopeType, upperObj: ScopeType): Scope;</td><td>intersect</td><td>11</td><td>2</td><td>20</td><tr><tr><td>Scope</td><td>getUpper(): ScopeType;</td><td>getUpper</td><td>11</td><td>0</td><td>5</td><tr><tr><td>Scope</td><td>getLower(): ScopeType;</td><td>getLower</td><td>11</td><td>0</td><td>9</td><tr><tr><td>Scope</td><td>expand(lowerObj: ScopeType, upperObj: ScopeType): Scope;</td><td>expand</td><td>11</td><td>2</td><td>15</td><tr><tr><td>Scope</td><td>expand(range: Scope): Scope;</td><td>expand</td><td>11</td><td>1</td><td>15</td><tr><tr><td>Scope</td><td>expand(value: ScopeType): Scope;</td><td>expand</td><td>11</td><td>1</td><td>15</td><tr><tr><td>Scope</td><td>contains(value: ScopeType): boolean;</td><td>contains</td><td>11</td><td>1</td><td>45</td><tr><tr><td>Scope</td><td>contains(range: Scope): boolean;</td><td>contains</td><td>11</td><td>1</td><td>45</td><tr><tr><td>Scope</td><td>clamp(value: ScopeType): ScopeType;</td><td>clamp</td><td>11</td><td>1</td><td>10</td><tr><tr><td>Base64</td><td>class Base64{
+        
+        constructor();
+        
+        encodeSync(src: Uint8Array): Uint8Array;
+        
+        encodeToStringSync(src: Uint8Array): string;
+        
+        decodeSync(src: Uint8Array | string): Uint8Array;
+        
+        encode(src: Uint8Array): Promise<Uint8Array>;
+        
+         encodeToString(src: Uint8Array): Promise<string>;
+        
+        decode(src: Uint8Array | string): Promise<Uint8Array>;
+    }</td><td>Base64</td><td>10</td><td>0</td><td>101</td><tr><tr><td>Base64</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>32</td><tr><tr><td>Base64</td><td>encodeSync(src: Uint8Array): Uint8Array;</td><td>encodeSync</td><td>11</td><td>1</td><td>5</td><tr><tr><td>Base64</td><td>encodeToStringSync(src: Uint8Array): string;</td><td>encodeToStringSync</td><td>11</td><td>1</td><td>5</td><tr><tr><td>Base64</td><td>decodeSync(src: Uint8Array | string): Uint8Array;</td><td>decodeSync</td><td>11</td><td>1</td><td>10</td><tr><tr><td>Base64</td><td>encode(src: Uint8Array): Promise<Uint8Array>;</td><td>encode</td><td>11</td><td>1</td><td>10</td><tr><tr><td>Base64</td><td>encodeToString(src: Uint8Array): Promise<string>;</td><td>encodeToString</td><td>11</td><td>1</td><td>5</td><tr><tr><td>Base64</td><td>decode(src: Uint8Array | string): Promise<Uint8Array>;</td><td>decode</td><td>11</td><td>1</td><td>10</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

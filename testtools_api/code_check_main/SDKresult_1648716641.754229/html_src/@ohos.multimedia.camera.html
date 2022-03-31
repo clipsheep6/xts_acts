@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>媒体子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>multimedia</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.multimedia.camera</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>camera</td><td>declare namespace camera {
+
+  
+  function getCameraManager(context: Context, callback: AsyncCallback<CameraManager>): void;
+
+  
+  function getCameraManager(context: Context): Promise<CameraManager>;
+
+  
+  enum CameraStatus {
+    
+    CAMERA_STATUS_APPEAR = 0,
+    
+    CAMERA_STATUS_DISAPPEAR,
+    
+    CAMERA_STATUS_AVAILABLE,
+    
+    CAMERA_STATUS_UNAVAILABLE
+  }
+
+  
+  interface CameraManager  {
+    
+    getCameras(callback: AsyncCallback<Array<Camera>>): void;
+
+    
+    getCameras(): Promise<Array<Camera>>;
+
+    
+    createCameraInput(cameraId: string, callback: AsyncCallback<CameraInput>): void;
+
+    
+    createCameraInput(cameraId: string): Promise<CameraInput>;
+
+    
+    createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCallback<CameraInput>): void;
+
+    
+    createCameraInput(position: CameraPosition, type: CameraType): Promise<CameraInput>;
+
+    
+    on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo>): void;
+  }
+
+  
+  interface CameraStatusInfo {
+    
+    camera: Camera;
+    
+    status: CameraStatus;
+  }
+
+  
+  enum CameraPosition {
+    
+    CAMERA_POSITION_UNSPECIFIED = 0,
+    
+    CAMERA_POSITION_BACK,
+    
+    CAMERA_POSITION_FRONT
+  }
+
+  
+  enum CameraType {
+    
+    CAMERA_TYPE_UNSPECIFIED = 0,
+
+    
+    CAMERA_TYPE_WIDE_ANGLE,
+
+    
+    CAMERA_TYPE_ULTRA_WIDE,
+
+    
+    CAMERA_TYPE_TELEPHOTO,
+
+    
+    CAMERA_TYPE_TRUE_DEPTH
+  }
+
+  
+  enum ConnectionType {
+    
+    CAMERA_CONNECTION_BUILT_IN = 0,
+
+    
+    CAMERA_CONNECTION_USB_PLUGIN,
+
+    
+    CAMERA_CONNECTION_REMOTE
+  }
+
+  
+  interface Camera {
+    
+    readonly cameraId: string;
+    
+    readonly cameraPosition: CameraPosition;
+    
+    readonly cameraType: CameraType;
+    
+    readonly connectionType: ConnectionType;
+  }
+
+  
+  interface Size {
+    
+    height: number;
+    
+    width: number;
+  }
+
+  
+  interface CameraInput {
+    
+    getCameraId(callback: AsyncCallback<string>): void;
+
+    
+    getCameraId(): Promise<string>;
+
+    
+    hasFlash(callback: AsyncCallback<boolean>): void;
+
+    
+    hasFlash(): Promise<boolean>;
+
+    
+    isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean>): void;
+
+    
+    isFlashModeSupported(flashMode: FlashMode): Promise<boolean>;
+
+    
+    getFlashMode(callback: AsyncCallback<FlashMode>): void;
+
+    
+    getFlashMode(): Promise<FlashMode>;
+
+    
+    setFlashMode(flashMode: FlashMode, callback: AsyncCallback<void>): void;
+
+    
+    setFlashMode(flashMode: FlashMode): Promise<void>;
+
+    
+    isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean>): void;
+
+    
+    isFocusModeSupported(afMode: FocusMode): Promise<boolean>;
+
+    
+    getFocusMode(callback: AsyncCallback<FocusMode>): void;
+
+    
+    getFocusMode(): Promise<FocusMode>;
+
+    
+    setFocusMode(afMode: FocusMode, callback: AsyncCallback<void>): void;
+
+    
+    setFocusMode(afMode: FocusMode): Promise<void>;
+
+    
+    getZoomRatioRange(callback: AsyncCallback<Array<number>>): void;
+
+    
+    getZoomRatioRange(): Promise<Array<number>>;
+
+    
+    getZoomRatio(callback: AsyncCallback<number>): void;
+
+    
+    getZoomRatio(): Promise<number>;
+
+    
+    setZoomRatio(zoomRatio: number, callback: AsyncCallback<void>): void;
+
+    
+    setZoomRatio(zoomRatio: number): Promise<void>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    on(type: 'focusStateChange', callback: AsyncCallback<FocusState>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback<CameraInputError>): void;
+  }
+
+  
+  enum CameraInputErrorCode {
+    
+    ERROR_UNKNOWN = -1
+  }
+
+  
+  interface CameraInputError extends Error {
+    code: CameraInputErrorCode;
+  }
+
+  
+  enum FlashMode {
+    
+    FLASH_MODE_CLOSE = 0,
+    
+    FLASH_MODE_OPEN,
+    
+    FLASH_MODE_AUTO,
+    
+    FLASH_MODE_ALWAYS_OPEN
+  }
+
+  
+  enum FocusMode {
+    
+    FOCUS_MODE_MANUAL = 0,
+    
+    FOCUS_MODE_CONTINUOUS_AUTO,
+    
+    FOCUS_MODE_AUTO,
+    
+    FOCUS_MODE_LOCKED
+  }
+
+  
+  enum FocusState {
+    
+    FOCUS_STATE_SCAN = 0,
+    
+    FOCUS_STATE_FOCUSED,
+    
+    FOCUS_STATE_UNFOCUSED
+  }
+
+  
+  function createCaptureSession(context: Context, callback: AsyncCallback<CaptureSession>): void;
+
+  
+  function createCaptureSession(context: Context): Promise<CaptureSession>;
+
+  
+  interface CaptureSession {
+    
+    beginConfig(callback: AsyncCallback<void>): void;
+
+    
+    beginConfig(): Promise<void>;
+
+    
+    commitConfig(callback: AsyncCallback<void>): void;
+
+    
+    commitConfig(): Promise<void>;
+
+    
+    addInput(cameraInput: CameraInput, callback: AsyncCallback<void>): void;
+
+    
+    addInput(cameraInput: CameraInput): Promise<void>;
+
+    
+    addOutput(previewOutput: PreviewOutput, callback: AsyncCallback<void>): void;
+
+    
+    addOutput(previewOutput: PreviewOutput): Promise<void>;
+
+    
+    addOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void>): void;
+
+    
+    addOutput(photoOutput: PhotoOutput): Promise<void>;
+
+    
+    addOutput(videoOutput: VideoOutput, callback: AsyncCallback<void>): void;
+
+    
+    addOutput(videoOutput: VideoOutput): Promise<void>;
+
+    
+    removeInput(cameraInput: CameraInput, callback: AsyncCallback<void>): void;
+
+    
+    removeInput(cameraInput: CameraInput): Promise<void>;
+
+    
+    removeOutput(previewOutput: PreviewOutput, callback: AsyncCallback<void>): void;
+
+    
+    removeOutput(previewOutput: PreviewOutput): Promise<void>;
+
+    
+    removeOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void>): void;
+
+    
+    removeOutput(photoOutput: PhotoOutput): Promise<void>;
+
+    
+    removeOutput(videoOutput: VideoOutput, callback: AsyncCallback<void>): void;
+
+    
+    removeOutput(videoOutput: VideoOutput): Promise<void>;
+
+    
+    start(callback: AsyncCallback<void>): void;
+
+    
+    start(): Promise<void>;
+
+    
+    stop(callback: AsyncCallback<void>): void;
+
+    
+    stop(): Promise<void>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    on(type: 'error', callback: ErrorCallback<CaptureSessionError>): void;
+  }
+
+  
+  enum CaptureSessionErrorCode {
+    ERROR_UNKNOWN = -1
+  }
+
+  
+  interface CaptureSessionError extends Error {
+    code: CaptureSessionErrorCode;
+  }
+
+  
+  function createPreviewOutput(surfaceId: string, callback: AsyncCallback<PreviewOutput>): void;
+
+  
+  function createPreviewOutput(surfaceId: string): Promise<PreviewOutput>;
+
+  
+  interface PreviewOutput {
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    on(type: 'frameStart', callback: AsyncCallback<void>): void;
+
+    
+    on(type: 'frameEnd', callback: AsyncCallback<void>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback<PreviewOutputError>): void;
+  }
+
+  
+  enum PreviewOutputErrorCode {
+    ERROR_UNKNOWN = -1
+  }
+
+  
+  interface PreviewOutputError extends Error {
+    code: PreviewOutputErrorCode;
+  }
+
+  
+  function createPhotoOutput(surfaceId: string, callback: AsyncCallback<PhotoOutput>): void;
+
+  
+  function createPhotoOutput(surfaceId: string): Promise<PhotoOutput>;
+
+  
+  enum ImageRotation {
+    
+    ROTATION_0 = 0,
+
+    
+    ROTATION_90 = 90,
+
+    
+    ROTATION_180 = 180,
+
+    
+    ROTATION_270 = 270
+  }
+
+  
+  enum QualityLevel {
+    
+    QUALITY_LEVEL_HIGH = 0,
+
+    
+    QUALITY_LEVEL_MEDIUM,
+
+    
+    QUALITY_LEVEL_LOW
+  }
+
+  
+  interface PhotoCaptureSetting {
+    
+    quality?: QualityLevel;
+    
+    rotation?: ImageRotation;
+  }
+
+  
+  interface PhotoOutput {
+    
+    capture(callback: AsyncCallback<void>): void;
+
+    
+    capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void>): void;
+
+    
+    capture(setting?: PhotoCaptureSetting): Promise<void>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    on(type: 'captureStart', callback: AsyncCallback<number>): void;
+
+    
+    on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo>): void;
+
+    
+    on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback<PhotoOutputError>): void;
+  }
+
+  
+  interface FrameShutterInfo {
+    
+    captureId: number;
+    
+    timestamp: number;
+  }
+
+  
+  interface CaptureEndInfo {
+    
+    captureId: number;
+    
+    frameCount: number;
+  }
+
+  
+  enum PhotoOutputErrorCode {
+    ERROR_UNKNOWN = -1
+  }
+
+  
+  interface PhotoOutputError extends Error {
+    code: PhotoOutputErrorCode;
+  }
+
+  
+  function createVideoOutput(surfaceId: string, callback: AsyncCallback<VideoOutput>): void;
+
+  
+  function createVideoOutput(surfaceId: string): Promise<VideoOutput>;
+
+  
+  interface VideoOutput {
+    
+    start(callback: AsyncCallback<void>): void;
+
+        
+    start(): Promise<void>;
+
+    
+    stop(callback: AsyncCallback<void>): void;
+
+    
+    stop(): Promise<void>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    on(type: 'frameStart', callback: AsyncCallback<void>): void;
+
+    
+    on(type: 'frameEnd', callback: AsyncCallback<void>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback<VideoOutputError>): void;
+  }
+
+  
+  enum VideoOutputErrorCode {
+    ERROR_UNKNOWN = -1
+  }
+
+  
+  interface VideoOutputError extends Error {
+    code: VideoOutputErrorCode;
+  }
+}</td><td>camera</td><td>None</td><td>0</td><td>4989</td><tr><tr><td>camera</td><td>function getCameraManager(context: Context, callback: AsyncCallback<CameraManager>): void;</td><td>getCameraManager</td><td>None</td><td>2</td><td>23</td><tr><tr><td>camera</td><td>function getCameraManager(context: Context): Promise<CameraManager>;</td><td>getCameraManager</td><td>None</td><td>1</td><td>0</td><tr><tr><td>camera</td><td>function createCaptureSession(context: Context, callback: AsyncCallback<CaptureSession>): void;</td><td>createCaptureSession</td><td>None</td><td>2</td><td>27</td><tr><tr><td>camera</td><td>function createCaptureSession(context: Context): Promise<CaptureSession>;</td><td>createCaptureSession</td><td>None</td><td>1</td><td>0</td><tr><tr><td>camera</td><td>function createPreviewOutput(surfaceId: string, callback: AsyncCallback<PreviewOutput>): void;</td><td>createPreviewOutput</td><td>None</td><td>2</td><td>20</td><tr><tr><td>camera</td><td>function createPreviewOutput(surfaceId: string): Promise<PreviewOutput>;</td><td>createPreviewOutput</td><td>None</td><td>1</td><td>0</td><tr><tr><td>camera</td><td>function createPhotoOutput(surfaceId: string, callback: AsyncCallback<PhotoOutput>): void;</td><td>createPhotoOutput</td><td>None</td><td>2</td><td>14</td><tr><tr><td>camera</td><td>function createPhotoOutput(surfaceId: string): Promise<PhotoOutput>;</td><td>createPhotoOutput</td><td>None</td><td>1</td><td>0</td><tr><tr><td>camera</td><td>function createVideoOutput(surfaceId: string, callback: AsyncCallback<VideoOutput>): void;</td><td>createVideoOutput</td><td>None</td><td>2</td><td>34</td><tr><tr><td>camera</td><td>function createVideoOutput(surfaceId: string): Promise<VideoOutput>;</td><td>createVideoOutput</td><td>None</td><td>1</td><td>0</td><tr><tr><td>CameraStatus</td><td>enum CameraStatus {
+    
+    CAMERA_STATUS_APPEAR = 0,
+    
+    CAMERA_STATUS_DISAPPEAR,
+    
+    CAMERA_STATUS_AVAILABLE,
+    
+    CAMERA_STATUS_UNAVAILABLE
+  }</td><td>CameraStatus</td><td>40</td><td>0</td><td>38</td><tr><tr><td>CameraStatus</td><td>CAMERA_STATUS_APPEAR = 0,</td><td>CAMERA_STATUS_APPEAR</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CameraStatus</td><td>CAMERA_STATUS_DISAPPEAR,</td><td>CAMERA_STATUS_DISAPPEAR</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CameraStatus</td><td>CAMERA_STATUS_AVAILABLE,</td><td>CAMERA_STATUS_AVAILABLE</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CameraManager</td><td>interface CameraManager  {
+    
+    getCameras(callback: AsyncCallback<Array<Camera>>): void;
+
+    
+    getCameras(): Promise<Array<Camera>>;
+
+    
+    createCameraInput(cameraId: string, callback: AsyncCallback<CameraInput>): void;
+
+    
+    createCameraInput(cameraId: string): Promise<CameraInput>;
+
+    
+    createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCallback<CameraInput>): void;
+
+    
+    createCameraInput(position: CameraPosition, type: CameraType): Promise<CameraInput>;
+
+    
+    on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo>): void;
+  }</td><td>CameraManager</td><td>20</td><td>0</td><td>23</td><tr><tr><td>CameraManager</td><td>getCameras(callback: AsyncCallback<Array<Camera>>): void;</td><td>getCameras</td><td>21</td><td>1</td><td>23</td><tr><tr><td>CameraManager</td><td>getCameras(): Promise<Array<Camera>>;</td><td>getCameras</td><td>21</td><td>0</td><td>0</td><tr><tr><td>CameraManager</td><td>createCameraInput(cameraId: string, callback: AsyncCallback<CameraInput>): void;</td><td>createCameraInput</td><td>21</td><td>2</td><td>135</td><tr><tr><td>CameraManager</td><td>createCameraInput(cameraId: string): Promise<CameraInput>;</td><td>createCameraInput</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CameraManager</td><td>createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCallback<CameraInput>): void;</td><td>createCameraInput</td><td>21</td><td>3</td><td>135</td><tr><tr><td>CameraManager</td><td>createCameraInput(position: CameraPosition, type: CameraType): Promise<CameraInput>;</td><td>createCameraInput</td><td>21</td><td>2</td><td>0</td><tr><tr><td>CameraManager</td><td>on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>CameraStatusInfo</td><td>interface CameraStatusInfo {
+    
+    camera: Camera;
+    
+    status: CameraStatus;
+  }</td><td>CameraStatusInfo</td><td>20</td><td>0</td><td>12</td><tr><tr><td>CameraStatusInfo</td><td>camera: Camera</td><td>camera</td><td>22</td><td>1</td><td>4989</td><tr><tr><td>CameraStatusInfo</td><td>status: CameraStatus</td><td>status</td><td>22</td><td>1</td><td>87</td><tr><tr><td>CameraPosition</td><td>enum CameraPosition {
+    
+    CAMERA_POSITION_UNSPECIFIED = 0,
+    
+    CAMERA_POSITION_BACK,
+    
+    CAMERA_POSITION_FRONT
+  }</td><td>CameraPosition</td><td>40</td><td>0</td><td>104</td><tr><tr><td>CameraPosition</td><td>CAMERA_POSITION_UNSPECIFIED = 0,</td><td>CAMERA_POSITION_UNSPECIFIED</td><td>42</td><td>1</td><td>26</td><tr><tr><td>CameraPosition</td><td>CAMERA_POSITION_BACK,</td><td>CAMERA_POSITION_BACK</td><td>42</td><td>1</td><td>38</td><tr><tr><td>CameraType</td><td>enum CameraType {
+    
+    CAMERA_TYPE_UNSPECIFIED = 0,
+
+    
+    CAMERA_TYPE_WIDE_ANGLE,
+
+    
+    CAMERA_TYPE_ULTRA_WIDE,
+
+    
+    CAMERA_TYPE_TELEPHOTO,
+
+    
+    CAMERA_TYPE_TRUE_DEPTH
+  }</td><td>CameraType</td><td>40</td><td>0</td><td>116</td><tr><tr><td>CameraType</td><td>CAMERA_TYPE_UNSPECIFIED = 0,</td><td>CAMERA_TYPE_UNSPECIFIED</td><td>42</td><td>1</td><td>42</td><tr><tr><td>CameraType</td><td>CAMERA_TYPE_WIDE_ANGLE,</td><td>CAMERA_TYPE_WIDE_ANGLE</td><td>42</td><td>1</td><td>18</td><tr><tr><td>CameraType</td><td>CAMERA_TYPE_ULTRA_WIDE,</td><td>CAMERA_TYPE_ULTRA_WIDE</td><td>42</td><td>1</td><td>18</td><tr><tr><td>CameraType</td><td>CAMERA_TYPE_TELEPHOTO,</td><td>CAMERA_TYPE_TELEPHOTO</td><td>42</td><td>1</td><td>18</td><tr><tr><td>ConnectionType</td><td>enum ConnectionType {
+    
+    CAMERA_CONNECTION_BUILT_IN = 0,
+
+    
+    CAMERA_CONNECTION_USB_PLUGIN,
+
+    
+    CAMERA_CONNECTION_REMOTE
+  }</td><td>ConnectionType</td><td>40</td><td>0</td><td>20</td><tr><tr><td>ConnectionType</td><td>CAMERA_CONNECTION_BUILT_IN = 0,</td><td>CAMERA_CONNECTION_BUILT_IN</td><td>42</td><td>1</td><td>6</td><tr><tr><td>ConnectionType</td><td>CAMERA_CONNECTION_USB_PLUGIN,</td><td>CAMERA_CONNECTION_USB_PLUGIN</td><td>42</td><td>1</td><td>6</td><tr><tr><td>Camera</td><td>interface Camera {
+    
+    readonly cameraId: string;
+    
+    readonly cameraPosition: CameraPosition;
+    
+    readonly cameraType: CameraType;
+    
+    readonly connectionType: ConnectionType;
+  }</td><td>Camera</td><td>20</td><td>0</td><td>1009</td><tr><tr><td>Camera</td><td>readonly cameraId: string</td><td>cameraId</td><td>22</td><td>1</td><td>221</td><tr><tr><td>Camera</td><td>readonly cameraPosition: CameraPosition</td><td>cameraPosition</td><td>22</td><td>1</td><td>58</td><tr><tr><td>Camera</td><td>readonly cameraType: CameraType</td><td>cameraType</td><td>22</td><td>1</td><td>58</td><tr><tr><td>Camera</td><td>readonly connectionType: ConnectionType</td><td>connectionType</td><td>22</td><td>1</td><td>42</td><tr><tr><td>Size</td><td>interface Size {
+    
+    height: number;
+    
+    width: number;
+  }</td><td>Size</td><td>20</td><td>0</td><td>586</td><tr><tr><td>Size</td><td>height: number</td><td>height</td><td>22</td><td>1</td><td>771</td><tr><tr><td>Size</td><td>width: number</td><td>width</td><td>22</td><td>1</td><td>773</td><tr><tr><td>CameraInput</td><td>interface CameraInput {
+    
+    getCameraId(callback: AsyncCallback<string>): void;
+
+    
+    getCameraId(): Promise<string>;
+
+    
+    hasFlash(callback: AsyncCallback<boolean>): void;
+
+    
+    hasFlash(): Promise<boolean>;
+
+    
+    isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean>): void;
+
+    
+    isFlashModeSupported(flashMode: FlashMode): Promise<boolean>;
+
+    
+    getFlashMode(callback: AsyncCallback<FlashMode>): void;
+
+    
+    getFlashMode(): Promise<FlashMode>;
+
+    
+    setFlashMode(flashMode: FlashMode, callback: AsyncCallback<void>): void;
+
+    
+    setFlashMode(flashMode: FlashMode): Promise<void>;
+
+    
+    isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean>): void;
+
+    
+    isFocusModeSupported(afMode: FocusMode): Promise<boolean>;
+
+    
+    getFocusMode(callback: AsyncCallback<FocusMode>): void;
+
+    
+    getFocusMode(): Promise<FocusMode>;
+
+    
+    setFocusMode(afMode: FocusMode, callback: AsyncCallback<void>): void;
+
+    
+    setFocusMode(afMode: FocusMode): Promise<void>;
+
+    
+    getZoomRatioRange(callback: AsyncCallback<Array<number>>): void;
+
+    
+    getZoomRatioRange(): Promise<Array<number>>;
+
+    
+    getZoomRatio(callback: AsyncCallback<number>): void;
+
+    
+    getZoomRatio(): Promise<number>;
+
+    
+    setZoomRatio(zoomRatio: number, callback: AsyncCallback<void>): void;
+
+    
+    setZoomRatio(zoomRatio: number): Promise<void>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    on(type: 'focusStateChange', callback: AsyncCallback<FocusState>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback<CameraInputError>): void;
+  }</td><td>CameraInput</td><td>20</td><td>0</td><td>135</td><tr><tr><td>CameraInput</td><td>getCameraId(callback: AsyncCallback<string>): void;</td><td>getCameraId</td><td>21</td><td>1</td><td>16</td><tr><tr><td>CameraInput</td><td>getCameraId(): Promise<string>;</td><td>getCameraId</td><td>21</td><td>0</td><td>0</td><tr><tr><td>CameraInput</td><td>hasFlash(callback: AsyncCallback<boolean>): void;</td><td>hasFlash</td><td>21</td><td>1</td><td>32</td><tr><tr><td>CameraInput</td><td>hasFlash(): Promise<boolean>;</td><td>hasFlash</td><td>21</td><td>0</td><td>0</td><tr><tr><td>CameraInput</td><td>isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean>): void;</td><td>isFlashModeSupported</td><td>21</td><td>2</td><td>30</td><tr><tr><td>CameraInput</td><td>isFlashModeSupported(flashMode: FlashMode): Promise<boolean>;</td><td>isFlashModeSupported</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CameraInput</td><td>getFlashMode(callback: AsyncCallback<FlashMode>): void;</td><td>getFlashMode</td><td>21</td><td>1</td><td>24</td><tr><tr><td>CameraInput</td><td>getFlashMode(): Promise<FlashMode>;</td><td>getFlashMode</td><td>21</td><td>0</td><td>0</td><tr><tr><td>CameraInput</td><td>setFlashMode(flashMode: FlashMode, callback: AsyncCallback<void>): void;</td><td>setFlashMode</td><td>21</td><td>2</td><td>39</td><tr><tr><td>CameraInput</td><td>setFlashMode(flashMode: FlashMode): Promise<void>;</td><td>setFlashMode</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CameraInput</td><td>isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean>): void;</td><td>isFocusModeSupported</td><td>21</td><td>2</td><td>30</td><tr><tr><td>CameraInput</td><td>isFocusModeSupported(afMode: FocusMode): Promise<boolean>;</td><td>isFocusModeSupported</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CameraInput</td><td>getFocusMode(callback: AsyncCallback<FocusMode>): void;</td><td>getFocusMode</td><td>21</td><td>1</td><td>30</td><tr><tr><td>CameraInput</td><td>getFocusMode(): Promise<FocusMode>;</td><td>getFocusMode</td><td>21</td><td>0</td><td>0</td><tr><tr><td>CameraInput</td><td>setFocusMode(afMode: FocusMode, callback: AsyncCallback<void>): void;</td><td>setFocusMode</td><td>21</td><td>2</td><td>30</td><tr><tr><td>CameraInput</td><td>setFocusMode(afMode: FocusMode): Promise<void>;</td><td>setFocusMode</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CameraInput</td><td>getZoomRatioRange(callback: AsyncCallback<Array<number>>): void;</td><td>getZoomRatioRange</td><td>21</td><td>1</td><td>8</td><tr><tr><td>CameraInput</td><td>getZoomRatioRange(): Promise<Array<number>>;</td><td>getZoomRatioRange</td><td>21</td><td>0</td><td>0</td><tr><tr><td>CameraInput</td><td>getZoomRatio(callback: AsyncCallback<number>): void;</td><td>getZoomRatio</td><td>21</td><td>1</td><td>176</td><tr><tr><td>CameraInput</td><td>getZoomRatio(): Promise<number>;</td><td>getZoomRatio</td><td>21</td><td>0</td><td>0</td><tr><tr><td>CameraInput</td><td>setZoomRatio(zoomRatio: number, callback: AsyncCallback<void>): void;</td><td>setZoomRatio</td><td>21</td><td>2</td><td>100</td><tr><tr><td>CameraInput</td><td>setZoomRatio(zoomRatio: number): Promise<void>;</td><td>setZoomRatio</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CameraInput</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>CameraInput</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>CameraInput</td><td>on(type: 'focusStateChange', callback: AsyncCallback<FocusState>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>CameraInput</td><td>on(type: 'error', callback: ErrorCallback<CameraInputError>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>CameraInputErrorCode</td><td>enum CameraInputErrorCode {
+    
+    ERROR_UNKNOWN = -1
+  }</td><td>CameraInputErrorCode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>CameraInputErrorCode</td><td>ERROR_UNKNOWN = -1</td><td>ERROR_UNKNOWN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>CameraInputError</td><td>interface CameraInputError extends Error {
+    code: CameraInputErrorCode;
+  }</td><td>CameraInputError</td><td>None</td><td>0</td><td>0</td><tr><tr><td>CameraInputError</td><td>code: CameraInputErrorCode</td><td>code</td><td>22</td><td>1</td><td>2380</td><tr><tr><td>FlashMode</td><td>enum FlashMode {
+    
+    FLASH_MODE_CLOSE = 0,
+    
+    FLASH_MODE_OPEN,
+    
+    FLASH_MODE_AUTO,
+    
+    FLASH_MODE_ALWAYS_OPEN
+  }</td><td>FlashMode</td><td>40</td><td>0</td><td>224</td><tr><tr><td>FlashMode</td><td>FLASH_MODE_CLOSE = 0,</td><td>FLASH_MODE_CLOSE</td><td>42</td><td>1</td><td>222</td><tr><tr><td>FlashMode</td><td>FLASH_MODE_OPEN,</td><td>FLASH_MODE_OPEN</td><td>42</td><td>1</td><td>226</td><tr><tr><td>FlashMode</td><td>FLASH_MODE_AUTO,</td><td>FLASH_MODE_AUTO</td><td>42</td><td>1</td><td>90</td><tr><tr><td>FocusMode</td><td>enum FocusMode {
+    
+    FOCUS_MODE_MANUAL = 0,
+    
+    FOCUS_MODE_CONTINUOUS_AUTO,
+    
+    FOCUS_MODE_AUTO,
+    
+    FOCUS_MODE_LOCKED
+  }</td><td>FocusMode</td><td>40</td><td>0</td><td>260</td><tr><tr><td>FocusMode</td><td>FOCUS_MODE_MANUAL = 0,</td><td>FOCUS_MODE_MANUAL</td><td>42</td><td>1</td><td>221</td><tr><tr><td>FocusMode</td><td>FOCUS_MODE_CONTINUOUS_AUTO,</td><td>FOCUS_MODE_CONTINUOUS_AUTO</td><td>42</td><td>1</td><td>30</td><tr><tr><td>FocusMode</td><td>FOCUS_MODE_AUTO,</td><td>FOCUS_MODE_AUTO</td><td>42</td><td>1</td><td>210</td><tr><tr><td>FocusState</td><td>enum FocusState {
+    
+    FOCUS_STATE_SCAN = 0,
+    
+    FOCUS_STATE_FOCUSED,
+    
+    FOCUS_STATE_UNFOCUSED
+  }</td><td>FocusState</td><td>40</td><td>0</td><td>33</td><tr><tr><td>FocusState</td><td>FOCUS_STATE_SCAN = 0,</td><td>FOCUS_STATE_SCAN</td><td>42</td><td>1</td><td>6</td><tr><tr><td>FocusState</td><td>FOCUS_STATE_FOCUSED,</td><td>FOCUS_STATE_FOCUSED</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CaptureSession</td><td>interface CaptureSession {
+    
+    beginConfig(callback: AsyncCallback<void>): void;
+
+    
+    beginConfig(): Promise<void>;
+
+    
+    commitConfig(callback: AsyncCallback<void>): void;
+
+    
+    commitConfig(): Promise<void>;
+
+    
+    addInput(cameraInput: CameraInput, callback: AsyncCallback<void>): void;
+
+    
+    addInput(cameraInput: CameraInput): Promise<void>;
+
+    
+    addOutput(previewOutput: PreviewOutput, callback: AsyncCallback<void>): void;
+
+    
+    addOutput(previewOutput: PreviewOutput): Promise<void>;
+
+    
+    addOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void>): void;
+
+    
+    addOutput(photoOutput: PhotoOutput): Promise<void>;
+
+    
+    addOutput(videoOutput: VideoOutput, callback: AsyncCallback<void>): void;
+
+    
+    addOutput(videoOutput: VideoOutput): Promise<void>;
+
+    
+    removeInput(cameraInput: CameraInput, callback: AsyncCallback<void>): void;
+
+    
+    removeInput(cameraInput: CameraInput): Promise<void>;
+
+    
+    removeOutput(previewOutput: PreviewOutput, callback: AsyncCallback<void>): void;
+
+    
+    removeOutput(previewOutput: PreviewOutput): Promise<void>;
+
+    
+    removeOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void>): void;
+
+    
+    removeOutput(photoOutput: PhotoOutput): Promise<void>;
+
+    
+    removeOutput(videoOutput: VideoOutput, callback: AsyncCallback<void>): void;
+
+    
+    removeOutput(videoOutput: VideoOutput): Promise<void>;
+
+    
+    start(callback: AsyncCallback<void>): void;
+
+    
+    start(): Promise<void>;
+
+    
+    stop(callback: AsyncCallback<void>): void;
+
+    
+    stop(): Promise<void>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    on(type: 'error', callback: ErrorCallback<CaptureSessionError>): void;
+  }</td><td>CaptureSession</td><td>20</td><td>0</td><td>189</td><tr><tr><td>CaptureSession</td><td>beginConfig(callback: AsyncCallback<void>): void;</td><td>beginConfig</td><td>21</td><td>1</td><td>27</td><tr><tr><td>CaptureSession</td><td>beginConfig(): Promise<void>;</td><td>beginConfig</td><td>21</td><td>0</td><td>0</td><tr><tr><td>CaptureSession</td><td>commitConfig(callback: AsyncCallback<void>): void;</td><td>commitConfig</td><td>21</td><td>1</td><td>27</td><tr><tr><td>CaptureSession</td><td>commitConfig(): Promise<void>;</td><td>commitConfig</td><td>21</td><td>0</td><td>0</td><tr><tr><td>CaptureSession</td><td>addInput(cameraInput: CameraInput, callback: AsyncCallback<void>): void;</td><td>addInput</td><td>21</td><td>2</td><td>59</td><tr><tr><td>CaptureSession</td><td>addInput(cameraInput: CameraInput): Promise<void>;</td><td>addInput</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CaptureSession</td><td>addOutput(previewOutput: PreviewOutput, callback: AsyncCallback<void>): void;</td><td>addOutput</td><td>21</td><td>2</td><td>31</td><tr><tr><td>CaptureSession</td><td>addOutput(previewOutput: PreviewOutput): Promise<void>;</td><td>addOutput</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CaptureSession</td><td>addOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void>): void;</td><td>addOutput</td><td>21</td><td>2</td><td>31</td><tr><tr><td>CaptureSession</td><td>addOutput(photoOutput: PhotoOutput): Promise<void>;</td><td>addOutput</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CaptureSession</td><td>addOutput(videoOutput: VideoOutput, callback: AsyncCallback<void>): void;</td><td>addOutput</td><td>21</td><td>2</td><td>31</td><tr><tr><td>CaptureSession</td><td>addOutput(videoOutput: VideoOutput): Promise<void>;</td><td>addOutput</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CaptureSession</td><td>removeInput(cameraInput: CameraInput, callback: AsyncCallback<void>): void;</td><td>removeInput</td><td>21</td><td>2</td><td>6</td><tr><tr><td>CaptureSession</td><td>removeInput(cameraInput: CameraInput): Promise<void>;</td><td>removeInput</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CaptureSession</td><td>removeOutput(previewOutput: PreviewOutput, callback: AsyncCallback<void>): void;</td><td>removeOutput</td><td>21</td><td>2</td><td>12</td><tr><tr><td>CaptureSession</td><td>removeOutput(previewOutput: PreviewOutput): Promise<void>;</td><td>removeOutput</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CaptureSession</td><td>removeOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void>): void;</td><td>removeOutput</td><td>21</td><td>2</td><td>12</td><tr><tr><td>CaptureSession</td><td>removeOutput(photoOutput: PhotoOutput): Promise<void>;</td><td>removeOutput</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CaptureSession</td><td>removeOutput(videoOutput: VideoOutput, callback: AsyncCallback<void>): void;</td><td>removeOutput</td><td>21</td><td>2</td><td>12</td><tr><tr><td>CaptureSession</td><td>removeOutput(videoOutput: VideoOutput): Promise<void>;</td><td>removeOutput</td><td>21</td><td>1</td><td>0</td><tr><tr><td>CaptureSession</td><td>start(callback: AsyncCallback<void>): void;</td><td>start</td><td>21</td><td>1</td><td>1221</td><tr><tr><td>CaptureSession</td><td>start(): Promise<void>;</td><td>start</td><td>21</td><td>0</td><td>128</td><tr><tr><td>CaptureSession</td><td>stop(callback: AsyncCallback<void>): void;</td><td>stop</td><td>21</td><td>1</td><td>833</td><tr><tr><td>CaptureSession</td><td>stop(): Promise<void>;</td><td>stop</td><td>21</td><td>0</td><td>99</td><tr><tr><td>CaptureSession</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>CaptureSession</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>CaptureSession</td><td>on(type: 'error', callback: ErrorCallback<CaptureSessionError>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>CaptureSessionErrorCode</td><td>enum CaptureSessionErrorCode {
+    ERROR_UNKNOWN = -1
+  }</td><td>CaptureSessionErrorCode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>CaptureSessionErrorCode</td><td>ERROR_UNKNOWN = -1</td><td>ERROR_UNKNOWN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>CaptureSessionError</td><td>interface CaptureSessionError extends Error {
+    code: CaptureSessionErrorCode;
+  }</td><td>CaptureSessionError</td><td>None</td><td>0</td><td>0</td><tr><tr><td>CaptureSessionError</td><td>code: CaptureSessionErrorCode</td><td>code</td><td>22</td><td>1</td><td>2380</td><tr><tr><td>PreviewOutput</td><td>interface PreviewOutput {
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    on(type: 'frameStart', callback: AsyncCallback<void>): void;
+
+    
+    on(type: 'frameEnd', callback: AsyncCallback<void>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback<PreviewOutputError>): void;
+  }</td><td>PreviewOutput</td><td>20</td><td>0</td><td>48</td><tr><tr><td>PreviewOutput</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>PreviewOutput</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>PreviewOutput</td><td>on(type: 'frameStart', callback: AsyncCallback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>PreviewOutput</td><td>on(type: 'frameEnd', callback: AsyncCallback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>PreviewOutput</td><td>on(type: 'error', callback: ErrorCallback<PreviewOutputError>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>PreviewOutputErrorCode</td><td>enum PreviewOutputErrorCode {
+    ERROR_UNKNOWN = -1
+  }</td><td>PreviewOutputErrorCode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>PreviewOutputErrorCode</td><td>ERROR_UNKNOWN = -1</td><td>ERROR_UNKNOWN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>PreviewOutputError</td><td>interface PreviewOutputError extends Error {
+    code: PreviewOutputErrorCode;
+  }</td><td>PreviewOutputError</td><td>None</td><td>0</td><td>8</td><tr><tr><td>PreviewOutputError</td><td>code: PreviewOutputErrorCode</td><td>code</td><td>22</td><td>1</td><td>2380</td><tr><tr><td>ImageRotation</td><td>enum ImageRotation {
+    
+    ROTATION_0 = 0,
+
+    
+    ROTATION_90 = 90,
+
+    
+    ROTATION_180 = 180,
+
+    
+    ROTATION_270 = 270
+  }</td><td>ImageRotation</td><td>40</td><td>0</td><td>28</td><tr><tr><td>ImageRotation</td><td>ROTATION_0 = 0,</td><td>ROTATION_0</td><td>42</td><td>1</td><td>6</td><tr><tr><td>ImageRotation</td><td>ROTATION_90 = 90,</td><td>ROTATION_90</td><td>42</td><td>1</td><td>6</td><tr><tr><td>ImageRotation</td><td>ROTATION_180 = 180,</td><td>ROTATION_180</td><td>42</td><td>1</td><td>6</td><tr><tr><td>ImageRotation</td><td>ROTATION_270 = 270</td><td>ROTATION_270</td><td>42</td><td>1</td><td>6</td><tr><tr><td>QualityLevel</td><td>enum QualityLevel {
+    
+    QUALITY_LEVEL_HIGH = 0,
+
+    
+    QUALITY_LEVEL_MEDIUM,
+
+    
+    QUALITY_LEVEL_LOW
+  }</td><td>QualityLevel</td><td>40</td><td>0</td><td>22</td><tr><tr><td>QualityLevel</td><td>QUALITY_LEVEL_HIGH = 0,</td><td>QUALITY_LEVEL_HIGH</td><td>42</td><td>1</td><td>6</td><tr><tr><td>QualityLevel</td><td>QUALITY_LEVEL_MEDIUM,</td><td>QUALITY_LEVEL_MEDIUM</td><td>42</td><td>1</td><td>6</td><tr><tr><td>PhotoCaptureSetting</td><td>interface PhotoCaptureSetting {
+    
+    quality?: QualityLevel;
+    
+    rotation?: ImageRotation;
+  }</td><td>PhotoCaptureSetting</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PhotoCaptureSetting</td><td>quality?: QualityLevel</td><td>quality</td><td>22</td><td>1</td><td>26</td><tr><tr><td>PhotoCaptureSetting</td><td>rotation?: ImageRotation</td><td>rotation</td><td>22</td><td>1</td><td>36</td><tr><tr><td>PhotoOutput</td><td>interface PhotoOutput {
+    
+    capture(callback: AsyncCallback<void>): void;
+
+    
+    capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void>): void;
+
+    
+    capture(setting?: PhotoCaptureSetting): Promise<void>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    on(type: 'captureStart', callback: AsyncCallback<number>): void;
+
+    
+    on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo>): void;
+
+    
+    on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback<PhotoOutputError>): void;
+  }</td><td>PhotoOutput</td><td>20</td><td>0</td><td>26</td><tr><tr><td>PhotoOutput</td><td>capture(callback: AsyncCallback<void>): void;</td><td>capture</td><td>21</td><td>1</td><td>928</td><tr><tr><td>PhotoOutput</td><td>capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void>): void;</td><td>capture</td><td>21</td><td>2</td><td>928</td><tr><tr><td>PhotoOutput</td><td>capture(setting?: PhotoCaptureSetting): Promise<void>;</td><td>capture</td><td>21</td><td>1</td><td>0</td><tr><tr><td>PhotoOutput</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>PhotoOutput</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>PhotoOutput</td><td>on(type: 'captureStart', callback: AsyncCallback<number>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>PhotoOutput</td><td>on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>PhotoOutput</td><td>on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>PhotoOutput</td><td>on(type: 'error', callback: ErrorCallback<PhotoOutputError>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>FrameShutterInfo</td><td>interface FrameShutterInfo {
+    
+    captureId: number;
+    
+    timestamp: number;
+  }</td><td>FrameShutterInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FrameShutterInfo</td><td>captureId: number</td><td>captureId</td><td>22</td><td>1</td><td>20</td><tr><tr><td>FrameShutterInfo</td><td>timestamp: number</td><td>timestamp</td><td>22</td><td>1</td><td>126</td><tr><tr><td>CaptureEndInfo</td><td>interface CaptureEndInfo {
+    
+    captureId: number;
+    
+    frameCount: number;
+  }</td><td>CaptureEndInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CaptureEndInfo</td><td>captureId: number</td><td>captureId</td><td>22</td><td>1</td><td>20</td><tr><tr><td>CaptureEndInfo</td><td>frameCount: number</td><td>frameCount</td><td>22</td><td>1</td><td>172</td><tr><tr><td>PhotoOutputErrorCode</td><td>enum PhotoOutputErrorCode {
+    ERROR_UNKNOWN = -1
+  }</td><td>PhotoOutputErrorCode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>PhotoOutputErrorCode</td><td>ERROR_UNKNOWN = -1</td><td>ERROR_UNKNOWN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>PhotoOutputError</td><td>interface PhotoOutputError extends Error {
+    code: PhotoOutputErrorCode;
+  }</td><td>PhotoOutputError</td><td>None</td><td>0</td><td>4</td><tr><tr><td>PhotoOutputError</td><td>code: PhotoOutputErrorCode</td><td>code</td><td>22</td><td>1</td><td>2380</td><tr><tr><td>VideoOutput</td><td>interface VideoOutput {
+    
+    start(callback: AsyncCallback<void>): void;
+
+        
+    start(): Promise<void>;
+
+    
+    stop(callback: AsyncCallback<void>): void;
+
+    
+    stop(): Promise<void>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    on(type: 'frameStart', callback: AsyncCallback<void>): void;
+
+    
+    on(type: 'frameEnd', callback: AsyncCallback<void>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback<VideoOutputError>): void;
+  }</td><td>VideoOutput</td><td>20</td><td>0</td><td>131</td><tr><tr><td>VideoOutput</td><td>start(callback: AsyncCallback<void>): void;</td><td>start</td><td>21</td><td>1</td><td>1221</td><tr><tr><td>VideoOutput</td><td>start(): Promise<void>;</td><td>start</td><td>21</td><td>0</td><td>128</td><tr><tr><td>VideoOutput</td><td>stop(callback: AsyncCallback<void>): void;</td><td>stop</td><td>21</td><td>1</td><td>833</td><tr><tr><td>VideoOutput</td><td>stop(): Promise<void>;</td><td>stop</td><td>21</td><td>0</td><td>99</td><tr><tr><td>VideoOutput</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>VideoOutput</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>VideoOutput</td><td>on(type: 'frameStart', callback: AsyncCallback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>VideoOutput</td><td>on(type: 'frameEnd', callback: AsyncCallback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>VideoOutput</td><td>on(type: 'error', callback: ErrorCallback<VideoOutputError>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>VideoOutputErrorCode</td><td>enum VideoOutputErrorCode {
+    ERROR_UNKNOWN = -1
+  }</td><td>VideoOutputErrorCode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>VideoOutputErrorCode</td><td>ERROR_UNKNOWN = -1</td><td>ERROR_UNKNOWN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>VideoOutputError</td><td>interface VideoOutputError extends Error {
+    code: VideoOutputErrorCode;
+  }</td><td>VideoOutputError</td><td>None</td><td>0</td><td>0</td><tr><tr><td>VideoOutputError</td><td>code: VideoOutputErrorCode</td><td>code</td><td>22</td><td>1</td><td>2380</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

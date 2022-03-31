@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>全球化子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>global</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.i18n</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>i18n</td><td>declare namespace i18n {
+
+export function getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string;
+
+
+export function getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string;
+
+
+export function getSystemLanguages(): Array<string>;
+
+
+export function getSystemCountries(language: string): Array<string>;
+
+
+export function isSuggested(language: string, region?: string): boolean;
+
+
+export function getSystemLanguage(): string;
+
+
+export function setSystemLanguage(language: string): boolean;
+
+
+export function getSystemRegion(): string;
+
+
+export function setSystemRegion(region: string): boolean;
+
+
+export function getSystemLocale(): string;
+
+
+export function setSystemLocale(locale: string): boolean;
+
+
+export interface Util {
+    
+    unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string;
+}
+
+
+export interface UnitInfo {
+    
+    unit: string
+
+    
+    measureSystem: string
+}
+
+
+export interface PhoneNumberFormatOptions {
+    
+    type: string;
+}
+
+
+export class PhoneNumberFormat {
+    
+    constructor(country: string, options?: PhoneNumberFormatOptions);
+
+    
+    isValidNumber(number: string): boolean;
+
+    
+    format(number: string): string;
+}
+
+
+ export function getCalendar(locale: string, type?: string): Calendar;
+
+export class Calendar {
+    
+    setTime(date: Date): void;
+
+    
+     setTime(time: number): void;
+
+    
+    set(year: number, month: number, date:number, hour?: number, minute?: number, second?: number): void;
+
+    
+    setTimeZone(timezone: string): void;
+
+    
+    getTimeZone(): string;
+
+    
+    getFirstDayOfWeek(): number;
+
+    
+    setFirstDayOfWeek(value: number): void;
+
+    
+    getMinimalDaysInFirstWeek(): number;
+
+    
+    setMinimalDaysInFirstWeek(value: number): void;
+
+    
+    get(field: string): number;
+
+    
+    getDisplayName(locale: string): string;
+
+    
+    isWeekend(date?: Date): boolean;
+}
+
+
+export function isRTL(locale: string): boolean;
+
+
+ export function getLineInstance(locale: string): BreakIterator;
+
+
+export class BreakIterator {
+    
+    current(): number;
+
+    
+    first(): number;
+
+    
+    last(): number;
+
+    
+    next(index?: number): number;
+
+    
+    previous(): number;
+
+    
+    setLineBreakText(text: string): void;
+
+    
+    following(offset: number): number;
+
+    
+    getLineBreakText(): string;
+
+    
+    isBoundary(offset: number): boolean;
+}
+
+
+export function getInstance(locale?:string): IndexUtil;
+
+
+export class IndexUtil {
+    
+    getIndexList(): Array<string>;
+
+    
+    addLocale(locale: string): void;
+
+    
+    getIndex(text: string): string;
+}
+
+
+export class Character {
+    
+    isDigit(char: string): boolean;
+
+    
+    isSpaceChar(char: string): boolean;
+
+    
+    isWhitespace(char: string): boolean;
+
+    
+    isRTL(char: string): boolean;
+
+    
+    isIdeograph(char: string): boolean;
+
+    
+    isLetter(char: string): boolean;
+
+    
+    isLowerCase(char: string): boolean;
+
+    
+    isUpperCase(char: string): boolean;
+
+    
+    getType(char: string): string;
+}
+
+
+ export function is24HourClock(): boolean;
+
+
+  export function set24HourClock(option: boolean): boolean;
+
+
+export function addPreferredLanguage(language: string, index?: number): boolean;
+
+
+export function removePreferredLanguage(index: number): boolean;
+
+
+export function getPreferredLanguageList(): Array<string>;
+
+
+export function getFirstPreferredLanguage(): string;
+
+
+export function getTimeZone(zoneID?: string): TimeZone;
+
+
+export class TimeZone {
+    
+    getID(): string;
+
+    
+    getDisplayName(locale?: string, isDST?: boolean): string;
+
+    
+    getRawOffset(): number;
+
+    
+    getOffset(date?: number): number;
+}
+}</td><td>i18n</td><td>None</td><td>0</td><td>688</td><tr><tr><td>Util</td><td>export interface Util {
+    
+    unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string;
+}</td><td>Util</td><td>20</td><td>0</td><td>13</td><tr><tr><td>Util</td><td>unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string;</td><td>unitConvert</td><td>21</td><td>5</td><td>39</td><tr><tr><td>UnitInfo</td><td>export interface UnitInfo {
+    
+    unit: string
+
+    
+    measureSystem: string
+}</td><td>UnitInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PhoneNumberFormatOptions</td><td>export interface PhoneNumberFormatOptions {
+    
+    type: string;
+}</td><td>PhoneNumberFormatOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PhoneNumberFormatOptions</td><td>type: string</td><td>type</td><td>22</td><td>1</td><td>26</td><tr><tr><td>PhoneNumberFormat</td><td>export class PhoneNumberFormat {
+    
+    constructor(country: string, options?: PhoneNumberFormatOptions);
+
+    
+    isValidNumber(number: string): boolean;
+
+    
+    format(number: string): string;
+}</td><td>PhoneNumberFormat</td><td>10</td><td>0</td><td>35</td><tr><tr><td>PhoneNumberFormat</td><td>constructor(country: string, options?: PhoneNumberFormatOptions)</td><td>constructor</td><td>11</td><td>2</td><td>0</td><tr><tr><td>PhoneNumberFormat</td><td>isValidNumber(number: string): boolean;</td><td>isValidNumber</td><td>11</td><td>1</td><td>67</td><tr><tr><td>PhoneNumberFormat</td><td>format(number: string): string;</td><td>format</td><td>11</td><td>1</td><td>285</td><tr><tr><td>Calendar</td><td>export class Calendar {
+    
+    setTime(date: Date): void;
+
+    
+     setTime(time: number): void;
+
+    
+    set(year: number, month: number, date:number, hour?: number, minute?: number, second?: number): void;
+
+    
+    setTimeZone(timezone: string): void;
+
+    
+    getTimeZone(): string;
+
+    
+    getFirstDayOfWeek(): number;
+
+    
+    setFirstDayOfWeek(value: number): void;
+
+    
+    getMinimalDaysInFirstWeek(): number;
+
+    
+    setMinimalDaysInFirstWeek(value: number): void;
+
+    
+    get(field: string): number;
+
+    
+    getDisplayName(locale: string): string;
+
+    
+    isWeekend(date?: Date): boolean;
+}</td><td>Calendar</td><td>10</td><td>0</td><td>47</td><tr><tr><td>Calendar</td><td>setTime(date: Date): void;</td><td>setTime</td><td>11</td><td>1</td><td>25</td><tr><tr><td>Calendar</td><td>setTime(time: number): void;</td><td>setTime</td><td>11</td><td>1</td><td>25</td><tr><tr><td>Calendar</td><td>set(year: number, month: number, date:number, hour?: number, minute?: number, second?: number): void;</td><td>set</td><td>11</td><td>6</td><td>174</td><tr><tr><td>Calendar</td><td>setTimeZone(timezone: string): void;</td><td>setTimeZone</td><td>11</td><td>1</td><td>9</td><tr><tr><td>Calendar</td><td>getTimeZone(): string;</td><td>getTimeZone</td><td>11</td><td>0</td><td>39</td><tr><tr><td>Calendar</td><td>getFirstDayOfWeek(): number;</td><td>getFirstDayOfWeek</td><td>11</td><td>0</td><td>16</td><tr><tr><td>Calendar</td><td>setFirstDayOfWeek(value: number): void;</td><td>setFirstDayOfWeek</td><td>11</td><td>1</td><td>15</td><tr><tr><td>Calendar</td><td>getMinimalDaysInFirstWeek(): number;</td><td>getMinimalDaysInFirstWeek</td><td>11</td><td>0</td><td>16</td><tr><tr><td>Calendar</td><td>setMinimalDaysInFirstWeek(value: number): void;</td><td>setMinimalDaysInFirstWeek</td><td>11</td><td>1</td><td>15</td><tr><tr><td>Calendar</td><td>get(field: string): number;</td><td>get</td><td>11</td><td>1</td><td>785</td><tr><tr><td>Calendar</td><td>getDisplayName(locale: string): string;</td><td>getDisplayName</td><td>11</td><td>1</td><td>37</td><tr><tr><td>Calendar</td><td>isWeekend(date?: Date): boolean;</td><td>isWeekend</td><td>11</td><td>1</td><td>13</td><tr><tr><td>BreakIterator</td><td>export class BreakIterator {
+    
+    current(): number;
+
+    
+    first(): number;
+
+    
+    last(): number;
+
+    
+    next(index?: number): number;
+
+    
+    previous(): number;
+
+    
+    setLineBreakText(text: string): void;
+
+    
+    following(offset: number): number;
+
+    
+    getLineBreakText(): string;
+
+    
+    isBoundary(offset: number): boolean;
+}</td><td>BreakIterator</td><td>10</td><td>0</td><td>0</td><tr><tr><td>BreakIterator</td><td>current(): number;</td><td>current</td><td>11</td><td>0</td><td>31</td><tr><tr><td>BreakIterator</td><td>first(): number;</td><td>first</td><td>11</td><td>0</td><td>9</td><tr><tr><td>BreakIterator</td><td>last(): number;</td><td>last</td><td>11</td><td>0</td><td>6</td><tr><tr><td>BreakIterator</td><td>next(index?: number): number;</td><td>next</td><td>11</td><td>1</td><td>19</td><tr><tr><td>BreakIterator</td><td>previous(): number;</td><td>previous</td><td>11</td><td>0</td><td>11</td><tr><tr><td>BreakIterator</td><td>setLineBreakText(text: string): void;</td><td>setLineBreakText</td><td>11</td><td>1</td><td>21</td><tr><tr><td>BreakIterator</td><td>following(offset: number): number;</td><td>following</td><td>11</td><td>1</td><td>8</td><tr><tr><td>BreakIterator</td><td>getLineBreakText(): string;</td><td>getLineBreakText</td><td>11</td><td>0</td><td>6</td><tr><tr><td>BreakIterator</td><td>isBoundary(offset: number): boolean;</td><td>isBoundary</td><td>11</td><td>1</td><td>8</td><tr><tr><td>IndexUtil</td><td>export class IndexUtil {
+    
+    getIndexList(): Array<string>;
+
+    
+    addLocale(locale: string): void;
+
+    
+    getIndex(text: string): string;
+}</td><td>IndexUtil</td><td>10</td><td>0</td><td>0</td><tr><tr><td>IndexUtil</td><td>getIndexList(): Array<string>;</td><td>getIndexList</td><td>11</td><td>0</td><td>6</td><tr><tr><td>IndexUtil</td><td>addLocale(locale: string): void;</td><td>addLocale</td><td>11</td><td>1</td><td>6</td><tr><tr><td>IndexUtil</td><td>getIndex(text: string): string;</td><td>getIndex</td><td>11</td><td>1</td><td>14</td><tr><tr><td>Character</td><td>export class Character {
+    
+    isDigit(char: string): boolean;
+
+    
+    isSpaceChar(char: string): boolean;
+
+    
+    isWhitespace(char: string): boolean;
+
+    
+    isRTL(char: string): boolean;
+
+    
+    isIdeograph(char: string): boolean;
+
+    
+    isLetter(char: string): boolean;
+
+    
+    isLowerCase(char: string): boolean;
+
+    
+    isUpperCase(char: string): boolean;
+
+    
+    getType(char: string): string;
+}</td><td>Character</td><td>10</td><td>0</td><td>46</td><tr><tr><td>Character</td><td>isDigit(char: string): boolean;</td><td>isDigit</td><td>11</td><td>1</td><td>18</td><tr><tr><td>Character</td><td>isSpaceChar(char: string): boolean;</td><td>isSpaceChar</td><td>11</td><td>1</td><td>12</td><tr><tr><td>Character</td><td>isWhitespace(char: string): boolean;</td><td>isWhitespace</td><td>11</td><td>1</td><td>9</td><tr><tr><td>Character</td><td>isRTL(char: string): boolean;</td><td>isRTL</td><td>11</td><td>1</td><td>27</td><tr><tr><td>Character</td><td>isIdeograph(char: string): boolean;</td><td>isIdeograph</td><td>11</td><td>1</td><td>15</td><tr><tr><td>Character</td><td>isLetter(char: string): boolean;</td><td>isLetter</td><td>11</td><td>1</td><td>15</td><tr><tr><td>Character</td><td>isLowerCase(char: string): boolean;</td><td>isLowerCase</td><td>11</td><td>1</td><td>15</td><tr><tr><td>Character</td><td>isUpperCase(char: string): boolean;</td><td>isUpperCase</td><td>11</td><td>1</td><td>15</td><tr><tr><td>Character</td><td>getType(char: string): string;</td><td>getType</td><td>11</td><td>1</td><td>24</td><tr><tr><td>TimeZone</td><td>export class TimeZone {
+    
+    getID(): string;
+
+    
+    getDisplayName(locale?: string, isDST?: boolean): string;
+
+    
+    getRawOffset(): number;
+
+    
+    getOffset(date?: number): number;
+}</td><td>TimeZone</td><td>10</td><td>0</td><td>48</td><tr><tr><td>TimeZone</td><td>getID(): string;</td><td>getID</td><td>11</td><td>0</td><td>12</td><tr><tr><td>TimeZone</td><td>getDisplayName(locale?: string, isDST?: boolean): string;</td><td>getDisplayName</td><td>11</td><td>2</td><td>37</td><tr><tr><td>TimeZone</td><td>getRawOffset(): number;</td><td>getRawOffset</td><td>11</td><td>0</td><td>9</td><tr><tr><td>TimeZone</td><td>getOffset(date?: number): number;</td><td>getOffset</td><td>11</td><td>1</td><td>15</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

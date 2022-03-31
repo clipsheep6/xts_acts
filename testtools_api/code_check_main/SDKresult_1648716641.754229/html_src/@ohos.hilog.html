@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>DFX子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>hiviewdfx</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.hilog</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>hilog</td><td>declare namespace hilog {
+  
+  function debug(domain: number, tag: string, format: string, ...args: any[]) : void;
+  
+  function info(domain: number, tag: string, format: string, ...args: any[]) : void;
+  
+  function warn(domain: number, tag: string, format: string, ...args: any[]) : void;
+  
+  function error(domain: number, tag: string, format: string, ...args: any[]) : void;
+  
+  function fatal(domain: number, tag: string, format: string, ...args: any[]) : void;
+  
+  function isLoggable(domain: number, tag: string, level: LogLevel) : boolean;
+  
+  enum LogLevel {
+      DEBUG = 3,
+      INFO = 4,
+      WARN = 5,
+      ERROR = 6,
+      FATAL = 7,
+  }
+}</td><td>hilog</td><td>None</td><td>0</td><td>1</td><tr><tr><td>hilog</td><td>function debug(domain: number, tag: string, format: string, ...args: any[]) : void;</td><td>debug</td><td>None</td><td>4</td><td>2</td><tr><tr><td>hilog</td><td>function info(domain: number, tag: string, format: string, ...args: any[]) : void;</td><td>info</td><td>None</td><td>4</td><td>188</td><tr><tr><td>hilog</td><td>function warn(domain: number, tag: string, format: string, ...args: any[]) : void;</td><td>warn</td><td>None</td><td>4</td><td>0</td><tr><tr><td>hilog</td><td>function error(domain: number, tag: string, format: string, ...args: any[]) : void;</td><td>error</td><td>None</td><td>4</td><td>127</td><tr><tr><td>hilog</td><td>function fatal(domain: number, tag: string, format: string, ...args: any[]) : void;</td><td>fatal</td><td>None</td><td>4</td><td>8</td><tr><tr><td>hilog</td><td>function isLoggable(domain: number, tag: string, level: LogLevel) : boolean;</td><td>isLoggable</td><td>None</td><td>3</td><td>6</td><tr><tr><td>LogLevel</td><td>enum LogLevel {
+      DEBUG = 3,
+      INFO = 4,
+      WARN = 5,
+      ERROR = 6,
+      FATAL = 7,
+  }</td><td>LogLevel</td><td>40</td><td>0</td><td>12</td><tr><tr><td>LogLevel</td><td>DEBUG = 3,</td><td>DEBUG</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LogLevel</td><td>INFO = 4,</td><td>INFO</td><td>42</td><td>1</td><td>12</td><tr><tr><td>LogLevel</td><td>WARN = 5,</td><td>WARN</td><td>42</td><td>1</td><td>6</td><tr><tr><td>LogLevel</td><td>ERROR = 6,</td><td>ERROR</td><td>42</td><td>1</td><td>6</td><tr><tr><td>LogLevel</td><td>FATAL = 7,</td><td>FATAL</td><td>42</td><td>1</td><td>6</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

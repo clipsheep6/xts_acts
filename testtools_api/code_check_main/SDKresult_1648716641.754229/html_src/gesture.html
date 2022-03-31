@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>gesture</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>PanDirection</td><td>declare enum PanDirection {
+  
+  None,
+
+  
+  Horizontal,
+
+  
+  Left,
+
+  
+  Right,
+
+  
+  Vertical,
+
+  
+  Up,
+
+  
+  Down,
+
+  
+  All,
+}</td><td>PanDirection</td><td>40</td><td>0</td><td>6</td><tr><tr><td>PanDirection</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>PanDirection</td><td>Horizontal,</td><td>Horizontal</td><td>42</td><td>1</td><td>86</td><tr><tr><td>PanDirection</td><td>Left,</td><td>Left</td><td>42</td><td>1</td><td>54</td><tr><tr><td>PanDirection</td><td>Right,</td><td>Right</td><td>42</td><td>1</td><td>60</td><tr><tr><td>PanDirection</td><td>Vertical,</td><td>Vertical</td><td>42</td><td>1</td><td>99</td><tr><tr><td>PanDirection</td><td>Up,</td><td>Up</td><td>42</td><td>1</td><td>162</td><tr><tr><td>PanDirection</td><td>Down,</td><td>Down</td><td>42</td><td>1</td><td>65</td><tr><tr><td>PanDirection</td><td>All,</td><td>All</td><td>42</td><td>1</td><td>613</td><tr><tr><td>SwipeDirection</td><td>declare enum SwipeDirection {
+  
+  None,
+
+  
+  Horizontal,
+
+  
+  Vertical,
+
+  
+  All,
+}</td><td>SwipeDirection</td><td>40</td><td>0</td><td>0</td><tr><tr><td>SwipeDirection</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>SwipeDirection</td><td>Horizontal,</td><td>Horizontal</td><td>42</td><td>1</td><td>86</td><tr><tr><td>SwipeDirection</td><td>Vertical,</td><td>Vertical</td><td>42</td><td>1</td><td>99</td><tr><tr><td>SwipeDirection</td><td>All,</td><td>All</td><td>42</td><td>1</td><td>613</td><tr><tr><td>GestureMode</td><td>declare enum GestureMode {
+  
+  Sequence,
+
+  
+  Parallel,
+
+  
+  Exclusive,
+}</td><td>GestureMode</td><td>40</td><td>0</td><td>6</td><tr><tr><td>GestureMode</td><td>Sequence,</td><td>Sequence</td><td>42</td><td>1</td><td>2</td><tr><tr><td>GestureMode</td><td>Parallel,</td><td>Parallel</td><td>42</td><td>1</td><td>1</td><tr><tr><td>GestureMode</td><td>Exclusive,</td><td>Exclusive</td><td>42</td><td>1</td><td>0</td><tr><tr><td>GestureMask</td><td>declare enum GestureMask {
+  
+  Normal,
+
+  
+  IgnoreInternal,
+}</td><td>GestureMask</td><td>40</td><td>0</td><td>2</td><tr><tr><td>GestureMask</td><td>Normal,</td><td>Normal</td><td>42</td><td>1</td><td>102</td><tr><tr><td>GestureMask</td><td>IgnoreInternal,</td><td>IgnoreInternal</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FingerInfo</td><td>interface FingerInfo {
+  
+  id: number;
+
+  
+  globalX: number;
+
+  
+  globalY: number;
+
+  
+  localX: number;
+
+  
+  localY: number;
+}</td><td>FingerInfo</td><td>20</td><td>0</td><td>2</td><tr><tr><td>FingerInfo</td><td>id: number</td><td>id</td><td>22</td><td>1</td><td>8283</td><tr><tr><td>FingerInfo</td><td>globalX: number</td><td>globalX</td><td>22</td><td>1</td><td>2114</td><tr><tr><td>FingerInfo</td><td>globalY: number</td><td>globalY</td><td>22</td><td>1</td><td>2114</td><tr><tr><td>FingerInfo</td><td>localX: number</td><td>localX</td><td>22</td><td>1</td><td>884</td><tr><tr><td>FingerInfo</td><td>localY: number</td><td>localY</td><td>22</td><td>1</td><td>882</td><tr><tr><td>GestureEvent</td><td>interface GestureEvent extends BaseEvent {
+  
+  repeat: boolean;
+
+  
+  fingerList: FingerInfo[];
+
+  
+  offsetX: number;
+
+  
+  offsetY: number;
+
+  
+  angle: number;
+
+  
+  speed: number;
+
+  
+  scale: number;
+
+  
+  pinchCenterX: number;
+
+  
+  pinchCenterY: number;
+}</td><td>GestureEvent</td><td>None</td><td>0</td><td>6</td><tr><tr><td>GestureEvent</td><td>repeat: boolean</td><td>repeat</td><td>22</td><td>1</td><td>342</td><tr><tr><td>GestureEvent</td><td>fingerList: FingerInfo[]</td><td>fingerList</td><td>22</td><td>1</td><td>3</td><tr><tr><td>GestureEvent</td><td>offsetX: number</td><td>offsetX</td><td>22</td><td>1</td><td>31</td><tr><tr><td>GestureEvent</td><td>offsetY: number</td><td>offsetY</td><td>22</td><td>1</td><td>31</td><tr><tr><td>GestureEvent</td><td>angle: number</td><td>angle</td><td>22</td><td>1</td><td>18</td><tr><tr><td>GestureEvent</td><td>speed: number</td><td>speed</td><td>22</td><td>1</td><td>22</td><tr><tr><td>GestureEvent</td><td>scale: number</td><td>scale</td><td>22</td><td>1</td><td>1026</td><tr><tr><td>GestureEvent</td><td>pinchCenterX: number</td><td>pinchCenterX</td><td>22</td><td>1</td><td>706</td><tr><tr><td>GestureEvent</td><td>pinchCenterY: number</td><td>pinchCenterY</td><td>22</td><td>1</td><td>706</td><tr><tr><td>TapGestureInterface</td><td>interface TapGestureInterface {
+  
+  (value?: { count?: number; fingers?: number }): TapGestureInterface;
+
+  
+  onAction(event: (event?: GestureEvent) => void): TapGestureInterface;
+}</td><td>TapGestureInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>TapGestureInterface</td><td>(value?: { count?: number</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>TapGestureInterface</td><td>fingers?: number }): TapGestureInterface</td><td>fingers</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TapGestureInterface</td><td>onAction(event: (event?: GestureEvent) => void): TapGestureInterface</td><td>onActionevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>LongPressGestureInterface</td><td>interface LongPressGestureInterface {
+  
+  (value?: { fingers?: number; repeat?: boolean; duration?: number }): LongPressGestureInterface;
+
+  
+  onAction(event: (event?: GestureEvent) => void): LongPressGestureInterface;
+
+  
+  onActionEnd(event: (event?: GestureEvent) => void): LongPressGestureInterface;
+
+  
+  onActionCancel(event: () => void): LongPressGestureInterface;
+}</td><td>LongPressGestureInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LongPressGestureInterface</td><td>(value?: { fingers?: number</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>LongPressGestureInterface</td><td>repeat?: boolean</td><td>repeat</td><td>22</td><td>1</td><td>342</td><tr><tr><td>LongPressGestureInterface</td><td>duration?: number }): LongPressGestureInterface</td><td>duration</td><td>22</td><td>1</td><td>240</td><tr><tr><td>LongPressGestureInterface</td><td>onAction(event: (event?: GestureEvent) => void): LongPressGestureInterface</td><td>onActionevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>LongPressGestureInterface</td><td>onActionEnd(event: (event?: GestureEvent) => void): LongPressGestureInterface</td><td>onActionEndevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>LongPressGestureInterface</td><td>onActionCancel(event: () => void): LongPressGestureInterface</td><td>onActionCancelevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>PanGestureOptions</td><td>declare class PanGestureOptions {
+  
+  constructor(value?: { fingers?: number; direction?: PanDirection; distance?: number });
+
+  
+  setDirection(value: PanDirection);
+
+  
+  setDistance(value: number);
+
+  
+  setFingers(value: number);
+}</td><td>PanGestureOptions</td><td>10</td><td>0</td><td>0</td><tr><tr><td>PanGestureOptions</td><td>constructor(value?: { fingers?: number; direction?: PanDirection; distance?: number })</td><td>constructor</td><td>11</td><td>1</td><td>80</td><tr><tr><td>PanGestureOptions</td><td>setDirection(value: PanDirection);</td><td>setDirection</td><td>11</td><td>1</td><td>2</td><tr><tr><td>PanGestureOptions</td><td>setDistance(value: number);</td><td>setDistance</td><td>11</td><td>1</td><td>1</td><tr><tr><td>PanGestureOptions</td><td>setFingers(value: number);</td><td>setFingers</td><td>11</td><td>1</td><td>1</td><tr><tr><td>PanGestureInterface</td><td>interface PanGestureInterface {
+  
+  (value?: { fingers?: number; direction?: PanDirection; distance?: number } | PanGestureOptions): PanGestureInterface;
+
+  
+  onActionStart(event: (event?: GestureEvent) => void): PanGestureInterface;
+
+  
+  onActionUpdate(event: (event?: GestureEvent) => void): PanGestureInterface;
+
+  
+  onActionEnd(event: (event?: GestureEvent) => void): PanGestureInterface;
+
+  
+  onActionCancel(event: () => void): PanGestureInterface;
+}</td><td>PanGestureInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PanGestureInterface</td><td>(value?: { fingers?: number</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>PanGestureInterface</td><td>direction?: PanDirection</td><td>direction</td><td>22</td><td>1</td><td>596</td><tr><tr><td>PanGestureInterface</td><td>distance?: number } | PanGestureOptions): PanGestureInterface</td><td>distance</td><td>22</td><td>1</td><td>176</td><tr><tr><td>PanGestureInterface</td><td>onActionStart(event: (event?: GestureEvent) => void): PanGestureInterface</td><td>onActionStartevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>PanGestureInterface</td><td>onActionUpdate(event: (event?: GestureEvent) => void): PanGestureInterface</td><td>onActionUpdateevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>PanGestureInterface</td><td>onActionEnd(event: (event?: GestureEvent) => void): PanGestureInterface</td><td>onActionEndevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>PanGestureInterface</td><td>onActionCancel(event: () => void): PanGestureInterface</td><td>onActionCancelevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SwipeGestureInterface</td><td>interface SwipeGestureInterface {
+  
+  (value?: { fingers?: number; direction?: SwipeDirection; speed?: number }): SwipeGestureInterface;
+
+  
+  onAction(event: (event?: GestureEvent) => void): SwipeGestureInterface;
+}</td><td>SwipeGestureInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SwipeGestureInterface</td><td>(value?: { fingers?: number</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>SwipeGestureInterface</td><td>direction?: SwipeDirection</td><td>direction</td><td>22</td><td>1</td><td>596</td><tr><tr><td>SwipeGestureInterface</td><td>speed?: number }): SwipeGestureInterface</td><td>speed</td><td>22</td><td>1</td><td>22</td><tr><tr><td>SwipeGestureInterface</td><td>onAction(event: (event?: GestureEvent) => void): SwipeGestureInterface</td><td>onActionevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>PinchGestureInterface</td><td>interface PinchGestureInterface {
+  
+  (value?: { fingers?: number; distance?: number }): PinchGestureInterface;
+
+  
+  onActionStart(event: (event?: GestureEvent) => void): PinchGestureInterface;
+
+  
+  onActionUpdate(event: (event?: GestureEvent) => void): PinchGestureInterface;
+
+  
+  onActionEnd(event: (event?: GestureEvent) => void): PinchGestureInterface;
+
+  
+  onActionCancel(event: () => void): PinchGestureInterface;
+}</td><td>PinchGestureInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PinchGestureInterface</td><td>(value?: { fingers?: number</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>PinchGestureInterface</td><td>distance?: number }): PinchGestureInterface</td><td>distance</td><td>22</td><td>1</td><td>176</td><tr><tr><td>PinchGestureInterface</td><td>onActionStart(event: (event?: GestureEvent) => void): PinchGestureInterface</td><td>onActionStartevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>PinchGestureInterface</td><td>onActionUpdate(event: (event?: GestureEvent) => void): PinchGestureInterface</td><td>onActionUpdateevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>PinchGestureInterface</td><td>onActionEnd(event: (event?: GestureEvent) => void): PinchGestureInterface</td><td>onActionEndevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>PinchGestureInterface</td><td>onActionCancel(event: () => void): PinchGestureInterface</td><td>onActionCancelevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>RotationGestureInterface</td><td>interface RotationGestureInterface {
+  
+  (value?: { fingers?: number; angle?: number }): RotationGestureInterface;
+
+  
+  onActionStart(event: (event?: GestureEvent) => void): RotationGestureInterface;
+
+  
+  onActionUpdate(event: (event?: GestureEvent) => void): RotationGestureInterface;
+
+  
+  onActionEnd(event: (event?: GestureEvent) => void): RotationGestureInterface;
+
+  
+  onActionCancel(event: () => void): RotationGestureInterface;
+}</td><td>RotationGestureInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>RotationGestureInterface</td><td>(value?: { fingers?: number</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>RotationGestureInterface</td><td>angle?: number }): RotationGestureInterface</td><td>angle</td><td>22</td><td>1</td><td>18</td><tr><tr><td>RotationGestureInterface</td><td>onActionStart(event: (event?: GestureEvent) => void): RotationGestureInterface</td><td>onActionStartevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>RotationGestureInterface</td><td>onActionUpdate(event: (event?: GestureEvent) => void): RotationGestureInterface</td><td>onActionUpdateevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>RotationGestureInterface</td><td>onActionEnd(event: (event?: GestureEvent) => void): RotationGestureInterface</td><td>onActionEndevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>RotationGestureInterface</td><td>onActionCancel(event: () => void): RotationGestureInterface</td><td>onActionCancelevent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GestureGroupInterface</td><td>interface GestureGroupInterface {
+  
+  (mode: GestureMode, ...gesture: GestureType[]): GestureGroupInterface;
+
+  
+  onCancel(event: () => void): GestureGroupInterface;
+}</td><td>GestureGroupInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>GestureGroupInterface</td><td>(mode: GestureMode, ...gesture: GestureType[]): GestureGroupInterface</td><td>mode</td><td>22</td><td>1</td><td>277</td><tr><tr><td>GestureGroupInterface</td><td>onCancel(event: () => void): GestureGroupInterface</td><td>onCancelevent</td><td>22</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

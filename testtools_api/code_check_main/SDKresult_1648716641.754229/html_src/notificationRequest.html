@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>事件通知子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>notification</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>notificationRequest</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>NotificationRequest</td><td>export interface NotificationRequest {
+  
+  content: NotificationContent;
+
+  
+  id?: number;
+
+  
+  slotType?: notification.SlotType;
+
+  
+  isOngoing?: boolean;
+
+  
+  isUnremovable?: boolean;
+
+  
+  deliveryTime?: number;
+
+  
+  tapDismissed?: boolean;
+
+  
+  autoDeletedTime?: number;
+
+  
+  wantAgent?: WantAgent;
+
+  
+  extraInfo?: {[key: string]: any};
+
+  
+  color?: number;
+
+  
+  colorEnabled?: boolean;
+
+  
+  isAlertOnce?: boolean;
+
+  
+  isStopwatch?: boolean;
+
+  
+  isCountDown?: boolean;
+
+  
+  isFloatingIcon?: boolean;
+
+  
+  label?: string;
+
+  
+  badgeIconStyle?: number;
+
+  
+  showDeliveryTime?: boolean;
+
+  
+  actionButtons?: Array<NotificationActionButton>;
+
+  
+  smallIcon?: image.PixelMap;
+
+  
+  largeIcon?: image.PixelMap;
+
+  
+  groupName?: string;
+
+  
+  readonly creatorBundleName?: string;
+
+  
+  readonly creatorUid?: number;
+
+  
+  readonly creatorPid?: number;
+
+  
+  readonly creatorUserId?: number;
+
+  
+  classification?: string;
+
+  
+  readonly hashCode?: string;
+
+  
+  readonly isRemoveAllowed?: boolean;
+
+  
+  readonly source?: number;
+
+  
+  template?: NotificationTemplate;
+
+  
+  distributedOption?: DistributedOptions;
+
+  
+  readonly deviceId?: string;
+
+  
+   readonly notificationFlags?: NotificationFlags;
+}</td><td>NotificationRequest</td><td>20</td><td>0</td><td>2</td><tr><tr><td>NotificationRequest</td><td>content: NotificationContent</td><td>content</td><td>22</td><td>1</td><td>814</td><tr><tr><td>NotificationRequest</td><td>id?: number</td><td>id</td><td>22</td><td>1</td><td>967</td><tr><tr><td>NotificationRequest</td><td>slotType?: notification.SlotType</td><td>slotType</td><td>22</td><td>1</td><td>254</td><tr><tr><td>NotificationRequest</td><td>isOngoing?: boolean</td><td>isOngoing</td><td>22</td><td>1</td><td>147</td><tr><tr><td>NotificationRequest</td><td>isUnremovable?: boolean</td><td>isUnremovable</td><td>22</td><td>1</td><td>154</td><tr><tr><td>NotificationRequest</td><td>deliveryTime?: number</td><td>deliveryTime</td><td>22</td><td>1</td><td>161</td><tr><tr><td>NotificationRequest</td><td>tapDismissed?: boolean</td><td>tapDismissed</td><td>22</td><td>1</td><td>147</td><tr><tr><td>NotificationRequest</td><td>autoDeletedTime?: number</td><td>autoDeletedTime</td><td>22</td><td>1</td><td>161</td><tr><tr><td>NotificationRequest</td><td>wantAgent?: WantAgent</td><td>wantAgent</td><td>22</td><td>1</td><td>309</td><tr><tr><td>NotificationRequest</td><td>extraInfo?: {[key: string]: any}</td><td>extraInfo</td><td>22</td><td>1</td><td>0</td><tr><tr><td>NotificationRequest</td><td>color?: number</td><td>color</td><td>22</td><td>1</td><td>304</td><tr><tr><td>NotificationRequest</td><td>colorEnabled?: boolean</td><td>colorEnabled</td><td>22</td><td>1</td><td>147</td><tr><tr><td>NotificationRequest</td><td>isAlertOnce?: boolean</td><td>isAlertOnce</td><td>22</td><td>1</td><td>147</td><tr><tr><td>NotificationRequest</td><td>isStopwatch?: boolean</td><td>isStopwatch</td><td>22</td><td>1</td><td>147</td><tr><tr><td>NotificationRequest</td><td>isCountDown?: boolean</td><td>isCountDown</td><td>22</td><td>1</td><td>147</td><tr><tr><td>NotificationRequest</td><td>isFloatingIcon?: boolean</td><td>isFloatingIcon</td><td>22</td><td>1</td><td>147</td><tr><tr><td>NotificationRequest</td><td>label?: string</td><td>label</td><td>22</td><td>1</td><td>447</td><tr><tr><td>NotificationRequest</td><td>badgeIconStyle?: number</td><td>badgeIconStyle</td><td>22</td><td>1</td><td>161</td><tr><tr><td>NotificationRequest</td><td>showDeliveryTime?: boolean</td><td>showDeliveryTime</td><td>22</td><td>1</td><td>147</td><tr><tr><td>NotificationRequest</td><td>actionButtons?: Array<NotificationActionButton></td><td>actionButtons</td><td>22</td><td>1</td><td>47</td><tr><tr><td>NotificationRequest</td><td>smallIcon?: image.PixelMap</td><td>smallIcon</td><td>22</td><td>1</td><td>24</td><tr><tr><td>NotificationRequest</td><td>largeIcon?: image.PixelMap</td><td>largeIcon</td><td>22</td><td>1</td><td>24</td><tr><tr><td>NotificationRequest</td><td>groupName?: string</td><td>groupName</td><td>22</td><td>1</td><td>44</td><tr><tr><td>NotificationRequest</td><td>readonly creatorBundleName?: string</td><td>creatorBundleName</td><td>22</td><td>1</td><td>12</td><tr><tr><td>NotificationRequest</td><td>readonly creatorUid?: number</td><td>creatorUid</td><td>22</td><td>1</td><td>12</td><tr><tr><td>NotificationRequest</td><td>readonly creatorPid?: number</td><td>creatorPid</td><td>22</td><td>1</td><td>0</td><tr><tr><td>NotificationRequest</td><td>readonly creatorUserId?: number</td><td>creatorUserId</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NotificationRequest</td><td>classification?: string</td><td>classification</td><td>22</td><td>1</td><td>8</td><tr><tr><td>NotificationRequest</td><td>readonly hashCode?: string</td><td>hashCode</td><td>22</td><td>1</td><td>134</td><tr><tr><td>NotificationRequest</td><td>readonly isRemoveAllowed?: boolean</td><td>isRemoveAllowed</td><td>22</td><td>1</td><td>0</td><tr><tr><td>NotificationRequest</td><td>readonly source?: number</td><td>source</td><td>22</td><td>1</td><td>0</td><tr><tr><td>NotificationRequest</td><td>template?: NotificationTemplate</td><td>template</td><td>22</td><td>1</td><td>0</td><tr><tr><td>NotificationRequest</td><td>distributedOption?: DistributedOptions</td><td>distributedOption</td><td>22</td><td>1</td><td>5</td><tr><tr><td>NotificationRequest</td><td>readonly deviceId?: string</td><td>deviceId</td><td>22</td><td>1</td><td>30</td><tr><tr><td>NotificationRequest</td><td>readonly notificationFlags?: NotificationFlags</td><td>notificationFlags</td><td>22</td><td>1</td><td>2</td><tr><tr><td>DistributedOptions</td><td>export interface DistributedOptions {
+  
+  isDistributed?: boolean;
+
+  
+  supportDisplayDevices?: Array<string>;
+
+  
+  supportOperateDevices?: Array<string>;
+
+  
+  readonly remindType?: number;
+}</td><td>DistributedOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>DistributedOptions</td><td>isDistributed?: boolean</td><td>isDistributed</td><td>22</td><td>1</td><td>3</td><tr><tr><td>DistributedOptions</td><td>supportDisplayDevices?: Array<string></td><td>supportDisplayDevices</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DistributedOptions</td><td>supportOperateDevices?: Array<string></td><td>supportOperateDevices</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DistributedOptions</td><td>readonly remindType?: number</td><td>remindType</td><td>22</td><td>1</td><td>4</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

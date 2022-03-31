@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>公共基础类库</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>compileruntime</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.xml</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>xml</td><td>declare namespace xml {
+    class XmlSerializer {
+        
+        constructor(buffer: ArrayBuffer | DataView, encoding?: string);
+
+        
+        setAttributes(name: string, value: string): void;
+
+        
+        addEmptyElement(name: string): void;
+
+        
+        setDeclaration(): void;
+
+        
+        startElement(name: string): void;
+
+        
+        endElement(): void;
+
+        
+        setNamespace(prefix: string, namespace: string): void;
+
+        
+        setComment(text: string): void;
+
+        
+        setCDATA(text: string): void;
+
+        
+        setText(text: string): void;
+
+        
+        setDocType(text: string): void;
+    }
+
+    enum EventType {
+        
+        START_DOCUMENT,
+        
+        END_DOCUMENT,
+        
+        START_TAG,
+        
+        END_TAG,
+        
+        TEXT,
+        
+        CDSECT,
+        
+        COMMENT,
+        
+        DOCDECL,
+        
+        INSTRUCTION,
+        
+        ENTITY_REFERENCE,
+        
+        WHITESPACE
+    }
+
+    
+    interface ParseInfo {
+        
+        getColumnNumber(): number;
+        
+        getDepth(): number;
+        
+        getLineNumber(): number;
+        
+        getName(): string;
+        
+        getNamespace(): string;
+        
+        getPrefix(): string;
+        
+        getText(): string;
+        
+        isEmptyElementTag(): boolean;
+        
+        isWhitespace(): boolean;
+        
+        getAttributeCount(): number;
+    }
+
+    
+    interface ParseOptions {
+
+        
+        supportDoctype?: boolean;
+
+        
+        ignoreNameSpace?: boolean;
+
+        
+        tagValueCallbackFunction?: (name: string, value: string) => boolean;
+
+        
+        attributeValueCallbackFunction?: (name: string, value: string) => boolean;
+
+        
+        tokenValueCallbackFunction?: (eventType: EventType, value: ParseInfo) => boolean;
+    }
+
+    class XmlPullParser {
+        
+        constructor(buffer: ArrayBuffer | DataView, encoding?: string);
+
+        
+        parse(option: ParseOptions): void;
+    }
+}</td><td>xml</td><td>None</td><td>0</td><td>191</td><tr><tr><td>XmlSerializer</td><td>class XmlSerializer {
+        
+        constructor(buffer: ArrayBuffer | DataView, encoding?: string);
+
+        
+        setAttributes(name: string, value: string): void;
+
+        
+        addEmptyElement(name: string): void;
+
+        
+        setDeclaration(): void;
+
+        
+        startElement(name: string): void;
+
+        
+        endElement(): void;
+
+        
+        setNamespace(prefix: string, namespace: string): void;
+
+        
+        setComment(text: string): void;
+
+        
+        setCDATA(text: string): void;
+
+        
+        setText(text: string): void;
+
+        
+        setDocType(text: string): void;
+    }</td><td>XmlSerializer</td><td>10</td><td>0</td><td>51</td><tr><tr><td>XmlSerializer</td><td>constructor(buffer: ArrayBuffer | DataView, encoding?: string)</td><td>constructor</td><td>11</td><td>2</td><td>32</td><tr><tr><td>XmlSerializer</td><td>setAttributes(name: string, value: string): void;</td><td>setAttributes</td><td>11</td><td>2</td><td>22</td><tr><tr><td>XmlSerializer</td><td>addEmptyElement(name: string): void;</td><td>addEmptyElement</td><td>11</td><td>1</td><td>6</td><tr><tr><td>XmlSerializer</td><td>setDeclaration(): void;</td><td>setDeclaration</td><td>11</td><td>0</td><td>10</td><tr><tr><td>XmlSerializer</td><td>startElement(name: string): void;</td><td>startElement</td><td>11</td><td>1</td><td>47</td><tr><tr><td>XmlSerializer</td><td>endElement(): void;</td><td>endElement</td><td>11</td><td>0</td><td>47</td><tr><tr><td>XmlSerializer</td><td>setNamespace(prefix: string, namespace: string): void;</td><td>setNamespace</td><td>11</td><td>2</td><td>5</td><tr><tr><td>XmlSerializer</td><td>setComment(text: string): void;</td><td>setComment</td><td>11</td><td>1</td><td>5</td><tr><tr><td>XmlSerializer</td><td>setCDATA(text: string): void;</td><td>setCDATA</td><td>11</td><td>1</td><td>5</td><tr><tr><td>XmlSerializer</td><td>setText(text: string): void;</td><td>setText</td><td>11</td><td>1</td><td>5</td><tr><tr><td>XmlSerializer</td><td>setDocType(text: string): void;</td><td>setDocType</td><td>11</td><td>1</td><td>5</td><tr><tr><td>EventType</td><td>enum EventType {
+        
+        START_DOCUMENT,
+        
+        END_DOCUMENT,
+        
+        START_TAG,
+        
+        END_TAG,
+        
+        TEXT,
+        
+        CDSECT,
+        
+        COMMENT,
+        
+        DOCDECL,
+        
+        INSTRUCTION,
+        
+        ENTITY_REFERENCE,
+        
+        WHITESPACE
+    }</td><td>EventType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>EventType</td><td>START_DOCUMENT,</td><td>START_DOCUMENT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>EventType</td><td>END_DOCUMENT,</td><td>END_DOCUMENT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>EventType</td><td>START_TAG,</td><td>START_TAG</td><td>42</td><td>1</td><td>0</td><tr><tr><td>EventType</td><td>END_TAG,</td><td>END_TAG</td><td>42</td><td>1</td><td>0</td><tr><tr><td>EventType</td><td>TEXT,</td><td>TEXT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>EventType</td><td>CDSECT,</td><td>CDSECT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>EventType</td><td>COMMENT,</td><td>COMMENT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>EventType</td><td>DOCDECL,</td><td>DOCDECL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>EventType</td><td>INSTRUCTION,</td><td>INSTRUCTION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>EventType</td><td>ENTITY_REFERENCE,</td><td>ENTITY_REFERENCE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ParseInfo</td><td>interface ParseInfo {
+        
+        getColumnNumber(): number;
+        
+        getDepth(): number;
+        
+        getLineNumber(): number;
+        
+        getName(): string;
+        
+        getNamespace(): string;
+        
+        getPrefix(): string;
+        
+        getText(): string;
+        
+        isEmptyElementTag(): boolean;
+        
+        isWhitespace(): boolean;
+        
+        getAttributeCount(): number;
+    }</td><td>ParseInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ParseInfo</td><td>getColumnNumber(): number;</td><td>getColumnNumber</td><td>21</td><td>0</td><td>3</td><tr><tr><td>ParseInfo</td><td>getDepth(): number;</td><td>getDepth</td><td>21</td><td>0</td><td>3</td><tr><tr><td>ParseInfo</td><td>getLineNumber(): number;</td><td>getLineNumber</td><td>21</td><td>0</td><td>3</td><tr><tr><td>ParseInfo</td><td>getName(): string;</td><td>getName</td><td>21</td><td>0</td><td>6</td><tr><tr><td>ParseInfo</td><td>getNamespace(): string;</td><td>getNamespace</td><td>21</td><td>0</td><td>3</td><tr><tr><td>ParseInfo</td><td>getPrefix(): string;</td><td>getPrefix</td><td>21</td><td>0</td><td>3</td><tr><tr><td>ParseInfo</td><td>getText(): string;</td><td>getText</td><td>21</td><td>0</td><td>3</td><tr><tr><td>ParseInfo</td><td>isEmptyElementTag(): boolean;</td><td>isEmptyElementTag</td><td>21</td><td>0</td><td>3</td><tr><tr><td>ParseInfo</td><td>isWhitespace(): boolean;</td><td>isWhitespace</td><td>21</td><td>0</td><td>3</td><tr><tr><td>ParseInfo</td><td>getAttributeCount(): number;</td><td>getAttributeCount</td><td>21</td><td>0</td><td>3</td><tr><tr><td>ParseOptions</td><td>interface ParseOptions {
+
+        
+        supportDoctype?: boolean;
+
+        
+        ignoreNameSpace?: boolean;
+
+        
+        tagValueCallbackFunction?: (name: string, value: string) => boolean;
+
+        
+        attributeValueCallbackFunction?: (name: string, value: string) => boolean;
+
+        
+        tokenValueCallbackFunction?: (eventType: EventType, value: ParseInfo) => boolean;
+    }</td><td>ParseOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ParseOptions</td><td>tagValueCallbackFunction?: (name: string, value: string) => boolean;</td><td>tagValueCallbackFunction</td><td>21</td><td>2</td><td>1</td><tr><tr><td>ParseOptions</td><td>attributeValueCallbackFunction?: (name: string, value: string) => boolean;</td><td>attributeValueCallbackFunction</td><td>21</td><td>2</td><td>1</td><tr><tr><td>ParseOptions</td><td>tokenValueCallbackFunction?: (eventType: EventType, value: ParseInfo) => boolean;</td><td>tokenValueCallbackFunction</td><td>21</td><td>2</td><td>3</td><tr><tr><td>ParseOptions</td><td>supportDoctype?: boolean</td><td>supportDoctype</td><td>22</td><td>1</td><td>5</td><tr><tr><td>ParseOptions</td><td>ignoreNameSpace?: boolean</td><td>ignoreNameSpace</td><td>22</td><td>1</td><td>5</td><tr><tr><td>XmlPullParser</td><td>class XmlPullParser {
+        
+        constructor(buffer: ArrayBuffer | DataView, encoding?: string);
+
+        
+        parse(option: ParseOptions): void;
+    }</td><td>XmlPullParser</td><td>10</td><td>0</td><td>6</td><tr><tr><td>XmlPullParser</td><td>constructor(buffer: ArrayBuffer | DataView, encoding?: string)</td><td>constructor</td><td>11</td><td>2</td><td>32</td><tr><tr><td>XmlPullParser</td><td>parse(option: ParseOptions): void;</td><td>parse</td><td>11</td><td>1</td><td>6</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

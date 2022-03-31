@@ -1,0 +1,36 @@
+[
+    {
+        "first_introduced": "1",
+        "name": "OH_GetImageInfo",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_AccessPixels",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_UnAccessPixels",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    }
+]

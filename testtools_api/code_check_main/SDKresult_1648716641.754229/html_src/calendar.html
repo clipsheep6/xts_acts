@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>calendar</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>CalendarDay</td><td>interface CalendarDay {
+  
+  index: number;
+
+  
+  lunarMonth: string;
+
+  
+  lunarDay: string;
+
+  
+  dayMark: string;
+
+  
+  dayMarkValue: string;
+
+  
+  year: number;
+
+  
+  month: number;
+
+  
+  day: number;
+
+  
+  isFirstOfLunar: boolean;
+
+  
+  hasSchedule: boolean;
+
+  
+  markLunarDay: boolean;
+}</td><td>CalendarDay</td><td>20</td><td>0</td><td>8</td><tr><tr><td>CalendarDay</td><td>index: number</td><td>index</td><td>22</td><td>1</td><td>1502</td><tr><tr><td>CalendarDay</td><td>lunarMonth: string</td><td>lunarMonth</td><td>22</td><td>1</td><td>15</td><tr><tr><td>CalendarDay</td><td>lunarDay: string</td><td>lunarDay</td><td>22</td><td>1</td><td>9</td><tr><tr><td>CalendarDay</td><td>dayMark: string</td><td>dayMark</td><td>22</td><td>1</td><td>17</td><tr><tr><td>CalendarDay</td><td>dayMarkValue: string</td><td>dayMarkValue</td><td>22</td><td>1</td><td>10</td><tr><tr><td>CalendarDay</td><td>year: number</td><td>year</td><td>22</td><td>1</td><td>39</td><tr><tr><td>CalendarDay</td><td>month: number</td><td>month</td><td>22</td><td>1</td><td>41</td><tr><tr><td>CalendarDay</td><td>day: number</td><td>day</td><td>22</td><td>1</td><td>91</td><tr><tr><td>CalendarDay</td><td>isFirstOfLunar: boolean</td><td>isFirstOfLunar</td><td>22</td><td>1</td><td>7</td><tr><tr><td>CalendarDay</td><td>hasSchedule: boolean</td><td>hasSchedule</td><td>22</td><td>1</td><td>6</td><tr><tr><td>CalendarDay</td><td>markLunarDay: boolean</td><td>markLunarDay</td><td>22</td><td>1</td><td>7</td><tr><tr><td>MonthData</td><td>interface MonthData {
+  
+  year: number;
+
+  
+  month: number;
+
+  
+  data: CalendarDay[];
+}</td><td>MonthData</td><td>20</td><td>0</td><td>9</td><tr><tr><td>MonthData</td><td>year: number</td><td>year</td><td>22</td><td>1</td><td>39</td><tr><tr><td>MonthData</td><td>month: number</td><td>month</td><td>22</td><td>1</td><td>41</td><tr><tr><td>MonthData</td><td>data: CalendarDay[]</td><td>data</td><td>22</td><td>1</td><td>2739</td><tr><tr><td>CurrentDayStyle</td><td>interface CurrentDayStyle {
+  
+  dayColor?: ResourceColor;
+
+  
+  lunarColor?: ResourceColor;
+
+  
+  markLunarColor?: ResourceColor;
+
+  
+  dayFontSize?: number;
+
+  
+  lunarDayFontSize?: number;
+
+  
+  dayHeight?: number;
+
+  
+  dayWidth?: number;
+
+  
+  gregorianCalendarHeight?: number;
+
+  
+  dayYAxisOffset?: number;
+
+  
+  lunarDayYAxisOffset?: number;
+
+  
+  underscoreXAxisOffset?: number;
+
+  
+  underscoreYAxisOffset?: number;
+
+  
+  scheduleMarkerXAxisOffset?: number;
+
+  
+  scheduleMarkerYAxisOffset?: number;
+
+  
+  colSpace?: number;
+
+  
+  dailyFiveRowSpace?: number;
+
+  
+  dailySixRowSpace?: number;
+
+  
+  lunarHeight?: number;
+
+  
+  underscoreWidth?: number;
+
+  
+  underscoreLength?: number;
+
+  
+  scheduleMarkerRadius?: number;
+
+  
+  boundaryRowOffset?: number;
+
+  
+  boundaryColOffset?: number;
+}</td><td>CurrentDayStyle</td><td>20</td><td>0</td><td>33</td><tr><tr><td>CurrentDayStyle</td><td>dayColor?: ResourceColor</td><td>dayColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>lunarColor?: ResourceColor</td><td>lunarColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>markLunarColor?: ResourceColor</td><td>markLunarColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>dayFontSize?: number</td><td>dayFontSize</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>lunarDayFontSize?: number</td><td>lunarDayFontSize</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>dayHeight?: number</td><td>dayHeight</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>dayWidth?: number</td><td>dayWidth</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>gregorianCalendarHeight?: number</td><td>gregorianCalendarHeight</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>dayYAxisOffset?: number</td><td>dayYAxisOffset</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>lunarDayYAxisOffset?: number</td><td>lunarDayYAxisOffset</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>underscoreXAxisOffset?: number</td><td>underscoreXAxisOffset</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>underscoreYAxisOffset?: number</td><td>underscoreYAxisOffset</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>scheduleMarkerXAxisOffset?: number</td><td>scheduleMarkerXAxisOffset</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>scheduleMarkerYAxisOffset?: number</td><td>scheduleMarkerYAxisOffset</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CurrentDayStyle</td><td>colSpace?: number</td><td>colSpace</td><td>22</td><td>1</td><td>13</td><tr><tr><td>CurrentDayStyle</td><td>dailyFiveRowSpace?: number</td><td>dailyFiveRowSpace</td><td>22</td><td>1</td><td>13</td><tr><tr><td>CurrentDayStyle</td><td>dailySixRowSpace?: number</td><td>dailySixRowSpace</td><td>22</td><td>1</td><td>13</td><tr><tr><td>CurrentDayStyle</td><td>lunarHeight?: number</td><td>lunarHeight</td><td>22</td><td>1</td><td>13</td><tr><tr><td>CurrentDayStyle</td><td>underscoreWidth?: number</td><td>underscoreWidth</td><td>22</td><td>1</td><td>13</td><tr><tr><td>CurrentDayStyle</td><td>underscoreLength?: number</td><td>underscoreLength</td><td>22</td><td>1</td><td>13</td><tr><tr><td>CurrentDayStyle</td><td>scheduleMarkerRadius?: number</td><td>scheduleMarkerRadius</td><td>22</td><td>1</td><td>13</td><tr><tr><td>CurrentDayStyle</td><td>boundaryRowOffset?: number</td><td>boundaryRowOffset</td><td>22</td><td>1</td><td>13</td><tr><tr><td>CurrentDayStyle</td><td>boundaryColOffset?: number</td><td>boundaryColOffset</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NonCurrentDayStyle</td><td>interface NonCurrentDayStyle {
+  
+  nonCurrentMonthDayColor?: ResourceColor;
+
+  
+  nonCurrentMonthLunarColor?: ResourceColor;
+
+  
+  nonCurrentMonthWorkDayMarkColor?: ResourceColor;
+
+  
+  nonCurrentMonthOffDayMarkColor?: ResourceColor;
+}</td><td>NonCurrentDayStyle</td><td>20</td><td>0</td><td>0</td><tr><tr><td>NonCurrentDayStyle</td><td>nonCurrentMonthDayColor?: ResourceColor</td><td>nonCurrentMonthDayColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NonCurrentDayStyle</td><td>nonCurrentMonthLunarColor?: ResourceColor</td><td>nonCurrentMonthLunarColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NonCurrentDayStyle</td><td>nonCurrentMonthWorkDayMarkColor?: ResourceColor</td><td>nonCurrentMonthWorkDayMarkColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NonCurrentDayStyle</td><td>nonCurrentMonthOffDayMarkColor?: ResourceColor</td><td>nonCurrentMonthOffDayMarkColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>TodayStyle</td><td>interface TodayStyle {
+  
+  focusedDayColor?: ResourceColor;
+
+  
+  focusedLunarColor?: ResourceColor;
+
+  
+  focusedAreaBackgroundColor?: ResourceColor;
+
+  
+  focusedAreaRadius?: number;
+}</td><td>TodayStyle</td><td>20</td><td>0</td><td>0</td><tr><tr><td>TodayStyle</td><td>focusedDayColor?: ResourceColor</td><td>focusedDayColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>TodayStyle</td><td>focusedLunarColor?: ResourceColor</td><td>focusedLunarColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>TodayStyle</td><td>focusedAreaBackgroundColor?: ResourceColor</td><td>focusedAreaBackgroundColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>TodayStyle</td><td>focusedAreaRadius?: number</td><td>focusedAreaRadius</td><td>22</td><td>1</td><td>1</td><tr><tr><td>WeekStyle</td><td>interface WeekStyle {
+  
+  weekColor?: ResourceColor;
+
+  
+  weekendDayColor?: ResourceColor;
+
+  
+  weekendLunarColor?: ResourceColor;
+
+  
+  weekFontSize?: number;
+
+  
+  weekHeight?: number;
+
+  
+  weekWidth?: number;
+
+  
+  weekAndDayRowSpace?: number;
+}</td><td>WeekStyle</td><td>20</td><td>0</td><td>5</td><tr><tr><td>WeekStyle</td><td>weekColor?: ResourceColor</td><td>weekColor</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WeekStyle</td><td>weekendDayColor?: ResourceColor</td><td>weekendDayColor</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WeekStyle</td><td>weekendLunarColor?: ResourceColor</td><td>weekendLunarColor</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WeekStyle</td><td>weekFontSize?: number</td><td>weekFontSize</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WeekStyle</td><td>weekHeight?: number</td><td>weekHeight</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WeekStyle</td><td>weekWidth?: number</td><td>weekWidth</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WeekStyle</td><td>weekAndDayRowSpace?: number</td><td>weekAndDayRowSpace</td><td>22</td><td>1</td><td>13</td><tr><tr><td>WorkStateStyle</td><td>interface WorkStateStyle {
+  
+  workDayMarkColor?: ResourceColor;
+
+  
+  offDayMarkColor?: ResourceColor;
+
+  
+  workDayMarkSize?: number;
+
+  
+  offDayMarkSize?: number;
+
+  
+  workStateWidth?: number;
+
+  
+  workStateHorizontalMovingDistance?: number;
+
+  
+  workStateVerticalMovingDistance?: number;
+}</td><td>WorkStateStyle</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WorkStateStyle</td><td>workDayMarkColor?: ResourceColor</td><td>workDayMarkColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>WorkStateStyle</td><td>offDayMarkColor?: ResourceColor</td><td>offDayMarkColor</td><td>22</td><td>1</td><td>1</td><tr><tr><td>WorkStateStyle</td><td>workDayMarkSize?: number</td><td>workDayMarkSize</td><td>22</td><td>1</td><td>1</td><tr><tr><td>WorkStateStyle</td><td>offDayMarkSize?: number</td><td>offDayMarkSize</td><td>22</td><td>1</td><td>1</td><tr><tr><td>WorkStateStyle</td><td>workStateWidth?: number</td><td>workStateWidth</td><td>22</td><td>1</td><td>1</td><tr><tr><td>WorkStateStyle</td><td>workStateHorizontalMovingDistance?: number</td><td>workStateHorizontalMovingDistance</td><td>22</td><td>1</td><td>1</td><tr><tr><td>WorkStateStyle</td><td>workStateVerticalMovingDistance?: number</td><td>workStateVerticalMovingDistance</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CalendarController</td><td>declare class CalendarController {
+  
+  constructor();
+
+  
+  backToToday();
+
+  
+  goTo(value: { year: number; month: number; day: number });
+}</td><td>CalendarController</td><td>10</td><td>0</td><td>4</td><tr><tr><td>CalendarController</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>CalendarController</td><td>backToToday();</td><td>backToToday</td><td>11</td><td>0</td><td>1</td><tr><tr><td>CalendarController</td><td>goTo(value: { year: number; month: number; day: number });</td><td>goTo</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CalendarInterface</td><td>interface CalendarInterface {
+  
+  (value: {
+    date: { year: number; month: number; day: number };
+    currentData: MonthData;
+    preData: MonthData;
+    nextData: MonthData;
+    controller?: CalendarController;
+  }): CalendarAttribute;
+}</td><td>CalendarInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CalendarInterface</td><td>date: { year: number</td><td>date</td><td>22</td><td>1</td><td>266</td><tr><tr><td>CalendarInterface</td><td>month: number</td><td>month</td><td>22</td><td>1</td><td>41</td><tr><tr><td>CalendarInterface</td><td>day: number }</td><td>day</td><td>22</td><td>1</td><td>91</td><tr><tr><td>CalendarInterface</td><td>currentData: MonthData</td><td>currentData</td><td>22</td><td>1</td><td>2</td><tr><tr><td>CalendarInterface</td><td>preData: MonthData</td><td>preData</td><td>22</td><td>1</td><td>2</td><tr><tr><td>CalendarInterface</td><td>nextData: MonthData</td><td>nextData</td><td>22</td><td>1</td><td>2</td><tr><tr><td>CalendarInterface</td><td>controller?: CalendarController</td><td>controller</td><td>22</td><td>1</td><td>50</td><tr><tr><td>CalendarAttribute</td><td>declare class CalendarAttribute {
+  
+  showLunar(value: boolean): CalendarAttribute;
+
+  
+  showHoliday(value: boolean): CalendarAttribute;
+
+  
+  needSlide(value: boolean): CalendarAttribute;
+
+  
+  startOfWeek(value: number): CalendarAttribute;
+
+  
+  offDays(value: number): CalendarAttribute;
+
+  
+  direction(value: Axis): CalendarAttribute;
+
+  
+  currentDayStyle(value: CurrentDayStyle): CalendarAttribute;
+
+  
+  nonCurrentDayStyle(value: NonCurrentDayStyle): CalendarAttribute;
+
+  
+  todayStyle(value: TodayStyle): CalendarAttribute;
+
+  
+  weekStyle(value: WeekStyle): CalendarAttribute;
+
+  
+  workStateStyle(value: WorkStateStyle): CalendarAttribute;
+
+  
+  onSelectChange(event: (event: { year: number; month: number; day: number }) => void): CalendarAttribute;
+
+  
+  onRequestData(
+    event: (event: {
+      year: number;
+      month: number;
+      currentYear: number;
+      currentMonth: number;
+      monthState: number;
+    }) => void,
+  ): CalendarAttribute;
+}</td><td>CalendarAttribute</td><td>10</td><td>0</td><td>4</td><tr><tr><td>CalendarAttribute</td><td>showLunar(value: boolean): CalendarAttribute;</td><td>showLunar</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CalendarAttribute</td><td>showHoliday(value: boolean): CalendarAttribute;</td><td>showHoliday</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CalendarAttribute</td><td>needSlide(value: boolean): CalendarAttribute;</td><td>needSlide</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CalendarAttribute</td><td>startOfWeek(value: number): CalendarAttribute;</td><td>startOfWeek</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CalendarAttribute</td><td>offDays(value: number): CalendarAttribute;</td><td>offDays</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CalendarAttribute</td><td>direction(value: Axis): CalendarAttribute;</td><td>direction</td><td>11</td><td>1</td><td>596</td><tr><tr><td>CalendarAttribute</td><td>currentDayStyle(value: CurrentDayStyle): CalendarAttribute;</td><td>currentDayStyle</td><td>11</td><td>1</td><td>2</td><tr><tr><td>CalendarAttribute</td><td>nonCurrentDayStyle(value: NonCurrentDayStyle): CalendarAttribute;</td><td>nonCurrentDayStyle</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CalendarAttribute</td><td>todayStyle(value: TodayStyle): CalendarAttribute;</td><td>todayStyle</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CalendarAttribute</td><td>weekStyle(value: WeekStyle): CalendarAttribute;</td><td>weekStyle</td><td>11</td><td>1</td><td>4</td><tr><tr><td>CalendarAttribute</td><td>workStateStyle(value: WorkStateStyle): CalendarAttribute;</td><td>workStateStyle</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CalendarAttribute</td><td>onSelectChange(event: (event: { year: number; month: number; day: number }) => void): CalendarAttribute;</td><td>onSelectChangeevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CalendarAttribute</td><td>onSelectChange(event: (event: { year: number; month: number; day: number }) => void): CalendarAttribute;</td><td>onSelectChangeevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CalendarAttribute</td><td>onRequestData(
+    event: (event: {
+      year: number;
+      month: number;
+      currentYear: number;
+      currentMonth: number;
+      monthState: number;
+    }) => void,
+  ): CalendarAttribute;</td><td>onRequestData</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CalendarAttribute</td><td>event: (event: {
+      year: number;
+      month: number;
+      currentYear: number;
+      currentMonth: number;
+      monthState: number;
+    }) => void,
+  ): CalendarAttribute;</td><td>event</td><td>11</td><td>1</td><td>9576</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

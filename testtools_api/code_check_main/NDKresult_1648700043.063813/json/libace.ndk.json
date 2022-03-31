@@ -1,0 +1,62 @@
+[
+    {
+        "first_introduced": "8",
+        "name": "OH_NativeXComponent_GetXComponentId",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "first_introduced": "8",
+        "name": "OH_NativeXComponent_GetXComponentSize",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "first_introduced": "8",
+        "name": "OH_NativeXComponent_RegisterCallback",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "first_introduced": "8",
+        "name": "OH_NativeXComponent_GetTouchEvent",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "first_introduced": "8",
+        "name": "OH_NativeXComponent_GetXComponentOffset",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    }
+]

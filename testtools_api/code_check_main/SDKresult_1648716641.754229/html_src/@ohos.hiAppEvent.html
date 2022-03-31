@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>DFX子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>hiviewdfx</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.hiAppEvent</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>hiAppEvent</td><td>declare namespace hiAppEvent {
+    
+    enum EventType {
+        
+        FAULT = 1,
+
+        
+        STATISTIC = 2,
+
+        
+        SECURITY = 3,
+
+        
+        BEHAVIOR = 4
+    }
+
+    
+    namespace Event {
+        
+        const USER_LOGIN: string;
+
+        
+        const USER_LOGOUT: string;
+
+        
+        const DISTRIBUTED_SERVICE_START: string;
+    }
+
+    
+    namespace Param {
+        
+        const USER_ID: string;
+
+        
+        const DISTRIBUTED_SERVICE_NAME: string;
+
+        
+        const DISTRIBUTED_SERVICE_INSTANCE_ID: string;
+    }
+
+    
+    function write(eventName: string, eventType: EventType, keyValues: object): Promise<void>;
+    function write(eventName: string, eventType: EventType, keyValues: object, callback: AsyncCallback<void>): void;
+
+    
+    function configure(config: ConfigOption): boolean;
+
+    
+    interface ConfigOption {
+        
+        disable?: boolean;
+
+        
+        maxStorage?: string;
+    }
+}</td><td>hiAppEvent</td><td>None</td><td>0</td><td>4</td><tr><tr><td>hiAppEvent</td><td>function write(eventName: string, eventType: EventType, keyValues: object): Promise<void>;</td><td>write</td><td>None</td><td>3</td><td>0</td><tr><tr><td>hiAppEvent</td><td>function write(eventName: string, eventType: EventType, keyValues: object, callback: AsyncCallback<void>): void;</td><td>write</td><td>None</td><td>4</td><td>45</td><tr><tr><td>hiAppEvent</td><td>function configure(config: ConfigOption): boolean;</td><td>configure</td><td>None</td><td>1</td><td>7</td><tr><tr><td>EventType</td><td>enum EventType {
+        
+        FAULT = 1,
+
+        
+        STATISTIC = 2,
+
+        
+        SECURITY = 3,
+
+        
+        BEHAVIOR = 4
+    }</td><td>EventType</td><td>40</td><td>0</td><td>22</td><tr><tr><td>EventType</td><td>FAULT = 1,</td><td>FAULT</td><td>42</td><td>1</td><td>19</td><tr><tr><td>EventType</td><td>STATISTIC = 2,</td><td>STATISTIC</td><td>42</td><td>1</td><td>1</td><tr><tr><td>EventType</td><td>SECURITY = 3,</td><td>SECURITY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>EventType</td><td>BEHAVIOR = 4</td><td>BEHAVIOR</td><td>42</td><td>1</td><td>4</td><tr><tr><td>Event</td><td>namespace Event {
+        
+        const USER_LOGIN: string;
+
+        
+        const USER_LOGOUT: string;
+
+        
+        const DISTRIBUTED_SERVICE_START: string;
+    }</td><td>Event</td><td>35</td><td>0</td><td>262</td><tr><tr><td>Event</td><td>const USER_LOGIN: string</td><td>USER_LOGIN</td><td>36</td><td>1</td><td>1</td><tr><tr><td>Event</td><td>const USER_LOGOUT: string</td><td>USER_LOGOUT</td><td>36</td><td>1</td><td>1</td><tr><tr><td>Event</td><td>const DISTRIBUTED_SERVICE_START: string</td><td>DISTRIBUTED_SERVICE_START</td><td>36</td><td>1</td><td>4</td><tr><tr><td>Param</td><td>namespace Param {
+        
+        const USER_ID: string;
+
+        
+        const DISTRIBUTED_SERVICE_NAME: string;
+
+        
+        const DISTRIBUTED_SERVICE_INSTANCE_ID: string;
+    }</td><td>Param</td><td>35</td><td>0</td><td>9</td><tr><tr><td>Param</td><td>const USER_ID: string</td><td>USER_ID</td><td>36</td><td>1</td><td>2</td><tr><tr><td>Param</td><td>const DISTRIBUTED_SERVICE_NAME: string</td><td>DISTRIBUTED_SERVICE_NAME</td><td>36</td><td>1</td><td>2</td><tr><tr><td>Param</td><td>const DISTRIBUTED_SERVICE_INSTANCE_ID: string</td><td>DISTRIBUTED_SERVICE_INSTANCE_ID</td><td>36</td><td>1</td><td>2</td><tr><tr><td>ConfigOption</td><td>interface ConfigOption {
+        
+        disable?: boolean;
+
+        
+        maxStorage?: string;
+    }</td><td>ConfigOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ConfigOption</td><td>disable?: boolean</td><td>disable</td><td>22</td><td>1</td><td>5</td><tr><tr><td>ConfigOption</td><td>maxStorage?: string</td><td>maxStorage</td><td>22</td><td>1</td><td>2</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

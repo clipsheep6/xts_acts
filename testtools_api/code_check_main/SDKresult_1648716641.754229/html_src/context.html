@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>元能力子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>aafwk</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>context</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>Context</td><td>export interface Context extends BaseContext {
+
+    
+    getOrCreateLocalDir(): Promise<string>;
+    getOrCreateLocalDir(callback: AsyncCallback<string>): void;
+    
+    verifyPermission(permission: string, options?: PermissionOptions): Promise<number>;
+    verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback<number>): void;
+    verifyPermission(permission: string, callback: AsyncCallback<number>): void;
+
+    
+    requestPermissionsFromUser(permissions: Array<string>, requestCode: number, resultCallback: AsyncCallback<PermissionRequestResult>): void;
+    requestPermissionsFromUser(permissions: Array<string>, requestCode: number): Promise<PermissionRequestResult>;
+
+    
+    getApplicationInfo(callback: AsyncCallback<ApplicationInfo>): void
+    getApplicationInfo(): Promise<ApplicationInfo>;
+
+    
+    getBundleName(callback: AsyncCallback<string>): void
+    getBundleName(): Promise<string>;
+
+    
+    getDisplayOrientation(callback: AsyncCallback<DisplayOrientation>): void
+    getDisplayOrientation(): Promise<DisplayOrientation>;
+    
+    
+    setDisplayOrientation(orientation: DisplayOrientation, callback: AsyncCallback<void>): void
+    setDisplayOrientation(orientation: DisplayOrientation): Promise<void>;
+    
+    
+    setShowOnLockScreen(show: boolean, callback: AsyncCallback<void>): void
+    setShowOnLockScreen(show: boolean): Promise<void>;
+    
+    
+    setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback<void>): void
+    setWakeUpScreen(wakeUp: boolean): Promise<void>;  
+
+    
+    getProcessInfo(callback: AsyncCallback<ProcessInfo>): void
+    getProcessInfo(): Promise<ProcessInfo>;
+
+    
+    getElementName(callback: AsyncCallback<ElementName>): void
+    getElementName(): Promise<ElementName>;
+
+    
+    getProcessName(callback: AsyncCallback<string>): void
+    getProcessName(): Promise<string>;
+
+    
+    getCallingBundle(callback: AsyncCallback<string>): void
+    getCallingBundle(): Promise<string>;
+
+    
+    getFilesDir(callback: AsyncCallback<string>): void;
+    getFilesDir(): Promise<string>;
+
+    
+    getCacheDir(callback: AsyncCallback<string>): void;
+    getCacheDir(): Promise<string>;
+
+    
+    getOrCreateDistributedDir(): Promise<string>;
+    getOrCreateDistributedDir(callback: AsyncCallback<string>): void;
+
+    
+    getAppType(callback: AsyncCallback<string>): void
+    getAppType(): Promise<string>;
+
+    
+    getHapModuleInfo(callback: AsyncCallback<HapModuleInfo>): void
+    getHapModuleInfo(): Promise<HapModuleInfo>;
+
+    
+    getAppVersionInfo(callback: AsyncCallback<AppVersionInfo>): void
+    getAppVersionInfo(): Promise<AppVersionInfo>;
+
+    
+    getApplicationContext(): Context;
+
+    
+    getAbilityInfo(callback: AsyncCallback<AbilityInfo>): void
+    getAbilityInfo(): Promise<AbilityInfo>;
+
+    
+    isUpdatingConfigurations(callback: AsyncCallback<boolean>): void;
+    isUpdatingConfigurations(): Promise<boolean>;
+
+    
+    printDrawnCompleted(callback: AsyncCallback<void>): void;
+    printDrawnCompleted(): Promise<void>;
+}</td><td>Context</td><td>None</td><td>0</td><td>84</td><tr><tr><td>Context</td><td>getOrCreateLocalDir(): Promise<string>;</td><td>getOrCreateLocalDir</td><td>None</td><td>0</td><td>0</td><tr><tr><td>Context</td><td>getOrCreateLocalDir(callback: AsyncCallback<string>): void;</td><td>getOrCreateLocalDir</td><td>None</td><td>1</td><td>3</td><tr><tr><td>Context</td><td>verifyPermission(permission: string, options?: PermissionOptions): Promise<number>;</td><td>verifyPermission</td><td>None</td><td>2</td><td>0</td><tr><tr><td>Context</td><td>verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback<number>): void;</td><td>verifyPermission</td><td>None</td><td>3</td><td>6</td><tr><tr><td>Context</td><td>verifyPermission(permission: string, callback: AsyncCallback<number>): void;</td><td>verifyPermission</td><td>None</td><td>2</td><td>6</td><tr><tr><td>Context</td><td>requestPermissionsFromUser(permissions: Array<string>, requestCode: number, resultCallback: AsyncCallback<PermissionRequestResult>): void;</td><td>requestPermissionsFromUser</td><td>None</td><td>3</td><td>2</td><tr><tr><td>Context</td><td>requestPermissionsFromUser(permissions: Array<string>, requestCode: number): Promise<PermissionRequestResult>;</td><td>requestPermissionsFromUser</td><td>None</td><td>2</td><td>0</td><tr><tr><td>Context</td><td>getApplicationInfo(callback: AsyncCallback<ApplicationInfo>): void
+    getApplicationInfo(): Promise<ApplicationInfo>;</td><td>getApplicationInfo</td><td>None</td><td>1</td><td>11</td><tr><tr><td>Context</td><td>getApplicationInfo(): Promise<ApplicationInfo>;</td><td>getApplicationInfo</td><td>None</td><td>0</td><td>0</td><tr><tr><td>Context</td><td>getBundleName(callback: AsyncCallback<string>): void
+    getBundleName(): Promise<string>;</td><td>getBundleName</td><td>None</td><td>1</td><td>10</td><tr><tr><td>Context</td><td>getBundleName(): Promise<string>;</td><td>getBundleName</td><td>None</td><td>0</td><td>0</td><tr><tr><td>Context</td><td>getDisplayOrientation(callback: AsyncCallback<DisplayOrientation>): void
+    getDisplayOrientation(): Promise<DisplayOrientation>;</td><td>getDisplayOrientation</td><td>None</td><td>1</td><td>4</td><tr><tr><td>Context</td><td>getDisplayOrientation(): Promise<DisplayOrientation>;</td><td>getDisplayOrientation</td><td>None</td><td>0</td><td>1</td><tr><tr><td>Context</td><td>setDisplayOrientation(orientation: DisplayOrientation, callback: AsyncCallback<void>): void
+    setDisplayOrientation(orientation: DisplayOrientation): Promise<void>;</td><td>setDisplayOrientation</td><td>None</td><td>2</td><td>4</td><tr><tr><td>Context</td><td>setDisplayOrientation(orientation: DisplayOrientation): Promise<void>;</td><td>setDisplayOrientation</td><td>None</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>setShowOnLockScreen(show: boolean, callback: AsyncCallback<void>): void
+    setShowOnLockScreen(show: boolean): Promise<void>;</td><td>setShowOnLockScreen</td><td>None</td><td>2</td><td>9</td><tr><tr><td>Context</td><td>setShowOnLockScreen(show: boolean): Promise<void>;</td><td>setShowOnLockScreen</td><td>None</td><td>1</td><td>1</td><tr><tr><td>Context</td><td>setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback<void>): void
+    setWakeUpScreen(wakeUp: boolean): Promise<void>;</td><td>setWakeUpScreen</td><td>None</td><td>2</td><td>4</td><tr><tr><td>Context</td><td>setWakeUpScreen(wakeUp: boolean): Promise<void>;</td><td>setWakeUpScreen</td><td>None</td><td>1</td><td>1</td><tr><tr><td>Context</td><td>getProcessInfo(callback: AsyncCallback<ProcessInfo>): void
+    getProcessInfo(): Promise<ProcessInfo>;</td><td>getProcessInfo</td><td>None</td><td>1</td><td>3</td><tr><tr><td>Context</td><td>getProcessInfo(): Promise<ProcessInfo>;</td><td>getProcessInfo</td><td>None</td><td>0</td><td>0</td><tr><tr><td>Context</td><td>getElementName(callback: AsyncCallback<ElementName>): void
+    getElementName(): Promise<ElementName>;</td><td>getElementName</td><td>None</td><td>1</td><td>4</td><tr><tr><td>Context</td><td>getElementName(): Promise<ElementName>;</td><td>getElementName</td><td>None</td><td>0</td><td>0</td><tr><tr><td>Context</td><td>getProcessName(callback: AsyncCallback<string>): void
+    getProcessName(): Promise<string>;</td><td>getProcessName</td><td>None</td><td>1</td><td>3</td><tr><tr><td>Context</td><td>getProcessName(): Promise<string>;</td><td>getProcessName</td><td>None</td><td>0</td><td>0</td><tr><tr><td>Context</td><td>getCallingBundle(callback: AsyncCallback<string>): void
+    getCallingBundle(): Promise<string>;</td><td>getCallingBundle</td><td>None</td><td>1</td><td>5</td><tr><tr><td>Context</td><td>getCallingBundle(): Promise<string>;</td><td>getCallingBundle</td><td>None</td><td>0</td><td>2</td><tr><tr><td>Context</td><td>getFilesDir(callback: AsyncCallback<string>): void;</td><td>getFilesDir</td><td>None</td><td>1</td><td>16</td><tr><tr><td>Context</td><td>getFilesDir(): Promise<string>;</td><td>getFilesDir</td><td>None</td><td>0</td><td>1</td><tr><tr><td>Context</td><td>getCacheDir(callback: AsyncCallback<string>): void;</td><td>getCacheDir</td><td>None</td><td>1</td><td>16</td><tr><tr><td>Context</td><td>getCacheDir(): Promise<string>;</td><td>getCacheDir</td><td>None</td><td>0</td><td>1</td><tr><tr><td>Context</td><td>getOrCreateDistributedDir(): Promise<string>;</td><td>getOrCreateDistributedDir</td><td>None</td><td>0</td><td>1</td><tr><tr><td>Context</td><td>getOrCreateDistributedDir(callback: AsyncCallback<string>): void;</td><td>getOrCreateDistributedDir</td><td>None</td><td>1</td><td>16</td><tr><tr><td>Context</td><td>getAppType(callback: AsyncCallback<string>): void
+    getAppType(): Promise<string>;</td><td>getAppType</td><td>None</td><td>1</td><td>19</td><tr><tr><td>Context</td><td>getAppType(): Promise<string>;</td><td>getAppType</td><td>None</td><td>0</td><td>1</td><tr><tr><td>Context</td><td>getHapModuleInfo(callback: AsyncCallback<HapModuleInfo>): void
+    getHapModuleInfo(): Promise<HapModuleInfo>;</td><td>getHapModuleInfo</td><td>None</td><td>1</td><td>47</td><tr><tr><td>Context</td><td>getHapModuleInfo(): Promise<HapModuleInfo>;</td><td>getHapModuleInfo</td><td>None</td><td>0</td><td>2</td><tr><tr><td>Context</td><td>getAppVersionInfo(callback: AsyncCallback<AppVersionInfo>): void
+    getAppVersionInfo(): Promise<AppVersionInfo>;</td><td>getAppVersionInfo</td><td>None</td><td>1</td><td>22</td><tr><tr><td>Context</td><td>getAppVersionInfo(): Promise<AppVersionInfo>;</td><td>getAppVersionInfo</td><td>None</td><td>0</td><td>1</td><tr><tr><td>Context</td><td>getApplicationContext(): Context;</td><td>getApplicationContext</td><td>None</td><td>0</td><td>10</td><tr><tr><td>Context</td><td>getAbilityInfo(callback: AsyncCallback<AbilityInfo>): void
+    getAbilityInfo(): Promise<AbilityInfo>;</td><td>getAbilityInfo</td><td>None</td><td>1</td><td>67</td><tr><tr><td>Context</td><td>getAbilityInfo(): Promise<AbilityInfo>;</td><td>getAbilityInfo</td><td>None</td><td>0</td><td>2</td><tr><tr><td>Context</td><td>isUpdatingConfigurations(callback: AsyncCallback<boolean>): void;</td><td>isUpdatingConfigurations</td><td>None</td><td>1</td><td>3</td><tr><tr><td>Context</td><td>isUpdatingConfigurations(): Promise<boolean>;</td><td>isUpdatingConfigurations</td><td>None</td><td>0</td><td>1</td><tr><tr><td>Context</td><td>printDrawnCompleted(callback: AsyncCallback<void>): void;</td><td>printDrawnCompleted</td><td>None</td><td>1</td><td>3</td><tr><tr><td>Context</td><td>printDrawnCompleted(): Promise<void>;</td><td>printDrawnCompleted</td><td>None</td><td>0</td><td>1</td><tr><tr><td>PermissionRequestResult</td><td>interface PermissionRequestResult {
+    
+    requestCode: number;
+
+    
+    permissions: Array<string>;
+
+    
+    authResults: Array<number>;
+}</td><td>PermissionRequestResult</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PermissionRequestResult</td><td>requestCode: number</td><td>requestCode</td><td>22</td><td>1</td><td>8</td><tr><tr><td>PermissionRequestResult</td><td>permissions: Array<string></td><td>permissions</td><td>22</td><td>1</td><td>58</td><tr><tr><td>PermissionRequestResult</td><td>authResults: Array<number></td><td>authResults</td><td>22</td><td>1</td><td>0</td><tr><tr><td>PermissionOptions</td><td>interface PermissionOptions {
+ 
+ pid?: number;
+
+ 
+ uid?: number;
+}</td><td>PermissionOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PermissionOptions</td><td>pid?: number</td><td>pid</td><td>22</td><td>1</td><td>39</td><tr><tr><td>PermissionOptions</td><td>uid?: number</td><td>uid</td><td>22</td><td>1</td><td>45</td><tr><tr><td>Context</td><td>export default class Context extends BaseContext {
+    
+    resourceManager: resmgr.ResourceManager;
+
+    
+    applicationInfo: ApplicationInfo;
+
+    
+    cacheDir: string;
+
+    
+    tempDir: string;
+
+    
+    filesDir : string;
+
+    
+    databaseDir : string;
+
+    
+    preferencesDir : string;
+
+    
+    bundleCodeDir : string;
+
+    
+    distributedFilesDir: string;
+
+    
+    eventHub: EventHub;
+
+    
+    createBundleContext(bundleName: string): Context;
+
+     
+    getApplicationContext(): Context;
+
+    
+     switchArea(mode: AreaMode): void;
+}</td><td>Context</td><td>None</td><td>0</td><td>84</td><tr><tr><td>Context</td><td>createBundleContext(bundleName: string): Context;</td><td>createBundleContext</td><td>None</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>getApplicationContext(): Context;</td><td>getApplicationContext</td><td>None</td><td>0</td><td>10</td><tr><tr><td>Context</td><td>switchArea(mode: AreaMode): void;</td><td>switchArea</td><td>None</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>resourceManager: resmgr.ResourceManager</td><td>resourceManager</td><td>12</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>applicationInfo: ApplicationInfo</td><td>applicationInfo</td><td>12</td><td>1</td><td>9</td><tr><tr><td>Context</td><td>cacheDir: string</td><td>cacheDir</td><td>12</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>tempDir: string</td><td>tempDir</td><td>12</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>filesDir : string</td><td>filesDir</td><td>12</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>databaseDir : string</td><td>databaseDir</td><td>12</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>preferencesDir : string</td><td>preferencesDir</td><td>12</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>bundleCodeDir : string</td><td>bundleCodeDir</td><td>12</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>distributedFilesDir: string</td><td>distributedFilesDir</td><td>12</td><td>1</td><td>0</td><tr><tr><td>Context</td><td>eventHub: EventHub</td><td>eventHub</td><td>12</td><td>1</td><td>0</td><tr><tr><td>AreaMode</td><td>export enum AreaMode {
+    
+    EL1 = 0,
+    
+    EL2 = 1
+}</td><td>AreaMode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>AreaMode</td><td>EL1 = 0,</td><td>EL1</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AreaMode</td><td>EL2 = 1</td><td>EL2</td><td>42</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

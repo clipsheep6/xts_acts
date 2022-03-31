@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>lifecycle</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>LifecycleForm</td><td>export declare interface LifecycleForm {
+  
+  onCreate?(want: Want): formBindingData.FormBindingData;
+
+  
+  onCastToNormal?(formId: string): void;
+
+  
+  onUpdate?(formId: string): void;
+
+  
+  onVisibilityChange?(newStatus: { [key: string]: number }): void;
+
+  
+  onEvent?(formId: string, message: string): void;
+
+  
+  onDestroy?(formId: string): void;
+
+  
+  onAcquireFormState?(want: Want): formInfo.FormState;
+}</td><td>LifecycleForm</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LifecycleForm</td><td>onCreate?(want: Want): formBindingData.FormBindingData;</td><td>onCreate</td><td>21</td><td>1</td><td>18</td><tr><tr><td>LifecycleForm</td><td>onCastToNormal?(formId: string): void;</td><td>onCastToNormal</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleForm</td><td>onUpdate?(formId: string): void;</td><td>onUpdate</td><td>21</td><td>1</td><td>5</td><tr><tr><td>LifecycleForm</td><td>onVisibilityChange?(newStatus: { [key: string]: number }): void;</td><td>onVisibilityChange</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleForm</td><td>onEvent?(formId: string, message: string): void;</td><td>onEvent</td><td>21</td><td>2</td><td>4</td><tr><tr><td>LifecycleForm</td><td>onDestroy?(formId: string): void;</td><td>onDestroy</td><td>21</td><td>1</td><td>20</td><tr><tr><td>LifecycleForm</td><td>onAcquireFormState?(want: Want): formInfo.FormState;</td><td>onAcquireFormState</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleApp</td><td>export declare interface LifecycleApp {
+  
+  onShow?(): void;
+
+  
+  onHide?(): void;
+
+  
+  onDestroy?(): void;
+
+  
+  onCreate?(): void;
+
+  
+  onWindowDisplayModeChanged?(isShownInMultiWindow: boolean, newConfig: resourceManager.Configuration): void;
+
+  
+  onStartContinuation?(): boolean;
+
+  
+  onSaveData?(data: Object): boolean;
+
+  
+  onCompleteContinuation?(result: number): void;
+
+  
+  onRestoreData?(data: Object): void;
+
+  
+  onRemoteTerminated?(): void;
+
+  
+  onSaveAbilityState?(outState: PacMap): void;
+
+  
+  onRestoreAbilityState?(inState: PacMap): void;
+
+  
+  onInactive?(): void;
+
+  
+  onActive?(): void;
+
+  
+  onNewWant?(want: Want): void;
+
+  
+  onMemoryLevel?(level: number): void;
+}</td><td>LifecycleApp</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LifecycleApp</td><td>onShow?(): void;</td><td>onShow</td><td>21</td><td>0</td><td>157</td><tr><tr><td>LifecycleApp</td><td>onHide?(): void;</td><td>onHide</td><td>21</td><td>0</td><td>6</td><tr><tr><td>LifecycleApp</td><td>onDestroy?(): void;</td><td>onDestroy</td><td>21</td><td>0</td><td>20</td><tr><tr><td>LifecycleApp</td><td>onCreate?(): void;</td><td>onCreate</td><td>21</td><td>0</td><td>18</td><tr><tr><td>LifecycleApp</td><td>onWindowDisplayModeChanged?(isShownInMultiWindow: boolean, newConfig: resourceManager.Configuration): void;</td><td>onWindowDisplayModeChanged</td><td>21</td><td>2</td><td>0</td><tr><tr><td>LifecycleApp</td><td>onStartContinuation?(): boolean;</td><td>onStartContinuation</td><td>21</td><td>0</td><td>0</td><tr><tr><td>LifecycleApp</td><td>onSaveData?(data: Object): boolean;</td><td>onSaveData</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleApp</td><td>onCompleteContinuation?(result: number): void;</td><td>onCompleteContinuation</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleApp</td><td>onRestoreData?(data: Object): void;</td><td>onRestoreData</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleApp</td><td>onRemoteTerminated?(): void;</td><td>onRemoteTerminated</td><td>21</td><td>0</td><td>0</td><tr><tr><td>LifecycleApp</td><td>onSaveAbilityState?(outState: PacMap): void;</td><td>onSaveAbilityState</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleApp</td><td>onRestoreAbilityState?(inState: PacMap): void;</td><td>onRestoreAbilityState</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleApp</td><td>onInactive?(): void;</td><td>onInactive</td><td>21</td><td>0</td><td>1</td><tr><tr><td>LifecycleApp</td><td>onActive?(): void;</td><td>onActive</td><td>21</td><td>0</td><td>1</td><tr><tr><td>LifecycleApp</td><td>onNewWant?(want: Want): void;</td><td>onNewWant</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleApp</td><td>onMemoryLevel?(level: number): void;</td><td>onMemoryLevel</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleService</td><td>export declare interface LifecycleService {
+  
+  onStart?(): void;
+
+  
+  onCommand?(want: Want, startId: number): void;
+
+  
+  onStop?(): void;
+
+  
+  onConnect?(want: Want): rpc.RemoteObject;
+
+  
+  onDisconnect?(want: Want): void;
+
+  
+  onReconnect?(want: Want): void;
+}</td><td>LifecycleService</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LifecycleService</td><td>onStart?(): void;</td><td>onStart</td><td>21</td><td>0</td><td>17</td><tr><tr><td>LifecycleService</td><td>onCommand?(want: Want, startId: number): void;</td><td>onCommand</td><td>21</td><td>2</td><td>0</td><tr><tr><td>LifecycleService</td><td>onStop?(): void;</td><td>onStop</td><td>21</td><td>0</td><td>1</td><tr><tr><td>LifecycleService</td><td>onConnect?(want: Want): rpc.RemoteObject;</td><td>onConnect</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleService</td><td>onDisconnect?(want: Want): void;</td><td>onDisconnect</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleService</td><td>onReconnect?(want: Want): void;</td><td>onReconnect</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleData</td><td>export declare interface LifecycleData {
+  
+   update?(uri: string, valueBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<number>): void;
+
+  
+   query?(uri: string, columns: Array<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<ResultSet>): void;
+
+  
+   delete?(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<number>): void;
+
+  
+   normalizeUri?(uri: string, callback: AsyncCallback<string>): void;
+
+  
+   batchInsert?(uri: string, valueBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback<number>): void;
+
+  
+   denormalizeUri?(uri: string, callback: AsyncCallback<string>): void;
+
+  
+   insert?(uri: string, valueBucket: rdb.ValuesBucket, callback: AsyncCallback<number>): void;
+
+  
+   openFile?(uri: string, mode: string, callback: AsyncCallback<number>): void;
+
+  
+   getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array<string>>): void;
+
+  
+  onInitialized?(info: AbilityInfo): void;
+
+  
+  getType?(uri: string, callback: AsyncCallback<string>): void;
+
+  
+  executeBatch?(ops: Array<DataAbilityOperation>, callback: AsyncCallback<Array<DataAbilityResult>>): void;
+
+  
+   call?(method: string, arg: string, extras: PacMap, callback: AsyncCallback<PacMap>): void;
+}</td><td>LifecycleData</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LifecycleData</td><td>update?(uri: string, valueBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<number>): void;</td><td>update</td><td>21</td><td>4</td><td>45</td><tr><tr><td>LifecycleData</td><td>query?(uri: string, columns: Array<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<ResultSet>): void;</td><td>query</td><td>21</td><td>4</td><td>16</td><tr><tr><td>LifecycleData</td><td>delete?(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<number>): void;</td><td>delete</td><td>21</td><td>3</td><td>9</td><tr><tr><td>LifecycleData</td><td>normalizeUri?(uri: string, callback: AsyncCallback<string>): void;</td><td>normalizeUri</td><td>21</td><td>2</td><td>0</td><tr><tr><td>LifecycleData</td><td>batchInsert?(uri: string, valueBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback<number>): void;</td><td>batchInsert</td><td>21</td><td>3</td><td>0</td><tr><tr><td>LifecycleData</td><td>denormalizeUri?(uri: string, callback: AsyncCallback<string>): void;</td><td>denormalizeUri</td><td>21</td><td>2</td><td>0</td><tr><tr><td>LifecycleData</td><td>insert?(uri: string, valueBucket: rdb.ValuesBucket, callback: AsyncCallback<number>): void;</td><td>insert</td><td>21</td><td>3</td><td>12</td><tr><tr><td>LifecycleData</td><td>openFile?(uri: string, mode: string, callback: AsyncCallback<number>): void;</td><td>openFile</td><td>21</td><td>3</td><td>0</td><tr><tr><td>LifecycleData</td><td>getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array<string>>): void;</td><td>getFileTypes</td><td>21</td><td>3</td><td>0</td><tr><tr><td>LifecycleData</td><td>onInitialized?(info: AbilityInfo): void;</td><td>onInitialized</td><td>21</td><td>1</td><td>0</td><tr><tr><td>LifecycleData</td><td>getType?(uri: string, callback: AsyncCallback<string>): void;</td><td>getType</td><td>21</td><td>2</td><td>0</td><tr><tr><td>LifecycleData</td><td>executeBatch?(ops: Array<DataAbilityOperation>, callback: AsyncCallback<Array<DataAbilityResult>>): void;</td><td>executeBatch</td><td>21</td><td>2</td><td>0</td><tr><tr><td>LifecycleData</td><td>call?(method: string, arg: string, extras: PacMap, callback: AsyncCallback<PacMap>): void;</td><td>call</td><td>21</td><td>4</td><td>788</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>包管理子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>appexecfwk</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.bundle</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>bundle</td><td>declare namespace bundle {
+
+
+  enum BundleFlag {
+    GET_BUNDLE_DEFAULT = 0x00000000,
+    GET_BUNDLE_WITH_ABILITIES = 0x00000001,
+    GET_ABILITY_INFO_WITH_PERMISSION = 0x00000002,
+    GET_ABILITY_INFO_WITH_APPLICATION = 0x00000004,
+    GET_APPLICATION_INFO_WITH_PERMISSION = 0x00000008,
+    GET_BUNDLE_WITH_REQUESTED_PERMISSION = 0x00000010,
+    GET_ALL_APPLICATION_INFO = 0xFFFF0000,
+    
+    GET_ABILITY_INFO_WITH_METADATA = 0x00000020,
+    
+     GET_BUNDLE_WITH_EXTENSION_ABILITY = 0x00000020,
+    
+     GET_APPLICATION_INFO_WITH_METADATA = 0x00000040,
+    
+    GET_ABILITY_INFO_SYSTEMAPP_ONLY = 0x00000080,
+    
+    GET_ABILITY_INFO_WITH_DISABLE = 0x00000100,
+    
+    GET_APPLICATION_INFO_WITH_DISABLE = 0x00000200,
+  }
+
+
+  enum ExtensionFlag {
+    GET_EXTENSION_INFO_DEFAULT = 0x00000000,
+    GET_EXTENSION_INFO_WITH_PERMISSION = 0x00000002,
+    GET_EXTENSION_INFO_WITH_APPLICATION = 0x00000004,
+    GET_EXTENSION_INFO_WITH_METADATA = 0x00000020,
+  }
+
+
+  export enum ColorMode {
+    AUTO_MODE = -1,
+    DARK_MODE = 0,
+    LIGHT_MODE = 1,
+  }
+
+
+  export enum GrantStatus {
+    PERMISSION_DENIED = -1,
+    PERMISSION_GRANTED = 0,
+  }
+
+  
+  export enum AbilityType {
+    
+    UNKNOWN,
+
+    
+    PAGE,
+
+    
+    SERVICE,
+
+    
+    DATA,
+  }
+
+  
+  export enum AbilitySubType {
+    UNSPECIFIED = 0,
+    CA = 1,
+  }
+
+  
+  export enum DisplayOrientation {
+    
+    UNSPECIFIED,
+
+    
+    LANDSCAPE,
+
+    
+    PORTRAIT,
+
+    
+    FOLLOW_RECENT,
+  }
+
+  
+  export enum LaunchMode {
+    
+    SINGLETON = 0,
+
+    
+    STANDARD = 1,
+  }
+
+  
+  export enum ExtensionAbilityType {
+    
+    FORM = 0,
+    
+    WORK_SCHEDULER = 1,
+    
+    INPUT_METHOD = 2,
+    
+    SERVICE = 3,
+    
+    ACCESSIBILITY = 4,
+    
+    DATA_SHARE = 5,
+    
+    FILE_SHARE = 6,
+    
+    STATIC_SUBSCRIBER = 7,
+    
+    WALLPAPER = 8,
+    
+    UNSPECIFIED = 9,
+  }
+
+  
+  export interface BundleOptions {
+    
+    userId?: number;
+  }
+
+  
+  export enum InstallErrorCode{
+    SUCCESS = 0,
+    STATUS_INSTALL_FAILURE = 1,
+    STATUS_INSTALL_FAILURE_ABORTED = 2,
+    STATUS_INSTALL_FAILURE_INVALID = 3,
+    STATUS_INSTALL_FAILURE_CONFLICT = 4,
+    STATUS_INSTALL_FAILURE_STORAGE = 5,
+    STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6,
+    STATUS_UNINSTALL_FAILURE = 7,
+    STATUS_UNINSTALL_FAILURE_BLOCKED = 8,
+    STATUS_UNINSTALL_FAILURE_ABORTED = 9,
+    STATUS_UNINSTALL_FAILURE_CONFLICT = 10,
+    STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B,
+    STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C,
+    
+    STATUS_RECOVER_FAILURE_INVALID = 0x0D,
+    
+    STATUS_ABILITY_NOT_FOUND = 0x40,
+    
+    STATUS_BMS_SERVICE_ERROR = 0x41,
+    
+    STATUS_FAILED_NO_SPACE_LEFT = 0x42,
+    
+    STATUS_GRANT_REQUEST_PERMISSIONS_FAILED = 0x43,
+    
+    STATUS_INSTALL_PERMISSION_DENIED = 0x44,
+    
+    STATUS_UNINSTALL_PERMISSION_DENIED = 0x45,
+  }
+
+  
+   function getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, callback: AsyncCallback<BundleInfo>): void;
+   function getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>): void;
+   function getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions): Promise<BundleInfo>;
+
+  
+  function getBundleInstaller(callback: AsyncCallback<BundleInstaller>): void;
+  function getBundleInstaller(): Promise<BundleInstaller>;
+   
+  
+  function getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback<AbilityInfo>): void;
+  function getAbilityInfo(bundleName: string, abilityName: string): Promise<AbilityInfo>;
+
+  
+  function getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback<ApplicationInfo>) : void;
+  function getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback<ApplicationInfo>) : void;
+  function getApplicationInfo(bundleName: string, bundleFlags: number, userId?: number) : Promise<ApplicationInfo>;
+
+  
+  function queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>): void;
+  function queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void;
+  function queryAbilityByWant(want: Want, bundleFlags: number, userId?:number): Promise<Array<AbilityInfo>>;
+
+  
+  function getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array<BundleInfo>>) : void;
+  function getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array<BundleInfo>>) : void;
+  function getAllBundleInfo(bundleFlag: BundleFlag, userId?: number) : Promise<Array<BundleInfo>>;
+
+  
+  function getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array<ApplicationInfo>>) : void;
+  function getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array<ApplicationInfo>>) : void;
+  function getAllApplicationInfo(bundleFlags: number, userId?: number) : Promise<Array<ApplicationInfo>>;
+
+  
+   function getNameForUid(uid: number, callback: AsyncCallback<string>) : void
+   function getNameForUid(uid: number) : Promise<string>;
+
+  
+  function getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>) : void
+  function getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise<BundleInfo>;
+
+  
+  function getLaunchWantForBundle(bundleName: string, callback: AsyncCallback<Want>): void;
+  function getLaunchWantForBundle(bundleName: string): Promise<Want>;
+
+  
+  function getModuleUsageRecords(maxNum: number, callback: AsyncCallback<Array<ModuleUsageRecord>>): void;
+  function getModuleUsageRecords(maxNum: number): Promise<Array<ModuleUsageRecord>>;
+
+  
+  function cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback<void>): void;
+  function cleanBundleCacheFiles(bundleName: string): Promise<void>;
+
+  
+  function setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback<void>): void;
+  function setApplicationEnabled(bundleName: string, isEnable: boolean): Promise<void>;
+
+  
+  function setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback<void>): void;
+  function setAbilityEnabled(info: AbilityInfo, isEnable: boolean): Promise<void>;
+
+  
+  function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array<ExtensionAbilityInfo>>): void;
+  function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array<ExtensionAbilityInfo>>): void;
+  function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array<ExtensionAbilityInfo>>;
+
+  
+  function getPermissionDef(permissionName: string, callback: AsyncCallback<PermissionDef>): void;
+  function getPermissionDef(permissionName: string): Promise<PermissionDef>;
+
+  
+  function getAbilityLabel(bundleName: string, abilityName: string, callback: AsyncCallback<string>): void;
+  function getAbilityLabel(bundleName: string, abilityName: string): Promise<string>;
+
+  
+  function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback<image.PixelMap>): void;
+  function getAbilityIcon(bundleName: string, abilityName: string): Promise<image.PixelMap>;
+
+   
+  function isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback<boolean>): void;
+  function isAbilityEnabled(info: AbilityInfo): Promise<boolean>;
+
+  
+  function isApplicationEnabled(bundleName: string, callback: AsyncCallback<boolean>): void;
+  function isApplicationEnabled(bundleName: string): Promise<boolean>;
+}</td><td>bundle</td><td>None</td><td>0</td><td>563</td><tr><tr><td>bundle</td><td>function getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, callback: AsyncCallback<BundleInfo>): void;</td><td>getBundleInfo</td><td>None</td><td>4</td><td>146</td><tr><tr><td>bundle</td><td>function getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>): void;</td><td>getBundleInfo</td><td>None</td><td>3</td><td>146</td><tr><tr><td>bundle</td><td>function getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions): Promise<BundleInfo>;</td><td>getBundleInfo</td><td>None</td><td>3</td><td>5</td><tr><tr><td>bundle</td><td>function getBundleInstaller(callback: AsyncCallback<BundleInstaller>): void;</td><td>getBundleInstaller</td><td>None</td><td>1</td><td>145</td><tr><tr><td>bundle</td><td>function getBundleInstaller(): Promise<BundleInstaller>;</td><td>getBundleInstaller</td><td>None</td><td>0</td><td>12</td><tr><tr><td>bundle</td><td>function getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback<AbilityInfo>): void;</td><td>getAbilityInfo</td><td>None</td><td>3</td><td>5</td><tr><tr><td>bundle</td><td>function getAbilityInfo(bundleName: string, abilityName: string): Promise<AbilityInfo>;</td><td>getAbilityInfo</td><td>None</td><td>2</td><td>4</td><tr><tr><td>bundle</td><td>function getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback<ApplicationInfo>) : void;</td><td>getApplicationInfo</td><td>None</td><td>4</td><td>148</td><tr><tr><td>bundle</td><td>function getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback<ApplicationInfo>) : void;</td><td>getApplicationInfo</td><td>None</td><td>3</td><td>148</td><tr><tr><td>bundle</td><td>function getApplicationInfo(bundleName: string, bundleFlags: number, userId?: number) : Promise<ApplicationInfo>;</td><td>getApplicationInfo</td><td>None</td><td>3</td><td>4</td><tr><tr><td>bundle</td><td>function queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>): void;</td><td>queryAbilityByWant</td><td>None</td><td>4</td><td>55</td><tr><tr><td>bundle</td><td>function queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void;</td><td>queryAbilityByWant</td><td>None</td><td>3</td><td>55</td><tr><tr><td>bundle</td><td>function queryAbilityByWant(want: Want, bundleFlags: number, userId?:number): Promise<Array<AbilityInfo>>;</td><td>queryAbilityByWant</td><td>None</td><td>3</td><td>0</td><tr><tr><td>bundle</td><td>function getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array<BundleInfo>>) : void;</td><td>getAllBundleInfo</td><td>None</td><td>3</td><td>13</td><tr><tr><td>bundle</td><td>function getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array<BundleInfo>>) : void;</td><td>getAllBundleInfo</td><td>None</td><td>2</td><td>13</td><tr><tr><td>bundle</td><td>function getAllBundleInfo(bundleFlag: BundleFlag, userId?: number) : Promise<Array<BundleInfo>>;</td><td>getAllBundleInfo</td><td>None</td><td>2</td><td>1</td><tr><tr><td>bundle</td><td>function getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array<ApplicationInfo>>) : void;</td><td>getAllApplicationInfo</td><td>None</td><td>3</td><td>27</td><tr><tr><td>bundle</td><td>function getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array<ApplicationInfo>>) : void;</td><td>getAllApplicationInfo</td><td>None</td><td>2</td><td>27</td><tr><tr><td>bundle</td><td>function getAllApplicationInfo(bundleFlags: number, userId?: number) : Promise<Array<ApplicationInfo>>;</td><td>getAllApplicationInfo</td><td>None</td><td>2</td><td>3</td><tr><tr><td>bundle</td><td>function getNameForUid(uid: number, callback: AsyncCallback<string>) : void
+   function getNameForUid(uid: number) : Promise<string>;</td><td>getNameForUid</td><td>None</td><td>2</td><td>4</td><tr><tr><td>bundle</td><td>function getNameForUid(uid: number) : Promise<string>;</td><td>getNameForUid</td><td>None</td><td>1</td><td>1</td><tr><tr><td>bundle</td><td>function getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>) : void
+  function getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise<BundleInfo>;</td><td>getBundleArchiveInfo</td><td>None</td><td>3</td><td>59</td><tr><tr><td>bundle</td><td>function getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise<BundleInfo>;</td><td>getBundleArchiveInfo</td><td>None</td><td>2</td><td>2</td><tr><tr><td>bundle</td><td>function getLaunchWantForBundle(bundleName: string, callback: AsyncCallback<Want>): void;</td><td>getLaunchWantForBundle</td><td>None</td><td>2</td><td>2</td><tr><tr><td>bundle</td><td>function getLaunchWantForBundle(bundleName: string): Promise<Want>;</td><td>getLaunchWantForBundle</td><td>None</td><td>1</td><td>1</td><tr><tr><td>bundle</td><td>function getModuleUsageRecords(maxNum: number, callback: AsyncCallback<Array<ModuleUsageRecord>>): void;</td><td>getModuleUsageRecords</td><td>None</td><td>2</td><td>0</td><tr><tr><td>bundle</td><td>function getModuleUsageRecords(maxNum: number): Promise<Array<ModuleUsageRecord>>;</td><td>getModuleUsageRecords</td><td>None</td><td>1</td><td>0</td><tr><tr><td>bundle</td><td>function cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback<void>): void;</td><td>cleanBundleCacheFiles</td><td>None</td><td>2</td><td>3</td><tr><tr><td>bundle</td><td>function cleanBundleCacheFiles(bundleName: string): Promise<void>;</td><td>cleanBundleCacheFiles</td><td>None</td><td>1</td><td>0</td><tr><tr><td>bundle</td><td>function setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback<void>): void;</td><td>setApplicationEnabled</td><td>None</td><td>3</td><td>2</td><tr><tr><td>bundle</td><td>function setApplicationEnabled(bundleName: string, isEnable: boolean): Promise<void>;</td><td>setApplicationEnabled</td><td>None</td><td>2</td><td>3</td><tr><tr><td>bundle</td><td>function setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback<void>): void;</td><td>setAbilityEnabled</td><td>None</td><td>3</td><td>2</td><tr><tr><td>bundle</td><td>function setAbilityEnabled(info: AbilityInfo, isEnable: boolean): Promise<void>;</td><td>setAbilityEnabled</td><td>None</td><td>2</td><td>5</td><tr><tr><td>bundle</td><td>function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array<ExtensionAbilityInfo>>): void;</td><td>queryExtensionAbilityInfosByWant</td><td>None</td><td>4</td><td>0</td><tr><tr><td>bundle</td><td>function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array<ExtensionAbilityInfo>>): void;</td><td>queryExtensionAbilityInfosByWant</td><td>None</td><td>3</td><td>0</td><tr><tr><td>bundle</td><td>function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array<ExtensionAbilityInfo>>;</td><td>queryExtensionAbilityInfosByWant</td><td>None</td><td>3</td><td>0</td><tr><tr><td>bundle</td><td>function getPermissionDef(permissionName: string, callback: AsyncCallback<PermissionDef>): void;</td><td>getPermissionDef</td><td>None</td><td>2</td><td>0</td><tr><tr><td>bundle</td><td>function getPermissionDef(permissionName: string): Promise<PermissionDef>;</td><td>getPermissionDef</td><td>None</td><td>1</td><td>0</td><tr><tr><td>bundle</td><td>function getAbilityLabel(bundleName: string, abilityName: string, callback: AsyncCallback<string>): void;</td><td>getAbilityLabel</td><td>None</td><td>3</td><td>59</td><tr><tr><td>bundle</td><td>function getAbilityLabel(bundleName: string, abilityName: string): Promise<string>;</td><td>getAbilityLabel</td><td>None</td><td>2</td><td>0</td><tr><tr><td>bundle</td><td>function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback<image.PixelMap>): void;</td><td>getAbilityIcon</td><td>None</td><td>3</td><td>11</td><tr><tr><td>bundle</td><td>function getAbilityIcon(bundleName: string, abilityName: string): Promise<image.PixelMap>;</td><td>getAbilityIcon</td><td>None</td><td>2</td><td>1</td><tr><tr><td>bundle</td><td>function isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback<boolean>): void;</td><td>isAbilityEnabled</td><td>None</td><td>2</td><td>60</td><tr><tr><td>bundle</td><td>function isAbilityEnabled(info: AbilityInfo): Promise<boolean>;</td><td>isAbilityEnabled</td><td>None</td><td>1</td><td>4</td><tr><tr><td>bundle</td><td>function isApplicationEnabled(bundleName: string, callback: AsyncCallback<boolean>): void;</td><td>isApplicationEnabled</td><td>None</td><td>2</td><td>45</td><tr><tr><td>bundle</td><td>function isApplicationEnabled(bundleName: string): Promise<boolean>;</td><td>isApplicationEnabled</td><td>None</td><td>1</td><td>3</td><tr><tr><td>BundleFlag</td><td>enum BundleFlag {
+    GET_BUNDLE_DEFAULT = 0x00000000,
+    GET_BUNDLE_WITH_ABILITIES = 0x00000001,
+    GET_ABILITY_INFO_WITH_PERMISSION = 0x00000002,
+    GET_ABILITY_INFO_WITH_APPLICATION = 0x00000004,
+    GET_APPLICATION_INFO_WITH_PERMISSION = 0x00000008,
+    GET_BUNDLE_WITH_REQUESTED_PERMISSION = 0x00000010,
+    GET_ALL_APPLICATION_INFO = 0xFFFF0000,
+    
+    GET_ABILITY_INFO_WITH_METADATA = 0x00000020,
+    
+     GET_BUNDLE_WITH_EXTENSION_ABILITY = 0x00000020,
+    
+     GET_APPLICATION_INFO_WITH_METADATA = 0x00000040,
+    
+    GET_ABILITY_INFO_SYSTEMAPP_ONLY = 0x00000080,
+    
+    GET_ABILITY_INFO_WITH_DISABLE = 0x00000100,
+    
+    GET_APPLICATION_INFO_WITH_DISABLE = 0x00000200,
+  }</td><td>BundleFlag</td><td>40</td><td>0</td><td>81</td><tr><tr><td>BundleFlag</td><td>GET_BUNDLE_DEFAULT = 0x00000000,</td><td>GET_BUNDLE_DEFAULT</td><td>42</td><td>1</td><td>9</td><tr><tr><td>BundleFlag</td><td>GET_BUNDLE_WITH_ABILITIES = 0x00000001,</td><td>GET_BUNDLE_WITH_ABILITIES</td><td>42</td><td>1</td><td>26</td><tr><tr><td>BundleFlag</td><td>GET_ABILITY_INFO_WITH_PERMISSION = 0x00000002,</td><td>GET_ABILITY_INFO_WITH_PERMISSION</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BundleFlag</td><td>GET_ABILITY_INFO_WITH_APPLICATION = 0x00000004,</td><td>GET_ABILITY_INFO_WITH_APPLICATION</td><td>42</td><td>1</td><td>3</td><tr><tr><td>BundleFlag</td><td>GET_APPLICATION_INFO_WITH_PERMISSION = 0x00000008,</td><td>GET_APPLICATION_INFO_WITH_PERMISSION</td><td>42</td><td>1</td><td>21</td><tr><tr><td>BundleFlag</td><td>GET_BUNDLE_WITH_REQUESTED_PERMISSION = 0x00000010,</td><td>GET_BUNDLE_WITH_REQUESTED_PERMISSION</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BundleFlag</td><td>GET_ALL_APPLICATION_INFO = 0xFFFF0000,</td><td>GET_ALL_APPLICATION_INFO</td><td>42</td><td>1</td><td>5</td><tr><tr><td>BundleFlag</td><td>GET_ABILITY_INFO_WITH_METADATA = 0x00000020,</td><td>GET_ABILITY_INFO_WITH_METADATA</td><td>42</td><td>1</td><td>8</td><tr><tr><td>BundleFlag</td><td>GET_BUNDLE_WITH_EXTENSION_ABILITY = 0x00000020,</td><td>GET_BUNDLE_WITH_EXTENSION_ABILITY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>BundleFlag</td><td>GET_APPLICATION_INFO_WITH_METADATA = 0x00000040,</td><td>GET_APPLICATION_INFO_WITH_METADATA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BundleFlag</td><td>GET_ABILITY_INFO_SYSTEMAPP_ONLY = 0x00000080,</td><td>GET_ABILITY_INFO_SYSTEMAPP_ONLY</td><td>42</td><td>1</td><td>2</td><tr><tr><td>BundleFlag</td><td>GET_ABILITY_INFO_WITH_DISABLE = 0x00000100,</td><td>GET_ABILITY_INFO_WITH_DISABLE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>BundleFlag</td><td>GET_APPLICATION_INFO_WITH_DISABLE = 0x00000200,</td><td>GET_APPLICATION_INFO_WITH_DISABLE</td><td>42</td><td>1</td><td>4</td><tr><tr><td>ExtensionFlag</td><td>enum ExtensionFlag {
+    GET_EXTENSION_INFO_DEFAULT = 0x00000000,
+    GET_EXTENSION_INFO_WITH_PERMISSION = 0x00000002,
+    GET_EXTENSION_INFO_WITH_APPLICATION = 0x00000004,
+    GET_EXTENSION_INFO_WITH_METADATA = 0x00000020,
+  }</td><td>ExtensionFlag</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ExtensionFlag</td><td>GET_EXTENSION_INFO_DEFAULT = 0x00000000,</td><td>GET_EXTENSION_INFO_DEFAULT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionFlag</td><td>GET_EXTENSION_INFO_WITH_PERMISSION = 0x00000002,</td><td>GET_EXTENSION_INFO_WITH_PERMISSION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionFlag</td><td>GET_EXTENSION_INFO_WITH_APPLICATION = 0x00000004,</td><td>GET_EXTENSION_INFO_WITH_APPLICATION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionFlag</td><td>GET_EXTENSION_INFO_WITH_METADATA = 0x00000020,</td><td>GET_EXTENSION_INFO_WITH_METADATA</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ColorMode</td><td>export enum ColorMode {
+    AUTO_MODE = -1,
+    DARK_MODE = 0,
+    LIGHT_MODE = 1,
+  }</td><td>ColorMode</td><td>40</td><td>0</td><td>3</td><tr><tr><td>ColorMode</td><td>AUTO_MODE = -1,</td><td>AUTO_MODE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ColorMode</td><td>DARK_MODE = 0,</td><td>DARK_MODE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ColorMode</td><td>LIGHT_MODE = 1,</td><td>LIGHT_MODE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>GrantStatus</td><td>export enum GrantStatus {
+    PERMISSION_DENIED = -1,
+    PERMISSION_GRANTED = 0,
+  }</td><td>GrantStatus</td><td>40</td><td>0</td><td>0</td><tr><tr><td>GrantStatus</td><td>PERMISSION_DENIED = -1,</td><td>PERMISSION_DENIED</td><td>42</td><td>1</td><td>6</td><tr><tr><td>GrantStatus</td><td>PERMISSION_GRANTED = 0,</td><td>PERMISSION_GRANTED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AbilityType</td><td>export enum AbilityType {
+    
+    UNKNOWN,
+
+    
+    PAGE,
+
+    
+    SERVICE,
+
+    
+    DATA,
+  }</td><td>AbilityType</td><td>40</td><td>0</td><td>1</td><tr><tr><td>AbilityType</td><td>UNKNOWN,</td><td>UNKNOWN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AbilityType</td><td>PAGE,</td><td>PAGE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>AbilityType</td><td>SERVICE,</td><td>SERVICE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>AbilityType</td><td>DATA,</td><td>DATA</td><td>42</td><td>1</td><td>9</td><tr><tr><td>AbilitySubType</td><td>export enum AbilitySubType {
+    UNSPECIFIED = 0,
+    CA = 1,
+  }</td><td>AbilitySubType</td><td>40</td><td>0</td><td>2</td><tr><tr><td>AbilitySubType</td><td>UNSPECIFIED = 0,</td><td>UNSPECIFIED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>AbilitySubType</td><td>CA = 1,</td><td>CA</td><td>42</td><td>1</td><td>38</td><tr><tr><td>DisplayOrientation</td><td>export enum DisplayOrientation {
+    
+    UNSPECIFIED,
+
+    
+    LANDSCAPE,
+
+    
+    PORTRAIT,
+
+    
+    FOLLOW_RECENT,
+  }</td><td>DisplayOrientation</td><td>40</td><td>0</td><td>1</td><tr><tr><td>DisplayOrientation</td><td>UNSPECIFIED,</td><td>UNSPECIFIED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DisplayOrientation</td><td>LANDSCAPE,</td><td>LANDSCAPE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>DisplayOrientation</td><td>PORTRAIT,</td><td>PORTRAIT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>DisplayOrientation</td><td>FOLLOW_RECENT,</td><td>FOLLOW_RECENT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LaunchMode</td><td>export enum LaunchMode {
+    
+    SINGLETON = 0,
+
+    
+    STANDARD = 1,
+  }</td><td>LaunchMode</td><td>40</td><td>0</td><td>2</td><tr><tr><td>LaunchMode</td><td>SINGLETON = 0,</td><td>SINGLETON</td><td>42</td><td>1</td><td>1</td><tr><tr><td>LaunchMode</td><td>STANDARD = 1,</td><td>STANDARD</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ExtensionAbilityType</td><td>export enum ExtensionAbilityType {
+    
+    FORM = 0,
+    
+    WORK_SCHEDULER = 1,
+    
+    INPUT_METHOD = 2,
+    
+    SERVICE = 3,
+    
+    ACCESSIBILITY = 4,
+    
+    DATA_SHARE = 5,
+    
+    FILE_SHARE = 6,
+    
+    STATIC_SUBSCRIBER = 7,
+    
+    WALLPAPER = 8,
+    
+    UNSPECIFIED = 9,
+  }</td><td>ExtensionAbilityType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ExtensionAbilityType</td><td>FORM = 0,</td><td>FORM</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionAbilityType</td><td>WORK_SCHEDULER = 1,</td><td>WORK_SCHEDULER</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionAbilityType</td><td>INPUT_METHOD = 2,</td><td>INPUT_METHOD</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionAbilityType</td><td>SERVICE = 3,</td><td>SERVICE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>ExtensionAbilityType</td><td>ACCESSIBILITY = 4,</td><td>ACCESSIBILITY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionAbilityType</td><td>DATA_SHARE = 5,</td><td>DATA_SHARE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionAbilityType</td><td>FILE_SHARE = 6,</td><td>FILE_SHARE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionAbilityType</td><td>STATIC_SUBSCRIBER = 7,</td><td>STATIC_SUBSCRIBER</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionAbilityType</td><td>WALLPAPER = 8,</td><td>WALLPAPER</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExtensionAbilityType</td><td>UNSPECIFIED = 9,</td><td>UNSPECIFIED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>BundleOptions</td><td>export interface BundleOptions {
+    
+    userId?: number;
+  }</td><td>BundleOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>BundleOptions</td><td>userId?: number</td><td>userId</td><td>22</td><td>1</td><td>289</td><tr><tr><td>InstallErrorCode</td><td>export enum InstallErrorCode{
+    SUCCESS = 0,
+    STATUS_INSTALL_FAILURE = 1,
+    STATUS_INSTALL_FAILURE_ABORTED = 2,
+    STATUS_INSTALL_FAILURE_INVALID = 3,
+    STATUS_INSTALL_FAILURE_CONFLICT = 4,
+    STATUS_INSTALL_FAILURE_STORAGE = 5,
+    STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6,
+    STATUS_UNINSTALL_FAILURE = 7,
+    STATUS_UNINSTALL_FAILURE_BLOCKED = 8,
+    STATUS_UNINSTALL_FAILURE_ABORTED = 9,
+    STATUS_UNINSTALL_FAILURE_CONFLICT = 10,
+    STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B,
+    STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C,
+    
+    STATUS_RECOVER_FAILURE_INVALID = 0x0D,
+    
+    STATUS_ABILITY_NOT_FOUND = 0x40,
+    
+    STATUS_BMS_SERVICE_ERROR = 0x41,
+    
+    STATUS_FAILED_NO_SPACE_LEFT = 0x42,
+    
+    STATUS_GRANT_REQUEST_PERMISSIONS_FAILED = 0x43,
+    
+    STATUS_INSTALL_PERMISSION_DENIED = 0x44,
+    
+    STATUS_UNINSTALL_PERMISSION_DENIED = 0x45,
+  }</td><td>InstallErrorCode</td><td>40</td><td>0</td><td>10</td><tr><tr><td>InstallErrorCode</td><td>SUCCESS = 0,</td><td>SUCCESS</td><td>42</td><td>1</td><td>260</td><tr><tr><td>InstallErrorCode</td><td>STATUS_INSTALL_FAILURE = 1,</td><td>STATUS_INSTALL_FAILURE</td><td>42</td><td>1</td><td>49</td><tr><tr><td>InstallErrorCode</td><td>STATUS_INSTALL_FAILURE_ABORTED = 2,</td><td>STATUS_INSTALL_FAILURE_ABORTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>InstallErrorCode</td><td>STATUS_INSTALL_FAILURE_INVALID = 3,</td><td>STATUS_INSTALL_FAILURE_INVALID</td><td>42</td><td>1</td><td>18</td><tr><tr><td>InstallErrorCode</td><td>STATUS_INSTALL_FAILURE_CONFLICT = 4,</td><td>STATUS_INSTALL_FAILURE_CONFLICT</td><td>42</td><td>1</td><td>18</td><tr><tr><td>InstallErrorCode</td><td>STATUS_INSTALL_FAILURE_STORAGE = 5,</td><td>STATUS_INSTALL_FAILURE_STORAGE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>InstallErrorCode</td><td>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6,</td><td>STATUS_INSTALL_FAILURE_INCOMPATIBLE</td><td>42</td><td>1</td><td>8</td><tr><tr><td>InstallErrorCode</td><td>STATUS_UNINSTALL_FAILURE = 7,</td><td>STATUS_UNINSTALL_FAILURE</td><td>42</td><td>1</td><td>9</td><tr><tr><td>InstallErrorCode</td><td>STATUS_UNINSTALL_FAILURE_BLOCKED = 8,</td><td>STATUS_UNINSTALL_FAILURE_BLOCKED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>InstallErrorCode</td><td>STATUS_UNINSTALL_FAILURE_ABORTED = 9,</td><td>STATUS_UNINSTALL_FAILURE_ABORTED</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InstallErrorCode</td><td>STATUS_UNINSTALL_FAILURE_CONFLICT = 10,</td><td>STATUS_UNINSTALL_FAILURE_CONFLICT</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InstallErrorCode</td><td>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B,</td><td>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>InstallErrorCode</td><td>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C,</td><td>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>InstallErrorCode</td><td>STATUS_RECOVER_FAILURE_INVALID = 0x0D,</td><td>STATUS_RECOVER_FAILURE_INVALID</td><td>42</td><td>1</td><td>0</td><tr><tr><td>InstallErrorCode</td><td>STATUS_ABILITY_NOT_FOUND = 0x40,</td><td>STATUS_ABILITY_NOT_FOUND</td><td>42</td><td>1</td><td>1</td><tr><tr><td>InstallErrorCode</td><td>STATUS_BMS_SERVICE_ERROR = 0x41,</td><td>STATUS_BMS_SERVICE_ERROR</td><td>42</td><td>1</td><td>1</td><tr><tr><td>InstallErrorCode</td><td>STATUS_FAILED_NO_SPACE_LEFT = 0x42,</td><td>STATUS_FAILED_NO_SPACE_LEFT</td><td>42</td><td>1</td><td>5</td><tr><tr><td>InstallErrorCode</td><td>STATUS_GRANT_REQUEST_PERMISSIONS_FAILED = 0x43,</td><td>STATUS_GRANT_REQUEST_PERMISSIONS_FAILED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>InstallErrorCode</td><td>STATUS_INSTALL_PERMISSION_DENIED = 0x44,</td><td>STATUS_INSTALL_PERMISSION_DENIED</td><td>42</td><td>1</td><td>3</td><tr><tr><td>InstallErrorCode</td><td>STATUS_UNINSTALL_PERMISSION_DENIED = 0x45,</td><td>STATUS_UNINSTALL_PERMISSION_DENIED</td><td>42</td><td>1</td><td>3</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

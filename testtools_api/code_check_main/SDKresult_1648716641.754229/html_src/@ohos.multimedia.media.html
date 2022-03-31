@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>媒体子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>multimedia</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.multimedia.media</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>media</td><td>declare namespace media {
+  
+  function createAudioPlayer(): AudioPlayer;
+
+  
+  function createAudioRecorder(): AudioRecorder;
+
+  
+  function createVideoPlayer(callback: AsyncCallback<VideoPlayer>): void;
+  
+  function createVideoPlayer() : Promise<VideoPlayer>;
+
+  
+  function createVideoRecorder(callback: AsyncCallback<VideoRecorder>): void;
+  
+  function createVideoRecorder(): Promise<VideoRecorder>;
+
+  
+  enum MediaErrorCode {
+    
+    MSERR_OK = 0,
+
+    
+    MSERR_NO_MEMORY = 1,
+
+    
+    MSERR_OPERATION_NOT_PERMIT = 2,
+
+    
+    MSERR_INVALID_VAL = 3,
+
+    
+    MSERR_IO = 4,
+
+    
+    MSERR_TIMEOUT = 5,
+
+    
+    MSERR_UNKNOWN = 6,
+
+    
+    MSERR_SERVICE_DIED = 7,
+
+    
+    MSERR_INVALID_STATE = 8,
+
+    
+    MSERR_UNSUPPORTED = 9,
+  }
+
+  
+  enum BufferingInfoType {
+    
+    BUFFERING_START = 1,
+
+    
+    BUFFERING_END = 2,
+
+    
+    BUFFERING_PERCENT = 3,
+
+    
+    CACHED_DURATION = 4,
+  }
+
+  
+  type AudioState = 'idle' | 'playing' | 'paused' | 'stopped' | 'error';
+
+  
+  interface AudioPlayer {
+    
+    play(): void;
+
+    
+    pause(): void;
+
+    
+    stop(): void;
+
+    
+     reset(): void;
+
+    
+    seek(timeMs: number): void;
+
+    
+    setVolume(vol: number): void;
+
+    
+    release(): void;
+    
+    getTrackDescription(callback: AsyncCallback<Array<MediaDescription>>): void;
+
+    
+    getTrackDescription() : Promise<Array<MediaDescription>>;
+
+    
+    on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void;
+    
+    src: string;
+
+    
+    loop: boolean;
+
+    
+    readonly currentTime: number;
+
+    
+    readonly duration: number;
+
+    
+    readonly state: AudioState;
+
+    
+    on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void;
+
+    
+    on(type: 'timeUpdate', callback: Callback<number>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback): void;
+  }
+
+  
+  enum AudioEncoder {
+    
+    DEFAULT = 0,
+
+    
+    AMR_NB = 1,
+
+    
+    AMR_WB = 2,
+
+    
+    AAC_LC = 3,
+
+    
+    HE_AAC = 4
+  }
+
+  
+  enum AudioOutputFormat {
+    
+    DEFAULT = 0,
+
+    
+    MPEG_4 = 2,
+
+    
+    AMR_NB = 3,
+
+    
+    AMR_WB = 4,
+
+    
+    AAC_ADTS = 6
+  }
+
+  
+  interface Location {
+    
+    latitude: number;
+
+    
+    longitude: number;
+  }
+
+  
+  interface AudioRecorderConfig {
+    
+    audioEncoder?: AudioEncoder;
+
+    
+    audioEncodeBitRate?: number;
+
+    
+    audioSampleRate?: number;
+
+    
+    numberOfChannels?: number;
+
+    
+    format?: AudioOutputFormat;
+
+    
+    uri: string;
+
+    
+    location?: Location;
+
+    
+    audioEncoderMime?: CodecMimeType;
+    
+    fileFormat?: ContainerFormatType;
+  }
+
+  
+  interface AudioRecorder {
+    
+    prepare(config: AudioRecorderConfig): void;
+
+    
+    start(): void;
+
+    
+    pause(): void;
+
+    
+    resume(): void;
+
+    
+    stop(): void;
+
+    
+    release(): void;
+
+    
+    reset(): void;
+
+    
+    on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset', callback: () => void): void;
+
+    
+    on(type: 'error', callback: ErrorCallback): void;
+  }
+
+  
+  type VideoRecordState = 'idle' | 'prepared' | 'playing' | 'paused' | 'stopped' | 'error';
+
+  
+  interface VideoRecorder {
+    
+    prepare(config: VideoRecorderConfig, callback: AsyncCallback<void>): void;
+    
+    prepare(config: VideoRecorderConfig): Promise<void>;
+    
+    getInputSurface(callback: AsyncCallback<string>): void;
+    
+    getInputSurface(): Promise<string>;
+    
+    start(callback: AsyncCallback<void>): void;
+    
+    start(): Promise<void>;
+    
+    pause(callback: AsyncCallback<void>): void;
+    
+    pause(): Promise<void>;
+    
+    resume(callback: AsyncCallback<void>): void;
+    
+    resume(): Promise<void>;
+    
+    stop(callback: AsyncCallback<void>): void;
+    
+    stop(): Promise<void>;
+    
+    release(callback: AsyncCallback<void>): void;
+    
+    release(): Promise<void>;
+    
+    reset(callback: AsyncCallback<void>): void;
+     
+    reset(): Promise<void>;
+    
+    on(type: 'error', callback: ErrorCallback): void;
+
+    
+     readonly state: VideoRecordState;
+  }
+
+  
+  type VideoPlayState = 'idle' | 'prepared' | 'playing' | 'paused' | 'stopped' | 'error';
+
+  
+  enum PlaybackSpeed {
+    
+    SPEED_FORWARD_0_75_X = 0,
+    
+    SPEED_FORWARD_1_00_X = 1,
+    
+    SPEED_FORWARD_1_25_X = 2,
+    
+    SPEED_FORWARD_1_75_X = 3,
+    
+    SPEED_FORWARD_2_00_X = 4,
+  }
+
+  
+ interface VideoPlayer {
+    
+    setDisplaySurface(surfaceId: string, callback: AsyncCallback<void>): void;
+    
+    setDisplaySurface(surfaceId: string): Promise<void>;
+    
+    prepare(callback: AsyncCallback<void>): void;
+     
+    prepare(): Promise<void>;
+    
+    play(callback: AsyncCallback<void>): void;
+     
+    play(): Promise<void>;
+    
+    pause(callback: AsyncCallback<void>): void;
+     
+    pause(): Promise<void>;
+    
+    stop(callback: AsyncCallback<void>): void;
+     
+    stop(): Promise<void>;
+    
+    reset(callback: AsyncCallback<void>): void;
+     
+    reset(): Promise<void>;
+    
+    seek(timeMs: number, callback: AsyncCallback<number>): void;
+    
+     seek(timeMs: number, mode:SeekMode, callback: AsyncCallback<number>): void;
+     
+    seek(timeMs: number, mode?:SeekMode): Promise<number>;
+    
+    setVolume(vol: number, callback: AsyncCallback<void>): void;
+     
+    setVolume(vol: number): Promise<void>;
+    
+    release(callback: AsyncCallback<void>): void;
+     
+    release(): Promise<void>;
+    
+    getTrackDescription(callback: AsyncCallback<Array<MediaDescription>>): void;
+
+    
+    getTrackDescription() : Promise<Array<MediaDescription>>;
+
+    
+    url: string;
+
+    
+    loop: boolean;
+
+    
+    readonly currentTime: number;
+
+    
+    readonly duration: number;
+
+    
+    readonly state: VideoPlayState;
+
+    
+    readonly width: number;
+
+    
+    readonly height: number;
+
+    
+    setSpeed(speed:number, callback: AsyncCallback<number>): void;
+    
+    setSpeed(speed:number): Promise<number>;
+
+    
+    on(type: 'playbackCompleted', callback: Callback<void>): void;
+
+    
+    on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void;
+
+    
+    on(type: 'startRenderFrame', callback: Callback<void>): void;
+
+    
+    on(type: 'videoSizeChanged', callback: (width: number, height: number) => void): void;
+
+    
+    on(type: 'error', callback: ErrorCallback): void;
+  }
+
+  
+  enum ContainerFormatType {
+    
+    CFT_MPEG_4 = "mp4",
+
+    
+    CFT_MPEG_4A = "m4a",
+  }
+
+  
+  enum MediaType {
+    
+    MEDIA_TYPE_AUD = 0,
+    
+    MEDIA_TYPE_VID = 1,
+  }
+
+  
+  enum MediaDescriptionKey {
+    
+    MD_KEY_TRACK_INDEX = "track_index",
+
+    
+    MD_KEY_TRACK_TYPE = "track_type",
+
+    
+    MD_KEY_CODEC_MIME = "codec_mime",
+
+    
+    MD_KEY_DURATION = "duration",
+
+    
+    MD_KEY_BITRATE = "bitrate",
+
+    
+    MD_KEY_WIDTH = "width",
+
+    
+    MD_KEY_HEIGHT = "height",
+
+    
+    MD_KEY_FRAME_RATE = "frame_rate",
+
+    
+    MD_KEY_AUD_CHANNEL_COUNT = "channel_count",
+
+    
+    MD_KEY_AUD_SAMPLE_RATE = "sample_rate",
+  }
+
+  
+  interface VideoRecorderProfile {
+    
+    readonly audioBitrate: number;
+
+    
+    readonly audioChannels: number;
+
+    
+    readonly audioCodec: CodecMimeType;
+
+    
+    readonly audioSampleRate: number;
+
+    
+    readonly fileFormat: ContainerFormatType;
+
+    
+    readonly videoBitrate: number;
+
+    
+    readonly videoCodec: CodecMimeType;
+
+    
+    readonly videoFrameWidth: number;
+
+    
+    readonly videoFrameHeight: number;
+
+    
+    readonly videoFrameRate: number;
+  }
+
+  
+  enum AudioSourceType {
+    
+    AUDIO_SOURCE_TYPE_DEFAULT = 0,
+    
+    AUDIO_SOURCE_TYPE_MIC = 1,
+  }
+
+  
+  enum VideoSourceType {
+    
+    VIDEO_SOURCE_TYPE_SURFACE_YUV = 0,
+    
+    VIDEO_SOURCE_TYPE_SURFACE_ES = 1,
+  }
+
+  
+  interface VideoRecorderConfig {
+    
+    audioSourceType: AudioSourceType;
+    
+    videoSourceType: VideoSourceType;
+    
+    profile: VideoRecorderProfile;
+    
+    url: string;
+    
+    rotation?: number;
+    
+    location?: Location;
+  }
+
+  
+  interface MediaDescription {
+    
+    [key : string]: Object;
+  }
+
+  
+  enum SeekMode {
+    
+    SEEK_NEXT_SYNC = 0,
+    
+    SEEK_PREV_SYNC = 1,
+  }
+
+  
+   enum CodecMimeType {
+    
+    VIDEO_H263 = 'video/h263',
+    
+    VIDEO_AVC = 'video/avc',
+    
+    VIDEO_MPEG2 = 'video/mpeg2',
+    
+    VIDEO_MPEG4 = 'video/mp4v-es',
+
+    
+    VIDEO_VP8 = 'video/x-vnd.on2.vp8',
+
+    
+    AUDIO_AAC = 'audio/mp4a-latm',
+
+    
+    AUDIO_VORBIS = 'audio/vorbis',
+
+    
+    AUDIO_FLAC = 'audio/flac',
+  }
+}</td><td>media</td><td>None</td><td>0</td><td>2574</td><tr><tr><td>media</td><td>function createAudioPlayer(): AudioPlayer;</td><td>createAudioPlayer</td><td>None</td><td>0</td><td>9</td><tr><tr><td>media</td><td>function createAudioRecorder(): AudioRecorder;</td><td>createAudioRecorder</td><td>None</td><td>0</td><td>7</td><tr><tr><td>media</td><td>function createVideoPlayer(callback: AsyncCallback<VideoPlayer>): void;</td><td>createVideoPlayer</td><td>None</td><td>1</td><td>54</td><tr><tr><td>media</td><td>function createVideoPlayer() : Promise<VideoPlayer>;</td><td>createVideoPlayer</td><td>None</td><td>0</td><td>42</td><tr><tr><td>media</td><td>function createVideoRecorder(callback: AsyncCallback<VideoRecorder>): void;</td><td>createVideoRecorder</td><td>None</td><td>1</td><td>37</td><tr><tr><td>media</td><td>function createVideoRecorder(): Promise<VideoRecorder>;</td><td>createVideoRecorder</td><td>None</td><td>0</td><td>24</td><tr><tr><td>MediaErrorCode</td><td>enum MediaErrorCode {
+    
+    MSERR_OK = 0,
+
+    
+    MSERR_NO_MEMORY = 1,
+
+    
+    MSERR_OPERATION_NOT_PERMIT = 2,
+
+    
+    MSERR_INVALID_VAL = 3,
+
+    
+    MSERR_IO = 4,
+
+    
+    MSERR_TIMEOUT = 5,
+
+    
+    MSERR_UNKNOWN = 6,
+
+    
+    MSERR_SERVICE_DIED = 7,
+
+    
+    MSERR_INVALID_STATE = 8,
+
+    
+    MSERR_UNSUPPORTED = 9,
+  }</td><td>MediaErrorCode</td><td>40</td><td>0</td><td>10</td><tr><tr><td>MediaErrorCode</td><td>MSERR_OK = 0,</td><td>MSERR_OK</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaErrorCode</td><td>MSERR_NO_MEMORY = 1,</td><td>MSERR_NO_MEMORY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaErrorCode</td><td>MSERR_OPERATION_NOT_PERMIT = 2,</td><td>MSERR_OPERATION_NOT_PERMIT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaErrorCode</td><td>MSERR_INVALID_VAL = 3,</td><td>MSERR_INVALID_VAL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaErrorCode</td><td>MSERR_IO = 4,</td><td>MSERR_IO</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaErrorCode</td><td>MSERR_TIMEOUT = 5,</td><td>MSERR_TIMEOUT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaErrorCode</td><td>MSERR_UNKNOWN = 6,</td><td>MSERR_UNKNOWN</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaErrorCode</td><td>MSERR_SERVICE_DIED = 7,</td><td>MSERR_SERVICE_DIED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaErrorCode</td><td>MSERR_INVALID_STATE = 8,</td><td>MSERR_INVALID_STATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaErrorCode</td><td>MSERR_UNSUPPORTED = 9,</td><td>MSERR_UNSUPPORTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BufferingInfoType</td><td>enum BufferingInfoType {
+    
+    BUFFERING_START = 1,
+
+    
+    BUFFERING_END = 2,
+
+    
+    BUFFERING_PERCENT = 3,
+
+    
+    CACHED_DURATION = 4,
+  }</td><td>BufferingInfoType</td><td>40</td><td>0</td><td>4</td><tr><tr><td>BufferingInfoType</td><td>BUFFERING_START = 1,</td><td>BUFFERING_START</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BufferingInfoType</td><td>BUFFERING_END = 2,</td><td>BUFFERING_END</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BufferingInfoType</td><td>BUFFERING_PERCENT = 3,</td><td>BUFFERING_PERCENT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BufferingInfoType</td><td>CACHED_DURATION = 4,</td><td>CACHED_DURATION</td><td>42</td><td>1</td><td>1</td><tr><tr><td>AudioPlayer</td><td>interface AudioPlayer {
+    
+    play(): void;
+
+    
+    pause(): void;
+
+    
+    stop(): void;
+
+    
+     reset(): void;
+
+    
+    seek(timeMs: number): void;
+
+    
+    setVolume(vol: number): void;
+
+    
+    release(): void;
+    
+    getTrackDescription(callback: AsyncCallback<Array<MediaDescription>>): void;
+
+    
+    getTrackDescription() : Promise<Array<MediaDescription>>;
+
+    
+    on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void;
+    
+    src: string;
+
+    
+    loop: boolean;
+
+    
+    readonly currentTime: number;
+
+    
+    readonly duration: number;
+
+    
+    readonly state: AudioState;
+
+    
+    on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void;
+
+    
+    on(type: 'timeUpdate', callback: Callback<number>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback): void;
+  }</td><td>AudioPlayer</td><td>20</td><td>0</td><td>127</td><tr><tr><td>AudioPlayer</td><td>play(): void;</td><td>play</td><td>21</td><td>0</td><td>842</td><tr><tr><td>AudioPlayer</td><td>pause(): void;</td><td>pause</td><td>21</td><td>0</td><td>202</td><tr><tr><td>AudioPlayer</td><td>stop(): void;</td><td>stop</td><td>21</td><td>0</td><td>932</td><tr><tr><td>AudioPlayer</td><td>reset(): void;</td><td>reset</td><td>21</td><td>0</td><td>604</td><tr><tr><td>AudioPlayer</td><td>seek(timeMs: number): void;</td><td>seek</td><td>21</td><td>1</td><td>400</td><tr><tr><td>AudioPlayer</td><td>setVolume(vol: number): void;</td><td>setVolume</td><td>21</td><td>1</td><td>171</td><tr><tr><td>AudioPlayer</td><td>release(): void;</td><td>release</td><td>21</td><td>0</td><td>974</td><tr><tr><td>AudioPlayer</td><td>getTrackDescription(callback: AsyncCallback<Array<MediaDescription>>): void;</td><td>getTrackDescription</td><td>21</td><td>1</td><td>20</td><tr><tr><td>AudioPlayer</td><td>getTrackDescription() : Promise<Array<MediaDescription>>;</td><td>getTrackDescription</td><td>21</td><td>0</td><td>3</td><tr><tr><td>AudioPlayer</td><td>on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void;</td><td>on</td><td>21</td><td>4</td><td>41984</td><tr><tr><td>AudioPlayer</td><td>on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void;</td><td>on</td><td>21</td><td>4</td><td>41984</td><tr><tr><td>AudioPlayer</td><td>on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioPlayer</td><td>on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioPlayer</td><td>on(type: 'timeUpdate', callback: Callback<number>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioPlayer</td><td>on(type: 'error', callback: ErrorCallback): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioPlayer</td><td>src: string</td><td>src</td><td>22</td><td>1</td><td>116</td><tr><tr><td>AudioPlayer</td><td>loop: boolean</td><td>loop</td><td>22</td><td>1</td><td>96</td><tr><tr><td>AudioPlayer</td><td>readonly currentTime: number</td><td>currentTime</td><td>22</td><td>1</td><td>130</td><tr><tr><td>AudioPlayer</td><td>readonly duration: number</td><td>duration</td><td>22</td><td>1</td><td>101</td><tr><tr><td>AudioPlayer</td><td>readonly state: AudioState</td><td>state</td><td>22</td><td>1</td><td>1920</td><tr><tr><td>AudioEncoder</td><td>enum AudioEncoder {
+    
+    DEFAULT = 0,
+
+    
+    AMR_NB = 1,
+
+    
+    AMR_WB = 2,
+
+    
+    AAC_LC = 3,
+
+    
+    HE_AAC = 4
+  }</td><td>AudioEncoder</td><td>40</td><td>0</td><td>205</td><tr><tr><td>AudioEncoder</td><td>DEFAULT = 0,</td><td>DEFAULT</td><td>42</td><td>1</td><td>148</td><tr><tr><td>AudioEncoder</td><td>AMR_NB = 1,</td><td>AMR_NB</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AudioEncoder</td><td>AMR_WB = 2,</td><td>AMR_WB</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AudioEncoder</td><td>AAC_LC = 3,</td><td>AAC_LC</td><td>42</td><td>1</td><td>1</td><tr><tr><td>AudioEncoder</td><td>HE_AAC = 4</td><td>HE_AAC</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AudioOutputFormat</td><td>enum AudioOutputFormat {
+    
+    DEFAULT = 0,
+
+    
+    MPEG_4 = 2,
+
+    
+    AMR_NB = 3,
+
+    
+    AMR_WB = 4,
+
+    
+    AAC_ADTS = 6
+  }</td><td>AudioOutputFormat</td><td>40</td><td>0</td><td>2</td><tr><tr><td>AudioOutputFormat</td><td>DEFAULT = 0,</td><td>DEFAULT</td><td>42</td><td>1</td><td>148</td><tr><tr><td>AudioOutputFormat</td><td>MPEG_4 = 2,</td><td>MPEG_4</td><td>42</td><td>1</td><td>5</td><tr><tr><td>AudioOutputFormat</td><td>AMR_NB = 3,</td><td>AMR_NB</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AudioOutputFormat</td><td>AMR_WB = 4,</td><td>AMR_WB</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AudioOutputFormat</td><td>AAC_ADTS = 6</td><td>AAC_ADTS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Location</td><td>interface Location {
+    
+    latitude: number;
+
+    
+    longitude: number;
+  }</td><td>Location</td><td>20</td><td>0</td><td>0</td><tr><tr><td>Location</td><td>latitude: number</td><td>latitude</td><td>22</td><td>1</td><td>14</td><tr><tr><td>Location</td><td>longitude: number</td><td>longitude</td><td>22</td><td>1</td><td>14</td><tr><tr><td>AudioRecorderConfig</td><td>interface AudioRecorderConfig {
+    
+    audioEncoder?: AudioEncoder;
+
+    
+    audioEncodeBitRate?: number;
+
+    
+    audioSampleRate?: number;
+
+    
+    numberOfChannels?: number;
+
+    
+    format?: AudioOutputFormat;
+
+    
+    uri: string;
+
+    
+    location?: Location;
+
+    
+    audioEncoderMime?: CodecMimeType;
+    
+    fileFormat?: ContainerFormatType;
+  }</td><td>AudioRecorderConfig</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AudioRecorderConfig</td><td>audioEncoder?: AudioEncoder</td><td>audioEncoder</td><td>22</td><td>1</td><td>6</td><tr><tr><td>AudioRecorderConfig</td><td>audioEncodeBitRate?: number</td><td>audioEncodeBitRate</td><td>22</td><td>1</td><td>15</td><tr><tr><td>AudioRecorderConfig</td><td>audioSampleRate?: number</td><td>audioSampleRate</td><td>22</td><td>1</td><td>35</td><tr><tr><td>AudioRecorderConfig</td><td>numberOfChannels?: number</td><td>numberOfChannels</td><td>22</td><td>1</td><td>22</td><tr><tr><td>AudioRecorderConfig</td><td>format?: AudioOutputFormat</td><td>format</td><td>22</td><td>1</td><td>645</td><tr><tr><td>AudioRecorderConfig</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>152</td><tr><tr><td>AudioRecorderConfig</td><td>location?: Location</td><td>location</td><td>22</td><td>1</td><td>14</td><tr><tr><td>AudioRecorderConfig</td><td>audioEncoderMime?: CodecMimeType</td><td>audioEncoderMime</td><td>22</td><td>1</td><td>4</td><tr><tr><td>AudioRecorderConfig</td><td>fileFormat?: ContainerFormatType</td><td>fileFormat</td><td>22</td><td>1</td><td>37</td><tr><tr><td>AudioRecorder</td><td>interface AudioRecorder {
+    
+    prepare(config: AudioRecorderConfig): void;
+
+    
+    start(): void;
+
+    
+    pause(): void;
+
+    
+    resume(): void;
+
+    
+    stop(): void;
+
+    
+    release(): void;
+
+    
+    reset(): void;
+
+    
+    on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset', callback: () => void): void;
+
+    
+    on(type: 'error', callback: ErrorCallback): void;
+  }</td><td>AudioRecorder</td><td>20</td><td>0</td><td>210</td><tr><tr><td>AudioRecorder</td><td>prepare(config: AudioRecorderConfig): void;</td><td>prepare</td><td>21</td><td>1</td><td>724</td><tr><tr><td>AudioRecorder</td><td>start(): void;</td><td>start</td><td>21</td><td>0</td><td>1349</td><tr><tr><td>AudioRecorder</td><td>pause(): void;</td><td>pause</td><td>21</td><td>0</td><td>202</td><tr><tr><td>AudioRecorder</td><td>resume(): void;</td><td>resume</td><td>21</td><td>0</td><td>55</td><tr><tr><td>AudioRecorder</td><td>stop(): void;</td><td>stop</td><td>21</td><td>0</td><td>932</td><tr><tr><td>AudioRecorder</td><td>release(): void;</td><td>release</td><td>21</td><td>0</td><td>974</td><tr><tr><td>AudioRecorder</td><td>reset(): void;</td><td>reset</td><td>21</td><td>0</td><td>604</td><tr><tr><td>AudioRecorder</td><td>on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset', callback: () => void): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioRecorder</td><td>on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset', callback: () => void): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>AudioRecorder</td><td>on(type: 'error', callback: ErrorCallback): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>VideoRecorder</td><td>interface VideoRecorder {
+    
+    prepare(config: VideoRecorderConfig, callback: AsyncCallback<void>): void;
+    
+    prepare(config: VideoRecorderConfig): Promise<void>;
+    
+    getInputSurface(callback: AsyncCallback<string>): void;
+    
+    getInputSurface(): Promise<string>;
+    
+    start(callback: AsyncCallback<void>): void;
+    
+    start(): Promise<void>;
+    
+    pause(callback: AsyncCallback<void>): void;
+    
+    pause(): Promise<void>;
+    
+    resume(callback: AsyncCallback<void>): void;
+    
+    resume(): Promise<void>;
+    
+    stop(callback: AsyncCallback<void>): void;
+    
+    stop(): Promise<void>;
+    
+    release(callback: AsyncCallback<void>): void;
+    
+    release(): Promise<void>;
+    
+    reset(callback: AsyncCallback<void>): void;
+     
+    reset(): Promise<void>;
+    
+    on(type: 'error', callback: ErrorCallback): void;
+
+    
+     readonly state: VideoRecordState;
+  }</td><td>VideoRecorder</td><td>20</td><td>0</td><td>81</td><tr><tr><td>VideoRecorder</td><td>prepare(config: VideoRecorderConfig, callback: AsyncCallback<void>): void;</td><td>prepare</td><td>21</td><td>2</td><td>617</td><tr><tr><td>VideoRecorder</td><td>prepare(config: VideoRecorderConfig): Promise<void>;</td><td>prepare</td><td>21</td><td>1</td><td>107</td><tr><tr><td>VideoRecorder</td><td>getInputSurface(callback: AsyncCallback<string>): void;</td><td>getInputSurface</td><td>21</td><td>1</td><td>66</td><tr><tr><td>VideoRecorder</td><td>getInputSurface(): Promise<string>;</td><td>getInputSurface</td><td>21</td><td>0</td><td>27</td><tr><tr><td>VideoRecorder</td><td>start(callback: AsyncCallback<void>): void;</td><td>start</td><td>21</td><td>1</td><td>1221</td><tr><tr><td>VideoRecorder</td><td>start(): Promise<void>;</td><td>start</td><td>21</td><td>0</td><td>128</td><tr><tr><td>VideoRecorder</td><td>pause(callback: AsyncCallback<void>): void;</td><td>pause</td><td>21</td><td>1</td><td>179</td><tr><tr><td>VideoRecorder</td><td>pause(): Promise<void>;</td><td>pause</td><td>21</td><td>0</td><td>23</td><tr><tr><td>VideoRecorder</td><td>resume(callback: AsyncCallback<void>): void;</td><td>resume</td><td>21</td><td>1</td><td>51</td><tr><tr><td>VideoRecorder</td><td>resume(): Promise<void>;</td><td>resume</td><td>21</td><td>0</td><td>4</td><tr><tr><td>VideoRecorder</td><td>stop(callback: AsyncCallback<void>): void;</td><td>stop</td><td>21</td><td>1</td><td>833</td><tr><tr><td>VideoRecorder</td><td>stop(): Promise<void>;</td><td>stop</td><td>21</td><td>0</td><td>99</td><tr><tr><td>VideoRecorder</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>VideoRecorder</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>VideoRecorder</td><td>reset(callback: AsyncCallback<void>): void;</td><td>reset</td><td>21</td><td>1</td><td>563</td><tr><tr><td>VideoRecorder</td><td>reset(): Promise<void>;</td><td>reset</td><td>21</td><td>0</td><td>41</td><tr><tr><td>VideoRecorder</td><td>on(type: 'error', callback: ErrorCallback): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>VideoRecorder</td><td>readonly state: VideoRecordState</td><td>state</td><td>22</td><td>1</td><td>1920</td><tr><tr><td>PlaybackSpeed</td><td>enum PlaybackSpeed {
+    
+    SPEED_FORWARD_0_75_X = 0,
+    
+    SPEED_FORWARD_1_00_X = 1,
+    
+    SPEED_FORWARD_1_25_X = 2,
+    
+    SPEED_FORWARD_1_75_X = 3,
+    
+    SPEED_FORWARD_2_00_X = 4,
+  }</td><td>PlaybackSpeed</td><td>40</td><td>0</td><td>40</td><tr><tr><td>PlaybackSpeed</td><td>SPEED_FORWARD_0_75_X = 0,</td><td>SPEED_FORWARD_0_75_X</td><td>42</td><td>1</td><td>6</td><tr><tr><td>PlaybackSpeed</td><td>SPEED_FORWARD_1_00_X = 1,</td><td>SPEED_FORWARD_1_00_X</td><td>42</td><td>1</td><td>6</td><tr><tr><td>PlaybackSpeed</td><td>SPEED_FORWARD_1_25_X = 2,</td><td>SPEED_FORWARD_1_25_X</td><td>42</td><td>1</td><td>6</td><tr><tr><td>PlaybackSpeed</td><td>SPEED_FORWARD_1_75_X = 3,</td><td>SPEED_FORWARD_1_75_X</td><td>42</td><td>1</td><td>6</td><tr><tr><td>PlaybackSpeed</td><td>SPEED_FORWARD_2_00_X = 4,</td><td>SPEED_FORWARD_2_00_X</td><td>42</td><td>1</td><td>16</td><tr><tr><td>VideoPlayer</td><td>interface VideoPlayer {
+    
+    setDisplaySurface(surfaceId: string, callback: AsyncCallback<void>): void;
+    
+    setDisplaySurface(surfaceId: string): Promise<void>;
+    
+    prepare(callback: AsyncCallback<void>): void;
+     
+    prepare(): Promise<void>;
+    
+    play(callback: AsyncCallback<void>): void;
+     
+    play(): Promise<void>;
+    
+    pause(callback: AsyncCallback<void>): void;
+     
+    pause(): Promise<void>;
+    
+    stop(callback: AsyncCallback<void>): void;
+     
+    stop(): Promise<void>;
+    
+    reset(callback: AsyncCallback<void>): void;
+     
+    reset(): Promise<void>;
+    
+    seek(timeMs: number, callback: AsyncCallback<number>): void;
+    
+     seek(timeMs: number, mode:SeekMode, callback: AsyncCallback<number>): void;
+     
+    seek(timeMs: number, mode?:SeekMode): Promise<number>;
+    
+    setVolume(vol: number, callback: AsyncCallback<void>): void;
+     
+    setVolume(vol: number): Promise<void>;
+    
+    release(callback: AsyncCallback<void>): void;
+     
+    release(): Promise<void>;
+    
+    getTrackDescription(callback: AsyncCallback<Array<MediaDescription>>): void;
+
+    
+    getTrackDescription() : Promise<Array<MediaDescription>>;
+
+    
+    url: string;
+
+    
+    loop: boolean;
+
+    
+    readonly currentTime: number;
+
+    
+    readonly duration: number;
+
+    
+    readonly state: VideoPlayState;
+
+    
+    readonly width: number;
+
+    
+    readonly height: number;
+
+    
+    setSpeed(speed:number, callback: AsyncCallback<number>): void;
+    
+    setSpeed(speed:number): Promise<number>;
+
+    
+    on(type: 'playbackCompleted', callback: Callback<void>): void;
+
+    
+    on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void;
+
+    
+    on(type: 'startRenderFrame', callback: Callback<void>): void;
+
+    
+    on(type: 'videoSizeChanged', callback: (width: number, height: number) => void): void;
+
+    
+    on(type: 'error', callback: ErrorCallback): void;
+  }</td><td>VideoPlayer</td><td>20</td><td>0</td><td>136</td><tr><tr><td>VideoPlayer</td><td>setDisplaySurface(surfaceId: string, callback: AsyncCallback<void>): void;</td><td>setDisplaySurface</td><td>21</td><td>2</td><td>58</td><tr><tr><td>VideoPlayer</td><td>setDisplaySurface(surfaceId: string): Promise<void>;</td><td>setDisplaySurface</td><td>21</td><td>1</td><td>41</td><tr><tr><td>VideoPlayer</td><td>prepare(callback: AsyncCallback<void>): void;</td><td>prepare</td><td>21</td><td>1</td><td>617</td><tr><tr><td>VideoPlayer</td><td>prepare(): Promise<void>;</td><td>prepare</td><td>21</td><td>0</td><td>107</td><tr><tr><td>VideoPlayer</td><td>play(callback: AsyncCallback<void>): void;</td><td>play</td><td>21</td><td>1</td><td>737</td><tr><tr><td>VideoPlayer</td><td>play(): Promise<void>;</td><td>play</td><td>21</td><td>0</td><td>105</td><tr><tr><td>VideoPlayer</td><td>pause(callback: AsyncCallback<void>): void;</td><td>pause</td><td>21</td><td>1</td><td>179</td><tr><tr><td>VideoPlayer</td><td>pause(): Promise<void>;</td><td>pause</td><td>21</td><td>0</td><td>23</td><tr><tr><td>VideoPlayer</td><td>stop(callback: AsyncCallback<void>): void;</td><td>stop</td><td>21</td><td>1</td><td>833</td><tr><tr><td>VideoPlayer</td><td>stop(): Promise<void>;</td><td>stop</td><td>21</td><td>0</td><td>99</td><tr><tr><td>VideoPlayer</td><td>reset(callback: AsyncCallback<void>): void;</td><td>reset</td><td>21</td><td>1</td><td>563</td><tr><tr><td>VideoPlayer</td><td>reset(): Promise<void>;</td><td>reset</td><td>21</td><td>0</td><td>41</td><tr><tr><td>VideoPlayer</td><td>seek(timeMs: number, callback: AsyncCallback<number>): void;</td><td>seek</td><td>21</td><td>2</td><td>362</td><tr><tr><td>VideoPlayer</td><td>seek(timeMs: number, mode:SeekMode, callback: AsyncCallback<number>): void;</td><td>seek</td><td>21</td><td>3</td><td>362</td><tr><tr><td>VideoPlayer</td><td>seek(timeMs: number, mode?:SeekMode): Promise<number>;</td><td>seek</td><td>21</td><td>2</td><td>38</td><tr><tr><td>VideoPlayer</td><td>setVolume(vol: number, callback: AsyncCallback<void>): void;</td><td>setVolume</td><td>21</td><td>2</td><td>162</td><tr><tr><td>VideoPlayer</td><td>setVolume(vol: number): Promise<void>;</td><td>setVolume</td><td>21</td><td>1</td><td>9</td><tr><tr><td>VideoPlayer</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>VideoPlayer</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>VideoPlayer</td><td>getTrackDescription(callback: AsyncCallback<Array<MediaDescription>>): void;</td><td>getTrackDescription</td><td>21</td><td>1</td><td>20</td><tr><tr><td>VideoPlayer</td><td>getTrackDescription() : Promise<Array<MediaDescription>>;</td><td>getTrackDescription</td><td>21</td><td>0</td><td>3</td><tr><tr><td>VideoPlayer</td><td>setSpeed(speed:number, callback: AsyncCallback<number>): void;</td><td>setSpeed</td><td>21</td><td>2</td><td>24</td><tr><tr><td>VideoPlayer</td><td>setSpeed(speed:number): Promise<number>;</td><td>setSpeed</td><td>21</td><td>1</td><td>0</td><tr><tr><td>VideoPlayer</td><td>on(type: 'playbackCompleted', callback: Callback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>VideoPlayer</td><td>on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void;</td><td>on</td><td>21</td><td>4</td><td>41984</td><tr><tr><td>VideoPlayer</td><td>on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void;</td><td>on</td><td>21</td><td>4</td><td>41984</td><tr><tr><td>VideoPlayer</td><td>on(type: 'startRenderFrame', callback: Callback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>VideoPlayer</td><td>on(type: 'videoSizeChanged', callback: (width: number, height: number) => void): void;</td><td>on</td><td>21</td><td>4</td><td>41984</td><tr><tr><td>VideoPlayer</td><td>on(type: 'videoSizeChanged', callback: (width: number, height: number) => void): void;</td><td>on</td><td>21</td><td>4</td><td>41984</td><tr><tr><td>VideoPlayer</td><td>on(type: 'error', callback: ErrorCallback): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>VideoPlayer</td><td>url: string</td><td>url</td><td>22</td><td>1</td><td>109</td><tr><tr><td>VideoPlayer</td><td>loop: boolean</td><td>loop</td><td>22</td><td>1</td><td>96</td><tr><tr><td>VideoPlayer</td><td>readonly currentTime: number</td><td>currentTime</td><td>22</td><td>1</td><td>130</td><tr><tr><td>VideoPlayer</td><td>readonly duration: number</td><td>duration</td><td>22</td><td>1</td><td>101</td><tr><tr><td>VideoPlayer</td><td>readonly state: VideoPlayState</td><td>state</td><td>22</td><td>1</td><td>1920</td><tr><tr><td>VideoPlayer</td><td>readonly width: number</td><td>width</td><td>22</td><td>1</td><td>773</td><tr><tr><td>VideoPlayer</td><td>readonly height: number</td><td>height</td><td>22</td><td>1</td><td>771</td><tr><tr><td>ContainerFormatType</td><td>enum ContainerFormatType {
+    
+    CFT_MPEG_4 = "mp4",
+
+    
+    CFT_MPEG_4A = "m4a",
+  }</td><td>ContainerFormatType</td><td>40</td><td>0</td><td>4</td><tr><tr><td>ContainerFormatType</td><td>CFT_MPEG_4 = "mp4",</td><td>CFT_MPEG_4</td><td>42</td><td>1</td><td>4</td><tr><tr><td>ContainerFormatType</td><td>CFT_MPEG_4A = "m4a",</td><td>CFT_MPEG_4A</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MediaType</td><td>enum MediaType {
+    
+    MEDIA_TYPE_AUD = 0,
+    
+    MEDIA_TYPE_VID = 1,
+  }</td><td>MediaType</td><td>40</td><td>0</td><td>149</td><tr><tr><td>MediaType</td><td>MEDIA_TYPE_AUD = 0,</td><td>MEDIA_TYPE_AUD</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaType</td><td>MEDIA_TYPE_VID = 1,</td><td>MEDIA_TYPE_VID</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaDescriptionKey</td><td>enum MediaDescriptionKey {
+    
+    MD_KEY_TRACK_INDEX = "track_index",
+
+    
+    MD_KEY_TRACK_TYPE = "track_type",
+
+    
+    MD_KEY_CODEC_MIME = "codec_mime",
+
+    
+    MD_KEY_DURATION = "duration",
+
+    
+    MD_KEY_BITRATE = "bitrate",
+
+    
+    MD_KEY_WIDTH = "width",
+
+    
+    MD_KEY_HEIGHT = "height",
+
+    
+    MD_KEY_FRAME_RATE = "frame_rate",
+
+    
+    MD_KEY_AUD_CHANNEL_COUNT = "channel_count",
+
+    
+    MD_KEY_AUD_SAMPLE_RATE = "sample_rate",
+  }</td><td>MediaDescriptionKey</td><td>40</td><td>0</td><td>25</td><tr><tr><td>MediaDescriptionKey</td><td>MD_KEY_TRACK_INDEX = "track_index",</td><td>MD_KEY_TRACK_INDEX</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaDescriptionKey</td><td>MD_KEY_TRACK_TYPE = "track_type",</td><td>MD_KEY_TRACK_TYPE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaDescriptionKey</td><td>MD_KEY_CODEC_MIME = "codec_mime",</td><td>MD_KEY_CODEC_MIME</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaDescriptionKey</td><td>MD_KEY_DURATION = "duration",</td><td>MD_KEY_DURATION</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaDescriptionKey</td><td>MD_KEY_BITRATE = "bitrate",</td><td>MD_KEY_BITRATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaDescriptionKey</td><td>MD_KEY_WIDTH = "width",</td><td>MD_KEY_WIDTH</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MediaDescriptionKey</td><td>MD_KEY_HEIGHT = "height",</td><td>MD_KEY_HEIGHT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MediaDescriptionKey</td><td>MD_KEY_FRAME_RATE = "frame_rate",</td><td>MD_KEY_FRAME_RATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaDescriptionKey</td><td>MD_KEY_AUD_CHANNEL_COUNT = "channel_count",</td><td>MD_KEY_AUD_CHANNEL_COUNT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>MediaDescriptionKey</td><td>MD_KEY_AUD_SAMPLE_RATE = "sample_rate",</td><td>MD_KEY_AUD_SAMPLE_RATE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>VideoRecorderProfile</td><td>interface VideoRecorderProfile {
+    
+    readonly audioBitrate: number;
+
+    
+    readonly audioChannels: number;
+
+    
+    readonly audioCodec: CodecMimeType;
+
+    
+    readonly audioSampleRate: number;
+
+    
+    readonly fileFormat: ContainerFormatType;
+
+    
+    readonly videoBitrate: number;
+
+    
+    readonly videoCodec: CodecMimeType;
+
+    
+    readonly videoFrameWidth: number;
+
+    
+    readonly videoFrameHeight: number;
+
+    
+    readonly videoFrameRate: number;
+  }</td><td>VideoRecorderProfile</td><td>20</td><td>0</td><td>0</td><tr><tr><td>VideoRecorderProfile</td><td>readonly audioBitrate: number</td><td>audioBitrate</td><td>22</td><td>1</td><td>15</td><tr><tr><td>VideoRecorderProfile</td><td>readonly audioChannels: number</td><td>audioChannels</td><td>22</td><td>1</td><td>7</td><tr><tr><td>VideoRecorderProfile</td><td>readonly audioCodec: CodecMimeType</td><td>audioCodec</td><td>22</td><td>1</td><td>7</td><tr><tr><td>VideoRecorderProfile</td><td>readonly audioSampleRate: number</td><td>audioSampleRate</td><td>22</td><td>1</td><td>35</td><tr><tr><td>VideoRecorderProfile</td><td>readonly fileFormat: ContainerFormatType</td><td>fileFormat</td><td>22</td><td>1</td><td>37</td><tr><tr><td>VideoRecorderProfile</td><td>readonly videoBitrate: number</td><td>videoBitrate</td><td>22</td><td>1</td><td>18</td><tr><tr><td>VideoRecorderProfile</td><td>readonly videoCodec: CodecMimeType</td><td>videoCodec</td><td>22</td><td>1</td><td>10</td><tr><tr><td>VideoRecorderProfile</td><td>readonly videoFrameWidth: number</td><td>videoFrameWidth</td><td>22</td><td>1</td><td>10</td><tr><tr><td>VideoRecorderProfile</td><td>readonly videoFrameHeight: number</td><td>videoFrameHeight</td><td>22</td><td>1</td><td>10</td><tr><tr><td>VideoRecorderProfile</td><td>readonly videoFrameRate: number</td><td>videoFrameRate</td><td>22</td><td>1</td><td>22</td><tr><tr><td>AudioSourceType</td><td>enum AudioSourceType {
+    
+    AUDIO_SOURCE_TYPE_DEFAULT = 0,
+    
+    AUDIO_SOURCE_TYPE_MIC = 1,
+  }</td><td>AudioSourceType</td><td>40</td><td>0</td><td>2</td><tr><tr><td>AudioSourceType</td><td>AUDIO_SOURCE_TYPE_DEFAULT = 0,</td><td>AUDIO_SOURCE_TYPE_DEFAULT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>AudioSourceType</td><td>AUDIO_SOURCE_TYPE_MIC = 1,</td><td>AUDIO_SOURCE_TYPE_MIC</td><td>42</td><td>1</td><td>1</td><tr><tr><td>VideoSourceType</td><td>enum VideoSourceType {
+    
+    VIDEO_SOURCE_TYPE_SURFACE_YUV = 0,
+    
+    VIDEO_SOURCE_TYPE_SURFACE_ES = 1,
+  }</td><td>VideoSourceType</td><td>40</td><td>0</td><td>2</td><tr><tr><td>VideoSourceType</td><td>VIDEO_SOURCE_TYPE_SURFACE_YUV = 0,</td><td>VIDEO_SOURCE_TYPE_SURFACE_YUV</td><td>42</td><td>1</td><td>1</td><tr><tr><td>VideoSourceType</td><td>VIDEO_SOURCE_TYPE_SURFACE_ES = 1,</td><td>VIDEO_SOURCE_TYPE_SURFACE_ES</td><td>42</td><td>1</td><td>1</td><tr><tr><td>VideoRecorderConfig</td><td>interface VideoRecorderConfig {
+    
+    audioSourceType: AudioSourceType;
+    
+    videoSourceType: VideoSourceType;
+    
+    profile: VideoRecorderProfile;
+    
+    url: string;
+    
+    rotation?: number;
+    
+    location?: Location;
+  }</td><td>VideoRecorderConfig</td><td>20</td><td>0</td><td>0</td><tr><tr><td>VideoRecorderConfig</td><td>audioSourceType: AudioSourceType</td><td>audioSourceType</td><td>22</td><td>1</td><td>11</td><tr><tr><td>VideoRecorderConfig</td><td>videoSourceType: VideoSourceType</td><td>videoSourceType</td><td>22</td><td>1</td><td>10</td><tr><tr><td>VideoRecorderConfig</td><td>profile: VideoRecorderProfile</td><td>profile</td><td>22</td><td>1</td><td>21</td><tr><tr><td>VideoRecorderConfig</td><td>url: string</td><td>url</td><td>22</td><td>1</td><td>109</td><tr><tr><td>VideoRecorderConfig</td><td>rotation?: number</td><td>rotation</td><td>22</td><td>1</td><td>36</td><tr><tr><td>VideoRecorderConfig</td><td>location?: Location</td><td>location</td><td>22</td><td>1</td><td>14</td><tr><tr><td>MediaDescription</td><td>interface MediaDescription {
+    
+    [key : string]: Object;
+  }</td><td>MediaDescription</td><td>20</td><td>0</td><td>112</td><tr><tr><td>MediaDescription</td><td>[key : string]: Object</td><td>key</td><td>22</td><td>1</td><td>31</td><tr><tr><td>SeekMode</td><td>enum SeekMode {
+    
+    SEEK_NEXT_SYNC = 0,
+    
+    SEEK_PREV_SYNC = 1,
+  }</td><td>SeekMode</td><td>40</td><td>0</td><td>48</td><tr><tr><td>SeekMode</td><td>SEEK_NEXT_SYNC = 0,</td><td>SEEK_NEXT_SYNC</td><td>42</td><td>1</td><td>24</td><tr><tr><td>SeekMode</td><td>SEEK_PREV_SYNC = 1,</td><td>SEEK_PREV_SYNC</td><td>42</td><td>1</td><td>22</td><tr><tr><td>CodecMimeType</td><td>enum CodecMimeType {
+    
+    VIDEO_H263 = 'video/h263',
+    
+    VIDEO_AVC = 'video/avc',
+    
+    VIDEO_MPEG2 = 'video/mpeg2',
+    
+    VIDEO_MPEG4 = 'video/mp4v-es',
+
+    
+    VIDEO_VP8 = 'video/x-vnd.on2.vp8',
+
+    
+    AUDIO_AAC = 'audio/mp4a-latm',
+
+    
+    AUDIO_VORBIS = 'audio/vorbis',
+
+    
+    AUDIO_FLAC = 'audio/flac',
+  }</td><td>CodecMimeType</td><td>40</td><td>0</td><td>12</td><tr><tr><td>CodecMimeType</td><td>VIDEO_H263 = 'video/h263',</td><td>VIDEO_H263</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CodecMimeType</td><td>VIDEO_AVC = 'video/avc',</td><td>VIDEO_AVC</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CodecMimeType</td><td>VIDEO_MPEG2 = 'video/mpeg2',</td><td>VIDEO_MPEG2</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CodecMimeType</td><td>VIDEO_MPEG4 = 'video/mp4v-es',</td><td>VIDEO_MPEG4</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CodecMimeType</td><td>VIDEO_VP8 = 'video/x-vnd.on2.vp8',</td><td>VIDEO_VP8</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CodecMimeType</td><td>AUDIO_AAC = 'audio/mp4a-latm',</td><td>AUDIO_AAC</td><td>42</td><td>1</td><td>6</td><tr><tr><td>CodecMimeType</td><td>AUDIO_VORBIS = 'audio/vorbis',</td><td>AUDIO_VORBIS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CodecMimeType</td><td>AUDIO_FLAC = 'audio/flac',</td><td>AUDIO_FLAC</td><td>42</td><td>1</td><td>4</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

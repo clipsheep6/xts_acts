@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>分布式软总线子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>dsoftbus</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.rpc</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>rpc</td><td>declare namespace rpc {
+    
+    class MessageParcel {
+        
+        static create(): MessageParcel;
+
+        
+        reclaim(): void;
+
+        
+        writeRemoteObject(object: IRemoteObject): boolean;
+
+        
+        readRemoteObject(): IRemoteObject;
+
+        
+        writeInterfaceToken(token: string): boolean;
+
+        
+        readInterfaceToken(): string;
+
+        
+        getSize(): number;
+
+        
+        getCapacity(): number;
+
+        
+        setSize(size: number): boolean;
+
+        
+        setCapacity(size: number): boolean;
+
+        
+        getWritableBytes(): number;
+
+        
+        getReadableBytes(): number;
+
+        
+        getReadPosition(): number;
+
+        
+        getWritePosition(): number;
+
+        
+        rewindRead(pos: number): boolean;
+
+        
+        rewindWrite(pos: number): boolean;
+
+        
+        writeNoException(): void;
+
+        
+        readException(): void;
+
+        
+        writeByte(val: number): boolean;
+
+        
+        writeShort(val: number): boolean;
+
+        
+        writeInt(val: number): boolean;
+
+        
+        writeLong(val: number): boolean;
+
+        
+        writeFloat(val: number): boolean;
+
+        
+        writeDouble(val: number): boolean;
+
+        
+        writeBoolean(val: boolean): boolean;
+
+        
+        writeChar(val: number): boolean;
+
+        
+        writeString(val: string): boolean;
+
+        
+        writeSequenceable(val: Sequenceable): boolean;
+
+        
+        writeByteArray(byteArray: number[]): boolean;
+
+        
+        writeShortArray(shortArray: number[]): boolean;
+
+        
+        writeIntArray(intArray: number[]): boolean;
+
+        
+        writeLongArray(longArray: number[]): boolean;
+
+        
+        writeFloatArray(floatArray: number[]): boolean;
+
+        
+        writeDoubleArray(doubleArray: number[]): boolean;
+
+        
+        writeBooleanArray(booleanArray: boolean[]): boolean;
+
+        
+        writeCharArray(charArray: number[]): boolean;
+
+        
+        writeStringArray(stringArray: string[]): boolean;
+
+        
+        writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean;
+
+        
+        writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean;
+
+        
+        readByte(): number;
+
+        
+        readShort(): number;
+
+        
+        readInt(): number;
+
+        
+        readLong(): number;
+
+        
+        readFloat(): number;
+
+        
+        readDouble(): number;
+
+        
+        readBoolean(): boolean;
+
+        
+        readChar(): number;
+
+        
+        readString(): string;
+
+        
+        readSequenceable(dataIn: Sequenceable) : boolean;
+
+        
+        readByteArray(dataIn: number[]) : void;
+
+        
+        readByteArray(): number[];
+
+        
+        readShortArray(dataIn: number[]) : void;
+
+        
+        readShortArray(): number[];
+
+        
+        readIntArray(dataIn: number[]) : void;
+
+        
+        readIntArray(): number[];
+
+        
+        readLongArray(dataIn: number[]) : void;
+
+        
+        readLongArray(): number[];
+
+        
+        readFloatArray(dataIn: number[]) : void;
+
+        
+        readFloatArray(): number[];
+
+        
+        readDoubleArray(dataIn: number[]) : void;
+
+        
+        readDoubleArray(): number[];
+
+        
+        readBooleanArray(dataIn: boolean[]) : void;
+
+        
+        readBooleanArray(): boolean[];
+
+        
+        readCharArray(dataIn: number[]) : void;
+
+        
+        readCharArray(): number[];
+
+        
+        readStringArray(dataIn: string[]) : void;
+
+        
+        readStringArray(): string[];
+
+        
+        readSequenceableArray(sequenceableArray: Sequenceable[]): void;
+
+        
+        readRemoteObjectArray(objects: IRemoteObject[]): void;
+
+        
+        readRemoteObjectArray(): IRemoteObject[];
+
+        
+        static closeFileDescriptor(fd: number): void;
+
+        
+        static dupFileDescriptor(fd: number) :number;
+
+        
+        containFileDescriptors(): boolean;
+
+        
+        writeFileDescriptor(fd: number): boolean;
+
+        
+        readFileDescriptor(): number;
+
+        
+        writeAshmem(ashmem: Ashmem): boolean;
+
+        
+        readAshmem(): Ashmem;
+
+        
+        getRawDataCapacity(): number;
+
+        
+        writeRawData(rawData: number[], size: number): boolean;
+
+        
+        readRawData(size: number): number[];
+    }
+
+
+    
+    interface Sequenceable {
+        
+        marshalling(dataOut: MessageParcel): boolean;
+
+        
+        unmarshalling(dataIn: MessageParcel) : boolean;
+    }
+
+    
+    interface SendRequestResult {
+        
+        errCode: number;
+
+        
+        code: number;
+
+        
+        data: MessageParcel;
+
+        
+        reply: MessageParcel;
+    }
+
+    
+    interface IRemoteObject {
+        
+        queryLocalInterface(descriptor: string): IRemoteBroker;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult>;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void;
+
+        
+        addDeathRecipient(recipient: DeathRecipient, flags: number): boolean;
+
+        
+        removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean;
+
+        
+        getInterfaceDescriptor(): string;
+
+        
+        isObjectDead(): boolean;
+    }
+
+    
+    interface IRemoteBroker {
+        
+        asObject(): IRemoteObject;
+    }
+
+    
+    interface DeathRecipient {
+        
+        onRemoteDied(): void;
+    }
+
+    
+    class MessageOption {
+        
+        TF_SYNC = 0;
+
+        
+        TF_ASYNC = 1;
+
+        
+        TF_ACCEPT_FDS = 0x10;
+
+        
+        TF_WAIT_TIME  = 8;
+
+        
+        constructor(syncFlags?: number, waitTime = TF_WAIT_TIME);
+
+        
+        getFlags(): number;
+
+        
+        setFlags(flags: number): void;
+
+        
+        getWaitTime(): number;
+
+        
+        setWaitTime(waitTime: number): void;
+    }
+
+    
+    class RemoteObject implements IRemoteObject {
+        
+        constructor(descriptor: string);
+
+        
+        queryLocalInterface(descriptor: string): IRemoteBroker;
+
+        
+        getInterfaceDescriptor(): string;
+
+        
+        onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult>;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void;
+
+        
+        getCallingPid(): number;
+
+        
+        getCallingUid(): number;
+
+        
+        attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void;
+    }
+
+    
+    class RemoteProxy implements IRemoteObject {
+        
+        PING_TRANSACTION = ('_' << 24) | ('P' << 16) | ('N' << 8) | 'G';
+
+        
+        DUMP_TRANSACTION = ('_' << 24) | ('D' << 16) | ('M' << 8) | 'P';
+
+        
+        INTERFACE_TRANSACTION = ('_' << 24) | ('N' << 16) | ('T' << 8) | 'F';
+
+        
+        MIN_TRANSACTION_ID = 0x1;
+
+        
+        MAX_TRANSACTION_ID = 0x00FFFFFF;
+
+        
+        queryLocalInterface(interface: string): IRemoteBroker;
+
+        
+        addDeathRecipient(recipient: DeathRecipient, flags: number): boolean;
+
+        
+        removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean;
+
+        
+        getInterfaceDescriptor(): string;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult>;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void;
+
+        
+        isObjectDead(): boolean;
+    }
+
+    
+    class IPCSkeleton {
+        
+        static getContextObject(): IRemoteObject;
+
+        
+        static getCallingPid(): number;
+
+        
+        static getCallingUid(): number;
+
+        
+         static getCallingTokenId(): number;
+
+        
+        static getCallingDeviceID(): string;
+
+        
+        static getLocalDeviceID(): string;
+
+        
+        static isLocalCalling(): boolean;
+
+        
+        static flushCommands(object: IRemoteObject): number;
+
+        
+        static resetCallingIdentity(): string;
+
+        
+        static setCallingIdentity(identity: string): boolean;
+    }
+
+    
+    class Ashmem {
+        
+        PROT_EXEC = 4;
+
+        
+        PROT_NONE = 0;
+
+        
+        PROT_READ = 1;
+
+        
+        PROT_WRITE = 2;
+
+        
+        static createAshmem(name: string, size: number): Ashmem;
+
+        
+        static createAshmemFromExisting(ashmem: Ashmem): Ashmem;
+
+        
+        closeAshmem(): void;
+
+        
+        unmapAshmem(): void;
+
+        
+        getAshmemSize(): number;
+
+        
+        mapAshmem(mapType: number): boolean;
+
+        
+        mapReadAndWriteAshmem(): boolean;
+
+        
+        mapReadOnlyAshmem(): boolean;
+
+        
+        setProtection(protectionType: number): boolean;
+
+        
+        writeToAshmem(buf: number[], size: number, offset: number): boolean;
+
+        
+        readFromAshmem(size: number, offset: number): number[];
+    }
+}</td><td>rpc</td><td>None</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>class MessageParcel {
+        
+        static create(): MessageParcel;
+
+        
+        reclaim(): void;
+
+        
+        writeRemoteObject(object: IRemoteObject): boolean;
+
+        
+        readRemoteObject(): IRemoteObject;
+
+        
+        writeInterfaceToken(token: string): boolean;
+
+        
+        readInterfaceToken(): string;
+
+        
+        getSize(): number;
+
+        
+        getCapacity(): number;
+
+        
+        setSize(size: number): boolean;
+
+        
+        setCapacity(size: number): boolean;
+
+        
+        getWritableBytes(): number;
+
+        
+        getReadableBytes(): number;
+
+        
+        getReadPosition(): number;
+
+        
+        getWritePosition(): number;
+
+        
+        rewindRead(pos: number): boolean;
+
+        
+        rewindWrite(pos: number): boolean;
+
+        
+        writeNoException(): void;
+
+        
+        readException(): void;
+
+        
+        writeByte(val: number): boolean;
+
+        
+        writeShort(val: number): boolean;
+
+        
+        writeInt(val: number): boolean;
+
+        
+        writeLong(val: number): boolean;
+
+        
+        writeFloat(val: number): boolean;
+
+        
+        writeDouble(val: number): boolean;
+
+        
+        writeBoolean(val: boolean): boolean;
+
+        
+        writeChar(val: number): boolean;
+
+        
+        writeString(val: string): boolean;
+
+        
+        writeSequenceable(val: Sequenceable): boolean;
+
+        
+        writeByteArray(byteArray: number[]): boolean;
+
+        
+        writeShortArray(shortArray: number[]): boolean;
+
+        
+        writeIntArray(intArray: number[]): boolean;
+
+        
+        writeLongArray(longArray: number[]): boolean;
+
+        
+        writeFloatArray(floatArray: number[]): boolean;
+
+        
+        writeDoubleArray(doubleArray: number[]): boolean;
+
+        
+        writeBooleanArray(booleanArray: boolean[]): boolean;
+
+        
+        writeCharArray(charArray: number[]): boolean;
+
+        
+        writeStringArray(stringArray: string[]): boolean;
+
+        
+        writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean;
+
+        
+        writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean;
+
+        
+        readByte(): number;
+
+        
+        readShort(): number;
+
+        
+        readInt(): number;
+
+        
+        readLong(): number;
+
+        
+        readFloat(): number;
+
+        
+        readDouble(): number;
+
+        
+        readBoolean(): boolean;
+
+        
+        readChar(): number;
+
+        
+        readString(): string;
+
+        
+        readSequenceable(dataIn: Sequenceable) : boolean;
+
+        
+        readByteArray(dataIn: number[]) : void;
+
+        
+        readByteArray(): number[];
+
+        
+        readShortArray(dataIn: number[]) : void;
+
+        
+        readShortArray(): number[];
+
+        
+        readIntArray(dataIn: number[]) : void;
+
+        
+        readIntArray(): number[];
+
+        
+        readLongArray(dataIn: number[]) : void;
+
+        
+        readLongArray(): number[];
+
+        
+        readFloatArray(dataIn: number[]) : void;
+
+        
+        readFloatArray(): number[];
+
+        
+        readDoubleArray(dataIn: number[]) : void;
+
+        
+        readDoubleArray(): number[];
+
+        
+        readBooleanArray(dataIn: boolean[]) : void;
+
+        
+        readBooleanArray(): boolean[];
+
+        
+        readCharArray(dataIn: number[]) : void;
+
+        
+        readCharArray(): number[];
+
+        
+        readStringArray(dataIn: string[]) : void;
+
+        
+        readStringArray(): string[];
+
+        
+        readSequenceableArray(sequenceableArray: Sequenceable[]): void;
+
+        
+        readRemoteObjectArray(objects: IRemoteObject[]): void;
+
+        
+        readRemoteObjectArray(): IRemoteObject[];
+
+        
+        static closeFileDescriptor(fd: number): void;
+
+        
+        static dupFileDescriptor(fd: number) :number;
+
+        
+        containFileDescriptors(): boolean;
+
+        
+        writeFileDescriptor(fd: number): boolean;
+
+        
+        readFileDescriptor(): number;
+
+        
+        writeAshmem(ashmem: Ashmem): boolean;
+
+        
+        readAshmem(): Ashmem;
+
+        
+        getRawDataCapacity(): number;
+
+        
+        writeRawData(rawData: number[], size: number): boolean;
+
+        
+        readRawData(size: number): number[];
+    }</td><td>MessageParcel</td><td>10</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>static create(): MessageParcel;</td><td>create</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>reclaim(): void;</td><td>reclaim</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeRemoteObject(object: IRemoteObject): boolean;</td><td>writeRemoteObject</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readRemoteObject(): IRemoteObject;</td><td>readRemoteObject</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeInterfaceToken(token: string): boolean;</td><td>writeInterfaceToken</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readInterfaceToken(): string;</td><td>readInterfaceToken</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>getSize(): number;</td><td>getSize</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>getCapacity(): number;</td><td>getCapacity</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>setSize(size: number): boolean;</td><td>setSize</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>setCapacity(size: number): boolean;</td><td>setCapacity</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>getWritableBytes(): number;</td><td>getWritableBytes</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>getReadableBytes(): number;</td><td>getReadableBytes</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>getReadPosition(): number;</td><td>getReadPosition</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>getWritePosition(): number;</td><td>getWritePosition</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>rewindRead(pos: number): boolean;</td><td>rewindRead</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>rewindWrite(pos: number): boolean;</td><td>rewindWrite</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeNoException(): void;</td><td>writeNoException</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readException(): void;</td><td>readException</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeByte(val: number): boolean;</td><td>writeByte</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeShort(val: number): boolean;</td><td>writeShort</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeInt(val: number): boolean;</td><td>writeInt</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeLong(val: number): boolean;</td><td>writeLong</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeFloat(val: number): boolean;</td><td>writeFloat</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeDouble(val: number): boolean;</td><td>writeDouble</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeBoolean(val: boolean): boolean;</td><td>writeBoolean</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeChar(val: number): boolean;</td><td>writeChar</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeString(val: string): boolean;</td><td>writeString</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeSequenceable(val: Sequenceable): boolean;</td><td>writeSequenceable</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeByteArray(byteArray: number[]): boolean;</td><td>writeByteArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeShortArray(shortArray: number[]): boolean;</td><td>writeShortArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeIntArray(intArray: number[]): boolean;</td><td>writeIntArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeLongArray(longArray: number[]): boolean;</td><td>writeLongArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeFloatArray(floatArray: number[]): boolean;</td><td>writeFloatArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeDoubleArray(doubleArray: number[]): boolean;</td><td>writeDoubleArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeBooleanArray(booleanArray: boolean[]): boolean;</td><td>writeBooleanArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeCharArray(charArray: number[]): boolean;</td><td>writeCharArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeStringArray(stringArray: string[]): boolean;</td><td>writeStringArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean;</td><td>writeSequenceableArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean;</td><td>writeRemoteObjectArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readByte(): number;</td><td>readByte</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readShort(): number;</td><td>readShort</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readInt(): number;</td><td>readInt</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readLong(): number;</td><td>readLong</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readFloat(): number;</td><td>readFloat</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readDouble(): number;</td><td>readDouble</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readBoolean(): boolean;</td><td>readBoolean</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readChar(): number;</td><td>readChar</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readString(): string;</td><td>readString</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readSequenceable(dataIn: Sequenceable) : boolean;</td><td>readSequenceable</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readByteArray(dataIn: number[]) : void;</td><td>readByteArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readByteArray(): number[];</td><td>readByteArray</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readShortArray(dataIn: number[]) : void;</td><td>readShortArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readShortArray(): number[];</td><td>readShortArray</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readIntArray(dataIn: number[]) : void;</td><td>readIntArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readIntArray(): number[];</td><td>readIntArray</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readLongArray(dataIn: number[]) : void;</td><td>readLongArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readLongArray(): number[];</td><td>readLongArray</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readFloatArray(dataIn: number[]) : void;</td><td>readFloatArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readFloatArray(): number[];</td><td>readFloatArray</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readDoubleArray(dataIn: number[]) : void;</td><td>readDoubleArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readDoubleArray(): number[];</td><td>readDoubleArray</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readBooleanArray(dataIn: boolean[]) : void;</td><td>readBooleanArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readBooleanArray(): boolean[];</td><td>readBooleanArray</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readCharArray(dataIn: number[]) : void;</td><td>readCharArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readCharArray(): number[];</td><td>readCharArray</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readStringArray(dataIn: string[]) : void;</td><td>readStringArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readStringArray(): string[];</td><td>readStringArray</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>readSequenceableArray(sequenceableArray: Sequenceable[]): void;</td><td>readSequenceableArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readRemoteObjectArray(objects: IRemoteObject[]): void;</td><td>readRemoteObjectArray</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readRemoteObjectArray(): IRemoteObject[];</td><td>readRemoteObjectArray</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>static closeFileDescriptor(fd: number): void;</td><td>closeFileDescriptor</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>static dupFileDescriptor(fd: number) :number;</td><td>dupFileDescriptor</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>containFileDescriptors(): boolean;</td><td>containFileDescriptors</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeFileDescriptor(fd: number): boolean;</td><td>writeFileDescriptor</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readFileDescriptor(): number;</td><td>readFileDescriptor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeAshmem(ashmem: Ashmem): boolean;</td><td>writeAshmem</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageParcel</td><td>readAshmem(): Ashmem;</td><td>readAshmem</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>getRawDataCapacity(): number;</td><td>getRawDataCapacity</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageParcel</td><td>writeRawData(rawData: number[], size: number): boolean;</td><td>writeRawData</td><td>11</td><td>2</td><td>0</td><tr><tr><td>MessageParcel</td><td>readRawData(size: number): number[];</td><td>readRawData</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Sequenceable</td><td>interface Sequenceable {
+        
+        marshalling(dataOut: MessageParcel): boolean;
+
+        
+        unmarshalling(dataIn: MessageParcel) : boolean;
+    }</td><td>Sequenceable</td><td>20</td><td>0</td><td>0</td><tr><tr><td>Sequenceable</td><td>marshalling(dataOut: MessageParcel): boolean;</td><td>marshalling</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Sequenceable</td><td>unmarshalling(dataIn: MessageParcel) : boolean;</td><td>unmarshalling</td><td>21</td><td>1</td><td>0</td><tr><tr><td>SendRequestResult</td><td>interface SendRequestResult {
+        
+        errCode: number;
+
+        
+        code: number;
+
+        
+        data: MessageParcel;
+
+        
+        reply: MessageParcel;
+    }</td><td>SendRequestResult</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SendRequestResult</td><td>errCode: number</td><td>errCode</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SendRequestResult</td><td>code: number</td><td>code</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SendRequestResult</td><td>data: MessageParcel</td><td>data</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SendRequestResult</td><td>reply: MessageParcel</td><td>reply</td><td>22</td><td>1</td><td>0</td><tr><tr><td>IRemoteObject</td><td>interface IRemoteObject {
+        
+        queryLocalInterface(descriptor: string): IRemoteBroker;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult>;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void;
+
+        
+        addDeathRecipient(recipient: DeathRecipient, flags: number): boolean;
+
+        
+        removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean;
+
+        
+        getInterfaceDescriptor(): string;
+
+        
+        isObjectDead(): boolean;
+    }</td><td>IRemoteObject</td><td>20</td><td>0</td><td>0</td><tr><tr><td>IRemoteObject</td><td>queryLocalInterface(descriptor: string): IRemoteBroker;</td><td>queryLocalInterface</td><td>21</td><td>1</td><td>0</td><tr><tr><td>IRemoteObject</td><td>sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;</td><td>sendRequest</td><td>21</td><td>4</td><td>0</td><tr><tr><td>IRemoteObject</td><td>sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult>;</td><td>sendRequest</td><td>21</td><td>4</td><td>0</td><tr><tr><td>IRemoteObject</td><td>sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void;</td><td>sendRequest</td><td>21</td><td>5</td><td>0</td><tr><tr><td>IRemoteObject</td><td>addDeathRecipient(recipient: DeathRecipient, flags: number): boolean;</td><td>addDeathRecipient</td><td>21</td><td>2</td><td>0</td><tr><tr><td>IRemoteObject</td><td>removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean;</td><td>removeDeathRecipient</td><td>21</td><td>2</td><td>0</td><tr><tr><td>IRemoteObject</td><td>getInterfaceDescriptor(): string;</td><td>getInterfaceDescriptor</td><td>21</td><td>0</td><td>0</td><tr><tr><td>IRemoteObject</td><td>isObjectDead(): boolean;</td><td>isObjectDead</td><td>21</td><td>0</td><td>0</td><tr><tr><td>IRemoteBroker</td><td>interface IRemoteBroker {
+        
+        asObject(): IRemoteObject;
+    }</td><td>IRemoteBroker</td><td>20</td><td>0</td><td>0</td><tr><tr><td>IRemoteBroker</td><td>asObject(): IRemoteObject;</td><td>asObject</td><td>21</td><td>0</td><td>0</td><tr><tr><td>DeathRecipient</td><td>interface DeathRecipient {
+        
+        onRemoteDied(): void;
+    }</td><td>DeathRecipient</td><td>20</td><td>0</td><td>0</td><tr><tr><td>DeathRecipient</td><td>onRemoteDied(): void;</td><td>onRemoteDied</td><td>21</td><td>0</td><td>0</td><tr><tr><td>MessageOption</td><td>class MessageOption {
+        
+        TF_SYNC = 0;
+
+        
+        TF_ASYNC = 1;
+
+        
+        TF_ACCEPT_FDS = 0x10;
+
+        
+        TF_WAIT_TIME  = 8;
+
+        
+        constructor(syncFlags?: number, waitTime = TF_WAIT_TIME);
+
+        
+        getFlags(): number;
+
+        
+        setFlags(flags: number): void;
+
+        
+        getWaitTime(): number;
+
+        
+        setWaitTime(waitTime: number): void;
+    }</td><td>MessageOption</td><td>10</td><td>0</td><td>0</td><tr><tr><td>MessageOption</td><td>constructor(syncFlags?: number, waitTime = TF_WAIT_TIME)</td><td>constructor</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageOption</td><td>getFlags(): number;</td><td>getFlags</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageOption</td><td>setFlags(flags: number): void;</td><td>setFlags</td><td>11</td><td>1</td><td>0</td><tr><tr><td>MessageOption</td><td>getWaitTime(): number;</td><td>getWaitTime</td><td>11</td><td>0</td><td>0</td><tr><tr><td>MessageOption</td><td>setWaitTime(waitTime: number): void;</td><td>setWaitTime</td><td>11</td><td>1</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>class RemoteObject implements IRemoteObject {
+        
+        constructor(descriptor: string);
+
+        
+        queryLocalInterface(descriptor: string): IRemoteBroker;
+
+        
+        getInterfaceDescriptor(): string;
+
+        
+        onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult>;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void;
+
+        
+        getCallingPid(): number;
+
+        
+        getCallingUid(): number;
+
+        
+        attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void;
+    }</td><td>RemoteObjectimplementsIRemoteObject</td><td>10</td><td>0</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>constructor(descriptor: string)</td><td>constructor</td><td>11</td><td>1</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>queryLocalInterface(descriptor: string): IRemoteBroker;</td><td>queryLocalInterface</td><td>11</td><td>1</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>getInterfaceDescriptor(): string;</td><td>getInterfaceDescriptor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;</td><td>onRemoteRequest</td><td>11</td><td>4</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;</td><td>sendRequest</td><td>11</td><td>4</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult>;</td><td>sendRequest</td><td>11</td><td>4</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void;</td><td>sendRequest</td><td>11</td><td>5</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>getCallingPid(): number;</td><td>getCallingPid</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>getCallingUid(): number;</td><td>getCallingUid</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteObjectimplementsIRemoteObject</td><td>attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void;</td><td>attachLocalInterface</td><td>11</td><td>2</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>class RemoteProxy implements IRemoteObject {
+        
+        PING_TRANSACTION = ('_' << 24) | ('P' << 16) | ('N' << 8) | 'G';
+
+        
+        DUMP_TRANSACTION = ('_' << 24) | ('D' << 16) | ('M' << 8) | 'P';
+
+        
+        INTERFACE_TRANSACTION = ('_' << 24) | ('N' << 16) | ('T' << 8) | 'F';
+
+        
+        MIN_TRANSACTION_ID = 0x1;
+
+        
+        MAX_TRANSACTION_ID = 0x00FFFFFF;
+
+        
+        queryLocalInterface(interface: string): IRemoteBroker;
+
+        
+        addDeathRecipient(recipient: DeathRecipient, flags: number): boolean;
+
+        
+        removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean;
+
+        
+        getInterfaceDescriptor(): string;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult>;
+
+        
+        sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void;
+
+        
+        isObjectDead(): boolean;
+    }</td><td>RemoteProxyimplementsIRemoteObject</td><td>10</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>PING_TRANSACTION = ('_' << 24) | ('P' << 16) | ('N' << 8) | 'G';</td><td>PING_TRANSACTION</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>PING_TRANSACTION = ('_' << 24) | ('P' << 16) | ('N' << 8) | 'G';</td><td>PING_TRANSACTION</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>PING_TRANSACTION = ('_' << 24) | ('P' << 16) | ('N' << 8) | 'G';</td><td>PING_TRANSACTION</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>DUMP_TRANSACTION = ('_' << 24) | ('D' << 16) | ('M' << 8) | 'P';</td><td>DUMP_TRANSACTION</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>DUMP_TRANSACTION = ('_' << 24) | ('D' << 16) | ('M' << 8) | 'P';</td><td>DUMP_TRANSACTION</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>DUMP_TRANSACTION = ('_' << 24) | ('D' << 16) | ('M' << 8) | 'P';</td><td>DUMP_TRANSACTION</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>INTERFACE_TRANSACTION = ('_' << 24) | ('N' << 16) | ('T' << 8) | 'F';</td><td>INTERFACE_TRANSACTION</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>INTERFACE_TRANSACTION = ('_' << 24) | ('N' << 16) | ('T' << 8) | 'F';</td><td>INTERFACE_TRANSACTION</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>INTERFACE_TRANSACTION = ('_' << 24) | ('N' << 16) | ('T' << 8) | 'F';</td><td>INTERFACE_TRANSACTION</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>queryLocalInterface(interface: string): IRemoteBroker;</td><td>queryLocalInterface</td><td>11</td><td>1</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>addDeathRecipient(recipient: DeathRecipient, flags: number): boolean;</td><td>addDeathRecipient</td><td>11</td><td>2</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean;</td><td>removeDeathRecipient</td><td>11</td><td>2</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>getInterfaceDescriptor(): string;</td><td>getInterfaceDescriptor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean;</td><td>sendRequest</td><td>11</td><td>4</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult>;</td><td>sendRequest</td><td>11</td><td>4</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void;</td><td>sendRequest</td><td>11</td><td>5</td><td>0</td><tr><tr><td>RemoteProxyimplementsIRemoteObject</td><td>isObjectDead(): boolean;</td><td>isObjectDead</td><td>11</td><td>0</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>class IPCSkeleton {
+        
+        static getContextObject(): IRemoteObject;
+
+        
+        static getCallingPid(): number;
+
+        
+        static getCallingUid(): number;
+
+        
+         static getCallingTokenId(): number;
+
+        
+        static getCallingDeviceID(): string;
+
+        
+        static getLocalDeviceID(): string;
+
+        
+        static isLocalCalling(): boolean;
+
+        
+        static flushCommands(object: IRemoteObject): number;
+
+        
+        static resetCallingIdentity(): string;
+
+        
+        static setCallingIdentity(identity: string): boolean;
+    }</td><td>IPCSkeleton</td><td>10</td><td>0</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>static getContextObject(): IRemoteObject;</td><td>getContextObject</td><td>11</td><td>0</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>static getCallingPid(): number;</td><td>getCallingPid</td><td>11</td><td>0</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>static getCallingUid(): number;</td><td>getCallingUid</td><td>11</td><td>0</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>static getCallingTokenId(): number;</td><td>getCallingTokenId</td><td>11</td><td>0</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>static getCallingDeviceID(): string;</td><td>getCallingDeviceID</td><td>11</td><td>0</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>static getLocalDeviceID(): string;</td><td>getLocalDeviceID</td><td>11</td><td>0</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>static isLocalCalling(): boolean;</td><td>isLocalCalling</td><td>11</td><td>0</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>static flushCommands(object: IRemoteObject): number;</td><td>flushCommands</td><td>11</td><td>1</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>static resetCallingIdentity(): string;</td><td>resetCallingIdentity</td><td>11</td><td>0</td><td>0</td><tr><tr><td>IPCSkeleton</td><td>static setCallingIdentity(identity: string): boolean;</td><td>setCallingIdentity</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Ashmem</td><td>class Ashmem {
+        
+        PROT_EXEC = 4;
+
+        
+        PROT_NONE = 0;
+
+        
+        PROT_READ = 1;
+
+        
+        PROT_WRITE = 2;
+
+        
+        static createAshmem(name: string, size: number): Ashmem;
+
+        
+        static createAshmemFromExisting(ashmem: Ashmem): Ashmem;
+
+        
+        closeAshmem(): void;
+
+        
+        unmapAshmem(): void;
+
+        
+        getAshmemSize(): number;
+
+        
+        mapAshmem(mapType: number): boolean;
+
+        
+        mapReadAndWriteAshmem(): boolean;
+
+        
+        mapReadOnlyAshmem(): boolean;
+
+        
+        setProtection(protectionType: number): boolean;
+
+        
+        writeToAshmem(buf: number[], size: number, offset: number): boolean;
+
+        
+        readFromAshmem(size: number, offset: number): number[];
+    }</td><td>Ashmem</td><td>10</td><td>0</td><td>0</td><tr><tr><td>Ashmem</td><td>static createAshmem(name: string, size: number): Ashmem;</td><td>createAshmem</td><td>11</td><td>2</td><td>0</td><tr><tr><td>Ashmem</td><td>static createAshmemFromExisting(ashmem: Ashmem): Ashmem;</td><td>createAshmemFromExisting</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Ashmem</td><td>closeAshmem(): void;</td><td>closeAshmem</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Ashmem</td><td>unmapAshmem(): void;</td><td>unmapAshmem</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Ashmem</td><td>getAshmemSize(): number;</td><td>getAshmemSize</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Ashmem</td><td>mapAshmem(mapType: number): boolean;</td><td>mapAshmem</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Ashmem</td><td>mapReadAndWriteAshmem(): boolean;</td><td>mapReadAndWriteAshmem</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Ashmem</td><td>mapReadOnlyAshmem(): boolean;</td><td>mapReadOnlyAshmem</td><td>11</td><td>0</td><td>0</td><tr><tr><td>Ashmem</td><td>setProtection(protectionType: number): boolean;</td><td>setProtection</td><td>11</td><td>1</td><td>0</td><tr><tr><td>Ashmem</td><td>writeToAshmem(buf: number[], size: number, offset: number): boolean;</td><td>writeToAshmem</td><td>11</td><td>3</td><td>0</td><tr><tr><td>Ashmem</td><td>readFromAshmem(size: number, offset: number): number[];</td><td>readFromAshmem</td><td>11</td><td>2</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

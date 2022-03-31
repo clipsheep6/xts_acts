@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>common</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>Configuration</td><td>declare interface Configuration {
+  
+  readonly colorMode: string;
+
+  
+  readonly fontScale: number;
+}</td><td>Configuration</td><td>20</td><td>0</td><td>8</td><tr><tr><td>Configuration</td><td>readonly colorMode: string</td><td>colorMode</td><td>22</td><td>1</td><td>13</td><tr><tr><td>Configuration</td><td>readonly fontScale: number</td><td>fontScale</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Rectangle</td><td>declare interface Rectangle {
+  
+  x?: Length;
+
+  
+  y?: Length;
+
+  
+  width?: Length;
+
+  
+  height?: Length;
+}</td><td>Rectangle</td><td>20</td><td>0</td><td>0</td><tr><tr><td>Rectangle</td><td>x?: Length</td><td>x</td><td>22</td><td>1</td><td>20226</td><tr><tr><td>Rectangle</td><td>y?: Length</td><td>y</td><td>22</td><td>1</td><td>35614</td><tr><tr><td>Rectangle</td><td>width?: Length</td><td>width</td><td>22</td><td>1</td><td>1772</td><tr><tr><td>Rectangle</td><td>height?: Length</td><td>height</td><td>22</td><td>1</td><td>1455</td><tr><tr><td>AnimateParam</td><td>declare interface AnimateParam {
+  
+  duration?: number;
+  
+  tempo?: number;
+  
+  curve?: Curve | string;
+  
+  delay?: number;
+  
+  iterations?: number;
+  
+  playMode?: PlayMode;
+  
+  onFinish?: () => void;
+}</td><td>AnimateParam</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AnimateParam</td><td>onFinish?: () => void;</td><td>onFinish</td><td>21</td><td>0</td><td>13</td><tr><tr><td>AnimateParam</td><td>duration?: number</td><td>duration</td><td>22</td><td>1</td><td>240</td><tr><tr><td>AnimateParam</td><td>tempo?: number</td><td>tempo</td><td>22</td><td>1</td><td>19</td><tr><tr><td>AnimateParam</td><td>curve?: Curve | string</td><td>curve</td><td>22</td><td>1</td><td>51</td><tr><tr><td>AnimateParam</td><td>delay?: number</td><td>delay</td><td>22</td><td>1</td><td>59</td><tr><tr><td>AnimateParam</td><td>iterations?: number</td><td>iterations</td><td>22</td><td>1</td><td>64</td><tr><tr><td>AnimateParam</td><td>playMode?: PlayMode</td><td>playMode</td><td>22</td><td>1</td><td>48</td><tr><tr><td>MotionPathOptions</td><td>declare interface MotionPathOptions {
+  
+  path: string;
+  
+  from?: number;
+  
+  to?: number;
+  
+  rotatable?: boolean;
+}</td><td>MotionPathOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MotionPathOptions</td><td>path: string</td><td>path</td><td>22</td><td>1</td><td>436</td><tr><tr><td>MotionPathOptions</td><td>from?: number</td><td>from</td><td>22</td><td>1</td><td>1217</td><tr><tr><td>MotionPathOptions</td><td>to?: number</td><td>to</td><td>22</td><td>1</td><td>15592</td><tr><tr><td>MotionPathOptions</td><td>rotatable?: boolean</td><td>rotatable</td><td>22</td><td>1</td><td>6</td><tr><tr><td>sharedTransitionOptions</td><td>declare interface sharedTransitionOptions {
+  
+  duration?: number;
+  
+  curve?: Curve | string;
+  
+  delay?: number;
+  
+  motionPath?: MotionPathOptions;
+  
+  zIndex?: number;
+  
+  type?: SharedTransitionEffectType;
+}</td><td>sharedTransitionOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>sharedTransitionOptions</td><td>duration?: number</td><td>duration</td><td>22</td><td>1</td><td>240</td><tr><tr><td>sharedTransitionOptions</td><td>curve?: Curve | string</td><td>curve</td><td>22</td><td>1</td><td>51</td><tr><tr><td>sharedTransitionOptions</td><td>delay?: number</td><td>delay</td><td>22</td><td>1</td><td>59</td><tr><tr><td>sharedTransitionOptions</td><td>motionPath?: MotionPathOptions</td><td>motionPath</td><td>22</td><td>1</td><td>32</td><tr><tr><td>sharedTransitionOptions</td><td>zIndex?: number</td><td>zIndex</td><td>22</td><td>1</td><td>48</td><tr><tr><td>sharedTransitionOptions</td><td>type?: SharedTransitionEffectType</td><td>type</td><td>22</td><td>1</td><td>5337</td><tr><tr><td>TranslateOptions</td><td>declare interface TranslateOptions {
+  
+  x?: number | string;
+  
+  y?: number | string;
+  
+  z?: number | string;
+}</td><td>TranslateOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>TranslateOptions</td><td>x?: number | string</td><td>x</td><td>22</td><td>1</td><td>20226</td><tr><tr><td>TranslateOptions</td><td>y?: number | string</td><td>y</td><td>22</td><td>1</td><td>35614</td><tr><tr><td>TranslateOptions</td><td>z?: number | string</td><td>z</td><td>22</td><td>1</td><td>2786</td><tr><tr><td>ScaleOptions</td><td>declare interface ScaleOptions {
+  
+  x?: number;
+  
+  y?: number;
+  
+  z?: number;
+  
+  centerX?: number | string;
+  
+  centerY?: number | string;
+}</td><td>ScaleOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ScaleOptions</td><td>x?: number</td><td>x</td><td>22</td><td>1</td><td>20226</td><tr><tr><td>ScaleOptions</td><td>y?: number</td><td>y</td><td>22</td><td>1</td><td>35614</td><tr><tr><td>ScaleOptions</td><td>z?: number</td><td>z</td><td>22</td><td>1</td><td>2786</td><tr><tr><td>ScaleOptions</td><td>centerX?: number | string</td><td>centerX</td><td>22</td><td>1</td><td>6</td><tr><tr><td>ScaleOptions</td><td>centerY?: number | string</td><td>centerY</td><td>22</td><td>1</td><td>6</td><tr><tr><td>RotateOptions</td><td>declare interface RotateOptions {
+  
+  x?: number;
+  
+  y?: number;
+  
+  z?: number;
+  
+  centerX?: number | string;
+  
+  centerY?: number | string;
+  
+  angle: number | string;
+}</td><td>RotateOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>RotateOptions</td><td>x?: number</td><td>x</td><td>22</td><td>1</td><td>20226</td><tr><tr><td>RotateOptions</td><td>y?: number</td><td>y</td><td>22</td><td>1</td><td>35614</td><tr><tr><td>RotateOptions</td><td>z?: number</td><td>z</td><td>22</td><td>1</td><td>2786</td><tr><tr><td>RotateOptions</td><td>centerX?: number | string</td><td>centerX</td><td>22</td><td>1</td><td>6</td><tr><tr><td>RotateOptions</td><td>centerY?: number | string</td><td>centerY</td><td>22</td><td>1</td><td>6</td><tr><tr><td>RotateOptions</td><td>angle: number | string</td><td>angle</td><td>22</td><td>1</td><td>18</td><tr><tr><td>TransitionOptions</td><td>declare interface TransitionOptions {
+  
+  type?: TransitionType;
+  
+  opacity?: number;
+  
+  translate?: TranslateOptions;
+  
+  scale?: ScaleOptions;
+  
+  rotate?: RotateOptions;
+}</td><td>TransitionOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>TransitionOptions</td><td>type?: TransitionType</td><td>type</td><td>22</td><td>1</td><td>5337</td><tr><tr><td>TransitionOptions</td><td>opacity?: number</td><td>opacity</td><td>22</td><td>1</td><td>532</td><tr><tr><td>TransitionOptions</td><td>translate?: TranslateOptions</td><td>translate</td><td>22</td><td>1</td><td>280</td><tr><tr><td>TransitionOptions</td><td>scale?: ScaleOptions</td><td>scale</td><td>22</td><td>1</td><td>1026</td><tr><tr><td>TransitionOptions</td><td>rotate?: RotateOptions</td><td>rotate</td><td>22</td><td>1</td><td>392</td><tr><tr><td>PreviewParams</td><td>interface PreviewParams {
+  
+  title?: string;
+  
+  width?: number;
+  
+  height?: number;
+  
+  locale?: string;
+  
+  colorMode?: string;
+  
+  deviceType?: string;
+  
+  dpi?: number;
+  
+  orientation?: string;
+  
+  roundScreen?: boolean;
+}</td><td>PreviewParams</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PreviewParams</td><td>title?: string</td><td>title</td><td>22</td><td>1</td><td>81</td><tr><tr><td>PreviewParams</td><td>width?: number</td><td>width</td><td>22</td><td>1</td><td>1772</td><tr><tr><td>PreviewParams</td><td>height?: number</td><td>height</td><td>22</td><td>1</td><td>1455</td><tr><tr><td>PreviewParams</td><td>locale?: string</td><td>locale</td><td>22</td><td>1</td><td>13</td><tr><tr><td>PreviewParams</td><td>colorMode?: string</td><td>colorMode</td><td>22</td><td>1</td><td>13</td><tr><tr><td>PreviewParams</td><td>deviceType?: string</td><td>deviceType</td><td>22</td><td>1</td><td>11</td><tr><tr><td>PreviewParams</td><td>dpi?: number</td><td>dpi</td><td>22</td><td>1</td><td>0</td><tr><tr><td>PreviewParams</td><td>orientation?: string</td><td>orientation</td><td>22</td><td>1</td><td>10</td><tr><tr><td>PreviewParams</td><td>roundScreen?: boolean</td><td>roundScreen</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ItemDragInfo</td><td>declare interface ItemDragInfo {
+  
+  x: number;
+
+  
+  y: number;
+}</td><td>ItemDragInfo</td><td>20</td><td>0</td><td>8</td><tr><tr><td>ItemDragInfo</td><td>x: number</td><td>x</td><td>22</td><td>1</td><td>20226</td><tr><tr><td>ItemDragInfo</td><td>y: number</td><td>y</td><td>22</td><td>1</td><td>35614</td><tr><tr><td>DragItemInfo</td><td>declare interface DragItemInfo {
+  
+  pixelMap?: PixelMap;
+
+  
+  builder?: CustomBuilder;
+
+  
+  extraInfo?: string;
+}</td><td>DragItemInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>DragItemInfo</td><td>pixelMap?: PixelMap</td><td>pixelMap</td><td>22</td><td>1</td><td>17</td><tr><tr><td>DragItemInfo</td><td>builder?: CustomBuilder</td><td>builder</td><td>22</td><td>1</td><td>8</td><tr><tr><td>DragItemInfo</td><td>extraInfo?: string</td><td>extraInfo</td><td>22</td><td>1</td><td>1</td><tr><tr><td>EventTarget</td><td>declare interface EventTarget {
+  
+  area: Area;
+}</td><td>EventTarget</td><td>20</td><td>0</td><td>0</td><tr><tr><td>EventTarget</td><td>area: Area</td><td>area</td><td>22</td><td>1</td><td>99</td><tr><tr><td>SourceType</td><td>declare enum SourceType {
+  
+  Unknown,
+
+  
+  Mouse,
+
+  
+  TouchScreen,
+}</td><td>SourceType</td><td>40</td><td>0</td><td>4</td><tr><tr><td>SourceType</td><td>Unknown,</td><td>Unknown</td><td>42</td><td>1</td><td>5</td><tr><tr><td>SourceType</td><td>Mouse,</td><td>Mouse</td><td>42</td><td>1</td><td>14</td><tr><tr><td>SourceType</td><td>TouchScreen,</td><td>TouchScreen</td><td>42</td><td>1</td><td>2</td><tr><tr><td>BaseEvent</td><td>declare interface BaseEvent {
+  
+  target: EventTarget;
+
+  
+  timestamp: number;
+
+  
+  source: SourceType;
+}</td><td>BaseEvent</td><td>20</td><td>0</td><td>0</td><tr><tr><td>BaseEvent</td><td>target: EventTarget</td><td>target</td><td>22</td><td>1</td><td>51</td><tr><tr><td>BaseEvent</td><td>timestamp: number</td><td>timestamp</td><td>22</td><td>1</td><td>1409</td><tr><tr><td>BaseEvent</td><td>source: SourceType</td><td>source</td><td>22</td><td>1</td><td>63</td><tr><tr><td>ClickEvent</td><td>declare interface ClickEvent extends BaseEvent {
+  
+  screenX: number;
+
+  
+  screenY: number;
+
+  
+  x: number;
+
+  
+  y: number;
+}</td><td>ClickEvent</td><td>None</td><td>0</td><td>9</td><tr><tr><td>ClickEvent</td><td>screenX: number</td><td>screenX</td><td>22</td><td>1</td><td>7</td><tr><tr><td>ClickEvent</td><td>screenY: number</td><td>screenY</td><td>22</td><td>1</td><td>5</td><tr><tr><td>ClickEvent</td><td>x: number</td><td>x</td><td>22</td><td>1</td><td>20226</td><tr><tr><td>ClickEvent</td><td>y: number</td><td>y</td><td>22</td><td>1</td><td>35614</td><tr><tr><td>MouseEvent</td><td>declare interface MouseEvent extends BaseEvent {
+  
+  button: MouseButton;
+
+  
+  action: MouseAction;
+
+  
+  screenX: number;
+
+  
+  screenY: number;
+
+  
+  x: number;
+
+  
+  y: number;
+
+  
+  stopPropagation?: () => void;
+}</td><td>MouseEvent</td><td>None</td><td>0</td><td>2</td><tr><tr><td>MouseEvent</td><td>stopPropagation?: () => void;</td><td>stopPropagation</td><td>None</td><td>0</td><td>4</td><tr><tr><td>MouseEvent</td><td>button: MouseButton</td><td>button</td><td>22</td><td>1</td><td>615</td><tr><tr><td>MouseEvent</td><td>action: MouseAction</td><td>action</td><td>22</td><td>1</td><td>398</td><tr><tr><td>MouseEvent</td><td>screenX: number</td><td>screenX</td><td>22</td><td>1</td><td>7</td><tr><tr><td>MouseEvent</td><td>screenY: number</td><td>screenY</td><td>22</td><td>1</td><td>5</td><tr><tr><td>MouseEvent</td><td>x: number</td><td>x</td><td>22</td><td>1</td><td>20226</td><tr><tr><td>MouseEvent</td><td>y: number</td><td>y</td><td>22</td><td>1</td><td>35614</td><tr><tr><td>TouchObject</td><td>declare interface TouchObject {
+  
+  type: TouchType;
+
+  
+  id: number;
+
+  
+  screenX: number;
+
+  
+  screenY: number;
+
+  
+  x: number;
+
+  
+  y: number;
+}</td><td>TouchObject</td><td>20</td><td>0</td><td>22</td><tr><tr><td>TouchObject</td><td>type: TouchType</td><td>type</td><td>22</td><td>1</td><td>5337</td><tr><tr><td>TouchObject</td><td>id: number</td><td>id</td><td>22</td><td>1</td><td>8283</td><tr><tr><td>TouchObject</td><td>screenX: number</td><td>screenX</td><td>22</td><td>1</td><td>7</td><tr><tr><td>TouchObject</td><td>screenY: number</td><td>screenY</td><td>22</td><td>1</td><td>5</td><tr><tr><td>TouchObject</td><td>x: number</td><td>x</td><td>22</td><td>1</td><td>20226</td><tr><tr><td>TouchObject</td><td>y: number</td><td>y</td><td>22</td><td>1</td><td>35614</td><tr><tr><td>TouchEvent</td><td>declare interface TouchEvent extends BaseEvent {
+  
+  type: TouchType;
+
+  
+  touches: TouchObject[];
+
+  
+  changedTouches: TouchObject[];
+
+  
+  stopPropagation?: () => void;
+}</td><td>TouchEvent</td><td>None</td><td>0</td><td>42</td><tr><tr><td>TouchEvent</td><td>stopPropagation?: () => void;</td><td>stopPropagation</td><td>None</td><td>0</td><td>4</td><tr><tr><td>TouchEvent</td><td>type: TouchType</td><td>type</td><td>22</td><td>1</td><td>5337</td><tr><tr><td>TouchEvent</td><td>touches: TouchObject[]</td><td>touches</td><td>22</td><td>1</td><td>1058</td><tr><tr><td>TouchEvent</td><td>changedTouches: TouchObject[]</td><td>changedTouches</td><td>22</td><td>1</td><td>1058</td><tr><tr><td>PixelMapMock</td><td>declare interface PixelMapMock {
+  
+  release(): void;
+}</td><td>PixelMapMock</td><td>20</td><td>0</td><td>1</td><tr><tr><td>PixelMapMock</td><td>release(): void;</td><td>release</td><td>21</td><td>0</td><td>1</td><tr><tr><td>DragEvent</td><td>declare interface DragEvent {
+  
+  getX(): number;
+
+  
+  getY(): number;
+}</td><td>DragEvent</td><td>20</td><td>0</td><td>14</td><tr><tr><td>DragEvent</td><td>getX(): number;</td><td>getX</td><td>21</td><td>0</td><td>6</td><tr><tr><td>DragEvent</td><td>getY(): number;</td><td>getY</td><td>21</td><td>0</td><td>3</td><tr><tr><td>KeyEvent</td><td>declare interface KeyEvent {
+  
+  type: KeyType;
+
+  
+  keyCode: number;
+
+  
+  keyText: string;
+
+  
+  keySource: KeySource;
+
+  
+  deviceId: number;
+
+  
+  metaKey: number;
+
+  
+  timestamp: number;
+
+  
+  stopPropagation?: () => void;
+}</td><td>KeyEvent</td><td>20</td><td>0</td><td>0</td><tr><tr><td>KeyEvent</td><td>stopPropagation?: () => void;</td><td>stopPropagation</td><td>21</td><td>0</td><td>4</td><tr><tr><td>KeyEvent</td><td>type: KeyType</td><td>type</td><td>22</td><td>1</td><td>5337</td><tr><tr><td>KeyEvent</td><td>keyCode: number</td><td>keyCode</td><td>22</td><td>1</td><td>0</td><tr><tr><td>KeyEvent</td><td>keyText: string</td><td>keyText</td><td>22</td><td>1</td><td>0</td><tr><tr><td>KeyEvent</td><td>keySource: KeySource</td><td>keySource</td><td>22</td><td>1</td><td>0</td><tr><tr><td>KeyEvent</td><td>deviceId: number</td><td>deviceId</td><td>22</td><td>1</td><td>0</td><tr><tr><td>KeyEvent</td><td>metaKey: number</td><td>metaKey</td><td>22</td><td>1</td><td>0</td><tr><tr><td>KeyEvent</td><td>timestamp: number</td><td>timestamp</td><td>22</td><td>1</td><td>1409</td><tr><tr><td>StateStyles</td><td>declare interface StateStyles {
+  
+  normal?: any;
+
+  
+  pressed?: any;
+
+  
+  disabled?: any;
+
+  
+  focused?: any;
+
+  
+  clicked?: any;
+}</td><td>StateStyles</td><td>20</td><td>0</td><td>0</td><tr><tr><td>StateStyles</td><td>normal?: any</td><td>normal</td><td>22</td><td>1</td><td>54</td><tr><tr><td>StateStyles</td><td>pressed?: any</td><td>pressed</td><td>22</td><td>1</td><td>0</td><tr><tr><td>StateStyles</td><td>disabled?: any</td><td>disabled</td><td>22</td><td>1</td><td>1072</td><tr><tr><td>StateStyles</td><td>focused?: any</td><td>focused</td><td>22</td><td>1</td><td>10</td><tr><tr><td>StateStyles</td><td>clicked?: any</td><td>clicked</td><td>22</td><td>1</td><td>6</td><tr><tr><td>PopupOptions</td><td>declare interface PopupOptions {
+  
+  message: string;
+
+  
+  placementOnTop?: boolean;
+
+  
+  primaryButton?: {
+    
+    value: string;
+
+    
+    action: () => void;
+  };
+
+  
+  secondaryButton?: {
+    
+    value: string;
+
+    
+    action: () => void;
+  };
+
+  
+  onStateChange?: (event: { isVisible: boolean }) => void;
+}</td><td>PopupOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PopupOptions</td><td>action: () => void;</td><td>action</td><td>21</td><td>0</td><td>398</td><tr><tr><td>PopupOptions</td><td>action: () => void;</td><td>action</td><td>21</td><td>0</td><td>398</td><tr><tr><td>PopupOptions</td><td>onStateChange?: (event: { isVisible: boolean }) => void;</td><td>onStateChange</td><td>21</td><td>1</td><td>8</td><tr><tr><td>PopupOptions</td><td>message: string</td><td>message</td><td>22</td><td>1</td><td>3690</td><tr><tr><td>PopupOptions</td><td>placementOnTop?: boolean</td><td>placementOnTop</td><td>22</td><td>1</td><td>6</td><tr><tr><td>PopupOptions</td><td>value: string</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>PopupOptions</td><td>value: string</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>CustomPopupOptions</td><td>declare interface CustomPopupOptions {
+  
+  builder: CustomBuilder;
+
+  
+  placement?: Placement;
+
+  
+  maskColor?: Color | string | Resource | number;
+
+  
+  popupColor?: Color | string | Resource | number;
+
+  
+  enableArrow?: boolean;
+
+  
+  autoCancel?: boolean;
+
+  
+  onStateChange?: (event: { isVisible: boolean }) => void;
+}</td><td>CustomPopupOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CustomPopupOptions</td><td>onStateChange?: (event: { isVisible: boolean }) => void;</td><td>onStateChange</td><td>21</td><td>1</td><td>8</td><tr><tr><td>CustomPopupOptions</td><td>builder: CustomBuilder</td><td>builder</td><td>22</td><td>1</td><td>8</td><tr><tr><td>CustomPopupOptions</td><td>placement?: Placement</td><td>placement</td><td>22</td><td>1</td><td>202</td><tr><tr><td>CustomPopupOptions</td><td>maskColor?: Color | string | Resource | number</td><td>maskColor</td><td>22</td><td>1</td><td>17</td><tr><tr><td>CustomPopupOptions</td><td>popupColor?: Color | string | Resource | number</td><td>popupColor</td><td>22</td><td>1</td><td>7</td><tr><tr><td>CustomPopupOptions</td><td>enableArrow?: boolean</td><td>enableArrow</td><td>22</td><td>1</td><td>17</td><tr><tr><td>CustomPopupOptions</td><td>autoCancel?: boolean</td><td>autoCancel</td><td>22</td><td>1</td><td>4</td><tr><tr><td>CommonMethod</td><td>declare class CommonMethod<T> {
+  
+  constructor();
+
+  
+  width(value: Length): T;
+
+  
+  height(value: Length): T;
+
+  
+  responseRegion(value: Array<Rectangle> | Rectangle): T;
+
+  
+  size(value: SizeOptions): T;
+
+  
+  constraintSize(value: ConstraintSizeOptions): T;
+
+  
+  touchable(value: boolean): T;
+
+  
+  layoutWeight(value: number | string): T;
+
+  
+  padding(value: Padding | Length): T;
+
+  
+  margin(value: Margin | Length): T;
+
+  
+  backgroundColor(value: ResourceColor): T;
+
+  
+  backgroundImage(src: ResourceStr, repeat?: ImageRepeat): T;
+
+  
+  backgroundImageSize(value: SizeOptions | ImageSize): T;
+
+  
+  backgroundImagePosition(value: Position | Alignment): T;
+
+  
+  opacity(value: number | Resource): T;
+
+  
+  border(value: BorderOptions): T;
+
+  
+  borderStyle(value: BorderStyle): T;
+
+  
+  borderWidth(value: Length): T;
+
+  
+  borderColor(value: ResourceColor): T;
+
+  
+  borderRadius(value: Length): T;
+
+  
+  onClick(event: (event?: ClickEvent) => void): T;
+
+  
+  onHover(event: (isHover?: boolean) => void): T;
+
+  
+  hoverEffect(value: HoverEffect): T;
+
+  
+  onMouse(event: (event?: MouseEvent) => void): T;
+
+  
+  onTouch(event: (event?: TouchEvent) => void): T;
+
+  
+  onKeyEvent(event: (event?: KeyEvent) => void): T;
+
+  
+  focusable(value: boolean): T;
+
+  
+  onFocus(event: () => void): T;
+
+  
+  onBlur(event: () => void): T;
+
+  
+  animation(value: AnimateParam): T;
+
+  
+  transition(value: TransitionOptions): T;
+
+  
+  gesture(gesture: GestureType, mask?: GestureMask): T;
+
+  
+  priorityGesture(gesture: GestureType, mask?: GestureMask): T;
+
+  
+  parallelGesture(gesture: GestureType, mask?: GestureMask): T;
+
+  
+  blur(value: number): T;
+
+  
+  brightness(value: number): T;
+
+  
+  contrast(value: number): T;
+
+  
+  grayscale(value: number): T;
+
+  
+  colorBlend(value: Color | string | Resource): T;
+
+  
+  saturate(value: number): T;
+
+  
+  sepia(value: number): T;
+
+  
+  invert(value: number): T;
+
+  
+  hueRotate(value: number | string): T;
+
+  
+  backdropBlur(value: number): T;
+
+  
+  translate(value: TranslateOptions): T;
+
+  
+  scale(value: ScaleOptions): T;
+
+  
+  gridSpan(value: number): T;
+
+  
+  gridOffset(value: number): T;
+
+  
+  rotate(value: RotateOptions): T;
+
+  
+  transform(value: object): T;
+
+  
+  onAppear(event: () => void): T;
+
+  
+  onDisAppear(event: () => void): T;
+
+  
+  onAreaChange(event: (oldValue: Area, newValue: Area) => void): T;
+
+  
+  visibility(value: Visibility): T;
+
+  
+  flexGrow(value: number): T;
+
+  
+  flexShrink(value: number): T;
+
+  
+  flexBasis(value: number | string): T;
+
+  
+  alignSelf(value: ItemAlign): T;
+
+  
+  displayPriority(value: number): T;
+
+  
+  zIndex(value: number): T;
+
+  
+  sharedTransition(id: string, options?: sharedTransitionOptions): T;
+
+  
+  direction(value: Direction): T;
+
+  
+  align(value: Alignment): T;
+
+  
+  position(value: Position): T;
+
+  
+  markAnchor(value: Position): T;
+
+  
+  offset(value: Position): T;
+
+  
+  enabled(value: boolean): T;
+
+  
+  useSizeType(value: {
+    xs?: number | { span: number; offset: number };
+    sm?: number | { span: number; offset: number };
+    md?: number | { span: number; offset: number };
+    lg?: number | { span: number; offset: number };
+  }): T;
+
+  
+  aspectRatio(value: number): T;
+
+  
+  onDragStart(event: (event?: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo): T;
+
+  
+  onDragEnter(event: (event?: DragEvent, extraParams?: string) => void): T;
+
+  
+  onDragMove(event: (event?: DragEvent, extraParams?: string) => void): T;
+
+  
+  onDragLeave(event: (event?: DragEvent, extraParams?: string) => void): T;
+
+  
+  onDrop(event: (event?: DragEvent, extraParams?: string) => void): T;
+
+  
+  overlay(value: string, options?: { align?: Alignment; offset?: { x?: number; y?: number } }): T;
+
+  
+  linearGradient(value: {
+    angle?: number | string;
+    direction?: GradientDirection;
+    colors: Array<any>;
+    repeating?: boolean;
+  }): T;
+
+  
+  sweepGradient(value: {
+    center: Array<any>;
+    start?: number | string;
+    end?: number | string;
+    rotation?: number | string;
+    colors: Array<any>;
+    repeating?: boolean;
+  }): T;
+
+  
+  radialGradient(value: { center: Array<any>; radius: number | string; colors: Array<any>; repeating?: boolean }): T;
+
+  
+  motionPath(value: MotionPathOptions): T;
+
+  
+  shadow(value: {
+    radius: number | Resource;
+    color?: Color | string | Resource;
+    offsetX?: number | Resource;
+    offsetY?: number | Resource;
+  }): T;
+
+  
+  clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute): T;
+
+  
+  mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute): T;
+
+  
+  key(value: string): T;
+
+  
+  id(value: string): T;
+
+  
+  geometryTransition(id: string): T;
+
+  
+  bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T;
+
+  
+  bindMenu(content: { value: string; action: () => void }[] | CustomBuilder): T;
+
+  
+  bindContextMenu(content: CustomBuilder, responseType: ResponseType): T;
+
+  
+  stateStyles(value: StateStyles): T;
+
+  
+  restoreId(value: number): T;
+}</td><td>CommonMethod</td><td>10</td><td>0</td><td>0</td><tr><tr><td>CommonMethod</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>CommonMethod</td><td>width(value: Length): T;</td><td>width</td><td>11</td><td>1</td><td>1772</td><tr><tr><td>CommonMethod</td><td>height(value: Length): T;</td><td>height</td><td>11</td><td>1</td><td>1455</td><tr><tr><td>CommonMethod</td><td>responseRegion(value: Array<Rectangle> | Rectangle): T;</td><td>responseRegion</td><td>11</td><td>1</td><td>4</td><tr><tr><td>CommonMethod</td><td>size(value: SizeOptions): T;</td><td>size</td><td>11</td><td>1</td><td>1127</td><tr><tr><td>CommonMethod</td><td>constraintSize(value: ConstraintSizeOptions): T;</td><td>constraintSize</td><td>11</td><td>1</td><td>13</td><tr><tr><td>CommonMethod</td><td>touchable(value: boolean): T;</td><td>touchable</td><td>11</td><td>1</td><td>20</td><tr><tr><td>CommonMethod</td><td>layoutWeight(value: number | string): T;</td><td>layoutWeight</td><td>11</td><td>1</td><td>27</td><tr><tr><td>CommonMethod</td><td>padding(value: Padding | Length): T;</td><td>padding</td><td>11</td><td>1</td><td>154</td><tr><tr><td>CommonMethod</td><td>margin(value: Margin | Length): T;</td><td>margin</td><td>11</td><td>1</td><td>300</td><tr><tr><td>CommonMethod</td><td>backgroundColor(value: ResourceColor): T;</td><td>backgroundColor</td><td>11</td><td>1</td><td>627</td><tr><tr><td>CommonMethod</td><td>backgroundImage(src: ResourceStr, repeat?: ImageRepeat): T;</td><td>backgroundImage</td><td>11</td><td>2</td><td>67</td><tr><tr><td>CommonMethod</td><td>backgroundImageSize(value: SizeOptions | ImageSize): T;</td><td>backgroundImageSize</td><td>11</td><td>1</td><td>27</td><tr><tr><td>CommonMethod</td><td>backgroundImagePosition(value: Position | Alignment): T;</td><td>backgroundImagePosition</td><td>11</td><td>1</td><td>14</td><tr><tr><td>CommonMethod</td><td>opacity(value: number | Resource): T;</td><td>opacity</td><td>11</td><td>1</td><td>532</td><tr><tr><td>CommonMethod</td><td>border(value: BorderOptions): T;</td><td>border</td><td>11</td><td>1</td><td>249</td><tr><tr><td>CommonMethod</td><td>borderStyle(value: BorderStyle): T;</td><td>borderStyle</td><td>11</td><td>1</td><td>43</td><tr><tr><td>CommonMethod</td><td>borderWidth(value: Length): T;</td><td>borderWidth</td><td>11</td><td>1</td><td>39</td><tr><tr><td>CommonMethod</td><td>borderColor(value: ResourceColor): T;</td><td>borderColor</td><td>11</td><td>1</td><td>33</td><tr><tr><td>CommonMethod</td><td>borderRadius(value: Length): T;</td><td>borderRadius</td><td>11</td><td>1</td><td>59</td><tr><tr><td>CommonMethod</td><td>onClick(event: (event?: ClickEvent) => void): T;</td><td>onClickevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CommonMethod</td><td>onClick(event: (event?: ClickEvent) => void): T;</td><td>onClickevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CommonMethod</td><td>onHover(event: (isHover?: boolean) => void): T;</td><td>onHoverevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CommonMethod</td><td>onHover(event: (isHover?: boolean) => void): T;</td><td>onHoverevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CommonMethod</td><td>hoverEffect(value: HoverEffect): T;</td><td>hoverEffect</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>onMouse(event: (event?: MouseEvent) => void): T;</td><td>onMouseevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CommonMethod</td><td>onMouse(event: (event?: MouseEvent) => void): T;</td><td>onMouseevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CommonMethod</td><td>onTouch(event: (event?: TouchEvent) => void): T;</td><td>onTouchevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CommonMethod</td><td>onTouch(event: (event?: TouchEvent) => void): T;</td><td>onTouchevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CommonMethod</td><td>onKeyEvent(event: (event?: KeyEvent) => void): T;</td><td>onKeyEventevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CommonMethod</td><td>onKeyEvent(event: (event?: KeyEvent) => void): T;</td><td>onKeyEventevent</td><td>11</td><td>2</td><td>0</td><tr><tr><td>CommonMethod</td><td>focusable(value: boolean): T;</td><td>focusable</td><td>11</td><td>1</td><td>1055</td><tr><tr><td>CommonMethod</td><td>onFocus(event: () => void): T;</td><td>onFocusevent</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>onFocus(event: () => void): T;</td><td>onFocusevent</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>onBlur(event: () => void): T;</td><td>onBlurevent</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>onBlur(event: () => void): T;</td><td>onBlurevent</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>animation(value: AnimateParam): T;</td><td>animation</td><td>11</td><td>1</td><td>552</td><tr><tr><td>CommonMethod</td><td>transition(value: TransitionOptions): T;</td><td>transition</td><td>11</td><td>1</td><td>45</td><tr><tr><td>CommonMethod</td><td>gesture(gesture: GestureType, mask?: GestureMask): T;</td><td>gesture</td><td>11</td><td>2</td><td>21</td><tr><tr><td>CommonMethod</td><td>priorityGesture(gesture: GestureType, mask?: GestureMask): T;</td><td>priorityGesture</td><td>11</td><td>2</td><td>21</td><tr><tr><td>CommonMethod</td><td>parallelGesture(gesture: GestureType, mask?: GestureMask): T;</td><td>parallelGesture</td><td>11</td><td>2</td><td>20</td><tr><tr><td>CommonMethod</td><td>blur(value: number): T;</td><td>blur</td><td>11</td><td>1</td><td>111</td><tr><tr><td>CommonMethod</td><td>brightness(value: number): T;</td><td>brightness</td><td>11</td><td>1</td><td>23</td><tr><tr><td>CommonMethod</td><td>contrast(value: number): T;</td><td>contrast</td><td>11</td><td>1</td><td>23</td><tr><tr><td>CommonMethod</td><td>grayscale(value: number): T;</td><td>grayscale</td><td>11</td><td>1</td><td>16</td><tr><tr><td>CommonMethod</td><td>colorBlend(value: Color | string | Resource): T;</td><td>colorBlend</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CommonMethod</td><td>saturate(value: number): T;</td><td>saturate</td><td>11</td><td>1</td><td>24</td><tr><tr><td>CommonMethod</td><td>sepia(value: number): T;</td><td>sepia</td><td>11</td><td>1</td><td>7</td><tr><tr><td>CommonMethod</td><td>invert(value: number): T;</td><td>invert</td><td>11</td><td>1</td><td>23</td><tr><tr><td>CommonMethod</td><td>hueRotate(value: number | string): T;</td><td>hueRotate</td><td>11</td><td>1</td><td>21</td><tr><tr><td>CommonMethod</td><td>backdropBlur(value: number): T;</td><td>backdropBlur</td><td>11</td><td>1</td><td>7</td><tr><tr><td>CommonMethod</td><td>translate(value: TranslateOptions): T;</td><td>translate</td><td>11</td><td>1</td><td>280</td><tr><tr><td>CommonMethod</td><td>scale(value: ScaleOptions): T;</td><td>scale</td><td>11</td><td>1</td><td>1026</td><tr><tr><td>CommonMethod</td><td>gridSpan(value: number): T;</td><td>gridSpan</td><td>11</td><td>1</td><td>41</td><tr><tr><td>CommonMethod</td><td>gridOffset(value: number): T;</td><td>gridOffset</td><td>11</td><td>1</td><td>41</td><tr><tr><td>CommonMethod</td><td>rotate(value: RotateOptions): T;</td><td>rotate</td><td>11</td><td>1</td><td>392</td><tr><tr><td>CommonMethod</td><td>transform(value: object): T;</td><td>transform</td><td>11</td><td>1</td><td>353</td><tr><tr><td>CommonMethod</td><td>onAppear(event: () => void): T;</td><td>onAppearevent</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>onAppear(event: () => void): T;</td><td>onAppearevent</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDisAppear(event: () => void): T;</td><td>onDisAppearevent</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDisAppear(event: () => void): T;</td><td>onDisAppearevent</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>onAreaChange(event: (oldValue: Area, newValue: Area) => void): T;</td><td>onAreaChangeevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>onAreaChange(event: (oldValue: Area, newValue: Area) => void): T;</td><td>onAreaChangeevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>visibility(value: Visibility): T;</td><td>visibility</td><td>11</td><td>1</td><td>94</td><tr><tr><td>CommonMethod</td><td>flexGrow(value: number): T;</td><td>flexGrow</td><td>11</td><td>1</td><td>24</td><tr><tr><td>CommonMethod</td><td>flexShrink(value: number): T;</td><td>flexShrink</td><td>11</td><td>1</td><td>24</td><tr><tr><td>CommonMethod</td><td>flexBasis(value: number | string): T;</td><td>flexBasis</td><td>11</td><td>1</td><td>20</td><tr><tr><td>CommonMethod</td><td>alignSelf(value: ItemAlign): T;</td><td>alignSelf</td><td>11</td><td>1</td><td>58</td><tr><tr><td>CommonMethod</td><td>displayPriority(value: number): T;</td><td>displayPriority</td><td>11</td><td>1</td><td>20</td><tr><tr><td>CommonMethod</td><td>zIndex(value: number): T;</td><td>zIndex</td><td>11</td><td>1</td><td>48</td><tr><tr><td>CommonMethod</td><td>sharedTransition(id: string, options?: sharedTransitionOptions): T;</td><td>sharedTransition</td><td>11</td><td>2</td><td>38</td><tr><tr><td>CommonMethod</td><td>direction(value: Direction): T;</td><td>direction</td><td>11</td><td>1</td><td>596</td><tr><tr><td>CommonMethod</td><td>align(value: Alignment): T;</td><td>align</td><td>11</td><td>1</td><td>405</td><tr><tr><td>CommonMethod</td><td>position(value: Position): T;</td><td>position</td><td>11</td><td>1</td><td>103</td><tr><tr><td>CommonMethod</td><td>markAnchor(value: Position): T;</td><td>markAnchor</td><td>11</td><td>1</td><td>35</td><tr><tr><td>CommonMethod</td><td>offset(value: Position): T;</td><td>offset</td><td>11</td><td>1</td><td>372</td><tr><tr><td>CommonMethod</td><td>enabled(value: boolean): T;</td><td>enabled</td><td>11</td><td>1</td><td>98</td><tr><tr><td>CommonMethod</td><td>useSizeType(value: {
+                                                   
+                                                   
+                                                   
+                                                   
+  }): T;</td><td>useSizeType</td><td>11</td><td>1</td><td>30</td><tr><tr><td>CommonMethod</td><td>aspectRatio(value: number): T;</td><td>aspectRatio</td><td>11</td><td>1</td><td>42</td><tr><tr><td>CommonMethod</td><td>onDragStart(event: (event?: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo): T;</td><td>onDragStartevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDragStart(event: (event?: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo): T;</td><td>onDragStartevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDragEnter(event: (event?: DragEvent, extraParams?: string) => void): T;</td><td>onDragEnterevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDragEnter(event: (event?: DragEvent, extraParams?: string) => void): T;</td><td>onDragEnterevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDragMove(event: (event?: DragEvent, extraParams?: string) => void): T;</td><td>onDragMoveevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDragMove(event: (event?: DragEvent, extraParams?: string) => void): T;</td><td>onDragMoveevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDragLeave(event: (event?: DragEvent, extraParams?: string) => void): T;</td><td>onDragLeaveevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDragLeave(event: (event?: DragEvent, extraParams?: string) => void): T;</td><td>onDragLeaveevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDrop(event: (event?: DragEvent, extraParams?: string) => void): T;</td><td>onDropevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>onDrop(event: (event?: DragEvent, extraParams?: string) => void): T;</td><td>onDropevent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>overlay(value: string, options?: { align?: Alignment; offset?: { x?: number; y?: number } }): T;</td><td>overlay</td><td>11</td><td>2</td><td>47</td><tr><tr><td>CommonMethod</td><td>linearGradient(value: {
+    angle?: number | string;
+    direction?: GradientDirection;
+    colors: Array<any>;
+    repeating?: boolean;
+  }): T;</td><td>linearGradient</td><td>11</td><td>1</td><td>27</td><tr><tr><td>CommonMethod</td><td>sweepGradient(value: {
+    center: Array<any>;
+    start?: number | string;
+    end?: number | string;
+    rotation?: number | string;
+    colors: Array<any>;
+    repeating?: boolean;
+  }): T;</td><td>sweepGradient</td><td>11</td><td>1</td><td>19</td><tr><tr><td>CommonMethod</td><td>radialGradient(value: { center: Array<any>; radius: number | string; colors: Array<any>; repeating?: boolean }): T;</td><td>radialGradient</td><td>11</td><td>1</td><td>21</td><tr><tr><td>CommonMethod</td><td>motionPath(value: MotionPathOptions): T;</td><td>motionPath</td><td>11</td><td>1</td><td>32</td><tr><tr><td>CommonMethod</td><td>shadow(value: {
+    radius: number | Resource;
+    color?: Color | string | Resource;
+    offsetX?: number | Resource;
+    offsetY?: number | Resource;
+  }): T;</td><td>shadow</td><td>11</td><td>1</td><td>101</td><tr><tr><td>CommonMethod</td><td>clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute): T;</td><td>clip</td><td>11</td><td>1</td><td>50</td><tr><tr><td>CommonMethod</td><td>mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute): T;</td><td>mask</td><td>11</td><td>1</td><td>40</td><tr><tr><td>CommonMethod</td><td>key(value: string): T;</td><td>key</td><td>11</td><td>1</td><td>935</td><tr><tr><td>CommonMethod</td><td>id(value: string): T;</td><td>id</td><td>11</td><td>1</td><td>8283</td><tr><tr><td>CommonMethod</td><td>geometryTransition(id: string): T;</td><td>geometryTransition</td><td>11</td><td>1</td><td>22</td><tr><tr><td>CommonMethod</td><td>bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T;</td><td>bindPopup</td><td>11</td><td>2</td><td>37</td><tr><tr><td>CommonMethod</td><td>bindMenu(content: { value: string; action: () => void }[] | CustomBuilder): T;</td><td>bindMenucontent</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>bindMenu(content: { value: string; action: () => void }[] | CustomBuilder): T;</td><td>bindMenucontent</td><td>11</td><td>3</td><td>0</td><tr><tr><td>CommonMethod</td><td>bindContextMenu(content: CustomBuilder, responseType: ResponseType): T;</td><td>bindContextMenu</td><td>11</td><td>2</td><td>1</td><tr><tr><td>CommonMethod</td><td>stateStyles(value: StateStyles): T;</td><td>stateStyles</td><td>11</td><td>1</td><td>0</td><tr><tr><td>CommonMethod</td><td>restoreId(value: number): T;</td><td>restoreId</td><td>11</td><td>1</td><td>1</td><tr><tr><td>CommonAttribute</td><td>declare class CommonAttribute extends CommonMethod<CommonAttribute> {}</td><td>CommonAttribute</td><td>None</td><td>0</td><td>0</td><tr><tr><td>CommonInterface</td><td>interface CommonInterface {
+  (): CommonAttribute;
+}</td><td>CommonInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CommonShapeMethod</td><td>declare class CommonShapeMethod<T> extends CommonMethod<T> {
+  
+  constructor();
+
+  
+  stroke(value: ResourceColor): T;
+
+  
+  fill(value: ResourceColor): T;
+
+  
+  strokeDashOffset(value: number | string): T;
+
+  
+  strokeLineCap(value: LineCapStyle): T;
+
+  
+  strokeLineJoin(value: LineJoinStyle): T;
+
+  
+  strokeMiterLimit(value: number | string): T;
+
+  
+  strokeOpacity(value: number | string | Resource): T;
+
+  
+  fillOpacity(value: number | string | Resource): T;
+
+  
+  strokeWidth(value: Length): T;
+
+  
+  antiAlias(value: boolean): T;
+
+  
+  strokeDashArray(value: Array<any>): T;
+}</td><td>CommonShapeMethod</td><td>None</td><td>0</td><td>2</td><tr><tr><td>CommonShapeMethod</td><td>constructor()</td><td>constructor</td><td>None</td><td>0</td><td>80</td><tr><tr><td>CommonShapeMethod</td><td>stroke(value: ResourceColor): T;</td><td>stroke</td><td>None</td><td>1</td><td>1910</td><tr><tr><td>CommonShapeMethod</td><td>fill(value: ResourceColor): T;</td><td>fill</td><td>None</td><td>1</td><td>1166</td><tr><tr><td>CommonShapeMethod</td><td>strokeDashOffset(value: number | string): T;</td><td>strokeDashOffset</td><td>None</td><td>1</td><td>66</td><tr><tr><td>CommonShapeMethod</td><td>strokeLineCap(value: LineCapStyle): T;</td><td>strokeLineCap</td><td>None</td><td>1</td><td>238</td><tr><tr><td>CommonShapeMethod</td><td>strokeLineJoin(value: LineJoinStyle): T;</td><td>strokeLineJoin</td><td>None</td><td>1</td><td>191</td><tr><tr><td>CommonShapeMethod</td><td>strokeMiterLimit(value: number | string): T;</td><td>strokeMiterLimit</td><td>None</td><td>1</td><td>76</td><tr><tr><td>CommonShapeMethod</td><td>strokeOpacity(value: number | string | Resource): T;</td><td>strokeOpacity</td><td>None</td><td>1</td><td>284</td><tr><tr><td>CommonShapeMethod</td><td>fillOpacity(value: number | string | Resource): T;</td><td>fillOpacity</td><td>None</td><td>1</td><td>269</td><tr><tr><td>CommonShapeMethod</td><td>strokeWidth(value: Length): T;</td><td>strokeWidth</td><td>None</td><td>1</td><td>227</td><tr><tr><td>CommonShapeMethod</td><td>antiAlias(value: boolean): T;</td><td>antiAlias</td><td>None</td><td>1</td><td>18</td><tr><tr><td>CommonShapeMethod</td><td>strokeDashArray(value: Array<any>): T;</td><td>strokeDashArray</td><td>None</td><td>1</td><td>84</td><tr><tr><td>CustomComponent</td><td>declare class CustomComponent {
+  
+  build(): void;
+
+  
+  aboutToAppear?(): void;
+
+  
+  aboutToDisappear?(): void;
+
+  
+  onPageShow?(): void;
+
+  
+  onPageHide?(): void;
+
+  
+  onBackPress?(): void;
+}</td><td>CustomComponent</td><td>10</td><td>0</td><td>0</td><tr><tr><td>CustomComponent</td><td>build(): void;</td><td>build</td><td>11</td><td>0</td><td>263</td><tr><tr><td>CustomComponent</td><td>aboutToAppear?(): void;</td><td>aboutToAppear</td><td>11</td><td>0</td><td>11</td><tr><tr><td>CustomComponent</td><td>aboutToDisappear?(): void;</td><td>aboutToDisappear</td><td>11</td><td>0</td><td>20</td><tr><tr><td>CustomComponent</td><td>onPageShow?(): void;</td><td>onPageShow</td><td>11</td><td>0</td><td>132</td><tr><tr><td>CustomComponent</td><td>onPageHide?(): void;</td><td>onPageHide</td><td>11</td><td>0</td><td>0</td><tr><tr><td>CustomComponent</td><td>onBackPress?(): void;</td><td>onBackPress</td><td>11</td><td>0</td><td>0</td><tr><tr><td>View</td><td>declare class View {
+  
+  create(value: any): any;
+}</td><td>View</td><td>10</td><td>0</td><td>286</td><tr><tr><td>View</td><td>create(value: any): any;</td><td>create</td><td>11</td><td>1</td><td>82</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

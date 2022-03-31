@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>事件通知子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>notification</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.notification</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>notification</td><td>declare namespace notification {
+  
+  function publish(request: NotificationRequest, callback: AsyncCallback<void>): void;
+  function publish(request: NotificationRequest): Promise<void>;
+
+  
+   function publish(request: NotificationRequest, userId: number, callback: AsyncCallback<void>): void;
+   function publish(request: NotificationRequest, userId: number): Promise<void>;
+
+  
+  function cancel(id: number, callback: AsyncCallback<void>): void;
+
+  
+  function cancel(id: number, label: string, callback: AsyncCallback<void>): void;
+  function cancel(id: number, label?: string): Promise<void>;
+
+  
+  function cancelAll(callback: AsyncCallback<void>): void;
+  function cancelAll(): Promise<void>;
+
+  
+  function addSlot(slot: NotificationSlot, callback: AsyncCallback<void>): void;
+
+  
+  function addSlot(slot: NotificationSlot): Promise<void>;
+
+  
+  function addSlot(type: SlotType, callback: AsyncCallback<void>): void;
+  function addSlot(type: SlotType): Promise<void>;
+
+  
+  function addSlots(slots: Array<NotificationSlot>, callback: AsyncCallback<void>): void;
+
+  
+  function addSlots(slots: Array<NotificationSlot>): Promise<void>;
+
+  
+  function getSlot(slotType: SlotType, callback: AsyncCallback<NotificationSlot>): void;
+  function getSlot(slotType: SlotType): Promise<NotificationSlot>;
+
+  
+  function getSlots(callback: AsyncCallback<Array<NotificationSlot>>): void;
+  function getSlots(): Promise<Array<NotificationSlot>>;
+
+  
+  function removeSlot(slotType: SlotType, callback: AsyncCallback<void>): void;
+  function removeSlot(slotType: SlotType): Promise<void>;
+
+  
+  function removeAllSlots(callback: AsyncCallback<void>): void;
+  function removeAllSlots(): Promise<void>;
+
+  
+  export enum SlotType {
+    
+    UNKNOWN_TYPE = 0,
+
+    
+    SOCIAL_COMMUNICATION = 1,
+
+    
+    SERVICE_INFORMATION = 2,
+
+    
+    CONTENT_INFORMATION = 3,
+
+    
+    OTHER_TYPES = 0xFFFF,
+  }
+
+  
+  export enum ContentType {
+    
+    NOTIFICATION_CONTENT_BASIC_TEXT,
+
+    
+    NOTIFICATION_CONTENT_LONG_TEXT,
+
+    
+    NOTIFICATION_CONTENT_PICTURE,
+
+    
+    NOTIFICATION_CONTENT_CONVERSATION,
+
+    
+    NOTIFICATION_CONTENT_MULTILINE,
+  }
+
+  
+  export enum SlotLevel {
+    
+    LEVEL_NONE = 0,
+
+    
+    LEVEL_MIN = 1,
+
+    
+    LEVEL_LOW = 2,
+
+    
+    LEVEL_DEFAULT = 3,
+
+    
+    LEVEL_HIGH = 4,
+  }
+
+  
+  function subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback<void>): void;
+
+  
+  function subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback<void>): void;
+
+  
+  function subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo): Promise<void>;
+
+  
+  function unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback<void>): void;
+
+  
+  function unsubscribe(subscriber: NotificationSubscriber): Promise<void>;
+
+  
+  function enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback<void>): void;
+
+  
+  function enableNotification(bundle: BundleOption, enable: boolean): Promise<void>;
+
+  
+  function isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback<boolean>): void;
+
+  
+  function isNotificationEnabled(bundle: BundleOption): Promise<boolean>;
+
+  
+  function isNotificationEnabled(callback: AsyncCallback<boolean>): void;
+
+  
+  function isNotificationEnabled(): Promise<boolean>;
+
+  
+  function isNotificationEnabled(userId: number, callback: AsyncCallback<boolean>): void;
+  function isNotificationEnabled(userId: number): Promise<boolean>;
+
+  
+  function displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback<void>): void;
+
+  
+  function displayBadge(bundle: BundleOption, enable: boolean): Promise<void>;
+
+  
+  function isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback<boolean>): void;
+
+  
+  function isBadgeDisplayed(bundle: BundleOption): Promise<boolean>;
+
+  
+  function setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback<void>): void;
+
+  
+  function setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise<void>;
+
+  
+  function getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array<NotificationSlot>>): void;
+
+  
+  function getSlotsByBundle(bundle: BundleOption): Promise<Array<NotificationSlot>>;
+
+  
+  function getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback<number>): void;
+
+  
+  function getSlotNumByBundle(bundle: BundleOption): Promise<number>;
+
+  
+  function remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCallback<void>): void;
+
+  
+  function remove(bundle: BundleOption, notificationKey: NotificationKey): Promise<void>;
+
+  
+  function remove(hashCode: string, callback: AsyncCallback<void>): void;
+
+  
+  function remove(hashCode: string): Promise<void>;
+
+  
+  function removeAll(bundle: BundleOption, callback: AsyncCallback<void>): void;
+
+  
+  function removeAll(callback: AsyncCallback<void>): void;
+
+  
+   function removeAll(userId: number, callback: AsyncCallback<void>): void;
+   function removeAll(userId: number): Promise<void>;
+
+  
+  function removeAll(bundle?: BundleOption): Promise<void>;
+
+  
+  function getAllActiveNotifications(callback: AsyncCallback<Array<NotificationRequest>>): void;
+
+  
+  function getAllActiveNotifications(): Promise<Array<NotificationRequest>>;
+
+  
+  function getActiveNotificationCount(callback: AsyncCallback<number>): void;
+  function getActiveNotificationCount(): Promise<number>;
+
+  
+  function getActiveNotifications(callback: AsyncCallback<Array<NotificationRequest>>): void;
+  function getActiveNotifications(): Promise<Array<NotificationRequest>>;
+
+  
+  function cancelGroup(groupName: string, callback: AsyncCallback<void>): void;
+  function cancelGroup(groupName: string): Promise<void>;
+
+  
+  function removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback<void>): void;
+  function removeGroupByBundle(bundle: BundleOption, groupName: string): Promise<void>;
+
+  
+  function setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback<void>): void;
+  function setDoNotDisturbDate(date: DoNotDisturbDate): Promise<void>;
+
+  
+   function setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallback<void>): void;
+   function setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise<void>;
+
+  
+  function getDoNotDisturbDate(callback: AsyncCallback<DoNotDisturbDate>): void;
+  function getDoNotDisturbDate(): Promise<DoNotDisturbDate>;
+
+  
+   function getDoNotDisturbDate(userId: number, callback: AsyncCallback<DoNotDisturbDate>): void;
+   function getDoNotDisturbDate(userId: number): Promise<DoNotDisturbDate>;
+
+  
+  function supportDoNotDisturbMode(callback: AsyncCallback<boolean>): void;
+  function supportDoNotDisturbMode(): Promise<boolean>;
+
+  
+  function isSupportTemplate(templateName: string, callback: AsyncCallback<boolean>): void;
+  function isSupportTemplate(templateName: string): Promise<boolean>;
+
+  
+   function requestEnableNotification(callback: AsyncCallback<void>): void;
+   function requestEnableNotification(): Promise<void>;
+
+  
+  function enableDistributed(enable: boolean, callback: AsyncCallback<void>): void;
+  function enableDistributed(enable: boolean): Promise<void>;
+
+  
+  function isDistributedEnabled(callback: AsyncCallback<boolean>): void;
+  function isDistributedEnabled(): Promise<boolean>;
+
+  
+  function enableDistributedByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback<void>): void;
+  function enableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise<void>;
+
+  
+  function isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback<boolean>): void;
+  function isDistributedEnabledByBundle(bundle: BundleOption): Promise<boolean>;
+
+  
+  function getDeviceRemindType(callback: AsyncCallback<DeviceRemindType>): void;
+  function getDeviceRemindType(): Promise<DeviceRemindType>;
+
+  
+  export interface BundleOption {
+    bundle: string;
+    uid?: number;
+  }
+
+  
+  export interface NotificationKey {
+    id: number;
+    label?: string;
+  }
+
+  
+  export enum DoNotDisturbType {
+    
+    TYPE_NONE = 0,
+
+    
+    TYPE_ONCE = 1,
+
+    
+    TYPE_DAILY = 2,
+
+    
+    TYPE_CLEARLY = 3,
+  }
+
+  
+  export interface DoNotDisturbDate {
+    
+    type: DoNotDisturbType;
+
+    
+    begin: Date;
+
+    
+    end: Date;
+  }
+
+  
+   export enum DoNotDisturbType {
+    
+    TYPE_NONE = 0,
+
+    
+    TYPE_ONCE = 1,
+
+    
+    TYPE_DAILY = 2,
+
+    
+    TYPE_CLEARLY = 3,
+  }
+
+  
+  export interface DoNotDisturbDate {
+    
+    type: DoNotDisturbType;
+
+    
+    begin: Date;
+
+    
+    end: Date;
+  }
+
+  
+  export enum DeviceRemindType {
+    
+    IDLE_DONOT_REMIND = 0,
+
+    
+    IDLE_REMIND = 1,
+
+    
+    ACTIVE_DONOT_REMIND = 2,
+
+    
+    ACTIVE_REMIND = 3,
+  }
+
+  
+  export enum SourceType {
+    
+    TYPE_NORMAL = 0,
+
+    
+    TYPE_CONTINUOUS = 1,
+
+    
+    TYPE_TIMER = 2,
+  }
+}</td><td>notification</td><td>None</td><td>0</td><td>1600</td><tr><tr><td>notification</td><td>function publish(request: NotificationRequest, callback: AsyncCallback<void>): void;</td><td>publish</td><td>None</td><td>2</td><td>1008</td><tr><tr><td>notification</td><td>function publish(request: NotificationRequest): Promise<void>;</td><td>publish</td><td>None</td><td>1</td><td>112</td><tr><tr><td>notification</td><td>function publish(request: NotificationRequest, userId: number, callback: AsyncCallback<void>): void;</td><td>publish</td><td>None</td><td>3</td><td>1008</td><tr><tr><td>notification</td><td>function publish(request: NotificationRequest, userId: number): Promise<void>;</td><td>publish</td><td>None</td><td>2</td><td>112</td><tr><tr><td>notification</td><td>function cancel(id: number, callback: AsyncCallback<void>): void;</td><td>cancel</td><td>None</td><td>2</td><td>389</td><tr><tr><td>notification</td><td>function cancel(id: number, label: string, callback: AsyncCallback<void>): void;</td><td>cancel</td><td>None</td><td>3</td><td>389</td><tr><tr><td>notification</td><td>function cancel(id: number, label?: string): Promise<void>;</td><td>cancel</td><td>None</td><td>2</td><td>14</td><tr><tr><td>notification</td><td>function cancelAll(callback: AsyncCallback<void>): void;</td><td>cancelAll</td><td>None</td><td>1</td><td>126</td><tr><tr><td>notification</td><td>function cancelAll(): Promise<void>;</td><td>cancelAll</td><td>None</td><td>0</td><td>0</td><tr><tr><td>notification</td><td>function addSlot(slot: NotificationSlot, callback: AsyncCallback<void>): void;</td><td>addSlot</td><td>None</td><td>2</td><td>233</td><tr><tr><td>notification</td><td>function addSlot(slot: NotificationSlot): Promise<void>;</td><td>addSlot</td><td>None</td><td>1</td><td>1</td><tr><tr><td>notification</td><td>function addSlot(type: SlotType, callback: AsyncCallback<void>): void;</td><td>addSlot</td><td>None</td><td>2</td><td>233</td><tr><tr><td>notification</td><td>function addSlot(type: SlotType): Promise<void>;</td><td>addSlot</td><td>None</td><td>1</td><td>1</td><tr><tr><td>notification</td><td>function addSlots(slots: Array<NotificationSlot>, callback: AsyncCallback<void>): void;</td><td>addSlots</td><td>None</td><td>2</td><td>20</td><tr><tr><td>notification</td><td>function addSlots(slots: Array<NotificationSlot>): Promise<void>;</td><td>addSlots</td><td>None</td><td>1</td><td>0</td><tr><tr><td>notification</td><td>function getSlot(slotType: SlotType, callback: AsyncCallback<NotificationSlot>): void;</td><td>getSlot</td><td>None</td><td>2</td><td>455</td><tr><tr><td>notification</td><td>function getSlot(slotType: SlotType): Promise<NotificationSlot>;</td><td>getSlot</td><td>None</td><td>1</td><td>24</td><tr><tr><td>notification</td><td>function getSlots(callback: AsyncCallback<Array<NotificationSlot>>): void;</td><td>getSlots</td><td>None</td><td>1</td><td>203</td><tr><tr><td>notification</td><td>function getSlots(): Promise<Array<NotificationSlot>>;</td><td>getSlots</td><td>None</td><td>0</td><td>17</td><tr><tr><td>notification</td><td>function removeSlot(slotType: SlotType, callback: AsyncCallback<void>): void;</td><td>removeSlot</td><td>None</td><td>2</td><td>202</td><tr><tr><td>notification</td><td>function removeSlot(slotType: SlotType): Promise<void>;</td><td>removeSlot</td><td>None</td><td>1</td><td>1</td><tr><tr><td>notification</td><td>function removeAllSlots(callback: AsyncCallback<void>): void;</td><td>removeAllSlots</td><td>None</td><td>1</td><td>27</td><tr><tr><td>notification</td><td>function removeAllSlots(): Promise<void>;</td><td>removeAllSlots</td><td>None</td><td>0</td><td>1</td><tr><tr><td>notification</td><td>function subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback<void>): void;</td><td>subscribe</td><td>None</td><td>2</td><td>1575</td><tr><tr><td>notification</td><td>function subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback<void>): void;</td><td>subscribe</td><td>None</td><td>3</td><td>1575</td><tr><tr><td>notification</td><td>function subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo): Promise<void>;</td><td>subscribe</td><td>None</td><td>2</td><td>17</td><tr><tr><td>notification</td><td>function unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback<void>): void;</td><td>unsubscribe</td><td>None</td><td>2</td><td>410</td><tr><tr><td>notification</td><td>function unsubscribe(subscriber: NotificationSubscriber): Promise<void>;</td><td>unsubscribe</td><td>None</td><td>1</td><td>7</td><tr><tr><td>notification</td><td>function enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback<void>): void;</td><td>enableNotification</td><td>None</td><td>3</td><td>25</td><tr><tr><td>notification</td><td>function enableNotification(bundle: BundleOption, enable: boolean): Promise<void>;</td><td>enableNotification</td><td>None</td><td>2</td><td>0</td><tr><tr><td>notification</td><td>function isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback<boolean>): void;</td><td>isNotificationEnabled</td><td>None</td><td>2</td><td>18</td><tr><tr><td>notification</td><td>function isNotificationEnabled(bundle: BundleOption): Promise<boolean>;</td><td>isNotificationEnabled</td><td>None</td><td>1</td><td>0</td><tr><tr><td>notification</td><td>function isNotificationEnabled(callback: AsyncCallback<boolean>): void;</td><td>isNotificationEnabled</td><td>None</td><td>1</td><td>18</td><tr><tr><td>notification</td><td>function isNotificationEnabled(): Promise<boolean>;</td><td>isNotificationEnabled</td><td>None</td><td>0</td><td>0</td><tr><tr><td>notification</td><td>function isNotificationEnabled(userId: number, callback: AsyncCallback<boolean>): void;</td><td>isNotificationEnabled</td><td>None</td><td>2</td><td>18</td><tr><tr><td>notification</td><td>function isNotificationEnabled(userId: number): Promise<boolean>;</td><td>isNotificationEnabled</td><td>None</td><td>1</td><td>0</td><tr><tr><td>notification</td><td>function displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback<void>): void;</td><td>displayBadge</td><td>None</td><td>3</td><td>25</td><tr><tr><td>notification</td><td>function displayBadge(bundle: BundleOption, enable: boolean): Promise<void>;</td><td>displayBadge</td><td>None</td><td>2</td><td>0</td><tr><tr><td>notification</td><td>function isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback<boolean>): void;</td><td>isBadgeDisplayed</td><td>None</td><td>2</td><td>16</td><tr><tr><td>notification</td><td>function isBadgeDisplayed(bundle: BundleOption): Promise<boolean>;</td><td>isBadgeDisplayed</td><td>None</td><td>1</td><td>0</td><tr><tr><td>notification</td><td>function setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback<void>): void;</td><td>setSlotByBundle</td><td>None</td><td>3</td><td>102</td><tr><tr><td>notification</td><td>function setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise<void>;</td><td>setSlotByBundle</td><td>None</td><td>2</td><td>61</td><tr><tr><td>notification</td><td>function getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array<NotificationSlot>>): void;</td><td>getSlotsByBundle</td><td>None</td><td>2</td><td>140</td><tr><tr><td>notification</td><td>function getSlotsByBundle(bundle: BundleOption): Promise<Array<NotificationSlot>>;</td><td>getSlotsByBundle</td><td>None</td><td>1</td><td>17</td><tr><tr><td>notification</td><td>function getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback<number>): void;</td><td>getSlotNumByBundle</td><td>None</td><td>2</td><td>15</td><tr><tr><td>notification</td><td>function getSlotNumByBundle(bundle: BundleOption): Promise<number>;</td><td>getSlotNumByBundle</td><td>None</td><td>1</td><td>5</td><tr><tr><td>notification</td><td>function remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCallback<void>): void;</td><td>remove</td><td>None</td><td>3</td><td>564</td><tr><tr><td>notification</td><td>function remove(bundle: BundleOption, notificationKey: NotificationKey): Promise<void>;</td><td>remove</td><td>None</td><td>2</td><td>13</td><tr><tr><td>notification</td><td>function remove(hashCode: string, callback: AsyncCallback<void>): void;</td><td>remove</td><td>None</td><td>2</td><td>564</td><tr><tr><td>notification</td><td>function remove(hashCode: string): Promise<void>;</td><td>remove</td><td>None</td><td>1</td><td>13</td><tr><tr><td>notification</td><td>function removeAll(bundle: BundleOption, callback: AsyncCallback<void>): void;</td><td>removeAll</td><td>None</td><td>2</td><td>149</td><tr><tr><td>notification</td><td>function removeAll(callback: AsyncCallback<void>): void;</td><td>removeAll</td><td>None</td><td>1</td><td>149</td><tr><tr><td>notification</td><td>function removeAll(userId: number, callback: AsyncCallback<void>): void;</td><td>removeAll</td><td>None</td><td>2</td><td>149</td><tr><tr><td>notification</td><td>function removeAll(userId: number): Promise<void>;</td><td>removeAll</td><td>None</td><td>1</td><td>1</td><tr><tr><td>notification</td><td>function removeAll(bundle?: BundleOption): Promise<void>;</td><td>removeAll</td><td>None</td><td>1</td><td>1</td><tr><tr><td>notification</td><td>function getAllActiveNotifications(callback: AsyncCallback<Array<NotificationRequest>>): void;</td><td>getAllActiveNotifications</td><td>None</td><td>1</td><td>30</td><tr><tr><td>notification</td><td>function getAllActiveNotifications(): Promise<Array<NotificationRequest>>;</td><td>getAllActiveNotifications</td><td>None</td><td>0</td><td>1</td><tr><tr><td>notification</td><td>function getActiveNotificationCount(callback: AsyncCallback<number>): void;</td><td>getActiveNotificationCount</td><td>None</td><td>1</td><td>18</td><tr><tr><td>notification</td><td>function getActiveNotificationCount(): Promise<number>;</td><td>getActiveNotificationCount</td><td>None</td><td>0</td><td>0</td><tr><tr><td>notification</td><td>function getActiveNotifications(callback: AsyncCallback<Array<NotificationRequest>>): void;</td><td>getActiveNotifications</td><td>None</td><td>1</td><td>23</td><tr><tr><td>notification</td><td>function getActiveNotifications(): Promise<Array<NotificationRequest>>;</td><td>getActiveNotifications</td><td>None</td><td>0</td><td>0</td><tr><tr><td>notification</td><td>function cancelGroup(groupName: string, callback: AsyncCallback<void>): void;</td><td>cancelGroup</td><td>None</td><td>2</td><td>48</td><tr><tr><td>notification</td><td>function cancelGroup(groupName: string): Promise<void>;</td><td>cancelGroup</td><td>None</td><td>1</td><td>2</td><tr><tr><td>notification</td><td>function removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback<void>): void;</td><td>removeGroupByBundle</td><td>None</td><td>3</td><td>53</td><tr><tr><td>notification</td><td>function removeGroupByBundle(bundle: BundleOption, groupName: string): Promise<void>;</td><td>removeGroupByBundle</td><td>None</td><td>2</td><td>2</td><tr><tr><td>notification</td><td>function setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback<void>): void;</td><td>setDoNotDisturbDate</td><td>None</td><td>2</td><td>69</td><tr><tr><td>notification</td><td>function setDoNotDisturbDate(date: DoNotDisturbDate): Promise<void>;</td><td>setDoNotDisturbDate</td><td>None</td><td>1</td><td>0</td><tr><tr><td>notification</td><td>function setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallback<void>): void;</td><td>setDoNotDisturbDate</td><td>None</td><td>3</td><td>69</td><tr><tr><td>notification</td><td>function setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise<void>;</td><td>setDoNotDisturbDate</td><td>None</td><td>2</td><td>0</td><tr><tr><td>notification</td><td>function getDoNotDisturbDate(callback: AsyncCallback<DoNotDisturbDate>): void;</td><td>getDoNotDisturbDate</td><td>None</td><td>1</td><td>29</td><tr><tr><td>notification</td><td>function getDoNotDisturbDate(): Promise<DoNotDisturbDate>;</td><td>getDoNotDisturbDate</td><td>None</td><td>0</td><td>6</td><tr><tr><td>notification</td><td>function getDoNotDisturbDate(userId: number, callback: AsyncCallback<DoNotDisturbDate>): void;</td><td>getDoNotDisturbDate</td><td>None</td><td>2</td><td>29</td><tr><tr><td>notification</td><td>function getDoNotDisturbDate(userId: number): Promise<DoNotDisturbDate>;</td><td>getDoNotDisturbDate</td><td>None</td><td>1</td><td>6</td><tr><tr><td>notification</td><td>function supportDoNotDisturbMode(callback: AsyncCallback<boolean>): void;</td><td>supportDoNotDisturbMode</td><td>None</td><td>1</td><td>5</td><tr><tr><td>notification</td><td>function supportDoNotDisturbMode(): Promise<boolean>;</td><td>supportDoNotDisturbMode</td><td>None</td><td>0</td><td>1</td><tr><tr><td>notification</td><td>function isSupportTemplate(templateName: string, callback: AsyncCallback<boolean>): void;</td><td>isSupportTemplate</td><td>None</td><td>2</td><td>0</td><tr><tr><td>notification</td><td>function isSupportTemplate(templateName: string): Promise<boolean>;</td><td>isSupportTemplate</td><td>None</td><td>1</td><td>0</td><tr><tr><td>notification</td><td>function requestEnableNotification(callback: AsyncCallback<void>): void;</td><td>requestEnableNotification</td><td>None</td><td>1</td><td>1</td><tr><tr><td>notification</td><td>function requestEnableNotification(): Promise<void>;</td><td>requestEnableNotification</td><td>None</td><td>0</td><td>0</td><tr><tr><td>notification</td><td>function enableDistributed(enable: boolean, callback: AsyncCallback<void>): void;</td><td>enableDistributed</td><td>None</td><td>2</td><td>4</td><tr><tr><td>notification</td><td>function enableDistributed(enable: boolean): Promise<void>;</td><td>enableDistributed</td><td>None</td><td>1</td><td>0</td><tr><tr><td>notification</td><td>function isDistributedEnabled(callback: AsyncCallback<boolean>): void;</td><td>isDistributedEnabled</td><td>None</td><td>1</td><td>1</td><tr><tr><td>notification</td><td>function isDistributedEnabled(): Promise<boolean>;</td><td>isDistributedEnabled</td><td>None</td><td>0</td><td>0</td><tr><tr><td>notification</td><td>function enableDistributedByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback<void>): void;</td><td>enableDistributedByBundle</td><td>None</td><td>3</td><td>1</td><tr><tr><td>notification</td><td>function enableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise<void>;</td><td>enableDistributedByBundle</td><td>None</td><td>2</td><td>0</td><tr><tr><td>notification</td><td>function isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback<boolean>): void;</td><td>isDistributedEnabledByBundle</td><td>None</td><td>2</td><td>0</td><tr><tr><td>notification</td><td>function isDistributedEnabledByBundle(bundle: BundleOption): Promise<boolean>;</td><td>isDistributedEnabledByBundle</td><td>None</td><td>1</td><td>0</td><tr><tr><td>notification</td><td>function getDeviceRemindType(callback: AsyncCallback<DeviceRemindType>): void;</td><td>getDeviceRemindType</td><td>None</td><td>1</td><td>1</td><tr><tr><td>notification</td><td>function getDeviceRemindType(): Promise<DeviceRemindType>;</td><td>getDeviceRemindType</td><td>None</td><td>0</td><td>0</td><tr><tr><td>notification</td><td>type: DoNotDisturbType</td><td>type</td><td>31</td><td>1</td><td>483</td><tr><tr><td>notification</td><td>begin: Date</td><td>begin</td><td>31</td><td>1</td><td>342</td><tr><tr><td>notification</td><td>end: Date</td><td>end</td><td>31</td><td>1</td><td>998</td><tr><tr><td>SlotType</td><td>export enum SlotType {
+    
+    UNKNOWN_TYPE = 0,
+
+    
+    SOCIAL_COMMUNICATION = 1,
+
+    
+    SERVICE_INFORMATION = 2,
+
+    
+    CONTENT_INFORMATION = 3,
+
+    
+    OTHER_TYPES = 0xFFFF,
+  }</td><td>SlotType</td><td>40</td><td>0</td><td>1233</td><tr><tr><td>SlotType</td><td>UNKNOWN_TYPE = 0,</td><td>UNKNOWN_TYPE</td><td>42</td><td>1</td><td>97</td><tr><tr><td>SlotType</td><td>SOCIAL_COMMUNICATION = 1,</td><td>SOCIAL_COMMUNICATION</td><td>42</td><td>1</td><td>238</td><tr><tr><td>SlotType</td><td>SERVICE_INFORMATION = 2,</td><td>SERVICE_INFORMATION</td><td>42</td><td>1</td><td>241</td><tr><tr><td>SlotType</td><td>CONTENT_INFORMATION = 3,</td><td>CONTENT_INFORMATION</td><td>42</td><td>1</td><td>174</td><tr><tr><td>SlotType</td><td>OTHER_TYPES = 0xFFFF,</td><td>OTHER_TYPES</td><td>42</td><td>1</td><td>291</td><tr><tr><td>ContentType</td><td>export enum ContentType {
+    
+    NOTIFICATION_CONTENT_BASIC_TEXT,
+
+    
+    NOTIFICATION_CONTENT_LONG_TEXT,
+
+    
+    NOTIFICATION_CONTENT_PICTURE,
+
+    
+    NOTIFICATION_CONTENT_CONVERSATION,
+
+    
+    NOTIFICATION_CONTENT_MULTILINE,
+  }</td><td>ContentType</td><td>40</td><td>0</td><td>292</td><tr><tr><td>ContentType</td><td>NOTIFICATION_CONTENT_BASIC_TEXT,</td><td>NOTIFICATION_CONTENT_BASIC_TEXT</td><td>42</td><td>1</td><td>288</td><tr><tr><td>ContentType</td><td>NOTIFICATION_CONTENT_LONG_TEXT,</td><td>NOTIFICATION_CONTENT_LONG_TEXT</td><td>42</td><td>1</td><td>16</td><tr><tr><td>ContentType</td><td>NOTIFICATION_CONTENT_PICTURE,</td><td>NOTIFICATION_CONTENT_PICTURE</td><td>42</td><td>1</td><td>8</td><tr><tr><td>ContentType</td><td>NOTIFICATION_CONTENT_CONVERSATION,</td><td>NOTIFICATION_CONTENT_CONVERSATION</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ContentType</td><td>NOTIFICATION_CONTENT_MULTILINE,</td><td>NOTIFICATION_CONTENT_MULTILINE</td><td>42</td><td>1</td><td>8</td><tr><tr><td>SlotLevel</td><td>export enum SlotLevel {
+    
+    LEVEL_NONE = 0,
+
+    
+    LEVEL_MIN = 1,
+
+    
+    LEVEL_LOW = 2,
+
+    
+    LEVEL_DEFAULT = 3,
+
+    
+    LEVEL_HIGH = 4,
+  }</td><td>SlotLevel</td><td>40</td><td>0</td><td>90</td><tr><tr><td>SlotLevel</td><td>LEVEL_NONE = 0,</td><td>LEVEL_NONE</td><td>42</td><td>1</td><td>26</td><tr><tr><td>SlotLevel</td><td>LEVEL_MIN = 1,</td><td>LEVEL_MIN</td><td>42</td><td>1</td><td>18</td><tr><tr><td>SlotLevel</td><td>LEVEL_LOW = 2,</td><td>LEVEL_LOW</td><td>42</td><td>1</td><td>18</td><tr><tr><td>SlotLevel</td><td>LEVEL_DEFAULT = 3,</td><td>LEVEL_DEFAULT</td><td>42</td><td>1</td><td>26</td><tr><tr><td>SlotLevel</td><td>LEVEL_HIGH = 4,</td><td>LEVEL_HIGH</td><td>42</td><td>1</td><td>2</td><tr><tr><td>BundleOption</td><td>export interface BundleOption {
+    bundle: string;
+    uid?: number;
+  }</td><td>BundleOption</td><td>20</td><td>0</td><td>112</td><tr><tr><td>BundleOption</td><td>bundle: string</td><td>bundle</td><td>22</td><td>1</td><td>562</td><tr><tr><td>BundleOption</td><td>uid?: number</td><td>uid</td><td>22</td><td>1</td><td>25</td><tr><tr><td>NotificationKey</td><td>export interface NotificationKey {
+    id: number;
+    label?: string;
+  }</td><td>NotificationKey</td><td>20</td><td>0</td><td>70</td><tr><tr><td>NotificationKey</td><td>id: number</td><td>id</td><td>22</td><td>1</td><td>967</td><tr><tr><td>NotificationKey</td><td>label?: string</td><td>label</td><td>22</td><td>1</td><td>447</td><tr><tr><td>DoNotDisturbType</td><td>export enum DoNotDisturbType {
+    
+    TYPE_NONE = 0,
+
+    
+    TYPE_ONCE = 1,
+
+    
+    TYPE_DAILY = 2,
+
+    
+    TYPE_CLEARLY = 3,
+  }</td><td>DoNotDisturbType</td><td>40</td><td>0</td><td>46</td><tr><tr><td>DoNotDisturbType</td><td>TYPE_NONE = 0,</td><td>TYPE_NONE</td><td>42</td><td>1</td><td>24</td><tr><tr><td>DoNotDisturbType</td><td>TYPE_ONCE = 1,</td><td>TYPE_ONCE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DoNotDisturbType</td><td>TYPE_DAILY = 2,</td><td>TYPE_DAILY</td><td>42</td><td>1</td><td>8</td><tr><tr><td>DoNotDisturbType</td><td>TYPE_CLEARLY = 3,</td><td>TYPE_CLEARLY</td><td>42</td><td>1</td><td>12</td><tr><tr><td>DoNotDisturbDate</td><td>export interface DoNotDisturbDate {
+    
+    type: DoNotDisturbType;
+
+    
+    begin: Date;
+
+    
+    end: Date;
+  }</td><td>DoNotDisturbDate</td><td>20</td><td>0</td><td>118</td><tr><tr><td>DoNotDisturbDate</td><td>type: DoNotDisturbType</td><td>type</td><td>22</td><td>1</td><td>483</td><tr><tr><td>DoNotDisturbDate</td><td>begin: Date</td><td>begin</td><td>22</td><td>1</td><td>342</td><tr><tr><td>DoNotDisturbDate</td><td>end: Date</td><td>end</td><td>22</td><td>1</td><td>998</td><tr><tr><td>DeviceRemindType</td><td>export enum DeviceRemindType {
+    
+    IDLE_DONOT_REMIND = 0,
+
+    
+    IDLE_REMIND = 1,
+
+    
+    ACTIVE_DONOT_REMIND = 2,
+
+    
+    ACTIVE_REMIND = 3,
+  }</td><td>DeviceRemindType</td><td>40</td><td>0</td><td>9</td><tr><tr><td>DeviceRemindType</td><td>IDLE_DONOT_REMIND = 0,</td><td>IDLE_DONOT_REMIND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceRemindType</td><td>IDLE_REMIND = 1,</td><td>IDLE_REMIND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceRemindType</td><td>ACTIVE_DONOT_REMIND = 2,</td><td>ACTIVE_DONOT_REMIND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceRemindType</td><td>ACTIVE_REMIND = 3,</td><td>ACTIVE_REMIND</td><td>42</td><td>1</td><td>2</td><tr><tr><td>SourceType</td><td>export enum SourceType {
+    
+    TYPE_NORMAL = 0,
+
+    
+    TYPE_CONTINUOUS = 1,
+
+    
+    TYPE_TIMER = 2,
+  }</td><td>SourceType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>SourceType</td><td>TYPE_NORMAL = 0,</td><td>TYPE_NORMAL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>SourceType</td><td>TYPE_CONTINUOUS = 1,</td><td>TYPE_CONTINUOUS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>SourceType</td><td>TYPE_TIMER = 2,</td><td>TYPE_TIMER</td><td>42</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

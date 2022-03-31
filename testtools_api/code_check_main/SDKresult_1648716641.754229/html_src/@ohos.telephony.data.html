@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>电话服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>telephony</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.telephony.data</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>data</td><td>declare namespace data {
+  
+  function getDefaultCellularDataSlotId(callback: AsyncCallback<number>): void;
+  function getDefaultCellularDataSlotId(): Promise<number>;
+
+  
+  function setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback<void>): void;
+  function setDefaultCellularDataSlotId(slotId: number): Promise<void>;
+
+  
+  function getCellularDataFlowType(callback: AsyncCallback<DataFlowType>): void;
+  function getCellularDataFlowType(): Promise<DataFlowType>;
+
+  
+  function getCellularDataState(callback: AsyncCallback<DataConnectState>): void;
+  function getCellularDataState(): Promise<DataConnectState>;
+
+  
+  function isCellularDataEnabled(callback: AsyncCallback<boolean>): void;
+  function isCellularDataEnabled(): Promise<boolean>;
+
+  
+  function enableCellularData(callback: AsyncCallback<void>): void;
+  function enableCellularData(): Promise<void>;
+
+  
+  function disableCellularData(callback: AsyncCallback<void>): void;
+  function disableCellularData(): Promise<void>;
+
+  
+  function isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback<boolean>): void;
+  function isCellularDataRoamingEnabled(slotId: number): Promise<boolean>;
+
+  
+  function enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void>): void;
+  function enableCellularDataRoaming(slotId: number): Promise<void>;
+
+  
+  function disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void>): void;
+  function disableCellularDataRoaming(slotId: number): Promise<void>;
+
+  
+  export enum DataFlowType {
+    
+    DATA_FLOW_TYPE_NONE = 0,
+
+    
+    DATA_FLOW_TYPE_DOWN = 1,
+
+    
+    DATA_FLOW_TYPE_UP = 2,
+
+    
+    DATA_FLOW_TYPE_UP_DOWN = 3,
+
+    
+    DATA_FLOW_TYPE_DORMANT = 4
+  }
+
+  
+  export enum DataConnectState {
+    
+    DATA_STATE_UNKNOWN = -1,
+
+    
+    DATA_STATE_DISCONNECTED = 0,
+
+    
+    DATA_STATE_CONNECTING = 1,
+
+    
+    DATA_STATE_CONNECTED = 2,
+
+    
+    DATA_STATE_SUSPENDED = 3
+  }
+}</td><td>data</td><td>None</td><td>0</td><td>2666</td><tr><tr><td>data</td><td>function getDefaultCellularDataSlotId(callback: AsyncCallback<number>): void;</td><td>getDefaultCellularDataSlotId</td><td>None</td><td>1</td><td>8</td><tr><tr><td>data</td><td>function getDefaultCellularDataSlotId(): Promise<number>;</td><td>getDefaultCellularDataSlotId</td><td>None</td><td>0</td><td>0</td><tr><tr><td>data</td><td>function setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback<void>): void;</td><td>setDefaultCellularDataSlotId</td><td>None</td><td>2</td><td>12</td><tr><tr><td>data</td><td>function setDefaultCellularDataSlotId(slotId: number): Promise<void>;</td><td>setDefaultCellularDataSlotId</td><td>None</td><td>1</td><td>0</td><tr><tr><td>data</td><td>function getCellularDataFlowType(callback: AsyncCallback<DataFlowType>): void;</td><td>getCellularDataFlowType</td><td>None</td><td>1</td><td>10</td><tr><tr><td>data</td><td>function getCellularDataFlowType(): Promise<DataFlowType>;</td><td>getCellularDataFlowType</td><td>None</td><td>0</td><td>0</td><tr><tr><td>data</td><td>function getCellularDataState(callback: AsyncCallback<DataConnectState>): void;</td><td>getCellularDataState</td><td>None</td><td>1</td><td>10</td><tr><tr><td>data</td><td>function getCellularDataState(): Promise<DataConnectState>;</td><td>getCellularDataState</td><td>None</td><td>0</td><td>0</td><tr><tr><td>data</td><td>function isCellularDataEnabled(callback: AsyncCallback<boolean>): void;</td><td>isCellularDataEnabled</td><td>None</td><td>1</td><td>8</td><tr><tr><td>data</td><td>function isCellularDataEnabled(): Promise<boolean>;</td><td>isCellularDataEnabled</td><td>None</td><td>0</td><td>0</td><tr><tr><td>data</td><td>function enableCellularData(callback: AsyncCallback<void>): void;</td><td>enableCellularData</td><td>None</td><td>1</td><td>21</td><tr><tr><td>data</td><td>function enableCellularData(): Promise<void>;</td><td>enableCellularData</td><td>None</td><td>0</td><td>0</td><tr><tr><td>data</td><td>function disableCellularData(callback: AsyncCallback<void>): void;</td><td>disableCellularData</td><td>None</td><td>1</td><td>21</td><tr><tr><td>data</td><td>function disableCellularData(): Promise<void>;</td><td>disableCellularData</td><td>None</td><td>0</td><td>0</td><tr><tr><td>data</td><td>function isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback<boolean>): void;</td><td>isCellularDataRoamingEnabled</td><td>None</td><td>2</td><td>10</td><tr><tr><td>data</td><td>function isCellularDataRoamingEnabled(slotId: number): Promise<boolean>;</td><td>isCellularDataRoamingEnabled</td><td>None</td><td>1</td><td>0</td><tr><tr><td>data</td><td>function enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void>): void;</td><td>enableCellularDataRoaming</td><td>None</td><td>2</td><td>9</td><tr><tr><td>data</td><td>function enableCellularDataRoaming(slotId: number): Promise<void>;</td><td>enableCellularDataRoaming</td><td>None</td><td>1</td><td>0</td><tr><tr><td>data</td><td>function disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void>): void;</td><td>disableCellularDataRoaming</td><td>None</td><td>2</td><td>11</td><tr><tr><td>data</td><td>function disableCellularDataRoaming(slotId: number): Promise<void>;</td><td>disableCellularDataRoaming</td><td>None</td><td>1</td><td>0</td><tr><tr><td>DataFlowType</td><td>export enum DataFlowType {
+    
+    DATA_FLOW_TYPE_NONE = 0,
+
+    
+    DATA_FLOW_TYPE_DOWN = 1,
+
+    
+    DATA_FLOW_TYPE_UP = 2,
+
+    
+    DATA_FLOW_TYPE_UP_DOWN = 3,
+
+    
+    DATA_FLOW_TYPE_DORMANT = 4
+  }</td><td>DataFlowType</td><td>40</td><td>0</td><td>25</td><tr><tr><td>DataFlowType</td><td>DATA_FLOW_TYPE_NONE = 0,</td><td>DATA_FLOW_TYPE_NONE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>DataFlowType</td><td>DATA_FLOW_TYPE_DOWN = 1,</td><td>DATA_FLOW_TYPE_DOWN</td><td>42</td><td>1</td><td>3</td><tr><tr><td>DataFlowType</td><td>DATA_FLOW_TYPE_UP = 2,</td><td>DATA_FLOW_TYPE_UP</td><td>42</td><td>1</td><td>6</td><tr><tr><td>DataFlowType</td><td>DATA_FLOW_TYPE_UP_DOWN = 3,</td><td>DATA_FLOW_TYPE_UP_DOWN</td><td>42</td><td>1</td><td>3</td><tr><tr><td>DataFlowType</td><td>DATA_FLOW_TYPE_DORMANT = 4</td><td>DATA_FLOW_TYPE_DORMANT</td><td>42</td><td>1</td><td>3</td><tr><tr><td>DataConnectState</td><td>export enum DataConnectState {
+    
+    DATA_STATE_UNKNOWN = -1,
+
+    
+    DATA_STATE_DISCONNECTED = 0,
+
+    
+    DATA_STATE_CONNECTING = 1,
+
+    
+    DATA_STATE_CONNECTED = 2,
+
+    
+    DATA_STATE_SUSPENDED = 3
+  }</td><td>DataConnectState</td><td>40</td><td>0</td><td>27</td><tr><tr><td>DataConnectState</td><td>DATA_STATE_UNKNOWN = -1,</td><td>DATA_STATE_UNKNOWN</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DataConnectState</td><td>DATA_STATE_DISCONNECTED = 0,</td><td>DATA_STATE_DISCONNECTED</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DataConnectState</td><td>DATA_STATE_CONNECTING = 1,</td><td>DATA_STATE_CONNECTING</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DataConnectState</td><td>DATA_STATE_CONNECTED = 2,</td><td>DATA_STATE_CONNECTED</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DataConnectState</td><td>DATA_STATE_SUSPENDED = 3</td><td>DATA_STATE_SUSPENDED</td><td>42</td><td>1</td><td>4</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

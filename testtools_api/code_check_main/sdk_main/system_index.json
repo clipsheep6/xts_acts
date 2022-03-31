@@ -1,0 +1,1439 @@
+{
+    "模块名*": {
+        "subsystem_ch": "归属子系统",
+        "subsystem_en": "英文子系统"
+    },
+    "action_sheet": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "alert_dialog": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "alphabet_indexer": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "animator": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "badge": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "blank": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "button": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "calendar": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "canvas": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "checkbox": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "checkboxgroup": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "circle": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "column": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "column_split": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "common": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "context_menu": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "counter": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "custom_dialog_controller": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "data_panel": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "date_picker": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "divider": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ellipse": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "enums": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "flex": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "forEach": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "form_component": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "gauge": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "gesture": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "gr": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "gridItem": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "grid_container": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "hyperlink": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "image": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "image_animator": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "inspector": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "lazyForEach": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "lazy_for_each": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "line": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "list": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "listItem": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "list_item": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "loading_progress": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "marquee": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "matrix": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "middle_class": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "navigation": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "navigator": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "pageTransition": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "page_transition": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "panel": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "path": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "pattern_lock": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "piece": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "plugin_component": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "polygon": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "polyline": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "progress": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "qrcode": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "radio": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "rating": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "rect": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "refresh": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "rich_text": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "row": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "row_split": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "scroll": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "scroll_bar": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "search": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "select": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "shape": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "sidebar": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "slider": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "span": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "stack": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "stateManagement": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "state_management": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "stepper": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "stepperItem": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "stepper_item": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "swiper": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "tabs": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "tab_content": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "text": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "text_area": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "text_clock": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "text_input": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "text_picker": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "text_timer": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "toggle": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "un": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "video": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "web": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "xcomponent": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "lifecycle": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "global": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "global.js": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "globaljs": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ohos.ability.dataUriUtils": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.ability.featureAbility": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.ability.particleAbility": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.ability.wantConstant": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.abilityAccessCtrl": {
+        "subsystem_ch": "程序访问控制子系统",
+        "subsystem_en": "security"
+    },
+    "ohos.accessibility": {
+        "subsystem_ch": "无障碍软件服务子系统",
+        "subsystem_en": ""
+    },
+    "ohos.account.appAccount": {
+        "subsystem_ch": "账号子系统",
+        "subsystem_en": "account"
+    },
+    "ohos.account.distributedAccount": {
+        "subsystem_ch": "账号子系统",
+        "subsystem_en": "account"
+    },
+    "ohos.account.osAccount": {
+        "subsystem_ch": "账号子系统",
+        "subsystem_en": "account"
+    },
+    "ohos.animator": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ohos.app.abilityManager": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.Ability": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.AbilityConstant": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.abilityManager": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.AbilityStage": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.appManager": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.Configuration": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.ConfigurationConstant": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.DataShareExtensionAbility": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.formBindingData": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.FormExtension": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.missionManager": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.ServiceExtAbility": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.ServiceExtension": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.StartOptions": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.UriPermissionManager": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.Want": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.backgroundTaskManager": {
+        "subsystem_ch": "全局资源调度管控子系统",
+        "subsystem_en": "resourceschedule"
+    },
+    "ohos.batteryinfo": {
+        "subsystem_ch": "电源服务子系统",
+        "subsystem_en": "powermgr"
+    },
+    "ohos.batteryStatistics": {
+        "subsystem_ch": "电源服务子系统",
+        "subsystem_en": "powermgr"
+    },
+    "ohos.bluetooth": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    },
+    "ohos.brightness": {
+        "subsystem_ch": "电源服务子系统",
+        "subsystem_en": "powermgr"
+    },
+    "ohos.bundle": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "ohos.bundle.innerBundleManager": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "ohos.bytrace": {
+        "subsystem_ch": "DFX子系统",
+        "subsystem_en": "hiviewdfx"
+    },
+    "ohos.commonEvent": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "ohos.configPolicy": {
+        "subsystem_ch": "全球化子系统",
+        "subsystem_en": "global"
+    },
+    "ohos.convertxml": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.curves": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ohos.data.dataAbility": {
+        "subsystem_ch": "分布式数据管理子系统",
+        "subsystem_en": "distributeddatamgr"
+    },
+    "ohos.data.dataShare": {
+        "subsystem_ch": "分布式数据管理子系统",
+        "subsystem_en": "distributeddatamgr"
+    },
+    "ohos.data.distributedData": {
+        "subsystem_ch": "分布式数据管理子系统",
+        "subsystem_en": "distributeddatamgr"
+    },
+    "ohos.data.distributedDataObject": {
+        "subsystem_ch": "分布式数据管理子系统",
+        "subsystem_en": "distributeddatamgr"
+    },
+    "ohos.data.rdb": {
+        "subsystem_ch": "分布式数据管理子系统",
+        "subsystem_en": "distributeddatamgr"
+    },
+    "ohos.data.storage": {
+        "subsystem_ch": "分布式数据管理子系统",
+        "subsystem_en": "distributeddatamgr"
+    },
+    "ohos.deviceInfo": {
+        "subsystem_ch": "启动恢复子系统",
+        "subsystem_en": "startup"
+    },
+    "ohos.distributedBundle": {
+        "subsystem_ch": "分布式硬件子系统",
+        "subsystem_en": "distributedhardware"
+    },
+    "ohos.distributedHardware.deviceManager": {
+        "subsystem_ch": "分布式硬件子系统",
+        "subsystem_en": "distributedhardware"
+    },
+    "ohos.emitter": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "ohos.environment": {
+        "subsystem_ch": "文件存储子系统",
+        "subsystem_en": "storage"
+    },
+    "ohos.eve.emitter": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "ohos.faultLogger": {
+        "subsystem_ch": "DFX子系统",
+        "subsystem_en": "hiviewdfx"
+    },
+    "ohos.fileio": {
+        "subsystem_ch": "文件存储子系统",
+        "subsystem_en": "storage"
+    },
+    "ohos.fileManager": {
+        "subsystem_ch": "文件存储子系统",
+        "subsystem_en": "storage"
+    },
+    "ohos.geolocation": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    },
+    "ohos.hiAppEvent": {
+        "subsystem_ch": "DFX子系统",
+        "subsystem_en": "hiviewdfx"
+    },
+    "ohos.hichecker": {
+        "subsystem_ch": "DFX子系统",
+        "subsystem_en": "hiviewdfx"
+    },
+    "ohos.hidebug": {
+        "subsystem_ch": "DFX子系统",
+        "subsystem_en": "hiviewdfx"
+    },
+    "ohos.hilog": {
+        "subsystem_ch": "DFX子系统",
+        "subsystem_en": "hiviewdfx"
+    },
+    "ohos.hiperf": {
+        "subsystem_ch": "DFX子系统",
+        "subsystem_en": "hiviewdfx"
+    },
+    "ohos.hiTraceChain": {
+        "subsystem_ch": "DFX子系统",
+        "subsystem_en": "hiviewdfx"
+    },
+    "ohos.hiTraceMeter": {
+        "subsystem_ch": "DFX子系统",
+        "subsystem_en": "hiviewdfx"
+    },
+    "ohos.i18n": {
+        "subsystem_ch": "全球化子系统",
+        "subsystem_en": "global"
+    },
+    "ohos.inputmeth": {
+        "subsystem_ch": "Misc软件服务子系统",
+        "subsystem_en": "miscservices"
+    },
+    "ohos.inputmethodengine": {
+        "subsystem_ch": "Misc软件服务子系统",
+        "subsystem_en": "miscservices"
+    },
+    "ohos.intl": {
+        "subsystem_ch": "全球化子系统",
+        "subsystem_en": "global"
+    },
+    "ohos.matrix4": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ohos.mediaquery": {
+        "subsystem_ch": "媒体子系统",
+        "subsystem_en": "multimedia"
+    },
+    "ohos.multimedia.audio": {
+        "subsystem_ch": "媒体子系统",
+        "subsystem_en": "multimedia"
+    },
+    "ohos.multimedia.camera": {
+        "subsystem_ch": "媒体子系统",
+        "subsystem_en": "multimedia"
+    },
+    "ohos.multimedia.image": {
+        "subsystem_ch": "媒体子系统",
+        "subsystem_en": "multimedia"
+    },
+    "ohos.multimedia.media": {
+        "subsystem_ch": "媒体子系统",
+        "subsystem_en": "multimedia"
+    },
+    "ohos.multimedia.mediaLibrary": {
+        "subsystem_ch": "媒体子系统",
+        "subsystem_en": "multimedia"
+    },
+    "ohos.multimodalInput.inputConsumer": {
+        "subsystem_ch": "多模输入子系统",
+        "subsystem_en": "multimodalinput"
+    },
+    "ohos.multimodalInput.inputDevice": {
+        "subsystem_ch": "多模输入子系统",
+        "subsystem_en": "multimodalinput"
+    },
+    "ohos.multimodalInput.inputMonitor": {
+        "subsystem_ch": "多模输入子系统",
+        "subsystem_en": "multimodalinput"
+    },
+    "ohos.net.connection": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.net.http": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.net.socket": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.net.statistics": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.notification": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "ohos.pasteboa": {
+        "subsystem_ch": "Misc软件服务子系统",
+        "subsystem_en": "miscservices"
+    },
+    "ohos.pluginComponent": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ohos.power": {
+        "subsystem_ch": "电源服务子系统",
+        "subsystem_en": "powermgr"
+    },
+    "ohos.process": {
+        "subsystem_ch": "语言编译器运行时子系统",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.prompt": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ohos.reminderAgent": {
+        "subsystem_ch": "全局资源调度管控子系统",
+        "subsystem_en": "resourceschedule"
+    },
+    "ohos.remoteFileShare": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.resourceManager": {
+        "subsystem_ch": "全球化子系统",
+        "subsystem_en": "global"
+    },
+    "ohos.router": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ohos.rpc": {
+        "subsystem_ch": "分布式软总线子系统",
+        "subsystem_en": "dsoftbus"
+    },
+    "ohos.runninglock": {
+        "subsystem_ch": "电源服务子系统",
+        "subsystem_en": "powermgr"
+    },
+    "ohos.screenshot": {
+        "subsystem_ch": "窗口子系统",
+        "subsystem_en": "graphic"
+    },
+    "ohos.security.huks": {
+        "subsystem_ch": "安全子系统",
+        "subsystem_en": "security"
+    },
+    "ohos.securityLabel": {
+        "subsystem_ch": "文件存储子系统",
+        "subsystem_en": "storage"
+    },
+    "ohos.sensor": {
+        "subsystem_ch": "泛Sensor服务子系统",
+        "subsystem_en": "sensors"
+    },
+    "ohos.settings": {
+        "subsystem_ch": "应用子系统",
+        "subsystem_en": ""
+    },
+    "ohos.statfs": {
+        "subsystem_ch": "泛Sensor服务子系统",
+        "subsystem_en": "sensors"
+    },
+    "ohos.storageStatistics": {
+        "subsystem_ch": "文件存储子系统",
+        "subsystem_en": "storage"
+    },
+    "ohos.systemparameter": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.systemTime": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.systemTimer": {
+        "subsystem_ch": "Misc软件服务子系统",
+        "subsystem_en": "miscservices"
+    },
+    "ohos.telephony.call": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.telephony.data": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.telephony.observer": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.telephony.radio": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.telephony.sim": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.telephony.sms": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.thermal": {
+        "subsystem_ch": "电源服务子系统",
+        "subsystem_en": "powermgr"
+    },
+    "ohos.update": {
+        "subsystem_ch": "升级服务子系统",
+        "subsystem_en": "updater"
+    },
+    "ohos.uri": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.url": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.usb": {
+        "subsystem_ch": "USB服务子系统",
+        "subsystem_en": "usb"
+    },
+    "ohos.userIAM": {
+        "subsystem_ch": "安全子系统",
+        "subsystem_en": "security"
+    },
+    "ohos.userIAM.userAuth": {
+        "subsystem_ch": "安全子系统",
+        "subsystem_en": "security"
+    },
+    "ohos.util.ArrayList": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.Deque": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.HashMap": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.HashSet": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.LightWeightMap": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.LightWeightSet": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.LinkedList": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.List": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ohos.util.PlainArray": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.Queue": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.Stack": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.TreeMap": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.TreeSet": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.util.Vector": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.vibrator": {
+        "subsystem_ch": "媒体子系统",
+        "subsystem_en": "multimedia"
+    },
+    "ohos.volumeManager": {
+        "subsystem_ch": "媒体子系统",
+        "subsystem_en": "multimedia"
+    },
+    "ohos.wallpaper": {
+        "subsystem_ch": "Misc软件服务子系统",
+        "subsystem_en": "miscservices"
+    },
+    "ohos.wantAgent": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.wifi": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    },
+    "ohos.wifiext": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    },
+    "ohos.window": {
+        "subsystem_ch": "窗口子系统",
+        "subsystem_en": "graphic"
+    },
+    "ohos.worker": {
+        "subsystem_ch": "语言编译器运行时子系统",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.workScheduler": {
+        "subsystem_ch": "全局资源调度管控子系统",
+        "subsystem_en": "resourceschedule"
+    },
+    "ohos.workSchedulerExtension": {
+        "subsystem_ch": "全局资源调度管控子系统",
+        "subsystem_en": "resourceschedule"
+    },
+    "ohos.xml": {
+        "subsystem_ch": "公共基础类库",
+        "subsystem_en": "compileruntime"
+    },
+    "ohos.zlib": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "abilityResult": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "connectOptions": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "continueAbilityOptions": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "dataAbilityHelper": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "dataAbilityOperation": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "dataAbilityResult": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "startAbilityParameter": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "want": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "abilityMissionInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "activeProcessInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "context": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "processInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "AbilityContext": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "AbilityRunningInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "AbilityStageContext": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "AbilityStateData": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ApplicationStateObserver": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "AppStateData": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "BaseContext": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "Context": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "EventHub": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ExtAbilityContext": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ExtensionContext": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ExtensionRunningInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "FormExtensionContext": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "MissionInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "MissionListener": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "MissionSnapshot": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "PermissionRequestResult": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "ProcessData": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ProcessRunningInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ServiceExtAbilityContext": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ServiceExtensionContext": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "UriPermissionManager": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "basic": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "abilityInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "applicationInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "bundleFlag": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "bundleInfo": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "bundleInstaller": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "bundleStatusCallback": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "customizeData": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "elementName": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "extensionAbilityInfo": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "hapModuleInfo": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "launcherAbilityInfo": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "metadata": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "moduleInfo": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "moduleUsageReco": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "PermissionDef": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "remoteAbilityInfo": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "shortcutInfo": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "console": {
+        "subsystem_ch": "DFX子系统",
+        "subsystem_en": "hiviewdfx"
+    },
+    "dom": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "viewmodel": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "system.app": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "system.cipher": {
+        "subsystem_ch": "安全子系统",
+        "subsystem_en": "security"
+    },
+    "system.configuration": {
+        "subsystem_ch": "全球化子系统",
+        "subsystem_en": "global"
+    },
+    "system.file": {
+        "subsystem_ch": "文件存储子系统",
+        "subsystem_en": "storage"
+    },
+    "system.mediaquery": {
+        "subsystem_ch": "媒体子系统",
+        "subsystem_en": "multimedia"
+    },
+    "system.prompt": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "system.router": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "commonEventData": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "commonEventPublishData": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "commonEventSubscribeInfo": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "commonEventSubscriber": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "resultSet": {
+        "subsystem_ch": "分布式数据管理子系统",
+        "subsystem_en": "distributeddatamgr"
+    },
+    "rawFileDescriptor": {
+        "subsystem_ch": "全球化子系统",
+        "subsystem_en": "global"
+    },
+    "notificationActionButton": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "notificationContent": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "notificationRequest": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "notificationSlot": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "notificationSorting": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "notificationSortingMap": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "notificationSubscribeInfo": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "notificationSubscriber": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "notificationTemplate": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "notificationUserInput": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "ohos.contact": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "triggerInfo": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "wantAgentInfo": {
+        "subsystem_ch": "事件通知子系统",
+        "subsystem_en": "notification"
+    },
+    "webgl": {
+        "subsystem_ch": "图形图像子系统",
+        "subsystem_en": "graphic"
+    },
+    "webgl2": {
+        "subsystem_ch": "图形图像子系统",
+        "subsystem_en": "graphic"
+    },
+    "ohos.data.preferences": {
+        "subsystem_ch": "分布式数据管理子系统",
+        "subsystem_en": "distributeddatamgr"
+    },
+    "ohos.display": {
+        "subsystem_ch": "图形图像子系统",
+        "subsystem_en": "graphic"
+    },
+    "ohos.ability.errorCode": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.abilityDelegatorRegistry": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.ServiceExtensionAbility": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.StaticSubscriberExtensionAbility": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.testRunner": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.uriPermissionManager": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.batteryInfo": {
+        "subsystem_ch": "电源服务子系统",
+        "subsystem_en": "powermgr"
+    },
+    "ohos.bundleState": {
+        "subsystem_ch": "全局资源调度管控子系统",
+        "subsystem_en": "resourceschedule"
+    },
+    "ohos.net.webSocket": {
+        "subsystem_ch": "电话服务子系统",
+        "subsystem_en": "telephony"
+    },
+    "ohos.nfc.cardEmulation": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    },
+    "ohos.nfc.controller": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    },
+    "ohos.nfc.tag": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    },
+    "ohos.request": {
+        "subsystem_ch": "Misc软件服务子系统-输入法",
+        "subsystem_en": "miscservices"
+    },
+    "ohos.screenLock": {
+        "subsystem_ch": "Misc软件服务子系统-输入法",
+        "subsystem_en": "miscservices"
+    },
+    "ohos.uitest": {
+        "subsystem_ch": "测试框架",
+        "subsystem_en": ""
+    },
+    "ohos.WorkSchedulerExtensionAbility": {
+        "subsystem_ch": "全局资源调度管控子系统",
+        "subsystem_en": "resourceschedule"
+    },
+    "system.bluetooth": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    },
+    "system.geolocation": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    },
+    "system.package": {
+        "subsystem_ch": "包管理子系统",
+        "subsystem_en": "appexecfwk"
+    },
+    "system.sensor": {
+        "subsystem_ch": "泛Sensor服务子系统",
+        "subsystem_en": "sensors"
+    },
+    "system.vibrator": {
+        "subsystem_ch": "泛Sensor服务子系统",
+        "subsystem_en": "sensors"
+    },
+    "matrix2d": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "time_picker": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "for_each": {
+        "subsystem_ch": "ACE开发框架",
+        "subsystem_en": "ace"
+    },
+    "appVersionInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "abilityDelegator": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "abilityDelegatorArgs": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "abilityMonitor": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "shellCmdResult": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "DeviceSettingsManager": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "nfctech": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    },
+    "ohos.application.formError": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.application.formInfo": {
+        "subsystem_ch": "元能力子系统",
+        "subsystem_en": "aafwk"
+    },
+    "ohos.connectedTag": {
+        "subsystem_ch": "短距通信子系统",
+        "subsystem_en": "communication"
+    }
+
+}
