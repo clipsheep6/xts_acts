@@ -19,7 +19,7 @@ import Fileio from '@ohos.fileio'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('videoSoftwareEncoderFuncPromise', function () {
-    const ROOT = '/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videoencoder/results/';
+    const ROOT = '/data/app/el1/bundle/results/';
     const BASIC_PATH = ROOT + 'video_func_promise_';
     let videoEncodeProcessor;
     let mediaTest;

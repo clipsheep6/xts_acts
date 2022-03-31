@@ -15,26 +15,28 @@
             "cleanup-apps": true
         },
         {
+            "type": "ShellKit",
+            "run-command": [
+                "rm -R /data/app/el1/bundle/resources",
+                "mkdir -p /data/app/el1/bundle/resources",
+                "chmod 777 -R /data/app/el1/bundle/resources",
+                "chmod 777 /data/app/el1/bundle/resources/*",
+                "mkdir -p /data/app/el1/bundle/resources/results",
+                "chmod 777 -R /data/app/el1/bundle/resources/results"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
             "type": "PushKit",
             "pre-push": [
             ],
             "push": [
-                "./resource/audio/audioDecode/AAC_48000_32_1.aac ->/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audiodecoder/",
-                "./resource/audio/audioDecode/AAC_16000_1.aac ->/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audiodecoder/",
-                "./resource/audio/audioDecode/FLAC_48000_32_1.flac ->/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audiodecoder/",
-                "./resource/audio/audioDecode/mp3.es ->/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audiodecoder/",
-                "./resource/audio/audioDecode/vorbis.es ->/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audiodecoder/"
-            ]
-        },
-        {
-            "type": "ShellKit",
-            "run-command": [
-                "rm -R /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audiodecoder/results",
-                "mkdir -p /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audiodecoder/results/",
-                "chmod 777 -R /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audiodecoder",
-                "chmod 777 /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audiodecoder/*"
-            ],
-            "teardown-command":[
+                "./resource/audio/audioDecode/AAC_48000_32_1.aac ->/data/app/el1/bundle/resources/",
+                "./resource/audio/audioDecode/AAC_16000_1.aac ->/data/app/el1/bundle/resources/",
+                "./resource/audio/audioDecode/FLAC_48000_32_1.flac ->/data/app/el1/bundle/resources/",
+                "./resource/audio/audioDecode/mp3.es ->/data/app/el1/bundle/resources/",
+                "./resource/audio/audioDecode/vorbis.es ->/data/app/el1/bundle/resources/"
             ]
         }
     ]

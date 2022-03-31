@@ -15,22 +15,24 @@
             "cleanup-apps": true
         },
         {
+            "type": "ShellKit",
+            "run-command": [
+                "rm -R /data/app/el1/bundle/resources",
+                "mkdir -p /data/app/el1/bundle/resources",
+                "chmod 777 -R /data/app/el1/bundle/resources",
+                "chmod 777 /data/app/el1/bundle/resources/*",
+                "mkdir -p /data/app/el1/bundle/resources/results",
+                "chmod 777 -R /data/app/el1/bundle/resources/results"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
             "type": "PushKit",
             "pre-push": [
             ],
             "push": [
-                "./resource/audio/audioEncode/S16LE.pcm ->/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/"
-            ]
-        },
-        {
-            "type": "ShellKit",
-            "run-command": [
-                "rm -R /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/results",
-                "mkdir -p /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/results/",
-                "chmod 777 -R /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder",
-                "chmod 777 /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/*"
-            ],
-            "teardown-command":[
+                "./resource/audio/audioEncode/S16LE.pcm ->/data/app/el1/bundle/resources/"
             ]
         }
     ]
