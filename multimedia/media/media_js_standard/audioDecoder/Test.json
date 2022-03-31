@@ -20,7 +20,6 @@
                 "rm -R /data/app/el1/bundle/resources",
                 "mkdir -p /data/app/el1/bundle/resources",
                 "chmod 777 -R /data/app/el1/bundle/resources",
-                "chmod 777 /data/app/el1/bundle/resources/*",
                 "mkdir -p /data/app/el1/bundle/resources/results",
                 "chmod 777 -R /data/app/el1/bundle/resources/results"
             ],
@@ -37,6 +36,14 @@
                 "./resource/audio/audioDecode/FLAC_48000_32_1.flac ->/data/app/el1/bundle/resources/",
                 "./resource/audio/audioDecode/mp3.es ->/data/app/el1/bundle/resources/",
                 "./resource/audio/audioDecode/vorbis.es ->/data/app/el1/bundle/resources/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 /data/app/el1/bundle/resources/*"
+            ],
+            "teardown-command":[
             ]
         }
     ]

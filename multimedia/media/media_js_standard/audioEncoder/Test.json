@@ -20,7 +20,6 @@
                 "rm -R /data/app/el1/bundle/resources",
                 "mkdir -p /data/app/el1/bundle/resources",
                 "chmod 777 -R /data/app/el1/bundle/resources",
-                "chmod 777 /data/app/el1/bundle/resources/*",
                 "mkdir -p /data/app/el1/bundle/resources/results",
                 "chmod 777 -R /data/app/el1/bundle/resources/results"
             ],
@@ -33,6 +32,14 @@
             ],
             "push": [
                 "./resource/audio/audioEncode/S16LE.pcm ->/data/app/el1/bundle/resources/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 /data/app/el1/bundle/resources/*"
+            ],
+            "teardown-command":[
             ]
         }
     ]

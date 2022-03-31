@@ -19,8 +19,7 @@
             "run-command": [
                 "rm -R /data/app/el1/bundle/resources",
                 "mkdir -p /data/app/el1/bundle/resources",
-                "chmod 777 -R /data/app/el1/bundle/resources",
-                "chmod 777 /data/app/el1/bundle/resources/*"
+                "chmod 777 -R /data/app/el1/bundle/resources"
             ],
             "teardown-command":[
             ]
@@ -35,6 +34,14 @@
                 "./resource/media/es/MPEG2_720_480.es ->/data/app/el1/bundle/resources/",
                 "./resource/media/es/mpeg4_320_240.es ->/data/app/el1/bundle/resources/",
                 "./resource/media/es/out_320_240_10s.h264 ->/data/app/el1/bundle/resources/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 /data/app/el1/bundle/resources/*"
+            ],
+            "teardown-command":[
             ]
         }
     ]
