@@ -18,8 +18,6 @@ import Fileio from '@ohos.fileio'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('AudioEncoderFuncPromise', function () {
-    const RESOURCEPATH = '/data/app/el1/bundle/resources/'
-    const AUDIOPATH = RESOURCEPATH + 'S16LE.pcm';
     let readStreamSync;
     let eosframenum = 0;
     let stopAtEOS = false;

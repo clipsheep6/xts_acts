@@ -14,13 +14,14 @@
  */
 
 import media from '@ohos.multimedia.media'
-import Fileio from '@ohos.fileio'
+import fileio from '@ohos.fileio'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import bundle from '@ohos.bundle'
+import featureAbility from '@ohos.ability.featureAbility'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('AudioEncoderReliabilityCallback', function () {
-    const RESOURCEPATH = '/data/app/el1/bundle/resources/'
-    const AUDIOPATH = RESOURCEPATH + 'S16LE.pcm';
-    const BASIC_PATH = RESOURCEPATH + 'results/encode_reliability_callback_';
     const END = 0;
     const CONFIGURE = 1;
     const PREPARE = 2;
@@ -38,7 +39,6 @@ describe('AudioEncoderReliabilityCallback', function () {
     const JUDGE_EOS = 14;
     const WAITTIME = 3000;
     let audioEncodeProcessor;
-    let readStreamSync;
     let EOSFrameNum = 0;
     let flushAtEOS = false;
     let workdoneAtEOS = false;
@@ -57,16 +57,22 @@ describe('AudioEncoderReliabilityCallback', function () {
                 "channel_count": 2,
                 "sample_rate": 44100,
                 "audio_sample_format": 1,
-    };
+    };    
+    let fd_read;
+    let fileAsset_read;
+    const context = featureAbility.getContext();
+    const mediaTest = mediaLibrary.getMediaLibrary(context);
+    let fileKeyObj = mediaLibrary.FileKey;
 
-    beforeAll(function() {
-        console.info('beforeAll case');
+    beforeAll(async function() {
+        console.info('beforeAll case 1');
+        await applyPermission();
+        console.info('beforeAll case after get permission');
     })
 
     beforeEach(function() {
         console.info('beforeEach case');
         audioEncodeProcessor = null;
-        readStreamSync = undefined;
         EOSFrameNum = 0;
         flushAtEOS = false;
         workdoneAtEOS = false;
@@ -89,6 +95,7 @@ describe('AudioEncoderReliabilityCallback', function () {
             }, failCallback).catch(failCatch);
             audioEncodeProcessor = null;
         }
+        await closeFdRead();
     })
 
     afterAll(function() {
@@ -96,7 +103,6 @@ describe('AudioEncoderReliabilityCallback', function () {
     })
 
     function resetParam() {
-        readStreamSync = undefined;
         EOSFrameNum = 0;
         flushAtEOS = false;
         workdoneAtEOS = false;
@@ -121,59 +127,81 @@ describe('AudioEncoderReliabilityCallback', function () {
         })
     }
 
-    function writeHead(path, len) {
-        try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
-            let head = new ArrayBuffer(7);
-            addADTStoPacket(head, len);
-            let num = writestream.writeSync(head, {length:7});
-            console.info(' writeSync head num = ' + num);
-            writestream.flushSync();
-            writestream.closeSync();
-        } catch(e) {
-            console.info(e);
-        }
-    }
-    function writeFile(path, buf, len) {
-        try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
-            let num = writestream.writeSync(buf, {length:len});
-            writestream.flushSync();
-            writestream.closeSync();
-        } catch(e) {
-            console.info(e);
+    async function applyPermission() {
+        let appInfo = await bundle.getApplicationInfo('ohos.acts.multimedia.audio.audioencoder', 0, 100);
+        let atManager = abilityAccessCtrl.createAtManager();
+        if (atManager != null) {
+            let tokenID = appInfo.accessTokenId;
+            console.info('[permission] case accessTokenID is ' + tokenID);
+            let permissionName1 = 'ohos.permission.MEDIA_LOCATION';
+            let permissionName2 = 'ohos.permission.READ_MEDIA';
+            let permissionName3 = 'ohos.permission.WRITE_MEDIA';
+            await atManager.grantUserGrantedPermission(tokenID, permissionName1, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+            await atManager.grantUserGrantedPermission(tokenID, permissionName2, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+            await atManager.grantUserGrantedPermission(tokenID, permissionName3, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+        } else {
+            console.info('[permission] case apply permission failed, createAtManager failed');
         }
     }
 
-    function readFile(path) {
-        try{
-            console.info('filepath: ' + path);
-            readStreamSync = Fileio.createStreamSync(path, 'rb');
-        } catch(e) {
-            console.info(e);
+    async function getFdRead() {
+        console.info('[mediaLibrary] case start getFdRead');
+        let getFileOp = {
+            selections : fileKeyObj.DISPLAY_NAME + '= ? AND ' + fileKeyObj.RELATIVE_PATH + '= ?',
+            selectionArgs : ['S16LE.pcm', 'AudioEncode/'],
+        }
+        console.info('[mediaLibrary] case getFdRead getFileOp success');
+        let fetchReadFileResult = await mediaTest.getFileAssets(getFileOp);
+        console.info('[mediaLibrary] case getFdRead getFileAssets success');
+        let count = fetchReadFileResult.getCount();
+        console.info('[mediaLibrary] case getFdRead getCount is ' + count);
+        fileAsset_read = await fetchReadFileResult.getAllObject();
+        console.info('[mediaLibrary] case getFdRead getAllObject success');
+        if (fileAsset_read != undefined) {
+            console.info('[mediaLibrary] case getFdRead fileAsset_read is not undefined');
+            await fileAsset_read[0].open('rw').then((fd) => {
+                if (fd == undefined) {
+                    console.info('[mediaLibrary] case getFdRead open fd failed');
+                } else {
+                    fd_read = fd;
+                    console.info('[mediaLibrary] case getFdRead open fd success, fd = ' + fd_read);   
+                }
+            }).catch((err) => {
+                console.info('[mediaLibrary]case open fd failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case getFdRead getAllObject failed');
+        }
+    }
+
+    async function closeFdRead() {
+        if (fileAsset_read != null) {
+            await fileAsset_read[0].close(fd_read).then(() => {
+                console.info('[mediaLibrary] case close fd_read success, fd is ' + fd_read);
+            }).catch((err) => {
+                console.info('[mediaLibrary] case close fd_read failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case fileAsset_read is null');
         }
     }
 
     function getContent(buf, len) {
-        let lengthreal = -1;
-        lengthreal = readStreamSync.readSync(buf,{length:len});
-        console.info('lengthreal: ' + lengthreal);
-    }
-
-    function addADTStoPacket(head, len) {
-        let view = new Uint8Array(head)
-        console.info("start add ADTS to Packet");
-        let packetLen = len + 7; // 7: head length
-        let profile = 2; // 2: AAC LC  
-        let freqIdx = 4; // 4: 44100HZ 
-        let chanCfg = 2; // 2: 2 channel
-        view[0] = 0xFF;
-        view[1] = 0xF9;
-        view[2] = ((profile - 1) << 6) + (freqIdx << 2) + (chanCfg >> 2);
-        view[3] = ((chanCfg & 3) << 6) + (packetLen >> 11);
-        view[4] = (packetLen & 0x7FF) >> 3;
-        view[5] = ((packetLen & 7) << 5) + 0x1F;
-        view[6] = 0xFC;
+        console.info("case start get content");
+        let res = fileio.read(fd_read, buf, {length: len});
+        console.info('case fileio.read buffer success');
     }
 
     async function doneWork(done) {
@@ -219,7 +247,8 @@ describe('AudioEncoderReliabilityCallback', function () {
                 audioEncodeProcessor.configure(mediaDescription, (err) => {
                     expect(err).assertUndefined();
                     console.info(`case configure 1`);
-                    readFile(AUDIOPATH);
+                    await getFdRead();
+                    console.info('case getFdRead success');
                     nextStep(mySteps, mediaDescription, done);
                 });
                 break;
@@ -236,8 +265,10 @@ describe('AudioEncoderReliabilityCallback', function () {
                 mySteps.shift();
                 console.info(`case to start`);
                 if (sawOutputEOS) {
+                    await closeFdRead();
                     resetParam();
-                    readFile(AUDIOPATH);
+                    await getFdRead();
+                    console.info('case getFdRead success');
                     workdoneAtEOS = true;
                     enqueueAllInputs(inputQueue);
                 }
@@ -256,10 +287,12 @@ describe('AudioEncoderReliabilityCallback', function () {
                     expect(err).assertUndefined();
                     console.info(`case flush 1`);
                     if (flushAtEOS) {
+                        await closeFdRead();
                         resetParam();
-                        readFile(AUDIOPATH);
                         workdoneAtEOS = true;
                         flushAtEOS = false;
+                        await getFdRead();
+                        console.info('case getFdRead success');
                     }
                     nextStep(mySteps, mediaDescription, done);
                 });
