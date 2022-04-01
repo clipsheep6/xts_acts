@@ -21,6 +21,10 @@ group("security") {
       "access_token/AccessTokenTest_Normal_js:ActsAccessTokenJSApiTestNormal",
       "huks_standard",
       "security_huks",
+      "security_huks_abnormal",
+      "security_huks_basic",
+      "security_huks_normal",
+      "security_huks_stress",
     ]
   }
 }
