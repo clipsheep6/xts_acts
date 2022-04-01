@@ -1,0 +1,16 @@
+{
+  "suites": [
+    {
+      "describe": "SecurityHuksHmacJsunit",
+      "stress": 1500,
+      "params": {},
+      "items": [
+        {
+          "it": "testHmacThread",
+          "stress": 1,
+          "params": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "suites": [
+    {
+      "describe": "SecurityHuksSignVerifyJsunit",
+      "stress": 1500,
+      "params": {},
+      "items": [
+        {
+          "it": "testSignVerifyThread",
+          "stress": 1,
+          "params": []
+        }
+      ]
+    }
+  ]
+}

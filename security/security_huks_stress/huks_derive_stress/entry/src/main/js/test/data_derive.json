@@ -1,0 +1,16 @@
+{
+  "suites": [
+    {
+      "describe": "SecurityHuksDeriveJsunit",
+      "stress": 1500,
+      "params": {},
+      "items": [
+        {
+          "it": "testDeriveThread",
+          "stress": 1,
+          "params": []
+        }
+      ]
+    }
+  ]
+}
