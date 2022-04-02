@@ -17,7 +17,7 @@ import media from '@ohos.multimedia.media'
 import mediademo from '@ohos.multimedia.mediademo'
 import Fileio from '@ohos.fileio'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-export
+
 const ENCODE_STEP = {
     WAIT_FOR_EOS : 'encode:waitForEOS',
     CONFIGURE : 'encode:configure',
@@ -136,7 +136,7 @@ describe('VideoEncoderSoftwareReliCallbackTest', function () {
                 return;
             }
             frameCountOut++;
-            writeFile(path, outputObject.data, outputObject.length);
+            console.info('not last frame, continue');
             videoEncodeProcessor.freeOutputBuffer(outputObject, (err) => {
                 if (typeof(err) == 'undefined') {
                     console.debug('in case release output count:' + frameCountOut);

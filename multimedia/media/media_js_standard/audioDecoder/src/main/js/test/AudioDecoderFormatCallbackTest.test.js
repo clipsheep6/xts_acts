@@ -14,18 +14,19 @@
  */
 
 import media from '@ohos.multimedia.media'
-import Fileio from '@ohos.fileio'
+import fileio from '@ohos.fileio'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import bundle from '@ohos.bundle'
+import featureAbility from '@ohos.ability.featureAbility'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('AudioDecoderFormatCallback', function () {
-    const RESOURCEPATH = '/data/app/el1/bundle/resources/'
-    const AUDIOPATH1 = RESOURCEPATH + 'AAC_48000_32_1.aac';
-    const AUDIOPATH2 = RESOURCEPATH + 'FLAC_48000_32_1.flac'
-    const AUDIOPATH3 = RESOURCEPATH + 'mp3.es';
-    const AUDIOPATH4 = RESOURCEPATH + 'vorbis.es';
-    const BASIC_PATH = RESOURCEPATH + 'results/decode_format_callback_';
+    const AUDIOFILE1 = 'AAC_48000_32_1.aac';
+    const AUDIOFILE2 = 'FLAC_48000_32_1.flac'
+    const AUDIOFILE3 = 'mp3.es';
+    const AUDIOFILE4 = 'vorbis.es';
     let audioDecodeProcessor;
-    let readStreamSync;
     let needGetMediaDes = false;
     let frameCnt = 1;
     let timestamp = 0;
@@ -38,15 +39,23 @@ describe('AudioDecoderFormatCallback', function () {
     let samplerate = 44.1;
     let isMp3 = false;
     let isVorbis = false;
+    let fd_read;
+    let fd_write;
+    let fileAsset_read;
+    let fileAsset_write;
+    const context = featureAbility.getContext();
+    const mediaTest = mediaLibrary.getMediaLibrary(context);
+    let fileKeyObj = mediaLibrary.FileKey;
 
-    beforeAll(function() {
-        console.info('beforeAll case');
+    beforeAll(async function() {
+        console.info('beforeAll case 1');
+        await applyPermission();
+        console.info('beforeAll case after get permission');
     })
 
     beforeEach(function() {
         console.info('beforeEach case');
         audioDecodeProcessor = null;
-        readStreamSync = undefined;
         needGetMediaDes = false;
         frameCnt = 1;
         timestamp = 0;
@@ -69,38 +78,133 @@ describe('AudioDecoderFormatCallback', function () {
                 audioDecodeProcessor = null;
             }, failCallback).catch(failCatch);
         }
+        await closeFdRead();
+        await closeFdWrite();
     })
 
     afterAll(function() {
         console.info('afterAll case');
     })
 
-    function writeFile(path, buf, len) {
-        try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
-            let num = writestream.writeSync(buf, {length:len});
-            writestream.flushSync();
-            writestream.closeSync();
-        } catch(e) {
-            console.log(e);
+    async function applyPermission() {
+        let appInfo = await bundle.getApplicationInfo('ohos.acts.multimedia.audio.audiodecoder', 0, 100);
+        let atManager = abilityAccessCtrl.createAtManager();
+        if (atManager != null) {
+            let tokenID = appInfo.accessTokenId;
+            console.info('[permission] case accessTokenID is ' + tokenID);
+            let permissionName1 = 'ohos.permission.MEDIA_LOCATION';
+            let permissionName2 = 'ohos.permission.READ_MEDIA';
+            let permissionName3 = 'ohos.permission.WRITE_MEDIA';
+            await atManager.grantUserGrantedPermission(tokenID, permissionName1, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+            await atManager.grantUserGrantedPermission(tokenID, permissionName2, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+            await atManager.grantUserGrantedPermission(tokenID, permissionName3, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+        } else {
+            console.info('[permission] case apply permission failed, createAtManager failed');
         }
     }
 
-    function readFile(path) {
-        console.log('read file start execution');
+    async function getFdWrite(pathName) {
+        console.info('[mediaLibrary] case start getFdWrite');
+        console.info('[mediaLibrary] case getFdWrite pathName is ' + pathName);
+        let mediaType = mediaLibrary.MediaType.AUDIO;
+        console.info('[mediaLibrary] case mediaType is ' + mediaType);
+        let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
+        console.info('[mediaLibrary] case getFdWrite publicPath is ' + publicPath);
+        let dataUri = await mediaTest.createAsset(mediaType, pathName, publicPath);
+        if (dataUri != undefined) {
+            let args = dataUri.id.toString();
+            let fetchOp = {
+                selections : fileKeyObj.ID + "=?",
+                selectionArgs : [args],
+            }
+            let fetchWriteFileResult = await mediaTest.getFileAssets(fetchOp);
+            console.info('[mediaLibrary] case getFdWrite getFileAssets() success');
+            fileAsset_write = await fetchWriteFileResult.getAllObject();
+            console.info('[mediaLibrary] case getFdWrite getAllObject() success');
+            fd_write = await fileAsset_write[0].open('Rw');
+            console.info('[mediaLibrary] case getFdWrite fd_write is ' + fd_write);
+        }
+    }
+
+    async function getFdRead(fileName) {
+        console.info('[mediaLibrary] case start getFdRead');
+        let getFileOp = {
+            selections : fileKeyObj.DISPLAY_NAME + '= ? AND ' + fileKeyObj.RELATIVE_PATH + '= ?',
+            selectionArgs : [fileName, 'AudioDecode/'],
+        }
+        console.info('[mediaLibrary] case getFdRead getFileOp success');
+        let fetchReadFileResult = await mediaTest.getFileAssets(getFileOp);
+        console.info('[mediaLibrary] case getFdRead getFileAssets success');
+        let count = fetchReadFileResult.getCount();
+        console.info('[mediaLibrary] case getFdRead getCount is ' + count);
+        fileAsset_read = await fetchReadFileResult.getAllObject();
+        console.info('[mediaLibrary] case getFdRead getAllObject success');
+        if (fileAsset_read != undefined) {
+            console.info('[mediaLibrary] case getFdRead fileAsset_read is not undefined');
+            await fileAsset_read[0].open('rw').then((fd) => {
+                if (fd == undefined) {
+                    console.info('[mediaLibrary] case getFdRead open fd failed');
+                } else {
+                    fd_read = fd;
+                    console.info('[mediaLibrary] case getFdRead open fd success, fd = ' + fd_read);   
+                }
+            }).catch((err) => {
+                console.info('[mediaLibrary]case open fd failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case getFdRead getAllObject failed');
+        }
+    }
+
+    async function closeFdWrite() {
+        if (fileAsset_write != null) {
+            await fileAsset_write[0].close(fd_write).then(() => {
+                console.info('[mediaLibrary] case close fd_write success, fd is ' + fd_write);
+            }).catch((err) => {
+                console.info('[mediaLibrary] case close fd_write failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case fileAsset_write is null');
+        }
+    }
+
+    async function closeFdRead() {
+        if (fileAsset_read != null) {
+            await fileAsset_read[0].close(fd_read).then(() => {
+                console.info('[mediaLibrary] case close fd_read success, fd is ' + fd_read);
+            }).catch((err) => {
+                console.info('[mediaLibrary] case close fd_read failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case fileAsset_read is null');
+        }
+    }
+
+    function writeFile(buf, len) {
         try{
-            console.log('filepath: ' + path);
-            readStreamSync = Fileio.createStreamSync(path, 'rb');
+            let res = fileio.write(fd_write, buf, {length: len});
+            console.info('case fileio.write buffer success');
         } catch(e) {
-            console.log(e);
+            console.info('case fileio.write buffer error is ' + e);
         }
     }
 
     function getContent(buf, len) {
-        console.log("start get content");
-        let lengthreal = -1;
-        lengthreal = readStreamSync.readSync(buf,{length:len});
-        console.log('lengthreal: ' + lengthreal);
+        console.info("case start get content");
+        let res = fileio.read(fd_read, buf, {length: len});
+        console.info('case fileio.read buffer success');
     }
 
     async function enqueueAllInputs(queue) {
@@ -140,7 +244,7 @@ describe('AudioDecoderFormatCallback', function () {
         }
     }
 
-    async function dequeueAllOutputs(queue, savepath, done) {
+    async function dequeueAllOutputs(queue, done) {
         while (queue.length > 0 && !sawOutputEOS) {
             let outputobject = queue.shift();
             if (outputobject.flags == 1) {
@@ -162,7 +266,7 @@ describe('AudioDecoderFormatCallback', function () {
                     })
                 })
             } else {
-                writeFile(savepath, outputobject.data, outputobject.length);
+                writeFile(outputobject.data, outputobject.length);
                 console.log("write to file success");
             }
             audioDecodeProcessor.freeOutputBuffer(outputobject, () => {
@@ -171,7 +275,7 @@ describe('AudioDecoderFormatCallback', function () {
         }
     }
 
-    function setCallback(savepath, done) {
+    function setCallback(done) {
         console.info('case callback');
         audioDecodeProcessor.on('needInputData', async(inBuffer) => {
             console.info("inputBufferAvailable");
@@ -188,7 +292,7 @@ describe('AudioDecoderFormatCallback', function () {
                 })
             }
             outputQueue.push(outBuffer);
-            await dequeueAllOutputs(outputQueue, savepath, done);
+            await dequeueAllOutputs(outputQueue, done);
         });
         audioDecodeProcessor.on('error',(err) => {
             console.info('case error called,errName is' + err);
@@ -215,7 +319,10 @@ describe('AudioDecoderFormatCallback', function () {
                     "sample_rate": 44100,
                     "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'aac_01.pcm';
+        await getFdWrite('audioDecode_format_callback_aac_01.pcm');
+        console.info('case getFdWrite success');
+        await getFdRead(AUDIOFILE1);
+        console.info('case getFdRead success');
         needGetMediaDes = true;
         ES = [0, 283, 336, 291, 405, 438, 411, 215, 215, 313, 270, 342, 641, 554, 545, 545, 546,
              541, 540, 542, 552, 537, 533, 498, 472, 445, 430, 445, 427, 414, 386, 413, 370, 380,
@@ -289,7 +396,6 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.configure(mediaDescription, (err) => {
                 expect(err).assertUndefined();
                 console.info(`case configure 1`);
-                readFile(AUDIOPATH1);
                 eventEmitter.emit('prepare');
             })
         });
@@ -297,7 +403,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(savepath, done);
+                setCallback(done);
                 eventEmitter.emit('start');
             })
         });
@@ -332,7 +438,10 @@ describe('AudioDecoderFormatCallback', function () {
                     "sample_rate": 44100,
                     "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'aac_02.pcm';
+        await getFdWrite('audioDecode_format_callback_aac_02.pcm');
+        console.info('case getFdWrite success');
+        await getFdRead(AUDIOFILE1);
+        console.info('case getFdRead success');
         needGetMediaDes = true;
         ES = [0, 283, 336, 291, 405, 438, 411, 215, 215, 313, 270, 342, 641, 554, 545, 545, 546,
              541, 540, 542, 552, 537, 533, 498, 472, 445, 430, 445, 427, 414, 386, 413, 370, 380,
@@ -406,7 +515,6 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.configure(mediaDescription, (err) => {
                 expect(err).assertUndefined();
                 console.info(`case configure 1`);
-                readFile(AUDIOPATH1);
                 eventEmitter.emit('prepare');
             })
         });
@@ -414,7 +522,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(savepath, done);
+                setCallback(done);
                 eventEmitter.emit('start');
             })
         });
@@ -449,7 +557,10 @@ describe('AudioDecoderFormatCallback', function () {
                     "sample_rate": 48000,
                     "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'flac_01.pcm';
+        await getFdWrite('audioDecode_format_callback_flac_01.pcm');
+        console.info('case getFdWrite success');
+        await getFdRead(AUDIOFILE2);
+        console.info('case getFdRead success');
         needGetMediaDes = true;
         samplerate = 48;
         ES = [0, 2116, 2093, 2886, 2859, 2798, 2778, 2752, 2752, 2754, 2720, 2898, 2829, 2806,
@@ -480,7 +591,6 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.configure(mediaDescription, (err) => {
                 expect(err).assertUndefined();
                 console.info(`case configure 1`);
-                readFile(AUDIOPATH2);
                 eventEmitter.emit('prepare');
             })
         });
@@ -488,7 +598,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(savepath, done);
+                setCallback(done);
                 eventEmitter.emit('start');
             })
         });
@@ -523,7 +633,10 @@ describe('AudioDecoderFormatCallback', function () {
                     "sample_rate": 48000,
                     "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'flac_02.pcm';
+        await getFdWrite('audioDecode_format_callback_flac_02.pcm');
+        console.info('case getFdWrite success');
+        await getFdRead(AUDIOFILE2);
+        console.info('case getFdRead success');
         needGetMediaDes = true;
         samplerate = 48;
         ES = [0, 2116, 2093, 2886, 2859, 2798, 2778, 2752, 2752, 2754, 2720, 2898, 2829, 2806,
@@ -554,7 +667,6 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.configure(mediaDescription, (err) => {
                 expect(err).assertUndefined();
                 console.info(`case configure 1`);
-                readFile(AUDIOPATH2);
                 eventEmitter.emit('prepare');
             })
         });
@@ -562,7 +674,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(savepath, done);
+                setCallback(done);
                 eventEmitter.emit('start');
             })
         });
@@ -597,7 +709,10 @@ describe('AudioDecoderFormatCallback', function () {
             "sample_rate": 44100,
             "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'mp3_01.pcm';
+        await getFdWrite('audioDecode_format_callback_mp3_01.pcm');
+        console.info('case getFdWrite success');
+        await getFdRead(AUDIOFILE3);
+        console.info('case getFdRead success');
         needGetMediaDes = true;
         isMp3 = true;
         isVorbis = false;
@@ -615,7 +730,6 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.configure(mediaDescription, (err) => {
                 expect(err).assertUndefined();
                 console.info(`case configure 1`);
-                readFile(AUDIOPATH3);
                 eventEmitter.emit('prepare');
             })
         });
@@ -623,7 +737,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(savepath, done);
+                setCallback(done);
                 eventEmitter.emit('start');
             })
         });
@@ -658,7 +772,10 @@ describe('AudioDecoderFormatCallback', function () {
             "sample_rate": 44100,
             "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'mp3_02.pcm';
+        await getFdWrite('audioDecode_format_callback_mp3_02.pcm');
+        console.info('case getFdWrite success');
+        await getFdRead(AUDIOFILE3);
+        console.info('case getFdRead success');
         needGetMediaDes = true;
         isMp3 = true;
         isVorbis = false;
@@ -676,7 +793,6 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.configure(mediaDescription, (err) => {
                 expect(err).assertUndefined();
                 console.info(`case configure 1`);
-                readFile(AUDIOPATH3);
                 eventEmitter.emit('prepare');
             })
         });
@@ -684,7 +800,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(savepath, done);
+                setCallback(done);
                 eventEmitter.emit('start');
             })
         });
@@ -719,7 +835,10 @@ describe('AudioDecoderFormatCallback', function () {
             "sample_rate": 48000,
             "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'vorbis_01.pcm';
+        await getFdWrite('audioDecode_format_callback_vorbis_01.pcm');
+        console.info('case getFdWrite success');
+        await getFdRead(AUDIOFILE4);
+        console.info('case getFdRead success');
         needGetMediaDes = true;
         samplerate = 48;
         isVorbis = true;
@@ -780,7 +899,6 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.configure(mediaDescription, (err) => {
                 expect(err).assertUndefined();
                 console.info(`case configure 1`);
-                readFile(AUDIOPATH4);
                 eventEmitter.emit('prepare');
             })
         });
@@ -788,7 +906,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(savepath, done);
+                setCallback(done);
                 eventEmitter.emit('start');
             })
         });
@@ -823,7 +941,10 @@ describe('AudioDecoderFormatCallback', function () {
             "sample_rate": 48000,
             "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'vorbis_02.pcm';
+        await getFdWrite('audioDecode_format_callback_vorbis_02.pcm');
+        console.info('case getFdWrite success');
+        await getFdRead(AUDIOFILE4);
+        console.info('case getFdRead success');
         needGetMediaDes = true;
         samplerate = 48;
         isVorbis = true;
@@ -884,7 +1005,6 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.configure(mediaDescription, (err) => {
                 expect(err).assertUndefined();
                 console.info(`case configure 1`);
-                readFile(AUDIOPATH4);
                 eventEmitter.emit('prepare');
             })
         });
@@ -892,7 +1012,7 @@ describe('AudioDecoderFormatCallback', function () {
             audioDecodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(savepath, done);
+                setCallback(done);
                 eventEmitter.emit('start');
             })
         });

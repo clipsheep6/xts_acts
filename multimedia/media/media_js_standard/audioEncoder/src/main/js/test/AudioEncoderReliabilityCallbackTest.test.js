@@ -116,12 +116,12 @@ describe('AudioEncoderReliabilityCallback', function () {
         outputQueue = [];
     }
 
-    function createAudioEncoder(savepath, mySteps, done) {
+    function createAudioEncoder(mySteps, done) {
         media.createAudioEncoderByMime(mime, (err, processor) => {
             expect(err).assertUndefined();
             console.info(`case createAudioEncoder 1`);
             audioEncodeProcessor = processor;
-            setCallback(savepath, done);
+            setCallback(done);
             console.info("case start api test");
             nextStep(mySteps, mediaDescription, done);
         })
@@ -266,6 +266,7 @@ describe('AudioEncoderReliabilityCallback', function () {
                 console.info(`case to start`);
                 if (sawOutputEOS) {
                     await closeFdRead();
+                    console.info('case closeFdRead success');
                     resetParam();
                     await getFdRead();
                     console.info('case getFdRead success');
@@ -288,6 +289,7 @@ describe('AudioEncoderReliabilityCallback', function () {
                     console.info(`case flush 1`);
                     if (flushAtEOS) {
                         await closeFdRead();
+                        console.info('case closeFdRead success');
                         resetParam();
                         workdoneAtEOS = true;
                         flushAtEOS = false;
@@ -407,7 +409,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         }
     }
 
-    async function dequeueAllOutputs(queue, savepath, done) {
+    async function dequeueAllOutputs(queue, done) {
         while (queue.length > 0 && !sawOutputEOS) {
             let outputobject = queue.shift();
             if (outputobject.flags == 1) {
@@ -427,7 +429,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         }
     }
 
-    function setCallback(savepath, done) {
+    function setCallback(done) {
         console.info('case callback');
         audioEncodeProcessor.on('needInputData', async(inBuffer) => {
             console.info('case inputBufferAvailable');
@@ -445,7 +447,7 @@ describe('AudioEncoderReliabilityCallback', function () {
                 });
             }
             outputQueue.push(outBuffer);
-            await dequeueAllOutputs(outputQueue, savepath, done);
+            await dequeueAllOutputs(outputQueue, done);
         });
         audioEncodeProcessor.on('error',(err) => {
             console.info('case error called,errName is' + err);
@@ -466,7 +468,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_CALLBACK_0100', 0, async function (done) {
         let savepath = BASIC_PATH + 'configure_0100.es';
         let mySteps = new Array(CONFIGURE, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -480,7 +482,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_CALLBACK_0200', 0, async function (done) {
         let savepath = BASIC_PATH + 'configure_0200.es';
         let mySteps = new Array(CONFIGURE, PREPARE, CONFIGURE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -494,7 +496,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_CALLBACK_0300', 0, async function (done) {
         let savepath = BASIC_PATH + 'configure_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, CONFIGURE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -508,7 +510,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_CALLBACK_0400', 0, async function (done) {
         let savepath = BASIC_PATH + 'configure_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, CONFIGURE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -522,7 +524,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_CALLBACK_0500', 0, async function (done) {
         let savepath = BASIC_PATH + 'configure_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP ,CONFIGURE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -537,7 +539,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'configure_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, CONFIGURE_ERROR, END);
         EOSFrameNum = 2;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -551,7 +553,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_CALLBACK_0700', 0, async function (done) {
         let savepath = BASIC_PATH + 'configure_0700.es';
         let mySteps = new Array(RESET, CONFIGURE, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -565,7 +567,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_CALLBACK_0800', 0, async function (done) {
         let savepath = BASIC_PATH + 'configure_0800.es';
         let mySteps = new Array(CONFIGURE, CONFIGURE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -579,7 +581,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_CALLBACK_0900', 0, async function (done) {
         let savepath = BASIC_PATH + 'configure_0900.es';
         let mySteps = new Array(CONFIGURE, RESET, CONFIGURE, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
    /* *
@@ -593,7 +595,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_CALLBACK_0100', 0, async function (done) {
         let savepath = BASIC_PATH + 'prepare_0100.es';
         let mySteps = new Array(PREPARE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -607,7 +609,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_CALLBACK_0200', 0, async function (done) {
         let savepath = BASIC_PATH + 'prepare_0200.es';
         let mySteps = new Array(CONFIGURE, PREPARE, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -621,7 +623,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_CALLBACK_0300', 0, async function (done) {
         let savepath = BASIC_PATH + 'prepare_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, PREPARE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -635,7 +637,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_CALLBACK_0400', 0, async function (done) {
         let savepath = BASIC_PATH + 'prepare_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, PREPARE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -649,7 +651,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_CALLBACK_0500', 0, async function (done) {
         let savepath = BASIC_PATH + 'prepare_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, PREPARE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -663,7 +665,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_CALLBACK_0600', 0, async function (done) {
         let savepath = BASIC_PATH + 'prepare_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP, PREPARE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -678,7 +680,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'prepare_0700.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, PREPARE_ERROR, END);
         EOSFrameNum = 2;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -692,7 +694,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_CALLBACK_0800', 0, async function (done) {
         let savepath = BASIC_PATH + 'prepare_0800.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, PREPARE_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
   /* *
@@ -706,7 +708,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_CALLBACK_0100', 0, async function (done) {
         let savepath = BASIC_PATH + 'start_0100.es';
         let mySteps = new Array(START_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -720,7 +722,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_CALLBACK_0200', 0, async function (done) {
         let savepath = BASIC_PATH + 'start_0200.es';
         let mySteps = new Array(CONFIGURE, START_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -735,7 +737,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'start_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, WAITFORALLOUTS);
         workdoneAtEOS = true;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -749,7 +751,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_CALLBACK_0400', 0, async function (done) {
         let savepath = BASIC_PATH + 'start_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, START_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -763,7 +765,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_CALLBACK_0500', 0, async function (done) {
         let savepath = BASIC_PATH + 'start_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, START_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -778,7 +780,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'start_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP, START, WAITFORALLOUTS);
         workdoneAtEOS = true;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -793,7 +795,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'start_0700.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, START_ERROR, END);
         EOSFrameNum = 2;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -807,7 +809,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_CALLBACK_0800', 0, async function (done) {
         let savepath = BASIC_PATH + 'start_0800.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, START_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -821,7 +823,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_CALLBACK_0100', 0, async function (done) {
         let savepath = BASIC_PATH + 'flush_0100.es';
         let mySteps = new Array(FLUSH_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -835,7 +837,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_CALLBACK_0200', 0, async function (done) {
         let savepath = BASIC_PATH + 'flush_0200.es';
         let mySteps = new Array(CONFIGURE, FLUSH_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -849,7 +851,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_CALLBACK_0300', 0, async function (done) {
         let savepath = BASIC_PATH + 'flush_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, FLUSH_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -864,7 +866,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'flush_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, WAITFORALLOUTS);
         workdoneAtEOS = true;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -879,7 +881,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'flush_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, FLUSH, WAITFORALLOUTS);
         workdoneAtEOS = true;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -893,7 +895,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_CALLBACK_0600', 0, async function (done) {
         let savepath = BASIC_PATH + 'flush_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP ,FLUSH_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -908,7 +910,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'flush_0700.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, FLUSH, END);
         EOSFrameNum = 2;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -922,7 +924,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_CALLBACK_0800', 0, async function (done) {
         let savepath = BASIC_PATH + 'flush_0800.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, FLUSH_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -936,7 +938,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_CALLBACK_0100', 0, async function (done) {
         let savepath = BASIC_PATH + 'stop_0100.es';
         let mySteps = new Array(STOP_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -950,7 +952,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_CALLBACK_0200', 0, async function (done) {
         let savepath = BASIC_PATH + 'stop_0200.es';
         let mySteps = new Array(CONFIGURE, STOP_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -964,7 +966,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_CALLBACK_0300', 0, async function (done) {
         let savepath = BASIC_PATH + 'stop_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, STOP_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -978,7 +980,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_CALLBACK_0400', 0, async function (done) {
         let savepath = BASIC_PATH + 'stop_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -992,7 +994,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_CALLBACK_0500', 0, async function (done) {
         let savepath = BASIC_PATH + 'stop_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, STOP, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1006,7 +1008,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_CALLBACK_0600', 0, async function (done) {
         let savepath = BASIC_PATH + 'stop_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP, STOP_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1021,7 +1023,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'stop_0700.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, STOP, END);
         EOSFrameNum = 2;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1035,7 +1037,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_CALLBACK_0800', 0, async function (done) {
         let savepath = BASIC_PATH + 'stop_0800.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, STOP_ERROR, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1049,7 +1051,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_CALLBACK_0100', 0, async function (done) {
         let savepath = BASIC_PATH + 'reset_0100.es';
         let mySteps = new Array(RESET, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1063,7 +1065,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_CALLBACK_0200', 0, async function (done) {
         let savepath = BASIC_PATH + 'reset_0200.es';
         let mySteps = new Array(CONFIGURE, RESET, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1077,7 +1079,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_CALLBACK_0300', 0, async function (done) {
         let savepath = BASIC_PATH + 'reset_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, RESET, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1091,7 +1093,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_CALLBACK_0400', 0, async function (done) {
         let savepath = BASIC_PATH + 'reset_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1105,7 +1107,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_CALLBACK_0500', 0, async function (done) {
         let savepath = BASIC_PATH + 'reset_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, RESET, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1119,7 +1121,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_CALLBACK_0600', 0, async function (done) {
         let savepath = BASIC_PATH + 'reset_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP, RESET, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1134,7 +1136,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'reset_0700.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, RESET, END);
         EOSFrameNum = 2;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1148,7 +1150,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_CALLBACK_0800', 0, async function (done) {
         let savepath = BASIC_PATH + 'reset_0800.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, RESET, END);
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1163,7 +1165,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'eos_0100.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, FLUSH, STOP, END);
         EOSFrameNum = 2;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1179,7 +1181,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, FLUSH, WAITFORALLOUTS);
         EOSFrameNum = 2;
         flushAtEOS = true;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1194,7 +1196,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'eos_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, RESET, CONFIGURE, END);
         EOSFrameNum = 2;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1209,7 +1211,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'eos_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, STOP, START, WAITFORALLOUTS);
         EOSFrameNum = 2;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 
     /* *
@@ -1224,6 +1226,6 @@ describe('AudioEncoderReliabilityCallback', function () {
         let savepath = BASIC_PATH + 'eos_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, STOP, START, STOP, END);
         EOSFrameNum = 2;
-        createAudioEncoder(savepath, mySteps, done);
+        createAudioEncoder(mySteps, done);
     })
 })

@@ -17,11 +17,9 @@
         {
             "type": "ShellKit",
             "run-command": [
-                "rm -R /data/app/el1/bundle/resources",
-                "mkdir -p /data/app/el1/bundle/resources",
-                "chmod 777 -R /data/app/el1/bundle/resources",
-                "mkdir -p /data/app/el1/bundle/resources/results",
-                "chmod 777 -R /data/app/el1/bundle/resources/results"
+                "rm -R /storage/media/100/local/files/Audios",
+                "mkdir /storage/media/100/local/files/AudioEncode",
+                "chmod -R 777 /storage/media/100/local/files/*"
             ],
             "teardown-command":[
             ]
@@ -31,15 +29,19 @@
             "pre-push": [
             ],
             "push": [
-                "./resource/audio/audioEncode/S16LE.pcm ->/data/app/el1/bundle/resources/"
+                "./resource/audio/audioEncode/S16LE.pcm ->/storage/media/100/local/files/AudioEncode"
             ]
         },
         {
             "type": "ShellKit",
             "run-command": [
-                "chmod 777 /data/app/el1/bundle/resources/*"
+                "chmod -R 777 /storage/media/100/local/files/AudioEncode",
+                "chmod  777 /storage/media/100/local/files/AudioEncode/*",
+                "killall com.ohos.medialibrary.MediaScannerAbilityA",
+                "aa start  -a MediaScannerAbility -b com.ohos.medialibrary.MediaScannerAbilityA"
             ],
             "teardown-command":[
+                "rm -rf /storage/media/100/local/files/*"
             ]
         }
     ]

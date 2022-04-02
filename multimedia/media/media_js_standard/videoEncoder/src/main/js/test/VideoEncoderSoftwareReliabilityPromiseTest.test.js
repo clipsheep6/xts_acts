@@ -250,8 +250,7 @@ describe('videoEncoderReliabilityPromise', function () {
                     console.info("sawOutputEOS = true;");
                 }
             } else {
-                writeFile(path, outputObject.data, outputObject.length);
-                console.info("write to file success");
+                console.info('not last frame, continue');
                 videoEncodeProcessor.freeOutputBuffer(outputObject).then(() => {
                     console.info('release output success');
                     frameCountOut++;

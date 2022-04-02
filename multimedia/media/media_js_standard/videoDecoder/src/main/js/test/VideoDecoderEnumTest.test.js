@@ -14,15 +14,18 @@
  */
 
 import media from '@ohos.multimedia.media'
-import Fileio from '@ohos.fileio'
 import router from '@system.router'
+import fileio from '@ohos.fileio'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import bundle from '@ohos.bundle'
+import featureAbility from '@ohos.ability.featureAbility'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 
 describe('VideoDecoderEnum', function () {
     let videoDecodeProcessor = null;
     let videoPlayer = null;
-    let readStreamSync = undefined;
     let frameCountIn = 0;
     let frameCountOut = 0;
     let timestamp = 0;
@@ -37,9 +40,16 @@ describe('VideoDecoderEnum', function () {
     let ES_FRAME_SIZE = [];
     const H264_FRAME_SIZE_60FPS_320 =
     [ 2106, 11465];
-    beforeAll(function() {
-        console.info('beforeAll case');
-        // getSurfaceID();
+    let fd_read;
+    let fileAsset_read;
+    const context = featureAbility.getContext();
+    const mediaTest = mediaLibrary.getMediaLibrary(context);
+    let fileKeyObj = mediaLibrary.FileKey;
+
+    beforeAll(async function() {
+        console.info('beforeAll case 1');
+        await applyPermission();
+        console.info('beforeAll case after get permission');
     })
 
     beforeEach(async function() {
@@ -66,6 +76,7 @@ describe('VideoDecoderEnum', function () {
             }, failCallback).catch(failCatch);
             videoDecodeProcessor = null;
         }
+        await closeFdRead();
         await router.clear().then(() => {
         }, failCallback).catch(failCatch);
     })
@@ -82,15 +93,6 @@ describe('VideoDecoderEnum', function () {
     let failCatch = function(err) {
         console.info(`in case error failCatch called,errMessage is ${error.message}`);
         expect(err).assertUndefined();
-    }
-    function readFile(path){
-        console.info('in case : read file start execution');
-        try {
-            console.info('in case: filepath ' + path);
-            readStreamSync = Fileio.createStreamSync(path, 'rb');
-        } catch(e) {
-            console.error('in case readFile' + e);
-        }
     }
 
     function msleep(ms) {
@@ -109,30 +111,81 @@ describe('VideoDecoderEnum', function () {
         }
     }
 
-    function getContent(buf, len) {
-        console.info('start get content, len ' + len + ' buf.byteLength ' + buf.byteLength);
-        let lengthReal = -1;
-        try {
-            lengthReal = readStreamSync.readSync(
-                buf, 
-                {length: len}
-            );
-            console.info('in case: lengthReal: ' + lengthReal);
-        } catch(e) {
-            console.error('in case error getContent ' + e);
+    async function applyPermission() {
+        let appInfo = await bundle.getApplicationInfo('ohos.acts.multimedia.video.videodecoder', 0, 100);
+        let atManager = abilityAccessCtrl.createAtManager();
+        if (atManager != null) {
+            let tokenID = appInfo.accessTokenId;
+            console.info('[permission] case accessTokenID is ' + tokenID);
+            let permissionName1 = 'ohos.permission.MEDIA_LOCATION';
+            let permissionName2 = 'ohos.permission.READ_MEDIA';
+            let permissionName3 = 'ohos.permission.WRITE_MEDIA';
+            await atManager.grantUserGrantedPermission(tokenID, permissionName1, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+            await atManager.grantUserGrantedPermission(tokenID, permissionName2, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+            await atManager.grantUserGrantedPermission(tokenID, permissionName3, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+        } else {
+            console.info('[permission] case apply permission failed, createAtManager failed');
         }
     }
-    function getSurfaceID() {
-        let surfaceIDTest = new ArrayBuffer(20);
-        let readSurfaceID = Fileio.createStreamSync('/data/media/surfaceID.txt', 'rb');
-        readSurfaceID.readSync(surfaceIDTest, {length: 13});
-        let view2 = new Uint8Array(surfaceIDTest);
-        for (let i = 0; i < 13; i++) {
-            let value = view2[i] - 48;
-            surfaceID = surfaceID + '' + value;
+
+    async function getFdRead() {
+        console.info('[mediaLibrary] case start getFdRead');
+        let getFileOp = {
+            selections : fileKeyObj.DISPLAY_NAME + '= ? AND ' + fileKeyObj.RELATIVE_PATH + '= ?',
+            selectionArgs : ['out_320_240_10s.h264', 'VideoDecode/'],
         }
-        console.info('in case surfaceID ' + surfaceID);
-        readSurfaceID.closeSync();
+        console.info('[mediaLibrary] case getFdRead getFileOp success');
+        let fetchReadFileResult = await mediaTest.getFileAssets(getFileOp);
+        console.info('[mediaLibrary] case getFdRead getFileAssets success');
+        let count = fetchReadFileResult.getCount();
+        console.info('[mediaLibrary] case getFdRead getCount is ' + count);
+        fileAsset_read = await fetchReadFileResult.getAllObject();
+        console.info('[mediaLibrary] case getFdRead getAllObject success');
+        if (fileAsset_read != undefined) {
+            console.info('[mediaLibrary] case getFdRead fileAsset_read is not undefined');
+            await fileAsset_read[0].open('rw').then((fd) => {
+                if (fd == undefined) {
+                    console.info('[mediaLibrary] case getFdRead open fd failed');
+                } else {
+                    fd_read = fd;
+                    console.info('[mediaLibrary] case getFdRead open fd success, fd = ' + fd_read);   
+                }
+            }).catch((err) => {
+                console.info('[mediaLibrary]case open fd failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case getFdRead getAllObject failed');
+        }
+    }
+
+    async function closeFdRead() {
+        if (fileAsset_read != null) {
+            await fileAsset_read[0].close(fd_read).then(() => {
+                console.info('[mediaLibrary] case close fd_read success, fd is ' + fd_read);
+            }).catch((err) => {
+                console.info('[mediaLibrary] case close fd_read failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case fileAsset_read is null');
+        }
+    }
+
+    function getContent(buf, len) {
+        console.info("case start get content");
+        let res = fileio.read(fd_read, buf, {length: len});
+        console.info('case fileio.read buffer success');
     }
     
     /* push inputbuffers into codec  */
@@ -250,10 +303,9 @@ describe('VideoDecoderEnum', function () {
             }
         }, failCallback).catch(failCatch);
     }
-    async function toConfigure(mediaDescription, srcPath) {
+    async function toConfigure(mediaDescription) {
         await videoDecodeProcessor.configure(mediaDescription).then(() =>{
             console.info('in case : configure success');
-            readFile(srcPath);
         }, failCallback).catch(failCatch);
     }
     async function setSurfaceID(done) {
@@ -314,7 +366,6 @@ describe('VideoDecoderEnum', function () {
     it('SUB_MEDIA_VIDEO_DECODER_ENUM_CodecBuffer_0100', 0, async function (done) {
         ES_FRAME_SIZE = H264_FRAME_SIZE_60FPS_320;
         isCodecData = true;
-        let srcPath = BASIC_PATH + 'out_320_240_10s.h264';
         let mediaDescription = {
             'track_type': 1,
             'codec_mime': 'video/avc',
@@ -326,7 +377,9 @@ describe('VideoDecoderEnum', function () {
         }
         await toCreateVideoDecoderByMime('video/avc', done);
         await toGetVideoDecoderCaps();
-        await toConfigure(mediaDescription, srcPath);
+        await getFdRead();
+        console.info('case getFdRead success');
+        await toConfigure(mediaDescription);
         await toSetOutputSurface(true);
         setCallback(
             function(){eventEmitter.emit('nextStep', done);}
