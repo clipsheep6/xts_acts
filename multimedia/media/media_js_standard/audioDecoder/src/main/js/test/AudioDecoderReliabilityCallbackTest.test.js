@@ -338,7 +338,7 @@ describe('AudioDecoderReliabilityCallback', function () {
         console.info('[mediaLibrary] case start getFdRead');
         let getFileOp = {
             selections : fileKeyObj.DISPLAY_NAME + '= ? AND ' + fileKeyObj.RELATIVE_PATH + '= ?',
-            selectionArgs : ['S16LE.pcm', 'AudioDecode/'],
+            selectionArgs : [AUDIOPATH, 'AudioDecode/'],
         }
         console.info('[mediaLibrary] case getFdRead getFileOp success');
         let fetchReadFileResult = await mediaTest.getFileAssets(getFileOp);
@@ -409,7 +409,7 @@ describe('AudioDecoderReliabilityCallback', function () {
         for(let t = Date.now(); Date.now() - t <= time;);
     }
 
-    function nextStep(mySteps, mediaDescription, done) {
+    async function nextStep(mySteps, mediaDescription, done) {
         console.info("case myStep[0]: " + mySteps[0]);
         if (mySteps[0] == END) {
             console.info('case to done');
@@ -424,7 +424,7 @@ describe('AudioDecoderReliabilityCallback', function () {
             case CONFIGURE:
                 mySteps.shift();
                 console.info(`case to configure`);
-                audioDecodeProcessor.configure(mediaDescription, (err) => {
+                audioDecodeProcessor.configure(mediaDescription, async(err) => {
                     expect(err).assertUndefined();
                     console.info(`case configure 1`);
                     await getFdRead();
@@ -464,7 +464,7 @@ describe('AudioDecoderReliabilityCallback', function () {
                 console.info(`case to flush`);
                 inputQueue = [];
                 outputQueue = [];
-                audioDecodeProcessor.flush((err) => {
+                audioDecodeProcessor.flush(async(err) => {
                     expect(err).assertUndefined();
                     console.info(`case flush 1`);
                     if (flushAtEOS) {

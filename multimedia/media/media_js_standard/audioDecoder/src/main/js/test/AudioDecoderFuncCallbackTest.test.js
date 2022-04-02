@@ -1057,10 +1057,10 @@ describe('AudioDecoderFuncCallback', function () {
             })
         });
         eventEmitter.on('reconfigure', (mediaDescription2) => {
-            sleep(10000).then(() => {
+            sleep(10000).then(async() => {
                 await closeFdRead();
                 await closeFdWrite();
-                audioDecodeProcessor.configure(mediaDescription2, (err) => {
+                audioDecodeProcessor.configure(mediaDescription2, async(err) => {
                     expect(err).assertUndefined();
                     console.info(`case configure 2`);
                     resetParam();
@@ -1162,7 +1162,7 @@ describe('AudioDecoderFuncCallback', function () {
             })
         });
         eventEmitter.on('recreate', () => {
-            sleep(10000).then(() => {
+            sleep(10000).then(async() => {
                 await closeFdRead();
                 await closeFdWrite();
                 media.createAudioDecoderByMime('audio/flac', (err, processor) => {
@@ -1175,7 +1175,7 @@ describe('AudioDecoderFuncCallback', function () {
             })
         });
         eventEmitter.on('reconfigure', (mediaDescription2) => {
-            audioDecodeProcessor.configure(mediaDescription2, (err) => {
+            audioDecodeProcessor.configure(mediaDescription2, async(err) => {
                 expect(err).assertUndefined();
                 console.info(`case configure 2`);
                 resetParam();

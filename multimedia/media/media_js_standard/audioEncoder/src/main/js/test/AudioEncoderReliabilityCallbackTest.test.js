@@ -38,6 +38,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     const STOP_ERROR = 13;
     const JUDGE_EOS = 14;
     const WAITTIME = 3000;
+    const BASIC_PATH = '/storage/media/100/local/files/';
     let audioEncodeProcessor;
     let EOSFrameNum = 0;
     let flushAtEOS = false;
@@ -230,7 +231,7 @@ describe('AudioEncoderReliabilityCallback', function () {
         for(let t = Date.now(); Date.now() - t <= time;);
     }
 
-    function nextStep(mySteps, mediaDescription, done) {
+    async function nextStep(mySteps, mediaDescription, done) {
         console.info("case myStep[0]: " + mySteps[0]);
         if (mySteps[0] == END) {
             audioEncodeProcessor.release((err) => {
@@ -244,7 +245,7 @@ describe('AudioEncoderReliabilityCallback', function () {
             case CONFIGURE:
                 mySteps.shift();
                 console.info(`case to configure`);
-                audioEncodeProcessor.configure(mediaDescription, (err) => {
+                audioEncodeProcessor.configure(mediaDescription, async(err) => {
                     expect(err).assertUndefined();
                     console.info(`case configure 1`);
                     await getFdRead();
@@ -284,7 +285,7 @@ describe('AudioEncoderReliabilityCallback', function () {
                 console.info(`case to flush`);
                 inputQueue = [];
                 outputQueue = [];
-                audioEncodeProcessor.flush((err) => {
+                audioEncodeProcessor.flush(async(err) => {
                     expect(err).assertUndefined();
                     console.info(`case flush 1`);
                     if (flushAtEOS) {
@@ -295,6 +296,7 @@ describe('AudioEncoderReliabilityCallback', function () {
                         flushAtEOS = false;
                         await getFdRead();
                         console.info('case getFdRead success');
+                        enqueueAllInputs(inputQueue);
                     }
                     nextStep(mySteps, mediaDescription, done);
                 });
@@ -1178,7 +1180,7 @@ describe('AudioEncoderReliabilityCallback', function () {
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_EOS_CALLBACK_0200', 0, async function (done) {
         let savepath = BASIC_PATH + 'eos_0200.es';
-        let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, FLUSH, WAITFORALLOUTS);
+        let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, FLUSH, END);
         EOSFrameNum = 2;
         flushAtEOS = true;
         createAudioEncoder(mySteps, done);

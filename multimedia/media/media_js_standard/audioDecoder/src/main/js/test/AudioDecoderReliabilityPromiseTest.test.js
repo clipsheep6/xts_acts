@@ -23,7 +23,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 
 describe('AudioDecoderReliabilityPromise', function () {
     const RESOURCEPATH = '/data/app/el1/bundle/resources/'
-    const AUDIOPATH =  RESOURCEPATH + 'AAC_48000_32_1.aac';
+    const AUDIOPATH = 'AAC_48000_32_1.aac';
     const BASIC_PATH = RESOURCEPATH + 'results/decode_reliability_promise';
     const END = 0;
     const CONFIGURE = 1;
@@ -361,7 +361,7 @@ describe('AudioDecoderReliabilityPromise', function () {
         console.info('[mediaLibrary] case start getFdRead');
         let getFileOp = {
             selections : fileKeyObj.DISPLAY_NAME + '= ? AND ' + fileKeyObj.RELATIVE_PATH + '= ?',
-            selectionArgs : ['S16LE.pcm', 'AudioDecode/'],
+            selectionArgs : [AUDIOPATH, 'AudioDecode/'],
         }
         console.info('[mediaLibrary] case getFdRead getFileOp success');
         let fetchReadFileResult = await mediaTest.getFileAssets(getFileOp);
@@ -427,7 +427,7 @@ describe('AudioDecoderReliabilityPromise', function () {
         for(let t = Date.now(); Date.now() - t <= time;);
     }
 
-    function nextStep(mySteps, done) {
+    async function nextStep(mySteps, done) {
         console.info("case myStep[0]: " + mySteps[0]);
         if (mySteps[0] == END) {
             audioDecodeProcessor.release().then(() => {
@@ -440,7 +440,7 @@ describe('AudioDecoderReliabilityPromise', function () {
             case CONFIGURE:
                 mySteps.shift();
                 console.info(`case to configure`);
-                audioDecodeProcessor.configure(mediaDescription).then(() => {
+                audioDecodeProcessor.configure(mediaDescription).then(async() => {
                     console.info(`case configure 1`);
                     await getFdRead();
                     console.info('case getFdRead success');
@@ -477,7 +477,7 @@ describe('AudioDecoderReliabilityPromise', function () {
                 console.info(`case to flush`);
                 inputQueue = [];
                 outputQueue = [];
-                audioDecodeProcessor.flush().then(() => {
+                audioDecodeProcessor.flush().then(async() => {
                     console.info(`case flush 1`);
                     if (flushAtEOS) {
                         await closeFdRead();

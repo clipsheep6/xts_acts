@@ -22,7 +22,6 @@ import featureAbility from '@ohos.ability.featureAbility'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
-
 describe('VideoDecoderEnum', function () {
     let videoDecodeProcessor = null;
     let videoPlayer = null;

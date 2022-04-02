@@ -326,7 +326,7 @@ describe('VideoDecoderFuncCallbackTest', function () {
     }
     eventEmitter.on('configure', (mediaDescription, srcPath, nextStep, done) => {
         console.info('in case : configure in');
-        videoDecodeProcessor.configure(mediaDescription, (err) => {
+        videoDecodeProcessor.configure(mediaDescription, async(err) => {
             expect(err).assertUndefined();
             console.info('in case : configure success');
             await getFdRead(srcPath);

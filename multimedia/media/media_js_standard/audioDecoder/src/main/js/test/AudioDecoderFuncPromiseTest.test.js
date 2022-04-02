@@ -425,7 +425,7 @@ describe('AudioDecoderFuncPromise', function () {
 
     async function resetWork() {
         resetParam();
-        await audioDecodeProcessor.reset().then(() => {
+        await audioDecodeProcessor.reset().then(async() => {
             console.info("case reset success");
             if (needrelease) {
                 await audioDecodeProcessor.release().then(() => {
@@ -889,7 +889,7 @@ describe('AudioDecoderFuncPromise', function () {
         await audioDecodeProcessor.start().then(() => {
             console.info("case start success");
         }, failCallback).catch(failCatch);
-        await sleep(10000).then(() => {
+        await sleep(10000).then(async() => {
             console.info("case start configure 2");
             await closeFdWrite();
             await closeFdRead();
@@ -973,7 +973,7 @@ describe('AudioDecoderFuncPromise', function () {
         await audioDecodeProcessor.start().then(() => {
             console.info("case start success");
         }, failCallback).catch(failCatch);
-        await sleep(10000).then(() => {
+        await sleep(10000).then(async() => {
             console.info("start createaudiodecoder 2");
             await closeFdWrite();
             await closeFdRead();

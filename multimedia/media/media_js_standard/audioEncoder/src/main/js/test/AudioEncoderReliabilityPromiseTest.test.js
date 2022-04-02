@@ -38,6 +38,7 @@ describe('AudioEncoderReliabilityPromise', function () {
     const STOP_ERROR = 13;
     const JUDGE_EOS = 14;
     const WAITTIME = 3000;
+    const BASIC_PATH = '/storage/media/100/local/files/';
     let audioEncodeProcessor;
     let readStreamSync;
     let EOSFrameNum = 0;
@@ -247,7 +248,7 @@ describe('AudioEncoderReliabilityPromise', function () {
         for(let t = Date.now();Date.now() - t <= time;);
     }
 
-    function nextStep(mySteps, done) {
+    async function nextStep(mySteps, done) {
         console.info("case myStep[0]: " + mySteps[0]);
         if (mySteps[0] == END) {
             audioEncodeProcessor.release().then(() => {
@@ -260,7 +261,7 @@ describe('AudioEncoderReliabilityPromise', function () {
             case CONFIGURE:
                 mySteps.shift();
                 console.info(`case to configure`);
-                audioEncodeProcessor.configure(mediaDescription).then(() => {
+                audioEncodeProcessor.configure(mediaDescription).then(async() => {
                     console.info(`case configure 1`);
                     await getFdRead();
                     console.info('case getFdRead success');
@@ -297,7 +298,7 @@ describe('AudioEncoderReliabilityPromise', function () {
                 console.info(`case to flush`);
                 inputQueue = [];
                 outputQueue = [];
-                audioEncodeProcessor.flush().then(() => {
+                audioEncodeProcessor.flush().then(async() => {
                     console.info(`case flush 1`);
                     if (flushAtEOS) {
                         await closeFdRead();
@@ -1184,7 +1185,7 @@ describe('AudioEncoderReliabilityPromise', function () {
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_EOS_PROMISE_0200', 0, async function (done) {
         let savepath = BASIC_PATH + 'eos_0200.es';
-        let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, FLUSH, WAITFORALLOUTS);
+        let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, FLUSH, END);
         EOSFrameNum = 2;
         flushAtEOS = true;
         createAudioEncoder(mySteps, done);

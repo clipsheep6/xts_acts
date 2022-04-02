@@ -235,7 +235,7 @@ describe('VideoEncoderSoftwareFuncCallbackTest', function () {
 
     eventEmitter.on('configure', (mediaDescription, decPath, nextStep, done) => {
         console.info('in case : configure in');
-        videoEncodeProcessor.configure(mediaDescription, (err) => {
+        videoEncodeProcessor.configure(mediaDescription, async(err) => {
             expect(err).assertUndefined();
             console.info('in case : configure success');
             await getFdWrite(decPath);
@@ -603,7 +603,7 @@ describe('VideoEncoderSoftwareFuncCallbackTest', function () {
             'frame_rate': 30.00,
         }
         eventEmitter.on('reset_for_callback_01_0600', async(done) => {
-            videoEncodeProcessor.reset((err) => {
+            videoEncodeProcessor.reset(async(err) => {
                 expect(err).assertUndefined();
                 console.info('in case : reset_for_callback_01_0600 success');
                 toStopStream();
