@@ -15,22 +15,33 @@
             "cleanup-apps": true
         },
         {
+            "type": "ShellKit",
+            "run-command": [
+                "rm -R /storage/media/100/local/files/Audios",
+                "mkdir /storage/media/100/local/files/AudioEncode",
+                "chmod -R 777 /storage/media/100/local/files/*"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
             "type": "PushKit",
             "pre-push": [
             ],
             "push": [
-                "./resource/audio/audioEncode/S16LE.pcm ->/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/"
+                "./resource/audio/audioEncode/S16LE.pcm ->/storage/media/100/local/files/AudioEncode"
             ]
         },
         {
             "type": "ShellKit",
             "run-command": [
-                "rm -R /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/results",
-                "mkdir -p /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/results/",
-                "chmod 777 -R /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder",
-                "chmod 777 /data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/*"
+                "chmod -R 777 /storage/media/100/local/files/AudioEncode",
+                "chmod  777 /storage/media/100/local/files/AudioEncode/*",
+                "killall com.ohos.medialibrary.MediaScannerAbilityA",
+                "aa start  -a MediaScannerAbility -b com.ohos.medialibrary.MediaScannerAbilityA"
             ],
             "teardown-command":[
+                "rm -rf /storage/media/100/local/files/*"
             ]
         }
     ]

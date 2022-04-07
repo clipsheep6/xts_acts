@@ -14,12 +14,13 @@
  */
 
 import media from '@ohos.multimedia.media'
-import Fileio from '@ohos.fileio'
+import fileio from '@ohos.fileio'
+import {getFileDescriptor, closeFileDescriptor} from './AudioDecoderTestBase.test.js'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('AudioDecoderReliabilityCallback', function () {
     const RESOURCEPATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audiodecoder/'
-    const AUDIOPATH =  RESOURCEPATH + 'AAC_48000_32_1.aac';
+    const AUDIOPATH = 'AAC_48000_32_1.aac';
     const BASIC_PATH = RESOURCEPATH + 'results/decode_reliability_callback';
     const END = 0;
     const CONFIGURE = 1;
@@ -146,12 +147,13 @@ describe('AudioDecoderReliabilityCallback', function () {
                 "sample_rate": 44100,
                 "audio_sample_format": 1,
     };
+    let fd_read;
 
     beforeAll(function() {
         console.info('beforeAll case');
     })
 
-    beforeEach(function() {
+    beforeEach(async function() {
         console.info('beforeEach case');
         audioDecodeProcessor = null;
         readStreamSync = undefined;
@@ -256,6 +258,10 @@ describe('AudioDecoderReliabilityCallback', function () {
             381, 410, 394, 386, 345, 345, 354, 397, 386, 375, 390, 347, 411, 381, 383, 374, 379,
             380, 378, 391, 380, 339, 390, 383, 375];
         ES_LENGTH = 500;
+        await getFileDescriptor(AUDIOPATH).then((res) => {
+            fd_read = res.fd;
+            console.info("case fd_read is: " + fd_read);
+        })
     })
 
     afterEach(async function() {
@@ -266,6 +272,7 @@ describe('AudioDecoderReliabilityCallback', function () {
                 audioDecodeProcessor = null;
             }, failCallback).catch(failCatch);
         }
+        await closeFileDescriptor(AUDIOPATH);
     })
 
     afterAll(function() {
@@ -298,32 +305,28 @@ describe('AudioDecoderReliabilityCallback', function () {
         })
     }
 
-    function writeFile(path, buf, len) {
-        try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
-            let num = writestream.writeSync(buf, {length:len});
-            writestream.flushSync();
-            writestream.closeSync();
-        }catch(e) {
-            console.info(e)
-        }
+    async function getFdRead(pathName) {
+        await getFileDescriptor(pathName).then((res) => {
+            fd_read = res.fd;
+            console.info("case fd_read is: " + fd_read);
+        })
     }
 
     function readFile(path) {
         console.info('read file start execution');
         try{
             console.info('filepath: ' + path);
-            readStreamSync = Fileio.createStreamSync(path, 'rb');
+            readStreamSync = fileio.fdopenStreamSync(fd_read, 'rb');
         }catch(e) {
             console.info(e);
         }
     }
 
     function getContent(buf, len) {
-        console.info("start get content");
+        console.info("case start get content");
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
-        console.info('lengthreal: ' + lengthreal);
+        console.info('case lengthreal is :' + lengthreal);
     }
 
     async function doneWork(done) {
@@ -388,6 +391,8 @@ describe('AudioDecoderReliabilityCallback', function () {
                 console.info(`case to start`);
                 if (sawOutputEOS) {
                     resetParam();
+                    await closeFileDescriptor(AUDIOPATH);
+                    await getFdRead(AUDIOPATH);
                     readFile(AUDIOPATH);
                     workdoneAtEOS = true;
                     enqueueAllInputs(inputQueue);
@@ -403,11 +408,13 @@ describe('AudioDecoderReliabilityCallback', function () {
                 console.info(`case to flush`);
                 inputQueue = [];
                 outputQueue = [];
-                audioDecodeProcessor.flush((err) => {
+                audioDecodeProcessor.flush(async(err) => {
                     expect(err).assertUndefined();
                     console.info(`case flush 1`);
                     if (flushAtEOS) {
                         resetParam();
+                        await closeFileDescriptor(AUDIOPATH);
+                        await getFdRead(AUDIOPATH);
                         readFile(AUDIOPATH);
                         workdoneAtEOS = true;
                         flushAtEOS = false;
@@ -1326,7 +1333,7 @@ describe('AudioDecoderReliabilityCallback', function () {
     */
     it('SUB_MEDIA_AUDIO_DECODER_API_EOS_CALLBACK_0400', 0, async function (done) {
         let savepath = BASIC_PATH + 'eos_0400.pcm';
-        let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, STOP, START, WAITFORALLOUTS);
+        let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, STOP, START, END);
         EOSFrameNum = 2;
         createAudioDecoder(savepath, mySteps, done);
     })

@@ -15,22 +15,31 @@
             "cleanup-apps": true
         },
         {
+            "type": "ShellKit",
+            "run-command": [
+                "rm -R /data/app/el1/bundle/resources",
+                "mkdir -p /data/app/el1/bundle/resources",
+                "chmod 777 -R /data/app/el1/bundle/resources"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
             "type": "PushKit",
             "pre-push": [
             ],
             "push": [
-                "./resource/media/es/out_1920_1080_30fps_3s.h264 ->/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/",
-                "./resource/media/es/h263_1408_1152.es ->/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/",
-                "./resource/media/es/MPEG2_720_480.es ->/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/",
-                "./resource/media/es/mpeg4_320_240.es ->/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/",
-                "./resource/media/es/out_320_240_10s.h264 ->/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/"
+                "./resource/media/es/out_1920_1080_30fps_3s.h264 ->/data/app/el1/bundle/resources/",
+                "./resource/media/es/h263_1408_1152.es ->/data/app/el1/bundle/resources/",
+                "./resource/media/es/MPEG2_720_480.es ->/data/app/el1/bundle/resources/",
+                "./resource/media/es/mpeg4_320_240.es ->/data/app/el1/bundle/resources/",
+                "./resource/media/es/out_320_240_10s.h264 ->/data/app/el1/bundle/resources/"
             ]
         },
         {
             "type": "ShellKit",
             "run-command": [
-                "chmod 777 -R /data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder",
-                "chmod 777 /data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/*"
+                "chmod 777 /data/app/el1/bundle/resources/*"
             ],
             "teardown-command":[
             ]

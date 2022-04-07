@@ -14,10 +14,14 @@
  */
 
 import media from '@ohos.multimedia.media'
-import Fileio from '@ohos.fileio'
 import router from '@system.router'
+import fileio from '@ohos.fileio'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import bundle from '@ohos.bundle'
+import featureAbility from '@ohos.ability.featureAbility'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-export
+
 const DECODE_STEP = {
     WAIT_FOR_EOS : 'waitForEOS',
     CONFIGURE : 'configure',
@@ -34,7 +38,6 @@ const DECODE_STEP = {
 
 describe('VideoDecoderReliPromiseTest', function () {
     let videoDecodeProcessor = null;
-    let readStreamSync = undefined;
     let frameCountIn = 0;
     let frameCountOut = 0;
     let timestamp = 0;
@@ -47,7 +50,7 @@ describe('VideoDecoderReliPromiseTest', function () {
     let workdoneAtEOS = false;
     let surfaceID = '';
     const BASIC_PATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videodecoder/';
-    const SRCPATH = BASIC_PATH + 'out_320_240_10s.h264';
+    const SRCPATH = 'out_320_240_10s.h264';
     let mediaDescription = {
         'track_type': 1,
         'codec_mime': 'video/avc',
@@ -74,8 +77,16 @@ describe('VideoDecoderReliPromiseTest', function () {
         574, 126, 1242, 188, 130, 119, 1450, 187, 137, 141, 1116, 124, 1848, 138, 122, 1605, 186, 127, 140,
         1798, 170, 124, 121, 1666, 157, 128, 130, 1678, 135, 118, 1804, 169, 135, 125, 1837, 168, 124, 124];
     let ES_FRAME_SIZE = H264_FRAME_SIZE_60FPS_320;
-    beforeAll(function() {
-        console.info('beforeAll case');
+    let fd_read;
+    let fileAsset_read;
+    const context = featureAbility.getContext();
+    const mediaTest = mediaLibrary.getMediaLibrary(context);
+    let fileKeyObj = mediaLibrary.FileKey;
+
+    beforeAll(async function() {
+        console.info('beforeAll case 1');
+        await applyPermission();
+        console.info('beforeAll case after get permission');
     })
 
     beforeEach(async function() {
@@ -105,6 +116,7 @@ describe('VideoDecoderReliPromiseTest', function () {
             }, failCallback).catch(failCatch);
             videoDecodeProcessor = null;
         }
+        await closeFdRead();
         await router.clear().then(() => {
         }, failCallback).catch(failCatch);
     })
@@ -147,35 +159,98 @@ describe('VideoDecoderReliPromiseTest', function () {
             console.error('in case toDisplayPage' + e);
         }
     }
-    function readFile(path){
-        console.info('in case : read file start execution');
-        try {
-            console.info('in case: file path ' + path);
-            readStreamSync = Fileio.createStreamSync(path, 'rb');
-        } catch(e) {
-            console.info('in case readFile' + e);
+
+    async function applyPermission() {
+        let appInfo = await bundle.getApplicationInfo('ohos.acts.multimedia.video.videodecoder', 0, 100);
+        let atManager = abilityAccessCtrl.createAtManager();
+        if (atManager != null) {
+            let tokenID = appInfo.accessTokenId;
+            console.info('[permission] case accessTokenID is ' + tokenID);
+            let permissionName1 = 'ohos.permission.MEDIA_LOCATION';
+            let permissionName2 = 'ohos.permission.READ_MEDIA';
+            let permissionName3 = 'ohos.permission.WRITE_MEDIA';
+            await atManager.grantUserGrantedPermission(tokenID, permissionName1, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+            await atManager.grantUserGrantedPermission(tokenID, permissionName2, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+            await atManager.grantUserGrantedPermission(tokenID, permissionName3, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+        } else {
+            console.info('[permission] case apply permission failed, createAtManager failed');
+        }
+    }
+
+    async function getFdRead() {
+        console.info('[mediaLibrary] case start getFdRead');
+        let getFileOp = {
+            selections : fileKeyObj.DISPLAY_NAME + '= ? AND ' + fileKeyObj.RELATIVE_PATH + '= ?',
+            selectionArgs : [SRCPATH, 'VideoDecode/'],
+        }
+        console.info('[mediaLibrary] case getFdRead getFileOp success');
+        let fetchReadFileResult = await mediaTest.getFileAssets(getFileOp);
+        console.info('[mediaLibrary] case getFdRead getFileAssets success');
+        let count = fetchReadFileResult.getCount();
+        console.info('[mediaLibrary] case getFdRead getCount is ' + count);
+        fileAsset_read = await fetchReadFileResult.getAllObject();
+        console.info('[mediaLibrary] case getFdRead getAllObject success');
+        if (fileAsset_read != undefined) {
+            console.info('[mediaLibrary] case getFdRead fileAsset_read is not undefined');
+            await fileAsset_read[0].open('rw').then((fd) => {
+                if (fd == undefined) {
+                    console.info('[mediaLibrary] case getFdRead open fd failed');
+                } else {
+                    fd_read = fd;
+                    console.info('[mediaLibrary] case getFdRead open fd success, fd = ' + fd_read);   
+                }
+            }).catch((err) => {
+                console.info('[mediaLibrary]case open fd failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case getFdRead getAllObject failed');
+        }
+    }
+
+    async function closeFdRead() {
+        if (fileAsset_read != null) {
+            await fileAsset_read[0].close(fd_read).then(() => {
+                console.info('[mediaLibrary] case close fd_read success, fd is ' + fd_read);
+            }).catch((err) => {
+                console.info('[mediaLibrary] case close fd_read failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case fileAsset_read is null');
         }
     }
 
     function getContent(buf, pos, len) {
-        console.info('start get content, len ' + len + ' buf.byteLength ' + buf.byteLength);
+        console.info("case start get content");
         let lengthReal = -1;
         try {
             if (pos == -1) {
-                lengthReal = readStreamSync.readSync(buf, {
+                lengthReal = fileio.read(fd_read, buf, {
                     length: len,
                 });
             } else {
-                lengthReal = readStreamSync.readSync(buf, {
+                lengthReal =  fileio.read(fd_read, buf, {
                     length: len,
                     position: pos,
                 });
             }
-            console.info('in case: lengthReal: ' + lengthReal);
+            console.info('case fileio.read success');
         } catch(e) {
-            console.error('in case error getContent err ' + err);
+            console.error('case fileio.read err is ' + err);
         }
     }
+
     /* push inputbuffers into codec  */
     async function enqueueInputs(inputObject) {
         console.log('in case: inputObject.index: ' + inputObject.index);
@@ -273,7 +348,7 @@ describe('VideoDecoderReliPromiseTest', function () {
             toNextStep(mySteps, done);
         }, (err) => {failureCallback(err, mySteps, done)}).catch(catchCallback);
     }
-    function toNextStep(mySteps, done) {
+    async function toNextStep(mySteps, done) {
         console.info('case myStep[0]: ' + mySteps[0]);
         if (mySteps[0] == DECODE_STEP.RELEASE) {
             if (videoDecodeProcessor != null) {
@@ -324,8 +399,8 @@ describe('VideoDecoderReliPromiseTest', function () {
                     mySteps.shift();
                     toStart(mySteps, done, callbackExpectFail, failCatch);
                 } else {
-                    readStreamSync = undefined;
-                    readFile(SRCPATH);
+                    await getFdRead();
+                    console.info('case getFdRead success');
                     frameCountIn = 0;
                     frameCountOut = 0;
                     inputQueue = [];
