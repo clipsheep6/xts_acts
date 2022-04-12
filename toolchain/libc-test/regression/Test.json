@@ -4,7 +4,11 @@
             "push": [
                 "ActToolChainRegressionTest->/data/local/tmp/ActToolChainRegressionTest"
             ],
-            "type": "PushKit"
+            "type": "PushKit",
+            "post-push": [
+                "mkdir /tmp",
+                "mkdir /dev/shm"
+            ]
         }
     ],
     "driver": {

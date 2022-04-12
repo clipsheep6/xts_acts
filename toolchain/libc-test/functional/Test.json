@@ -4,7 +4,11 @@
             "push": [
                 "ActToolChainFunctionTest->/data/local/tmp/ActToolChainFunctionTest"
             ],
-            "type": "PushKit"
+            "type": "PushKit",
+            "post-push": [
+                "mkdir /tmp",
+                "mkdir /dev/shm"
+            ]
         }
     ],
     "driver": {

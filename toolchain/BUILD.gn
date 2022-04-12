@@ -17,12 +17,10 @@ group("toolchain") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      # "authentication_standard/deviceauth_p2p:DeviceauthP2PFunctionCPPTest",
       "libc-test/functional:ActToolChainFunctionTest",
-      "libc-test/math/:ActToolChainMathTest",
-      "libc-test/regression/:ActToolChainRegressionTest",
-      #"deviceauth/deviceauth_function:ActsDeviceAuthFunctionTest",
-      #"permission/permissionkitcpp:ActsPermissionKitCPPTest",
+      "libc-test/commom:static_lib",
+      "libc-test/math:ActToolChainMathTest",
+      "libc-test/regression:ActToolChainRegressionTest",
     ]
   } else {
     deps =
