@@ -108,7 +108,7 @@ describe('VideoPlayerAPICallbackTest', function () {
             path = 'pages/surfaceTest/surfaceTest';
             temp = 1;
         } else {
-            path = 'pages/surfaceTest/surfaceTest2';
+            path = 'pages/surfaceTest2/surfaceTest2';
             temp = 0;
         }
         let options = {
