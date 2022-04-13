@@ -17,8 +17,8 @@ group("toolchain") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "libc-test/functional:ActToolChainFunctionTest",
       "libc-test/commom:static_lib",
+      "libc-test/functional:ActToolChainFunctionTest",
       "libc-test/math:ActToolChainMathTest",
       "libc-test/regression:ActToolChainRegressionTest",
     ]
