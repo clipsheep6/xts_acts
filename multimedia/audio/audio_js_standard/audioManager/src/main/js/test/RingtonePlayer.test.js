@@ -14,7 +14,7 @@
  */
 
 import audio from '@ohos.multimedia.audio';
-import mediaLibrary from '@ohos.multimedia.medialibrary';
+import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
 describe('audioManager',async function () {
