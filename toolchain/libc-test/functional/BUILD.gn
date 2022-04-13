@@ -50,8 +50,8 @@ ohos_moduletest_suite("ActToolChainFunctionTest") {
     "pthread_cancel-points.cpp",
     "pthread_cancel.cpp",
     "pthread_gettid_np.cpp",
-    "pthread_mutex_pi.cpp",
     "pthread_mutex.cpp",
+    "pthread_mutex_pi.cpp",
     "qsort.cpp",
     "random.cpp",
     "sched_setscheduler.cpp",
@@ -62,17 +62,17 @@ ohos_moduletest_suite("ActToolChainFunctionTest") {
     "snprintf.cpp",
     "socket.cpp",
     "strftime.cpp",
+    "string.cpp",
     "string_memcpy.cpp",
     "string_memmem.cpp",
     "string_memset.cpp",
     "string_strchr.cpp",
     "string_strcspn.cpp",
     "string_strstr.cpp",
-    "string.cpp",
-    "strptime.cpp", 
+    "strptime.cpp",
+    "strtod.cpp",
     "strtod_long.cpp",
     "strtod_simple.cpp",
-    "strtod.cpp",
     "strtof.cpp",
     "strtol.cpp",
     "strtold.cpp",
@@ -97,12 +97,13 @@ ohos_moduletest_suite("ActToolChainFunctionTest") {
     "//third_party/bounds_checking_function:libsec_static",
     "//utils/native/base:utils",
   ]
-  
-  ldflags = [ 
+
+  ldflags = [
     "-ldl",
     "-nostdlib",
   ]
 
-  libs = [ "${root_out_dir}/obj/test/xts/acts/toolchain/libc-test/commom/libcommom.a" ]
-
+  libs = [
+    "${root_out_dir}/obj/test/xts/acts/toolchain/libc-test/commom/libcommom.a",
+  ]
 }

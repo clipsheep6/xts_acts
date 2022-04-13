@@ -22,9 +22,11 @@ config("module_private_config") {
     "//utils/native/base/include",
     "//third_party/bounds_checking_function/include",
     "//third_party/musl/porting/linux/user/include",
+
     #"unittest/include",
     #"include",
     "//test/xts/acts/security_lite/huks/common/include",
+
     #"../../../../../../third_party/musl/libc-test/src/common",
   ]
 }
@@ -50,6 +52,7 @@ ohos_moduletest_suite("ActToolChainRegressionTest") {
     "iswspace-null.cpp",
     "lrand48-signextend.cpp",
     "malloc-0.cpp",
+
     #"malloc-brk-fail.cpp",
     "mbsrtowcs-overflow.cpp",
     "memmem-oob-read.cpp",
@@ -60,12 +63,12 @@ ohos_moduletest_suite("ActToolChainRegressionTest") {
     "printf-fmt-g-round.cpp",
     "printf-fmt-g-zeros.cpp",
     "printf-fmt-n.cpp",
-    "pthread_cond_wait-cancel_ignored.cpp",
+    "pthread-robust-detach.cpp",
     "pthread_cond-smasher.cpp",
+    "pthread_cond_wait-cancel_ignored.cpp",
     "pthread_condattr_setclock.cpp",
     "pthread_exit-cancel.cpp",
     "pthread_rwlock-ebusy.cpp",
-    "pthread-robust-detach.cpp",
     "putenv-doublefree.cpp",
     "regex-backref-0.cpp",
     "regex-bracket-icase.cpp",
@@ -94,6 +97,7 @@ ohos_moduletest_suite("ActToolChainRegressionTest") {
     "//test/xts/acts/toolchain/libc-test/commom",
     "//third_party/musl/porting/linux/user/include",
     "//third_party/musl/porting/linux/user/src/sched",
+
     #"//third_party/musl/include",
   ]
 
@@ -102,11 +106,12 @@ ohos_moduletest_suite("ActToolChainRegressionTest") {
     "//utils/native/base:utils",
   ]
 
-  ldflags = [ 
+  ldflags = [
     "-ldl",
     "-nostdlib",
   ]
 
-  libs = [ "${root_out_dir}/obj/test/xts/acts/toolchain/libc-test/commom/libcommom.a" ]
+  libs = [
+    "${root_out_dir}/obj/test/xts/acts/toolchain/libc-test/commom/libcommom.a",
+  ]
 }
-
