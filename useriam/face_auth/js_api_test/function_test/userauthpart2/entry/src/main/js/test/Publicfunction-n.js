@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,7 +26,6 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-//同步
 function publicRegisterInputer(PinAuth,AuthSubType,Inputerdata){
     console.info('testFace publicRegisterInputer in');
     try {
@@ -58,7 +57,7 @@ function publicunRegisterInputer(PinAuth,callback){
         callback(unRegist)
     }
     catch (e) {
-        console.log("testFace publicRegisterInputer fail " + e);
+        console.log("testFace unpublicRegisterInputer fail " + e);
         expect(null).assertFail();
     }
 }
@@ -121,6 +120,7 @@ async function publicaddCredential(UserIDM,CredentialInfo,callback1,callback2){
         console.info('faceTest publicaddCredential UserIDM = ' + UserIDM);
         UserIDM.addCredential(CredentialInfo, {
             onResult: function(result,extraInfo){
+                console.info('testFace aaaaaaaaaaaaa');
                 console.info("testFace addCredential result = " + result);
                 console.info("testFace addCredential extraInfo = " + JSON.stringify(extraInfo));
                 console.log(result)
@@ -193,7 +193,6 @@ function publicupdateCred(UserIDM,CredentialInfo,callback1,callback2){
     }
 }
 
-//同步
 function publiccancel(UserIDM,challenge){
     console.info('testFace publiccancel in');
     try {
@@ -327,19 +326,18 @@ function publicgetallAuthInfo(UserIDM,callback){
     }
 }
 
-//同步
 function publicgetAvailabeStatus(UserAuth,authType,authTrustLevel){
-    console.info('testFace publicgetAvailabeStatus in');
+    console.info('testFace publicgetAvailableStatus in');
     try {
-        console.info('testFace publicgetAvailabeStatus in try');
-        console.info('testFace publicgetAvailabeStatus UserAuth = ' + UserAuth);
+        console.info('testFace publicgetAvailableStatus in try');
+        console.info('testFace publicgetAvailableStatus UserAuth = ' + UserAuth);
         let AvailabeStatus = null
-        AvailabeStatus = UserAuth.getAvailabeStatus(authType, authTrustLevel);
-        console.info('testFace publicgetAvailabeStatus result = ' + JSON.stringify(AsyncCallback));
+        AvailabeStatus = UserAuth.getAvailableStatus(authType, authTrustLevel);
+        console.info('testFace publicgetAvailableStatus result = ' + JSON.stringify(AvailabeStatus));
         return AvailabeStatus
     }
     catch (e) {
-        console.log("testFace publicgetAvailabeStatus fail " + e);
+        console.log("testFace publicgetAvailableStatus fail " + e);
         expect(null).assertFail();
     }
 }
@@ -367,7 +365,8 @@ function publicsetProperty(UserAuth,SetPropertyRequest,callback){
         console.info('testFace publicsetProperty in try');
         console.info('testFace publicsetProperty UserAuth = ' + UserAuth);
         UserAuth.setProperty(SetPropertyRequest,function (AsyncCallback) {
-            console.log("testFace faceDemo getallAuthInfo AsyncCallback = " + JSON.stringify(AsyncCallback))
+            console.log("testFace faceDemo setProperty inside = ")
+            console.log("testFace faceDemo setProperty AsyncCallback = " + JSON.stringify(AsyncCallback))
             callback(AsyncCallback)
         })
     }
@@ -439,7 +438,7 @@ function publicauthUser(UserAuth,userID,challenge,authType,authTrustLevel,callba
             onResult: function(result,extraInfo){
                 console.log("testFace faceDemo authUser result = " + result)
                 onresult.authresult = result
-                console.log("testFace faceDemo authUser authextr = " + extraInfo)
+                console.log("testFace faceDemo authUser authextr = " + JSON.stringify(extraInfo))
                 onresult.authextr = extraInfo;
                 console.info('testFace publicauthUser authUser onResult = ' + JSON.stringify(onresult));
                 callback1(onresult)
@@ -449,7 +448,7 @@ function publicauthUser(UserAuth,userID,challenge,authType,authTrustLevel,callba
                 onacquireinfo.authmodule = modulea
                 onacquireinfo.authacquire = acquire
                 onacquireinfo.authextr = extr
-                console.log("testFace faceDemo authUser module = " + modulea);
+                console.log("testFace faceDemo authUser module = " + JSON.stringify(modulea));
                 console.info('testFace publicauthUser authUser onacquireinfo = ' + JSON.stringify(onacquireinfo));
                 callback2(onacquireinfo)
             }
@@ -463,7 +462,6 @@ function publicauthUser(UserAuth,userID,challenge,authType,authTrustLevel,callba
     }
 }
 
-//同步
 function publicgecancelAuth(UserAuth,contextID){
     console.info('testFace publicgecancelAuth in');
     try {

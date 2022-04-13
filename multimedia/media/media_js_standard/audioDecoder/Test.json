@@ -4,40 +4,50 @@
         "type": "JSUnitTest",
         "test-timeout": "2000000",
         "package": "ohos.acts.multimedia.audio.audiodecoder",
-		"shell-timeout": "60000"
+        "shell-timeout": "60000"
     },
     "kits": [
-        {
-            "type": "PushKit",
-            "pre-push": [
-            ],
-            "push": [
-                "./resource/audio/audioDecode/AAC_48000_32_1.aac ->/data/media/",
-                "./resource/audio/audioDecode/AAC_16000_1.aac ->/data/media/",
-                "./resource/audio/audioDecode/FLAC_48000_32_1.flac ->/data/media/",
-                "./resource/audio/audioDecode/mp3.es ->/data/media/",
-                "./resource/audio/audioDecode/vorbis.es ->/data/media/"
-            ]
-        },
-		{
-            "type": "ShellKit",
-            "run-command": [
-                "rm -R /data/media/results",
-                "chmod 777 -R /data/media",
-                "chmod 777 /data/media/*",
-                "mkdir /data/media/results",
-                "setenforce 0"
-            ],
-            "teardown-command":[
-                "setenforce 1"
-            ]
-        },
         {
             "test-file-name": [
                 "ActsAudioDecoderJsTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                "mkdir -p /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audiodecoder/ohos.acts.multimedia.audio.audiodecoder/assets/entry/resources/rawfile/",
+                "chmod 777 -R /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audiodecoder/ohos.acts.multimedia.audio.audiodecoder/assets/entry/resources/rawfile/"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "./resource/audio/audioDecode/AAC_48000_32_1.aac ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audiodecoder/ohos.acts.multimedia.audio.audiodecoder/assets/entry/resources/rawfile/",
+                "./resource/audio/audioDecode/AAC_16000_1.aac ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audiodecoder/ohos.acts.multimedia.audio.audiodecoder/assets/entry/resources/rawfile/",
+                "./resource/audio/audioDecode/FLAC_48000_32_1.flac ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audiodecoder/ohos.acts.multimedia.audio.audiodecoder/assets/entry/resources/rawfile/",
+                "./resource/audio/audioDecode/mp3.es ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audiodecoder/ohos.acts.multimedia.audio.audiodecoder/assets/entry/resources/rawfile/",
+                "./resource/audio/audioDecode/vorbis.es ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audiodecoder/ohos.acts.multimedia.audio.audiodecoder/assets/entry/resources/rawfile/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 -R /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audiodecoder/ohos.acts.multimedia.audio.audiodecoder/assets/entry/resources/rawfile/",
+                "chmod 777 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audiodecoder/ohos.acts.multimedia.audio.audiodecoder/assets/entry/resources/rawfile/*",
+                "chmod 777 -R  /storage/media/100/local/files/",
+                "chmod 777 /storage/media/100/local/files/*",
+                "killall com.ohos.medialibrary.MediaScannerAbilityA",
+                "aa start  -a MediaScannerAbility -b com.ohos.medialibrary.MediaScannerAbilityA"
+            ],
+            "teardown-command":[
+            ]
         }
     ]
 }

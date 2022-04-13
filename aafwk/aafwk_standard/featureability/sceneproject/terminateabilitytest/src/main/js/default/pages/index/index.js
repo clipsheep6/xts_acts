@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import commonEvent from '@ohos.commonevent'
+import commonEvent from '@ohos.commonEvent'
 import featureAbility from '@ohos.ability.featureAbility'
 
 const injectRef = Object.getPrototypeOf(global) || global
@@ -33,7 +33,7 @@ function PublishCallBackFour() {
 }
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = this.$t('strings.world');
@@ -50,5 +50,6 @@ export default {
         );
     },
     onReady() {
+        console.info('onReady');
     },
 }

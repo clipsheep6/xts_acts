@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,8 +19,8 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('VideoRecorderAPICallbackTest', function () {
-    const RECORDER_TIME = 2000;
-    const PAUSE_TIME = 2000;
+    const RECORDER_TIME = 3000;
+    const PAUSE_TIME = 1000;
     const END_EVENT = 'end';
     const CREATE_EVENT = 'create';
     const PREPARE_EVENT = 'prepare';
@@ -43,7 +43,9 @@ describe('VideoRecorderAPICallbackTest', function () {
     let captureSession;
     let videoOutput;
     let surfaceID;
-
+    let fdPath;
+    let fileAsset;
+    let fdNumber;
     let events = require('events');
     let eventEmitter = new events.EventEmitter();
 
@@ -60,13 +62,13 @@ describe('VideoRecorderAPICallbackTest', function () {
         videoFrameHeight : 480,
         videoFrameRate : 10
     }
-    // orientationHint 0, 90, 180, 270
+    // rotation 0, 90, 180, 270
     let videoConfig = {
         audioSourceType : 1,
         videoSourceType : 0,
         profile : configFile,
         url : 'file:///data/media/API.mp4',
-        orientationHint : 0,
+        rotation : 0,
         location : { latitude : 30, longitude : 130 },
         maxSize : 100,
         maxDuration : 500
@@ -86,7 +88,7 @@ describe('VideoRecorderAPICallbackTest', function () {
         videoSourceType : 0,
         profile : onlyVideoProfile,
         url : 'file:///data/media/API.mp4',
-        orientationHint : 0,
+        rotation : 0,
         location : { latitude : 30, longitude : 130 },
         maxSize : 100,
         maxDuration : 500
@@ -96,7 +98,9 @@ describe('VideoRecorderAPICallbackTest', function () {
         for(let t = Date.now();Date.now() - t <= time;);
     }
 
-    beforeAll(function () {
+    beforeAll(async function () {
+        await initCamera();
+        await getFd('API.mp4');
         console.info('beforeAll case');
     })
 
@@ -109,9 +113,42 @@ describe('VideoRecorderAPICallbackTest', function () {
         console.info('afterEach case');
     })
 
-    afterAll(function () {
+    afterAll(async function () {
+        await closeFd();
         console.info('afterAll case');
     })
+
+    async function getFd(pathName) {
+        let displayName = pathName;
+        const mediaTest = mediaLibrary.getMediaLibrary();
+        let fileKeyObj = mediaLibrary.FileKey;
+        let mediaType = mediaLibrary.MediaType.VIDEO;
+        let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
+        let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
+        if (dataUri != undefined) {
+            let args = dataUri.id.toString();
+            let fetchOp = {
+                selections : fileKeyObj.ID + "=?",
+                selectionArgs : [args],
+            }
+            let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
+            fileAsset = await fetchFileResult.getAllObject();
+            fdNumber = await fileAsset[0].open('Rw');
+            fdPath = "fd://" + fdNumber.toString();
+        }
+    }
+
+    async function closeFd() {
+        if (fileAsset != null) {
+            await fileAsset[0].close(fdNumber).then(() => {
+                console.info('[mediaLibrary] case close fd success');
+            }).catch((err) => {
+                console.info('[mediaLibrary] case close fd failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case fileAsset is null');
+        }
+    }
 
     async function initCamera() {
         cameraManager = await camera.getCameraManager(null);
@@ -386,7 +423,7 @@ describe('VideoRecorderAPICallbackTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_RECORDER_PREPARE_CALLBACK_0100', 0, async function (done) {
-        await initCamera();
+        videoConfig.url = fdPath;
         let videoRecorder = null;
         let mySteps = new Array(CREATE_EVENT, PREPARE_EVENT, RELEASE_EVENT, END_EVENT);
         eventEmitter.emit(mySteps[0], videoRecorder, mySteps, done);

@@ -16,7 +16,7 @@
 import app from '@system.app'
 import thermal from "@ohos.thermal"
 import ThermalLevel from "@ohos.thermal"
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 const MSEC_1000 = 1000;
 
 describe('appInfoTest', function () {
@@ -33,15 +33,15 @@ function test14() {
      */
     it('Thermal_014', 0, async function (done) {
         console.info("enter");
-        await new Promise((resolve, reject) =>{
-            setTimeout(()=>{
-                var level = thermal.getThermalLevel();
+        await new Promise((resolve, reject) => {
+            setTimeout(() => {
+                let level = thermal.getThermalLevel();
                 console.info("level is: " + level);
                 expect(level == -1).assertTrue();
                 resolve();
+                done();
             }, MSEC_1000 * 4);
         })
-        done();
     })
 }
 
@@ -55,13 +55,15 @@ function test15() {
         thermal.subscribeThermalLevel((level) => {
             console.info("level is: " + level);
             expect(level == -1).assertTrue();
+            done();
         })
-        await new Promise((resolve, reject)=>{
-            setTimeout(()=>{
-                thermal.unsubscribeThermalLevel();
+        await new Promise((resolve, reject) => {
+            setTimeout(() => {
+                thermal.unsubscribeThermalLevel(() => {
+                    console.info("unsubscribe successfully!");
+                });
                 resolve();
             }, MSEC_1000 * 4);
         })
-        done();
     })
 }

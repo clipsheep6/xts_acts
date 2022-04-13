@@ -75,6 +75,8 @@ describe('resMgrTest', function () {
         resmgr.getResourceManager((error, mgr) => {
             mgr.getString(0x1000000, (err, value) => {
                 expect(value !== null).assertTrue();
+                console.log('getString_test_001 ' + value);
+                expect(value).assertEqual('L2Test');
             })
         })
         done();
@@ -89,6 +91,8 @@ describe('resMgrTest', function () {
         resmgr.getResourceManager((error, mgr) => {
             mgr.getString(0x1000000).then(value => {
                 expect(value !== null).assertTrue();
+                console.log('getString_test_002 ' + value);
+                expect(value).assertEqual('L2Test');
             })
         })
         done();
@@ -103,6 +107,14 @@ describe('resMgrTest', function () {
         resmgr.getResourceManager((error, mgr) => {
             mgr.getStringArray(0x1000002, (err, value) => {
                 expect(value !== null).assertTrue();
+                console.log('getStringArray_test_001 ' + value);
+                console.log('getStringArray_test_001 ' + value.length);
+                console.log('getStringArray_test_001 ' + value[0]);
+                expect(value.length).assertEqual(4);
+                expect(value[0]).assertEqual('small');
+                expect(value[1]).assertEqual('middle');
+                expect(value[2]).assertEqual('large');
+                expect(value[3]).assertEqual('extra large');
             })
         })
         done();
@@ -117,6 +129,14 @@ describe('resMgrTest', function () {
         resmgr.getResourceManager((error, mgr) => {
             mgr.getStringArray(0x1000002).then(value => {
                 expect(value !== null).assertTrue();
+                console.log('getStringArray_test_002 ' + value);
+                console.log('getStringArray_test_002 ' + value.length);
+                console.log('getStringArray_test_002 ' + value[0]);
+                expect(value.length).assertEqual(4);
+                expect(value[0]).assertEqual('small');
+                expect(value[1]).assertEqual('middle');
+                expect(value[2]).assertEqual('large');
+                expect(value[3]).assertEqual('extra large');
             })
         })
         done();
@@ -159,6 +179,7 @@ describe('resMgrTest', function () {
         resmgr.getResourceManager((error, mgr) => {
             mgr.getMediaBase64(0x1000004, (err, value) => {
                 expect(value.length > 0).assertTrue();
+                console.log('getMediaBase64_test_001 ' + value);
             })
         })
         done();
@@ -173,6 +194,7 @@ describe('resMgrTest', function () {
         resmgr.getResourceManager((error, mgr) => {
             mgr.getMediaBase64(0x1000004).then(value => {
                 expect(value.length > 0).assertTrue();
+                console.log('getMediaBase64_test_002 ' + value);
             })
         })
         done();
@@ -260,6 +282,7 @@ describe('resMgrTest', function () {
             mgr.getPluralString(0x1000003, 1, (error, value) => {
                 expect(value !== null).assertTrue();
                 console.log('getPluralString_test_001 ' + value);
+                expect(value).assertEqual('1 test other');
             })
         })
         done();
@@ -275,6 +298,7 @@ describe('resMgrTest', function () {
             mgr.getPluralString(0x1000003, 1).then(value => {
                 expect(value !== null).assertTrue();
                 console.log('getPluralString_test_002 ' + value);
+                expect(value).assertEqual('1 test other');
             })
         })
         done();
@@ -287,10 +311,10 @@ describe('resMgrTest', function () {
     */
     it('getString_test_003', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getString(0x7000000, (err, value) => {
+            mgr.getString(0x1000001, (err, value) => {
                 expect(value !== null).assertTrue();
                 console.log('getString_test_003 ' + value);
-                expect(value).assertEqual('hello world!');
+                expect(value).assertEqual('JS_Phone_Empty Feature Ability');
             })
         })
         done();
@@ -326,5 +350,93 @@ describe('resMgrTest', function () {
         done();
     })
 
+    /* *
+    * @tc.number SUB_GLOBAL_RESMGR_JS_1900
+    * @tc.name test release method
+    * @tc.desc get the release function
+    */
+    it('release_test_001', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getString(0x1000000, (err, value) => {
+                expect(value !== null).assertTrue();
+            })
+            mgr.release();
+        })
+        done();
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_RESMGR_JS_2000
+    * @tc.name test getRawFileDescriptor method in callback mode
+    * @tc.desc get the RawFileDescriptor in callback mode
+    */
+    it('getRawFileDescriptor_test_001', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getRawFileDescriptor('rawfiletest.xml', (error, rawfile) => {
+                let fdValue = rawfile.fd;
+                let offsetValue = rawfile.offset;
+                let lengthValue = rawfile.length;
+                expect(rawfile !== null).assertTrue();
+                console.log('getRawFileDescriptor_test_001--'
+                            +'fd:' + fdValue
+                            + ' offset:' + offsetValue
+                            + ' length:' + lengthValue);
+            })
+        })
+        done();
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_RESMGR_JS_2100
+    * @tc.name test getRawFileDescriptor method in promise mode
+    * @tc.desc get the RawFileDescriptor in promise mode
+    */
+    it('getRawFileDescriptor_test_002', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getRawFileDescriptor('rawfiletest.xml').then(rawfile => {
+                rawfile.fd = 2000;
+                rawfile.offset = 20;
+                rawfile.length = 200;
+                expect(rawfile !== null).assertTrue();
+                console.log('getRawFileDescriptor_test_002--' + rawfile);
+                console.log('getRawFileDescriptor_test_002--'
+                +'fd:' + rawfile.fd
+                + ' offset:' + rawfile.offset
+                + ' length:' + rawfile.length);
+            })
+        })
+        done();
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_RESMGR_JS_2200
+    * @tc.name test closeRawFileDescriptor method in callback mode
+    * @tc.desc get the closeRawFileDescriptor in callback mode
+    */
+    it('closeRawFileDescriptor_test_001', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.closeRawFileDescriptor('rawfiletest.xml', (error, value) => {
+                expect(error == null).assertTrue();
+                console.log('closeRawFileDescriptor_test_001--' + error);
+            })
+        })
+        done();
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_RESMGR_JS_2300
+    * @tc.name test closeRawFileDescriptor method in promise mode
+    * @tc.desc get the closeRawFileDescriptor in promise mode
+    */
+    it('closeRawFileDescriptor_test_002', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.closeRawFileDescriptor('rawfiletest.xml').then(value => {
+                expect(value !== null).assertTrue();
+                console.log('closeRawFileDescriptor_test_002--' + value);
+            })
+        })
+        done();
+    })
+
     console.log('*************end ResmgrTest*************');
-}) 
+})

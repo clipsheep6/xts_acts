@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,303 +12,739 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import mediaLibrary from '@ohos.multimedia.medialibrary';
+import featureAbility from '@ohos.ability.featureAbility';
+import fileio from '@ohos.fileio';
 
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+let fileKeyObj = mediaLibrary.FileKey;
+let fileType = mediaLibrary.MediaType.FILE;
+let imageType = mediaLibrary.MediaType.IMAGE;
+let videoType = mediaLibrary.MediaType.VIDEO;
+let audioType = mediaLibrary.MediaType.AUDIO;
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
-let fileKeyObj = mediaLibrary.FileKey
-let AlbumNoArgsfetchOp = {
-    selections: "",
-    selectionArgs: [],
+let imagesfetchOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+};
+let videosfetchOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [videoType.toString()],
+};
+let audiosfetchOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [audioType.toString()],
+};
+let filesfetchOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+};
+
+function checkAssetAttr(done, attr, testNum, asset, checkType) {
+    if (checkType && asset[attr] != checkType) {
+        console.info(`ASSET_CALLBACK getFileAssets ${testNum} failed`);
+        expect(false).assertTrue();
+        done();
+    } else if (asset[attr] == undefined) {
+        console.info(`ASSET_CALLBACK getFileAssets ${testNum} failed`);
+        expect(false).assertTrue();
+        done();
+    }
 }
-let AlbumHasArgsfetchOp = {
-    selections: fileKeyObj.PATH + " LIKE ? ",
-    selectionArgs: ["/data/media%"],
-}
-let type1 = mediaLibrary.MediaType.IMAGE
-let fileHasArgsfetchOp = {
-    selections: fileKeyObj.MEDIA_TYPE + "= ?",
-    selectionArgs: [type1.toString()],
-}
-let fileNoArgsfetchOp = {
-    selections: "",
-    selectionArgs: [],
-}
 
-describe('file.callback.test.js', function () {
-    var asset;
-    var assetMove;
-    var media = mediaLibrary.getMediaLibrary();
-    beforeAll(function () {
-        onsole.info('File Callback MediaLibraryTest: beforeAll.');
+let path;
+let presetAsset;
+let displayName;
+let id;
+let mediaType;
+let orientation = 0;
+describe('fileTestCallBack.test.js', function () {
+    var context = featureAbility.getContext();
+    console.info('getMediaLibrary IN');
+    var media = mediaLibrary.getMediaLibrary(context);
+    console.info('getMediaLibrary OUT');
+    beforeAll(function () {});
+    beforeEach(function () {});
+    afterEach(function () {});
+    afterAll(function () {});
 
-    })
-
-    beforeEach(function () {
-        console.info('File Callback MediaLibraryTest: beforeEach.');
-
-    })
-    afterEach(function () {
-        console.info('File Callback MediaLibraryTest: afterEach.');
-
-    })
-    afterAll(function () {
-        console.info('File Callback MediaLibraryTest: afterAll.');
-
-    })
-
-    /*
-     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001
-     * @tc.name      : Create an asset in predefined path
-     * @tc.desc      : Create an asset in predefined path
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 0
-     */
-
-    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001', 0, async function (done) {
-        let mediaType = mediaLibrary.MediaType.IMAGE;
-        let path = "Pictures/"
-        let pathMove = "Pictures/Move/"
-        asset = await media.createAsset(mediaType, "image00001.jpg", path);
-        assetMove = await media.createAsset(mediaType, "imageMove00001.jpg", pathMove);
-        media.createAsset(mediaType, "imageCallBack000001.jpg", path, createAssetCallBack);
-        done();
-    });
-
-    /*
-     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_MODIFY_ASSET_CALLBACK_002
-     * @tc.name      : Modify asset
-     * @tc.desc      : Modify asset
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 0
-     */
-
-    it('SUB_MEDIA_MEDIALIBRARY_MODIFY_ASSET_CALLBACK_002', 0, async function (done) {
-        asset.title = "image00003";
-        asset.relativePath = "Pictures/Move/";
-        asset.displayName = "image00002.jpg"
-        asset.commitModify(commitModifyCallBack);
-        done();
-    });
-
-    /*
-     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GET_ASSET_CALLBACK_003
-     * @tc.name      : Get assetList By NoArgsfetchOp
-     * @tc.desc      : Get assetList By NoArgsfetchOp
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 0
-     */
-
-    it('SUB_MEDIA_MEDIALIBRARY_GET_ASSET_CALLBACK_003', 0, async function (done) {
-        media.getFileAssets(fileNoArgsfetchOp, getFileAssetsCallBack);
-        done();
-    });
-
-    /*
-     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GET_ASSET_CALLBACK_004
-     * @tc.name      : Get assetList By HasArgsfetchOp
-     * @tc.desc      : Get assetList By HasArgsfetchOp
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 0
-     */
-
-    it('SUB_MEDIA_MEDIALIBRARY_GET_ASSET_CALLBACK_004', 0, async function (done) {
-        media.getFileAssets(fileHasArgsfetchOp, getFileAssetsCallBack);
-        done();
-    });
-
-    /*
-     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_CALLBACK_005
-     * @tc.name      : Open and Close asset
-     * @tc.desc      : Open and Close asset
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 0
-     */
-
-    it('SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_CALLBACK_005', 0, async function (done) {
-        asset.open('Rw', openCallBack);
-        done();
-    });
-
-    /*
-     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_FAV_AND_TRA_ASSET_CALLBACK_006
-     * @tc.name      : Favourite and Trash 
-     * @tc.desc      : Favourite and Trash
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 0
-     */
-
-    it('SUB_MEDIA_MEDIALIBRARY_FAV_AND_TRA_ASSET_CALLBACK_006', 0, async function (done) {
-        asset.isFavorite(isFavoriteCallBack);
-        asset.isTrash(isTrashCallBack);
-        done();
-    });
-
-    /*
-     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_DIR_ASSET_CALLBACK_007
-     * @tc.name      : Favourite and Trash 
-     * @tc.desc      : Favourite and Trash
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 0
-     */
-
-    it('SUB_MEDIA_MEDIALIBRARY_DIR_ASSET_CALLBACK_007', 0, async function (done) {
-        asset.isDirectory(isDirectoryCallBack);
-        done();
-    });
-
-
-    function getAllObjectInfo(data) {
-        if (data != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK id is ' + data.id);
-            console.info('MediaLibraryTest : ASSET_CALLBACK uri is ' + data.uri);
-            console.info('MediaLibraryTest : ASSET_CALLBACK displayName is ' + data.displayName);
-            console.info('MediaLibraryTest : ASSET_CALLBACK mediaType is ' + data.title);
-            console.info('MediaLibraryTest : ASSET_CALLBACK relativePath is ' + data.relativePath);
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK getAllObjectInfo no assets');
-        }
+    async function copyFile(fd1, fd2) {
+        let stat = await fileio.fstat(fd1);
+        let buf = new ArrayBuffer(stat.size);
+        await fileio.read(fd1, buf);
+        await fileio.write(fd2, buf);
     }
 
-    function createAssetCallBack(err, asset) {
-        if (asset != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK createAsset Successfull ' + asset.uri);
-            console.info('MediaLibraryTest : ASSET_CALLBACK createAsset : PASS');
-            media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE, getPublicDirectory);
-            done();
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK createAsset Unsuccessfull ' + err);
-            console.info('MediaLibraryTest : ASSET_CALLBACK createAsset : FAIL');
+    // ------------------------------- image type start ----------------------------
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_01
+     * @tc.name      : createAsset
+     * @tc.desc      : Insert two database records, read a unique identifier, expectations are not equal
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_01', 0, async function (done) {
+        try {
+            path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE);
+            const fileAssets = await media.getFileAssets(imagesfetchOp);
+            const dataList = await fileAssets.getAllObject();
+            const asset1 = dataList[0];
+            presetAsset = asset1;
+            media.createAsset(
+                imageType,
+                `${new Date().getTime()}.jpg`,
+                path,
+                async (err, creatAsset1) => {
+                    if(creatAsset1 == undefined) {
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        const fd1 = await asset1.open('r');
+                        const creatAssetFd1 = await creatAsset1.open('rw');
+                        await copyFile(fd1, creatAssetFd1);
+                        await creatAsset1.close(creatAssetFd1);
+                        await asset1.close(fd1);
+                        displayName = `${new Date().getTime()}.jpg`;
+                        const asset2 = dataList[1];
+                        const creatAsset2 = await media.createAsset(imageType, displayName, path);
+                        const fd2 = await asset2.open('r');
+                        const creatAssetFd2 = await creatAsset2.open('rw');
+                        await copyFile(fd2, creatAssetFd2);
+                        await creatAsset2.close(creatAssetFd2);
+                        await asset2.close(fd2);
+                        id = creatAsset2.id;
+                        mediaType = imageType;
+                        expect(creatAsset1.id != creatAsset2.id).assertTrue();
+                        done();
+                    }
+                }
+            );
+        } catch (error) {
+            console.info('ASSET_CALLBACK createAsset 001_01 failed, message = ' + error);
+            expect(false).assertTrue();
             done();
         }
+    });
 
-    }
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_02
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file displayName and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_02', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
 
-    function getPublicDirectory(err, publicDirectory) {
-        if (publicDirectory != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK publicDirectory = ' + publicDirectory);
-            media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE);
+            expect(asset.displayName == displayName).assertTrue();
             done();
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK publicDirectory Unsuccessfull = ' + err);
-            console.info('MediaLibraryTest : ASSET_CALLBACK publicDirectory : FAIL');
-            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 001_02 failed, message = ' + error);
         }
+    });
 
-    }
-
-    function commitModifyCallBack(err, commitModify) {
-        if (commitModify != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK commitModify success');
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_03
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file relativePath  and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_03', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.relativePath == path).assertTrue();
             done();
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK commitModify Unsuccessfull = ' + err);
-            console.info('MediaLibraryTest : ASSET_CALLBACK commitModify : FAIL');
-            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 001_03 failed, message = ' + error);
         }
+    });
 
-    }
-
-    function getFileAssetsCallBack(err, fetchFileResult) {
-        if (fetchFileResult != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
-            fetchFileResult.getAllObject((err1, data1) => {
-                if (data1 != undefined) {
-                    data1.forEach(getAllObjectInfo);
-                    console.info('MediaLibraryTest : getAllObject :PASS');
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_07
+     * @tc.name      : commitModify
+     * @tc.desc      : Access to the file dateModified and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_07', 0, async function (done) {
+        try {
+            const fileAssets = await media.getFileAssets(imagesfetchOp);
+            const dataList = await fileAssets.getAllObject();
+            const asset = dataList[0];
+            asset.title = `title_${new Date().getTime()}`;
+            asset.commitModify(async () => {
+                const id = asset.id;
+                const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+                const newAssets = await media.getFileAssets(idOP);
+                const newdataList = await newAssets.getAllObject();
+                const newAsset = newdataList[0];
+    
+                if (asset.dateModified != undefined) {
+                    if (newAsset.dateModified != asset.dateModified) {
+                        console.info('ASSET_CALLBACK getFileAssets 001_07 passed');
+                        expect(true).assertTrue();
+                        done();
+                    } else {
+                        console.info('ASSET_CALLBACK getFileAssets 001_07 failed');
+                        expect(false).assertTrue();
+                        done();
+                    }
+                } else if (newAsset.dateModified != undefined) {
+                    console.info('ASSET_CALLBACK getFileAssets 001_07 passed');
+                    expect(true).assertTrue();
+                    done();
+                } else {
+                    console.info('ASSET_CALLBACK getFileAssets 001_07 failed');
+                    expect(false).assertTrue();
                     done();
                 }
-                console.info('MediaLibraryTest : getFileAssets :No data');
-                done();
             });
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK fetchFileResult Unsuccessfull = ' + err);
-            console.info('MediaLibraryTest : ASSET_CALLBACK fetchFileResult : FAIL');
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 001_07 failed, message = ' + error);
+        }
+    });
+
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_08
+     * @tc.name      : createAsset
+     * @tc.desc      : Insert a picture record, the retrieve attributes for images
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_08', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.mediaType == mediaType).assertTrue();
+            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK createAsset 001_08 failed, message = ' + error);
+        }
+    });
+
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_11
+     * @tc.name      : createAsset
+     * @tc.desc      : Get the orientaion attribute
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_11', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.orientation == orientation).assertTrue();
+            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK createAsset 001_11 failed, message = ' + error);
+        }
+    });
+
+    // -------------------------------  image type end -----------------------------
+
+    // ------------------------------- video type start ----------------------------
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_01
+     * @tc.name      : createAsset
+     * @tc.desc      : Insert two database records, read a unique identifier, expectations are not equal
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_01', 0, async function (done) {
+        try {
+            path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
+            const fileAssets = await media.getFileAssets(videosfetchOp);
+            const dataList = await fileAssets.getAllObject();
+            const asset1 = dataList[0];
+            media.createAsset(
+                videoType,
+                `${new Date().getTime()}.mp4`,
+                path,
+                async (err, creatAsset1) => {
+                    if(creatAsset1 == undefined) {
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        const fd1 = await asset1.open('r');
+                        const creatAssetFd1 = await creatAsset1.open('rw');
+                        await copyFile(fd1, creatAssetFd1);
+                        await creatAsset1.close(creatAssetFd1);
+                        await asset1.close(fd1);
+                        displayName = `${new Date().getTime()}.mp4`;
+                        const asset2 = dataList[0];
+                        const creatAsset2 = await media.createAsset(videoType, displayName, path);
+                        const fd2 = await asset2.open('r');
+                        const creatAssetFd2 = await creatAsset2.open('rw');
+                        await copyFile(fd2, creatAssetFd2);
+                        await creatAsset2.close(creatAssetFd2);
+                        await asset2.close(fd2);
+                        id = creatAsset2.id;
+                        mediaType = videoType;
+
+                        expect(creatAsset1.id != creatAsset2.id).assertTrue();
+                        done();
+                    }
+                }
+            );
+        } catch (error) {
+            console.info('ASSET_CALLBACK createAsset 002_01 failed' + error);
+            expect(false).assertTrue();
             done();
         }
-    }
+    });
 
-    function openCallBack(openError, fd) {
-        if (openError != undefined) {
-            console.info('MediaLibraryTest : open : FAIL ' + openError.message);
-            console.info('MediaLibraryTest : ASSET_CALLBACK : FAIL');
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_02
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file displayName and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_02', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+
+            expect(asset.displayName == displayName).assertTrue();
+            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 002_02 failed, message = ' + error);
         }
-        console.info("==========================asset.open success=======================>");
-        console.debug("open success fd = " + JSON.stringify(fd));
-        console.info("==========================asset.close begin=======================>");
-        asset.close(fd, closeCallBack);
-        console.info("==========================asset.close end=======================>");
+    });
 
-    }
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_03
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file relativePath  and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_03', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
 
-    function closeCallBack(closeErr) {
-        if (closeErr != undefined) {
-            console.info('MediaLibraryTest : close : FAIL ' + closeErr.message);
-            console.info('MediaLibraryTest : ASSET_CALLBACK : FAIL');
+            expect(asset.relativePath == path).assertTrue();
+            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 002_03 failed, message = ' + error);
         }
-        console.info("==========================asset.close success=======================>");
-    }
+    });
 
-    function isDirectoryCallBack(err, isDirectory) {
-        if (isDirectory != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isDirectory = ' + isDirectory);
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_07
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file dateModified and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_07', 0, async function (done) {
+        try {
+            const fileAssets = await media.getFileAssets(videosfetchOp);
+            const dataList = await fileAssets.getAllObject();
+            const asset = dataList[0];
+            asset.title = `title_${new Date().getTime()}`;
+            asset.commitModify(async () => {
+                const id = asset.id;
+                const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+                const newAssets = await media.getFileAssets(idOP);
+                const newdataList = await newAssets.getAllObject();
+                const newAsset = newdataList[0];
+    
+                if (asset.dateModified != undefined) {
+                    if (newAsset.dateModified != asset.dateModified) {
+                        console.info('ASSET_CALLBACK getFileAssets 002_07 passed');
+                        expect(true).assertTrue();
+                        done();
+                    } else {
+                        console.info('ASSET_CALLBACK getFileAssets 002_07 failed');
+                        expect(false).assertTrue();
+                        done();
+                    }
+                } else if (newAsset.dateModified != undefined) {
+                    console.info('ASSET_CALLBACK getFileAssets 002_07 passed');
+                    expect(true).assertTrue();
+                    done();
+                } else {
+                    console.info('ASSET_CALLBACK getFileAssets 002_07 failed');
+                    expect(false).assertTrue();
+                    done();
+                }
+            });
+         } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 002_07 failed, message = ' + error);
+        }
+    });
+
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_08
+     * @tc.name      : createAsset
+     * @tc.desc      : Insert a picture record, the retrieve attributes for images
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_08', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.mediaType == mediaType).assertTrue();
             done();
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK isDirectory Unsuccessfull = ' + err);
-            console.info('MediaLibraryTest : ASSET_CALLBACK isDirectory : FAIL');
+        } catch (error) {
+            console.info('ASSET_CALLBACK createAsset 002_08 failed, message = ' + error);
+        }
+    });
+
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_11
+     * @tc.name      : createAsset
+     * @tc.desc      : Get the orientaion attribute
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_11', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.orientation == orientation).assertTrue();
+            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK createAsset 002_11 failed, message = ' + error);
+        }
+    });
+    // -------------------------------  video type end -----------------------------
+
+    // ------------------------------- audio type start ----------------------------
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_01
+     * @tc.name      : createAsset
+     * @tc.desc      : Insert two database records, read a unique identifier, expectations are not equal
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_01', 0, async function (done) {
+        try {
+            path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
+            const fileAssets = await media.getFileAssets(audiosfetchOp);
+            const dataList = await fileAssets.getAllObject();
+            const asset1 = dataList[0];
+            media.createAsset(
+                audioType,
+                `${new Date().getTime()}.mp3`,
+                path,
+                async (err, creatAsset1) => {
+                    const fd1 = await asset1.open('r');
+                    const creatAssetFd1 = await creatAsset1.open('rw');
+                    await copyFile(fd1, creatAssetFd1);
+                    await creatAsset1.close(creatAssetFd1);
+                    await asset1.close(fd1);
+                    displayName = `${new Date().getTime()}.mp3`;
+                    const asset2 = dataList[0];
+                    const creatAsset2 = await media.createAsset(audioType, displayName, path);
+                    const fd2 = await asset2.open('r');
+                    const creatAssetFd2 = await creatAsset2.open('rw');
+                    await copyFile(fd2, creatAssetFd2);
+                    await creatAsset2.close(creatAssetFd2);
+                    await asset2.close(fd2);
+                    id = creatAsset2.id;
+                    mediaType = audioType;
+                    expect(creatAsset1.id != creatAsset2.id).assertTrue();
+                    done();
+                }
+            );
+            
+        } catch (error) {
+            console.info('ASSET_CALLBACK createAsset 003_01 failed');
+            expect(false).assertTrue();
             done();
         }
+    });
 
-    }
-    function favoriteCallBack(err, favorite) {
-        console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK favorite');
-        done();
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_02
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file name and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_02', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.displayName == displayName).assertTrue();
 
-    }
-    function isFavoriteCallBack(err, isFavorite) {
-        if (isFavorite != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isFavorite = ' + isFavorite);
-            asset.favorite(true, favoriteCallBack);
             done();
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK isFavorite Unsuccessfull = ' + err);
-            console.info('MediaLibraryTest : ASSET_CALLBACK isFavorite : FAIL');
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 003_02 failed, message = ' + error);
+        }
+    });
+
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_03
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file relativePath  and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_03', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.relativePath == path).assertTrue();
+            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 003_03 failed, message = ' + error);
+        }
+    });
+
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_07
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file dateModified and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_07', 0, async function (done) {
+        try {
+            const fileAssets = await media.getFileAssets(audiosfetchOp);
+            const dataList = await fileAssets.getAllObject();
+            const asset = dataList[0];
+            asset.title = `title_${new Date().getTime()}`;
+            asset.commitModify(async () => {
+                const id = asset.id;
+                const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+                const newAssets = await media.getFileAssets(idOP);
+                const newdataList = await newAssets.getAllObject();
+                const newAsset = newdataList[0];
+    
+                if (asset.dateModified != undefined) {
+                    if (newAsset.dateModified != asset.dateModified) {
+                        console.info('ASSET_CALLBACK getFileAssets 003_07 passed');
+                        expect(true).assertTrue();
+                        done();
+                    } else {
+                        console.info('ASSET_CALLBACK getFileAssets 003_07 failed');
+                        expect(false).assertTrue();
+                        done();
+                    }
+                } else if (newAsset.dateModified != undefined) {
+                    console.info('ASSET_CALLBACK getFileAssets 003_07 passed');
+                    expect(true).assertTrue();
+                    done();
+                } else {
+                    console.info('ASSET_CALLBACK getFileAssets 003_07 failed');
+                    expect(false).assertTrue();
+                    done();
+                }
+            });
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 003_07 failed, message = ' + error);
+        }
+    });
+
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_08
+     * @tc.name      : createAsset
+     * @tc.desc      : Insert a picture record, the retrieve attributes for images
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_08', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.mediaType == mediaType).assertTrue();
+            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK createAsset 003_08 failed, message = ' + error);
+        }
+    });
+
+    // -------------------------------  audio type end -----------------------------
+
+    // ------------------------------ file type start ----------------------------
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_01
+     * @tc.name      : createAsset
+     * @tc.desc      : Insert two database records, read a unique identifier, expectations are not equal
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_01', 0, async function (done) {
+        try {
+            path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_DOWNLOAD);
+            const fileAssets = await media.getFileAssets(filesfetchOp);
+            const dataList = await fileAssets.getAllObject();
+            const asset1 = dataList[0];
+            media.createAsset(
+                fileType,
+                `${new Date().getTime()}.bat`,
+                path,
+                async (err, creatAsset1) => {
+                    const fd1 = await asset1.open('r');
+                    const creatAssetFd1 = await creatAsset1.open('rw');
+                    await copyFile(fd1, creatAssetFd1);
+                    await creatAsset1.close(creatAssetFd1);
+                    await asset1.close(fd1);
+                    displayName = `${new Date().getTime()}.bat`;
+                    const asset2 = dataList[0];
+                    const creatAsset2 = await media.createAsset(fileType, displayName, path);
+                    const fd2 = await asset2.open('r');
+                    const creatAssetFd2 = await creatAsset2.open('rw');
+                    await copyFile(fd2, creatAssetFd2);
+                    await creatAsset2.close(creatAssetFd2);
+                    await asset2.close(fd2);
+                    id = creatAsset2.id;
+                    mediaType = fileType;
+                    expect(creatAsset1.id != creatAsset2.id).assertTrue();
+                    done();
+                }
+            );
+        } catch (error) {
+            console.info('ASSET_CALLBACK createAsset 004_01 failed' + error);
+            expect(false).assertTrue();
             done();
         }
+    });
 
-    }
-    function trashCallBack(err, trash) {
-        console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK trash');
-        done();
-    }
-    function isTrashCallBack(err, isTrash) {
-        if (isTrash != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isTrash = ' + isTrash);
-            asset.trash(true, trashCallBack);
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_02
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file name and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_02', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.displayName == displayName).assertTrue();
             done();
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessfull = ' + err);
-            console.info('MediaLibraryTest : ASSET_CALLBACK isTrash : FAIL');
-            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 004_02 failed, message = ' + error);
         }
-    }
-    function deleteAssetCallBack(err, deleteAsset) {
-        if (deleteAsset != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK deleteAssetCode = ' + deleteAsset);
-            console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK deleteAssetCode success');
-            done();
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK deleteAsset Unsuccessfull = ' + err);
-            console.info('MediaLibraryTest : ASSET_CALLBACK deleteAsset : FAIL');
-            done();
-        }
-    }
+    });
 
-})
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_03
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file relativePath  and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_03', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.relativePath == path).assertTrue();
+            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 004_03 failed, message = ' + error);
+        }
+    });
+
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_07
+     * @tc.name      : getFileAssets
+     * @tc.desc      : Access to the file dateModified and validation is not undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_07', 0, async function (done) {
+        try {
+            const fileAssets = await media.getFileAssets(filesfetchOp);
+            const dataList = await fileAssets.getAllObject();
+            const asset = dataList[0];
+            asset.title = `title_${new Date().getTime()}`;
+            asset.commitModify(async ()=> {
+                const id = asset.id;
+                const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+                const newAssets = await media.getFileAssets(idOP);
+                const newdataList = await newAssets.getAllObject();
+                const newAsset = newdataList[0];
+    
+                if (asset.dateModified != undefined) {
+                    if (newAsset.dateModified != asset.dateModified) {
+                        console.info('ASSET_CALLBACK getFileAssets 004_07 passed');
+                        expect(true).assertTrue();
+                        done();
+                    } else {
+                        console.info('ASSET_CALLBACK getFileAssets 004_07 failed');
+                        expect(false).assertTrue();
+                        done();
+                    }
+                } else if (newAsset.dateModified != undefined) {
+                    console.info('ASSET_CALLBACK getFileAssets 004_07 passed');
+                    expect(true).assertTrue();
+                    done();
+                } else {
+                    console.info('ASSET_CALLBACK getFileAssets 004_07 failed');
+                    expect(false).assertTrue();
+                    done();
+                }
+            });
+        } catch (error) {
+            console.info('ASSET_CALLBACK getFileAssets 004_07 failed, message = ' + error);
+        }
+    });
+
+    /**
+     * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_08
+     * @tc.name      : createAsset
+     * @tc.desc      : Insert a picture record, the retrieve attributes for images
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_08', 0, async function (done) {
+        try {
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+            const fileAssets = await media.getFileAssets(idOP);
+            const asset = await fileAssets.getFirstObject();
+            expect(asset.mediaType == mediaType).assertTrue();
+            done();
+        } catch (error) {
+            console.info('ASSET_CALLBACK createAsset 004_08 failed, message = ' + error);
+        }
+    });
+
+    // -------------------------------  file type end -----------------------------
+});

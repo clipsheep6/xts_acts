@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,14 +17,27 @@ import worker from "@ohos.worker"
 const parentPort = worker.parentPort;
 
 var ss = undefined;
+var flag = false;
 
 parentPort.onmessage = function(e) {
-  var data = e.data;
+  let data = e.data;
   switch(data.type) {
     case "new":
       ss = new worker.Worker("workers/worker_0091.js");
       console.log("worker:: workerxx ");
+      ss.onexit = function() {
+        flag = true;
+      }
       parentPort.postMessage(ss != null);
+      break;
+    case "wait":
+      if (flag) {
+        parentPort.postMessage("terminate");
+      }
+      break;
+    case "terminate":
+      flag = false;
+      ss.terminate();
       break;
     default:
       break;

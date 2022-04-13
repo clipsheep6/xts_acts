@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,12 +29,20 @@ parentPort.onmessage = function(e) {
         backValue = ee.data;
         flag = true;
       }
+      ss.onexit = function() {
+        backValue = "terminate";
+        flag = true;
+      }
       ss.postMessage(data.value);
       break;
     case "wait":
       if (flag) {
         parentPort.postMessage(backValue);
       }
+      break;
+    case "terminate":
+      flag = false;
+      ss.terminate();
       break;
     default:
       break;

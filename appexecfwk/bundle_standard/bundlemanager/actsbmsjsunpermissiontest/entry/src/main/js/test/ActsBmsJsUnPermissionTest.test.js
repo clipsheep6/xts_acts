@@ -19,12 +19,18 @@ import { describe, it, expect } from 'deccjsunit/index'
 
 const STATUS_INSTALL_PERMISSION_DENIED = 0X44;
 const STATUS_UNINSTALL_PERMISSION_DENIED = 0X45;
-
 const LAUNCHER_BUNDLE_NAME = 'com.ohos.launcher';
 const LAUNCHER_MAIN_ABILITY = 'com.ohos.launcher.MainAbility';
 const DEFAULT_FLAG = 0;
 const DEFAULT_USER_ID = 100;
 const INVALID_CODE = 1;
+const BUNDLE_PATH = ['/data/test/bmsJstest1.hap'];
+const BUNDLE_NAME1 = 'com.example.myapplication1';
+let installParam = {
+    userId: 100,
+    installFlag: 1,
+    isKeepData: false
+};
 
 describe('ActsBmsJsUnPermissionTest', function () {
 
@@ -34,20 +40,14 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test js install
      */
     it('bms_JsInstallPermissionTest_0100', 0, async function (done) {
-        console.info('bms_JsInstallPermissionTest start');
-        var bundlePath = ['/data/test/bmsJstest1.hap'];
         let installer = await bundle.getBundleInstaller();
-        installer.install(bundlePath, {
-            userId: 100,
-            installFlag: 1,
-            isKeepData: false
-        }, OnReceiveInstallEvent);
+        installer.install(BUNDLE_PATH, installParam, OnReceiveInstallEvent);
         async function OnReceiveInstallEvent(err, data) {
             expect(err.code).assertEqual(-1);
             expect(data.status).assertEqual(STATUS_INSTALL_PERMISSION_DENIED);
             expect(data.statusMessage).assertEqual("STATUS_INSTALL_PERMISSION_DENIED");
             done();
-        };
+        }
     });
 
     /*
@@ -56,20 +56,14 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test js uninstall
      */
     it('bms_JsUnInstallPermissionTest_0100', 0, async function (done) {
-        console.info('bms_JsUnInstallPermissionTest start');
-        var bundleName = 'com.example.myapplication1';
         let installer = await bundle.getBundleInstaller();
-        installer.uninstall(bundleName, {
-            userId: 100,
-            installFlag: 1,
-            isKeepData: false
-        }, OnReceiveUnInstallEvent);
+        installer.uninstall(BUNDLE_NAME1, installParam, OnReceiveUnInstallEvent);
         async function OnReceiveUnInstallEvent(err, data) {
             expect(err.code).assertEqual(-1);
             expect(data.status).assertEqual(STATUS_UNINSTALL_PERMISSION_DENIED);
             expect(data.statusMessage).assertEqual("STATUS_UNINSTALL_PERMISSION_DENIED");
             done();
-        };
+        }
     });
 
     /*
@@ -78,8 +72,7 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test getApplicationInfo
      */
     it('getApplicationInfoTest_100', 0, async function (done) {
-        console.debug('getApplicationInfoTest_100 start');
-        bundle.getApplicationInfo(LAUNCHER_BUNDLE_NAME, DEFAULT_FLAG, DEFAULT_USER_ID).then(data => {
+        await bundle.getApplicationInfo(LAUNCHER_BUNDLE_NAME, DEFAULT_FLAG, DEFAULT_USER_ID).then(data => {
             expect().assertFail();
             done();
         }).catch(err => {
@@ -94,8 +87,7 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test getAllApplicationInfo
      */
     it('getAllApplicationInfoTest_100', 0, async function (done) {
-        console.debug('getAllApplicationInfoTest_100 start');
-        bundle.getAllApplicationInfo(DEFAULT_FLAG, DEFAULT_USER_ID).then(data => {
+        await bundle.getAllApplicationInfo(DEFAULT_FLAG, DEFAULT_USER_ID).then(data => {
             expect().assertFail();
             done();
         }).catch(err => {
@@ -110,8 +102,7 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test getBundleInfo
      */
     it('getBundleInfoTest_100', 0, async function (done) {
-        console.debug('getBundleInfoTest_100 start');
-        bundle.getBundleInfo(LAUNCHER_BUNDLE_NAME, DEFAULT_USER_ID).then(data => {
+        await bundle.getBundleInfo(LAUNCHER_BUNDLE_NAME, DEFAULT_USER_ID).then(data => {
             expect().assertFail();
             done();
         }).catch(err => {
@@ -126,8 +117,7 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test getAllBundleInfo
      */
     it('getAllBundleInfoTest_100', 0, async function (done) {
-        console.debug('getAllBundleInfoTest_100 start');
-        bundle.getAllBundleInfo(DEFAULT_FLAG).then(data => {
+        await bundle.getAllBundleInfo(DEFAULT_FLAG).then(data => {
             expect().assertFail();
             done();
         }).catch(err => {
@@ -142,10 +132,9 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test queryAbilityByWant
      */
     it('queryAbilityByWantTest_100', 0, async function (done) {
-        console.debug('queryAbilityByWantTest_100 start');
-        bundle.queryAbilityByWant({
-            bundleName : LAUNCHER_BUNDLE_NAME,
-            abilityName : LAUNCHER_MAIN_ABILITY
+        await bundle.queryAbilityByWant({
+            bundleName: LAUNCHER_BUNDLE_NAME,
+            abilityName: LAUNCHER_MAIN_ABILITY
         }, DEFAULT_FLAG, DEFAULT_USER_ID).then(data => {
             expect().assertFail();
             done();
@@ -161,24 +150,7 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test getLaunchWantForBundle
      */
     it('getLaunchWantForBundleTest_100', 0, async function (done) {
-        console.debug('getLaunchWantForBundleTest_100 start');
-        bundle.getLaunchWantForBundle(LAUNCHER_BUNDLE_NAME).then(data => {
-            expect().assertFail();
-            done();
-        }).catch(err => {
-            expect(err).assertEqual(INVALID_CODE);
-            done();
-        });
-    });
-
-    /*
-     * @tc.number: getBundleArchiveInfoTest_100
-     * @tc.name: test getBundleArchiveInfo
-     * @tc.desc: test getBundleArchiveInfo
-     */
-    it('getBundleArchiveInfoTest_100', 0, async function (done) {
-        console.debug('getBundleArchiveInfoTest_100 start');
-        bundle.getBundleArchiveInfo("/system/app/Launcher.hap", DEFAULT_FLAG).then(data => {
+        await bundle.getLaunchWantForBundle(LAUNCHER_BUNDLE_NAME).then(data => {
             expect().assertFail();
             done();
         }).catch(err => {
@@ -193,8 +165,7 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test setApplicationEnabled
      */
     it('setApplicationEnabledTest_100', 0, async function (done) {
-        console.debug('setApplicationEnabledTest_100 start');
-        bundle.setApplicationEnabled(LAUNCHER_BUNDLE_NAME, false).then(data => {
+        await bundle.setApplicationEnabled(LAUNCHER_BUNDLE_NAME, false).then(data => {
             expect().assertFail();
             done();
         }).catch(err => {
@@ -209,12 +180,11 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test setAbilityEnabled
      */
     it('setAbilityEnabledTest_100', 0, async function (done) {
-        console.debug('setAbilityEnabledTest_100 start');
         let abilityInfo = {
-            bundleName : LAUNCHER_BUNDLE_NAME,
-            name : LAUNCHER_MAIN_ABILITY
+            bundleName: LAUNCHER_BUNDLE_NAME,
+            name: LAUNCHER_MAIN_ABILITY
         };
-        bundle.setAbilityEnabled(abilityInfo, false).then(data => {
+        await bundle.setAbilityEnabled(abilityInfo, false).then(data => {
             expect().assertFail();
             done();
         }).catch(err => {
@@ -229,8 +199,7 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test getLauncherAbilityInfos
      */
     it('getLauncherAbilityInfosTest_100', 0, async function (done) {
-        console.debug('getLauncherAbilityInfosTest_100 start');
-        innerBundleManager.getLauncherAbilityInfos(LAUNCHER_BUNDLE_NAME, DEFAULT_USER_ID).then(data => {
+        await innerBundleManager.getLauncherAbilityInfos(LAUNCHER_BUNDLE_NAME, DEFAULT_USER_ID).then(data => {
             expect().assertFail();
             done();
         }).catch(err => {
@@ -245,8 +214,7 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test getAllLauncherAbilityInfos
      */
     it('getAllLauncherAbilityInfosTest_100', 0, async function (done) {
-        console.debug('getAllLauncherAbilityInfosTest_100 start');
-        innerBundleManager.getAllLauncherAbilityInfos(DEFAULT_USER_ID).then(data => {
+        await innerBundleManager.getAllLauncherAbilityInfos(DEFAULT_USER_ID).then(data => {
             expect().assertFail();
             done();
         }).catch(err => {
@@ -261,8 +229,40 @@ describe('ActsBmsJsUnPermissionTest', function () {
      * @tc.desc: test getShortcutInfos
      */
     it('getShortcutInfosTest_100', 0, async function (done) {
-        console.debug('getShortcutInfosTest_100 start');
-        innerBundleManager.getShortcutInfos(LAUNCHER_BUNDLE_NAME).then(data => {
+        await innerBundleManager.getShortcutInfos(LAUNCHER_BUNDLE_NAME).then(data => {
+            expect().assertFail();
+            done();
+        }).catch(err => {
+            expect(err).assertEqual(INVALID_CODE);
+            done();
+        });
+    });
+
+    /*
+     * @tc.number: getAbilityLabelTest_100
+     * @tc.name: getAbilityLabel : Gets the specified ability label
+     * @tc.desc: Check the return value of the interface (by promise)
+     * @tc.level   0
+     */
+    it('getAbilityLabelTest_100', 0, async function (done) {
+        await bundle.getAbilityLabel(LAUNCHER_BUNDLE_NAME, LAUNCHER_MAIN_ABILITY)
+            .then((data) => {
+                expect().assertFail();
+                done();
+            })
+            .catch((error) => {
+                expect(error).assertEqual(INVALID_CODE);
+                done();
+            });
+    });
+
+    /*
+     * @tc.number: getAbilityInfo_100
+     * @tc.name: test getAbilityInfo
+     * @tc.desc: test getAbilityInfo
+     */
+    it('getAbilityInfo_100', 0, async function (done) {
+        await bundle.getAbilityInfo(LAUNCHER_BUNDLE_NAME, LAUNCHER_MAIN_ABILITY).then(data => {
             expect().assertFail();
             done();
         }).catch(err => {

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,14 +15,14 @@
 
 
 import {describe, it, expect} from 'deccjsunit/index'
-import userAuth from '@ohos.userauth'
-import userIDM from '@ohos.useridm'
-import pinAuth from '@ohos.pinauth'
+import userAuth from '@ohos.userAuth'
+import userIDM from '@ohos.userIDM'
+import pinAuth from '@ohos.pinAuth'
 import * as publicFC from './Publicfunction-n'
 
-let UserIDM = userIDM.constructor()
-let PinAuth = pinAuth.constructor()
-let UserAuth = userAuth.constructor()
+let UserIDM = new userIDM.UserIdentityManager();
+let PinAuth = new pinAuth.PINAuth();
+let UserAuth = new userAuth.UserAuth();
 
 let AuthType = {
     PIN: 1,
@@ -126,7 +126,15 @@ function sleep(ms) {
 }
 
 describe('userauthTest', function () {
-    it('Security_IAM_PIN_AddCred_Func_0101', 0, async function (done) {
+
+    /*
+        * @tc.number    : Security_IAM_PIN_AddCred_DFX_0102
+        * @tc.name      : Can't register two inputer.
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 3
+    */
+    it('Security_IAM_PIN_AddCred_Func_0101', 3, async function (done) {
         try {
             let registerresult = publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
             expect(true).assertEqual(registerresult);
@@ -140,10 +148,16 @@ describe('userauthTest', function () {
             console.log("testFace Security_IAM_PIN_AddCred_Func_0101 fail " + e);
             expect(null).assertFail();
         }
-
     })
 
-    it('Security_IAM_PIN_AddCred_Func_0102', 1, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_PIN_AddCred_DFX_0102
+        * @tc.name      : Add, auth, authuser, delete six_pin.
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+    */
+    it('Security_IAM_PIN_AddCred_Func_0102', 2, async function (done) {
         console.info('testFace Security_IAM_PIN_AddCred_Func_0102 start');
         try {
             let challenge;
@@ -195,7 +209,14 @@ describe('userauthTest', function () {
         }
     })
 
-    it('Security_IAM_PIN_AddCred_Func_0103', 1, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_PIN_AddCred_Func_0103
+        * @tc.name      : Add, auth, authuser, delete num_pin.
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+    */
+    it('Security_IAM_PIN_AddCred_Func_0103', 2, async function (done) {
         console.info('testFace Security_IAM_PIN_AddCred_Func_0103 start');
         try {
             let challenge;
@@ -246,7 +267,14 @@ describe('userauthTest', function () {
             expect(null).assertFail();
         }
     })
-
+	
+    /*
+        * @tc.number    : Security_IAM_PIN_AddCred_Func_0104
+        * @tc.name      : Add, auth, authuser, delete mix_pin.
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+    */
     it('Security_IAM_PIN_AddCred_Func_0104', 1, async function (done) {
         console.info('testFace Security_IAM_PIN_AddCred_Func_0104 start');
         try {
@@ -299,117 +327,81 @@ describe('userauthTest', function () {
             expect(null).assertFail();
         }
     })
-    //
-    //    it('Security_IAM_PIN_AddCred_Func_0105', , async function (done) {
-    //        console.info('testFace Security_IAM_PIN_AddCred_Func_0105 start');
-    //        try {
-    //            publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_MIXED, Inputerdata);
-    //            let challenge;
-    //            publicFC.publicOpenSession(UserIDM, function (data) {
-    //                challenge = data;
-    //                console.info("testFace Security_IAM_PIN_AddCred_Func_0105 challenge" + challenge);
-    //                let result1 = null;
-    //                publicFC.publicaddCredential(UserIDM, CredentialInfopinmix, async function (data) {
-    //                    result1 = data.addCredresult;
-    //                    console.info("testFace Security_IAM_PIN_AddCred_Func_0105 result1" + result1);
-    ////                    await sleep(3000);
-    //                }, function (data) {
-    //                });
-    //                let cancelresult = publicFC.publiccancel(UserIDM, challenge);
-    //                console.info("testFace Security_IAM_PIN_AddCred_Func_0105 publiccancel = " + cancelresult);
-    //                expect(ResultCode.SUCCESS).assertEqual(cancelresult);
-    ////                expect(ResultCode.CANCELED).assertEqual(result1);
-    //                publicFC.publicCloseSession(UserIDM, function (data) {
-    //                    console.info("testFace Security_IAM_PIN_AddCred_Func_0105 closesession = " + data);
-    //                    publicFC.publicunRegisterInputer(PinAuth, function (data) {
-    //                        console.info("testFace Security_IAM_PIN_AddCred_Func_0105 unRegist = " + data);
-    //                        done();
-    //                    })
-    //                })
-    //            })
-    //        } catch (e) {
-    //            console.log("Security_IAM_PIN_AddCred_Func_0105 fail " + e);
-    //            expect(null).assertFail();
-    //        }
-    //    })
+    
+    /*
+        * @tc.number    : Security_IAM_PIN_AddCred_Func_0105
+        * @tc.name      : Cancel add pin.
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 3
+    */
+        it('Security_IAM_PIN_AddCred_Func_0105', 3, async function (done) {
+            console.info('testFace Security_IAM_PIN_AddCred_Func_0105 start');
+            try {
+                publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_MIXED, Inputerdata);
+                let challenge;
+                let cancelresult;
+                let token;
+                console.info("testFace Security_IAM_PIN_AddCred_Func_0105 cancelresult" + cancelresult);
+                publicFC.publicOpenSession(UserIDM, function (data) {
+                    challenge = data;
+                    console.info("testFace Security_IAM_PIN_AddCred_Func_0105 challenge" + challenge);
+                    let result1 = null;
+                    publicFC.publicaddCredential(UserIDM, CredentialInfopinmix, async function (data) {
+                        result1 = data.addCredresult;
+                        cancelresult = publicFC.publiccancel(UserIDM, challenge);
+                        console.info("testFace Security_IAM_PIN_AddCred_Func_0105 result1" + result1);
+                        if(cancelresult == 0){
+                            expect(ResultCode.CANCELED).assertEqual(result1);
+                            publicFC.publicCloseSession(UserIDM, function (data) {
+                                console.info("testFace Security_IAM_PIN_AddCred_Func_0105 closesession = " + data);
+                                publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                    console.info("testFace Security_IAM_PIN_AddCred_Func_0105 unRegist = " + data);
+                                    done();
+                                })
+                            })
+                        }else if(cancelresult == 1){
+                            expect(ResultCode.SUCCESS).assertEqual(result1);
+                            publicFC.publicauth(UserAuth, challenge, AuthType.PIN, AuthTurstLevel.ATL1,
+                                function (data) {
+                                    console.info('testFace PIN_AddCred_Func_0105 publicauth'+ JSON.stringify(data));
+                                    token = data.authextr.token;
+                                    console.info("testFace Security_IAM_PIN_AddCred_Func_0105 token = " + token);
+                                    publicFC.publicdelUser(UserIDM, token, function (data) {
+                                        console.info("testFace Security_IAM_PIN_AddCred_Func_0105 publicdelUser");
+                                        let deluserresult = data.delUserresult;
+                                        console.info("testFace PIN_AddCred_Func_0105 deluserresult="+ deluserresult);
+                                        publicFC.publicCloseSession(UserIDM, function (data) {
+                                            console.info("testFace PIN_AddCred_Func_0105 CloseSession = " + data);
+                                            publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                                console.info("testFace PIN_AddCred_Func_0105 unRegister= " + data);
+                                                done();
+                                            })
+                                        })
+                                    }, function (data) {
+                                    })
+                                }, function (data) {
+                                })
+                        }
+                    }, function (data) {
+                    });
+                    console.info("testFace Security_IAM_PIN_AddCred_Func_0105 publiccancel = " + cancelresult);
+                })
+            } catch (e) {
+                console.log("Security_IAM_PIN_AddCred_Func_0105 fail " + e);
+                expect(null).assertFail();
+            }
+        })
 
-    //    it('Security_IAM_PIN_AddCred_Func_0106', 0, async function (done) {
-    //        try {
-    //            publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_MIXED, Inputerdata)
-    //            let challenge;
-    //            publicFC.publicOpenSession(UserIDM, function (data) {
-    //                challenge = data;
-    //                console.info("testFace Security_IAM_PIN_AddCred_Func_0106 challenge" + challenge);
-    //                let result2 = null;
-    //                publicFC.publicaddCredential(UserIDM, CredentialInfopinmix, async function (data) {
-    //                    result2 = data.addCredresult;
-    //                    console.info("testFace Security_IAM_PIN_AddCred_Func_0106 result2" + result2);
-    //                    await sleep(8000);
-    //                    let cancelresult = publicFC.publiccancel(UserIDM, challenge);
-    //                    expect(ResultCode.SUCCESS).assertEqual(cancelresult);
-    //                    expect(ResultCode.CANCELED).assertEqual(result2);
-    //                    publicFC.publicCloseSession(UserIDM, function (data) {
-    //                        console.info("testFace Security_IAM_PIN_AddCred_Func_0106 closesession = " + data);
-    //                        publicFC.publicunRegisterInputer(PinAuth, function (data) {
-    //                            console.info("testFace Security_IAM_PIN_AddCred_Func_0106 unRegist = " + data);
-    //                            done();
-    //                        })
-    //                    })
-    //                }, function (data) {
-    //                })
-    //            })
-    //        } catch (e) {
-    //            console.log("testFace Security_IAM_PIN_AddCred_Func_0106 fail " + e);
-    //            expect(null).assertFail();
-    //        }
-    //    })
-
-    //    it('Security_IAM_PIN_AddCred_Func_0107', 0, async function (done) {
-    //        console.info('testFace testaddCredentialcancel101 start');
-    //        try {
-    //
-    //            publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_MIXED, Inputerdata)
-    //            let challenge
-    //            publicFC.publicOpenSession(UserIDM, function (data) {
-    //                challenge = data;
-    //                console.info("Security_IAM_PIN_AddCred_Func_0107 challenge" + challenge);
-    //                let result3 = null;
-    //                publicFC.publicaddCredential(UserIDM, CredentialInfopinmix,async function (data) {
-    //                    result3 = data.addCredresult;
-    //                    console.info("Security_IAM_PIN_AddCred_Func_0107 result3" + result3);
-    //                    await sleep(11000);
-    //                    let cancelresult = publicFC.publiccancel(UserIDM, challenge);
-    //                    expect(ResultCode.SUCCESS).assertEqual(cancelresult);
-    //                    expect(ResultCode.CANCELED).assertEqual(result3);
-    //                    publicFC.publicauth(UserAuth, challenge, AuthType.PIN, AuthTurstLevel.ATL1,function (data) {
-    //                        let token = data.authextr.token;
-    //                        console.info("Security_IAM_PIN_AddCred_Func_0107 token" + token);
-    //                        publicFC.publicdelUser(UserIDM, token, function (data) {
-    //                            let deluserresult = data.delUserresult;
-    //                            console.info("Security_IAM_PIN_AddCred_Func_0107 deluserresult" + deluserresult);
-    //                            publicFC.publicCloseSession(UserIDM, function (data) {
-    //                                console.info("Security_IAM_PIN_AddCred_Func_0107 closesession = " + data);
-    //                                publicFC.publicunRegisterInputer(PinAuth, function (data) {
-    //                                    console.info("Security_IAM_PIN_AddCred_Func_0107 unRegist = " + data);
-    //                                    done();
-    //                                })
-    //                            })
-    //                        }, function (data) {
-    //                        })
-    //                    }, function (data) {
-    //                    })
-    //                }, function (data) {
-    //                })
-    //            })
-    //        } catch (e) {
-    //            console.log("Security_IAM_PIN_AddCred_Func_0107 fail " + e);
-    //            expect(null).assertFail();
-    //        }
-    //    })
-
-
-    it('Security_IAM_PIN_Auth_Func_0101', 3, async function (done) {
-        console.info('testFace Security_IAM_Error_Func_0101 start');
+    /*
+        * @tc.number    : Security_IAM_PIN_Auth_Func_0101
+        * @tc.name      : Pin auth fail six_pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+    */
+    it('Security_IAM_PIN_Auth_Func_0101', 1, async function (done) {
+        console.info('testFace Security_IAM_PIN_Auth_Func_0101 start');
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
             publicFC.publicOpenSession(UserIDM, function (data) {
@@ -429,7 +421,7 @@ describe('userauthTest', function () {
                             await publicFC.publicauth(UserAuth, challenge1, AuthType.PIN, AuthTurstLevel.ATL1,
 							function (data) {
                                 let authresult = data.authresult
-                                expect(ResultCode.Authfail).assertEqual(authresult);
+                                expect(ResultCode.FAIL).assertEqual(authresult);
                                 publicFC.publicdelUser(UserIDM, token, function (data) {
                                     let delresult = data.delUserresult
                                     console.info("Security_IAM_PIN_Auth_Func_0101 delresult = " + delresult);
@@ -456,8 +448,14 @@ describe('userauthTest', function () {
         }
     })
 
-
-    it('Security_IAM_PIN_Auth_Func_0102', 3, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_PIN_Auth_Func_0102
+        * @tc.name      : Pin auth fail num_pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+    */
+    it('Security_IAM_PIN_Auth_Func_0102', 1, async function (done) {
         console.info('testFace Security_IAM_PIN_Auth_Func_0102 start');
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_MIXED, Inputerdatamix)
@@ -478,7 +476,7 @@ describe('userauthTest', function () {
                             await publicFC.publicauth(UserAuth, challenge1, AuthType.PIN, AuthTurstLevel.ATL1,
 							function (data) {
                                 let authresult = data.authresult
-                                expect(ResultCode.Authfail).assertEqual(authresult);
+                                expect(ResultCode.FAIL).assertEqual(authresult);
                                 let deluserresult = publicFC.publicdelUser(UserIDM, token, function (data) {
                                     let delresult = data.delUserresult
                                     console.info("Security_IAM_PIN_Auth_Func_0102 delresult = " + delresult);
@@ -505,7 +503,13 @@ describe('userauthTest', function () {
         }
     })
 
-
+    /*
+        * @tc.number    : Security_IAM_PIN_Auth_Func_0103
+        * @tc.name      : Pin auth fail mix_pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 3
+    */
     it('Security_IAM_PIN_Auth_Func_0103', 3, async function (done) {
         console.info('testFace Security_IAM_PIN_Auth_Func_0103 start');
         try {
@@ -527,7 +531,7 @@ describe('userauthTest', function () {
                             await publicFC.publicauth(UserAuth, challenge1, AuthType.PIN, AuthTurstLevel.ATL1,
 							function (data) {
                                 let authresult = data.authresult
-                                expect(ResultCode.Authfail).assertEqual(authresult);
+                                expect(ResultCode.FAIL).assertEqual(authresult);
                                 let deluserresult = publicFC.publicdelUser(UserIDM, token, function (data) {
                                     let delresult = data.delUserresult
                                     console.info("Security_IAM_PIN_Auth_Func_0103 delresult = " + delresult);
@@ -554,7 +558,13 @@ describe('userauthTest', function () {
         }
     })
 
-
+    /*
+        * @tc.number    : Security_IAM_PIN_Auth_Func_0104
+        * @tc.name      : Pin authuser fail six_pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+    */
     it('Security_IAM_PIN_Auth_Func_0104', 3, async function (done) {
         console.info('testFace Security_IAM_PIN_Auth_Func_0104 start');
         try {
@@ -577,8 +587,8 @@ describe('userauthTest', function () {
                             await publicFC.publicauthUser(
 							UserAuth, userID.User1, challenge1, AuthType.PIN, AuthTurstLevel.ATL1, function (data) {
                                 let authresult = data.authresult
-                                expect(ResultCode.Authfail).assertEqual(authresult);
-                                publicFC.publicdelUser(UserIDM, token, function (data) {
+                                expect(ResultCode.FAIL).assertEqual(authresult);
+                                let deluserresult = publicFC.publicdelUser(UserIDM, token, function (data) {
                                     let delresult = data.delUserresult
                                     console.info("Security_IAM_PIN_Auth_Func_0104 delresult = " + delresult);
                                     publicFC.publicCloseSession(UserIDM, function (data) {
@@ -604,8 +614,14 @@ describe('userauthTest', function () {
         }
     })
 
-
-    it('Security_IAM_PIN_Auth_Func_0105', 3, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_PIN_Auth_Func_0105
+        * @tc.name      : Pin authuser fail num_pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+    */
+    it('Security_IAM_PIN_Auth_Func_0105', 1, async function (done) {
         console.info('testFace Security_IAM_PIN_Auth_Func_0105 start');
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_MIXED, Inputerdatamix)
@@ -627,7 +643,7 @@ describe('userauthTest', function () {
                             await publicFC.publicauthUser(
 							UserAuth, userID.User1, challenge1, AuthType.PIN, AuthTurstLevel.ATL1, function (data) {
                                 let authresult = data.authresult
-                                expect(ResultCode.Authfail).assertEqual(authresult);
+                                expect(ResultCode.FAIL).assertEqual(authresult);
                                 let deluserresult = publicFC.publicdelUser(UserIDM, token, function (data) {
                                     let delresult = data.delUserresult
                                     console.info("Security_IAM_PIN_Auth_Func_0105 delresult = " + delresult);
@@ -654,8 +670,14 @@ describe('userauthTest', function () {
         }
     })
 
-
-    it('Security_IAM_PIN_Auth_Func_0106', 3, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_PIN_Auth_Func_0106
+        * @tc.name      : Pin authuser fail mix_pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+    */
+    it('Security_IAM_PIN_Auth_Func_0106', 2, async function (done) {
         console.info('testFace Security_IAM_PIN_Auth_Func_0106 start');
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_NUMBER, Inputerdatanum)
@@ -677,7 +699,7 @@ describe('userauthTest', function () {
                             await publicFC.publicauthUser(
 							UserAuth, userID.User1, challenge1, AuthType.PIN, AuthTurstLevel.ATL1, function (data) {
                                 let authresult = data.authresult
-                                expect(ResultCode.Authfail).assertEqual(authresult);
+                                expect(ResultCode.FAIL).assertEqual(authresult);
                                 let deluserresult = publicFC.publicdelUser(UserIDM, token, function (data) {
                                     let delresult = data.delUserresult
                                     console.info("Security_IAM_PIN_Auth_Func_0106 delresult = " + delresult);
@@ -704,255 +726,13 @@ describe('userauthTest', function () {
         }
     })
 
-
-    //    it('Security_IAM_PIN_Auth_Func_0107', 0, async function (done) {
-    //        try {
-    //            publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
-    //            publicFC.publicOpenSession(UserIDM, function (data) {
-    //                let challenge = data;
-    //                console.info("Security_IAM_PIN_Auth_Func_0107 challenge = " + challenge);
-    //                publicFC.publicaddCredential(UserIDM, CredentialInfopinsix, function (data) {
-    //                    let addcredresult101 = data.addCredresult;
-    //                    console.info("Security_IAM_PIN_Auth_Func_0107 addcredresult101 = " + addcredresult101);
-    //                    let result1 = null;
-    //                    let contextID1 = null;
-    //                    contextID1 = publicFC.publicauth(challenge, AuthType.PIN, AuthTurstLevel.ATL1,
-    //                    async function (data) {
-    //                        console.info("Security_IAM_PIN_Auth_Func_0107 contextID1 = " + contextID1);
-    //                        result1 = data.authresult;
-    //                        console.info("Security_IAM_PIN_Auth_Func_0107 result1 = " + result1);
-    //                        await sleep(3000);
-    //                        let cancelAuthresult = publicFC.publicgecancelAuth(UserAuth, contextID1)
-    //                        console.info("Security_IAM_PIN_Auth_Func_0107 cancelAuthresult = " + cancelAuthresult);
-    //                        expect(ResultCode.SUCCESS).assertEqual(cancelAuthresult);
-    //                        expect(ResultCode.CANCELED).assertEqual(result1);
-    //                        publicFC.publicCloseSession(UserIDM, function (data) {
-    //                            console.info("Security_IAM_PIN_Auth_Func_0107 closesession = " + data);
-    //                            publicFC.publicunRegisterInputer(PinAuth, function (data) {
-    //                                console.info("Security_IAM_PIN_Auth_Func_0107 unRegist = " + data);
-    //                                done();
-    //                            })
-    //                        })
-    //                    }, function (data) {
-    //                    })
-    //                }, function (data) {
-    //                })
-    //            })
-    //        } catch (e) {
-    //            console.log("Security_IAM_PIN_Auth_Func_0107 fail " + e);
-    //            expect(null).assertFail();
-    //        }
-    //    })
-
-    //    it('Security_IAM_PIN_Auth_Func_0108', 0, async function (done) {
-    //        try {
-    //            publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
-    //            publicFC.publicOpenSession(UserIDM, function (data) {
-    //                let challenge = data;
-    //                console.info("Security_IAM_PIN_Auth_Func_0108 challenge = " + challenge);
-    //                publicFC.publicaddCredential(UserIDM, CredentialInfopinsix, function (data) {
-    //                    let addcredresult102 = data.addCredresult;
-    //                    console.info("Security_IAM_PIN_Auth_Func_0108 addcredresult102 = " + addcredresult102);
-    //                    let result2 = null;
-    //                    let contextID2 = null;
-    //                    contextID2 = publicFC.publicauth(challenge, AuthType.PIN, AuthTurstLevel.ATL1,
-    //                    async function (data) {
-    //                        console.info("Security_IAM_PIN_Auth_Func_0108 contextID2 = " + contextID2);
-    //                        result2 = data.authresult;
-    //                        console.info("Security_IAM_PIN_Auth_Func_0108 result2 = " + result2);
-    //                        await sleep(8000);
-    //                        let cancelAuthresult = publicFC.publicgecancelAuth(UserAuth, contextID2)
-    //                        console.info("Security_IAM_PIN_Auth_Func_0108 cancelAuthresult = " + cancelAuthresult);
-    //                        expect(ResultCode.SUCCESS).assertEqual(cancelAuthresult);
-    //                        expect(ResultCode.CANCELED).assertEqual(result2);
-    //                        publicFC.publicCloseSession(UserIDM, function (data) {
-    //                            console.info("Security_IAM_PIN_Auth_Func_0108 closesession = " + data);
-    //                            publicFC.publicunRegisterInputer(PinAuth, function (data) {
-    //                                console.info("Security_IAM_PIN_Auth_Func_0108 unRegist = " + data);
-    //                                done();
-    //                            })
-    //                        })
-    //                    }, function (data) {
-    //                    })
-    //                }, function (data) {
-    //                })
-    //            })
-    //        } catch (e) {
-    //            console.log("Security_IAM_PIN_Auth_Func_0108 fail " + e);
-    //            expect(null).assertFail();
-    //        }
-    //    })
-
-    //    it('Security_IAM_PIN_Auth_Func_0109', 0, async function (done) {
-    //        try {
-    //
-    //            publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
-    //            publicFC.publicOpenSession(UserIDM, function (data) {
-    //                let challenge = data;
-    //                console.info("Security_IAM_PIN_Auth_Func_0109 challenge = " + challenge);
-    //                publicFC.publicaddCredential(UserIDM, CredentialInfopinsix, function (data) {
-    //                    let addcredresult103 = data.addCredresult;
-    //                    console.info("Security_IAM_PIN_Auth_Func_0109 addcredresult103 = " + addcredresult103);
-    //                    let result3 = null;
-    //                    let contextID3 = null;
-    //                    contextID3 = publicFC.publicauth(challenge, AuthType.PIN, AuthTurstLevel.ATL1,
-    //                    async function (data) {
-    //                        console.info("Security_IAM_PIN_Auth_Func_0109 contextID3 = " + contextID3);
-    //                        result3 = data.authresult;
-    //                        console.info("Security_IAM_PIN_Auth_Func_0109 result3 = " + result3);
-    //                        let token = data.authextr.token;
-    //                        await sleep(11000);
-    //                        let cancelAuthresult = publicFC.publicgecancelAuth(UserAuth, contextID3)
-    //                        console.info("Security_IAM_PIN_Auth_Func_0109 cancelAuthresult = " + cancelAuthresult);
-    //                        expect(ResultCode.SUCCESS).assertEqual(cancelAuthresult);
-    //                        expect(ResultCode.CANCELED).assertEqual(result3);
-    //                        publicFC.publicdelUser(UserIDM, token, function (data) {
-    //                            let deluserresult = data.delUserresult
-    //                            console.info("Security_IAM_PIN_Auth_Func_0109 deluserresult = " + deluserresult);
-    //                            publicFC.publicCloseSession(UserIDM, function (data) {
-    //                                console.info("Security_IAM_PIN_Auth_Func_0109 closesession = " + data);
-    //                                publicFC.publicunRegisterInputer(PinAuth, function (data) {
-    //                                    console.info("Security_IAM_PIN_Auth_Func_0109 unRegist = " + data);
-    //                                    done();
-    //                                })
-    //                            })
-    //                        }, function (data) {
-    //                        })
-    //                    }, function (data) {
-    //                    })
-    //                }, function (data) {
-    //                })
-    //            })
-    //
-    //        } catch (e) {
-    //            console.log("testcancelauth103 fail " + e);
-    //            expect(null).assertFail();
-    //        }
-    //    })
-
-    //    it('Security_IAM_PIN_Auth_Func_0110', 0, async function (done) {
-    //        try {
-    //            publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
-    //            publicFC.publicOpenSession(UserIDM, function (data) {
-    //                let challenge = data;
-    //                console.info("testFace Security_IAM_PIN_Auth_Func_0110 challenge = " + challenge);
-    //                publicFC.publicaddCredential(UserIDM, CredentialInfopinsix, function (data) {
-    //                    let addcredresult101 = data.addCredresult;
-    //                    console.info("testFace PIN_Auth_Func_0110 addcredresult101 = " + addcredresult101);
-    //                    let result1 = null;
-    //                    let contextID1 = null;
-    //                    contextID1 = publicFC.publicauthUser(challenge, AuthType.PIN, AuthTurstLevel.ATL1,
-    //                    async function (data) {
-    //                        console.info("testFace Security_IAM_PIN_Auth_Func_0110 contextID1 = " + contextID1);
-    //                        result1 = data.authresult;
-    //                        console.info("testFace Security_IAM_PIN_Auth_Func_0110 result2 = " + result1);
-    //                        await sleep(3000);
-    //                        let cancelAuthresult = publicFC.publicgecancelAuth(UserAuth, contextID1)
-    //                        console.info("testFace PIN_Auth_Func_0110 cancelAuthresult = " + cancelAuthresult);
-    //                        expect(ResultCode.SUCCESS).assertEqual(cancelAuthresult);
-    //                        expect(ResultCode.CANCELED).assertEqual(result1);
-    //                        publicFC.publicCloseSession(UserIDM, function (data) {
-    //                            console.info("testFace Security_IAM_PIN_Auth_Func_0110 closesession = " + data);
-    //                            publicFC.publicunRegisterInputer(PinAuth, function (data) {
-    //                                console.info("testFace Security_IAM_PIN_Auth_Func_0110 unRegist = " + data);
-    //                                done();
-    //                            })
-    //                        })
-    //                    }, function (data) {
-    //                    })
-    //                }, function (data) {
-    //                })
-    //            })
-    //        } catch (e) {
-    //            console.log("testFace Security_IAM_PIN_Auth_Func_0110 fail " + e);
-    //            expect(null).assertFail();
-    //        }
-    //    })
-
-    //    it('Security_IAM_PIN_Auth_Func_0111', 0, async function (done) {
-    //        try {
-    //            publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
-    //            publicFC.publicOpenSession(UserIDM, function (data) {
-    //                let challenge = data;
-    //                console.info("testFace Security_IAM_PIN_Auth_Func_0111 challenge = " + challenge);
-    //                publicFC.publicaddCredential(UserIDM, CredentialInfopinsix, function (data) {
-    //                    let addcredresult102 = data.addCredresult;
-    //                    console.info("testFace PIN_Auth_Func_0111 addcredresult102 = " + addcredresult102);
-    //                    let result2 = null;
-    //                    let contextID2 = null;
-    //                    contextID2 = publicFC.publicauthUser(challenge, AuthType.PIN, AuthTurstLevel.ATL1,
-    //                    async function (data) {
-    //                        console.info("testFace Security_IAM_PIN_Auth_Func_0111 contextID2 = " + contextID2);
-    //                        result2 = data.authresult;
-    //                        console.info("testFace Security_IAM_PIN_Auth_Func_0111 result2 = " + result2);
-    //                        await sleep(8000);
-    //                        let cancelAuthresult = publicFC.publicgecancelAuth(UserAuth, contextID2)
-    //                        console.info("testFace PIN_Auth_Func_0111 cancelAuthresult = " + cancelAuthresult);
-    //                        expect(ResultCode.SUCCESS).assertEqual(cancelAuthresult);
-    //                        expect(ResultCode.CANCELED).assertEqual(result2);
-    //                        publicFC.publicCloseSession(UserIDM, function (data) {
-    //                            console.info("testFace Security_IAM_PIN_Auth_Func_0111 closesession = " + data);
-    //                            publicFC.publicunRegisterInputer(PinAuth, function (data) {
-    //                                console.info("testFace Security_IAM_PIN_Auth_Func_0111 unRegist = " + data);
-    //                                done();
-    //                            })
-    //                        })
-    //                    }, function (data) {
-    //                    })
-    //                }, function (data) {
-    //                })
-    //            })
-    //        } catch (e) {
-    //            console.log("testFace Security_IAM_PIN_Auth_Func_0111 fail " + e);
-    //            expect(null).assertFail();
-    //        }
-    //    })
-
-    //    it('Security_IAM_PIN_Auth_Func_0112', 0, async function (done) {
-    //        try {
-    //            publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata)
-    //            publicFC.publicOpenSession(UserIDM, function (data) {
-    //                let challenge = data;
-    //                console.info("testFace Security_IAM_PIN_Auth_Func_0112 challenge = " + challenge);
-    //                publicFC.publicaddCredential(UserIDM, CredentialInfopinsix, function (data) {
-    //                    let addcredresult103 = data.addCredresult;
-    //                    console.info("testFace PIN_Auth_Func_0112 addcredresult103 = " + addcredresult103);
-    //                    let result3 = null;
-    //                    let contextID3 = null;
-    //                    contextID3 = publicFC.publicauthUser(challenge, AuthType.PIN, AuthTurstLevel.ATL1,
-    //                    async function (data) {
-    //                        console.info("testFace Security_IAM_PIN_Auth_Func_0112 contextID3 = " + contextID3);
-    //                        result3 = data.authresult;
-    //                        console.info("testFace Security_IAM_PIN_Auth_Func_0112 result3 = " + result3);
-    //                        let token = data.authextr.token;
-    //                        await sleep(11000);
-    //                        let cancelAuthresult = publicFC.publicgecancelAuth(UserAuth, contextID3)
-    //                        console.info("testFace PIN_Auth_Func_0112 cancelAuthresult = " + cancelAuthresult);
-    //                        expect(ResultCode.SUCCESS).assertEqual(cancelAuthresult);
-    //                        expect(ResultCode.CANCELED).assertEqual(result3);
-    //                        publicFC.publicdelUser(UserIDM, token, function (data) {
-    //                            let deluserresult = data.delUserresult
-    //                            console.info("testFace PIN_Auth_Func_0112 deluserresult = " + deluserresult);
-    //                            publicFC.publicCloseSession(UserIDM, function (data) {
-    //                                console.info("testFace Security_IAM_PIN_Auth_Func_0112 closesession = " + data);
-    //                                publicFC.publicunRegisterInputer(PinAuth, function (data) {
-    //                                    console.info("testFace Security_IAM_PIN_Auth_Func_0112 unRegist = " + data);
-    //                                    done();
-    //                                })
-    //                            })
-    //                        }, function (data) {
-    //                        })
-    //                    }, function (data) {
-    //                    })
-    //                }, function (data) {
-    //                })
-    //            })
-    //        } catch (e) {
-    //            console.log("testFace Security_IAM_PIN_Auth_Func_0112 fail " + e);
-    //            expect(null).assertFail();
-    //        }
-    //    })
-
+    /*
+        * @tc.number    : Security_IAM_PIN_Update_Func_0101
+        * @tc.name      : Update six_pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+    */
     it('Security_IAM_PIN_Update_Func_0101', 0, async function (done) {
         console.info('testFace Security_IAM_PIN_Update_Func_0101 start');
         try {
@@ -970,8 +750,8 @@ describe('userauthTest', function () {
                         console.info("Security_IAM_PIN_Update_Func_0101 token = " + token);
                         publicFC.publicunRegisterInputer(PinAuth, async function (data) {
                             console.info("Security_IAM_PIN_Update_Func_0101 unRegist = " + data);
-                            await setTimeout(
-							publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_NUMBER, Inputerdatanum), 500)
+                            setTimeout(
+						publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_NUMBER, Inputerdatanum), 500)
                             CredentialInfopinnum.token = token
                             console.info("PIN_Update_Func_0101 Infopinnum.token = " + CredentialInfopinnum.token);
                             await publicFC.publicupdateCred(UserIDM, CredentialInfopinnum, function (data) {
@@ -997,7 +777,6 @@ describe('userauthTest', function () {
                                     })
                                 }, function (data) {
                                 })
-
                             }, function (data) {
                             })
                         })
@@ -1012,6 +791,13 @@ describe('userauthTest', function () {
         }
     })
 
+    /*
+        * @tc.number    : Security_IAM_PIN_Update_Func_0102
+        * @tc.name      : Update num_pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+    */
     it('Security_IAM_PIN_Update_Func_0102', 3, async function (done) {
         console.info('testFace Security_IAM_PIN_Update_Func_0102 start');
         try {
@@ -1029,12 +815,12 @@ describe('userauthTest', function () {
                         console.info("Security_IAM_PIN_Update_Func_0102 token = " + token);
                         publicFC.publicunRegisterInputer(PinAuth, async function (data) {
                             console.info("Security_IAM_PIN_Update_Func_0102 unRegist = " + data);
-                            await setTimeout(
-							publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_MIXED, Inputerdatamix), 500)
+                            setTimeout(
+						publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_MIXED, Inputerdatamix), 500)
                             console.info("Security_IAM_PIN_Update_Func_0102 challenge = " + challenge);
-                            CredentialInfopinnum.token = token
-                            console.info("PIN_Update_Func_0102 Infopinnum.token = " + CredentialInfopinnum.token);
-                            await publicFC.publicupdateCred(UserIDM, CredentialInfopinnum, function (data) {
+                            CredentialInfopinmix.token = token
+                            console.info("PIN_Update_Func_0102 Infopinnum.token = " + CredentialInfopinmix.token);
+                            await publicFC.publicupdateCred(UserIDM, CredentialInfopinmix, function (data) {
                                 let updateresult = data.updateCredresult;
                                 console.info("Security_IAM_PIN_Update_Func_0102 updateresult = " + updateresult);
                                 expect(ResultCode.SUCCESS).assertEqual(updateresult);
@@ -1071,14 +857,21 @@ describe('userauthTest', function () {
         }
     })
 
-    it('Security_IAM_PIN_Update_Func_0103', 3, async function (done) {
+    /*
+        * @tc.number    : Security_IAM_PIN_Update_Func_0103
+        * @tc.name      : Update mix_pin
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 4
+    */
+    it('Security_IAM_PIN_Update_Func_0103', 4, async function (done) {
         console.info('testFace Security_IAM_PIN_Update_Func_0103 start');
         try {
             publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_MIXED, Inputerdatamix)
             publicFC.publicOpenSession(UserIDM, function (data) {
                 let challenge = data;
                 console.info("Security_IAM_PIN_Update_Func_0103 challenge = " + challenge);
-                publicFC.publicaddCredential(UserIDM, CredentialInfopinnum, function (data) {
+                publicFC.publicaddCredential(UserIDM, CredentialInfopinmix, function (data) {
                     let addcredresult103 = data.addcredresult;
                     console.info("Security_IAM_PIN_Update_Func_0103 addcredresult103 = " + addcredresult103);
                     publicFC.publicauth(UserAuth, challenge, AuthType.PIN, AuthTurstLevel.ATL1, function (data) {
@@ -1088,12 +881,12 @@ describe('userauthTest', function () {
                         console.info("Security_IAM_PIN_Update_Func_0103 token = " + token);
                         publicFC.publicunRegisterInputer(PinAuth, async function (data) {
                             console.info("Security_IAM_PIN_Update_Func_0103 unRegist = " + data);
-                            await setTimeout(
-							publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata), 500)
+                            setTimeout(
+						publicFC.publicRegisterInputer(PinAuth, AuthSubType.PIN_SIX, Inputerdata), 500)
                             console.info("Security_IAM_PIN_Update_Func_0103 challenge = " + challenge);
-                            CredentialInfopinnum.token = token
-                            console.info("PIN_Update_Func_0103 Infopinnum.token = " + CredentialInfopinnum.token);
-                            await publicFC.publicupdateCred(UserIDM, CredentialInfopinnum, function (data) {
+                            CredentialInfopinsix.token = token
+                            console.info("PIN_Update_Func_0103 Infopinnum.token = " + CredentialInfopinsix.token);
+                            await publicFC.publicupdateCred(UserIDM, CredentialInfopinsix, function (data) {
                                 let updateresult = data.updateCredresult;
                                 console.info("Security_IAM_PIN_Update_Func_0103 updateresult = " + updateresult);
                                 expect(ResultCode.SUCCESS).assertEqual(updateresult);

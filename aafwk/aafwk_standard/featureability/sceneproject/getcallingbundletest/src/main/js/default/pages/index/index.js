@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import commonEvent from '@ohos.commonevent'
+import commonEvent from '@ohos.commonEvent'
 import featureAbility from '@ohos.ability.featureAbility'
 
 const injectRef = Object.getPrototypeOf(global) || global
@@ -29,15 +29,15 @@ function PublishCallBackThree() {
 }
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = this.$t('strings.world');
     },
     async onShow() {
         commonEvent.publish("ACTS_GetCallingBundle_0100_CommonEvent", PublishCallBackOne);
-        var context = featureAbility.getContext();
-        var info = await context.getCallingBundle();
+        let context = featureAbility.getContext();
+        let info = await context.getCallingBundle();
         commonEvent.publish(info + ".promise", PublishCallBackTwo);
         context.getCallingBundle(
             (err, data) => {
@@ -47,5 +47,6 @@ export default {
         );
     },
     onReady() {
+        console.info('onReady');
     },
 }

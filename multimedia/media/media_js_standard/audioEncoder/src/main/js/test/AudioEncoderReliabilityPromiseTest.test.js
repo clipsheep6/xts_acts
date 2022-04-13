@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,12 +14,14 @@
  */
 
 import media from '@ohos.multimedia.media'
-import Fileio from '@ohos.fileio'
+import fileio from '@ohos.fileio'
+import {getFileDescriptor, closeFileDescriptor} from './AudioEncoderTestBase.test.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
-describe('AudioEncoderSTTPromise', function () {
-    const AUDIOPATH =  '/data/media/S32LE.pcm';
-    const BASIC_PATH = '/data/media/results/encode_reliability_promise_';
+describe('AudioEncoderReliabilityPromise', function () {
+    const RESOURCEPATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/'
+    const AUDIOPATH = 'S16LE.pcm';
+    const BASIC_PATH = RESOURCEPATH + 'results/encode_reliability_promise_';
     const END = 0;
     const CONFIGURE = 1;
     const PREPARE = 2;
@@ -53,17 +55,18 @@ describe('AudioEncoderSTTPromise', function () {
     let ES_LENGTH = 200;
     let mime = 'audio/mp4a-latm';
     let mediaDescription = {
-                "channel_count": 1,
-                "sample_rate": 48000,
-                "audio_raw_format": 16,
+                "channel_count": 2,
+                "sample_rate": 44100,
+                "audio_sample_format": 1,
     };
     let expectError = false;
+    let fdRead;
 
     beforeAll(function() {
         console.info('beforeAll case');
     })
 
-    beforeEach(function() {
+    beforeEach(async function() {
         console.info('beforeEach case');
         audioEncodeProcessor = null;
         readStreamSync = undefined;
@@ -87,13 +90,15 @@ describe('AudioEncoderSTTPromise', function () {
         if (audioEncodeProcessor != null) {
             await audioEncodeProcessor.release().then(() => {
                 console.info('audioEncodeProcessor release success');
-                audioEncodeProcessor = null;
             }, failCallback).catch(failCatch);
+            audioEncodeProcessor = null;
         }
+        await closeFileDescriptor(AUDIOPATH);
     })
 
-    afterAll(function() {
+    afterAll(async function() {
         console.info('afterAll case');
+        await closeFileDescriptor(AUDIOPATH);
     })
 
     let failCallback = function(err) {
@@ -127,7 +132,8 @@ describe('AudioEncoderSTTPromise', function () {
         outputQueue = [];
     }
 
-    function createAudioEncoder(savepath, mySteps, done) {
+    async function createAudioEncoder(savepath, mySteps, done) {
+        await getFdRead(AUDIOPATH, done);
         media.createAudioEncoderByMime(mime).then((processor) => {
             console.info(`case createAudioEncoder 1`);
             audioEncodeProcessor = processor;
@@ -137,35 +143,25 @@ describe('AudioEncoderSTTPromise', function () {
         }, failCallback).catch(failCatch);
     }
 
-    function writeHead(path, len) {
-        try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
-            let head = new ArrayBuffer(7);
-            addADTStoPacket(head, len);
-            let num = writestream.writeSync(head, {length:7});
-            writestream.flushSync();
-            writestream.closeSync();
-        } catch(e) {
-            console.info(e)
-        }
-    }
-
-    function writeFile(path, buf, len) {
-        try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
-            let num = writestream.writeSync(buf, {length:len});
-            writestream.flushSync();
-            writestream.closeSync();
-        } catch(e) {
-            console.info(e);
-        }
+    async function getFdRead(pathName, done) {
+        await getFileDescriptor(pathName).then((res) => {
+            if (res == undefined) {
+                expect().assertFail();
+                console.info('case error fileDescriptor undefined, open file fail');
+                done();
+            } else {
+                fdRead = res.fd;
+                console.info("case fdRead is: " + fdRead);
+            }
+        })
     }
 
     function readFile(path) {
+        console.info('read file start execution');
         try{
             console.info('filepath: ' + path);
-            readStreamSync = Fileio.createStreamSync(path, 'rb');
-        } catch(e) {
+            readStreamSync = fileio.fdopenStreamSync(fdRead, 'rb');
+        }catch(e) {
             console.info(e);
         }
     }
@@ -174,23 +170,7 @@ describe('AudioEncoderSTTPromise', function () {
         console.info("case start get content");
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
-        console.info('lengthreal: ' + lengthreal);
-    }
-
-    function addADTStoPacket(head, len) {
-        let view = new Uint8Array(head);
-        console.info("start add ADTS to Packet");
-        let packetLen = len + 7; // 7: head length
-        let profile = 2; // 2: AAC LC  
-        let freqIdx = 3; // 3: 48000HZ 
-        let chanCfg = 1; // 1: 1 channel
-        view[0] = 0xFF;
-        view[1] = 0xF9;
-        view[2] = ((profile - 1) << 6) + (freqIdx << 2) + (chanCfg >> 2);
-        view[3] = ((chanCfg & 3) << 6) + (packetLen >> 11);
-        view[4] = (packetLen & 0x7FF) >> 3;
-        view[5] = ((packetLen & 7) << 5) + 0x1F;
-        view[6] = 0xFC;
+        console.info('case lengthreal is :' + lengthreal);
     }
 
     async function doneWork() {
@@ -207,7 +187,6 @@ describe('AudioEncoderSTTPromise', function () {
         audioEncodeProcessor = null;
     }
 
-
     function sleep(time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
@@ -216,7 +195,7 @@ describe('AudioEncoderSTTPromise', function () {
         for(let t = Date.now();Date.now() - t <= time;);
     }
 
-    function nextStep(mySteps, done) {
+    async function nextStep(mySteps, done) {
         console.info("case myStep[0]: " + mySteps[0]);
         if (mySteps[0] == END) {
             audioEncodeProcessor.release().then(() => {
@@ -248,6 +227,8 @@ describe('AudioEncoderSTTPromise', function () {
                 console.info(`case to start`);
                 if (sawOutputEOS) {
                     resetParam();
+                    await closeFileDescriptor(AUDIOPATH);
+                    await getFdRead(AUDIOPATH, done);
                     readFile(AUDIOPATH);
                     workdoneAtEOS = true;
                     enqueueInputs(inputQueue);
@@ -262,9 +243,11 @@ describe('AudioEncoderSTTPromise', function () {
                 console.info(`case to flush`);
                 inputQueue = [];
                 outputQueue = [];
-                audioEncodeProcessor.flush().then(() => {
+                audioEncodeProcessor.flush().then(async() => {
                     console.info(`case flush 1`);
                     if (flushAtEOS) {
+                        await closeFileDescriptor(AUDIOPATH);
+                        await getFdRead(AUDIOPATH, done);
                         resetParam();
                         readFile(AUDIOPATH);
                         workdoneAtEOS = true;
@@ -371,7 +354,7 @@ describe('AudioEncoderSTTPromise', function () {
             }
             timestamp += 23;
             frameCnt += 1;
-            audioEncodeProcessor.queueInput(inputobject).then(() => {
+            audioEncodeProcessor.pushInputData(inputobject).then(() => {
                 console.info('case queueInput success');
             });
         }
@@ -390,11 +373,9 @@ describe('AudioEncoderSTTPromise', function () {
                 }
             }
             else{
-                writeHead(savepath, outputobject.length);
-                writeFile(savepath, outputobject.data, outputobject.length);
-                console.info("write to file success");
+                console.info("not last frame, continue");
             }
-            audioEncodeProcessor.releaseOutput(outputobject).then(() => {
+            audioEncodeProcessor.freeOutputBuffer(outputobject).then(() => {
                 console.info('release output success');
             });
         }
@@ -402,12 +383,12 @@ describe('AudioEncoderSTTPromise', function () {
 
     function setCallback(savepath, done) {
         console.info('case callback');
-        audioEncodeProcessor.on('inputBufferAvailable', async(inBuffer) => {
+        audioEncodeProcessor.on('needInputData', async(inBuffer) => {
             console.info('inputBufferAvailable');
             inputQueue.push(inBuffer);
             await enqueueInputs(inputQueue);
         });
-        audioEncodeProcessor.on('outputBufferAvailable', async(outBuffer) => {
+        audioEncodeProcessor.on('newOutputData', async(outBuffer) => {
             console.info('outputBufferAvailable');
             if (needGetMediaDes) {
                 audioEncodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
@@ -422,7 +403,7 @@ describe('AudioEncoderSTTPromise', function () {
         audioEncodeProcessor.on('error',(err) => {
             console.info('case error called,errName is' + err);
         });
-        audioEncodeProcessor.on('outputFormatChanged',(format) => {
+        audioEncodeProcessor.on('streamChanged',(format) => {
             console.info('Output format changed: ' + format);
         });
     }
@@ -436,7 +417,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_PROMISE_0100', 0, async function (done) {
-        let savepath = BASIC_PATH + 'configure_0100.txt';
+        let savepath = BASIC_PATH + 'configure_0100.es';
         let mySteps = new Array(CONFIGURE, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -450,7 +431,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_PROMISE_0200', 0, async function (done) {
-        let savepath = BASIC_PATH + 'configure_0200.txt';
+        let savepath = BASIC_PATH + 'configure_0200.es';
         let mySteps = new Array(CONFIGURE, PREPARE, CONFIGURE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -464,7 +445,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_PROMISE_0300', 0, async function (done) {
-        let savepath = BASIC_PATH + 'configure_0300.txt';
+        let savepath = BASIC_PATH + 'configure_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, CONFIGURE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -478,7 +459,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_PROMISE_0400', 0, async function (done) {
-        let savepath = BASIC_PATH + 'configure_0400.txt';
+        let savepath = BASIC_PATH + 'configure_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, CONFIGURE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -492,7 +473,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_PROMISE_0500', 0, async function (done) {
-        let savepath = BASIC_PATH + 'configure_0500.txt';
+        let savepath = BASIC_PATH + 'configure_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP ,CONFIGURE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -506,7 +487,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_PROMISE_0600', 0, async function (done) {
-        let savepath = BASIC_PATH + 'configure_0600.txt';
+        let savepath = BASIC_PATH + 'configure_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, CONFIGURE_ERROR, END);
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);
@@ -521,7 +502,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_PROMISE_0700', 0, async function (done) {
-        let savepath = BASIC_PATH + 'configure_0700.txt';
+        let savepath = BASIC_PATH + 'configure_0700.es';
         let mySteps = new Array(RESET, CONFIGURE, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -535,7 +516,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_PROMISE_0800', 0, async function (done) {
-        let savepath = BASIC_PATH + 'configure_0800.txt';
+        let savepath = BASIC_PATH + 'configure_0800.es';
         let mySteps = new Array(CONFIGURE, CONFIGURE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -549,7 +530,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_CONFIGURE_PROMISE_0900', 0, async function (done) {
-        let savepath = BASIC_PATH + 'configure_0900.txt';
+        let savepath = BASIC_PATH + 'configure_0900.es';
         let mySteps = new Array(CONFIGURE, RESET, CONFIGURE, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -563,7 +544,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_PROMISE_0100', 0, async function (done) {
-        let savepath = BASIC_PATH + 'prepare_0100.txt';
+        let savepath = BASIC_PATH + 'prepare_0100.es';
         let mySteps = new Array(PREPARE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -577,7 +558,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_PROMISE_0200', 0, async function (done) {
-        let savepath = BASIC_PATH + 'prepare_0200.txt';
+        let savepath = BASIC_PATH + 'prepare_0200.es';
         let mySteps = new Array(CONFIGURE, PREPARE, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -591,7 +572,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_PROMISE_0300', 0, async function (done) {
-        let savepath = BASIC_PATH + 'prepare_0300.txt';
+        let savepath = BASIC_PATH + 'prepare_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, PREPARE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -605,7 +586,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_PROMISE_0400', 0, async function (done) {
-        let savepath = BASIC_PATH + 'prepare_0400.txt';
+        let savepath = BASIC_PATH + 'prepare_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, PREPARE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -619,7 +600,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_PROMISE_0500', 0, async function (done) {
-        let savepath = BASIC_PATH + 'prepare_0500.txt';
+        let savepath = BASIC_PATH + 'prepare_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, PREPARE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -633,7 +614,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_PROMISE_0600', 0, async function (done) {
-        let savepath = BASIC_PATH + 'prepare_0600.txt';
+        let savepath = BASIC_PATH + 'prepare_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP, PREPARE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -647,7 +628,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_PROMISE_0700', 0, async function (done) {
-        let savepath = BASIC_PATH + 'prepare_0700.txt';
+        let savepath = BASIC_PATH + 'prepare_0700.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, PREPARE_ERROR, END);
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);
@@ -662,7 +643,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_PREPARE_PROMISE_0800', 0, async function (done) {
-        let savepath = BASIC_PATH + 'prepare_0800.txt';
+        let savepath = BASIC_PATH + 'prepare_0800.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, PREPARE_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -676,7 +657,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_PROMISE_0100', 0, async function (done) {
-        let savepath = BASIC_PATH + 'start_0100.txt';
+        let savepath = BASIC_PATH + 'start_0100.es';
         let mySteps = new Array(START_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -690,7 +671,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_PROMISE_0200', 0, async function (done) {
-        let savepath = BASIC_PATH + 'start_0200.txt';
+        let savepath = BASIC_PATH + 'start_0200.es';
         let mySteps = new Array(CONFIGURE, START_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -704,7 +685,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_PROMISE_0300', 0, async function (done) {
-        let savepath = BASIC_PATH + 'start_0300.txt';
+        let savepath = BASIC_PATH + 'start_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, WAITFORALLOUTS);
         workdoneAtEOS = true;
         createAudioEncoder(savepath, mySteps, done);
@@ -719,7 +700,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_PROMISE_0400', 0, async function (done) {
-        let savepath = BASIC_PATH + 'start_0400.txt';
+        let savepath = BASIC_PATH + 'start_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, START_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -733,7 +714,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_PROMISE_0500', 0, async function (done) {
-        let savepath = BASIC_PATH + 'start_0500.txt';
+        let savepath = BASIC_PATH + 'start_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, START_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -747,7 +728,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_PROMISE_0600', 0, async function (done) {
-        let savepath = BASIC_PATH + 'start_0600.txt';
+        let savepath = BASIC_PATH + 'start_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP, START, WAITFORALLOUTS);
         workdoneAtEOS = true;
         createAudioEncoder(savepath, mySteps, done);
@@ -762,7 +743,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_PROMISE_0700', 0, async function (done) {
-        let savepath = BASIC_PATH + 'start_0700.txt';
+        let savepath = BASIC_PATH + 'start_0700.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, START_ERROR, END);
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);
@@ -777,7 +758,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_START_PROMISE_0800', 0, async function (done) {
-        let savepath = BASIC_PATH + 'start_0800.txt';
+        let savepath = BASIC_PATH + 'start_0800.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, START_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -791,7 +772,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_PROMISE_0100', 0, async function (done) {
-        let savepath = BASIC_PATH + 'flush_0100.txt';
+        let savepath = BASIC_PATH + 'flush_0100.es';
         let mySteps = new Array(FLUSH_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -805,7 +786,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_PROMISE_0200', 0, async function (done) {
-        let savepath = BASIC_PATH + 'flush_0200.txt';
+        let savepath = BASIC_PATH + 'flush_0200.es';
         let mySteps = new Array(CONFIGURE, FLUSH_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -819,7 +800,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_PROMISE_0300', 0, async function (done) {
-        let savepath = BASIC_PATH + 'flush_0300.txt';
+        let savepath = BASIC_PATH + 'flush_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, FLUSH_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -833,7 +814,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_PROMISE_0400', 0, async function (done) {
-        let savepath = BASIC_PATH + 'flush_0400.txt';
+        let savepath = BASIC_PATH + 'flush_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, WAITFORALLOUTS);
         workdoneAtEOS = true;
         createAudioEncoder(savepath, mySteps, done);
@@ -848,7 +829,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_PROMISE_0500', 0, async function (done) {
-        let savepath = BASIC_PATH + 'flush_0500.txt';
+        let savepath = BASIC_PATH + 'flush_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, FLUSH, WAITFORALLOUTS);
         workdoneAtEOS = true;
         createAudioEncoder(savepath, mySteps, done);
@@ -863,7 +844,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_PROMISE_0600', 0, async function (done) {
-        let savepath = BASIC_PATH + 'flush_0600.txt';
+        let savepath = BASIC_PATH + 'flush_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP ,FLUSH_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -877,7 +858,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_PROMISE_0700', 0, async function (done) {
-        let savepath = BASIC_PATH + 'flush_0700.txt';
+        let savepath = BASIC_PATH + 'flush_0700.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, FLUSH, END);
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);
@@ -892,7 +873,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_FLUSH_PROMISE_0800', 0, async function (done) {
-        let savepath = BASIC_PATH + 'flush_0800.txt';
+        let savepath = BASIC_PATH + 'flush_0800.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, FLUSH_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -906,7 +887,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_PROMISE_0100', 0, async function (done) {
-        let savepath = BASIC_PATH + 'stop_0100.txt';
+        let savepath = BASIC_PATH + 'stop_0100.es';
         let mySteps = new Array(STOP_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -920,7 +901,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_PROMISE_0200', 0, async function (done) {
-        let savepath = BASIC_PATH + 'stop_0200.txt';
+        let savepath = BASIC_PATH + 'stop_0200.es';
         let mySteps = new Array(CONFIGURE, STOP_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -934,7 +915,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_PROMISE_0300', 0, async function (done) {
-        let savepath = BASIC_PATH + 'stop_0300.txt';
+        let savepath = BASIC_PATH + 'stop_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, STOP_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -948,7 +929,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_PROMISE_0400', 0, async function (done) {
-        let savepath = BASIC_PATH + 'stop_0400.txt';
+        let savepath = BASIC_PATH + 'stop_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -962,7 +943,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_PROMISE_0500', 0, async function (done) {
-        let savepath = BASIC_PATH + 'stop_0500.txt';
+        let savepath = BASIC_PATH + 'stop_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, STOP, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -976,7 +957,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_PROMISE_0600', 0, async function (done) {
-        let savepath = BASIC_PATH + 'stop_0600.txt';
+        let savepath = BASIC_PATH + 'stop_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP, STOP_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -990,7 +971,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_PROMISE_0700', 0, async function (done) {
-        let savepath = BASIC_PATH + 'stop_0700.txt';
+        let savepath = BASIC_PATH + 'stop_0700.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, STOP, END);
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);
@@ -1005,7 +986,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_STOP_PROMISE_0800', 0, async function (done) {
-        let savepath = BASIC_PATH + 'stop_0800.txt';
+        let savepath = BASIC_PATH + 'stop_0800.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, STOP_ERROR, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -1019,7 +1000,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_PROMISE_0100', 0, async function (done) {
-        let savepath = BASIC_PATH + 'reset_0100.txt';
+        let savepath = BASIC_PATH + 'reset_0100.es';
         let mySteps = new Array(RESET, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -1033,7 +1014,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_PROMISE_0200', 0, async function (done) {
-        let savepath = BASIC_PATH + 'reset_0200.txt';
+        let savepath = BASIC_PATH + 'reset_0200.es';
         let mySteps = new Array(CONFIGURE, RESET, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -1047,7 +1028,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_PROMISE_0300', 0, async function (done) {
-        let savepath = BASIC_PATH + 'reset_0300.txt';
+        let savepath = BASIC_PATH + 'reset_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, RESET, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -1061,7 +1042,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_PROMISE_0400', 0, async function (done) {
-        let savepath = BASIC_PATH + 'reset_0400.txt';
+        let savepath = BASIC_PATH + 'reset_0400.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -1075,7 +1056,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_PROMISE_0500', 0, async function (done) {
-        let savepath = BASIC_PATH + 'reset_0500.txt';
+        let savepath = BASIC_PATH + 'reset_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, FLUSH, RESET, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -1089,7 +1070,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_PROMISE_0600', 0, async function (done) {
-        let savepath = BASIC_PATH + 'reset_0600.txt';
+        let savepath = BASIC_PATH + 'reset_0600.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, STOP, RESET, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -1103,7 +1084,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_PROMISE_0700', 0, async function (done) {
-        let savepath = BASIC_PATH + 'reset_0700.txt';
+        let savepath = BASIC_PATH + 'reset_0700.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, RESET, END);
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);
@@ -1118,7 +1099,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_RESET_PROMISE_0800', 0, async function (done) {
-        let savepath = BASIC_PATH + 'reset_0800.txt';
+        let savepath = BASIC_PATH + 'reset_0800.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, RESET, RESET, END);
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -1132,7 +1113,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_EOS_PROMISE_0100', 0, async function (done) {
-        let savepath = BASIC_PATH + 'eos_0100.txt';
+        let savepath = BASIC_PATH + 'eos_0100.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, FLUSH, STOP, END);
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);
@@ -1147,8 +1128,8 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_EOS_PROMISE_0200', 0, async function (done) {
-        let savepath = BASIC_PATH + 'eos_0200.txt';
-        let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, FLUSH, WAITFORALLOUTS);
+        let savepath = BASIC_PATH + 'eos_0200.es';
+        let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, FLUSH, END);
         EOSFrameNum = 2;
         flushAtEOS = true;
         createAudioEncoder(savepath, mySteps, done);
@@ -1163,7 +1144,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_EOS_PROMISE_0300', 0, async function (done) {
-        let savepath = BASIC_PATH + 'eos_0300.txt';
+        let savepath = BASIC_PATH + 'eos_0300.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, RESET, CONFIGURE, END);
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);
@@ -1178,8 +1159,8 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_EOS_PROMISE_0400', 0, async function (done) {
-        let savepath = BASIC_PATH + 'eos_0400.txt';
-        let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, STOP, START, WAITFORALLOUTS);
+        let savepath = BASIC_PATH + 'eos_0400.es';
+        let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, STOP, START, END);
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);
     })
@@ -1193,7 +1174,7 @@ describe('AudioEncoderSTTPromise', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_AUDIO_ENCODER_API_EOS_PROMISE_0500', 0, async function (done) {
-        let savepath = BASIC_PATH + 'eos_0500.txt';
+        let savepath = BASIC_PATH + 'eos_0500.es';
         let mySteps = new Array(CONFIGURE, PREPARE, START, HOLDON, JUDGE_EOS, STOP, START, STOP, END);
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);

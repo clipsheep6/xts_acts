@@ -22,6 +22,7 @@
 using namespace testing::ext;
 
 static const int16 TEST_LEN = 10;
+static const int16 WAIT_LEN = 5;
 static const char *BROADCASR_TEST_SERVICE = "S_broadcast2";
 
 static void C1Callback(Consumer *consumer, const Topic *topic, const Request *request)
@@ -107,6 +108,7 @@ protected:
     {
         printf("[hcpptest]SetUpTestCase ! \n");
         SystemInitProxy();
+        sleep(WAIT_LEN);
     }
     // TearDownTestCase: Testsuit teardown, run after last testcase
     static void TearDownTestCase(void)
@@ -221,7 +223,7 @@ HWTEST_F(BroadcastPublishTest, testPublish0030, Function | MediumTest | Level2)
 
 /**
  * @tc.number    : DMSLite_SAMGR_Publish_0040
- * @tc.name      : Provider publish broadcast successfully for 0 and max lenth message
+ * @tc.name      : Provider publish broadcast successfully for 0 and max length message
  * @tc.desc      : [C- SOFTWARE -0200]
 */
 HWTEST_F(BroadcastPublishTest, testPublish0040, Function | MediumTest | Level2)

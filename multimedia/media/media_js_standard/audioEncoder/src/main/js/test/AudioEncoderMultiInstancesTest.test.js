@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,9 +18,8 @@ import Fileio from '@ohos.fileio'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('AudioEncoderFuncPromise', function () {
-    const AUDIOPATH =  '/data/media/S32LE.pcm';
-    const AUDIOPATH2 =  '/data/media/S32LE_2.pcm';
-    const BASIC_PATH = '/data/media/results/encode_func_promise_';
+    const RESOURCEPATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/'
+    const AUDIOPATH = RESOURCEPATH + 'S16LE.pcm';
     let readStreamSync;
     let eosframenum = 0;
     let stopAtEOS = false;
@@ -36,7 +35,7 @@ describe('AudioEncoderFuncPromise', function () {
     let inputQueue = [];
     let outputQueue = [];
     const ES = [0, 4096];
-    let ES_LENGTH = 2000;
+    let ES_LENGTH = 1500;
 
     beforeAll(function() {
         console.info('beforeAll case');
@@ -58,7 +57,7 @@ describe('AudioEncoderFuncPromise', function () {
         sawOutputEOS = false;
         inputQueue = [];
         outputQueue = [];
-        ES_LENGTH = 2000;
+        ES_LENGTH = 1500;
     })
 
     afterEach(function() {
@@ -141,8 +140,8 @@ describe('AudioEncoderFuncPromise', function () {
         console.info("start add ADTS to Packet");
         let packetLen = len + 7; // 7: head length
         let profile = 2; // 2: AAC LC  
-        let freqIdx = 3; // 3: 48000HZ 
-        let chanCfg = 1; // 1: 1 channel
+        let freqIdx = 4; // 4: 44100HZ 
+        let chanCfg = 2; // 2: 2 channel
         view[0] = 0xFF;
         view[1] = 0xF9;
         view[2] = ((profile - 1) << 6) + (freqIdx << 2) + (chanCfg >> 2);
@@ -160,9 +159,12 @@ describe('AudioEncoderFuncPromise', function () {
 
     async function resetWork(audioEncodeProcessor) {
         resetParam();
-        await audioEncodeProcessor.reset().then(() => {
+        await audioEncodeProcessor.reset().then(async() => {
             console.info("case reset success");
             if (needrelease) {
+                await audioEncodeProcessor.release().then(() => {
+                    console.info("case release success");
+                }, failCallback).catch(failCatch);
                 audioEncodeProcessor = null;
             }
         }, failCallback).catch(failCatch);
@@ -204,7 +206,7 @@ describe('AudioEncoderFuncPromise', function () {
             let inputobject = queue.shift();
             console.info("case frameCnt:" + frameCnt);
             if (frameCnt == eosframenum || frameCnt == ES_LENGTH + 1) {
-                console.info("case EOS frame seperately")
+                console.info("case EOS frame separately")
                 inputobject.flags = 1;
                 inputobject.timeMs = 0;
                 inputobject.length = 0;
@@ -219,7 +221,7 @@ describe('AudioEncoderFuncPromise', function () {
             }
             timestamp += 23;
             frameCnt += 1;
-            audioEncodeProcessor.queueInput(inputobject).then(() => {
+            audioEncodeProcessor.pushInputData(inputobject).then(() => {
                 console.info('case queueInput success');
             });
         }
@@ -248,7 +250,7 @@ describe('AudioEncoderFuncPromise', function () {
                 writeFile(savepath, outputobject.data, outputobject.length);
                 console.info("write to file success");
             }
-            audioEncodeProcessor.releaseOutput(outputobject).then(() => {
+            audioEncodeProcessor.freeOutputBuffer(outputobject).then(() => {
                 console.info('release output success');
             });
         }
@@ -256,12 +258,12 @@ describe('AudioEncoderFuncPromise', function () {
 
     function setCallback(audioEncodeProcessor, savepath, done) {
         console.info('case callback');
-        audioEncodeProcessor.on('inputBufferAvailable', async(inBuffer) => {
+        audioEncodeProcessor.on('needInputData', async(inBuffer) => {
             console.info('inputBufferAvailable');
             inputQueue.push(inBuffer);
             await enqueueInputs(audioEncodeProcessor, inputQueue);
         });
-        audioEncodeProcessor.on('outputBufferAvailable', async(outBuffer) => {
+        audioEncodeProcessor.on('newOutputData', async(outBuffer) => {
             console.info('outputBufferAvailable');
             if (needgetMediaDes) {
                 audioEncodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
@@ -276,14 +278,14 @@ describe('AudioEncoderFuncPromise', function () {
         audioEncodeProcessor.on('error',(err) => {
             console.info('case error called,errName is' + err);
         });
-        audioEncodeProcessor.on('outputFormatChanged',(format) => {
+        audioEncodeProcessor.on('streamChanged',(format) => {
             console.info('Output format changed: ' + format);
         });
     }
 
     /* *
         * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_MULTIINSTANCE_0100
-        * @tc.name      : 001.create 16 encoder
+        * @tc.name      : 001.create multiple encoder2
         * @tc.desc      : basic encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
@@ -292,7 +294,7 @@ describe('AudioEncoderFuncPromise', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_MULTIINSTANCE_0100', 0, async function (done) {
         console.info("case test multiple encoder instances");
         let array = new Array();
-        for (let i = 0; i < 16; i += 1) {
+        for (let i = 0; i < 2; i += 1) {
             await media.createAudioEncoderByMime('audio/mp4a-latm').then((processor) => {
                 if (typeof(processor) != 'undefined') {
                     console.info("case create createAudioEncoder success: " + i);
@@ -302,17 +304,16 @@ describe('AudioEncoderFuncPromise', function () {
                 }
             }, failCallback).catch(failCatch);
         }
-        console.info('case has created 16 encoders');
-        console.info('case array: ' + array);
-        for (let j = 0; j < 16; j++) {
+        console.info('case has created multiple encoders');
+        for (let j = 0; j < 2; j++) {
             resetParam();
             await array[j].reset().then(() => {
                 console.info("reset encoder " + j);
             }, failCallback).catch(failCatch);
             await array[j].release().then(() => {
                 console.info("case release success");
-                array[j] = null;
             }, failCallback).catch(failCatch);
+            array[j] = null;
         }
         done();
     })

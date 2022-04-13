@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,19 +13,4 @@
  * limitations under the License.
  */
 
-require('./ExampleJsunit.test.js');
 require('./util.test.js');
-require('./Deque.test.js');
-require('./ArrayList.test.js');
-require('./Queue.test.js');
-require('./Stack.test.js');
-require('./ContainerList.test.js');
-require('./LinkedList.test.js');
-require('./Vector.test.js');
-require('./LightWeightMap.test.js');
-require('./LightWeightSet.test.js');
-require('./HashMap.test.js');
-require('./HashSet.test.js');
-require('./PlainArray.test.js');
-require('./TreeMap.test.js');
-require('./TreeSet.test.js');

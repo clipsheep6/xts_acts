@@ -45,18 +45,18 @@ describe("volumeManager", function () {
                 var id = volumes[0].id;
                 var uuid = volumes[0].uuid;
                 var description = volumes[0].description;
-                var removeAble = volumes[0].removeAble;
+                var removable = volumes[0].removable;
                 var state = volumes[0].state;
                 var path = volumes[0].path;
                 expect(isString(id)).assertTrue();
                 expect(isString(uuid)).assertTrue();
                 expect(isString(description)).assertTrue();
-                expect(isBoolean(removeAble)).assertTrue();
+                expect(isBoolean(removable)).assertTrue();
                 expect(isIntNum(state)).assertTrue();
                 expect(isString(path)).assertTrue();
             }
         } catch (e) {
-            console.log("volume_manager_test_get_all_volumes_async_000 has failed for " + e);
+            console.log("volume_manager_test_get_all_volumes_async_000 has failed for :" + e);
             expect(null).assertFail();
         }
         done();
@@ -80,13 +80,13 @@ describe("volumeManager", function () {
                     var id = volumes[0].id;
                     var uuid = volumes[0].uuid;
                     var description = volumes[0].description;
-                    var removeAble = volumes[0].removeAble;
+                    var removable = volumes[0].removable;
                     var state = volumes[0].state;
                     var path = volumes[0].path;
                     expect(isString(id)).assertTrue();
                     expect(isString(uuid)).assertTrue();
                     expect(isString(description)).assertTrue();
-                    expect(isBoolean(removeAble)).assertTrue();
+                    expect(isBoolean(removable)).assertTrue();
                     expect(isIntNum(state)).assertTrue();
                     expect(isString(path)).assertTrue();
                 }
@@ -112,7 +112,7 @@ describe("volumeManager", function () {
             await volumeManager.getAllVolumes(2);
         } catch (error) {
             console.log(`volume_manager_test_get_all_Volumes_async_002 has failed for error ${error}`);
-            expect(isInclude(error, "The callback shall be a funciton")).assertTrue();
+            expect(isInclude(error, "The callback shall be a function")).assertTrue();
         }
         done();
     });
@@ -132,7 +132,7 @@ describe("volumeManager", function () {
             expect(null).assertFail();
         } catch (error) {
             console.log(`volume_manager_test_get_all_Volumes_async_003 has failed for error ${error}`);
-            expect(isInclude(error, "The callback shall be a funciton")).assertTrue();
+            expect(isInclude(error, "The callback shall be a function")).assertTrue();
         }
         done();
     });
@@ -148,11 +148,16 @@ describe("volumeManager", function () {
      */
     it("volume_manager_test_get_all_Volumes_async_004", 0, async function (done) {
         try {
+
+
             await volumeManager.getAllVolumes(false);
             expect(null).assertFail();
         } catch (error) {
-            console.log(`volume_manager_test_get_all_Volumes_async_004 has failed for error ${error}`);
-            expect(isInclude(error, "The callback shall be a funciton")).assertTrue();
+
+
+            console.log(`volume_manager_test_get_all_Volumes_async_004 has failed f
+            or error ${error}`);
+            expect(isInclude(error, "The callback shall be a function")).assertTrue();
         }
         done();
     });
@@ -245,7 +250,7 @@ describe("volumeManager", function () {
             expect(null).assertFail();
         } catch (error) {
             console.log(`volume_manager_test_mount_async_003 has failed for ${error}`);
-            expect(isInclude(error, "not a function")).assertTrue();
+            expect(isInclude(error, "not a function") || isInclude(error, "is not callable")).assertTrue();
         }
         done();
     });
@@ -398,7 +403,7 @@ describe("volumeManager", function () {
             expect(null).assertFail();
         } catch (error) {
             console.log(`volume_manager_test_unmount_async_004 has failed for ${error}`);
-            expect(isInclude(error, "not a function")).assertTrue();
+            expect(isInclude(error, "not a function") || isInclude(error, "is not callable")).assertTrue();
         }
         done();
     });
