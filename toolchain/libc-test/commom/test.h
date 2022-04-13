@@ -1,7 +1,6 @@
 #include <stdint.h>
 #include <unistd.h>
 
-/* TODO: not thread-safe nor fork-safe */
 extern volatile int t_status;
 
 #define T_LOC2(l) __FILE__ ":" #l
