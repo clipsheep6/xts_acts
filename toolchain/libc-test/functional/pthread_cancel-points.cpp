@@ -9,16 +9,12 @@
 
 #define TESTC(c, m) EXPECT_TRUE((c)) << #c << " failed (" << cdescr << ", " << m << ")" << endl;
 
-#define TESTR(f, m)                                                                                                  \
-    do {                                                                                                             \
-        int r;                                                                                                       \
-        EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(errno) << " (" << cdescr << ", " << m << ")" << endl; \
-    } while (0)
+#define TESTR(f, m) do {                                                                                         \
+    int r;                                                                                                       \
+    EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(errno) << " (" << cdescr << ", " << m << ")" << endl; \
+} while (0)
 
-#define TESTE(f, m)                                                                                                      \
-    do {                                                                                                                 \
-        EXPECT_FALSE(((f) == -1)) << #f << " failed: " << strerror(errno) << " (" << cdescr << ", " << m << ")" << endl; \
-    } while (0)
+#define TESTE(f, m) EXPECT_FALSE(((f) == -1)) << #f << " failed: " << strerror(errno) << " (" << cdescr << ", " << m << ")" << endl;
 
 using namespace std;
 using namespace testing::ext;

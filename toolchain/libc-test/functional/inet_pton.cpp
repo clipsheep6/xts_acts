@@ -5,65 +5,63 @@
 #include <stdio.h>
 #include <arpa/inet.h>
 
-#define V6(src, ret, hex)                                                                                                                                                         \
-    do {                                                                                                                                                                          \
-        int r;                                                                                                                                                                    \
-        char binaddr[16] = {0};                                                                                                                                                   \
-        char hexaddr[40] = {0};                                                                                                                                                   \
-        char txtaddr[60] = {0};                                                                                                                                                   \
-                                                                                                                                                                                  \
-        r = inet_pton(AF_INET6, src, binaddr);                                                                                                                                    \
-        EXPECT_EQ(r, ret) << "inet_pton(AF_INET6, " << #src << ", addr) returned " << r << ", want " << ret << endl;                                                              \
-        if (ret != 1)                                                                                                                                                             \
-            break;                                                                                                                                                                \
-        tohex(hexaddr, binaddr, 16);                                                                                                                                              \
-        EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_pton(AF_INET6, " << #src << ", addr) got addr " << hexaddr << ", want " << hex << endl;                                       \
-                                                                                                                                                                                  \
-        tobin(binaddr, hex);                                                                                                                                                      \
-        EXPECT_EQ(txtaddr, inet_ntop(AF_INET6, binaddr, txtaddr, sizeof txtaddr))                                                                                                 \
-            << "inet_ntop(AF_INET6, <" #hex ">, buf, size) did not return buf" << endl;                                                                                           \
-                                                                                                                                                                                  \
-        EXPECT_EQ(1, inet_pton(AF_INET6, txtaddr, binaddr)) << "inet_ntop(AF_INET6, <" << #hex                                                                                    \
-                                                            << ">, buf, size) got " << txtaddr << ", it is rejected by inet_pton" << endl;                                        \
-                                                                                                                                                                                  \
-        tohex(hexaddr, binaddr, 16);                                                                                                                                              \
-        EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_ntop(AF_INET6, <" << #hex << ">, buf, size) got "                                                                             \
-                                           << txtaddr << " that is " << hexaddr << ", want " << hex << endl;                                                                      \
-                                                                                                                                                                                  \
-        EXPECT_FALSE(strncmp(hex, "00000000000000000000ffff", 24) == 0 && !strchr(txtaddr, '.')) << "inet_ntop(AF_INET6, <"                                                       \
-                                                                                                 << #hex << ">, buf, size) got " << txtaddr << ", should be ipv4 mapped" << endl; \
-    } while (0);
+#define V6(src, ret, hex) do {                                                                                                                                                   \
+    int r;                                                                                                                                                                       \
+    char binaddr[16] = {0};                                                                                                                                                      \
+    char hexaddr[40] = {0};                                                                                                                                                      \
+    char txtaddr[60] = {0};                                                                                                                                                      \
+                                                                                                                                                                                 \
+    r = inet_pton(AF_INET6, src, binaddr);                                                                                                                                       \
+    EXPECT_EQ(r, ret) << "inet_pton(AF_INET6, " << #src << ", addr) returned " << r << ", want " << ret << endl;                                                                 \
+    if (ret != 1)                                                                                                                                                                \
+        break;                                                                                                                                                                   \
+    tohex(hexaddr, binaddr, 16);                                                                                                                                                 \
+    EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_pton(AF_INET6, " << #src << ", addr) got addr " << hexaddr << ", want " << hex << endl;                                          \
+                                                                                                                                                                                 \
+    tobin(binaddr, hex);                                                                                                                                                         \
+    EXPECT_EQ(txtaddr, inet_ntop(AF_INET6, binaddr, txtaddr, sizeof txtaddr))                                                                                                    \
+        << "inet_ntop(AF_INET6, <" #hex ">, buf, size) did not return buf" << endl;                                                                                              \
+                                                                                                                                                                                 \
+    EXPECT_EQ(1, inet_pton(AF_INET6, txtaddr, binaddr)) << "inet_ntop(AF_INET6, <" << #hex                                                                                       \
+                                                        << ">, buf, size) got " << txtaddr << ", it is rejected by inet_pton" << endl;                                           \
+                                                                                                                                                                                 \
+    tohex(hexaddr, binaddr, 16);                                                                                                                                                 \
+    EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_ntop(AF_INET6, <" << #hex << ">, buf, size) got "                                                                                \
+                                        << txtaddr << " that is " << hexaddr << ", want " << hex << endl;                                                                        \
+                                                                                                                                                                                 \
+    EXPECT_FALSE(strncmp(hex, "00000000000000000000ffff", 24) == 0 && !strchr(txtaddr, '.')) << "inet_ntop(AF_INET6, <"                                                          \
+                                                                                                << #hex << ">, buf, size) got " << txtaddr << ", should be ipv4 mapped" << endl; \
+} while (0);
 
 // ret and hex are the results of inet_pton and inet_addr respectively
-#define V4(src, ret, hex)                                                                                                                            \
-    do {                                                                                                                                             \
-        int r;                                                                                                                                       \
-        uint32_t a;                                                                                                                                  \
-        struct in_addr in;                                                                                                                           \
-        char buf[20] = {0};                                                                                                                          \
-        char *p;                                                                                                                                     \
-                                                                                                                                                     \
-        a = inet_addr(src);                                                                                                                          \
-        tohex(buf, &a, 4);                                                                                                                           \
-        EXPECT_FALSE(strcmp(buf, hex)) << "inet_addr(" << #src << ") returned " << buf << ", want " << hex << endl;                                  \
-                                                                                                                                                     \
-        r = inet_pton(AF_INET, src, &a);                                                                                                             \
-        EXPECT_EQ(r, ret) << "inet_pton(AF_INET, " << #src << ", addr) returned " << r << ", want " << ret << endl;                                  \
-                                                                                                                                                     \
-        if (ret != 1)                                                                                                                                \
-            break;                                                                                                                                   \
-                                                                                                                                                     \
-        tohex(buf, &a, 4);                                                                                                                           \
-        EXPECT_FALSE(strcmp(buf, hex)) << "inet_pton(AF_INET, " << #src << ", addr) got addr " << buf << ", want " << hex << endl;                   \
-                                                                                                                                                     \
-        tobin(&a, hex);                                                                                                                              \
-        EXPECT_FALSE(inet_ntop(AF_INET, &a, buf, sizeof buf) != buf) << "inet_pton(AF_INET, " << #hex << ", buf, size) did not return buf " << endl; \
-        EXPECT_FALSE(strcmp(buf, src)) << "inet_pton(AF_INET, " << #hex << ", buf , size) got " << buf << ", want " << src << endl;                  \
-                                                                                                                                                     \
-        in.s_addr = a;                                                                                                                               \
-        p = inet_ntoa(in);                                                                                                                           \
-        EXPECT_FALSE(strcmp(p, src)) << "inet_ntoa(<" << #hex << ">) returned " << p << ", want " << src << endl;                                    \
-    } while (0);
+#define V4(src, ret, hex) do {                                                                                                                   \
+    int r;                                                                                                                                       \
+    uint32_t a;                                                                                                                                  \
+    struct in_addr in;                                                                                                                           \
+    char buf[20] = {0};                                                                                                                          \
+    char *p;                                                                                                                                     \
+                                                                                                                                                 \
+    a = inet_addr(src);                                                                                                                          \
+    tohex(buf, &a, 4);                                                                                                                           \
+    EXPECT_FALSE(strcmp(buf, hex)) << "inet_addr(" << #src << ") returned " << buf << ", want " << hex << endl;                                  \
+                                                                                                                                                 \
+    r = inet_pton(AF_INET, src, &a);                                                                                                             \
+    EXPECT_EQ(r, ret) << "inet_pton(AF_INET, " << #src << ", addr) returned " << r << ", want " << ret << endl;                                  \
+                                                                                                                                                 \
+    if (ret != 1)                                                                                                                                \
+        break;                                                                                                                                   \
+                                                                                                                                                 \
+    tohex(buf, &a, 4);                                                                                                                           \
+    EXPECT_FALSE(strcmp(buf, hex)) << "inet_pton(AF_INET, " << #src << ", addr) got addr " << buf << ", want " << hex << endl;                   \
+                                                                                                                                                 \
+    tobin(&a, hex);                                                                                                                              \
+    EXPECT_FALSE(inet_ntop(AF_INET, &a, buf, sizeof buf) != buf) << "inet_pton(AF_INET, " << #hex << ", buf, size) did not return buf " << endl; \
+    EXPECT_FALSE(strcmp(buf, src)) << "inet_pton(AF_INET, " << #hex << ", buf , size) got " << buf << ", want " << src << endl;                  \
+                                                                                                                                                 \
+    in.s_addr = a;                                                                                                                               \
+    p = inet_ntoa(in);                                                                                                                           \
+    EXPECT_FALSE(strcmp(p, src)) << "inet_ntoa(<" << #hex << ">) returned " << p << ", want " << src << endl;                                    \
+} while (0);
     
 using namespace std;
 using namespace testing::ext;

@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 
 #define TX(r, f, x) EXPECT_EQ(((r) = (f)), x) << #f << " failed: (pshared==" << pshared \
-                                              << ") got " << r << " \"" << strerror(r) << "\" want " << x << " \"" << strerror(x) << "\"" << endl;
+            << ") got " << r << " \"" << strerror(r) << "\" want " << x << " \"" << strerror(x) << "\"" << endl;
 #define T(r, f) TX(r, f, 0)
 
 using namespace std;

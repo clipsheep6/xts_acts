@@ -2,11 +2,11 @@
 #include <libgen.h>
 #include "gtest/gtest.h"
 
-#define T(path, want) {                                                                                                           \
-        char tmp[100];                                                                                                            \
-        char *got = basename(strcpy(tmp, path));                                                                                  \
-        EXPECT_EQ(0, strcmp(want, got)) << "basename(\"" << path << "\") got \"" << got << "s\" want \"" << want << "\"" << endl; \
-    }
+#define T(path, want) do {                                                                                                    \
+    char tmp[100];                                                                                                            \
+    char *got = basename(strcpy(tmp, path));                                                                                  \
+    EXPECT_EQ(0, strcmp(want, got)) << "basename(\"" << path << "\") got \"" << got << "s\" want \"" << want << "\"" << endl; \
+} while(0)
 
 using namespace std;
 using namespace testing::ext;

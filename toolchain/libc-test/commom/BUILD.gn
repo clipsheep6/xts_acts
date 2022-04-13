@@ -1,7 +1,7 @@
 import("//build/test.gni")
 
 ohos_static_library("libcommom") {
-  include_dirs = [ 
+  include_dirs = [
     ".",
     "//third_party/googletest/googletest/include",
   ]
@@ -10,10 +10,8 @@ ohos_static_library("libcommom") {
     "fdfill.cpp",
     "memfill.cpp",
     "mtest.cpp",
-    #"path.cpp",
     "print.cpp",
     "rand.cpp",
-    #"runtest.cpp",
     "setrlim.cpp",
     "utf8.cpp",
     "vmfill.cpp",
@@ -46,4 +44,3 @@ ohos_unittest("static_lib") {
   module_out_path = "libc-test/src/common"
   deps = [ ":libcommom" ]
 }
-

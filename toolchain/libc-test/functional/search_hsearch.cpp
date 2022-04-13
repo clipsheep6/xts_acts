@@ -8,11 +8,10 @@
 #include <errno.h>
 #include "gtest/gtest.h"
 
-#define set(k, v)                                                                                             \
-    do {                                                                                                      \
-            e = hsearch((ENTRY){.key = k, .data = (void *)v}, ENTER);                                             \
-            EXPECT_FALSE(!e || strcmp(e->key, k) != 0) << "hsearch ENTER " << k << " " << v << " failed" << endl; \
-    } while (0)
+#define set(k, v) do {                                                                                    \
+    e = hsearch((ENTRY){.key = k, .data = (void *)v}, ENTER);                                             \
+    EXPECT_FALSE(!e || strcmp(e->key, k) != 0) << "hsearch ENTER " << k << " " << v << " failed" << endl; \
+} while (0)
 
 #define get(k) hsearch((ENTRY){.key = k, .data = 0}, FIND)
 

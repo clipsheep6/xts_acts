@@ -2,12 +2,11 @@
 #include <stdio.h>
 #include "gtest/gtest.h"
 
-#define T(n, nfmt, fmt)                                                              \
-    do {                                                                             \
-        EXPECT_FALSE((ret = sprintf(buf, "%256d%d" nfmt "%d", 1, 2, &n, 3)) != 258)  \
-            << "expexted sprintf to write 258 chars, got " << ret << endl;           \
-        EXPECT_EQ(257, n) << n << " format failed: wanted 257, got " << fmt << endl; \
-    } while (0)
+#define T(n, nfmt, fmt) do {                                                     \
+    EXPECT_FALSE((ret = sprintf(buf, "%256d%d" nfmt "%d", 1, 2, &n, 3)) != 258)  \
+        << "expexted sprintf to write 258 chars, got " << ret << endl;           \
+    EXPECT_EQ(257, n) << n << " format failed: wanted 257, got " << fmt << endl; \
+} while (0)
     
 using namespace std;
 using namespace testing::ext;

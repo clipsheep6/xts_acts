@@ -4,7 +4,6 @@
 #include <time.h>
 #include "gtest/gtest.h"
 
-
 using namespace std;
 using namespace testing::ext;
 class StrfTimeSuite : public testing::Test {};

@@ -11,11 +11,10 @@
 
 #define DISABLE_SLOW_TESTS
 
-#define TESTT(r, f, x, m)                                                    \
-    do {                                                                     \
-        ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
-        EXPECT_EQ((r), (x));                                                 \
-    } while (0)
+#define TESTT(r, f, x, m) do {                                           \
+    ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
+    EXPECT_EQ((r), (x));                                                 \
+} while (0)
 
 #define TEST_S(s, x, m) EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;
 

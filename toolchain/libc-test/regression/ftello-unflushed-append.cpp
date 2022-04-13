@@ -6,11 +6,10 @@
 #include <unistd.h>
 #include "gtest/gtest.h"
 
-#define ASSERT(c)                                                                        \
-    do {                                                                                 \
-        errno = 0;                                                                       \
-        EXPECT_FALSE(!(c)) << #c << "failed (errno: " << strerror(errno) << ")" << endl; \
-    } while (0)
+#define ASSERT(c) do {                                                                   \
+    errno = 0;                                                                       \
+    EXPECT_FALSE(!(c)) << #c << "failed (errno: " << strerror(errno) << ")" << endl; \
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

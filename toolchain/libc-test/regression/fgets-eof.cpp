@@ -3,10 +3,7 @@
 #include <string.h>
 #include "gtest/gtest.h"
 
-#define ASSERTT(c)                                     \
-    do {                                               \
-        EXPECT_FALSE(!(c)) << #c << " failed" << endl; \
-    } while (0)
+#define ASSERTT(c) EXPECT_FALSE(!(c)) << #c << " failed" << endl;
 
 using namespace std;
 using namespace testing::ext;

@@ -2,11 +2,10 @@
 #include <unistd.h>
 #include "gtest/gtest.h"
 
-#define TESTT(c)                                                                 \
-    do {                                                                         \
-        errno = 0;                                                               \
-        EXPECT_FALSE(!(c)) << #c << " failed (errno = " << errno << ")" << endl; \
-    } while (0)
+#define TESTT(c) do {                                                        \
+    errno = 0;                                                               \
+    EXPECT_FALSE(!(c)) << #c << " failed (errno = " << errno << ")" << endl; \
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

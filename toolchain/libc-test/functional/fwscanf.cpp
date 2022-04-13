@@ -7,13 +7,12 @@
 #include "test.h"
 #include "gtest/gtest.h"
 
-#define TESTT(r, f, x, m)                                                   \
-    do {                                                                    \
-        errno = 0;                                                          \
-        ((r) = (f)) == (x) ||                                               \
-            (t_error("%s failed (" m ")\n", #f, r, x, strerror(errno)), 0); \
-        EXPECT_EQ((r), (x));                                                \
-    } while (0)
+#define TESTT(r, f, x, m) do {                                          \
+    errno = 0;                                                          \
+    ((r) = (f)) == (x) ||                                               \
+        (t_error("%s failed (" m ")\n", #f, r, x, strerror(errno)), 0); \
+    EXPECT_EQ((r), (x));                                                \
+} while (0)
     
 #define TEST_S(s, x, m) EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;
 

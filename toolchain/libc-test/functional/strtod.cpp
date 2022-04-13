@@ -3,7 +3,6 @@
 #include <math.h>
 #include "gtest/gtest.h"
 
-
 #define length(x) (sizeof(x) / sizeof *(x))
 
 using namespace std;

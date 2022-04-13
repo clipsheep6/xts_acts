@@ -6,17 +6,15 @@
 #include <locale.h>
 #include <langinfo.h>
 
-#define T(f, x, m)                                                                                     \
-    do {                                                                                               \
-        memset(&st, 0, sizeof st);                                                                     \
-        EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << m << ") got " << i << " want " << x << endl; \
-    } while (0)
+#define T(f, x, m) do {                                                                            \
+    memset(&st, 0, sizeof st);                                                                     \
+    EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << m << ") got " << i << " want " << x << endl; \
+} while (0)
 
-#define TCHAR(f, x, m)                                                                                     \
-    do {                                                                                                   \
-        memset(&st, 0, sizeof st);                                                                         \
-        EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << m << ") got 0x" << i << " want 0x" << x << endl; \
-    } while (0)
+#define TCHAR(f, x, m) do {                                                                            \
+    memset(&st, 0, sizeof st);                                                                         \
+    EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << m << ") got 0x" << i << " want 0x" << x << endl; \
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

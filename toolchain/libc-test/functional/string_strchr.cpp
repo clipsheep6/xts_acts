@@ -2,24 +2,24 @@
 #include "gtest/gtest.h"
 #include "test.h"
 
-#define N(s, c) { 																															 \
+#define N(s, c) do { 																															 \
     int align; 																																 \
     for (align=0; align<8; align++) { 																							  			 \
         char *p = (char *)aligncpy((char *)s, sizeof s, align); 																	   		 \
         char *q = (char *)strchr(p, c);												 														 \
         EXPECT_FALSE(q) << "strchr(" << #s << "," << #c << ")" << " with align=" << align << " returned str+" << q-p << ", wanted 0"<< endl; \
 	} 																																		 \
-}
+} while(0)
 
-#define T(s, c, n) { 																																	 \
+#define T(s, c, n) do { 																																	 \
     int align;																																			 \
     for (align=0; align<8; align++) { 																													 \
         char *p = (char *)aligncpy((void *)s, sizeof s, align); 																						 \
         char *q = (char *)strchr(p, c); 																												 \
         EXPECT_STRNE(q , nullptr) << "strchr(" << #s << "," << #c << ")" << "with align=" << align << " returned 0, wanted str+" << n << endl; 			 \
 	    EXPECT_EQ(q - p , n) << "strchr(" << #s << "," << #c << ")" << "with align=" << align << " returned str+" << q-p << " wanted str+" << n << endl; \
-	} 																																					 \
-}
+	}																																				 \
+} while(0)	
 
 using namespace std;
 using namespace testing::ext;

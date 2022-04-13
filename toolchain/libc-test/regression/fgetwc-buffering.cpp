@@ -7,10 +7,7 @@
 #include "test.h"
 #include "gtest/gtest.h"
 
-#define A(c)                                           \
-    do {                                               \
-        EXPECT_FALSE(!(c)) << #c << " failed" << endl; \
-    } while (0)
+#define A(c) EXPECT_FALSE(!(c)) << #c << " failed" << endl;
 
 using namespace std;
 using namespace testing::ext;

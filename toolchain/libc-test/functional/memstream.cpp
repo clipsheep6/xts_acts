@@ -6,17 +6,15 @@
 #include <string.h>
 #include "test.h"
 
-#define TESTT(r, f, x, m)                                                    \
-    do {                                                                     \
-        ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
-        EXPECT_EQ((i), (x));                                                 \
-    } while (0)
+#define TESTT(r, f, x, m) do {                                           \
+    ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
+    EXPECT_EQ((i), (x));                                                 \
+} while (0)
 
-#define TEST_E(f)                                                            \
-    do {                                                                     \
-        (errno = 0);                                                         \
-        EXPECT_TRUE(f) << #f << " failed (errno = " << errno << ")" << endl; \
-    } while (0)
+#define TEST_E(f) do {                                                  \
+    (errno = 0);                                                         \
+    EXPECT_TRUE(f) << #f << " failed (errno = " << errno << ")" << endl; \
+} while (0)
     
 #define TEST_S(s, x, m) EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << endl;
 #define TEST_M(s, x, n, m) EXPECT_TRUE(!memcmp((s), (x), (n))) << "[" << s << "] != [" << x << "] (" << m << endl;
