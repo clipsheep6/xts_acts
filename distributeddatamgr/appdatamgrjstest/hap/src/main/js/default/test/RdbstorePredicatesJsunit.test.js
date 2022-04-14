@@ -12,18 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import dataRdb from '@ohos.data.rdb';
 
 const TAG = "[RDB_JSKITS _TEST]"
 const CREATE_TABLE_ALL_DATA_TYPE_SQL = "CREATE TABLE IF NOT EXISTS AllDataType "
-+ "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
-+ "integerValue INTEGER , longValue INTEGER , shortValue INTEGER , booleanValue INTEGER , "
-+ "doubleValue REAL , floatValue REAL , stringValue TEXT , blobValue BLOB , clobValue TEXT , "
-+ "byteValue INTEGER , dateValue INTEGER , timeValue INTEGER , timestampValue INTEGER , "
-+ "calendarValue INTEGER , characterValue TEXT , primIntValue INTEGER , primLongValue INTEGER , "
-+ "primShortValue INTEGER , primFloatValue REAL , primDoubleValue REAL , "
-+ "primBooleanValue INTEGER , primByteValue INTEGER , primCharValue TEXT, `order` INTEGER);";
+    + "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
+    + "integerValue INTEGER , longValue INTEGER , shortValue INTEGER , booleanValue INTEGER , "
+    + "doubleValue REAL , floatValue REAL , stringValue TEXT , blobValue BLOB , clobValue TEXT , "
+    + "byteValue INTEGER , dateValue INTEGER , timeValue INTEGER , timestampValue INTEGER , "
+    + "calendarValue INTEGER , characterValue TEXT , primIntValue INTEGER , primLongValue INTEGER , "
+    + "primShortValue INTEGER , primFloatValue REAL , primDoubleValue REAL , "
+    + "primBooleanValue INTEGER , primByteValue INTEGER , primCharValue TEXT, `order` INTEGER);";
 
 const STORE_CONFIG = {
     name: "Predicates.db",
@@ -1122,9 +1122,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotBetween0001
-     * @tc.number I4JWCV
-     * @tc.desc test string value with notBetween.
+     * @tc.name predicates notbetween normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0100
+     * @tc.desc predicates notbetween normal test
      */
     it('testNotBetween0001', 0, async function (done) {
         console.log(TAG + "************* testNotBetween0001 start *************");
@@ -1141,9 +1141,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotBetween0002
-     * @tc.number I4JWCV
-     * @tc.desc test double value with notBetween.
+     * @tc.name predicates notbetween normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0101
+     * @tc.desc predicates notbetween normal test
      */
     it('testNotBetween0002', 0, async function (done) {
         console.log(TAG + "************* testNotBetween0002 start *************");
@@ -1160,9 +1160,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotBetween0003
-     * @tc.number I4JWCV
-     * @tc.desc test integer value with notBetween.
+     * @tc.name predicates notbetween normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0102
+     * @tc.desc predicates notbetween normal test
      */
     it('testNotBetween0003', 0, async function (done) {
         console.log(TAG + "************* testNotBetween0003 start *************");
@@ -1179,9 +1179,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotBetween0004
-     * @tc.number I4JWCV
-     * @tc.desc test long value with notBetween.
+     * @tc.name predicates notbetween normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0103
+     * @tc.desc predicates notbetween normal test
      */
     it('testNotBetween0004', 0, async function (done) {
         console.log(TAG + "************* testNotBetween0004 start *************");
@@ -1198,9 +1198,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0001
-     * @tc.number I4JWCV
-     * @tc.desc end with ? by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0110
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0001', 0, async function (done) {
         console.log(TAG + "************* testGlob0001 start *************");
@@ -1217,9 +1217,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0002
-     * @tc.number I4JWCV
-     * @tc.desc begin with * by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0111
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0002', 0, async function (done) {
         console.log(TAG + "************* testGlob0002 start *************");
@@ -1236,9 +1236,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0003
-     * @tc.number I4JWCV
-     * @tc.desc end with ? by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0112
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0003', 0, async function (done) {
         console.log(TAG + "************* testGlob0003 start *************");
@@ -1255,9 +1255,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0004
-     * @tc.number I4JWCV
-     * @tc.desc begin with ? by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0113
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0004', 0, async function (done) {
         console.log(TAG + "************* testGlob0004 start *************");
@@ -1274,9 +1274,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0005
-     * @tc.number I4JWCV
-     * @tc.desc begin and end with * by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0114
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0005', 0, async function (done) {
         console.log(TAG + "************* testGlob0005 start *************");
@@ -1293,9 +1293,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0006
-     * @tc.number I4JWCV
-     * @tc.desc begin and end with ? by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0115
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0006', 0, async function (done) {
         console.log(TAG + "************* testGlob0006 start *************");
@@ -1313,7 +1313,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates contains normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0100
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0120
      * @tc.desc predicates contains normal test
      */
     it('testContains0001', 0, async function (done) {
@@ -1329,7 +1329,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates contains normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0101
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0121
      * @tc.desc predicates contains normal test
      */
     it('testContains0002', 0, async function (done) {
@@ -1345,7 +1345,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates contains normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0102
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0122
      * @tc.desc predicates contains normal test
      */
     it('testContains0003', 0, async function (done) {
@@ -1361,7 +1361,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates contains normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0103
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0123
      * @tc.desc predicates contains normal test
      */
     it('testContains0004', 0, async function (done) {
@@ -1377,7 +1377,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0110
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0130
      * @tc.desc predicates beginsWith normal test
      */
     it('testBeginsWith0001', 0, async function (done) {
@@ -1393,7 +1393,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0111
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0131
      * @tc.desc predicates beginsWith normal test
      */
     it('testBeginsWith0002', 0, async function (done) {
@@ -1409,7 +1409,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0112
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0132
      * @tc.desc predicates beginsWith normal test
      */
     it('testBeginsWith0003', 0, async function (done) {
@@ -1425,7 +1425,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0113
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0133
      * @tc.desc predicates beginsWith normal test
      */
     it('testBeginsWith0004', 0, async function (done) {
@@ -1441,7 +1441,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates endsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0120
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0140
      * @tc.desc predicates endsWith normal test
      */
     it('testEndsWith0001', 0, async function (done) {
@@ -1457,7 +1457,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates endsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0121
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0141
      * @tc.desc predicates endsWith normal test
      */
     it('testEndsWith0002', 0, async function (done) {
@@ -1473,7 +1473,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates endsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0122
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0142
      * @tc.desc predicates endsWith normal test
      */
     it('testEndsWith0003', 0, async function (done) {
@@ -1489,7 +1489,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates endsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0123
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0143
      * @tc.desc predicates endsWith normal test
      */
     it('testEndsWith0004', 0, async function (done) {
@@ -1505,7 +1505,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates like normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0130
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0150
      * @tc.desc predicates like normal test
      */
     it('testLike0001', 0, async function (done) {
@@ -1521,7 +1521,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates like normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0130
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0151
      * @tc.desc predicates like normal test
      */
     it('testLike0002', 0, async function (done) {
@@ -1537,7 +1537,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates like normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0132
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0152
      * @tc.desc predicates like normal test
      */
     it('testLike0003', 0, async function (done) {
@@ -1553,7 +1553,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates like normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0133
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0153
      * @tc.desc predicates like normal test
      */
     it('testLike0004', 0, async function (done) {
@@ -1569,7 +1569,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginWrap normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0140
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0160
      * @tc.desc predicates beginWrap normal test
      */
     it('testBeginWrap0001', 0, async function (done) {
@@ -1592,7 +1592,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginWrap normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0141
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0161
      * @tc.desc predicates beginWrap normal test
      */
     it('testBeginWrap0002', 0, async function (done) {
@@ -1613,7 +1613,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginWrap normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0142
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0162
      * @tc.desc predicates beginWrap normal test
      */
     it('testBeginWrap0003', 0, async function (done) {
@@ -1634,7 +1634,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginWrap normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0143
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0163
      * @tc.desc predicates beginWrap normal test
      */
     it('testBeginWrap0004', 0, async function (done) {
@@ -1654,7 +1654,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginWrap normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0144
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0164
      * @tc.desc predicates beginWrap normal test
      */
     it('testBeginWrap0005', 0, async function (done) {
@@ -1674,7 +1674,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates and normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0150
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0170
      * @tc.desc predicates and normal test
      */
     it('testAnd0001', 0, async function (done) {
@@ -1694,7 +1694,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates or normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0151
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0171
      * @tc.desc predicates or normal test
      */
     it('testAnd0002', 0, async function (done) {
@@ -1717,7 +1717,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates and normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0152
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0172
      * @tc.desc predicates and normal test
      */
     it('testAnd0003', 0, async function (done) {
@@ -1733,7 +1733,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates and normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0153
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0173
      * @tc.desc predicates and normal test
      */
     it('testAnd0004', 0, async function (done) {
@@ -1742,7 +1742,7 @@ describe('rdbPredicatesTest', function () {
             let predicates = await new dataRdb.RdbPredicates("AllDataType");
             predicates.equalTo("stringValue", "ABCDEFGHIJKLMN").or().or().equalTo("integerValue", 1);
             console.log(TAG + "you are starting a sql request with predicate or or,"
-            + "using function or() immediately after another or(). that is ridiculous.");
+                + "using function or() immediately after another or(). that is ridiculous.");
         }
         done();
         console.log(TAG + "************* testAnd0004 end *************");
@@ -1750,7 +1750,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates order normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0160
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0180
      * @tc.desc predicates order normal test
      */
     it('testOrder0001', 0, async function (done) {
@@ -1774,7 +1774,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates order normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0161
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0181
      * @tc.desc predicates order normal test
      */
     it('testOrder0002', 0, async function (done) {
@@ -1798,7 +1798,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates order normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0162
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0182
      * @tc.desc predicates order normal test
      */
     it('testOrder0003', 0, async function (done) {
@@ -1816,7 +1816,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates order normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0163
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0183
      * @tc.desc predicates order normal test
      */
     it('testOrder0004', 0, async function (done) {
@@ -1834,7 +1834,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates limit normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0170
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0190
      * @tc.desc predicates limit normal test
      */
     it('testLimit0001', 0, async function (done) {
@@ -1850,7 +1850,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates limit normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0171
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0191
      * @tc.desc predicates limit normal test
      */
     it('testLimit0002', 0, async function (done) {
@@ -1866,7 +1866,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates limit normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0172
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0192
      * @tc.desc predicates limit normal test
      */
     it('testLimit0003', 0, async function (done) {
@@ -1882,7 +1882,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates limit normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0173
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0193
      * @tc.desc predicates limit normal test
      */
     it('testLimit0004', 0, async function (done) {
@@ -1898,7 +1898,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates limit normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0174
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0194
      * @tc.desc predicates limit normal test
      */
     it('testLimit0005', 0, async function (done) {
@@ -1914,7 +1914,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates limit normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0175
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0195
      * @tc.desc predicates limit normal test
      */
     it('testLimit0006', 0, async function (done) {
@@ -1930,7 +1930,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates offset normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0180
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0200
      * @tc.desc predicates offset normal test
      */
     it('testOffset0001', 0, async function (done) {
@@ -1946,7 +1946,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates offset normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0181
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0201
      * @tc.desc predicates offset normal test
      */
     it('testOffset0002', 0, async function (done) {
@@ -1962,7 +1962,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates offset normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0182
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0202
      * @tc.desc predicates offset normal test
      */
     it('testOffset0003', 0, async function (done) {
@@ -1978,7 +1978,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates offset normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0183
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0203
      * @tc.desc predicates offset normal test
      */
     it('testOffset0004', 0, async function (done) {
@@ -1994,7 +1994,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates in normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0190
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0210
      * @tc.desc predicates in normal test
      */
     it('testIn0001', 0, async function (done) {
@@ -2010,7 +2010,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates in normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0191
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0211
      * @tc.desc predicates in normal test
      */
     it('testIn0002', 0, async function (done) {
@@ -2026,7 +2026,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates in normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0192
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0212
      * @tc.desc predicates in normal test
      */
     it('testIn0003', 0, async function (done) {
@@ -2042,7 +2042,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates in normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0193
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0213
      * @tc.desc predicates in normal test
      */
     it('testIn0004', 0, async function (done) {
@@ -2057,9 +2057,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotIn0001
-     * @tc.number I4JWCV
-     * @tc.desc the common and min value test with notin.
+     * @tc.name predicates notin normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0220
+     * @tc.desc predicates notin normal test
      */
     it('testNotIn0001', 0, async function (done) {
         console.log(TAG + "************* testNotIn0001 start *************");
@@ -2074,9 +2074,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotIn0002
-     * @tc.number I4JWCV
-     * @tc.desc the common and max value test with notin.
+     * @tc.name predicates notin normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0221
+     * @tc.desc predicates notin normal test
      */
     it('testNotIn0002', 0, async function (done) {
         console.log(TAG + "************* testNotIn0002 start *************");
@@ -2091,9 +2091,9 @@ describe('rdbPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotIn0003
-     * @tc.number I4JWCV
-     * @tc.desc the min and max value test with notin.
+     * @tc.name predicates notin normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0222
+     * @tc.desc predicates notin normal test
      */
     it('testNotIn0003', 0, async function (done) {
         console.log(TAG + "************* testNotIn0003 start *************");
@@ -2109,7 +2109,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates constructor test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0200
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0230
      * @tc.desc predicates constructor test
      */
     it('testCreate0001', 0, async function (done) {
@@ -2123,7 +2123,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates constructor test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0201
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0231
      * @tc.desc predicates constructor test
      */
     it('testCreate0002', 0, async function (done) {
@@ -2137,7 +2137,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates groupBy test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0210
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0240
      * @tc.desc predicates groupBy test
      */
     it('testGroupBy0001', 0, async function (done) {
@@ -2153,7 +2153,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates groupBy test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0211
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0241
      * @tc.desc predicates groupBy test
      */
     it('testGroupBy0002', 0, async function (done) {
@@ -2169,7 +2169,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates indexedBy test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0220
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0250
      * @tc.desc predicates indexedBy test
      */
     it('testIndexedBy0001', 0, async function (done) {
@@ -2185,7 +2185,7 @@ describe('rdbPredicatesTest', function () {
 
     /**
      * @tc.name predicates indexedBy test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0221
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_0251
      * @tc.desc predicates indexedBy test
      */
     it('testIndexedBy0002', 0, async function (done) {

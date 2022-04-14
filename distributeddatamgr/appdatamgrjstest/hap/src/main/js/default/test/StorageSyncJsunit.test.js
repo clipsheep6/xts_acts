@@ -12,7 +12,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import storage from '@ohos.data.storage'
 
 const PATH = '/data/test_storage';
@@ -25,7 +25,7 @@ const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 var mPref;
 
 describe('storageTest', function () {
-    beforeAll(function() {
+    beforeAll(function () {
         console.info('beforeAll')
         mPref = storage.getStorageSync(PATH);
     })

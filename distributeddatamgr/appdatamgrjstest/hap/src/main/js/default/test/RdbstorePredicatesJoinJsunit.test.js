@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import dataRdb from '@ohos.data.rdb';
 
 const USER_TABLE = "CREATE TABLE IF NOT EXISTS user "
@@ -68,11 +68,11 @@ describe('rdbStorePredicatesJoinTest', function () {
         await rdbStore.executeSql(USER_TABLE);
 
         const users = [
-            {userId:1, firstName:"Zhang", lastName:"San", age:29, balance:100.51},
-            {userId:2, firstName:"Li", lastName:"Si", age:30, balance:200.51},
-            {userId:3, firstName:"wang", lastName:"wu", age:30, balance:300.51},
-            {userId:4, firstName:"sun", lastName:"liu", age:30, balance:400.51},
-            {userId:5, firstName:"ma", lastName:"qi", age:32, balance:500.51},
+            { userId: 1, firstName: "Zhang", lastName: "San", age: 29, balance: 100.51 },
+            { userId: 2, firstName: "Li", lastName: "Si", age: 30, balance: 200.51 },
+            { userId: 3, firstName: "wang", lastName: "wu", age: 30, balance: 300.51 },
+            { userId: 4, firstName: "sun", lastName: "liu", age: 30, balance: 400.51 },
+            { userId: 5, firstName: "ma", lastName: "qi", age: 32, balance: 500.51 },
         ];
 
         var objects = new Array();
@@ -93,9 +93,9 @@ describe('rdbStorePredicatesJoinTest', function () {
         await rdbStore.executeSql(BOOK_TABLE);
 
         var books = [
-            {id:1, name:"sanguo", userId:1},
-            {id:2, name:"xiyouji", userId:2},
-            {id:3, name:"shuihuchuan", userId:3},
+            { id: 1, name: "sanguo", userId: 1 },
+            { id: 2, name: "xiyouji", userId: 2 },
+            { id: 3, name: "shuihuchuan", userId: 3 },
         ]
 
         var objects = new Array();
@@ -112,10 +112,9 @@ describe('rdbStorePredicatesJoinTest', function () {
     console.log(TAG + "*************Unit Test Begin*************");
 
     /**
-     * @tc.name: testRdbJoin001
-     * @tc.desc: SUB_DDM_AppDataFWK_Rdb_Inner_Join
-     * @tc.type: FUNC
-     * @tc.require: I4NZP6
+     * @tc.name: rdb join test
+     * @tc.number: SUB_DDM_AppDataFWK_Rdb_Join_010
+     * @tc.desc: rdb join test
      */
     it('testRdbJoin001', 0, async function (done) {
         console.log(TAG + "testRdbJoin001 begin.");
@@ -136,10 +135,9 @@ describe('rdbStorePredicatesJoinTest', function () {
     })
 
     /**
-     * @tc.name: testRdbJoin002
-     * @tc.desc: SUB_DDM_AppDataFWK_Rdb_Cross_Join
-     * @tc.type: FUNC
-     * @tc.require: I4NZP6
+     * @tc.name: rdb join test
+     * @tc.number: SUB_DDM_AppDataFWK_Rdb_Join_011
+     * @tc.desc: rdb join test
      */
     it('testRdbJoin002', 0, async function (done) {
         console.log(TAG + "testRdbJoin002 begin.");
@@ -162,10 +160,9 @@ describe('rdbStorePredicatesJoinTest', function () {
     })
 
     /**
-     * @tc.name: testRdbJoin003
-     * @tc.desc: SUB_DDM_AppDataFWK_Rdb_Left_Outer_Join
-     * @tc.type: FUNC
-     * @tc.require: I4NZP6
+     * @tc.name: rdb join test
+     * @tc.number: SUB_DDM_AppDataFWK_Rdb_Join_012
+     * @tc.desc: rdb join test
      */
     it('testRdbJoin003', 0, async function (done) {
         console.log(TAG + "testRdbJoin003 begin.");

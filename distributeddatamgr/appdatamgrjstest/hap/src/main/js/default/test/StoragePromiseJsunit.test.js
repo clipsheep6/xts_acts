@@ -71,7 +71,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name has int interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0140
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0030
      * @tc.desc has int interface test
      */
     it('testHasKey0032', 0, async function (done) {
@@ -88,7 +88,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name has float interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0150
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0040
      * @tc.desc has float interface test
      */
     it('testHasKey0033', 0, async function (done) {
@@ -105,7 +105,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name has boolean interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0160
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0050
      * @tc.desc has boolean interface test
      */
     it('testHasKey0034', 0, async function (done) {
@@ -122,7 +122,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name has long interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0170
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0060
      * @tc.desc has long interface test
      */
     it('testHasKey0035', 0, async function (done) {
@@ -139,7 +139,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name get string promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0030
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0070
      * @tc.desc get string promise interface test
      */
     it('testGetDefValue0061', 0, async function (done) {
@@ -156,7 +156,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name get float promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0040
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0080
      * @tc.desc get float promise interface test
      */
     it('testGetFloat0071', 0, async function (done) {
@@ -174,7 +174,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name get int promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0050
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0090
      * @tc.desc get int promise interface test
      */
     it('testGetInt0081', 0, async function (done) {
@@ -192,7 +192,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name get long promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0060
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0100
      * @tc.desc get long promise interface test
      */
     it('testGetLong0091', 0, async function (done) {
@@ -210,7 +210,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name get String promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0070
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0110
      * @tc.desc get String promise interface test
      */
     it('testGetString101', 0, async function (done) {
@@ -229,7 +229,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name put boolean promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0090
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0120
      * @tc.desc put boolean promise interface test
      */
     it('testPutBoolean0121', 0, async function (done) {
@@ -248,7 +248,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name put float promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0100
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0130
      * @tc.desc put float promise interface test
      */
     it('testPutFloat0131', 0, async function (done) {
@@ -267,7 +267,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name put int promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0110
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0140
      * @tc.desc put int promise interface test
      */
     it('testPutInt0141', 0, async function (done) {
@@ -286,7 +286,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name put long promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0120
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0150
      * @tc.desc put long promise interface test
      */
     it('testPutLong0151', 0, async function (done) {
@@ -306,7 +306,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name put String promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0130
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0160
      * @tc.desc put String promise interface test
      */
     it('testPutString0161', 0, async function (done) {
@@ -326,7 +326,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name deleteSync promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0140
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0170
      * @tc.desc deleteSync promise interface test
      */
     it('testPutString0171', 0, async function (done) {
@@ -347,7 +347,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name flush promise interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0150
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_Storage_0180
      * @tc.desc flush promise interface test
      */
     it('testFlush00181', 0, async function (done) {
