@@ -1,4 +1,5 @@
-#include <wchar.h>
+#include <cwchar>
+
 #include "gtest/gtest.h"
 
 #define N(s, sub) do {                                                                                       \
@@ -15,14 +16,14 @@
     
 using namespace std;
 using namespace testing::ext;
-class WcsstrSuite : public testing::Test {};
+class Wcsstr : public testing::Test {};
 
 /**
  * @tc.name      : WcsstrTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(WcsstrSuite, WcsstrTest, Function | MediumTest | Level2)
+HWTEST_F(Wcsstr, WcsstrTest, Function | MediumTest | Level2)
 {
     N((wchar_t *)L"", L"a");
     N((wchar_t *)L"a", L"aa");

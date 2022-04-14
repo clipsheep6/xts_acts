@@ -1,11 +1,13 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
+
+#include "mtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class ExpfSuite : public testing::Test {};
+class Expf : public testing::Test {};
 
 static struct f_f t[] = {
 #include "ucb/expf.h"
@@ -19,9 +21,8 @@ static struct f_f t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ExpfSuite, ExpfTest, Function | MediumTest | Level2)
+HWTEST_F(Expf, ExpfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

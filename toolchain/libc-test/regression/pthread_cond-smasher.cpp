@@ -1,14 +1,15 @@
-#include <stdio.h>
-#include <string.h>
-#include <time.h>
-#include <stdlib.h>
-#include <errno.h>
+#include <cstdio>
+#include <cstring>
+#include <ctime>
+#include <cstdlib>
+#include <cerrno>
 #include <pthread.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class PthreadCondSmasherSuite : public testing::Test {};
+class PthreadCondSmasher : public testing::Test {};
 
 #define VERSION "POSIX threads"
 
@@ -116,7 +117,7 @@ static void *client(void *arg)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PthreadCondSmasherSuite, PthreadCondSmasherTest, Function | MediumTest | Level2)
+HWTEST_F(PthreadCondSmasher, PthreadCondSmasherTest, Function | MediumTest | Level2)
 {
     struct timespec ts;
 

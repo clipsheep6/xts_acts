@@ -1,16 +1,17 @@
-#include <stdio.h>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class ScanfNullbyteCharSuite : public testing::Test {};
+class ScanfNullbyteChar : public testing::Test {};
 
 /**
  * @tc.name      : ScanfNullbyteCharTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ScanfNullbyteCharSuite, ScanfNullbyteCharTest, Function | MediumTest | Level2)
+HWTEST_F(ScanfNullbyteChar, ScanfNullbyteCharTest, Function | MediumTest | Level2)
 {
     char dst[] = {'a', 'a'};
     char src[] = {'b', 'b'};

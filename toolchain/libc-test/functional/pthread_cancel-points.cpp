@@ -1,24 +1,32 @@
-#include "gtest/gtest.h"
-#include <errno.h>
-#include <pthread.h>
-#include <semaphore.h>
-#include <string.h>
-#include <sys/mman.h>
-#include <fcntl.h>
-#include <unistd.h>
 
-#define TESTC(c, m) EXPECT_TRUE((c)) << #c << " failed (" << cdescr << ", " << m << ")" << endl;
+#include <cerrno>
+#include <cstring>
+#include <fcntl.h>
+#include <pthread.h>
+#include <unistd.h>
+#include <semaphore.h>
+#include <sys/mman.h>
+
+#include "gtest/gtest.h"
+
+#define TESTC(c, m) do { \
+    EXPECT_TRUE((c)) << #c << " failed (" << cdescr << ", " << m << ")" << endl;\
+} while(0)
 
 #define TESTR(f, m) do {                                                                                         \
     int r;                                                                                                       \
     EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(errno) << " (" << cdescr << ", " << m << ")" << endl; \
 } while (0)
 
-#define TESTE(f, m) EXPECT_FALSE(((f) == -1)) << #f << " failed: " << strerror(errno) << " (" << cdescr << ", " << m << ")" << endl;
+#define TESTE(f, m) do { \
+    EXPECT_FALSE(((f) == -1)) << #f << " failed: " \
+        << strerror(errno) << " (" << cdescr << ", " << m << ")" << endl;\
+} while(0)
+
 
 using namespace std;
 using namespace testing::ext;
-class PthreadCancelPointsSuite : public testing::Test {};
+class PthreadCancelPoints : public testing::Test {};
 
 static sem_t sem_seq, sem_test;
 
@@ -134,7 +142,7 @@ static void *run_execute(void *arg)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PthreadCancelPointsSuite, PthreadCancelPointsTest, Function | MediumTest | Level2)
+HWTEST_F(PthreadCancelPoints, PthreadCancelPointsTest, Function | MediumTest | Level2)
 {
     TESTR(sem_init(&sem_seq, 0, 0), "creating semaphore");
 

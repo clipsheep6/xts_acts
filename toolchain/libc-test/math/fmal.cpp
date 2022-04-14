@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class FmalSuite : public testing::Test {};
+class Fmal : public testing::Test {};
 
 static struct lll_l t[] = {
 #if LDBL_MANT_DIG == 53
@@ -22,9 +23,8 @@ static struct lll_l t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FmalSuite, FmalTest, Function | MediumTest | Level2)
+HWTEST_F(Fmal, FmalTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     long double y;
     float d;
     int e, i, err = 0;

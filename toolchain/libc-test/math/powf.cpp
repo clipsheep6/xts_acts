@@ -1,13 +1,13 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
-using namespace testing::ext;
-class PowfSuite : public testing::Test {};
+#include "mtest.h"
 
-// TODO: fix ldbl
+using namespace testing::ext;
+class Powf : public testing::Test {};
+
 static struct ff_f t[] = {
 #include "ucb/powf.h"
 #include "sanity/powf.h"
@@ -20,9 +20,8 @@ static struct ff_f t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PowfSuite, PowfTest, Function | MediumTest | Level2)
+HWTEST_F(Powf, PowfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

@@ -1,5 +1,6 @@
-#include <string.h>
+#include <cstring>
 #include <libgen.h>
+
 #include "gtest/gtest.h"
 
 #define T(path, want) do {                                                                                                    \
@@ -10,14 +11,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class BaseNameSuite : public testing::Test {};
+class BaseName : public testing::Test {};
 
 /**
  * @tc.name      : BaseNameTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(BaseNameSuite, BaseNameTest, Function | MediumTest | Level2)
+HWTEST_F(BaseName, BaseNameTest, Function | MediumTest | Level2)
 {
     EXPECT_EQ(0, strcmp(basename(0), ".")) << "basename(0) returned \"" << basename(0) << "\"; expected \".\"" << endl;
     T("", ".");

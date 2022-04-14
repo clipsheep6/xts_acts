@@ -1,15 +1,21 @@
-#include "gtest/gtest.h"
+#include <cstring>
+#include <cstdio>
 #include <pthread.h>
 #include <semaphore.h>
-#include <string.h>
-#include <stdio.h>
 
-#define TESTC(c, m) EXPECT_TRUE((c)) << #c << " failed (" << m << ")" << endl;
-#define TESTR(r, f, m) EXPECT_EQ(((r) = (f)), 0) << #f << " failed: " << strerror(r) << " (" << m << ")" << endl;
+#include "gtest/gtest.h"
+
+#define TESTC(c, m) do {                                        \
+    EXPECT_TRUE((c)) << #c << " failed (" << m << ")" << endl;  \
+} while(0)
+
+#define TESTR(r, f, m) do {                                                                   \
+    EXPECT_EQ(((r) = (f)), 0) << #f << " failed: " << strerror(r) << " (" << m << ")" << endl;\
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class PthreadCancelSuite : public testing::Test {};
+class PthreadCancel : public testing::Test {};
 
 static void *start_async(void *arg)
 {
@@ -67,11 +73,11 @@ static void *start_nested(void *arg)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PthreadCancelSuite, PthreadCancelTest, Function | MediumTest | Level2)
+HWTEST_F(PthreadCancel, PthreadCancelTest, Function | MediumTest | Level2)
 {
     pthread_t td;
     sem_t sem1;
-    int r;
+    int r; 
     void *res;
     int foo[4];
 

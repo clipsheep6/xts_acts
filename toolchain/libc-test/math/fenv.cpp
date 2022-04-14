@@ -1,8 +1,10 @@
-#include <stdint.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+#include <cstdarg>
 #include "gtest/gtest.h"
+
+#include "mtest.h"
+
 
 using namespace std;
 using namespace testing::ext;

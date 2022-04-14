@@ -1,12 +1,11 @@
-#ifndef _XOPEN_SOURCE
-#define _XOPEN_SOURCE 700
-#endif
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
-#include <math.h>
+#include <cstdio>
+#include <cstring>
+#include <cerrno>
+#include <climits>
+#include <cmath>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 #define DISABLE_SLOW_TESTS
@@ -16,17 +15,14 @@
     EXPECT_EQ((r), (x));                                                 \
 } while (0)
 
-#define TEST_S(s, x, m) EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;
+#define TEST_S(s, x, m) do {                                                                 \
+    EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;\
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class SnprintfSuite : public testing::Test {};
+class Snprintf : public testing::Test {};
 
-/**
- * @tc.name      : SnprintfTest
- * @tc.desc      :
- * @tc.level     : Level 2
- */
 static const struct
 {
     const char *fmt;
@@ -83,7 +79,6 @@ static const struct
     {"%04o", 1, "0001"},
     {"%04.0o", 1, "   1"},
     {"%04.1o", 1, "   1"},
-
     {nullptr, 0.0, nullptr}};
 
 static const struct {
@@ -145,10 +140,14 @@ static const struct {
     /* exact conversion of large integers */
     {"%.0f", 340282366920938463463374607431768211456.0,
      "340282366920938463463374607431768211456"},
-
     {nullptr, 0.0, nullptr}};
 
-HWTEST_F(SnprintfSuite, SnprintfTest, Function | MediumTest | Level2)
+/**
+ * @tc.name      : SnprintfTest
+ * @tc.desc      :
+ * @tc.level     : Level 2
+ */
+HWTEST_F(Snprintf, SnprintfTest, Function | MediumTest | Level2)
 {
     int i, j, k;
     char b[2000];

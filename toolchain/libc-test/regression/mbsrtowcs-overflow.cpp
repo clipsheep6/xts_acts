@@ -1,16 +1,17 @@
-#include <wchar.h>
+#include <cwchar>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class MbsrtowcsOverflowSuite : public testing::Test {};
+class MbsrtowcsOverflow : public testing::Test {};
 
 /**
  * @tc.name      : MbsrtowcsOverflowTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(MbsrtowcsOverflowSuite, MbsrtowcsOverflowTest, Function | MediumTest | Level2)
+HWTEST_F(MbsrtowcsOverflow, MbsrtowcsOverflowTest, Function | MediumTest | Level2)
 {
     wchar_t ws[] = L"XXXXX";
     const char *src = "abcd";

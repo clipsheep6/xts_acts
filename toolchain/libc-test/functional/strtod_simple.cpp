@@ -1,7 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 #define TEST_T(r, f, x, m) do {                               \
@@ -12,14 +14,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class StrtodSimpleSuite : public testing::Test {};
+class StrtodSimple : public testing::Test {};
 
 /**
  * @tc.name      : StrtodSimpleTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StrtodSimpleSuite, StrtodSimpleTest, Function | MediumTest | Level2)
+HWTEST_F(StrtodSimple, StrtodSimpleTest, Function | MediumTest | Level2)
 {
     int i;
     double d, d2;

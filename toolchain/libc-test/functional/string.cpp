@@ -1,8 +1,8 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 #define TEST_T(r, f, x, m) do {                        \
@@ -15,14 +15,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class StringSuite : public testing::Test {};
+class String : public testing::Test {};
 
 /**
  * @tc.name      : StringTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StringSuite, StringTest, Function | MediumTest | Level2)
+HWTEST_F(String, StringTest, Function | MediumTest | Level2)
 {
     char b[32];
     char *s;

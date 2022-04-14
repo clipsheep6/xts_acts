@@ -1,17 +1,18 @@
-#include <wchar.h>
+#include <cwchar>
+#include <cstdio>
+
 #include "gtest/gtest.h"
-#include <stdio.h>
 
 using namespace std;
 using namespace testing::ext;
-class WcsstrFalseNegativeSuite : public testing::Test {};
+class WcsstrFalseNegative : public testing::Test {};
 
 /**
  * @tc.name      : WcsstrFalseNegativeTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(WcsstrFalseNegativeSuite, WcsstrFalseNegativeTest, Function | MediumTest | Level2)
+HWTEST_F(WcsstrFalseNegative, WcsstrFalseNegativeTest, Function | MediumTest | Level2)
 {
     wchar_t const *haystack = L"playing play play play always";
     wchar_t const *needle = L"play play play";

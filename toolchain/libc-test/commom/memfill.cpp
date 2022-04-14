@@ -1,11 +1,14 @@
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-#include <sys/resource.h>
-#include "test.h"
-#include <stdio.h>
+#include <cstdlib>
+#include <cstring>
+#include <cerrno>
+#include <cstdio>
 #include <unistd.h>
+
+#include <sys/resource.h>
+
 #include "gtest/gtest.h"
+
+#include "test.h"
 
 using namespace std;
 int t_memfill()

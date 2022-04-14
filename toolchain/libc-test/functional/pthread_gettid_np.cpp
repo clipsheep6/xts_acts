@@ -1,16 +1,19 @@
 
-#include <pthread.h>
-#include <string.h>
-#include <stdio.h>
-#include <errno.h>
+#include <cstring>
+#include <cstdio>
+#include <cerrno>
 #include <unistd.h>
+#include <pthread.h>
+
 #include "gtest/gtest.h"
 
-#define TESTT(c, ...) EXPECT_TRUE((c)) << #c << " failed: " << __VA_ARGS__ << endl;
+#define TESTT(c, ...) do {                                       \
+    EXPECT_TRUE((c)) << #c << " failed: " << __VA_ARGS__ << endl;\
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class PthreadGettidNpSuite : public testing::Test {};
+class PthreadGettidNp : public testing::Test {};
 
 static pthread_mutex_t mutex_t;
 
@@ -27,7 +30,7 @@ void *pthread_test(void *arg)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PthreadGettidNpSuite, PthreadGettidNpTest, Function | MediumTest | Level2)
+HWTEST_F(PthreadGettidNp, PthreadGettidNpTest, Function | MediumTest | Level2)
 {
     pthread_mutex_init(&mutex_t, nullptr);
     TESTT(gettid() == pthread_gettid_np(pthread_self()), "pthread_gettid_np() is failed\n");

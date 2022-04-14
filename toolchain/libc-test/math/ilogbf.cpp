@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class IlogbfSuite : public testing::Test {};
+class Ilogbf : public testing::Test {};
 
 static struct f_i t[] = {
 #include "sanity/ilogbf.h"
@@ -18,9 +19,8 @@ static struct f_i t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(IlogbfSuite, IlogbfTest, Function | MediumTest | Level2)
+HWTEST_F(Ilogbf, IlogbfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     long long yi;
     int e, i, err = 0;
     struct f_i *p;

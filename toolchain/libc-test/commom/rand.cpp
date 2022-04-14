@@ -1,8 +1,7 @@
-#include <float.h>
-#include <stdint.h>
-#include <stdlib.h>
+#include <cfloat>
+#include <cstdint>
+#include <cstdlib>
 
-// TODO: use large period prng
 static uint64_t seed = -1;
 static uint32_t rand32(void)
 {
@@ -12,7 +11,7 @@ static uint32_t rand32(void)
 static uint64_t rand64(void)
 {
     uint64_t u = rand32();
-    return u<<32 | rand32();
+    return (u<<32) | rand32();
 }
 
 void t_randseed(uint64_t s)

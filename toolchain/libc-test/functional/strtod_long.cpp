@@ -1,18 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class StrtodLongSuite : public testing::Test {};
+class StrtodLong : public testing::Test {};
 
 /**
  * @tc.name      : StrtodLongTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StrtodLongSuite, StrtodLongTest, Function | MediumTest | Level2)
+HWTEST_F(StrtodLong, StrtodLongTest, Function | MediumTest | Level2)
 {
     double x, want = .1111111111111111111111;
     char buf[40000];

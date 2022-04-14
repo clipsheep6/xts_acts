@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class TanhSuite : public testing::Test {};
+class Tanh : public testing::Test {};
 
 static struct d_d t[] = {
 #include "ucb/tanh.h"
@@ -19,9 +20,8 @@ static struct d_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(TanhSuite, TanhTest, Function | MediumTest | Level2)
+HWTEST_F(Tanh, TanhTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

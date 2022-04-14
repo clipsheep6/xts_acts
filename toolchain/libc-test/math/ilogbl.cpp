@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class IlogblSuite : public testing::Test {};
+class Ilogbl : public testing::Test {};
 
 static struct l_i t[] = {
 #if LDBL_MANT_DIG == 53
@@ -24,9 +25,8 @@ static struct l_i t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(IlogblSuite, IlogblTest, Function | MediumTest | Level2)
+HWTEST_F(Ilogbl, IlogblTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     long long yi;
     int e, i, err = 0;
     struct l_i *p;

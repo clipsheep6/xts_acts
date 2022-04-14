@@ -1,8 +1,7 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
+#include <cstdlib>
+#include <cstring>
+#include <cerrno>
+
 #include "gtest/gtest.h"
 
 int mkstemp(char *);
@@ -10,14 +9,14 @@ int mkstemp(char *);
 
 using namespace std;
 using namespace testing::ext;
-class MkstempFailureSuite : public testing::Test {};
+class MkstempFailure : public testing::Test {};
 
 /**
  * @tc.name      : MkstempFailureTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(MkstempFailureSuite, MkstempFailureTest, Function | MediumTest | Level2)
+HWTEST_F(MkstempFailure, MkstempFailureTest, Function | MediumTest | Level2)
 {
     char p[] = S;
     int r;

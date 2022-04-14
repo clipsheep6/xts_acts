@@ -1,14 +1,12 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
-#define _GNU_SOURCE 1
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class LgammarSuite : public testing::Test {};
+class Lgammar : public testing::Test {};
 
 static struct d_di t[] = {
 #include "sanity/lgamma_r.h"
@@ -21,9 +19,8 @@ static struct d_di t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(LgammarSuite, LgammarTest, Function | MediumTest | Level2)
+HWTEST_F(Lgammar, LgammarTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     int yi;
     double y;
     float d;

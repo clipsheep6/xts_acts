@@ -1,11 +1,13 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
+
+#include "mtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class AtanSuite : public testing::Test {};
+class Atan : public testing::Test {};
 
 static struct d_d t[] = {
 #include "crlibm/atan.h"
@@ -20,9 +22,8 @@ static struct d_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(AtanSuite, AtanTest, Function | MediumTest | Level2)
+HWTEST_F(Atan, AtanTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

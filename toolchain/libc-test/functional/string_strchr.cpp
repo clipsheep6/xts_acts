@@ -1,4 +1,5 @@
-#include <string.h>
+#include <cstring>
+
 #include "gtest/gtest.h"
 #include "test.h"
 
@@ -23,7 +24,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class StringStrchrSuite : public testing::Test {};
+class StringStrchr : public testing::Test {};
 
 static char buf[512];
 
@@ -42,7 +43,7 @@ static void *aligncpy(void *p, size_t len, size_t a)
  * @tc.desc      : 
  * @tc.level     : Level 2
  */
-HWTEST_F(StringStrchrSuite, StringStrchrTest, Function | MediumTest | Level2)
+HWTEST_F(StringStrchr, StringStrchrTest, Function | MediumTest | Level2)
 {
     int i;
 	char a[128];

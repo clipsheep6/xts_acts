@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class FrexpSuite : public testing::Test {};
+class Frexp : public testing::Test {};
 
 static struct d_di t[] = {
 #include "sanity/frexp.h"
@@ -18,9 +19,8 @@ static struct d_di t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FrexpSuite, FrexpTest, Function | MediumTest | Level2)
+HWTEST_F(Frexp, FrexpTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     int yi;
     double y;
     float d;

@@ -1,9 +1,10 @@
-#include "gtest/gtest.h"
 // inet_addr, inet_ntoa, inet_pton and inet_ntop tests with roundtrip check
-#include <errno.h>
-#include <string.h>
-#include <stdio.h>
+#include <cerrno>
+#include <cstring>
+#include <cstdio>
 #include <arpa/inet.h>
+
+#include "gtest/gtest.h"
 
 #define V6(src, ret, hex) do {                                                                                                                                                   \
     int r;                                                                                                                                                                       \
@@ -31,7 +32,7 @@
                                                                                                                                                                                  \
     EXPECT_FALSE(strncmp(hex, "00000000000000000000ffff", 24) == 0 && !strchr(txtaddr, '.')) << "inet_ntop(AF_INET6, <"                                                          \
                                                                                                 << #hex << ">, buf, size) got " << txtaddr << ", should be ipv4 mapped" << endl; \
-} while (0);
+} while (0)
 
 // ret and hex are the results of inet_pton and inet_addr respectively
 #define V4(src, ret, hex) do {                                                                                                                   \
@@ -61,11 +62,11 @@
     in.s_addr = a;                                                                                                                               \
     p = inet_ntoa(in);                                                                                                                           \
     EXPECT_FALSE(strcmp(p, src)) << "inet_ntoa(<" << #hex << ">) returned " << p << ", want " << src << endl;                                    \
-} while (0);
+} while (0)
     
 using namespace std;
 using namespace testing::ext;
-class InetPtonSuite : public testing::Test {};
+class InetPton : public testing::Test {};
 
 static int digit(int c)
 {
@@ -96,7 +97,7 @@ static void tohex(char *d, void *s, int n)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(InetPtonSuite, InetPtonTest, Function | MediumTest | Level2)
+HWTEST_F(InetPton, InetPtonTest, Function | MediumTest | Level2)
 {
     // errors
     EXPECT_FALSE(inet_pton(12345, "", 0) != -1 || errno != EAFNOSUPPORT) << "inet_pton(12345,,) should fail with EAFNOSUPPORT, got " << strerror(errno) << endl;
@@ -105,60 +106,60 @@ HWTEST_F(InetPtonSuite, InetPtonTest, Function | MediumTest | Level2)
     errno = 0;
 
     // dotted-decimal notation
-    V4("0.0.0.0", 1, (char *)"00000000")
-    V4("127.0.0.1", 1, (char *)"7f000001")
-    V4("10.0.128.31", 1, (char *)"0a00801f")
-    V4("255.255.255.255", 1, (char *)"ffffffff")
+    V4("0.0.0.0", 1, (char *)"00000000");
+    V4("127.0.0.1", 1, (char *)"7f000001");
+    V4("10.0.128.31", 1, (char *)"0a00801f");
+    V4("255.255.255.255", 1, (char *)"ffffffff");
 
     // numbers-and-dots notation, but not dotted-decimal
-    V4("1.2.03.4", 0, (char *)"01020304")
-    V4("1.2.0x33.4", 0, (char *)"01023304")
-    V4("1.2.0XAB.4", 0, (char *)"0102ab04")
-    V4("1.2.0xabcd", 0, (char *)"0102abcd")
-    V4("1.0xabcdef", 0, (char *)"01abcdef")
-    V4("00377.0x0ff.65534", 0, (char *)"fffffffe")
+    V4("1.2.03.4", 0, (char *)"01020304");
+    V4("1.2.0x33.4", 0, (char *)"01023304");
+    V4("1.2.0XAB.4", 0, (char *)"0102ab04");
+    V4("1.2.0xabcd", 0, (char *)"0102abcd");
+    V4("1.0xabcdef", 0, (char *)"01abcdef");
+    V4("00377.0x0ff.65534", 0, (char *)"fffffffe");
 
     // invalid
-    V4(".1.2.3", 0, (char *)"ffffffff")
-    V4("1..2.3", 0, (char *)"ffffffff")
-    V4("1.2.3.", 0, (char *)"ffffffff")
-    V4("1.2.3.4.5", 0, (char *)"ffffffff")
-    V4("1.2.3.a", 0, (char *)"ffffffff")
-    V4("1.256.2.3", 0, (char *)"ffffffff")
-    V4("1.2.4294967296.3", 0, (char *)"ffffffff")
-    V4("1.2.-4294967295.3", 0, (char *)"ffffffff")
-    V4("1.2. 3.4", 0, (char *)"ffffffff")
+    V4(".1.2.3", 0, (char *)"ffffffff");
+    V4("1..2.3", 0, (char *)"ffffffff");
+    V4("1.2.3.", 0, (char *)"ffffffff");
+    V4("1.2.3.4.5", 0, (char *)"ffffffff");
+    V4("1.2.3.a", 0, (char *)"ffffffff");
+    V4("1.256.2.3", 0, (char *)"ffffffff");
+    V4("1.2.4294967296.3", 0, (char *)"ffffffff");
+    V4("1.2.-4294967295.3", 0, (char *)"ffffffff");
+    V4("1.2. 3.4", 0, (char *)"ffffffff");
 
     // ipv6
-    V6(":", 0, (char *)"")
-    V6("::", 1, (char *)"00000000000000000000000000000000")
-    V6("::1", 1, (char *)"00000000000000000000000000000001")
-    V6(":::", 0, (char *)"")
-    V6("192.168.1.1", 0, (char *)"")
-    V6(":192.168.1.1", 0, (char *)"")
-    V6("::192.168.1.1", 1, (char *)"000000000000000000000000c0a80101")
-    V6("0:0:0:0:0:0:192.168.1.1", 1, (char *)"000000000000000000000000c0a80101")
-    V6("0:0::0:0:0:192.168.1.1", 1, (char *)"000000000000000000000000c0a80101")
-    V6("::012.34.56.78", 0, (char *)"")
-    V6(":ffff:192.168.1.1", 0, (char *)"")
-    V6("::ffff:192.168.1.1", 1, (char *)"00000000000000000000ffffc0a80101")
-    V6(".192.168.1.1", 0, (char *)"")
-    V6(":.192.168.1.1", 0, (char *)"")
-    V6("a:0b:00c:000d:E:F::", 1, (char *)"000a000b000c000d000e000f00000000")
-    V6("a:0b:00c:000d:0000e:f::", 0, (char *)"")
-    V6("1:2:3:4:5:6::", 1, (char *)"00010002000300040005000600000000")
-    V6("1:2:3:4:5:6:7::", 1, (char *)"00010002000300040005000600070000")
-    V6("1:2:3:4:5:6:7:8::", 0, (char *)"")
-    V6("1:2:3:4:5:6:7::9", 0, (char *)"")
-    V6("::1:2:3:4:5:6", 1, (char *)"00000000000100020003000400050006")
-    V6("::1:2:3:4:5:6:7", 1, (char *)"00000001000200030004000500060007")
-    V6("::1:2:3:4:5:6:7:8", 0, (char *)"")
-    V6("a:b::c:d:e:f", 1, (char *)"000a000b00000000000c000d000e000f")
-    V6("ffff:c0a8:5e4", 0, (char *)"")
-    V6(":ffff:c0a8:5e4", 0, (char *)"")
-    V6("0:0:0:0:0:ffff:c0a8:5e4", 1, (char *)"00000000000000000000ffffc0a805e4")
-    V6("0:0:0:0:ffff:c0a8:5e4", 0, (char *)"")
-    V6("0::ffff:c0a8:5e4", 1, (char *)"00000000000000000000ffffc0a805e4")
-    V6("::0::ffff:c0a8:5e4", 0, (char *)"")
-    V6("c0a8", 0, (char *)"")
+    V6(":", 0, (char *)"");
+    V6("::", 1, (char *)"00000000000000000000000000000000");
+    V6("::1", 1, (char *)"00000000000000000000000000000001");
+    V6(":::", 0, (char *)"");
+    V6("192.168.1.1", 0, (char *)"");
+    V6(":192.168.1.1", 0, (char *)"");
+    V6("::192.168.1.1", 1, (char *)"000000000000000000000000c0a80101");
+    V6("0:0:0:0:0:0:192.168.1.1", 1, (char *)"000000000000000000000000c0a80101");
+    V6("0:0::0:0:0:192.168.1.1", 1, (char *)"000000000000000000000000c0a80101");
+    V6("::012.34.56.78", 0, (char *)"");
+    V6(":ffff:192.168.1.1", 0, (char *)"");
+    V6("::ffff:192.168.1.1", 1, (char *)"00000000000000000000ffffc0a80101");
+    V6(".192.168.1.1", 0, (char *)"");
+    V6(":.192.168.1.1", 0, (char *)"");
+    V6("a:0b:00c:000d:E:F::", 1, (char *)"000a000b000c000d000e000f00000000");
+    V6("a:0b:00c:000d:0000e:f::", 0, (char *)"");
+    V6("1:2:3:4:5:6::", 1, (char *)"00010002000300040005000600000000");
+    V6("1:2:3:4:5:6:7::", 1, (char *)"00010002000300040005000600070000");
+    V6("1:2:3:4:5:6:7:8::", 0, (char *)"");
+    V6("1:2:3:4:5:6:7::9", 0, (char *)"");
+    V6("::1:2:3:4:5:6", 1, (char *)"00000000000100020003000400050006");
+    V6("::1:2:3:4:5:6:7", 1, (char *)"00000001000200030004000500060007");
+    V6("::1:2:3:4:5:6:7:8", 0, (char *)"");
+    V6("a:b::c:d:e:f", 1, (char *)"000a000b00000000000c000d000e000f");
+    V6("ffff:c0a8:5e4", 0, (char *)"");
+    V6(":ffff:c0a8:5e4", 0, (char *)"");
+    V6("0:0:0:0:0:ffff:c0a8:5e4", 1, (char *)"00000000000000000000ffffc0a805e4");
+    V6("0:0:0:0:ffff:c0a8:5e4", 0, (char *)"");
+    V6("0::ffff:c0a8:5e4", 1, (char *)"00000000000000000000ffffc0a805e4");
+    V6("::0::ffff:c0a8:5e4", 0, (char *)"");
+    V6("c0a8", 0, (char *)"");
 }

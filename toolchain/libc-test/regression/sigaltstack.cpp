@@ -1,17 +1,20 @@
-#define _XOPEN_SOURCE 700
-#include <signal.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-#include "gtest/gtest.h"
-#include <stdio.h>
+#include <csignal>
+#include <cstdint>
+#include <cstdlib>
+#include <cstring>
+#include <cstdio>
+#include <cerrno>
 
-#define T(f) EXPECT_EQ(0, (f)) << #f << " failed: " << strerror(errno) << endl;
+#include "gtest/gtest.h"
+
+
+#define T(f) do { \
+    EXPECT_EQ(0, (f)) << #f << " failed: " << strerror(errno) << endl;\
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class SigaltstackSuite : public testing::Test {};
+class Sigaltstack : public testing::Test {};
 
 static char stack[SIGSTKSZ];
 
@@ -31,7 +34,7 @@ static void handler(int sig)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SigaltstackSuite, SigaltstackTest, Function | MediumTest | Level2)
+HWTEST_F(Sigaltstack, SigaltstackTest, Function | MediumTest | Level2)
 {
     stack_t ss;
     struct sigaction sa;

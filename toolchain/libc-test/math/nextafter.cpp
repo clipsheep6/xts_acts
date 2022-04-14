@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class NextafterSuite : public testing::Test {};
+class Nextafter : public testing::Test {};
 
 static struct dd_d t[] = {
 #include "sanity/nextafter.h"
@@ -18,9 +19,8 @@ static struct dd_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(NextafterSuite, NextafterTest, Function | MediumTest | Level2)
+HWTEST_F(Nextafter, NextafterTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

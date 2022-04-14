@@ -1,19 +1,21 @@
-#include <string.h>
-#include <errno.h>
+#include <cstring>
+#include <cerrno>
+#include <cstdio>
 #include <sys/statvfs.h>
+
 #include "gtest/gtest.h"
-#include <stdio.h>
+
 
 using namespace std;
 using namespace testing::ext;
-class StatvfsSuite : public testing::Test {};
+class Statvfs : public testing::Test {};
 
 /**
  * @tc.name      : StatvfsTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StatvfsSuite, SscanfEofTest, Function | MediumTest | Level2)
+HWTEST_F(Statvfs, SscanfEofTest, Function | MediumTest | Level2)
 {
     struct statvfs f;
 

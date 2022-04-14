@@ -1,5 +1,6 @@
-#include <string.h>
+#include <cstring>
 #include <crypt.h>
+
 #include "gtest/gtest.h"
 
 #define T(h, s, k) do { \
@@ -11,7 +12,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class CrpytSuite : public testing::Test {};
+class Crpyt : public testing::Test {};
 
 static const char *p;
 
@@ -20,7 +21,7 @@ static const char *p;
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(CrpytSuite, CrpytTest, Function | MediumTest | Level2)
+HWTEST_F(Crpyt, CrpytTest, Function | MediumTest | Level2)
 {
     /* md5 */
     T("$1$abcd0123$9Qcg8DyviekV3tDGMZynJ1", "$1$abcd0123$", "Xy01@#\x01\x02\x80\x7f\xff\r\n\x81\t !");

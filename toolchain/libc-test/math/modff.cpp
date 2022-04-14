@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class ModffSuite : public testing::Test {};
+class Modff : public testing::Test {};
 
 static struct f_ff t[] = {
 #include "sanity/modff.h"
@@ -17,9 +18,8 @@ static struct f_ff t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ModffSuite, ModffTest, Function | MediumTest | Level2)
+HWTEST_F(Modff, ModffTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y, yi;
     float d, di;
     int e, i, err = 0;

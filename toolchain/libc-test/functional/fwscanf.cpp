@@ -1,11 +1,13 @@
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
+#include <cstdio>
+#include <cstring>
+#include <cerrno>
+#include <climits>
+#include <cwchar>
 #include <unistd.h>
-#include <wchar.h>
-#include "test.h"
+
 #include "gtest/gtest.h"
+
+#include "test.h"
 
 #define TESTT(r, f, x, m) do {                                          \
     errno = 0;                                                          \
@@ -14,11 +16,13 @@
     EXPECT_EQ((r), (x));                                                \
 } while (0)
     
-#define TEST_S(s, x, m) EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;
+#define TEST_S(s, x, m) do {                                                                 \
+    EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;\
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class FwscanfSuite : public testing::Test {};
+class Fwscanf : public testing::Test {};
 
 static FILE *writetemp(const char *data)
 {
@@ -44,7 +48,7 @@ static FILE *writetemp(const char *data)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FwscanfSuite, FwscanfTest, Function | MediumTest | Level2)
+HWTEST_F(Fwscanf, FwscanfTest, Function | MediumTest | Level2)
 {
     int i, x, y;
     double u;

@@ -1,6 +1,7 @@
-#include <wchar.h>
+#include <cwchar>
+#include <cstdio>
+
 #include "gtest/gtest.h"
-#include <stdio.h>
 
 using namespace std;
 using namespace testing::ext;

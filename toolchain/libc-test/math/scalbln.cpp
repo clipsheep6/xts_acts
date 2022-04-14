@@ -1,13 +1,12 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class ScalblnSuite : public testing::Test {};
+class Scalbln : public testing::Test {};
 
 static struct di_d t[] = {
 #include "sanity/scalbln.h"
@@ -20,9 +19,8 @@ static struct di_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ScalblnSuite, ScalblnTest, Function | MediumTest | Level2)
+HWTEST_F(Scalbln, ScalblnTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

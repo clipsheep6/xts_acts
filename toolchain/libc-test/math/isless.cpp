@@ -1,22 +1,21 @@
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdio>
+
 #include "gtest/gtest.h"
+
+#include "mtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class IslessSuite : public testing::Test {};
+class Isless : public testing::Test {};
 
-enum
-{
+enum {
     LESS,
     EQUAL,
     GREATER,
     UNORD
 };
 
-#define TEST_T(f, want)                                                             \
-    do                                                                              \
-    {                                                                               \
+#define TEST_T(f, want) do {                                                        \
         int r, e;                                                                   \
         feclearexcept(FE_ALL_EXCEPT);                                               \
         r = (f);                                                                    \
@@ -26,9 +25,7 @@ enum
     } while (0)
 
 #undef T
-#define T(a, b, rel)                                                  \
-    do                                                                \
-    {                                                                 \
+#define T(a, b, rel) do {                                             \
         TEST_T(isunordered(a, b), rel == UNORD);                      \
         TEST_T(isless(a, b), rel == LESS);                            \
         TEST_T(islessequal(a, b), rel == LESS || rel == EQUAL);       \
@@ -42,9 +39,8 @@ enum
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(IslessSuite, IslessTest, Function | MediumTest | Level2)
+HWTEST_F(Isless, IslessTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     volatile double huge = DBL_MAX;
     volatile double tiny = DBL_MIN;
     volatile double eps = DBL_EPSILON;

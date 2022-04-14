@@ -1,18 +1,17 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
 #include <resolv.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class DnExpandEmptySuite : public testing::Test {};
+class DnExpandEmpty : public testing::Test {};
 
 /**
  * @tc.name      : DnExpandEmptyTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(DnExpandEmptySuite, DnExpandEmptyTest, Function | MediumTest | Level2)
+HWTEST_F(DnExpandEmpty, DnExpandEmptyTest, Function | MediumTest | Level2)
 {
     unsigned char packet[] = "";
     char name[] = "XX";

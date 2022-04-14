@@ -1,9 +1,11 @@
-#include <string.h>
-#include <errno.h>
+#include <cstring>
+#include <cerrno>
+#include <cstdio>
 #include <sys/resource.h>
-#include "test.h"
-#include <stdio.h>
+
 #include "gtest/gtest.h"
+
+#include "test.h"
 
 using namespace std;
 

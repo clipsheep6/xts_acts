@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class AsinlSuite : public testing::Test {};
+class Asinl : public testing::Test {};
 
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
@@ -26,7 +27,7 @@ static struct l_l t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(AsinlSuite, AsinlTest, Function | MediumTest | Level2)
+HWTEST_F(Asinl, AsinlTest, Function | MediumTest | Level2)
 {
     //#pragma STDC FENV_ACCESS ON
     long double y;

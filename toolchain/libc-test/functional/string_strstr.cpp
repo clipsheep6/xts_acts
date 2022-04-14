@@ -1,4 +1,5 @@
-#include <string.h>
+#include <cstring>
+
 #include "gtest/gtest.h"
 
 #define N(s, sub) do {                                                                       \
@@ -16,14 +17,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class StringStrstrSuite : public testing::Test {};
+class StringStrstr : public testing::Test {};
 
 /**
  * @tc.name      : StringStrstrTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StringStrstrSuite, StringStrstrTest, Function | MediumTest | Level2)
+HWTEST_F(StringStrstr, StringStrstrTest, Function | MediumTest | Level2)
 {
     N((char *)"", "a");
     N((char *)"a", "aa");

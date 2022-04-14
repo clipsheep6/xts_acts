@@ -1,16 +1,17 @@
-#include <stdlib.h>
+#include <cstdlib>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class Malloc0Suite : public testing::Test {};
+class Malloc0 : public testing::Test {};
 
 /**
  * @tc.name      : Malloc0Test
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(Malloc0Suite, Malloc0Test, Function | MediumTest | Level2)
+HWTEST_F(Malloc0, Malloc0Test, Function | MediumTest | Level2)
 {
     void *p = malloc(0);
     void *q = malloc(0);

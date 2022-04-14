@@ -1,11 +1,13 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
+
+#include "mtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class CosSuite : public testing::Test {};
+class Cos : public testing::Test {};
 
 static struct d_d t[] = {
 #include "crlibm/cos.h"
@@ -20,9 +22,8 @@ static struct d_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(CosSuite, CosTest, Function | MediumTest | Level2)
+HWTEST_F(Cos, CosTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

@@ -1,18 +1,19 @@
+#include <climits>
+#include <cstdio>
 #include <regex.h>
-#include <limits.h>
-#include <stdio.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class RegexBracketIcaseSuite : public testing::Test {};
+class RegexBracketIcase : public testing::Test {};
 
 /**
  * @tc.name      : RegexBracketIcaseTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(RegexBracketIcaseSuite, RegexBracketIcaseTest, Function | MediumTest | Level2)
+HWTEST_F(RegexBracketIcase, RegexBracketIcaseTest, Function | MediumTest | Level2)
 {
     char buf[100];
     char *pat;

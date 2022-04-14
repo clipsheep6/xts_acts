@@ -1,8 +1,10 @@
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
 #include <inttypes.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 #define T(a, a_sorted) do {                                 \
@@ -20,7 +22,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class QsortSuite : public testing::Test {};
+class Qsort : public testing::Test {};
 
 static int scmp(const void *a, const void *b)
 {
@@ -166,7 +168,7 @@ static void char_test(void)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(QsortSuite, QsortTest, Function | MediumTest | Level2)
+HWTEST_F(Qsort, QsortTest, Function | MediumTest | Level2)
 {
     int i;
 

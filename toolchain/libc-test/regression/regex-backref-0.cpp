@@ -1,16 +1,17 @@
 #include <regex.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class RegexBackref0Suite : public testing::Test {};
+class RegexBackref0 : public testing::Test {};
 
 /**
  * @tc.name      : RegexBackref0Test
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(RegexBackref0Suite, RegexBackref0Test, Function | MediumTest | Level2)
+HWTEST_F(RegexBackref0, RegexBackref0Test, Function | MediumTest | Level2)
 {
     char buf[200];
     char pat[] = "a\\0";

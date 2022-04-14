@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class FrexplSuite : public testing::Test {};
+class Frexpl : public testing::Test {};
 
 static struct l_li t[] = {
 #if LDBL_MANT_DIG == 53
@@ -24,9 +25,8 @@ static struct l_li t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FrexplSuite, FrexplTest, Function | MediumTest | Level2)
+HWTEST_F(Frexpl, FrexplTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     int yi;
     long double y;
     float d;

@@ -1,21 +1,24 @@
+#include <ctime>
+#include <cstring>
+#include <cerrno>
 #include <pthread.h>
-#include <time.h>
-#include <string.h>
-#include <errno.h>
+
 #include "gtest/gtest.h"
 
-#define T(r, f) EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(r)
+#define T(r, f) do {                                           \
+    EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(r); \
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class PthreadCondattrSetclockSuite : public testing::Test {};
+class PthreadCondattrSetclock : public testing::Test {};
 
 /**
  * @tc.name      : PthreadCondattrSetclockTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PthreadCondattrSetclockSuite, PthreadCondattrSetclockTest, Function | MediumTest | Level2)
+HWTEST_F(PthreadCondattrSetclock, PthreadCondattrSetclockTest, Function | MediumTest | Level2)
 {
     pthread_cond_t c;
     pthread_condattr_t a;

@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class RintfSuite : public testing::Test {};
+class Rintf : public testing::Test {};
 
 static struct f_f t[] = {
 #include "sanity/rintf.h"
@@ -18,9 +19,8 @@ static struct f_f t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(RintfSuite, RintfTest, Function | MediumTest | Level2)
+HWTEST_F(Rintf, RintfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

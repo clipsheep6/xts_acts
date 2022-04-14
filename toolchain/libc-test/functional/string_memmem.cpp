@@ -1,13 +1,12 @@
-#ifndef _GNU_SOURCE
-#define _GNU_SOURCE 1
-#endif
-#include <string.h>
+#include <cstring>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 using namespace std;
 using namespace testing::ext;
-class StringMemmemSuite : public testing::Test {};
+class StringMemmem : public testing::Test {};
 
 void N(char *s, char *tail, char *sub)
 {
@@ -27,11 +26,11 @@ void N(char *s, char *tail, char *sub)
 } while(0)
 
 /**
- * @tc.name      : StringMemmemSuite
+ * @tc.name      : StringMemmemTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StringMemmemSuite, StringMemmemTest, Function | MediumTest | Level2)
+HWTEST_F(StringMemmem, StringMemmemTest, Function | MediumTest | Level2)
 {
     N((char *)"", (char *)"a", (char *)"a");
     N((char *)"a", (char *)"a", (char *)"aa");

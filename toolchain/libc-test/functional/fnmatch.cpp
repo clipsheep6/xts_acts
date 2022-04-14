@@ -1,6 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include <fnmatch.h>
+
 #include "gtest/gtest.h"
 
 #define FLAG(f) {     \
@@ -9,7 +10,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class FnmatchSuite : public testing::Test {};
+class Fnmatch : public testing::Test {};
 
 struct xlat {
     int val;
@@ -151,7 +152,7 @@ struct {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FnmatchSuite, FnmatchTest, Function | MediumTest | Level2)
+HWTEST_F(Fnmatch, FnmatchTest, Function | MediumTest | Level2)
 {
     int i;
 

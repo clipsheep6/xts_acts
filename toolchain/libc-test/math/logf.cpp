@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class LogfSuite : public testing::Test {};
+class Logf : public testing::Test {};
 
 static struct f_f t[] = {
 #include "ucb/logf.h"
@@ -19,9 +20,8 @@ static struct f_f t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(LogfSuite, LogfTest, Function | MediumTest | Level2)
+HWTEST_F(Logf, LogfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

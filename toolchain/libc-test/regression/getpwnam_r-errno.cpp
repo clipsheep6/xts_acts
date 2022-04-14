@@ -1,17 +1,18 @@
+#include <cerrno>
 #include <pwd.h>
-#include <errno.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class Getpwnam_rErrnoSuite : public testing::Test {};
+class Getpwnam_rErrno : public testing::Test {};
 
 /**
  * @tc.name      : Getpwnam_rErrnoTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(Getpwnam_rErrnoSuite, Getpwnam_rErrnoTest, Function | MediumTest | Level2)
+HWTEST_F(Getpwnam_rErrno, Getpwnam_rErrnoTest, Function | MediumTest | Level2)
 {
     int baderr = EOWNERDEAD; // arbitrary absurd error
     struct passwd *pw, pwbuf;

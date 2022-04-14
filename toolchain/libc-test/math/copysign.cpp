@@ -1,9 +1,10 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
 class CopysignSuite : public testing::Test {};
 
@@ -20,7 +21,6 @@ static struct dd_d t[] = {
  */
 HWTEST_F(CopysignSuite, CopysignTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

@@ -1,10 +1,12 @@
-#include "gtest/gtest.h"
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
+
+#include <cstdio>
+#include <cstring>
+#include <cerrno>
+#include <climits>
 #include <unistd.h>
+
 #include "test.h"
+#include "gtest/gtest.h"
 
 #define TESTT(r, f, x, m) do {                                          \
     errno = 0;                                                          \
@@ -13,21 +15,23 @@
     EXPECT_EQ((r), (x));                                                \
 } while (0)
 
-#define TEST_S(s, x, m) EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;
+#define TEST_S(s, x, m) do {                                                                   \
+    EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;  \
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class FscanfSuite : public testing::Test {};
+class Fscanf : public testing::Test {};
 
 static FILE *writetemp(const char *data)
 {
     FILE *f = tmpfile();
     if (!f)
-        return 0;
+        return nullptr;
 
     if (!fwrite(data, strlen(data), 1, f)) {
         fclose(f);
-        return 0;
+        return nullptr;
     }
     rewind(f);
     return f;
@@ -38,7 +42,7 @@ static FILE *writetemp(const char *data)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FscanfSuite, FscanfTest, Function | MediumTest | Level2)
+HWTEST_F(Fscanf, FscanfTest, Function | MediumTest | Level2)
 {
     int i, x, y;
     double u;

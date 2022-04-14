@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class FmaxfSuite : public testing::Test {};
+class Fmaxf : public testing::Test {};
 
 static struct ff_f t[] = {
 #include "sanity/fmaxf.h"
@@ -18,9 +19,8 @@ static struct ff_f t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FmaxfSuite, FmaxfTest, Function | MediumTest | Level2)
+HWTEST_F(Fmaxf, FmaxfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

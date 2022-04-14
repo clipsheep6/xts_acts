@@ -1,9 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-#include <wchar.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cerrno>
+#include <cwchar>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 #define TEST1(r, f, x, m) do {                                                                        \
@@ -19,14 +21,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class WcstolSuite : public testing::Test {};
+class Wcstol : public testing::Test {};
 
 /**
  * @tc.name      : WcstolTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(WcstolSuite, WcstolTest, Function | MediumTest | Level2)
+HWTEST_F(Wcstol, WcstolTest, Function | MediumTest | Level2)
 {
     int i;
     long l;

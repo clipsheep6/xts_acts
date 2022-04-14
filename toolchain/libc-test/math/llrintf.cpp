@@ -1,14 +1,12 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
-#define _XOPEN_SOURCE 700
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class LlrintfSuite : public testing::Test {};
+class Llrintf : public testing::Test {};
 
 static struct f_i t[] = {
 #include "sanity/llrintf.h"
@@ -21,9 +19,8 @@ static struct f_i t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(LlrintfSuite, LlrintfTest, Function | MediumTest | Level2)
+HWTEST_F(Llrintf, LlrintfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     long long yi;
     int e, i, err = 0;
     struct f_i *p;

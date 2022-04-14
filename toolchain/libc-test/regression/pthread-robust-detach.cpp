@@ -1,16 +1,20 @@
+#include <cstring>
+#include <cerrno>
+#include <ctime>
 #include <pthread.h>
-#include <string.h>
-#include <errno.h>
-#include <time.h>
+
 #include "gtest/gtest.h"
 
-#define TX(r, f, x) EXPECT_EQ(((r) = (f)), x) << #f << " failed: (pshared==" << pshared \
-            << ") got " << r << " \"" << strerror(r) << "\" want " << x << " \"" << strerror(x) << "\"" << endl;
+#define TX(r, f, x) do { \
+    EXPECT_EQ(((r) = (f)), x) << #f << " failed: (pshared==" << pshared \
+        << ") got " << r << " \"" << strerror(r) << "\" want " << x << " \"" << strerror(x) << "\"" << endl;\
+} while(0)
+
 #define T(r, f) TX(r, f, 0)
 
 using namespace std;
 using namespace testing::ext;
-class PthreadRobustDetachSuite : public testing::Test {};
+class PthreadRobustDetach : public testing::Test {};
 
 static pthread_barrier_t barrier2;
 static int pshared;
@@ -57,7 +61,7 @@ static void f()
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PthreadRobustDetachSuite, PthreadRobustDetachTest, Function | MediumTest | Level2)
+HWTEST_F(PthreadRobustDetach, PthreadRobustDetachTest, Function | MediumTest | Level2)
 {
     // test non-pshared and pshared robust mutexes as well
     f();

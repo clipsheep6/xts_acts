@@ -1,13 +1,11 @@
-#ifndef _XOPEN_SOURCE
-#define _XOPEN_SOURCE 700
-#endif
-#include <stdlib.h>
+#include <cstdlib>
 #include <search.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class SearchInsqueSuite : public testing::Test {};
+class SearchInsque : public testing::Test {};
 
 struct q {
 	struct q *n;
@@ -27,7 +25,7 @@ static struct q *new_data(int i)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SearchInsqueSuite, SearchInsqueTest, Function | MediumTest | Level2)
+HWTEST_F(SearchInsque, SearchInsqueTest, Function | MediumTest | Level2)
 {
     struct q *q = (struct q *)new_data(0);
     struct q *p;

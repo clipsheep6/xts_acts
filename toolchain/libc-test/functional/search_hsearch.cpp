@@ -1,11 +1,9 @@
-#ifndef _XOPEN_SOURCE
-#define _XOPEN_SOURCE 700
-#endif
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdint>
+#include <cstdlib>
+#include <cstring>
+#include <cerrno>
 #include <search.h>
-#include <errno.h>
+
 #include "gtest/gtest.h"
 
 #define set(k, v) do {                                                                                    \
@@ -19,14 +17,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class SearchHsearchSuite : public testing::Test {};
+class SearchHsearch : public testing::Test {};
 
 /**
  * @tc.name      : SearchHsearchTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SearchHsearchSuite, SearchHsearchTest, Function | MediumTest | Level2)
+HWTEST_F(SearchHsearch, SearchHsearchTest, Function | MediumTest | Level2)
 {
     ENTRY *e;
 

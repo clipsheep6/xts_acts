@@ -1,12 +1,15 @@
+#include <cstring>
 #include <pthread.h>
-#include <string.h>
+
 #include "gtest/gtest.h"
 
-#define TEST_T(r, f) EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(r)
+#define TEST_T(r, f) do {                                     \
+    EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(r);\
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class Pthread_exitCancelSuite : public testing::Test {};
+class Pthread_exitCancel : public testing::Test {};
 
 /**
  * @tc.name      : Pthread_exitCancelTest
@@ -26,7 +29,7 @@ static void *start(void *arg)
     return arg;
 }
 
-HWTEST_F(Pthread_exitCancelSuite, Pthread_exitCancelTest, Function | MediumTest | Level2)
+HWTEST_F(Pthread_exitCancel, Pthread_exitCancelTest, Function | MediumTest | Level2)
 {
     pthread_t td;
     void *status;

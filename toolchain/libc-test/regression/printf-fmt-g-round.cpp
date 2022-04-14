@@ -1,10 +1,11 @@
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class PrintfFmtgroundSuite : public testing::Test {};
+class PrintfFmtground : public testing::Test {};
 
 static void t(const char *fmt, double d, const char *want)
 {
@@ -20,7 +21,7 @@ static void t(const char *fmt, double d, const char *want)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PrintfFmtgroundSuite, PrintfFmtgroundTest, Function | MediumTest | Level2)
+HWTEST_F(PrintfFmtground, PrintfFmtgroundTest, Function | MediumTest | Level2)
 {
     t("%.12g", 1000000000005.0, "1e+12");
     t("%.12g", 100000000002500.0, "1.00000000002e+14");

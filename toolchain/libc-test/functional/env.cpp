@@ -1,12 +1,13 @@
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
+#include <cstdlib>
+#include <cstring>
+#include <cerrno>
 #include <unistd.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class EnvSuite : public testing::Test {};
+class Env : public testing::Test {};
 
 extern char **environ;
 
@@ -15,7 +16,7 @@ extern char **environ;
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(EnvSuite, EnvTest, Function | MediumTest | Level2)
+HWTEST_F(Env, EnvTest, Function | MediumTest | Level2)
 {
     char *s;
     int r;

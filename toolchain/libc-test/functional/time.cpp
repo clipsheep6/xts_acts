@@ -1,15 +1,15 @@
-#define _XOPEN_SOURCE 700
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
+#include <cstdlib>
+#include <cstdio>
+#include <ctime>
+#include <cstring>
+#include <cerrno>
+#include <climits>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class TimeSuite : public testing::Test {};
+class Time : public testing::Test {};
 
 int tm_cmp(struct tm tm1, struct tm tm2)
 {
@@ -89,7 +89,7 @@ static void tm2sec(struct tm *tm, int big, char *m)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(TimeSuite, TimeTest, Function | MediumTest | Level2)
+HWTEST_F(Time, TimeTest, Function | MediumTest | Level2)
 {
     time_t t;
 

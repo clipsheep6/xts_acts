@@ -1,11 +1,12 @@
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include <arpa/inet.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class InetPtonEmptyLastFieldSuite : public testing::Test {};
+class InetPtonEmptyLastField : public testing::Test {};
 
 static void txt(char *s, unsigned char *buf)
 {
@@ -19,7 +20,7 @@ static void txt(char *s, unsigned char *buf)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(InetPtonEmptyLastFieldSuite, InetPtonEmptyLastFieldTest, Function | MediumTest | Level2)
+HWTEST_F(InetPtonEmptyLastField, InetPtonEmptyLastFieldTest, Function | MediumTest | Level2)
 {
     char s[50], sw[50];
     unsigned char buf[16];

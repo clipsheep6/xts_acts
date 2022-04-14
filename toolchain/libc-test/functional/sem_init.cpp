@@ -1,17 +1,23 @@
 /* unnamed semaphore sanity check */
+#include <ctime>
+#include <cstring>
+#include <cerrno>
 #include <pthread.h>
 #include <semaphore.h>
-#include <time.h>
-#include <string.h>
-#include <errno.h>
+
 #include "gtest/gtest.h"
 
-#define T(f) EXPECT_FALSE(f) << #f << " failed: " << strerror(errno) << endl;
-#define T2(r, f) EXPECT_FALSE((r = (f))) << #f << " failed: " << strerror(r) << endl;
+#define T(f) do {                                                   \
+    EXPECT_FALSE(f) << #f << " failed: " << strerror(errno) << endl;\
+} while(0)
+
+#define T2(r, f) do {                                                   \
+    EXPECT_FALSE((r = (f))) << #f << " failed: " << strerror(r) << endl;\
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class SemInitSuite : public testing::Test {};
+class SemInit : public testing::Test {};
 
 static void *start(void *arg)
 {
@@ -21,7 +27,7 @@ static void *start(void *arg)
     ts.tv_sec += 1;
     T(sem_post(s));
     T(sem_timedwait(s + 1, &ts));
-    return 0;
+    return nullptr;
 }
 
 static void many_waiters()
@@ -77,7 +83,7 @@ static void single_thread()
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SemInitSuite, SemInitTest, Function | MediumTest | Level2)
+HWTEST_F(SemInit, SemInitTest, Function | MediumTest | Level2)
 {
     single_thread();
     many_waiters();

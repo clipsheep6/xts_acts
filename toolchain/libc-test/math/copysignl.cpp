@@ -1,11 +1,13 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
+
+#include "mtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class CopysignlSuite : public testing::Test {};
+class Copysignl : public testing::Test {};
 
 static struct ll_l t[] = {
 #if LDBL_MANT_DIG == 53
@@ -24,7 +26,7 @@ static struct ll_l t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(CopysignlSuite, CopysignlTest, Function | MediumTest | Level2)
+HWTEST_F(Copysignl, CopysignlTest, Function | MediumTest | Level2)
 {
     //#pragma STDC FENV_ACCESS ON
     long double y;

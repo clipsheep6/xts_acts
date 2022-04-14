@@ -1,12 +1,12 @@
-//#define _GNU_SOURCE
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class ErfSuite : public testing::Test {};
+class Erf : public testing::Test {};
 
 static struct d_d t[] = {
 #include "sanity/erf.h"
@@ -19,9 +19,8 @@ static struct d_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ErfSuite, ErfTest, Function | MediumTest | Level2)
+HWTEST_F(Erf, ErfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

@@ -1,9 +1,10 @@
-#include <stdint.h>
+#include <cstdint>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class UdivSuite: public testing::Test {};
+class Udiv: public testing::Test {};
 
 static struct {
 	uint64_t x, y, div, mod;
@@ -138,7 +139,7 @@ static struct {
  * @tc.desc      : 
  * @tc.level     : Level 2
  */
-HWTEST_F(UdivSuite, UdivTest, Function | MediumTest | Level2)
+HWTEST_F(Udiv, UdivTest, Function | MediumTest | Level2)
 {
     uint64_t x, y, div, mod;
 	int i;

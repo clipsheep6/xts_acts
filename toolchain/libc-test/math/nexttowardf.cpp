@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class NexttowardfSuite : public testing::Test {};
+class Nexttowardf : public testing::Test {};
 
 // TODO: separate ldbl dir
 static struct ll_l t[] = {
@@ -25,9 +26,8 @@ static struct ll_l t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(NexttowardfSuite, NexttowardfTest, Function | MediumTest | Level2)
+HWTEST_F(Nexttowardf, NexttowardfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

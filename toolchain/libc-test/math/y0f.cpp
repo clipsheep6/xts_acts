@@ -1,13 +1,12 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class Y0fSuite : public testing::Test {};
+class Y0f : public testing::Test {};
 
 static struct f_f t[] = {
 #include "sanity/y0f.h"
@@ -20,9 +19,8 @@ static struct f_f t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(Y0fSuite, Y0fTest, Function | MediumTest | Level2)
+HWTEST_F(Y0f, Y0fTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, bad, err = 0;

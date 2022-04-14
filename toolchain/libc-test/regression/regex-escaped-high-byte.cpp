@@ -1,17 +1,18 @@
-#include <locale.h>
+#include <clocale>
 #include <regex.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class RegexEscapedHighByteSuite : public testing::Test {};
+class RegexEscapedHighByte : public testing::Test {};
 
 /**
  * @tc.name      : RegexEscapedHighByteTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(RegexEscapedHighByteSuite, RegexEscapedHighByteTest, Function | MediumTest | Level2)
+HWTEST_F(RegexEscapedHighByte, RegexEscapedHighByteTest, Function | MediumTest | Level2)
 {
     char buf[200];
     regex_t r;

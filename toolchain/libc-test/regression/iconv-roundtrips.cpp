@@ -1,17 +1,18 @@
+#include <cstring>
 #include <iconv.h>
-#include <string.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class IconvRoundtripsSuite : public testing::Test {};
+class IconvRoundtrips : public testing::Test {};
 
 /**
  * @tc.name      : iconvRoundtripsTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(IconvRoundtripsSuite, IconvRoundtripsTest, Function | MediumTest | Level2)
+HWTEST_F(IconvRoundtrips, IconvRoundtripsTest, Function | MediumTest | Level2)
 {
     static char *test_charsets[] = {
         (char *)"iso-8859-1",

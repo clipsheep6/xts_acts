@@ -1,19 +1,20 @@
+#include <cstdio>
+#include <cerrno>
+#include <cstring>
 #include <sched.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class SchedSetSchedulerSuite : public testing::Test {};
+class SchedSetScheduler : public testing::Test {};
 
 /**
  * @tc.name      : SchedSetSchedulerTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SchedSetSchedulerSuite, SchedSetSchedulerTest, Function | MediumTest | Level2)
+HWTEST_F(SchedSetScheduler, SchedSetSchedulerTest, Function | MediumTest | Level2)
 {
     struct sched_param param;
     int maxpri, minpri;

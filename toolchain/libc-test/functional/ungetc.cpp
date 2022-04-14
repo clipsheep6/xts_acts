@@ -1,9 +1,11 @@
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
+#include <cstdio>
+#include <cstring>
+#include <cerrno>
+#include <climits>
 #include <unistd.h>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 #define TEST1(r, f, x, m) do{                                                      \
@@ -16,14 +18,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class UngetcSuite : public testing::Test {};
+class Ungetc : public testing::Test {};
 
 /**
  * @tc.name      : UngetcTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(UngetcSuite, UngetcTest, Function | MediumTest | Level2)
+HWTEST_F(Ungetc, UngetcTest, Function | MediumTest | Level2)
 {
     int i;
     char a[100];

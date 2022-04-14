@@ -1,12 +1,12 @@
-//#define _GNU_SOURCE
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class ExpSuite : public testing::Test {};
+class Exp : public testing::Test {};
 
 static struct d_d t[] = {
 #include "crlibm/exp.h"
@@ -21,9 +21,8 @@ static struct d_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ExpSuite, ExpTest, Function | MediumTest | Level2)
+HWTEST_F(Exp, ExpTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

@@ -1,17 +1,18 @@
-#include <string.h>
+#include <cstring>
 #include <arpa/inet.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class InetNtopV4mappedSuite : public testing::Test {};
+class InetNtopV4mapped : public testing::Test {};
 
 /**
  * @tc.name      : InetNtopV4mappedTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(InetNtopV4mappedSuite, InetNtopV4mappedTest, Function | MediumTest | Level2)
+HWTEST_F(InetNtopV4mapped, InetNtopV4mappedTest, Function | MediumTest | Level2)
 {
     char *expect = (char *)"::ffff:192.168.0.1";
     char buf[100];

@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class RemquoSuite : public testing::Test {};
+class Remquo : public testing::Test {};
 
 static struct dd_di t[] = {
 #include "sanity/remquo.h"
@@ -17,9 +18,8 @@ static struct dd_di t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(RemquoSuite, RemquoTest, Function | MediumTest | Level2)
+HWTEST_F(Remquo, RemquoTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     int yi;
     double y;
     float d;

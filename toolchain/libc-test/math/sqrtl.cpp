@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class SqrtlSuite : public testing::Test {};
+class Sqrtl : public testing::Test {};
 
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
@@ -25,9 +26,8 @@ static struct l_l t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SqrtlSuite, SqrtlTest, Function | MediumTest | Level2)
+HWTEST_F(Sqrtl, SqrtlTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     long double y;
     float d;
     int e, i, err = 0;

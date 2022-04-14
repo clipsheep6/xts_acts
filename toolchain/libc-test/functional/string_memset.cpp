@@ -1,14 +1,16 @@
-#include <string.h>
-#include <stdlib.h>
-#include <stdint.h>
+#include <cstring>
+#include <cstdlib>
+#include <cstdint>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 #define N 500
 
 using namespace std;
 using namespace testing::ext;
-class StringMemsetSuite : public testing::Test {};
+class StringMemset : public testing::Test {};
 
 static char buf[N];
 static char buf2[N];
@@ -58,7 +60,7 @@ static void test_value(int c)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StringMemsetSuite, StringMemsetTest, Function | MediumTest | Level2)
+HWTEST_F(StringMemset, StringMemsetTest, Function | MediumTest | Level2)
 {
     int i, j;
 

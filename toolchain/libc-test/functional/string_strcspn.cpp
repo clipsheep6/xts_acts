@@ -1,5 +1,6 @@
-#include <stddef.h>
-#include <string.h>
+#include <cstddef>
+#include <cstring>
+
 #include "gtest/gtest.h"
 
 #define T(s, c, n) do {                                                                                                                 \
@@ -11,14 +12,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class StringStrcspnSuite : public testing::Test {};
+class StringStrcspn : public testing::Test {};
 
 /**
  * @tc.name      : StringStrcspnTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StringStrcspnSuite, StringStrcspnTest, Function | MediumTest | Level2)
+HWTEST_F(StringStrcspn, StringStrcspnTest, Function | MediumTest | Level2)
 {
     int i;
     char a[128];

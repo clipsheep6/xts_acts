@@ -1,11 +1,12 @@
+#include <cerrno>
+#include <ctime>
 #include <pthread.h>
-#include <errno.h>
-#include <time.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class PthreadCondWaitCancelIgnoredSuite : public testing::Test {};
+class PthreadCondWaitCancelIgnored : public testing::Test {};
 
 static pthread_mutex_t mx = PTHREAD_MUTEX_INITIALIZER;
 static pthread_cond_t cv = PTHREAD_COND_INITIALIZER;
@@ -35,7 +36,7 @@ static void *waiter(void *p)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PthreadCondWaitCancelIgnoredSuite, PthreadCondWaitCancelIgnoredTest, Function | MediumTest | Level2)
+HWTEST_F(PthreadCondWaitCancelIgnored, PthreadCondWaitCancelIgnoredTest, Function | MediumTest | Level2)
 {
     pthread_t td;
     struct timespec ts;

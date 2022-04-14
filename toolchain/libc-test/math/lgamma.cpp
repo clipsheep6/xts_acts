@@ -1,12 +1,12 @@
-#define _XOPEN_SOURCE 700
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class LgammaSuite : public testing::Test {};
+class Lgamma : public testing::Test {};
 
 static struct d_di t[] = {
 #include "sanity/lgamma.h"
@@ -19,9 +19,8 @@ static struct d_di t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(LgammaSuite, LgammaTest, Function | MediumTest | Level2)
+HWTEST_F(Lgamma, LgammaTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     int yi;
     double y;
     float d;

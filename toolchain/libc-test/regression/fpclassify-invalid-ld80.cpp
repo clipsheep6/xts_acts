@@ -1,8 +1,9 @@
-#include <math.h>
-#include <float.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <string.h>
+#include <cmath>
+#include <cfloat>
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+
 #include "gtest/gtest.h"
 
 #define T(f, desc, c, cwant, s, swant) do {                                                                                                        \
@@ -16,7 +17,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class FpclassifyInvalidLd80Suite : public testing::Test{};
+class FpclassifyInvalidLd80 : public testing::Test{};
 
 #if LDBL_MANT_DIG == 64
 static char *strclass(int c) {
@@ -37,7 +38,7 @@ static char *strclass(int c) {
  * @tc.desc      : 
  * @tc.level     : Level 2
  */
-HWTEST_F(FpclassifyInvalidLd80Suite, FpclassifyInvalidLd80Test, Function | MediumTest | Level2)
+HWTEST_F(FpclassifyInvalidLd80, FpclassifyInvalidLd80Test, Function | MediumTest | Level2)
 {
     union {
         long double f;
@@ -66,7 +67,7 @@ HWTEST_F(FpclassifyInvalidLd80Suite, FpclassifyInvalidLd80Test, Function | Mediu
     T(u.f, "nan with msb unset", c, FP_NAN, s, "nan");
 }
 #else
-HWTEST_F(FpclassifyInvalidLd80Suite, FpclassifyInvalidLd80Test, Function | MediumTest | Level2)
+HWTEST_F(FpclassifyInvalidLd80, FpclassifyInvalidLd80Test, Function | MediumTest | Level2)
 {
     return;
 }

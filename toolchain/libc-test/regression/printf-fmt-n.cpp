@@ -1,5 +1,6 @@
-#include <stdint.h>
-#include <stdio.h>
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
 #define T(n, nfmt, fmt) do {                                                     \
@@ -10,14 +11,14 @@
     
 using namespace std;
 using namespace testing::ext;
-class PrintfFmtnSuite : public testing::Test {};
+class PrintfFmtn : public testing::Test {};
 
 /**
  * @tc.name      : PrintfFmtnTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PrintfFmtnSuite, PrintfFmtnTest, Function | MediumTest | Level2)
+HWTEST_F(PrintfFmtn, PrintfFmtnTest, Function | MediumTest | Level2)
 {
     char buf[1024];
     int ret;

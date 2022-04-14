@@ -1,13 +1,12 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class JnfSuite : public testing::Test {};
+class Jnf : public testing::Test {};
 
 static struct fi_f t[] = {
 #include "sanity/jnf.h"
@@ -19,9 +18,8 @@ static struct fi_f t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(JnfSuite, JnfTest, Function | MediumTest | Level2)
+HWTEST_F(Jnf, JnfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

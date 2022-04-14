@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class HypotSuite : public testing::Test {};
+class Hypot : public testing::Test {};
 
 static struct dd_d t[] = {
 #include "ucb/hypot.h"
@@ -19,9 +20,8 @@ static struct dd_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(HypotSuite, HypotTest, Function | MediumTest | Level2)
+HWTEST_F(Hypot, HypotTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

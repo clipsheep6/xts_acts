@@ -1,18 +1,19 @@
-#include "gtest/gtest.h"
-#include <string.h>
-#include <errno.h>
+#include <cstring>
+#include <cerrno>
 #include <iconv.h>
+
+#include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class IconvOpenSuite : public testing::Test {};
+class IconvOpen : public testing::Test {};
 
 /**
  * @tc.name      : IconvOpenTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(IconvOpenSuite, IconvOpenTest, Function | MediumTest | Level2)
+HWTEST_F(IconvOpen, IconvOpenTest, Function | MediumTest | Level2)
 {
     iconv_t cd;
     char buf[100];

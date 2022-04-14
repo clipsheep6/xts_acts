@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class RemquolSuite : public testing::Test {};
+class Remquol : public testing::Test {};
 
 static struct ll_li t[] = {
 #if LDBL_MANT_DIG == 53
@@ -24,9 +25,8 @@ static struct ll_li t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(RemquolSuite, RemquolTest, Function | MediumTest | Level2)
+HWTEST_F(Remquol, RemquolTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     int yi;
     long double y;
     float d;

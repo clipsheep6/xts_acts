@@ -1,17 +1,16 @@
-#define _XOPEN_SOURCE 700
-#include <stdlib.h>
+#include <cstdlib>
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class Lrand48SignextendSuite : public testing::Test {};
+class Lrand48Signextend : public testing::Test {};
 
 /**
  * @tc.name      : Lrand48SignextendTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(Lrand48SignextendSuite, Lrand48SignextendTest, Function | MediumTest | Level2)
+HWTEST_F(Lrand48Signextend, Lrand48SignextendTest, Function | MediumTest | Level2)
 {
     long r;
     r = lrand48();

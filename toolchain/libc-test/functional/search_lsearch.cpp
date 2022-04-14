@@ -1,7 +1,4 @@
-#ifndef _XOPEN_SOURCE
-#define _XOPEN_SOURCE 700
-#endif
-#include <string.h>
+#include <cstring>
 #include <search.h>
 #include "gtest/gtest.h"
 
@@ -11,7 +8,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class SearchIsearchSuite : public testing::Test {};
+class SearchIsearch : public testing::Test {};
 
 static char tab[100][W];
 static size_t nel;
@@ -27,7 +24,7 @@ void set_str(char *k)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SearchIsearchSuite, SearchIsearchTest, Function | MediumTest | Level2)
+HWTEST_F(SearchIsearch, SearchIsearchTest, Function | MediumTest | Level2)
 {
     size_t n;
 

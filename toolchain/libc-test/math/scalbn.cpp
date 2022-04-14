@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class ScalbnSuite : public testing::Test {};
+class Scalbn : public testing::Test {};
 
 static struct di_d t[] = {
 #include "sanity/scalbn.h"
@@ -18,9 +19,8 @@ static struct di_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ScalbnSuite, ScalbnTest, Function | MediumTest | Level2)
+HWTEST_F(Scalbn, ScalbnTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

@@ -1,19 +1,21 @@
-#include <signal.h>
-#include <string.h>
-#include <errno.h>
+#include <csignal>
+#include <cstring>
+#include <cerrno>
+#include <cstdio>
+
 #include "gtest/gtest.h"
-#include <stdio.h>
+
 
 using namespace std;
 using namespace testing::ext;
-class SigprocmaskInternalSuite : public testing::Test {};
+class SigprocmaskInternal : public testing::Test {};
 
 /**
  * @tc.name      : SigprocmaskInternalTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SigprocmaskInternalSuite, SigprocmaskInternalTest, Function | MediumTest | Level2)
+HWTEST_F(SigprocmaskInternal, SigprocmaskInternalTest, Function | MediumTest | Level2)
 {
     sigset_t s;
     int i;

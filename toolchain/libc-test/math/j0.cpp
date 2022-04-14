@@ -1,11 +1,11 @@
-//#define _XOPEN_SOURCE 700
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class J0Suite : public testing::Test {};
+class J0 : public testing::Test {};
 
 static struct d_d t[] = {
 #include "sanity/j0.h"
@@ -18,9 +18,8 @@ static struct d_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(J0Suite, J0Test, Function | MediumTest | Level2)
+HWTEST_F(J0, J0Test, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0; // bad;

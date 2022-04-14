@@ -1,12 +1,14 @@
-#include <string.h>
-#include <stdlib.h>
-#include <stdint.h>
+#include <cstring>
+#include <cstdlib>
+#include <cstdint>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 using namespace std;
 using namespace testing::ext;
-class StringMemcpySuite : public testing::Test {};
+class StringMemcpy : public testing::Test {};
 
 static char buf[512];
 
@@ -50,7 +52,7 @@ static void test_align(int dalign, int salign, int len)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StringMemcpySuite, StringMemcpyTest, Function | MediumTest | Level2)
+HWTEST_F(StringMemcpy , StringMemcpyTest , Function | MediumTest | Level2)
 {
     int i, j, k;
 

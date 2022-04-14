@@ -1,14 +1,12 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
-#define _XOPEN_SOURCE 700
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class LgammalSuite : public testing::Test {};
+class Lgammal : public testing::Test {};
 
 static struct l_li t[] = {
 #if LDBL_MANT_DIG == 53
@@ -27,9 +25,8 @@ static struct l_li t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(LgammalSuite, LgammalTest, Function | MediumTest | Level2)
+HWTEST_F(Lgammal, LgammalTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     int yi;
     long double y;
     float d;

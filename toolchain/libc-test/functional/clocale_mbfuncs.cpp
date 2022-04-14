@@ -1,23 +1,24 @@
-#include <stdio.h>
-#include <string.h>
-#include <wchar.h>
-#include <wctype.h>
-#include <stdlib.h>
-#include <locale.h>
+#include <cstdio>
+#include <cstring>
+#include <cwchar>
+#include <cwctype>
+#include <cstdlib>
+#include <clocale>
+#include <limits>
 #include <langinfo.h>
-#include <limits.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class ClocaleMbfuncsSuite : public testing::Test {};
+class ClocaleMbfuncs : public testing::Test {};
 
 /**
  * @tc.name      : ClocaleMbfuncsTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ClocaleMbfuncsSuite, ClocaleMbfuncsTest, Function | MediumTest | Level2)
+HWTEST_F(ClocaleMbfuncs, ClocaleMbfuncsTest, Function | MediumTest | Level2)
 {
     int i, j;
     mbstate_t st; // st2;

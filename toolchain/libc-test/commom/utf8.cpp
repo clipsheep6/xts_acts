@@ -1,8 +1,11 @@
-#include <locale.h>
-#include <string.h>
+#include <clocale>
+#include <cstring>
 #include <langinfo.h>
-#include "test.h"
+
 #include "gtest/gtest.h"
+
+#include "test.h"
+
 using namespace std;
 
 int t_setutf8()
@@ -16,8 +19,7 @@ int t_setutf8()
     setlocale(LC_CTYPE, "UTF-8") ||
     setlocale(LC_CTYPE, "") );
     
-    EXPECT_FALSE(strcmp(nl_langinfo(CODESET), "UTF-8")) << "cannot set UTF-8 locale for test (codeset=" 
-																	<< nl_langinfo(CODESET) << ")" << endl;
-    
+    EXPECT_FALSE(strcmp(nl_langinfo(CODESET), "UTF-8")) 
+        << "cannot set UTF-8 locale for test (codeset=" << nl_langinfo(CODESET) << ")" << endl;
     return 0;
 }

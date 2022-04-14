@@ -1,11 +1,13 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
+
+#include "mtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class CeilSuite : public testing::Test {};
+class Ceil : public testing::Test {};
 
 static struct d_d t[] = {
 #include "ucb/ceil.h"
@@ -19,9 +21,8 @@ static struct d_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(CeilSuite, CeilTest, Function | MediumTest | Level2)
+HWTEST_F(Ceil, CeilTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

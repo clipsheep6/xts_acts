@@ -1,12 +1,12 @@
-#define _GNU_SOURCE 1
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class SincosfSuite : public testing::Test {};
+class Sincosf : public testing::Test {};
 
 static struct f_ff t[] = {
 #include "sanity/sincosf.h"
@@ -18,9 +18,8 @@ static struct f_ff t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SincosfSuite, SincosfTest, Function | MediumTest | Level2)
+HWTEST_F(Sincosf, SincosfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float ysin, ycos;
     float dsin, dcos;
     int e, i, err = 0;

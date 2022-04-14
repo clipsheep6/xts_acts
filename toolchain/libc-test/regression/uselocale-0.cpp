@@ -1,17 +1,18 @@
-#include <locale.h>
+#include <clocale>
+#include <cstdio>
+
 #include "gtest/gtest.h"
-#include <stdio.h>
 
 using namespace std;
 using namespace testing::ext;
-class Uselocale0Suite : public testing::Test {};
+class Uselocale0 : public testing::Test {};
 
 /**
  * @tc.name      : Uselocale0Test
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(Uselocale0Suite, Uselocale0Test, Function | MediumTest | Level2)
+HWTEST_F(Uselocale0, Uselocale0Test, Function | MediumTest | Level2)
 {
     locale_t c = newlocale(LC_ALL_MASK, "C", 0);
 

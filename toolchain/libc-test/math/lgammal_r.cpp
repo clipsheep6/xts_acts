@@ -1,12 +1,12 @@
-#define _GNU_SOURCE 1
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class LgammalrSuite : public testing::Test {};
+class Lgammalr : public testing::Test {};
 
 static struct l_li t[] = {
 #if LDBL_MANT_DIG == 53
@@ -25,9 +25,8 @@ static struct l_li t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(LgammalrSuite, LgammalrTest, Function | MediumTest | Level2)
+HWTEST_F(Lgammalr, LgammalrTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     int yi;
     long double y;
     float d;

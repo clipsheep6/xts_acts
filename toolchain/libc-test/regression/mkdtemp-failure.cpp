@@ -1,8 +1,7 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
+#include <cstdlib>
+#include <cstring>
+#include <cerrno>
+
 #include "gtest/gtest.h"
 
 char *mkdtemp(char *);
@@ -10,14 +9,14 @@ char *mkdtemp(char *);
 
 using namespace std;
 using namespace testing::ext;
-class MkdtempFailureSuite : public testing::Test {};
+class MkdtempFailure : public testing::Test {};
 
 /**
  * @tc.name      : MkdtempFailureTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(MkdtempFailureSuite, MkdtempFailureTest, Function | MediumTest | Level2)
+HWTEST_F(MkdtempFailure, MkdtempFailureTest, Function | MediumTest | Level2)
 {
     char p[] = S;
     char *r;

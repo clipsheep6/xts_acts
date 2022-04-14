@@ -1,5 +1,6 @@
-#include <string.h>
+#include <cstring>
 #include <unistd.h>
+
 #include "gtest/gtest.h"
 
 #define TESTT(c) do {                                                        \
@@ -9,14 +10,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class FdopenSuite : public testing::Test {};
+class Fdopen : public testing::Test {};
 
 /**
  * @tc.name      : FdopenTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FdopenSuite, FdopenTest, Function | MediumTest | Level2)
+HWTEST_F(Fdopen, FdopenTest, Function | MediumTest | Level2)
 {
     char tmp[] = "/tmp/testsuite-XXXXXX";
     char foo[6];

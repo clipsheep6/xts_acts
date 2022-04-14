@@ -1,23 +1,24 @@
-#include <stdio.h>
+#include <cstdio>
+#include <cerrno>
+#include <cstring>
 #include <unistd.h>
-#include <errno.h>
-#include <string.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/time.h>
 #include <fcntl.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class SocketSuite : public testing::Test {};
+class Socket : public testing::Test {};
 
 /**
  * @tc.name      : SocketTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SocketSuite, SocketfTest, Function | MediumTest | Level2)
+HWTEST_F(Socket, SocketfTest, Function | MediumTest | Level2)
 {
     struct sockaddr_in sa = {.sin_family = AF_INET};
     int s, c, t;

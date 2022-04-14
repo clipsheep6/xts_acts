@@ -1,25 +1,26 @@
-#include <stdio.h>
-#include <stdint.h>
+#include <cstdio>
+#include <cstdint>
+
 #include "mtest.h"
 
 int eulpf(float x)
 {
     union { float f; uint32_t i; } u = { x };
-    int e = u.i>>23 & 0xff;
+    int e = (u.i>>23) & 0xff;
     
     if (!e)
         e++;
-    return e - 0x7f - 23;
+    return e - 0x7f - 23; //e - 0x7f - 23 : e - 0x7f - 23 
 }
 
 int eulp(double x)
 {
     union { double f; uint64_t i; } u = { x };
-    int e = u.i>>52 & 0x7ff;
+    int e = (u.i>>52) & 0x7ff;
     
     if (!e)
        e++;
-    return e - 0x3ff - 52;
+    return e - 0x3ff - 52;//e - 0x3ff - 52 : e - 0x3ff - 52
 }
 
 int eulpl(long double x)
@@ -32,7 +33,7 @@ int eulpl(long double x)
     
     if (!e)
         e++;
-    return e - 0x3fff - 63;
+    return e - 0x3fff - 63;//e - 0x3fff - 63 : e - 0x3fff - 63
 #else
     return 0;
 #endif
@@ -128,15 +129,15 @@ char *estr(int f)
 char *rstr(int r)
 {
     switch (r) {
-    case RN: return (char *)"RN";
+        case RN: return (char *)"RN";
 #ifdef FE_TOWARDZERO
-    case RZ: return (char *)"RZ";
+        case RZ: return (char *)"RZ";
 #endif
 #ifdef FE_UPWARD
-    case RU: return (char *)"RU";
+        case RU: return (char *)"RU";
 #endif
 #ifdef FE_DOWNWARD
-    case RD: return (char *)"RD";
+        case RD: return (char *)"RD";
 #endif
     }
     return (char *)"R?";
@@ -171,5 +172,5 @@ int checkcr(long double y, long double ywant, int r)
 {
     if (isnan(ywant))
         return isnan(y);
-    return y == ywant && signbit(y) == signbit(ywant);
+    return (y == ywant) && (signbit(y) == signbit(ywant));
 }

@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class LroundSuite : public testing::Test {};
+class Lround : public testing::Test {};
 
 static struct d_i t[] = {
 #include "sanity/lround.h"
@@ -18,9 +19,8 @@ static struct d_i t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(LroundSuite, LroundTest, Function | MediumTest | Level2)
+HWTEST_F(Lround, LroundTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     long long yi;
     int e, i, err = 0;
     struct d_i *p;

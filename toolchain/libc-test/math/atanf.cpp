@@ -1,9 +1,10 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
 class AtanfSuite : public testing::Test {};
 
@@ -21,7 +22,6 @@ static struct f_f t[] = {
  */
 HWTEST_F(AtanfSuite, AtanfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

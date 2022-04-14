@@ -46,9 +46,6 @@ HWTEST_F(ErfcfSuite, ErfcfTest, Function | MediumTest | Level2)
         }
         d = ulperrf(y, p->y, p->dy);
         EXPECT_FALSE(!checkulp(d, p->r));
-        // EXPECT_FALSE(!checkulp(d, p->r)) << p->file << ":" << p->line << ": "
-        // << rstr(p->r) << " erfcf(" << p->x << ") want " << p->y << " got " << y
-        // <<" ulperr " << d << " = " << d-p->dy << " + " << p->dy ;//<< " err " << err++;
         if (!checkulp(d, p->r)) {
             printf("%s:%d: %s erfcf(%a) want %a got %a ulperr %.3f = %a + %a\n",
                    p->file, p->line, rstr(p->r), p->x, p->y, y, d, d - p->dy, p->dy);

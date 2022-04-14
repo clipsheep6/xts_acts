@@ -1,6 +1,7 @@
+#include <cerrno>
 #include <fcntl.h>
 #include <unistd.h>
-#include <errno.h>
+
 #include "test.h"
 
 void t_fdfill(void)

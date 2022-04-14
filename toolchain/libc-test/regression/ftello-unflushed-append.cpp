@@ -1,26 +1,27 @@
-#include <errno.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cerrno>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <unistd.h>
+#include <fcntl.h>
+
 #include "gtest/gtest.h"
 
-#define ASSERT(c) do {                                                                   \
+#define ASSERT(c) do {                                                               \
     errno = 0;                                                                       \
     EXPECT_FALSE(!(c)) << #c << "failed (errno: " << strerror(errno) << ")" << endl; \
 } while (0)
 
 using namespace std;
 using namespace testing::ext;
-class FtelloUnflushedAppendSuite : public testing::Test {};
+class FtelloUnflushedAppend : public testing::Test {};
 
 /**
  * @tc.name      : FtelloUnflushedAppendTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FtelloUnflushedAppendSuite, FtelloUnflushedAppendTest, Function | MediumTest | Level2)
+HWTEST_F(FtelloUnflushedAppend, FtelloUnflushedAppendTest, Function | MediumTest | Level2)
 {
     char tmp[] = "/tmp/testsuite-XXXXXX";
     int fd;

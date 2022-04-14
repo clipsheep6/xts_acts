@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class ModflSuite : public testing::Test {};
+class Modfl : public testing::Test {};
 
 static struct l_ll t[] = {
 #if LDBL_MANT_DIG == 53
@@ -22,9 +23,8 @@ static struct l_ll t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ModflSuite, ModflTest, Function | MediumTest | Level2)
+HWTEST_F(Modfl, ModflTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     long double y, yi;
     float d, di;
     int e, i, err = 0;

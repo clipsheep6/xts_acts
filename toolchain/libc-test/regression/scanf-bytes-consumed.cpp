@@ -1,16 +1,17 @@
-#include <stdio.h>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class ScanfBytesConsumedSuite : public testing::Test {};
+class ScanfBytesConsumed : public testing::Test {};
 
 /**
  * @tc.name      : ScanfBytesConsumedTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ScanfBytesConsumedSuite, ScanfBytesConsumedTest, Function | MediumTest | Level2)
+HWTEST_F(ScanfBytesConsumed, ScanfBytesConsumedTest, Function | MediumTest | Level2)
 {
     char buf[] = {'a', 'a', 0};
     char dest[3];

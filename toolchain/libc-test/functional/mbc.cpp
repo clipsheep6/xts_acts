@@ -1,10 +1,11 @@
-#include "gtest/gtest.h"
-#include <stdio.h>
-#include <string.h>
-#include <wchar.h>
-#include <stdlib.h>
-#include <locale.h>
+#include <cstdio>
+#include <cstring>
+#include <cwchar>
+#include <cstdlib>
+#include <clocale>
 #include <langinfo.h>
+
+#include "gtest/gtest.h"
 
 #define T(f, x, m) do {                                                                            \
     memset(&st, 0, sizeof st);                                                                     \
@@ -18,14 +19,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class MbcSuite : public testing::Test {};
+class Mbc : public testing::Test {};
 
 /**
  * @tc.name      : MbcTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(MbcSuite, MbcTest, Function | MediumTest | Level2)
+HWTEST_F(Mbc, MbcTest, Function | MediumTest | Level2)
 {
     const char *cs;
     int i;

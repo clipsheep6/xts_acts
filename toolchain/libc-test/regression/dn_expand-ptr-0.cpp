@@ -1,19 +1,18 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
+#include <cstring>
 #include <resolv.h>
-#include <string.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class DnExpandPtr0Suite : public testing::Test {};
+class DnExpandPtr0 : public testing::Test {};
 
 /**
  * @tc.name      : DnExpandPtr0Test
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(DnExpandPtr0Suite, DnExpandPtr0Test, Function | MediumTest | Level2)
+HWTEST_F(DnExpandPtr0, DnExpandPtr0Test, Function | MediumTest | Level2)
 {
     unsigned char packet[] = {2, 'p', 'q', 0xc0, 5, 0};
     char name[] = "XXXX";

@@ -1,12 +1,12 @@
-#define _GNU_SOURCE 1
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class SincoslSuite : public testing::Test {};
+class Sincosl : public testing::Test {};
 
 static struct l_ll t[] = {
 #if LDBL_MANT_DIG == 53
@@ -23,9 +23,8 @@ static struct l_ll t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SincoslSuite, SincoslTest, Function | MediumTest | Level2)
+HWTEST_F(Sincosl, SincoslTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     long double ysin, ycos;
     float dsin, dcos;
     int e, i, err = 0;

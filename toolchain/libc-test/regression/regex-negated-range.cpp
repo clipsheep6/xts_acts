@@ -1,16 +1,17 @@
 #include <regex.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class RegexnegatedRangeSuite : public testing::Test {};
+class RegexnegatedRange : public testing::Test {};
 
 /**
  * @tc.name      : RegexnegatedRangeTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(RegexnegatedRangeSuite, RegexnegatedRangeTest, Function | MediumTest | Level2)
+HWTEST_F(RegexnegatedRange, RegexnegatedRangeTest, Function | MediumTest | Level2)
 {
     char buf[200];
     regex_t r;

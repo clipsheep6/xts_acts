@@ -1,8 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cerrno>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 #define TEST1(r, f, x, m) do {                                                                        \
@@ -18,14 +20,14 @@
 
 using namespace std;
 using namespace testing::ext;
-class StrtolSuite : public testing::Test {};
+class Strtol : public testing::Test {};
 
 /**
  * @tc.name      : StrtolTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StrtolSuite, StrtolTest, Function | MediumTest | Level2)
+HWTEST_F(Strtol, StrtolTest, Function | MediumTest | Level2)
 {
     int i;
     long l;

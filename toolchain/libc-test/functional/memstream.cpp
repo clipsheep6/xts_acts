@@ -1,9 +1,11 @@
-#include "gtest/gtest.h"
-#include <stdlib.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cerrno>
+#include <cstring>
 #include <unistd.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
+
+#include "gtest/gtest.h"
+
 #include "test.h"
 
 #define TESTT(r, f, x, m) do {                                           \
@@ -11,25 +13,30 @@
     EXPECT_EQ((i), (x));                                                 \
 } while (0)
 
-#define TEST_E(f) do {                                                  \
+#define TEST_E(f) do {                                                   \
     (errno = 0);                                                         \
     EXPECT_TRUE(f) << #f << " failed (errno = " << errno << ")" << endl; \
 } while (0)
     
-#define TEST_S(s, x, m) EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << endl;
-#define TEST_M(s, x, n, m) EXPECT_TRUE(!memcmp((s), (x), (n))) << "[" << s << "] != [" << x << "] (" << m << endl;
+#define TEST_S(s, x, m) do {                                                           \
+    EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << endl; \
+} while(0)
+
+#define TEST_M(s, x, n, m) do {                                                             \
+    EXPECT_TRUE(!memcmp((s), (x), (n))) << "[" << s << "] != [" << x << "] (" << m << endl; \
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
 // namespace {
-class MemStreamSuite : public testing::Test {};
+class MemStream : public testing::Test {};
 
 /**
  * @tc.name      : MemStreamTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(MemStreamSuite, MemStreamTest, Function | MediumTest | Level2)
+HWTEST_F(MemStream, MemStreamTest, Function | MediumTest | Level2)
 {
     FILE *f;
     char *s;

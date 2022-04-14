@@ -1,16 +1,15 @@
-// SPDX-License-Identifier: MIT
+#include <cstddef>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <cstdio>
 
-//#define _GNU_SOURCE   /* For tm_gmtoff */
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 #include "gtest/gtest.h"
-#include <stdio.h>
+
 
 using namespace std;
 using namespace testing::ext;
-class StrpTimeSuite : public testing::Test {};
+class StrpTime : public testing::Test {};
 
 static void checkStrptime(const char *s, const char *format, const struct tm *expected)
 {
@@ -93,7 +92,7 @@ static struct tm tm4 = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StrpTimeSuite, StrpTimeTest, Function | MediumTest | Level2)
+HWTEST_F(StrpTime, StrpTimeTest, Function | MediumTest | Level2)
 {
     setenv("TZ", "UTC0", 1);
 

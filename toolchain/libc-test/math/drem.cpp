@@ -1,12 +1,10 @@
-//#define _GNU_SOURCE
 #include <stdint.h>
 #include <stdio.h>
 #include "mtest.h"
 #include "gtest/gtest.h"
 
-using namespace std;
 using namespace testing::ext;
-class DremSuite : public testing::Test {};
+class Drem : public testing::Test {};
 
 static struct dd_d t[] = {
 #include "sanity/remainder.h"
@@ -19,9 +17,8 @@ static struct dd_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(DremSuite, DremTest, Function | MediumTest | Level2)
+HWTEST_F(Drem, DremTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

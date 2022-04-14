@@ -1,23 +1,27 @@
-#include <stdlib.h>
-#include <errno.h>
-#include <string.h>
+#include <cstdlib>
+#include <cerrno>
+#include <cstring>
 #include <sys/mman.h>
 #include <sys/resource.h>
-#include "test.h"
+
 #include "gtest/gtest.h"
 
-#define T(f) EXPECT_FALSE((f) == 0) << #f << " failed: " << strerror(errno) << endl;
+#include "test.h"
+
+#define T(f) do {                                                           \
+    EXPECT_FALSE((f) == 0) << #f << " failed: " << strerror(errno) << endl; \
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class MallocBrkFailSuite : public testing::Test {};
+class MallocBrkFail : public testing::Test {};
 
 /**
  * @tc.name      : MallocBrkFailTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(MallocBrkFailSuite, MallocBrkFail0Test, Function | MediumTest | Level2)
+HWTEST_F(MallocBrkFail, MallocBrkFail0Test, Function | MediumTest | Level2)
 {
     void *p;
     void *q;

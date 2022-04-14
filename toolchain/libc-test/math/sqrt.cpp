@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class SqrtSuite : public testing::Test {};
+class Sqrt : public testing::Test {};
 
 static struct d_d t[] = {
 #include "ucb/sqrt.h"
@@ -19,9 +20,8 @@ static struct d_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SqrtSuite, SqrtTest, Function | MediumTest | Level2)
+HWTEST_F(Sqrt, SqrtTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

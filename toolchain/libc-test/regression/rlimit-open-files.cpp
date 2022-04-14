@@ -1,20 +1,21 @@
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
+#include <cstdlib>
+#include <cstring>
+#include <cerrno>
 #include <unistd.h>
 #include <sys/resource.h>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class RlimitOpenFilesSuite : public testing::Test {};
+class RlimitOpenFiles : public testing::Test {};
 
 /**
  * @tc.name      : RlimitOpenFilesTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(RlimitOpenFilesSuite, RlimitOpenFilesTest, Function | MediumTest | Level2)
+HWTEST_F(RlimitOpenFiles, RlimitOpenFilesTest, Function | MediumTest | Level2)
 {
     static const long lim = 42;
     static const int r = RLIMIT_NOFILE;

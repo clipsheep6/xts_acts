@@ -1,12 +1,13 @@
-#include <limits.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
+#include <climits>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class StrfTimeSuite : public testing::Test {};
+class StrfTime : public testing::Test {};
 
 static char buffer[100];
 
@@ -80,7 +81,7 @@ static struct tm tm5 = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StrfTimeSuite, StrfTimeTest, Function | MediumTest | Level2)
+HWTEST_F(StrfTime, StrfTimeTest, Function | MediumTest | Level2)
 {
     setenv("TZ", "UTC0", 1);
 

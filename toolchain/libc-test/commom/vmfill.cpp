@@ -1,14 +1,17 @@
-#include <stdint.h>
+#include <cstdint>
+#include <climits>
+
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <limits.h>
+
 #include "test.h"
+
 #ifndef PAGE_SIZE
-	#define PAGE_SIZE sysconf(_SC_PAGE_SIZE)
+#define PAGE_SIZE sysconf(_SC_PAGE_SIZE)
 #endif
 #ifndef MAP_ANONYMOUS
-	#define MAP_ANONYMOUS 0
+#define MAP_ANONYMOUS 0
 #endif
 
 /* max mmap size, *start is the largest power-of-2 size considered */
@@ -19,7 +22,7 @@ static size_t mmax(int fd, size_t *start)
     
     for (i=n=*start; i>=PAGE_SIZE; i/=2) {
         if ((p=mmap(0, n, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, fd, 0)) == MAP_FAILED) {
-        	n -= i/2;
+            n -= i/2;
         } else {
             munmap(p, n);
             if (n == i)

@@ -1,11 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class RemquofSuite : public testing::Test {};
+class Remquof : public testing::Test {};
 
 static struct ff_fi t[] = {
 #include "sanity/remquof.h"
@@ -17,9 +18,8 @@ static struct ff_fi t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(RemquofSuite, RemquofTest, Function | MediumTest | Level2)
+HWTEST_F(Remquof, RemquofTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     int yi;
     float y;
     float d;

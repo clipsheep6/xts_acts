@@ -1,11 +1,10 @@
-#define _XOPEN_SOURCE 700
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class RandomSuite : public testing::Test {};
+class Random : public testing::Test {};
 
 /* error p ~ 1.6e-6 */
 static int chkmissing(long *x)
@@ -59,7 +58,7 @@ void checkseed(unsigned seed, long *x)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(RandomSuite, RandomTest, Function | MediumTest | Level2)
+HWTEST_F(Random, RandomTest, Function | MediumTest | Level2)
 {
     long x[100];
     long y, z;

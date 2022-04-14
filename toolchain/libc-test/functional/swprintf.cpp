@@ -1,15 +1,14 @@
-#ifndef _XOPEN_SOURCE
-#define _XOPEN_SOURCE 700
-#endif
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
-#include <math.h>
-#include <wchar.h>
-#include <locale.h>
+#include <cstdio>
+#include <cstring>
+#include <cerrno>
+#include <climits>
+#include <cmath>
+#include <cwchar>
+#include <clocale>
 #include <langinfo.h>
+
 #include "gtest/gtest.h"
+
 #include "test.h"
 
 #define TEST_T(r, f, x, m) do {                        \
@@ -22,7 +21,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class SwprintfSuite : public testing::Test {};
+class Swprintf : public testing::Test {};
 
 static const struct
 {
@@ -105,7 +104,7 @@ static const struct {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SwprintfSuite, SwprintfTest, Function | MediumTest | Level2)
+HWTEST_F(Swprintf, SwprintfTest, Function | MediumTest | Level2)
 {
     int i, j;
     wchar_t b[500];

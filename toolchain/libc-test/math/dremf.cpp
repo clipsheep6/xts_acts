@@ -1,12 +1,12 @@
-//#define _GNU_SOURCE
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class DremfSuite : public testing::Test {};
+class Dremf : public testing::Test {};
 
 static struct ff_f t[] = {
 #include "sanity/remainderf.h"
@@ -19,9 +19,8 @@ static struct ff_f t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(DremfSuite, DremfTest, Function | MediumTest | Level2)
+HWTEST_F(Dremf, DremfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

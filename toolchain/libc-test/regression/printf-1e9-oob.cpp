@@ -1,10 +1,11 @@
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
+
 #include "gtest/gtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class Printf1e9OobSuite : public testing::Test {};
+class Printf1e9Oob : public testing::Test {};
 
 static void t(const char *fmt, double d, const char *want)
 {
@@ -20,7 +21,7 @@ static void t(const char *fmt, double d, const char *want)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(Printf1e9OobSuite, Printf1e9OobTest, Function | MediumTest | Level2)
+HWTEST_F(Printf1e9Oob, Printf1e9OobTest, Function | MediumTest | Level2)
 {
     // fill stack with something
     t("%.1f", 123123123123123.0, "123123123123123.0");

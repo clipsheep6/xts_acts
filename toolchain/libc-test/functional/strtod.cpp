@@ -1,13 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+
 #include "gtest/gtest.h"
 
 #define length(x) (sizeof(x) / sizeof *(x))
 
 using namespace std;
 using namespace testing::ext;
-class StrtodSuite : public testing::Test {};
+class Strtod : public testing::Test {};
 
 static struct {
     char *s;
@@ -70,7 +71,7 @@ static struct {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StrtodSuite, StrtodTest, Function | MediumTest | Level2)
+HWTEST_F(Strtod, StrtodTest, Function | MediumTest | Level2)
 {
     int i;
     double x;

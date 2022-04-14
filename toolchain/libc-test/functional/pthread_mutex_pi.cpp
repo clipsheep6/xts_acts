@@ -1,17 +1,23 @@
 /* testing pthread mutex behaviour with various attributes */
+#include <cstdio>
+#include <cerrno>
+#include <cstring>
 #include <pthread.h>
 #include <semaphore.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
+
 #include "gtest/gtest.h"
 
-#define T(f) EXPECT_FALSE((r = (f))) << #f << " failed: " << strerror(r) << endl;
-#define E(f) EXPECT_FALSE(f) << #f << #f << " failed: " << strerror(errno) << endl;
+#define T(f) do {                                                       \
+    EXPECT_FALSE((r = (f))) << #f << " failed: " << strerror(r) << endl;\
+} while(0)
+
+#define E(f) do { \
+    EXPECT_FALSE(f) << #f << #f << " failed: " << strerror(errno) << endl;\
+} while(0)
 
 using namespace std;
 using namespace testing::ext;
-class PthreadMutexPiSuite : public testing::Test {};
+class PthreadMutexPi : public testing::Test {};
 
 static void *relock(void *arg)
 {
@@ -26,7 +32,7 @@ static void *relock(void *arg)
     T(pthread_mutex_unlock((pthread_mutex_t *)a[0]));
     if (*(int *)a[2] == 0)
         T(pthread_mutex_unlock((pthread_mutex_t *)a[0]));
-    return 0;
+    return nullptr;
 }
 
 static int test_relock(int mtype)
@@ -72,7 +78,7 @@ static void *unlock(void *arg)
     void **a = (void **)arg;
 
     *(int *)a[1] = pthread_mutex_unlock((pthread_mutex_t *)a[0]);
-    return 0;
+    return nullptr;
 }
 
 static int test_unlock(int mtype)
@@ -142,7 +148,7 @@ static void test_mutexattr()
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(PthreadMutexPiSuite, PthreadMutexPiTest, Function | MediumTest | Level2)
+HWTEST_F(PthreadMutexPi, PthreadMutexPiTest, Function | MediumTest | Level2)
 {
     int i;
     test_mutexattr();

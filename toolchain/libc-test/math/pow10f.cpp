@@ -1,14 +1,13 @@
-#define _GNU_SOURCE 1
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
-using namespace testing::ext;
-class Pow10fSuite : public testing::Test {};
+#include "mtest.h"
 
-// TODO: fix ldbl
+using namespace testing::ext;
+class Pow10f : public testing::Test {};
+
 static struct f_f t[] = {
 #include "sanity/pow10f.h"
 #include "special/exp10f.h"
@@ -20,9 +19,8 @@ static struct f_f t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(Pow10fSuite, Pow10fTest, Function | MediumTest | Level2)
+HWTEST_F(Pow10f, Pow10fTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

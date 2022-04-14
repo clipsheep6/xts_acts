@@ -1,17 +1,17 @@
-#include <stdio.h>
+#include <cstdio>
+
 #include "gtest/gtest.h"
-#include <stdio.h>
 
 using namespace std;
 using namespace testing::ext;
-class SscanfEofSuite : public testing::Test {};
+class SscanfEof : public testing::Test {};
 
 /**
  * @tc.name      : SscanfEofTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(SscanfEofSuite, SscanfEofTest, Function | MediumTest | Level2)
+HWTEST_F(SscanfEof, SscanfEofTest, Function | MediumTest | Level2)
 {
     const char *s = "0";
     const char *fmt = "%f%c";

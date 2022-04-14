@@ -1,8 +1,12 @@
-#include <string.h>
-#include "gtest/gtest.h"
-#include <stdio.h>
+#include <cstring>
+#include <cstdio>
 
-#define ASSERT(x) EXPECT_TRUE((x)) << #x << " failed" << endl;
+#include "gtest/gtest.h"
+
+
+#define ASSERT(x) do {                           \
+    EXPECT_TRUE((x)) << #x << " failed" << endl; \
+} while(0)
 
 using namespace std;
 using namespace testing::ext;

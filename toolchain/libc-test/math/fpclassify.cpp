@@ -1,16 +1,16 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
+
+#include "mtest.h"
 
 #define T(a, b) {__LINE__, a, b},
 #define length(a) (sizeof(a) / sizeof *(a))
 #define error(t, c) err++, printf("%s:%d: (at line %d) %La has classs %d (%s), but %s returns %d\n", \
                                   __FILE__, __LINE__, t.line, (long double)t.f, t.classs, strclass(t.classs), #c, c(t.f))
-
-using namespace std;
 using namespace testing::ext;
-class FpclassifySuite : public testing::Test {};
+class Fpclassify : public testing::Test {};
 
 static struct
 {
@@ -98,7 +98,7 @@ static char *strclass(int c) {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FpclassifySuite, FpclassifyTest, Function | MediumTest | Level2)
+HWTEST_F(Fpclassify, FpclassifyTest, Function | MediumTest | Level2)
 {
     int i;
     int err = 0;

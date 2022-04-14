@@ -1,14 +1,12 @@
-#define _DEFAULT_SOURCE 1
-#define _BSD_SOURCE 1
-#define _XOPEN_SOURCE 700
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
+#include <cstdint>
+#include <cstdio>
+
 #include "gtest/gtest.h"
 
-using namespace std;
+#include "mtest.h"
+
 using namespace testing::ext;
-class LgammafSuite : public testing::Test {};
+class Lgammaf : public testing::Test {};
 
 static struct f_fi t[] = {
 #include "sanity/lgammaf.h"
@@ -21,9 +19,8 @@ static struct f_fi t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(LgammafSuite, LgammafTest, Function | MediumTest | Level2)
+HWTEST_F(Lgammaf, LgammafTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     int yi;
     double y;
     float d;

@@ -1,24 +1,26 @@
-#include <stdio.h>
-#include <locale.h>
-#include <wchar.h>
+#include <cstdio>
+#include <clocale>
+#include <cwchar>
+#include <cerrno>
+#include <cstring>
 #include <unistd.h>
-#include <errno.h>
-#include <string.h>
-#include "test.h"
+
 #include "gtest/gtest.h"
+
+#include "test.h"
 
 #define A(c) EXPECT_FALSE(!(c)) << #c << " failed" << endl;
 
 using namespace std;
 using namespace testing::ext;
-class FgetwcBufferingSuite : public testing::Test {};
+class FgetwcBuffering : public testing::Test {};
 
 /**
  * @tc.name      : FgetwcBufferingTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FgetwcBufferingSuite, FgetwcBufferingTest, Function | MediumTest | Level2)
+HWTEST_F(FgetwcBuffering, FgetwcBufferingTest, Function | MediumTest | Level2)
 {
     t_setutf8();
 
