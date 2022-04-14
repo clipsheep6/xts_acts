@@ -12,19 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import dataRdb from '@ohos.data.rdb';
 import dataAbility from '@ohos.data.dataAbility';
 
 const TAG = '[RDB_JSKITS _TEST]'
 const CREATE_TABLE_ALL_DATA_TYPE_SQL = "CREATE TABLE IF NOT EXISTS AllDataType "
-+ "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
-+ "integerValue INTEGER , longValue INTEGER , shortValue INTEGER , booleanValue INTEGER , "
-+ "doubleValue REAL , floatValue REAL , stringValue TEXT , blobValue BLOB , clobValue TEXT , "
-+ "byteValue INTEGER , dateValue INTEGER , timeValue INTEGER , timestampValue INTEGER , "
-+ "calendarValue INTEGER , characterValue TEXT , primIntValue INTEGER , primLongValue INTEGER , "
-+ "primShortValue INTEGER , primFloatValue REAL , primDoubleValue REAL , "
-+ "primBooleanValue INTEGER , primByteValue INTEGER , primCharValue TEXT, `order` INTEGER);";
+    + "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
+    + "integerValue INTEGER , longValue INTEGER , shortValue INTEGER , booleanValue INTEGER , "
+    + "doubleValue REAL , floatValue REAL , stringValue TEXT , blobValue BLOB , clobValue TEXT , "
+    + "byteValue INTEGER , dateValue INTEGER , timeValue INTEGER , timestampValue INTEGER , "
+    + "calendarValue INTEGER , characterValue TEXT , primIntValue INTEGER , primLongValue INTEGER , "
+    + "primShortValue INTEGER , primFloatValue REAL , primDoubleValue REAL , "
+    + "primBooleanValue INTEGER , primByteValue INTEGER , primCharValue TEXT, `order` INTEGER);";
 
 const STORE_CONFIG = {
     name: "Predicates.db",
@@ -1239,9 +1239,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotBetween0001
-     * @tc.number I4JWCV
-     * @tc.desc test string value with notBetween.
+     * @tc.name predicates notbetween normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0098
+     * @tc.desc predicates notbetween normal test
      */
     it('testNotBetween0001', 0, async function (done) {
         console.log(TAG + "************* testNotBetween0001 start *************");
@@ -1260,9 +1260,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotBetween0002
-     * @tc.number I4JWCV
-     * @tc.desc test double value with notBetween.
+     * @tc.name predicates notbetween normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0099
+     * @tc.desc predicates notbetween normal test
      */
     it('testNotBetween0002', 0, async function (done) {
         console.log(TAG + "************* testNotBetween0002 start *************");
@@ -1281,9 +1281,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotBetween0003
-     * @tc.number I4JWCV
-     * @tc.desc test integer value with notBetween.
+     * @tc.name predicates notbetween normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0100
+     * @tc.desc predicates notbetween normal test
      */
     it('testNotBetween0003', 0, async function (done) {
         console.log(TAG + "************* testNotBetween0003 start *************");
@@ -1302,9 +1302,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotBetween0004
-     * @tc.number I4JWCV
-     * @tc.desc test long value with notBetween.
+     * @tc.name predicates notbetween normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0101
+     * @tc.desc predicates notbetween normal test
      */
     it('testNotBetween0004', 0, async function (done) {
         console.log(TAG + "************* testNotBetween0004 start *************");
@@ -1323,9 +1323,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0001
-     * @tc.number I4JWCV
-     * @tc.desc end with ? by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0102
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0001', 0, async function (done) {
         console.log(TAG + "************* testGlob0001 start *************");
@@ -1344,9 +1344,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0002
-     * @tc.number I4JWCV
-     * @tc.desc begin with * by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0103
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0002', 0, async function (done) {
         console.log(TAG + "************* testGlob0002 start *************");
@@ -1365,9 +1365,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0003
-     * @tc.number I4JWCV
-     * @tc.desc end with ? by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0104
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0003', 0, async function (done) {
         console.log(TAG + "************* testGlob0003 start *************");
@@ -1386,9 +1386,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0004
-     * @tc.number I4JWCV
-     * @tc.desc begin with ? by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0105
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0004', 0, async function (done) {
         console.log(TAG + "************* testGlob0004 start *************");
@@ -1407,9 +1407,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0005
-     * @tc.number I4JWCV
-     * @tc.desc begin and end with * by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0106
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0005', 0, async function (done) {
         console.log(TAG + "************* testGlob0005 start *************");
@@ -1428,9 +1428,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testGlob0006
-     * @tc.number I4JWCV
-     * @tc.desc begin and end with ? by glob.
+     * @tc.name predicates glob normal test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0107
+     * @tc.desc predicates glob normal test
      */
     it('testGlob0006', 0, async function (done) {
         console.log(TAG + "************* testGlob0006 start *************");
@@ -1450,7 +1450,7 @@ describe('dataAbilityPredicatesTest', function () {
 
     /**
      * @tc.name predicates contains normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0100
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_01068
      * @tc.desc predicates contains normal test
      */
     it('testContains0001', 0, async function (done) {
@@ -1468,7 +1468,7 @@ describe('dataAbilityPredicatesTest', function () {
 
     /**
      * @tc.name predicates contains normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0101
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0109
      * @tc.desc predicates contains normal test
      */
     it('testContains0002', 0, async function (done) {
@@ -1486,7 +1486,7 @@ describe('dataAbilityPredicatesTest', function () {
 
     /**
      * @tc.name predicates contains normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0102
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0110
      * @tc.desc predicates contains normal test
      */
     it('testContains0003', 0, async function (done) {
@@ -1504,7 +1504,7 @@ describe('dataAbilityPredicatesTest', function () {
 
     /**
      * @tc.name predicates contains normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0103
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0111
      * @tc.desc predicates contains normal test
      */
     it('testContains0004', 0, async function (done) {
@@ -1522,7 +1522,7 @@ describe('dataAbilityPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0110
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0112
      * @tc.desc predicates beginsWith normal test
      */
     it('testBeginsWith0001', 0, async function (done) {
@@ -1540,7 +1540,7 @@ describe('dataAbilityPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0111
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0113
      * @tc.desc predicates beginsWith normal test
      */
     it('testBeginsWith0002', 0, async function (done) {
@@ -1558,7 +1558,7 @@ describe('dataAbilityPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0112
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0114
      * @tc.desc predicates beginsWith normal test
      */
     it('testBeginsWith0003', 0, async function (done) {
@@ -1576,7 +1576,7 @@ describe('dataAbilityPredicatesTest', function () {
 
     /**
      * @tc.name predicates beginsWith normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0113
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0115
      * @tc.desc predicates beginsWith normal test
      */
     it('testBeginsWith0004', 0, async function (done) {
@@ -1929,7 +1929,7 @@ describe('dataAbilityPredicatesTest', function () {
             let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             console.log(TAG + "you are starting a sql request with predicate or or,"
-            + "using function or() immediately after another or(). that is ridiculous.");
+                + "using function or() immediately after another or(). that is ridiculous.");
         }
         done();
         console.log(TAG + "************* testAnd0004 end *************");
@@ -2310,9 +2310,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotIn0001
-     * @tc.number I4JWCV
-     * @tc.desc the common and min value test with notin.
+     * @tc.name predicates notin test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0230
+     * @tc.desc predicates notin test
      */
     it('testNotIn0001', 0, async function (done) {
         console.log(TAG + "************* testNotIn0001 start *************");
@@ -2329,9 +2329,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotIn0002
-     * @tc.number I4JWCV
-     * @tc.desc the common and max value test with notin.
+     * @tc.name predicates notin test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0231
+     * @tc.desc predicates notin test
      */
     it('testNotIn0002', 0, async function (done) {
         console.log(TAG + "************* testNotIn0002 start *************");
@@ -2348,9 +2348,9 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
-     * @tc.name testNotIn0003
-     * @tc.number I4JWCV
-     * @tc.desc the min and max value test with notin.
+     * @tc.name predicates notin test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0232
+     * @tc.desc predicates notin test
      */
     it('testNotIn0003', 0, async function (done) {
         console.log(TAG + "************* testNotIn0003 start *************");

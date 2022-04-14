@@ -63,7 +63,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name has int callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0130
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0030
      * @tc.desc has int callback interface test
      */
     it('testHasKey0033', 0, async function (done) {
@@ -76,7 +76,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name has float callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0140
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0040
      * @tc.desc has float callback interface test
      */
     it('testHasKey0034', 0, async function (done) {
@@ -89,7 +89,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name has long callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0150
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0050
      * @tc.desc has long callback interface test
      */
     it('testHasKey0035', 0, async function (done) {
@@ -102,7 +102,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name has boolean callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0160
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0060
      * @tc.desc has boolean callback interface test
      */
     it('testHasKey0036', 0, async function (done) {
@@ -115,7 +115,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name get defaultValue callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0030
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0070
      * @tc.desc get defaultValue callback interface test
      */
     it('testGetDefValue0062', 0, async function (done) {
@@ -128,7 +128,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name get float callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0040
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0080
      * @tc.desc get float callback interface test
      */
     it('testGetFloat0072', 0, async function (done) {
@@ -142,7 +142,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name get int callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0050
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0090
      * @tc.desc get int callback interface test
      */
     it('testGetInt0082', 0, async function (done) {
@@ -156,7 +156,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name get long callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0060
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0100
      * @tc.desc get long callback interface test
      */
     it('testGetLong0092', 0, async function (done) {
@@ -171,7 +171,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name get String callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0070
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0110
      * @tc.desc get String callback interface test
      */
     it('testGetString102', 0, async function (done) {
@@ -186,7 +186,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name put boolean callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0080
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0120
      * @tc.desc put boolean callback interface test
      */
     it('testPutBoolean0122', 0, async function (done) {
@@ -201,7 +201,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name put float callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0090
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0130
      * @tc.desc put float callback interface test
      */
     it('testPutFloat0132', 0, async function (done) {
@@ -216,7 +216,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name put int callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0100
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0140
      * @tc.desc put int callback interface test
      */
     it('testPutInt0142', 0, async function (done) {
@@ -231,7 +231,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name put long callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0110
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0150
      * @tc.desc put long callback interface test
      */
     it('testPutLong0152', 0, async function (done) {
@@ -247,7 +247,7 @@ describe('storageTest', function () {
 
     /**
      * @tc.name put String callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0120
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0160
      * @tc.desc put String callback interface test
      */
     it('testPutString0162', 0, async function (done) {
@@ -262,7 +262,7 @@ describe('storageTest', function () {
 
         /**
      * @tc.name flush callback interface test
-     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0010
+     * @tc.number SUB_DDM_AppDataFWK_JSPreferences_CallBack_0170
      * @tc.desc flush callback interface test
      */
     it('testFluesh00172', 0, async function (done) {
