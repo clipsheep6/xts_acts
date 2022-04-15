@@ -165,9 +165,7 @@ function uint8ArrayToString(fileData) {
 let updateResult = new Array()
 let encryptFinishData
 let encryptedData
-var handle = {}
-var handle1
-var handle2
+var handle
 
 let genHuksOptions = {
 	properties: new Array(
@@ -215,12 +213,7 @@ async function publicInitFunc(srcKeyAlies, HuksOptions) {
 	await init(srcKeyAlies, HuksOptions)
 		.then((data) => {
 			console.log(`test init data: ${JSON.stringify(data)}`)
-			handle1 = data.handle1
-			handle2 = data.handle2
-			handle = {
-				handle1: handle1,
-				handle2: handle2,
-			}
+			handle = data.handle
 			expect(data.errorCode == 0).assertTrue()
 		})
 		.catch((err) => {

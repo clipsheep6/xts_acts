@@ -102,9 +102,7 @@ function uint8ArrayToString(fileData) {
 	return dataString
 }
 
-var handle = {}
-var handleStart
-var handleEnd
+var handle
 
 function generateKey(srcKeyAlies, HuksOptions) {
 	return new Promise((resolve, reject) => {
@@ -139,12 +137,7 @@ function init(srcKeyAlies, HuksOptions) {
 					)
 					reject(err)
 				} else {
-					handleStart = data.handle1
-					handleEnd = data.handle2
-					handle = {
-						handle1: handleStart,
-						handle2: handleEnd,
-					}
+					handle = data.handle
 					resolve(data)
 				}
 			} catch (e) {

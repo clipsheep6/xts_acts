@@ -17,7 +17,7 @@ import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
 import Data from '../../../../../../../utils/data.json'
 
-let handle = {}
+let handle
 let finishOutData
 let exportKey
 let srcData65 = Data.Data65b
@@ -252,10 +252,7 @@ async function publicInitFunc(keyAlias, HuksOptions) {
 		.init(keyAlias, HuksOptions)
 		.then((data) => {
 			console.log(`test init data: ${JSON.stringify(data)}`)
-			handle = {
-				handle1: data.handle1,
-				handle2: data.handle2,
-			}
+			handle = data.handle
 			expect(data.errorCode == 0).assertTrue()
 		})
 		.catch((err) => {
