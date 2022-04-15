@@ -1,28 +1,18 @@
 {
     "description": "Config for NativeXComponent test cases",
     "driver": {
-        "module-name": "ActsNativeXComponentTest",
-        "native-test-timeout": "120000",
-        "native-test-device-path": "/data/local/tmp",
-        "runtime-hint": "1s",
-        "type": "CppTest"
+        "type": "JSUnitTest",
+        "test-timeout": "300000",
+        "package": "com.example.xtstest",
+        "shell-timeout": "60000"
     },
     "kits": [
         {
-            "post-push" : [
-                "chmod -R 777 /data/local/tmp/*"
+            "test-file-name": [
+                "ActsNativeXComponentTest.hap"
             ],
-            "push": [
-                "ActsNativeXComponentTest->/data/local/tmp/ActsNativeXComponentTest"
-            ],
-            "type": "PushKit"
-        },
-        {
-            "type": "ShellKit",
-            "run-command": [
-                "remount",
-                "mkdir /data/test"
-            ]
+            "type": "AppInstallKit",
+            "cleanup-apps": true
         }
     ]
 }
