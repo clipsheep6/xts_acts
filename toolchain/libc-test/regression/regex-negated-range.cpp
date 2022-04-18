@@ -26,7 +26,7 @@ HWTEST_F(RegexnegatedRange, RegexnegatedRangeTest, Function | MediumTest | Level
     n = regexec(&r, "k", 0, 0, 0);
     if (n != REG_NOMATCH) {
         regerror(n, &r, buf, sizeof buf);
-        EXPECT_EQ(REG_NOMATCH, n) << "regexec(/[^aa-z]/ ~ \"k\") returned " << n << " ("
-                                  << "), wanted REG_NOMATCH" << endl;
+        EXPECT_EQ(REG_NOMATCH, n) 
+            << "regexec(/[^aa-z]/ ~ \"k\") returned " << n << " (" << "), wanted REG_NOMATCH" << endl;
     }
 }

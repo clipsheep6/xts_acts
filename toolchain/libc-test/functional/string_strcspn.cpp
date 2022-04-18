@@ -3,11 +3,12 @@
 
 #include "gtest/gtest.h"
 
-#define T(s, c, n) do {                                                                                                                 \
-    char *p = s;                                                                                                                        \
-    char *q = c;                                                                                                                        \
-    size_t r = strcspn(p, q);                                                                                                           \
-    EXPECT_EQ(r, n) << "strcspn(" << #s << "," << #c << ") returned " << (unsigned long)r << ", wanted " << (unsigned long)(n) << endl; \
+#define T(s, c, n) do {                                                                   \
+    char *p = s;                                                                          \
+    char *q = c;                                                                          \
+    size_t r = strcspn(p, q);                                                             \
+    EXPECT_EQ(r, n) << "strcspn(" << #s << "," << #c                                      \
+        << ") returned " << (unsigned long)r << ", wanted " << (unsigned long)(n) << endl;\
 } while(0)
 
 using namespace std;

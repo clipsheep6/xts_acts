@@ -3,10 +3,11 @@
 
 #include "gtest/gtest.h"
 
-#define T(path, want) do {                                                                                                    \
-    char tmp[100];                                                                                                            \
-    char *got = basename(strcpy(tmp, path));                                                                                  \
-    EXPECT_EQ(0, strcmp(want, got)) << "basename(\"" << path << "\") got \"" << got << "s\" want \"" << want << "\"" << endl; \
+#define T(path, want) do {                                                      \
+    char tmp[100];                                                              \
+    char *got = basename(strcpy(tmp, path));                                    \
+    EXPECT_EQ(0, strcmp(want, got)) << "basename(\""                            \
+        << path << "\") got \"" << got << "s\" want \"" << want << "\"" << endl;\
 } while(0)
 
 using namespace std;
@@ -20,7 +21,8 @@ class BaseName : public testing::Test {};
  */
 HWTEST_F(BaseName, BaseNameTest, Function | MediumTest | Level2)
 {
-    EXPECT_EQ(0, strcmp(basename(0), ".")) << "basename(0) returned \"" << basename(0) << "\"; expected \".\"" << endl;
+    EXPECT_EQ(0, strcmp(basename(0), ".")) 
+        << "basename(0) returned \"" << basename(0) << "\"; expected \".\"" << endl;
     T("", ".");
     T("/usr/lib", "lib");
     T("/usr/", "usr");

@@ -70,11 +70,13 @@ static void single_thread()
     T(sem_getvalue(&s, &r));
 
     EXPECT_FALSE(r) << "sem value should be 0, got " << r << endl;
-    EXPECT_FALSE(sem_trywait(&s) != -1 || errno != EAGAIN) << "sem_trywait should fail with EAGAIN, got " << strerror(errno) << endl;
+    EXPECT_FALSE(sem_trywait(&s) != -1 || errno != EAGAIN) 
+        << "sem_trywait should fail with EAGAIN, got " << strerror(errno) << endl;
     errno = 0;
     T(clock_gettime(CLOCK_REALTIME, &ts));
 
-    EXPECT_FALSE(sem_timedwait(&s, &ts) != -1 || errno != ETIMEDOUT) << "sem_timedwait should fail with ETIMEDOUT, got " << strerror(errno) << endl;
+    EXPECT_FALSE(sem_timedwait(&s, &ts) != -1 || errno != ETIMEDOUT) 
+        << "sem_timedwait should fail with ETIMEDOUT, got " << strerror(errno) << endl;
     T(sem_destroy(&s));
 }
 

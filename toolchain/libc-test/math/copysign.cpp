@@ -6,7 +6,7 @@
 #include "mtest.h"
 
 using namespace testing::ext;
-class CopysignSuite : public testing::Test {};
+class Copysign : public testing::Test {};
 
 static struct dd_d t[] = {
 #include "sanity/copysign.h"
@@ -19,7 +19,7 @@ static struct dd_d t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(CopysignSuite, CopysignTest, Function | MediumTest | Level2)
+HWTEST_F(Copysign, CopysignTest, Function | MediumTest | Level2)
 {
     double y;
     float d;

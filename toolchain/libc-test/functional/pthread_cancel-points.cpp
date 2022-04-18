@@ -62,7 +62,7 @@ static pthread_t td_test;
 static void *run_test(void *arg)
 {
     while (sem_wait(&sem_test));
-    return 0;
+    return nullptr;
 }
 
 static void prepare_thread(void *arg)
@@ -116,11 +116,11 @@ static struct {
     void *arg;
     const char *descr;
 } scenarios[] = {
-    {1, prepare_sem, execute_sem_wait, cleanup_sem, 0, "blocking sem_wait"},
+    {1, prepare_sem, execute_sem_wait, cleanup_sem, nullptr, "blocking sem_wait"},
     {1, prepare_sem, execute_sem_wait, cleanup_sem, (void *)1, "non-blocking sem_wait"},
-    {1, prepare_sem, execute_sem_timedwait, cleanup_sem, 0, "blocking sem_timedwait"},
+    {1, prepare_sem, execute_sem_timedwait, cleanup_sem, nullptr, "blocking sem_timedwait"},
     {1, prepare_sem, execute_sem_timedwait, cleanup_sem, (void *)1, "non-blocking sem_timedwait"},
-    {1, prepare_thread, execute_thread_join, cleanup_thread, 0, "blocking pthread_join"},
+    {1, prepare_thread, execute_thread_join, cleanup_thread, nullptr, "blocking pthread_join"},
     {1, prepare_thread, execute_thread_join, cleanup_thread, (void *)1, "non-blocking pthread_join"},
     {0, prepare_dummy, execute_shm_open, cleanup_shm, &tmp, "shm_open"},
     {0}},
@@ -128,13 +128,13 @@ static struct {
 
 static void *run_execute(void *arg)
 {
-    pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, 0);
+    pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, nullptr);
     while (sem_wait(&sem_seq));
-    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, 0);
+    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, nullptr);
     seqno = 1;
     cur_sc->execute(cur_sc->arg);
     seqno = 2;
-    return 0;
+    return nullptr;
 }
 
 /**
@@ -153,7 +153,7 @@ HWTEST_F(PthreadCancelPoints, PthreadCancelPointsTest, Function | MediumTest | L
         cdescr = cur_sc->descr;
         cur_sc->prepare(cur_sc->arg);
         seqno = 0;
-        TESTR(pthread_create(&td, 0, run_execute, 0), "creating thread to be canceled");
+        TESTR(pthread_create(&td, nullptr, run_execute, nullptr), "creating thread to be canceled");
         TESTR(pthread_cancel(td), "canceling");
         TESTR(sem_post(&sem_seq), "unblocking canceled thread");
         TESTR(pthread_join(td, &res), "joining canceled thread");

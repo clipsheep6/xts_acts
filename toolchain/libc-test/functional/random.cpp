@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cstdlib>
+
 #include "gtest/gtest.h"
 
 using namespace std;
@@ -46,11 +47,10 @@ void checkseed(unsigned seed, long *x)
     int i;
     srandom(seed);
     for (i = 0; i < 100; i++)
-        x[i] = random();
-    EXPECT_FALSE(chkmissing(x));
-
-    EXPECT_FALSE(chkrepeat(x));
-    EXPECT_FALSE(chkones(x));
+        x[i] = random() ;
+    EXPECT_FALSE(chkmissing(x)) << "weak seed " << seed << ", missing pattern in low bits" << endl;
+    EXPECT_FALSE(chkrepeat(x)) << "weak seed " << seed << ", exact repeats" << endl;
+    EXPECT_FALSE(chkones(x))<< "weak seed " << seed << ", or pattern: 0x" << orx << endl;;
 }
 
 /**
@@ -71,16 +71,18 @@ HWTEST_F(Random, RandomTest, Function | MediumTest | Level2)
         x[i] = random();
     p = initstate(1, state, sizeof state);
     for (i = 0; i < 100; i++)
-        EXPECT_EQ(x[i], (y = random()));
+        EXPECT_EQ(x[i], (y = random())) 
+            << "initstate(1) is not default: (" << i << ") default: " << x[i] << ", seed1: " << y << endl;
     for (i = 0; i < 10; i++) {
         z = random();
         q = setstate(p);
-        EXPECT_EQ(z, (y = random()));
+        EXPECT_EQ(z, (y = random())) << "setstate failed (" << i << ") orig: " << z << ", reset: " << y << endl;
         p = setstate(q);
     }
     srandom(1);
     for (i = 0; i < 100; i++)
-        EXPECT_EQ(x[i], (y = random()));
+        EXPECT_EQ(x[i], (y = random())) 
+            << "srandom(1) is not default: (" << i << ") default: " << x[i] << ", seed1: " << y << endl;
     checkseed(0x7fffffff, x);
     for (i = 0; i < 10; i++)
         checkseed(i, x);

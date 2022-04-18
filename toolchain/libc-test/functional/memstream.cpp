@@ -29,14 +29,14 @@
 using namespace std;
 using namespace testing::ext;
 // namespace {
-class MemStream : public testing::Test {};
+class Memstream : public testing::Test {};
 
 /**
  * @tc.name      : MemStreamTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(MemStream, MemStreamTest, Function | MediumTest | Level2)
+HWTEST_F(Memstream, MemStreamTest, Function | MediumTest | Level2)
 {
     FILE *f;
     char *s;

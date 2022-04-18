@@ -11,7 +11,9 @@
     EXPECT_EQ((r), (x));                               \
 } while(0)
 
-#define TEST_S(s, x, m) EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << endl;
+#define TEST_S(s, x, m) do {                                                          \
+    EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << endl;\
+} while(0)
 
 using namespace std;
 using namespace testing::ext;

@@ -28,8 +28,8 @@ HWTEST_F(SearchHsearch, SearchHsearchTest, Function | MediumTest | Level2)
 {
     ENTRY *e;
 
-    EXPECT_FALSE(hcreate(-1) || errno != ENOMEM) << "hcreate((size_t)-1) should fail with ENOMEM got " << strerror(errno) << endl;
-
+    EXPECT_FALSE(hcreate(-1) || errno != ENOMEM) 
+        << "hcreate((size_t)-1) should fail with ENOMEM got " << strerror(errno) << endl;
     EXPECT_FALSE(!hcreate(13)) << "hcreate(13) failed" << endl;
     set((char *)"", 0);
     set((char *)"a", 1);

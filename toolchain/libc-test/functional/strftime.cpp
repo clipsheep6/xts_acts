@@ -15,10 +15,10 @@ static void checkStrftime(const char *format, const struct tm *tm,
                           const char *expected)
 {
     size_t resultLength = strftime(buffer, sizeof(buffer), format, tm);
-    EXPECT_FALSE((resultLength != 0) && (strcmp(buffer, expected) != 0)) << "\"" << format
-                                                                         << "\": expected \"" << expected << "\", got \"" << buffer << "\"" << endl;
-    EXPECT_FALSE((resultLength == 0) && (strlen(expected) != 0)) << "\"" << format
-                                                                 << "\": expected \"" << expected << "\", got nothing" << endl;
+    EXPECT_FALSE((resultLength != 0) && (strcmp(buffer, expected) != 0)) 
+        << "\"" << format<< "\": expected \"" << expected << "\", got \"" << buffer << "\"" << endl;
+    EXPECT_FALSE((resultLength == 0) && (strlen(expected) != 0)) 
+        << "\"" << format << "\": expected \"" << expected << "\", got nothing" << endl;
 }
 
 static struct tm tm1 = {

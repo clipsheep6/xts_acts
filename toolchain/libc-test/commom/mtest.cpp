@@ -10,7 +10,7 @@ int eulpf(float x)
     
     if (!e)
         e++;
-    return e - 0x7f - 23; //e - 0x7f - 23 : e - 0x7f - 23 
+    return e - 0x7f - 23; // e - 0x7f - 23 : e - 0x7f - 23 
 }
 
 int eulp(double x)
@@ -20,7 +20,7 @@ int eulp(double x)
     
     if (!e)
        e++;
-    return e - 0x3ff - 52;//e - 0x3ff - 52 : e - 0x3ff - 52
+    return e - 0x3ff - 52;// e - 0x3ff - 52 : e - 0x3ff - 52
 }
 
 int eulpl(long double x)
@@ -33,7 +33,7 @@ int eulpl(long double x)
     
     if (!e)
         e++;
-    return e - 0x3fff - 63;//e - 0x3fff - 63 : e - 0x3fff - 63
+    return e - 0x3fff - 63;// e - 0x3fff - 63 : e - 0x3fff - 63
 #else
     return 0;
 #endif

@@ -6,13 +6,15 @@
 
 #include "gtest/gtest.h"
 
-#define T(f, desc, c, cwant, s, swant) do {                                                                                                        \
-    c = fpclassify(f);                                                                                                                         \
-    EXPECT_EQ(c != cwant) << "fpclassify(" << desc << ") failed: got " << strclass(c) << " want " << #cwant << endl;                           \
-    memset(s, 0, sizeof(s));                                                                                                                   \
-    EXPECT_GE(snprintf(s, sizeof(s), "%La", f), sizeof(s)) << "snprintf(\"%%La\"," << desc << ") failed with invalid return value\n"           \
-                                                            << endl;                                                                            \
-    EXPECT_EQ(strcmp(s, swant), 0) << "snprintf(\"" << desc << "\", " << sizeof(s) << ") failed: got \"" << s << "\" want " << #swant << endl; \
+#define T(f, desc, c, cwant, s, swant) do {                                                  \
+    c = fpclassify(f);                                                                       \
+    EXPECT_EQ(c != cwant) << "fpclassify(" << desc                                           \
+        << ") failed: got " << strclass(c) << " want " << #cwant << endl;                    \
+    memset(s, 0, sizeof(s));                                                                 \
+    EXPECT_GE(snprintf(s, sizeof(s), "%La", f), sizeof(s))                                   \
+        << "snprintf(\"%%La\"," << desc << ") failed with invalid return value\n"<< endl;    \
+    EXPECT_EQ(strcmp(s, swant), 0) << "snprintf(\"" << desc                                  \
+        << "\", " << sizeof(s) << ") failed: got \"" << s << "\" want " << #swant << endl;   \
 } while (0)
 
 using namespace std;

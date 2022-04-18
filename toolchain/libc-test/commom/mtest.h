@@ -1,6 +1,6 @@
+#include <cfloat>
+#include <cmath>
 #include <fenv.h>
-#include <float.h>
-#include <math.h>
 
 #undef RN
 #undef RZ
@@ -61,7 +61,6 @@
 #undef inf
 #undef nan
 #define inf INFINITY
-// #define nan NAN
 
 #define TT(...) {(char *)__FILE__, (int)__LINE__, __VA_ARGS__},
 

@@ -18,5 +18,6 @@ HWTEST_F(Getpwnam_rErrno, Getpwnam_rErrnoTest, Function | MediumTest | Level2)
     struct passwd *pw, pwbuf;
     char buf[1024];
     errno = baderr;
-    EXPECT_NE(baderr, getpwnam_r("nonsensical_user", &pwbuf, buf, sizeof buf, &pw)) << "getpwnam_r used preexisting errno for nonexisting user" << endl;
+    EXPECT_NE(baderr, getpwnam_r("nonsensical_user", &pwbuf, buf, sizeof buf, &pw)) 
+        << "getpwnam_r used preexisting errno for nonexisting user" << endl;
 }

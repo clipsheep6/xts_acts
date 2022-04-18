@@ -44,8 +44,8 @@ HWTEST_F(RegexBracketIcase, RegexBracketIcaseTest, Function | MediumTest | Level
         n = regexec(&re, t[i].s, 0, 0, 0);
         if (n != t[i].n) {
             regerror(n, &re, buf, sizeof buf);
-            EXPECT_TRUE(false) << "regexec(/" << pat << "/, \"" << t[i].s << "\") returned " << n
-                               << " (" << buf << "), wanted " << t[i].n << endl;
+            EXPECT_TRUE(false) << "regexec(/" << pat << "/, \""
+                << t[i].s << "\") returned " << n << " (" << buf << "), wanted " << t[i].n << endl;
         }
     }
 }

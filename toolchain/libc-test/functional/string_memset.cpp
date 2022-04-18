@@ -39,7 +39,8 @@ static void test_align(int align, int len)
     EXPECT_EQ(p, s) << "memset(" << s << ",...) returned " << p << endl;
     for (i = -64; i < len + 64; i++)
         if (s[i] != want[i]) {
-            EXPECT_EQ(s[i], want[i]) << "memset(align " << align << ", '#', " << len << ") failed at pos " << i << endl;
+            EXPECT_EQ(s[i], want[i]) << "memset(align " 
+                << align << ", '#', " << len << ") failed at pos " << i << endl;
             t_printf("got : '%.*s'\n", len + 128, s - 64);
             t_printf("want: '%.*s'\n", len + 128, want - 64);
             break;

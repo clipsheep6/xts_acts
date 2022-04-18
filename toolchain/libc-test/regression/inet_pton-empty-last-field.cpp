@@ -38,7 +38,7 @@ HWTEST_F(InetPtonEmptyLastField, InetPtonEmptyLastFieldTest, Function | MediumTe
     addr = (char *)"1:2:3:4:5:6:7::9:10:11:12:13:14:15:16:17:18:19:20";
     if (inet_pton(AF_INET6, addr, buf) != 0) {
         txt(s, buf);
-        EXPECT_TRUE(inet_pton(AF_INET6, addr, buf) != 0) << "inet_pton(" << addr
-                                                         << ") returned " << s << ", wanted a failure" << endl;
+        EXPECT_TRUE(inet_pton(AF_INET6, addr, buf) != 0)
+             << "inet_pton(" << addr << ") returned " << s << ", wanted a failure" << endl;
     }
 }

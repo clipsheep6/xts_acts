@@ -2,7 +2,6 @@
 
 #include "gtest/gtest.h"
 
-using namespace std;
 using namespace testing::ext;
 class Getpwnam_rCrash : public testing::Test {};
 

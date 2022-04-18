@@ -52,8 +52,6 @@ ohos_moduletest_suite("ActToolChainRegressionTest") {
     "iswspace-null.cpp",
     "lrand48-signextend.cpp",
     "malloc-0.cpp",
-
-    #"malloc-brk-fail.cpp",
     "mbsrtowcs-overflow.cpp",
     "memmem-oob-read.cpp",
     "memmem-oob.cpp",

@@ -36,7 +36,8 @@ static void checkStrptime(const char *s, const char *format, const struct tm *ex
 
         strftime(buf1, sizeof(buf1), "%FT%H:%M:%S%Z", expected);
         strftime(buf2, sizeof(buf2), "%FT%H:%M:%S%Z", &tm);
-        EXPECT_TRUE(false) << "\"" << format << "\": for \"" << s << "\" expected " << buf1 << " but got " << buf2 << endl;
+        EXPECT_TRUE(false) << "\"" << format << "\": for \""  
+            << s << "\" expected " << buf1 << " but got " << buf2 << endl;
     }
 }
 

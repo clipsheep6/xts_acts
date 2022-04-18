@@ -25,5 +25,5 @@ HWTEST_F(MkstempFailure, MkstempFailureTest, Function | MediumTest | Level2)
     EXPECT_FALSE(r != -1) << "mkstemp(" S ") did not fail" << endl;
     EXPECT_EQ(0, memcmp(p, S, sizeof p)) << "mkstemp(" S ") modified the template: " << p << endl;
     EXPECT_FALSE(r == -1 && errno != EINVAL) << "mkstemp(" S ") failed with " << errno << " ["
-                                             << strerror(errno) << "] instead of " << EINVAL << " [ " << strerror(EINVAL) << " ]" << endl;
+        << strerror(errno) << "] instead of " << EINVAL << " [ " << strerror(EINVAL) << " ]" << endl;
 }

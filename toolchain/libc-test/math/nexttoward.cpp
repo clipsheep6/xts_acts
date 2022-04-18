@@ -8,7 +8,6 @@
 using namespace testing::ext;
 class Nexttoward : public testing::Test {};
 
-// TODO: fix ldbl
 static struct ll_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/nexttoward.h"

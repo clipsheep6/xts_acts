@@ -5,31 +5,15 @@
 
 #include "mtest.h"
 
-
 using namespace std;
 using namespace testing::ext;
-class FenvSuite : public testing::Test {};
+class Fenv : public testing::Test {};
 
 static int test_status;
 
-#define error(...) print((char *)__FILE__, __LINE__, __VA_ARGS__)
-static void print(char *f, int l, char *fmt, ...)
-{
-    test_status = 1;
-    va_list ap;
-    printf("%s:%d: ", f, l);
-    va_start(ap, fmt);
-    vprintf(fmt, ap);
-    va_end(ap);
-}
+#define F(n) { (char *)#n, n }
 
-#define F(n)          \
-    {                 \
-        (char *)#n, n \
-    }
-
-static struct
-{
+static struct {
     char *name;
     int i;
 } te[] = {
@@ -72,8 +56,7 @@ static void test_except()
             if (te[i].i == FE_UNDERFLOW && r == (FE_UNDERFLOW | FE_INEXACT))
                 continue;
 #endif
-            error((char *)"feraiseexcept(%s) want %d got %d\n",
-                  te[i].name, te[i].i, r);
+            printf("feraiseexcept(%s) want %d got %d\n",te[i].name, te[i].i, r);
         }
     }
 
@@ -131,7 +114,8 @@ static void test_round()
         r = fesetround(tr[i].i);
         EXPECT_EQ(r, 0) << "fesetround(" << tr[i].name << ") = " << r << endl;
         r = fegetround();
-        EXPECT_EQ(r, tr[i].i) << "fegetround() = 0x" << hex << r << ", wanted 0x" << hex << tr[i].i << "  (" << tr[i].name << ")" << endl;
+        EXPECT_EQ(r, tr[i].i) << "fegetround() = 0x" << hex << r 
+            << ", wanted 0x" << hex << tr[i].i << "  (" << tr[i].name << ")" << endl;
     }
 
 #ifdef FE_UPWARD
@@ -147,9 +131,11 @@ static void test_round()
     EXPECT_EQ(r, FE_TONEAREST) << "fesetenv(FE_DFL_ENV) did not set FE_TONEAREST (0x"
                                << hex << FE_TONEAREST << "), got 0x" << hex << r << endl;
     x = two100 + 1;
-    EXPECT_FLOAT_EQ(x, two100) << "fesetenv(FE_DFL_ENV) did not set FE_TONEAREST, arithmetics rounds upward" << endl;
+    EXPECT_FLOAT_EQ(x, two100) 
+        << "fesetenv(FE_DFL_ENV) did not set FE_TONEAREST, arithmetics rounds upward" << endl;
     x = two100 - 1;
-    EXPECT_FLOAT_EQ(x, two100) << "fesetenv(FE_DFL_ENV) did not set FE_TONEAREST, arithmetics rounds downward or tozero" << endl;
+    EXPECT_FLOAT_EQ(x, two100) 
+        << "fesetenv(FE_DFL_ENV) did not set FE_TONEAREST, arithmetics rounds downward or tozero" << endl;
     r = fesetenv(&env);
     EXPECT_EQ(r, 0) << "fesetenv(&env) = " << r << endl;
     r = fegetround();
@@ -163,48 +149,47 @@ static void test_round()
 /* ieee double precision add operation */
 static struct dd_d t[] = {
     TT(RN, 0x1p+0, 0x1p-52, 0x1.0000000000001p+0, 0x0p+0, 0)
-        TT(RN, 0x1p+0, 0x1p-53, 0x1p+0, -0x1p-1, INEXACT)
-            TT(RN, 0x1p+0, 0x1.01p-53, 0x1.0000000000001p+0, 0x1.fep-2, INEXACT)
-                TT(RN, 0x1p+0, -0x1p-54, 0x1p+0, 0x1p-2, INEXACT)
-                    TT(RN, 0x1p+0, -0x1.01p-54, 0x1.fffffffffffffp-1, -0x1.fep-2, INEXACT)
-                        TT(RN, -0x1p+0, -0x1p-53, -0x1p+0, 0x1p-1, INEXACT)
-                            TT(RN, -0x1p+0, -0x1.01p-53, -0x1.0000000000001p+0, -0x1.fep-2, INEXACT)
-                                TT(RN, -0x1p+0, 0x1p-54, -0x1p+0, -0x1p-2, INEXACT)
-                                    TT(RN, -0x1p+0, 0x1.01p-54, -0x1.fffffffffffffp-1, 0x1.fep-2, INEXACT)
+    TT(RN, 0x1p+0, 0x1p-53, 0x1p+0, -0x1p-1, INEXACT)
+    TT(RN, 0x1p+0, 0x1.01p-53, 0x1.0000000000001p+0, 0x1.fep-2, INEXACT)
+    TT(RN, 0x1p+0, -0x1p-54, 0x1p+0, 0x1p-2, INEXACT)
+    TT(RN, 0x1p+0, -0x1.01p-54, 0x1.fffffffffffffp-1, -0x1.fep-2, INEXACT)
+    TT(RN, -0x1p+0, -0x1p-53, -0x1p+0, 0x1p-1, INEXACT)
+    TT(RN, -0x1p+0, -0x1.01p-53, -0x1.0000000000001p+0, -0x1.fep-2, INEXACT)
+    TT(RN, -0x1p+0, 0x1p-54, -0x1p+0, -0x1p-2, INEXACT)
+    TT(RN, -0x1p+0, 0x1.01p-54, -0x1.fffffffffffffp-1, 0x1.fep-2, INEXACT)
 
-                                        TT(RU, 0x1p+0, 0x1p-52, 0x1.0000000000001p+0, 0x0p+0, 0)
-                                            TT(RU, 0x1p+0, 0x1p-53, 0x1.0000000000001p+0, 0x1p-1, INEXACT)
-                                                TT(RU, 0x1p+0, 0x1.01p-53, 0x1.0000000000001p+0, 0x1.fep-2, INEXACT)
-                                                    TT(RU, 0x1p+0, -0x1p-54, 0x1p+0, 0x1p-2, INEXACT)
-                                                        TT(RU, 0x1p+0, -0x1.01p-54, 0x1p+0, 0x1.01p-2, INEXACT)
-                                                            TT(RU, -0x1p+0, -0x1p-53, -0x1p+0, 0x1p-1, INEXACT)
-                                                                TT(RU, -0x1p+0, -0x1.01p-53, -0x1p+0, 0x1.01p-1, INEXACT)
-                                                                    TT(RU, -0x1p+0, 0x1p-54, -0x1.fffffffffffffp-1, 0x1p-1, INEXACT)
-                                                                        TT(RU, -0x1p+0, 0x1.01p-54, -0x1.fffffffffffffp-1, 0x1.fep-2, INEXACT)
+    TT(RU, 0x1p+0, 0x1p-52, 0x1.0000000000001p+0, 0x0p+0, 0)
+    TT(RU, 0x1p+0, 0x1p-53, 0x1.0000000000001p+0, 0x1p-1, INEXACT)
+    TT(RU, 0x1p+0, 0x1.01p-53, 0x1.0000000000001p+0, 0x1.fep-2, INEXACT)
+    TT(RU, 0x1p+0, -0x1p-54, 0x1p+0, 0x1p-2, INEXACT)
+    TT(RU, 0x1p+0, -0x1.01p-54, 0x1p+0, 0x1.01p-2, INEXACT)
+    TT(RU, -0x1p+0, -0x1p-53, -0x1p+0, 0x1p-1, INEXACT)
+    TT(RU, -0x1p+0, -0x1.01p-53, -0x1p+0, 0x1.01p-1, INEXACT)
+    TT(RU, -0x1p+0, 0x1p-54, -0x1.fffffffffffffp-1, 0x1p-1, INEXACT)
+    TT(RU, -0x1p+0, 0x1.01p-54, -0x1.fffffffffffffp-1, 0x1.fep-2, INEXACT)
 
-                                                                            TT(RD, 0x1p+0, 0x1p-52, 0x1.0000000000001p+0, 0x0p+0, 0)
-                                                                                TT(RD, 0x1p+0, 0x1p-53, 0x1p+0, -0x1p-1, INEXACT)
-                                                                                    TT(RD, 0x1p+0, 0x1.01p-53, 0x1p+0, -0x1.01p-1, INEXACT)
-                                                                                        TT(RD, 0x1p+0, -0x1p-54, 0x1.fffffffffffffp-1, -0x1p-1, INEXACT)
-                                                                                            TT(RD, 0x1p+0, -0x1.01p-54, 0x1.fffffffffffffp-1, -0x1.fep-2, INEXACT)
-                                                                                                TT(RD, -0x1p+0, -0x1p-53, -0x1.0000000000001p+0, -0x1p-1, INEXACT)
-                                                                                                    TT(RD, -0x1p+0, -0x1.01p-53, -0x1.0000000000001p+0, -0x1.fep-2, INEXACT)
-                                                                                                        TT(RD, -0x1p+0, 0x1p-54, -0x1p+0, -0x1p-2, INEXACT)
-                                                                                                            TT(RD, -0x1p+0, 0x1.01p-54, -0x1p+0, -0x1.01p-2, INEXACT)
+    TT(RD, 0x1p+0, 0x1p-52, 0x1.0000000000001p+0, 0x0p+0, 0)
+    TT(RD, 0x1p+0, 0x1p-53, 0x1p+0, -0x1p-1, INEXACT)
+    TT(RD, 0x1p+0, 0x1.01p-53, 0x1p+0, -0x1.01p-1, INEXACT)
+    TT(RD, 0x1p+0, -0x1p-54, 0x1.fffffffffffffp-1, -0x1p-1, INEXACT)
+    TT(RD, 0x1p+0, -0x1.01p-54, 0x1.fffffffffffffp-1, -0x1.fep-2, INEXACT)
+    TT(RD, -0x1p+0, -0x1p-53, -0x1.0000000000001p+0, -0x1p-1, INEXACT)
+    TT(RD, -0x1p+0, -0x1.01p-53, -0x1.0000000000001p+0, -0x1.fep-2, INEXACT)
+    TT(RD, -0x1p+0, 0x1p-54, -0x1p+0, -0x1p-2, INEXACT)
+    TT(RD, -0x1p+0, 0x1.01p-54, -0x1p+0, -0x1.01p-2, INEXACT)
 
-                                                                                                                TT(RZ, 0x1p+0, 0x1p-52, 0x1.0000000000001p+0, 0x0p+0, 0)
-                                                                                                                    TT(RZ, 0x1p+0, 0x1p-53, 0x1p+0, -0x1p-1, INEXACT)
-                                                                                                                        TT(RZ, 0x1p+0, 0x1.01p-53, 0x1p+0, -0x1.01p-1, INEXACT)
-                                                                                                                            TT(RZ, 0x1p+0, -0x1p-54, 0x1.fffffffffffffp-1, -0x1p-1, INEXACT)
-                                                                                                                                TT(RZ, 0x1p+0, -0x1.01p-54, 0x1.fffffffffffffp-1, -0x1.fep-2, INEXACT)
-                                                                                                                                    TT(RZ, -0x1p+0, -0x1p-53, -0x1p+0, 0x1p-1, INEXACT)
-                                                                                                                                        TT(RZ, -0x1p+0, -0x1.01p-53, -0x1p+0, 0x1.01p-1, INEXACT)
-                                                                                                                                            TT(RZ, -0x1p+0, 0x1p-54, -0x1.fffffffffffffp-1, 0x1p-1, INEXACT)
-                                                                                                                                                TT(RZ, -0x1p+0, 0x1.01p-54, -0x1.fffffffffffffp-1, 0x1.fep-2, INEXACT)};
+    TT(RZ, 0x1p+0, 0x1p-52, 0x1.0000000000001p+0, 0x0p+0, 0)
+    TT(RZ, 0x1p+0, 0x1p-53, 0x1p+0, -0x1p-1, INEXACT)
+    TT(RZ, 0x1p+0, 0x1.01p-53, 0x1p+0, -0x1.01p-1, INEXACT)
+    TT(RZ, 0x1p+0, -0x1p-54, 0x1.fffffffffffffp-1, -0x1p-1, INEXACT)
+    TT(RZ, 0x1p+0, -0x1.01p-54, 0x1.fffffffffffffp-1, -0x1.fep-2, INEXACT)
+    TT(RZ, -0x1p+0, -0x1p-53, -0x1p+0, 0x1p-1, INEXACT)
+    TT(RZ, -0x1p+0, -0x1.01p-53, -0x1p+0, 0x1.01p-1, INEXACT)
+    TT(RZ, -0x1p+0, 0x1p-54, -0x1.fffffffffffffp-1, 0x1p-1, INEXACT)
+    TT(RZ, -0x1p+0, 0x1.01p-54, -0x1.fffffffffffffp-1, 0x1.fep-2, INEXACT)};
 
 static void test_round_add(void)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int i;
@@ -256,7 +241,7 @@ static void test_bad(void)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(FenvSuite, FenvTest, Function | MediumTest | Level2)
+HWTEST_F(Fenv, FenvTest, Function | MediumTest | Level2)
 {
     test_except();
     test_round();

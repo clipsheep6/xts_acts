@@ -184,8 +184,8 @@ HWTEST_F(Snprintf, SnprintfTest, Function | MediumTest | Level2)
 #endif
     for (j = 0; int_tests[j].fmt; j++) {
         i = snprintf(b, sizeof b, int_tests[j].fmt, int_tests[j].i);
-        EXPECT_EQ(i, strlen(int_tests[j].expect)) << "snprintf(b, sizeof b, \"" << int_tests[j].fmt << "\", "
-                                                  << int_tests[j].i << ") returned " << i << " wanted " << strlen(int_tests[j].expect) << endl;
+        EXPECT_EQ(i, strlen(int_tests[j].expect)) << "snprintf(b, sizeof b, \"" << int_tests[j].fmt 
+            << "\", " << int_tests[j].i << ") returned " << i << " wanted " << strlen(int_tests[j].expect) << endl;
         EXPECT_EQ(0, strcmp(b, int_tests[j].expect)) << "bad integer conversion: got \"" << b << "\", want \""
                                                      << int_tests[j].expect << "\"" << endl;
     }
@@ -193,9 +193,9 @@ HWTEST_F(Snprintf, SnprintfTest, Function | MediumTest | Level2)
     for (j = 0; fp_tests[j].fmt; j++) {
         i = snprintf(b, sizeof b, fp_tests[j].fmt, fp_tests[j].f);
         EXPECT_EQ(i, strlen(fp_tests[j].expect)) << "snprintf(b, sizeof b, \"" << fp_tests[j].fmt
-                                                 << "\", " << fp_tests[j].f << ") returned " << i << " wanted " << strlen(fp_tests[j].expect) << endl;
-        EXPECT_EQ(0, strcmp(b, fp_tests[j].expect)) << "bad floating-point conversion: got \""
-                                                    << b << "\", want \"" << fp_tests[j].expect << "\"\"" << endl;
+            << "\", " << fp_tests[j].f << ") returned " << i << " wanted " << strlen(fp_tests[j].expect) << endl;
+        EXPECT_EQ(0, strcmp(b, fp_tests[j].expect)) 
+            << "bad floating-point conversion: got \"" << b << "\", want \"" << fp_tests[j].expect << "\"\"" << endl;
     }
 
     TESTT(i, snprintf(0, 0, "%.4a", 1.0), 11, "%d != %d");

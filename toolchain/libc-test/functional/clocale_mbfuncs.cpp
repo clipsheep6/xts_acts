@@ -37,11 +37,11 @@ HWTEST_F(ClocaleMbfuncs, ClocaleMbfuncsTest, Function | MediumTest | Level2)
     for (i = 0; i < 256; i++) {
         st = (mbstate_t){0};
         tmp = (char){i};
-        EXPECT_EQ(!!i, mbrtowc(&wc, &tmp, 1, &st)) << "mbrtowc failed to convert byte "
-                                                   << hex << i << " to wchar_t" << endl;
+        EXPECT_EQ(!!i, mbrtowc(&wc, &tmp, 1, &st)) 
+            << "mbrtowc failed to convert byte " << hex << i << " to wchar_t" << endl;
         if ((map[i] = btowc(i)) == WEOF) {
-            EXPECT_NE(WEOF, (map[i] = btowc(i))) << "btowc failed to convert byte "
-                                                 << hex << i << " to wchar_t" << endl;
+            EXPECT_NE(WEOF, (map[i] = btowc(i))) 
+                << "btowc failed to convert byte " << hex << i << " to wchar_t" << endl;
             continue;
         }
         for (j = 0; j < i; j++) {
@@ -65,17 +65,20 @@ HWTEST_F(ClocaleMbfuncs, ClocaleMbfuncsTest, Function | MediumTest | Level2)
         EXPECT_FALSE((c = wctob(i)) != WEOF && ni_errors++ < 50) << "wctob accepted non-image wchar_t "
                                                                  << hex << i << " as byte " << hex << c << endl;
         st = (mbstate_t){0};
-        EXPECT_FALSE(wcrtomb(s, i, &st) != -1 && ni_errors++ < 50) << "wcrtomb accepted non-image wchar_t " << hex << i << endl;
+        EXPECT_FALSE(wcrtomb(s, i, &st) != -1 && ni_errors++ < 50) 
+            << "wcrtomb accepted non-image wchar_t " << hex << i << endl;
     }
     EXPECT_GE(50, ni_errors) << "additional " << ni_errors << " non-image errors (not printed)" << endl;
 
     map[256] = 0;
     st = (mbstate_t){0};
     tmp2 = (const wchar_t *){map + 1};
-    EXPECT_EQ((rv = wcsrtombs(s, &tmp2, sizeof s, &st)), 255) << "wcsrtombs returned " << rv << ", expected 255" << endl;
+    EXPECT_EQ((rv = wcsrtombs(s, &tmp2, sizeof s, &st)), 255) 
+        << "wcsrtombs returned " << rv << ", expected 255" << endl;
 
     tmp3 = (const char *){s};
-    EXPECT_EQ((rv = mbsrtowcs(wtmp, &tmp3, 256, &st)), 255) << "mbsrtowcs returned " << rv << ", expected 255" << endl;
+    EXPECT_EQ((rv = mbsrtowcs(wtmp, &tmp3, 256, &st)), 255) 
+        << "mbsrtowcs returned " << rv << ", expected 255" << endl;
     EXPECT_FALSE(memcmp(map + 1, wtmp, 256 * sizeof(*map))) << "wcsrtombs/mbsrtowcs round trip failed" << endl;
 
     for (i = 128; i < 256; i++) {

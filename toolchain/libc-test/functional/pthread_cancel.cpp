@@ -22,7 +22,7 @@ static void *start_async(void *arg)
     pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, 0);
     sem_post((sem_t *)arg);
     for (;;);
-    return 0;
+    return nullptr;
 }
 
 static void cleanup1(void *arg)
@@ -50,7 +50,7 @@ static void *start_single(void *arg)
     pthread_cleanup_push(cleanup1, arg);
     sleep(3);
     pthread_cleanup_pop(0);
-    return 0;
+    return nullptr;
 }
 
 static void *start_nested(void *arg)
@@ -65,7 +65,7 @@ static void *start_nested(void *arg)
     pthread_cleanup_pop(0);
     pthread_cleanup_pop(0);
     pthread_cleanup_pop(0);
-    return 0;
+    return nullptr;
 }
 
 /**

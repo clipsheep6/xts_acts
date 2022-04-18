@@ -102,14 +102,15 @@ static void *client(void *arg)
             settimeout(&ts);
             int ret = condition_timedwait(&cond_client, &mut[i], &ts);
             trace("thread %u in phase %u (%u), finished, %s\n", *number, i, phase, errorstring(ret));
-            EXPECT_FALSE(ret) << "thread " << *number << " in phase " << i << "(" << phase << ") finished waiting: " << errorstring(ret) << endl;
+            EXPECT_FALSE(ret) << "thread " << *number << " in phase " 
+                << i << "(" << phase << ") finished waiting: " << errorstring(ret) << endl;
         }
         int ret = mutex_unlock(&mut[i]);
         trace("thread %u in phase %u (%u), has unlocked mutex: %s\n", *number, i, phase, errorstring(ret));
-        EXPECT_FALSE(ret) << "thread " << *number << " in phase " << i << "(" << phase
-                          << "), failed to unlock: " << errorstring(ret) << endl;
+        EXPECT_FALSE(ret) << "thread " << *number 
+            << " in phase " << i << "(" << phase << "), failed to unlock: " << errorstring(ret) << endl;
     }
-    return 0;
+    return nullptr;
 }
 
 /**

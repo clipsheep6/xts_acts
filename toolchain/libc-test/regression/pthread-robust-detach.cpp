@@ -5,8 +5,8 @@
 
 #include "gtest/gtest.h"
 
-#define TX(r, f, x) do { \
-    EXPECT_EQ(((r) = (f)), x) << #f << " failed: (pshared==" << pshared \
+#define TX(r, f, x) do {                                                                                    \
+    EXPECT_EQ(((r) = (f)), x) << #f << " failed: (pshared==" << pshared                                     \
         << ") got " << r << " \"" << strerror(r) << "\" want " << x << " \"" << strerror(x) << "\"" << endl;\
 } while(0)
 
@@ -23,7 +23,7 @@ static void *start_lock(void *arg)
 {
     pthread_mutex_lock((pthread_mutex_t *)arg);
     pthread_barrier_wait(&barrier2);
-    return 0;
+    return nullptr;
 }
 
 static void f()

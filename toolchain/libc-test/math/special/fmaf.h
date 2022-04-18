@@ -30,7 +30,6 @@ TT(RN,            -inf,            -inf,          0x1p+0,             inf,      
 TT(RN,             inf,             inf,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,             inf,             NAN,             inf,             NAN,          0x0p+0, 0)
 TT(RN,             NAN,             inf,             inf,             NAN,          0x0p+0, 0)
-// TODO: invalid is optional
 TT(RN,             inf,          0x0p+0,             NAN,             NAN,          0x0p+0, INVALID)
 TT(RN,          0x0p+0,             inf,             NAN,             NAN,          0x0p+0, INVALID)
 TT(RN,            -inf,          0x0p+0,             NAN,             NAN,          0x0p+0, INVALID)

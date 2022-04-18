@@ -7,11 +7,12 @@
     wchar_t *q = wcsstr(p, sub);                                                                             \
     EXPECT_FALSE(q) << "wcsstr(" << #s << "," << #sub << ") returned str+" << q - p << ", wanted 0" << endl; \
 } while(0)
-#define T(s, sub, n) do {                                                                                                \
-    wchar_t *p = s;                                                                                                      \
-    wchar_t *q = wcsstr(p, sub);                                                                                         \
-    EXPECT_STRNE(q, 0) << "wcsstr(" << #s << "," << #sub << ") returned 0, wanted str+" << q - p << endl;                \
-    EXPECT_EQ(q - p, n) << "wcsstr(" << #s << "," << #sub << ") returned str+" << q - p << ", wanted str+" << n << endl; \
+#define T(s, sub, n) do {                                                                                    \
+    wchar_t *p = s;                                                                                          \
+    wchar_t *q = wcsstr(p, sub);                                                                             \
+    EXPECT_STRNE(q, 0) << "wcsstr(" << #s << "," << #sub << ") returned 0, wanted str+" << q - p << endl;    \
+    EXPECT_EQ(q - p, n) << "wcsstr(" << #s                                                                   \
+        << "," << #sub << ") returned str+" << q - p << ", wanted str+" << n << endl;                        \
 } while(0)
     
 using namespace std;

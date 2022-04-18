@@ -18,11 +18,12 @@ void N(char *s, char *tail, char *sub)
                     << " ," << strlen((const char *)sub) << ") returned str+" << q - p << ", wanted 0" << endl;
 }
 
-#define T(s, sub, n) do{                                                                                                 \
-    char *p = (char *)s;                                                                                                 \
-    char *q = (char *)memmem(p, strlen(p), sub, strlen(sub));                                                            \
-    EXPECT_STRNE(nullptr, q) << "memmem(" << #s << "," << #sub << ") returned 0, wanted str+" << n << endl;              \
-    EXPECT_EQ(q - p, n) << "memmem(" << #s << "," << #sub << ") returned str+" << q - p << ", wanted str+" << n << endl; \
+#define T(s, sub, n) do{                                                                                    \
+    char *p = (char *)s;                                                                                    \
+    char *q = (char *)memmem(p, strlen(p), sub, strlen(sub));                                               \
+    EXPECT_STRNE(nullptr, q) << "memmem(" << #s << "," << #sub << ") returned 0, wanted str+" << n << endl; \
+    EXPECT_EQ(q - p, n) << "memmem(" << #s                                                                  \
+        << "," << #sub << ") returned str+" << q - p << ", wanted str+" << n << endl;                       \
 } while(0)
 
 /**

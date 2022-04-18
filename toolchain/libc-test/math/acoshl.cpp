@@ -6,7 +6,7 @@
 #include "mtest.h"
 
 using namespace testing::ext;
-class Acoshfl : public testing::Test {};
+class Acoshl : public testing::Test {};
 
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
@@ -24,9 +24,8 @@ static struct l_l t[] = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(Acoshfl, AcoshflTest, Function | MediumTest | Level2)
+HWTEST_F(Acoshl, AcoshflTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     long double y;
     float d;
     int e, i, err = 0;

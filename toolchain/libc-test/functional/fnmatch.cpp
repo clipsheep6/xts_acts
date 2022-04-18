@@ -161,7 +161,8 @@ HWTEST_F(Fnmatch, FnmatchTest, Function | MediumTest | Level2)
 
         r = fnmatch(tests[i].pattern, tests[i].string, tests[i].flags);
         x = tests[i].expected;
-        EXPECT_FALSE(r != x && (r != FNM_NOMATCH || x != -FNM_NOMATCH)) << "fnmatch(\"" << tests[i].pattern << "\", \""
-                                                                        << tests[i].string << "\", " << flagstr(fnmatch_flags, tests[i].flags) << ") failed, got " << r << " want " << x << endl;
+        EXPECT_FALSE(r != x && (r != FNM_NOMATCH || x != -FNM_NOMATCH)) 
+            << "fnmatch(\"" << tests[i].pattern << "\", \"" << tests[i].string<< "\", " 
+                << flagstr(fnmatch_flags, tests[i].flags) << ") failed, got " << r << " want " << x << endl;
     }
 }

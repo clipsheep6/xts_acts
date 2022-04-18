@@ -40,7 +40,8 @@ static void test_align(int dalign, int salign, int len)
     EXPECT_STREQ(p, dst + dalign) << "memcpy(" << dst + dalign << ",...) returned " << p << endl;
     for (i = 0; i < N; i++)
         if (dst[i] != want[i]) {
-            EXPECT_EQ(dst[i], want[i]) << "memcpy(align " << dalign << ", align " << salign << ", " << len << ") failed" << endl;
+            EXPECT_EQ(dst[i], want[i]) << "memcpy(align " 
+                << dalign << ", align " << salign << ", " << len << ") failed" << endl;
             t_printf("got : %.*s\n", dalign + len + 1, dst);
             t_printf("want: %.*s\n", dalign + len + 1, want);
             break;
@@ -52,7 +53,7 @@ static void test_align(int dalign, int salign, int len)
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StringMemcpy , StringMemcpyTest , Function | MediumTest | Level2)
+HWTEST_F(StringMemcpy, StringMemcpyTest, Function | MediumTest | Level2)
 {
     int i, j, k;
 

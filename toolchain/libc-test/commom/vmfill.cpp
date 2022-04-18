@@ -21,7 +21,7 @@ static size_t mmax(int fd, size_t *start)
     void *p;
     
     for (i=n=*start; i>=PAGE_SIZE; i/=2) {
-        if ((p=mmap(0, n, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, fd, 0)) == MAP_FAILED) {
+        if ((p=mmap(nullptr, n, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, fd, 0)) == MAP_FAILED) {
             n -= i/2;
         } else {
             munmap(p, n);

@@ -69,13 +69,16 @@ HWTEST_F(Strtol, StrtolTest, Function | MediumTest | Level2)
         TEST2(i, errno, ERANGE, "spurious errno %d != %d");
     }
     else if (sizeof(long) == 8) {
-        TEST1(l, strtol(s = (char *)"9223372036854775808", &c, 0), 9223372036854775807L, "uncaught overflow %ld != %ld");
+        TEST1(l, strtol(s = (char *)"9223372036854775808", &c, 0), 9223372036854775807L, 
+            "uncaught overflow %ld != %ld");
         TEST2(i, c - s, 19, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "missing errno %d != %d");
-        TEST1(l, strtol(s = (char *)"-9223372036854775809", &c, 0), -9223372036854775807L - 1, "uncaught overflow %ld != %ld");
+        TEST1(l, strtol(s = (char *)"-9223372036854775809", &c, 0), -9223372036854775807L - 1, 
+            "uncaught overflow %ld != %ld");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "missing errno %d != %d");
-        TEST1(ul, strtoul(s = (char *)"18446744073709551616", &c, 0), 18446744073709551615UL, "uncaught overflow %lu != %lu");
+        TEST1(ul, strtoul(s = (char *)"18446744073709551616", &c, 0), 18446744073709551615UL, 
+            "uncaught overflow %lu != %lu");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "missing errno %d != %d");
         TEST1(ul, strtoul(s = (char *)"-1", &c, 0), -1UL, "rejected negative %lu != %lu");
@@ -84,27 +87,35 @@ HWTEST_F(Strtol, StrtolTest, Function | MediumTest | Level2)
         TEST1(ul, strtoul(s = (char *)"-2", &c, 0), -2UL, "rejected negative %lu != %lu");
         TEST2(i, c - s, 2, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
-        TEST1(ul, strtoul(s = (char *)"-9223372036854775808", &c, 0), -9223372036854775808UL, "rejected negative %lu != %lu");
+        TEST1(ul, strtoul(s = (char *)"-9223372036854775808", &c, 0), -9223372036854775808UL, 
+            "rejected negative %lu != %lu");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
-        TEST1(ul, strtoul(s = (char *)"-9223372036854775809", &c, 0), -9223372036854775809UL, "rejected negative %lu != %lu");
+        TEST1(ul, strtoul(s = (char *)"-9223372036854775809", &c, 0), -9223372036854775809UL, 
+            "rejected negative %lu != %lu");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
-        TEST1(ul, strtoul(s = (char *)"-18446744073709551616", &c, 0), 18446744073709551615UL, "uncaught negative overflow %lu != %lu");
+        TEST1(ul, strtoul(s = (char *)"-18446744073709551616", &c, 0), 18446744073709551615UL, 
+            "uncaught negative overflow %lu != %lu");
         TEST2(i, c - s, 21, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "spurious errno %d != %d");
     }
-    else 
-        EXPECT_TRUE(sizeof(long) == 8 && sizeof(long) == 4) << "sizeof(long) == " << (int)sizeof(long) << ", not implemented" << endl;
+    else {
+        EXPECT_TRUE(sizeof(long) == 8 && sizeof(long) == 4) 
+            << "sizeof(long) == " << (int)sizeof(long) << ", not implemented" << endl;
+    }
 
     if (sizeof(long long) == 8) {
-        TEST1(ll, strtoll(s = (char *)"9223372036854775808", &c, 0), 9223372036854775807LL, "uncaught overflow %lld != %lld");
+        TEST1(ll, strtoll(s = (char *)"9223372036854775808", &c, 0), 9223372036854775807LL, 
+            "uncaught overflow %lld != %lld");
         TEST2(i, c - s, 19, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "missing errno %d != %d");
-        TEST1(ll, strtoll(s = (char *)"-9223372036854775809", &c, 0), -9223372036854775807LL - 1, "uncaught overflow %lld != %lld");
+        TEST1(ll, strtoll(s = (char *)"-9223372036854775809", &c, 0), -9223372036854775807LL - 1, 
+            "uncaught overflow %lld != %lld");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "missing errno %d != %d");
-        TEST1(ull, strtoull(s = (char *)"18446744073709551616", &c, 0), 18446744073709551615ULL, "uncaught overflow %llu != %llu");
+        TEST1(ull, strtoull(s = (char *)"18446744073709551616", &c, 0), 18446744073709551615ULL, 
+            "uncaught overflow %llu != %llu");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "missing errno %d != %d");
         TEST1(ull, strtoull(s = (char *)"-1", &c, 0), -1ULL, "rejected negative %llu != %llu");
@@ -113,18 +124,23 @@ HWTEST_F(Strtol, StrtolTest, Function | MediumTest | Level2)
         TEST1(ull, strtoull(s = (char *)"-2", &c, 0), -2ULL, "rejected negative %llu != %llu");
         TEST2(i, c - s, 2, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
-        TEST1(ull, strtoull(s = (char *)"-9223372036854775808", &c, 0), -9223372036854775808ULL, "rejected negative %llu != %llu");
+        TEST1(ull, strtoull(s = (char *)"-9223372036854775808", &c, 0), -9223372036854775808ULL, 
+            "rejected negative %llu != %llu");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
-        TEST1(ull, strtoull(s = (char *)"-9223372036854775809", &c, 0), -9223372036854775809ULL, "rejected negative %llu != %llu");
+        TEST1(ull, strtoull(s = (char *)"-9223372036854775809", &c, 0), -9223372036854775809ULL, 
+            "rejected negative %llu != %llu");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
-        TEST1(ull, strtoull(s = (char *)"-18446744073709551616", &c, 0), 18446744073709551615ULL, "uncaught negative overflow %llu != %llu");
+        TEST1(ull, strtoull(s = (char *)"-18446744073709551616", &c, 0), 18446744073709551615ULL, 
+            "uncaught negative overflow %llu != %llu");
         TEST2(i, c - s, 21, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "spurious errno %d != %d");
     }
-    else
-        EXPECT_TRUE(sizeof(long long) == 8) << "sizeof(long) == " << (int)sizeof(long long) << ", not implemented" << endl;
+    else {
+        EXPECT_TRUE(sizeof(long long) == 8) 
+            << "sizeof(long) == " << (int)sizeof(long long) << ", not implemented" << endl;
+    }
 
     TEST1(l, strtol("z", 0, 36), 35, "%ld != %ld");
     TEST1(l, strtol("00010010001101000101011001111000", 0, 2), 0x12345678, "%ld != %ld");

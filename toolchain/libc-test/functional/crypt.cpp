@@ -3,11 +3,12 @@
 
 #include "gtest/gtest.h"
 
-#define T(h, s, k) do { \
-    p = crypt(k, s); \
-    if (!p)          \
-        p = "*";     \
-    EXPECT_FALSE((strcmp(p, h) != 0)) << "crypt(" << #k << ", \"" << s << "\") failed: got \"" << p << "\" want \"" << h << "\"" << endl;\
+#define T(h, s, k) do {                                                                \
+    p = crypt(k, s);                                                                   \
+    if (!p)                                                                            \
+        p = "*";                                                                       \
+    EXPECT_FALSE((strcmp(p, h) != 0)) << "crypt(" << #k                                \
+      << ", \"" << s << "\") failed: got \"" << p << "\" want \"" << h << "\"" << endl;\
 } while(0)
 
 using namespace std;
@@ -64,15 +65,17 @@ HWTEST_F(Crpyt, CrpytTest, Function | MediumTest | Level2)
     T("$5$rounds=5000$toolongsaltstrin$Un/5jzAHMgOGZ5.mWJpuVolil07guHPvOW8mGRcvxa5",
       "$5$rounds=5000$toolongsaltstring", "This is just a test");
     T("$5$rounds=1400$anotherlongsalts$Rx.j8H.h8HjEDGomFU8bDkXm3XIUnzyxf12oP84Bnq1",
-      "$5$rounds=1400$anotherlongsaltstring", "a very much longer text to encrypt.  This one even stretches over morethan one line.");
+      "$5$rounds=1400$anotherlongsaltstring", 
+      "a very much longer text to encrypt.  This one even stretches over morethan one line.");
     T("$5$rounds=1000$roundstoolow$yfvwcWrQ8l/K0DAWyuPMDNHpIVlTQebY9l/gL972bIC",
       "$5$rounds=10$roundstoolow", "the minimum number is still observed");
 
     /* sha512 */
     T("$6$$/chiBau24cE26QQVW3IfIe68Xu5.JQ4E8Ie7lcRLwqxO5cxGuBhqF2HmTL.zWJ9zjChg3yJYFXeGBQ2y3Ba1d1",
       "$6$$", "");
-    T("$6$rounds=1234$abc0123456789$BCpt8zLrc/RcyuXmCDOE1ALqMXB2MH6n1g891HhFj8.w7LxGv.FTkqq6Vxc/km3Y0jE0j24jY5PIv/oOu6reg1",
-      "$6$rounds=1234$abc0123456789$", "Xy01@#\x01\x02\x80\x7f\xff\r\n\x81\t !");
+    T("$6$rounds=1234$abc0123456789$BCpt8zLrc"
+      "/RcyuXmCDOE1ALqMXB2MH6n1g891HhFj8.w7LxGv.FTkqq6Vxc/km3Y0jE0j24jY5PIv/oOu6reg1",
+        "$6$rounds=1234$abc0123456789$", "Xy01@#\x01\x02\x80\x7f\xff\r\n\x81\t !");
     T("$6$salt1234$44TYByJTJkEpcbmj8XzV6H7ltUN.7FUFFWKGeph85fMuAME8f1yQnXxqPbz6gfMq7tisOjTrxg3S2DDebWewt1",
       "$6$salt1234$", "Aa@\xaa 0123456789");
     T("$6$rounds=1000$$hETGMQQ5sXu1md3PrmRCM4AxTgbNpYQaIhk4xQzvCiNfeogfCR9PZGSRXghUOxMAPFU2wuz/ZLafIHrHopO.60",
@@ -83,10 +86,14 @@ HWTEST_F(Crpyt, CrpytTest, Function | MediumTest | Level2)
     /* official tests */
     T("$6$saltstring$svn8UoSVapNtMuq1ukKS4tPQd8iKwSMHWjl/O817G3uBnIFNjnQJuesI68u4OTLiBFdcbYEdFCoEOfaS35inz1",
       "$6$saltstring", "Hello world!");
-    T("$6$rounds=5000$toolongsaltstrin$lQ8jolhgVRVhY4b5pZKaysCLi0QBxGoNeKQzQ3glMhwllF7oGDZxUhx1yxdYcz/e1JSbq3y6JMxxl8audkUEm0",
+    T("$6$rounds=5000$toolongsaltstrin$lQ8jolhgVRVhY4b5pZKaysCLi0QBx"
+      "GoNeKQzQ3glMhwllF7oGDZxUhx1yxdYcz/e1JSbq3y6JMxxl8audkUEm0",
       "$6$rounds=5000$toolongsaltstring", "This is just a test");
-    T("$6$rounds=1400$anotherlongsalts$POfYwTEok97VWcjxIiSOjiykti.o/pQs.wPvMxQ6Fm7I6IoYN3CmLs66x9t0oSwbtEW7o7UmJEiDwGqd8p4ur1",
-      "$6$rounds=1400$anotherlongsaltstring", "a very much longer text to encrypt.  This one even stretches over morethan one line.");
-    T("$6$rounds=1000$roundstoolow$kUMsbe306n21p9R.FRkW3IGn.S9NPN0x50YhH1xhLsPuWGsUSklZt58jaTfF4ZEQpyUNGc0dqbpBYYBaHHrsX.",
+    T("$6$rounds=1400$anotherlongsalts$POfYwTEok97VWcjxIiSOjiykti.o"
+      "/pQs.wPvMxQ6Fm7I6IoYN3CmLs66x9t0oSwbtEW7o7UmJEiDwGqd8p4ur1",
+      "$6$rounds=1400$anotherlongsaltstring", 
+      "a very much longer text to encrypt.  This one even stretches over morethan one line.");
+    T("$6$rounds=1000$roundstoolow$kUMsbe306n21p9R.FRkW3IGn."
+      "S9NPN0x50YhH1xhLsPuWGsUSklZt58jaTfF4ZEQpyUNGc0dqbpBYYBaHHrsX.",
       "$6$rounds=10$roundstoolow", "the minimum number is still observed");
 }

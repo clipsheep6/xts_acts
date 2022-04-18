@@ -58,12 +58,13 @@ static void sec2tm(time_t t, char *m)
 
     errno = 0;
     tm = gmtime(&t);
-    EXPECT_EQ(errno, 0) << m << ": gmtime((time_t)" << (long long)t << ") should not set errno, got " << strerror(errno);
+    EXPECT_EQ(errno, 0) << m << ": gmtime((time_t)" 
+        << (long long)t << ") should not set errno, got " << strerror(errno);
     errno = 0;
     r = mktime(tm);
     EXPECT_EQ(errno, 0) << m << ": mktime(" << tm_str(*tm) << ") should not set errno, got " << strerror(errno);
-    ;
-    EXPECT_EQ(t, r) << m << ": mktime(gmtime(" << (long long)t << ")) roundtrip failed: got " << (long long)r << " (gmtime is " << tm_str(*tm) << ")" << endl;
+    EXPECT_EQ(t, r) << m << ": mktime(gmtime(" << (long long)t 
+        << ")) roundtrip failed: got " << (long long)r << " (gmtime is " << tm_str(*tm) << ")" << endl;
 }
 
 static void tm2sec(struct tm *tm, int big, char *m)
@@ -74,14 +75,18 @@ static void tm2sec(struct tm *tm, int big, char *m)
 
     errno = 0;
     t = mktime(tm);
-    EXPECT_FALSE(overflow && t != -1) << m << ": mktime(" << tm_str(*tm) << ") expected -1, got (time_t)" << (long)t << endl;
-    EXPECT_FALSE(overflow && errno != EOVERFLOW) << m << ": mktime(" << tm_str(*tm) << ") expected EOVERFLOW ("
-                                                 << strerror(EOVERFLOW) << "), got (" << strerror(errno) << ")" << endl;
-    ;
-    EXPECT_FALSE(!overflow && t == -1) << m << ": mktime(" << tm_str(*tm) << ") expected success, got (time_t)-1" << endl;
-    EXPECT_FALSE(!overflow && errno) << m << ": mktime(" << tm_str(*tm) << ") expected no error, got (" << strerror(errno) << ")" << endl;
+    EXPECT_FALSE(overflow && t != -1) 
+        << m << ": mktime(" << tm_str(*tm) << ") expected -1, got (time_t)" << (long)t << endl;
+    EXPECT_FALSE(overflow && errno != EOVERFLOW) << m << ": mktime(" << tm_str(*tm) 
+        << ") expected EOVERFLOW (" << strerror(EOVERFLOW) << "), got (" << strerror(errno) << ")" << endl;
+
+    EXPECT_FALSE(!overflow && t == -1) << m << ": mktime(" 
+        << tm_str(*tm) << ") expected success, got (time_t)-1" << endl;
+    EXPECT_FALSE(!overflow && errno) << m << ": mktime(" 
+        << tm_str(*tm) << ") expected no error, got (" << strerror(errno) << ")" << endl;
     r = gmtime(&t);
-    EXPECT_FALSE(!overflow && tm_cmp(*r, *tm)) << m << ": gmtime(mktime(" << tm_str(*tm) << ")) roundtrip failed: got " << tm_str(*r) << endl;
+    EXPECT_FALSE(!overflow && tm_cmp(*r, *tm)) << m 
+        << ": gmtime(mktime(" << tm_str(*tm) << ")) roundtrip failed: got " << tm_str(*r) << endl;
 }
 
 /**

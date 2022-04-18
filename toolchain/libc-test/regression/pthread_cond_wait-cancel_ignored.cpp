@@ -28,7 +28,7 @@ static void *waiter(void *p)
     while (waiting)
         pthread_cond_wait(&cv, &mx);
     pthread_cleanup_pop(1);
-    return 0;
+    return nullptr;
 }
 
 /**
