@@ -37,6 +37,7 @@ group("aafwk_standard") {
       "lanuageConfigapi7:lanuageConfigapi7",
       "setshowonlockscreen:setshowonlockscreen",
       "want:want",
+      "stage:stage"
     ]
   }
 }
