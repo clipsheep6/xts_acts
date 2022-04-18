@@ -24,7 +24,7 @@
 
 #define TEST_M(s, x, n, m) do {                                                             \
     EXPECT_TRUE(!memcmp((s), (x), (n))) << "[" << s << "] != [" << x << "] (" << m << endl; \
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

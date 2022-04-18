@@ -15,7 +15,7 @@
     ((r) = (f)) == (x) ||                              \
         (t_error("%s failed (" m ")\n", #f, r, x), 0); \
     EXPECT_EQ((r), (x));                               \
-} while(0)
+} while (0)
 
 #define TEST_S(s, x, m) EXPECT_TRUE(!wcscmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;
 

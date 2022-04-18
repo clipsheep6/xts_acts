@@ -10,13 +10,13 @@
 #define TEST1(r, f, x, m) do {                                                                        \
     errno = 0, msg = (char *)#f, ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
     EXPECT_EQ(r, x);                                                                                  \
-} while(0)
+} while (0)
 
 #define TEST2(r, f, x, m) do {                          \
     ((r) = (f)) == (x) ||                               \
         (t_error("%s failed (" m ")\n", msg, r, x), 0); \
     EXPECT_EQ(r, x);                                    \
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

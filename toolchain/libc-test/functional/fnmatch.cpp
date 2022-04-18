@@ -32,7 +32,7 @@ static char *flagstr(const struct xlat *map, int flags)
     int n;
 
     if (!flags) {
-        sprintf(buf, "0");
+        snprintf(buf, 1, "0");
         return buf;
     }
     n = 0;

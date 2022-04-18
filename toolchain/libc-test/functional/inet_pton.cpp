@@ -89,7 +89,7 @@ static void tohex(char *d, void *s, int n)
     int i;
     unsigned char *p = (unsigned char *)s;
     for (i = 0; i < n; i++)
-        sprintf(d + 2 * i, "%02x", p[i]);
+        snprintf(d + 2 * i, 1024,"%02x", p[i]);
 }
 
 /**
@@ -107,60 +107,60 @@ HWTEST_F(InetPton, InetPtonTest, Function | MediumTest | Level2)
     errno = 0;
 
     // dotted-decimal notation
-    V4("0.0.0.0", 1, (char *)"00000000");
-    V4("127.0.0.1", 1, (char *)"7f000001");
-    V4("10.0.128.31", 1, (char *)"0a00801f");
-    V4("255.255.255.255", 1, (char *)"ffffffff");
+    V4("0.0.0.0", 1, const_cast<char*>("00000000"));
+    V4("127.0.0.1", 1, const_cast<char*>("7f000001"));
+    V4("10.0.128.31", 1, const_cast<char*>("0a00801f"));
+    V4("255.255.255.255", 1, const_cast<char*>("ffffffff"));
 
     // numbers-and-dots notation, but not dotted-decimal
-    V4("1.2.03.4", 0, (char *)"01020304");
-    V4("1.2.0x33.4", 0, (char *)"01023304");
-    V4("1.2.0XAB.4", 0, (char *)"0102ab04");
-    V4("1.2.0xabcd", 0, (char *)"0102abcd");
-    V4("1.0xabcdef", 0, (char *)"01abcdef");
-    V4("00377.0x0ff.65534", 0, (char *)"fffffffe");
+    V4("1.2.03.4", 0, const_cast<char*>("01020304"));
+    V4("1.2.0x33.4", 0, const_cast<char*>("01023304"));
+    V4("1.2.0XAB.4", 0, const_cast<char*>("0102ab04"));
+    V4("1.2.0xabcd", 0, const_cast<char*>("0102abcd"));
+    V4("1.0xabcdef", 0, const_cast<char*>("01abcdef"));
+    V4("00377.0x0ff.65534", 0, const_cast<char*>("fffffffe"));
 
     // invalid
-    V4(".1.2.3", 0, (char *)"ffffffff");
-    V4("1..2.3", 0, (char *)"ffffffff");
-    V4("1.2.3.", 0, (char *)"ffffffff");
-    V4("1.2.3.4.5", 0, (char *)"ffffffff");
-    V4("1.2.3.a", 0, (char *)"ffffffff");
-    V4("1.256.2.3", 0, (char *)"ffffffff");
-    V4("1.2.4294967296.3", 0, (char *)"ffffffff");
-    V4("1.2.-4294967295.3", 0, (char *)"ffffffff");
-    V4("1.2. 3.4", 0, (char *)"ffffffff");
+    V4(".1.2.3", 0, const_cast<char*>("ffffffff"));
+    V4("1..2.3", 0, const_cast<char*>("ffffffff"));
+    V4("1.2.3.", 0, const_cast<char*>("ffffffff"));
+    V4("1.2.3.4.5", 0, const_cast<char*>("ffffffff"));
+    V4("1.2.3.a", 0, const_cast<char*>("ffffffff"));
+    V4("1.256.2.3", 0, const_cast<char*>("ffffffff"));
+    V4("1.2.4294967296.3", 0, const_cast<char*>("ffffffff"));
+    V4("1.2.-4294967295.3", 0, const_cast<char*>("ffffffff"));
+    V4("1.2. 3.4", 0, const_cast<char*>("ffffffff"));
 
     // ipv6
-    V6(":", 0, (char *)"");
-    V6("::", 1, (char *)"00000000000000000000000000000000");
-    V6("::1", 1, (char *)"00000000000000000000000000000001");
-    V6(":::", 0, (char *)"");
-    V6("192.168.1.1", 0, (char *)"");
-    V6(":192.168.1.1", 0, (char *)"");
-    V6("::192.168.1.1", 1, (char *)"000000000000000000000000c0a80101");
-    V6("0:0:0:0:0:0:192.168.1.1", 1, (char *)"000000000000000000000000c0a80101");
-    V6("0:0::0:0:0:192.168.1.1", 1, (char *)"000000000000000000000000c0a80101");
-    V6("::012.34.56.78", 0, (char *)"");
-    V6(":ffff:192.168.1.1", 0, (char *)"");
-    V6("::ffff:192.168.1.1", 1, (char *)"00000000000000000000ffffc0a80101");
-    V6(".192.168.1.1", 0, (char *)"");
-    V6(":.192.168.1.1", 0, (char *)"");
-    V6("a:0b:00c:000d:E:F::", 1, (char *)"000a000b000c000d000e000f00000000");
-    V6("a:0b:00c:000d:0000e:f::", 0, (char *)"");
-    V6("1:2:3:4:5:6::", 1, (char *)"00010002000300040005000600000000");
-    V6("1:2:3:4:5:6:7::", 1, (char *)"00010002000300040005000600070000");
-    V6("1:2:3:4:5:6:7:8::", 0, (char *)"");
-    V6("1:2:3:4:5:6:7::9", 0, (char *)"");
-    V6("::1:2:3:4:5:6", 1, (char *)"00000000000100020003000400050006");
-    V6("::1:2:3:4:5:6:7", 1, (char *)"00000001000200030004000500060007");
-    V6("::1:2:3:4:5:6:7:8", 0, (char *)"");
-    V6("a:b::c:d:e:f", 1, (char *)"000a000b00000000000c000d000e000f");
-    V6("ffff:c0a8:5e4", 0, (char *)"");
-    V6(":ffff:c0a8:5e4", 0, (char *)"");
-    V6("0:0:0:0:0:ffff:c0a8:5e4", 1, (char *)"00000000000000000000ffffc0a805e4");
-    V6("0:0:0:0:ffff:c0a8:5e4", 0, (char *)"");
-    V6("0::ffff:c0a8:5e4", 1, (char *)"00000000000000000000ffffc0a805e4");
-    V6("::0::ffff:c0a8:5e4", 0, (char *)"");
-    V6("c0a8", 0, (char *)"");
+    V6(":", 0, const_cast<char*>(""));
+    V6("::", 1, const_cast<char*>("00000000000000000000000000000000"));
+    V6("::1", 1, const_cast<char*>("00000000000000000000000000000001"));
+    V6(":::", 0, const_cast<char*>(""));
+    V6("192.168.1.1", 0, const_cast<char*>(""));
+    V6(":192.168.1.1", 0, const_cast<char*>(""));
+    V6("::192.168.1.1", 1, const_cast<char*>("000000000000000000000000c0a80101"));
+    V6("0:0:0:0:0:0:192.168.1.1", 1, const_cast<char*>("000000000000000000000000c0a80101"));
+    V6("0:0::0:0:0:192.168.1.1", 1, const_cast<char*>("000000000000000000000000c0a80101"));
+    V6("::012.34.56.78", 0, const_cast<char*>(""));
+    V6(":ffff:192.168.1.1", 0, const_cast<char*>(""));
+    V6("::ffff:192.168.1.1", 1, const_cast<char*>("00000000000000000000ffffc0a80101"));
+    V6(".192.168.1.1", 0, const_cast<char*>(""));
+    V6(":.192.168.1.1", 0, const_cast<char*>(""));
+    V6("a:0b:00c:000d:E:F::", 1, const_cast<char*>("000a000b000c000d000e000f00000000"));
+    V6("a:0b:00c:000d:0000e:f::", 0, const_cast<char*>(""));
+    V6("1:2:3:4:5:6::", 1, const_cast<char*>("00010002000300040005000600000000"));
+    V6("1:2:3:4:5:6:7::", 1, const_cast<char*>("00010002000300040005000600070000"));
+    V6("1:2:3:4:5:6:7:8::", 0, const_cast<char*>(""));
+    V6("1:2:3:4:5:6:7::9", 0, const_cast<char*>(""));
+    V6("::1:2:3:4:5:6", 1, const_cast<char*>("00000000000100020003000400050006"));
+    V6("::1:2:3:4:5:6:7", 1, const_cast<char*>("00000001000200030004000500060007"));
+    V6("::1:2:3:4:5:6:7:8", 0, const_cast<char*>(""));
+    V6("a:b::c:d:e:f", 1, const_cast<char*>("000a000b00000000000c000d000e000f"));
+    V6("ffff:c0a8:5e4", 0, const_cast<char*>(""));
+    V6(":ffff:c0a8:5e4", 0, const_cast<char*>(""));
+    V6("0:0:0:0:0:ffff:c0a8:5e4", 1, const_cast<char*>("00000000000000000000ffffc0a805e4"));
+    V6("0:0:0:0:ffff:c0a8:5e4", 0, const_cast<char*>(""));
+    V6("0::ffff:c0a8:5e4", 1, const_cast<char*>("00000000000000000000ffffc0a805e4"));
+    V6("::0::ffff:c0a8:5e4", 0, const_cast<char*>(""));
+    V6("c0a8", 0, const_cast<char*>(""));
 }

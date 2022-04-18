@@ -8,7 +8,7 @@
 #define TX(r, f, x) do {                                                                                    \
     EXPECT_EQ(((r) = (f)), x) << #f << " failed: (pshared==" << pshared                                     \
         << ") got " << r << " \"" << strerror(r) << "\" want " << x << " \"" << strerror(x) << "\"" << endl;\
-} while(0)
+} while (0)
 
 #define T(r, f) TX(r, f, 0)
 

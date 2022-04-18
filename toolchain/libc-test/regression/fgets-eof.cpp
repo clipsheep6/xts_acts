@@ -6,7 +6,7 @@
 
 #define ASSERTT(c) do {                           \
     EXPECT_FALSE(!(c)) << #c << " failed" << endl;\
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

@@ -15,7 +15,7 @@ struct q {
 
 static struct q *new_data(int i)
 {
-    struct q *q = (struct q *)malloc(sizeof *q);
+    struct q *q = (struct q *)malloc(sizeof(struct q));
     q->i = i;
     return q;
 }

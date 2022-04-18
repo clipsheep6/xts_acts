@@ -10,7 +10,7 @@
 
 #define T(f) do { \
     EXPECT_EQ(0, (f)) << #f << " failed: " << strerror(errno) << endl;\
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

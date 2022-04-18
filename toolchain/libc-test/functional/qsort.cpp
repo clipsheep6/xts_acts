@@ -92,7 +92,7 @@ static void str_test(const char **a, const char **a_sorted, int len)
 static void int_test(int *a, int *a_sorted, int len)
 {
     int i;
-    qsort(a, len, sizeof *a, icmp);
+    qsort(a, len, sizeof(int), icmp);
     for (i = 0; i < len; i++) {
         if (a[i] != a_sorted[i]) {
             EXPECT_EQ(a[i], a_sorted[i]) << "integer sort failed at index " << i << endl;
@@ -113,14 +113,14 @@ static void uint64_gen(uint64_t *p, uint64_t *p_sorted, int n)
         r += t_randn(randnum);
         p[i] = r;
     }
-    memcpy(p_sorted, p, n * sizeof *p);
+    memcpy(p_sorted, p, n * sizeof(uint64_t));
     t_shuffle(p, n);
 }
 
 static void uint64_test(uint64_t *a, uint64_t *a_sorted, int len)
 {
     int i;
-    qsort(a, len, sizeof *a, cmp64);
+    qsort(a, len, sizeof(uint64_t), cmp64);
     for (i = 0; i < len; i++) {
         if (a[i] != a_sorted[i]) {
             EXPECT_EQ(a[i], a_sorted[i]) << "integer sort failed at index " << i << endl;

@@ -115,32 +115,32 @@ char *estr(int f)
     
     for (i = 0; i < length(eflags); i++)
         if (f & eflags[i].flag) {
-            p += sprintf(p, "%s%s", all ? "|" : "", eflags[i].s);
+            p += snprintf(p, 256, "%s%s", all ? "|" : "", eflags[i].s);
             all |= eflags[i].flag;
         }
     if (all != f) {
-        p += sprintf(p, "%s%d", all ? "|" : "", f & ~all);
+        p += snprintf(p, 256, "%s%d", all ? "|" : "", f & ~all);
         all = f;
     }
-    p += sprintf(p, "%s", all ? "" : "0");
+    p += snprintf(p, 256, "%s", all ? "" : "0");
     return buf;
 }
 
 char *rstr(int r)
 {
     switch (r) {
-        case RN: return (char *)"RN";
+        case RN: return const_cast<char*>("RN");
 #ifdef FE_TOWARDZERO
-        case RZ: return (char *)"RZ";
+        case RZ: return const_cast<char*>("RZ");
 #endif
 #ifdef FE_UPWARD
-        case RU: return (char *)"RU";
+        case RU: return const_cast<char*>("RU");
 #endif
 #ifdef FE_DOWNWARD
-        case RD: return (char *)"RD";
+        case RD: return const_cast<char*>("RD");
 #endif
     }
-    return (char *)"R?";
+    return const_cast<char*>("R?");
 }
 
 int checkexcept(int got, int want, int r)

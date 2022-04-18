@@ -98,16 +98,16 @@ HWTEST_F(Time, TimeTest, Function | MediumTest | Level2)
 {
     time_t t;
 
-    putenv((char *)"TZ=GMT");
+    putenv(const_cast<char*>("TZ=GMT"));
     tzset();
     TM(0, 0, 0, 1, 0, 70, 4, 0, 0);
-    tm2sec(&tmmy, 0, (char *)"gmtime(0)");
+    tm2sec(&tmmy, 0, const_cast<char*>("gmtime(0)"));
     TM(7, 14, 3, 19, 0, 138, 2, 18, 0);
-    tm2sec(&tmmy, 0, (char *)"2038-1s");
+    tm2sec(&tmmy, 0, const_cast<char*>("2038-1s"));
     TM(8, 14, 3, 19, 0, 138, 2, 18, 0);
-    tm2sec(&tmmy, 1, (char *)"2038");
+    tm2sec(&tmmy, 1, const_cast<char*>("2038"));
 
-    sec2tm(0, (char *)"EPOCH");
+    sec2tm(0, const_cast<char*>("EPOCH"));
     for (t = 1; t < 1000; t++)
-        sec2tm(t * 100003, (char *)"EPOCH+eps");
+        sec2tm(t * 100003, const_cast<char*>("EPOCH+eps"));
 }

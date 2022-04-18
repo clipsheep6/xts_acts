@@ -9,11 +9,11 @@
 
 #define T(f) do {                                                   \
     EXPECT_FALSE(f) << #f << " failed: " << strerror(errno) << endl;\
-} while(0)
+} while (0)
 
 #define T2(r, f) do {                                                   \
     EXPECT_FALSE((r = (f))) << #f << " failed: " << strerror(r) << endl;\
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

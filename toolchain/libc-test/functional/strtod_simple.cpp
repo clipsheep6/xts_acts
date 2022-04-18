@@ -10,7 +10,7 @@
     ((r) = (f)) == (x) ||                                     \
         (t_error("%s failed (" m ")\n", #f, r, x, r - x), 0); \
     EXPECT_DOUBLE_EQ((r), (x));                               \
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

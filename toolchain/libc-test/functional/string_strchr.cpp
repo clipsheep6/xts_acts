@@ -11,7 +11,7 @@
         EXPECT_FALSE(q) << "strchr(" << #s << "," << #c 										\
 			<< ")" << " with align=" << align << " returned str+" << q-p << ", wanted 0"<< endl;\
 	} 																							\
-} while(0)
+} while (0)
 
 #define T(s, c, n) do { 																							\
     int align;																										\
@@ -23,7 +23,7 @@
 	    EXPECT_EQ(q - p , n) << "strchr(" << #s  																	\
 			<< "," << #c << ")" << "with align=" << align << " returned str+" << q-p << " wanted str+" << n << endl;\
 	}																												\
-} while(0)	
+} while (0)	
 
 using namespace std;
 using namespace testing::ext;

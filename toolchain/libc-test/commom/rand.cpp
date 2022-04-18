@@ -116,9 +116,9 @@ int t_choose(uint64_t n, size_t k, uint64_t *p)
         }
         return 0;
     }
-    if (n < 5*k && (n-k)*sizeof *tab < (size_t)-1) {
+    if (n < 5*k && (n-k)*sizeof(uint64_t) < (size_t)-1) {
         /* allocation is n-k < 4*k */
-        tab = (uint64_t *)malloc((n-k) * sizeof *tab);
+        tab = (uint64_t *)malloc((n-k) * sizeof(uint64_t));
         if (!tab)
             return -1;
         for (i = 0; i < k; i++)
@@ -135,7 +135,7 @@ int t_choose(uint64_t n, size_t k, uint64_t *p)
     
     /* allocation is 2*k <= len < 4*k */
     for (len = 16; len < 2*k; len *= 2);
-    tab =(uint64_t *) calloc(len, sizeof *tab);
+    tab =(uint64_t *) calloc(len, sizeof(uint64_t));
     if (!tab)
         return -1;
     for (i = 0; i < k; i++)

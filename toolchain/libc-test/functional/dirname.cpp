@@ -9,7 +9,7 @@
     char *got = dirname(strcpy(tmp, path));                                     \
     EXPECT_EQ(0, strcmp(want, got)) << "dirname(\""                             \
         << path << "\") got \"" << got << "\" want \"" << want << "\"" << endl; \
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

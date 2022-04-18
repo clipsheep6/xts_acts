@@ -7,11 +7,11 @@
 
 #define TESTC(c, m) do {                                        \
     EXPECT_TRUE((c)) << #c << " failed (" << m << ")" << endl;  \
-} while(0)
+} while (0)
 
 #define TESTR(r, f, m) do {                                                                   \
     EXPECT_EQ(((r) = (f)), 0) << #f << " failed: " << strerror(r) << " (" << m << ")" << endl;\
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

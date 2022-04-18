@@ -23,17 +23,17 @@ HWTEST_F(RegexBracketIcase, RegexBracketIcaseTest, Function | MediumTest | Level
         char *s;
         int n;
     } t[] = {
-        {(char *)"a", REG_NOMATCH},
-        {(char *)"A", REG_NOMATCH},
-        {(char *)"b", REG_NOMATCH},
-        {(char *)"B", REG_NOMATCH},
-        {(char *)"c", REG_NOMATCH},
-        {(char *)"C", REG_NOMATCH},
-        {(char *)"d", 0},
-        {(char *)"D", 0},
+        {const_cast<char*>("a"), REG_NOMATCH},
+        {const_cast<char*>("A"), REG_NOMATCH},
+        {const_cast<char*>("b"), REG_NOMATCH},
+        {const_cast<char*>("B"), REG_NOMATCH},
+        {const_cast<char*>("c"), REG_NOMATCH},
+        {const_cast<char*>("C"), REG_NOMATCH},
+        {const_cast<char*>("d"), 0},
+        {const_cast<char*>("D"), 0},
         {0, 0}};
 
-    pat = (char *)"[^aBcC]";
+    pat = const_cast<char*>("[^aBcC]");
     n = regcomp(&re, pat, REG_ICASE);
     if (n) {
         regerror(n, &re, buf, sizeof buf);

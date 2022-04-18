@@ -7,7 +7,7 @@
 
 #define T(r, f) do {                                           \
     EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(r); \
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

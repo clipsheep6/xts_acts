@@ -6,7 +6,7 @@
 
 #define ASSERT(x) do {                           \
     EXPECT_TRUE((x)) << #x << " failed" << endl; \
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;

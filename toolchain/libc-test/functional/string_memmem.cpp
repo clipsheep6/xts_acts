@@ -24,7 +24,7 @@ void N(char *s, char *tail, char *sub)
     EXPECT_STRNE(nullptr, q) << "memmem(" << #s << "," << #sub << ") returned 0, wanted str+" << n << endl; \
     EXPECT_EQ(q - p, n) << "memmem(" << #s                                                                  \
         << "," << #sub << ") returned str+" << q - p << ", wanted str+" << n << endl;                       \
-} while(0)
+} while (0)
 
 /**
  * @tc.name      : StringMemmemTest
@@ -33,19 +33,19 @@ void N(char *s, char *tail, char *sub)
  */
 HWTEST_F(StringMemmem, StringMemmemTest, Function | MediumTest | Level2)
 {
-    N((char *)"", (char *)"a", (char *)"a");
-    N((char *)"a", (char *)"a", (char *)"aa");
-    N((char *)"a", (char *)"b", (char *)"b");
-    N((char *)"aa", (char *)"b", (char *)"ab");
-    N((char *)"aa", (char *)"a", (char *)"aaa");
-    N((char *)"aba", (char *)"b", (char *)"bab");
-    N((char *)"abba", (char *)"b", (char *)"bab");
-    N((char *)"abba", (char *)"ba", (char *)"aba");
-    N((char *)"abc abc", (char *)"d", (char *)"abcd");
-    N((char *)"0-1-2-3-4-5-6-7-8-9", (char *)"", (char *)"-3-4-56-7-8-");
-    N((char *)"0-1-2-3-4-5-6-7-8-9", (char *)"", (char *)"-3-4-5+6-7-8-");
-    N((char *)"_ _ _\xff_ _ _", (char *)"\x7f_", (char *)"_\x7f_");
-    N((char *)"_ _ _\x7f_ _ _", (char *)"\xff_", (char *)"_\xff_");
+    N(const_cast<char*>(""), const_cast<char*>("a"), const_cast<char*>("a"));
+    N(const_cast<char*>("a"), const_cast<char*>("a"), const_cast<char*>("aa"));
+    N(const_cast<char*>("a"), const_cast<char*>("b"), const_cast<char*>("b"));
+    N(const_cast<char*>("aa"), const_cast<char*>("b"), const_cast<char*>("ab"));
+    N(const_cast<char*>("aa"), const_cast<char*>("a"), const_cast<char*>("aaa"));
+    N(const_cast<char*>("aba"), const_cast<char*>("b"), const_cast<char*>("bab"));
+    N(const_cast<char*>("abba"), const_cast<char*>("b"), const_cast<char*>("bab"));
+    N(const_cast<char*>("abba"), const_cast<char*>("ba"), const_cast<char*>("aba"));
+    N(const_cast<char*>("abc abc"), const_cast<char*>("d"), const_cast<char*>("abcd"));
+    N(const_cast<char*>("0-1-2-3-4-5-6-7-8-9"), const_cast<char*>(""), const_cast<char*>("-3-4-56-7-8-"));
+    N(const_cast<char*>("0-1-2-3-4-5-6-7-8-9"), const_cast<char*>(""), const_cast<char*>("-3-4-5+6-7-8-"));
+    N(const_cast<char*>("_ _ _\xff_ _ _"), const_cast<char*>("\x7f_"), const_cast<char*>("_\x7f_"));
+    N(const_cast<char*>("_ _ _\x7f_ _ _"), const_cast<char*>("\xff_"), const_cast<char*>("_\xff_"));
 
     T("", "", 0);
     T("abcd", "", 0);

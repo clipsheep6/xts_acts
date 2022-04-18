@@ -31,25 +31,25 @@ HWTEST_F(SearchHsearch, SearchHsearchTest, Function | MediumTest | Level2)
     EXPECT_FALSE(hcreate(-1) || errno != ENOMEM) 
         << "hcreate((size_t)-1) should fail with ENOMEM got " << strerror(errno) << endl;
     EXPECT_FALSE(!hcreate(13)) << "hcreate(13) failed" << endl;
-    set((char *)"", 0);
-    set((char *)"a", 1);
-    set((char *)"b", 2);
-    set((char *)"abc", 3);
-    set((char *)"cd", 4);
-    set((char *)"e", 5);
-    set((char *)"ef", 6);
-    set((char *)"g", 7);
-    set((char *)"h", 8);
-    set((char *)"iiiiiiiiii", 9);
+    set(const_cast<char*>(""), 0);
+    set(const_cast<char*>("a"), 1);
+    set(const_cast<char*>("b"), 2);
+    set(const_cast<char*>("abc"), 3);
+    set(const_cast<char*>("cd"), 4);
+    set(const_cast<char*>("e"), 5);
+    set(const_cast<char*>("ef"), 6);
+    set(const_cast<char*>("g"), 7);
+    set(const_cast<char*>("h"), 8);
+    set(const_cast<char*>("iiiiiiiiii"), 9);
 
-    EXPECT_FALSE(!get((char *)"a")) << "hsearch FIND a failed" << endl;
-    EXPECT_FALSE(get((char *)"c")) << "hsearch FIND c should fail" << endl;
+    EXPECT_FALSE(!get(const_cast<char*>("a"))) << "hsearch FIND a failed" << endl;
+    EXPECT_FALSE(get(const_cast<char*>("c"))) << "hsearch FIND c should fail" << endl;
 
-    set((char *)"g", 10);
+    set(const_cast<char*>("g"), 10);
     EXPECT_FALSE(e && getdata(e) != 7) << "hsearch ENTER g 10 returned data " << getdata(e) << ", wanted 7" << endl;
-    set((char *)"g", 10);
+    set(const_cast<char*>("g"), 10);
     EXPECT_FALSE(e && getdata(e) != 7) << "hsearch ENTER g 10 returned data " << getdata(e) << ", wanted 7" << endl;
-    set((char *)"j", 10);
+    set(const_cast<char*>("j"), 10);
     EXPECT_TRUE(e && getdata(e) != 7) << "hsearch ENTER j 10 returned data " << getdata(e) << ", wanted 10" << endl;
     hdestroy();
 }

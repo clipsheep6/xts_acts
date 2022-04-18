@@ -1,7 +1,7 @@
 #include <search.h>
 #define T(t) (t*)0;
 #define F(t,n) {t *y = &x.n;}
-#define C(n) switch(n){case n:;}
+#define C(n) switch(n) {case n:;}
 static void f()
 {
     T(size_t)
@@ -10,8 +10,8 @@ static void f()
     T(ENTRY)
     {
         struct entry x;
-        F(char*,key)
-        F(void*,data)
+        F(char*, key)
+        F(void*, data)
     }
     switch((ACTION)0) {
         case FIND:

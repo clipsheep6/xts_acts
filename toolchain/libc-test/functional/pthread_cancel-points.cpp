@@ -11,7 +11,7 @@
 
 #define TESTC(c, m) do { \
     EXPECT_TRUE((c)) << #c << " failed (" << cdescr << ", " << m << ")" << endl;\
-} while(0)
+} while (0)
 
 #define TESTR(f, m) do {                                                                                         \
     int r;                                                                                                       \
@@ -21,7 +21,7 @@
 #define TESTE(f, m) do { \
     EXPECT_FALSE(((f) == -1)) << #f << " failed: " \
         << strerror(errno) << " (" << cdescr << ", " << m << ")" << endl;\
-} while(0)
+} while (0)
 
 
 using namespace std;

@@ -28,22 +28,22 @@ HWTEST_F(SearchIsearch, SearchIsearchTest, Function | MediumTest | Level2)
 {
     size_t n;
 
-    set_str((char *)"");
-    set_str((char *)"a");
-    set_str((char *)"b");
-    set_str((char *)"abc");
-    set_str((char *)"cd");
-    set_str((char *)"e");
-    set_str((char *)"ef");
-    set_str((char *)"g");
-    set_str((char *)"h");
-    set_str((char *)"iiiiiiiiii");
+    set_str(const_cast<char*>(""));
+    set_str(const_cast<char*>("a"));
+    set_str(const_cast<char*>("b"));
+    set_str(const_cast<char*>("abc"));
+    set_str(const_cast<char*>("cd"));
+    set_str(const_cast<char*>("e"));
+    set_str(const_cast<char*>("ef"));
+    set_str(const_cast<char*>("g"));
+    set_str(const_cast<char*>("h"));
+    set_str(const_cast<char*>("iiiiiiiiii"));
     EXPECT_TRUE(get("a"));
     EXPECT_FALSE(get("c"));
     n = nel;
-    set_str((char *)"g");
+    set_str(const_cast<char*>("g"));
     EXPECT_EQ(n, nel);
     n = nel;
-    set_str((char *)"j");
+    set_str(const_cast<char*>("j"));
     EXPECT_EQ(nel, n + 1);
 }

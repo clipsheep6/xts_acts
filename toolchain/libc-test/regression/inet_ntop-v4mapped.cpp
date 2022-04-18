@@ -14,7 +14,7 @@ class InetNtopV4mapped : public testing::Test {};
  */
 HWTEST_F(InetNtopV4mapped, InetNtopV4mappedTest, Function | MediumTest | Level2)
 {
-    char *expect = (char *)"::ffff:192.168.0.1";
+    char *expect = const_cast<char*>("::ffff:192.168.0.1");
     char buf[100];
     char addr[16];
     if (inet_pton(AF_INET6, expect, addr) == 1) {

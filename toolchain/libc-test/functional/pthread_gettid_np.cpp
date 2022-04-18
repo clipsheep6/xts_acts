@@ -9,7 +9,7 @@
 
 #define TESTT(c, ...) do {                                       \
     EXPECT_TRUE((c)) << #c << " failed: " << __VA_ARGS__ << endl;\
-} while(0)
+} while (0)
 
 using namespace std;
 using namespace testing::ext;
