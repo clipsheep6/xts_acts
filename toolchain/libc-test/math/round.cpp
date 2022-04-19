@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Round : public testing::Test {};
-
 static struct d_d t[] = {
 #include "sanity/round.h"
 #include "special/round.h"
 
 };
+
+using namespace testing::ext;
+class Round : public testing::Test {};
 
 /**
  * @tc.name      : RoundTest

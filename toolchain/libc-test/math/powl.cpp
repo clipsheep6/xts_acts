@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Powl : public testing::Test {};
-
 static struct ll_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "crlibm/pow.h"
@@ -21,6 +18,9 @@ static struct ll_l t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Powl : public testing::Test {};
 
 /**
  * @tc.name      : PowlTest

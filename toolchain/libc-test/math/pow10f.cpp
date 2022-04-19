@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Pow10f : public testing::Test {};
-
 static struct f_f t[] = {
 #include "sanity/pow10f.h"
 #include "special/exp10f.h"
 
 };
+
+using namespace testing::ext;
+class Pow10f : public testing::Test {};
 
 /**
  * @tc.name      : Pow10fTest

@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Fabs : public testing::Test {};
-
 static struct d_d t[] = {
 #include "ucb/fabs.h"
 #include "sanity/fabs.h"
 #include "special/fabs.h"
 
 };
+
+using namespace testing::ext;
+class Fabs : public testing::Test {};
 
 /**
  * @tc.name      : FabsTest

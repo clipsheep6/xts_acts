@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Nearbyint : public testing::Test {};
-
 static struct d_d t[] = {
 #include "sanity/nearbyint.h"
 #include "special/nearbyint.h"
 
 };
+
+using namespace testing::ext;
+class Nearbyint : public testing::Test {};
 
 /**
  * @tc.name      : NearbyintTest

@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Erf : public testing::Test {};
-
 static struct d_d t[] = {
 #include "sanity/erf.h"
 #include "special/erf.h"
 
 };
+
+using namespace testing::ext;
+class Erf : public testing::Test {};
 
 /**
  * @tc.name      : ErfTest

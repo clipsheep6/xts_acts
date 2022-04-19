@@ -5,10 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Pow : public testing::Test {};
-
-// TODO: fix ldbl
 static struct dd_d t[] = {
 #include "crlibm/pow.h"
 #include "ucb/pow.h"
@@ -16,6 +12,9 @@ static struct dd_d t[] = {
 #include "special/pow.h"
 
 };
+
+using namespace testing::ext;
+class Pow : public testing::Test {};
 
 /**
  * @tc.name      : PowTest

@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Tanf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "ucb/tanf.h"
 #include "sanity/tanf.h"
 #include "special/tanf.h"
 
 };
+
+using namespace testing::ext;
+class Tanf : public testing::Test {};
 
 /**
  * @tc.name      : TanfTest

@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Ldexp : public testing::Test {};
-
 static struct di_d t[] = {
 #include "sanity/ldexp.h"
 #include "special/ldexp.h"
 
 };
+
+using namespace testing::ext;
+class Ldexp : public testing::Test {};
 
 /**
  * @tc.name      : LdexpTest

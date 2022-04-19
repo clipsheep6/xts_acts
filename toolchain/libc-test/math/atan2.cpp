@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Atan2 : public testing::Test {};
-
 static struct dd_d t[] = {
 #include "ucb/atan2.h"
 #include "sanity/atan2.h"
 #include "special/atan2.h"
 
 };
+
+using namespace testing::ext;
+class Atan2 : public testing::Test {};
 
 /**
  * @tc.name      : Atan2Test

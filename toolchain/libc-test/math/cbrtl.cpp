@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Cbrtl : public testing::Test {};
-
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/cbrt.h"
@@ -17,6 +14,9 @@ static struct l_l t[] = {
 #include "special/cbrtl.h"
 #endif
 };
+
+using namespace testing::ext;
+class Cbrtl : public testing::Test {};
 
 /**
  * @tc.name      : CbrtlTest

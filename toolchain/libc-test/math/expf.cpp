@@ -5,16 +5,16 @@
 
 #include "mtest.h"
 
-using namespace std;
-using namespace testing::ext;
-class Expf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "ucb/expf.h"
 #include "sanity/expf.h"
 #include "special/expf.h"
 
 };
+
+using namespace std;
+using namespace testing::ext;
+class Expf : public testing::Test {};
 
 /**
  * @tc.name      : ExpfTest

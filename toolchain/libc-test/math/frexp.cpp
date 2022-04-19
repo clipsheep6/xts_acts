@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Frexp : public testing::Test {};
-
 static struct d_di t[] = {
 #include "sanity/frexp.h"
 #include "special/frexp.h"
 
 };
+
+using namespace testing::ext;
+class Frexp : public testing::Test {};
 
 /**
  * @tc.name      : FrexpTest

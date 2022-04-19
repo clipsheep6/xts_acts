@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Lgammaf : public testing::Test {};
-
 static struct f_fi t[] = {
 #include "sanity/lgammaf.h"
 #include "special/lgammaf.h"
 
 };
+
+using namespace testing::ext;
+class Lgammaf : public testing::Test {};
 
 /**
  * @tc.name      : LgammafTest

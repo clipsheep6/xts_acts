@@ -5,10 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Nexttowardf : public testing::Test {};
-
-// TODO: separate ldbl dir
 static struct ll_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/nexttowardf.h"
@@ -20,6 +16,9 @@ static struct ll_l t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Nexttowardf : public testing::Test {};
 
 /**
  * @tc.name      : NexttowardfTest

@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Nextafterf : public testing::Test {};
-
 static struct ff_f t[] = {
 #include "sanity/nextafterf.h"
 #include "special/nextafterf.h"
 
 };
+
+using namespace testing::ext;
+class Nextafterf : public testing::Test {};
 
 /**
  * @tc.name      : NextafterfTest

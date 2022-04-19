@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Llrint : public testing::Test {};
-
 static struct d_i t[] = {
 #include "sanity/llrint.h"
 #include "special/llrint.h"
 
 };
+
+using namespace testing::ext;
+class Llrint : public testing::Test {};
 
 /**
  * @tc.name      : LlrintTest

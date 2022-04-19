@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Trunc : public testing::Test {};
-
 static struct d_d t[] = {
 #include "sanity/trunc.h"
 #include "special/trunc.h"
 
 };
+
+using namespace testing::ext;
+class Trunc : public testing::Test {};
 
 /**
  * @tc.name      : TruncTest

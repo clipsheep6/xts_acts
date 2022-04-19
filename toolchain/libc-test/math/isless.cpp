@@ -4,6 +4,26 @@
 
 #include "mtest.h"
 
+
+#define TEST_T(f, want) do {                                                        \
+        int r, e;                                                                   \
+        feclearexcept(FE_ALL_EXCEPT);                                               \
+        r = (f);                                                                    \
+        e = fetestexcept(FE_ALL_EXCEPT);                                            \
+        EXPECT_EQ(r, (want)) << " failed: got " << r << " want " << (want) << endl; \
+        EXPECT_FALSE(e &INVALID) << "raised the invalid exception" << endl;         \
+} while (0)
+
+#undef T
+#define T(a, b, rel) do {                                             \
+        TEST_T(isunordered(a, b), rel == UNORD);                      \
+        TEST_T(isless(a, b), rel == LESS);                            \
+        TEST_T(islessequal(a, b), rel == LESS || rel == EQUAL);       \
+        TEST_T(islessgreater(a, b), rel == LESS || rel == GREATER);   \
+        TEST_T(isgreater(a, b), rel == GREATER);                      \
+        TEST_T(isgreaterequal(a, b), rel == GREATER || rel == EQUAL); \
+} while (0)
+
 using namespace std;
 using namespace testing::ext;
 class Isless : public testing::Test {};
@@ -14,25 +34,6 @@ enum {
     GREATER,
     UNORD
 };
-
-#define TEST_T(f, want) do {                                                        \
-        int r, e;                                                                   \
-        feclearexcept(FE_ALL_EXCEPT);                                               \
-        r = (f);                                                                    \
-        e = fetestexcept(FE_ALL_EXCEPT);                                            \
-        EXPECT_EQ(r, (want)) << " failed: got " << r << " want " << (want) << endl; \
-        EXPECT_FALSE(e &INVALID) << "raised the invalid exception" << endl;         \
-    } while (0)
-
-#undef T
-#define T(a, b, rel) do {                                             \
-        TEST_T(isunordered(a, b), rel == UNORD);                      \
-        TEST_T(isless(a, b), rel == LESS);                            \
-        TEST_T(islessequal(a, b), rel == LESS || rel == EQUAL);       \
-        TEST_T(islessgreater(a, b), rel == LESS || rel == GREATER);   \
-        TEST_T(isgreater(a, b), rel == GREATER);                      \
-        TEST_T(isgreaterequal(a, b), rel == GREATER || rel == EQUAL); \
-    } while (0)
 
 /**
  * @tc.name      : IslessTest

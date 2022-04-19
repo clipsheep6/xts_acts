@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Ynf : public testing::Test {};
-
 static struct fi_f t[] = {
 #include "sanity/ynf.h"
 #include "special/ynf.h"
 };
+
+using namespace testing::ext;
+class Ynf : public testing::Test {};
 
 /**
  * @tc.name      : YnfTest

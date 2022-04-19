@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Modfl : public testing::Test {};
-
 static struct l_ll t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/modf.h"
@@ -17,6 +14,9 @@ static struct l_ll t[] = {
 #include "special/modfl.h"
 #endif
 };
+
+using namespace testing::ext;
+class Modfl : public testing::Test {};
 
 /**
  * @tc.name      : ModflTest

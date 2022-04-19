@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Log10l : public testing::Test {};
-
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "crlibm/log10.h"
@@ -21,6 +18,9 @@ static struct l_l t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Log10l : public testing::Test {};
 
 /**
  * @tc.name      : Log10lTest

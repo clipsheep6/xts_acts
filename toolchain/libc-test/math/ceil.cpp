@@ -5,16 +5,16 @@
 
 #include "mtest.h"
 
-using namespace std;
-using namespace testing::ext;
-class Ceil : public testing::Test {};
-
 static struct d_d t[] = {
 #include "ucb/ceil.h"
 #include "sanity/ceil.h"
 #include "special/ceil.h"
 
 };
+
+using namespace std;
+using namespace testing::ext;
+class Ceil : public testing::Test {};
 
 /**
  * @tc.name      : CeilTest

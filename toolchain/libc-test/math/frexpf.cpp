@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Frexpf : public testing::Test {};
-
 static struct f_fi t[] = {
 #include "sanity/frexpf.h"
 #include "special/frexpf.h"
 
 };
+
+using namespace testing::ext;
+class Frexpf : public testing::Test {};
 
 /**
  * @tc.name      : FrexpfTest

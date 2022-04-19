@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Yn : public testing::Test {};
-
 static struct di_d t[] = {
 #include "sanity/yn.h"
 #include "special/yn.h"
 };
+
+using namespace testing::ext;
+class Yn : public testing::Test {};
 
 /**
  * @tc.name      : YnTest

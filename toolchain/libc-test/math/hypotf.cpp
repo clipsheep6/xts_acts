@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Hypotf : public testing::Test {};
-
 static struct ff_f t[] = {
 #include "ucb/hypotf.h"
 #include "sanity/hypotf.h"
 #include "special/hypotf.h"
 
 };
+
+using namespace testing::ext;
+class Hypotf : public testing::Test {};
 
 /**
  * @tc.name      : HypotfTest

@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Sqrtl : public testing::Test {};
-
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "ucb/sqrt.h"
@@ -20,6 +17,9 @@ static struct l_l t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Sqrtl : public testing::Test {};
 
 /**
  * @tc.name      : SqrtlTest

@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Remainder : public testing::Test {};
-
 static struct dd_d t[] = {
 #include "sanity/remainder.h"
 #include "special/remainder.h"
 
 };
+
+using namespace testing::ext;
+class Remainder : public testing::Test {};
 
 /**
  * @tc.name      : RemainderTest

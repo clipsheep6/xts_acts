@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Copysign : public testing::Test {};
-
 static struct dd_d t[] = {
 #include "sanity/copysign.h"
 #include "special/copysign.h"
 
 };
+
+using namespace testing::ext;
+class Copysign : public testing::Test {};
 
 /**
  * @tc.name      : CopysignTest

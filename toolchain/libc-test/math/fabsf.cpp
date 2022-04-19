@@ -5,16 +5,16 @@
 
 #include "mtest.h"
 
-using namespace std;
-using namespace testing::ext;
-class Fabsf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "ucb/fabsf.h"
 #include "sanity/fabsf.h"
 #include "special/fabsf.h"
 
 };
+
+using namespace std;
+using namespace testing::ext;
+class Fabsf : public testing::Test {};
 
 /**
  * @tc.name      : FabsfTest

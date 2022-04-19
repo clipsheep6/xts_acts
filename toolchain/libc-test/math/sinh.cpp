@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Sinh : public testing::Test {};
-
 static struct d_d t[] = {
 #include "crlibm/sinh.h"
 #include "ucb/sinh.h"
@@ -15,6 +12,9 @@ static struct d_d t[] = {
 #include "special/sinh.h"
 
 };
+
+using namespace testing::ext;
+class Sinh : public testing::Test {};
 
 /**
  * @tc.name      : SinhTest

@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Exp : public testing::Test {};
-
 static struct d_d t[] = {
 #include "crlibm/exp.h"
 #include "ucb/exp.h"
@@ -15,6 +12,9 @@ static struct d_d t[] = {
 #include "special/exp.h"
 
 };
+
+using namespace testing::ext;
+class Exp : public testing::Test {};
 
 /**
  * @tc.name      : ExpTest

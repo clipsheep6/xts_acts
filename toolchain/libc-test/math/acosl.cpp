@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Acosl : public testing::Test {};
-
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "crlibm/acos.h"
@@ -20,6 +17,9 @@ static struct l_l t[] = {
 #include "special/acosl.h"
 #endif
 };
+
+using namespace testing::ext;
+class Acosl : public testing::Test {};
 
 /**
  * @tc.name      : AcoslTest

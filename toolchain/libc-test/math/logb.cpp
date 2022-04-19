@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Logb : public testing::Test {};
-
 static struct d_d t[] = {
 #include "sanity/logb.h"
 #include "special/logb.h"
 
 };
+
+using namespace testing::ext;
+class Logb : public testing::Test {};
 
 /**
  * @tc.name      : LogbTest

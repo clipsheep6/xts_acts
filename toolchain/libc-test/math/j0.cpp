@@ -4,14 +4,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class J0 : public testing::Test {};
-
 static struct d_d t[] = {
 #include "sanity/j0.h"
 #include "special/j0.h"
 
 };
+
+using namespace testing::ext;
+class J0 : public testing::Test {};
 
 /**
  * @tc.name      : J0Test

@@ -1,17 +1,19 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "mtest.h"
-#include "gtest/gtest.h"
+#include <cstdint>
+#include <cstdio>
 
-using namespace std;
-using namespace testing::ext;
-class ErfcfSuite : public testing::Test {};
+#include "mtest.h"
+
+#include "gtest/gtest.h"
 
 static struct f_f t[] = {
 #include "sanity/erfcf.h"
 #include "special/erfcf.h"
 
 };
+
+using namespace std;
+using namespace testing::ext;
+class ErfcfSuite : public testing::Test {};
 
 /**
  * @tc.name      : ErfcfTest

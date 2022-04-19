@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Fmaxf : public testing::Test {};
-
 static struct ff_f t[] = {
 #include "sanity/fmaxf.h"
 #include "special/fmaxf.h"
 
 };
+
+using namespace testing::ext;
+class Fmaxf : public testing::Test {};
 
 /**
  * @tc.name      : FmaxfTest

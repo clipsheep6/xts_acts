@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Rintf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "sanity/rintf.h"
 #include "special/rintf.h"
 
 };
+
+using namespace testing::ext;
+class Rintf : public testing::Test {};
 
 /**
  * @tc.name      : RintfTest

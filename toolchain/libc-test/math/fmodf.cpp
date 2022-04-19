@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Fmodf : public testing::Test {};
-
 static struct ff_f t[] = {
 #include "ucb/fmodf.h"
 #include "sanity/fmodf.h"
 #include "special/fmodf.h"
 
 };
+
+using namespace testing::ext;
+class Fmodf : public testing::Test {};
 
 /**
  * @tc.name      : FmodfTest

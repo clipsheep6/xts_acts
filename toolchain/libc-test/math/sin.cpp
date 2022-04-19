@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Sin : public testing::Test {};
-
 static struct d_d t[] = {
 #include "crlibm/sin.h"
 #include "ucb/sin.h"
@@ -15,6 +12,9 @@ static struct d_d t[] = {
 #include "special/sin.h"
 
 };
+
+using namespace testing::ext;
+class Sin : public testing::Test {};
 
 /**
  * @tc.name      : SinTest

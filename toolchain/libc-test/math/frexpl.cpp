@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Frexpl : public testing::Test {};
-
 static struct l_li t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/frexp.h"
@@ -19,6 +16,9 @@ static struct l_li t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Frexpl : public testing::Test {};
 
 /**
  * @tc.name      : FrexplTest

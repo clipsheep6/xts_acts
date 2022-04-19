@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Y0f : public testing::Test {};
-
 static struct f_f t[] = {
 #include "sanity/y0f.h"
 #include "special/y0f.h"
 
 };
+
+using namespace testing::ext;
+class Y0f : public testing::Test {};
 
 /**
  * @tc.name      : Y0fTest

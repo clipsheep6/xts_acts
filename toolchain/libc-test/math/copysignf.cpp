@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace std;
-using namespace testing::ext;
-class Copysignf : public testing::Test {};
-
 static struct ff_f t[] = {
 #include "sanity/copysignf.h"
 #include "special/copysignf.h"
 
 };
+
+using namespace std;
+using namespace testing::ext;
+class Copysignf : public testing::Test {};
 
 /**
  * @tc.name      : CopysignfTest

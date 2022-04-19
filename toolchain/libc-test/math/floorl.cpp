@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Floorl : public testing::Test {};
-
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "ucb/floor.h"
@@ -20,6 +17,9 @@ static struct l_l t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Floorl : public testing::Test {};
 
 /**
  * @tc.name      : FloorlTest

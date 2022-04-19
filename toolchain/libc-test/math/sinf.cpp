@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Sinf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "ucb/sinf.h"
 #include "sanity/sinf.h"
 #include "special/sinf.h"
 
 };
+
+using namespace testing::ext;
+class Sinf : public testing::Test {};
 
 /**
  * @tc.name      : SinfTest

@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Scalblnl : public testing::Test {};
-
 static struct li_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/scalbln.h"
@@ -19,6 +16,9 @@ static struct li_l t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Scalblnl : public testing::Test {};
 
 /**
  * @tc.name      : ScalblnlTest

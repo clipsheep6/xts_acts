@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Atan2f : public testing::Test {};
-
 static struct ff_f t[] = {
 #include "ucb/atan2f.h"
 #include "sanity/atan2f.h"
 #include "special/atan2f.h"
 
 };
+
+using namespace testing::ext;
+class Atan2f : public testing::Test {};
 
 /**
  * @tc.name      : Atan2fTest

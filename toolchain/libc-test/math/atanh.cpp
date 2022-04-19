@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Atanh : public testing::Test {};
-
 static struct d_d t[] = {
 #include "sanity/atanh.h"
 #include "special/atanh.h"
 
 };
+
+using namespace testing::ext;
+class Atanh : public testing::Test {};
 
 /**
  * @tc.name      : AtanhTest

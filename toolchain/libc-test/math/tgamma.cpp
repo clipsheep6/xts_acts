@@ -5,14 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Tgamma : public testing::Test {};
-
 static struct d_d t[] = {
 #include "sanity/tgamma.h"
 #include "special/tgamma.h"
 
 };
+
+using namespace testing::ext;
+class Tgamma : public testing::Test {};
+
 /**
  * @tc.name      : TgammaTest
  * @tc.desc      :

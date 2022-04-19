@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Fmal : public testing::Test {};
-
 static struct lll_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/fma.h"
@@ -17,6 +14,9 @@ static struct lll_l t[] = {
 #include "special/fmal.h"
 #endif
 };
+
+using namespace testing::ext;
+class Fmal : public testing::Test {};
 
 /**
  * @tc.name      : FmalTest

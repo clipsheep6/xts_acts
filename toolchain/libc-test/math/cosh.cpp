@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Cosh : public testing::Test {};
-
 static struct d_d t[] = {
 #include "crlibm/cosh.h"
 #include "ucb/cosh.h"
@@ -15,6 +12,9 @@ static struct d_d t[] = {
 #include "special/cosh.h"
 
 };
+
+using namespace testing::ext;
+class Cosh : public testing::Test {};
 
 /**
  * @tc.name      : CoshTest

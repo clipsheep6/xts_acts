@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Remquo : public testing::Test {};
-
 static struct dd_di t[] = {
 #include "sanity/remquo.h"
 #include "special/remquo.h"
 };
+
+using namespace testing::ext;
+class Remquo : public testing::Test {};
 
 /**
  * @tc.name      : RemquoTest

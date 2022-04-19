@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Log2 : public testing::Test {};
-
 static struct d_d t[] = {
 #include "crlibm/log2.h"
 #include "sanity/log2.h"
 #include "special/log2.h"
 
 };
+
+using namespace testing::ext;
+class Log2 : public testing::Test {};
 
 /**
  * @tc.name      : Log2Test

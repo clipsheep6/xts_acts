@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Exp2l : public testing::Test {};
-
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/exp2.h"
@@ -19,6 +16,9 @@ static struct l_l t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Exp2l : public testing::Test {};
 
 /**
  * @tc.name      : Exp2lTest

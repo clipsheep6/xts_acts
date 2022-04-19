@@ -5,10 +5,6 @@
 
 #include "mtest.h"
 
-using namespace std;
-using namespace testing::ext;
-class Cos : public testing::Test {};
-
 static struct d_d t[] = {
 #include "crlibm/cos.h"
 #include "ucb/cos.h"
@@ -16,6 +12,10 @@ static struct d_d t[] = {
 #include "special/cos.h"
 
 };
+
+using namespace std;
+using namespace testing::ext;
+class Cos : public testing::Test {};
 
 /**
  * @tc.name      : CosTest

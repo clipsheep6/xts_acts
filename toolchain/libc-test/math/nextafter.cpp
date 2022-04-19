@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Nextafter : public testing::Test {};
-
 static struct dd_d t[] = {
 #include "sanity/nextafter.h"
 #include "special/nextafter.h"
 
 };
+
+using namespace testing::ext;
+class Nextafter : public testing::Test {};
 
 /**
  * @tc.name      : NextafterTest

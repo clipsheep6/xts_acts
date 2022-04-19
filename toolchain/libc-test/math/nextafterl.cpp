@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Nextafterl : public testing::Test {};
-
 static struct ll_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/nextafter.h"
@@ -19,6 +16,9 @@ static struct ll_l t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Nextafterl : public testing::Test {};
 
 /**
  * @tc.name      : NextafterlTest

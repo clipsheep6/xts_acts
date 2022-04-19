@@ -5,10 +5,6 @@
 
 #include "mtest.h"
 
-using namespace std;
-using namespace testing::ext;
-class Fabsl : public testing::Test {};
-
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "ucb/fabs.h"
@@ -21,6 +17,10 @@ static struct l_l t[] = {
 
 #endif
 };
+
+using namespace std;
+using namespace testing::ext;
+class Fabsl : public testing::Test {};
 
 /**
  * @tc.name      : FabslTest

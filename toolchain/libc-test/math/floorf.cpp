@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Floorf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "ucb/floorf.h"
 #include "sanity/floorf.h"
 #include "special/floorf.h"
 
 };
+
+using namespace testing::ext;
+class Floorf : public testing::Test {};
 
 /**
  * @tc.name      : FloorfTest

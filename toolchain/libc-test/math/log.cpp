@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Log : public testing::Test {};
-
 static struct d_d t[] = {
 #include "crlibm/log.h"
 #include "ucb/log.h"
@@ -15,6 +12,9 @@ static struct d_d t[] = {
 #include "special/log.h"
 
 };
+
+using namespace testing::ext;
+class Log : public testing::Test {};
 
 /**
  * @tc.name      : LogTest

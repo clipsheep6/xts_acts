@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Sincosl : public testing::Test {};
-
 static struct l_ll t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/sincos.h"
@@ -17,6 +14,9 @@ static struct l_ll t[] = {
 #include "special/sincosl.h"
 #endif
 };
+
+using namespace testing::ext;
+class Sincosl : public testing::Test {};
 
 /**
  * @tc.name      : SincoslTest

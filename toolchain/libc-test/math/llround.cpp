@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Llround : public testing::Test {};
-
 static struct d_i t[] = {
 #include "sanity/llround.h"
 #include "special/llround.h"
 
 };
+
+using namespace testing::ext;
+class Llround : public testing::Test {};
 
 /**
  * @tc.name      : LlroundTest

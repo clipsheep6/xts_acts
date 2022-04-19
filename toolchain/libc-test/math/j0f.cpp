@@ -4,14 +4,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class J0f : public testing::Test {};
-
 static struct f_f t[] = {
 #include "sanity/j0f.h"
 #include "special/j0f.h"
 
 };
+
+using namespace testing::ext;
+class J0f : public testing::Test {};
+
 /**
  * @tc.name      : J0fTest
  * @tc.desc      :

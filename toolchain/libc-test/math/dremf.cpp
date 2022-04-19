@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Dremf : public testing::Test {};
-
 static struct ff_f t[] = {
 #include "sanity/remainderf.h"
 #include "special/remainderf.h"
 
 };
+
+using namespace testing::ext;
+class Dremf : public testing::Test {};
 
 /**
  * @tc.name      : DremfTest

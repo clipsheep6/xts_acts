@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Fma : public testing::Test {};
-
 static struct ddd_d t[] = {
 #include "sanity/fma.h"
 #include "special/fma.h"
 };
+
+using namespace testing::ext;
+class Fma : public testing::Test {};
 
 /**
  * @tc.name      : FmaTest

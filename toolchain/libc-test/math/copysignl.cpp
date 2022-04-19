@@ -5,10 +5,6 @@
 
 #include "mtest.h"
 
-using namespace std;
-using namespace testing::ext;
-class Copysignl : public testing::Test {};
-
 static struct ll_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/copysign.h"
@@ -20,6 +16,10 @@ static struct ll_l t[] = {
 
 #endif
 };
+
+using namespace std;
+using namespace testing::ext;
+class Copysignl : public testing::Test {};
 
 /**
  * @tc.name      : CopysignlTest

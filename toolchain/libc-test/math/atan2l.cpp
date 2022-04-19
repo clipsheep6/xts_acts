@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Atan2l : public testing::Test {};
-
 static struct ll_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "ucb/atan2.h"
@@ -20,6 +17,9 @@ static struct ll_l t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Atan2l : public testing::Test {};
 
 /**
  * @tc.name      : Atan2lTest

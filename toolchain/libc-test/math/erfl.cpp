@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Erfl : public testing::Test {};
-
 static struct l_l t[] = {
 #if LDBL_MANT_DIG == 53
 #include "sanity/erf.h"
@@ -19,6 +16,10 @@ static struct l_l t[] = {
 
 #endif
 };
+
+using namespace testing::ext;
+class Erfl : public testing::Test {};
+
 /**
  * @tc.name      : ErflTest
  * @tc.desc      :

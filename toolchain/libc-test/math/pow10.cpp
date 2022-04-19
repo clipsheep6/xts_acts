@@ -5,15 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Pow10 : public testing::Test {};
-
-// TODO: fix ldbl
 static struct d_d t[] = {
 #include "sanity/pow10.h"
 #include "special/exp10.h"
 
 };
+
+using namespace testing::ext;
+class Pow10 : public testing::Test {};
 
 /**
  * @tc.name      : Pow10Test

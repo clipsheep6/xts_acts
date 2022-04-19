@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Log1pf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "sanity/log1pf.h"
 #include "special/log1pf.h"
 
 };
+
+using namespace testing::ext;
+class Log1pf : public testing::Test {};
 
 /**
  * @tc.name      : Log1pfTest

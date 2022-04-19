@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Sincosf : public testing::Test {};
-
 static struct f_ff t[] = {
 #include "sanity/sincosf.h"
 #include "special/sincosf.h"
 };
+
+using namespace testing::ext;
+class Sincosf : public testing::Test {};
 
 /**
  * @tc.name      : SincosfTest

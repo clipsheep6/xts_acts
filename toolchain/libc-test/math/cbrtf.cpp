@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Cbrtf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "sanity/cbrtf.h"
 #include "special/cbrtf.h"
 
 };
+
+using namespace testing::ext;
+class Cbrtf : public testing::Test {};
 
 /**
  * @tc.name      : CbrtfTest

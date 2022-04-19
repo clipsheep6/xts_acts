@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Acosh : public testing::Test {};
-
 static struct d_d t[] = {
 #include "sanity/acosh.h"
 #include "special/acosh.h"
 };
+
+using namespace testing::ext;
+class Acosh : public testing::Test {};
 
 /**
  * @tc.name      : AcoshTest

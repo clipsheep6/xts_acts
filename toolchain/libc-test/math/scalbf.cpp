@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Scalbf : public testing::Test {};
-
 static struct ff_f t[] = {
 #include "sanity/scalbf.h"
 #include "special/scalbf.h"
 
 };
+
+using namespace testing::ext;
+class Scalbf : public testing::Test {};
 
 /**
  * @tc.name      : ScalbfTest

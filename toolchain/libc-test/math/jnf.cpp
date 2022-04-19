@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Jnf : public testing::Test {};
-
 static struct fi_f t[] = {
 #include "sanity/jnf.h"
 #include "special/jnf.h"
 };
+
+using namespace testing::ext;
+class Jnf : public testing::Test {};
 
 /**
  * @tc.name      : JnfTest

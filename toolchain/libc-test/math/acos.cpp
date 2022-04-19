@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Acos : public testing::Test {};
-
 static struct d_d t[] = {
 #include "crlibm/acos.h"
 #include "ucb/acos.h"
@@ -15,6 +12,9 @@ static struct d_d t[] = {
 #include "special/acos.h"
 
 };
+
+using namespace testing::ext;
+class Acos : public testing::Test {};
 
 /**
  * @tc.name      : AcosTest

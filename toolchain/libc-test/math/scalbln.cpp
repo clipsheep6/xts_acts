@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Scalbln : public testing::Test {};
-
 static struct di_d t[] = {
 #include "sanity/scalbln.h"
 #include "special/scalbln.h"
 
 };
+
+using namespace testing::ext;
+class Scalbln : public testing::Test {};
 
 /**
  * @tc.name      : ScalblnTest

@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Sqrt : public testing::Test {};
-
 static struct d_d t[] = {
 #include "ucb/sqrt.h"
 #include "sanity/sqrt.h"
 #include "special/sqrt.h"
 
 };
+
+using namespace testing::ext;
+class Sqrt : public testing::Test {};
 
 /**
  * @tc.name      : SqrtTest

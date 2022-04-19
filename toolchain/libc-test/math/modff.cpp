@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Modff : public testing::Test {};
-
 static struct f_ff t[] = {
 #include "sanity/modff.h"
 #include "special/modff.h"
 };
+
+using namespace testing::ext;
+class Modff : public testing::Test {};
 
 /**
  * @tc.name      : ModffTest

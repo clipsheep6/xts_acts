@@ -5,9 +5,6 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Tan : public testing::Test {};
-
 static struct d_d t[] = {
 #include "crlibm/tan.h"
 #include "ucb/tan.h"
@@ -15,6 +12,9 @@ static struct d_d t[] = {
 #include "special/tan.h"
 
 };
+
+using namespace testing::ext;
+class Tan : public testing::Test {};
 
 /**
  * @tc.name      : TanTest

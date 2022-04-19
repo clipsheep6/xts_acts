@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace std;
-using namespace testing::ext;
-class Fdimf : public testing::Test {};
-
 static struct ff_f t[] = {
 #include "sanity/fdimf.h"
 #include "special/fdimf.h"
 
 };
+
+using namespace std;
+using namespace testing::ext;
+class Fdimf : public testing::Test {};
 
 /**
  * @tc.name      : FdimfTest

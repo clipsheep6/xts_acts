@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Ldexpf : public testing::Test {};
-
 static struct fi_f t[] = {
 #include "sanity/ldexpf.h"
 #include "special/ldexpf.h"
 
 };
+
+using namespace testing::ext;
+class Ldexpf : public testing::Test {};
 
 /**
  * @tc.name      : LdexpfTest

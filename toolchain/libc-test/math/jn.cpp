@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Jn : public testing::Test {};
-
 static struct di_d t[] = {
 #include "sanity/jn.h"
 #include "special/jn.h"
 };
+
+using namespace testing::ext;
+class Jn : public testing::Test {};
 
 /**
  * @tc.name      : JnTest

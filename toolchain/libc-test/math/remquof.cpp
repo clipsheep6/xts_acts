@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Remquof : public testing::Test {};
-
 static struct ff_fi t[] = {
 #include "sanity/remquof.h"
 #include "special/remquof.h"
 };
+
+using namespace testing::ext;
+class Remquof : public testing::Test {};
 
 /**
  * @tc.name      : RemquofTest

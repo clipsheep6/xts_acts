@@ -5,13 +5,13 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Sincos : public testing::Test {};
-
 static struct d_dd t[] = {
 #include "sanity/sincos.h"
 #include "special/sincos.h"
 };
+
+using namespace testing::ext;
+class Sincos : public testing::Test {};
 
 /**
  * @tc.name      : SincosTest

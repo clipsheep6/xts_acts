@@ -5,14 +5,14 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Ilogb : public testing::Test {};
-
 static struct d_i t[] = {
 #include "sanity/ilogb.h"
 #include "special/ilogb.h"
 
 };
+
+using namespace testing::ext;
+class Ilogb : public testing::Test {};
 
 /**
  * @tc.name      : IlogbTest

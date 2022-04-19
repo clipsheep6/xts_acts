@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Logf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "ucb/logf.h"
 #include "sanity/logf.h"
 #include "special/logf.h"
 
 };
+
+using namespace testing::ext;
+class Logf : public testing::Test {};
 
 /**
  * @tc.name      : LogfTest

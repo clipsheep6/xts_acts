@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Acosf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "ucb/acosf.h"
 #include "sanity/acosf.h"
 #include "special/acosf.h"
 
 };
+
+using namespace testing::ext;
+class Acosf : public testing::Test {};
 
 /**
  * @tc.name      : AcosfTest

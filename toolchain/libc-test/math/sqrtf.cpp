@@ -5,15 +5,15 @@
 
 #include "mtest.h"
 
-using namespace testing::ext;
-class Sqrtf : public testing::Test {};
-
 static struct f_f t[] = {
 #include "ucb/sqrtf.h"
 #include "sanity/sqrtf.h"
 #include "special/sqrtf.h"
 
 };
+
+using namespace testing::ext;
+class Sqrtf : public testing::Test {};
 
 /**
  * @tc.name      : SqrtfTest
