@@ -17,9 +17,7 @@ import { describe, it, expect } from 'deccjsunit/index'
 import huks from '@ohos.security.huks'
 import Data from '../../../../../../../utils/data.json'
 
-var handle = {}
-var handle1
-var handle2
+var handle
 let srcData63Kb = Data.Date63KB
 let srcData65Kb = Data.Date65KB
 let HksKeyPurpose = {
@@ -117,12 +115,7 @@ async function publicHmacInitFunc(srcKeyAlies, HuksOptions) {
 	await huks
 		.init(srcKeyAlies, HuksOptions)
 		.then(async (data) => {
-			handle1 = data.handle1
-			handle2 = data.handle2
-			handle = {
-				handle1: handle1,
-				handle2: handle2,
-			}
+			handle = data.handle
 			expect(data.errorCode == 0).assertTrue()
 		})
 		.catch((err) => {

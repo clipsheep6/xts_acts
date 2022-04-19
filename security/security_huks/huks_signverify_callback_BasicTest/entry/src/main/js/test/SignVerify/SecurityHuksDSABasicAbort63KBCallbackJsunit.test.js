@@ -106,7 +106,7 @@ let HuksSignVerify002 = {
 }
 
 let finishOutData
-var handle = {}
+var handle
 let exportKey
 let srcData63 = Data.Data63b
 let srcData63Kb = stringToUint8Array(srcData63)
@@ -225,10 +225,7 @@ async function publicInitFunc(keyAlias, HuksOptions) {
 	await init(keyAlias, HuksOptions)
 		.then((data) => {
 			console.log(`test init data: ${JSON.stringify(data)}`)
-			handle = {
-				handle1: data.handle1,
-				handle2: data.handle2,
-			}
+			handle = data.handle
 			expect(data.errorCode == 0).assertTrue()
 		})
 		.catch((err) => {
