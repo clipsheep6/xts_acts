@@ -85,7 +85,7 @@ HWTEST_F(PthreadCancel, PthreadCancelTest, Function | MediumTest | Level2)
 
     /* Asynchronous cancellation */
     TESTR(r, pthread_create(&td, 0, start_async, &sem1), "failed to create thread");
-    while (sem_wait(&sem1));
+    while (sem_wait(&sem1)) {}
     TESTR(r, pthread_cancel(td), "canceling");
     TESTR(r, pthread_join(td, &res), "joining canceled thread");
     TESTC(res == PTHREAD_CANCELED, "canceled thread exit status");

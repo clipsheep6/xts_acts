@@ -12,8 +12,9 @@ static void txt(char *s, unsigned char *buf)
 {
     int i;
     snprintf(s, 16, "%04x", buf[0] << 8 | buf[1]);
-    for (i = 1; i < 8; i++)
+    for (i = 1; i < 8; i++) {
         sprintf(s + 5 * i, ":%04x", buf[2 * i] << 8 | buf[2 * i + 1]);
+    }
 }
 /**
  * @tc.name      : InetPtonEmptyLastFieldTest

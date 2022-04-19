@@ -17,8 +17,9 @@ static void checkStrptime(const char *s, const char *format, const struct tm *ex
     const char *ret;
 
     ret = strptime(s, format, &tm);
-    if (!ret || *ret != '\0')
+    if (!ret || *ret != '\0') {
         EXPECT_FALSE(!ret || *ret != '\0') << "\"" << format << "\": failed to parse \"" << s << "\"" << endl;
+    }
     else if (tm.tm_sec != expected->tm_sec ||
              tm.tm_min != expected->tm_min ||
              tm.tm_hour != expected->tm_hour ||

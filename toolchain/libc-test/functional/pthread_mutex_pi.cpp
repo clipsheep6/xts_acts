@@ -30,8 +30,9 @@ static void *relock(void *arg)
     EXPECT_FALSE(sem_post((sem_t *)a[1]));
 
     T(pthread_mutex_unlock((pthread_mutex_t *)a[0]));
-    if (*(int *)a[2] == 0)
+    if (*(int *)a[2] == 0) {
         T(pthread_mutex_unlock((pthread_mutex_t *)a[0]));
+    }
     return nullptr;
 }
 

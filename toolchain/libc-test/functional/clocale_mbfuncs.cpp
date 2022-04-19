@@ -51,8 +51,9 @@ HWTEST_F(ClocaleMbfuncs, ClocaleMbfuncsTest, Function | MediumTest | Level2)
     }
 
     for (i = 0; i < 256; i++) {
-        if (map[i] == WEOF)
+        if (map[i] == WEOF) {
             continue;
+        }
         EXPECT_EQ(i, wctob(map[i])) << "wctob failed to convert wchar_t " << hex
                                     << (unsigned)map[i] << " back to byte " << hex << i << endl;
     }

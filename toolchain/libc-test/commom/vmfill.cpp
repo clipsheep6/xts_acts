@@ -49,11 +49,13 @@ int t_vmfill(void **p, size_t *n, int len)
     
     for (i=0;;i++) {
         m = mmax(fd, &start);
-        if (!m)
+        if (!m) {
             break;
+        }
         q = mmap(0, m, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, fd, 0);
-        if (q == MAP_FAILED)
+        if (q == MAP_FAILED) {
             return -1;
+        }
         if (i < len) {
             p[i] = q;
             n[i] = m;

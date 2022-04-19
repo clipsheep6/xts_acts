@@ -166,14 +166,16 @@ HWTEST_F(Snprintf, SnprintfTest, Function | MediumTest | Level2)
     b[1] = '0';
     for (i = 0; i < 1021; i++) {
         for (k = 0, j = 1023; j > 0; j--) {
-            if (b[j] < '5')
+            if (b[j] < '5') {
                 b[j] += b[j] - '0' + k, k = 0;
-            else
+            }
+            else {
                 b[j] += b[j] - '0' - 10 + k, k = 1;
+            }
         }
     }
     TESTT(i, b[1], '1', "'%c' != '%c'");
-    for (j = 2; b[j] == '0'; j++);
+    for (j = 2; b[j] == '0'; j++) {}
     TESTT(i, j, 1024, "%d != %d");
 
 #ifndef DISABLE_SLOW_TESTS

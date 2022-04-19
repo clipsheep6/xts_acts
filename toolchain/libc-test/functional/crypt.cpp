@@ -5,8 +5,9 @@
 
 #define T(h, s, k) do {                                                                \
     p = crypt(k, s);                                                                   \
-    if (!p)                                                                            \
+    if (!p) {                                                                          \
         p = "*";                                                                       \
+    }                                                                                  \
     EXPECT_FALSE((strcmp(p, h) != 0)) << "crypt(" << #k                                \
       << ", \"" << s << "\") failed: got \"" << p << "\" want \"" << h << "\"" << endl;\
 } while (0)

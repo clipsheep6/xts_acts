@@ -26,11 +26,13 @@ HWTEST_F(StringStrcspn, StringStrcspnTest, Function | MediumTest | Level2)
     char a[128];
     char s[256];
 
-    for (i = 0; i < 128; i++)
+    for (i = 0; i < 128; i++) {
         a[i] = (i + 1) & 127;
+    }
 
-    for (i = 0; i < 256; i++)
+    for (i = 0; i < 256; i++) {
         *((unsigned char *)s + i) = i + 1;
+    }
 
     T(const_cast<char*>(""), const_cast<char*>(""), 0);
     T(const_cast<char*>("a"), const_cast<char*>(""), 1);

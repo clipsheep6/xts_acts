@@ -48,16 +48,16 @@ typedef void *thread_ret;
 #ifdef DEBUG
 #define trace(...) trace1(__LINE__, __VA_ARGS__)
 #else
-#define trace(...)                         \
-    do {                                   \
-        if (0)                             \
+#define trace(...) do {                    \
+        if (0) {                           \
             trace1(__LINE__, __VA_ARGS__); \
+        }                                  \
     } while (0)
 #endif
 
 #define tell(...) trace(__VA_ARGS__)
 
-enum {
+enum phtd{
     phases = 10,
     threads = 10,
 };
@@ -125,8 +125,9 @@ HWTEST_F(PthreadCondSmasher, PthreadCondSmasherTest, Function | MediumTest | Lev
     tell("start up of main, using %s, library %s\n", VERSION, LIBRARY);
     condition_init(&cond_client);
     condition_init(&cond_main);
-    for (unsigned i = 0; i < phases; ++i)
+    for (unsigned i = 0; i < phases; ++i) {
         mutex_init(&mut[i]);
+    }
     mutex_lock(&mut[0]);
 
     for (unsigned i = 0; i < threads; ++i) {
@@ -146,8 +147,9 @@ HWTEST_F(PthreadCondSmasher, PthreadCondSmasherTest, Function | MediumTest | Lev
         /* now we know that everybody is waiting inside, lock the next
         mutex, if any, such that nobody can enter the next phase
         without our permission. */
-        if (phase < phases - 1)
+        if (phase < phases - 1) {
             mutex_lock(&mut[phase + 1]);
+        }
         /* Now signal all clients, update the phase count and release the
         mutex they are waiting for. */
         int ret = condition_broadcast(&cond_client);
@@ -170,8 +172,9 @@ HWTEST_F(PthreadCondSmasher, PthreadCondSmasherTest, Function | MediumTest | Lev
 
     /* C functions to destroy the control structures don't return error
         information, so we can't check for errors, here. */
-    for (unsigned i = 0; i < phases; ++i)
+    for (unsigned i = 0; i < phases; ++i) {
         mutex_destroy(&mut[i]);
+    }
     condition_destroy(&cond_main);
     condition_destroy(&cond_client);
     tell("shut down of main, using %s, library %s\n", VERSION, LIBRARY);

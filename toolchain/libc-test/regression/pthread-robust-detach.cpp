@@ -37,8 +37,9 @@ static void f()
     T(r, pthread_barrier_init(&barrier2, 0, 2));
     T(r, pthread_mutexattr_init(&mtx_a));
     T(r, pthread_mutexattr_setrobust(&mtx_a, PTHREAD_MUTEX_ROBUST));
-    if (pshared)
+    if (pshared) {
         T(r, pthread_mutexattr_setpshared(&mtx_a, PTHREAD_PROCESS_SHARED));
+    }
     T(r, pthread_mutex_init(&mtx, &mtx_a));
     T(r, pthread_create(&td, 0, start_lock, &mtx));
     T(r, pthread_detach(td));

@@ -26,8 +26,9 @@ class Fscanf : public testing::Test {};
 static FILE *writetemp(const char *data)
 {
     FILE *f = tmpfile();
-    if (!f)
+    if (!f) {
         return nullptr;
+    }
 
     if (!fwrite(data, strlen(data), 1, f)) {
         fclose(f);

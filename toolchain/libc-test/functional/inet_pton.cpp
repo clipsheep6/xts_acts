@@ -14,8 +14,9 @@
                                                                                                                     \
     r = inet_pton(AF_INET6, src, binaddr);                                                                          \
     EXPECT_EQ(r, ret) << "inet_pton(AF_INET6, " << #src << ", addr) returned " << r << ", want " << ret << endl;    \
-    if (ret != 1)                                                                                                   \
+    if (ret != 1) {                                                                                                 \
         break;                                                                                                      \
+    }                                                                                                               \
     tohex(hexaddr, binaddr, 16);                                                                                    \
     EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_pton(AF_INET6, "                                                    \
         << #src << ", addr) got addr " << hexaddr << ", want " << hex << endl;                                      \
@@ -48,8 +49,9 @@
     r = inet_pton(AF_INET, src, &a);                                                                            \
     EXPECT_EQ(r, ret) << "inet_pton(AF_INET, " << #src << ", addr) returned " << r << ", want " << ret << endl; \
                                                                                                                 \
-    if (ret != 1)                                                                                               \
+    if (ret != 1) {                                                                                             \
         break;                                                                                                  \
+    }                                                                                                           \
                                                                                                                 \
     tohex(buf, &a, 4);                                                                                          \
     EXPECT_FALSE(strcmp(buf, hex)) << "inet_pton(AF_INET, "                                                     \
@@ -71,8 +73,9 @@ class InetPton : public testing::Test {};
 static int digit(int c)
 {
     c -= '0';
-    if (c > 9)
+    if (c > 9) {
         c -= 'a' - '0' - 10;
+    }
     return c;
 }
 
@@ -80,16 +83,18 @@ static void tobin(void *d, char *s)
 {
     int i;
     unsigned char *p = (unsigned char *)d;
-    for (i = 0; s[2 * i]; i++)
+    for (i = 0; s[2 * i]; i++) {
         p[i] = digit(s[2 * i]) * 16 + digit(s[2 * i + 1]);
+    }
 }
 
 static void tohex(char *d, void *s, int n)
 {
     int i;
     unsigned char *p = (unsigned char *)s;
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n; i++) {
         snprintf(d + 2 * i, 1024,"%02x", p[i]);
+    }
 }
 
 /**

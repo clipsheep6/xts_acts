@@ -31,9 +31,11 @@ HWTEST_F(RlimitOpenFiles, RlimitOpenFilesTest, Function | MediumTest | Level2)
     EXPECT_FALSE(rl.rlim_max != lim || rl.rlim_cur != lim) << "getrlimit " << r  
         << " says cur=" << rl.rlim_cur << ",max=" << rl.rlim_max << " after setting the limit to " << lim << endl;
 
-    while ((fd = dup(1)) != -1)
-        if (fd > maxfd)
+    while ((fd = dup(1)) != -1) {
+        if (fd > maxfd) {
             maxfd = fd;
+        }
+    }
     EXPECT_EQ(EMFILE, errno) << "dup(1) failed with " << strerror(errno) << ", wanted EMFILE" << endl;
     EXPECT_EQ(maxfd + 1, lim) << "more fds are open than rlimit allows: fd=" << maxfd << ", limit=" << lim << endl;
 }

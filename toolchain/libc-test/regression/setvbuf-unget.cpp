@@ -17,7 +17,8 @@ HWTEST_F(SetvbufUnget, SetvbufUngetTest, Function | MediumTest | Level2)
 {
     char buf[1024] = "hello world";
     setvbuf(stdin, buf + 12, _IOFBF, sizeof buf - 12);
-    while (ungetc('x', stdin) != EOF);
-    if (strcmp(buf, "hello world"))
+    while (ungetc('x', stdin) != EOF) {}
+    if (strcmp(buf, "hello world")) {
         EXPECT_FALSE(strcmp(buf, "hello world")) << "ungetc clobbered outside buffer: [" << buf << "]" << endl;
+    }
 }

@@ -28,7 +28,7 @@ using namespace std;
 using namespace testing::ext;
 class Isless : public testing::Test {};
 
-enum {
+enum uat {
     LESS,
     EQUAL,
     GREATER,

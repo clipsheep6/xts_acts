@@ -12,14 +12,14 @@ static struct f_f t[] = {
 };
 
 using namespace testing::ext;
-class J1fSuite : public testing::Test {};
+class J1f : public testing::Test {};
 
 /**
  * @tc.name      : J1fTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(J1fSuite, J1fTest, Function | MediumTest | Level2)
+HWTEST_F(J1f, J1fTest, Function | MediumTest | Level2)
 {
     float y;
     float d;

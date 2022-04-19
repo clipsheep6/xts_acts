@@ -28,17 +28,19 @@ static void test_align(int dalign, int salign, int len)
     char *p;
     int i;
 
-    if (salign + len > N || dalign + len > N)
+    if (salign + len > N || dalign + len > N) {
         abort();
+    }
     for (i = 0; i < N; i++) {
         src[i] = '#';
         dst[i] = want[i] = ' ';
     }
-    for (i = 0; i < len; i++)
+    for (i = 0; i < len; i++) {
         src[salign + i] = want[dalign + i] = '0' + i;
+    }
     p = (char *)pmemcpy(dst + dalign, src + salign, len);
     EXPECT_STREQ(p, dst + dalign) << "memcpy(" << dst + dalign << ",...) returned " << p << endl;
-    for (i = 0; i < N; i++)
+    for (i = 0; i < N; i++) {
         if (dst[i] != want[i]) {
             EXPECT_EQ(dst[i], want[i]) << "memcpy(align " 
                 << dalign << ", align " << salign << ", " << len << ") failed" << endl;
@@ -46,6 +48,7 @@ static void test_align(int dalign, int salign, int len)
             t_printf("want: %.*s\n", dalign + len + 1, want);
             break;
         }
+    }
 }
 
 /**
@@ -59,8 +62,11 @@ HWTEST_F(StringMemcpy, StringMemcpyTest, Function | MediumTest | Level2)
 
     pmemcpy = memcpy;
 
-    for (i = 0; i < 16; i++)
-        for (j = 0; j < 16; j++)
-            for (k = 0; k < 64; k++)
+    for (i = 0; i < 16; i++) {
+        for (j = 0; j < 16; j++) {
+            for (k = 0; k < 64; k++) {
                 test_align(i, j, k);
+            }
+        }
+    }
 }

@@ -29,12 +29,14 @@ HWTEST_F(IconvRoundtrips, IconvRoundtripsTest, Function | MediumTest | Level2)
     char all_codepoints[256];
     int i;
 
-    for (i = 0; i < 256; i++)
+    for (i = 0; i < 256; i++) {
         all_codepoints[i] = 255 - i;
+    }
     for (i = 0; test_charsets[i]; i++) {
         iconv_t there = iconv_open(const_cast<char*>("UTF-8"), test_charsets[i]);
-        if (there == (iconv_t)-1)
+        if (there == (iconv_t)-1) {
             continue;
+        }
         iconv_t andback = iconv_open(test_charsets[i], const_cast<char*>("UTF-8"));
         if (andback == (iconv_t)-1) {
             iconv_close(there);

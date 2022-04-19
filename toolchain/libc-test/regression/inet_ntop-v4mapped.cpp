@@ -21,6 +21,7 @@ HWTEST_F(InetNtopV4mapped, InetNtopV4mappedTest, Function | MediumTest | Level2)
         EXPECT_FALSE(!inet_ntop(AF_INET6, addr, buf, sizeof buf)) << "inet_ntop failed" << endl;
         EXPECT_FALSE(!strchr(buf, '.')) << "inet_ntop produced " << buf << " instead of " << expect << endl;
     }
-    else
+    else {
         EXPECT_TRUE(inet_pton(AF_INET6, expect, addr) == 1) << "inet_pton failed" << endl;
+    }
 }

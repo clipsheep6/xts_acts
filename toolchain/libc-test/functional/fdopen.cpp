@@ -34,6 +34,7 @@ HWTEST_F(Fdopen, FdopenTest, Function | MediumTest | Level2)
         EXPECT_EQ(strcmp(foo, "hello"), 0) << "fgets read back: \"" << foo << "\"; wanted: \"hello\"" << endl;
         fclose(f);
     }
-    if (fd > 2)
+    if (fd > 2) {
         TESTT(unlink(tmp) != -1);
+    }
 }

@@ -25,8 +25,9 @@ static void *waiter(void *p)
     waiting = 1;
     pthread_cond_signal(&cv);
     pthread_cleanup_push(cleanup, 0);
-    while (waiting)
+    while (waiting) {
         pthread_cond_wait(&cv, &mx);
+    }
     pthread_cleanup_pop(1);
     return nullptr;
 }
@@ -43,15 +44,16 @@ HWTEST_F(PthreadCondWaitCancelIgnored, PthreadCondWaitCancelIgnoredTest, Functio
     void *rv;
     pthread_mutex_lock(&mx);
     pthread_create(&td, 0, waiter, 0);
-    while (!waiting)
+    while (!waiting) {
         pthread_cond_wait(&cv, &mx);
+    }
     pthread_cancel(td);
     clock_gettime(CLOCK_REALTIME, &ts);
     if ((ts.tv_nsec += 30000000) >= 1000000000) {
         ts.tv_sec++;
         ts.tv_nsec -= 1000000000;
     }
-    while (waiting && !pthread_cond_timedwait(&cv, &mx, &ts));
+    while (waiting && !pthread_cond_timedwait(&cv, &mx, &ts)) {}
     waiting = 0;
     pthread_cond_signal(&cv);
     pthread_mutex_unlock(&mx);

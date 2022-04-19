@@ -27,7 +27,7 @@ uint64_t t_randn(uint64_t n)
     /* m is the largest multiple of n */
     m = -1;
     m -= m%n;
-    while ((r = rand64()) >= m);
+    while ((r = rand64()) >= m) {}
     return r%n;
 }
 
@@ -35,8 +35,9 @@ uint64_t t_randn(uint64_t n)
 uint64_t t_randint(uint64_t a, uint64_t b)
 {
     uint64_t n = b - a + 1;
-    if (n)
+    if (n) {
         return a + t_randn(n);
+    }
     return rand64();
 }
 
@@ -62,14 +63,15 @@ static void shuffle2(uint64_t *p, uint64_t *q, size_t np, size_t nq)
 /* shuffle the elements of p */
 void t_shuffle(uint64_t *p, size_t n)
 {
-    shuffle2(p,0,n,0);
+    shuffle2(p,nullptr,n,0);
 }
 
 void t_randrange(uint64_t *p, size_t n)
 {
     size_t i;
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n; i++) {
         p[i] = i;
+    }
     t_shuffle(p, n);
 }
 
@@ -95,14 +97,16 @@ int t_choose(uint64_t n, size_t k, uint64_t *p)
     uint64_t *tab;
     size_t i, j, len;
     
-    if (n < k)
+    if (n < k) {
         return -1;
+    }
         
     if (n < 16) {
         /* no alloc */
-        while (k)
+        while (k) {
             if (t_randn(n--) < k)
                 p[--k] = n;
+        }
         return 0;
     }
     
@@ -110,39 +114,49 @@ int t_choose(uint64_t n, size_t k, uint64_t *p)
         /* no alloc, n > 15 > 2*k */
         for (i = 0; i < k;) {
             p[i] = t_randn(n);
-            for (j = 0; p[j] != p[i]; j++);
-            if (j == i)
+            for (j = 0; p[j] != p[i]; j++) {}
+            if (j == i) {
                 i++;
+            }
         }
         return 0;
     }
     if (n < 5*k && (n-k)*sizeof(uint64_t) < (size_t)-1) {
         /* allocation is n-k < 4*k */
         tab = (uint64_t *)malloc((n-k) * sizeof(uint64_t));
-        if (!tab)
+        if (!tab) {
             return -1;
-        for (i = 0; i < k; i++)
+        }
+        for (i = 0; i < k; i++) {
             p[i] = i;
-        for (; i < n; i++)
+        }
+        for (; i < n; i++) {
             tab[i-k] = i;
-        if (k < n-k)
+        }
+        if (k < n-k) {
             shuffle2(p, tab, k, n-k);
-        else
+        }
+        else {
             shuffle2(tab, p, n-k, k);
+        }
         free(tab);
         return 0;
     }
     
     /* allocation is 2*k <= len < 4*k */
-    for (len = 16; len < 2*k; len *= 2);
+    for (len = 16; len < 2*k; len *= 2) {}
     tab =(uint64_t *) calloc(len, sizeof(uint64_t));
-    if (!tab)
+    if (!tab) {
         return -1;
-    for (i = 0; i < k; i++)
-        while (insert(tab, len, t_randn(n)+1));
-    for (i = 0; i < len; i++)
-        if (tab[i])
+    }
+    for (i = 0; i < k; i++) {
+        while (insert(tab, len, t_randn(n)+1)) {}
+    }
+    for (i = 0; i < len; i++) {
+        if (tab[i]) {
             *p++ = tab[i]-1;
+        }
+    }
     free(tab);
     return 0;
 }

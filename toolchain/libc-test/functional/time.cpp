@@ -108,6 +108,7 @@ HWTEST_F(Time, TimeTest, Function | MediumTest | Level2)
     tm2sec(&tmmy, 1, const_cast<char*>("2038"));
 
     sec2tm(0, const_cast<char*>("EPOCH"));
-    for (t = 1; t < 1000; t++)
+    for (t = 1; t < 1000; t++) {
         sec2tm(t * 100003, const_cast<char*>("EPOCH+eps"));
+    }
 }

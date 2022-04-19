@@ -61,7 +61,7 @@ static pthread_t td_test;
 
 static void *run_test(void *arg)
 {
-    while (sem_wait(&sem_test));
+    while (sem_wait(&sem_test)) {}
     return nullptr;
 }
 
@@ -129,7 +129,7 @@ static struct {
 static void *run_execute(void *arg)
 {
     pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, nullptr);
-    while (sem_wait(&sem_seq));
+    while (sem_wait(&sem_seq)) {}
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, nullptr);
     seqno = 1;
     cur_sc->execute(cur_sc->arg);

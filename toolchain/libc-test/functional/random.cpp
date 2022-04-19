@@ -14,9 +14,11 @@ static int chkmissing(long *x)
     int i;
     for (i = 0; i < 100; i++)
         d[x[i] % 8]++;
-    for (i = 0; i < 8; i++)
-        if (d[i] == 0)
+    for (i = 0; i < 8; i++) {
+        if (d[i] == 0) {
             return 1;
+        }
+    }
     return 0;
 }
 
@@ -24,10 +26,13 @@ static int chkmissing(long *x)
 static int chkrepeat(long *x)
 {
     int i, j;
-    for (i = 0; i < 100; i++)
-        for (j = 0; j < i; j++)
-            if (x[i] == x[j])
+    for (i = 0; i < 100; i++) {
+        for (j = 0; j < i; j++) {
+            if (x[i] == x[j]) {
                 return 1;
+            }
+        }
+    }
     return 0;
 }
 
@@ -37,8 +42,9 @@ static int chkones(long *x)
 {
     int i;
     orx = 0;
-    for (i = 0; i < 20; i++)
+    for (i = 0; i < 20; i++) {
         orx |= x[i];
+    }
     return orx != 0x7fffffff;
 }
 
@@ -46,8 +52,9 @@ void checkseed(unsigned seed, long *x)
 {
     int i;
     srandom(seed);
-    for (i = 0; i < 100; i++)
+    for (i = 0; i < 100; i++) {
         x[i] = random() ;
+    }
     EXPECT_FALSE(chkmissing(x)) << "weak seed " << seed << ", missing pattern in low bits" << endl;
     EXPECT_FALSE(chkrepeat(x)) << "weak seed " << seed << ", exact repeats" << endl;
     EXPECT_FALSE(chkones(x))<< "weak seed " << seed << ", or pattern: 0x" << orx << endl;;
@@ -67,12 +74,14 @@ HWTEST_F(Random, RandomTest, Function | MediumTest | Level2)
     char *p;
     char *q;
 
-    for (i = 0; i < 100; i++)
+    for (i = 0; i < 100; i++) {
         x[i] = random();
+    }
     p = initstate(1, state, sizeof state);
-    for (i = 0; i < 100; i++)
+    for (i = 0; i < 100; i++) {
         EXPECT_EQ(x[i], (y = random())) 
             << "initstate(1) is not default: (" << i << ") default: " << x[i] << ", seed1: " << y << endl;
+    }
     for (i = 0; i < 10; i++) {
         z = random();
         q = setstate(p);
@@ -80,10 +89,12 @@ HWTEST_F(Random, RandomTest, Function | MediumTest | Level2)
         p = setstate(q);
     }
     srandom(1);
-    for (i = 0; i < 100; i++)
+    for (i = 0; i < 100; i++) {
         EXPECT_EQ(x[i], (y = random())) 
             << "srandom(1) is not default: (" << i << ") default: " << x[i] << ", seed1: " << y << endl;
+    }
     checkseed(0x7fffffff, x);
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; i++) {
         checkseed(i, x);
+    }
 }

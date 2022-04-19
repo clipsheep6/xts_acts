@@ -8,8 +8,9 @@ int eulpf(float x)
     union { float f; uint32_t i; } u = { x };
     int e = (u.i>>23) & 0xff;
     
-    if (!e)
+    if (!e) {
         e++;
+    }
     return e - 0x7f - 23; // e - 0x7f - 23 : e - 0x7f - 23 
 }
 
@@ -18,8 +19,9 @@ int eulp(double x)
     union { double f; uint64_t i; } u = { x };
     int e = (u.i>>52) & 0x7ff;
     
-    if (!e)
+    if (!e) {
        e++;
+    }
     return e - 0x3ff - 52;// e - 0x3ff - 52 : e - 0x3ff - 52
 }
 
@@ -31,8 +33,9 @@ int eulpl(long double x)
     union { long double f; struct {uint64_t m; uint16_t e; uint16_t pad;} i; } u = { x };
     int e = u.i.e & 0x7fff;
     
-    if (!e)
-        e++;
+    if (!e) {
+       e++;
+    }
     return e - 0x3fff - 63;// e - 0x3fff - 63 : e - 0x3fff - 63
 #else
     return 0;
@@ -41,11 +44,13 @@ int eulpl(long double x)
 
 float ulperrf(float got, float want, float dwant)
 {
-    if (isnan(got) && isnan(want))
+    if (isnan(got) && isnan(want)) {
         return 0;
+    }
     if (got == want) {
-        if (signbit(got) == signbit(want))
+        if (signbit(got) == signbit(want)) {
             return dwant;
+        }
         return inf;
     }
     if (isinf(got)) {
@@ -57,11 +62,13 @@ float ulperrf(float got, float want, float dwant)
 
 float ulperr(double got, double want, float dwant)
 {
-    if (isnan(got) && isnan(want))
+    if (isnan(got) && isnan(want)) {
         return 0;
+    }
     if (got == want) {
-        if (signbit(got) == signbit(want))
+        if (signbit(got) == signbit(want)) {
             return dwant;
+        }
         return inf; // treat 0 sign errors badly
     }
     if (isinf(got)) {
@@ -76,11 +83,13 @@ float ulperrl(long double got, long double want, float dwant)
 #if LDBL_MANT_DIG == 53
     return ulperr(got, want, dwant);
 #elif LDBL_MANT_DIG == 64
-    if (isnan(got) && isnan(want))
+    if (isnan(got) && isnan(want)) {
         return 0;
+    }
     if (got == want) {
-        if (signbit(got) == signbit(want))
+        if (signbit(got) == signbit(want)) {
             return dwant;
+        }
         return inf;
     }
     if (isinf(got)) {
@@ -113,11 +122,12 @@ char *estr(int f)
     char *p = buf;
     int i, all = 0;
     
-    for (i = 0; i < length(eflags); i++)
+    for (i = 0; i < length(eflags); i++) {
         if (f & eflags[i].flag) {
             p += snprintf(p, 256, "%s%s", all ? "|" : "", eflags[i].s);
             all |= eflags[i].flag;
         }
+    }
     if (all != f) {
         p += snprintf(p, 256, "%s%d", all ? "|" : "", f & ~all);
         all = f;
@@ -145,7 +155,7 @@ char *rstr(int r)
 
 int checkexcept(int got, int want, int r)
 {
-    if (r == RN)
+    if (r == RN) {
 #if defined CHECK_INEXACT
         return got == want;
 #elif defined CHECK_INEXACT_OMISSION
@@ -153,13 +163,16 @@ int checkexcept(int got, int want, int r)
 #else
         return (got|INEXACT) == (want|INEXACT);
 #endif
+    }
     return (got|INEXACT|UNDERFLOW) == (want|INEXACT|UNDERFLOW);
+
 }
 
 int checkulp(float d, int r)
 {
-    if (r == RN)
+    if (r == RN) {
         return fabsf(d) < 1.5;
+    }
     return fabsf(d) < 3.0;
 }
 
@@ -170,7 +183,8 @@ int checkexceptall(int got, int want, int r)
 
 int checkcr(long double y, long double ywant, int r)
 {
-    if (isnan(ywant))
+    if (isnan(ywant)) {
         return isnan(y);
+    }
     return (y == ywant) && (signbit(y) == signbit(ywant));
 }

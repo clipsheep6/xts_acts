@@ -20,7 +20,7 @@
     
 #define TEST_S(s, x, m) do {                                                           \
     EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << endl; \
-} while(0)
+} while (0)
 
 #define TEST_M(s, x, n, m) do {                                                             \
     EXPECT_TRUE(!memcmp((s), (x), (n))) << "[" << s << "] != [" << x << "] (" << m << endl; \
@@ -51,8 +51,9 @@ HWTEST_F(Memstream, MemStreamTest, Function | MediumTest | Level2)
     TEST_E(putc('c', f) == 'c');
     TEST_E(!fflush(f));
     fclose(f);
-    if (s)
+    if (s) {
         TEST_S(s, "abc", "wrong output");
+    }
     free(s);
 
     s = 0;
@@ -60,16 +61,18 @@ HWTEST_F(Memstream, MemStreamTest, Function | MediumTest | Level2)
     TEST_E(fseek(f, 1, SEEK_CUR) >= 0);
     TEST_E(putc('q', f) == 'q');
     TEST_E(!fflush(f));
-    if (s)
+    if (s) {
         TEST_M(s, "\0q", 3, "wrong output");
+    }
     TESTT(i, fseek(f, -3, SEEK_CUR), -1, "invalid seek allowed");
     TESTT(i, errno, EINVAL, "%d != %d");
     TESTT(i, ftell(f), 2, "%d != %d");
     TEST_E(fseek(f, -2, SEEK_CUR) >= 0);
     TEST_E(putc('e', f) == 'e');
     TEST_E(!fflush(f));
-    if (s)
+    if (s) {
         TEST_S(s, "eq", "wrong output");
+    }
     fclose(f);
     free(s);
 

@@ -44,8 +44,9 @@ static char *flagstr(const struct xlat *map, int flags)
             flags &= ~(map->val);
         }
     }
-    if (flags)
+    if (flags) {
         sprintf(buf, "%sunknown=%#x", sep, flags);
+    }
     return buf;
 }
 
@@ -99,9 +100,7 @@ struct {
     {"\\?/b", "?/b", 0, 0},
     {"[/b", "[/b", 0, 0},
     {"\\[/b", "[/b", 0, 0},
-    {"??"
-     "/b",
-     "aa/b", 0, 0},
+    { "??""/b", "aa/b", 0, 0 },
     {"???b", "aa/b", 0, 0},
     {"???b", "aa/b", FNM_PATHNAME, FNM_NOMATCH},
     {"?a/b", ".a/b", FNM_PATHNAME | FNM_PERIOD, FNM_NOMATCH},

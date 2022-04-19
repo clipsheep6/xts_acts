@@ -77,13 +77,14 @@ static int n_sorted[] = {
 static void str_test(const char **a, const char **a_sorted, int len)
 {
     int i;
-    qsort(a, len, sizeof *a, scmp);
+    qsort(a, len, sizeof(char *), scmp);
     for (i = 0; i < len; i++) {
         if (strcmp(a[i], a_sorted[i]) != 0) {
             EXPECT_EQ(0, strcmp(a[i], a_sorted[i])) << "string sort failed at index " << i << endl;
             t_printf("\ti\tgot\twant\n");
-            for (i = 0; i < len; i++)
+            for (i = 0; i < len; i++) {
                 t_printf("\t%d\t%s\t%s\n", i, a[i], a_sorted[i]);
+            }
             break;
         }
     }
@@ -125,8 +126,9 @@ static void uint64_test(uint64_t *a, uint64_t *a_sorted, int len)
         if (a[i] != a_sorted[i]) {
             EXPECT_EQ(a[i], a_sorted[i]) << "integer sort failed at index " << i << endl;
             t_printf("\ti\tgot\twant\n");
-            for (i = 0; i < len; i++)
+            for (i = 0; i < len; i++) {
                 t_printf("\t%d\t%" PRIu64 "\t%" PRIu64 "\n", i, a[i], a_sorted[i]);
+            }
             break;
         }
     }

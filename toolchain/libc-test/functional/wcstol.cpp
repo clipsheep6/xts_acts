@@ -90,9 +90,10 @@ HWTEST_F(Wcstol, WcstolTest, Function | MediumTest | Level2)
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
     }
-    else
+    else {
         EXPECT_TRUE(sizeof(long) == 4 && sizeof(long) == 8) 
             << "sizeof(long) == " << (int)sizeof(long) << ", not implemented" << endl;
+    }
 
     TEST1(l, wcstol(const_cast<wchar_t*>(L"z"), 0, 36), 35, "%ld != %ld");
     TEST1(l, wcstol(const_cast<wchar_t*>(L"00010010001101000101011001111000"), 0, 2), 0x12345678, "%ld != %ld");

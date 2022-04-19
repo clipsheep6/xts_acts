@@ -7,7 +7,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class StrfTime : public testing::Test {};
+class Strftime : public testing::Test {};
 
 static char buffer[100];
 
@@ -81,7 +81,7 @@ static struct tm tm5 = {
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(StrfTime, StrfTimeTest, Function | MediumTest | Level2)
+HWTEST_F(Strftime, StrfTimeTest, Function | MediumTest | Level2)
 {
     setenv("TZ", "UTC0", 1);
 
@@ -127,8 +127,9 @@ HWTEST_F(StrfTime, StrfTimeTest, Function | MediumTest | Level2)
     // The "%s" specifier was accepted by the Austin Group for the next POSIX.1
     // revision. See http://austingroupbugs.net/view.php?id=169
     checkStrftime("%s", &tm1, "1451827425");
-    if (sizeof(time_t) * CHAR_BIT >= 64)
+    if (sizeof(time_t) * CHAR_BIT >= 64) {
         checkStrftime("%s", &tm2, "253686748673");
+    }
 
     checkStrftime("%T", &tm1, "13:23:45");
     checkStrftime("%T", &tm2, "05:17:53");
@@ -176,7 +177,8 @@ HWTEST_F(StrfTime, StrfTimeTest, Function | MediumTest | Level2)
         checkStrftime("%y", &tm5, "47");
         checkStrftime("%Y", &tm5, "+2147485547");
         checkStrftime("%011Y", &tm5, "02147485547");
-        if (sizeof(time_t) * CHAR_BIT >= 64)
+        if (sizeof(time_t) * CHAR_BIT >= 64) {
             checkStrftime("%s", &tm5, "67768036160140800");
+        }
     }
 }

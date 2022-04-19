@@ -49,12 +49,14 @@ static void test_except()
         if (r != te[i].i)
         {
 #if defined FE_OVERFLOW && defined FE_INEXACT
-            if (te[i].i == FE_OVERFLOW && r == (FE_OVERFLOW | FE_INEXACT))
+            if (te[i].i == FE_OVERFLOW && r == (FE_OVERFLOW | FE_INEXACT)) {
                 continue;
+            }
 #endif
 #if defined FE_UNDERFLOW && defined FE_INEXACT
-            if (te[i].i == FE_UNDERFLOW && r == (FE_UNDERFLOW | FE_INEXACT))
+            if (te[i].i == FE_UNDERFLOW && r == (FE_UNDERFLOW | FE_INEXACT)) {
                 continue;
+            }
 #endif
             printf("feraiseexcept(%s) want %d got %d\n",te[i].name, te[i].i, r);
         }
