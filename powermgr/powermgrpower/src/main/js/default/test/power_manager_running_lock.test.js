@@ -182,32 +182,4 @@ describe('appInfoTest', function () {
             }
         })
     })
-    it('power_is_screen_on_promise_test', 0, async function (done) {//isScreenOn(): Promise<boolean>
-        power.isScreenOn()
-            .then(screenOn => {
-                console.info('power_is_screen_on_promise_test screenOn is ' + screenOn);
-                expect(screenOn).assertTrue();
-                console.info('power_is_screen_on_promise_test success');
-                done();
-            })
-            .catch(error => {
-                console.log('power_is_screen_on_promise_test error: ' + error);
-                expect().assertFail();
-                done();
-            })
-    })
-    it('power_is_screen_on_callback_test', 0, async function (done) {//isScreenOn(callback: AsyncCallback<boolean>)
-        power.isScreenOn((error, screenOn) => {
-            if (typeof error === "undefined") {
-                console.info('power_is_screen_on_callback_test screenOn is ' + screenOn);
-                expect(screenOn).assertTrue();
-                console.info('power_is_screen_on_callback_test success');
-                done();
-            } else {
-                console.log('power_is_screen_on_callback_test: ' + error);
-                expect().assertFail();
-                done();
-            }
-        })
-    })
 })
