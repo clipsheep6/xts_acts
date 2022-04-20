@@ -1,12 +1,14 @@
 #include <cstdlib>
 #include <cstring>
 #include <libgen.h>
+#include <securec.h>
 
 #include "gtest/gtest.h"
 
 #define T(path, want) do {                                                      \
     char tmp[100];                                                              \
-    char *got = dirname(strcpy(tmp, path));                                     \
+    strcpy_s(tmp, strlen(path)+1, path);                                        \
+    char *got = dirname(tmp);                                                   \
     EXPECT_EQ(0, strcmp(want, got)) << "dirname(\""                             \
         << path << "\") got \"" << got << "\" want \"" << want << "\"" << endl; \
 } while (0)

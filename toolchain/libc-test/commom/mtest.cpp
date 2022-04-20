@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cstdint>
+#include <securec.h>
 
 #include "mtest.h"
 
@@ -124,15 +125,15 @@ char *estr(int f)
     
     for (i = 0; i < length(eflags); i++) {
         if (f & eflags[i].flag) {
-            p += snprintf(p, 256, "%s%s", all ? "|" : "", eflags[i].s);
+            p += sprintf_s(p, sizeof p,"%s%s", all ? "|" : "", eflags[i].s);
             all |= eflags[i].flag;
         }
     }
     if (all != f) {
-        p += snprintf(p, 256, "%s%d", all ? "|" : "", f & ~all);
+        p += sprintf_s(p, sizeof p, "%s%d", all ? "|" : "", f & ~all);
         all = f;
     }
-    p += snprintf(p, 256, "%s", all ? "" : "0");
+    p += sprintf_s(p, sizeof p, "%s", all ? "" : "0");
     return buf;
 }
 

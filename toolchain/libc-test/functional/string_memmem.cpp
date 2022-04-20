@@ -1,4 +1,5 @@
 #include <cstring>
+#include <securec.h>
 
 #include "gtest/gtest.h"
 
@@ -11,8 +12,8 @@ class StringMemmem : public testing::Test {};
 void N(char *s, char *tail, char *sub)
 {
     char p[128] = {0};
-    strcpy(p, s);
-    strcat(p, tail);
+    strcpy_s(p, strlen(s)+1, s);
+    strcat_s(p,  strlen(p) + strlen(tail) + 1, tail);
     char *q = (char *)memmem(p, strlen((const char *)s), sub, strlen((const char *)sub));
     EXPECT_FALSE(q) << s << " " << tail << ", " << strlen((const char *)s) << " , " << sub
                     << " ," << strlen((const char *)sub) << ") returned str+" << q - p << ", wanted 0" << endl;

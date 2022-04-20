@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <fnmatch.h>
+#include <securec.h>
 
 #include "gtest/gtest.h"
 
@@ -39,13 +40,13 @@ static char *flagstr(const struct xlat *map, int flags)
     sep = "";
     for (; map->str; map++) {
         if (map->val && (flags & map->val) == map->val) {
-            n += sprintf(buf + n, "%s%s", sep, map->str);
+            n += sprintf_s(buf + n, sizeof buf, "%s%s", sep, map->str);
             sep = "|";
             flags &= ~(map->val);
         }
     }
     if (flags) {
-        sprintf(buf, "%sunknown=%#x", sep, flags);
+        sprintf_s(buf, sizeof buf, "%sunknown=%#x", sep, flags);
     }
     return buf;
 }

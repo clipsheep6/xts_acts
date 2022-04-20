@@ -1,11 +1,13 @@
 #include <cstring>
 #include <libgen.h>
+#include <securec.h>
 
 #include "gtest/gtest.h"
 
 #define T(path, want) do {                                                      \
     char tmp[100];                                                              \
-    char *got = basename(strcpy(tmp, path));                                  \
+    strcpy_s(tmp, strlen(path)+1, path);                                        \
+    char *got = basename(tmp);                                                  \
     EXPECT_EQ(0, strcmp(want, got)) << "basename(\""                            \
         << path << "\") got \"" << got << "s\" want \"" << want << "\"" << endl;\
 } while (0)
@@ -23,7 +25,7 @@ HWTEST_F(BaseName, BaseNameTest, Function | MediumTest | Level2)
 {
     EXPECT_EQ(0, strcmp(basename(0), ".")) 
         << "basename(0) returned \"" << basename(0) << "\"; expected \".\"" << endl;
-    T("", ".");
+    T(const_cast<char*>(""), ".");
     T("/usr/lib", "lib");
     T("/usr/", "usr");
     T("usr/", "usr");

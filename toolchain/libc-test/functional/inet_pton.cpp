@@ -1,8 +1,8 @@
-// inet_addr, inet_ntoa, inet_pton and inet_ntop tests with roundtrip check
 #include <cerrno>
 #include <cstring>
 #include <cstdio>
 #include <arpa/inet.h>
+#include <securec.h>
 
 #include "gtest/gtest.h"
 
@@ -93,7 +93,7 @@ static void tohex(char *d, void *s, int n)
     int i;
     unsigned char *p = (unsigned char *)s;
     for (i = 0; i < n; i++) {
-        snprintf(d + 2 * i, 1024,"%02x", p[i]);
+        snprintf_s(d + 2 * i, 1024,1024,"%02x", p[i]);
     }
 }
 

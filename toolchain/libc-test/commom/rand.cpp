@@ -22,6 +22,9 @@ void t_randseed(uint64_t s)
 /* uniform random in [0,n), n > 0 must hold */
 uint64_t t_randn(uint64_t n)
 {
+    if(n == 0){
+        return 0;
+    }
     uint64_t r, m;
     
     /* m is the largest multiple of n */

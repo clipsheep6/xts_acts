@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <cstring>
 #include <arpa/inet.h>
+#include <securec.h>
 
 #include "gtest/gtest.h"
 
@@ -11,9 +12,9 @@ class InetPtonEmptyLastField : public testing::Test {};
 static void txt(char *s, unsigned char *buf)
 {
     int i;
-    snprintf(s, 16, "%04x", buf[0] << 8 | buf[1]);
+    snprintf_s(s, 16, 16, "%04x", buf[0] << 8 | buf[1]);
     for (i = 1; i < 8; i++) {
-        sprintf(s + 5 * i, ":%04x", buf[2 * i] << 8 | buf[2 * i + 1]);
+        sprintf_s(s + 5 * i, 50, ":%04x", buf[2 * i] << 8 | buf[2 * i + 1]);
     }
 }
 /**

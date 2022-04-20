@@ -4,6 +4,7 @@ ohos_static_library("libcommom") {
   include_dirs = [
     ".",
     "//third_party/googletest/googletest/include",
+    "//third_party/bounds_checking_function/include",
   ]
 
   sources = [

@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstring>
 #include <inttypes.h>
+#include <securec.h>
 
 #include "gtest/gtest.h"
 
@@ -114,7 +115,7 @@ static void uint64_gen(uint64_t *p, uint64_t *p_sorted, int n)
         r += t_randn(randnum);
         p[i] = r;
     }
-    memcpy(p_sorted, p, n * sizeof(uint64_t));
+    memcpy_s(p_sorted, 1026*sizeof(uint64_t), p, n * sizeof(uint64_t));
     t_shuffle(p, n);
 }
 

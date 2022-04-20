@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <cstdarg>
 #include <unistd.h>
+#include <securec.h>
 
 #include "test.h"
 
@@ -14,7 +15,7 @@ int t_printf(const char *s, ...)
     
     t_status = 1;
     va_start(ap, s);
-    n = vsnprintf(buf, sizeof buf, s, ap);
+    n = vsnprintf_s(buf, sizeof buf, sizeof(buf) - 2,s, ap);
     va_end(ap);
     if (n < 0) {
         n = 0;
