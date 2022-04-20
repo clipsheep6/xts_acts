@@ -279,4 +279,103 @@ describe('appInfoTest', function () {
       expect(isBatteryPresent).assertFalse();
     }
   })
+
+  /**
+   * @tc.number battery_manager_js_2400
+   * @tc.name nowCurrent_test
+   * @tc.desc Battry Present Interface Test
+   */
+  it('nowCurrent_test', 0, function () {
+    let nowCurrent = batteryInfo.nowCurrent;
+    console.info('nowCurrent = ' + nowCurrent);
+    expect(nowCurrent >= 0).assertTrue();
+  })
+
+  /**
+   * @tc.number battery_manager_js_2500
+   * @tc.name remainingEnergy_test
+   * @tc.desc Battry Present Interface Test
+   */
+  it('remainingEnergy_test', 0, function () {
+    let remainingEnergy = batteryInfo.remainingEnergy;
+    console.info('remEnergy = ' + remainingEnergy);
+    expect(remainingEnergy >= 0).assertTrue();
+  })
+
+  /**
+   * @tc.number battery_manager_js_2600
+   * @tc.name totalEnergy_test
+   * @tc.desc Battry Present Interface Test
+   */
+  it('totalEnergy_test', 0, function () {
+    let totalEnergy = batteryInfo.totalEnergy;
+    console.info('totalenergy = ' + totalEnergy);
+    expect(totalEnergy >= 0).assertTrue();
+  })
+
+  /**
+   * @tc.number battery_manager_js_2700
+   * @tc.name enum_level_state_test_none
+   * @tc.desc Battry Present Interface Test
+   */
+  it('enum_level_state_test_none', 0, function () {
+    let batterylevelState = batteryInfo.BatteryCapacityLevel.NONE;
+    console.info('batterylevelState = ' + batterylevelState);
+    expect(batterylevelState == 0).assertTrue();
+  })
+
+  /**
+   * @tc.number battery_manager_js_2800
+   * @tc.name enum_level_state_test_high
+   * @tc.desc Battry Present Interface Test
+   */
+  it('enum_level_state_test_high', 0, function () {
+    let batterylevelState = batteryInfo.BatteryCapacityLevel.HIGH;
+    console.info('batterylevelState = ' + batterylevelState);
+    expect(batterylevelState == 1).assertTrue();
+  })
+
+  /**
+   * @tc.number battery_manager_js_2900
+   * @tc.name enum_level_state_test_normal
+   * @tc.desc Battry Present Interface Test
+   */
+  it('enum_level_state_test_normal', 0, function () {
+    let batterylevelState = batteryInfo.BatteryCapacityLevel.NORMAL;
+    console.info('batterylevelState = ' + batterylevelState);
+    expect(batterylevelState == 2).assertTrue();
+  })
+
+  /**
+   * @tc.number battery_manager_js_3000
+   * @tc.name enum_level_state_test_low
+   * @tc.desc Battry Present Interface Test
+   */
+  it('enum_level_state_test_low', 0, function () {
+    let batterylevelState = batteryInfo.BatteryCapacityLevel.LOW;
+    console.info('batterylevelState = ' + batterylevelState);
+    expect(batterylevelState == 3).assertTrue();
+  })
+
+  /**
+   * @tc.number battery_manager_js_3100
+   * @tc.name enum_level_state_test_emergency
+   * @tc.desc Battry Present Interface Test
+   */
+  it('enum_level_state_test_emergency', 0, function () {
+    let batterylevelState = batteryInfo.BatteryCapacityLevel.EMERGENCY;
+    console.info('batterylevelState = ' + batterylevelState);
+    expect(batterylevelState == 4).assertTrue();
+  })
+
+  /**
+   * @tc.number battery_manager_js_3200
+   * @tc.name enum_level_state_test_reserved
+   * @tc.desc Battry Present Interface Test
+   */
+  it('enum_level_state_test_reserved', 0, function () {
+    let batterylevelState = batteryInfo.BatteryCapacityLevel.RESERVED;
+    console.info('batterylevelState = ' + batterylevelState);
+    expect(batterylevelState == 5).assertTrue();
+  })
 })
