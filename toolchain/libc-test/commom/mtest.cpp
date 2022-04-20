@@ -2,6 +2,8 @@
 #include <cstdint>
 #include <securec.h>
 
+#include "gtest/gtest.h"
+
 #include "mtest.h"
 
 int eulpf(float x)
@@ -133,7 +135,9 @@ char *estr(int f)
         p += sprintf_s(p, sizeof p, "%s%d", all ? "|" : "", f & ~all);
         all = f;
     }
-    p += sprintf_s(p, sizeof p, "%s", all ? "" : "0");
+    int ret;
+    EXPECT_TRUE((ret = sprintf_s(p, sizeof p, "%s", all ? "" : "0") != -1));
+    p += ret;
     return buf;
 }
 

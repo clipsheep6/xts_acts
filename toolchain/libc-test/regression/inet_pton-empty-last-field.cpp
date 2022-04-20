@@ -9,12 +9,12 @@ using namespace std;
 using namespace testing::ext;
 class InetPtonEmptyLastField : public testing::Test {};
 
-static void txt(char *s, unsigned char *buf)
+static void txt(char *s, unsigned char *buf,int n)
 {
-    int i;
-    snprintf_s(s, 16, 16, "%04x", buf[0] << 8 | buf[1]);
+    int i,strSize = 16;
+    snprintf_s(s, strSize, strSize, "%04x", buf[0] << 8 | buf[1]);
     for (i = 1; i < 8; i++) {
-        sprintf_s(s + 5 * i, 50, ":%04x", buf[2 * i] << 8 | buf[2 * i + 1]);
+        sprintf_s(s + 5 * i, n, ":%04x", buf[2 * i] << 8 | buf[2 * i + 1]);
     }
 }
 /**
@@ -31,15 +31,15 @@ HWTEST_F(InetPtonEmptyLastField, InetPtonEmptyLastFieldTest, Function | MediumTe
 
     addr = (char *)"1:2:3:4:5:6:7::";
     if (inet_pton(AF_INET6, addr, buf) != 1 || memcmp(buf, want, 16) != 0) {
-        txt(s, buf);
-        txt(sw, want);
+        txt(s, buf,sizeof(s));
+        txt(sw, want,sizeof(sw));
         EXPECT_TRUE(inet_pton(AF_INET6, addr, buf) != 1 || memcmp(buf, want, 16) != 0)
             << "inet_pton(" << addr << ") returned " << s << ", wanted " << sw << endl;
     }
 
     addr = (char *)"1:2:3:4:5:6:7::9:10:11:12:13:14:15:16:17:18:19:20";
     if (inet_pton(AF_INET6, addr, buf) != 0) {
-        txt(s, buf);
+        txt(s, buf,sizeof(s));
         EXPECT_TRUE(inet_pton(AF_INET6, addr, buf) != 0)
              << "inet_pton(" << addr << ") returned " << s << ", wanted a failure" << endl;
     }

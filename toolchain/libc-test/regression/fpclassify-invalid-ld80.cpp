@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
+#include <securec.h>
 
 #include "gtest/gtest.h"
 
@@ -10,7 +11,7 @@
     c = fpclassify(f);                                                                       \
     EXPECT_EQ(c != cwant) << "fpclassify(" << desc                                           \
         << ") failed: got " << strclass(c) << " want " << #cwant << endl;                    \
-    memset(s, 0, sizeof(s));                                                                 \
+    memset_s(s, sizeof(s) - 1,0, sizeof(s));                                                                 \
     EXPECT_GE(snprintf_s(s, sizeof(s), sizeof(s), "%La", f), sizeof(s))                      \
         << "snprintf_s(\"%%La\"," << desc << ") failed with invalid return value\n"<< endl;  \
     EXPECT_EQ(strcmp(s, swant), 0) << "snprintf_s(\"" << desc                                \

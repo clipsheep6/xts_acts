@@ -29,7 +29,6 @@ static const struct
     int i;
     const wchar_t *expect;
 } int_tests[] = {
-    /* width, precision, alignment */
     {L"%04d", 12, L"0012"},
     {L"%.3d", 12, L"012"},
     {L"%3d", 12, L" 12"},
@@ -42,19 +41,16 @@ static const struct
     {L"%0-5d", 12, L"12   "},
     {L"%-05d", 12, L"12   "},
 
-    /* ...explicit precision of 0 shall be no characters except for alt-octal. */
     {L"%.0d", 0, L""},
     {L"%.0o", 0, L""},
     {L"%#.0d", 0, L""},
     {L"%#.0o", 0, L"0"},
     {L"%#.0x", 0, L""},
 
-    /* hex: test alt form and case */
     {L"%x", 63, L"3f"},
     {L"%#x", 63, L"0x3f"},
     {L"%X", 63, L"3F"},
 
-    /* octal: test alt form */
     {L"%o", 15, L"17"},
     {L"%#o", 15, L"017"},
 
@@ -65,23 +61,19 @@ static const struct {
     double f;
     const wchar_t *expect;
 } fp_tests[] = {
-    /* basic form, handling of exponent/precision for 0 */
     {L"%e", 0.0, L"0.000000e+00"},
     {L"%f", 0.0, L"0.000000"},
     {L"%g", 0.0, L"0"},
     {L"%#g", 0.0, L"0.00000"},
 
-    /* rounding */
     {L"%f", 1.1, L"1.100000"},
     {L"%f", 1.2, L"1.200000"},
     {L"%f", 1.3, L"1.300000"},
     {L"%f", 1.4, L"1.400000"},
     {L"%f", 1.5, L"1.500000"},
 
-    /* correctness in DBL_DIG places */
     {L"%.15g", 1.23456789012345, L"1.23456789012345"},
 
-    /* correct choice of notation for %g */
     {L"%g", 0.0001, L"0.0001"},
     {L"%g", 0.00001, L"1e-05"},
     {L"%g", 123456, L"123456"},
@@ -89,11 +81,9 @@ static const struct {
     {L"%.7g", 1234567, L"1234567"},
     {L"%.7g", 12345678, L"1.234568e+07"},
 
-    /* pi in double precision, printed to a few extra places */
     {L"%.15f", M_PI, L"3.141592653589793"},
     {L"%.18f", M_PI, L"3.141592653589793116"},
 
-    /* exact conversion of large integers */
     {L"%.0f", 340282366920938463463374607431768211456.0,
      L"340282366920938463463374607431768211456"},
 

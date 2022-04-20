@@ -30,10 +30,10 @@ static char *flagstr(const struct xlat *map, int flags)
 {
     static char buf[1000];
     const char *sep;
-    int n;
+    int n, strSize = 1;
 
     if (!flags) {
-        snprintf(buf, 1, "0");
+        snprintf_s(buf, strSize, strSize, "0");
         return buf;
     }
     n = 0;
@@ -46,7 +46,7 @@ static char *flagstr(const struct xlat *map, int flags)
         }
     }
     if (flags) {
-        sprintf_s(buf, sizeof buf, "%sunknown=%#x", sep, flags);
+       EXPECT_GE(sprintf_s(buf, sizeof buf, "%sunknown=%#x", sep, flags), 0);
     }
     return buf;
 }

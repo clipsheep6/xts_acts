@@ -12,8 +12,9 @@ class StringMemmem : public testing::Test {};
 void N(char *s, char *tail, char *sub)
 {
     char p[128] = {0};
-    strcpy_s(p, strlen(s)+1, s);
-    strcat_s(p,  strlen(p) + strlen(tail) + 1, tail);
+    errno_t eno1 = strcpy_s(p, strlen(s)+1, s);
+    errno_t eno2 = strcat_s(p,  strlen(p) + strlen(tail) + 1, tail);
+    EXPECT_TRUE(eno2 == 0 || eno1 == 0) << "strcpy_s 或 strcat_s" << endl;
     char *q = (char *)memmem(p, strlen((const char *)s), sub, strlen((const char *)sub));
     EXPECT_FALSE(q) << s << " " << tail << ", " << strlen((const char *)s) << " , " << sub
                     << " ," << strlen((const char *)sub) << ") returned str+" << q - p << ", wanted 0" << endl;

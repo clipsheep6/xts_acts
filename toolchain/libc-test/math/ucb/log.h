@@ -1,45 +1,7 @@
-// Copyright (C) 1988-1994 Sun Microsystems, Inc. 2550 Garcia Avenue
-// Mountain View, California  94043 All rights reserved.
-//
-// Any person is hereby authorized to download, copy, use, create bug fixes,
-// and distribute, subject to the following conditions:
-//
-//  1.  the software may not be redistributed for a fee except as
-//      reasonable to cover media costs;
-//  2.  any copy of the software must include this notice, as well as
-//      any other embedded copyright notices; and
-//  3.  any distribution of this software or derivative works thereof
-//      must comply with all applicable U.S. export control laws.
-//
-// THE SOFTWARE IS MADE AVAILABLE "AS IS" AND WITHOUT EXPRESS OR IMPLIED
-// WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO THE IMPLIED
-// WARRANTIES OF DESIGN, MERCHANTIBILITY, FITNESS FOR A PARTICULAR
-// PURPOSE, NON-INFRINGEMENT, PERFORMANCE OR CONFORMANCE TO
-// SPECIFICATIONS.
-//
-// BY DOWNLOADING AND/OR USING THIS SOFTWARE, THE USER WAIVES ALL CLAIMS
-// AGAINST SUN MICROSYSTEMS, INC. AND ITS AFFILIATED COMPANIES IN ANY
-// JURISDICTION, INCLUDING BUT NOT LIMITED TO CLAIMS FOR DAMAGES OR
-// EQUITABLE RELIEF BASED ON LOSS OF DATA, AND SPECIFICALLY WAIVES EVEN
-// UNKNOWN OR UNANTICIPATED CLAIMS OR LOSSES, PRESENT AND FUTURE.
-//
-// IN NO EVENT WILL SUN MICROSYSTEMS, INC. OR ANY OF ITS AFFILIATED
-// COMPANIES BE LIABLE FOR ANY LOST REVENUE OR PROFITS OR OTHER SPECIAL,
-// INDIRECT AND CONSEQUENTIAL DAMAGES, EVEN IF IT HAS BEEN ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGES.
-//
-// This file is provided with no support and without any obligation on the
-// part of Sun Microsystems, Inc. ("Sun") or any of its affiliated
-// companies to assist in its use, correction, modification or
-// enhancement.  Nevertheless, and without creating any obligation on its
-// part, Sun welcomes your comments concerning the software and requests
-// that they be sent to fdlibm-comments@sunpro.sun.com.
-// logd(+fmax) is finite
 TT(RN, 0x1.fffffffffffffp+1023,    0x1.62e42fefa39efp+9,  -0x1.a9c9e4p-3, INEXACT)
 TT(RZ, 0x1.fffffffffffffp+1023,    0x1.62e42fefa39efp+9,  -0x1.a9c9e4p-3, INEXACT)
 TT(RU, 0x1.fffffffffffffp+1023,     0x1.62e42fefa39fp+9,   0x1.958d88p-1, INEXACT)
 TT(RD, 0x1.fffffffffffffp+1023,    0x1.62e42fefa39efp+9,  -0x1.a9c9e4p-3, INEXACT)
-// logd(1+tiny) is tiny - tiny*tiny/2
 TT(RN,     0x1.000000000002p+0,    0x1.fffffffffffep-48, -0x1.555556p-43, INEXACT)
 TT(RN,                  0x1p+0,                  0x0p+0,          0x0p+0, 0)
 TT(RN,     0x1.fffffffffffcp-1,   -0x1.000000000001p-47,  0x1.555556p-44, INEXACT)
@@ -52,7 +14,6 @@ TT(RU,     0x1.fffffffffffcp-1,   -0x1.000000000001p-47,  0x1.555556p-44, INEXAC
 TT(RD,     0x1.000000000002p+0,    0x1.fffffffffffep-48, -0x1.555556p-43, INEXACT)
 TT(RD,                  0x1p+0,                  0x0p+0,          0x0p+0, 0)
 TT(RD,     0x1.fffffffffffcp-1,  -0x1.0000000000011p-47,         -0x1p+0, INEXACT)
-// logd(min) is finite
 TT(RN,               0x1p-1022,   -0x1.6232bdd7abcd2p+9,   0x1.eef3fep-3, INEXACT)
 TT(RN,               0x1p-1074,   -0x1.74385446d71c3p+9,    0x1.8e56ap-2, INEXACT)
 TT(RZ,               0x1p-1022,   -0x1.6232bdd7abcd2p+9,   0x1.eef3fep-3, INEXACT)
@@ -61,7 +22,6 @@ TT(RU,               0x1p-1022,   -0x1.6232bdd7abcd2p+9,   0x1.eef3fep-3, INEXAC
 TT(RU,               0x1p-1074,   -0x1.74385446d71c3p+9,    0x1.8e56ap-2, INEXACT)
 TT(RD,               0x1p-1022,   -0x1.6232bdd7abcd3p+9,    -0x1.8443p-1, INEXACT)
 TT(RD,               0x1p-1074,   -0x1.74385446d71c4p+9,   -0x1.38d4bp-1, INEXACT)
-// random arguments between 0 100
 TT(RN,    0x1.24844b2b5006dp+5,    0x1.ccaeab2b2d17ap+1,   0x1.fc0214p-2, INEXACT)
 TT(RN,    0x1.5671ffb825911p+6,    0x1.1cc9cfc21200ep+2,   0x1.576484p-6, INEXACT)
 TT(RN,    0x1.7817009de7505p+6,    0x1.22c941ad2cdcbp+2,   0x1.ffd6e6p-3, INEXACT)
@@ -72,14 +32,10 @@ TT(RN,    0x1.3baa8d18455f5p+6,    0x1.1793b7e741d95p+2,  -0x1.343a7cp-2, INEXAC
 TT(RN,    0x1.730484a51b239p+6,    0x1.21eac9842b049p+2,  -0x1.bd7ec6p-3, INEXACT)
 TT(RN,    0x1.4cc5b1079de4dp+5,    0x1.dd2fa6f2757b8p+1,    0x1.39a05p-2, INEXACT)
 TT(RN,    0x1.0ca4d3103b871p+1,    0x1.7b930bafa9c1dp-1,   -0x1.00835p-3, INEXACT)
-// logd(NAN) is NAN
 TT(RN,                     NAN,                     NAN,          0x0p+0, 0)
-// logd(+inf) is inf
 TT(RN,                     inf,                     inf,          0x0p+0, 0)
-// logd(+-0) is -inf
 TT(RN,                  0x0p+0,                    -inf,          0x0p+0, DIVBYZERO)
 TT(RN,                 -0x0p+0,                    -inf,          0x0p+0, DIVBYZERO)
-// logd(-ve) is NAN
 TT(RN,              -0x1p-1074,                     NAN,          0x0p+0, INVALID)
 TT(RN,              -0x1p-1022,                     NAN,          0x0p+0, INVALID)
 TT(RN,-0x1.fffffffffffffp+1023,                     NAN,          0x0p+0, INVALID)

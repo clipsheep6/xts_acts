@@ -4,16 +4,19 @@
 #include <cstdlib>
 #include <clocale>
 #include <langinfo.h>
+#include <securec.h>
 
 #include "gtest/gtest.h"
 
+static mbstate_t st, st2;
+
 #define T(f, x, m) do {                                                                            \
-    memset(&st, 0, sizeof st);                                                                     \
+    memset_s(&st, sizeof st - 1, 0, sizeof st);                                                                     \
     EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << m << ") got " << i << " want " << x << endl; \
 } while (0)
 
 #define TCHAR(f, x, m) do {                                                                            \
-    memset(&st, 0, sizeof st);                                                                         \
+    memset_s(&st, sizeof st - 1, 0, sizeof st);                                                                         \
     EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << m << ") got 0x" << i << " want 0x" << x << endl; \
 } while (0)
 
@@ -30,7 +33,6 @@ HWTEST_F(Mbc, MbcTest, Function | MediumTest | Level2)
 {
     const char *cs;
     int i;
-    mbstate_t st, st2;
     wchar_t wc, wcs[32];
 
     (void)(setlocale(LC_CTYPE, "en_US.UTF-8") ||

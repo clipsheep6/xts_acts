@@ -90,10 +90,10 @@ static void tobin(void *d, char *s)
 
 static void tohex(char *d, void *s, int n)
 {
-    int i;
+    int i,strSize = 1024;
     unsigned char *p = (unsigned char *)s;
     for (i = 0; i < n; i++) {
-        snprintf_s(d + 2 * i, 1024,1024,"%02x", p[i]);
+        snprintf_s(d + 2 * i, strSize, strSize,"%02x", p[i]);
     }
 }
 
