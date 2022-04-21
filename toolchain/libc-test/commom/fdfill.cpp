@@ -13,5 +13,5 @@ void t_fdfill(void)
         }
         fd = open("/dev/null", O_RDONLY);
     }
-    while(dup(fd) != -1) {}
+    while (dup(fd) != -1) {}
 }

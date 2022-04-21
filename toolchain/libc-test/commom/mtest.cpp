@@ -8,24 +8,32 @@
 
 int eulpf(float x)
 {
-    union { float f; uint32_t i; } u = { x };
-    int e = (u.i>>23) & 0xff;
+    union { 
+        float f; 
+        uint32_t i; 
+    } u = { x };
+    int move = 23;
+    int e = (u.i >> move) & 0xff;
     
     if (!e) {
         e++;
     }
-    return e - 0x7f - 23; // e - 0x7f - 23 : e - 0x7f - 23 
+    return e - 0x7f - move; // e - 0x7f - move : 计算值
 }
 
 int eulp(double x)
 {
-    union { double f; uint64_t i; } u = { x };
-    int e = (u.i>>52) & 0x7ff;
+    union { 
+        double f; 
+        uint64_t i; 
+    } u = { x };
+    int move = 52;
+    int e = (u.i >> move) & 0x7ff;
     
     if (!e) {
-       e++;
+        e++;
     }
-    return e - 0x3ff - 52;// e - 0x3ff - 52 : e - 0x3ff - 52
+    return e - 0x3ff - move; // e - 0x3ff - move : 计算值
 }
 
 int eulpl(long double x)
@@ -33,13 +41,21 @@ int eulpl(long double x)
 #if LDBL_MANT_DIG == 53
     return eulp(x);
 #elif LDBL_MANT_DIG == 64
-    union { long double f; struct {uint64_t m; uint16_t e; uint16_t pad;} i; } u = { x };
+    union { 
+        long double f; 
+        struct {
+            uint64_t m; 
+            uint16_t e; 
+            uint16_t pad;
+            } i; 
+        } u = { x };
+    int move = 63;
     int e = u.i.e & 0x7fff;
     
     if (!e) {
-       e++;
+        e++;
     }
-    return e - 0x3fff - 63;// e - 0x3fff - 63 : e - 0x3fff - 63
+    return e - 0x3fff - move; // e - 0x3fff - move : 计算值
 #else
     return 0;
 #endif
@@ -47,6 +63,7 @@ int eulpl(long double x)
 
 float ulperrf(float got, float want, float dwant)
 {
+    float calu = 0.5;
     if (isnan(got) && isnan(want)) {
         return 0;
     }
@@ -58,13 +75,14 @@ float ulperrf(float got, float want, float dwant)
     }
     if (isinf(got)) {
         got = copysignf(0x1p127, got);
-        want *= 0.5;
+        want *= calu;
     }
     return scalbn(got - want, -eulpf(want)) + dwant;
 }
 
 float ulperr(double got, double want, float dwant)
 {
+    float calu = 0.5;
     if (isnan(got) && isnan(want)) {
         return 0;
     }
@@ -76,7 +94,7 @@ float ulperr(double got, double want, float dwant)
     }
     if (isinf(got)) {
         got = copysign(0x1p1023, got);
-        want *= 0.5;
+        want *= calu;
     }
     return scalbn(got - want, -eulp(want)) + dwant;
 }
@@ -95,9 +113,10 @@ float ulperrl(long double got, long double want, float dwant)
         }
         return inf;
     }
+    float calu = 0.5;
     if (isinf(got)) {
         got = copysignl(0x1p16383L, got);
-        want *= 0.5;
+        want *= calu;
     }
     return scalbnl(got - want, -eulpl(want)) + dwant;
 #else
@@ -123,19 +142,18 @@ char *estr(int f)
 {
     static char buf[256];
     char *p = buf;
-    int i, all = 0;
+    int i, ret, all = 0;
     
     for (i = 0; i < length(eflags); i++) {
         if (f & eflags[i].flag) {
-            p += sprintf_s(p, sizeof p,"%s%s", all ? "|" : "", eflags[i].s);
-            all |= eflags[i].flag;
+            p += sprintf_s(p, sizeof p, "%s%s", all ? "|" : "", eflags[i].s);
+            all |= eflags[i].flag;  
         }
     }
     if (all != f) {
         p += sprintf_s(p, sizeof p, "%s%d", all ? "|" : "", f & ~all);
         all = f;
     }
-    int ret;
     EXPECT_TRUE((ret = sprintf_s(p, sizeof p, "%s", all ? "" : "0") != -1));
     p += ret;
     return buf;
@@ -175,10 +193,11 @@ int checkexcept(int got, int want, int r)
 
 int checkulp(float d, int r)
 {
+    float cmp1 = 1.5, cmp2 = 3.0;
     if (r == RN) {
-        return fabsf(d) < 1.5;
+        return fabsf(d) < cmp1;
     }
-    return fabsf(d) < 3.0;
+    return fabsf(d) < cmp2;
 }
 
 int checkexceptall(int got, int want, int r)

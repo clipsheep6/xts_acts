@@ -25,13 +25,13 @@ static void f()
     }
     {int(*p)(size_t) = hcreate;}
     {void(*p)(void) = hdestroy;}
-    {ENTRY*(*p)(ENTRY,ACTION) = hsearch;}
-    {void(*p)(void*,void*) = insque;}
-    {void*(*p)(const void*,const void*,size_t*,size_t,int(*)(const void*,const void*)) = lfind;}
-    {void*(*p)(const void*,void*,size_t*,size_t,int(*)(const void*,const void*)) = lsearch;}
+    {ENTRY*(*p)(ENTRY, ACTION) = hsearch;}
+    {void(*p)(void*, void*) = insque;}
+    {void*(*p)(const void*, const void*, size_t*,size_t, int(*)(const void*, const void*)) = lfind;}
+    {void*(*p)(const void*,void*, size_t*, size_t, int(*)(const void*, const void*)) = lsearch;}
     {void(*p)(void*) = remque;}
-    {void*(*p)(const void*restrict,void**restrict,int(*)(const void*,const void*)) = tdelete;}
-    {void*(*p)(const void*,void*const*,int(*)(const void*,const void*)) = tfind;}
-    {void*(*p)(const void*,void**,int(*)(const void*,const void*)) = tsearch;}
-    {void(*p)(const void*,void(*)(const void*,VISIT,int)) = twalk;}
+    {void*(*p)(const void*restrict, void**restrict, int(*)(const void*,const void*)) = tdelete;}
+    {void*(*p)(const void*, void*const*, int(*)(const void*, const void*)) = tfind;}
+    {void*(*p)(const void*, void**, int(*)(const void*, const void*)) = tsearch;}
+    {void(*p)(const void*, void(*)(const void*, VISIT, int)) = twalk;}
 }

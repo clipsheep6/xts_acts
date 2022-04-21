@@ -11,10 +11,10 @@ class InetPtonEmptyLastField : public testing::Test {};
 
 static void txt(char *s, unsigned char *buf,int n)
 {
-    int i,strSize = 16;
-    snprintf_s(s, strSize, strSize, "%04x", buf[0] << 8 | buf[1]);
+    int i, strSize = 16;
+    EXPECT_NE(-1, snprintf_s(s, strSize, strSize, "%04x", (buf[0] << 8) | buf[1]));
     for (i = 1; i < 8; i++) {
-        sprintf_s(s + 5 * i, n, ":%04x", buf[2 * i] << 8 | buf[2 * i + 1]);
+        EXPECT_NE(-1, sprintf_s(s + 5 * i, n, ":%04x", (buf[2 * i] << 8) | buf[(2 * i) + 1]));
     }
 }
 /**

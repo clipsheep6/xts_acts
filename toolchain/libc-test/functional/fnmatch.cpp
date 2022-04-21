@@ -30,10 +30,9 @@ static char *flagstr(const struct xlat *map, int flags)
 {
     static char buf[1000];
     const char *sep;
-    int n, strSize = 1;
-
+    int n;
     if (!flags) {
-        snprintf_s(buf, strSize, strSize, "0");
+        sprintf_s(buf, sizeof buf, "0");
         return buf;
     }
     n = 0;
