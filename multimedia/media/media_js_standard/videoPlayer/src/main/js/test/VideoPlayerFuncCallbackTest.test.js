@@ -14,12 +14,12 @@
  */
 
 import media from '@ohos.multimedia.media'
-import router from '@system.router'
-import fileIO from '@ohos.fileio'
+import {toNewPage, clearRouter} from './VideoPlayerTestBase.js';
+import {getFileDescriptor, closeFileDescriptor, isFileOpen} from '../../../../../MediaTestBase.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('VideoPlayerFuncCallbackTest', function () {
-    const AUDIO_SOURCE = '/data/accounts/account_0/appdata/ohos.acts.multimedia.video.videoplayer/H264_AAC.mp4';
+    const VIDEO_SOURCE = 'H264_AAC.mp4';
     const PLAY_TIME = 3000;
     const SEEK_TIME = 5000;
     const WIDTH_VALUE = 720;
@@ -29,7 +29,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
     const SETSURFACE_EVENT = 'setDisplaySurface';
     const GETDESCRIPTION = 'getTrackDescription';
     const PREPARE_EVENT = 'prepare';
-    const PREPARE2_EVENT = 'prepare2';
+    const SRC_PREPARE_EVENT = 'src2prepare';
     const PLAY_EVENT = 'play';
     const PAUSE_EVENT = 'pause';
     const STOP_EVENT = 'stop';
@@ -46,32 +46,34 @@ describe('VideoPlayerFuncCallbackTest', function () {
     const NEXT_FRAME_TIME = 8333;
     const PREV_FRAME_TIME = 4166;
     let surfaceID = '';
-    let fdPath;
-    let fdValue;
-    let temp = 0;
+    let fileDescriptor = undefined;
+    let page = 0;
     let events = require('events');
     let eventEmitter = new events.EventEmitter();
 
-    beforeAll(function() {
+    beforeAll(async function() {
         console.info('beforeAll case');
+        await getFileDescriptor(VIDEO_SOURCE).then((res) => {
+            fileDescriptor = res;
+        });
     })
 
     beforeEach(async function() {
-        console.info('case flush surfaceID start');
-        await toNewPage();
-        console.info('case flush surfaceID end');
-        await msleep(1000).then(() => {
-        }, failureCallback).catch(catchCallback);
+        await toNewPage(page);
+        page = (page + 1) % 2;
+        await msleep(1000).then(() => {}, failureCallback).catch(catchCallback);
+        surfaceID = globalThis.value;
+        console.info('case new surfaceID is ' + surfaceID);
         console.info('beforeEach case');
     })
 
     afterEach(async function() {
-        await router.clear();
+        await clearRouter();
         console.info('afterEach case');
     })
 
     afterAll(async function() {
-        await fileIO.close(fdValue);
+        await closeFileDescriptor(VIDEO_SOURCE);
         console.info('afterAll case');
     })
 
@@ -91,38 +93,6 @@ describe('VideoPlayerFuncCallbackTest', function () {
 
     function msleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
-    }
-
-    async function toNewPage() {
-        let path = '';
-        if (temp == 0) {
-            path = 'pages/surfaceTest/surfaceTest';
-            temp = 1;
-        } else {
-            path = 'pages/surfaceTest/surfaceTest2';
-            temp = 0;
-        }
-        let options = {
-            uri: path,
-        }
-        try {
-            let result = await router.push(options);
-        } catch {
-            console.info('case route failed');
-        }
-    }
-
-    async function getFd() {
-        fdPath = 'fd://';
-        await fileIO.open(AUDIO_SOURCE).then((fdNumber) => {
-            fdPath = fdPath + '' + fdNumber;
-            fdValue = fdNumber;
-            console.info('[fileIO]case open fd success,fdPath is ' + fdPath);
-        }, (err) => {
-            console.info('[fileIO]case open fd failed');
-        }).catch((err) => {
-            console.info('[fileIO]case catch open fd failed');
-        });
     }
 
     function printfError(error, done) {
@@ -149,7 +119,6 @@ describe('VideoPlayerFuncCallbackTest', function () {
             eventEmitter.emit(steps[0], videoPlayer, steps, done);
         }
     }
-
     function setOnCallback(videoPlayer) {
         videoPlayer.on('playbackCompleted', () => {
             console.info('case playbackCompleted success');
@@ -190,7 +159,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
 
     eventEmitter.on(SETSURFACE_EVENT, (videoPlayer, steps, done) => {
         steps.shift();
-        videoPlayer.url = fdPath;
+        videoPlayer.fdSrc = fileDescriptor;
         videoPlayer.setDisplaySurface(surfaceID, (err) => {
             if (typeof (err) == 'undefined') {
                 expect(videoPlayer.state).assertEqual('idle');
@@ -218,9 +187,9 @@ describe('VideoPlayerFuncCallbackTest', function () {
         });
     });
 
-    eventEmitter.on(PREPARE2_EVENT, (videoPlayer, steps, done) => {
+    eventEmitter.on(SRC_PREPARE_EVENT, (videoPlayer, steps, done) => {
         steps.shift();
-        videoPlayer.url = fdPath;
+        videoPlayer.fdSrc = fileDescriptor;
         videoPlayer.prepare((err) => {
             if (typeof (err) == 'undefined') {
                 expect(videoPlayer.state).assertEqual('prepared');
@@ -446,9 +415,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_0100', 0, async function (done) {
-        await getFd();
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT,
             PREPARE_EVENT, PLAY_EVENT, RELEASE_EVENT, END_EVENT);
@@ -464,8 +431,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_0200', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT,
             PLAY_EVENT, PAUSE_EVENT, RELEASE_EVENT, END_EVENT);
@@ -481,8 +447,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_0300', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             PAUSE_EVENT, PLAY_EVENT, RELEASE_EVENT, END_EVENT);
@@ -498,8 +463,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_0400', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT,
             PLAY_EVENT, STOP_EVENT, RELEASE_EVENT, END_EVENT);
@@ -515,8 +479,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_0500', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT,
             PLAY_EVENT, RESET_EVENT, RELEASE_EVENT, END_EVENT);
@@ -532,8 +495,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_0600', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SEEK_EVENT, SEEK_TIME, RELEASE_EVENT, END_EVENT);
@@ -549,8 +511,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_0700', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SEEK_MODE_EVENT, SEEK_TIME, media.SeekMode.SEEK_NEXT_SYNC,
@@ -567,8 +528,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_0800', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SETVOLUME_EVENT, VOLUME_VALUE, RELEASE_EVENT, END_EVENT);
@@ -584,8 +544,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_0900', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SETSPEED_EVENT, SPEED_VALUE, RELEASE_EVENT, END_EVENT);
@@ -601,8 +560,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_1000', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT,
             GETDESCRIPTION, RELEASE_EVENT, END_EVENT);
@@ -618,8 +576,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_1200', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             PAUSE_EVENT, STOP_EVENT, RELEASE_EVENT, END_EVENT);
@@ -635,8 +592,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_1300', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             PAUSE_EVENT, RESET_EVENT, RELEASE_EVENT, END_EVENT);
@@ -652,8 +608,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_1400', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             PAUSE_EVENT, SEEK_EVENT, SEEK_TIME, PLAY_EVENT, RELEASE_EVENT, END_EVENT);
@@ -669,8 +624,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_1500', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             PAUSE_EVENT, SEEK_MODE_EVENT, SEEK_TIME, media.SeekMode.SEEK_NEXT_SYNC,
@@ -687,8 +641,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_1600', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             PAUSE_EVENT, SETVOLUME_EVENT, VOLUME_VALUE, PLAY_EVENT, RELEASE_EVENT, END_EVENT);
@@ -704,8 +657,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_1700', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             PAUSE_EVENT, SETSPEED_EVENT, SPEED_VALUE, PLAY_EVENT, RELEASE_EVENT, END_EVENT);
@@ -721,8 +673,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_1800', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             STOP_EVENT, RESET_EVENT, RELEASE_EVENT, END_EVENT);
@@ -738,11 +689,10 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_1900', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
-            STOP_EVENT, RESET_EVENT, PREPARE2_EVENT,
+            STOP_EVENT, RESET_EVENT, SRC_PREPARE_EVENT,
             PLAY_EVENT, RELEASE_EVENT, END_EVENT);
         eventEmitter.emit(mySteps[0], videoPlayer, mySteps, done);            
     })
@@ -756,8 +706,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_2000', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SEEK_EVENT, 0, PAUSE_EVENT, STOP_EVENT, RELEASE_EVENT, END_EVENT);
@@ -773,8 +722,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_2100', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SEEK_MODE_EVENT, 0, media.SeekMode.SEEK_NEXT_SYNC, 
@@ -791,8 +739,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_2200', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SEEK_EVENT, DURATION_TIME, RELEASE_EVENT, END_EVENT);
@@ -808,8 +755,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_2300', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SEEK_MODE_EVENT, DURATION_TIME, media.SeekMode.SEEK_PREV_SYNC,
@@ -826,8 +772,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_2400', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SEEK_EVENT, DURATION_TIME + 1, RELEASE_EVENT, END_EVENT);
@@ -843,8 +788,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_2500', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SEEK_MODE_EVENT, DURATION_TIME + 1, media.SeekMode.SEEK_PREV_SYNC,
@@ -861,8 +805,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_2600', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SETVOLUME_EVENT, 0, SETVOLUME_EVENT, 0.2, SETVOLUME_EVENT, 0.4, SETVOLUME_EVENT, 0.6,
@@ -879,8 +822,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_2700', 0, async function (done) {
-        surfaceID = globalThis.value;
-        console.info('case new surfaceID is ' + surfaceID);
+        isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETSURFACE_EVENT, PREPARE_EVENT, PLAY_EVENT,
             SETSPEED_EVENT, media.PlaybackSpeed.SPEED_FORWARD_2_00_X, RELEASE_EVENT, END_EVENT);

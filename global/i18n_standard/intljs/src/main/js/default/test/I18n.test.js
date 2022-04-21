@@ -166,12 +166,12 @@ describe('I18nTest', function () {
     * @tc.name setSystemLanguage with not exist param aaa
     * @tc.desc check the language
     */
-    it('SUB_GLOBAL_I18N_JS_0850', 0, function () {
+    it('i18n_test_0850', 0, function () {
         let value = I18n.setSystemLanguage('aaa');
-        console.log('SUB_GLOBAL_I18N_JS_0850 ' + value);
+        console.log('i18n_test_0850 ' + value);
         expect(value).assertTrue();
         let lang = I18n.getSystemLanguage();
-        console.log('SUB_GLOBAL_I18N_JS_0850 ' + lang);
+        console.log('i18n_test_0850 ' + lang);
         expect(lang).assertEqual('aaa');
     })
 
@@ -1625,6 +1625,22 @@ describe('I18nTest', function () {
                                         'en-US', 
                                         'medium');
         console.log('i18n_test_9200 ' + value);
+        expect(value).assertEqual('236.588 L');
+    })
+
+    /**
+    * @tc.number SUB_GLOBAL_I18N_JS_9250
+    * @tc.name test unitConvert interface from cup to liter unit with narrow style
+    * @tc.desc get the unitConvert value
+    */
+     it('i18n_test_9250', 0, function () {
+        console.log('i18n_test_9250 ' + 'start');
+        let value = I18n.Util.unitConvert({unit: 'cup', measureSystem: 'US'},
+            {unit: 'liter', measureSystem: 'SI'},
+            1000,
+            'en-US',
+            'narrow');
+        console.log('i18n_test_9250 ' + value);
         expect(value).assertEqual('236.588L');
     })
 

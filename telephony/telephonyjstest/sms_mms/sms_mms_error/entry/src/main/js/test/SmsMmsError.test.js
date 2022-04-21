@@ -343,8 +343,8 @@ describe('SmsMmsErrorTest', function () {
         return;
       }
 	  if (result.length > 0) {
-		  except(result[0].shortMessage != null).assertTrue();
-		  except(result[0].indexOnSim != -1).assertTrue();
+		  expect(result[0].shortMessage != null).assertTrue();
+		  expect(result[0].indexOnSim != -1).assertTrue();
 	  }
       expect(result === undefined || result.length === 0).assertTrue();
       console.log('Telephony_SmsMms_getAllSIMMessages_Async_0200 finish');
@@ -381,19 +381,19 @@ describe('SmsMmsErrorTest', function () {
     sms.createMessage(rawArrayNull, '3gpp', (err, shortMessage) => {
       if (err) {
         console.log('Telephony_SmsMms_createMessage_Async_0200 finish');
-		except(shortMessage.visibleMessageBody != 'visibleMessageBody').assertTrue();
-		except(shortMessage.visibleRawAddress != 'visibleRawAddress').assertTrue();
-		except(shortMessage.messageClass != 'sms.FORWARD_MESSAGE').assertTrue();
-		except(shortMessage.protocolId != -1).assertTrue();
-		except(shortMessage.scAddress != 'scAddress').assertTrue();
-		except(shortMessage.scTimestamp != -1).assertTrue();
-		except(shortMessage.isReplaceMessage != true).assertTrue();
-		except(shortMessage.hasReplyPath != true).assertTrue();
-		except(shortMessage.status != -1).assertTrue();
-		except(shortMessage.isSmsStatusReportMessage != true).assertTrue();
         done();
         return;
       }
+      expect(shortMessage.visibleMessageBody != 'visibleMessageBody').assertTrue();
+      expect(shortMessage.visibleRawAddress != 'visibleRawAddress').assertTrue();
+      expect(shortMessage.messageClass != 'sms.FORWARD_MESSAGE').assertTrue();
+      expect(shortMessage.protocolId != -1).assertTrue();
+      expect(shortMessage.scAddress != 'scAddress').assertTrue();
+      expect(shortMessage.scTimestamp != -1).assertTrue();
+      expect(shortMessage.isReplaceMessage != true).assertTrue();
+      expect(shortMessage.hasReplyPath != true).assertTrue();
+      expect(shortMessage.status != -1).assertTrue();
+      expect(shortMessage.isSmsStatusReportMessage != true).assertTrue();
       expect().assertFail();
       console.log('Telephony_SmsMms_createMessage_Async_0200 fail');
       done();
@@ -406,7 +406,7 @@ describe('SmsMmsErrorTest', function () {
    *             SMS failed to send
    * @tc.desc    Function test
    */
-  it('Telephony_SmsMms_sendMessage_0200', 0, async function (done) {
+   it('Telephony_SmsMms_sendMessage_0200', 0, async function (done) {
     sms.sendMessage({
       slotId: FALSE_SLOT_ID,
       destinationHost: SMS_SEND_DST_NUMBER,
@@ -776,7 +776,7 @@ describe('SmsMmsErrorTest', function () {
     };
     try {
       let encodePromise = await sms.encodeMms({messageType: sms.TYPE_MMS_READ_ORIG_IND, mmsType});
-      expect(encodePromise.length > 0).assertTrue();
+      expect(encodePromise.length == 0).assertTrue();
       console.log('Telephony_SmsMms_encodeMms_Promise_0900 encodeMms finish');
       let promise = await sms.decodeMms(encodePromise);
       expect(promise.messageType === sms.TYPE_MMS_READ_ORIG_IND).assertTrue();
