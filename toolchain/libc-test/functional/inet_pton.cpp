@@ -1,3 +1,4 @@
+#include <iostream>
 #include <cerrno>
 #include <cstring>
 #include <cstdio>
@@ -34,67 +35,72 @@
         << "inet_ntop(AF_INET6, <" << #hex << ">, buf, size) got " << txtaddr << ", should be ipv4 mapped" << endl; \
 } while (0)
 
-// ret and hex are the results of inet_pton and inet_addr respectively
-#define V4(src, ret, hex) do {                                                                                  \
-    int r;                                                                                                      \
-    uint32_t a;                                                                                                 \
-    struct in_addr in;                                                                                          \
-    char buf[20] = {0};                                                                                         \
-    char *p;                                                                                                    \
-                                                                                                                \
-    a = inet_addr(src);                                                                                         \
-    tohex(buf, &a, 4);                                                                                          \
-    EXPECT_FALSE(strcmp(buf, hex)) << "inet_addr(" << #src << ") returned " << buf << ", want " << hex << endl; \
-                                                                                                                \
-    r = inet_pton(AF_INET, src, &a);                                                                            \
-    EXPECT_EQ(r, ret) << "inet_pton(AF_INET, " << #src << ", addr) returned " << r << ", want " << ret << endl; \
-                                                                                                                \
-    if (ret != 1) {                                                                                             \
-        break;                                                                                                  \
-    }                                                                                                           \
-                                                                                                                \
-    tohex(buf, &a, 4);                                                                                          \
-    EXPECT_FALSE(strcmp(buf, hex)) << "inet_pton(AF_INET, "                                                     \
-        << #src << ", addr) got addr " << buf << ", want " << hex << endl;                                      \
-    tobin(&a, hex);                                                                                             \
-    EXPECT_FALSE(inet_ntop(AF_INET, &a, buf, sizeof buf) != buf)                                                \
-        << "inet_pton(AF_INET, " << #hex << ", buf, size) did not return buf " << endl;                         \
-    EXPECT_FALSE(strcmp(buf, src)) << "inet_pton(AF_INET, "                                                     \
-        << #hex << ", buf , size) got " << buf << ", want " << src << endl;                                     \
-    in.s_addr = a;                                                                                              \
-    p = inet_ntoa(in);                                                                                          \
-    EXPECT_FALSE(strcmp(p, src)) << "inet_ntoa(<" << #hex << ">) returned " << p << ", want " << src << endl;   \
-} while (0)
-    
+
 using namespace std;
 using namespace testing::ext;
 class InetPton : public testing::Test {};
 
 static int digit(int c)
 {
+    int cmp = 9, cont = 10;
     c -= '0';
-    if (c > 9) {
-        c -= 'a' - '0' - 10;
+    if (c > cmp) {
+        c -= 'a' - '0' - cont;
     }
     return c;
 }
 
-static void tobin(void *d, const char *s)
+static void tobin(void *d, char *s)
 {
-    int i;
+    int i, cont = 2;
     unsigned char *p = (unsigned char *)d;
-    for (i = 0; s[2 * i]; i++) {
-        p[i] = digit(s[2 * i]) * 16 + digit(s[2 * i + 1]);
+    for (i = 0; s[cont * i]; i++) {
+        p[i] = digit(s[cont * i]) * 16 + digit(s[cont * i + 1]);
     }
 }
 
 static void tohex(char *d, void *s, int n)
 {
-    int i,strSize = 1024;
+    int i,strSize = 1024, cont = 2;
     unsigned char *p = (unsigned char *)s;
     for (i = 0; i < n; i++) {
-        snprintf_s(d + 2 * i, strSize, strSize,"%02x", p[i]);
+        EXPECT_TRUE(snprintf_s(d + cont * i, strSize, strSize, "%02x", p[i]) != -1);
     }
+}
+
+// ret and hex are the results of inet_pton and inet_addr respectively
+void V4(string src_c, int ret, string hex_x)
+{
+    int r;
+    uint32_t a;
+    struct in_addr in;
+    char buf[20] = {0};
+    char *p;
+    const char *src = src_c.c_str();
+    char *hex = const_cast<char*>(hex_x.c_str());
+
+    a = inet_addr(src);
+    tohex(buf, &a, 4);
+    EXPECT_FALSE(strcmp(buf, hex)) << "inet_addr(" << src << ") returned " << buf << ", want " << hex << endl;
+
+    r = inet_pton(AF_INET, src, &a);
+    EXPECT_EQ(r, ret) << "inet_pton(AF_INET, " << src << ", addr) returned " << r << ", want " << ret << endl;
+
+    if (ret != 1) {
+        return;
+    }
+
+    tohex(buf, &a, 4);
+    EXPECT_FALSE(strcmp(buf, hex)) << "inet_pton(AF_INET, "
+        << src << ", addr) got addr " << buf << ", want " << hex << endl;
+    tobin(&a, hex);
+    EXPECT_FALSE(inet_ntop(AF_INET, &a, buf, sizeof buf) != buf)
+        << "inet_pton(AF_INET, " << hex << ", buf, size) did not return buf " << endl;
+    EXPECT_FALSE(strcmp(buf, src)) << "inet_pton(AF_INET, "
+        << hex << ", buf , size) got " << buf << ", want " << src << endl;
+    in.s_addr = a;
+    p = inet_ntoa(in);
+    EXPECT_FALSE(strcmp(p, src)) << "inet_ntoa(<" << hex << ">) returned " << p << ", want " << src << endl;
 }
 
 /**
@@ -104,38 +110,38 @@ static void tohex(char *d, void *s, int n)
  */
 HWTEST_F(InetPton, InetPtonTest, Function | MediumTest | Level2)
 {
-    string trf;
-    EXPECT_FALSE(inet_pton(12345, "", 0) != -1 || errno != EAFNOSUPPORT)
+    string trf1, trf2;
+    EXPECT_FALSE(inet_pton(12345, "", 0) != -1 || errno != EAFNOSUPPORT)\
          << "inet_pton(12345,,) should fail with EAFNOSUPPORT, got " << strerror(errno) << endl;
     errno = 0;
-    EXPECT_FALSE(inet_ntop(AF_INET, "xxxx", (char *)"", 0) != 0 || errno != ENOSPC) 
+    EXPECT_FALSE(inet_ntop(AF_INET, "xxxx", (char *)"", 0) != 0 || errno != ENOSPC)\
         << "inet_ntop(,,0,0) should fail with ENOSPC, got " << strerror(errno) << endl;
     errno = 0;
 
     // dotted-decimal notation
-    V4("0.0.0.0", 1, (const char *)("00000000"));
-    V4("127.0.0.1", 1, const_cast<char*>("7f000001"));
-    V4("10.0.128.31", 1, const_cast<char*>("0a00801f"));
-    V4("255.255.255.255", 1, const_cast<char*>("ffffffff"));
+    V4(trf1 = ("0.0.0.0"), 1, trf2 = ("00000000"));
+    V4(trf1 = ("127.0.0.1"), 1, trf2 = ("7f000001"));
+    V4(trf1 = ("10.0.128.31"), 1, trf2 = ("0a00801f"));
+    V4(trf1 = ("255.255.255.255"), 1, trf2 = ("ffffffff"));
 
     // numbers-and-dots notation, but not dotted-decimal
-    V4("1.2.03.4", 0, const_cast<char*>("01020304"));
-    V4("1.2.0x33.4", 0, const_cast<char*>("01023304"));
-    V4("1.2.0XAB.4", 0, const_cast<char*>("0102ab04"));
-    V4("1.2.0xabcd", 0, const_cast<char*>("0102abcd"));
-    V4("1.0xabcdef", 0, const_cast<char*>("01abcdef"));
-    V4("00377.0x0ff.65534", 0, const_cast<char*>("fffffffe"));
+    V4(trf1 = ("1.2.03.4"), 0, trf2 = ("01020304"));
+    V4(trf1 = ("1.2.0x33.4"), 0, trf2 = ("01023304"));
+    V4(trf1 = ("1.2.0XAB.4"), 0, trf2 = ("0102ab04"));
+    V4(trf1 = ("1.2.0xabcd"), 0, trf2 = ("0102abcd"));
+    V4(trf1 = ("1.0xabcdef"), 0, trf2 = ("01abcdef"));
+    V4(trf1 = ("00377.0x0ff.65534"), 0, trf2 = ("fffffffe"));
 
     // invalid
-    V4(".1.2.3", 0, const_cast<char*>("ffffffff"));
-    V4("1..2.3", 0, const_cast<char*>("ffffffff"));
-    V4("1.2.3.", 0, const_cast<char*>("ffffffff"));
-    V4("1.2.3.4.5", 0, const_cast<char*>("ffffffff"));
-    V4("1.2.3.a", 0, const_cast<char*>("ffffffff"));
-    V4("1.256.2.3", 0, const_cast<char*>("ffffffff"));
-    V4("1.2.4294967296.3", 0, const_cast<char*>("ffffffff"));
-    V4("1.2.-4294967295.3", 0, const_cast<char*>("ffffffff"));
-    V4("1.2. 3.4", 0, const_cast<char*>("ffffffff"));
+    V4(trf1 = (".1.2.3"), 0, trf2 = ("ffffffff"));
+    V4(trf1 = ("1..2.3"), 0, trf2 = ("ffffffff"));
+    V4(trf1 = ("1.2.3."), 0, trf2 = ("ffffffff"));
+    V4(trf1 = ("1.2.3.4.5"), 0, trf2 = ("ffffffff"));
+    V4(trf1 = ("1.2.3.a"), 0, trf2 = ("ffffffff"));
+    V4(trf1 = ("1.256.2.3"), 0, trf2 = ("ffffffff"));
+    V4(trf1 = ("1.2.4294967296.3"), 0, trf2 = ("ffffffff"));
+    V4(trf1 = ("1.2.-4294967295.3"), 0, trf2 = ("ffffffff"));
+    V4(trf1 = ("1.2. 3.4"), 0, trf2 = ("ffffffff"));
 
     // ipv6
     V6(":", 0, const_cast<char*>(""));
