@@ -73,11 +73,11 @@ HWTEST_F(ClocaleMbfuncs, ClocaleMbfuncsTest, Function | MediumTest | Level2)
 
     map[256] = 0;
     st = (mbstate_t){0};
-    tmp2 = (const wchar_t *){map + 1};
+    tmp2 = (const wchar_t *) {map + 1};
     EXPECT_EQ((rv = wcsrtombs(s, &tmp2, sizeof s, &st)), 255) 
         << "wcsrtombs returned " << rv << ", expected 255" << endl;
 
-    tmp3 = (const char *){s};
+    tmp3 = (const char *) {s};
     EXPECT_EQ((rv = mbsrtowcs(wtmp, &tmp3, 256, &st)), 255) 
         << "mbsrtowcs returned " << rv << ", expected 255" << endl;
     EXPECT_FALSE(memcmp(map + 1, wtmp, 256 * sizeof(*map))) << "wcsrtombs/mbsrtowcs round trip failed" << endl;
