@@ -2,7 +2,7 @@
     "description": "Configuration for hjunit demo Tests",
     "driver": {
         "type": "JSUnitTest",
-        "test-timeout": "60000",
+        "test-timeout": "120000",
         "package": "com.example.actsbmsjstest",
         "shell-timeout": "60000"
     },
@@ -24,6 +24,7 @@
         {
             "type": "PushKit",
             "push": [
+                "bmsThirdBundleTest1.hap->/data/test/bmsThirdBundleTest1.hap",
                 "bmsThirdBundleTest2.hap->/data/test/bmsThirdBundleTest2.hap",
                 "bmsThirdBundleTest5.hap->/data/test/bmsThirdBundleTest5.hap",
                 "bmsThirdBundleJs.hap->/data/test/bmsThirdBundleJs.hap",
