@@ -89,7 +89,7 @@ static int insert(uint64_t *tab, size_t len, uint64_t v)
     while (tab[i]) {
         if (tab[i] == v) {
             return -1;
-        }   
+        }
         i += j++;
         i &= len-1;
     }

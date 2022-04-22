@@ -79,7 +79,7 @@ static int digit(int c)
     return c;
 }
 
-static void tobin(void *d, char *s)
+static void tobin(void *d, const char *s)
 {
     int i;
     unsigned char *p = (unsigned char *)d;
@@ -104,6 +104,7 @@ static void tohex(char *d, void *s, int n)
  */
 HWTEST_F(InetPton, InetPtonTest, Function | MediumTest | Level2)
 {
+    string trf;
     EXPECT_FALSE(inet_pton(12345, "", 0) != -1 || errno != EAFNOSUPPORT)
          << "inet_pton(12345,,) should fail with EAFNOSUPPORT, got " << strerror(errno) << endl;
     errno = 0;
@@ -112,7 +113,7 @@ HWTEST_F(InetPton, InetPtonTest, Function | MediumTest | Level2)
     errno = 0;
 
     // dotted-decimal notation
-    V4("0.0.0.0", 1, const_cast<char*>("00000000"));
+    V4("0.0.0.0", 1, (const char *)("00000000"));
     V4("127.0.0.1", 1, const_cast<char*>("7f000001"));
     V4("10.0.128.31", 1, const_cast<char*>("0a00801f"));
     V4("255.255.255.255", 1, const_cast<char*>("ffffffff"));
