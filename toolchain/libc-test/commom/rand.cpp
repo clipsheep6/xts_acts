@@ -24,7 +24,7 @@ void t_randseed(uint64_t s)
 /* uniform random in [0,n), n > 0 must hold */
 uint64_t t_randn(uint64_t n)
 {
-    if(n == 0) {
+    if (n == 0) {
         return 0;
     }
     uint64_t r, m;
@@ -101,7 +101,7 @@ static int insert(uint64_t *tab, size_t len, uint64_t v)
 int t_choose(uint64_t n, size_t k, uint64_t *p)
 {
     uint64_t *tab;
-    int32_t cmp1 = 16, cmp2 = 8;
+    int32_t cmp1 = 16, cmp2 = 8, jud = 5;
     size_t i, j, len;
     
     if (n < k) {
@@ -129,7 +129,7 @@ int t_choose(uint64_t n, size_t k, uint64_t *p)
         }
         return 0;
     }
-    if (n < 5*k && (n-k)*sizeof(uint64_t) < (size_t)-1) {
+    if (n < jud*k && (n-k)*sizeof(uint64_t) < static_cast<size_t>(-1)) {
         /* allocation is n-k < 4*k */
         tab = (uint64_t *)malloc((n-k) * sizeof(uint64_t));
         if (!tab) {
@@ -151,7 +151,7 @@ int t_choose(uint64_t n, size_t k, uint64_t *p)
     }
     
     /* allocation is 2*k <= len < 4*k */
-    for (len = 16; len < 2*k; len *= 2) {}
+    for (len = cmp1; len < 2*k; len *= 2) {}
     tab =(uint64_t *) calloc(len, sizeof(uint64_t));
     if (!tab) {
         return -1;

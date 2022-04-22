@@ -19,7 +19,7 @@ int t_setutf8()
     setlocale(LC_CTYPE, "UTF-8") ||
     setlocale(LC_CTYPE, ""));
     
-    EXPECT_FALSE(strcmp(nl_langinfo(CODESET), "UTF-8")) 
+    EXPECT_FALSE(strcmp(nl_langinfo(CODESET), "UTF-8")) \
         << "cannot set UTF-8 locale for test (codeset=" << nl_langinfo(CODESET) << ")" << endl;
     return 0;
 }

@@ -19,7 +19,7 @@ class PthreadCancel : public testing::Test {};
 
 static void *start_async(void *arg)
 {
-    pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, 0);
+    pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, nullptr);
     sem_post((sem_t *)arg);
     for (;;);
     return nullptr;

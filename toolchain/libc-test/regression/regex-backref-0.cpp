@@ -23,7 +23,7 @@ HWTEST_F(RegexBackref0, RegexBackref0Test, Function | MediumTest | Level2)
         regerror(n, &r, buf, sizeof buf);
         EXPECT_FALSE(n) << "regcomp(" << pat << ") returned " << n << " (" << buf << ") wanted 0" << endl;
     }
-    n = regexec(&r, "a0", 0, 0, 0);
+    n = regexec(&r, "a0", 0, nullptr, 0);
     if (n) {
         regerror(n, &r, buf, sizeof buf);
         EXPECT_FALSE(n) << "regexec(/" << pat << "/ ~ \"a0\") returned " << n << " (" << buf << "), wanted 0" << endl;

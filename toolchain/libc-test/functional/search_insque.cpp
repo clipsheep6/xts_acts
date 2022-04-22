@@ -31,7 +31,7 @@ HWTEST_F(SearchInsque, SearchInsqueTest, Function | MediumTest | Level2)
     struct q *p;
     int i;
 
-    insque(q, 0);
+    insque(q, nullptr);
     for (i = 1; i < 10; i++) {
         insque((void *)new_data(i), q);
         q = q->n;

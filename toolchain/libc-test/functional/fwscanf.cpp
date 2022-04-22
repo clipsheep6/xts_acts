@@ -34,7 +34,7 @@ static FILE *writetemp(const char *data)
     if (write(fileno(f), data, n) != n) {
         EXPECT_EQ(write(fileno(f), data, n), n) << "write: " << strerror(errno) << endl;
         fclose(f);
-        return 0;
+        return nullptr;
     }
     if (lseek(fileno(f), 0, SEEK_SET) != 0) {
         EXPECT_EQ(lseek(fileno(f), 0, SEEK_SET), 0) << "lseek: " << strerror(errno) << endl;

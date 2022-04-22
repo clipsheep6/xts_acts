@@ -32,7 +32,7 @@ static struct {
 #ifdef FE_UNDERFLOW
     F(FE_UNDERFLOW),
 #endif
-    {0, 0}};
+    {nullptr, 0}};
 
 static void test_except()
 {

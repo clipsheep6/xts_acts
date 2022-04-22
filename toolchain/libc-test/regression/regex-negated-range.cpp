@@ -23,7 +23,7 @@ HWTEST_F(RegexnegatedRange, RegexnegatedRangeTest, Function | MediumTest | Level
         EXPECT_FALSE(n) << "regcomp returned " << n << " (" << buf << ")" << endl;
     }
 
-    n = regexec(&r, "k", 0, 0, 0);
+    n = regexec(&r, "k", 0, nullptr, 0);
     if (n != REG_NOMATCH) {
         regerror(n, &r, buf, sizeof buf);
         EXPECT_EQ(REG_NOMATCH, n) 

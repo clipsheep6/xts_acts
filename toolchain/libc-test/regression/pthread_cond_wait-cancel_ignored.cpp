@@ -24,7 +24,7 @@ static void *waiter(void *p)
     pthread_mutex_lock(&mx);
     waiting = 1;
     pthread_cond_signal(&cv);
-    pthread_cleanup_push(cleanup, 0);
+    pthread_cleanup_push(cleanup, nullptr);
     while (waiting) {
         pthread_cond_wait(&cv, &mx);
     }
@@ -43,7 +43,7 @@ HWTEST_F(PthreadCondWaitCancelIgnored, PthreadCondWaitCancelIgnoredTest, Functio
     struct timespec ts;
     void *rv;
     pthread_mutex_lock(&mx);
-    pthread_create(&td, 0, waiter, 0);
+    pthread_create(&td, nullptr, waiter, nullptr);
     while (!waiting) {
         pthread_cond_wait(&cv, &mx);
     }

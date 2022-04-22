@@ -31,7 +31,7 @@ HWTEST_F(RegexBracketIcase, RegexBracketIcaseTest, Function | MediumTest | Level
         {const_cast<char*>("C"), REG_NOMATCH},
         {const_cast<char*>("d"), 0},
         {const_cast<char*>("D"), 0},
-        {0, 0}};
+        {nullptr, 0}};
 
     pat = const_cast<char*>("[^aBcC]");
     n = regcomp(&re, pat, REG_ICASE);
@@ -41,7 +41,7 @@ HWTEST_F(RegexBracketIcase, RegexBracketIcaseTest, Function | MediumTest | Level
     }
 
     for (i = 0; t[i].s; i++) {
-        n = regexec(&re, t[i].s, 0, 0, 0);
+        n = regexec(&re, t[i].s, 0, nullptr, 0);
         if (n != t[i].n) {
             regerror(n, &re, buf, sizeof buf);
             EXPECT_TRUE(false) << "regexec(/" << pat << "/, \""

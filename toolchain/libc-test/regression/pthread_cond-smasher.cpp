@@ -162,7 +162,7 @@ HWTEST_F(PthreadCondSmasher, PthreadCondSmasherTest, Function | MediumTest | Lev
     }
 
     trace("main finished loop\n");
-    void *pret = (void *){0};
+    void *pret = (void *){nullptr};
     for (unsigned i = 0; i < threads; ++i) {
         trace("main joining thread %u\n", i);
         int ret = thread_join(id[i], &pret);

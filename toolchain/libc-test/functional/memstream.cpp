@@ -44,7 +44,7 @@ HWTEST_F(Memstream, MemStreamTest, Function | MediumTest | Level2)
     char buf[100];
     int i;
 
-    s = 0;
+    s = nullptr;
     TEST_E(f = open_memstream(&s, &l));
     TEST_E(putc('a', f) == 'a');
     TEST_E(putc('b', f) == 'b');
@@ -56,7 +56,7 @@ HWTEST_F(Memstream, MemStreamTest, Function | MediumTest | Level2)
     }
     free(s);
 
-    s = 0;
+    s = nullptr;
     TEST_E(f = open_memstream(&s, &l));
     TEST_E(fseek(f, 1, SEEK_CUR) >= 0);
     TEST_E(putc('q', f) == 'q');

@@ -8,10 +8,7 @@
 
 int eulpf(float x)
 {
-    union { 
-        float f; 
-        uint32_t i; 
-    } u = { x };
+    union { float f; uint32_t i; } u = { x };
     int move = 23;
     int e = (u.i >> move) & 0xff;
     
@@ -23,10 +20,7 @@ int eulpf(float x)
 
 int eulp(double x)
 {
-    union { 
-        double f; 
-        uint64_t i; 
-    } u = { x };
+    union { double f; uint64_t i; } u = { x };
     int move = 52;
     int e = (u.i >> move) & 0x7ff;
     
@@ -41,14 +35,7 @@ int eulpl(long double x)
 #if LDBL_MANT_DIG == 53
     return eulp(x);
 #elif LDBL_MANT_DIG == 64
-    union { 
-        long double f; 
-        struct {
-            uint64_t m; 
-            uint16_t e; 
-            uint16_t pad;
-            } i; 
-        } u = { x };
+    union { long double f; struct {uint64_t m; uint16_t e; uint16_t pad;} i; } u = { x };
     int move = 63;
     int e = u.i.e & 0x7fff;
     

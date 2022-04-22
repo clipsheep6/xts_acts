@@ -25,7 +25,7 @@ HWTEST_F(IconvRoundtrips, IconvRoundtripsTest, Function | MediumTest | Level2)
         const_cast<char*>("iso-8859-14"),
         const_cast<char*>("iso-8859-15"),
         const_cast<char*>("iso-8859-16"),
-        0};
+        nullptr};
     char all_codepoints[256];
     int i;
 
