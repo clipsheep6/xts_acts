@@ -3,13 +3,13 @@
 
 #include "gtest/gtest.h"
 
-#define T(h, s, k) do {                                                                \
-    p = crypt(k, s);                                                                   \
-    if (!p) {                                                                          \
-        p = "*";                                                                       \
-    }                                                                                  \
-    EXPECT_FALSE((strcmp(p, h) != 0)) << "crypt(" << #k                                \
-      << ", \"" << s << "\") failed: got \"" << p << "\" want \"" << h << "\"" << endl;\
+#define T(h, s, k) do {\
+    p = crypt(k, s);\
+    if (!p) {\
+        p = "*";\
+    }\
+    EXPECT_FALSE((strcmp(p, h) != 0)) << "crypt(" << #k << ", \"" << s\
+                                      << "\") failed: got \"" << p << "\" want \"" << h << "\"" << endl;\
 } while (0)
 
 using namespace std;
@@ -66,7 +66,7 @@ HWTEST_F(Crpyt, CrpytTest, Function | MediumTest | Level2)
     T("$5$rounds=5000$toolongsaltstrin$Un/5jzAHMgOGZ5.mWJpuVolil07guHPvOW8mGRcvxa5",
       "$5$rounds=5000$toolongsaltstring", "This is just a test");
     T("$5$rounds=1400$anotherlongsalts$Rx.j8H.h8HjEDGomFU8bDkXm3XIUnzyxf12oP84Bnq1",
-      "$5$rounds=1400$anotherlongsaltstring", 
+      "$5$rounds=1400$anotherlongsaltstring",
       "a very much longer text to encrypt.  This one even stretches over morethan one line.");
     T("$5$rounds=1000$roundstoolow$yfvwcWrQ8l/K0DAWyuPMDNHpIVlTQebY9l/gL972bIC",
       "$5$rounds=10$roundstoolow", "the minimum number is still observed");
@@ -92,7 +92,7 @@ HWTEST_F(Crpyt, CrpytTest, Function | MediumTest | Level2)
       "$6$rounds=5000$toolongsaltstring", "This is just a test");
     T("$6$rounds=1400$anotherlongsalts$POfYwTEok97VWcjxIiSOjiykti.o"
       "/pQs.wPvMxQ6Fm7I6IoYN3CmLs66x9t0oSwbtEW7o7UmJEiDwGqd8p4ur1",
-      "$6$rounds=1400$anotherlongsaltstring", 
+      "$6$rounds=1400$anotherlongsaltstring",
       "a very much longer text to encrypt.  This one even stretches over morethan one line.");
     T("$6$rounds=1000$roundstoolow$kUMsbe306n21p9R.FRkW3IGn."
       "S9NPN0x50YhH1xhLsPuWGsUSklZt58jaTfF4ZEQpyUNGc0dqbpBYYBaHHrsX.",

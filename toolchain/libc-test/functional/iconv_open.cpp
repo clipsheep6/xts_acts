@@ -17,7 +17,7 @@ HWTEST_F(IconvOpen, IconvOpenTest, Function | MediumTest | Level2)
 {
     iconv_t cd;
     char buf[100];
-    char *inbuf = (char *)"test";
+    char *inbuf = const_cast<char*>("test");
     char *outbuf = buf;
     size_t inlen = strlen(inbuf);
     size_t outlen;
@@ -26,7 +26,7 @@ HWTEST_F(IconvOpen, IconvOpenTest, Function | MediumTest | Level2)
 
     cd = iconv_open(bad, bad);
     EXPECT_EQ(cd, (iconv_t)-1) << "iconv_open(\"" << bad << "\",\"" << bad << "\") didn't fail" << endl;
-    EXPECT_EQ(EINVAL, errno) << "iconv_open(\"" << bad << "\",\"" 
+    EXPECT_EQ(EINVAL, errno) << "iconv_open(\"" << bad << "\",\""
         << bad << "\") did not fail with EINVAL, got " << strerror(errno) << endl;
     errno = 0;
     cd = iconv_open("UTF-8", "UTF-8");

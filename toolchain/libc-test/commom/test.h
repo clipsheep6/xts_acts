@@ -4,6 +4,8 @@
 
 #define t_error(...) t_printf( __VA_ARGS__)
 
+extern char **environ;
+
 int t_printf(const char *s, ...);
 int t_vmfill(void **p, size_t *n, int len);
 int t_memfill(void);

@@ -32,7 +32,7 @@ static char *flagstr(const struct xlat *map, int flags)
     const char *sep;
     int n;
     if (!flags) {
-        sprintf_s(buf, sizeof buf, "0");
+        EXPECT_TRUE(sprintf_s(buf, sizeof buf, "0") != -1);
         return buf;
     }
     n = 0;
@@ -45,7 +45,7 @@ static char *flagstr(const struct xlat *map, int flags)
         }
     }
     if (flags) {
-       EXPECT_GE(sprintf_s(buf, sizeof buf, "%sunknown=%#x", sep, flags), 0);
+        EXPECT_TRUE(sprintf_s(buf, sizeof buf, "%sunknown=%#x", sep, flags) !=  -1);
     }
     return buf;
 }
@@ -155,13 +155,13 @@ HWTEST_F(Fnmatch, FnmatchTest, Function | MediumTest | Level2)
 {
     int i;
 
-    for (i = 0; i < (int)(sizeof(tests) / sizeof(*tests)); i++) {
+    for (i = 0; i < (static_cast<int>(sizeof(tests)) / sizeof(*tests)); i++) {
         int r, x;
 
         r = fnmatch(tests[i].pattern, tests[i].string, tests[i].flags);
         x = tests[i].expected;
-        EXPECT_FALSE(r != x && (r != FNM_NOMATCH || x != -FNM_NOMATCH)) 
-            << "fnmatch(\"" << tests[i].pattern << "\", \"" << tests[i].string<< "\", " 
+        EXPECT_FALSE(r != x && (r != FNM_NOMATCH || x != -FNM_NOMATCH))
+            << "fnmatch(\"" << tests[i].pattern << "\", \"" << tests[i].string<< "\", "
                 << flagstr(fnmatch_flags, tests[i].flags) << ") failed, got " << r << " want " << x << endl;
     }
 }

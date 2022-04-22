@@ -5,8 +5,9 @@
 #include <climits>
 #include <unistd.h>
 
-#include "test.h"
 #include "gtest/gtest.h"
+
+#include "test.h"
 
 #define TESTT(r, f, x, m) do {                                          \
     errno = 0;                                                          \
@@ -16,7 +17,7 @@
 } while (0)
 
 #define TEST_S(s, x, m) do {                                                                   \
-    EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;  \
+    EXPECT_TRUE(!strcmp((s), (x))) << "[" << (s) << "] != [" << (x) << "] (" << (m) << ")" << endl;  \
 } while (0)
 
 using namespace std;

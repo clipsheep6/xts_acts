@@ -40,35 +40,35 @@ static void tohex(char *d, void *s, int n)
 }
 
 void V6(string src_c, int ret, string hex_x)
-{                                                                                      
-    int r , n = 16;                                                                                                         
-    char binaddr[16] = {0};                                                                                        
-    char hexaddr[40] = {0};                                                                                        
-    char txtaddr[60] = {0};                                                                                        
+{
+    int r , n = 16, n2 = 24;
+    char binaddr[16] = {0};
+    char hexaddr[40] = {0};
+    char txtaddr[60] = {0};
     const char *src = src_c.c_str();
     char *hex = const_cast<char*>(hex_x.c_str());
 
-    r = inet_pton(AF_INET6, src, binaddr);                                                                         
-    EXPECT_EQ(r, ret) << "inet_pton(AF_INET6, " << src << ", addr) returned " << r << ", want " << ret << endl;  
-    if (ret != 1) {                                                                                                
-        return;                                                                                                     
-    }                                                                                                              
-    tohex(hexaddr, binaddr, n);                                                                                   
-    EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_pton(AF_INET6, "                                                   
-                                       << src << ", addr) got addr " << hexaddr << ", want " << hex << endl;                                     
-    tobin(binaddr, hex);                                                                                           
+    r = inet_pton(AF_INET6, src, binaddr);
+    EXPECT_EQ(r, ret) << "inet_pton(AF_INET6, " << src << ", addr) returned " << r << ", want " << ret << endl;
+    if (ret != 1) {
+        return;
+    }
+    tohex(hexaddr, binaddr, n);
+    EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_pton(AF_INET6, " << src
+                                       << ", addr) got addr " << hexaddr << ", want " << hex << endl;
+    tobin(binaddr, hex);
     EXPECT_EQ(txtaddr, inet_ntop(AF_INET6, binaddr, txtaddr, sizeof txtaddr)) <<
-        "inet_ntop(AF_INET6, <" << hex << ">, buf, size) did not return buf" << endl;                                
+        "inet_ntop(AF_INET6, <" << hex << ">, buf, size) did not return buf" << endl;
     EXPECT_EQ(1, inet_pton(AF_INET6, txtaddr, binaddr)) << "inet_ntop(AF_INET6, <"<< hex << ">, buf, size) got "
-                                                        << txtaddr << ", it is rejected by inet_pton" << endl;                     
-                                                                                                                
-    tohex(hexaddr, binaddr, n);                                                                                   
-    EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_ntop(AF_INET6, <" << hex << ">, buf, size) got "                  
-                                       << txtaddr << " that is " << hexaddr << ", want " << hex << endl;          
-                                                                                                                
-    EXPECT_FALSE(strncmp(hex, "00000000000000000000ffff",24) == 0 && !strchr(txtaddr, '.')) <<
+                                                        << txtaddr << ", it is rejected by inet_pton" << endl;
+
+    tohex(hexaddr, binaddr, n);
+    EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_ntop(AF_INET6, <" << hex << ">, buf, size) got "
+                                       << txtaddr << " that is " << hexaddr << ", want " << hex << endl;
+
+    EXPECT_FALSE(strncmp(hex, "00000000000000000000ffff", n2) == 0 && !strchr(txtaddr, '.')) <<
         "inet_ntop(AF_INET6, <" << hex << ">, buf, size) got "<< txtaddr << ", should be ipv4 mapped" << endl;
-}   
+}
 
 
 // ret and hex are the results of inet_pton and inet_addr respectively
