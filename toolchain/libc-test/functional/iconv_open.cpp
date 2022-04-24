@@ -17,7 +17,7 @@ HWTEST_F(IconvOpen, IconvOpenTest, Function | MediumTest | Level2)
 {
     iconv_t cd;
     char buf[100];
-    char *inbuf = const_cast<char*>("test");
+    char *inbuf = const_cast<char*>"test";
     char *outbuf = buf;
     size_t inlen = strlen(inbuf);
     size_t outlen;

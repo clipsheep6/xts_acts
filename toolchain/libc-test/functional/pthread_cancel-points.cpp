@@ -9,18 +9,18 @@
 
 #include "gtest/gtest.h"
 
-#define TESTC(c, m) do { \
-    EXPECT_TRUE((c)) << #c << " failed (" << cdescr << ", " << m << ")" << endl;\
+#define TESTC(c, m) do {\
+    EXPECT_TRUE((c)) << #c << " failed (" << cdescr << ", " << (m) << ")" << endl;\
 } while (0)
 
 #define TESTR(f, m) do {                                                                                         \
     int r;                                                                                                       \
-    EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(errno) << " (" << cdescr << ", " << m << ")" << endl; \
+    EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(errno) << " (" << cdescr << ", " << (m) << ")" << endl; \
 } while (0)
 
 #define TESTE(f, m) do { \
-    EXPECT_FALSE(((f) == -1)) << #f << " failed: " \
-        << strerror(errno) << " (" << cdescr << ", " << m << ")" << endl;\
+    EXPECT_FALSE(((f) == -1)) << #f << " failed: "\
+                                    << strerror(errno) << " (" << cdescr << ", " << (m) << ")" << endl;\
 } while (0)
 
 
@@ -107,7 +107,7 @@ static void cleanup_shm(void *arg)
     }
 }
 
-static int tmp = (int){0};
+static int tmp = (int) {0};
 static struct {
     int want_cancel;
     void (*prepare)(void *);
@@ -128,12 +128,13 @@ static struct {
 
 static void *run_execute(void *arg)
 {
+    int n = 2;
     pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, nullptr);
     while (sem_wait(&sem_seq)) {}
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, nullptr);
     seqno = 1;
     cur_sc->execute(cur_sc->arg);
-    seqno = 2;
+    seqno = n;
     return nullptr;
 }
 

@@ -10,14 +10,14 @@
 
 static mbstate_t st, st2;
 
-#define T(f, x, m) do {                                                                            \
-    memset_s(&st, sizeof st - 1, 0, sizeof st);                                                                     \
-    EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << m << ") got " << i << " want " << x << endl; \
+#define T(f, x, m) do {\
+    memset_s(&st, sizeof st - 1, 0, sizeof st);\
+    EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << (m) << ") got " << (i) << " want " << (x) << endl;\
 } while (0)
 
-#define TCHAR(f, x, m) do {                                                                            \
-    memset_s(&st, sizeof st - 1, 0, sizeof st);                                                                         \
-    EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << m << ") got 0x" << i << " want 0x" << x << endl; \
+#define TCHAR(f, x, m) do {\
+    memset_s(&st, sizeof st - 1, 0, sizeof st);\
+    EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << (m) << ") got 0x" << (i) << " want 0x" << (x) << endl;\
 } while (0)
 
 using namespace std;
@@ -83,7 +83,7 @@ HWTEST_F(Mbc, MbcTest, Function | MediumTest | Level2)
 
     memset(&st2, 0, sizeof st2);
     T(mbrtowc(&wc, "\xc2", 1, &st2), -2, "failed to accept initial byte");
-    T(mbsrtowcs(wcs, (cs = "\xa0""abc",&cs),32, &st2), 4, "failed to resume");
+    T(mbsrtowcs(wcs, (cs = "\xa0""abc", &cs), 32, &st2), 4, "failed to resume");
     TCHAR(wcs[0], 0xa0, "wrong char");
     TCHAR(wcs[1], 'a', "wrong char");
     T(!cs, 1, "wrong final position");

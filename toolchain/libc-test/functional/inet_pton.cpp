@@ -21,7 +21,7 @@ static int digit(int c)
     return c;
 }
 
-static void tobin(void *d, char *s)
+static void tobin(void *d,const char *s)
 {
     int i, cont = 2, cont2 = 16;
     unsigned char *p = (unsigned char *)d;
@@ -45,29 +45,27 @@ void V6(string src_c, int ret, string hex_x)
     char binaddr[16] = {0};
     char hexaddr[40] = {0};
     char txtaddr[60] = {0};
-    const char *src = src_c.c_str();
-    char *hex = const_cast<char*>(hex_x.c_str());
 
-    r = inet_pton(AF_INET6, src, binaddr);
-    EXPECT_EQ(r, ret) << "inet_pton(AF_INET6, " << src << ", addr) returned " << r << ", want " << ret << endl;
+    r = inet_pton(AF_INET6, src_c.c_str(), binaddr);
+    EXPECT_EQ(r, ret) << "inet_pton(AF_INET6, " << src_c.c_str() << ", addr) returned " << r << ", want " << ret << endl;
     if (ret != 1) {
         return;
     }
     tohex(hexaddr, binaddr, n);
-    EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_pton(AF_INET6, " << src
-                                       << ", addr) got addr " << hexaddr << ", want " << hex << endl;
-    tobin(binaddr, hex);
+    EXPECT_FALSE(strcmp(hexaddr, hex_x.c_str())) << "inet_pton(AF_INET6, " << src_c.c_str()
+                                       << ", addr) got addr " << hexaddr << ", want " << hex_x.c_str() << endl;
+    tobin(binaddr, hex_x.c_str());
     EXPECT_EQ(txtaddr, inet_ntop(AF_INET6, binaddr, txtaddr, sizeof txtaddr)) <<
-        "inet_ntop(AF_INET6, <" << hex << ">, buf, size) did not return buf" << endl;
-    EXPECT_EQ(1, inet_pton(AF_INET6, txtaddr, binaddr)) << "inet_ntop(AF_INET6, <"<< hex << ">, buf, size) got "
+        "inet_ntop(AF_INET6, <" << hex_x.c_str() << ">, buf, size) did not return buf" << endl;
+    EXPECT_EQ(1, inet_pton(AF_INET6, txtaddr, binaddr)) << "inet_ntop(AF_INET6, <"<< hex_x.c_str() << ">, buf, size) got "
                                                         << txtaddr << ", it is rejected by inet_pton" << endl;
 
     tohex(hexaddr, binaddr, n);
-    EXPECT_FALSE(strcmp(hexaddr, hex)) << "inet_ntop(AF_INET6, <" << hex << ">, buf, size) got "
-                                       << txtaddr << " that is " << hexaddr << ", want " << hex << endl;
+    EXPECT_FALSE(strcmp(hexaddr, hex_x.c_str())) << "inet_ntop(AF_INET6, <" << hex_x.c_str() << ">, buf, size) got "
+                                       << txtaddr << " that is " << hexaddr << ", want " << hex_x.c_str() << endl;
 
-    EXPECT_FALSE(strncmp(hex, "00000000000000000000ffff", n2) == 0 && !strchr(txtaddr, '.')) <<
-        "inet_ntop(AF_INET6, <" << hex << ">, buf, size) got "<< txtaddr << ", should be ipv4 mapped" << endl;
+    EXPECT_FALSE(strncmp(hex_x.c_str(), "00000000000000000000ffff", n2) == 0 && !strchr(txtaddr, '.')) <<
+        "inet_ntop(AF_INET6, <" << hex_x.c_str() << ">, buf, size) got "<< txtaddr << ", should be ipv4 mapped" << endl;
 }
 
 
@@ -79,31 +77,31 @@ void V4(string src_c, int ret, string hex_x)
     struct in_addr in;
     char buf[20] = {0};
     char *p;
-    const char *src = src_c.c_str();
-    char *hex = const_cast<char*>(hex_x.c_str());
 
-    a = inet_addr(src);
+    a = inet_addr(src_c.c_str());
     tohex(buf, &a, n);
-    EXPECT_FALSE(strcmp(buf, hex)) << "inet_addr(" << src << ") returned " << buf << ", want " << hex << endl;
+    EXPECT_FALSE(strcmp(buf, hex_x.c_str())) << 
+        "inet_addr(" << src_c.c_str() << ") returned " << buf << ", want " << hex_x.c_str() << endl;
 
-    r = inet_pton(AF_INET, src, &a);
-    EXPECT_EQ(r, ret) << "inet_pton(AF_INET, " << src << ", addr) returned " << r << ", want " << ret << endl;
+    r = inet_pton(AF_INET, src_c.c_str(), &a);
+    EXPECT_EQ(r, ret) << "inet_pton(AF_INET, " << src_c.c_str() << ", addr) returned " << r << ", want " << ret << endl;
 
     if (ret != 1) {
         return;
     }
 
     tohex(buf, &a, n);
-    EXPECT_FALSE(strcmp(buf, hex)) << "inet_pton(AF_INET, "
-        << src << ", addr) got addr " << buf << ", want " << hex << endl;
-    tobin(&a, hex);
-    EXPECT_FALSE(inet_ntop(AF_INET, &a, buf, sizeof buf) != buf)
-        << "inet_pton(AF_INET, " << hex << ", buf, size) did not return buf " << endl;
-    EXPECT_FALSE(strcmp(buf, src)) << "inet_pton(AF_INET, "
-        << hex << ", buf , size) got " << buf << ", want " << src << endl;
+    EXPECT_FALSE(strcmp(buf, hex_x.c_str())) <<
+        "inet_pton(AF_INET, " << src_c.c_str() << ", addr) got addr " << buf << ", want " << hex_x.c_str() << endl;
+    tobin(&a, hex_x.c_str());
+    EXPECT_FALSE(inet_ntop(AF_INET, &a, buf, sizeof buf) != buf) << 
+        "inet_pton(AF_INET, " << hex_x.c_str() << ", buf, size) did not return buf " << endl;
+    EXPECT_FALSE(strcmp(buf, src_c.c_str())) <<
+        "inet_pton(AF_INET, " << hex_x.c_str() << ", buf , size) got " << buf << ", want " << src_c.c_str() << endl;
     in.s_addr = a;
     p = inet_ntoa(in);
-    EXPECT_FALSE(strcmp(p, src)) << "inet_ntoa(<" << hex << ">) returned " << p << ", want " << src << endl;
+    EXPECT_FALSE(strcmp(p, src_c.c_str())) << 
+        "inet_ntoa(<" << hex_x.c_str() << ">) returned " << p << ", want " << src_c.c_str() << endl;
 }
 
 /**
