@@ -10,14 +10,14 @@
 
 static mbstate_t st, st2;
 
-#define T(f, x, m) do {\
-    memset_s(&st, sizeof st - 1, 0, sizeof st);\
-    EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << (m) << ") got " << (i) << " want " << (x) << endl;\
+#define T(f, x, m) do { \
+    memset_s(&st, sizeof st - 1, 0, sizeof st); \
+    EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << (m) << ") got " << (i) << " want " << (x) << endl; \
 } while (0)
 
-#define TCHAR(f, x, m) do {\
-    memset_s(&st, sizeof st - 1, 0, sizeof st);\
-    EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << (m) << ") got 0x" << (i) << " want 0x" << (x) << endl;\
+#define TCHAR(f, x, m) do { \
+    memset_s(&st, sizeof st - 1, 0, sizeof st); \
+    EXPECT_EQ((i = (f)), (x)) << #f << " failed (" << (m) << ") got 0x" << (i) << " want 0x" << (x) << endl; \
 } while (0)
 
 using namespace std;

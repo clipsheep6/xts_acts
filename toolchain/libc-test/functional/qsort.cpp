@@ -1,29 +1,29 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
-#include <inttypes.h>
+#include <cinttypes>
 #include <securec.h>
 
 #include "gtest/gtest.h"
 
 #include "test.h"
 
-#define T(a, a_sorted) do {                                 \
-    char p[] = a;                                           \
-    qsort(p, sizeof p - 1, 1, ccmp);                        \
-    int t = memcmp(p, a_sorted, sizeof p);                  \
-    if (t != 0) {                                           \
+#define T(a, a_sorted) do { \
+    char p[] = a; \
+    qsort(p, sizeof p - 1, 1, ccmp); \
+    int t = memcmp(p, a_sorted, sizeof p); \
+    if (t != 0) { \
         EXPECT_EQ(0, t) << "character sort failed" << endl; \
-        t_printf("\tgot:  \"%s\"\n", p);                    \
-        t_printf("\twant: \"%s\"\n", a_sorted);             \
-    }                                                       \
+        t_printf("\tgot:  \"%s\"\n", p); \
+        t_printf("\twant: \"%s\"\n", a_sorted); \
+    } \
 } while (0)
-
-#define randnum 20
 
 using namespace std;
 using namespace testing::ext;
 class Qsort : public testing::Test {};
+
+static int randnum = 20;
 
 static int scmp(const void *a, const void *b)
 {
@@ -42,10 +42,10 @@ static int ccmp(const void *a, const void *b)
 
 static int cmp64(const void *a, const void *b)
 {
-    const uint64_t *ua = (const uint64_t *)a;
-    const uint64_t *ub = (const uint64_t *)b;
+    const uint64_t *ua = reinterpret_cast<const uint64_t *>(a);
+    const uint64_t *ub = reinterpret_cast<const uint64_t *>(b);
     return *ua < *ub ? -1 : *ua != *ub;
-}
+}   
 
 /* 26 items -- even */
 static const char *s[] = {
@@ -106,17 +106,17 @@ static void int_test(int *a, int *a_sorted, int len)
     }
 }
 
-static void uint64_gen(uint64_t *p, uint64_t *p_sorted, int n)
+static void uint64_gen(uint64_t *p, uint64_t *p_sorted, int ln)
 {
-    int i;
+    int i, n2 = 1026;
     uint64_t r = 0;
-    t_randseed(n);
-    for (i = 0; i < n; i++) {
+    t_randseed(ln);
+    for (i = 0; i < ln; i++) {
         r += t_randn(randnum);
         p[i] = r;
     }
-    memcpy_s(p_sorted, 1026*sizeof(uint64_t), p, n * sizeof(uint64_t));
-    t_shuffle(p, n);
+    memcpy_s(p_sorted, n2*sizeof(uint64_t), p, ln * sizeof(uint64_t));
+    t_shuffle(p, ln);
 }
 
 static void uint64_test(uint64_t *a, uint64_t *a_sorted, int len)

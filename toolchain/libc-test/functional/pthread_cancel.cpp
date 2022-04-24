@@ -5,12 +5,12 @@
 
 #include "gtest/gtest.h"
 
-#define TESTC(c, m) do {                                        \
-    EXPECT_TRUE((c)) << #c << " failed (" << m << ")" << endl;  \
+#define TESTC(c, m) do { \
+    EXPECT_TRUE((c)) << #c << " failed (" << (m) << ")" << endl; \
 } while (0)
 
-#define TESTR(r, f, m) do {                                                                   \
-    EXPECT_EQ(((r) = (f)), 0) << #f << " failed: " << strerror(r) << " (" << m << ")" << endl;\
+#define TESTR(r, f, m) do { \
+    EXPECT_EQ(((r) = (f)), 0) << #f << " failed: " << strerror(r) << " (" << (m) << ")" << endl; \
 } while (0)
 
 using namespace std;
@@ -21,7 +21,7 @@ static void *start_async(void *arg)
 {
     pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, nullptr);
     sem_post((sem_t *)arg);
-    for (;;);
+    for (;;) {}
     return nullptr;
 }
 
@@ -32,34 +32,39 @@ static void cleanup1(void *arg)
 
 static void cleanup2(void *arg)
 {
-    *(int *)arg += 2;
+    int n = 2;
+    *(int *)arg += n;
 }
 
 static void cleanup3(void *arg)
 {
-    *(int *)arg += 3;
+    int n = 3;
+    *(int *)arg += n;
 }
 
 static void cleanup4(void *arg)
 {
-    *(int *)arg += 4;
+    int n = 4;
+    *(int *)arg += n;
 }
 
 static void *start_single(void *arg)
 {
+    int n = 3;
     pthread_cleanup_push(cleanup1, arg);
-    sleep(3);
+    sleep(n);
     pthread_cleanup_pop(0);
     return nullptr;
 }
 
 static void *start_nested(void *arg)
 {
-    int *foo = (int *)arg;
-    pthread_cleanup_push(cleanup1, foo);
-    pthread_cleanup_push(cleanup2, foo + 1);
-    pthread_cleanup_push(cleanup3, foo + 2);
-    pthread_cleanup_push(cleanup4, foo + 3);
+    int n = 2, n2 = 3;
+    int *foof = (int *)arg;
+    pthread_cleanup_push(cleanup1, foof);
+    pthread_cleanup_push(cleanup2, foof + 1);
+    pthread_cleanup_push(cleanup3, foof + n);
+    pthread_cleanup_push(cleanup4, foof + n2);
     sleep(3);
     pthread_cleanup_pop(0);
     pthread_cleanup_pop(0);
@@ -77,7 +82,7 @@ HWTEST_F(PthreadCancel, PthreadCancelTest, Function | MediumTest | Level2)
 {
     pthread_t td;
     sem_t sem1;
-    int r; 
+    int r;
     void *res;
     int foo[4];
 

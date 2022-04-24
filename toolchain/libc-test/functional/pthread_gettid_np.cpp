@@ -7,8 +7,8 @@
 
 #include "gtest/gtest.h"
 
-#define TESTT(c, ...) do {                                       \
-    EXPECT_TRUE((c)) << #c << " failed: " << __VA_ARGS__ << endl;\
+#define TESTT(c, ...) do { \
+    EXPECT_TRUE((c)) << #c << " failed: " << __VA_ARGS__ << endl; \
 } while (0)
 
 using namespace std;

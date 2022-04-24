@@ -7,12 +7,12 @@
 
 #include "gtest/gtest.h"
 
-#define T(f) do {                                                       \
-    EXPECT_FALSE((r = (f))) << #f << " failed: " << strerror(r) << endl;\
+#define T(f) do { \
+    EXPECT_FALSE((r = (f))) << #f << " failed: " << strerror(r) << endl; \
 } while (0)
 
 #define E(f) do { \
-    EXPECT_FALSE(f) << #f << #f << " failed: " << strerror(errno) << endl;\
+    EXPECT_FALSE(f) << #f << " failed: " << strerror(errno) << endl; \
 } while (0)
 
 using namespace std;
@@ -22,15 +22,15 @@ class PthreadMutexPi : public testing::Test {};
 static void *relock(void *arg)
 {
     void **a = (void **)arg;
-    int r;
+    int r, n = 2;
 
     T(pthread_mutex_lock((pthread_mutex_t *)a[0]));
     EXPECT_FALSE(sem_post((sem_t *)a[1]));
-    *(int *)a[2] = pthread_mutex_lock((pthread_mutex_t *)a[0]);
+    *(int *)a[n] = pthread_mutex_lock((pthread_mutex_t *)a[0]);
     EXPECT_FALSE(sem_post((sem_t *)a[1]));
 
     T(pthread_mutex_unlock((pthread_mutex_t *)a[0]));
-    if (*(int *)a[2] == 0) {
+    if (*(int *)a[n] == 0) {
         T(pthread_mutex_unlock((pthread_mutex_t *)a[0]));
     }
     return nullptr;
@@ -43,7 +43,7 @@ static int test_relock(int mtype)
     pthread_mutex_t m;
     pthread_mutexattr_t ma;
     sem_t s;
-    int i;
+    int i, n = 100, n2 = 1000;
     int r;
     void *p;
     void *a[] = {&m, &s, &i};
@@ -57,9 +57,9 @@ static int test_relock(int mtype)
     T(pthread_create(&t, 0, relock, a));
     EXPECT_FALSE(sem_wait((sem_t *)a[1]));
     EXPECT_FALSE(clock_gettime(CLOCK_REALTIME, &ts));
-    ts.tv_nsec += 100 * 1000 * 1000;
-    if (ts.tv_nsec >= 1000 * 1000 * 1000) {
-        ts.tv_nsec -= 1000 * 1000 * 1000;
+    ts.tv_nsec += n * n2 * n2; // 100 * n2 * n2 : 计算时间
+    if (ts.tv_nsec >= n2 * n2 * n2) {
+        ts.tv_nsec -= n2 * n2 * n2;
         ts.tv_sec += 1;
     }
     r = sem_timedwait((sem_t *)a[1], &ts);
@@ -156,9 +156,11 @@ HWTEST_F(PthreadMutexPi, PthreadMutexPiTest, Function | MediumTest | Level2)
     i = test_relock(PTHREAD_MUTEX_NORMAL);
     EXPECT_EQ(i, -1) << "PTHREAD_MUTEX_NORMAL relock did not deadlock, got " << strerror(i) << endl;
     i = test_relock(PTHREAD_MUTEX_ERRORCHECK);
-    EXPECT_EQ(i, EDEADLK) << "PTHREAD_MUTEX_ERRORCHECK relock did not return EDEADLK, got " << (i == -1 ? "deadlock" : strerror(i)) << endl;
+    EXPECT_EQ(i, EDEADLK) <<
+        "PTHREAD_MUTEX_ERRORCHECK relock did not return EDEADLK, got " << (i == -1 ? "deadlock" : strerror(i)) << endl;
     i = test_relock(PTHREAD_MUTEX_RECURSIVE);
-    EXPECT_EQ(i, 0) << "PTHREAD_MUTEX_RECURSIVE relock did not succed, got " << (i == -1 ? "deadlock" : strerror(i)) << endl;
+    EXPECT_EQ(i, 0) <<
+        "PTHREAD_MUTEX_RECURSIVE relock did not succed, got " << (i == -1 ? "deadlock" : strerror(i)) << endl;
     i = test_unlock(PTHREAD_MUTEX_ERRORCHECK);
     EXPECT_EQ(i, EPERM) << "PTHREAD_MUTEX_ERRORCHECK unlock did not return EPERM, got " << strerror(i) << endl;
     i = test_unlock(PTHREAD_MUTEX_RECURSIVE);

@@ -8,14 +8,15 @@ using namespace testing::ext;
 class SearchInsque : public testing::Test {};
 
 struct q {
-	struct q *n;
-	struct q *p;
-	int i;
+    struct q *n;
+    struct q *p;
+    int i;
 };
 
 static struct q *new_data(int i)
 {
     struct q *q = (struct q *)malloc(sizeof(struct q));
+    EXPECT_TRUE(q);
     q->i = i;
     return q;
 }
@@ -27,13 +28,13 @@ static struct q *new_data(int i)
  */
 HWTEST_F(SearchInsque, SearchInsqueTest, Function | MediumTest | Level2)
 {
-    struct q *q = (struct q *)new_data(0);
+    struct q *q = reinterpret_cast<struct q*>(new_data(0));
     struct q *p;
     int i;
 
     insque(q, nullptr);
     for (i = 1; i < 10; i++) {
-        insque((void *)new_data(i), q);
+        insque(reinterpret_cast<void*>(new_data(i)), q);
         q = q->n;
     }
     p = q;

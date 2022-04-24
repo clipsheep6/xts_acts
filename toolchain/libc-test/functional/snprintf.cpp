@@ -10,26 +10,24 @@
 
 #define DISABLE_SLOW_TESTS
 
-#define TESTT(r, f, x, m) do {                                           \
+#define TESTT(r, f, x, m) do { \
     ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
-    EXPECT_EQ((r), (x));                                                 \
+    EXPECT_EQ((r), (x)); \
 } while (0)
 
-#define TEST_S(s, x, m) do {                                                                 \
-    EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;\
+#define TEST_S(s, x, m) do { \
+    EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << (x) << "] (" << (m) << ")" << endl; \
 } while (0)
 
 using namespace std;
 using namespace testing::ext;
 class Snprintf : public testing::Test {};
 
-static const struct
-{
+static const struct {
     const char *fmt;
     int i;
     const char *expect;
 } int_tests[] = {
-    /* width, precision, alignment */
     {"%04d", 12, "0012"},
     {"%.3d", 12, "012"},
     {"%3d", 12, " 12"},
@@ -42,14 +40,12 @@ static const struct
     {"%0-5d", 12, "12   "},
     {"%-05d", 12, "12   "},
 
-    /* ...explicit precision of 0 shall be no characters except for alt-octal. */
     {"%.0d", 0, ""},
     {"%.0o", 0, ""},
     {"%#.0d", 0, ""},
     {"%#.0o", 0, "0"},
     {"%#.0x", 0, ""},
 
-    /* ...but it still has to honor width and flags. */
     {"%2.0u", 0, "  "},
     {"%02.0u", 0, "  "},
     {"%2.0d", 0, "  "},
@@ -57,16 +53,13 @@ static const struct
     {"% .0d", 0, " "},
     {"%+.0d", 0, "+"},
 
-    /* hex: test alt form and case */
     {"%x", 63, "3f"},
     {"%#x", 63, "0x3f"},
     {"%X", 63, "3F"},
 
-    /* octal: test alt form */
     {"%o", 15, "17"},
     {"%#o", 15, "017"},
 
-    /* octal: corner cases */
     {"%#o", 0, "0"},
     {"%#.0o", 0, "0"},
     {"%#.1o", 0, "0"},
@@ -86,7 +79,6 @@ static const struct {
     double f;
     const char *expect;
 } fp_tests[] = {
-    /* basic form, handling of exponent/precision for 0 */
     {"%a", 0.0, "0x0p+0"},
     {"%e", 0.0, "0.000000e+00"},
     {"%f", 0.0, "0.000000"},
@@ -98,14 +90,13 @@ static const struct {
     {"%lg", 0.0, "0"},
     {"%#lg", 0.0, "0.00000"},
 
-    /* rounding */
     {"%f", 1.1, "1.100000"},
     {"%f", 1.2, "1.200000"},
     {"%f", 1.3, "1.300000"},
     {"%f", 1.4, "1.400000"},
     {"%f", 1.5, "1.500000"},
-    {"%.4f", 1.06125, "1.0613"}, /* input is not representible exactly as double */
-    {"%.4f", 1.03125, "1.0312"}, /* 0x1.08p0 */
+    {"%.4f", 1.06125, "1.0613"},
+    {"%.4f", 1.03125, "1.0312"},
     {"%.2f", 1.375, "1.38"},
     {"%.1f", 1.375, "1.4"},
     {"%.1lf", 1.375, "1.4"},
@@ -131,11 +122,9 @@ static const struct {
     {"%.10g", 0.1, "0.1"},
     {"%.11g", 0.1, "0.1"},
 
-    /* pi in double precision, printed to a few extra places */
     {"%.15f", M_PI, "3.141592653589793"},
     {"%.18f", M_PI, "3.141592653589793116"},
 
-    /* exact conversion of large integers */
     {"%.0f", 340282366920938463463374607431768211456.0,
      "340282366920938463463374607431768211456"},
     {nullptr, 0.0, nullptr}};
@@ -159,7 +148,6 @@ HWTEST_F(Snprintf, SnprintfTest, Function | MediumTest | Level2)
     TEST_S(b, "123", "incorrect output");
     TESTT(i, b[5], 'x', "buffer overrun");
 
-    /* Perform ascii arithmetic to TESTT printing tiny doubles */
     TESTT(i, snprintf(b, sizeof b, "%.1022f", 0x1p-1021), 1024, "%d != %d");
     b[1] = '0';
     for (i = 0; i < 1021; i++) {
@@ -184,18 +172,18 @@ HWTEST_F(Snprintf, SnprintfTest, Function | MediumTest | Level2)
 #endif
     for (j = 0; int_tests[j].fmt; j++) {
         i = snprintf(b, sizeof b, int_tests[j].fmt, int_tests[j].i);
-        EXPECT_EQ(i, strlen(int_tests[j].expect)) << "snprintf(b, sizeof b, \"" << int_tests[j].fmt 
-            << "\", " << int_tests[j].i << ") returned " << i << " wanted " << strlen(int_tests[j].expect) << endl;
+        EXPECT_EQ(i, strlen(int_tests[j].expect)) << "snprintf(b, sizeof b, \"" << int_tests[j].fmt <<
+            "\", " << int_tests[j].i << ") returned " << i << " wanted " << strlen(int_tests[j].expect) << endl;
         EXPECT_EQ(0, strcmp(b, int_tests[j].expect)) << "bad integer conversion: got \"" << b << "\", want \""
                                                      << int_tests[j].expect << "\"" << endl;
     }
 
     for (j = 0; fp_tests[j].fmt; j++) {
         i = snprintf(b, sizeof b, fp_tests[j].fmt, fp_tests[j].f);
-        EXPECT_EQ(i, strlen(fp_tests[j].expect)) << "snprintf(b, sizeof b, \"" << fp_tests[j].fmt
-            << "\", " << fp_tests[j].f << ") returned " << i << " wanted " << strlen(fp_tests[j].expect) << endl;
-        EXPECT_EQ(0, strcmp(b, fp_tests[j].expect)) 
-            << "bad floating-point conversion: got \"" << b << "\", want \"" << fp_tests[j].expect << "\"\"" << endl;
+        EXPECT_EQ(i, strlen(fp_tests[j].expect)) << "snprintf(b, sizeof b, \"" << fp_tests[j].fmt <<
+            "\", " << fp_tests[j].f << ") returned " << i << " wanted " << strlen(fp_tests[j].expect) << endl;
+        EXPECT_EQ(0, strcmp(b, fp_tests[j].expect)) <<
+            "bad floating-point conversion: got \"" << b << "\", want \"" << fp_tests[j].expect << "\"\"" << endl;
     }
 
     TESTT(i, snprintf(0, 0, "%.4a", 1.0), 11, "%d != %d");

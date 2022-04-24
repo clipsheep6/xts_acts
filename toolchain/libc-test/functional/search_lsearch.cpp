@@ -13,7 +13,7 @@ class SearchIsearch : public testing::Test {};
 static char tab[100][W];
 static size_t nel;
 
-void set_str(char *k)
+void set_str(const char *k)
 {
     void *r = lsearch(k, tab, &nel, W, (int (*)(const void *, const void *))strcmp);
     EXPECT_EQ(0, strcmp((const char *)r, k));
@@ -28,16 +28,16 @@ HWTEST_F(SearchIsearch, SearchIsearchTest, Function | MediumTest | Level2)
 {
     size_t n;
 
-    set_str(const_cast<char*>(""));
-    set_str(const_cast<char*>("a"));
-    set_str(const_cast<char*>("b"));
-    set_str(const_cast<char*>("abc"));
-    set_str(const_cast<char*>("cd"));
-    set_str(const_cast<char*>("e"));
-    set_str(const_cast<char*>("ef"));
-    set_str(const_cast<char*>("g"));
-    set_str(const_cast<char*>("h"));
-    set_str(const_cast<char*>("iiiiiiiiii"));
+    set_str("");
+    set_str("a");
+    set_str("b");
+    set_str("abc");
+    set_str("cd");
+    set_str("e");
+    set_str("ef");
+    set_str("g");
+    set_str("h");
+    set_str("iiiiiiiiii");
     EXPECT_TRUE(get("a"));
     EXPECT_FALSE(get("c"));
     n = nel;

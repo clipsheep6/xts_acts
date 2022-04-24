@@ -9,18 +9,18 @@
 
 #include "gtest/gtest.h"
 
-#define TESTC(c, m) do {\
-    EXPECT_TRUE((c)) << #c << " failed (" << cdescr << ", " << (m) << ")" << endl;\
+#define TESTC(c, m) do { \
+    EXPECT_TRUE((c)) << #c << " failed (" << cdescr << ", " << (m) << ")" << endl; \
 } while (0)
 
-#define TESTR(f, m) do {                                                                                         \
-    int r;                                                                                                       \
+#define TESTR(f, m) do { \
+    int r; \
     EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(errno) << " (" << cdescr << ", " << (m) << ")" << endl; \
 } while (0)
 
 #define TESTE(f, m) do { \
-    EXPECT_FALSE(((f) == -1)) << #f << " failed: "\
-                                    << strerror(errno) << " (" << cdescr << ", " << (m) << ")" << endl;\
+    EXPECT_FALSE(((f) == -1)) << #f << " failed: " \
+                              << strerror(errno) << " (" << cdescr << ", " << (m) << ")" << endl; \
 } while (0)
 
 
@@ -117,11 +117,11 @@ static struct {
     const char *descr;
 } scenarios[] = {
     {1, prepare_sem, execute_sem_wait, cleanup_sem, nullptr, "blocking sem_wait"},
-    {1, prepare_sem, execute_sem_wait, cleanup_sem, (void *)1, "non-blocking sem_wait"},
+    {1, prepare_sem, execute_sem_wait, cleanup_sem, reinterpret_cast<void *>(1), "non-blocking sem_wait"},
     {1, prepare_sem, execute_sem_timedwait, cleanup_sem, nullptr, "blocking sem_timedwait"},
-    {1, prepare_sem, execute_sem_timedwait, cleanup_sem, (void *)1, "non-blocking sem_timedwait"},
+    {1, prepare_sem, execute_sem_timedwait, cleanup_sem, reinterpret_cast<void *>(1), "non-blocking sem_timedwait"},
     {1, prepare_thread, execute_thread_join, cleanup_thread, nullptr, "blocking pthread_join"},
-    {1, prepare_thread, execute_thread_join, cleanup_thread, (void *)1, "non-blocking pthread_join"},
+    {1, prepare_thread, execute_thread_join, cleanup_thread, reinterpret_cast<void *>(1), "non-blocking pthread_join"},
     {0, prepare_dummy, execute_shm_open, cleanup_shm, &tmp, "shm_open"},
     {0}},
   *cur_sc = scenarios;

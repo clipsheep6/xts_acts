@@ -6,12 +6,12 @@
 
 #include "gtest/gtest.h"
 
-#define set(k, v) do {                                                                                    \
-    e = hsearch((ENTRY){.key = k, .data = (void *)v}, ENTER);                                             \
-    EXPECT_FALSE(!e || strcmp(e->key, k) != 0) << "hsearch ENTER " << k << " " << v << " failed" << endl; \
+#define set(k, v) do { \
+    e = hsearch((ENTRY) {.key = (k), .data = reinterpret_cast<void*>(v)}, ENTER); \
+    EXPECT_FALSE(!e || strcmp(e->key, (k)) != 0) << "hsearch ENTER " << (k) << " " << (v) << " failed" << endl; \
 } while (0)
 
-#define get(k) hsearch((ENTRY){.key = k, .data = 0}, FIND)
+#define get(k) hsearch((ENTRY) {.key = (k), .data = 0}, FIND)
 
 #define getdata(e) ((intptr_t)(e)->data)
 
@@ -28,8 +28,8 @@ HWTEST_F(SearchHsearch, SearchHsearchTest, Function | MediumTest | Level2)
 {
     ENTRY *e;
 
-    EXPECT_FALSE(hcreate(-1) || errno != ENOMEM) 
-        << "hcreate((size_t)-1) should fail with ENOMEM got " << strerror(errno) << endl;
+    EXPECT_FALSE(hcreate(-1) || errno != ENOMEM) << 
+        "hcreate((size_t)-1) should fail with ENOMEM got " << strerror(errno) << endl;
     EXPECT_FALSE(!hcreate(13)) << "hcreate(13) failed" << endl;
     set(const_cast<char*>(""), 0);
     set(const_cast<char*>("a"), 1);
