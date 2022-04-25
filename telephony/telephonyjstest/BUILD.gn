@@ -23,7 +23,9 @@ group("telephonyjstest") {
     "netmanager_http:ActsNetManagerHttpEtsTest",
     "netmanager_socket:ActsNetManagerSocketEtsTest",
     "network_search:network_search",
-    "new_add:ActsNewAddEtsTest",
+    "convert_options:ActsConvertOpentionTest",
+    "call_ssm:ActsCallSsmEtsTest",
+    "radio:ActsRadioEtsTest",
     "sim:sim",
     "sms_mms:sms_mms",
   ]
