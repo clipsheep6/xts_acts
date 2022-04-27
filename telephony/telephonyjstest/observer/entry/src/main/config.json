@@ -1,32 +1,34 @@
 {
   "app": {
-    "bundleName": "com.ohos.networksearch",
-    "vendor": "ohos",
+    "bundleName": "com.ohos.observer",
+    "vendor": "open",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
     },
     "apiVersion": {
-      "compatible": 4,
-      "target": 5,
-      "releaseType": "Release"
+      "compatible": 7,
+      "releaseType": "Release",
+      "target": 7
     }
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.ohos.networksearch",
+    "package": "com.ohos.observer",
     "name": ".MyApplication",
+    "mainAbility": ".MainAbility",
+    "srcPath": "MainAbility",
     "deviceType": [
       "phone"
     ],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
     "abilities": [
       {
-        "visible": true,
         "skills": [
           {
             "entities": [
@@ -37,10 +39,15 @@
             ]
           }
         ],
-        "name": "com.ohos.networksearch.MainAbility",
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
         "icon": "$media:icon",
-        "description": "$string:mainability_description",
-        "label": "$string:app_name",
+        "description": "$string:description_mainability",
+        "formsEnabled": false,
+        "label": "$string:entry_MainAbility",
         "type": "page",
         "launchType": "standard"
       }
@@ -93,10 +100,35 @@
     ],
     "js": [
       {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
         "pages": [
-          "pages/index/index"
+          "pages/index",
+          "pages/Button",
+          "pages/Blank",
+          "pages/DataPanel",
+          "pages/Divider",
+          "pages/Text",
+          "pages/RowSplit",
+          "pages/Scroll",
+          "pages/Stack",
+          "pages/Image",
+          "pages/Progress",
+          "pages/Qrcode",
+          "pages/Rating",
+          "pages/Span",
+          "pages/Slider",
+          "pages/Badge",
+          "pages/Column",
+          "pages/ColumnSplit",
+          "pages/Counter",
+          "pages/Flex",
+          "pages/GridContainer"
+
         ],
-        "name": "default",
+        "name": ".MainAbility",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": false

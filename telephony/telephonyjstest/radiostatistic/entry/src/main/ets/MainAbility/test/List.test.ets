@@ -14,15 +14,21 @@
  */
 
 //other import
-import connectionJsunit from './ConnectionJsunit.test.ets';
-import socketJsunit from './SocketJsunit.test.ets';
-import webSocketJsunit from './WebSocketJsunit.test.ets';
-import connectionSecondJsUnit from './ConnectionSecondJsUnit.test.ets';
+import convertOptionsJsunit from './ConvertOptionsJsunit.test.ets'
+import radioJsunit from './RadioJsunit.test.ets'
+import radioSecondJsunit from './RadioSecondJsunit.test.ets'
+import smsUiJsunit from './SmsMmsJsunit.test.ets';
+import callJsunit from './CallJsunit.test.ets';
+import dataJsunit from './DataJsunit.test.ets';
+import statisticsUiJsunit from './StatisticsJsunit.test.ets';
 
 export default function testsuite() {
   //other
-  socketJsunit();
-  webSocketJsunit();
-  connectionJsunit();
-  connectionSecondJsUnit();
+  dataJsunit();
+  callJsunit();
+  smsUiJsunit();
+  convertOptionsJsunit();
+  radioJsunit();
+  radioSecondJsunit();
+  statisticsUiJsunit();
 }
