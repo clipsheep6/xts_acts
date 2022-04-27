@@ -16,15 +16,17 @@ static void *(*volatile pmemcpy)(void *restrict, const void *restrictt, size_t);
 
 static void *aligned(void *p)
 {
-    return (void *)(((uintptr_t)p + 63) & -64);
+    int n = 64;
+    return reinterpret_cast<void*>(((uintptr_t)p + n - 1) & -n);
 }
 
-#define N 80
+static int N = 80;
 static void test_align(int dalign, int salign, int len)
 {
+    int n1 = 128, n2 = 256;
     char *src = (char *)aligned(buf);
-    char *dst = (char *)aligned(buf + 128);
-    char *want = (char *)aligned(buf + 256);
+    char *dst = (char *)aligned(buf + n1);
+    char *want = (char *)aligned(buf + n2);
     char *p;
     int i;
 
@@ -42,8 +44,8 @@ static void test_align(int dalign, int salign, int len)
     EXPECT_STREQ(p, dst + dalign) << "memcpy(" << dst + dalign << ",...) returned " << p << endl;
     for (i = 0; i < N; i++) {
         if (dst[i] != want[i]) {
-            EXPECT_EQ(dst[i], want[i]) << "memcpy(align " 
-                << dalign << ", align " << salign << ", " << len << ") failed" << endl;
+            EXPECT_EQ(dst[i], want[i]) <<
+                "memcpy(align " << dalign << ", align " << salign << ", " << len << ") failed" << endl;
             t_printf("got : %.*s\n", dalign + len + 1, dst);
             t_printf("want: %.*s\n", dalign + len + 1, want);
             break;
@@ -58,13 +60,13 @@ static void test_align(int dalign, int salign, int len)
  */
 HWTEST_F(StringMemcpy, StringMemcpyTest, Function | MediumTest | Level2)
 {
-    int i, j, k;
+    int i, j, k, x = 16, y = 64;
 
     pmemcpy = memcpy;
 
-    for (i = 0; i < 16; i++) {
-        for (j = 0; j < 16; j++) {
-            for (k = 0; k < 64; k++) {
+    for (i = 0; i < x; i++) {
+        for (j = 0; j < x; j++) {
+            for (k = 0; k < y; k++) {
                 test_align(i, j, k);
             }
         }

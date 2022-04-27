@@ -6,32 +6,31 @@
 
 #include "test.h"
 
-#define N 500
-
 using namespace std;
 using namespace testing::ext;
 class StringMemset : public testing::Test {};
 
-static char buf[N];
-static char buf2[N];
+static int N = 500;
+static char buf[500];
+static char buf2[500];
+
 
 static void *(*volatile pmemset)(void *, int, size_t);
 
 static char *aligned(void *p)
 {
-    return (char *)(((uintptr_t)p + 63) & -64);
+    int n = 64;
+    return reinterpret_cast<char*>(((uintptr_t)p + n - 1) & -n);
 }
 
 static void test_align(int align, int len)
 {
-    char *s = aligned(buf + 64) + align;
-    char *want = aligned(buf2 + 64) + align;
+    int i, n = 64, n2 = 128;
+    char *s = aligned(buf + n) + align;
+    char *want = aligned(buf2 + n) + align;
     char *p;
-    int i;
 
-    if (len + 64 > buf + N - s || len + 64 > buf2 + N - want) {
-        abort();
-    }
+    ASSERT_FALSE(len + n > buf + N - s || len + n > buf2 + N - want);
     for (i = 0; i < N; i++) {
         buf[i] = buf2[i] = ' ';
     }
@@ -40,12 +39,12 @@ static void test_align(int align, int len)
     }
     p = (char *)pmemset(s, '#', len);
     EXPECT_EQ(p, s) << "memset(" << s << ",...) returned " << p << endl;
-    for (i = -64; i < len + 64; i++) {
+    for (i = -n; i < len + n; i++) {
         if (s[i] != want[i]) {
-            EXPECT_EQ(s[i], want[i]) << "memset(align " 
-                << align << ", '#', " << len << ") failed at pos " << i << endl;
-            t_printf("got : '%.*s'\n", len + 128, s - 64);
-            t_printf("want: '%.*s'\n", len + 128, want - 64);
+            EXPECT_EQ(s[i], want[i]) <<
+                "memset(align " << align << ", '#', " << len << ") failed at pos " << i << endl;
+            t_printf("got : '%.*s'\n", len + n2, s - n);
+            t_printf("want: '%.*s'\n", len + n2, want - n);
             break;
         }
     }
@@ -53,10 +52,10 @@ static void test_align(int align, int len)
 
 static void test_value(int c)
 {
-    int i;
+    int i, n = 10;
 
-    pmemset(buf, c, 10);
-    for (i = 0; i < 10; i++) {
+    pmemset(buf, c, n);
+    for (i = 0; i < n; i++) {
         ASSERT_EQ((unsigned char)buf[i], (unsigned char)c);
     }
 }
@@ -68,12 +67,12 @@ static void test_value(int c)
  */
 HWTEST_F(StringMemset, StringMemsetTest, Function | MediumTest | Level2)
 {
-    int i, j;
+    int i, j, n = 64, n2 = 256, n3 = -5;
 
     pmemset = memset;
 
-    for (i = 0; i < 64; i++) {
-        for (j = 0; j < N - 256; j++) {
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < N - n2; j++) {
             test_align(i, j);
         }
     }
@@ -81,6 +80,6 @@ HWTEST_F(StringMemset, StringMemsetTest, Function | MediumTest | Level2)
     test_value('c');
     test_value(0);
     test_value(-1);
-    test_value(-5);
+    test_value(n3);
     test_value(0xab);
 }

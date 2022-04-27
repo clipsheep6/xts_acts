@@ -73,6 +73,7 @@ ohos_moduletest_suite("ActToolChainRegressionTest") {
     "regex-ere-backref.cpp",
     "regex-escaped-high-byte.cpp",
     "regex-negated-range.cpp",
+    "regexec-nosub.cpp",
     "rlimit-open-files.cpp",
     "scanf-bytes-consumed.cpp",
     "scanf-match-literal-eof.cpp",

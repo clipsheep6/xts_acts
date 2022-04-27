@@ -59,6 +59,7 @@ ohos_moduletest_suite("ActToolChainFunctionTest") {
     "search_insque.cpp",
     "search_lsearch.cpp",
     "sem_init.cpp",
+    "sem_open.cpp",
     "snprintf.cpp",
     "socket.cpp",
     "strftime.cpp",

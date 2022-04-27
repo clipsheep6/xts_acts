@@ -9,15 +9,15 @@
 
 #include "test.h"
 
-#define TESTT(r, f, x, m) do {                                          \
-    errno = 0;                                                          \
-    ((r) = (f)) == (x) ||                                               \
+#define TESTT(r, f, x, m) do { \
+    errno = 0; \
+    ((r) = (f)) == (x) || \
         (t_error("%s failed (" m ")\n", #f, r, x, strerror(errno)), 0); \
-    EXPECT_EQ((r), (x));                                                \
+    EXPECT_EQ((r), (x)); \
 } while (0)
     
-#define TEST_S(s, x, m) do {                                                                 \
-    EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << x << "] (" << m << ")" << endl;\
+#define TEST_S(s, x, m) do { \
+    EXPECT_TRUE(!strcmp((s), (x))) << "[" << (s) << "] != [" << (x) << "] (" << (m) << ")" << endl; \
 } while (0)
 
 using namespace std;
@@ -30,7 +30,7 @@ static FILE *writetemp(const char *data)
     size_t n = strlen(data);
     if (!f) {
         return nullptr;  
-    }      
+    }
     if (write(fileno(f), data, n) != n) {
         EXPECT_EQ(write(fileno(f), data, n), n) << "write: " << strerror(errno) << endl;
         fclose(f);

@@ -111,7 +111,6 @@ void V4(string src_c, int ret, string hex_x)
  */
 HWTEST_F(InetPton, InetPtonTest, Function | MediumTest | Level2)
 {
-    string trf1, trf2;
     EXPECT_FALSE(inet_pton(12345,"", 0) != -1 || errno !=
         EAFNOSUPPORT) << "inet_pton(12345,,) should fail with EAFNOSUPPORT, got " << strerror(errno) << endl;
     errno = 0;
@@ -120,60 +119,60 @@ HWTEST_F(InetPton, InetPtonTest, Function | MediumTest | Level2)
     errno = 0;
 
     // dotted-decimal notation
-    V4(trf1 = ("0.0.0.0"), 1, trf2 = ("00000000"));
-    V4(trf1 = ("127.0.0.1"), 1, trf2 = ("7f000001"));
-    V4(trf1 = ("10.0.128.31"), 1, trf2 = ("0a00801f"));
-    V4(trf1 = ("255.255.255.255"), 1, trf2 = ("ffffffff"));
+    V4(string("0.0.0.0"), 1, string("00000000"));
+    V4(string("127.0.0.1"), 1, string("7f000001"));
+    V4(string("10.0.128.31"), 1, string("0a00801f"));
+    V4(string("255.255.255.255"), 1, string("ffffffff"));
 
     // numbers-and-dots notation, but not dotted-decimal
-    V4(trf1 = ("1.2.03.4"), 0, trf2 = ("01020304"));
-    V4(trf1 = ("1.2.0x33.4"), 0, trf2 = ("01023304"));
-    V4(trf1 = ("1.2.0XAB.4"), 0, trf2 = ("0102ab04"));
-    V4(trf1 = ("1.2.0xabcd"), 0, trf2 = ("0102abcd"));
-    V4(trf1 = ("1.0xabcdef"), 0, trf2 = ("01abcdef"));
-    V4(trf1 = ("00377.0x0ff.65534"), 0, trf2 = ("fffffffe"));
+    V4(string("1.2.03.4"), 0, string("01020304"));
+    V4(string("1.2.0x33.4"), 0, string("01023304"));
+    V4(string("1.2.0XAB.4"), 0, string("0102ab04"));
+    V4(string("1.2.0xabcd"), 0, string("0102abcd"));
+    V4(string("1.0xabcdef"), 0, string("01abcdef"));
+    V4(string("00377.0x0ff.65534"), 0, string("fffffffe"));
 
     // invalid
-    V4(trf1 = (".1.2.3"), 0, trf2 = ("ffffffff"));
-    V4(trf1 = ("1..2.3"), 0, trf2 = ("ffffffff"));
-    V4(trf1 = ("1.2.3."), 0, trf2 = ("ffffffff"));
-    V4(trf1 = ("1.2.3.4.5"), 0, trf2 = ("ffffffff"));
-    V4(trf1 = ("1.2.3.a"), 0, trf2 = ("ffffffff"));
-    V4(trf1 = ("1.256.2.3"), 0, trf2 = ("ffffffff"));
-    V4(trf1 = ("1.2.4294967296.3"), 0, trf2 = ("ffffffff"));
-    V4(trf1 = ("1.2.-4294967295.3"), 0, trf2 = ("ffffffff"));
-    V4(trf1 = ("1.2. 3.4"), 0, trf2 = ("ffffffff"));
+    V4(string(".1.2.3"), 0, string("ffffffff"));
+    V4(string("1..2.3"), 0, string("ffffffff"));
+    V4(string("1.2.3."), 0, string("ffffffff"));
+    V4(string("1.2.3.4.5"), 0, string("ffffffff"));
+    V4(string("1.2.3.a"), 0, string("ffffffff"));
+    V4(string("1.256.2.3"), 0, string("ffffffff"));
+    V4(string("1.2.4294967296.3"), 0, string("ffffffff"));
+    V4(string("1.2.-4294967295.3"), 0, string("ffffffff"));
+    V4(string("1.2. 3.4"), 0, string("ffffffff"));
 
     // ipv6
-    V6(trf1 = (":"), 0, trf2 = (""));
-    V6(trf1 = ("::"), 1, trf2 = ("00000000000000000000000000000000"));
-    V6(trf1 = ("::1"), 1, trf2 = ("00000000000000000000000000000001"));
-    V6(trf1 = (":::"), 0, trf2 = (""));
-    V6(trf1 = ("192.168.1.1"), 0, trf2 = (""));
-    V6(trf1 = (":192.168.1.1"), 0, trf2 = (""));
-    V6(trf1 = ("::192.168.1.1"), 1, trf2 = ("000000000000000000000000c0a80101"));
-    V6(trf1 = ("0:0:0:0:0:0:192.168.1.1"), 1, trf2 = ("000000000000000000000000c0a80101"));
-    V6(trf1 = ("0:0::0:0:0:192.168.1.1"), 1, trf2 = ("000000000000000000000000c0a80101"));
-    V6(trf1 = ("::012.34.56.78"), 0, trf2 = (""));
-    V6(trf1 = (":ffff:192.168.1.1"), 0, trf2 = (""));
-    V6(trf1 = ("::ffff:192.168.1.1"), 1, trf2 = ("00000000000000000000ffffc0a80101"));
-    V6(trf1 = (".192.168.1.1"), 0, trf2 = (""));
-    V6(trf1 = (":.192.168.1.1"), 0, trf2 = (""));
-    V6(trf1 = ("a:0b:00c:000d:E:F::"), 1, trf2 = ("000a000b000c000d000e000f00000000"));
-    V6(trf1 = ("a:0b:00c:000d:0000e:f::"), 0, trf2 = (""));
-    V6(trf1 = ("1:2:3:4:5:6::"), 1, trf2 = ("00010002000300040005000600000000"));
-    V6(trf1 = ("1:2:3:4:5:6:7::"), 1, trf2 = ("00010002000300040005000600070000"));
-    V6(trf1 = ("1:2:3:4:5:6:7:8::"), 0, trf2 = (""));
-    V6(trf1 = ("1:2:3:4:5:6:7::9"), 0, trf2 = (""));
-    V6(trf1 = ("::1:2:3:4:5:6"), 1, trf2 = ("00000000000100020003000400050006"));
-    V6(trf1 = ("::1:2:3:4:5:6:7"), 1, trf2 = ("00000001000200030004000500060007"));
-    V6(trf1 = ("::1:2:3:4:5:6:7:8"), 0, trf2 = (""));
-    V6(trf1 = ("a:b::c:d:e:f"), 1, trf2 = ("000a000b00000000000c000d000e000f"));
-    V6(trf1 = ("ffff:c0a8:5e4"), 0, trf2 = (""));
-    V6(trf1 = (":ffff:c0a8:5e4"), 0, trf2 = (""));
-    V6(trf1 = ("0:0:0:0:0:ffff:c0a8:5e4"), 1, trf2 = ("00000000000000000000ffffc0a805e4"));
-    V6(trf1 = ("0:0:0:0:ffff:c0a8:5e4"), 0, trf2 = (""));
-    V6(trf1 = ("0::ffff:c0a8:5e4"), 1, trf2 = ("00000000000000000000ffffc0a805e4"));
-    V6(trf1 = ("::0::ffff:c0a8:5e4"), 0, trf2 = (""));
-    V6(trf1 = ("c0a8"), 0, trf2 = (""));
+    V6(string(":"), 0, string(""));
+    V6(string("::"), 1, string("00000000000000000000000000000000"));
+    V6(string("::1"), 1, string("00000000000000000000000000000001"));
+    V6(string(":::"), 0, string(""));
+    V6(string("192.168.1.1"), 0, string(""));
+    V6(string(":192.168.1.1"), 0, string(""));
+    V6(string("::192.168.1.1"), 1, string("000000000000000000000000c0a80101"));
+    V6(string("0:0:0:0:0:0:192.168.1.1"), 1, string("000000000000000000000000c0a80101"));
+    V6(string("0:0::0:0:0:192.168.1.1"), 1, string("000000000000000000000000c0a80101"));
+    V6(string("::012.34.56.78"), 0, string(""));
+    V6(string(":ffff:192.168.1.1"), 0, string(""));
+    V6(string("::ffff:192.168.1.1"), 1, string("00000000000000000000ffffc0a80101"));
+    V6(string(".192.168.1.1"), 0, string(""));
+    V6(string(":.192.168.1.1"), 0, string(""));
+    V6(string("a:0b:00c:000d:E:F::"), 1, string("000a000b000c000d000e000f00000000"));
+    V6(string("a:0b:00c:000d:0000e:f::"), 0, string(""));
+    V6(string("1:2:3:4:5:6::"), 1, string("00010002000300040005000600000000"));
+    V6(string("1:2:3:4:5:6:7::"), 1, string("00010002000300040005000600070000"));
+    V6(string("1:2:3:4:5:6:7:8::"), 0, string(""));
+    V6(string("1:2:3:4:5:6:7::9"), 0, string(""));
+    V6(string("::1:2:3:4:5:6"), 1, string("00000000000100020003000400050006"));
+    V6(string("::1:2:3:4:5:6:7"), 1, string("00000001000200030004000500060007"));
+    V6(string("::1:2:3:4:5:6:7:8"), 0, string(""));
+    V6(string("a:b::c:d:e:f"), 1, string("000a000b00000000000c000d000e000f"));
+    V6(string("ffff:c0a8:5e4"), 0, string(""));
+    V6(string(":ffff:c0a8:5e4"), 0, string(""));
+    V6(string("0:0:0:0:0:ffff:c0a8:5e4"), 1, string("00000000000000000000ffffc0a805e4"));
+    V6(string("0:0:0:0:ffff:c0a8:5e4"), 0, string(""));
+    V6(string("0::ffff:c0a8:5e4"), 1, string("00000000000000000000ffffc0a805e4"));
+    V6(string("::0::ffff:c0a8:5e4"), 0, string(""));
+    V6(string("c0a8"), 0, string(""));
 }

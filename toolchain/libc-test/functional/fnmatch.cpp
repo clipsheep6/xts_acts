@@ -5,7 +5,7 @@
 
 #include "gtest/gtest.h"
 
-#define FLAG(f) {     \
+#define FLAG(f) { \
         f, (char *)#f \
     }
 
