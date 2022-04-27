@@ -14,15 +14,11 @@
  */
 
 //other import
-import connectionJsunit from './ConnectionJsunit.test.ets';
-import socketJsunit from './SocketJsunit.test.ets';
-import webSocketJsunit from './WebSocketJsunit.test.ets';
-import connectionSecondJsUnit from './ConnectionSecondJsUnit.test.ets';
+
+import observer from './ObserverJsunit.test.ets'
 
 export default function testsuite() {
-  //other
-  socketJsunit();
-  webSocketJsunit();
-  connectionJsunit();
-  connectionSecondJsUnit();
+  
+  observer();
+
 }
