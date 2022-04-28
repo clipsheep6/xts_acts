@@ -63,7 +63,7 @@ static string GetCurDir()
 {
     string filePath = "";
     char *buffer;
-    if ((buffer = getcwd(NULL, 0)) == NULL) {
+    if ((buffer = getcwd(nullptr, 0)) == nullptr) {
         perror("get file path error");
     } else {
         printf("Current Dir: %s\r\n", buffer);

@@ -27,8 +27,8 @@ static const int NORMAL_IO_SIZE = 250;
 
 static IClientProxy *GetRemoteIUnknown(const char *serviceName, const char *featureName)
 {
-    IClientProxy *demoApi = NULL;
-    IUnknown *iUnknown = NULL;
+    IClientProxy *demoApi = nullptr;
+    IUnknown *iUnknown = nullptr;
     if (featureName == nullptr) {
         iUnknown = SAMGR_GetInstance()->GetDefaultFeatureApi(serviceName);
     } else {
@@ -55,7 +55,7 @@ static int CurrentCallback(IOwner owner, int code, IpcIo *reply)
 
 static void ReleaseIUnknown(IUnknown *demoApi)
 {
-    if (demoApi != NULL) {
+    if (demoApi != nullptr) {
         demoApi->Release((IUnknown *)demoApi);
     }
 }
@@ -90,9 +90,9 @@ protected:
 */
 HWTEST_F(LiteIPCClientTest, testIPCClient0010, Function | MediumTest | Level1)
 {
-    IClientProxy *demoApi = NULL;
+    IClientProxy *demoApi = nullptr;
     IUnknown *iUnknown = SAMGR_GetInstance()->GetFeatureApi("abilityms", "AmsFeature");
-    ASSERT_EQ(iUnknown != NULL, TRUE);
+    ASSERT_EQ(iUnknown != nullptr, TRUE);
 
     int result = iUnknown->QueryInterface(iUnknown, CLIENT_PROXY_VER, (void **)&demoApi);
     ASSERT_EQ(result, 0);
@@ -107,13 +107,13 @@ HWTEST_F(LiteIPCClientTest, testIPCClient0010, Function | MediumTest | Level1)
 HWTEST_F(LiteIPCClientTest, testIPCClient0020, Function | MediumTest | Level2)
 {
     IUnknown *iUnknown = SAMGR_GetInstance()->GetDefaultFeatureApi("notExistService");
-    ASSERT_EQ(iUnknown == NULL, TRUE);
+    ASSERT_EQ(iUnknown == nullptr, TRUE);
 
     iUnknown = SAMGR_GetInstance()->GetFeatureApi("notExistService", "");
-    ASSERT_EQ(iUnknown == NULL, TRUE);
+    ASSERT_EQ(iUnknown == nullptr, TRUE);
 
     iUnknown = SAMGR_GetInstance()->GetFeatureApi("abilityms", "notExistFeature");
-    ASSERT_EQ(iUnknown == NULL, TRUE);
+    ASSERT_EQ(iUnknown == nullptr, TRUE);
 };
 
 /**

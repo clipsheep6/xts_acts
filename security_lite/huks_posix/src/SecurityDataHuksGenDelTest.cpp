@@ -68,7 +68,7 @@ int32_t FileWrite(const char *filename, uint32_t offset, const uint8_t *buf, uin
     errno_t err;
     size_t size;
 
-    if (filename == NULL || buf == NULL) {
+    if (filename == nullptr || buf == nullptr) {
         return -1;
     }
 
@@ -92,7 +92,7 @@ int32_t FileRead(const char *filename, uint32_t offset, uint8_t *buf, uint32_t l
     errno_t err;
     size_t size;
 
-    if (filename == NULL || buf == NULL) {
+    if (filename == nullptr || buf == nullptr) {
         return -1;
     }
 
@@ -183,7 +183,7 @@ uint8_t g_hksHardwareUdidId[32] = {
 int32_t HksTestGetHardwareUdid(uint8_t* udid, uint32_t udidLen)
 {
     int err;
-    if ((udid == NULL) || (udidLen != NUM32)) {
+    if ((udid == nullptr) || (udidLen != NUM32)) {
         return -1;
     }
 
@@ -212,7 +212,7 @@ void HksStBlobInit1(struct hks_blob *blob, size_t nmemb, size_t size, uint8_t ty
         return;
     }
     blob->data = (uint8_t *)calloc(nmemb, size);
-    if (blob->data == NULL) {
+    if (blob->data == nullptr) {
         EXPECT_EQ(0, 1);
         return;
     }
@@ -237,7 +237,7 @@ void HksBlobDestroyT1(struct hks_blob *blob)
         }
         HKS_FREE_PTR1(blob->data);
     }
-    blob->data = NULL;
+    blob->data = nullptr;
     blob->size = 0;
     blob->type = HKS_BLOB_TYPE_RAW;
 }
@@ -284,7 +284,7 @@ void BuildBlobData(struct hks_blob *param, const char *str, uint8_t type, uint32
     param->type = type;
     param->size = size;
     if (isDataNull == 1)
-        param->data = NULL;
+        param->data = nullptr;
     else {
         if (size + NUM2 == 0) {
             EXPECT_EQ(0, 1);
@@ -533,7 +533,7 @@ HWTEST_F(SecurityDataHuksGenDelTestSuite, securityDataGenerateKey0050, Function 
     struct hks_blob keyAlias;
 
     keyAlias.type = HKS_BLOB_TYPE_ALIAS;
-    keyAlias.data = NULL;
+    keyAlias.data = nullptr;
     keyAlias.size = sizeof(testFileName);
 
     struct hks_key_param keyParam;
@@ -705,7 +705,7 @@ HWTEST_F(SecurityDataHuksGenDelTestSuite, securityDataGenerateKey0110, Function 
     keyAlias.size = sizeof(testFileName);
 
     struct hks_key_param keyParam;
-    keyParam.key_auth_id.data = NULL;
+    keyParam.key_auth_id.data = nullptr;
     keyParam.key_auth_id.size = sizeof(testFileName1);
     keyParam.key_auth_id.type = HKS_BLOB_TYPE_AUTH_ID;
     keyParam.key_type = HKS_KEY_TYPE_EDDSA_KEYPAIR_ED25519;
@@ -863,7 +863,7 @@ HWTEST_F(SecurityDataHuksGenDelTestSuite, securityDataDeleteKey0150, Function | 
     char testFileName[] = "Test_file_north_interfaces";
     struct hks_blob keyAlias = { 0 };
 
-    keyAlias.data = NULL;
+    keyAlias.data = nullptr;
     keyAlias.size = sizeof(testFileName);
     keyAlias.type = HKS_BLOB_TYPE_ALIAS;
 

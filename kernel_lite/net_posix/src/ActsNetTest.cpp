@@ -1511,7 +1511,7 @@ HWTEST_F(ActsNetTest, testGetProtoByNormal, Function | MediumTest | Level2)
     for (int i = 0; i < PROTOCOL_COUNT; i++) {
         protoPtr = getprotobyname(g_protocolList[i]);
         if (protoPtr == nullptr) {
-            printf("getprotobyname is NULL! [%s]\n", g_protocolList[i]);
+            printf("getprotobyname is nullptr! [%s]\n", g_protocolList[i]);
             continue;
         }
         EXPECT_STREQ(g_protocolList[i], protoPtr->p_name);
@@ -1520,7 +1520,7 @@ HWTEST_F(ActsNetTest, testGetProtoByNormal, Function | MediumTest | Level2)
         protoPtr = nullptr;
         protoPtr = getprotobynumber(number);
         if (protoPtr == nullptr) {
-            EXPECT_TRUE(protoPtr != NULL) << "ErrInfo:getprotobynumber NULL '" << g_protocolList[i] << "'";
+            EXPECT_TRUE(protoPtr != nullptr) << "ErrInfo:getprotobynumber nullptr '" << g_protocolList[i] << "'";
             continue;
         }
         EXPECT_STREQ(g_protocolList[i], protoPtr->p_name);
@@ -1537,16 +1537,16 @@ HWTEST_F(ActsNetTest, testGetProtoByAbNormal, Function | MediumTest | Level2)
 {
     struct protoent* protoPtr = nullptr;
     protoPtr = getprotobyname("ipv4");
-    EXPECT_TRUE(protoPtr == NULL);
+    EXPECT_TRUE(protoPtr == nullptr);
     protoPtr = getprotobyname("idpr-cmtp-s");
-    EXPECT_TRUE(protoPtr == NULL);
+    EXPECT_TRUE(protoPtr == nullptr);
     protoPtr = getprotobyname("12&^%$\n\0?><");
-    EXPECT_TRUE(protoPtr == NULL);
+    EXPECT_TRUE(protoPtr == nullptr);
 
     protoPtr = getprotobynumber(-1);
-    EXPECT_TRUE(protoPtr == NULL);
+    EXPECT_TRUE(protoPtr == nullptr);
     protoPtr = getprotobynumber(256);
-    EXPECT_TRUE(protoPtr == NULL);
+    EXPECT_TRUE(protoPtr == nullptr);
 }
 
 /**
@@ -1561,8 +1561,8 @@ HWTEST_F(ActsNetTest, testGetProtoent, Function | MediumTest | Level2)
     setprotoent(0);
     while (index < PROTOCOL_COUNT) {
         protoPtr = getprotoent();
-        if (protoPtr == NULL) {
-            EXPECT_TRUE(protoPtr != NULL) << "ErrInfo:getprotoent NULL, index[" << index << "]";
+        if (protoPtr == nullptr) {
+            EXPECT_TRUE(protoPtr != nullptr) << "ErrInfo:getprotoent nullptr, index[" << index << "]";
         } else {
             EXPECT_STREQ(g_protocolList[index], protoPtr->p_name);
             EXPECT_EQ(g_protocolNumber[index], protoPtr->p_proto);
@@ -1572,7 +1572,7 @@ HWTEST_F(ActsNetTest, testGetProtoent, Function | MediumTest | Level2)
     }
 
     protoPtr = getprotoent();
-    EXPECT_TRUE(protoPtr == NULL);
+    EXPECT_TRUE(protoPtr == nullptr);
 }
 
 /**
@@ -1588,7 +1588,7 @@ HWTEST_F(ActsNetTest, testSetProtoent, Function | MediumTest | Level2)
     while (index < PROTOCOL_COUNT) {
         protoPtr = getprotoent();
         if (protoPtr == nullptr) {
-            EXPECT_TRUE(protoPtr != NULL) << "ErrInfo:getprotoent NULL, index[" << index << "]";
+            EXPECT_TRUE(protoPtr != nullptr) << "ErrInfo:getprotoent nullptr, index[" << index << "]";
         } else {
             EXPECT_STREQ(g_protocolList[index], protoPtr->p_name);
             EXPECT_EQ(g_protocolNumber[index], protoPtr->p_proto);
@@ -1597,12 +1597,12 @@ HWTEST_F(ActsNetTest, testSetProtoent, Function | MediumTest | Level2)
         index ++;
     }
     protoPtr = getprotoent();
-    EXPECT_TRUE(protoPtr == NULL);
+    EXPECT_TRUE(protoPtr == nullptr);
 
     setprotoent(0);
     protoPtr = nullptr;
     protoPtr = getprotoent();
-    ASSERT_TRUE(protoPtr != NULL);
+    ASSERT_TRUE(protoPtr != nullptr);
     EXPECT_STREQ(g_protocolList[0], protoPtr->p_name);
     EXPECT_EQ(g_protocolNumber[0], protoPtr->p_proto);
 
@@ -1612,7 +1612,7 @@ HWTEST_F(ActsNetTest, testSetProtoent, Function | MediumTest | Level2)
     while (index < PROTOCOL_COUNT) {
         protoPtr = getprotoent();
         if (protoPtr == nullptr) {
-            EXPECT_TRUE(protoPtr != NULL) << "ErrInfo:getprotoent NULL, index[" << index << "]";
+            EXPECT_TRUE(protoPtr != nullptr) << "ErrInfo:getprotoent nullptr, index[" << index << "]";
         } else {
             EXPECT_STREQ(g_protocolList[index], protoPtr->p_name);
             EXPECT_EQ(g_protocolNumber[index], protoPtr->p_proto);
@@ -1873,7 +1873,7 @@ HWTEST_F(ActsNetTest, testInetNtopIpv4Normal, Function | MediumTest | Level2)
 #endif
         ret = inet_ntop(AF_INET, &inputAddr, rstBuff, sizeof(rstBuff));
         if (ret == nullptr) {
-            EXPECT_TRUE(ret != NULL) << "ErrInfo:inet_ntop NULL [" << expectAddrs[i] << "]";
+            EXPECT_TRUE(ret != nullptr) << "ErrInfo:inet_ntop nullptr [" << expectAddrs[i] << "]";
         } else {
             printf("[###]inet_ntop expect [%s]: ret[%s], buf[%s]\n", expectAddrs[i], ret, rstBuff);
             EXPECT_STREQ(expectAddrs[i], ret);
@@ -1896,7 +1896,7 @@ HWTEST_F(ActsNetTest, testInetNtopIpv4Abnormal, Function | MediumTest | Level2)
     for (int i = 0; i < 2; i++) {
         inputAddr.s_addr = in_addr_t(i == 0 ? -1 : 4294967296);
         ret = inet_ntop(AF_INET, &inputAddr, rstBuff, sizeof(rstBuff));
-        ASSERT_TRUE(ret != NULL);
+        ASSERT_TRUE(ret != nullptr);
         EXPECT_STREQ(expectStr[i], ret);
         EXPECT_STREQ(expectStr[i], rstBuff);
     }
@@ -1922,7 +1922,7 @@ HWTEST_F(ActsNetTest, testInetNtopIpv6Normal, Function | MediumTest | Level2)
         ASSERT_EQ(1, iret);
         ret = inet_ntop(AF_INET6, &inputAddr, rstBuff, sizeof(rstBuff));
         if (ret == nullptr) {
-            EXPECT_TRUE(ret != NULL) << "ErrInfo:inet_ntop NULL [" << expectAddrs[i] << "]";
+            EXPECT_TRUE(ret != nullptr) << "ErrInfo:inet_ntop nullptr [" << expectAddrs[i] << "]";
         } else {
             printf("[###]inet_ntop expect [%s]: ret[%s], buf[%s]\n", expectAddrs[i], ret, rstBuff);
             EXPECT_STREQ(expectAddrs[i], ret);
@@ -1947,7 +1947,7 @@ HWTEST_F(ActsNetTest, testInetNtopIpv6Abnormal, Function | MediumTest | Level2)
             inputAddr.s6_addr[j] = (i == 0 ? -1 : 256);
         }
         ret = inet_ntop(AF_INET6, &inputAddr, rstBuff, sizeof(rstBuff));
-        ASSERT_TRUE(ret != NULL);
+        ASSERT_TRUE(ret != nullptr);
         EXPECT_STREQ(expectStr[i], ret);
         EXPECT_STREQ(expectStr[i], rstBuff);
     }
@@ -1968,9 +1968,9 @@ HWTEST_F(ActsNetTest, testInetNtopInvalidFamily, Function | MediumTest | Level2)
     iret = inet_pton(AF_INET6, "1::", &inputAddr);
     ASSERT_EQ(1, iret);
     ret = inet_ntop(AF_IPX, &inputAddr, rstBuff, sizeof(rstBuff));
-    EXPECT_TRUE(ret == NULL);
+    EXPECT_TRUE(ret == nullptr);
     ret = inet_ntop(-1, &inputAddr, rstBuff, sizeof(rstBuff));
-    EXPECT_TRUE(ret == NULL);
+    EXPECT_TRUE(ret == nullptr);
 }
 
 /**
@@ -2058,7 +2058,7 @@ HWTEST_F(ActsNetTest, testInetNtoaNormal, Function | MediumTest | Level2)
         addr.s_addr = inputList[i];
         rst = inet_ntoa(addr);
         if (rst == nullptr) {
-            EXPECT_TRUE(rst != NULL);
+            EXPECT_TRUE(rst != nullptr);
         } else {
             EXPECT_STREQ(expectAddrs[i], rst);
         }
@@ -2079,7 +2079,7 @@ HWTEST_F(ActsNetTest, testInetNtoaAbnormal, Function | MediumTest | Level2)
     for (int i = 0; i < 2; i++) {
         addrInput.s_addr = (i == 0 ? -1 : 4294967296);
         ret = inet_ntoa(addrInput);
-        ASSERT_TRUE(ret != NULL);
+        ASSERT_TRUE(ret != nullptr);
         EXPECT_STREQ(expectStr[i], ret);
     }
 }

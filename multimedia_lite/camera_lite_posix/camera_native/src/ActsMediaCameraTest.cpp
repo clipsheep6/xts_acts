@@ -36,7 +36,7 @@ using namespace testing::ext;
 namespace OHOS {
 /* *
  * get current dir
- * @return  string current file path of the test suits
+ * @return  string current file path of the test suites
  */
 string GetCurDir()
 {
@@ -134,7 +134,7 @@ int32_t SetupAudioSource(const Recorder &rec)
 }
 
 /* *
- * creat Recorder
+ * create Recorder
  */
 Recorder *SampleCreateRecorder()
 {
@@ -189,9 +189,9 @@ Recorder *SampleCreateRecorder()
  */
 class SampleFrameStateCallback : public FrameStateCallback {
     /* *
-     * check file exist
+     * check whether a file exists
      *
-     * @param filename the filename
+     * @param filename the name of the file to check
      * @return  check result
      */
     int32_t FileCheck(const string &filename)
@@ -359,11 +359,12 @@ public:
             cout << "Wait camera created success" << endl;
             sleep(1);
         }
-
-        ret = cam_->TriggerLoopingCapture(*fc);
-        if (ret != 0) {
-            cout << "camera start recording failed. ret=" << ret << endl;
-            return;
+        if (cam_ != nullptr) {
+            ret = cam_->TriggerLoopingCapture(*fc);
+            if (ret != 0) {
+                cout << "camera start recording failed. ret=" << ret << endl;
+                return;
+            }
         }
         isRecording_ = true;
         g_onRecorderFlag = true;
@@ -395,11 +396,13 @@ public:
             cout << "Wait camera created success" << endl;
             sleep(1);
         }
-        int32_t ret = cam_->TriggerLoopingCapture(*fc);
-        if (ret != 0) {
-            cout << "camera start preview failed. ret=" << ret << endl;
-            delete fc;
-            return;
+        if (cam_ != nullptr) {
+            int32_t ret = cam_->TriggerLoopingCapture(*fc);
+            if (ret != 0) {
+                cout << "camera start preview failed. ret=" << ret << endl;
+                delete fc;
+                return;
+            }
         }
         isPreviewing_ = true;
         g_onPreviewFlag = true;
@@ -425,7 +428,9 @@ public:
             sleep(1);
         }
         g_onCaptureTriggerStartedFlag = true;
-        cam_->TriggerSingleCapture(*fc);
+        if (cam_ != nullptr) {
+            cam_->TriggerSingleCapture(*fc);
+        }
         g_onCaptureTriggerCompletedFlag = true;
     }
 

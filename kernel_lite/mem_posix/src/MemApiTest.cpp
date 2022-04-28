@@ -79,13 +79,13 @@ HWTEST_F(MemApiTest, testMallocENOMEM, Function | MediumTest | Level3)
     for (i = 0; i < 100; i++) {
         mem[i] = malloc(size);
         if (mem[i] == nullptr) {
-            LOG("mem[i] = NULL: i = %d, errno = %d, ENOMEM = %d", i, errno, ENOMEM);
+            LOG("mem[i] = nullptr: i = %d, errno = %d, ENOMEM = %d", i, errno, ENOMEM);
             break;
         }
     }
 
     ASSERT_TRUE(i < 100);
-    ASSERT_TRUE(mem[i] == nullptr) << "mem[i] != NULL, i = " << i;
+    ASSERT_TRUE(mem[i] == nullptr) << "mem[i] != nullptr, i = " << i;
     EXPECT_TRUE(errno == ENOMEM) << "ERROR: errno != ENOMEM, errno = " << errno << " ENOMEM = " << ENOMEM;
 
     for (k = 0; k < i; k++) {
@@ -95,7 +95,7 @@ HWTEST_F(MemApiTest, testMallocENOMEM, Function | MediumTest | Level3)
 
 /**
  * @tc.number SUB_KERNEL_MEM_FREE_0100
- * @tc.name   free function ptr is NULL test
+ * @tc.name   free function ptr is nullptr test
  * @tc.desc   [C-L*-311] MUST NOT alter NDK API behavior.
  */
 HWTEST_F(MemApiTest, testFreeNULL, Function | MediumTest | Level1)
@@ -128,7 +128,7 @@ HWTEST_F(MemApiTest, testReallocMem, Function | MediumTest | Level3)
     for (i = 1; i < 5; i++) {
         mlen = GetRandom(0x200000);
         mem = malloc(mlen);
-        ASSERT_TRUE(mem != nullptr) << "mem == NULL";
+        ASSERT_TRUE(mem != nullptr) << "mem == nullptr";
 
         memset(mem, testChar, mlen);
         rlen = GetRandom(0x200000);
@@ -139,7 +139,7 @@ HWTEST_F(MemApiTest, testReallocMem, Function | MediumTest | Level3)
         } else {
             memp = nullptr;
         }
-        ASSERT_TRUE(mem != nullptr) << "mem == NULL, i = " << i;
+        ASSERT_TRUE(mem != nullptr) << "mem == nullptr, i = " << i;
 
         len = mlen <= rlen ? mlen : rlen;
 
@@ -162,7 +162,7 @@ HWTEST_F(MemApiTest, testReallocMem, Function | MediumTest | Level3)
 
 /**
  * @tc.number SUB_KERNEL_MEM_REALLOC_0200
- * @tc.name   realloc function parameter is NULL test
+ * @tc.name   realloc function parameter is nullptr test
  * @tc.desc   [C-L*-311] MUST NOT alter NDK API behavior.
  */
 HWTEST_F(MemApiTest, testReallocNULL, Function | MediumTest | Level3)
@@ -206,11 +206,11 @@ HWTEST_F(MemApiTest, testReallocENOMEM, Function | MediumTest | Level3)
     size_t large = 0x80000000;
 
     void *mem = malloc(len);
-    ASSERT_TRUE(mem != nullptr) << "mem == NULL";
+    ASSERT_TRUE(mem != nullptr) << "mem == nullptr";
     LOG("__LINE__ = %d, mem = %p, errno = %d", __LINE__, mem, errno);
 
     void *reMem = realloc(mem, large);
-    EXPECT_TRUE(reMem == nullptr) << "reMem != NULL, reMem = " << reMem;
+    EXPECT_TRUE(reMem == nullptr) << "reMem != nullptr, reMem = " << reMem;
     EXPECT_TRUE(errno == ENOMEM) << "ERROR: errno != ENOMEM, errno = " << errno << " ENOMEM = " << ENOMEM;
 
     if (reMem != nullptr) {
@@ -233,7 +233,7 @@ HWTEST_F(MemApiTest, testCallocRandom, Function | MediumTest | Level3)
     for (i = 0; i < 10; i++) {
         len = GetRandom(64 * 1024);
         mem = (char *)calloc(nmemb, len);
-        ASSERT_TRUE(mem != nullptr) << "mem == NULL, i = " << i;
+        ASSERT_TRUE(mem != nullptr) << "mem == nullptr, i = " << i;
 
         for (k = 0; k < len * nmemb; k++) {
             sum += mem[k];
@@ -284,13 +284,13 @@ HWTEST_F(MemApiTest, testCallocENOMEM, Function | MediumTest | Level3)
     for (i = 0; i < 100; i++) {
         mem[i] = calloc(nmemb, size);
         if (mem[i] == nullptr) {
-            LOG("mem[i] = NULL: i = %d, errno = %d, ENOMEM = %d", i, errno, ENOMEM);
+            LOG("mem[i] = nullptr: i = %d, errno = %d, ENOMEM = %d", i, errno, ENOMEM);
             break;
         }
     }
 
     ASSERT_TRUE(i < 100);
-    ASSERT_TRUE(mem[i] == nullptr) << "mem[i] != NULL, i = " << i;
+    ASSERT_TRUE(mem[i] == nullptr) << "mem[i] != nullptr, i = " << i;
     EXPECT_TRUE(errno == ENOMEM) << "ERROR: errno != ENOMEM, errno = " << errno << " ENOMEM = " << ENOMEM;
 
     for (k = 0; k < i; k++) {
@@ -352,13 +352,13 @@ HWTEST_F(MemApiTest, testVallocENOMEM, Function | MediumTest | Level3)
     for (i = 0; i < 100; i++) {
         mem[i] = valloc(size);
         if (mem[i] == nullptr) {
-            LOG("mem[i] = NULL: i = %d, errno = %d, ENOMEM = %d", i, errno, ENOMEM);
+            LOG("mem[i] = nullptr: i = %d, errno = %d, ENOMEM = %d", i, errno, ENOMEM);
             break;
         }
     }
 
     ASSERT_TRUE(i < 100);
-    ASSERT_TRUE(mem[i] == nullptr) << "mem != NULL";
+    ASSERT_TRUE(mem[i] == nullptr) << "mem != nullptr";
     EXPECT_TRUE(errno == ENOMEM) << "ERROR: errno != ENOMEM, errno = " << errno << " ENOMEM = " << ENOMEM;
 
     for (k = 0; k < i; k++) {
@@ -380,7 +380,7 @@ HWTEST_F(MemApiTest, testMemalignTwoAlign, Function | MediumTest | Level2)
     for (i = 2; i < 21; i++) {
         align = 1 << i;
         mem = memalign(align, len);
-        ASSERT_TRUE(mem != nullptr) << "mem == NULL";
+        ASSERT_TRUE(mem != nullptr) << "mem == nullptr";
         EXPECT_TRUE((((unsigned long)mem) & (align - 1)) == 0);
 
         free(mem);
@@ -427,7 +427,7 @@ HWTEST_F(MemApiTest, testMemalignENOMEM, Function | MediumTest | Level3)
     for (i = 0; i < 100; i++) {
         mem[i] = memalign(align, size);
         if (mem[i] == nullptr) {
-            LOG("mem[i] = NULL: i = %d, errno = %d, ENOMEM = %d", i, errno, ENOMEM);
+            LOG("mem[i] = nullptr: i = %d, errno = %d, ENOMEM = %d", i, errno, ENOMEM);
             break;
         }
     }
@@ -536,7 +536,7 @@ HWTEST_F(MemApiTest, testPosixMemalignENOMEM, Function | MediumTest | Level3)
     for (i = 0; i < 100; i++) {
         err = posix_memalign(&mem[i], align, size);
         if (mem[i] == nullptr) {
-            LOG("mem[i] = NULL: i = %d, errno = %d, ENOMEM = %d", i, errno, ENOMEM);
+            LOG("mem[i] = nullptr: i = %d, errno = %d, ENOMEM = %d", i, errno, ENOMEM);
             break;
         }
     }

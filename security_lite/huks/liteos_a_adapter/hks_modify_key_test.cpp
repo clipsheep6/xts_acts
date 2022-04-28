@@ -131,7 +131,7 @@ static int32_t ConstructDataToBlob(struct HksBlob **inData, struct HksBlob **out
 static int32_t Encrypt(struct CipherEncryptStructure *encryptStruct)
 {
     int32_t ret;
-    struct HksParamSet *encryptParamSet = NULL;
+    struct HksParamSet *encryptParamSet = nullptr;
 
     uint32_t ivSize = encryptStruct->cipherParms->ivSize;
     uint32_t nonceSize = encryptStruct->cipherParms->nonceSize;
@@ -178,7 +178,7 @@ static int32_t DecryptCipher(struct CipherDecryptStructure *decryptStruct)
         decryptStruct->cipherParms->decryptedTextParams.blobDataSize);
     HKS_TEST_ASSERT(ret == 0);
 
-    struct HksParamSet *decryptParamSet = NULL;
+    struct HksParamSet *decryptParamSet = nullptr;
     struct AesCipherParamSetStructure deParamStruct = {
         &decryptParamSet,
         decryptStruct->cipherParms->decryptParamSetParams.paramSetExist,
@@ -209,7 +209,7 @@ int32_t GenerateKeyTwo(struct HksBlob *keyAlias, const struct HksTestBlobParams 
     const struct HksTestGenKeyParamsParamSet *genKeyParamSetParams,
     const struct HksTestGenKeyParamsParamSetOut *genKeyParamSetParamsOut)
 {
-    struct HksParamSet *paramSet = NULL;
+    struct HksParamSet *paramSet = nullptr;
     struct GenerateKeyParamSetStructure paramStruct = {
         &paramSet,
         genKeyParamSetParams->paramSetExist,
@@ -224,8 +224,8 @@ int32_t GenerateKeyTwo(struct HksBlob *keyAlias, const struct HksTestBlobParams 
     int32_t ret = TestConstructGenerateKeyParamSet(&paramStruct);
     HKS_TEST_ASSERT(ret == 0);
 
-    struct HksParamSet *paramSetOut = NULL;
-    if (genKeyParamSetParamsOut != NULL) {
+    struct HksParamSet *paramSetOut = nullptr;
+    if (genKeyParamSetParamsOut != nullptr) {
         ret = TestConstructGenerateKeyParamSetOut(&paramSet,
             genKeyParamSetParamsOut->paramSetExist, genKeyParamSetParamsOut->paramSetSize);
         HKS_TEST_ASSERT(ret == 0);
@@ -242,7 +242,7 @@ static int32_t ModifyKey(struct HksBlob *keyAlias)
 {
     uint32_t sizeOne = HksTestFileSize(g_storePath, (char *)keyAlias->data);
     uint8_t *bufOne = (uint8_t *)HksTestMalloc(sizeOne);
-    if (bufOne == NULL) {
+    if (bufOne == nullptr) {
         return HKS_ERROR_MALLOC_FAIL;
     }
     uint32_t sizeRead = HksTestFileRead(g_storePath, (char *)keyAlias->data, 0, bufOne, sizeOne);
@@ -257,15 +257,15 @@ static int32_t ModifyKey(struct HksBlob *keyAlias)
 
 int32_t BaseTestCipherProcess(struct HksBlob *keyAlias, uint32_t index)
 {
-    struct HksBlob *plainData = NULL;
-    struct HksBlob *cipherData = NULL;
+    struct HksBlob *plainData = nullptr;
+    struct HksBlob *cipherData = nullptr;
     int32_t ret = ConstructDataToBlob(&plainData, &cipherData,
         &g_testCipherParams[index].plainTextParams, &g_testCipherParams[index].cipherTextParams);
     HKS_TEST_ASSERT(ret == 0);
-    struct HksBlob *ivData = NULL;
-    struct HksBlob *nonceData = NULL;
-    struct HksBlob *aadData = NULL;
-    struct HksBlob *decryptedData = NULL;
+    struct HksBlob *ivData = nullptr;
+    struct HksBlob *nonceData = nullptr;
+    struct HksBlob *aadData = nullptr;
+    struct HksBlob *decryptedData = nullptr;
     /* 2. encrypt */
     do {
         struct CipherEncryptStructure testEncryptStruct = {
@@ -318,14 +318,14 @@ HWTEST_F(HksModifyKeyTest, HksModifyKeyTest001, TestSize.Level1)
     ret = BaseTestCipherProcess(&keyAlias, 0);
     EXPECT_EQ(ret, 0);
 
-    struct HksBlob *plainData = NULL;
-    struct HksBlob *cipherData = NULL;
+    struct HksBlob *plainData = nullptr;
+    struct HksBlob *cipherData = nullptr;
     ret = ConstructDataToBlob(&plainData, &cipherData,
         &g_testCipherParams[index].plainTextParams, &g_testCipherParams[index].cipherTextParams);
     EXPECT_EQ(ret, 0);
-    struct HksBlob *ivData = NULL;
-    struct HksBlob *nonceData = NULL;
-    struct HksBlob *aadData = NULL;
+    struct HksBlob *ivData = nullptr;
+    struct HksBlob *nonceData = nullptr;
+    struct HksBlob *aadData = nullptr;
 
     /* 2. encrypt */
     struct CipherEncryptStructure testEncryptStruct = {
@@ -337,7 +337,7 @@ HWTEST_F(HksModifyKeyTest, HksModifyKeyTest001, TestSize.Level1)
     ret = ModifyKey(&keyAlias);
     EXPECT_EQ(ret, 0);
     /* 3. decrypt */
-    struct HksBlob *decryptedData = NULL;
+    struct HksBlob *decryptedData = nullptr;
     struct CipherDecryptStructure testDecryptStruct = {
         &keyAlias, &g_testCipherParams[index], cipherData,
         &decryptedData, ivData, nonceData, aadData, 1
