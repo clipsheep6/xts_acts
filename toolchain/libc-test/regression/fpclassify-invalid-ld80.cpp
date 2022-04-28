@@ -7,15 +7,15 @@
 
 #include "gtest/gtest.h"
 
-#define T(f, desc, c, cwant, s, swant) do {                                              \
-    c = fpclassify(f);                                                                   \
-    EXPECT_EQ((c) != (cwant)) << "fpclassify(" << (desc) <<                              \
-        ") failed: got " << strclass(c) << " want " << #cwant << endl;                   \
+#define T(f, desc, c, cwant, s, swant) do {                                               \
+    c = fpclassify(f);                                                                    \
+    EXPECT_EQ((c) != (cwant)) << "fpclassify(" << (desc) <<                               \
+        ") failed: got " << strclass(c) << " want " << #cwant << endl;                    \
     memset_s((s), sizeof(s) - 1, 0, sizeof(s));                                           \
-    EXPECT_GE(snprintf_s(s, sizeof(s), sizeof(s), "%La", f), sizeof(s)) <<               \
+    EXPECT_GE(snprintf_s(s, sizeof(s), sizeof(s), "%La", f), sizeof(s)) <<                 \
         "snprintf_s(\"%%La\"," << (desc) << ") failed with invalid return value\n"<< endl; \
-    EXPECT_EQ(strcmp((s), (swant)), 0) << "snprintf_s(\"" << (desc) <<                   \
-        "\", " << sizeof(s) << ") failed: got \"" << (s) << "\" want " << #swant << endl;\
+    EXPECT_EQ(strcmp((s), (swant)), 0) << "snprintf_s(\"" << (desc) <<                     \
+        "\", " << sizeof(s) << ") failed: got \"" << (s) << "\" want " << #swant << endl; \
 } while (0)
 
 using namespace std;
@@ -27,15 +27,20 @@ static char *strclass(int c)
 {
     switch (c) {
         case FP_NAN:
-            return "FP_NAN"
+            return "FP_NAN";
+            break;
         case FP_INFINITE:
-            return "FP_INFINITE"
+            return "FP_INFINITE";
+            break;
         case FP_ZERO:
-            return "FP_ZERO"
+            return "FP_ZERO";
+            break;
         case FP_SUBNORMAL:
-            return "FP_SUBNORMAL"
+            return "FP_SUBNORMAL";
+            break;
         case FP_NORMAL:
-            return "FP_NORMAL"
+            return "FP_NORMAL";
+            break;
         default:
             break;
     }
@@ -43,7 +48,7 @@ static char *strclass(int c)
 }
 /**
  * @tc.name      : FpclassifyInvalidLd80Test
- * @tc.desc      : 
+ * @tc.desc      :
  * @tc.level     : Level 2
  */
 HWTEST_F(FpclassifyInvalidLd80, FpclassifyInvalidLd80Test, Function | MediumTest | Level2)

@@ -3,13 +3,13 @@
 
 #include "gtest/gtest.h"
 
-#define T(h, s, k) do {\
-    p = crypt(k, s);\
-    if (!p) {\
-        p = "*";\
-    }\
-    EXPECT_FALSE((strcmp(p, h) != 0)) << "crypt(" << #k << ", \"" << s\
-                                      << "\") failed: got \"" << p << "\" want \"" << h << "\"" << endl;\
+#define T(h, s, k) do { \
+    p = crypt(k, s); \
+    if (!p) { \
+        p = "*"; \
+    } \
+    EXPECT_FALSE((strcmp(p, h) != 0)) <<\
+        "crypt(" << #k << ", \"" << (s) << "\") failed: got \"" << (p) << "\" want \"" << (h) << "\"" << endl; \
 } while (0)
 
 using namespace std;

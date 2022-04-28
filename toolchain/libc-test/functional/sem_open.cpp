@@ -13,7 +13,6 @@
 
 #define TEST_T(c, ...) \
     ((c) || (t_error(#c " failed: " __VA_ARGS__), 0))
-// #define TEST_T(c, ...)  EXPECT_TRUE(c) << #c << " failed: " << __VA_ARGS__ << endl;
 
 using namespace std;
 using namespace testing::ext;

@@ -218,23 +218,23 @@ static void test_round_add(void)
 static void test_bad(void)
 {
     fexcept_t f;
-    int r;
+    int r, n = 1234567;
 
     r = feclearexcept(FE_ALL_EXCEPT);
     EXPECT_EQ(r, 0) << "feclearexcept(FE_ALL_EXCEPT) failed" << endl;
     r = fetestexcept(-1);
     EXPECT_EQ(r, 0) << "fetestexcept(-1) should return 0 when all exceptions are cleared, got " << r << endl;
-    r = feraiseexcept(1234567 | FE_ALL_EXCEPT);
+    r = feraiseexcept(n | FE_ALL_EXCEPT);
     EXPECT_EQ(r, 0) << "feraiseexcept returned non-zero for non-supported exceptions: " << r << endl;
-    r = feclearexcept(1234567 | FE_ALL_EXCEPT);
+    r = feclearexcept(n | FE_ALL_EXCEPT);
     EXPECT_EQ(r, 0) << "feclearexcept returned non-zero for non-supported exceptions: " << r << endl;
-    r = fesetround(1234567);
+    r = fesetround(n);
     EXPECT_NE(r, 0) << "fesetround should fail on invalid rounding mode" << endl;
-    r = fegetexceptflag(&f, 1234567);
+    r = fegetexceptflag(&f, n);
     EXPECT_EQ(r, 0) << "fegetexceptflag returned non-zero for non-supported exceptions: " << r << endl;
     r = fegetexceptflag(&f, 0);
     EXPECT_EQ(r, 0) << "fegetexceptflag(0) failed" << endl;
-    r = fesetexceptflag(&f, 1234567);
+    r = fesetexceptflag(&f, n);
     EXPECT_EQ(r, 0) << "fesetexceptflag returned non-zero fir non-supported exceptions: " << r << endl;
 }
 

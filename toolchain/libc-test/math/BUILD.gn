@@ -36,7 +36,6 @@ ohos_moduletest_suite("ActToolChainMathTest") {
   defines = [ "_STANDARD_SYSTEM_" ]
 
   sources = [
-    #"../include/mtest.cpp",
     "acos.cpp",
     "acosf.cpp",
     "acosh.cpp",

@@ -9,7 +9,7 @@
     strcpy_s(tmp, strlen(path)+1, path);                                         \
     char *got = basename(tmp);                                                   \
     EXPECT_EQ(0, strcmp(want, got)) << "basename(\""                             \
-        << path << "\") got \"" << got << "s\" want \"" << want << "\"" << endl; \
+        << path << "\") got \"" << (got) << "s\" want \"" << (want) << "\"" << endl; \
 } while (0)
 
 using namespace std;

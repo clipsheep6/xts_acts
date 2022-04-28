@@ -4,8 +4,8 @@
 
 #include "gtest/gtest.h"
 
-#define ASSERTT(c) do {                           \
-    EXPECT_FALSE(!(c)) << #c << " failed" << endl;\
+#define ASSERTT(c) do {                            \
+    EXPECT_FALSE(!(c)) << #c << " failed" << endl; \
 } while (0)
 
 using namespace std;

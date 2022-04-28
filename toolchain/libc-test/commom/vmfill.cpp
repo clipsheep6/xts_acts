@@ -1,5 +1,4 @@
 #include <cstdint>
-#include <climits>
 
 #include <sys/mman.h>
 #include <fcntl.h>
@@ -55,7 +54,7 @@ int t_vmfill(void **p, size_t *n, int len)
             break;
         }
         q = mmap(nullptr, m, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, fd, 0);
-        if (q == MAP_FAILED) {
+        if (q == reinterpret_cast<void*>(MAP_FAILED)) {
             return -1;
         }
         if (i < len) {

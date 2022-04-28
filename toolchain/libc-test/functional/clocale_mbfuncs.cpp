@@ -21,7 +21,7 @@ class ClocaleMbfuncs : public testing::Test {};
 HWTEST_F(ClocaleMbfuncs, ClocaleMbfuncsTest, Function | MediumTest | Level2)
 {
     int i, j;
-    mbstate_t st; // st2;
+    mbstate_t st;
     wchar_t wc, map[257], wtmp[257];
     char s[MB_LEN_MAX * 256];
     size_t rv;

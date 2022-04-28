@@ -65,7 +65,7 @@ static void *start_nested(void *arg)
     pthread_cleanup_push(cleanup2, foof + 1);
     pthread_cleanup_push(cleanup3, foof + n);
     pthread_cleanup_push(cleanup4, foof + n2);
-    sleep(3);
+    sleep(n2);
     pthread_cleanup_pop(0);
     pthread_cleanup_pop(0);
     pthread_cleanup_pop(0);

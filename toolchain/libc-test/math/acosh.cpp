@@ -20,7 +20,6 @@ class Acosh : public testing::Test {};
  */
 HWTEST_F(Acosh, AcoshTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

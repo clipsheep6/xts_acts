@@ -1,5 +1,5 @@
 #include <cmath>
-#include <fenv.h>
+#include <cfenv>
 
 #undef RN
 #undef RZ

@@ -80,13 +80,14 @@ static char *strclass(int c) {
 #define C(n) \
     case n:  \
         return (char *)#n;
-    switch (c)
-    {
+    switch (c) {
         C(FP_NAN)
         C(FP_INFINITE)
         C(FP_ZERO)
         C(FP_SUBNORMAL)
         C(FP_NORMAL)
+        default:
+            break;
     }
     return (char *)"invalid";
 }
