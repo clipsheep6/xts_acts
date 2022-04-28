@@ -5,9 +5,9 @@
 
 #include "gtest/gtest.h"
 
-#define TX(r, f, x) do {                                                                                    \
-    EXPECT_EQ(((r) = (f)), x) << #f << " failed: (pshared==" << pshared                                     \
-        << ") got " << r << " \"" << strerror(r) << "\" want " << x << " \"" << strerror(x) << "\"" << endl;\
+#define TX(r, f, x) do {                                                                                  \
+    EXPECT_EQ(((r) = (f)), x) << #f << " failed: (pshared==" << pshared <<                                \
+        ") got " << (r) << " \"" << strerror(r) << "\" want " << (x) << " \"" << strerror(x) << "\"" << endl; \
 } while (0)
 
 #define T(r, f) TX(r, f, 0)
@@ -29,12 +29,12 @@ static void *start_lock(void *arg)
 static void f()
 {
     pthread_t td;
-    int r;
+    int r, n = 1000, n2 = 100, n3 = 2;
     pthread_mutexattr_t mtx_a;
     pthread_mutex_t mtx;
     struct timespec ts;
 
-    T(r, pthread_barrier_init(&barrier2, 0, 2));
+    T(r, pthread_barrier_init(&barrier2, 0, n3));
     T(r, pthread_mutexattr_init(&mtx_a));
     T(r, pthread_mutexattr_setrobust(&mtx_a, PTHREAD_MUTEX_ROBUST));
     if (pshared) {
@@ -48,10 +48,10 @@ static void f()
 
     // enough time to ensure that the detached thread is dead
     clock_gettime(CLOCK_REALTIME, &ts);
-    ts.tv_nsec += 100 * 1000 * 1000;
-    if (ts.tv_nsec >= 1000 * 1000 * 1000) {
+    ts.tv_nsec += n2 * n * n;
+    if (ts.tv_nsec >= n * n * n) {
         ts.tv_sec++;
-        ts.tv_nsec -= 1000 * 1000 * 1000;
+        ts.tv_nsec -= n * n * n;
     }
 
     TX(r, pthread_mutex_timedlock(&mtx, &ts), EOWNERDEAD);

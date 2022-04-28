@@ -16,7 +16,7 @@ HWTEST_F(WcsstrFalseNegative, WcsstrFalseNegativeTest, Function | MediumTest | L
 {
     wchar_t const *haystack = L"playing play play play always";
     wchar_t const *needle = L"play play play";
-    wchar_t *p = (wchar_t *)wcsstr(haystack, needle);
-    EXPECT_EQ(p, haystack + 8) << "wcsstr(L\"" << haystack << "\",L\"" 
+    const wchar_t *p = wcsstr(haystack, needle);
+    EXPECT_EQ(p, haystack + 8) << "wcsstr(L\"" << haystack << "\",L\""
         << needle << "\") failed: got " << p << ", want " << haystack + 8 << endl;
 }

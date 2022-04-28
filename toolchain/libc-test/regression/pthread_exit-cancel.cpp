@@ -3,8 +3,8 @@
 
 #include "gtest/gtest.h"
 
-#define TEST_T(r, f) do {                                     \
-    EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(r);\
+#define TEST_T(r, f) do {                                        \
+    EXPECT_FALSE((r) = (f)) << #f << " failed: " << strerror(r); \
 } while (0)
 
 using namespace std;

@@ -18,8 +18,8 @@ HWTEST_F(SscanfEof, SscanfEofTest, Function | MediumTest | Level2)
     float f = 1.0f;
     char c = 'x';
     int r = sscanf(s, fmt, &f, &c);
-    EXPECT_EQ(1, r) << "sscanf(\""s
-        << "\", \"" << fmt << "\",..) returned " << r << ", wanted 1" << endl;
-    EXPECT_FALSE(f != 0.0f || c != 'x') << "sscanf(\"" 
-        << s << "\", \"" << fmt << "\",..) assigned f=" << f << " c='" << c << "', wanted i=0 c='x'" << endl;
+    EXPECT_EQ(1, r) <<
+        "sscanf(\""s << "\", \"" << fmt << "\",..) returned " << r << ", wanted 1" << endl;
+    EXPECT_FALSE(f != 0.0f || c != 'x') << "sscanf(\"" << s <<
+        "\", \"" << fmt << "\",..) assigned f=" << f << " c='" << c << "', wanted i=0 c='x'" << endl;
 }

@@ -19,8 +19,7 @@ static void checkStrptime(const char *s, const char *format, const struct tm *ex
     ret = strptime(s, format, &tm);
     if (!ret || *ret != '\0') {
         EXPECT_FALSE(!ret || *ret != '\0') << "\"" << format << "\": failed to parse \"" << s << "\"" << endl;
-    }
-    else if (tm.tm_sec != expected->tm_sec ||
+    } else if (tm.tm_sec != expected->tm_sec ||
              tm.tm_min != expected->tm_min ||
              tm.tm_hour != expected->tm_hour ||
              tm.tm_mday != expected->tm_mday ||
@@ -37,8 +36,8 @@ static void checkStrptime(const char *s, const char *format, const struct tm *ex
 
         strftime(buf1, sizeof(buf1), "%FT%H:%M:%S%Z", expected);
         strftime(buf2, sizeof(buf2), "%FT%H:%M:%S%Z", &tm);
-        EXPECT_TRUE(false) << "\"" << format << "\": for \""  
-            << s << "\" expected " << buf1 << " but got " << buf2 << endl;
+        EXPECT_TRUE(false) << "\"" << format <<
+            "\": for \"" << s << "\" expected " << buf1 << " but got " << buf2 << endl;
     }
 }
 
@@ -49,10 +48,10 @@ static void checkStrptimeTz(const char *s, int h, int m)
     const char *ret;
 
     ret = strptime(s, "%z", &tm);
-    ASSERT_FALSE(!ret || *ret != '\0');
-    EXPECT_EQ(tm.tm_gmtoff, expected);
+    ASSERT_FALSE(!ret || *ret != '\0') << "\"%%z\": failed to parse \"" << s << "\"" << endl;;
+    EXPECT_EQ(tm.tm_gmtoff, expected) << "\"%%z\": for \""<< s << "\" expected tm_gmtoff" << tm.tm_gmtoff << "but got " << expected << endl;
 }
-
+ 
 static struct tm tm1 = {
     .tm_sec = 8,
     .tm_min = 57,

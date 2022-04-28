@@ -5,8 +5,8 @@
 
 #include "gtest/gtest.h"
 
-#define T(r, f) do {                                           \
-    EXPECT_FALSE(r = (f)) << #f << " failed: " << strerror(r); \
+#define T(r, f) do {                                             \
+    EXPECT_FALSE((r) = (f)) << #f << " failed: " << strerror(r); \
 } while (0)
 
 using namespace std;
@@ -29,16 +29,16 @@ HWTEST_F(PthreadCondattrSetclock, PthreadCondattrSetclockTest, Function | Medium
 
     T(r, pthread_condattr_init(&a));
     r = pthread_condattr_setclock(&a, CLOCK_PROCESS_CPUTIME_ID);
-    EXPECT_EQ(r, EINVAL) 
-        << "pthread_condattr_setclock CLOCK_PROCESS_CPUTIME_ID should fail with EINVAL, got" << strerror(r) << endl;
+    EXPECT_EQ(r, EINVAL) <<
+        "pthread_condattr_setclock CLOCK_PROCESS_CPUTIME_ID should fail with EINVAL, got" << strerror(r) << endl;
                          
     r = pthread_condattr_setclock(&a, CLOCK_THREAD_CPUTIME_ID);
-    EXPECT_EQ(r, EINVAL) 
-        << "pthread_condattr_setclock CLOCK_THREAD_CPUTIME_ID should fail with EINVAL, got " << strerror(r) << endl;
+    EXPECT_EQ(r, EINVAL) <<
+        "pthread_condattr_setclock CLOCK_THREAD_CPUTIME_ID should fail with EINVAL, got " << strerror(r) << endl;
 
     T(r, pthread_condattr_getclock(&a, &clk));
-    EXPECT_EQ(clk, CLOCK_REALTIME) << "condattr default clock is " 
-        << (int)clk << ", wanted CLOCK_REALTIME (" << (int)CLOCK_REALTIME << (int)CLOCK_REALTIME << endl;
+    EXPECT_EQ(clk, CLOCK_REALTIME) << "condattr default clock is " <<
+        (int)clk << ", wanted CLOCK_REALTIME (" << (int)CLOCK_REALTIME << (int)CLOCK_REALTIME << endl;
     T(r, pthread_cond_init(&c, &a));
     T(r, pthread_mutex_init(&m, 0));
     T(r, pthread_mutex_lock(&m));

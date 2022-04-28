@@ -16,24 +16,24 @@ class RegexBracketIcase : public testing::Test {};
 HWTEST_F(RegexBracketIcase, RegexBracketIcaseTest, Function | MediumTest | Level2)
 {
     char buf[100];
-    char *pat;
+    const char *pat;
     regex_t re;
     int n, i;
     struct {
-        char *s;
+        const char *s;
         int n;
     } t[] = {
-        {const_cast<char*>("a"), REG_NOMATCH},
-        {const_cast<char*>("A"), REG_NOMATCH},
-        {const_cast<char*>("b"), REG_NOMATCH},
-        {const_cast<char*>("B"), REG_NOMATCH},
-        {const_cast<char*>("c"), REG_NOMATCH},
-        {const_cast<char*>("C"), REG_NOMATCH},
-        {const_cast<char*>("d"), 0},
-        {const_cast<char*>("D"), 0},
+        {"a", REG_NOMATCH},
+        {"A", REG_NOMATCH},
+        {"b", REG_NOMATCH},
+        {"B", REG_NOMATCH},
+        {"c", REG_NOMATCH},
+        {"C", REG_NOMATCH},
+        {"d", 0},
+        {"D", 0},
         {nullptr, 0}};
 
-    pat = const_cast<char*>("[^aBcC]");
+    pat = "[^aBcC]";
     n = regcomp(&re, pat, REG_ICASE);
     if (n) {
         regerror(n, &re, buf, sizeof buf);
@@ -44,8 +44,8 @@ HWTEST_F(RegexBracketIcase, RegexBracketIcaseTest, Function | MediumTest | Level
         n = regexec(&re, t[i].s, 0, nullptr, 0);
         if (n != t[i].n) {
             regerror(n, &re, buf, sizeof buf);
-            EXPECT_TRUE(false) << "regexec(/" << pat << "/, \""
-                << t[i].s << "\") returned " << n << " (" << buf << "), wanted " << t[i].n << endl;
+            EXPECT_TRUE(false) << "regexec(/" << pat <<
+                "/, \"" << t[i].s << "\") returned " << n << " (" << buf << "), wanted " << t[i].n << endl;
         }
     }
 }

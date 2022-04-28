@@ -17,6 +17,6 @@ HWTEST_F(ScanfMatchLiteralEof, ScanfMatchLiteralEofTest, Function | MediumTest |
     int match_count;
 
     match_count = sscanf(buf, "a");
-    EXPECT_EQ(EOF, match_count) 
-        << "scanf reported match failure instead of input failure on literal EOF match" << endl;
+    EXPECT_EQ(EOF, match_count) <<
+        "scanf reported match failure instead of input failure on literal EOF match" << endl;
 }

@@ -43,6 +43,7 @@ HWTEST_F(FtelloUnflushedAppend, FtelloUnflushedAppendTest, Function | MediumTest
         EXPECT_EQ(7, off) << "ftello is broken before flush: got " << (long long)off << ", want 7" << endl;
         ASSERT(fclose(f) == 0);
     }
-    if (fd > 2)
+    if (fd > 2) {
         ASSERT(unlink(tmp) == 0);
+    }
 }

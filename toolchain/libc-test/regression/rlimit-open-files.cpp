@@ -24,12 +24,12 @@ HWTEST_F(RlimitOpenFiles, RlimitOpenFilesTest, Function | MediumTest | Level2)
 
     rl.rlim_max = lim;
     rl.rlim_cur = lim;
-    EXPECT_FALSE(setrlimit(r, &rl)) << "setrlimit(" 
-        << r << ", " << lim << ") failed: " << strerror(errno) << endl;
+    EXPECT_FALSE(setrlimit(r, &rl)) << 
+        "setrlimit(" << r << ", " << lim << ") failed: " << strerror(errno) << endl;
     EXPECT_FALSE(getrlimit(r, &rl)) << "getrlimit(" << r << ") failed: " << strerror(errno) << endl;
 
-    EXPECT_FALSE(rl.rlim_max != lim || rl.rlim_cur != lim) << "getrlimit " << r  
-        << " says cur=" << rl.rlim_cur << ",max=" << rl.rlim_max << " after setting the limit to " << lim << endl;
+    EXPECT_FALSE(rl.rlim_max != lim || rl.rlim_cur != lim) << "getrlimit " << r <<
+        " says cur=" << rl.rlim_cur << ",max=" << rl.rlim_max << " after setting the limit to " << lim << endl;
 
     while ((fd = dup(1)) != -1) {
         if (fd > maxfd) {

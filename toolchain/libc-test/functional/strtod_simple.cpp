@@ -6,10 +6,10 @@
 
 #include "test.h"
 
-#define TEST_T(r, f, x, m) do {                               \
-    ((r) = (f)) == (x) ||                                     \
-        (t_error("%s failed (" m ")\n", #f, r, x, r - x), 0); \
-    EXPECT_DOUBLE_EQ((r), (x));                               \
+#define TEST_T(r, f, x, m) do {                                         \
+    ((r) = (f)) == (x) ||                                               \
+        (t_error("%s failed (" m ")\n", #f, (r), (x), ((r) - (x))), 0); \
+    EXPECT_DOUBLE_EQ((r), (x));                                         \
 } while (0)
 
 using namespace std;

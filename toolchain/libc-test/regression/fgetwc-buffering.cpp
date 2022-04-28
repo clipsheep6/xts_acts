@@ -9,7 +9,7 @@
 
 #include "test.h"
 
-#define A(c) EXPECT_FALSE(!(c)) << #c << " failed" << endl;
+#define A(c) EXPECT_FALSE(!(c)) << #c << " failed" << endl
 
 using namespace std;
 using namespace testing::ext;

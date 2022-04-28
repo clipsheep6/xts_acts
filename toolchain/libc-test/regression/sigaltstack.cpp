@@ -9,7 +9,7 @@
 
 
 #define T(f) do { \
-    EXPECT_EQ(0, (f)) << #f << " failed: " << strerror(errno) << endl;\
+    EXPECT_EQ(0, (f)) << #f << " failed: " << strerror(errno) << endl; \
 } while (0)
 
 using namespace std;
@@ -23,9 +23,9 @@ static void handler(int sig)
     uintptr_t i;
     stack_t ss;
 
-    i = (uintptr_t)&i;
-    EXPECT_FALSE(i < (uintptr_t)stack || i >= (uintptr_t)stack + SIGSTKSZ) 
-        << "signal handler was not invoked on the altstack" << endl;
+    i = reinterpret_cast<uintptr_t>(&i);
+    EXPECT_FALSE(i < (uintptr_t)stack || i >= (uintptr_t)stack + SIGSTKSZ) << 
+        "signal handler was not invoked on the altstack" << endl;
     T(sigaltstack(0, &ss));
     EXPECT_FALSE(ss.ss_flags != SS_ONSTACK) << "ss_flags is not SS_ONSTACK in the signal handler" << endl;
 }
@@ -53,8 +53,8 @@ HWTEST_F(Sigaltstack, SigaltstackTest, Function | MediumTest | Level2)
 
     errno = 0;
     ss.ss_size = MINSIGSTKSZ - 1;
-    EXPECT_FALSE(sigaltstack(&ss, 0) != -1 || errno != ENOMEM) 
-        <<"sigaltstack with stack size < MINSIGSTKSZ should have failed with ENOMEM, ""got"<< strerror(errno) << endl;
+    EXPECT_FALSE(sigaltstack(&ss, 0) != -1 || errno != ENOMEM) <<
+        "sigaltstack with stack size < MINSIGSTKSZ should have failed with ENOMEM, ""got"<< strerror(errno) << endl;
     errno = 0;
     ss.ss_flags = -1;
     ss.ss_size = MINSIGSTKSZ;

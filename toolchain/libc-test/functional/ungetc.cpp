@@ -8,13 +8,13 @@
 
 #include "test.h"
 
-#define TEST1(r, f, x, m) do{                                                      \
-    errno = 0, ((r) = (f)) == (x) ||                                               \
-                    (t_error("%s failed (" m ")\n", #f, r, x, strerror(errno)), 0);\
-    EXPECT_EQ(r, x);                                                               \
+#define TEST1(r, f, x, m) do{                                                       \
+    errno = 0, ((r) = (f)) == (x) ||                                                \
+                    (t_error("%s failed (" m ")\n", #f, r, x, strerror(errno)), 0); \
+    EXPECT_EQ(r, x);                                                                \
 } while (0)
 
-#define TEST_S(s, x, m) EXPECT_TRUE(!strcmp((s), (x))) << "[" << a << "] != [" << x << "] (" << m << ")" << endl;
+#define TEST_S(s, x, m) EXPECT_TRUE(!strcmp((s), (x))) << "[" << (a) << "] != [" << (x) << "] (" << (m) << ")" << endl
 
 using namespace std;
 using namespace testing::ext;

@@ -23,8 +23,8 @@ HWTEST_F(SigprocmaskInternal, SigprocmaskInternalTest, Function | MediumTest | L
     sigemptyset(&s);
     for (i = 32; i < SIGRTMIN; i++) {
         sigaddset(&s, i);
-        EXPECT_NE(1, sigismember(&s, i)) 
-            << "sigaddset(&s, " << i << ") set implementation internal rt signal" << endl;
+        EXPECT_NE(1, sigismember(&s, i)) <<
+            "sigaddset(&s, " << i << ") set implementation internal rt signal" << endl;
     }
     EXPECT_FALSE(sigprocmask(SIG_BLOCK, &s, 0)) << "blocking signals failed: " << strerror(errno) << endl;
     EXPECT_FALSE(sigprocmask(SIG_BLOCK, 0, &s)) << "querying sigmask failed: " << strerror(errno) << endl;

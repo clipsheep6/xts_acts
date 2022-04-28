@@ -24,7 +24,7 @@ HWTEST_F(RegexEscapedHighByte, RegexEscapedHighByteTest, Function | MediumTest |
     n = regcomp(&r, "\\\xfc", 0);
     if (n != REG_BADPAT) {
         regerror(n, &r, buf, sizeof buf);
-        EXPECT_EQ(REG_BADPAT, n) << "regcomp(\\\\\\xfc) returned " 
-            << n << " (" << buf << ") wanted REG_BADPAT" << endl;
+        EXPECT_EQ(REG_BADPAT, n) <<
+            "regcomp(\\\\\\xfc) returned " << n << " (" << buf << ") wanted REG_BADPAT" << endl;
     }
 }

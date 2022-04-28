@@ -4,13 +4,12 @@
 
 #include "gtest/gtest.h"
 
-int mkstemp(char *);
-#define S "/dev/null/fooXXXX"
-
 using namespace std;
 using namespace testing::ext;
 class MkstempFailure : public testing::Test {};
 
+int mkstemp(char *p);
+const char *S_S = "/dev/null/fooXXXX";
 /**
  * @tc.name      : MkstempFailureTest
  * @tc.desc      :
@@ -18,12 +17,12 @@ class MkstempFailure : public testing::Test {};
  */
 HWTEST_F(MkstempFailure, MkstempFailureTest, Function | MediumTest | Level2)
 {
-    char p[] = S;
+    char p[] = "/dev/null/fooXXXX";
     int r;
 
     r = mkstemp(p);
-    EXPECT_FALSE(r != -1) << "mkstemp(" S ") did not fail" << endl;
-    EXPECT_EQ(0, memcmp(p, S, sizeof p)) << "mkstemp(" S ") modified the template: " << p << endl;
-    EXPECT_FALSE(r == -1 && errno != EINVAL) << "mkstemp(" S ") failed with " << errno << " ["
-        << strerror(errno) << "] instead of " << EINVAL << " [ " << strerror(EINVAL) << " ]" << endl;
+    EXPECT_FALSE(r != -1) << "mkstemp(/dev/null/fooXXXX) did not fail" << endl;
+    EXPECT_EQ(0, memcmp(p, S_S, sizeof p)) << "mkstemp(/dev/null/fooXXXX) modified the template: " << p << endl;
+    EXPECT_FALSE(r == -1 && errno != EINVAL) << "mkstemp(/dev/null/fooXXXX) failed with " << errno <<
+        " [" << strerror(errno) << "] instead of " << EINVAL << " [ " << strerror(EINVAL) << " ]" << endl;
 }

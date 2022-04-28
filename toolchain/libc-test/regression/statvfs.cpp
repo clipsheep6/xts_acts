@@ -20,8 +20,8 @@ HWTEST_F(Statvfs, SscanfEofTest, Function | MediumTest | Level2)
     struct statvfs f;
 
     EXPECT_FALSE(statvfs("/", &f)) << "statvfs(\"/\") failed: " << strerror(errno) << endl;
-    EXPECT_FALSE(f.f_bsize == 0 || f.f_bsize > 1 << 28) 
-        << "/ has bogus f_bsize: " << (unsigned long)f.f_bsize << endl;
+    EXPECT_FALSE(f.f_bsize == 0 || f.f_bsize > 1 << 28) <<
+        "/ has bogus f_bsize: " << (unsigned long)f.f_bsize << endl;
     EXPECT_NE(0, f.f_blocks) << "/ has 0 blocks" << endl;
     EXPECT_GE(f.f_blocks, f.f_bfree) << "/ has more free blocks (" << (unsigned long long)f.f_bfree
                                      << ") than total blocks (" << (unsigned long long)f.f_blocks << ")" << endl;
@@ -33,6 +33,6 @@ HWTEST_F(Statvfs, SscanfEofTest, Function | MediumTest | Level2)
                                     << ") than total file nodes (" << (unsigned long long)f.f_files << ")" << endl;
     EXPECT_GE(f.f_files, f.f_favail) << "/ has more avail file nodes (" << (unsigned long long)f.f_favail
                                      << ") than total file nodes (" << (unsigned long long)f.f_files << ")" << endl;
-    EXPECT_FALSE(f.f_namemax > 1 << 16 || f.f_namemax < 8) 
-        << "/ has bogus f_namemax: " << (unsigned long)f.f_namemax << endl;
+    EXPECT_FALSE(f.f_namemax > 1 << 16 || f.f_namemax < 8) << 
+        "/ has bogus f_namemax: " << (unsigned long)f.f_namemax << endl;
 }

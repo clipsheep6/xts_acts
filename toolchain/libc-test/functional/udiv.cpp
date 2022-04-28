@@ -7,7 +7,7 @@ using namespace testing::ext;
 class Udiv: public testing::Test {};
 
 static struct {
-	uint64_t x, y, div, mod;
+    uint64_t x, y, div, mod;
 } t[] = {
     {0x8ddb1a43e77c4031ull, 0x5950e8c33d34979eull, 0x1ull, 0x348a3180aa47a893ull},
     {0x723f4114006c08c7ull, 0x817de530db2b43fcull, 0x0ull, 0x723f4114006c08c7ull},
@@ -136,21 +136,21 @@ static struct {
 
 /**
  * @tc.name      : UdivTest
- * @tc.desc      : 
+ * @tc.desc      :
  * @tc.level     : Level 2
  */
 HWTEST_F(Udiv, UdivTest, Function | MediumTest | Level2)
 {
     uint64_t x, y, div, mod;
-	int i;
+    int i;
 
-	for (i = 0; i < sizeof t/sizeof *t; i++) {
-		x = t[i].x;
-		y = t[i].y;
-		div = x / y;
-		mod = x % y;
-        EXPECT_EQ(div , t[i].div) << "udiv " << x << "/" << y << " want " << t[i].div << " got " << div << endl;
-        EXPECT_EQ(mod , t[i].mod) << "umod " << x << "/" << y << " want " << t[i].mod << " got " << mod << endl;
-	}
+    for (i = 0; i < sizeof t/sizeof *t; i++) {
+        x = t[i].x;
+        y = t[i].y;
+        div = x / y;
+        mod = x % y;
+        EXPECT_EQ(div, t[i].div) << "udiv " << x << "/" << y << " want " << t[i].div << " got " << div << endl;
+        EXPECT_EQ(mod, t[i].mod) << "umod " << x << "/" << y << " want " << t[i].mod << " got " << mod << endl;
+    }
 }
 

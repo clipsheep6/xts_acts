@@ -21,14 +21,14 @@ HWTEST_F(DnExpandPtr0, DnExpandPtr0Test, Function | MediumTest | Level2)
     /* non-empty name with pointer to 0 */
     r = dn_expand(packet, packet + 6, packet, name, 3);
     EXPECT_EQ(5, r) << "dn_expand(\"\\2pq\\xc0\\5\", name, 3) returned " << r << ", wanted 5" << endl;
-    EXPECT_FALSE(strcmp(name, "pq")) 
-        << "dn_expand(\"\\2pq\\xc0\\5\", name, 3) failed: got \"" << name << "\" name, wanted \"pq\"" << endl;
+    EXPECT_FALSE(strcmp(name, "pq")) <<
+        "dn_expand(\"\\2pq\\xc0\\5\", name, 3) failed: got \"" << name << "\" name, wanted \"pq\"" << endl;
 
     /* empty name with pointer to 0 */
     memcpy(packet, "\xc0\2", 3);
     memcpy(name, "XXXX", 5);
     r = dn_expand(packet, packet + 3, packet, name, 1);
     EXPECT_EQ(r, 2) << "dn_expand(\"\\xc0\\2\", name, 1) returned " << r << ", wanted 2" << endl;
-    EXPECT_FALSE(name[0]) 
-        << "dn_expand(\"\\xc0\\2\", name, 1) failed: got \"" << name << "\" name, wanted \"\"" << endl;
+    EXPECT_FALSE(name[0]) <<
+        "dn_expand(\"\\xc0\\2\", name, 1) failed: got \"" << name << "\" name, wanted \"\"" << endl;
 }

@@ -27,14 +27,14 @@ HWTEST_F(RegexEreBackref, RegexEreBackrefTest, Function | MediumTest | Level2)
     n = regexec(&r, "aa", 0, nullptr, 0);
     if (n != REG_NOMATCH) {
         regerror(n, &r, buf, sizeof buf);
-        EXPECT_EQ(REG_NOMATCH, n) << "regexec(/" << pat << "/ ~ \"aa\") returned "
-                                  << n << " (" << buf << "), wanted REG_NOMATCH" << endl;
+        EXPECT_EQ(REG_NOMATCH, n) <<
+            "regexec(/" << pat << "/ ~ \"aa\") returned " << n << " (" << buf << "), wanted REG_NOMATCH" << endl;
     }
 
     n = regexec(&r, "a1", 0, nullptr, 0);
     if (n) {
         regerror(n, &r, buf, sizeof buf);
-        EXPECT_FALSE(n) << "regexec(/" << pat << "/ ~ \"a1\") returned "
-                        << n << " (" << buf << "), wanted 0" << endl;
+        EXPECT_FALSE(n) <<
+            "regexec(/" << pat << "/ ~ \"a1\") returned "<< n << " (" << buf << "), wanted 0" << endl;
     }
 }

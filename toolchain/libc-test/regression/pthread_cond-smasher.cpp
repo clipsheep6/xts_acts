@@ -11,12 +11,11 @@ using namespace std;
 using namespace testing::ext;
 class PthreadCondSmasher : public testing::Test {};
 
-#define VERSION "POSIX threads"
+const char *VERSION = "POSIX threads";
 
 typedef pthread_mutex_t mutex;
 typedef pthread_cond_t condition;
 typedef pthread_t thread;
-typedef void *thread_ret;
 
 #define mutex_init(M) pthread_mutex_init((M), 0)
 #define mutex_destroy pthread_mutex_destroy
@@ -40,7 +39,7 @@ typedef void *thread_ret;
 #ifdef __GLIBC__
 #define LIBRARY "glibc"
 #else
-#define LIBRARY "unidentified"
+const char *LIBRARY = "unidentified";
 #endif
 
 #define trace2(L, ...) fprintf(stderr, __FILE__ ":" #L ": " __VA_ARGS__)
@@ -57,7 +56,7 @@ typedef void *thread_ret;
 
 #define tell(...) trace(__VA_ARGS__)
 
-enum phtd{
+enum phtd {
     phases = 10,
     threads = 10,
 };
@@ -74,10 +73,11 @@ static unsigned volatile phase;
 
 static void settimeout(struct timespec *ts)
 {
+    int n1 = 500, n2 = 1000;
     EXPECT_FALSE(clock_gettime(CLOCK_REALTIME, ts)) << "clock_gettime failed: " << strerror(errno) << endl;
-    ts->tv_nsec += 500 * 1000 * 1000;
-    if (ts->tv_nsec >= 1000 * 1000 * 1000) {
-        ts->tv_nsec -= 1000 * 1000 * 1000;
+    ts->tv_nsec += n1 * n2 * n2;
+    if (ts->tv_nsec >= n2 * n2 * n2) {
+        ts->tv_nsec -= n2 * n2 * n2;
         ts->tv_sec++;
     }
 }
@@ -102,13 +102,13 @@ static void *client(void *arg)
             settimeout(&ts);
             int ret = condition_timedwait(&cond_client, &mut[i], &ts);
             trace("thread %u in phase %u (%u), finished, %s\n", *number, i, phase, errorstring(ret));
-            EXPECT_FALSE(ret) << "thread " << *number << " in phase " 
-                << i << "(" << phase << ") finished waiting: " << errorstring(ret) << endl;
+            EXPECT_FALSE(ret) << "thread " << *number << 
+                " in phase " << i << "(" << phase << ") finished waiting: " << errorstring(ret) << endl;
         }
         int ret = mutex_unlock(&mut[i]);
         trace("thread %u in phase %u (%u), has unlocked mutex: %s\n", *number, i, phase, errorstring(ret));
-        EXPECT_FALSE(ret) << "thread " << *number 
-            << " in phase " << i << "(" << phase << "), failed to unlock: " << errorstring(ret) << endl;
+        EXPECT_FALSE(ret) << "thread " << *number <<
+            " in phase " << i << "(" << phase << "), failed to unlock: " << errorstring(ret) << endl;
     }
     return nullptr;
 }
@@ -162,7 +162,7 @@ HWTEST_F(PthreadCondSmasher, PthreadCondSmasherTest, Function | MediumTest | Lev
     }
 
     trace("main finished loop\n");
-    void *pret = (void *){nullptr};
+    void *pret = (void *) {nullptr};
     for (unsigned i = 0; i < threads; ++i) {
         trace("main joining thread %u\n", i);
         int ret = thread_join(id[i], &pret);
