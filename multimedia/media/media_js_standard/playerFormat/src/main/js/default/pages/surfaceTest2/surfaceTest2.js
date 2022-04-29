@@ -13,25 +13,21 @@
  * limitations under the License.
  */
 
-import router from '@system.router'
+import {Core, ExpectExtend} from 'deccjsunit/index'
+import Fileio from '@ohos.fileio'
 
-export async function toNewPage(page) {
-    let path = '';
-    if (page == 0) {
-        path = 'pages/surfaceTest/surfaceTest';
-    } else {
-        path = 'pages/surfaceTest2/surfaceTest2';
-    }
-    let options = {
-        uri: path,
-    }
-    try {
-        await router.push(options);
-    } catch {
-        console.info('case route failed');
-    }
-}
-
-export async function clearRouter() {
-    await router.clear();
+export default {
+    data: {
+        title: ""
+    },
+    onInit() {
+        this.title = this.$t('strings.world');
+    },
+    onShow() {
+    },
+    onReady() {
+    },
+    LoadXcomponent3() {
+        globalThis.value = this.$element('XcomponentId3').getXComponentSurfaceId()
+    },
 }

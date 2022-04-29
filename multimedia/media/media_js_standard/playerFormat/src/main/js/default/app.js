@@ -13,7 +13,11 @@
  * limitations under the License.
  */
 
-require('./VideoPlayerFuncCallbackTest.test.js')
-require('./VideoPlayerFuncPromiseTest.test.js')
-require('./VideoPlayerAPICallbackTest.test.js')
-require('./VideoPlayerEnumTest.test.js')
+export default {
+    onCreate() {
+        console.info('AceApplication onCreate');
+    },
+    onDestroy() {
+        console.info('AceApplication onDestroy');
+    }
+};
