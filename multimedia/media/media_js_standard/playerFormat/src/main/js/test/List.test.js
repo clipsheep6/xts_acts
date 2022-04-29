@@ -13,7 +13,5 @@
  * limitations under the License.
  */
 
-require('./VideoPlayerFuncCallbackTest.test.js')
-require('./VideoPlayerFuncPromiseTest.test.js')
-require('./VideoPlayerAPICallbackTest.test.js')
-require('./VideoPlayerEnumTest.test.js')
+// require('./VideoPlayerFormatCompatibilityTest.test.js')
+require('./AudioPlayerFormatCompatibilityTest.test.js')

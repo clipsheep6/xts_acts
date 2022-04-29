@@ -13,7 +13,25 @@
  * limitations under the License.
  */
 
-require('./VideoPlayerFuncCallbackTest.test.js')
-require('./VideoPlayerFuncPromiseTest.test.js')
-require('./VideoPlayerAPICallbackTest.test.js')
-require('./VideoPlayerEnumTest.test.js')
+import router from '@system.router'
+
+export async function toNewPage(page) {
+    let path = '';
+    if (page == 0) {
+        path = 'pages/surfaceTest/surfaceTest';
+    } else {
+        path = 'pages/surfaceTest/surfaceTest2';
+    }
+    let options = {
+        uri: path,
+    }
+    try {
+        await router.push(options);
+    } catch {
+        console.info('case route failed');
+    }
+}
+
+export async function clearRouter() {
+    await router.clear();
+}

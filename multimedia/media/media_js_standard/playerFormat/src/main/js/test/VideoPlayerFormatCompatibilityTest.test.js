@@ -189,7 +189,6 @@ describe('VideoPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_VIDEO_PLAYER_FORMAT_MP4_0900', 0, async function (done) {
-        console.info('1')
         let videoSource = 'h264_none_audio.mp4';
         await playVideoSource(videoSource, done);
         done();
