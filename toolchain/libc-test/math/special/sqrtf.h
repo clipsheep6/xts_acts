@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_SQRTF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_SQRTF_H
+
 TT(RN,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,             inf,             inf,          0x0p+0, 0)
 TT(RN,            -inf,             NAN,          0x0p+0, INVALID)
@@ -20,3 +23,5 @@ TT(RN,   0x1.000002p+0,          0x1p+0,         -0x1p-1, INEXACT)
 TT(RN,   0x1.000004p+0,   0x1.000002p+0,  0x1.fffffcp-25, INEXACT)
 TT(RN,   0x1.000002p+1,   0x1.6a09e8p+0,   0x1.7012ecp-4, INEXACT)
 TT(RN,   0x1.000004p+1,   0x1.6a09eap+0,   0x1.87f0f2p-2, INEXACT)
+
+#endif

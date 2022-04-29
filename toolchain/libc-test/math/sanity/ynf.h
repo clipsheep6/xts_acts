@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SANITY_YNF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SANITY_YNF_H
+
 TT(RN,   -0x1.0223ap+3,          -2,             NAN,          0x0p+0, INVALID)
 TT(RN,   0x1.161868p+2,          -1,  -0x1.5ab54ap-2,  -0x1.6996cep-3, INEXACT)
 TT(RN,  -0x1.0c34b4p+3,           0,             NAN,          0x0p+0, INVALID)
@@ -8,3 +11,5 @@ TT(RN,  -0x1.a05cc8p-2,           4,             NAN,          0x0p+0, INVALID)
 TT(RN,   0x1.1f9efap-1,           5, -0x1.16919ep+12,  -0x1.d10586p-3, INEXACT)
 TT(RN,    0x1.8c5dbp-1,           6, -0x1.6dbc1cp+13,   0x1.d597eep-4, INEXACT)
 TT(RN,  -0x1.5b86eap-1,           7,             NAN,          0x0p+0, INVALID)
+
+#endif

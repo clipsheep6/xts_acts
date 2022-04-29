@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SANITY_SCALBF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SANITY_SCALBF_H
+
 TT(RN,   -0x1.0223ap+3,   0x1.22484cp+2,             NAN,          0x0p+0, INEXACT|INVALID)
 TT(RN,   0x1.161868p+2,  -0x1.1c6a6cp+3,             NAN,          0x0p+0, INEXACT|INVALID)
 TT(RN,  -0x1.0c34b4p+3,  -0x1.61bde2p+1,             NAN,          0x0p+0, INEXACT|INVALID)
@@ -8,3 +11,5 @@ TT(RN,   0x1.f6f80ep+2,   0x1.ab3ff8p-5,             NAN,          0x0p+0, INEXA
 TT(RN,  -0x1.95882cp-1,   0x1.eb4a2ep+2,             NAN,          0x0p+0, INEXACT|INVALID)
 TT(RN,   0x1.3b3d62p-1,   0x1.018606p+1,             NAN,          0x0p+0, INEXACT|INVALID)
 TT(RN,  -0x1.1e159ep-1,   0x1.081bd4p-5,             NAN,          0x0p+0, INEXACT|INVALID)
+
+#endif

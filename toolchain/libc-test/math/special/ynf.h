@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_YNF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_YNF_H
+
 TT(RN,          0x0p+0,           0,            -inf,          0x0p+0, DIVBYZERO)
 TT(RN,         -0x0p+0,           0,            -inf,          0x0p+0, DIVBYZERO)
 TT(RN,         -0x1p+0,           0,             NAN,          0x0p+0, INVALID)
@@ -22,3 +25,5 @@ TT(RN,         -0x1p+0,           2,             NAN,          0x0p+0, INVALID)
 TT(RN,             inf,           2,          0x0p+0,          0x0p+0, 0)
 TT(RN,            -inf,           2,             NAN,          0x0p+0, INVALID)
 TT(RN,             NAN,           2,             NAN,          0x0p+0, 0)
+
+#endif

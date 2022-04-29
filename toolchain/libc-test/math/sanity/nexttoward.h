@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SANITY_NEXTTOWARD_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SANITY_NEXTTOWARD_H
+
 TT(RN,   -0x1.02239f3c6a8f1p+3,        0x1.22484b9ef31efd4p+2L,    -0x1.02239f3c6a8fp+3,          0x0p+0, 0)
 TT(RN,    0x1.161868e18bc67p+2,      -0x1.1c6a6cdce75e83acp+3L,    0x1.161868e18bc66p+2,          0x0p+0, 0)
 TT(RN,   -0x1.0c34b3e01e6e7p+3,      -0x1.61bde29e83f6cb16p+1L,   -0x1.0c34b3e01e6e6p+3,          0x0p+0, 0)
@@ -8,3 +11,5 @@ TT(RN,    0x1.f6f80ed2eab44p+2,       0x1.ab3ff8575b21cf92p-5L,    0x1.f6f80ed2e
 TT(RN,   -0x1.95882b433fad3p-1,       0x1.eb4a2e7ce06930dap+2L,   -0x1.95882b433fad2p-1,          0x0p+0, 0)
 TT(RN,    0x1.3b3d617ae3c4ap-1,       0x1.01860611d75e1052p+1L,    0x1.3b3d617ae3c4bp-1,          0x0p+0, 0)
 TT(RN,   -0x1.1e159e36313eep-1,         0x1.081bd34224212bp-5L,   -0x1.1e159e36313edp-1,          0x0p+0, 0)
+
+#endif

@@ -1,13 +1,6 @@
-// tan.testdata
-// copyright (C) 2005 F. de Dinechin, Ch. Q. Lauter  and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_TAN_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_TAN_H
+
 TT(RN, 0x0p+0, 0x0p+0, 0x0p+0, 0)                            // zero
 TT(RN, -0x0p+0, -0x0p+0, 0x0p+0, 0)                          // -zero
 TT(RU, 0x0p+0, 0x0p+0, 0x0p+0, 0)                            // zero
@@ -6899,3 +6892,5 @@ TT(RN, -0x1.9dda90480ae31p-4, -0x1.9f4492048da97p-4, 0x1.9b43d4p-3, INEXACT)
 TT(RN, -0x1.9c6e532eeb70ap-4, -0x1.9dd499cc545ccp-4, -0x1.434678p-3, INEXACT)
 TT(RN, -0x1.9b0356a826f07p-4, -0x1.9c65ec02f819fp-4, 0x1.31b5a4p-3, INEXACT)
 TT(RN, 0x0p+0, 0x0p+0, 0x0p+0, 0)
+
+#endif

@@ -1,15 +1,6 @@
-// log10.testdata
-//  copyright (C) 2005 Ch. Q. Lauter and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Test all positive integer powers of 10 for exponents (to 10) from 0 to 25
-// especially in the directed rounding modes
-// (testing exponents 0 to 17 should suffice in fact)
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_LOG10_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_LOG10_H
+
 TT(RN, 0x1p+0, 0x0p+0, 0x0p+0, 0)
 TT(RU, 0x1p+0, 0x0p+0, 0x0p+0, 0)
 TT(RD, 0x1p+0, 0x0p+0, 0x0p+0, 0)
@@ -163,3 +154,5 @@ TT(RN, 0x1.4d0f00313488cp+576, 0x1.5b03deaa9abb2p+7, -0x1p-1, INEXACT)        //
 TT(RN, 0x1.3e238630d4b3bp+581, 0x1.5dfc50d1ef669p+7, 0x1p-1, INEXACT)         // 9.835673600325649497978919582662e+174
 TT(RZ, 0x1.061d60c2c0093p+803, 0x1.e379845eaa774p+7, -0x1.838ap-59, INEXACT)  // 5.461828085706753538145251018537e+241
 TT(RZ, 0x1.bd35ae5d5fe52p+952, 0x1.1ed22539bd8d6p+8, -0x1.e9ap-62, INEXACT)   // 6.620343395914844405355705099139e+286
+
+#endif

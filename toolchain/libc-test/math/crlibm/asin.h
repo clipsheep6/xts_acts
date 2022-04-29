@@ -1,13 +1,6 @@
-// asin.testdata
-// copyright (C) 2005 F. de Dinechin, Ch. Q. Lauter and V. Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_ASIN_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_ASIN_H
+
 TT(RN, 0x0p+0, 0x0p+0, 0x0p+0, 0)                              // +0 -> +0
 TT(RN, -0x0p+0, -0x0p+0, 0x0p+0, 0)                            // -0 -> -0
 TT(RN, 0x1p+0, 0x1.921fb54442d18p+0, -0x1.1a6264p-2, INEXACT)  // +1 -> RN(Pi/2)
@@ -2643,3 +2636,5 @@ TT(RU, -0x1.d6fcc5b050687p-19, -0x1.d6fcc5b0548f3p-19, 0x1.ffff68p-1, INEXACT)  
 TT(RZ, -0x1.d6fcc5b050687p-19, -0x1.d6fcc5b0548f3p-19, 0x1.ffff68p-1, INEXACT)   // -3.509129520435513778135001514147e-06
 TT(RN, 0x1.4dbe3f86b178dp-14, 0x1.4dbe3f8c9a14p-14, -0x1.ffff94p-2, INEXACT)     // 7.957056923676830283587851910809e-05
 TT(RN, -0x1.490ae8fbf5d97p-5, -0x1.4921938f0facap-5, -0x1.fffe36p-2, INEXACT)    // -4.016633515100947321441182680246e-02
+
+#endif

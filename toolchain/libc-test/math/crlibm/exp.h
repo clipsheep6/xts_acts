@@ -1,13 +1,6 @@
-// exp.testdata
-// copyright (C) 2005 Ch. Q. Lauter, F. de Dinechin and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_EXP_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_EXP_H
+
 TT(RN, 0x0p+0, 0x1p+0, 0x0p+0, 0)                          // zero
 TT(RN, -0x0p+0, 0x1p+0, 0x0p+0, 0)                         // -zero
 TT(RU, 0x0p+0, 0x1p+0, 0x0p+0, 0)                          // zero
@@ -6157,3 +6150,5 @@ TT(RN, -0x1.757683e426a17p+9, 0x0p+0, -0x1.5504dap-4, INEXACT | UNDERFLOW)
 TT(RN, -0x1.757902de01c46p+9, 0x0p+0, -0x1.4e6efap-4, INEXACT | UNDERFLOW)
 TT(RN, -0x1.757b81d7dce75p+9, 0x0p+0, -0x1.47f9a8p-4, INEXACT | UNDERFLOW)
 TT(RN, -0x1.757e00d1b80a4p+9, 0x0p+0, -0x1.41a444p-4, INEXACT | UNDERFLOW)
+
+#endif

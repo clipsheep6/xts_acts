@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_POWL_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_POWL_H
+
 TT(RN,                        0x0p+0L,                            NAN,                            NAN,          0x0p+0, 0)
 TT(RN,                        0x0p+0L,                            inf,                        0x0p+0L,          0x0p+0, 0)
 TT(RN,                        0x0p+0L,                      0x1.8p+1L,                        0x0p+0L,          0x0p+0, 0)
@@ -90,3 +93,5 @@ TT(RN,                            NAN,                        0x1p+0L,          
 TT(RN,                            NAN,                       -0x1p+0L,                            NAN,          0x0p+0, 0)
 TT(RN,                       -0x1p+1L,                        0x1p+0L,                       -0x1p+1L,          0x0p+0, 0)
 TT(RN,                       -0x1p+1L,                       -0x1p+0L,                       -0x1p-1L,          0x0p+0, 0)
+
+#endif

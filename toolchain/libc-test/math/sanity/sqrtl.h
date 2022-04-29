@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SANITY_SQRTL_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SANITY_SQRTL_H
+
 TT(RN,      -0x1.02239f3c6a8f13dep+3L,                            NAN,          0x0p+0, INVALID)
 TT(RN,       0x1.161868e18bc67782p+2L,        0x1.0ad1adc856f294cp+1L,  -0x1.17be3ap-4, INEXACT)
 TT(RN,      -0x1.0c34b3e01e6e682cp+3L,                            NAN,          0x0p+0, INVALID)
@@ -8,3 +11,5 @@ TT(RN,       -0x1.a05cc754481d0bdp-2L,                            NAN,          
 TT(RN,        0x1.1f9ef934745cad6p-1L,       0x1.7fbf4b5a076bbfd2p-1L,     0x1.4285p-3, INEXACT)
 TT(RN,       0x1.8c5db097f744257ep-1L,        0x1.c27ce94ff39c591p-1L,   0x1.948a58p-3, INEXACT)
 TT(RN,      -0x1.5b86ea8118a0e2bcp-1L,                            NAN,          0x0p+0, INVALID)
+
+#endif

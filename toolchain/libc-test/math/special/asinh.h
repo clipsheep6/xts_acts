@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_ASINH_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_ASINH_H
+
 TT(RN,                     NAN,                     NAN,          0x0p+0, 0)
 TT(RN,                     inf,                     inf,          0x0p+0, 0)
 TT(RN,                    -inf,                    -inf,          0x0p+0, 0)
@@ -22,3 +25,5 @@ TT(RN,    0x1.ecd4f07608dc7p-2,    0x1.db8d6fdcc6d74p-2,   -0x1.eeb48p-2, INEXAC
 TT(RN,    0x1.f30656c78ee7ep-2,    0x1.e1204e364a186p-2,   -0x1.b23ffp-2, INEXACT)
 TT(RN,    0x1.f5c0c6e41b969p-2,    0x1.e393d3dc3b70ap-2,  -0x1.c06dbep-2, INEXACT)
 TT(RN,    0x1.09c58725300e7p-1,    0x1.fe2c7f25fb172p-2,  -0x1.ae9df6p-2, INEXACT)
+
+#endif

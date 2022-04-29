@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_FMINF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_FMINF_H
+
 TT(RN,          0x0p+0,          0x1p+0,          0x0p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0,          0x1p+0,         -0x0p+0,          0x0p+0, 0)
 TT(RN,          0x1p-1,          0x1p+0,          0x1p-1,          0x0p+0, 0)
@@ -56,3 +59,5 @@ TT(RN,        0x1.cp+0,          0x1p-1,          0x1p-1,          0x0p+0, 0)
 TT(RN,       -0x1.cp+0,          0x1p-1,       -0x1.cp+0,          0x0p+0, 0)
 TT(RN,        0x1.cp+0,         -0x1p-1,         -0x1p-1,          0x0p+0, 0)
 TT(RN,       -0x1.cp+0,         -0x1p-1,       -0x1.cp+0,          0x0p+0, 0)
+
+#endif

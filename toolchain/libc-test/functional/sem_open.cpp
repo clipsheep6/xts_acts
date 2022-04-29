@@ -11,9 +11,6 @@
 
 #include "test.h"
 
-#define TEST_T(c, ...) \
-    ((c) || (t_error(#c " failed: " __VA_ARGS__), 0))
-
 using namespace std;
 using namespace testing::ext;
 class SemOpen : public testing::Test {};
@@ -33,34 +30,32 @@ HWTEST_F(SemOpen, SemOpenTest, Function | MediumTest | Level2)
     clock_gettime(CLOCK_REALTIME, &ts);
     snprintf(buf, sizeof buf, "/testsuite-%d-%d", (int)getpid(), (int)ts.tv_nsec);
 
-    TEST_T((sem = sem_open(buf, O_CREAT | O_EXCL, 0700, 1)) != SEM_FAILED,
-           "could not open sem: %s\n", strerror(errno));
+    EXPECT_TRUE((sem = sem_open(buf, O_CREAT | O_EXCL, 0700, 1)) != SEM_FAILED) <<
+        "could not open sem: " << strerror(errno) << endl;
     errno = 0;
-    TEST_T(sem_open(buf, O_CREAT | O_EXCL, 0700, 1) == SEM_FAILED,
-           "reopening should fail with O_EXCL\n");
-    TEST_T(errno == EEXIST,
-           "after reopen failure errno is \"%s\" (%d); want EEXIST (%d)\n", strerror(errno), errno, EEXIST);
+    EXPECT_TRUE(sem_open(buf, O_CREAT | O_EXCL, 0700, 1) == SEM_FAILED) << "reopening should fail with O_EXCL" << endl;
+    EXPECT_TRUE(errno == EEXIST) << "after reopen failure errno is \"" <<
+        strerror(errno) << "\" (" << errno << "); want EEXIST (" << EEXIST << ")" << endl;
 
-    TEST_T(sem_getvalue(sem, &val) == 0, "failed to get sem value\n");
-    TEST_T(val == 1, "wrong initial semaphore value: %d\n", val);
+    EXPECT_TRUE(sem_getvalue(sem, &val) == 0) << "failed to get sem value" << endl;
+    EXPECT_TRUE(val == 1) << "wrong initial semaphore value: " << val << endl;
 
-    TEST_T((sem2 = sem_open(buf, 0)) == sem,
-           "could not reopen sem: got %p, want %p\n", sem2, sem);
+    EXPECT_TRUE((sem2 = sem_open(buf, 0)) == sem) << "could not reopen sem: got " << sem2 << ", want " << sem << endl;
 
     errno = 0;
-    TEST_T(sem_wait(sem) == 0, "%s\n", strerror(errno));
-    TEST_T(sem_getvalue(sem2, &val) == 0, "%s\n", strerror(errno));
-    TEST_T(val == 0, "wrong semaphore value on second handle: %d\n", val);
+    EXPECT_TRUE(sem_wait(sem) == 0) << strerror(errno) << endl;
+    EXPECT_TRUE(sem_getvalue(sem2, &val) == 0) << strerror(errno) << endl;
+    EXPECT_TRUE(val == 0) << "wrong semaphore value on second handle: " << val << endl;
 
     errno = 0;
-    TEST_T(sem_trywait(sem) == -1 && errno == EAGAIN,
-           "trywait on locked sem: got errno \"%s\" (%d), want EAGAIN (%d)\n", strerror(errno), errno, EAGAIN);
+    EXPECT_TRUE(sem_trywait(sem) == -1 && errno == EAGAIN) << "trywait on locked sem: got errno \"" <<
+        strerror(errno) << "\" (" << errno << "), want EAGAIN (" << EAGAIN << ")" << endl;
 
-    TEST_T(sem_post(sem) == 0, "%s\n", strerror(errno));
-    TEST_T(sem_getvalue(sem2, &val) == 0, "%s\n", strerror(errno));
-    TEST_T(val == 1, "wrong semaphore value on second handle: %d\n", val);
+    EXPECT_TRUE(sem_post(sem) == 0) << strerror(errno) << endl;
+    EXPECT_TRUE(sem_getvalue(sem2, &val) == 0) << strerror(errno) << endl;
+    EXPECT_TRUE(val == 1) << "wrong semaphore value on second handle: " << val << endl;
 
-    TEST_T(sem_close(sem) == 0, "%s\n", strerror(errno));
-    TEST_T(sem_close(sem) == 0, "%s\n", strerror(errno));
-    TEST_T(sem_unlink(buf) == 0, "%s\n", strerror(errno));
+    EXPECT_TRUE(sem_close(sem) == 0) << strerror(errno) << endl;
+    EXPECT_TRUE(sem_close(sem) == 0) << strerror(errno) << endl;
+    EXPECT_TRUE(sem_unlink(buf) == 0) << strerror(errno) << endl;
 }

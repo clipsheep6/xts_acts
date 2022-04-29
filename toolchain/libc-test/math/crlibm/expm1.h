@@ -1,14 +1,6 @@
-// expm1.testdata
-// copyright (C) 2005 Ch. Q. Lauter and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// TODO: VERIFY THIS VALUES
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_EXPM1_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_EXPM1_H
+
 TT(RN, 0x0p+0, 0x0p+0, 0x0p+0, 0)                           // zero
 TT(RN, -0x0p+0, -0x0p+0, 0x0p+0, 0)                         // -zero
 TT(RU, 0x0p+0, 0x0p+0, 0x0p+0, 0)                           // zero
@@ -751,3 +743,5 @@ TT(RZ, -0x1.f3310393e9294p+4, -0x1.fffffffffff01p-1, 0x1p+0, INEXACT)           
 TT(RN, -0x1.f33915bcf0e7fp+4, -0x1.fffffffffff03p-1, -0x1p-1, INEXACT)          // -3.120143674664586441735991684254e+01
 TT(RZ, -0x1.f320eb6e57701p+4, -0x1.fffffffffffp-1, 0x1p+0, INEXACT)             // -3.119553702451867494005455228034e+01
 TT(RN, -0x1.f328f57b126ffp+4, -0x1.fffffffffff01p-1, 0x1p-1, INEXACT)           // -3.119749973368652362637476471718e+01
+
+#endif

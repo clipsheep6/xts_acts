@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_FMAF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_FMAF_H
+
 TT(RN,          0x0p+0,          0x0p+0,          0x0p+0,          0x0p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0,         -0x0p+0,         -0x0p+0,          0x0p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0,         -0x0p+0,          0x0p+0,          0x0p+0,          0x0p+0, 0)
@@ -52,3 +55,5 @@ TT(RN, -0x1.26524ep-54, -0x1.cb7868p+11,  0x1.d10f5ep-29,  0x1.d1179ep-29,      
 TT(RU, -0x1.26524ep-54, -0x1.cb7868p+11,  0x1.d10f5ep-29,   0x1.d117ap-29,          0x1p-1, INEXACT)
 TT(RD, -0x1.26524ep-54, -0x1.cb7868p+11,  0x1.d10f5ep-29,  0x1.d1179ep-29,         -0x1p-1, INEXACT)
 TT(RZ, -0x1.26524ep-54, -0x1.cb7868p+11,  0x1.d10f5ep-29,  0x1.d1179ep-29,         -0x1p-1, INEXACT)
+
+#endif

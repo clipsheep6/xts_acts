@@ -1,13 +1,6 @@
-// atan.testdata
-// copyright (C) 2005 Ch. Q. Lauter and F. de Dinechin and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_ATAN_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_ATAN_H
+
 TT(RN, 0x0p+0, 0x0p+0, 0x0p+0, 0)                           // zero
 TT(RN, -0x0p+0, -0x0p+0, 0x0p+0, 0)                         // -zero
 TT(RU, 0x0p+0, 0x0p+0, 0x0p+0, 0)                           // zero
@@ -6868,3 +6861,5 @@ TT(RN, 0x1.53fa3112b3184p-7, 0x1.53f711a49021cp-7, 0x1.7896dcp-2, INEXACT)
 TT(RN, 0x1.50dc41e6aa9eap-7, 0x1.50d93841b04a4p-7, 0x1.f65e5ep-2, INEXACT)
 TT(RN, 0x1.4dc5a37f97095p-7, 0x1.4dc2af0bc9d21p-7, 0x1.b3e84p-4, INEXACT)
 TT(RN, 0x1.4ab644b209fc3p-7, 0x1.4ab364db92948p-7, 0x1.dd84aap-2, INEXACT)
+
+#endif

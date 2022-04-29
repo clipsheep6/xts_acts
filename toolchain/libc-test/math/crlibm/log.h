@@ -1,13 +1,6 @@
-// log.testdata
-// copyright (C) 2005  F. de Dinechin, Ch. Q. Lauter and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_LOG_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_LOG_H
+
 TT(RN, 0x0p+0, -inf, 0x0p+0, DIVBYZERO)                          // zero
 TT(RN, -0x0p+0, -inf, 0x0p+0, DIVBYZERO)                         // -zero
 TT(RU, 0x0p+0, -inf, 0x0p+0, DIVBYZERO)                          // zero
@@ -1240,3 +1233,5 @@ TT(RN, 0x1.095ff2e41b54bp-929, -0x1.41f2e9f6d0c12p+9, 0x1.ab88bep-17, INEXACT)
 TT(RN, 0x1.2d1e4c81849bbp-961, -0x1.4cf9dee3e50ecp+9, 0x1.a6079cp-12, INEXACT)
 TT(RN, 0x1.34567a117b004p-967, -0x1.4f0b2cd058dd5p+9, 0x1.2a2212p-11, INEXACT)
 TT(RN, 0x1.52fd0c9b83e7ep-991, -0x1.5750648228179p+9, 0x1.f9751cp-12, INEXACT)
+
+#endif

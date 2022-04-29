@@ -1,13 +1,6 @@
-// cosh.testdata
-// copyright (C) 2005  F. de Dinechin and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_COSH_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_COSH_H
+
 TT(RN, 0x0p+0, 0x1p+0, 0x0p+0, 0)                         // zero
 TT(RN, -0x0p+0, 0x1p+0, 0x0p+0, 0)                        // -zero
 TT(RU, 0x0p+0, 0x1p+0, 0x0p+0, 0)                         // zero
@@ -2120,3 +2113,5 @@ TT(RZ, -0x1.c22acf51863b1p+5, 0x1.225ef31739b4ep+80, -0x1.cacb2ep-21, INEXACT)  
 TT(RD, -0x1.2577a2f8d9466p+0, 0x1.bb74be7a0adc8p+0, -0x1.fffff6p-1, INEXACT)    // -1.146356759790501111950788981630e+00
 TT(RU, -0x1.2577a2f8d9466p+0, 0x1.bb74be7a0adc9p+0, 0x1.5547aap-22, INEXACT)    // -1.146356759790501111950788981630e+00
 TT(RZ, -0x1.2577a2f8d9466p+0, 0x1.bb74be7a0adc8p+0, -0x1.fffff6p-1, INEXACT)    // -1.146356759790501111950788981630e+00
+
+#endif

@@ -1,40 +1,6 @@
-// Copyright (C) 1988-1994 Sun Microsystems, Inc. 2550 Garcia Avenue
-// Mountain View, California  94043 All rights reserved.
-//
-// Any person is hereby authorized to download, copy, use, create bug fixes,
-// and distribute, subject to the following conditions:
-//
-//  1.  the software may not be redistributed for a fee except as
-//      reasonable to cover media costs;
-//  2.  any copy of the software must include this notice, as well as
-//      any other embedded copyright notices; and
-//  3.  any distribution of this software or derivative works thereof
-//      must comply with all applicable U.S. export control laws.
-//
-// THE SOFTWARE IS MADE AVAILABLE "AS IS" AND WITHOUT EXPRESS OR IMPLIED
-// WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO THE IMPLIED
-// WARRANTIES OF DESIGN, MERCHANTIBILITY, FITNESS FOR A PARTICULAR
-// PURPOSE, NON-INFRINGEMENT, PERFORMANCE OR CONFORMANCE TO
-// SPECIFICATIONS.
-//
-// BY DOWNLOADING AND/OR USING THIS SOFTWARE, THE USER WAIVES ALL CLAIMS
-// AGAINST SUN MICROSYSTEMS, INC. AND ITS AFFILIATED COMPANIES IN ANY
-// JURISDICTION, INCLUDING BUT NOT LIMITED TO CLAIMS FOR DAMAGES OR
-// EQUITABLE RELIEF BASED ON LOSS OF DATA, AND SPECIFICALLY WAIVES EVEN
-// UNKNOWN OR UNANTICIPATED CLAIMS OR LOSSES, PRESENT AND FUTURE.
-//
-// IN NO EVENT WILL SUN MICROSYSTEMS, INC. OR ANY OF ITS AFFILIATED
-// COMPANIES BE LIABLE FOR ANY LOST REVENUE OR PROFITS OR OTHER SPECIAL,
-// INDIRECT AND CONSEQUENTIAL DAMAGES, EVEN IF IT HAS BEEN ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGES.
-//
-// This file is provided with no support and without any obligation on the
-// part of Sun Microsystems, Inc. ("Sun") or any of its affiliated
-// companies to assist in its use, correction, modification or
-// enhancement.  Nevertheless, and without creating any obligation on its
-// part, Sun welcomes your comments concerning the software and requests
-// that they be sent to fdlibm-comments@sunpro.sun.com.
-// sqrTT(+-0) is +-0
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_UCB_SQRTF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_UCB_SQRTF_H
+
 TT(RN,          0x0p+0,          0x0p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0,         -0x0p+0,          0x0p+0, 0)
 TT(RZ,          0x0p+0,          0x0p+0,          0x0p+0, 0)
@@ -43,27 +9,22 @@ TT(RU,          0x0p+0,          0x0p+0,          0x0p+0, 0)
 TT(RU,         -0x0p+0,         -0x0p+0,          0x0p+0, 0)
 TT(RD,          0x0p+0,          0x0p+0,          0x0p+0, 0)
 TT(RD,         -0x0p+0,         -0x0p+0,          0x0p+0, 0)
-// sqrTT(+max) is finite
 TT(RN, 0x1.fffffep+127,  0x1.fffffep+63,         -0x1p-1, INEXACT)
 TT(RZ, 0x1.fffffep+127,  0x1.fffffep+63,         -0x1p-1, INEXACT)
 TT(RU, 0x1.fffffep+127,         0x1p+64,          0x1p-2, INEXACT)
 TT(RD, 0x1.fffffep+127,  0x1.fffffep+63,         -0x1p-1, INEXACT)
-// sqrTT(16736281) = 4091
 TT(RN,  0x1.fec032p+23,     0x1.ff6p+11,          0x0p+0, 0)
 TT(RZ,  0x1.fec032p+23,     0x1.ff6p+11,          0x0p+0, 0)
 TT(RU,  0x1.fec032p+23,     0x1.ff6p+11,          0x0p+0, 0)
 TT(RD,  0x1.fec032p+23,     0x1.ff6p+11,          0x0p+0, 0)
-// sqrTT(16088121) = 4011
 TT(RN,  0x1.eaf872p+23,     0x1.f56p+11,          0x0p+0, 0)
 TT(RZ,  0x1.eaf872p+23,     0x1.f56p+11,          0x0p+0, 0)
 TT(RU,  0x1.eaf872p+23,     0x1.f56p+11,          0x0p+0, 0)
 TT(RD,  0x1.eaf872p+23,     0x1.f56p+11,          0x0p+0, 0)
-// sqrTT(4)=2
 TT(RN,          0x1p+2,          0x1p+1,          0x0p+0, 0)
 TT(RZ,          0x1p+2,          0x1p+1,          0x0p+0, 0)
 TT(RU,          0x1p+2,          0x1p+1,          0x0p+0, 0)
 TT(RD,          0x1p+2,          0x1p+1,          0x0p+0, 0)
-// sqrTT(x) for x=1,1+ulp,1-ulp
 TT(RN,   0x1.000002p+0,          0x1p+0,         -0x1p-1, INEXACT)
 TT(RN,          0x1p+0,          0x1p+0,          0x0p+0, 0)
 TT(RN,   0x1.fffffep-1,   0x1.fffffep-1,         -0x1p-1, INEXACT)
@@ -76,12 +37,10 @@ TT(RU,   0x1.fffffep-1,          0x1p+0,          0x1p-2, INEXACT)
 TT(RD,   0x1.000002p+0,          0x1p+0,         -0x1p-1, INEXACT)
 TT(RD,          0x1p+0,          0x1p+0,          0x0p+0, 0)
 TT(RD,   0x1.fffffep-1,   0x1.fffffep-1,         -0x1p-1, INEXACT)
-// sqrTT(+min) is non-zero
 TT(RN,        0x1p-126,         0x1p-63,          0x0p+0, 0)
 TT(RZ,        0x1p-126,         0x1p-63,          0x0p+0, 0)
 TT(RU,        0x1p-126,         0x1p-63,          0x0p+0, 0)
 TT(RD,        0x1p-126,         0x1p-63,          0x0p+0, 0)
-// random arguments between 0 8
 TT(RN,   0x1.766bdcp+1,     0x1.b5d7p+0,   0x1.8023f6p-2, INEXACT)
 TT(RN,    0x1.b6547p+2,   0x1.4efb34p+1,   0x1.ab352ap-2, INEXACT)
 TT(RN,    0x1.e1653p+2,   0x1.5f0d32p+1,  -0x1.3a5a34p-5, INEXACT)
@@ -92,22 +51,18 @@ TT(RN,   0x1.940d8ep+2,   0x1.419dfap+1,   0x1.667d7ap-4, INEXACT)
 TT(RN,   0x1.dae714p+2,   0x1.5cad1ap+1,  -0x1.8e8572p-5, INEXACT)
 TT(RN,   0x1.a9f2d2p+1,   0x1.d2ff14p+0,  -0x1.20826cp-3, INEXACT)
 TT(RN,   0x1.57dd34p-3,   0x1.a397d8p-2,  -0x1.10b108p-3, INEXACT)
-// sqrTT(min subnormal) is non-zero
 TT(RN,        0x1p-149,  0x1.6a09e6p-75,  -0x1.9fcef4p-3, INEXACT)
 TT(RZ,        0x1p-149,  0x1.6a09e6p-75,  -0x1.9fcef4p-3, INEXACT)
 TT(RU,        0x1p-149,  0x1.6a09e8p-75,   0x1.980c44p-1, INEXACT)
 TT(RD,        0x1p-149,  0x1.6a09e6p-75,  -0x1.9fcef4p-3, INEXACT)
-// sqrTT(inf) is inf
 TT(RN,             inf,             inf,          0x0p+0, 0)
 TT(RZ,             inf,             inf,          0x0p+0, 0)
 TT(RU,             inf,             inf,          0x0p+0, 0)
 TT(RD,             inf,             inf,          0x0p+0, 0)
-// sqrTT(NAN) is NAN
 TT(RN,             NAN,             NAN,          0x0p+0, 0)
 TT(RZ,             NAN,             NAN,          0x0p+0, 0)
 TT(RU,             NAN,             NAN,          0x0p+0, 0)
 TT(RD,             NAN,             NAN,          0x0p+0, 0)
-// sqrTT(-ve) is NAN
 TT(RN,       -0x1p-149,             NAN,          0x0p+0, INVALID)
 TT(RN,         -0x1p+0,             NAN,          0x0p+0, INVALID)
 TT(RN,            -inf,             NAN,          0x0p+0, INVALID)
@@ -366,3 +321,5 @@ TT(RZ,-0x1.fffffep+126,             NAN,          0x0p+0, INVALID)
 TT(RZ,-0x1.000004p+127,             NAN,          0x0p+0, INVALID)
 
 
+
+#endif

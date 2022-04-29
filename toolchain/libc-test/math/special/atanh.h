@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_ATANH_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_ATANH_H
+
 TT(RN,                     NAN,                     NAN,          0x0p+0, 0)
 TT(RN,                     inf,                     NAN,          0x0p+0, INVALID)
 TT(RN,                    -inf,                     NAN,          0x0p+0, INVALID)
@@ -12,3 +15,5 @@ TT(RN,               0x1p-1000,               0x1p-1000,          0x0p+0, INEXAC
 TT(RN,               0x1p-1024,               0x1p-1024,          0x0p+0, INEXACT|UNDERFLOW)
 TT(RN,              -0x1p-1024,              -0x1p-1024,          0x0p+0, INEXACT|UNDERFLOW)
 TT(RN,               0x1p+1023,                     NAN,          0x0p+0, INVALID)
+
+#endif

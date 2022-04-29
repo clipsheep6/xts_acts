@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SANITY_SINCOSL_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SANITY_SINCOSL_H
+
 TT(RN,      -0x1.02239f3c6a8f13dep+3L,      -0x1.f4719cbe20bd109ap-1L,   -0x1.f6addp-2,      -0x1.b0aa8f2c9bb05028p-3L,   0x1.cb66d8p-2, INEXACT)
 TT(RN,       0x1.161868e18bc67782p+2L,      -0x1.dde0a33834425426p-1L,    0x1.2fdc6p-3,      -0x1.6f922aed886fce28p-2L,   0x1.857366p-2, INEXACT)
 TT(RN,      -0x1.0c34b3e01e6e682cp+3L,      -0x1.ba6a5410cb9cfd2ap-1L,  -0x1.41edcap-4,      -0x1.01b4e0004141c36ep-1L,  -0x1.496d12p-6, INEXACT)
@@ -8,3 +11,5 @@ TT(RN,       -0x1.a05cc754481d0bdp-2L,      -0x1.94fbf72645bfb648p-2L,   0x1.577
 TT(RN,        0x1.1f9ef934745cad6p-1L,       0x1.10baf3a5f550e376p-1L,   0x1.eaff04p-3,       0x1.b150bae7795b163ep-1L,   0x1.4c1268p-2, INEXACT)
 TT(RN,       0x1.8c5db097f744257ep-1L,       0x1.65f1c5e591db2ac6p-1L,   0x1.e36f2ep-2,       0x1.6e164e427022ad86p-1L,   -0x1.83a52p-2, INEXACT)
 TT(RN,      -0x1.5b86ea8118a0e2bcp-1L,        -0x1.417318671b83ccp-1L,   0x1.b27416p-2,       0x1.8e83d35a366bf958p-1L,    0x1.88bbdp-2, INEXACT)
+
+#endif

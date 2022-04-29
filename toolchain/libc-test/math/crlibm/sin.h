@@ -1,13 +1,6 @@
-// sin.testdata
-// copyright (C) 2005 F. de Dinechin, Ch. Q. Lauter and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_SIN_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_SIN_H
+
 TT(RN, 0x0p+0, 0x0p+0, 0x0p+0, 0)                           // zero
 TT(RN, -0x0p+0, -0x0p+0, 0x0p+0, 0)                         // -zero
 TT(RU, 0x0p+0, 0x0p+0, 0x0p+0, 0)                           // zero
@@ -11031,3 +11024,5 @@ TT(RN, 0x1.64bba6c62866ep+1023, -0x1.1cce01dcd6744p-1, 0x1.c33372p-2, INEXACT)
 TT(RN, 0x1.7dde106e9572bp+1023, -0x1.4234b43440367p-2, 0x1.7e4838p-3, INEXACT)
 TT(RN, 0x1.e884711f29316p+1023, -0x1.96e707b25e786p-1, 0x1.35c16cp-2, INEXACT)
 TT(RN, 0x1.ecc659b09f268p+1023, 0x1.d8e3ff33ed8e5p-1, -0x1.ac7864p-4, INEXACT)
+
+#endif

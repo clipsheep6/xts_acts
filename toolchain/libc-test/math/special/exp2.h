@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_EXP2_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_EXP2_H
+
 TT(RN,                  0x0p+0,                  0x1p+0,          0x0p+0, 0)
 TT(RN,                 -0x0p+0,                  0x1p+0,          0x0p+0, 0)
 TT(RN,                  0x1p+0,                  0x1p+1,          0x0p+0, 0)
@@ -23,3 +26,5 @@ TT(RN,            -0x1.0c8p+10,               0x1p-1074,          0x0p+0, 0)
 TT(RN,            -0x1.0cap+10,               0x1p-1074,   0x1.2bec34p-2, INEXACT|UNDERFLOW)
 TT(RN,            -0x1.0ccp+10,                  0x0p+0,         -0x1p-1, INEXACT|UNDERFLOW)
 TT(RN,                -0x1p+11,                  0x0p+0,          0x0p+0, INEXACT|UNDERFLOW)
+
+#endif

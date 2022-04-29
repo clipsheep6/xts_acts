@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_LGAMMA_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_LGAMMA_H
+
 TT(RN,                  0x0p+0,                     inf,          0x0p+0,           1, DIVBYZERO)
 TT(RN,                 -0x0p+0,                     inf,          0x0p+0,          -1, DIVBYZERO)
 TT(RN,                  0x1p+0,                  0x0p+0,          0x0p+0,           1, 0)
@@ -191,3 +194,5 @@ TT(RN,   -0x1.fffffff987654p+6,   -0x1.e040417b7482fp+8,   0x1.8e9c6ap-5,       
 TT(RN,   -0x1.fffedcba98765p+6,   -0x1.e99901f6c9f42p+8,   0x1.e7aefep-3,           1, INEXACT)
 TT(RN,   -0x1.fedcba9876543p+6,   -0x1.eda169220baa1p+8,  -0x1.32672ep-2,           1, INEXACT)
 TT(RN,   -0x1.987654321abcep+6,   -0x1.7355a02284f1cp+8,  -0x1.a1300ep-3,          -1, INEXACT)
+
+#endif

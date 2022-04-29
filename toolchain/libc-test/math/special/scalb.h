@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_SCALB_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_SCALB_H
+
 TT(RN,                  0x0p+0,                  0x1p+0,                  0x0p+0,          0x0p+0, 0)
 TT(RN,                  0x0p+0,                0x1p+100,                  0x0p+0,          0x0p+0, 0)
 TT(RN,                  0x0p+0,               -0x1p+100,                  0x0p+0,          0x0p+0, 0)
@@ -32,3 +35,5 @@ TT(RN,                    -inf,                0x1p+100,                    -inf
 TT(RN,                     inf,                     NAN,                     NAN,          0x0p+0, 0)
 TT(RN,                     inf,                     inf,                     inf,          0x0p+0, 0)
 TT(RN,                     inf,                    -inf,                     NAN,          0x0p+0, INVALID)
+
+#endif

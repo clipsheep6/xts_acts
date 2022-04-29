@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_COS_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_COS_H
+
 TT(RN,                  0x0p+0,                  0x1p+0,          0x0p+0, 0)
 TT(RN,                 -0x0p+0,                  0x1p+0,          0x0p+0, 0)
 TT(RN,                     inf,                     NAN,          0x0p+0, INVALID)
@@ -76,3 +79,5 @@ TT(RN,    0x1.e004481b64637p+2,     0x1.62b41b3c0d01p-2,  -0x1.ff9ca6p-2, INEXAC
 TT(RN,    0x1.23e54a10c2c25p+3,   -0x1.e8ab971af5fabp-1,   0x1.fe3d82p-2, INEXACT)
 TT(RN,    0x1.b23cafc9b3cebp+2,    0x1.c0e32d52ec691p-1,   -0x1.fec7ap-2, INEXACT)
 TT(RN,    0x1.18aac65e5f9dap+3,    -0x1.965fa3629f1ap-1,    0x1.fff7bp-2, INEXACT)
+
+#endif

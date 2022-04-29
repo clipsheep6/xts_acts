@@ -1,13 +1,6 @@
-// acos.testdata
-// copyright (C) 2007  F. de Dinechin, Ch. Q. Lauter and V. Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_ACOS_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_ACOS_H
+
 TT(RN, 0x0p+0, 0x1.921fb54442d18p+0, -0x1.1a6264p-2, INEXACT)  // +0 -> RN(Pi/2)
 TT(RN, -0x0p+0, 0x1.921fb54442d18p+0, -0x1.1a6264p-2, INEXACT) // -0 -> RN(Pi/2)
 TT(RD, 0x0p+0, 0x1.921fb54442d18p+0, -0x1.1a6264p-2, INEXACT)  // +0 -> RD(Pi/2)
@@ -287,3 +280,5 @@ TT(RN, 0x1.884d68a0873e1p-8, 0x1.9097674216808p+0, 0x1p-1, INEXACT)           //
 TT(RN, 0x1.61191e4ad34afp-9, 0x1.916f28a71ebd2p+0, -0x1p-1, INEXACT)          // 2.693924854077232432930655292580e-03
 TT(RZ, 0x1.bc52bd8cab8c1p-9, 0x1.91418bc999cd2p+0, -0x1p+0, INEXACT)          // 3.389917028775974328774767130312e-03
 TT(RZ, 0x1.d6cef073cc8c7p-9, 0x1.91344daadc0fdp+0, -0x1p+0, INEXACT)          // 3.591982700435900326824123496294e-03
+
+#endif

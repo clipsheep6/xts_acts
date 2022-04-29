@@ -1,40 +1,6 @@
-// Copyright (C) 1988-1994 Sun Microsystems, Inc. 2550 Garcia Avenue
-// Mountain View, California  94043 All rights reserved.
-//
-// Any person is hereby authorized to download, copy, use, create bug fixes,
-// and distribute, subject to the following conditions:
-//
-// 	1.  the software may not be redistributed for a fee except as
-// 	    reasonable to cover media costs;
-// 	2.  any copy of the software must include this notice, as well as
-// 	    any other embedded copyright notices; and
-// 	3.  any distribution of this software or derivative works thereof
-// 	    must comply with all applicable U.S. export control laws.
-//
-// THE SOFTWARE IS MADE AVAILABLE "AS IS" AND WITHOUT EXPRESS OR IMPLIED
-// WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO THE IMPLIED
-// WARRANTIES OF DESIGN, MERCHANTIBILITY, FITNESS FOR A PARTICULAR
-// PURPOSE, NON-INFRINGEMENT, PERFORMANCE OR CONFORMANCE TO
-// SPECIFICATIONS.
-//
-// BY DOWNLOADING AND/OR USING THIS SOFTWARE, THE USER WAIVES ALL CLAIMS
-// AGAINST SUN MICROSYSTEMS, INC. AND ITS AFFILIATED COMPANIES IN ANY
-// JURISDICTION, INCLUDING BUT NOT LIMITED TO CLAIMS FOR DAMAGES OR
-// EQUITABLE RELIEF BASED ON LOSS OF DATA, AND SPECIFICALLY WAIVES EVEN
-// UNKNOWN OR UNANTICIPATED CLAIMS OR LOSSES, PRESENT AND FUTURE.
-//
-// IN NO EVENT WILL SUN MICROSYSTEMS, INC. OR ANY OF ITS AFFILIATED
-// COMPANIES BE LIABLE FOR ANY LOST REVENUE OR PROFITS OR OTHER SPECIAL,
-// INDIRECT AND CONSEQUENTIAL DAMAGES, EVEN IF IT HAS BEEN ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGES.
-//
-// This file is provided with no support and without any obligation on the
-// part of Sun Microsystems, Inc. ("Sun") or any of its affiliated
-// companies to assist in its use, correction, modification or
-// enhancement.  Nevertheless, and without creating any obligation on its
-// part, Sun welcomes your comments concerning the software and requests
-// that they be sent to fdlibm-comments@sunpro.sun.com.
-// fmods(x,x) = 0
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_UCB_FMODF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_UCB_FMODF_H
+
 TT(RN,        0x1p-126,        0x1p-126,          0x0p+0,          0x0p+0, 0)
 TT(RN,        0x1p-126,       -0x1p-126,          0x0p+0,          0x0p+0, 0)
 TT(RN,       -0x1p-126,        0x1p-126,         -0x0p+0,          0x0p+0, 0)
@@ -51,7 +17,6 @@ TT(RD, 0x1.fffffep+127, 0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
 TT(RD, 0x1.fffffep+127,-0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
 TT(RZ,-0x1.fffffep+127, 0x1.fffffep+127,         -0x0p+0,          0x0p+0, 0)
 TT(RZ,-0x1.fffffep+127,-0x1.fffffep+127,         -0x0p+0,          0x0p+0, 0)
-// fmods(0,y)=0 for all y except NAN,0
 TT(RN,          0x0p+0,        0x1p-126,          0x0p+0,          0x0p+0, 0)
 TT(RN,          0x0p+0, 0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
 TT(RN,          0x0p+0,       -0x1p-126,          0x0p+0,          0x0p+0, 0)
@@ -68,7 +33,6 @@ TT(RZ,         -0x0p+0,        0x1p-126,         -0x0p+0,          0x0p+0, 0)
 TT(RZ,         -0x0p+0, 0x1.fffffep+127,         -0x0p+0,          0x0p+0, 0)
 TT(RU,         -0x0p+0,       -0x1p-126,         -0x0p+0,          0x0p+0, 0)
 TT(RU,         -0x0p+0,-0x1.fffffep+127,         -0x0p+0,          0x0p+0, 0)
-// fmods(min,max)=min
 TT(RN,        0x1p-126, 0x1.fffffep+127,        0x1p-126,          0x0p+0, 0)
 TT(RN,        0x1p-126,-0x1.fffffep+127,        0x1p-126,          0x0p+0, 0)
 TT(RN,       -0x1p-126, 0x1.fffffep+127,       -0x1p-126,          0x0p+0, 0)
@@ -77,39 +41,28 @@ TT(RD,        0x1p-126, 0x1.fffffep+127,        0x1p-126,          0x0p+0, 0)
 TT(RZ,        0x1p-126,-0x1.fffffep+127,        0x1p-126,          0x0p+0, 0)
 TT(RU,       -0x1p-126, 0x1.fffffep+127,       -0x1p-126,          0x0p+0, 0)
 TT(RD,       -0x1p-126,-0x1.fffffep+127,       -0x1p-126,          0x0p+0, 0)
-// fmods(max,min)= 0
 TT(RN, 0x1.fffffep+127,        0x1p-126,          0x0p+0,          0x0p+0, 0)
 TT(RN,-0x1.fffffep+127,        0x1p-126,         -0x0p+0,          0x0p+0, 0)
 TT(RN, 0x1.fffffep+127,       -0x1p-126,          0x0p+0,          0x0p+0, 0)
 TT(RN,-0x1.fffffep+127,       -0x1p-126,         -0x0p+0,          0x0p+0, 0)
-// fmods(max,max-ulp)= ulp
 TT(RN, 0x1.fffffep+127, 0x1.fffffcp+127,        0x1p+104,          0x0p+0, 0)
 TT(RN,-0x1.fffffep+127, 0x1.fffffcp+127,       -0x1p+104,          0x0p+0, 0)
-// fmods(max,max/2+ulp)= max/2-ulp
 TT(RN, 0x1.fffffep+127,       -0x1p+127, 0x1.fffffcp+126,          0x0p+0, 0)
 TT(RN,-0x1.fffffep+127,       -0x1p+127,-0x1.fffffcp+126,          0x0p+0, 0)
-// fmods(max,max/2)= 0
 TT(RN, 0x1.fffffep+127, 0x1.fffffep+126,          0x0p+0,          0x0p+0, 0)
 TT(RN,-0x1.fffffep+127, 0x1.fffffep+126,         -0x0p+0,          0x0p+0, 0)
-// fmods(max,max/2-ulp)= 2ulp
 TT(RN, 0x1.fffffep+127,-0x1.fffffcp+126,        0x1p+104,          0x0p+0, 0)
 TT(RN,-0x1.fffffep+127,-0x1.fffffcp+126,       -0x1p+104,          0x0p+0, 0)
-// fmods(max/2+ulp,max) = max/2+ulp
 TT(RN,        0x1p+127, 0x1.fffffep+127,        0x1p+127,          0x0p+0, 0)
 TT(RN,       -0x1p+127, 0x1.fffffep+127,       -0x1p+127,          0x0p+0, 0)
-// fmods(max/2,max) = max/2
 TT(RN, 0x1.fffffep+126,-0x1.fffffep+127, 0x1.fffffep+126,          0x0p+0, 0)
 TT(RN,-0x1.fffffep+126,-0x1.fffffep+127,-0x1.fffffep+126,          0x0p+0, 0)
-// fmods(max/2-ulp,max) = max/2-ulp
 TT(RN, 0x1.fffffcp+126, 0x1.fffffep+127, 0x1.fffffcp+126,          0x0p+0, 0)
 TT(RN,-0x1.fffffcp+126, 0x1.fffffep+127,-0x1.fffffcp+126,          0x0p+0, 0)
-// fmods(max-ulp,max)= max-ulp
 TT(RN, 0x1.fffffcp+127,-0x1.fffffep+127, 0x1.fffffcp+127,          0x0p+0, 0)
 TT(RN,-0x1.fffffcp+127,-0x1.fffffep+127,-0x1.fffffcp+127,          0x0p+0, 0)
-// fmods(max-ulp,max/2) = max/2 - 2ulp
 TT(RN, 0x1.fffffcp+127, 0x1.fffffep+126, 0x1.fffffap+126,          0x0p+0, 0)
 TT(RN,-0x1.fffffcp+127, 0x1.fffffep+126,-0x1.fffffap+126,          0x0p+0, 0)
-// fmods(x,1) for small x = n+0.5
 TT(RN,        0x1.ep+2,          0x1p+0,          0x1p-1,          0x0p+0, 0)
 TT(RN,        0x1.ap+2,          0x1p+0,          0x1p-1,          0x0p+0, 0)
 TT(RN,        0x1.6p+2,          0x1p+0,          0x1p-1,          0x0p+0, 0)
@@ -118,7 +71,6 @@ TT(RN,       -0x1.ep+2,          0x1p+0,         -0x1p-1,          0x0p+0, 0)
 TT(RN,       -0x1.ap+2,          0x1p+0,         -0x1p-1,          0x0p+0, 0)
 TT(RN,       -0x1.6p+2,          0x1p+0,         -0x1p-1,          0x0p+0, 0)
 TT(RN,       -0x1.2p+2,          0x1p+0,         -0x1p-1,          0x0p+0, 0)
-// random arguments between 100 -100
 TT(RN,  -0x1.adeefcp+4,    0x1.1ce3fp+6,  -0x1.adeefcp+4,          0x0p+0, 0)
 TT(RN,    0x1.602e1p+6,   -0x1.0b246p+6,    0x1.5426cp+4,          0x0p+0, 0)
 TT(RN,  -0x1.b171eep+4,  -0x1.f6eff2p+1,  -0x1.c1efc4p+1,          0x0p+0, 0)
@@ -129,34 +81,28 @@ TT(RN,   -0x1.2f5e8p+6,   0x1.1cdf72p+6,   -0x1.27f0ep+2,          0x0p+0, 0)
 TT(RN,  -0x1.8e779ep+6,  -0x1.8f8ccep+6,  -0x1.8e779ep+6,          0x0p+0, 0)
 TT(RN,  -0x1.6c4bc2p+5,   0x1.d12d32p+5,  -0x1.6c4bc2p+5,          0x0p+0, 0)
 TT(RN,   0x1.cb3e6ep+4,   0x1.8afcd8p+5,   0x1.cb3e6ep+4,          0x0p+0, 0)
-// fmods(x,3u) for huge x
 TT(RN, 0x1.fffffep+127,      0x1.8p-148,          0x0p+0,          0x0p+0, 0)
 TT(RN, 0x1.fffffcp+127,      0x1.8p-148,        0x1p-149,          0x0p+0, 0)
 TT(RN, 0x1.fffffap+127,      0x1.8p-148,        0x1p-148,          0x0p+0, 0)
 TT(RN,-0x1.fffff8p+127,      0x1.8p-148,         -0x0p+0,          0x0p+0, 0)
 TT(RN,-0x1.fffff6p+127,      0x1.8p-148,       -0x1p-149,          0x0p+0, 0)
 TT(RN,-0x1.fffff4p+127,      0x1.8p-148,       -0x1p-148,          0x0p+0, 0)
-// fmods(x,x-+u) for tiny or subnormal x
 TT(RN, 0x1.00000cp-126, 0x1.00000ap-126,        0x1p-149,          0x0p+0, 0)
 TT(RN, 0x1.00000ap-126, 0x1.000008p-126,        0x1p-149,          0x0p+0, 0)
-// fmods involve NAN
 TT(RN,             NAN,          0x0p+0,             NAN,          0x0p+0, 0)
 TT(RN,          0x0p+0,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,             NAN,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,             NAN,             NAN,             NAN,          0x0p+0, 0)
-// fmods(x,0) is NAN with invalid signal except x is qNAN
 TT(RN,             NAN,          0x0p+0,             NAN,          0x0p+0, 0)
 TT(RN,             inf,          0x0p+0,             NAN,          0x0p+0, INVALID)
 TT(RN,         -0x1p+0,         -0x0p+0,             NAN,          0x0p+0, INVALID)
 TT(RN,        0x1p-149,         -0x0p+0,             NAN,          0x0p+0, INVALID)
 TT(RN,         -0x0p+0,         -0x0p+0,             NAN,          0x0p+0, INVALID)
-// fmods (inf,x) is NAN with invalid signal except x is qNAN
 TT(RN,             inf,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,             inf,            -inf,             NAN,          0x0p+0, INVALID)
 TT(RN,            -inf,          0x1p+0,             NAN,          0x0p+0, INVALID)
 TT(RN,            -inf,        0x1p-149,             NAN,          0x0p+0, INVALID)
 TT(RN,            -inf,          0x0p+0,             NAN,          0x0p+0, INVALID)
-// fmods(x,inf) is x except NAN,inf
 TT(RN,          0x0p+0,             inf,          0x0p+0,          0x0p+0, 0)
 TT(RN,        0x1p-149,             inf,        0x1p-149,          0x0p+0, 0)
 TT(RN, 0x1.fffffep+127,             inf, 0x1.fffffep+127,          0x0p+0, 0)
@@ -1017,3 +963,5 @@ TT(RZ,            -inf,          0x0p+0,             NAN,          0x0p+0, INVAL
 TT(RZ,            -inf, 0x1.fffffep+127,             NAN,          0x0p+0, INVALID)
 TT(RZ,            -inf,         -0x0p+0,             NAN,          0x0p+0, INVALID)
 TT(RZ,            -inf,-0x1.fffffep+127,             NAN,          0x0p+0, INVALID)
+
+#endif

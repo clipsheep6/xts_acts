@@ -1,13 +1,6 @@
-// sinh.testdata
-// copyright (C) 2005 F. de Dinechin, Ch. Q. Lauter and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_SINH_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_SINH_H
+
 TT(RN, 0x0p+0, 0x0p+0, 0x0p+0, 0)                            // zero
 TT(RN, -0x0p+0, -0x0p+0, 0x0p+0, 0)                          // -zero
 TT(RU, 0x0p+0, 0x0p+0, 0x0p+0, 0)                            // zero
@@ -1557,3 +1550,5 @@ TT(RD, 0x1.adf6e5140de3cp+5, 0x1.73d0da7b0485ep+76, -0x1.fffff4p-1, INEXACT)    
 TT(RU, 0x1.adf6e5140de3cp+5, 0x1.73d0da7b0485fp+76, 0x1.6420dap-22, INEXACT)     // 5.374555411975276797420519869775e+01
 TT(RZ, 0x1.adf6e5140de3cp+5, 0x1.73d0da7b0485ep+76, -0x1.fffff4p-1, INEXACT)     // 5.374555411975276797420519869775e+01
 TT(RN, 0x1.724fe9904d338p-7, 0x1.7251ee2424f12p-7, -0x1.ffffeep-2, INEXACT)      // 1.130103020168747585127988486420e-02
+
+#endif

@@ -1,45 +1,10 @@
-// Copyright (C) 1988-1994 Sun Microsystems, Inc. 2550 Garcia Avenue
-// Mountain View, California  94043 All rights reserved.
-//
-// Any person is hereby authorized to download, copy, use, create bug fixes,
-// and distribute, subject to the following conditions:
-//
-//  1.  the software may not be redistributed for a fee except as
-//      reasonable to cover media costs;
-//  2.  any copy of the software must include this notice, as well as
-//      any other embedded copyright notices; and
-//  3.  any distribution of this software or derivative works thereof
-//      must comply with all applicable U.S. export control laws.
-//
-// THE SOFTWARE IS MADE AVAILABLE "AS IS" AND WITHOUT EXPRESS OR IMPLIED
-// WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO THE IMPLIED
-// WARRANTIES OF DESIGN, MERCHANTIBILITY, FITNESS FOR A PARTICULAR
-// PURPOSE, NON-INFRINGEMENT, PERFORMANCE OR CONFORMANCE TO
-// SPECIFICATIONS.
-//
-// BY DOWNLOADING AND/OR USING THIS SOFTWARE, THE USER WAIVES ALL CLAIMS
-// AGAINST SUN MICROSYSTEMS, INC. AND ITS AFFILIATED COMPANIES IN ANY
-// JURISDICTION, INCLUDING BUT NOT LIMITED TO CLAIMS FOR DAMAGES OR
-// EQUITABLE RELIEF BASED ON LOSS OF DATA, AND SPECIFICALLY WAIVES EVEN
-// UNKNOWN OR UNANTICIPATED CLAIMS OR LOSSES, PRESENT AND FUTURE.
-//
-// IN NO EVENT WILL SUN MICROSYSTEMS, INC. OR ANY OF ITS AFFILIATED
-// COMPANIES BE LIABLE FOR ANY LOST REVENUE OR PROFITS OR OTHER SPECIAL,
-// INDIRECT AND CONSEQUENTIAL DAMAGES, EVEN IF IT HAS BEEN ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGES.
-//
-// This file is provided with no support and without any obligation on the
-// part of Sun Microsystems, Inc. ("Sun") or any of its affiliated
-// companies to assist in its use, correction, modification or
-// enhancement.  Nevertheless, and without creating any obligation on its
-// part, Sun welcomes your comments concerning the software and requests
-// that they be sent to fdlibm-comments@sunpro.sun.com.
-// 0.7max,0.6max
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_UCB_HYPOT_H
+#define TOOLCHAIN_LIBC_TEST_MATH_UCB_HYPOT_H
+
 TT(RN, 0x1.6666666666666p+1023, 0x1.3333333333333p+1023, 0x1.d80a69c19e429p+1023,  -0x1.83b0f8p-2, INEXACT)
 TT(RZ, 0x1.6666666666666p+1023, 0x1.3333333333333p+1023, 0x1.d80a69c19e429p+1023,  -0x1.83b0f8p-2, INEXACT)
 TT(RU, 0x1.6666666666666p+1023, 0x1.3333333333333p+1023, 0x1.d80a69c19e42ap+1023,   0x1.3e2784p-1, INEXACT)
 TT(RD, 0x1.6666666666666p+1023, 0x1.3333333333333p+1023, 0x1.d80a69c19e429p+1023,  -0x1.83b0f8p-2, INEXACT)
-// tiny,huge = huge,tiny = huge
 TT(RN,                  0x0p+0, 0x1.fffffffffffffp+1023, 0x1.fffffffffffffp+1023,          0x0p+0, 0)
 TT(RN,               0x1p-1074, 0x1.fffffffffffffp+1023, 0x1.fffffffffffffp+1023,          0x0p+0, INEXACT)
 TT(RN,               0x1p-1022, 0x1.fffffffffffffp+1023, 0x1.fffffffffffffp+1023,          0x0p+0, INEXACT)
@@ -48,7 +13,6 @@ TT(RN, 0x1.fffffffffffffp+1023,                  0x0p+0, 0x1.fffffffffffffp+1023
 TT(RN, 0x1.fffffffffffffp+1023,               0x1p-1074, 0x1.fffffffffffffp+1023,          0x0p+0, INEXACT)
 TT(RN, 0x1.fffffffffffffp+1023,               0x1p-1022, 0x1.fffffffffffffp+1023,          0x0p+0, INEXACT)
 TT(RN, 0x1.fffffffffffffp+1023,                  0x1p+0, 0x1.fffffffffffffp+1023,          0x0p+0, INEXACT)
-// pythagoras integers test
 TT(RN,   0x1.6643e942791bdp+52,   0x1.6643e6c0391b8p+51,   0x1.908d80f976845p+52,          0x0p+0, 0)
 TT(RN,   0x1.6643e8af5463dp+52,   0x1.6643eb9ed79c8p+51,   0x1.908d818c9b3c5p+52,          0x0p+0, 0)
 TT(RN,   0x1.6643e81c2fa9dp+52,   0x1.6643f07d761d8p+51,   0x1.908d821fbff65p+52,          0x0p+0, 0)
@@ -69,7 +33,6 @@ TT(RN,   0x1.6643ea5e06a67p+52,    0x1.6643edb33653p+51,   0x1.908d8384dfdb9p+52
 TT(RN,   0x1.6643e9cae1ebfp+52,    0x1.6643f291d4d7p+51,   0x1.908d841804961p+52,          0x0p+0, 0)
 TT(RN,   0x1.6643e937bd2f7p+52,    0x1.6643f770735bp+51,   0x1.908d84ab29529p+52,          0x0p+0, 0)
 TT(RN,   0x1.6643e8a49870fp+52,    0x1.6643fc4f11dfp+51,   0x1.908d853e4e111p+52,          0x0p+0, 0)
-// radom argument in (-10,10)
 TT(RN,   -0x1.57f25b2b5006dp+1,    0x1.c7d30fb825911p+2,    0x1.e72fc42ea849dp+2,   0x1.6cb306p-2, INEXACT)
 TT(RN,    0x1.19be709de7505p+3,   -0x1.ab6d6fba96889p+2,    0x1.61a0ec76207f1p+3,   0x1.5a1818p-2, INEXACT)
 TT(RN,   -0x1.5ac18e27084ddp+1,   -0x1.925981b093c41p-2,    0x1.5e62687aa9911p+1,  -0x1.4ce2c8p-3, INEXACT)
@@ -80,22 +43,17 @@ TT(RN,   -0x1.e563ff258fcbdp+2,    0x1.c7cbf1ace7da1p+2,    0x1.4ceca5d10c789p+3
 TT(RN,   -0x1.3ec60efde0ed5p+3,   -0x1.3fa3ce8e5e899p+3,    0x1.c36d4d070556ap+3,   0x1.5ebb7cp-2, INEXACT)
 TT(RN,   -0x1.236fd1412d02dp+2,    0x1.7424328273bd1p+2,    0x1.d8ad9a3cf9eb2p+2,   0x1.5ea23cp-2, INEXACT)
 TT(RN,    0x1.6f651e8b7c6c5p+1,    0x1.3bfd78e193549p+2,    0x1.6d817fc32ad81p+2,   0x1.18ecbcp-3, INEXACT)
-// NAN's resutls
 TT(RN,                     NAN,                  0x1p+0,                     NAN,          0x0p+0, 0)
 TT(RN,                     NAN,                  0x1p+0,                     NAN,          0x0p+0, 0)
 TT(RN,                     NAN,                     NAN,                     NAN,          0x0p+0, 0)
 TT(RN,              -0x1p+1023,                     NAN,                     NAN,          0x0p+0, 0)
-// inf result
 TT(RN,                    -inf,                     NAN,                     inf,          0x0p+0, 0)
 TT(RZ,                     NAN,                    -inf,                     inf,          0x0p+0, 0)
-// inf result with sNAN argument
 TT(RN,                     NAN,                     inf,                     inf,          0x0p+0, 0)
-// overflow
 TT(RN,        -0x1.fffffp+1023,         0x1.eeeeep+1023,                     inf,          0x0p+0, INEXACT|OVERFLOW)
 TT(RZ,        -0x1.fffffp+1023,         0x1.eeeeep+1023, 0x1.fffffffffffffp+1023,         -0x1p+0, INEXACT|OVERFLOW)
 TT(RU,        -0x1.fffffp+1023,         0x1.eeeeep+1023,                     inf,          0x0p+0, INEXACT|OVERFLOW)
 TT(RD,        -0x1.fffffp+1023,         0x1.eeeeep+1023, 0x1.fffffffffffffp+1023,         -0x1p+0, INEXACT|OVERFLOW)
-// subnormal number
 TT(RN,                  0x0p+0,               0x1p-1074,               0x1p-1074,          0x0p+0, 0)
 TT(RN,               0x1p-1074,                  0x0p+0,               0x1p-1074,          0x0p+0, 0)
 TT(RN,               0x1p-1022,                  0x0p+0,               0x1p-1022,          0x0p+0, 0)
@@ -297,3 +255,5 @@ TT(RZ,                     NAN,               0x1p-1074,                     NAN
 TT(RZ,                     NAN,             0x1.8p-1073,                     NAN,          0x0p+0, 0)
 
 
+
+#endif

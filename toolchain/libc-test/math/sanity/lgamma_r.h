@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SANITY_LGAMMA_R_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SANITY_LGAMMA_R_H
+
 TT(RN,   -0x1.02239f3c6a8f1p+3,   -0x1.0120f61b63d5ep+3,   0x1.89ccc4p-6,          -1, INEXACT)
 TT(RN,    0x1.161868e18bc67p+2,    0x1.1ef3b263fd60bp+1,  -0x1.6d0264p-3,           1, INEXACT)
 TT(RN,   -0x1.0c34b3e01e6e7p+3,   -0x1.46d73255263d9p+3,   0x1.e0ec76p-3,          -1, INEXACT)
@@ -8,3 +11,5 @@ TT(RN,   -0x1.a05cc754481d1p-2,    0x1.4ef387fea1014p+0,  -0x1.c3b036p-2,       
 TT(RN,    0x1.1f9ef934745cbp-1,    0x1.d6f0efacc5699p-2,   0x1.c0b0a8p-2,           1, INEXACT)
 TT(RN,    0x1.8c5db097f7442p-1,    0x1.6c1a14cf91533p-3,   0x1.16f4cap-5,           1, INEXACT)
 TT(RN,   -0x1.5b86ea8118a0ep-1,    0x1.695b1e0a0a59ep+0,   0x1.ada69ep-2,          -1, INEXACT)
+
+#endif

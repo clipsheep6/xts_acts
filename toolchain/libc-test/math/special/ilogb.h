@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_ILOGB_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_ILOGB_H
+
 TT(RN,                  0x0p+0, FP_ILOGB0, INVALID)
 TT(RN,                 -0x0p+0, FP_ILOGB0, INVALID)
 TT(RN,               -0x1p-100, -100, 0)
@@ -7,3 +10,5 @@ TT(RN,                     inf, -1U/2, INVALID)
 TT(RN,                    -inf, -1U/2, INVALID)
 TT(RN,                     NAN, FP_ILOGBNAN, INVALID)
 TT(RN,               0x1p-1074, -1074, 0)
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_LROUNDL_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_LROUNDL_H
+
 TT(RN,                        0x0p+0L,           0, 0)
 TT(RN,                       -0x0p+0L,           0, 0)
 TT(RN,                        0x1p-1L,           1, INEXACT)
@@ -17,4 +20,6 @@ TT(RN,                            inf,           0, INVALID)
 TT(RN,                           -inf,           0, INVALID)
 TT(RN,                      0x1p+100L,           0, INVALID)
 TT(RN,                     -0x1p+100L,           0, INVALID)
+#endif
+
 #endif

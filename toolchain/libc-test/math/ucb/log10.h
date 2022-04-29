@@ -1,45 +1,10 @@
-// Copyright (C) 1988-1994 Sun Microsystems, Inc. 2550 Garcia Avenue
-// Mountain View, California  94043 All rights reserved.
-//
-// Any person is hereby authorized to download, copy, use, create bug fixes,
-// and distribute, subject to the following conditions:
-//
-//  1.  the software may not be redistributed for a fee except as
-//      reasonable to cover media costs;
-//  2.  any copy of the software must include this notice, as well as
-//      any other embedded copyright notices; and
-//  3.  any distribution of this software or derivative works thereof
-//      must comply with all applicable U.S. export control laws.
-//
-// THE SOFTWARE IS MADE AVAILABLE "AS IS" AND WITHOUT EXPRESS OR IMPLIED
-// WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO THE IMPLIED
-// WARRANTIES OF DESIGN, MERCHANTIBILITY, FITNESS FOR A PARTICULAR
-// PURPOSE, NON-INFRINGEMENT, PERFORMANCE OR CONFORMANCE TO
-// SPECIFICATIONS.
-//
-// BY DOWNLOADING AND/OR USING THIS SOFTWARE, THE USER WAIVES ALL CLAIMS
-// AGAINST SUN MICROSYSTEMS, INC. AND ITS AFFILIATED COMPANIES IN ANY
-// JURISDICTION, INCLUDING BUT NOT LIMITED TO CLAIMS FOR DAMAGES OR
-// EQUITABLE RELIEF BASED ON LOSS OF DATA, AND SPECIFICALLY WAIVES EVEN
-// UNKNOWN OR UNANTICIPATED CLAIMS OR LOSSES, PRESENT AND FUTURE.
-//
-// IN NO EVENT WILL SUN MICROSYSTEMS, INC. OR ANY OF ITS AFFILIATED
-// COMPANIES BE LIABLE FOR ANY LOST REVENUE OR PROFITS OR OTHER SPECIAL,
-// INDIRECT AND CONSEQUENTIAL DAMAGES, EVEN IF IT HAS BEEN ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGES.
-//
-// This file is provided with no support and without any obligation on the
-// part of Sun Microsystems, Inc. ("Sun") or any of its affiliated
-// companies to assist in its use, correction, modification or
-// enhancement.  Nevertheless, and without creating any obligation on its
-// part, Sun welcomes your comments concerning the software and requests
-// that they be sent to fdlibm-comments@sunpro.sun.com.
-// log10d(+fmax) is finite
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_UCB_LOG10_H
+#define TOOLCHAIN_LIBC_TEST_MATH_UCB_LOG10_H
+
 TT(RN, 0x1.fffffffffffffp+1023,    0x1.34413509f79ffp+8,   0x1.a4b4bap-5, INEXACT)
 TT(RZ, 0x1.fffffffffffffp+1023,    0x1.34413509f79fep+8,  -0x1.e5b4b4p-1, INEXACT)
 TT(RU, 0x1.fffffffffffffp+1023,    0x1.34413509f79ffp+8,   0x1.a4b4bap-5, INEXACT)
 TT(RD, 0x1.fffffffffffffp+1023,    0x1.34413509f79fep+8,  -0x1.e5b4b4p-1, INEXACT)
-// log10d(10**n) == n (n=1,...,22)
 TT(RN,                0x1.4p+3,                  0x1p+0,          0x0p+0, 0)
 TT(RN,                0x1.9p+6,                  0x1p+1,          0x0p+0, 0)
 TT(RN,               0x1.f4p+9,                0x1.8p+1,          0x0p+0, 0)
@@ -62,7 +27,6 @@ TT(RN,     0x1.158e460913dp+63,                0x1.3p+4,          0x0p+0, 0)
 TT(RN,    0x1.5af1d78b58c4p+66,                0x1.4p+4,          0x0p+0, 0)
 TT(RN,    0x1.b1ae4d6e2ef5p+69,                0x1.5p+4,          0x0p+0, 0)
 TT(RN,   0x1.0f0cf064dd592p+73,                0x1.6p+4,          0x0p+0, 0)
-// log10d(1+tiny) is (tiny - tiny*tiny)/log10d
 TT(RN,     0x1.000000000002p+0,   0x1.bcb7b1526e4f2p-49,  -0x1.9cae5ap-2, INEXACT)
 TT(RN,                  0x1p+0,                  0x0p+0,          0x0p+0, 0)
 TT(RN,     0x1.fffffffffffcp-1,  -0x1.bcb7b1526e52ap-49,  -0x1.de3f64p-8, INEXACT)
@@ -75,7 +39,6 @@ TT(RU,     0x1.fffffffffffcp-1,  -0x1.bcb7b1526e529p-49,   0x1.fc4382p-1, INEXAC
 TT(RD,     0x1.000000000002p+0,   0x1.bcb7b1526e4f2p-49,  -0x1.9cae5ap-2, INEXACT)
 TT(RD,                  0x1p+0,                  0x0p+0,          0x0p+0, 0)
 TT(RD,     0x1.fffffffffffcp-1,  -0x1.bcb7b1526e52ap-49,  -0x1.de3f64p-8, INEXACT)
-// log10d(min) is finite
 TT(RN,               0x1p-1022,   -0x1.33a7146f72a42p+8,  -0x1.8cf2fap-5, INEXACT)
 TT(RN,               0x1p-1074,   -0x1.434e6420f4374p+8,  -0x1.a0fae8p-4, INEXACT)
 TT(RZ,               0x1p-1022,   -0x1.33a7146f72a41p+8,    0x1.e730dp-1, INEXACT)
@@ -84,7 +47,6 @@ TT(RU,               0x1p-1022,   -0x1.33a7146f72a41p+8,    0x1.e730dp-1, INEXAC
 TT(RU,               0x1p-1074,   -0x1.434e6420f4373p+8,   0x1.cbe0a2p-1, INEXACT)
 TT(RD,               0x1p-1022,   -0x1.33a7146f72a42p+8,  -0x1.8cf2fap-5, INEXACT)
 TT(RD,               0x1p-1074,   -0x1.434e6420f4374p+8,  -0x1.a0fae8p-4, INEXACT)
-// random arguments between 0 100
 TT(RN,    0x1.24844b2b5006dp+5,    0x1.9024c06a2c714p+0,     0x1.aef3p-2, INEXACT)
 TT(RN,    0x1.5671ffb825911p+6,    0x1.eeba5ddb56f6dp+0,  -0x1.9e833ep-7, INEXACT)
 TT(RN,    0x1.7817009de7505p+6,    0x1.f925b53114c7fp+0,   0x1.a6fc5ep-3, INEXACT)
@@ -95,14 +57,10 @@ TT(RN,    0x1.3baa8d18455f5p+6,    0x1.e5accf34b476ap+0,   0x1.554422p-3, INEXAC
 TT(RN,    0x1.730484a51b239p+6,    0x1.f7a33d27f78e2p+0,   0x1.291502p-2, INEXACT)
 TT(RN,    0x1.4cc5b1079de4dp+5,    0x1.9e7a86923a334p+0,  -0x1.b9e4c4p-5, INEXACT)
 TT(RN,    0x1.0ca4d3103b871p+1,    0x1.49b1b2a6745efp-2,   0x1.b949bep-2, INEXACT)
-// log10d(NAN) is NAN
 TT(RN,                     NAN,                     NAN,          0x0p+0, 0)
-// log10d(+inf) is inf
 TT(RN,                     inf,                     inf,          0x0p+0, 0)
-// log10d(+-0) is -inf
 TT(RN,                  0x0p+0,                    -inf,          0x0p+0, DIVBYZERO)
 TT(RN,                 -0x0p+0,                    -inf,          0x0p+0, DIVBYZERO)
-// log10d(-ve) is NAN
 TT(RN,              -0x1p-1074,                     NAN,          0x0p+0, INVALID)
 TT(RN,              -0x1p-1022,                     NAN,          0x0p+0, INVALID)
 TT(RN,-0x1.fffffffffffffp+1023,                     NAN,          0x0p+0, INVALID)
@@ -277,3 +235,5 @@ TT(RZ,               0x1.f4p+9,                0x1.8p+1,          0x0p+0, 0)
 TT(RZ,             0x1.388p+13,                  0x1p+2,          0x0p+0, 0)
 
 
+
+#endif

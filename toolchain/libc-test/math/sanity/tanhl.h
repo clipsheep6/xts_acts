@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SANITY_TANHL_H 
+#define TOOLCHAIN_LIBC_TEST_MATH_SANITY_TANHL_H
+
 TT(RN,      -0x1.02239f3c6a8f13dep+3L,      -0x1.fffff9649b986034p-1L,   0x1.a18294p-3, INEXACT)
 TT(RN,       0x1.161868e18bc67782p+2L,       0x1.ffd3eb92ecb34d86p-1L,   0x1.59a84cp-4, INEXACT)
 TT(RN,      -0x1.0c34b3e01e6e682cp+3L,      -0x1.fffffc7a6e2f747ap-1L,    0x1.0be1ap-3, INEXACT)

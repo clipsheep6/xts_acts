@@ -1,13 +1,6 @@
-// tan.testdata
-// copyright (C) 2005 F. de Dinechin, Ch. Q. Lauter  and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Some special cases. Much to do here
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_POW_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_POW_H
+
 TT(RN, 0x0p+0, 0x0p+0, 0x1p+0, 0x0p+0, 0)
 TT(RN, 0x1p+1, -0x1.0ccp+10, 0x0p+0, -0x1p-1, INEXACT | UNDERFLOW) // 2^-1075
 TT(RN, 0x1p+1, -0x1.0c8p+10, 0x1p-1074, 0x0p+0, 0)                 // 2^-1074
@@ -10012,3 +10005,5 @@ TT(RN, 0x1.da748p+17, 0x1.8p+1, 0x1.976c3f7eeefbcp+53, -0x1p-1, INEXACT)
 TT(RN, 0x1.88e9c2cf2p+35, 0x1.8p+0, 0x1.5832fd68c781ap+53, 0x1p-1, INEXACT)
 TT(RN, 0x1.eb648p+17, 0x1.8p+1, 0x1.c4a1f3dd3858cp+53, -0x1p-1, INEXACT)
 TT(RN, 0x1.4c3b8a482p+35, 0x1.8p+0, 0x1.0ba0433d66f5p+53, 0x1p-1, INEXACT)
+
+#endif

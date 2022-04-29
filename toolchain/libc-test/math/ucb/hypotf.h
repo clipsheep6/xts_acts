@@ -1,45 +1,10 @@
-// Copyright (C) 1988-1994 Sun Microsystems, Inc. 2550 Garcia Avenue
-// Mountain View, California  94043 All rights reserved.
-//
-// Any person is hereby authorized to download, copy, use, create bug fixes,
-// and distribute, subject to the following conditions:
-//
-//  1.  the software may not be redistributed for a fee except as
-//      reasonable to cover media costs;
-//  2.  any copy of the software must include this notice, as well as
-//      any other embedded copyright notices; and
-//  3.  any distribution of this software or derivative works thereof
-//      must comply with all applicable U.S. export control laws.
-//
-// THE SOFTWARE IS MADE AVAILABLE "AS IS" AND WITHOUT EXPRESS OR IMPLIED
-// WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO THE IMPLIED
-// WARRANTIES OF DESIGN, MERCHANTIBILITY, FITNESS FOR A PARTICULAR
-// PURPOSE, NON-INFRINGEMENT, PERFORMANCE OR CONFORMANCE TO
-// SPECIFICATIONS.
-//
-// BY DOWNLOADING AND/OR USING THIS SOFTWARE, THE USER WAIVES ALL CLAIMS
-// AGAINST SUN MICROSYSTEMS, INC. AND ITS AFFILIATED COMPANIES IN ANY
-// JURISDICTION, INCLUDING BUT NOT LIMITED TO CLAIMS FOR DAMAGES OR
-// EQUITABLE RELIEF BASED ON LOSS OF DATA, AND SPECIFICALLY WAIVES EVEN
-// UNKNOWN OR UNANTICIPATED CLAIMS OR LOSSES, PRESENT AND FUTURE.
-//
-// IN NO EVENT WILL SUN MICROSYSTEMS, INC. OR ANY OF ITS AFFILIATED
-// COMPANIES BE LIABLE FOR ANY LOST REVENUE OR PROFITS OR OTHER SPECIAL,
-// INDIRECT AND CONSEQUENTIAL DAMAGES, EVEN IF IT HAS BEEN ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGES.
-//
-// This file is provided with no support and without any obligation on the
-// part of Sun Microsystems, Inc. ("Sun") or any of its affiliated
-// companies to assist in its use, correction, modification or
-// enhancement.  Nevertheless, and without creating any obligation on its
-// part, Sun welcomes your comments concerning the software and requests
-// that they be sent to fdlibm-comments@sunpro.sun.com.
-// 0.7max,0.6max
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_UCB_HYPOTF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_UCB_HYPOTF_H
+
 TT(RN, 0x1.666666p+127, 0x1.333334p+127, 0x1.d80a6ap+127,   0x1.b63f02p-7, INEXACT)
 TT(RZ, 0x1.666666p+127, 0x1.333334p+127, 0x1.d80a68p+127,  -0x1.f92704p-1, INEXACT)
 TT(RU, 0x1.666666p+127, 0x1.333334p+127, 0x1.d80a6ap+127,   0x1.b63f02p-7, INEXACT)
 TT(RD, 0x1.666666p+127, 0x1.333334p+127, 0x1.d80a68p+127,  -0x1.f92704p-1, INEXACT)
-// tiny,huge = huge,tiny = huge
 TT(RN,          0x0p+0, 0x1.fffffep+127, 0x1.fffffep+127,          0x0p+0, 0)
 TT(RN,        0x1p-149, 0x1.fffffep+127, 0x1.fffffep+127,          0x0p+0, INEXACT)
 TT(RN,        0x1p-126, 0x1.fffffep+127, 0x1.fffffep+127,          0x0p+0, INEXACT)
@@ -48,7 +13,6 @@ TT(RN, 0x1.fffffep+127,          0x0p+0, 0x1.fffffep+127,          0x0p+0, 0)
 TT(RN, 0x1.fffffep+127,        0x1p-149, 0x1.fffffep+127,          0x0p+0, INEXACT)
 TT(RN, 0x1.fffffep+127,        0x1p-126, 0x1.fffffep+127,          0x0p+0, INEXACT)
 TT(RN, 0x1.fffffep+127,          0x1p+0, 0x1.fffffep+127,          0x0p+0, INEXACT)
-// pythagoras integers test
 TT(RN,  0x1.ffe39cp+22,     0x1.c48p+14,  0x1.ffe464p+22,          0x0p+0, 0)
 TT(RN,  0x1.ffe2bcp+22,     0x1.974p+15,  0x1.ffe544p+22,          0x0p+0, 0)
 TT(RN,  0x1.ffe15cp+22,     0x1.262p+16,  0x1.ffe6a4p+22,          0x0p+0, 0)
@@ -69,7 +33,6 @@ TT(RN,  0x1.00790ap+23,    0x1.c4f8p+15,  0x1.007a9ap+23,          0x0p+0, 0)
 TT(RN,  0x1.00784ap+23,    0x1.3d14p+16,  0x1.007b5ap+23,          0x0p+0, 0)
 TT(RN,  0x1.00774ap+23,    0x1.97acp+16,  0x1.007c5ap+23,          0x0p+0, 0)
 TT(RN,  0x1.00a71ep+23,     0x1.6a8p+12,  0x1.00a722p+23,          0x0p+0, 0)
-// radom argument in (-10,10)
 TT(RN,  -0x1.57f25cp+1,    0x1.c7d31p+2,   0x1.e72fc4p+2,   -0x1.2ed8fp-2, INEXACT)
 TT(RN,    0x1.19be7p+3,   -0x1.ab6d7p+2,   0x1.61a0ecp+3,  -0x1.a978c8p-6, INEXACT)
 TT(RN,  -0x1.5ac18ep+1,  -0x1.925982p-2,   0x1.5e6268p+1,  -0x1.55d62cp-3, INEXACT)
@@ -80,22 +43,17 @@ TT(RN,    -0x1.e564p+2,   0x1.c7cbf2p+2,   0x1.4ceca6p+3,  -0x1.e8dcc2p-4, INEXA
 TT(RN,  -0x1.3ec60ep+3,  -0x1.3fa3cep+3,   0x1.c36d4cp+3,   0x1.10fbdcp-5, INEXACT)
 TT(RN,  -0x1.236fd2p+2,   0x1.742432p+2,   0x1.d8ad9ap+2,  -0x1.2fb484p-3, INEXACT)
 TT(RN,   0x1.6f651ep+1,   0x1.3bfd78p+2,   0x1.6d817ep+2,  -0x1.ba32cep-2, INEXACT)
-// NAN's resutls
 TT(RN,             NAN,          0x1p+0,             NAN,          0x0p+0, 0)
 TT(RN,             NAN,          0x1p+0,             NAN,          0x0p+0, 0)
 TT(RN,             NAN,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,             NAN,             NAN,             NAN,          0x0p+0, 0)
-// inf result
 TT(RN,            -inf,             NAN,             inf,          0x0p+0, 0)
 TT(RZ,             NAN,            -inf,             inf,          0x0p+0, 0)
-// inf result with sNAN argument raise invalid flag
 TT(RN,             NAN,             inf,             inf,          0x0p+0, 0)
-// overflow
 TT(RN,-0x1.fffffep+127, 0x1.fddddcp+127,             inf,          0x0p+0, INEXACT|OVERFLOW)
 TT(RZ,-0x1.fffffep+127, 0x1.fddddcp+127, 0x1.fffffep+127,         -0x1p+0, INEXACT|OVERFLOW)
 TT(RU,-0x1.fffffep+127, 0x1.fddddcp+127,             inf,          0x0p+0, INEXACT|OVERFLOW)
 TT(RD,-0x1.fffffep+127, 0x1.fddddcp+127, 0x1.fffffep+127,         -0x1p+0, INEXACT|OVERFLOW)
-// subnormal number
 TT(RN,          0x0p+0,        0x1p-149,        0x1p-149,          0x0p+0, 0)
 TT(RN,        0x1p-149,          0x0p+0,        0x1p-149,          0x0p+0, 0)
 TT(RN,        0x1p-126,          0x0p+0,        0x1p-126,          0x0p+0, 0)
@@ -297,3 +255,5 @@ TT(RZ,             NAN,        0x1p-149,             NAN,          0x0p+0, 0)
 TT(RZ,             NAN,      0x1.8p-148,             NAN,          0x0p+0, 0)
 
 
+
+#endif

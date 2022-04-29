@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_NEARBYINTL_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_NEARBYINTL_H
+
 TT(RN,                            NAN,                            NAN,          0x0p+0, 0)
 TT(RN,                            inf,                            inf,          0x0p+0, 0)
 TT(RN,                           -inf,                           -inf,          0x0p+0, 0)
@@ -43,3 +46,5 @@ TT(RU,                   0x1.ffffp-1L,                        0x1p+0L,          
 TT(RU,                  -0x1.ffffp-1L,                       -0x0p+0L,          0x0p+0, 0)
 TT(RU,                      0x1p-100L,                        0x1p+0L,          0x0p+0, 0)
 TT(RU,                     -0x1p-100L,                       -0x0p+0L,          0x0p+0, 0)
+
+#endif

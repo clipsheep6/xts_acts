@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_ACOSH_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_ACOSH_H
+
 TT(RN,                     NAN,                     NAN,          0x0p+0, 0)
 TT(RN,                     inf,                     inf,          0x0p+0, 0)
 TT(RN,                  0x1p+0,                  0x0p+0,          0x0p+0, 0)
@@ -23,3 +26,5 @@ TT(RN,    0x1.1b28436b06aaep+0,    0x1.d398bd2d43449p-2,   -0x1.2cde2p-2, INEXAC
 TT(RN,    0x1.1b50764626f1ep+0,     0x1.d4ec67c71794p-2,  -0x1.0c09dap-2, INEXACT)
 TT(RN,    0x1.1be62d08e369bp+0,    0x1.d9d480059e267p-2,  -0x1.9895f6p-2, INEXACT)
 TT(RN,    0x1.1deff88faa587p+0,    0x1.ea855ab4631fep-2,   -0x1.4964fp-2, INEXACT)
+
+#endif

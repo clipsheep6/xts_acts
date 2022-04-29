@@ -1,40 +1,6 @@
-// Copyright (C) 1988-1994 Sun Microsystems, Inc. 2550 Garcia Avenue
-// Mountain View, California  94043 All rights reserved.
-//
-// Any person is hereby authorized to download, copy, use, create bug fixes,
-// and distribute, subject to the following conditions:
-//
-// 	1.  the software may not be redistributed for a fee except as
-// 	    reasonable to cover media costs;
-// 	2.  any copy of the software must include this notice, as well as
-// 	    any other embedded copyright notices; and
-// 	3.  any distribution of this software or derivative works thereof
-// 	    must comply with all applicable U.S. export control laws.
-//
-// THE SOFTWARE IS MADE AVAILABLE "AS IS" AND WITHOUT EXPRESS OR IMPLIED
-// WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO THE IMPLIED
-// WARRANTIES OF DESIGN, MERCHANTIBILITY, FITNESS FOR A PARTICULAR
-// PURPOSE, NON-INFRINGEMENT, PERFORMANCE OR CONFORMANCE TO
-// SPECIFICATIONS.
-//
-// BY DOWNLOADING AND/OR USING THIS SOFTWARE, THE USER WAIVES ALL CLAIMS
-// AGAINST SUN MICROSYSTEMS, INC. AND ITS AFFILIATED COMPANIES IN ANY
-// JURISDICTION, INCLUDING BUT NOT LIMITED TO CLAIMS FOR DAMAGES OR
-// EQUITABLE RELIEF BASED ON LOSS OF DATA, AND SPECIFICALLY WAIVES EVEN
-// UNKNOWN OR UNANTICIPATED CLAIMS OR LOSSES, PRESENT AND FUTURE.
-//
-// IN NO EVENT WILL SUN MICROSYSTEMS, INC. OR ANY OF ITS AFFILIATED
-// COMPANIES BE LIABLE FOR ANY LOST REVENUE OR PROFITS OR OTHER SPECIAL,
-// INDIRECT AND CONSEQUENTIAL DAMAGES, EVEN IF IT HAS BEEN ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGES.
-//
-// This file is provided with no support and without any obligation on the
-// part of Sun Microsystems, Inc. ("Sun") or any of its affiliated
-// companies to assist in its use, correction, modification or
-// enhancement.  Nevertheless, and without creating any obligation on its
-// part, Sun welcomes your comments concerning the software and requests
-// that they be sent to fdlibm-comments@sunpro.sun.com.
-// anything **0 is 1
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_UCB_POWF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_UCB_POWF_H
+
 TT(RN,          0x0p+0,          0x0p+0,          0x1p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0,          0x0p+0,          0x1p+0,          0x0p+0, 0)
 TT(RN,          0x0p+0,         -0x0p+0,          0x1p+0,          0x0p+0, 0)
@@ -83,7 +49,6 @@ TT(RD, 0x1.fffffep+127,          0x0p+0,          0x1p+0,          0x0p+0, 0)
 TT(RD,-0x1.fffffep+127,          0x0p+0,          0x1p+0,          0x0p+0, 0)
 TT(RD, 0x1.fffffep+127,         -0x0p+0,          0x1p+0,          0x0p+0, 0)
 TT(RD,-0x1.fffffep+127,         -0x0p+0,          0x1p+0,          0x0p+0, 0)
-// anything**1 is itself
 TT(RN,          0x0p+0,          0x1p+0,          0x0p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0,          0x1p+0,         -0x0p+0,          0x0p+0, 0)
 TT(RN,        0x1p-126,          0x1p+0,        0x1p-126,          0x0p+0, 0)
@@ -108,24 +73,20 @@ TT(RD,        0x1p-126,          0x1p+0,        0x1p-126,          0x0p+0, 0)
 TT(RD,       -0x1p-126,          0x1p+0,       -0x1p-126,          0x0p+0, 0)
 TT(RD, 0x1.fffffep+127,          0x1p+0, 0x1.fffffep+127,          0x0p+0, 0)
 TT(RD,-0x1.fffffep+127,          0x1p+0,-0x1.fffffep+127,          0x0p+0, 0)
-// +-0**x
 TT(RN,          0x0p+0, 0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
 TT(RN,          0x0p+0,        0x1p-126,          0x0p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0, 0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0,        0x1.1p+4,         -0x0p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0,          0x1p+1,          0x0p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0,        0x1p-126,          0x0p+0,          0x0p+0, 0)
-// (-anything) ** (integer) (-1.1**101)
 TT(RN,  -0x1.19999ap+0,       0x1.94p+6, -0x1.d9b5a8p+13,  -0x1.1e972cp-2, INEXACT)
 TT(RZ,  -0x1.19999ap+0,       0x1.94p+6, -0x1.d9b5a6p+13,   0x1.70b46ap-1, INEXACT)
 TT(RU,  -0x1.19999ap+0,       0x1.94p+6, -0x1.d9b5a6p+13,   0x1.70b46ap-1, INEXACT)
 TT(RD,  -0x1.19999ap+0,       0x1.94p+6, -0x1.d9b5a8p+13,  -0x1.1e972cp-2, INEXACT)
-// some integer ** integer
 TT(RN,        0x1.3p+4,        0x1.4p+2,  0x1.2e4218p+21,          0x0p+0, 0)
 TT(RN,       -0x1.3p+4,        0x1.4p+2, -0x1.2e4218p+21,          0x0p+0, 0)
 TT(RN,      -0x1.82p+7,        0x1.8p+1, -0x1.b6c904p+22,          0x0p+0, 0)
 TT(RN,    -0x1.2c4p+10,          0x1p+1,   0x1.60261p+20,          0x0p+0, 0)
-// random arguments between 0 20
 TT(RN,   0x1.d406dcp+2,    0x1.11f4dp+4,  0x1.1bc4b6p+49,  -0x1.331b22p-3, INEXACT)
 TT(RN,    0x1.2cdf3p+4,    0x1.a9254p+1,  0x1.0ad168p+14,   0x1.379a4ap-2, INEXACT)
 TT(RN,   0x1.d29f3ep+2,   0x1.336d32p+3,  0x1.72eac4p+27,  -0x1.b76b4cp-4, INEXACT)
@@ -136,7 +97,6 @@ TT(RN,    0x1.35381p+1,   0x1.11f2f2p+4,  0x1.b9cd02p+21,   0x1.2f4d66p-2, INEXA
 TT(RN,   0x1.39f14ep-5,   0x1.70c85ep-7,   0x1.ed8bccp-1,  -0x1.efb76ap-2, INEXACT)
 TT(RN,   0x1.5c9022p+2,   0x1.fa1212p+3,  0x1.97afb6p+38,  -0x1.9cbb96p-2, INEXACT)
 TT(RN,   0x1.9bd94ep+3,   0x1.ddfeb8p+3,  0x1.0a9d98p+55,    0x1.abd6bp-4, INEXACT)
-// anything **0 is 1
 TT(RN,             NAN,          0x0p+0,          0x1p+0,          0x0p+0, 0)
 TT(RN,             NAN,          0x0p+0,          0x1p+0,          0x0p+0, 0)
 TT(RN,             inf,          0x0p+0,          0x1p+0,          0x0p+0, 0)
@@ -161,12 +121,10 @@ TT(RD,             inf,          0x0p+0,          0x1p+0,          0x0p+0, 0)
 TT(RD,            -inf,          0x0p+0,          0x1p+0,          0x0p+0, 0)
 TT(RD,        0x1p-149,          0x0p+0,          0x1p+0,          0x0p+0, 0)
 TT(RD,       -0x1p-149,          0x0p+0,          0x1p+0,          0x0p+0, 0)
-// anything**1 is itself
 TT(RN,             NAN,          0x1p+0,             NAN,          0x0p+0, 0)
 TT(RN,             NAN,          0x1p+0,             NAN,          0x0p+0, 0)
 TT(RN,             inf,          0x1p+0,             inf,          0x0p+0, 0)
 TT(RN,            -inf,          0x1p+0,            -inf,          0x0p+0, 0)
-// (anything except 1)**NAN is NAN
 TT(RN,             NAN,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,             inf,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,            -inf,             NAN,             NAN,          0x0p+0, 0)
@@ -195,7 +153,6 @@ TT(RD,          0x1p+0,             NAN,          0x1p+0,          0x0p+0, 0)
 TT(RD,         -0x1p+0,             NAN,             NAN,          0x0p+0, 0)
 TT(RD,         -0x0p+0,             NAN,             NAN,          0x0p+0, 0)
 TT(RD,          0x0p+0,             NAN,             NAN,          0x0p+0, 0)
-// NAN**(anything except 0) is NAN
 TT(RN,             NAN,             inf,             NAN,          0x0p+0, 0)
 TT(RN,             NAN,            -inf,             NAN,          0x0p+0, 0)
 TT(RN,             NAN,         -0x1p+0,             NAN,          0x0p+0, 0)
@@ -215,7 +172,6 @@ TT(RD,             NAN,            -inf,             NAN,          0x0p+0, 0)
 TT(RD,             NAN,          0x1p+0,             NAN,          0x0p+0, 0)
 TT(RD,             NAN,         -0x1p+0,             NAN,          0x0p+0, 0)
 TT(RD,             NAN,        0x1p-149,             NAN,          0x0p+0, 0)
-//  +-(x > 1) **  +inf is +inf
 TT(RN,   0x1.000002p+0,             inf,             inf,          0x0p+0, 0)
 TT(RN,             inf,             inf,             inf,          0x0p+0, 0)
 TT(RN,  -0x1.000002p+0,             inf,             inf,          0x0p+0, 0)
@@ -232,7 +188,6 @@ TT(RD,   0x1.000002p+0,             inf,             inf,          0x0p+0, 0)
 TT(RD,             inf,             inf,             inf,          0x0p+0, 0)
 TT(RD,  -0x1.000002p+0,             inf,             inf,          0x0p+0, 0)
 TT(RD,            -inf,             inf,             inf,          0x0p+0, 0)
-//  +-(x > 1) **  -inf is +0
 TT(RN,   0x1.000002p+0,            -inf,          0x0p+0,          0x0p+0, 0)
 TT(RN,             inf,            -inf,          0x0p+0,          0x0p+0, 0)
 TT(RN,  -0x1.000002p+0,            -inf,          0x0p+0,          0x0p+0, 0)
@@ -249,7 +204,6 @@ TT(RD,   0x1.000002p+0,            -inf,          0x0p+0,          0x0p+0, 0)
 TT(RD,             inf,            -inf,          0x0p+0,          0x0p+0, 0)
 TT(RD,  -0x1.000002p+0,            -inf,          0x0p+0,          0x0p+0, 0)
 TT(RD,            -inf,            -inf,          0x0p+0,          0x0p+0, 0)
-// +-(|x| < 1) **  +inf is +0
 TT(RN,   0x1.fffffep-1,             inf,          0x0p+0,          0x0p+0, 0)
 TT(RN,        0x1p-149,             inf,          0x0p+0,          0x0p+0, 0)
 TT(RN,          0x0p+0,             inf,          0x0p+0,          0x0p+0, 0)
@@ -274,7 +228,6 @@ TT(RD,          0x0p+0,             inf,          0x0p+0,          0x0p+0, 0)
 TT(RD,  -0x1.fffffep-1,             inf,          0x0p+0,          0x0p+0, 0)
 TT(RD,       -0x1p-149,             inf,          0x0p+0,          0x0p+0, 0)
 TT(RD,         -0x0p+0,             inf,          0x0p+0,          0x0p+0, 0)
-// +-(|x| < 1) **  -inf is +inf
 TT(RN,   0x1.fffffep-1,            -inf,             inf,          0x0p+0, 0)
 TT(RN,        0x1p-149,            -inf,             inf,          0x0p+0, 0)
 TT(RN,          0x0p+0,            -inf,             inf,          0x0p+0, 0)
@@ -299,7 +252,6 @@ TT(RD,          0x0p+0,            -inf,             inf,          0x0p+0, 0)
 TT(RD,  -0x1.fffffep-1,            -inf,             inf,          0x0p+0, 0)
 TT(RD,       -0x1p-149,            -inf,             inf,          0x0p+0, 0)
 TT(RD,         -0x0p+0,            -inf,             inf,          0x0p+0, 0)
-// +-1         ** +-inf is +1
 TT(RN,          0x1p+0,             inf,          0x1p+0,          0x0p+0, 0)
 TT(RN,          0x1p+0,            -inf,          0x1p+0,          0x0p+0, 0)
 TT(RN,         -0x1p+0,             inf,          0x1p+0,          0x0p+0, 0)
@@ -316,7 +268,6 @@ TT(RD,          0x1p+0,             inf,          0x1p+0,          0x0p+0, 0)
 TT(RD,          0x1p+0,            -inf,          0x1p+0,          0x0p+0, 0)
 TT(RD,         -0x1p+0,             inf,          0x1p+0,          0x0p+0, 0)
 TT(RD,         -0x1p+0,            -inf,          0x1p+0,          0x0p+0, 0)
-// +0 ** (+anything except 0, NAN) is +0
 TT(RN,          0x0p+0,        0x1p-149,          0x0p+0,          0x0p+0, 0)
 TT(RZ,          0x0p+0, 0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
 TT(RZ,          0x0p+0,        0x1p-149,          0x0p+0,          0x0p+0, 0)
@@ -324,7 +275,6 @@ TT(RU,          0x0p+0, 0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
 TT(RU,          0x0p+0,        0x1p-149,          0x0p+0,          0x0p+0, 0)
 TT(RD,          0x0p+0, 0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
 TT(RD,          0x0p+0,        0x1p-149,          0x0p+0,          0x0p+0, 0)
-// -0 ** (+anything except 0, NAN, odd integer)  is +0
 TT(RN,         -0x0p+0,        0x1p-149,          0x0p+0,          0x0p+0, 0)
 TT(RZ,         -0x0p+0, 0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
 TT(RZ,         -0x0p+0,          0x1p+1,          0x0p+0,          0x0p+0, 0)
@@ -335,7 +285,6 @@ TT(RU,         -0x0p+0,        0x1p-149,          0x0p+0,          0x0p+0, 0)
 TT(RD,         -0x0p+0, 0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
 TT(RD,         -0x0p+0,          0x1p+1,          0x0p+0,          0x0p+0, 0)
 TT(RD,         -0x0p+0,        0x1p-149,          0x0p+0,          0x0p+0, 0)
-// +0 ** (-anything except 0, NAN) is +inf
 TT(RN,          0x0p+0,-0x1.fffffep+127,             inf,          0x0p+0, DIVBYZERO)
 TT(RN,          0x0p+0,       -0x1p-149,             inf,          0x0p+0, DIVBYZERO)
 TT(RZ,          0x0p+0,-0x1.fffffep+127,             inf,          0x0p+0, DIVBYZERO)
@@ -344,7 +293,6 @@ TT(RU,          0x0p+0,-0x1.fffffep+127,             inf,          0x0p+0, DIVBY
 TT(RU,          0x0p+0,       -0x1p-149,             inf,          0x0p+0, DIVBYZERO)
 TT(RD,          0x0p+0,-0x1.fffffep+127,             inf,          0x0p+0, DIVBYZERO)
 TT(RD,          0x0p+0,       -0x1p-149,             inf,          0x0p+0, DIVBYZERO)
-// -0 ** (-anything except 0, NAN, odd integer)  is +inf
 TT(RN,         -0x0p+0,-0x1.fffffep+127,             inf,          0x0p+0, DIVBYZERO)
 TT(RN,         -0x0p+0,         -0x1p+1,             inf,          0x0p+0, DIVBYZERO)
 TT(RN,         -0x0p+0,       -0x1p-149,             inf,          0x0p+0, DIVBYZERO)
@@ -357,7 +305,6 @@ TT(RU,         -0x0p+0,       -0x1p-149,             inf,          0x0p+0, DIVBY
 TT(RD,         -0x0p+0,-0x1.fffffep+127,             inf,          0x0p+0, DIVBYZERO)
 TT(RD,         -0x0p+0,         -0x1p+1,             inf,          0x0p+0, DIVBYZERO)
 TT(RD,         -0x0p+0,       -0x1p-149,             inf,          0x0p+0, DIVBYZERO)
-// -0 ** (odd integer) = -( +0 ** (odd integer) )
 TT(RN,         -0x0p+0,         -0x1p+0,            -inf,          0x0p+0, DIVBYZERO)
 TT(RN,         -0x0p+0,       -0x1.1p+4,            -inf,          0x0p+0, DIVBYZERO)
 TT(RZ,         -0x0p+0,        0x1.1p+4,         -0x0p+0,          0x0p+0, 0)
@@ -369,17 +316,14 @@ TT(RU,         -0x0p+0,       -0x1.1p+4,            -inf,          0x0p+0, DIVBY
 TT(RD,         -0x0p+0,        0x1.1p+4,         -0x0p+0,          0x0p+0, 0)
 TT(RD,         -0x0p+0,         -0x1p+0,            -inf,          0x0p+0, DIVBYZERO)
 TT(RD,         -0x0p+0,       -0x1.1p+4,            -inf,          0x0p+0, DIVBYZERO)
-// +inf ** (+anything except 0,NAN) is +inf
 TT(RN,             inf,        0x1p-149,             inf,          0x0p+0, 0)
 TT(RZ,             inf,        0x1p-149,             inf,          0x0p+0, 0)
 TT(RU,             inf,        0x1p-149,             inf,          0x0p+0, 0)
 TT(RD,             inf,        0x1p-149,             inf,          0x0p+0, 0)
-// +inf ** (-anything except 0,NAN) is +0
 TT(RN,             inf,       -0x1p-149,          0x0p+0,          0x0p+0, 0)
 TT(RZ,             inf,       -0x1p-149,          0x0p+0,          0x0p+0, 0)
 TT(RU,             inf,       -0x1p-149,          0x0p+0,          0x0p+0, 0)
 TT(RD,             inf,       -0x1p-149,          0x0p+0,          0x0p+0, 0)
-// -inf ** (anything)  = -0 ** (-anything)
 TT(RN,            -inf, 0x1.fffffep+127,             inf,          0x0p+0, 0)
 TT(RN,            -inf,        0x1p-149,             inf,          0x0p+0, 0)
 TT(RN,            -inf,-0x1.fffffep+127,          0x0p+0,          0x0p+0, 0)
@@ -412,7 +356,6 @@ TT(RD,            -inf,        0x1.4p+2,            -inf,          0x0p+0, 0)
 TT(RD,            -inf,       -0x1.4p+2,         -0x0p+0,          0x0p+0, 0)
 TT(RD,            -inf,        0x1.8p+2,             inf,          0x0p+0, 0)
 TT(RD,            -inf,       -0x1.8p+2,          0x0p+0,          0x0p+0, 0)
-// (-anything except 0 and inf) ** (non-integer) is NAN
 TT(RN,            -inf,   0x1.000002p+1,             inf,          0x0p+0, 0)
 TT(RN,         -0x1p+0,   0x1.000002p+0,             NAN,          0x0p+0, INVALID)
 TT(RN,       -0x1p-149,  -0x1.fffffep+0,             NAN,          0x0p+0, INVALID)
@@ -425,7 +368,6 @@ TT(RU,       -0x1p-149,  -0x1.fffffep+0,             NAN,          0x0p+0, INVAL
 TT(RD,            -inf,   0x1.000002p+1,             inf,          0x0p+0, 0)
 TT(RD,         -0x1p+0,   0x1.000002p+0,             NAN,          0x0p+0, INVALID)
 TT(RD,       -0x1p-149,  -0x1.fffffep+0,             NAN,          0x0p+0, INVALID)
-// miscellaneous
 TT(RN,       -0x1.4p+3,       0x1.35p+8,            -inf,          0x0p+0, INEXACT|OVERFLOW)
 TT(RN,            -inf,          0x1p-1,             inf,          0x0p+0, 0)
 TT(RD,          0x0p+0,          0x1p+1,          0x0p+0,          0x0p+0, 0)
@@ -1802,3 +1744,5 @@ TT(RZ,       -0x1p-125,          0x1p+1,          0x0p+0,       -0x1p-101, INEXA
 TT(RZ,       -0x1p-124,          0x1p+1,          0x0p+0,        -0x1p-99, INEXACT|UNDERFLOW)
 TT(RZ,             NAN,          0x1p+1,             NAN,          0x0p+0, 0)
 TT(RZ,             NAN,          0x1p+1,             NAN,          0x0p+0, 0)
+
+#endif

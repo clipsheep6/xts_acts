@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_RINTF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_RINTF_H
+
 TT(RN,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,             inf,             inf,          0x0p+0, 0)
 TT(RN,            -inf,            -inf,          0x0p+0, 0)
@@ -45,3 +48,5 @@ TT(RU,        0x1p-100,          0x1p+0,          0x0p+0, INEXACT)
 TT(RU,       -0x1p-100,         -0x0p+0,          0x0p+0, INEXACT)
 TT(RN,   0x1.400002p+1,        0x1.8p+1,          0x0p+0, INEXACT)
 TT(RN,   0x1.7ffffep+0,          0x1p+0,          0x0p+0, INEXACT)
+
+#endif

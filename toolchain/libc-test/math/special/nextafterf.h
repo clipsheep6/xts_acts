@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_NEXTAFTERF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_NEXTAFTERF_H
+
 TT(RN, 0x1.fffffep+127,             inf,             inf,          0x0p+0, INEXACT|OVERFLOW)
 TT(RN, 0x1.fffffep+127,          0x0p+0, 0x1.fffffcp+127,          0x0p+0, 0)
 TT(RN,        0x1p-149,            -inf,          0x0p+0,          0x0p+0, INEXACT|UNDERFLOW)
@@ -31,3 +34,5 @@ TT(RN,             inf,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,            -inf,             inf,-0x1.fffffep+127,          0x0p+0, 0)
 TT(RN,            -inf,            -inf,            -inf,          0x0p+0, 0)
 TT(RN,            -inf,             NAN,             NAN,          0x0p+0, 0)
+
+#endif

@@ -1,13 +1,6 @@
-// cos.testdata
-// copyright (C) 2005 Ch. Q. Lauter, F. de Dinechin and V.Lefevre
-// This file is part of crlibm and is distributed under the GNU Public Licence
-// See file COPYING for details
-// The following lines are either comments (beginning with a #)
-// or give
-//   1/ a rounding mode : RN|RU|RD|RZ (crlibm syntax) or  N|P|M|Z (libmcr syntax)
-//   2/ The high and low hexadecimal halves of an input
-//   3/ The high and low hexadecimal halves of the expected corresponding output
-// Special cases
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_COS_H
+#define TOOLCHAIN_LIBC_TEST_MATH_CRLIBM_COS_H
+
 TT(RN, 0x0p+0, 0x1p+0, 0x0p+0, 0)                          // zero
 TT(RN, -0x0p+0, 0x1p+0, 0x0p+0, 0)                         // -zero
 TT(RU, 0x0p+0, 0x1p+0, 0x0p+0, 0)                          // zero
@@ -11955,3 +11948,5 @@ TT(RN, 0x1.29179160e2297p+1023, 0x1.38adcf61d3dacp-1, 0x1.140728p-2, INEXACT)
 TT(RN, 0x1.40a1035e56da3p+1023, 0x1.4b85738b35fbdp-1, 0x1.0e336ap-2, INEXACT)
 TT(RN, 0x1.c50061963c632p+1023, 0x1.76e4268ff231dp-2, -0x1.f9db68p-2, INEXACT)
 TT(RN, 0x1.d364a6aef4238p+1023, 0x1.d37edfd25c58cp-1, -0x1.19e754p-2, INEXACT)
+
+#endif

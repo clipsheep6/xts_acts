@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_UCB_LOG_H
+#define TOOLCHAIN_LIBC_TEST_MATH_UCB_LOG_H
+
 TT(RN, 0x1.fffffffffffffp+1023,    0x1.62e42fefa39efp+9,  -0x1.a9c9e4p-3, INEXACT)
 TT(RZ, 0x1.fffffffffffffp+1023,    0x1.62e42fefa39efp+9,  -0x1.a9c9e4p-3, INEXACT)
 TT(RU, 0x1.fffffffffffffp+1023,     0x1.62e42fefa39fp+9,   0x1.958d88p-1, INEXACT)
@@ -265,3 +268,5 @@ TT(RZ,    0x1.0000000000008p+0,   0x1.ffffffffffff8p-50, -0x1.555556p-47, INEXAC
 TT(RZ,    0x1.0000000000009p+0,   0x1.1fffffffffffap-49,       -0x1.ep-1, INEXACT)
 
 
+
+#endif

@@ -1,40 +1,6 @@
-// Copyright (C) 1988-1994 Sun Microsystems, Inc. 2550 Garcia Avenue
-// Mountain View, California  94043 All rights reserved.
-//
-// Any person is hereby authorized to download, copy, use, create bug fixes,
-// and distribute, subject to the following conditions:
-//
-//  1.  the software may not be redistributed for a fee except as
-//      reasonable to cover media costs;
-//  2.  any copy of the software must include this notice, as well as
-//      any other embedded copyright notices; and
-//  3.  any distribution of this software or derivative works thereof
-//      must comply with all applicable U.S. export control laws.
-//
-// THE SOFTWARE IS MADE AVAILABLE "AS IS" AND WITHOUT EXPRESS OR IMPLIED
-// WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO THE IMPLIED
-// WARRANTIES OF DESIGN, MERCHANTIBILITY, FITNESS FOR A PARTICULAR
-// PURPOSE, NON-INFRINGEMENT, PERFORMANCE OR CONFORMANCE TO
-// SPECIFICATIONS.
-//
-// BY DOWNLOADING AND/OR USING THIS SOFTWARE, THE USER WAIVES ALL CLAIMS
-// AGAINST SUN MICROSYSTEMS, INC. AND ITS AFFILIATED COMPANIES IN ANY
-// JURISDICTION, INCLUDING BUT NOT LIMITED TO CLAIMS FOR DAMAGES OR
-// EQUITABLE RELIEF BASED ON LOSS OF DATA, AND SPECIFICALLY WAIVES EVEN
-// UNKNOWN OR UNANTICIPATED CLAIMS OR LOSSES, PRESENT AND FUTURE.
-//
-// IN NO EVENT WILL SUN MICROSYSTEMS, INC. OR ANY OF ITS AFFILIATED
-// COMPANIES BE LIABLE FOR ANY LOST REVENUE OR PROFITS OR OTHER SPECIAL,
-// INDIRECT AND CONSEQUENTIAL DAMAGES, EVEN IF IT HAS BEEN ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGES.
-//
-// This file is provided with no support and without any obligation on the
-// part of Sun Microsystems, Inc. ("Sun") or any of its affiliated
-// companies to assist in its use, correction, modification or
-// enhancement.  Nevertheless, and without creating any obligation on its
-// part, Sun welcomes your comments concerning the software and requests
-// that they be sent to fdlibm-comments@sunpro.sun.com.
-// sinh(log(2*max)chopped) is finite
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_UCB_SINHF_H
+#define TOOLCHAIN_LIBC_TEST_MATH_UCB_SINHF_H
+
 TT(RN,   0x1.65a9f8p+6, 0x1.ffffd8p+127,  -0x1.f47394p-4, INEXACT)
 TT(RN,  -0x1.65a9f8p+6,-0x1.ffffd8p+127,   0x1.f47394p-4, INEXACT)
 TT(RZ,   0x1.65a9f8p+6, 0x1.ffffd8p+127,  -0x1.f47394p-4, INEXACT)
@@ -43,12 +9,10 @@ TT(RU,   0x1.65a9f8p+6, 0x1.ffffdap+127,   0x1.c1718ep-1, INEXACT)
 TT(RU,  -0x1.65a9f8p+6,-0x1.ffffd8p+127,   0x1.f47394p-4, INEXACT)
 TT(RD,   0x1.65a9f8p+6, 0x1.ffffd8p+127,  -0x1.f47394p-4, INEXACT)
 TT(RD,  -0x1.65a9f8p+6,-0x1.ffffdap+127,  -0x1.c1718ep-1, INEXACT)
-// sinh(tiny) :=: tiny
 TT(RN,         0x1p-29,         0x1p-29, -0x1.555556p-38, INEXACT)
 TT(RN,        -0x1p-29,        -0x1p-29,  0x1.555556p-38, INEXACT)
 TT(RN,        0x1p-126,        0x1p-126,          0x0p+0, INEXACT)
 TT(RN,       -0x1p-126,       -0x1p-126,          0x0p+0, INEXACT)
-// sinh(+-0) = +-0
 TT(RN,          0x0p+0,          0x0p+0,          0x0p+0, 0)
 TT(RN,         -0x0p+0,         -0x0p+0,          0x0p+0, 0)
 TT(RZ,          0x0p+0,          0x0p+0,          0x0p+0, 0)
@@ -57,7 +21,6 @@ TT(RU,          0x0p+0,          0x0p+0,          0x0p+0, 0)
 TT(RU,         -0x0p+0,         -0x0p+0,          0x0p+0, 0)
 TT(RD,          0x0p+0,          0x0p+0,          0x0p+0, 0)
 TT(RD,         -0x0p+0,         -0x0p+0,          0x0p+0, 0)
-// random arguments between -30 30
 TT(RN,  -0x1.01f5ccp+3, -0x1.8c286cp+10,  -0x1.9beea8p-5, INEXACT)
 TT(RN,    0x1.55de5p+4,  0x1.c5bef8p+29,  -0x1.f18676p-2, INEXACT)
 TT(RN,    0x1.a69dbp+4,  0x1.13a2eap+37,    0x1.50c8bp-2, INEXACT)
@@ -68,10 +31,8 @@ TT(RN,   0x1.15995ep+4,  0x1.058074p+24,    -0x1.58c6p-2, INEXACT)
 TT(RN,   0x1.9a7144p+4,  0x1.01980ep+36,   0x1.e900cap-2, INEXACT)
 TT(RN,  -0x1.42b132p+2,  -0x1.3590d6p+6,   0x1.22221cp-2, INEXACT)
 TT(RN,  -0x1.cbda04p+4, -0x1.61244ap+40,  -0x1.8f2eacp-2, INEXACT)
-// sinh(NAN) is NAN
 TT(RN,             NAN,             NAN,          0x0p+0, 0)
 TT(RN,             NAN,             NAN,          0x0p+0, 0)
-// sinh(+-inf) is inf
 TT(RN,             inf,             inf,          0x0p+0, 0)
 TT(RN,            -inf,            -inf,          0x0p+0, 0)
 TT(RZ,             inf,             inf,          0x0p+0, 0)
@@ -80,10 +41,8 @@ TT(RU,             inf,             inf,          0x0p+0, 0)
 TT(RU,            -inf,            -inf,          0x0p+0, 0)
 TT(RD,             inf,             inf,          0x0p+0, 0)
 TT(RD,            -inf,            -inf,          0x0p+0, 0)
-// sinh(+-subnormal)
 TT(RN,        0x1p-149,        0x1p-149,          0x0p+0, INEXACT|UNDERFLOW)
 TT(RN,       -0x1p-149,       -0x1p-149,          0x0p+0, INEXACT|UNDERFLOW)
-// sinh overflow threshold
 TT(RN,   0x1.65a9fap+6,             inf,          0x0p+0, INEXACT|OVERFLOW)
 TT(RN,  -0x1.65a9fap+6,            -inf,          0x0p+0, INEXACT|OVERFLOW)
 TT(RZ,   0x1.65a9fap+6, 0x1.fffffep+127,         -0x1p+0, INEXACT|OVERFLOW)
@@ -272,3 +231,5 @@ TT(RZ,      -0x1.4p-25,      -0x1.4p-25,  0x1.4d5556p-29, INEXACT)
 TT(RZ,      -0x1.8p-12,      -0x1.8p-12,        0x1.2p-2, INEXACT)
 
 
+
+#endif

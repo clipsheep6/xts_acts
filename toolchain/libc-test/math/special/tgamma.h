@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_TGAMMA_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_TGAMMA_H
+
 // special cases
 TT(RN,                  0x0p+0,                     inf,          0x0p+0, DIVBYZERO)
 TT(RN,                 -0x0p+0,                    -inf,          0x0p+0, DIVBYZERO)
@@ -163,3 +166,5 @@ TT(RN,    0x1.8b0fcd324d5a2p+3,   0x1.64165e040d97cp+26,   0x1.faf78cp-2, INEXAC
 TT(RN,   -0x1.8b0fcd324d5a2p+3,  -0x1.a77825d8a2292p-29,  -0x1.4c75e2p-2, INEXACT)
 
 
+
+#endif

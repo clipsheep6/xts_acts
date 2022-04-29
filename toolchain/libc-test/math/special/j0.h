@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_J0_H
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_J0_H
+
 TT(RN,                  0x0p+0,                  0x1p+0,          0x0p+0, 0)
 TT(RN,                 -0x0p+0,                  0x1p+0,          0x0p+0, 0)
 TT(RN,                     inf,                  0x0p+0,          0x0p+0, 0)
@@ -13,3 +16,5 @@ TT(RN, 0x1.c071b22fbbafap+1023, -0x1.a348b1f34dd1ap-526,   0x1.3153c2p-6, INEXAC
 TT(RN,    0x1.f7350b1701ef7p+0,    0x1.f32b3a3640292p-3,  -0x1.b3bad8p-5, INEXACT)
 TT(RN,   0x1.f8e4d2e98fb6bp-14,    0x1.ffffffe0e1d1bp-1,    0x1.e1c4cp-2, INEXACT)
 TT(RN,  -0x1.fd2421ac2a80ap-14,    0x1.ffffffe05b3a7p-1,   0x1.e0f12cp-2, INEXACT)
+
+#endif
