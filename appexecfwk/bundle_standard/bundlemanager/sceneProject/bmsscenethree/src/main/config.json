@@ -50,7 +50,7 @@
     "distro": {
       "moduleType": "feature",
       "deliveryWithInstall": true,
-      "moduleName": "entry"
+      "moduleName": "entry_2"
     },
     "package": "com.example.myapplication2",
     "name": ".MyApplication2",

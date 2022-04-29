@@ -22,7 +22,7 @@
     ],
     "distro": {
       "deliveryWithInstall": true,
-      "moduleName": "entry",
+      "moduleName": "bmsmainabilityfirstscene",
       "moduleType": "entry"
     },
     "abilities": [
