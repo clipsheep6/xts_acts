@@ -18,7 +18,6 @@ import {toNewPage, clearRouter} from '../../../../../VideoPlayerTestBase.js';
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
-
 describe('VideoPlayerFormatCompatibilityTest', function () {
     const PLAY_TIME = 2000;
     const SEEK_TIME = 3000;
@@ -56,10 +55,10 @@ describe('VideoPlayerFormatCompatibilityTest', function () {
     async function playVideoSource(videoSource, done) {
         console.info(`case media source videoSource: ${videoSource}`)
 
-        await getFileDescriptor(videoSource).then((res) => {
+        await mediaTestBase.getFileDescriptor(videoSource).then((res) => {
             fileDescriptor = res;
         });
-        isFileOpen(fileDescriptor, done);
+        mediaTestBase.isFileOpen(fileDescriptor, done);
 
         let videoPlayer = null;
         surfaceID = globalThis.value;
@@ -92,7 +91,7 @@ describe('VideoPlayerFormatCompatibilityTest', function () {
             console.info('case getTrackDescription called');
             if (typeof (arrayList) != 'undefined') {
                 for (let i = 0; i < arrayList.length; i++) {
-                    mediaTestBase.printfDescription(arrayList[i]);
+                    mediaTestBase.printDescription(arrayList[i]);
                 }
             } else {
                 console.error('case getTrackDescription failed');
@@ -153,7 +152,7 @@ describe('VideoPlayerFormatCompatibilityTest', function () {
             console.info('case release called');
         }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
 
-        await closeFileDescriptor(videoSource);
+        await mediaTestBase.closeFileDescriptor(videoSource);
     }
 
     /* *

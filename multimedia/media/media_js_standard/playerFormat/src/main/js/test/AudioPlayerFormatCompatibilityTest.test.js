@@ -40,7 +40,7 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
     })
 
     afterEach(async function() {
-        await closeFileDescriptor(audio_source);
+        await mediaTestBase.closeFileDescriptor(audio_source);
         console.info('afterEach case');
     })
 
@@ -50,7 +50,7 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
 
     async function playAudioSource(audioSource, done) {
         console.info(`case media source audio_source: ${audioSource}`)
-        await getFileDescriptor(audioSource).then((res) => {
+        await mediaTestBase.getFileDescriptor(audioSource).then((res) => {
             fileDescriptor = res;
         });
 
@@ -115,7 +115,7 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
             done();
         });
 
-        isFileOpen(fileDescriptor, done);
+        mediaTestBase.isFileOpen(fileDescriptor, done);
         audioPlayer.src = fdHead + fileDescriptor.fd;
     }
 
