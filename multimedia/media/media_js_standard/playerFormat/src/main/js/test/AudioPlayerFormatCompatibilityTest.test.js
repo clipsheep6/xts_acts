@@ -25,7 +25,7 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
     let isToSeek = false;
     let isToDuration = false;
 
-    const audio_source = undefined;
+    const audioSource = undefined;
     let fileDescriptor = undefined;
     let fdHead = 'fd://';
 
@@ -40,7 +40,7 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
     })
 
     afterEach(async function() {
-        await mediaTestBase.closeFileDescriptor(audio_source);
+        await mediaTestBase.closeFileDescriptor(audioSource);
         console.info('afterEach case');
     })
 
@@ -49,7 +49,7 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
     })
 
     async function playAudioSource(audioSource, done) {
-        console.info(`case media source audio_source: ${audioSource}`)
+        console.info(`case media source audioSource: ${audioSource}`)
         await mediaTestBase.getFileDescriptor(audioSource).then((res) => {
             fileDescriptor = res;
         });
@@ -128,8 +128,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_AAC_0100', 0, async function (done) {
-        let audio_source = 'aac_48ksr_16kbr_1ch.aac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'aac_48ksr_16kbr_1ch.aac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -141,8 +141,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_AAC_0200', 0, async function (done) {
-        let audio_source = 'aac_48ksr_32kbr_2ch.aac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'aac_48ksr_32kbr_2ch.aac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -154,8 +154,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_AAC_0300', 0, async function (done) {
-        let audio_source = 'aac_48ksr_64kbr_1ch.aac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'aac_48ksr_64kbr_1ch.aac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -167,8 +167,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_AAC_0400', 0, async function (done) {
-        let audio_source = 'aac_96ksr_16kbr_1ch.aac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'aac_96ksr_16kbr_1ch.aac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -180,8 +180,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_AAC_0500', 0, async function (done) {
-        let audio_source = 'aac_96ksr_32kbr_2ch.aac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'aac_96ksr_32kbr_2ch.aac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -193,8 +193,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_AAC_0600', 0, async function (done) {
-        let audio_source = 'aac_96ksr_64kbr_2ch.aac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'aac_96ksr_64kbr_2ch.aac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -206,8 +206,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_OGG_0100', 0, async function (done) {
-        let audio_source = 'vorbis_48ksr_32kbr_1ch.ogg';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'vorbis_48ksr_32kbr_1ch.ogg';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -219,8 +219,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_OGG_0200', 0, async function (done) {
-        let audio_source = 'vorbis_48ksr_64kbr_1ch.ogg';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'vorbis_48ksr_64kbr_1ch.ogg';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -232,8 +232,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_OGG_0300', 0, async function (done) {
-        let audio_source = 'vorbis_48ksr_64kbr_2ch.ogg';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'vorbis_48ksr_64kbr_2ch.ogg';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -245,8 +245,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_WAV_0100', 0, async function (done) {
-        let audio_source = 'pcm_48ksr_16kbr_1ch.wav';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'pcm_48ksr_16kbr_1ch.wav';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -258,8 +258,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_WAV_0200', 0, async function (done) {
-        let audio_source = 'pcm_48ksr_32kbr_2ch.wav';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'pcm_48ksr_32kbr_2ch.wav';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -271,8 +271,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_WAV_0300', 0, async function (done) {
-        let audio_source = 'pcm_48ksr_64kbr_1ch.wav';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'pcm_48ksr_64kbr_1ch.wav';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -284,8 +284,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_WAV_0400', 0, async function (done) {
-        let audio_source = 'pcm_96ksr_16kbr_1ch.wav';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'pcm_96ksr_16kbr_1ch.wav';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -297,8 +297,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_WAV_0500', 0, async function (done) {
-        let audio_source = 'pcm_96ksr_32kbr_2ch.wav';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'pcm_96ksr_32kbr_2ch.wav';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -310,8 +310,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_WAV_0600', 0, async function (done) {
-        let audio_source = 'pcm_96ksr_64kbr_2ch.wav';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'pcm_96ksr_64kbr_2ch.wav';
+        await playAudioSource(audioSource, done);
     })
 
 
@@ -324,8 +324,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_FLAC_0100', 0, async function (done) {
-        let audio_source = 'flac_48ksr_16kbr_1ch.flac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'flac_48ksr_16kbr_1ch.flac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -337,8 +337,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_FLAC_0200', 0, async function (done) {
-        let audio_source = 'flac_48ksr_32kbr_2ch.flac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'flac_48ksr_32kbr_2ch.flac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -350,8 +350,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_FLAC_0300', 0, async function (done) {
-        let audio_source = 'flac_48ksr_64kbr_1ch.flac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'flac_48ksr_64kbr_1ch.flac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -363,8 +363,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_FLAC_0400', 0, async function (done) {
-        let audio_source = 'flac_96ksr_16kbr_1ch.flac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'flac_96ksr_16kbr_1ch.flac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -376,8 +376,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_FLAC_0500', 0, async function (done) {
-        let audio_source = 'flac_96ksr_32kbr_2ch.flac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'flac_96ksr_32kbr_2ch.flac';
+        await playAudioSource(audioSource, done);
     })
 
     /* *
@@ -389,8 +389,8 @@ describe('AudioPlayerFormatCompatibilityTest', function () {
         * @tc.level     : Level1
     */
     it('SUB_MEDIA_PLAYER_LOCAL_FORMAT_FLAC_0600', 0, async function (done) {
-        let audio_source = 'flac_96ksr_64kbr_2ch.flac';
-        await playAudioSource(audio_source, done);
+        let audioSource = 'flac_96ksr_64kbr_2ch.flac';
+        await playAudioSource(audioSource, done);
     })
 
 })
