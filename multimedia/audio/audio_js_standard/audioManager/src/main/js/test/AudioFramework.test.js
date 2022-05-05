@@ -14,9 +14,7 @@
  */
 
 import audio from '@ohos.multimedia.audio';
-
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
-
 describe('audioManger', function () {
     console.info('AudioFrameworkTest: Create AudioManger Object JS Framework');
     const audioManager = audio.getAudioManager();
@@ -75,7 +73,6 @@ describe('audioManger', function () {
         deviceRoleValue = value.deviceRole;
         console.info(`AudioFrameworkTest: device type: ${devTypeName}`);
         deviceTypeValue = value.deviceType;
-
     }
 
     beforeAll(function () {
@@ -1086,7 +1083,7 @@ describe('audioManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_SetMute_033', 0, async function (done) {
-        const promise = audioManager.SetMute(audio.AudioVolumeType.ALL,true);
+        const promise = audioManager.mute(audio.AudioVolumeType.ALL, true);
         promise.then(function () {
             console.info('AudioFrameworkTest: VolumeTypeALL SetMute promise: successful');
             audioManager.isMute(audio.AudioVolumeType.ALL).then(function (data) {
