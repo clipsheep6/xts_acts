@@ -26,6 +26,7 @@ static void tobin(void *d,const char *s)
     int i, cont = 2, cont2 = 16;
     unsigned char *p = (unsigned char *)d;
     for (i = 0; s[cont * i]; i++) {
+        // cppcheck-suppress objectIndex
         p[i] = digit(s[cont * i]) * cont2 + digit(s[cont * i + 1]);
     }
 }
@@ -35,7 +36,8 @@ static void tohex(char *d, void *s, int n)
     int i, strSize = 1024, cont = 2;
     unsigned char *p = (unsigned char *)s;
     for (i = 0; i < n; i++) {
-        EXPECT_TRUE(snprintf_s(d + cont * i, strSize, strSize, "%02x", p[i]) != -1);
+        // cppcheck-suppress objectIndex
+        EXPECT_NE(snprintf_s(d + cont * i, strSize, strSize, "%02x", p[i]) , -1);
     }
 }
 

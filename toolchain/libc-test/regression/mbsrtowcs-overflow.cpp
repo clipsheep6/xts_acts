@@ -18,6 +18,7 @@ HWTEST_F(MbsrtowcsOverflow, MbsrtowcsOverflowTest, Function | MediumTest | Level
     const char *want = src + 4;
     size_t r;
 
+    // cppcheck-suppress nullPointer
     r = mbsrtowcs(ws, &src, 4, nullptr);
     EXPECT_EQ(4, r) << "mbsrtowcs(ws, &abcd, 4, 0) returned " << r << ", wanted 4" << endl;
     EXPECT_EQ(want, src) << "mbsrtowcs(ws, &abcd, 4, 0) set abcd to " << src << " wanted " << want << endl;

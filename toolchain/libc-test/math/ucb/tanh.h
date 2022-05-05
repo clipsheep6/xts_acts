@@ -55,7 +55,6 @@ TT(RD,    0x1.4d1e6d18455f5p+2,    0x1.fff81a0528839p-1,  -0x1.ec851ep-1, INEXAC
 TT(RD,    0x1.ec87f4a51b239p+2,    0x1.fffff21f7f28cp-1,    -0x1.de9dp-1, INEXACT)
 TT(RD,   -0x1.833b11079de4dp+0,   -0x1.d0971d00e2766p-1,  -0x1.5ecb56p-2, INEXACT)
 TT(RD,   -0x1.13e933103b871p+3,   -0x1.fffffdd2ff3adp-1,  -0x1.9281f4p-1, INEXACT)
-// tanhd(NAN) is NAN
 TT(RN,                     NAN,                     NAN,          0x0p+0, 0)
 TT(RD,                  0x0p+0,                  0x0p+0,          0x0p+0, 0)
 TT(RD,                     inf,                  0x1p+0,          0x0p+0, 0)

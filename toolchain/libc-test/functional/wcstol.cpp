@@ -9,7 +9,7 @@
 #include "test.h"
 
 #define TEST1(r, f, x, m) do {                                                                        \
-    errno = 0, msg = (char *)#f, ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
+    errno = 0, msg = #f, ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
     EXPECT_EQ(r, x);                                                                                  \
 } while (0)
 
@@ -62,17 +62,16 @@ HWTEST_F(Wcstol, WcstolTest, Function | MediumTest | Level2)
         TEST1(ul, wcstoul(s = (L"-2147483649"), &c, 0), -2147483649UL, "rejected negative %lu != %lu");
         TEST2(i, c - s, 11, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
-    }
-    else if (sizeof(long) == 8) {
-        TEST1(l, wcstol(s = (L"9223372036854775808"), &c, 0), 9223372036854775807L, 
+    } else if (sizeof(long) == 8) {
+        TEST1(l, wcstol(s = (L"9223372036854775808"), &c, 0), 9223372036854775807L,
             "uncaught overflow %ld != %ld");
         TEST2(i, c - s, 19, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "missing errno %d != %d");
-        TEST1(l, wcstol(s = (L"-9223372036854775809"), &c, 0), -9223372036854775807L - 1, 
+        TEST1(l, wcstol(s = (L"-9223372036854775809"), &c, 0), -9223372036854775807L - 1,
             "uncaught overflow %ld != %ld");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "missing errno %d != %d");
-        TEST1(ul, wcstoul(s = (L"18446744073709551616"), &c, 0), 18446744073709551615UL, 
+        TEST1(ul, wcstoul(s = (L"18446744073709551616"), &c, 0), 18446744073709551615UL,
             "uncaught overflow %lu != %lu");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, ERANGE, "missing errno %d != %d");
@@ -82,18 +81,18 @@ HWTEST_F(Wcstol, WcstolTest, Function | MediumTest | Level2)
         TEST1(ul, wcstoul(s = (L"-2"), &c, 0), -2UL, "rejected negative %lu != %lu");
         TEST2(i, c - s, 2, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
-        TEST1(ul, wcstoul(s = (L"-9223372036854775808"), &c, 0), -9223372036854775808UL, 
+        TEST1(ul, wcstoul(s = (L"-9223372036854775808"), &c, 0), -9223372036854775808UL,
             "rejected negative %lu != %lu");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
-        TEST1(ul, wcstoul(s = (L"-9223372036854775809"), &c, 0), -9223372036854775809UL, 
+        TEST1(ul, wcstoul(s = (L"-9223372036854775809"), &c, 0), -9223372036854775809UL,
             "rejected negative %lu != %lu");
         TEST2(i, c - s, 20, "wrong final position %d != %d");
         TEST2(i, errno, 0, "spurious errno %d != %d");
-    }
-    else {
-        EXPECT_TRUE(sizeof(long) == 4 && sizeof(long) == 8) 
-            << "sizeof(long) == " << (int)sizeof(long) << ", not implemented" << endl;
+    } else {
+        // cppcheck-suppress incorrectLogicOperator
+        EXPECT_TRUE(sizeof(long) == 4 && sizeof(long) == 8) <<
+            "sizeof(long) == " << static_cast<int>(sizeof(long)) << ", not implemented" << endl;
     }
 
     TEST1(l, wcstol((L"z"), 0, 36), 35, "%ld != %ld");

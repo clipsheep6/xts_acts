@@ -85,7 +85,6 @@ ohos_moduletest_suite("ActToolChainRegressionTest") {
     "sscanf-eof.cpp",
     "statvfs.cpp",
     "strverscmp.cpp",
-    "syscall-sign-extend.cpp",
     "uselocale-0.cpp",
     "wcsncpy-read-overflow.cpp",
     "wcsstr-false-negative.cpp",

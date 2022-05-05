@@ -1,6 +1,8 @@
 #ifndef TOOLCHAIN_LIBC_TEST_COMMOM_TEST
-#include <cstdint>
+#define TOOLCHAIN_LIBC_TEST_COMMOM_TEST
+
 #include <unistd.h>
+#include <cstdint>
 
 #define t_error(...) t_printf( __VA_ARGS__)
 
@@ -22,4 +24,4 @@ char *t_pathrel(char *buf, size_t n, char *argv0, char *p);
 int t_setrlim(int r, long lim);
 int t_setutf8(void);
 
-#endif
+#endif  // TOOLCHAIN_LIBC_TEST_COMMOM_TEST_H_

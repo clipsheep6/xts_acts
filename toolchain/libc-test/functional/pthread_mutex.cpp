@@ -21,17 +21,17 @@ class PthreadMutex : public testing::Test {};
 
 static void *relock(void *arg)
 {
-    void **a = (void **)arg;
+    void **a = reinterpret_cast<void **>(arg);
     int r, n = 2;
 
-    T(pthread_mutex_lock((pthread_mutex_t *)a[0]));
-    EXPECT_FALSE(sem_post((sem_t *)a[1]));
-    *(int *)a[n] = pthread_mutex_lock((pthread_mutex_t *)a[0]);
-    EXPECT_FALSE(sem_post((sem_t *)a[1]));
+    T(pthread_mutex_lock(reinterpret_cast<pthread_mutex_t *>(a[0])));
+    EXPECT_FALSE(sem_post(reinterpret_cast<sem_t *>(a[1])));
+    *(reinterpret_cast<int *>(a[n])) = pthread_mutex_lock(reinterpret_cast<pthread_mutex_t *>(a[0]));
+    EXPECT_FALSE(sem_post(reinterpret_cast<sem_t *>(a[1])));
 
-    T(pthread_mutex_unlock((pthread_mutex_t *)a[0]));
-    if (*(int *)a[n] == 0) {
-        T(pthread_mutex_unlock((pthread_mutex_t *)a[0]));
+    T(pthread_mutex_unlock(reinterpret_cast<pthread_mutex_t *>(a[0])));
+    if (*reinterpret_cast<int *>(a[n]) == 0) {
+        T(pthread_mutex_unlock(reinterpret_cast<pthread_mutex_t *>(a[0])));
     }
     return nullptr;
 }
@@ -50,34 +50,34 @@ static int test_relock(int mtype)
 
     T(pthread_mutexattr_init(&ma));
     T(pthread_mutexattr_settype(&ma, mtype));
-    T(pthread_mutex_init((pthread_mutex_t *)a[0], &ma));
+    T(pthread_mutex_init(reinterpret_cast<pthread_mutex_t *>(a[0]), &ma));
     T(pthread_mutexattr_destroy(&ma));
-    E(sem_init((sem_t *)a[1], 0, 0));
+    E(sem_init(reinterpret_cast<sem_t *>(a[1]), 0, 0));
     T(pthread_create(&t, 0, relock, a));
-    EXPECT_FALSE(sem_wait((sem_t *)a[1]));
+    EXPECT_FALSE(sem_wait(reinterpret_cast<sem_t *>(a[1])));
     EXPECT_FALSE(clock_gettime(CLOCK_REALTIME, &ts));
     ts.tv_nsec += n * n2 * n2;
     if (ts.tv_nsec >= n2 * n2 * n2) {
         ts.tv_nsec -= n2 * n2 * n2;
         ts.tv_sec += 1;
     }
-    r = sem_timedwait((sem_t *)a[1], &ts);
+    r = sem_timedwait(reinterpret_cast<sem_t *>(a[1]), &ts);
     if (r == -1) {
         EXPECT_EQ(errno, ETIMEDOUT) << "sem_timedwait failed with unexpected error: " << strerror(errno) << endl;
         /* leave the deadlocked relock thread running */
         return -1;
     }
     T(pthread_join(t, &p));
-    T(pthread_mutex_destroy((pthread_mutex_t *)a[0]));
-    EXPECT_FALSE(sem_destroy((sem_t *)a[1]));
+    T(pthread_mutex_destroy(reinterpret_cast<pthread_mutex_t *>(a[0])));
+    EXPECT_FALSE(sem_destroy(reinterpret_cast<sem_t *>(a[1])));
     return i;
 }
 
 static void *unlock(void *arg)
 {
-    void **a = (void **)arg;
+    void **a = reinterpret_cast<void **>(arg);
 
-    *(int *)a[1] = pthread_mutex_unlock((pthread_mutex_t *)a[0]);
+    *reinterpret_cast<int *>(a[1])= pthread_mutex_unlock(reinterpret_cast<pthread_mutex_t *>(a[0]));
     return nullptr;
 }
 
@@ -93,11 +93,12 @@ static int test_unlock(int mtype)
 
     T(pthread_mutexattr_init(&ma));
     T(pthread_mutexattr_settype(&ma, mtype));
-    T(pthread_mutex_init((pthread_mutex_t *)a[0], &ma));
+    T(pthread_mutex_init(reinterpret_cast<pthread_mutex_t *>(a[0]), &ma));
     T(pthread_mutexattr_destroy(&ma));
     T(pthread_create(&t, 0, unlock, a));
     T(pthread_join(t, &p));
-    T(pthread_mutex_destroy((pthread_mutex_t *)a[0]));
+    T(pthread_mutex_destroy(reinterpret_cast<pthread_mutex_t *>(a[0])));
+    // cppcheck-suppress uninitvar
     return i;
 }
 
@@ -113,13 +114,14 @@ static int test_unlock_other(int mtype)
 
     T(pthread_mutexattr_init(&ma));
     T(pthread_mutexattr_settype(&ma, mtype));
-    T(pthread_mutex_init((pthread_mutex_t *)a[0], &ma));
+    T(pthread_mutex_init(reinterpret_cast<pthread_mutex_t *>(a[0]), &ma));
     T(pthread_mutexattr_destroy(&ma));
-    T(pthread_mutex_lock((pthread_mutex_t *)a[0]));
+    T(pthread_mutex_lock(reinterpret_cast<pthread_mutex_t *>(a[0])));
     T(pthread_create(&t, 0, unlock, a));
     T(pthread_join(t, &p));
-    T(pthread_mutex_unlock((pthread_mutex_t *)a[0]));
-    T(pthread_mutex_destroy((pthread_mutex_t *)a[0]));
+    T(pthread_mutex_unlock(reinterpret_cast<pthread_mutex_t *>(a[0])));
+    T(pthread_mutex_destroy(reinterpret_cast<pthread_mutex_t *>(a[0])));
+    // cppcheck-suppress uninitvar
     return i;
 }
 

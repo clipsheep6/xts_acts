@@ -1,3 +1,6 @@
+#ifndef TOOLCHAIN_LIBC_TEST_COMMOM_MTEST
+#define TOOLCHAIN_LIBC_TEST_COMMOM_MTEST
+
 #include <cmath>
 #include <cfenv>
 
@@ -101,3 +104,5 @@ int checkexcept(int got, int want, int r);
 int checkexceptall(int got, int want, int r);
 int checkulp(float d, int r);
 int checkcr(long double y, long double ywant, int r);
+
+#endif  // TOOLCHAIN_LIBC_TEST_COMMOM_MTEST_H_
