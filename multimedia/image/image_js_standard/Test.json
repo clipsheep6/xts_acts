@@ -2,48 +2,50 @@
     "description": "Configuration for Image Tests",
     "driver": {
         "type": "JSUnitTest",
-        "test-timeout": "120000",
+        "test-timeout": "1500000",
         "package": "ohos.acts.multimedia.image",
 		"shell-timeout": "120000"
     },
     "kits": [
-        {
+		{
             "type": "PushKit",
             "pre-push": [
             ],
             "push": [
-                "./resource/image/test.arw ->/data/local/tmp",
-				"./resource/image/test.bmp ->/data/local/tmp",
-				"./resource/image/test.cr2 ->/data/local/tmp",
-				"./resource/image/test.dng ->/data/local/tmp",
-				"./resource/image/test.gif ->/data/local/tmp",
-				"./resource/image/test.jpg ->/data/local/tmp",
-				"./resource/image/test.nrw ->/data/local/tmp",
-				"./resource/image/test.pef ->/data/local/tmp",
-				"./resource/image/test.png ->/data/local/tmp",
-				"./resource/image/test.raf ->/data/local/tmp",
-				"./resource/image/test.rw2 ->/data/local/tmp",
-				"./resource/image/test.wbmp ->/data/local/tmp",
-				"./resource/image/test.webp->/data/local/tmp",
-				"./resource/image/test_exif.jpg ->/data/local/tmp",
-				"./resource/image/test_hw.jpg ->/data/local/tmp",
-				"./resource/image/test_large.webp ->/data/local/tmp",
-				"./resource/image/hasNoExif.jpg ->/data/local/tmp",
-				"./resource/image/moving_test.gif ->/data/local/tmp",
-				"./resource/image/test.9.png ->/data/local/tmp"
+                "./resource/image/test.tiff ->/storage/media/100/local/files",
+				"./resource/image/test.123 ->/storage/media/100/local/files",
+				"./resource/image/test.bmp ->/storage/media/100/local/files",
+                "./resource/image/test.png ->/storage/media/100/local/files",
+				"./resource/image/test.gif ->/storage/media/100/local/files",
+				"./resource/image/test.jpg ->/storage/media/100/local/files",
+				"./resource/image/test_exif.jpg ->/storage/media/100/local/files",
+				"./resource/image/moving_test.gif ->/storage/media/100/local/files"
+				
             ]
         },
+   
 		{
             "type": "ShellKit",
             "run-command": [
+                "mkdir /storage/media/100/local/files/cjh",
+				"cp /storage/media/100/local/files/test.tiff /storage/media/100/local/files/cjh/",
+				"cp /storage/media/100/local/files/test.123 /storage/media/100/local/files/cjh/",
+				"cp /storage/media/100/local/files/test.bmp /storage/media/100/local/files/cjh/",
+				"cp /storage/media/100/local/files/test.png /storage/media/100/local/files/cjh/",
+				"cp /storage/media/100/local/files/test.gif /storage/media/100/local/files/cjh/",
+				"cp /storage/media/100/local/files/test.jpg /storage/media/100/local/files/cjh/",
+				"cp /storage/media/100/local/files/test_exif.jpg /storage/media/100/local/files/cjh/",
+				"cp /storage/media/100/local/files/moving_test.gif /storage/media/100/local/files/cjh/",
                 "chmod -R 666 /data/media/*",
-                "chmod -R 666 /data/local/*",
-                "setenforce 0"
+                "chmod -R 666 /storage/media/100/local/files/cjh/*",
+				"killall com.ohos.medialibrary.MediaScannerAbilityA",
+                "aa start  -a MediaScannerAbility -b com.ohos.medialibrary.MediaScannerAbilityA"
             ],
             "teardown-command":[
-                "setenforce 1"
+              
             ]
         },
+        
         {
             "test-file-name": [
                 "ActsImageJsTest.hap"
@@ -52,4 +54,5 @@
             "cleanup-apps": true
         }
     ]
+    
 }

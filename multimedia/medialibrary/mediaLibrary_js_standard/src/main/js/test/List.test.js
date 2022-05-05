@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 require('./getPermission.test.js')
+// phase I
 require('./albumGetFileAssetsCallback.test.js')
 require('./albumGetFileAssetsPromise.test.js')
 require('./favoriteTestCallBack.test.js')
@@ -36,10 +37,5 @@ require('./mediaLibraryTestPromise.test.js')
 require('./albumTestCallBack.test.js')
 require('./albumTestPromise.test.js')
 require('./mediaLibraryTestPromiseOnOff.test.js')
-require('./getAllPeersDeviceTestCallback.test.js')
-require('./getAllPeersDeviceTestPromise.test.js')
-require('./getAllPeersTestCallback.test.js')
-require('./getAllPeersTestPromise.test.js')
-require('./distributedCallback.test.js')
-require('./distributedPromise.test.js')
+
 

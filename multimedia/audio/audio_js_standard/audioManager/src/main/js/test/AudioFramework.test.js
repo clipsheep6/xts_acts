@@ -983,7 +983,127 @@ describe('audioManger', function () {
             done();
         });
     })
-
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SetVolume_029
+                * @tc.name      : setVolume - AudioVolumeType - ALL - Change ALL vol
+                * @tc.desc      : Setvol to 5
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SetVolume_029', 0, async function (done) {
+        audioManager.setVolume(audio.AudioVolumeType.ALL,lowVol, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: failed to set volume: Callback: ENAME:  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info(`AudioFrameworkTest: success to set volume of AudioVolumeType for ALL`);
+                expect(true).assertTrue();
+            }
+            done();
+        });
+    })
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SetVolume_030
+                * @tc.name      : setVolume - AudioVolumeType - ALL - Change ALL vol
+                * @tc.desc      : Setvol to 15
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SetVolume_030', 0, async function (done) {
+        audioManager.setVolume(audio.AudioVolumeType.ALL,maxVol, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: failed to set volume: Callback: ENAME:  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info(`AudioFrameworkTest: success to set volume of AudioVolumeType for ALL`);
+                expect(true).assertTrue();
+            }
+            done();
+        });
+    })
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_GetVolume_031
+                * @tc.name      : getVolume - AudioVolumeType - ALL - Get Volume Type of ALL vol
+                * @tc.desc      : getVolume for Volume Type of ALL
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_GetVolume_031', 0, async function (done) {
+        const promise = audioManager.setVolume(audio.AudioVolumeType.ALL,minVol);
+        promise.then(function () {
+            console.info('AudioFrameworkTest: VolumeTypeALL setVolume promise: successful');
+            audioManager.getVolume(audio.AudioVolumeType.ALL).then(function (data) {
+                if(data == minVol){
+                    console.info('AudioFrameworkTest: VolumeTypeALL getVolume Promise: PASS :' + data);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: VolumeTypeALL getVolume Promise: FAIL :' + data);
+                    expect(false).assertTrue();
+                }
+            });
+        });
+        await promise;
+        done();
+    })
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_GetVolume_032
+                * @tc.name      : getVolume - AudioVolumeType - ALL - Get Volume Type of ALL vol
+                * @tc.desc      : getVolume for Volume Type of ALL
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_GetVolume_032', 0, async function (done) {
+        const promise = audioManager.setVolume(audio.AudioVolumeType.ALL,maxVol);
+        promise.then(function () {
+            console.info('AudioFrameworkTest: VolumeTypeALL setVolume promise: successful');
+            audioManager.getVolume(audio.AudioVolumeType.ALL).then(function (data) {
+                if(data == maxVol){
+                    console.info('AudioFrameworkTest: VolumeTypeALL getVolume Promise: PASS :' + data);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: VolumeTypeALL getVolume Promise: FAIL :' + data);
+                    expect(false).assertTrue();
+                }
+            });
+        });
+        await promise;
+        done();
+    })
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SetMute_033
+                * @tc.name      : SetMute - AudioVolumeType - ALL - SetMute Volume Type of ALL 
+                * @tc.desc      : SetMute for Volume Type of ALL
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SetMute_033', 0, async function (done) {
+        const promise = audioManager.SetMute(audio.AudioVolumeType.ALL,true);
+        promise.then(function () {
+            console.info('AudioFrameworkTest: VolumeTypeALL SetMute promise: successful');
+            audioManager.isMute(audio.AudioVolumeType.ALL).then(function (data) {
+                if(data == true){
+                    console.info('AudioFrameworkTest: VolumeTypeALL SetMute Promise: PASS :' + data);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: VolumeTypeALL SetMute Promise: FAIL :' + data);
+                    expect(false).assertTrue();
+                }
+            });
+        });
+        await promise;
+        done();
+    })
+    
     /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_getMaxVolume_001
                 * @tc.name      : getMaxVolume - Media - Promise
