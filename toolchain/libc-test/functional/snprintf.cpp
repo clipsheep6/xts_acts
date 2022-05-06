@@ -16,7 +16,7 @@
 } while (0)
 
 #define TEST_S(s, x, m) do { \
-    EXPECT_TRUE(!strcmp((s), (x))) << "[" << s << "] != [" << (x) << "] (" << (m) << ")" << endl; \
+    EXPECT_TRUE(!strcmp((s), (x))) << "[" << (s) << "] != [" << (x) << "] (" << (m) << ")" << endl; \
 } while (0)
 
 using namespace std;

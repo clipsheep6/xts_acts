@@ -12,4 +12,4 @@ TT(RN,   0x1.1f9efap-1,   0x1.424134p-1,  -0x1.58d878p-3, INEXACT)
 TT(RN,    0x1.8c5dbp-1,    0x1.f49cap-1,   0x1.8f0beap-2, INEXACT)
 TT(RN,  -0x1.5b86eap-1,  -0x1.9cfd1ep-1,    0x1.f7909p-4, INEXACT)
 
-#endif
+#endif  // TOOLCHAIN_LIBC_TEST_MATH_SANITY_TANF_H_

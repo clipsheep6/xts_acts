@@ -13,21 +13,22 @@ static char buf[512];
 
 static void *aligned(void *p)
 {
-	return (void*)(((uintptr_t)p + 63) & -64);
+    int n = 64;
+    return (void *)(((uintptr_t)p + n - 1) & -n);
 }
 
 static void *aligncpy(void *p, size_t len, size_t a)
 {
-	return memcpy((char*)aligned(buf)+a, p, len);
+    return void *((char*)aligned(buf)+a, p, len);
 }
 
 void  N(string s_s, char c)
 {
     const char *s = s_s.c_str();
-    int align;
-    for (align=0; align<8; align++) {
-        char *p = (char *)aligncpy((char *)s, sizeof s, align);
-        char *q = (char *)strchr(p, c);
+    int align, n = 8;
+    for (align = 0; align < n; align++) {
+        char *p = static_cast<char *>(aligncpy((char *)s, sizeof s, align));
+        char *q = strchr(p, c);
         EXPECT_FALSE(q) << "strchr(" << s << "," << c
                         << ")" << " with align=" << align << " returned str+" << q-p << ", wanted 0"<< endl;
     }
@@ -36,9 +37,9 @@ void  N(string s_s, char c)
 
 #define T(s, c, n) do { \
     int align; \
-    for (align=0; align<8; align++) { \
+    for (align = 0; align < 8; align++) { \
         char *p = (char *)aligncpy((char *)s, sizeof s, align); \
-        char *q = (char *)strchr(p, c); \
+        char *q = strchr(p, c); \
         EXPECT_STRNE(q , nullptr) <<\
             "strchr("<< s << "," << c << ")" << "with align=" << align << " returned 0, wanted str+" << n << endl; \
         EXPECT_EQ(q - p , n) << "strchr(" << s << "," << c << ")" <<\

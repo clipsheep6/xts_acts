@@ -6,6 +6,7 @@
 #include <semaphore.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <securec.h>
 
 #include "gtest/gtest.h"
 
@@ -28,7 +29,8 @@ HWTEST_F(SemOpen, SemOpenTest, Function | MediumTest | Level2)
     int val;
 
     clock_gettime(CLOCK_REALTIME, &ts);
-    snprintf(buf, sizeof buf, "/testsuite-%d-%d", (int)getpid(), (int)ts.tv_nsec);
+    snprintf_s(buf, sizeof buf, sizeof buf, "/testsuite-%d-%d",
+        static_cast<int>(getpid()), static_cast<int>(ts.tv_nsec));
 
     EXPECT_TRUE((sem = sem_open(buf, O_CREAT | O_EXCL, 0700, 1)) != SEM_FAILED) <<
         "could not open sem: " << strerror(errno) << endl;

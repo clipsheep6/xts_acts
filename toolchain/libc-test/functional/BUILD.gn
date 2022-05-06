@@ -58,6 +58,7 @@ ohos_moduletest_suite("ActToolChainFunctionTest") {
     "search_hsearch.cpp",
     "search_insque.cpp",
     "search_lsearch.cpp",
+    "search_tsearch.cpp",
     "sem_init.cpp",
     "sem_open.cpp",
     "snprintf.cpp",

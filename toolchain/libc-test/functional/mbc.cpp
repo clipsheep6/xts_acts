@@ -43,6 +43,7 @@ HWTEST_F(Mbc, MbcTest, Function | MediumTest | Level2)
            setlocale(LC_CTYPE, "UTF-8") ||
            setlocale(LC_CTYPE, ""));
 
+    // cppcheck-suppress uninitvar
     T(mbsrtowcs(wcs, (cs = "abcdef", &cs), 3, &st), 3, "wrong semantics for wcs buf len");
     T(mbsrtowcs(wcs, (cs = "abcdef", &cs), 8, &st), 6, "wrong semantics for wcs buf len");
     T(mbsrtowcs(nullptr, (cs = "abcdef", &cs), 2, &st), 6, "wrong semantics for NULL wcs");

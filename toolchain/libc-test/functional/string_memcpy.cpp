@@ -17,7 +17,7 @@ static void *(*volatile pmemcpy)(void *restrict, const void *restrictt, size_t);
 static void *aligned(void *p)
 {
     int n = 64;
-    return reinterpret_cast<void*>(((uintptr_t)p + n - 1) & -n);
+    return reinterpret_cast<void*>((reinterpret_cast<uintptr_t>(p) + n - 1) & -n);
 }
 
 static int N = 80;

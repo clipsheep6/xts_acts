@@ -1,8 +1,8 @@
 #ifndef TOOLCHAIN_LIBC_TEST_COMMOM_MTEST
 #define TOOLCHAIN_LIBC_TEST_COMMOM_MTEST
 
+#include <fenv.h>
 #include <cmath>
-#include <cfenv>
 
 #undef RN
 #undef RZ
@@ -16,17 +16,17 @@
 #ifdef FE_TOWARDZERO
 #define RZ FE_TOWARDZERO
 #else
-#define RZ -1
+#define RZ (-1)
 #endif
 #ifdef FE_DOWNWARD
 #define RD FE_DOWNWARD
 #else
-#define RD -1
+#define RD (-1)
 #endif
 #ifdef FE_UPWARD
 #define RU FE_UPWARD
 #else
-#define RU -1
+#define RU (-1)
 #endif
 
 #undef INEXACT

@@ -37,7 +37,7 @@ typedef pthread_t thread;
 #define errorstring strerror
 
 #ifdef __GLIBC__
-#define LIBRARY "glibc"
+const char *LIBRARY = "glibc"
 #else
 const char *LIBRARY = "unidentified";
 #endif
@@ -85,7 +85,7 @@ static void settimeout(struct timespec *ts)
 static void *client(void *arg)
 {
     struct timespec ts;
-    unsigned *number = (unsigned *)arg;
+    unsigned *number = reinterpret_cast<unsigned *>(arg);
     for (unsigned i = 0; i < phases; ++i) {
         trace("thread %u in phase %u\n", *number, i);
         mutex_lock(&mut[i]);
@@ -102,7 +102,7 @@ static void *client(void *arg)
             settimeout(&ts);
             int ret = condition_timedwait(&cond_client, &mut[i], &ts);
             trace("thread %u in phase %u (%u), finished, %s\n", *number, i, phase, errorstring(ret));
-            EXPECT_FALSE(ret) << "thread " << *number << 
+            EXPECT_FALSE(ret) << "thread " << *number <<
                 " in phase " << i << "(" << phase << ") finished waiting: " << errorstring(ret) << endl;
         }
         int ret = mutex_unlock(&mut[i]);

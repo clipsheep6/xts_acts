@@ -2,21 +2,24 @@
 #include <search.h>
 #include "gtest/gtest.h"
 
-#define W 80
-
-#define get(k) lfind(k, tab, &nel, W, (int (*)(const void *, const void *))strcmp)
-
 using namespace std;
 using namespace testing::ext;
 class SearchIsearch : public testing::Test {};
 
-static char tab[100][W];
+static char tab[100][80];
 static size_t nel;
 
-void set_str(const char *k)
+static int  W = 80;
+
+static void *get(const char *k)
 {
-    void *r = lsearch(k, tab, &nel, W, (int (*)(const void *, const void *))strcmp);
-    EXPECT_EQ(0, strcmp((const char *)r, k));
+    return lfind(k, tab, &nel, W, reinterpret_cast<int (*)(const void *, const void *)>(strcmp));
+}
+
+static void set_str(const char *k)
+{
+    void *r = lsearch(k, tab, &nel, W, reinterpret_cast<int (*)(const void *, const void *)>(strcmp));
+    EXPECT_EQ(0, strcmp(reinterpret_cast<const char *>(r), k));
 }
 
 /**

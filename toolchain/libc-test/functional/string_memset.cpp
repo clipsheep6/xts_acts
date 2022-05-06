@@ -20,7 +20,7 @@ static void *(*volatile pmemset)(void *, int, size_t);
 static char *aligned(void *p)
 {
     int n = 64;
-    return reinterpret_cast<char*>(((uintptr_t)p + n - 1) & -n);
+    return reinterpret_cast<char*>((reinterpret_cast<uintptr_t>(p) + n - 1) & -n);
 }
 
 static void test_align(int align, int len)

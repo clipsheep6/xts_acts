@@ -6,7 +6,7 @@
 
 #include "gtest/gtest.h"
 
-#include "test.h"
+#include "../commom/test.h"
 
 #define T(a, a_sorted) do { \
     char p[] = a; \
@@ -32,7 +32,7 @@ static int scmp(const void *a, const void *b)
 
 static int icmp(const void *a, const void *b)
 {
-    return *(int *)a - *(int *)b;
+    return * (int *)a - *(int *)b;
 }
 
 static int ccmp(const void *a, const void *b)
@@ -99,8 +99,9 @@ static void int_test(int *a, int *a_sorted, int len)
         if (a[i] != a_sorted[i]) {
             EXPECT_EQ(a[i], a_sorted[i]) << "integer sort failed at index " << i << endl;
             t_printf("\ti\tgot\twant\n");
-            for (i = 0; i < len; i++)
+            for (i = 0; i < len; i++) {
                 t_printf("\t%d\t%d\t%d\n", i, a[i], a_sorted[i]);
+            }
             break;
         }
     }

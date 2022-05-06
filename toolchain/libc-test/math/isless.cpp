@@ -16,12 +16,12 @@
 
 #undef T
 #define T(a, b, rel) do {                                             \
-        TEST_T(isunordered(a, b), rel == UNORD);                      \
-        TEST_T(isless(a, b), rel == LESS);                            \
-        TEST_T(islessequal(a, b), rel == LESS || rel == EQUAL);       \
-        TEST_T(islessgreater(a, b), rel == LESS || rel == GREATER);   \
-        TEST_T(isgreater(a, b), rel == GREATER);                      \
-        TEST_T(isgreaterequal(a, b), rel == GREATER || rel == EQUAL); \
+        TEST_T(isunordered(a, b), (rel) == UNORD);                      \
+        TEST_T(isless(a, b), (rel) == LESS);                            \
+        TEST_T(islessequal(a, b), (rel) == LESS || (rel) == EQUAL);       \
+        TEST_T(islessgreater(a, b), (rel) == LESS || (rel) == GREATER);   \
+        TEST_T(isgreater(a, b), (rel) == GREATER);                      \
+        TEST_T(isgreaterequal(a, b), (rel) == GREATER || (rel) == EQUAL); \
 } while (0)
 
 using namespace std;

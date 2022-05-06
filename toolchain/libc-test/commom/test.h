@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <cstdint>
 
-#define t_error(...) t_printf( __VA_ARGS__)
+#define t_error(...) t_printf(__VA_ARGS__)
 
 extern char **environ;
 

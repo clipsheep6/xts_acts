@@ -8,9 +8,9 @@
 
 #include "test.h"
 
-#define TEST1(r, f, x, m) do {                                                                        \
+#define TEST1(r, f, x, m) do {                                                                \
     errno = 0, msg = #f, ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
-    EXPECT_EQ(r, x);                                                                                  \
+    EXPECT_EQ(r, x);                                                                          \
 } while (0)
 
 #define TEST2(r, f, x, m) do {                          \

@@ -6,10 +6,10 @@
 
 #include "gtest/gtest.h"
 
-#include "test.h"
+#include "../commom/test.h"
 
 #define TEST1(r, f, x, m) do {                                                                        \
-    errno = 0, msg = const_cast<char*>(#f), ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
+    errno = 0, msg = #f, ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
     EXPECT_EQ(r, x);                                                                                  \
 } while (0)
 
