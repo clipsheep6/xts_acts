@@ -18,12 +18,12 @@ static size_t mmax(int fd, size_t *start)
 {
     size_t i, n;
     void *p;
-    int tm = 2; 
+    int tm = 2;
     
-    for (i=n=*start; i>=PAGE_SIZE; i/=tm) {
+    for (i = n= *start; i >= PAGE_SIZE; i /= tm) {
         if ((p=mmap(nullptr, n, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, fd, 0)) == MAP_FAILED) {
             n -= i/tm;
-        } else {        
+        } else {
             munmap(p, n);
             if (n == i) {
                 *start = n;
@@ -48,13 +48,13 @@ int t_vmfill(void **p, size_t *n, int len)
     void *q;
     int i;
     
-    for (i=0;;i++) {
+    for (i = 0; ; i++) {
         m = mmax(fd, &start);
         if (!m) {
             break;
         }
         q = mmap(nullptr, m, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, fd, 0);
-        if (q == reinterpret_cast<void*>(MAP_FAILED)) {
+        if (q == MAP_FAILED) {
             return -1;
         }
         if (i < len) {

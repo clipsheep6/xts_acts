@@ -8,7 +8,7 @@ using namespace std;
 using namespace testing::ext;
 class MkdtempFailure : public testing::Test {};
 
-char *mkdtemp(char *p);
+char *mkdtemp(char *);
 const char *S = "/dev/null/fooXXXX";
 
 /**

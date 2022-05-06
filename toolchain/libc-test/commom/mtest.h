@@ -1,7 +1,7 @@
 #ifndef TOOLCHAIN_LIBC_TEST_COMMOM_MTEST
 #define TOOLCHAIN_LIBC_TEST_COMMOM_MTEST
 
-#include <fenv.h>
+#include <cfenv>
 #include <cmath>
 
 #undef RN
@@ -93,8 +93,8 @@ struct ddd_d {POS int r; double x; double x2; double x3; double y; float dy; int
 struct lll_l {POS int r; long double x; long double x2; long double x3; long double y; float dy; int e; };
 #undef POS
 
-char *estr(int);
-char *rstr(int);
+char *estr(int f);
+char *rstr(int r);
 
 float ulperr(double got, double want, float dwant);
 float ulperrf(float got, float want, float dwant);

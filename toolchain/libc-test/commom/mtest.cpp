@@ -134,7 +134,7 @@ char *estr(int f)
     for (i = 0; i < length(eflags); i++) {
         if (f & eflags[i].flag) {
             p += sprintf_s(p, sizeof p, "%s%s", all ? "|" : "", eflags[i].s);
-            all |= eflags[i].flag;  
+            all |= eflags[i].flag;
         }
     }
     if (all != f) {
@@ -159,6 +159,8 @@ char *rstr(int r)
 #ifdef FE_DOWNWARD
         case RD: return const_cast<char*>("RD");
 #endif
+        default:
+            break;
     }
     return const_cast<char*>("R?");
 }

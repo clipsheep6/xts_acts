@@ -22,12 +22,12 @@ static void *aligncpy(void *p, size_t len, size_t a)
     return memcpy(reinterpret_cast<char*>(aligned(buf))+a, p, len);
 }
 
-void  N(string s_s, char c)
+static void  N(string s_s, char c)
 {
     const char *s = s_s.c_str();
     int align, n = 8;
     for (align = 0; align < n; align++) {
-        char *p = static_cast<char *>(aligncpy((char *)s, sizeof s, align));
+        char *p = reinterpret_cast<char *>(aligncpy(const_cast<char *>(s), sizeof s, align));
         char *q = strchr(p, c);
         EXPECT_FALSE(q) << "strchr(" << s << "," << c
                         << ")" << " with align=" << align << " returned str+" << q-p << ", wanted 0"<< endl;
@@ -37,11 +37,11 @@ void  N(string s_s, char c)
 #define T(s, c, n) do { \
     int align; \
     for (align = 0; align < 8; align++) { \
-        char *p = (char *)aligncpy((char *)(s), sizeof (s), align); \
+        char *p = reinterpret_cast<char *>(aligncpy(const_cast<char *>(s), sizeof (s), align)); \
         char *q = strchr(p, c); \
-        EXPECT_STRNE(q, nullptr) << "strchr("<< (s) <<\
+        EXPECT_STRNE(q, nullptr) << "strchr("<< (s) << \
             "," << (c) << ")" << "with align=" << align << " returned 0, wanted str+" << (n) << endl; \
-        EXPECT_EQ(q - p, n) << "strchr(" << (s) << "," << (c) << ")" <<\
+        EXPECT_EQ(q - p, n) << "strchr(" << (s) << "," << (c) << ")" << \
             "with align=" << align << " returned str+" << q-p << " wanted str+" << (n) << endl; \
     } \
 } while (0)
@@ -61,7 +61,7 @@ HWTEST_F(StringStrchr, StringStrchrTest, Function | MediumTest | Level2)
         a[i] = (i+1) & (n1 - 1);
     }
     for (i = 0; i < n2; i++) {
-        *((unsigned char*)s+i) = i+1;
+        *(reinterpret_cast<unsigned char*>(s)+i) = i+1;
     }
     N(string("\0aaa"), 'a');
     N(string("a\0bb"), 'b');
