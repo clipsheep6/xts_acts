@@ -21,13 +21,11 @@ using namespace OHOS::Audio;
 using namespace testing::ext;
 
 namespace OHOS {
-
 const int32_t SAMPLE_RATE = 24000;
 const int32_t BIT_RATE = 1024;
 const int32_t CHANNEL_COUNT = 2;
 
 void AudioliteTest::SetUpTestCase(void) {}
-
 void AudioliteTest::TearDownTestCase(void) {}
 
 void AudioliteTest::SetUp()
