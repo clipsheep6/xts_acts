@@ -514,7 +514,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
       let loopCount = systemWindowTypeArr.length;
       console.log('jsunittest loopCount: ' + loopCount);
       for (let i = 0; i < loopCount; i++) {
-        let tempType = ohosWindow.WindowType.TYPE_SYSTEM_ALERT; //系统窗口类型
+        let tempType = ohosWindow.WindowType.TYPE_SYSTEM_ALERT;
         let windId = 'createTest6' + i;
         console.log(msgStr + 'ohosWindow.create ' + tempType + ' start');
         ohosWindow.create(context, windId, tempType, (err, data) => {
@@ -664,7 +664,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     it('setWindowTypeTest3', 0, done => {
       let caseName = 'setWindowTypeTest3';
       let msgStr = 'jsunittest ' + caseName + ' ';
-      let baseWndType = 1; //系统窗口
+      let baseWndType = 1;
       let windowId = 'setWindowTypeTest3';
       console.log(msgStr + 'begin');
       let tempWnd = null
@@ -761,7 +761,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     it('destroyTest2', 0, done => {
       let caseName = 'destroyTest2';
       let msgStr = 'jsunittest ' + caseName + ' ';
-      let baseWndType = 1; //系统窗口
+      let baseWndType = 1;
       let windowId = 'destroyTest2';
       console.log(msgStr + 'begin');
       let tempWnd = null
@@ -806,7 +806,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     it('loadContentTest3', 0, done => {
       let caseName = 'loadContentTest3';
       let msgStr = 'jsunittest ' + caseName + ' ';
-      let baseWndType = 1; //系统窗口
+      let baseWndType = 1;
       let windowId = 'loadContentTest3';
       console.log(msgStr + 'begin');
       let tempWnd = null
