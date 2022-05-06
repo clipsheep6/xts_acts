@@ -30,7 +30,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     var commonNUMBERColorArr = ['#00FF0000', '#0000FF00', '#000000FF', '#00FFFFFF', '#00000000', '#00F900E6', '#00666666', '#00FFF700'];
     var commonKEYColorArr = ['red', 'green', 'blue', 'white', 'black', 'pink', 'grey', 'yellow'];
     var appWindowTypeArr = [];
-    var windowTypeArr = []; //所有ohowindow.windowType的value值
+    var windowTypeArr = [];
     var appWindowTypeDic = {
       'TYPE_BASE': 0,
       'TYPE_APP': 0,
@@ -118,9 +118,8 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
      * @tc.number     SUB_WINDOW_SETSYSTEMBARENABLE_JSAPI_010
      * @tc.name       Test setSystemBarEnableTest10
-     * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+     * @tc.desc       Verify the scene where illegal values are entered when the navigation bar and status bar are displayed or hidden
      */
-    //验证同时显示状态栏和导航栏的场景
     it('setSystemBarEnableTest10', 0, done => {
       let caseName = 'setSystemBarEnableTest10';
       let msgStr = 'jsunittest ' + caseName + ' ';
@@ -128,16 +127,14 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
       console.log(msgStr + 'begin');
       listenerData.on = true;
       listenerData.typeStr = 'systemBarTintChange';
-      // 开启导航栏状态栏监听
       ohosWindow.on('systemBarTintChange', systembartintstate => {
         console.log(msgStr + 'ohosWindow.on systemBarTintChange ：' + JSON.stringify(systembartintstate));
         console.log(msgStr + 'ohosWindow.on systemBarTintChange systembartintstate.regionTint : ' + JSON.stringify(systembartintstate.regionTint));
         if (flagStatus || flagNav) {
-          expect(!!systembartintstate).assertTrue(); //运行成功
+          expect(!!systembartintstate).assertTrue();
           done();
         }
       })
-      //调用getMainWindow（）接口，获取主窗口
       let mainWnd = null;
       console.log(msgStr + 'mainWnd = null');
       windowStage.getMainWindow((err, data) => {
@@ -183,7 +180,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
      * @tc.number     SUB_WINDOW_SETSYSTEMBARPROPERTIES_JSAPI_004
      * @tc.name       Test setSystemBarPropertiesTest1
-     * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+     * @tc.desc       TVerify the scene where the colors of the status bar and navigation bar are set in RGB
      */
     it('setSystemBarPropertiesTest4', 0, done => {
       let caseName = 'setSystemBarPropertiesTest4';
@@ -273,7 +270,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
      * @tc.number     SUB_WINDOW_SETSYSTEMBARPROPERTIES_JSAPI_005
      * @tc.name       Test setSystemBarPropertiesTest5
-     * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+     * @tc.desc       Verify the scene where the status bar and navigation bar colors are set in hexadecimal form
      */
     it('setSystemBarPropertiesTest5', 0, done => {
       let caseName = 'setSystemBarPropertiesTest5';
@@ -352,7 +349,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
               listenerFlag = listenerStatus.pending;
               let loopCount = commonNUMBERColorArr.length
               for (let i = 0; i < loopCount; i++) {
-                let tempColor = commonNUMBERColorArr[i]; //对比十六进制的
+                let tempColor = commonNUMBERColorArr[i];
                 let systemBarProperties = {
                   statusBarColor: tempColor,
                   isStatusBarLightIcon: true,
@@ -388,7 +385,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
      * @tc.number     SUB_WINDOW_SETSYSTEMBARPROPERTIES_JSAPI_006
      * @tc.name       Test setSystemBarPropertiesTest6
-     * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+     * @tc.desc       TVerify the scene where the status bar and navigation bar colors are set as keywords
      */
     it('setSystemBarPropertiesTest6', 0, done => {
       let caseName = 'setSystemBarPropertiesTest6';
@@ -478,7 +475,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
      * @tc.number     SUB_WINDOW_CREATE_JSAPI_005
      * @tc.name       Test create5
-     * @tc.desc       Test ohosWindow.create API function test1.
+     * @tc.desc       Verify the scenario of creating the application type window
      */
     it('createTest5', 0, done => {
       let caseName = 'createTest5';
@@ -508,7 +505,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
      * @tc.number     SUB_WINDOW_CREATE_JSAPI_006
      * @tc.name       Test createTest6
-     * @tc.desc       Test ohosWindow.create API function test1.
+     * @tc.desc       Verify the scenario of creating the system type window
      */
     it('createTest6', 0, done => {
       let caseName = 'createTest6';
@@ -551,7 +548,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
      * @tc.number     SUB_WINDOW_CREATE_JSAPI_007
      * @tc.name       Test createTest7
-     * @tc.desc       Test ohosWindow.create API function test7.
+     * @tc.desc       Verify the scenario of creating a window of a type that does not exist
      */
     it('createTest7', 0, done => {
       let caseName = 'createTest7';
@@ -574,7 +571,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
      * @tc.number     SUB_WINDOW_CREATE_JSAPI_008
      * @tc.name       Test createTest8
-     * @tc.desc       Test window.create API function test.
+     * @tc.desc       Verify the scenario of creating a window with duplicate IDs
      */
     it('createTest8', 0, done => {
       let caseName = 'createTest8';
@@ -603,7 +600,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
      * @tc.number     SUB_WINDOW_ON_OFF_JSAPI_005
      * @tc.name       Test listenerTest5
-     * @tc.desc       Test window.on API function test3.
+     * @tc.desc       Verify whether the change of avoidance area and change monitoring can be turned on normally
      */
     it('listenerTest5', 0, done => {
       let caseName = 'listenerTest5';
@@ -662,7 +659,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
 * @tc.number     SUB_WINDOW_SETWINDOWTYPE_JSAPI_003
 * @tc.name       Test setWindowTypeTest3
-* @tc.desc       Test window.setWindowType API function test.
+* @tc.desc       Verify the scenario where the normal window type is set
 */
     it('setWindowTypeTest3', 0, done => {
       let caseName = 'setWindowTypeTest3';
@@ -723,7 +720,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
 * @tc.number     SUB_WINDOW_SETWINDOWTYPE_JSAPI_004
 * @tc.name       Test setWindowTypeTest4
-* @tc.desc       Test window.setWindowType API function test.
+* @tc.desc       Verify the scene of setting illegal window type
 */
     it('setWindowTypeTest4', 0, done => {
       let caseName = 'setWindowTypeTest4';
@@ -759,7 +756,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
 * @tc.number     SUB_WINDOW_DESTROY_JSAPI_002
 * @tc.name       Test destroyTest2
-* @tc.desc       Test window.destroy API function test.
+* @tc.desc       Verification window destruction scenario
 */
     it('destroyTest2', 0, done => {
       let caseName = 'destroyTest2';
@@ -801,11 +798,10 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
         }
       })
     })
-
     /**
 	  * @tc.number     SUB_WINDOW_LOADCONTENT_JSAPI_003
 	  * @tc.name       Test loadContentTest3
-	  * @tc.desc       Test window.loadContent API function test.
+	  * @tc.desc       Verify the scenario of loading an existing page
 	  */
     it('loadContentTest3', 0, done => {
       let caseName = 'loadContentTest3';
@@ -840,7 +836,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
     /**
 * @tc.number     SUB_WINDOW_LOADCONTENT_JSAPI_004
 * @tc.name       Test loadContentTest4
-* @tc.desc       Test window.loadContent API function test.
+* @tc.desc       Verify the scenario of loading a page that does not exist
 */
     it('loadContentTest4', 0, done => {
       let caseName = 'loadContentTest4';
@@ -861,7 +857,7 @@ export default function windoCallbackTest(context, windowStage, abilityStorage) 
             console.log(msgStr + 'tempWnd.loadContent data' + JSON.stringify(data));
             console.log(msgStr + 'tempWnd.loadContent !!data' + !!data);
             if (err && err.code) {
-              expect(!data).assertTrue();
+              expect(err.code === 130).assertTrue();
               done();
             } else {
               expectedError(err, caseName, 'tempWnd.loadContent', done);

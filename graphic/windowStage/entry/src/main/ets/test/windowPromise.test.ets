@@ -26,15 +26,15 @@ export default function windowPromiseTest(context, windowStage) {
     var commonNUMBERColorArr = ['#00FF0000', '#0000FF00', '#000000FF', '#00FFFFFF', '#00000000', '#00F900E6', '#00666666', '#00FFF700'];
     var commonKEYColorArr = ['red', 'green', 'blue', 'white', 'black', 'pink', 'grey', 'yellow'];
     var appWindowTypeArr = [];
-    var windowTypeArr = []; //所有ohowindow.windowType的value值
+    var windowTypeArr = [];
     var appWindowTypeDic = {
       'TYPE_BASE': 0,
       'TYPE_APP': 0,
       'TYPE_APP_SUB_WINDOW': 1,
     };
-    var systemWindowValueArr = [];  //系統窗口的值
+    var systemWindowValueArr = [];
     var systemWindowTypeArr = [];
-    var systemWindowTypeDic = {  //系统窗口
+    var systemWindowTypeDic = {
       'TYPE_SYSTEM_ALERT': 1,
       'TYPE_INPUT_METHOD': 2,
       'TYPE_STATUS_BAR': 3,
@@ -115,7 +115,7 @@ export default function windowPromiseTest(context, windowStage) {
     /**
 	  * @tc.number     SUB_WINDOW_SETSYSTEMBARENABLE_JSAPI_001
 	  * @tc.name       Test setSystemBarEnableTest1
-	  * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+	  * @tc.desc       Verify that the scene shows the status bar and hides the navigation bar
 	  */
     it('setSystemBarEnableTest1', 0, async function (done) {
       let caseName = 'setSystemBarEnableTest1';
@@ -184,7 +184,7 @@ export default function windowPromiseTest(context, windowStage) {
     /**
 	  * @tc.number     SUB_WINDOW_SETSYSTEMBARENABLE_JSAPI_002
 	  * @tc.name       Test setSystemBarEnableTest2
-	  * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+	  * @tc.desc       Verify that the scene hides the status bar and displays the navigation bar
 	  */
     it('setSystemBarEnableTest2', 0, async function (done) {
       let caseName = 'setSystemBarEnableTest2';
@@ -253,7 +253,7 @@ export default function windowPromiseTest(context, windowStage) {
     /**
 	  * @tc.number     SUB_WINDOW_SETSYSTEMBARENABLE_JSAPI_003
 	  * @tc.name       Test setSystemBarEnableTest3
-	  * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+	  * @tc.desc       Verify that the scene displays both the status bar and the navigation bar
 	  */
     it('setSystemBarEnableTest3', 0, async function (done) {
       let caseName = 'setSystemBarEnableTest3';
@@ -322,7 +322,7 @@ export default function windowPromiseTest(context, windowStage) {
     /**
 	  * @tc.number     SUB_WINDOW_SETSYSTEMBARENABLE_JSAPI_004
 	  * @tc.name       Test setSystemBarEnableTest4
-	  * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+	  * @tc.desc       Verify that the scene hides both the status bar and the navigation bar
 	  */
     it('setSystemBarEnableTest4', 0, async function (done) {
       let caseName = 'setSystemBarEnableTest4';
@@ -391,7 +391,7 @@ export default function windowPromiseTest(context, windowStage) {
     /**
 	  * @tc.number     SUB_WINDOW_SETSYSTEMBARENABLE_JSAPI_005
 	  * @tc.name       Test setSystemBarEnableTest5
-	  * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+	  * @tc.desc       Verify the scene where illegal values are entered when the status bar and navigation bar are displayed
 	  */
     it('setSystemBarEnableTest5', 0, async function (done) {
       let caseName = 'setSystemBarEnableTest5';
@@ -423,7 +423,7 @@ export default function windowPromiseTest(context, windowStage) {
     /**
 	  * @tc.number     SUB_WINDOW_SETSYSTEMBARPROPERTIES_JSAPI_001
 	  * @tc.name       Test setSystemBarPropertiesTest1
-	  * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+	  * @tc.desc       Verify the scene where the colors of the status bar and navigation bar are set in RGB
 	  */
     it('setSystemBarPropertiesTest1', 0, async function (done) {
       let caseName = 'setSystemBarPropertiesTest1';
@@ -502,7 +502,7 @@ export default function windowPromiseTest(context, windowStage) {
     /**
 	  * @tc.number     SUB_WINDOW_SETSYSTEMBARPROPERTIES_JSAPI_002
 	  * @tc.name       Test setSystemBarPropertiesTest2
-	  * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+	  * @tc.desc       Verify the scene where the status bar and navigation bar colors are set in hexadecimal form
 	  */
     it('setSystemBarPropertiesTest2', 0, async function (done) {
       let caseName = 'setSystemBarPropertiesTest2';
@@ -610,7 +610,7 @@ export default function windowPromiseTest(context, windowStage) {
     /**
 	  * @tc.number     SUB_WINDOW_SETSYSTEMBARPROPERTIES_JSAPI_003
 	  * @tc.name       Test setSystemBarPropertiesTest3
-	  * @tc.desc       Test ohosWindow.setSystemBarEnable API function test1.
+	  * @tc.desc       Verify the scene where the status bar and navigation bar colors are set as keywords
 	  */
     it('setSystemBarPropertiesTest3', 0, async function (done) {
       let caseName = 'setSystemBarPropertiesTest3';
@@ -689,7 +689,7 @@ export default function windowPromiseTest(context, windowStage) {
     /**
 	 * @tc.number     SUB_WINDOW_CREATE_JSAPI_001
 	 * @tc.name       Test create
-	 * @tc.desc       Test ohosWindow.create API function test1.
+	 * @tc.desc       Verify the scenario of creating the application type window
 	 */
     it('createTest1', 0, async function (done) {
       let caseName = 'createTest1';
@@ -716,7 +716,7 @@ export default function windowPromiseTest(context, windowStage) {
     /**
 	 * @tc.number     SUB_WINDOW_CREATE_JSAPI_003
 	 * @tc.name       Test createTest3
-	 * @tc.desc       Test ohosWindow.create API function test3.
+	 * @tc.desc       Verify the scenario of creating a window of a type that does not exist
 	 */
     it('createTest3', 0, async function (done) {
       let caseName = 'createTest3';
