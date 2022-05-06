@@ -45,7 +45,7 @@ static int cmp64(const void *a, const void *b)
     const uint64_t *ua = reinterpret_cast<const uint64_t *>(a);
     const uint64_t *ub = reinterpret_cast<const uint64_t *>(b);
     return *ua < *ub ? -1 : *ua != *ub;
-}   
+}
 
 /* 26 items -- even */
 static const char *s[] = {

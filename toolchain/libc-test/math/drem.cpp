@@ -1,5 +1,6 @@
-#include <stdint.h>
-#include <stdio.h>
+#include <cstdint>
+#include <cstdio>
+
 #include "mtest.h"
 #include "gtest/gtest.h"
 

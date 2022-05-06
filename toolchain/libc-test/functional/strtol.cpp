@@ -8,9 +8,9 @@
 
 #include "../commom/test.h"
 
-#define TEST1(r, f, x, m) do {                                                                        \
+#define TEST1(r, f, x, m) do {                                                                \
     errno = 0, msg = #f, ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0); \
-    EXPECT_EQ(r, x);                                                                                  \
+    EXPECT_EQ(r, x);                                                                          \
 } while (0)
 
 #define TEST2(r, f, x, m) do {                          \
@@ -41,8 +41,8 @@ HWTEST_F(Strtol, StrtolTest, Function | MediumTest | Level2)
     char *c;
 
     TEST1(l, atol("2147483647"), 2147483647L, "max 32bit signed %ld != %ld");
-    TEST1(l, strtol("2147483647", 0, 0), 2147483647L, "max 32bit signed %ld != %ld");
-    TEST1(ul, strtoul("4294967295", 0, 0), 4294967295UL, "max 32bit unsigned %lu != %lu");
+    TEST1(l, strtol("2147483647", nullptr, 0), 2147483647L, "max 32bit signed %ld != %ld");
+    TEST1(ul, strtoul("4294967295", nullptr, 0), 4294967295UL, "max 32bit unsigned %lu != %lu");
 
     if (sizeof(long) == 4) {
         TEST1(l, strtol(s = "2147483648", &c, 0), 2147483647L, "uncaught overflow %ld != %ld");
@@ -141,8 +141,8 @@ HWTEST_F(Strtol, StrtolTest, Function | MediumTest | Level2)
             "sizeof(long) == " << static_cast<int>(sizeof(long long)) << ", not implemented" << endl;
     }
 
-    TEST1(l, strtol("z", 0, 36), 35, "%ld != %ld");
-    TEST1(l, strtol("00010010001101000101011001111000", 0, 2), 0x12345678, "%ld != %ld");
+    TEST1(l, strtol("z", nullptr, 36), 35, "%ld != %ld");
+    TEST1(l, strtol("00010010001101000101011001111000", nullptr, 2), 0x12345678, "%ld != %ld");
     TEST1(l, strtol(s = "0F5F", &c, 16), 0x0f5f, "%ld != %ld");
 
     TEST1(l, strtol(s = "0xz", &c, 16), 0, "%ld != %ld");

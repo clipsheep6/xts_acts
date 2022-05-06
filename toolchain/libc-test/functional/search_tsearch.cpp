@@ -67,7 +67,7 @@ struct e *get(const char *k)
     et.k = k;
     void **p = reinterpret_cast<void **>(tfind(&et, &root, cmp));
     if (!p) {
-        return 0;
+        return nullptr;
     }
     return (struct e *)(*p);
 }
@@ -84,7 +84,7 @@ struct e *set_kv(const char *k, int v)
     EXPECT_FALSE(!p || strcmp(((struct e*)*p)->k, k) != 0) << "tsearch " << k << " " << v << " failed" << endl;
     if (!p) {
         countt--;
-        return 0;
+        return nullptr;
     }
     return (struct e *)(*p);
 }

@@ -12,8 +12,7 @@
 using namespace testing::ext;
 class Fpclassify : public testing::Test {};
 
-static struct
-{
+static struct {
     int line;
     float f;
     int classs;
@@ -31,8 +30,7 @@ static struct
     T(3.14, FP_NORMAL)
     T(-42, FP_NORMAL)};
 
-static struct
-{
+static struct {
     int line;
     double f;
     int classs;
@@ -50,8 +48,7 @@ static struct
     T(3.14, FP_NORMAL)
     T(-42, FP_NORMAL)};
 
-static struct
-{
+static struct {
     int line;
     long double f;
     int classs;
@@ -76,23 +73,22 @@ static struct
     T(3.14, FP_NORMAL)
     T(-42, FP_NORMAL)};
 
-static char *strclass(int c) {
+static char *strclass(int c)
+{
 #define C(n) \
     case n:  \
-        return (char *)#n;
+        return (char *)#n
     switch (c) {
-        C(FP_NAN)
-        C(FP_INFINITE)
-        C(FP_ZERO)
-        C(FP_SUBNORMAL)
-        C(FP_NORMAL)
+        C(FP_NAN);
+        C(FP_INFINITE);
+        C(FP_ZERO);
+        C(FP_SUBNORMAL);
+        C(FP_NORMAL);
         default:
             break;
     }
-    return (char *)"invalid";
+    return const_cast<char *>("invalid");
 }
-
-
 
 /**
  * @tc.name      : FpclassifyTest
@@ -106,55 +102,70 @@ HWTEST_F(Fpclassify, FpclassifyTest, Function | MediumTest | Level2)
 
     for (i = 0; i < length(tf); i++) {
         EXPECT_EQ(fpclassify(tf[i].f), tf[i].classs);
-        if (fpclassify(tf[i].f) != tf[i].classs)
+        if (fpclassify(tf[i].f) != tf[i].classs) {
             error(tf[i], fpclassify);
+        }
         EXPECT_EQ(!!isinf(tf[i].f), (tf[i].classs == FP_INFINITE));
-        if (!!isinf(tf[i].f) != (tf[i].classs == FP_INFINITE))
+        if (!!isinf(tf[i].f) != (tf[i].classs == FP_INFINITE)) {
             error(tf[i], isinf);
+        }
         EXPECT_EQ(!!isnan(tf[i].f), (tf[i].classs == FP_NAN));
-        if (!!isnan(tf[i].f) != (tf[i].classs == FP_NAN))
+        if (!!isnan(tf[i].f) != (tf[i].classs == FP_NAN)) {
             error(tf[i], isnan);
+        }
         EXPECT_EQ(!!isnormal(tf[i].f), (tf[i].classs == FP_NORMAL));
-        if (!!isnormal(tf[i].f) != (tf[i].classs == FP_NORMAL))
+        if (!!isnormal(tf[i].f) != (tf[i].classs == FP_NORMAL)) {
             error(tf[i], isnormal);
+        }
         EXPECT_EQ(!!isfinite(tf[i].f), (tf[i].classs > FP_INFINITE));
-        if (!!isfinite(tf[i].f) != (tf[i].classs > FP_INFINITE))
+        if (!!isfinite(tf[i].f) != (tf[i].classs > FP_INFINITE)) {
             error(tf[i], isfinite);
+        }
     }
 
     for (i = 0; i < length(td); i++) {
         EXPECT_EQ(fpclassify(td[i].f), td[i].classs);
-        if (fpclassify(td[i].f) != td[i].classs)
+        if (fpclassify(td[i].f) != td[i].classs) {
             error(td[i], fpclassify);
+        }
         EXPECT_EQ(!!isinf(td[i].f), (td[i].classs == FP_INFINITE));
-        if (!!isinf(td[i].f) != (td[i].classs == FP_INFINITE))
+        if (!!isinf(td[i].f) != (td[i].classs == FP_INFINITE)) {
             error(td[i], isinf);
+        }
         EXPECT_EQ(!!isnan(td[i].f), (td[i].classs == FP_NAN));
-        if (!!isnan(td[i].f) != (td[i].classs == FP_NAN))
+        if (!!isnan(td[i].f) != (td[i].classs == FP_NAN)) {
             error(td[i], isnan);
+        }
         EXPECT_EQ(!!isnormal(td[i].f), (td[i].classs == FP_NORMAL));
-        if (!!isnormal(td[i].f) != (td[i].classs == FP_NORMAL))
+        if (!!isnormal(td[i].f) != (td[i].classs == FP_NORMAL)) {
             error(td[i], isnormal);
+        }
         EXPECT_EQ(!!isfinite(td[i].f), (td[i].classs > FP_INFINITE));
-        if (!!isfinite(td[i].f) != (td[i].classs > FP_INFINITE))
+        if (!!isfinite(td[i].f) != (td[i].classs > FP_INFINITE)) {
             error(td[i], isfinite);
+        }
     }
 
     for (i = 0; i < length(tl); i++) {
         EXPECT_EQ(fpclassify(tl[i].f), tl[i].classs);
-        if (fpclassify(tl[i].f) != tl[i].classs)
+        if (fpclassify(tl[i].f) != tl[i].classs) {
             error(tl[i], fpclassify);
+        }
         EXPECT_EQ(!!isinf(tl[i].f), (tl[i].classs == FP_INFINITE));
-        if (!!isinf(tl[i].f) != (tl[i].classs == FP_INFINITE))
+        if (!!isinf(tl[i].f) != (tl[i].classs == FP_INFINITE)) {
             error(tl[i], isinf);
+        }
         EXPECT_EQ(!!isnan(tl[i].f), (tl[i].classs == FP_NAN));
-        if (!!isnan(tl[i].f) != (tl[i].classs == FP_NAN))
+        if (!!isnan(tl[i].f) != (tl[i].classs == FP_NAN)) {
             error(tl[i], isnan);
+        }
         EXPECT_EQ(!!isnormal(tl[i].f), (tl[i].classs == FP_NORMAL));
-        if (!!isnormal(tl[i].f) != (tl[i].classs == FP_NORMAL))
+        if (!!isnormal(tl[i].f) != (tl[i].classs == FP_NORMAL)) {
             error(tl[i], isnormal);
+        }
         EXPECT_EQ(!!isfinite(tl[i].f), (tl[i].classs > FP_INFINITE));
-        if (!!isfinite(tl[i].f) != (tl[i].classs > FP_INFINITE))
+        if (!!isfinite(tl[i].f) != (tl[i].classs > FP_INFINITE)) {
             error(tl[i], isfinite);
+        }
     }
 }
