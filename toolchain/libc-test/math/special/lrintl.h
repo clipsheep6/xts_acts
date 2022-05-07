@@ -13,7 +13,6 @@ TT(RN,                   0x1.ffffp-1L,           1, INEXACT)
 TT(RN,                  -0x1.ffffp-1L,          -1, INEXACT)
 TT(RN,                      0x1p-100L,           0, INEXACT)
 TT(RN,                     -0x1p-100L,           0, INEXACT)
-// TODO: return value is unspecified
 #if INVALID
 TT(RN,                            NAN,           0, INVALID)
 TT(RN,                            inf,           0, INVALID)

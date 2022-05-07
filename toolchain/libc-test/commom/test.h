@@ -17,8 +17,6 @@ void t_randseed(uint64_t s);
 uint64_t t_randn(uint64_t n);
 uint64_t t_randint(uint64_t a, uint64_t b);
 void t_shuffle(uint64_t *p, size_t n);
-void t_randrange(uint64_t *p, size_t n);
-int t_choose(uint64_t n, size_t k, uint64_t *p);
 
 char *t_pathrel(char *buf, size_t n, char *argv0, char *p);
 int t_setrlim(int r, long lim);

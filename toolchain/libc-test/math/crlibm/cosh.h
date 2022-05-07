@@ -37,7 +37,6 @@ TT(RN, -0x1.f4p+9, inf, 0x0p+0, INEXACT | OVERFLOW) // A large negative
 TT(RU, -0x1.f4p+9, inf, 0x0p+0, INEXACT | OVERFLOW)
 TT(RD, -0x1.f4p+9, 0x1.fffffffffffffp+1023, -0x1p+0, INEXACT | OVERFLOW)
 TT(RZ, -0x1.f4p+9, 0x1.fffffffffffffp+1023, -0x1p+0, INEXACT | OVERFLOW)
-// TODO check the transition to infinity (as in exp.checkdate)
 //  Behaviour at the bounds of the domain
 TT(RN, 0x1.633ce8fb9f87ep+9, inf, 0x0p+0, INEXACT | OVERFLOW)                  // The first value whose cosh is  +inf
 TT(RN, 0x1.633ce8fb9f87dp+9, 0x1.ffffffffffd3bp+1023, 0x1.a6b164p-4, INEXACT)  // and the one before

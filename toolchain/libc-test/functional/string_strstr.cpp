@@ -6,19 +6,19 @@ using namespace std;
 using namespace testing::ext;
 class StringStrstr : public testing::Test {};
 
-void N(string s, string sub)
+static void N(string s, string sub)
 {
     const char *p = s.c_str();
     const char *q = strstr(p, sub.c_str());
     EXPECT_FALSE(q) << "strstr(" << s << "," << sub << ") returned str+" << q - p << endl;
 }
 
-void T_T(string s, string sub, int n)
+static void T_T(string s, string sub, int n)
 {
-    const char *p = s.c_str();                                                                                        
-    const char *q = strstr(p, sub.c_str());                                                                               
+    const char *p = s.c_str();
+    const char *q = strstr(p, sub.c_str());
     EXPECT_STRNE(q, nullptr) << "strstr(" << s << "," << sub << ") returned 0, wanted str+" << n << endl;
-    EXPECT_TRUE((q - p) == n) << "strstr(" << s << "," << sub << ") returned str+" << n << endl;                
+    EXPECT_TRUE((q - p) == n) << "strstr(" << s << "," << sub << ") returned str+" << n << endl;
 }
 
 /**

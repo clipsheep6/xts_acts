@@ -66,7 +66,7 @@ HWTEST_F(ClocaleMbfuncs, ClocaleMbfuncsTest, Function | MediumTest | Level2)
         EXPECT_FALSE((c = wctob(i)) != WEOF && ni_errors++ < 50) << "wctob accepted non-image wchar_t "
                                                                  << hex << i << " as byte " << hex << c << endl;
         st = (mbstate_t) {0};
-        EXPECT_FALSE(wcrtomb(s, i, &st) != -1 && ni_errors++ < 50)<< 
+        EXPECT_FALSE(wcrtomb(s, i, &st) != -1 && ni_errors++ < 50)<<
             "wcrtomb accepted non-image wchar_t " << hex << i << endl;
     }
     EXPECT_GE(50, ni_errors) << "additional " << ni_errors << " non-image errors (not printed)" << endl;
@@ -74,7 +74,7 @@ HWTEST_F(ClocaleMbfuncs, ClocaleMbfuncsTest, Function | MediumTest | Level2)
     map[256] = 0;
     st = (mbstate_t) {0};
     tmp2 = (const wchar_t *) {map + 1};
-    EXPECT_EQ((rv = wcsrtombs(s, &tmp2, sizeof s, &st)), 255) << 
+    EXPECT_EQ((rv = wcsrtombs(s, &tmp2, sizeof s, &st)), 255) <<
         "wcsrtombs returned " << rv << ", expected 255" << endl;
 
     tmp3 = (const char *) {s};

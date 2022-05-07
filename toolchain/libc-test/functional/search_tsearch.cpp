@@ -7,7 +7,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class SearchTsearch: public testing::Test {};
+class SearchTsearch : public testing::Test {};
 
 struct e {
     const char *k;
@@ -29,16 +29,16 @@ static void act(const void *node, VISIT v, int d)
 {
     struct e *e = (struct e *)(*(void**)(node));
     if (v == preorder) {
-        EXPECT_GE(e->k[0] , wantc) << "preorder visited node \"" << e->k << "\" before \"" << wantc << "\"\n" << endl;
+        EXPECT_GE(e->k[0], wantc) << "preorder visited node \"" << e->k << "\" before \"" << wantc << "\"\n" << endl;
     }
     if (v == endorder) {
-        EXPECT_LT(e->k[0] , wantc) << "endorder visited node \"" << e->k << "\" after \"" << wantc << "\"\n" << endl;
+        EXPECT_LT(e->k[0], wantc) << "endorder visited node \"" << e->k << "\" after \"" << wantc << "\"\n" << endl;
     }
     if (v == postorder) {
-        EXPECT_EQ(wantc , e->k[0]) << "postorder visited node \"" << e->k << "\", wanted \"" << wantc << "\"\n" << endl;
+        EXPECT_EQ(wantc, e->k[0]) << "postorder visited node \"" << e->k << "\", wanted \"" << wantc << "\"\n" << endl;
     }
     if (v == leaf) {
-        EXPECT_EQ(wantc , e->k[0]) << "visited leaf node \"" << e->k << "\", wanted \"" << wantc << "\"\n" << endl;
+        EXPECT_EQ(wantc, e->k[0]) << "visited leaf node \"" << e->k << "\", wanted \"" << wantc << "\"\n" << endl;
     }
     if (v == postorder || v == leaf) {
         wantc++;
@@ -137,7 +137,7 @@ HWTEST_F(SearchTsearch, SearchTsearcTest, Function | MediumTest | Level2)
     twalk(root, getparent);
     EXPECT_NE((void *)0, parent) << "twalk search for key \"" << searchkey << "\" failed" << endl;
     p = del("h");
-    EXPECT_EQ(p , parent) << "tdelete h failed to return parent (got " << p << " wanted " << parent << ")" << endl;
+    EXPECT_EQ(p, parent) << "tdelete h failed to return parent (got " << p << " wanted " << parent << ")" << endl;
 
     e = (struct e *)(*(void**)root);
     EXPECT_TRUE(del(e->k)) << "tdelete root \"" << e->k << "\" failed (returned 0)" << endl;
@@ -147,5 +147,4 @@ HWTEST_F(SearchTsearch, SearchTsearcTest, Function | MediumTest | Level2)
         EXPECT_TRUE(tdelete(e, &root, cmp)) << "tdelete k=" << e->k << " failed during destruction" << endl;
     }
     EXPECT_FALSE(root) << "tree destruction failed: root is nonzero" << root << endl;
-
 }

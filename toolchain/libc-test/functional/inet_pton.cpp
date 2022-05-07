@@ -37,13 +37,13 @@ static void tohex(char *d, void *s, int n)
     unsigned char *p = (unsigned char *)s;
     for (i = 0; i < n; i++) {
         // cppcheck-suppress objectIndex
-        EXPECT_NE(snprintf_s(d + cont * i, strSize, strSize, "%02x", p[i]) , -1);
+        EXPECT_NE(snprintf_s(d + cont * i, strSize, strSize, "%02x", p[i]), -1);
     }
 }
 
 void V6(string src_c, int ret, string hex_x)
 {
-    int r , n = 16, n2 = 24;
+    int r, n = 16, n2 = 24;
     char binaddr[16] = {0};
     char hexaddr[40] = {0};
     char txtaddr[60] = {0};
@@ -84,7 +84,7 @@ void V4(string src_c, int ret, string hex_x)
 
     a = inet_addr(src_c.c_str());
     tohex(buf, &a, n);
-    EXPECT_FALSE(strcmp(buf, hex_x.c_str())) << 
+    EXPECT_FALSE(strcmp(buf, hex_x.c_str())) <<
         "inet_addr(" << src_c.c_str() << ") returned " << buf << ", want " << hex_x.c_str() << endl;
 
     r = inet_pton(AF_INET, src_c.c_str(), &a);
@@ -99,13 +99,13 @@ void V4(string src_c, int ret, string hex_x)
     EXPECT_FALSE(strcmp(buf, hex_x.c_str())) <<
         "inet_pton(AF_INET, " << src_c.c_str() << ", addr) got addr " << buf << ", want " << hex_x.c_str() << endl;
     tobin(&a, hex_x.c_str());
-    EXPECT_FALSE(inet_ntop(AF_INET, &a, buf, sizeof buf) != buf) << 
+    EXPECT_FALSE(inet_ntop(AF_INET, &a, buf, sizeof buf) != buf) <<
         "inet_pton(AF_INET, " << hex_x.c_str() << ", buf, size) did not return buf " << endl;
     EXPECT_FALSE(strcmp(buf, src_c.c_str())) <<
         "inet_pton(AF_INET, " << hex_x.c_str() << ", buf , size) got " << buf << ", want " << src_c.c_str() << endl;
     in.s_addr = a;
     p = inet_ntoa(in);
-    EXPECT_FALSE(strcmp(p, src_c.c_str())) << 
+    EXPECT_FALSE(strcmp(p, src_c.c_str())) <<
         "inet_ntoa(<" << hex_x.c_str() << ">) returned " << p << ", want " << src_c.c_str() << endl;
 }
 
@@ -116,10 +116,10 @@ void V4(string src_c, int ret, string hex_x)
  */
 HWTEST_F(InetPton, InetPtonTest, Function | MediumTest | Level2)
 {
-    EXPECT_FALSE(inet_pton(12345,"", 0) != -1 || errno !=
+    EXPECT_FALSE(inet_pton(12345, "", 0) != -1 || errno !=
         EAFNOSUPPORT) << "inet_pton(12345,,) should fail with EAFNOSUPPORT, got " << strerror(errno) << endl;
     errno = 0;
-    EXPECT_FALSE(inet_ntop(AF_INET, "xxxx", (char *)"", 0) != 0 || errno !=
+    EXPECT_FALSE(inet_ntop(AF_INET, "xxxx", const_cast<char *>(""), 0) != 0 || errno !=
         ENOSPC) << "inet_ntop(,,0,0) should fail with ENOSPC, got " << strerror(errno) << endl;
     errno = 0;
 

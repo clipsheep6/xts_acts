@@ -30,7 +30,6 @@ TT(RU, NAN, NAN, 0x0p+0, 0)                                // NAN
 TT(RD, NAN, NAN, 0x0p+0, 0)                                // NAN
 TT(RZ, NAN, NAN, 0x0p+0, 0)                                // NAN
 // Some boundary cases specific to the exp
-// TODO add a few denormals
 TT(RN, 0x1.62e42fefa39efp+9, 0x1.fffffffffff2ap+1023, -0x1.b0e264p-4, INEXACT)    // the last value before the exp gets infinite
 TT(RN, 0x1.62e42fefa39fp+9, inf, 0x0p+0, INEXACT | OVERFLOW)                      // the first value that gives infinite exp
 TT(RU, 0x1.62e42fefa39efp+9, 0x1.fffffffffff2bp+1023, 0x1.c9e3b4p-1, INEXACT)     // the last value before the exp gets infinite

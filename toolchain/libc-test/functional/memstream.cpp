@@ -18,11 +18,11 @@
     EXPECT_TRUE(f) << #f << " failed (errno = " << errno << ")" << endl; \
 } while (0)
     
-#define TEST_S(s, x, m) do {\
+#define TEST_S(s, x, m) do { \
     EXPECT_TRUE(!strcmp((s), (x))) << "[" << (s) << "] != [" << (x) << "] (" << (m) << endl; \
 } while (0)
 
-#define TEST_M(s, x, n, m) do {\
+#define TEST_M(s, x, n, m) do { \
     EXPECT_TRUE(!memcmp((s), (x), (n))) << "[" << (s) << "] != [" << (x) << "] (" << (m) << endl; \
 } while (0)
 

@@ -36,7 +36,6 @@ HWTEST_F(Modff, ModffTest, Function | MediumTest | Level2)
         y = modff(p->x, &yi);
         e = fetestexcept(INEXACT | INVALID | DIVBYZERO | UNDERFLOW | OVERFLOW);
 
-        /* TODO: fix inexact */
         EXPECT_FALSE(!checkexceptall(e | INEXACT, p->e | INEXACT, p->r));
         if (!checkexceptall(e | INEXACT, p->e | INEXACT, p->r)) {
             printf("%s:%d: bad fp exception: %s modff(%a)=%a,%a, want %s",

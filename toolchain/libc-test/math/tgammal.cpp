@@ -51,7 +51,6 @@ HWTEST_F(Tgammal, TgammalTest, Function | MediumTest | Level2)
             err++;
         }
         d = ulperrl(y, p->y, p->dy);
-        // TODO: 2 ulp errors allowed
         EXPECT_FALSE(p->r == RN && fabs(d) > 2);
         if (p->r == RN && fabs(d) > 2) {
             printf("%s:%d: %s tgammal(%La) want %La got %La ulperr %.3f = %a + %a\n",

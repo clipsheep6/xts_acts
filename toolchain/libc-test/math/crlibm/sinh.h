@@ -37,7 +37,6 @@ TT(RN, -0x1.f4p+9, -inf, 0x0p+0, INEXACT | OVERFLOW) // A large negative
 TT(RU, -0x1.f4p+9, -0x1.fffffffffffffp+1023, 0x1p+0, INEXACT | OVERFLOW)
 TT(RD, -0x1.f4p+9, -inf, 0x0p+0, INEXACT | OVERFLOW)
 TT(RZ, -0x1.f4p+9, -0x1.fffffffffffffp+1023, 0x1p+0, INEXACT | OVERFLOW)
-// TODO check the transition to infinity (as in exp.checkdate)
 //  One in five of the very worst cases computed by Lefevre and Muller.
 //  Rounding these values requires evaluating the function to at least 2^(-100).
 //  These worst cases have been selected thanks to the filterlists 5 script
