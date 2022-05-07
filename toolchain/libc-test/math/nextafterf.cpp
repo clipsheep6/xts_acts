@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct ff_f t[] = {
-#include "sanity/nextafterf.h"
 #include "special/nextafterf.h"
-
+#include "sanity/nextafterf.h"
 };
 
 using namespace testing::ext;

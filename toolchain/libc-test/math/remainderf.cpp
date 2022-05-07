@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct ff_f t[] = {
-#include "sanity/remainderf.h"
 #include "special/remainderf.h"
-
+#include "sanity/remainderf.h"
 };
 
 using namespace testing::ext;

@@ -6,8 +6,8 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-    #include "special/erfc.h"
-    #include "sanity/erfc.h"
+#include "special/erfc.h"
+#include "sanity/erfc.h"
 };
 
 using namespace testing::ext;

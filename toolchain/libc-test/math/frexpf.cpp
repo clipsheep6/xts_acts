@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct f_fi t[] = {
-#include "sanity/frexpf.h"
 #include "special/frexpf.h"
-
+#include "sanity/frexpf.h"
 };
 
 using namespace testing::ext;

@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-#include "sanity/nearbyintf.h"
 #include "special/nearbyintf.h"
-
+#include "sanity/nearbyintf.h"
 };
 
 using namespace testing::ext;

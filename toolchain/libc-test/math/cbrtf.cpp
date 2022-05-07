@@ -6,8 +6,8 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-    #include "special/cbrtf.h"
-    #include "sanity/cbrtf.h"
+#include "special/cbrtf.h"
+#include "sanity/cbrtf.h"
 };
 
 using namespace testing::ext;

@@ -6,8 +6,8 @@
 #include "gtest/gtest.h"
 
 static struct f_f t[] = {
-    #include "special/erfcf.h"
-    #include "sanity/erfcf.h"
+#include "special/erfcf.h"
+#include "sanity/erfcf.h"
 };
 
 using namespace std;

@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct dd_d t[] = {
-#include "sanity/fmax.h"
 #include "special/fmax.h"
-
+#include "sanity/fmax.h"
 };
 
 using namespace testing::ext;

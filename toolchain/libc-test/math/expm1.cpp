@@ -6,9 +6,9 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-    #include "sanity/expm1.h"
-    #include "special/expm1.h"
-    #include "crlibm/expm1.h"
+#include "sanity/expm1.h"
+#include "special/expm1.h"
+#include "crlibm/expm1.h"
 };
 
 using namespace testing::ext;

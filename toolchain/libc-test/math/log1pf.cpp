@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-#include "sanity/log1pf.h"
 #include "special/log1pf.h"
-
+#include "sanity/log1pf.h"
 };
 
 using namespace testing::ext;

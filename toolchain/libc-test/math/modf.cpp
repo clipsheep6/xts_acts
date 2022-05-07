@@ -6,8 +6,8 @@
 #include "mtest.h"
 
 static struct d_dd t[] = {
-#include "sanity/modf.h"
 #include "special/modf.h"
+#include "sanity/modf.h"
 };
 
 using namespace testing::ext;

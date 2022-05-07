@@ -6,8 +6,8 @@
 #include "mtest.h"
 
 static struct dd_di t[] = {
-#include "sanity/remquo.h"
 #include "special/remquo.h"
+#include "sanity/remquo.h"
 };
 
 using namespace testing::ext;

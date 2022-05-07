@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-#include "ucb/floorf.h"
 #include "sanity/floorf.h"
 #include "special/floorf.h"
-
+#include "ucb/floorf.h"
 };
 
 using namespace testing::ext;

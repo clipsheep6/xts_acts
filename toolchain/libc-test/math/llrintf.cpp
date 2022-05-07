@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct f_i t[] = {
-#include "sanity/llrintf.h"
 #include "special/llrintf.h"
-
+#include "sanity/llrintf.h"
 };
 
 using namespace testing::ext;

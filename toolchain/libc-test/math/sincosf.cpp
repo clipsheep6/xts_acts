@@ -6,8 +6,8 @@
 #include "mtest.h"
 
 static struct f_ff t[] = {
-#include "sanity/sincosf.h"
 #include "special/sincosf.h"
+#include "sanity/sincosf.h"
 };
 
 using namespace testing::ext;

@@ -6,8 +6,8 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-    #include "special/asinh.h"
-    #include "sanity/asinh.h"
+#include "sanity/asinh.h"
+#include "special/asinh.h"
 };
 
 using namespace testing::ext;

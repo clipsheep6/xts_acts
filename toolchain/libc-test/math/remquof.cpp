@@ -6,8 +6,8 @@
 #include "mtest.h"
 
 static struct ff_fi t[] = {
-#include "sanity/remquof.h"
 #include "special/remquof.h"
+#include "sanity/remquof.h"
 };
 
 using namespace testing::ext;

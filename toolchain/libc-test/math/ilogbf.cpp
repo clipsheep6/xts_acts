@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct f_i t[] = {
-#include "sanity/ilogbf.h"
 #include "special/ilogbf.h"
-
+#include "sanity/ilogbf.h"
 };
 
 using namespace testing::ext;

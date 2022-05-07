@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct d_di t[] = {
-#include "sanity/frexp.h"
 #include "special/frexp.h"
-
+#include "sanity/frexp.h"
 };
 
 using namespace testing::ext;

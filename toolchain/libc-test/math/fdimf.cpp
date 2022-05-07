@@ -6,8 +6,8 @@
 #include "mtest.h"
 
 static struct ff_f t[] = {
-    #include "special/fdimf.h"
-    #include "sanity/fdimf.h"
+#include "special/fdimf.h"
+#include "sanity/fdimf.h"
 };
 
 using namespace std;

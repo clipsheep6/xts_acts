@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-#include "ucb/tanh.h"
 #include "sanity/tanh.h"
 #include "special/tanh.h"
-
+#include "ucb/tanh.h"
 };
 
 using namespace testing::ext;

@@ -6,8 +6,8 @@
 #include "mtest.h"
 
 static struct fi_f t[] = {
-#include "sanity/ynf.h"
 #include "special/ynf.h"
+#include "sanity/ynf.h"
 };
 
 using namespace testing::ext;

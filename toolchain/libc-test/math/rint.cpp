@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-#include "sanity/rint.h"
 #include "special/rint.h"
-
+#include "sanity/rint.h"
 };
 
 using namespace testing::ext;

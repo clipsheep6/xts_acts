@@ -6,10 +6,10 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-    #include "ucb/atan.h"
-    #include "sanity/atan.h"
-    #include "special/atan.h"
-    #include "crlibm/atan.h"
+#include "ucb/atan.h"
+#include "sanity/atan.h"
+#include "special/atan.h"
+#include "crlibm/atan.h"
 };
 
 using namespace std;

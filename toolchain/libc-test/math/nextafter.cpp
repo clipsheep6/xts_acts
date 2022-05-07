@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct dd_d t[] = {
-#include "sanity/nextafter.h"
 #include "special/nextafter.h"
-
+#include "sanity/nextafter.h"
 };
 
 using namespace testing::ext;

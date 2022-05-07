@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-#include "ucb/sinhf.h"
 #include "sanity/sinhf.h"
 #include "special/sinhf.h"
-
+#include "ucb/sinhf.h"
 };
 
 using namespace testing::ext;

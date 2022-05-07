@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct ff_f t[] = {
-#include "ucb/hypotf.h"
 #include "sanity/hypotf.h"
 #include "special/hypotf.h"
-
+#include "ucb/hypotf.h"
 };
 
 using namespace testing::ext;

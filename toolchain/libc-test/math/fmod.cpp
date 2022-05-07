@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct dd_d t[] = {
-#include "ucb/fmod.h"
 #include "sanity/fmod.h"
 #include "special/fmod.h"
-
+#include "ucb/fmod.h"
 };
 
 using namespace testing::ext;

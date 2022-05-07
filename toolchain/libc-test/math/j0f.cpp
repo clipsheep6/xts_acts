@@ -5,9 +5,8 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-#include "sanity/j0f.h"
 #include "special/j0f.h"
-
+#include "sanity/j0f.h"
 };
 
 using namespace testing::ext;

@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-#include "sanity/round.h"
 #include "special/round.h"
-
+#include "sanity/round.h"
 };
 
 using namespace testing::ext;

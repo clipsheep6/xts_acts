@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct dd_d t[] = {
-#include "sanity/fmin.h"
 #include "special/fmin.h"
-
+#include "sanity/fmin.h"
 };
 
 using namespace testing::ext;

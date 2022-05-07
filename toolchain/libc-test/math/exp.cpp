@@ -6,10 +6,10 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-    #include "ucb/exp.h"
-    #include "sanity/exp.h"
-    #include "special/exp.h"
-    #include "crlibm/exp.h"
+#include "ucb/exp.h"
+#include "sanity/exp.h"
+#include "special/exp.h"
+#include "crlibm/exp.h"
 };
 
 using namespace testing::ext;

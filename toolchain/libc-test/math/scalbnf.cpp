@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct fi_f t[] = {
-#include "sanity/scalbnf.h"
 #include "special/scalbnf.h"
-
+#include "sanity/scalbnf.h"
 };
 
 using namespace testing::ext;

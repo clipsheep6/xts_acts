@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-#include "sanity/trunc.h"
 #include "special/trunc.h"
-
+#include "sanity/trunc.h"
 };
 
 using namespace testing::ext;

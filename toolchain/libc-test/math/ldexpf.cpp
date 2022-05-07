@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct fi_f t[] = {
-#include "sanity/ldexpf.h"
 #include "special/ldexpf.h"
-
+#include "sanity/ldexpf.h"
 };
 
 using namespace testing::ext;

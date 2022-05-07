@@ -6,8 +6,8 @@
 #include "mtest.h"
 
 static struct fff_f t[] = {
-#include "sanity/fmaf.h"
 #include "special/fmaf.h"
+#include "sanity/fmaf.h"
 };
 
 using namespace testing::ext;

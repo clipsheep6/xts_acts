@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct d_di t[] = {
-#include "sanity/lgamma_r.h"
 #include "special/lgamma_r.h"
-
+#include "sanity/lgamma_r.h"
 };
 
 using namespace testing::ext;

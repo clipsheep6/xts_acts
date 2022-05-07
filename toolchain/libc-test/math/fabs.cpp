@@ -6,9 +6,9 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-    #include "sanity/fabs.h"
-    #include "special/fabs.h"
-    #include "ucb/fabs.h"
+#include "sanity/fabs.h"
+#include "special/fabs.h"
+#include "ucb/fabs.h"
 };
 
 using namespace testing::ext;

@@ -6,9 +6,9 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-    #include "sanity/fabsf.h"
-    #include "special/fabsf.h"
-    #include "ucb/fabsf.h"
+#include "sanity/fabsf.h"
+#include "special/fabsf.h"
+#include "ucb/fabsf.h"
 };
 
 using namespace std;

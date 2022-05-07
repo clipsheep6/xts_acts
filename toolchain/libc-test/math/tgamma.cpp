@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-#include "sanity/tgamma.h"
 #include "special/tgamma.h"
-
+#include "sanity/tgamma.h"
 };
 
 using namespace testing::ext;

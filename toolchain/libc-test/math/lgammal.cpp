@@ -53,8 +53,8 @@ HWTEST_F(Lgammal, LgammalTest, Function | MediumTest | Level2)
             err++;
         }
         d = ulperrl(y, p->y, p->dy);
-        // TODO: 2 ulp errors allowed
-        EXPECT_FALSE((p->r == RN && fabs(d) > 2) || (!isnan(p->x) && p->x != -inf && !(p->e & DIVBYZERO) && yi != p->i));
+        EXPECT_FALSE((p->r == RN && fabs(d) > 2) ||
+        (!isnan(p->x) && p->x != -inf && !(p->e & DIVBYZERO) && yi != p->i));
         if ((p->r == RN && fabs(d) > 2) || (!isnan(p->x) && p->x != -inf && !(p->e & DIVBYZERO) && yi != p->i)) {
             printf("%s:%d: %s lgammal(%La) want %La,%lld got %La,%d ulperr %.3f = %a + %a\n",
                    p->file, p->line, rstr(p->r), p->x, p->y, p->i, y, yi, d, d - p->dy, p->dy);

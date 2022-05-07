@@ -6,9 +6,9 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-    #include "sanity/atanf.h"
-    #include "special/atanf.h"
-    #include "ucb/atanf.h"
+#include "sanity/atanf.h"
+#include "special/atanf.h"
+#include "ucb/atanf.h"
 };
 
 using namespace testing::ext;

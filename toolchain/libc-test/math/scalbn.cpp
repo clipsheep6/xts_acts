@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct di_d t[] = {
-#include "sanity/scalbn.h"
 #include "special/scalbn.h"
-
+#include "sanity/scalbn.h"
 };
 
 using namespace testing::ext;

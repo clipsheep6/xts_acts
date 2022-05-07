@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct dd_d t[] = {
-#include "ucb/hypot.h"
 #include "sanity/hypot.h"
 #include "special/hypot.h"
-
+#include "ucb/hypot.h"
 };
 
 using namespace testing::ext;

@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct ff_f t[] = {
-#include "ucb/fmodf.h"
 #include "sanity/fmodf.h"
 #include "special/fmodf.h"
-
+#include "ucb/fmodf.h"
 };
 
 using namespace testing::ext;

@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-#include "sanity/tgammaf.h"
 #include "special/tgammaf.h"
-
+#include "sanity/tgammaf.h"
 };
 
 using namespace testing::ext;
