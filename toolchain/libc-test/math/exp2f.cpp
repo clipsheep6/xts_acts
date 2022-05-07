@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-#include "sanity/exp2f.h"
-#include "special/exp2f.h"
-
+    #include "special/exp2f.h"
+    #include "sanity/exp2f.h"
 };
 
 using namespace testing::ext;

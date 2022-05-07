@@ -13,9 +13,9 @@ class PthreadCondSmasher : public testing::Test {};
 
 const char *VERSION = "POSIX threads";
 
-typedef pthread_mutex_t mutex;
-typedef pthread_cond_t condition;
-typedef pthread_t thread;
+using mutex = pthread_mutex_t;
+using condition = pthread_cond_t;
+using thread = pthread_t;
 
 #define mutex_init(M) pthread_mutex_init((M), 0)
 #define mutex_destroy pthread_mutex_destroy

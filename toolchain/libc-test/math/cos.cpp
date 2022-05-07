@@ -6,11 +6,10 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-#include "crlibm/cos.h"
-#include "ucb/cos.h"
-#include "sanity/cos.h"
-#include "special/cos.h"
-
+    #include "ucb/cos.h"
+    #include "sanity/cos.h"
+    #include "special/cos.h"
+    #include "crlibm/cos.h"
 };
 
 using namespace std;

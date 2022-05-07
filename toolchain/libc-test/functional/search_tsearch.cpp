@@ -89,7 +89,7 @@ struct e *set_kv(const char *k, int v)
     return (struct e *)(*p);
 }
 
-void *del(const char *k)
+static void *del(const char *k)
 {
     struct e et;
     et.k = k;

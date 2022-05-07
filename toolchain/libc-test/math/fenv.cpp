@@ -36,7 +36,6 @@ static struct {
 
 static void test_except()
 {
-    //#pragma STDC FENV_ACCESS ON
     int i, r;
     fenv_t env;
 
@@ -46,8 +45,7 @@ static void test_except()
         r = feraiseexcept(te[i].i);
         EXPECT_FALSE(r) << "feraiseexcept(" << te[i].name << ") returned" << r << endl;
         r = fetestexcept(FE_ALL_EXCEPT);
-        if (r != te[i].i)
-        {
+        if (r != te[i].i) {
 #if defined FE_OVERFLOW && defined FE_INEXACT
             if (te[i].i == FE_OVERFLOW && r == (FE_OVERFLOW | FE_INEXACT)) {
                 continue;
@@ -58,7 +56,7 @@ static void test_except()
                 continue;
             }
 #endif
-            printf("feraiseexcept(%s) want %d got %d\n",te[i].name, te[i].i, r);
+            printf("feraiseexcept(%s) want %d got %d\n", te[i].name, te[i].i, r);
         }
     }
 
@@ -79,8 +77,7 @@ static void test_except()
     EXPECT_EQ(r, FE_ALL_EXCEPT) << "fesetenv(&env) did not restore exceptions: 0x" << hex << r << endl;
 }
 
-static struct
-{
+static struct {
     char *name;
     int i;
 } tr[] = {
@@ -98,7 +95,6 @@ static struct
 
 static void test_round()
 {
-    //#pragma STDC FENV_ACCESS ON
     int i, r;
     fenv_t env;
     volatile float two100 = 0x1p100;
@@ -116,8 +112,8 @@ static void test_round()
         r = fesetround(tr[i].i);
         EXPECT_EQ(r, 0) << "fesetround(" << tr[i].name << ") = " << r << endl;
         r = fegetround();
-        EXPECT_EQ(r, tr[i].i) << "fegetround() = 0x" << hex << r 
-            << ", wanted 0x" << hex << tr[i].i << "  (" << tr[i].name << ")" << endl;
+        EXPECT_EQ(r, tr[i].i) << "fegetround() = 0x" << hex << r <<
+            ", wanted 0x" << hex << tr[i].i << "  (" << tr[i].name << ")" << endl;
     }
 
 #ifdef FE_UPWARD
@@ -133,11 +129,11 @@ static void test_round()
     EXPECT_EQ(r, FE_TONEAREST) << "fesetenv(FE_DFL_ENV) did not set FE_TONEAREST (0x"
                                << hex << FE_TONEAREST << "), got 0x" << hex << r << endl;
     x = two100 + 1;
-    EXPECT_FLOAT_EQ(x, two100) 
-        << "fesetenv(FE_DFL_ENV) did not set FE_TONEAREST, arithmetics rounds upward" << endl;
+    EXPECT_FLOAT_EQ(x, two100) <<
+        "fesetenv(FE_DFL_ENV) did not set FE_TONEAREST, arithmetics rounds upward" << endl;
     x = two100 - 1;
-    EXPECT_FLOAT_EQ(x, two100) 
-        << "fesetenv(FE_DFL_ENV) did not set FE_TONEAREST, arithmetics rounds downward or tozero" << endl;
+    EXPECT_FLOAT_EQ(x, two100) <<
+        "fesetenv(FE_DFL_ENV) did not set FE_TONEAREST, arithmetics rounds downward or tozero" << endl;
     r = fesetenv(&env);
     EXPECT_EQ(r, 0) << "fesetenv(&env) = " << r << endl;
     r = fegetround();

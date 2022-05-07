@@ -72,7 +72,7 @@ HWTEST_F(StringStrchr, StringStrchrTest, Function | MediumTest | Level2)
     N(string(a), 255);
     T("", 0, 0);
     T("a", 'a', 0);
-    T("a", (char)('a'+256), 0);
+    T("a", ('a'+256), 0);
     T("a", 0, 1);
     T("abb", 'b', 1);
     T("aabb", 'b', 2);

@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-#include "ucb/ceil.h"
-#include "sanity/ceil.h"
-#include "special/ceil.h"
-
+    #include "sanity/ceil.h"
+    #include "special/ceil.h"
+    #include "ucb/ceil.h"
 };
 
 using namespace std;

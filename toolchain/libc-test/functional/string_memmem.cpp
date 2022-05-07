@@ -9,7 +9,7 @@ using namespace std;
 using namespace testing::ext;
 class StringMemmem : public testing::Test {};
 
-void N(string s_s, string tail_l, string sub_b)
+static void N(string s_s, string tail_l, string sub_b)
 {
     char p[128] = {0};
     EXPECT_TRUE(strcpy_s(p, strlen(s_s.c_str())+1, s_s.c_str()) == 0);
@@ -19,7 +19,7 @@ void N(string s_s, string tail_l, string sub_b)
                     << " ," << strlen(sub_b.c_str()) << ") returned str+" << q - p << ", wanted 0" << endl;
 }
 
-void T(string s, string sub_b, int n)
+static void T(string s, string sub_b, int n)
 {
     const char *p = s.c_str();
     const char *sub = sub_b.c_str();

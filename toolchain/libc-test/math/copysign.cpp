@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct dd_d t[] = {
-#include "sanity/copysign.h"
-#include "special/copysign.h"
-
+    #include "special/copysign.h"
+    #include "sanity/copysign.h"
 };
 
 using namespace testing::ext;

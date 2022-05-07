@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-#include "ucb/fabs.h"
-#include "sanity/fabs.h"
-#include "special/fabs.h"
-
+    #include "sanity/fabs.h"
+    #include "special/fabs.h"
+    #include "ucb/fabs.h"
 };
 
 using namespace testing::ext;
@@ -22,7 +21,6 @@ class Fabs : public testing::Test {};
  */
 HWTEST_F(Fabs, FabsTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

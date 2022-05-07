@@ -6,23 +6,21 @@
 #include "gtest/gtest.h"
 
 static struct f_f t[] = {
-#include "sanity/erfcf.h"
-#include "special/erfcf.h"
-
+    #include "special/erfcf.h"
+    #include "sanity/erfcf.h"
 };
 
 using namespace std;
 using namespace testing::ext;
-class ErfcfSuite : public testing::Test {};
+class Erfcf : public testing::Test {};
 
 /**
  * @tc.name      : ErfcfTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(ErfcfSuite, ErfcfTest, Function | MediumTest | Level2)
+HWTEST_F(Erfcf, ErfcfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

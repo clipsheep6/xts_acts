@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct ff_f t[] = {
-#include "sanity/copysignf.h"
-#include "special/copysignf.h"
-
+    #include "special/copysignf.h"
+    #include "sanity/copysignf.h"
 };
 
 using namespace std;

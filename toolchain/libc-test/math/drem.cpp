@@ -1,8 +1,8 @@
 #include <cstdint>
 #include <cstdio>
 
-#include "mtest.h"
 #include "gtest/gtest.h"
+#include "mtest.h"
 
 static struct dd_d t[] = {
 #include "sanity/remainder.h"

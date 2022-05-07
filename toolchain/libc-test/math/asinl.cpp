@@ -29,7 +29,6 @@ class Asinl : public testing::Test {};
  */
 HWTEST_F(Asinl, AsinlTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     long double y;
     float d;
     int e, i, err = 0;

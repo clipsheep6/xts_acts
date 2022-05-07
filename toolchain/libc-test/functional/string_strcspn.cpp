@@ -7,13 +7,13 @@ using namespace std;
 using namespace testing::ext;
 class StringStrcspn : public testing::Test {};
 
-void  T(const char *s, const char *c, int n)
+static void T(const char *s, const char *c, int n)
 {
     const char *p = s;
     const char *q = c;
     size_t r = strcspn(p, q);
     EXPECT_EQ(r, n) << "strcspn(" << s << "," << c <<
-        ") returned " << (unsigned long)r << ", wanted " << (unsigned long)(n) << endl;
+        ") returned " << static_cast<unsigned long>(r) << ", wanted " << static_cast<unsigned long>(n) << endl;
 }
 
 /**

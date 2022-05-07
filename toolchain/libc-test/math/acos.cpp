@@ -6,11 +6,10 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-#include "crlibm/acos.h"
-#include "ucb/acos.h"
-#include "sanity/acos.h"
-#include "special/acos.h"
-
+    #include "ucb/acos.h"
+    #include "sanity/acos.h"
+    #include "special/acos.h"
+    #include "crlibm/acos.h"
 };
 
 using namespace testing::ext;

@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct dd_d t[] = {
-#include "ucb/atan2.h"
-#include "sanity/atan2.h"
-#include "special/atan2.h"
-
+    #include "sanity/atan2.h"
+    #include "special/atan2.h"
+    #include "ucb/atan2.h"
 };
 
 using namespace testing::ext;

@@ -6,21 +6,20 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-#include "ucb/atanf.h"
-#include "sanity/atanf.h"
-#include "special/atanf.h"
-
+    #include "sanity/atanf.h"
+    #include "special/atanf.h"
+    #include "ucb/atanf.h"
 };
 
 using namespace testing::ext;
-class AtanfSuite : public testing::Test {};
+class Atanf : public testing::Test {};
 
 /**
  * @tc.name      : AtanfTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(AtanfSuite, AtanfTest, Function | MediumTest | Level2)
+HWTEST_F(Atanf, AtanfTest, Function | MediumTest | Level2)
 {
     float y;
     float d;

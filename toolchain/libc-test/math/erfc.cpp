@@ -6,9 +6,8 @@
 #include "mtest.h"
 
 static struct d_d t[] = {
-#include "sanity/erfc.h"
-#include "special/erfc.h"
-
+    #include "special/erfc.h"
+    #include "sanity/erfc.h"
 };
 
 using namespace testing::ext;
@@ -21,7 +20,6 @@ class Erfc : public testing::Test {};
  */
 HWTEST_F(Erfc, ErfcTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     double y;
     float d;
     int e, i, err = 0;

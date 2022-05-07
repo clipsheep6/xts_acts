@@ -6,10 +6,9 @@
 #include "mtest.h"
 
 static struct f_f t[] = {
-#include "ucb/ceilf.h"
-#include "sanity/ceilf.h"
-#include "special/ceilf.h"
-
+    #include "sanity/ceilf.h"
+    #include "special/ceilf.h"
+    #include "ucb/ceilf.h"
 };
 
 using namespace testing::ext;

@@ -19,9 +19,8 @@ HWTEST_F(RegexecNsube, RegexecNsubTest, Function | MediumTest | Level2)
     int r;
 
     r = regcomp(&re, "abc", REG_NOSUB);
-    printf("line:%d r:%d\n",__LINE__,r);
     EXPECT_FALSE(r) << "regcomp failed: " << r << "\n" << endl;
-    r = regexec(&re, "zyx abc", 1, 0, 0);
+    r = regexec(&re, "zyx abc", 1, nullptr, 0);
     EXPECT_NE(REG_NOMATCH, r) << "regexec failed to match" << endl;
     EXPECT_FALSE(r) << "regexec returned invalid code: " << r << endl;
     regfree(&re);

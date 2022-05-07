@@ -18,14 +18,14 @@ static struct l_l t[] = {
 };
 
 using namespace testing::ext;
-class Atanhfl : public testing::Test {};
+class Atanhl : public testing::Test {};
 
 /**
  * @tc.name      : AtanhflTest
  * @tc.desc      :
  * @tc.level     : Level 2
  */
-HWTEST_F(Atanhfl, AtanhflTest, Function | MediumTest | Level2)
+HWTEST_F(Atanhl, AtanhflTest, Function | MediumTest | Level2)
 {
     long double y;
     float d;
