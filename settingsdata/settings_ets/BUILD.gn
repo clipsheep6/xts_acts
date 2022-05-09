@@ -17,8 +17,8 @@ ohos_js_hap_suite("SettingsEtsTest") {
   hap_profile = "./entry/src/main/config.json"
   deps = [
     ":settings_ets_assets",
-    ":settings_ets_test_assets",
     ":settings_ets_resources",
+    ":settings_ets_test_assets",
   ]
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"

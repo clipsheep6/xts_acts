@@ -17,8 +17,8 @@ ohos_js_hap_suite("ActsNetManagerHttpEtsTest") {
   hap_profile = "./entry/src/main/config.json"
   deps = [
     ":ace_demo_ets_assets",
-    ":ace_demo_ets_test_assets",
     ":ace_demo_ets_resources",
+    ":ace_demo_ets_test_assets",
   ]
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"

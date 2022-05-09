@@ -16,8 +16,8 @@ ohos_js_hap_suite("camera_standard_ets_hap") {
   hap_profile = "./src/main/config.json"
   deps = [
     ":camera_ets_assets",
-    ":camera_ets_test_assets",
     ":camera_ets_resources",
+    ":camera_ets_test_assets",
   ]
   ets2abc = true
 

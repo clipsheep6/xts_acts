@@ -17,8 +17,8 @@ ohos_js_hap_suite("ActsInputMethodEtsTest") {
   hap_profile = "./entry/src/main/config.json"
   deps = [
     ":inputMethod_ets_assets",
-    ":inputMethod_ets_test_assets",
     ":inputMethod_ets_resources",
+    ":inputMethod_ets_test_assets",
   ]
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"
