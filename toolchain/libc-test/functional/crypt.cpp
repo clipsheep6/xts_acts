@@ -8,7 +8,7 @@
     if (!p) { \
         p = "*"; \
     } \
-    EXPECT_FALSE((strcmp(p, h) != 0)) <<\
+    EXPECT_FALSE((strcmp(p, h) != 0)) << \
         "crypt(" << #k << ", \"" << (s) << "\") failed: got \"" << (p) << "\" want \"" << (h) << "\"" << endl; \
 } while (0)
 

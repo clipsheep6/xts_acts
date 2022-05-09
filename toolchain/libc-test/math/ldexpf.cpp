@@ -20,7 +20,6 @@ class Ldexpf : public testing::Test {};
  */
 HWTEST_F(Ldexpf, LdexpfTest, Function | MediumTest | Level2)
 {
-    //#pragma STDC FENV_ACCESS ON
     float y;
     float d;
     int e, i, err = 0;

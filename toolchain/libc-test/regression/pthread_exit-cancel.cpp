@@ -13,7 +13,7 @@ class Pthread_exitCancel : public testing::Test {};
 
 /**
  * @tc.name      : Pthread_exitCancelTest
- * @tc.desc      :
+ * @tc.desc      : test pthread exit and cancel
  * @tc.level     : Level 2
  */
 static void cleanup(void *arg)

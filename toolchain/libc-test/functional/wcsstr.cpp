@@ -7,14 +7,14 @@ using namespace std;
 using namespace testing::ext;
 class Wcsstr : public testing::Test {};
 
-void N_N(const wchar_t *s, const wchar_t *sub)
+static void N_N(const wchar_t *s, const wchar_t *sub)
 {
     const wchar_t *p = s;
     const wchar_t *q = wcsstr(p, sub);
     EXPECT_FALSE(q) << "wcsstr(" << s << "," << sub << ") returned str+" << q - p << ", wanted 0" << endl;
 }
 
-void T_W(const wchar_t *s, const wchar_t *sub, int n)
+static void T_W(const wchar_t *s, const wchar_t *sub, int n)
 {
     const wchar_t *p = s;
     const wchar_t *q = wcsstr(p, sub);

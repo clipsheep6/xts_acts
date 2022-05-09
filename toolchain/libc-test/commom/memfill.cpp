@@ -15,7 +15,7 @@ int t_memfill()
 {
     int r = 0;
     if (t_vmfill(nullptr, nullptr, 0) < 0) {
-        EXPECT_GE(t_vmfill(nullptr, nullptr, 0) , 0) << "vmfill failed: " << strerror(errno) << endl;
+        EXPECT_GE(t_vmfill(nullptr, nullptr, 0), 0) << "vmfill failed: " << strerror(errno) << endl;
         r = -1;
     }
     if (t_setrlim(RLIMIT_DATA, 0) < 0) {

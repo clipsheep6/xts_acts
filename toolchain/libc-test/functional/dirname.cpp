@@ -24,7 +24,7 @@ class Dirname : public testing::Test {};
  */
 HWTEST_F(Dirname, DirnameTest, Function | MediumTest | Level2)
 {
-    EXPECT_EQ(strcmp(dirname(0), "."), 0) << 
+    EXPECT_EQ(strcmp(dirname(0), "."), 0) <<
         "dirname(0) returned \"" << dirname(0) << "\"; expected \".\"" << endl;
     T("", ".");
     T("/usr/lib", "/usr");

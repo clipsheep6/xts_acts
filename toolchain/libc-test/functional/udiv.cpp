@@ -4,7 +4,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class Udiv: public testing::Test {};
+class Udiv : public testing::Test {};
 
 static struct {
     uint64_t x, y, div, mod;

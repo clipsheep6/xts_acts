@@ -24,7 +24,7 @@ static void handler(int sig)
     stack_t ss;
 
     i = reinterpret_cast<uintptr_t>(&i);
-    EXPECT_FALSE(i < (uintptr_t)stack || i >= (uintptr_t)stack + SIGSTKSZ) << 
+    EXPECT_FALSE(i < (uintptr_t)stack || i >= (uintptr_t)stack + SIGSTKSZ) <<
         "signal handler was not invoked on the altstack" << endl;
     T(sigaltstack(0, &ss));
     EXPECT_FALSE(ss.ss_flags != SS_ONSTACK) << "ss_flags is not SS_ONSTACK in the signal handler" << endl;

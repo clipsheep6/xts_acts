@@ -20,7 +20,7 @@
 
 using namespace std;
 using namespace testing::ext;
-class FpclassifyInvalidLd80 : public testing::Test{};
+class FpclassifyInvalidLd80 : public testing::Test {};
 
 #if LDBL_MANT_DIG == 64
 static char *strclass(int c)

@@ -23,8 +23,8 @@ class BaseName : public testing::Test {};
  */
 HWTEST_F(BaseName, BaseNameTest, Function | MediumTest | Level2)
 {
-    EXPECT_EQ(0, strcmp(basename(0), ".")) 
-        << "basename(0) returned \"" << basename(0) << "\"; expected \".\"" << endl;
+    EXPECT_EQ(0, strcmp(basename(0), ".")) <<
+        "basename(0) returned \"" << basename(0) << "\"; expected \".\"" << endl;
     T(const_cast<char*>(""), ".");
     T("/usr/lib", "lib");
     T("/usr/", "usr");

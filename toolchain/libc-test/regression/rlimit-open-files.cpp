@@ -24,7 +24,7 @@ HWTEST_F(RlimitOpenFiles, RlimitOpenFilesTest, Function | MediumTest | Level2)
 
     rl.rlim_max = lim;
     rl.rlim_cur = lim;
-    EXPECT_FALSE(setrlimit(r, &rl)) << 
+    EXPECT_FALSE(setrlimit(r, &rl)) <<
         "setrlimit(" << r << ", " << lim << ") failed: " << strerror(errno) << endl;
     EXPECT_FALSE(getrlimit(r, &rl)) << "getrlimit(" << r << ") failed: " << strerror(errno) << endl;
 

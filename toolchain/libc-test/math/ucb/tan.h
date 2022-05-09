@@ -152,7 +152,7 @@ TT(RZ,             -0x1.2p-1071,             -0x1.2p-1071,          0x0p+0, INEX
 TT(RZ,               -0x1p-1024,               -0x1p-1024,          0x0p+0, INEXACT|UNDERFLOW)
 TT(RZ,               -0x1p-1023,               -0x1p-1023,          0x0p+0, INEXACT|UNDERFLOW)
 TT(RZ, -0x1.ffffffffffffcp-1023, -0x1.ffffffffffffcp-1023,          0x0p+0, INEXACT|UNDERFLOW)
-TT(RZ,  -0x1.ffffffffffffep-1023 ,-0x1.ffffffffffffep-1023,          0x0p+0, INEXACT|UNDERFLOW)
+TT(RZ,  -0x1.ffffffffffffep-1023, -0x1.ffffffffffffep-1023,          0x0p+0, INEXACT|UNDERFLOW)
 TT(RZ,                      NAN,                      NAN,          0x0p+0, 0)
 TT(RZ,                      NAN,                      NAN,          0x0p+0, 0)
 TT(RZ,                      inf,                      NAN,          0x0p+0, INVALID)

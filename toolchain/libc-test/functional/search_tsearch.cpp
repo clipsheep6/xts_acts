@@ -61,7 +61,7 @@ static void getparent(const void *node, VISIT v, int d)
     }
 }
 
-struct e *get(const char *k)
+static struct e *get(const char *k)
 {
     struct e et;
     et.k = k;
@@ -72,7 +72,7 @@ struct e *get(const char *k)
     return (struct e *)(*p);
 }
 
-struct e *set_kv(const char *k, int v)
+static struct e *set_kv(const char *k, int v)
 {
     void **p;
     cur->k = k;

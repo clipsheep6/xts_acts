@@ -33,6 +33,6 @@ HWTEST_F(Statvfs, SscanfEofTest, Function | MediumTest | Level2)
                                     << ") than total file nodes (" << (unsigned long long)f.f_files << ")" << endl;
     EXPECT_GE(f.f_files, f.f_favail) << "/ has more avail file nodes (" << (unsigned long long)f.f_favail
                                      << ") than total file nodes (" << (unsigned long long)f.f_files << ")" << endl;
-    EXPECT_FALSE(f.f_namemax > 1 << 16 || f.f_namemax < 8) << 
+    EXPECT_FALSE(f.f_namemax > 1 << 16 || f.f_namemax < 8) <<
         "/ has bogus f_namemax: " << (unsigned long)f.f_namemax << endl;
 }

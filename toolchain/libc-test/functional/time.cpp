@@ -34,12 +34,12 @@ static char *tm_str(struct tm tm)
              "s=%02d m=%02d h=%02d mday=%02d mon=%02d year=%04d wday=%d yday=%d isdst=%d",
              tm.tm_sec, tm.tm_min, tm.tm_hour,
              tm.tm_mday, tm.tm_mon, tm.tm_year,
-             tm.tm_wday, tm.tm_yday, tm.tm_isdst),-1);
+             tm.tm_wday, tm.tm_yday, tm.tm_isdst), -1);
     return b[i];
 }
-struct tm tmmy;
+static struct tm tmmy;
 static void TM(int ss, int mm, int hh, int md, int mo, int yr,
-        int wd, int yd, int dst)
+    int wd, int yd, int dst)
 {
     tmmy.tm_sec = ss;
     tmmy.tm_min = mm;

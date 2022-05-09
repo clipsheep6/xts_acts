@@ -18,7 +18,7 @@ class SemOpen : public testing::Test {};
 
 /**
  * @tc.name      : SemOpenTest
- * @tc.desc      : 
+ * @tc.desc      :
  * @tc.level     : Level 2
  */
 HWTEST_F(SemOpen, SemOpenTest, Function | MediumTest | Level2)

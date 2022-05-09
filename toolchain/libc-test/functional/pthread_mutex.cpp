@@ -3,7 +3,7 @@
 #include <cerrno>
 #include <cstring>
 #include <pthread.h>
-#include <semaphore.h>  
+#include <semaphore.h>
 
 #include "gtest/gtest.h"
 

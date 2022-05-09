@@ -205,7 +205,7 @@ static void test_round_add(void)
         EXPECT_FALSE(!checkcr(y, p->y, p->r));
         if (!checkcr(y, p->y, p->r)) {
             printf("%s:%d: %s %a+%a want %a got %a ulperr %.3f = %a + %a\n",
-                   p->file, p->line, rstr(p->r), p->x, p->x2, p->y, y, d, d - p->dy, p->dy);
+                p->file, p->line, rstr(p->r), p->x, p->x2, p->y, y, d, d-p->dy, p->dy);
             test_status = 1;
         }
     }

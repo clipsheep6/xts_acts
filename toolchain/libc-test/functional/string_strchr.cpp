@@ -48,7 +48,7 @@ static void  N(string s_s, char c)
 
 /**
  * @tc.name      : StringStrchrTest
- * @tc.desc      : 
+ * @tc.desc      :
  * @tc.level     : Level 2
  */
 HWTEST_F(StringStrchr, StringStrchrTest, Function | MediumTest | Level2)

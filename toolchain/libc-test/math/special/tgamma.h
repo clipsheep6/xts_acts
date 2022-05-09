@@ -1,7 +1,6 @@
 #ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_TGAMMA_H
 #define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_TGAMMA_H
 
-// special cases
 TT(RN,                  0x0p+0,                      inf,          0x0p+0, DIVBYZERO)
 TT(RN,                 -0x0p+0,                     -inf,          0x0p+0, DIVBYZERO)
 TT(RN,                  0x1p+0,                   0x1p+0,          0x0p+0, 0)
@@ -11,7 +10,6 @@ TT(RN,                 -0x1p+1,                      NAN,          0x0p+0, INVAL
 TT(RN,                     inf,                      inf,          0x0p+0, 0)
 TT(RN,                    -inf,                      NAN,          0x0p+0, INVALID)
 TT(RN,                     NAN,                      NAN,          0x0p+0, 0)
-// positive int 
 TT(RN,                  0x1p+1,                   0x1p+0,          0x0p+0, 0)
 TT(RN,                  0x1p+2,                 0x1.8p+2,          0x0p+0, INEXACT)
 TT(RN,                0x1.8p+1,                   0x1p+1,          0x0p+0, INEXACT)
@@ -43,7 +41,6 @@ TT(RN,               0x1.54p+7,  0x1.f2054eb4d96ecp+1011,  -0x1.5e1f86p-2, INEXA
 TT(RN,               0x1.56p+7,  0x1.4ab7864418639p+1019,   0x1.bbf88cp-5, INEXACT)
 TT(RN,               0x1.58p+7,                      inf,          0x0p+0, INEXACT|OVERFLOW)
 TT(RN,                  0x1p+8,                      inf,          0x0p+0, INEXACT|OVERFLOW)
-// close to poles 
 TT(RN,                 0x1p-50,    0x1.ffffffffffffbp+49,  -0x1.877304p-2, INEXACT)
 TT(RN,                 0x1p-51,    0x1.ffffffffffffep+50,   0x1.3c467ep-2, INEXACT)
 TT(RN,                 0x1p-52,    0x1.fffffffffffffp+51,   0x1.3c467ep-3, INEXACT)
@@ -116,7 +113,6 @@ TT(RN,   -0x1.6ffffffffffffp+7,                   0x0p+0,  -0x1.05cc0ep-5, INEXA
 TT(RN,   -0x1.7000000000001p+7,                  -0x0p+0,   0x1.05cc0ep-5, INEXACT|UNDERFLOW)
 TT(RN,   -0x1.9000000000001p+7,                  -0x0p+0, 0x1.894d44p-127, INEXACT|UNDERFLOW)
 TT(RN,   -0x1.9200000000001p+7,                   0x0p+0,  -0x1.f4ecp-135, INEXACT|UNDERFLOW)
-// (negative) half values 
 TT(RN,                  0x1p-1,     0x1.c5bf891b4ef6bp+0,   0x1.618f14p-2, INEXACT)
 TT(RN,                 -0x1p-1,    -0x1.c5bf891b4ef6bp+1,  -0x1.618f14p-2, INEXACT)
 TT(RN,               -0x1.8p+0,     0x1.2e7fb0bcdf4f2p+1,    0x1.d7697p-3, INEXACT)
@@ -151,7 +147,6 @@ TT(RN,              -0x1.61p+7,            -0x1.e4p-1067,  -0x1.4c43aap-2, INEXA
 TT(RN,              -0x1.63p+7,                0x1p-1074,   -0x1.723acp-2, INEXACT|UNDERFLOW)
 TT(RN,              -0x1.65p+7,                  -0x0p+0,   0x1.f3e44ep-8, INEXACT|UNDERFLOW)
 TT(RN,             -0x1.008p+8,                  -0x0p+0,          0x0p+0, INEXACT|UNDERFLOW)
-// various tests 
 TT(RN,   -0x1.facae9c9e7105p+5,   0x1.a98422d742f9fp-291,   0x1.dc5df6p-2, INEXACT)
 TT(RN,   -0x1.fdce012aee935p+6,   0x1.46480e4894aafp-711,  -0x1.0c602ap-2, INEXACT)
 TT(RN,    0x1.1a781948507bcp+7,   0x1.9c3e83141654dp+802,   0x1.09f0d4p-3, INEXACT)
@@ -164,7 +159,5 @@ TT(RN,    0x1.edd3c07ee0b0bp+6,   0x1.6acf6a2fdfaefp+677,   0x1.4cab56p-2, INEXA
 TT(RN,   -0x1.edd3c07ee0b0bp+6,    0x1.28e9bf97c82ep-683,  -0x1.064766p-2, INEXACT)
 TT(RN,    0x1.8b0fcd324d5a2p+3,    0x1.64165e040d97cp+26,   0x1.faf78cp-2, INEXACT)
 TT(RN,   -0x1.8b0fcd324d5a2p+3,   -0x1.a77825d8a2292p-29,  -0x1.4c75e2p-2, INEXACT)
-
-
 
 #endif

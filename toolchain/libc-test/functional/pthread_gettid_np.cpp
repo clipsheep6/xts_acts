@@ -17,10 +17,10 @@ class PthreadGettidNp : public testing::Test {};
 
 static pthread_mutex_t mutex_t;
 
-void *pthread_test(void *arg)
+static void *pthread_test(void *arg)
 {
     pthread_mutex_lock(&mutex_t);
-    *((pid_t *)arg) = gettid();
+    *(reinterpret_cast<pid_t *>(arg)) = gettid();
     pthread_mutex_unlock(&mutex_t);
     return nullptr;
 }

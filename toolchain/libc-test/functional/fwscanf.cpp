@@ -29,7 +29,7 @@ static FILE *writetemp(const char *data)
     FILE *f = tmpfile();
     size_t n = strlen(data);
     if (!f) {
-        return nullptr;  
+        return nullptr;
     }
     if (write(fileno(f), data, n) != n) {
         EXPECT_EQ(write(fileno(f), data, n), n) << "write: " << strerror(errno) << endl;

@@ -1,5 +1,5 @@
 #ifndef TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_LOGBF_H
-#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_LOGBF_H 
+#define TOOLCHAIN_LIBC_TEST_MATH_SPECIAL_LOGBF_H
 
 TT(RN,          0x0p+0,            -inf,          0x0p+0, DIVBYZERO)
 TT(RN,         -0x0p+0,            -inf,          0x0p+0, DIVBYZERO)

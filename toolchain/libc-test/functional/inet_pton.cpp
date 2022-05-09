@@ -21,7 +21,7 @@ static int digit(int c)
     return c;
 }
 
-static void tobin(void *d,const char *s)
+static void tobin(void *d, const char *s)
 {
     int i, cont = 2, cont2 = 16;
     unsigned char *p = (unsigned char *)d;
@@ -41,7 +41,7 @@ static void tohex(char *d, void *s, int n)
     }
 }
 
-void V6(string src_c, int ret, string hex_x)
+static void V6(string src_c, int ret, string hex_x)
 {
     int r, n = 16, n2 = 24;
     char binaddr[16] = {0};
@@ -74,7 +74,7 @@ void V6(string src_c, int ret, string hex_x)
 
 
 // ret and hex are the results of inet_pton and inet_addr respectively
-void V4(string src_c, int ret, string hex_x)
+static void V4(string src_c, int ret, string hex_x)
 {
     int r;
     uint32_t a, n = 4;

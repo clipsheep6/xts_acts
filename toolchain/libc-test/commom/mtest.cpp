@@ -177,7 +177,6 @@ int checkexcept(int got, int want, int r)
 #endif
     }
     return (got|INEXACT|UNDERFLOW) == (want|INEXACT|UNDERFLOW);
-
 }
 
 int checkulp(float d, int r)
