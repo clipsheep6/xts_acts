@@ -17,6 +17,7 @@ ohos_js_hap_suite("ActsHiTraceChainTest") {
   hap_profile = "./entry/src/main/config.json"
   deps = [
     ":hitracechain_ets_assets",
+    ":hitracechain_ets_test_assets",
     ":hitracechain_ets_resources",
   ]
   ets2abc = true
@@ -25,6 +26,9 @@ ohos_js_hap_suite("ActsHiTraceChainTest") {
 }
 ohos_js_assets("hitracechain_ets_assets") {
   source_dir = "./entry/src/main/ets/MainAbility"
+}
+ohos_js_assets("hitracechain_ets_test_assets") {
+  source_dir = "./entry/src/main/ets/TestAbility"
 }
 ohos_resources("hitracechain_ets_resources") {
   sources = [ "./entry/src/main/resources" ]

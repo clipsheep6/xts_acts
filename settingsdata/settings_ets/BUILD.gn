@@ -17,6 +17,7 @@ ohos_js_hap_suite("SettingsEtsTest") {
   hap_profile = "./entry/src/main/config.json"
   deps = [
     ":settings_ets_assets",
+    ":settings_ets_test_assets",
     ":settings_ets_resources",
   ]
   ets2abc = true
@@ -25,6 +26,9 @@ ohos_js_hap_suite("SettingsEtsTest") {
 }
 ohos_js_assets("settings_ets_assets") {
   source_dir = "./entry/src/main/ets/MainAbility"
+}
+ohos_js_assets("settings_ets_test_assets") {
+  source_dir = "./entry/src/main/ets/TestAbility"
 }
 ohos_resources("settings_ets_resources") {
   sources = [ "./entry/src/main/resources" ]

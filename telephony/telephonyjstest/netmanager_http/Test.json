@@ -3,7 +3,8 @@
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "1800000",
-        "package": "com.ohos.netmanagerhttp",
+        "bundle-name": "com.ohos.netmanagerhttp",
+        "package-name": "com.ohos.netmanagerhttp",
         "shell-timeout": "60000"
     },
     "kits": [

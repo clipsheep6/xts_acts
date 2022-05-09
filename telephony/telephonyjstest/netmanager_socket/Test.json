@@ -3,7 +3,8 @@
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "1800000",
-        "package": "com.ohos.netmanagersocket",
+        "bundle-name": "com.ohos.netmanagersocket",
+        "package-name": "com.ohos.netmanagersocket",
         "shell-timeout": "60000"
     },
     "kits": [

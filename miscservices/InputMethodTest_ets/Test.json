@@ -3,7 +3,8 @@
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "600000",
-        "package": "com.open.harmony.inputMethodtest",
+        "bundle-name": "com.open.harmony.inputMethodtest",
+        "package-name": "com.open.harmony.inputMethodtest",
         "shell-timeout": "60000"
     },
     "kits": [

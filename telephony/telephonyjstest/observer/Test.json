@@ -3,7 +3,8 @@
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "1500000",
-        "package": "com.ohos.observer",
+        "bundle-name": "com.ohos.observer",
+        "package-name": "com.ohos.observer",
         "shell-timeout": "60000"
     },
     "kits": [
