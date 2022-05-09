@@ -3,7 +3,8 @@
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "1800000",
-        "package": "ohos.hitracechain.test",
+	"bundle-name": "ohos.hitracechain.test",
+        "package-name": "ohos.hitracechain.test",
         "shell-timeout": "60000"
     },
     "kits": [

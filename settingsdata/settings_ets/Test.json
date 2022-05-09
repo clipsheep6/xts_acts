@@ -3,7 +3,7 @@
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "600000",
-		"bundle-name": "com.open.harmony.settings",
+        "bundle-name": "com.open.harmony.settings",
         "package-name": "com.open.harmony.settings",
         "shell-timeout": "60000"
     },
