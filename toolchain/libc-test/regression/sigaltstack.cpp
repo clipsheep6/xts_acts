@@ -58,7 +58,7 @@ HWTEST_F(Sigaltstack, SigaltstackTest, Function | MediumTest | Level2)
     errno = 0;
     ss.ss_flags = -1;
     ss.ss_size = MINSIGSTKSZ;
-    EXPECT_FALSE(sigaltstack(&ss, 0) != -1 || errno != EINVAL) << 
+    EXPECT_FALSE(sigaltstack(&ss, 0) != -1 || errno != EINVAL) <<
         "sigaltstack with bad ss_flags should have failed with EINVAL, ""got "<< strerror(errno) << endl;
     errno = 0;
     T(sigaltstack(0, 0));

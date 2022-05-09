@@ -53,7 +53,7 @@ HWTEST_F(Modfl, ModflTest, Function | MediumTest | Level2)
         EXPECT_FALSE(!checkcr(y, p->y, p->r) || !checkcr(yi, p->y2, p->r));
         if (!checkcr(y, p->y, p->r) || !checkcr(yi, p->y2, p->r)) {
             printf("%s:%d: %s modf(%La) want %La,%La got %La,%La, ulperr %.3f = %a + %a, %.3f = %a + %a\n",
-                   p->file, p->line, rstr(p->r), p->x, p->y, p->y2, y, yi, d, d - p->dy, p->dy, di, di - p->dy2, p->dy2);
+                p->file, p->line, rstr(p->r), p->x, p->y, p->y2, y, yi, d, d - p->dy, p->dy, di, di - p->dy2, p->dy2);
             err++;
         }
     }
