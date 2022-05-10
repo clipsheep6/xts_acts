@@ -1,7 +1,7 @@
 {
     "description": "Configuration for hjunit demo Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "1500000",
         "bundle-name": "com.ohos.observer",
         "package-name": "com.ohos.observer",

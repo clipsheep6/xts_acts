@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+export default class TestAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log('TestAbility onCreate')
+    }
 
-export default {
-  onCreate() {
-    console.info('Application onCreate')
-  },
-  onDestroy() {
-    console.info('Application onDestroy')
-  },
-}
+    onDestroy() {
+        console.log('TestAbility onDestroy')
+    }
+};
