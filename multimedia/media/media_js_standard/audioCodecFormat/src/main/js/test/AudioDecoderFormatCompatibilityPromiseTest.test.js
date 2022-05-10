@@ -41,7 +41,7 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
     let sampleRateList = [];
     let ES_LENGTH = 0;
     let ES_DICT = {};
-    let samplerate = 44.1;
+    let rate = 44.1;
     let isMp3 = false;
     let isVorbis = false;
     let readPath;
@@ -2127,7 +2127,7 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         sampleRateList = [];
         ES = [];
         ES_LENGTH = 0;
-        samplerate = 44.1;
+        rate = 44.1;
         isMp3 = false;
         isVorbis = false;
         ES_DICT = {}
@@ -2173,7 +2173,7 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         outputQueue = [];
         ES = [];
         ES_LENGTH = 0;
-        samplerate = 44.1;
+        rate = 44.1;
         isMp3 = false;
         isVorbis = false;
     }
@@ -2321,9 +2321,9 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
                 }
             }
             if (isMp3) {
-                timestamp += ES[1]/samplerate;
+                timestamp += ES[1]/rate;
             } else {
-                timestamp += ES[frameCnt]/samplerate;
+                timestamp += ES[frameCnt]/rate;
             }
             frameCnt += 1;
             audioDecodeProcessor.pushInputData(inputobject).then(() => {
@@ -2404,15 +2404,15 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         await beforeTest();      
         let fileName = ES_LIST.shift();
         let configList = fileName.split("_").reverse();
-        let sample_rate = Number(configList[0]);
-        let channel_count = Number(configList[1]);
+        let sampleRate = Number(configList[0]);
+        let channelCount = Number(configList[1]);
         let mime = 'audio/mp4a-latm';
-        let savepath = `${fileName}.pcm`;
-        let srcpath = `${fileName}.aac`;
-        samplerate = (sample_rate / 1000);
+        let savePath = `${fileName}.pcm`;
+        let srcPath = `${fileName}.aac`;
+        rate = (sampleRate / 1000);
         let mediaDescription = {
-            "channel_count": channel_count,
-            "sample_rate": sample_rate,
+            "channel_count": channelCount,
+            "sample_rate": sampleRate,
             "audio_sample_format": 1,
         }
         needGetMediaDes = true;
@@ -2429,17 +2429,17 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
                 codecProfile = 4;
             }
             mediaDescription = {
-                "channel_count": channel_count,
-                "sample_rate": sample_rate,
+                "channel_count": channelCount,
+                "sample_rate": sampleRate,
                 "audio_sample_format": 1,
                 "codec_profile" : codecProfile,
             }
         }else if(configList[2] === 'FLAC') {
             mime = 'audio/flac';
-            srcpath = `${fileName}.flac`
+            srcPath = `${fileName}.flac`
         }
         console.info('ES_LENGTH: ' + ES_LENGTH);
-        await decoderSource(mediaDescription, savepath, mime, srcpath, done);
+        await decoderSource(mediaDescription, savePath, mime, srcPath, done);
 
     });
 
@@ -2473,12 +2473,12 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         }
     }
 
-    async function decoderSource(config, savepath, mime, readPath, done) {
+    async function decoderSource(config, savePath, mime, readPath, done) {
         console.info('start test case');
         let mediaDescription = config;
         let decodeMime = mime;
 
-        await getFdWrite(savepath);
+        await getFdWrite(savePath);
         console.info('case getFdWrite success');
         await getFdRead(readPath, done);
         console.info('case getFdRead success');
