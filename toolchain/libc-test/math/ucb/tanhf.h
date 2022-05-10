@@ -230,6 +230,4 @@ TT(RZ, -0x1.fffff8p-127, -0x1.fffff4p-127,          0x1p+0, INEXACT|UNDERFLOW)
 TT(RZ, -0x1.fffffcp-127, -0x1.fffff8p-127,          0x1p+0, INEXACT|UNDERFLOW)
 TT(RZ,        -0x1p-126, -0x1.fffffcp-127,          0x1p+0, INEXACT|UNDERFLOW)
 
-
-
 #endif

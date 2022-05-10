@@ -41,7 +41,7 @@ static int chkrepeat(long *x)
 static unsigned orx;
 static int chkones(long *x)
 {
-    int i, n1 = 20;;
+    int i, n1 = 20;
     orx = 0;
     for (i = 0; i < n1; i++) {
         orx |= x[i];
@@ -54,11 +54,11 @@ static void checkseed(unsigned seed, long *x)
     int i, n1 = 100;
     srandom(seed);
     for (i = 0; i < n1; i++) {
-        x[i] = random() ;
+        x[i] = random();
     }
     EXPECT_FALSE(chkmissing(x)) << "weak seed " << seed << ", missing pattern in low bits" << endl;
     EXPECT_FALSE(chkrepeat(x)) << "weak seed " << seed << ", exact repeats" << endl;
-    EXPECT_FALSE(chkones(x))<< "weak seed " << seed << ", or pattern: 0x" << orx << endl;;
+    EXPECT_FALSE(chkones(x))<< "weak seed " << seed << ", or pattern: 0x" << orx << endl;
 }
 
 /**

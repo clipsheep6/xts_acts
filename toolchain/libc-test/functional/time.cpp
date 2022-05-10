@@ -31,12 +31,13 @@ static char *tm_str(struct tm tm)
     static char b[4][64];
     i = (i + 1) % n;
     EXPECT_NE(snprintf_s(b[i], sizeof b[i], sizeof b[i],
-             "s=%02d m=%02d h=%02d mday=%02d mon=%02d year=%04d wday=%d yday=%d isdst=%d",
-             tm.tm_sec, tm.tm_min, tm.tm_hour,
-             tm.tm_mday, tm.tm_mon, tm.tm_year,
-             tm.tm_wday, tm.tm_yday, tm.tm_isdst), -1);
+        "s=%02d m=%02d h=%02d mday=%02d mon=%02d year=%04d wday=%d yday=%d isdst=%d",
+        tm.tm_sec, tm.tm_min, tm.tm_hour,
+        tm.tm_mday, tm.tm_mon, tm.tm_year,
+        tm.tm_wday, tm.tm_yday, tm.tm_isdst), -1);
     return b[i];
 }
+
 static struct tm tmmy;
 static void TM(int ss, int mm, int hh, int md, int mo, int yr,
     int wd, int yd, int dst)
@@ -60,12 +61,12 @@ static void sec2tm(time_t t, string m)
     errno = 0;
     tm = gmtime(&t);
     EXPECT_EQ(errno, 0) << m <<
-        ": gmtime((time_t)" << (long long)t << ") should not set errno, got " << strerror(errno);
+        ": gmtime((time_t)" << static_cast<long long>(t) << ") should not set errno, got " << strerror(errno);
     errno = 0;
     r = mktime(tm);
     EXPECT_EQ(errno, 0) << m << ": mktime(" << tm_str(*tm) << ") should not set errno, got " << strerror(errno);
-    EXPECT_EQ(t, r) << m << ": mktime(gmtime(" << (long long)t  <<
-        ")) roundtrip failed: got " << (long long)r << " (gmtime is " << tm_str(*tm) << ")" << endl;
+    EXPECT_EQ(t, r) << m << ": mktime(gmtime(" << static_cast<long long>(t) <<
+        ")) roundtrip failed: got " << static_cast<long long>(r) << " (gmtime is " << tm_str(*tm) << ")" << endl;
 }
 
 static void tm2sec(struct tm *tm, int big, string m)
@@ -77,7 +78,7 @@ static void tm2sec(struct tm *tm, int big, string m)
     errno = 0;
     t = mktime(tm);
     EXPECT_FALSE(overflow && t != -1) << m <<
-        ": mktime(" << tm_str(*tm) << ") expected -1, got (time_t)" << (long)t << endl;
+        ": mktime(" << tm_str(*tm) << ") expected -1, got (time_t)" << static_cast<long>(t) << endl;
     EXPECT_FALSE(overflow && errno != EOVERFLOW) << m << ": mktime(" << tm_str(*tm)  <<
         ") expected EOVERFLOW (" << strerror(EOVERFLOW) << "), got (" << strerror(errno) << ")" << endl;
 

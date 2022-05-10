@@ -48,8 +48,9 @@ static void checkStrptimeTz(const char *s, int h, int m)
     const char *ret;
 
     ret = strptime(s, "%z", &tm);
-    ASSERT_FALSE(!ret || *ret != '\0') << "\"%%z\": failed to parse \"" << s << "\"" << endl;;
-    EXPECT_EQ(tm.tm_gmtoff, expected) << "\"%%z\": for \""<< s << "\" expected tm_gmtoff" << tm.tm_gmtoff << "but got " << expected << endl;
+    ASSERT_FALSE(!ret || *ret != '\0') << "\"%%z\": failed to parse \"" << s << "\"" << endl;
+    EXPECT_EQ(tm.tm_gmtoff, expected) << "\"%%z\": for \""<< s <<
+        "\" expected tm_gmtoff" << tm.tm_gmtoff << "but got " << expected << endl;
 }
  
 static struct tm tm1 = {

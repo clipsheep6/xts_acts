@@ -10,7 +10,7 @@ class Sigreturn : public testing::Test {};
 
 static volatile sig_atomic_t x;
 
-void handler(int s)
+static void handler(int s)
 {
     x = 1;
 }

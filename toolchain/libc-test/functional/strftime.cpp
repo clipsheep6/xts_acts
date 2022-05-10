@@ -5,45 +5,19 @@
 
 #include "gtest/gtest.h"
 
-/**
- * @brief  register a test suit named "StrfTimeSuite"
- * @param  test subsystem name is libc
- * @param  example module name is  Functional
- * @param  test suit name is  StrfTimeSuite
- */
-
 using namespace std;
 using namespace testing::ext;
-class StrfTimeSuite : public testing::Test
-{
-protected:
-    // Preset action of the test suite, which is executed before the first test case
-    static void SetUpTestCase(void)
-    {
-    }
-    // Test suite cleanup action, which is executed after the last test case
-    static void TearDownTestCase(void)
-    {
-    }
-    // Preset action of the test case
-    virtual void SetUp()
-    {
-    }
-    // Cleanup action of the test case
-    virtual void TearDown()
-    {
-    }
-};
+class StrfTimeSuite : public testing::Test {};
 
 /**
  * @tc.name      : StrfTimeTest
- * @tc.desc      : Test StrfTimeTest
+ * @tc.desc      :
  * @tc.level     : Level 2
  */
 static char buffer[100];
 
-static void checkStrftime(const char *format, const struct tm *tm,
-                          const char *expected)
+static void checkStrftime(const char *format,
+    const struct tm *tm, const char *expected)
 {
     size_t resultLength = strftime(buffer, sizeof(buffer), format, tm);
     EXPECT_FALSE((resultLength != 0) && (strcmp(buffer, expected) != 0)) <<
@@ -61,7 +35,8 @@ static struct tm tm1 = {
     .tm_year = 2016 - 1900,
     .tm_wday = 0,
     .tm_yday = 2,
-    .tm_isdst = 0};
+    .tm_isdst = 0
+};
 
 static struct tm tm2 = {
     .tm_sec = 53,
@@ -72,7 +47,8 @@ static struct tm tm2 = {
     .tm_year = 10009 - 1900,
     .tm_wday = 1,
     .tm_yday = 4,
-    .tm_isdst = 0};
+    .tm_isdst = 0
+};
 
 static struct tm tm3 = {
     .tm_sec = 0,
@@ -83,7 +59,8 @@ static struct tm tm3 = {
     .tm_year = 0 - 1900,
     .tm_wday = 3,
     .tm_yday = 53,
-    .tm_isdst = 0};
+    .tm_isdst = 0
+};
 
 static struct tm tm4 = {
     .tm_sec = 0,
@@ -94,7 +71,8 @@ static struct tm tm4 = {
     .tm_year = -123 - 1900,
     .tm_wday = 1,
     .tm_yday = 0,
-    .tm_isdst = 0};
+    .tm_isdst = 0
+};
 
 static struct tm tm5 = {
     .tm_sec = 0,
@@ -105,7 +83,8 @@ static struct tm tm5 = {
     .tm_year = INT_MAX,
     .tm_wday = 3,
     .tm_yday = 0,
-    .tm_isdst = 0};
+    .tm_isdst = 0
+};
 
 HWTEST_F(StrfTimeSuite, StrfTimeTest, Function | MediumTest | Level2)
 {
@@ -153,8 +132,7 @@ HWTEST_F(StrfTimeSuite, StrfTimeTest, Function | MediumTest | Level2)
     // The "%s" specifier was accepted by the Austin Group for the next POSIX.1
     // revision. See http://austingroupbugs.net/view.php?id=169
     checkStrftime("%s", &tm1, "1451827425");
-    if (sizeof(time_t) * CHAR_BIT >= 64)
-    {
+    if (sizeof(time_t) * CHAR_BIT >= 64) {
         checkStrftime("%s", &tm2, "253686748673");
     }
 
@@ -198,15 +176,13 @@ HWTEST_F(StrfTimeSuite, StrfTimeTest, Function | MediumTest | Level2)
     checkStrftime("%+4Y", &tm4, "-123");
     checkStrftime("%+5Y", &tm4, "-0123");
 
-    if (INT_MAX == 0x7FFFFFFF)
-    {
+    if (INT_MAX == 0x7FFFFFFF) {
         // The standard does not specify any range for tm_year, so INT_MAX
         // should be valid.
         checkStrftime("%y", &tm5, "47");
         checkStrftime("%Y", &tm5, "+2147485547");
         checkStrftime("%011Y", &tm5, "02147485547");
-        if (sizeof(time_t) * CHAR_BIT >= 64)
-        {
+        if (sizeof(time_t) * CHAR_BIT >= 64) {
             checkStrftime("%s", &tm5, "67768036160140800");
         }
     }

@@ -2,8 +2,9 @@
 #include <cstdlib>
 #include <cstring>
 
-#include "../commom/test.h"
 #include "gtest/gtest.h"
+
+#include "test.h"
 
 using namespace std;
 using namespace testing::ext;

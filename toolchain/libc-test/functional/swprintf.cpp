@@ -17,7 +17,7 @@
     EXPECT_EQ((r), (x));                               \
 } while (0)
 
-#define TEST_S(s, x, m) EXPECT_TRUE(!wcscmp((s), (x))) << "[" << (s) << "] != [" << (x) << "] (" << (m) << ")" << endl;
+#define TEST_S(s, x, m) EXPECT_TRUE(!wcscmp((s), (x))) << "[" << (s) << "] != [" << (x) << "] (" << (m) << ")" << endl
 
 using namespace std;
 using namespace testing::ext;

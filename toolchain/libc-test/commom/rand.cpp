@@ -50,7 +50,7 @@ static void shuffle2(uint64_t *p, uint64_t *q, size_t np, size_t nq)
 {
     size_t r;
     uint64_t t;
-    
+
     while (np) {
         r = t_randn(nq+np--);
         t = p[np];
