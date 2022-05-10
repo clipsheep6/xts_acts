@@ -2522,9 +2522,9 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         await getFormatCaps('audio/mp4a-latm');
         ES_DICT = AAC_ES_DICT;
         let FORMAT_LIST = ["LC_AAC", "HE_AAC", "HEv2_AAC"]
-        let compatibility_list = [channelCountList, sampleRateList]
-        for (let index in compatibility_list) {
-            configList = compatibility_list[index];
+        let COMPATIBILITY_LIST = [channelCountList, sampleRateList]
+        for (let index in COMPATIBILITY_LIST) {
+            configList = COMPATIBILITY_LIST[index];
             FORMAT_LIST.forEach(getEsList);
             FORMAT_LIST = NEW_ES_LIST;
             NEW_ES_LIST = [];
@@ -2555,9 +2555,9 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         await getFormatCaps('audio/flac');
         ES_DICT = FLAC_ES_DICT;
         let FORMAT_LIST = ["FLAC"]
-        let compatibility_list = [channelCountList, sampleRateList]
-        for (let index in compatibility_list) {
-            configList = compatibility_list[index];
+        let COMPATIBILITY_LIST = [channelCountList, sampleRateList]
+        for (let index in COMPATIBILITY_LIST) {
+            configList = COMPATIBILITY_LIST[index];
             FORMAT_LIST.forEach(getEsList);
             FORMAT_LIST = NEW_ES_LIST;
             NEW_ES_LIST = [];
