@@ -12,34 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-let TAG = 'CameraModuleTest: '
-var mXComponentController: XComponentController = new XComponentController()
-var surfaceId: any
 @Entry
 @Component
-struct CameraIndex {
-  @State isShowSettings: boolean = false
-  @State previewSize: string = '75%'
-
+struct MyComponent {
   aboutToAppear() {
   }
 
   build() {
-    Flex() {
-      XComponent({
-        id: '',
-        type: 'surface',
-        libraryname: '',
-        controller: mXComponentController
-      })
-        .onLoad(() => {
-          console.info('CameraModuleTest: OnLoad() is called!')
-          mXComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 });
-          surfaceId = mXComponentController.getXComponentSurfaceId()
-          console.info('CameraModuleTest: XComponent onLoad surfaceId: ' + surfaceId)
-        .width('1920px')
-        .height('1080px')
+    Flex({
+      direction: FlexDirection.Column,
+      alignItems: ItemAlign.Center,
+      justifyContent: FlexAlign.Center
+    }) {
+      Text('ACE ETS TEST')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
     }
+    .width('100%')
+    .height('100%')
   }
 }
+
