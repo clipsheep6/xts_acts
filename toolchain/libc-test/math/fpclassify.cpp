@@ -8,8 +8,8 @@
 #define T(a, b) {__LINE__, a, b},
 #define length(a) (sizeof(a) / sizeof *(a))
 #define error(t, c) err++, printf("%s:%d: (at line %d) %La has classs %d (%s), but %s returns %d\n", \
-    __FILE__, __LINE__, t.line, (long double)t.f, t.classs, strclass(t.classs), #c, c(t.f))
-    
+    __FILE__, __LINE__, (t).line, (long double)((t).f), (t).classs, strclass((t).classs), #c, c((t).f))
+
 using namespace testing::ext;
 class Fpclassify : public testing::Test {};
 
