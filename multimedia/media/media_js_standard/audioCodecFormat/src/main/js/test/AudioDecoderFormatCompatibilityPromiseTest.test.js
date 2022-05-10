@@ -28,26 +28,26 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
     let needGetMediaDes = false;
     let frameCnt = 1;
     let timestamp = 0;
-    let codec_profile = 0;
+    let codecProfile = 0;
     let sawInputEOS = false;
     let sawOutputEOS = false;
     let inputQueue = [];
     let outputQueue = [];
     let ES = [];
     let NEW_ES_LIST = [];
-    let config_list = [];
+    let configList = [];
     let ES_LIST = [];
-    let channel_count_list = [];
-    let sample_rate_list = [];
+    let channelCountList = [];
+    let sampleRateList = [];
     let ES_LENGTH = 0;
     let ES_DICT = {};
     let samplerate = 44.1;
     let isMp3 = false;
     let isVorbis = false;
-    let readpath;
-    let fd_read;
-    let fd_write;
-    let fileAsset_write;
+    let readPath;
+    let fdRead;
+    let fdWrite;
+    let fileAssetWrite;
     const LC_AAC_2_96000 = 
     [0, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512,
         512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 512,
@@ -2006,7 +2006,7 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         7121, 6134, 6788, 6996, 6174, 6911, 7966, 7323, 7185, 6719, 7152, 7236, 7025, 7220, 7616, 7632, 7636, 
         7563, 7427, 7304, 7620, 7444, 7435, 7475, 7312, 7580, 7515, 7402, 7337, 7250, 7411, 7425, 7260, 6994, 
         6901, 6799, 6115, 5761, 5390, 5937, 6698, 5239, 5872, 7000, 7304, 7085, 6242, 7589, 6849, 5669, 5093];
-    const HEv2_AAC_2_96000 = 
+    const HEV2_AAC_2_96000 = 
     [0, 279, 279, 279, 328, 361, 335, 315, 311, 295, 300, 289, 284, 276, 282, 304, 276, 284, 283, 231, 228, 
         311, 307, 300, 294, 294, 285, 268, 271, 265, 275, 260, 244, 282, 279, 279, 271, 249, 270, 262, 266, 
         277, 273, 277, 268, 281, 273, 271, 280, 281, 312, 253, 261, 273, 276, 261, 323, 306, 307, 284, 291, 
@@ -2071,7 +2071,7 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         'HE_AAC_1_64000' : HE_AAC_1_64000,
         'HE_AAC_2_88200' : HE_AAC_2_88200,
         'HE_AAC_1_88200' : HE_AAC_1_88200,       
-        'HEv2_AAC_2_96000' : HEv2_AAC_2_96000
+        'HEv2_AAC_2_96000' : HEV2_AAC_2_96000
     };
     const FLAC_ES_DICT = {
         'FLAC_2_96000' : FLAC_2_96000,
@@ -2123,8 +2123,8 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         inputQueue = [];
         outputQueue = [];
         NEW_ES_LIST = [];
-        channel_count_list = [];
-        sample_rate_list = [];
+        channelCountList = [];
+        sampleRateList = [];
         ES = [];
         ES_LENGTH = 0;
         samplerate = 44.1;
@@ -2142,7 +2142,7 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
                 audioDecodeProcessor = null;
             }, failCallback).catch(failCatch);
         }
-        await closeFileDescriptor(readpath);
+        await closeFileDescriptor(readPath);
         await closeFdWrite();
     })
 
@@ -2187,7 +2187,7 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
                 audioDecodeProcessor = null;
             }, failCallback).catch(failCatch);
         }
-        await closeFileDescriptor(readpath);
+        await closeFileDescriptor(readPath);
         await closeFdWrite();
     }
 
@@ -2236,10 +2236,10 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
             }
             let fetchWriteFileResult = await mediaTest.getFileAssets(fetchOp);
             console.info('[mediaLibrary] case getFdWrite getFileAssets() success');
-            fileAsset_write = await fetchWriteFileResult.getAllObject();
+            fileAssetWrite = await fetchWriteFileResult.getAllObject();
             console.info('[mediaLibrary] case getFdWrite getAllObject() success');
-            fd_write = await fileAsset_write[0].open('Rw');
-            console.info('[mediaLibrary] case getFdWrite fd_write is ' + fd_write);
+            fdWrite = await fileAssetWrite[0].open('Rw');
+            console.info('[mediaLibrary] case getFdWrite fdWrite is ' + fdWrite);
         }
     }
 
@@ -2250,28 +2250,28 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
                 console.info('case error fileDescriptor undefined, open file fail');
                 done();
             } else {
-                fd_read = res.fd;
-                console.info("case fd_read is: " + fd_read);
+                fdRead = res.fd;
+                console.info("case fdRead is: " + fdRead);
             }
         })
     }
     
 
     async function closeFdWrite() {
-        if (fileAsset_write != null) {
-            await fileAsset_write[0].close(fd_write).then(() => {
-                console.info('[mediaLibrary] case close fd_write success, fd is ' + fd_write);
+        if (fileAssetWrite != null) {
+            await fileAssetWrite[0].close(fdWrite).then(() => {
+                console.info('[mediaLibrary] case close fdWrite success, fd is ' + fdWrite);
             }).catch((err) => {
-                console.info('[mediaLibrary] case close fd_write failed');
+                console.info('[mediaLibrary] case close fdWrite failed');
             });
         } else {
-            console.info('[mediaLibrary] case fileAsset_write is null');
+            console.info('[mediaLibrary] case fileAssetWrite is null');
         }
     }
 
     function writeFile(buf, len) {
         try{
-            let res = fileio.writeSync(fd_write, buf, {length: len});
+            let res = fileio.writeSync(fdWrite, buf, {length: len});
             console.info('case fileio.writeSync buffer success');
         } catch(e) {
             console.info('case fileio.writeSync buffer error is ' + e);
@@ -2282,7 +2282,7 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         console.info('read file start execution');
         try{
             console.info('filepath: ' + path);
-            readStreamSync = fileio.fdopenStreamSync(fd_read, 'rb');
+            readStreamSync = fileio.fdopenStreamSync(fdRead, 'rb');
         }catch(e) {
             console.info(e);
         }
@@ -2403,9 +2403,9 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         console.info('in case : nextStep success');
         await beforeTest();      
         let fileName = ES_LIST.shift();
-        let config_list = fileName.split("_").reverse();
-        let sample_rate = Number(config_list[0]);
-        let channel_count = Number(config_list[1]);
+        let configList = fileName.split("_").reverse();
+        let sample_rate = Number(configList[0]);
+        let channel_count = Number(configList[1]);
         let mime = 'audio/mp4a-latm';
         let savepath = `${fileName}.pcm`;
         let srcpath = `${fileName}.aac`;
@@ -2418,23 +2418,23 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         needGetMediaDes = true;
         ES = ES_DICT[fileName]
         ES_LENGTH = ES.length - 1;
-        if(config_list[2] === 'AAC') {
+        if(configList[2] === 'AAC') {
             console.info('in case : AAC');
             mime = 'audio/mp4a-latm';
-            if(config_list[3] === 'LC') {
-                codec_profile = 0;
-            }else if(config_list[3] === 'HE') {
-                codec_profile = 3;
-            }else if(config_list[3] === 'HEv2') {
-                codec_profile = 4;
+            if(configList[3] === 'LC') {
+                codecProfile = 0;
+            }else if(configList[3] === 'HE') {
+                codecProfile = 3;
+            }else if(configList[3] === 'HEv2') {
+                codecProfile = 4;
             }
             mediaDescription = {
                 "channel_count": channel_count,
                 "sample_rate": sample_rate,
                 "audio_sample_format": 1,
-                "codec_profile" : codec_profile,
+                "codec_profile" : codecProfile,
             }
-        }else if(config_list[2] === 'FLAC') {
+        }else if(configList[2] === 'FLAC') {
             mime = 'audio/flac';
             srcpath = `${fileName}.flac`
         }
@@ -2454,9 +2454,9 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
             console.info("print AudioCaps.supportedSampleRates: " + AudioCaps.supportedSampleRates)
             console.info("print AudioCaps.supportedChannel.min: " + AudioCaps.supportedChannel.min)
             console.info("print AudioCaps.supportedChannel.max: " + AudioCaps.supportedChannel.max)
-            sample_rate_list = AudioCaps.supportedSampleRates;
+            sampleRateList = AudioCaps.supportedSampleRates;
             for (let i = AudioCaps.supportedChannel.min; i <= AudioCaps.supportedChannel.max; i++) {
-                channel_count_list.push(i);
+                channelCountList.push(i);
             }
         }, failCallback).catch(failCatch);
         
@@ -2467,20 +2467,20 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
     }
 
     async function getEsList(format) {          
-        for (let index in config_list) {
-            let fileName = `${format}_${config_list[index]}`;
+        for (let index in configList) {
+            let fileName = `${format}_${configList[index]}`;
             NEW_ES_LIST.push(fileName);
         }
     }
 
-    async function decoderSource(config, savepath, mime, readpath, done) {
+    async function decoderSource(config, savepath, mime, readPath, done) {
         console.info('start test case');
         let mediaDescription = config;
         let decodeMime = mime;
 
         await getFdWrite(savepath);
         console.info('case getFdWrite success');
-        await getFdRead(readpath, done);
+        await getFdRead(readPath, done);
         console.info('case getFdRead success');
         await media.createAudioDecoderByMime(decodeMime).then((processor) => {
             console.log("create createAudioDecoder success");
@@ -2492,7 +2492,7 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         }, failCallback).catch(failCatch);
         await audioDecodeProcessor.configure(mediaDescription).then(() => {
             console.log("configure success");
-            readFile(readpath);
+            readFile(readPath);
         }, failCallback).catch(failCatch);
         setCallback(
             function(){eventEmitter.emit('nextStep', done);}, done
@@ -2522,16 +2522,16 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         await getFormatCaps('audio/mp4a-latm');
         ES_DICT = AAC_ES_DICT;
         let FORMAT_LIST = ["LC_AAC", "HE_AAC", "HEv2_AAC"]
-        let compatibility_list = [channel_count_list, sample_rate_list]
+        let compatibility_list = [channelCountList, sampleRateList]
         for (let index in compatibility_list) {
-            config_list = compatibility_list[index];
+            configList = compatibility_list[index];
             FORMAT_LIST.forEach(getEsList);
             FORMAT_LIST = NEW_ES_LIST;
             NEW_ES_LIST = [];
         }
         for (let index in FORMAT_LIST) {
             let fileName = FORMAT_LIST[index];
-            if (ES_DICT.hasOwnProperty(fileName)){
+            if (fileName in ES_DICT){
                 NEW_ES_LIST.push(fileName);
             }
         }
@@ -2555,16 +2555,16 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
         await getFormatCaps('audio/flac');
         ES_DICT = FLAC_ES_DICT;
         let FORMAT_LIST = ["FLAC"]
-        let compatibility_list = [channel_count_list, sample_rate_list]
+        let compatibility_list = [channelCountList, sampleRateList]
         for (let index in compatibility_list) {
-            config_list = compatibility_list[index];
+            configList = compatibility_list[index];
             FORMAT_LIST.forEach(getEsList);
             FORMAT_LIST = NEW_ES_LIST;
             NEW_ES_LIST = [];
         }
         for (let index in FORMAT_LIST) {
             let fileName = FORMAT_LIST[index];
-            if (ES_DICT.hasOwnProperty(fileName)){
+            if (fileName in ES_DICT){
                 NEW_ES_LIST.push(fileName);
             }
         }

@@ -39,14 +39,14 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
     let ES = [0, 2048];
     let ES_LENGTH = 1000;
     let readpath;
-    let fd_read;
-    let fd_write;
+    let fdRead;
+    let fdWrite;
     let readStreamSync;
-    let fileAsset_write;
-    let channel_count;
-    let channel_count_list = [];
-    let sample_rate_list = [];
-    let format_sample_rate = [];
+    let fileAssetWrite;
+    let channelCount;
+    let channelCountList = [];
+    let sampleRateList = [];
+    let formatSampleRate = [];
     const events = require('events');
     const eventEmitter = new events.EventEmitter();
     const context = featureAbility.getContext();
@@ -186,10 +186,10 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
             }
             let fetchWriteFileResult = await mediaTest.getFileAssets(fetchOp);
             console.info('[mediaLibrary] case getFdWrite getFileAssets() success');
-            fileAsset_write = await fetchWriteFileResult.getAllObject();
+            fileAssetWrite = await fetchWriteFileResult.getAllObject();
             console.info('[mediaLibrary] case getFdWrite getAllObject() success');
-            fd_write = await fileAsset_write[0].open('Rw');
-            console.info('[mediaLibrary] case getFdWrite fd_write is ' + fd_write);
+            fdWrite = await fileAssetWrite[0].open('Rw');
+            console.info('[mediaLibrary] case getFdWrite fdWrite is ' + fdWrite);
         }
     }
 
@@ -200,21 +200,21 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
                 console.info('case error fileDescriptor undefined, open file fail');
                 done();
             } else {
-                fd_read = res.fd;
-                console.info("case fd_read is: " + fd_read);
+                fdRead = res.fd;
+                console.info("case fdRead is: " + fdRead);
             }
         })
     }
 
     async function closeFdWrite() {
-        if (fileAsset_write != null) {
-            await fileAsset_write[0].close(fd_write).then(() => {
-                console.info('[mediaLibrary] case close fd_write success, fd is ' + fd_write);
+        if (fileAssetWrite != null) {
+            await fileAssetWrite[0].close(fdWrite).then(() => {
+                console.info('[mediaLibrary] case close fdWrite success, fd is ' + fdWrite);
             }).catch((err) => {
-                console.info('[mediaLibrary] case close fd_write failed');
+                console.info('[mediaLibrary] case close fdWrite failed');
             });
         } else {
-            console.info('[mediaLibrary] case fileAsset_write is null');
+            console.info('[mediaLibrary] case fileAssetWrite is null');
         }
     }
 
@@ -222,7 +222,7 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
         try{
             let head = new ArrayBuffer(7);
             addADTStoPacket(head, len);
-            let res = fileio.writeSync(fd_write, head, {length: 7});
+            let res = fileio.writeSync(fdWrite, head, {length: 7});
             console.info('case fileio.write head success');
         } catch(e) {
             console.info('case fileio.write head error is ' + e);
@@ -231,7 +231,7 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
 
     function writeFile(buf, len) {
         try{
-            let res = fileio.writeSync(fd_write, buf, {length: len});
+            let res = fileio.writeSync(fdWrite, buf, {length: len});
             console.info('case fileio.write buffer success');
         } catch(e) {
             console.info('case fileio.write buffer error is ' + e);
@@ -242,7 +242,7 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
         console.info('read file start execution');
         try{
             console.info('filepath: ' + path);
-            readStreamSync = fileio.fdopenStreamSync(fd_read, 'rb');
+            readStreamSync = fileio.fdopenStreamSync(fdRead, 'rb');
         }catch(e) {
             console.info(e);
         }
@@ -261,7 +261,7 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
         let packetLen = len + 7; // 7: head length
         let profile = 2; // 2: AAC LC  
         let freqIdx = rate; // 3: 48000HZ 
-        let chanCfg = channel_count; // 1: 1 channel
+        let chanCfg = channelCount; // 1: 1 channel
         console.info('rate: ' + rate);
         view[0] = 0xFF;
         view[1] = 0xF9;
@@ -331,15 +331,15 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
             if (outputobject.flags == 1) {
                 sawOutputEOS = true;
                 await doneWork(); 
-                if(sample_rate_list == false && channel_count_list[0] != undefined) {
+                if(sampleRateList == false && channelCountList[0] != undefined) {
                     await aferTest();
-                    channel_count = channel_count_list.shift();
-                    sample_rate_list = format_sample_rate.toString().split(',');
-                    console.info('channel_count_list[0]: ' + channel_count_list[0]);
-                    console.info('format_sample_rate ' + format_sample_rate);
+                    channelCount = channelCountList.shift();
+                    sampleRateList = formatSampleRate.toString().split(',');
+                    console.info('channelCountList[0]: ' + channelCountList[0]);
+                    console.info('formatSampleRate ' + formatSampleRate);
                     nextStep();
                     return;
-                }else if (channel_count_list == false && sample_rate_list == false) {
+                }else if (channelCountList == false && sampleRateList == false) {
                     done();
                 } else {
                     await aferTest();
@@ -393,20 +393,17 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
     eventEmitter.on('nextStep', async (done) => {
         console.info('in case : nextStep success');
         await beforeTest();
-        let sample_rate = Number(sample_rate_list.shift());       
-        console.info('channel_count_list: ' + channel_count_list);
-        console.info('sample_rate_list: ' + sample_rate_list);
-        console.info('format_sample_rate ' + format_sample_rate);
-        let savepath = `AAC_LC_${channel_count}_${sample_rate}.aac`;
-        let srcpath = `S16LE_${channel_count}_${sample_rate}.pcm`;
-        if (channel_count === 2) {
+        let sampleRate = Number(sampleRateList.shift());       
+        let savepath = `AAC_LC_${channelCount}_${sampleRate}.aac`;
+        let srcpath = `S16LE_${channelCount}_${sampleRate}.pcm`;
+        if (channelCount === 2) {
             ES = [0, 4096];
         } else {
             ES = [0, 2048];
         }
         let mediaDescription = {
-            "channel_count": channel_count,
-            "sample_rate": sample_rate,
+            "channel_count": channelCount,
+            "sample_rate": sampleRate,
             "audio_sample_format": 1,
             "codec_mime": 'audio/mp4a-latm',
         }
@@ -425,9 +422,9 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
             console.info("print AudioCaps.supportedSampleRates: " + AudioCaps.supportedSampleRates)
             console.info("print AudioCaps.supportedChannel.min: " + AudioCaps.supportedChannel.min)
             console.info("print AudioCaps.supportedChannel.max: " + AudioCaps.supportedChannel.max)
-            format_sample_rate = AudioCaps.supportedSampleRates;
+            formatSampleRate = AudioCaps.supportedSampleRates;
             for (let i = AudioCaps.supportedChannel.min; i <= AudioCaps.supportedChannel.max; i++) {
-                channel_count_list.push(i);
+                channelCountList.push(i);
             }
         }, failCallback).catch(failCatch);
         await audioEncodeProcessor.release().then(() => {
@@ -490,8 +487,8 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
     it('SUB_MEDIA_AUDIO_ENCODER_FORMAT_COMPATIBILITY_AAC_PROMISE_01_0100', 0, async function (done) {
         console.info("case test acc format compatibility");
         await getFormatCaps();
-        sample_rate_list = format_sample_rate.toString().split(',');
-        channel_count = channel_count_list.shift();
+        sampleRateList = formatSampleRate.toString().split(',');
+        channelCount = channelCountList.shift();
         let nextStep = eventEmitter.emit('nextStep', done);
         nextStep();
     })
