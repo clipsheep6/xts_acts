@@ -13,10 +13,21 @@
  * limitations under the License.
  */
 
-require('./AudioEncoderTestBase.test.js')
-require('./AudioEncoderFuncCallbackTest.test.js')
-require('./AudioEncoderFuncPromiseTest.test.js')
-require('./AudioEncoderReliabilityCallbackTest.test.js')
-require('./AudioEncoderReliabilityPromiseTest.test.js')
-require('./AudioEncoderMultiInstancesTest.test.js')
-require('./AudioEncoderFormatCompatibilityPromiseTest.test.js')
+import {Core, ExpectExtend} from 'deccjsunit/index'
+
+export default {
+    data: {
+        title: ""
+    },
+    onInit() {
+        console.info('onInit finish')
+        this.title = this.$t('strings.world');
+    },
+    onShow() {
+    },
+    onReady() {
+    },
+    LoadXcomponent() {
+        globalThis.value = this.$element('XcomponentId').getXComponentSurfaceId();
+    },
+}

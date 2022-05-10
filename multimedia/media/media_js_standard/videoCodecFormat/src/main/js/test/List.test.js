@@ -13,10 +13,5 @@
  * limitations under the License.
  */
 
-require('./AudioEncoderTestBase.test.js')
-require('./AudioEncoderFuncCallbackTest.test.js')
-require('./AudioEncoderFuncPromiseTest.test.js')
-require('./AudioEncoderReliabilityCallbackTest.test.js')
-require('./AudioEncoderReliabilityPromiseTest.test.js')
-require('./AudioEncoderMultiInstancesTest.test.js')
-require('./AudioEncoderFormatCompatibilityPromiseTest.test.js')
+require('./VideoDecoderFormatPromiseTest.test.js')
+require('./VideoEncoderFormatPromiseTest.test.js')
