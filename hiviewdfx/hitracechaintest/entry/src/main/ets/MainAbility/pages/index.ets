@@ -18,6 +18,7 @@
 @Component
 struct MyComponent {
   aboutToAppear() {
+    console.info("start run testcase!!!!")
   }
 
   build() {

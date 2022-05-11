@@ -3,7 +3,7 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "1800000",
-	    "bundle-name": "ohos.hitracechain.test",
+	"bundle-name": "ohos.hitracechain.test",
         "package-name": "ohos.hitracechain.test",
         "shell-timeout": "60000"
     },
