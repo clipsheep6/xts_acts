@@ -1031,11 +1031,11 @@ describe('audioManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_GetVolume_031', 0, async function (done) {
-        const promise = audioManager.setVolume(audio.AudioVolumeType.ALL,minVol);
+        const promise = audioManager.setVolume(audio.AudioVolumeType.ALL,highVol);
         promise.then(function () {
             console.info('AudioFrameworkTest: VolumeTypeALL setVolume promise: successful');
             audioManager.getVolume(audio.AudioVolumeType.ALL).then(function (data) {
-                if(data == minVol){
+                if(data == highVol){
                     console.info('AudioFrameworkTest: VolumeTypeALL getVolume Promise: PASS :' + data);
                     expect(true).assertTrue();
                 }
@@ -1083,22 +1083,17 @@ describe('audioManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_SetMute_033', 0, async function (done) {
-        const promise = audioManager.mute(audio.AudioVolumeType.ALL, true);
-        promise.then(function () {
-            console.info('AudioFrameworkTest: VolumeTypeALL SetMute promise: successful');
-            audioManager.isMute(audio.AudioVolumeType.ALL).then(function (data) {
-                if(data == true){
-                    console.info('AudioFrameworkTest: VolumeTypeALL SetMute Promise: PASS :' + data);
-                    expect(true).assertTrue();
-                }
-                else{
-                    console.info('AudioFrameworkTest: VolumeTypeALL SetMute Promise: FAIL :' + data);
-                    expect(false).assertTrue();
-                }
-            });
+        audioManager.mute(audio.AudioVolumeType.ALL,true, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: failed to SetMute VolumeTypeALL: Callback: ENAME:  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info(`AudioFrameworkTest: success to SetMute of AudioVolumeType for ALL`);
+                expect(true).assertTrue();
+            }
+            done();
         });
-        await promise;
-        done();
     })
     
     /* *
