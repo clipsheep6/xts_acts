@@ -1,9 +1,10 @@
 {
     "description": "Configuration for settings Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "600000",
-        "package": "com.open.harmony.settings",
+        "bundle-name": "com.open.harmony.settings",
+        "package-name": "com.open.harmony.settings",
         "shell-timeout": "60000"
     },
     "kits": [
