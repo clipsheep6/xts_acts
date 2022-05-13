@@ -511,9 +511,10 @@ describe('ChildProcessTest', function () {
     it('SUB_Runtime_JSAPI_SR000GGR3G-009', 0, function () {
         let isorno = process.is64Bit()
         if(isorno) {
-            expect(isorno).assertEqual(ture)
+            expect(isorno).assertEqual(true)
+        } else {
+            expect(isorno).assertEqual(false)
         }
-        expect(isorno).assertEqual(false)
     })
 
     /**
@@ -527,9 +528,10 @@ describe('ChildProcessTest', function () {
         {
             let isorno = process.is64Bit()
             if(isorno) {
-                expect(isorno).assertEqual(ture)
+                    expect(isorno).assertEqual(true)
+            } else {
+                expect(isorno).assertEqual(false)
             }
-            expect(isorno).assertEqual(false)
         }
     })
 
@@ -544,9 +546,10 @@ describe('ChildProcessTest', function () {
         {
             let isorno = process.is64Bit()
             if(isorno) {
-                expect(isorno).assertEqual(ture)
+                expect(isorno).assertEqual(true)
+            } else {
+                expect(isorno).assertEqual(false)
             }
-            expect(isorno).assertEqual(false)
         }
     })
 
