@@ -1,4 +1,4 @@
-# xts
+# XTS
 
 ## 介绍
 XTS是为了保证多平台下ArkUI的功能与OpenHarmony ArkUI功能保持一致，均为从OpenHarmony [acts仓](https://gitee.com/openharmony/xts_acts/tree/master/arkui)移植过来的测试套
