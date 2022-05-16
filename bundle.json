@@ -1,6 +1,6 @@
 {
     "name": "@ohos/xts_acts",
-    "description": "acts",
+    "description": "Application compatibility test suite.",
     "version": "3.1",
     "license": "Apache License 2.0",
     "publishAs": "code-segment",
@@ -14,7 +14,11 @@
         "subsystem": "xts",
         "syscap": [],
         "features": [],
-        "adapted_system_type": [],
+        "adapted_system_type": [
+            "mini",
+            "small",
+            "standard"
+        ],
         "rom": "",
         "ram": "",
         "deps": {
@@ -22,9 +26,11 @@
             "third_party": []
         },
         "build": {
-            "sub_component": [],
+            "sub_component": [
+                "//test/xts/acts/build_lite:acts"
+            ],
             "inner_kits": [],
-            "test": [ "//test/xts/acts:acts" ]
+            "test": []
         }
     }
 }
