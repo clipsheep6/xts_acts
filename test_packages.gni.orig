@@ -42,7 +42,6 @@ _all_test_packages = [
   "${ACTS_ROOT}/settingsdata:settingsdata",
   "${ACTS_ROOT}/barrierfree:barrierfree",
   "${ACTS_ROOT}/customization:customization",
-  "${ACTS_ROOT}/developtools:developtoolstestacts",
 ]
 
 _all_test_packages_ivi = [
