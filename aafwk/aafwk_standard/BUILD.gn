@@ -30,8 +30,10 @@ group("aafwk_standard") {
       "amsdatauriutils:ActsAmsDataUriUtilsTest",
       "amsgetabilityprocessinfo:amsgetabilityprocessinfo",
       "context:context",
+      "stage:stage",
       "featureability:featureability",
       "formmanager:formmanager",
+      "setshowonlockscreen:setshowonlockscreen",
       "want:want",
     ]
   }
