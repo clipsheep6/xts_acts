@@ -29,6 +29,7 @@ group("aafwk_standard") {
       "amsabilitymanager/amsMissionSnapshotTestSingletonS:ActsAmsMissionSnapshotTestSingletonS",
       "amsdatauriutils:ActsAmsDataUriUtilsTest",
       "amsgetabilityprocessinfo:amsgetabilityprocessinfo",
+      "stage:stage",
       "context:context",
       "featureability:featureability",
       "formmanager:formmanager",
