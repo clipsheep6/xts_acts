@@ -30,6 +30,7 @@ group("aafwk_standard") {
       "amsdatauriutils:ActsAmsDataUriUtilsTest",
       "amsgetabilityprocessinfo:amsgetabilityprocessinfo",
       "context:context",
+	  "stage:stage",
       "featureability:featureability",
       "formmanager:formmanager",
       "want:want",
