@@ -14,5 +14,3 @@
  */
 require('./window.test.js')
 require('./display.test.js')
-require('./screenshot.test.js')
-
