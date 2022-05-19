@@ -12,19 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import dataRdb from '@ohos.data.rdb';
 import dataAbility from '@ohos.data.dataAbility';
 
-const TAG = "[RDB_JSKITS _TEST]"
+const TAG = '[RDB_JSKITS _TEST]'
 const CREATE_TABLE_ALL_DATA_TYPE_SQL = "CREATE TABLE IF NOT EXISTS AllDataType "
-+ "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
-+ "integerValue INTEGER , longValue INTEGER , shortValue INTEGER , booleanValue INTEGER , "
-+ "doubleValue REAL , floatValue REAL , stringValue TEXT , blobValue BLOB , clobValue TEXT , "
-+ "byteValue INTEGER , dateValue INTEGER , timeValue INTEGER , timestampValue INTEGER , "
-+ "calendarValue INTEGER , characterValue TEXT , primIntValue INTEGER , primLongValue INTEGER , "
-+ "primShortValue INTEGER , primFloatValue REAL , primDoubleValue REAL , "
-+ "primBooleanValue INTEGER , primByteValue INTEGER , primCharValue TEXT, `order` INTEGER);";
+    + "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
+    + "integerValue INTEGER , longValue INTEGER , shortValue INTEGER , booleanValue INTEGER , "
+    + "doubleValue REAL , floatValue REAL , stringValue TEXT , blobValue BLOB , clobValue TEXT , "
+    + "byteValue INTEGER , dateValue INTEGER , timeValue INTEGER , timestampValue INTEGER , "
+    + "calendarValue INTEGER , characterValue TEXT , primIntValue INTEGER , primLongValue INTEGER , "
+    + "primShortValue INTEGER , primFloatValue REAL , primDoubleValue REAL , "
+    + "primBooleanValue INTEGER , primByteValue INTEGER , primCharValue TEXT, `order` INTEGER);";
 
 const STORE_CONFIG = {
     name: "Predicates.db",
@@ -1239,6 +1239,216 @@ describe('dataAbilityPredicatesTest', function () {
     })
 
     /**
+     * @tc.name testNotBetween0001
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0230
+     * @tc.desc test string value with notBetween.
+     */
+    it('testNotBetween0001', 0, async function (done) {
+        console.log(TAG + "************* testNotBetween0001 start *************");
+        {
+            let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+            dataAbilityPredicates.notBetween("stringValue", "ABB", "ABD");
+            let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+            let result = await rdbStore.query(predicates);
+            expect(0).assertEqual(result.rowCount);
+            result.close();
+            result = null
+        }
+        done();
+        console.log(TAG + "************* testNotBetween0001 end *************");
+    })
+
+    /**
+     * @tc.name testNotBetween0002
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0231
+     * @tc.desc test double value with notBetween.
+     */
+    it('testNotBetween0002', 0, async function (done) {
+        console.log(TAG + "************* testNotBetween0002 start *************");
+        {
+            let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+            dataAbilityPredicates.notBetween("doubleValue", 0.0, DOUBLE_MAX);
+            let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+            let result = await rdbStore.query(predicates);
+            expect(0).assertEqual(result.rowCount);
+            result.close();
+            result = null
+        }
+        done();
+        console.log(TAG + "************* testNotBetween0002 end *************");
+    })
+
+    /**
+     * @tc.name testNotBetween0003
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0232
+     * @tc.desc test integer value with notBetween.
+     */
+    it('testNotBetween0003', 0, async function (done) {
+        console.log(TAG + "************* testNotBetween0003 start *************");
+        {
+            let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+            dataAbilityPredicates.notBetween("integerValue", 0, 1);
+            let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+            let result = await rdbStore.query(predicates);
+            expect(2).assertEqual(result.rowCount);
+            result.close();
+            result = null
+        }
+        done();
+        console.log(TAG + "************* testNotBetween0003 end *************");
+    })
+
+    /**
+     * @tc.name testNotBetween0004
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0233
+     * @tc.desc test long value with notBetween.
+     */
+    it('testNotBetween0004', 0, async function (done) {
+        console.log(TAG + "************* testNotBetween0004 start *************");
+        {
+            let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+            dataAbilityPredicates.notBetween("longValue", 0, 2);
+            let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+            let result = await rdbStore.query(predicates);
+            expect(2).assertEqual(result.rowCount);
+            result.close();
+            result = null
+        }
+        done();
+        console.log(TAG + "************* testNotBetween0004 end *************");
+    })
+
+    /**
+     * @tc.name testGlob0001
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0240
+     * @tc.desc end with ? by glob.
+     */
+    it('testGlob0001', 0, async function (done) {
+        console.log(TAG + "************* testGlob0001 start *************");
+        {
+            let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+            dataAbilityPredicates.glob("stringValue", "ABC*");
+            let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+            let result = await rdbStore.query(predicates);
+            expect(3).assertEqual(result.rowCount);
+            result.close();
+            result = null
+        }
+        done();
+        console.log(TAG + "************* testGlob0001 end *************");
+    })
+
+    /**
+     * @tc.name testGlob0002
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0241
+     * @tc.desc begin with * by glob.
+     */
+    it('testGlob0002', 0, async function (done) {
+        console.log(TAG + "************* testGlob0002 start *************");
+        {
+            let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+            dataAbilityPredicates.glob("stringValue", "*LMN");
+            let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+            let result = await rdbStore.query(predicates);
+            expect(3).assertEqual(result.rowCount);
+            result.close();
+            result = null
+        }
+        done();
+        console.log(TAG + "************* testGlob0002 end *************");
+    })
+
+    /**
+     * @tc.name testGlob0003
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0242
+     * @tc.desc end with ? by glob.
+     */
+    it('testGlob0003', 0, async function (done) {
+        console.log(TAG + "************* testGlob0003 start *************");
+        {
+            let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+            dataAbilityPredicates.glob("stringValue", "ABCDEFGHIJKLM?");
+            let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+            let result = await rdbStore.query(predicates);
+            expect(3).assertEqual(result.rowCount);
+            result.close();
+            result = null
+        }
+        done();
+        console.log(TAG + "************* testGlob0003 end *************");
+    })
+
+    /**
+     * @tc.name testGlob0004
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0243
+     * @tc.desc begin with ? by glob.
+     */
+    it('testGlob0004', 0, async function (done) {
+        console.log(TAG + "************* testGlob0004 start *************");
+        {
+            let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+            dataAbilityPredicates.glob("stringValue", "?BCDEFGHIJKLMN");
+            let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+            let result = await rdbStore.query(predicates);
+            expect(3).assertEqual(result.rowCount);
+            result.close();
+            result = null
+        }
+        done();
+        console.log(TAG + "************* testGlob0004 end *************");
+    })
+
+    /**
+     * @tc.name testGlob0005
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0244
+     * @tc.desc begin and end with * by glob.
+     */
+    it('testGlob0005', 0, async function (done) {
+        console.log(TAG + "************* testGlob0005 start *************");
+        {
+            let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+            dataAbilityPredicates.glob("stringValue", "*FGHI*");
+            let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+            let result = await rdbStore.query(predicates);
+            expect(3).assertEqual(result.rowCount);
+            result.close();
+            result = null
+        }
+        done();
+        console.log(TAG + "************* testGlob0005 end *************");
+    })
+
+    /**
+     * @tc.name testGlob0006
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0245
+     * @tc.desc begin and end with ? by glob.
+     */
+    it('testGlob0006', 0, async function (done) {
+        console.log(TAG + "************* testGlob0006 start *************");
+        {
+            let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+            dataAbilityPredicates.glob("stringValue", "?BCDEFGHIJKLM?");
+            let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+            let result = await rdbStore.query(predicates);
+            expect(3).assertEqual(result.rowCount);
+            result.close();
+            result = null
+        }
+        done();
+        console.log(TAG + "************* testGlob0006 end *************");
+    })
+
+    /**
      * @tc.name predicates contains normal test
      * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0100
      * @tc.desc predicates contains normal test
@@ -1474,7 +1684,7 @@ describe('dataAbilityPredicatesTest', function () {
 
     /**
      * @tc.name predicates like normal test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0130
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0131
      * @tc.desc predicates like normal test
      */
     it('testLike0002', 0, async function (done) {
@@ -1719,7 +1929,7 @@ describe('dataAbilityPredicatesTest', function () {
             let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
 
             console.log(TAG + "you are starting a sql request with predicate or or,"
-            + "using function or() immediately after another or(). that is ridiculous.");
+                + "using function or() immediately after another or(). that is ridiculous.");
         }
         done();
         console.log(TAG + "************* testAnd0004 end *************");
@@ -2097,6 +2307,63 @@ describe('dataAbilityPredicatesTest', function () {
         result = null
         done();
         console.log(TAG + "************* testIndexedBy0002 end *************");
+    })
+
+    /**
+     * @tc.name testNotIn0001
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0250
+     * @tc.desc the common and min value test with notin.
+     */
+    it('testNotIn0001', 0, async function (done) {
+        console.log(TAG + "************* testNotIn0001 start *************");
+        var values = [1, -2147483648];
+        let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+        dataAbilityPredicates.notIn("integerValue", values);
+        let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        done();
+        console.log(TAG + "************* testNotIn0001 end *************");
+    })
+
+    /**
+     * @tc.name testNotIn0002
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0251
+     * @tc.desc the common and max value test with notin.
+     */
+    it('testNotIn0002', 0, async function (done) {
+        console.log(TAG + "************* testNotIn0002 start *************");
+        let values = [1, 2147483647];
+        let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+        dataAbilityPredicates.notIn("integerValue", values);
+        let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        done();
+        console.log(TAG + "************* testNotIn0002 end *************");
+    })
+
+    /**
+     * @tc.name testNotIn0003
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_DataAbilityPredicates_0252
+     * @tc.desc the min and max value test with notin.
+     */
+    it('testNotIn0003', 0, async function (done) {
+        console.log(TAG + "************* testNotIn0003 start *************");
+        var values = [-2147483648, 2147483647];
+        let dataAbilityPredicates = await new dataAbility.DataAbilityPredicates();
+        dataAbilityPredicates.notIn("integerValue", values);
+        let predicates = dataAbility.createRdbPredicates("AllDataType", dataAbilityPredicates);
+
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        done();
+        console.log(TAG + "************* testNotIn0003 end *************");
     })
     console.log(TAG + "*************Unit Test End*************");
 })

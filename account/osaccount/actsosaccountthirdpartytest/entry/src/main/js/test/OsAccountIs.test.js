@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 import osAccount from '@ohos.account.osAccount'
+import distributedAccount from '@ohos.account.distributedAccount'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 const TIMEOUT = 1000;
-const ERR_OSACCOUNT_KIT_IS_OS_ACCOUNT_ACTIVED_ERROR = 4587545;
-const ERR_OSACCOUNT_KIT_IS_OS_ACCOUNT_VERIFIED_ERROR = 4587548;
+const ERR_OSACCOUNT_KIT_IS_OS_ACCOUNT_ACTIVED_ERROR = 4587542;
+const ERR_OSACCOUNT_KIT_IS_OS_ACCOUNT_VERIFIED_ERROR = 4587545;
 describe('ActsOsAccountThirdPartyTest', function () {
 
     /*
@@ -29,13 +30,23 @@ describe('ActsOsAccountThirdPartyTest', function () {
         console.debug("====>ActsOsAccountDeviceId_0100 start====");
         var AccountManager = osAccount.getAccountManager();
         console.debug("====>get os AccountManager finish====");
-        AccountManager.getDistributedVirtualDeviceId((err, deviceId)=>{
-            console.debug("====>getDistributedVirtualDeviceId err:" + JSON.stringify(err));
-            console.debug("====>getDistributedVirtualDeviceId deviceId:" + deviceId);
-            expect(err.code).assertEqual(0);
-            expect(deviceId).assertEqual("0");
-            console.debug("====>ActsOsAccountDeviceId_0100 end====");
-            done();
+        const deviceId = '5994471ABB01112AFCC18159F6CC74B4F511B99806DA59B3CAF5A9C173CACFC5';
+        const accountAbility = distributedAccount.getDistributedAccountAbility();
+        accountAbility.updateOsAccountDistributedInfo(
+        {
+            name: 'ZhangSan',
+            id: '12345',
+            event: "Ohos.account.event.LOGIN"
+        }, (err)=>{
+            console.debug("====>update distributedInfo err:" + JSON.stringify(err));
+            AccountManager.getDistributedVirtualDeviceId((err, id)=>{
+                console.debug("====>getDistributedVirtualDeviceId err:" + JSON.stringify(err));
+                console.debug("====>getDistributedVirtualDeviceId deviceId:" + id);
+                expect(err.code).assertEqual(0);
+                expect(id).assertEqual(deviceId);
+                console.debug("====>ActsOsAccountDeviceId_0100 end====");
+                done();
+            })
         })
     })
 
@@ -48,18 +59,22 @@ describe('ActsOsAccountThirdPartyTest', function () {
         console.debug("====>ActsOsAccountDeviceId_0200 start====");
         var AccountManager = osAccount.getAccountManager();
         console.debug("====>get os AccountManager finish====");
-        try{
-            var deviceId = await AccountManager.getDistributedVirtualDeviceId();
-        }
-        catch(err){
-            console.error("====>catch getDistributedVirtualDeviceId err:" + JSON.stringify(err));
-            expect().assertFail();
+        const deviceId = '5994471ABB01112AFCC18159F6CC74B4F511B99806DA59B3CAF5A9C173CACFC5';
+        const accountAbility = distributedAccount.getDistributedAccountAbility();
+        accountAbility.updateOsAccountDistributedInfo(
+        {
+            name: 'ZhangSan',
+            id: '12345',
+            event: "Ohos.account.event.LOGIN"
+        }, async (err)=>{
+            console.debug("====>update distributedInfo err:" + JSON.stringify(err));
+            console.debug("====>getDistributedVirtualDeviceId start====");
+            var id = await AccountManager.getDistributedVirtualDeviceId();
+            console.debug("====>getDistributedVirtualDeviceId:" + id);
+            expect(id).assertEqual(deviceId);
+            console.debug("====>ActsOsAccountDeviceId_0200 end====");
             done();
-        }
-        console.debug("====>getDistributedVirtualDeviceId:" + deviceId);
-        expect(deviceId).assertEqual("0");
-        console.debug("====>ActsOsAccountDeviceId_0200 end====");
-        done();
+        })
     })
 
     /*

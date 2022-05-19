@@ -15,8 +15,11 @@
 import featureAbility from '@ohos.ability.featureAbility'
 import wantconstant from '@ohos.ability.wantConstant'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
-import commonEvent from '@ohos.commonevent'
-import wantConstant from '@ohos.ability.wantConstant'
+import commonEvent from '@ohos.commonEvent'
+import notification from '@ohos.notification';
+import wantAgent from '@ohos.wantAgent';
+import particleAbility from '@ohos.ability.particleAbility'
+import backgroundTaskManager from '@ohos.backgroundTaskManager'
 
 const START_ABILITY_TIMEOUT = 4000;
 const TERMINATE_ABILITY_TIMEOUT = 1000;
@@ -81,6 +84,380 @@ var subscriberInfo_ACTS_GetCallingBundle_0100 = {
 };
 
 describe('ActsFeatureAbilityTest', function () {
+
+    beforeAll(function() {
+
+        /*
+         * @tc.setup: setup invoked before all testcases
+         */
+         console.info('beforeAll called')
+    })
+
+    afterAll(function() {
+
+        /*
+         * @tc.teardown: teardown invoked after all testcases
+         */
+         console.info('afterAll called')
+    })
+
+    beforeEach(function() {
+
+        /*
+         * @tc.setup: setup invoked before each testcases
+         */
+         console.info('beforeEach called')
+    })
+
+    afterEach(function() {
+
+        /*
+         * @tc.teardown: teardown invoked after each testcases
+         */
+         console.info('afterEach called')
+         particleAbility.cancelBackgroundRunning();
+         setTimeout(() => {}, 500);
+         backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext());
+         setTimeout(() => {}, 500);
+    })
+
+    /*
+     * @tc.name:Acts_ContinuousTask_0100
+     * @tc.desc:verify new startBackgroundrunning interface promise mode work properly
+     * @tc.type: FUNC
+     * @tc.require: SR000GGT7U AR000GH6ER AR000GH6EM AR000GH6EN AR000GH6EO
+     */
+    it("Acts_ContinuousTask_0100", 0, async function (done) {
+        console.log("Acts_ContinuousTask_0100 start");
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.actsfeatureabilitytest",
+                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
+                }
+            ],
+            operationType: 2,
+            requestCode: 0,
+            wantAgentFlags: [3]
+        };
+        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, data).then(() => {
+                console.log("Acts_ContinuousTask_0100 startBackgroundRunning success");
+                expect(true).assertTrue();
+                setTimeout(() => {
+                    done();
+                }, 500);
+            }).catch((err) => {
+                expect(false).assertTrue();
+                console.log("Acts_ContinuousTask_0100 startBackgroundRunning failure");
+                setTimeout(() => {
+                    done();
+                }, 500);
+            });
+        });
+    })
+
+    /*
+     * @tc.name:Acts_ContinuousTask_0200
+     * @tc.desc:verify new startBackgroundrunning interface callback mode work properly
+     * @tc.type: FUNC
+     * @tc.require: SR000GGT7T AR000GH6ER AR000GH6EP AR000GJ9PR AR000GH6G8
+     */
+    it("Acts_ContinuousTask_0200", 0, async function (done) {
+        console.log("Acts_ContinuousTask_0200 start");
+        function conTaskCallback(err, data) {
+            if (err) {
+                console.info('Acts_ContinuousTask_0200 startBackgroundRunning failed');
+                expect(false).assertTrue();
+            } else {
+                console.info('Acts_ContinuousTask_0200 startBackgroundRunning succeed');
+                expect(true).assertTrue();
+            }
+            setTimeout(()=>{
+                done();
+            }, 500);
+        }
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.actsfeatureabilitytest",
+                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
+                }
+            ],
+            operationType: 2,
+            requestCode: 0,
+            wantAgentFlags: [3]
+        };
+        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, data, conTaskCallback);
+        });
+    })
+
+    /*
+     * @tc.name:Acts_ContinuousTask_0300
+     * @tc.desc:verify old startBackgroundrunning interface promise mode work properly
+     * @tc.type: FUNC
+     * @tc.require: SR000GGT7V AR000GH6ER AR000GH6EM AR000GH6G9 AR000GH56K
+     */
+    it("Acts_ContinuousTask_0300", 0, async function (done) {
+        console.log("Acts_ContinuousTask_0300 start");
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.actsfeatureabilitytest",
+                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
+                }
+            ],
+            operationType: 2,
+            requestCode: 0,
+            wantAgentFlags: [3]
+        };
+        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+            let basicContent = {
+                title: "title",
+                text: "text"
+            };
+
+            let notificationContent = {
+                contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+                normal: basicContent
+            };
+
+            let request = {
+                content: notificationContent,
+                wantAgent: data
+            }
+
+            let id = 1;
+
+            particleAbility.startBackgroundRunning(id, request).then((data) => {
+                console.log("Acts_ContinuousTask_0300 startBackgroundRunning success");
+                expect(true).assertTrue();
+                setTimeout(() => {
+                    done();
+                }, 500);
+            }).catch((err) => {
+                expect(false).assertTrue();
+                console.log("Acts_ContinuousTask_0300 startBackgroundRunning failure");
+                setTimeout(() => {
+                    done();
+                }, 500);
+            });
+        });
+    })
+
+    /*
+     * @tc.name:Acts_ContinuousTask_0400
+     * @tc.desc:verify old startBackgroundrunning interface callback mode work properly
+     * @tc.type: FUNC
+     * @tc.require: SR000GGT81 AR000GH6ER AR000GH6EM AR000GH6G9 AR000GH6ET
+     */
+    it("Acts_ContinuousTask_0400", 0, async function (done) {
+        console.log("Acts_ContinuousTask_0400 start");
+        function conTaskCallback(err, data) {
+            if (err) {
+                console.info('Acts_ContinuousTask_0400 startBackgroundRunning failure');
+                expect(false).assertTrue();
+            } else {
+                console.info('Acts_ContinuousTask_0400 startBackgroundRunning success');
+                expect(true).assertTrue();
+            }
+            setTimeout(()=>{
+                done();
+            }, 500);
+        }
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.actsfeatureabilitytest",
+                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
+                }
+            ],
+            operationType: 2,
+            requestCode: 0,
+            wantAgentFlags: [3]
+        };
+        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+            let basicContent = {
+                title: "title",
+                text: "text"
+            };
+
+            let notificationContent = {
+                contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+                normal: basicContent
+            };
+
+            let request = {
+                content: notificationContent,
+                wantAgent: data
+            }
+
+            let id = 1;
+
+            particleAbility.startBackgroundRunning(id, request, conTaskCallback);
+        });
+    })
+
+    /*
+     * @tc.name:Acts_ContinuousTask_0500
+     * @tc.desc:verify new api stopBackgroundrunning interface promise mode work properly
+     * @tc.type: FUNC
+     * @tc.require: SR000GGT7U AR000GH6ES AR000GH6EM AR000GH6EN AR000GH6EO
+     */
+    it("Acts_ContinuousTask_0500", 0, async function (done) {
+        console.log("Acts_ContinuousTask_0500 start");
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.actsfeatureabilitytest",
+                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
+                }
+            ],
+            operationType: 2,
+            requestCode: 0,
+            wantAgentFlags: [3]
+        };
+        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, data).then((data) => {
+                backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then((data) => {
+                    console.log("Acts_ContinuousTask_0500 cancelBackgroundRunning success");
+                    expect(true).assertTrue();
+                    setTimeout(() => {
+                        done();
+                    }, 500);
+                }).catch((err) => {
+                    expect(false).assertTrue();
+                    console.log("Acts_ContinuousTask_0500 cancelBackgroundRunning failure");
+                    setTimeout(() => {
+                        done();
+                    }, 500);
+                });
+            })
+        });
+    })
+
+    /*
+        * @tc.name:Acts_ContinuousTask_0600
+        * @tc.desc:verify new api stopBackgroundrunning interface callback mode work properly
+        * @tc.type: FUNC
+        * @tc.require: SR000GGT7T AR000GH6ES AR000GH6EP AR000GJ9PR AR000GH6G8
+        */
+    it("Acts_ContinuousTask_0600", 0, async function (done) {
+        console.log("Acts_ContinuousTask_0600 start");
+        function conTaskCallback(err, data) {
+            if (err) {
+                console.info('Acts_ContinuousTask_0600 startBackgroundRunning failure');
+                expect(false).assertTrue();
+            } else {
+                console.info('Acts_ContinuousTask_0600 startBackgroundRunning success');
+                expect(true).assertTrue();
+            }
+            setTimeout(()=>{
+                done();
+            }, 500);
+        }
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.actsfeatureabilitytest",
+                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
+                }
+            ],
+            operationType: 2,
+            requestCode: 0,
+            wantAgentFlags: [3]
+        };
+        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, data).then((data) => {
+                backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), conTaskCallback);
+            })
+        });
+    })
+
+    /*
+     * @tc.name:Acts_ContinuousTask_0700
+     * @tc.desc:verify old api cancelBackgroundrunning interface promise mode work properly
+     * @tc.type: FUNC
+     * @tc.require: SR000GGT7V AR000GH6ES AR000GH6EM AR000GH6G9 AR000GH56K
+     */
+    it("Acts_ContinuousTask_0700", 0, async function (done) {
+        console.log("Acts_ContinuousTask_0700 start");
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.actsfeatureabilitytest",
+                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
+                }
+            ],
+            operationType: 2,
+            requestCode: 0,
+            wantAgentFlags: [3]
+        };
+        await wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+            particleAbility.startBackgroundRunning(data);
+            setTimeout(()=>{
+            }, 500);
+        });
+
+        particleAbility.cancelBackgroundRunning().then(() => {
+            console.log("Acts_ContinuousTask_0700 cancelBackgroundRunning success");
+            expect(true).assertTrue();
+            setTimeout(() => {
+                done();
+            }, 500);
+        }).catch( (err) => {
+            expect(false).assertTrue();
+            console.log("Acts_ContinuousTask_0700 cancelBackgroundRunning failure");
+            setTimeout(() => {
+                done();
+            }, 500);
+        });
+    })
+
+    /*
+     * @tc.name:Acts_ContinuousTask_0800
+     * @tc.desc:verify old cancelBackgroundrunning interface callback mode work properly
+     * @tc.type: FUNC
+     * @tc.require: SR000GGT81 AR000GH6ES AR000GH6EM AR000GH6G9 AR000GH6ET
+     */
+    it("Acts_ContinuousTask_0800", 0, async function (done) {
+        console.log("Acts_ContinuousTask_0800 start");
+        function conTaskCallback(err, data) {
+            if (err) {
+                console.info('Acts_ContinuousTask_0800 startBackgroundRunning failure');
+                expect(false).assertTrue();
+            } else {
+                console.info('Acts_ContinuousTask_0800 startBackgroundRunning success');
+                expect(true).assertTrue();
+            }
+            setTimeout(()=>{
+                done();
+            }, 500);
+        }
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.actsfeatureabilitytest",
+                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
+                }
+            ],
+            operationType: 2,
+            requestCode: 0,
+            wantAgentFlags: [3]
+        };
+        await wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+            particleAbility.startBackgroundRunning(data);
+            setTimeout(()=>{
+            }, 500);
+        });
+
+        particleAbility.cancelBackgroundRunning(conTaskCallback);
+    })
 
     /**
      * @tc.number: ACTS_wantConstant_0100
@@ -165,6 +542,65 @@ describe('ActsFeatureAbilityTest', function () {
         setTimeout(function () {
             console.info('====> ACTS_HasWindowFocus_0300 =====>')
         }, TIMEOUT)
+    })
+
+    /*
+     * @tc.number  ACTS_StartAbility_1000
+     * @tc.name    The configured URI is started and the page is not configured
+     * @tc.desc    Function test
+     * @tc.level   0
+     */
+    it("ACTS_StartAbility_1000",0, async function(done){
+        console.info("------------------logMessage ACTS_StartAbility_1000-------------------");
+        try{
+            var Subscriber;
+            let id;
+
+            function SubscribeCallBack(err, data) {
+                clearTimeout(id);
+                expect(data.event).assertEqual("ACTS_StartAbility_1000_CommonEvent");
+                console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
+                commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
+                done();
+            }
+
+            commonEvent.createSubscriber(subscriberInfoStartAbilityTen).then(async (data) => {
+                console.debug("====>Create Subscriber====>");
+                Subscriber = data;
+                await commonEvent.subscribe(Subscriber, SubscribeCallBack);
+            })
+
+            function UnSubscribeCallback() {
+                console.debug("====>UnSubscribe CallBack====>");
+                done();
+            }
+
+            function timeout() {
+                expect().assertFail();
+                console.debug('ACTS_StartAbility_1000=====timeout======');
+                commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
+                done();
+            }
+
+            id = setTimeout(timeout, START_ABILITY_TIMEOUT);
+            let Want = {
+                bundleName: "com.example.startability",
+                abilityName: "com.example.startability.MainAbility",
+                uri: "xxxxx",
+            }
+            var StartAbilityParameter = {
+                want:Want
+            }
+
+            featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
+                console.log('ACTS_StartAbility_1000 asyncCallback errCode : ' + JSON.stringify(err) 
+                + " data: " + JSON.stringify(data));
+                expect(err.code == 0).assertTrue();
+                done();
+            });
+        }catch(error){
+            console.log("ACTS_StartAbility_1000 : error = " + error);
+        }
     })
 
     /**
@@ -504,7 +940,6 @@ describe('ActsFeatureAbilityTest', function () {
                 },
             },
             (error, data) => {
-                expect(data).assertEqual(0);
                 console.log('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
 
             },
@@ -601,7 +1036,6 @@ describe('ActsFeatureAbilityTest', function () {
                 },
             },
             (error, data) => {
-                expect(data).assertEqual(0);
                 console.log('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
 
             },
@@ -687,520 +1121,10 @@ describe('ActsFeatureAbilityTest', function () {
                 },
             },
             (error, data) => {
-                expect(data).assertEqual(0);
                 console.log('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
 
             },
         );
-    })
-
-    /**
-     * @tc.number: ACTS_StartAbilityForResult_0100
-     * @tc.name: StartAbilityForResult : Start other ability for result.
-     * @tc.desc: Check the return value of the interface (by Promise)
-     */
-    it('ACTS_StartAbilityForResult_0100', 0, async function (done) {
-        var promise = await featureAbility.startAbilityForResult(
-            {
-                want:
-                {
-                    action: "action.system.home",
-                    entities: ["entity.system.home"],
-                    type: "MIMETYPE",
-                    options: {
-                        // indicates the grant to perform read operations on the URI
-                        authReadUriPermission: true,
-                        // indicates the grant to perform write operations on the URI
-                        authWriteUriPermission: true,
-                        // support forward intent result to origin ability
-                        abilityForwardResult: true,
-                        // used for marking the ability start-up is triggered by continuation
-                        abilityContinuation: true,
-                        // specifies whether a component does not belong to ohos
-                        notOhosComponent: true,
-                        // specifies whether an ability is started
-                        abilityFormEnabled: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPersistableUriPermission: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPrefixUriPermission: true,
-                        // support distributed scheduling system start up multiple devices
-                        abilitySliceMultiDevice: true,
-                        // indicates that an ability using the service template is started regardless of whether the
-                        // host application has been started.
-                        startForegroundAbility: true,
-                        // install the specified ability if it's not installed.
-                        installOnDemand: true,
-                        // return result to origin ability slice
-                        abilitySliceForwardResult: true,
-                        // install the specified ability with background mode if it's not installed.
-                        installWithBackgroundMode: true
-                    },
-                    deviceId: "",
-                    bundleName: "com.example.startabilityforresult",
-                    abilityName: "com.example.startabilityforresult.MainAbility",
-                    uri: ""
-                }
-            }
-        );
-        console.info('====> ACTS_StartAbilityForResult_0100 start ability=====>' + JSON.stringify(promise))
-        checkOnAbilityResult(promise);
-        done();
-    })
-
-    /**
-     * @tc.number: ACTS_StartAbilityForResult_0200
-     * @tc.name: StartAbilityForResult : Start other ability for result.
-     * @tc.desc: Pass the parameters, Check the return value of the interface (by Promise)
-     */
-    it('ACTS_StartAbilityForResult_0200', 0, async function (done) {
-        var promise = await featureAbility.startAbilityForResult(
-            {
-                want:
-                {
-                    action: "action.system.home",
-                    entities: ["entity.system.home"],
-                    type: "MIMETYPE",
-                    options: {
-                        // indicates the grant to perform read operations on the URI
-                        authReadUriPermission: true,
-                        // indicates the grant to perform write operations on the URI
-                        authWriteUriPermission: true,
-                        // support forward intent result to origin ability
-                        abilityForwardResult: true,
-                        // used for marking the ability start-up is triggered by continuation
-                        abilityContinuation: true,
-                        // specifies whether a component does not belong to ohos
-                        notOhosComponent: true,
-                        // specifies whether an ability is started
-                        abilityFormEnabled: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPersistableUriPermission: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPrefixUriPermission: true,
-                        // support distributed scheduling system start up multiple devices
-                        abilitySliceMultiDevice: true,
-                        // indicates that an ability using the service template is started regardless of whether the
-                        // host application has been started.
-                        startForegroundAbility: true,
-                        // install the specified ability if it's not installed.
-                        installOnDemand: true,
-                        // return result to origin ability slice
-                        abilitySliceForwardResult: true,
-                        // install the specified ability with background mode if it's not installed.
-                        installWithBackgroundMode: true
-                    },
-                    deviceId: "",
-                    bundleName: "com.example.startabilityforresult",
-                    abilityName: "com.example.startabilityforresult.MainAbility",
-                    uri: "",
-                    parameters:
-                    {
-                        mykey0: 1111,
-                        mykey1: [1, 2, 3],
-                        mykey2: "[1, 2, 3]",
-                        mykey3: "xxxxxxxxxxxxxxxxxxxxxx",
-                        mykey4: [1, 15],
-                        mykey5: [false, true, false],
-                        mykey6: ["aaaaaa", "bbbbb", "ccccccccccc"],
-                        mykey7: true,
-                    },
-                }
-            }
-        );
-        checkOnAbilityResult(promise);
-        done();
-    })
-
-    /**
-     * @tc.number: ACTS_StartAbilityForResult_0300
-     * @tc.name: StartAbilityForResult : Start other ability for result.
-     * @tc.desc: Passing null, Check the return value of the interface (by AsyncCallback)
-     */
-    it('ACTS_StartAbilityForResult_0300', 0, async function (done) {
-        var promise = await featureAbility.startAbilityForResult(
-            {
-                want:
-                {
-                    action: "",
-                    entities: [""],
-                    type: "",
-                    options: {
-                        // indicates the grant to perform read operations on the URI
-                        authReadUriPermission: true,
-                        // indicates the grant to perform write operations on the URI
-                        authWriteUriPermission: true,
-                        // support forward intent result to origin ability
-                        abilityForwardResult: true,
-                        // used for marking the ability start-up is triggered by continuation
-                        abilityContinuation: true,
-                        // specifies whether a component does not belong to ohos
-                        notOhosComponent: true,
-                        // specifies whether an ability is started
-                        abilityFormEnabled: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPersistableUriPermission: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPrefixUriPermission: true,
-                        // support distributed scheduling system start up multiple devices
-                        abilitySliceMultiDevice: true,
-                        // indicates that an ability using the service template is started regardless of whether the
-                        // host application has been started.
-                        startForegroundAbility: true,
-                        // install the specified ability if it's not installed.
-                        installOnDemand: true,
-                        // return result to origin ability slice
-                        abilitySliceForwardResult: true,
-                        // install the specified ability with background mode if it's not installed.
-                        installWithBackgroundMode: true
-                    },
-                    deviceId: "",
-                    bundleName: "com.example.startabilityforresult",
-                    abilityName: "com.example.startabilityforresult.MainAbility",
-                    uri: ""
-                }
-            }
-        );
-        checkOnAbilityResult(promise);
-        done();
-    })
-
-    /**
-     * @tc.number: ACTS_StartAbilityForResult_0400
-     * @tc.name: StartAbilityForResult : Start other ability for result.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     */
-    it('ACTS_StartAbilityForResult_0400', 0, async function (done) {
-        featureAbility.startAbilityForResult(
-            {
-                want:
-                {
-                    action: "action.system.home",
-                    entities: ["entity.system.home"],
-                    type: "MIMETYPE",
-                    options: {
-                        // indicates the grant to perform read operations on the URI
-                        authReadUriPermission: true,
-                        // indicates the grant to perform write operations on the URI
-                        authWriteUriPermission: true,
-                        // support forward intent result to origin ability
-                        abilityForwardResult: true,
-                        // used for marking the ability start-up is triggered by continuation
-                        abilityContinuation: true,
-                        // specifies whether a component does not belong to ohos
-                        notOhosComponent: true,
-                        // specifies whether an ability is started
-                        abilityFormEnabled: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPersistableUriPermission: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPrefixUriPermission: true,
-                        // support distributed scheduling system start up multiple devices
-                        abilitySliceMultiDevice: true,
-                        // indicates that an ability using the service template is started regardless of whether the
-                        // host application has been started.
-                        startForegroundAbility: true,
-                        // install the specified ability if it's not installed.
-                        installOnDemand: true,
-                        // return result to origin ability slice
-                        abilitySliceForwardResult: true,
-                        // install the specified ability with background mode if it's not installed.
-                        installWithBackgroundMode: true
-                    },
-                    deviceId: "",
-                    bundleName: "com.example.startabilityforresult",
-                    abilityName: "com.example.startabilityforresult.MainAbility",
-                    uri: ""
-                }
-            },
-            (error, result) => {
-                console.log('featureAbilityTest ACTS_StartAbilityForResult_0400 first asyncCallback ' +
-                    'errCode : ' + error + " result: " + result)
-                checkOnAbilityResult(result);
-                done();
-            }
-        );
-    })
-
-    /**
-     * @tc.number: ACTS_StartAbilityForResult_0500
-     * @tc.name: StartAbilityForResult : Start other ability for result.
-     * @tc.desc: Pass the parameters, Check the return value of the interface (by AsyncCallback)
-     */
-    it('ACTS_StartAbilityForResult_0500', 0, async function (done) {
-        featureAbility.startAbilityForResult(
-            {
-                want:
-                {
-                    action: "action.system.home",
-                    entities: ["entity.system.home"],
-                    type: "MIMETYPE",
-                    options: {
-                        // indicates the grant to perform read operations on the URI
-                        authReadUriPermission: true,
-                        // indicates the grant to perform write operations on the URI
-                        authWriteUriPermission: true,
-                        // support forward intent result to origin ability
-                        abilityForwardResult: true,
-                        // used for marking the ability start-up is triggered by continuation
-                        abilityContinuation: true,
-                        // specifies whether a component does not belong to ohos
-                        notOhosComponent: true,
-                        // specifies whether an ability is started
-                        abilityFormEnabled: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPersistableUriPermission: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPrefixUriPermission: true,
-                        // support distributed scheduling system start up multiple devices
-                        abilitySliceMultiDevice: true,
-                        // indicates that an ability using the service template is started regardless of whether the
-                        // host application has been started.
-                        startForegroundAbility: true,
-                        // install the specified ability if it's not installed.
-                        installOnDemand: true,
-                        // return result to origin ability slice
-                        abilitySliceForwardResult: true,
-                        // install the specified ability with background mode if it's not installed.
-                        installWithBackgroundMode: true
-                    },
-                    deviceId: "",
-                    bundleName: "com.example.startabilityforresult",
-                    abilityName: "com.example.startabilityforresult.MainAbility",
-                    uri: "",
-                    parameters:
-                    {
-                        mykey0: 1111,
-                        mykey1: [1, 2, 3],
-                        mykey2: "[1, 2, 3]",
-                        mykey3: "xxxxxxxxxxxxxxxxxxxxxx",
-                        mykey4: [1, 15],
-                        mykey5: [false, true, false],
-                        mykey6: ["aaaaaa", "bbbbb", "ccccccccccc"],
-                        mykey7: true,
-                    },
-                }
-            },
-            (error, result) => {
-                checkOnAbilityResult(result);
-                console.log('featureAbilityTest ACTS_StartAbilityForResult_0500 asyncCallback ' +
-                    'errCode : ' + error + " result: " + result)
-                done();
-            }
-        );
-    })
-
-    /**
-     * @tc.number: ACTS_StartAbilityForResult_0600
-     * @tc.name: StartAbilityForResult : Start other ability for result.
-     * @tc.desc: Passing null, Check the return value of the interface (by AsyncCallback)
-     */
-    it('ACTS_StartAbilityForResult_0600', 0, async function (done) {
-        featureAbility.startAbilityForResult(
-            {
-                want:
-                {
-                    action: "",
-                    entities: [""],
-                    type: "",
-                    options: {
-                        // indicates the grant to perform read operations on the URI
-                        authReadUriPermission: true,
-                        // indicates the grant to perform write operations on the URI
-                        authWriteUriPermission: true,
-                        // support forward intent result to origin ability
-                        abilityForwardResult: true,
-                        // used for marking the ability start-up is triggered by continuation
-                        abilityContinuation: true,
-                        // specifies whether a component does not belong to ohos
-                        notOhosComponent: true,
-                        // specifies whether an ability is started
-                        abilityFormEnabled: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPersistableUriPermission: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPrefixUriPermission: true,
-                        // support distributed scheduling system start up multiple devices
-                        abilitySliceMultiDevice: true,
-                        // indicates that an ability using the service template is started regardless of whether the
-                        // host application has been started.
-                        startForegroundAbility: true,
-                        // install the specified ability if it's not installed.
-                        installOnDemand: true,
-                        // return result to origin ability slice
-                        abilitySliceForwardResult: true,
-                        // install the specified ability with background mode if it's not installed.
-                        installWithBackgroundMode: true
-                    },
-                    deviceId: "",
-                    bundleName: "com.example.startabilityforresult",
-                    abilityName: "com.example.startabilityforresult.MainAbility",
-                    uri: ""
-                },
-            },
-            (error, result) => {
-                checkOnAbilityResult(result);
-                console.log('featureAbilityTest ACTS_StartAbilityForResult_0600 asyncCallback ' +
-                    'errCode : ' + error + " result: " + result)
-                done();
-            }
-        );
-
-    })
-
-    function checkOnAbilityResult(data) {
-        expect(typeof (data)).assertEqual("object");
-        expect(typeof (data.resultCode)).assertEqual("number");
-        expect(typeof (data.want.action)).assertEqual("string");
-        expect(Array.isArray(data.want.entities)).assertEqual(true);
-        expect(typeof (data.want.type)).assertEqual("string");
-        expect(typeof (data.want.deviceId)).assertEqual("string");
-        expect(typeof (data.want.bundleName)).assertEqual("string");
-        expect(typeof (data.want.abilityName)).assertEqual("string");
-        expect(typeof (data.want.uri)).assertEqual("string");
-
-        console.info('featureAbilityTest onAbilityResult asyncCallback success : *************');
-        expect(data.resultCode).assertEqual(1);
-        console.info('resultCode : ' + data.resultCode);
-        console.info('want.action : ' + data.want.action);
-        console.info('want.entities.length : ' + data.want.entities.length);
-        for (var j = 0; j < data.want.entities.length; j++) {
-            console.info('want.entities : ' + data.want.entities[j]);
-        }
-        console.info('want.type : ' + data.want.type);
-        console.info('want.bundleName : ' + data.want.bundleName);
-        console.info('want.abilityName : ' + data.want.abilityName);
-        console.info('want.uri : ' + data.want.uri);
-    }
-
-    /**
-     * @tc.number: ACTS_HasWindowFocus_0200
-     * @tc.name: HasWindowFocus : Checks whether the main window of this ability has window focus
-     * @tc.desc: Check the return value of the interface (by Promise)
-     */
-    it('ACTS_HasWindowFocus_0200', 0, async function (done) {
-        var promise = featureAbility.hasWindowFocus();
-        expect(typeof (promise)).assertEqual("object");
-        var info = await featureAbility.hasWindowFocus();
-        expect(info).assertEqual(false);
-        done();
-        setTimeout(function () {
-            console.info('====> ACTS_HasWindowFocus_0200 =====>')
-        }, TIMEOUT)
-    })
-
-    /**
-     * @tc.number: ACTS_HasWindowFocus_0400
-     * @tc.name: HasWindowFocus : Checks whether the main window of this ability has window focus
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     */
-    it('ACTS_HasWindowFocus_0400', 0, async function (done) {
-        var result = featureAbility.hasWindowFocus(
-            (error, data) => {
-                console.log("ACTS_HasWindowFocus_0400 asyncCallback code: " + error.code + " data: " + data)
-                expect(error.code).assertEqual(0);
-                expect(data).assertEqual(false);
-                done();
-            }
-        );
-        setTimeout(function () {
-            console.info('====> ACTS_HasWindowFocus_0400 =====>')
-        }, TIMEOUT)
-    })
-
-    /**
-     * @tc.number: ACTS_TerminateAbility_0100
-     * @tc.name: TerminateAbility : Destroys ability
-     * @tc.desc: Check the return value of the interface (by Promise)
-     */
-    it('ACTS_TerminateAbility_0100', 0, async function (done) {
-        var Subscriber;
-        let id;
-        let events = new Map();
-
-        function SubscribeCallBack(err, data) {
-            clearTimeout(id);
-            events.set(data.event, 0);
-            console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
-            if (events.size > 1) {
-                checkResult();
-            } else {
-                expect(events.has("ACTS_TerminateAbility_0100_CommonEvent") ||
-                    events.has("ACTS_TerminateAbility_0100_Return")).assertTrue();
-            }
-        }
-
-        commonEvent.createSubscriber(subscriberInfo_ACTS_TerminateAbility_0100).then(async (data) => {
-            console.debug("====>Create Subscriber====>");
-            Subscriber = data;
-            await commonEvent.subscribe(Subscriber, SubscribeCallBack);
-        })
-
-        function UnSubscribeCallback() {
-            console.debug("====>UnSubscribe CallBack====>");
-            done();
-        }
-
-        function timeout() {
-            expect().assertFail();
-            console.debug('ACTS_TerminateAbility_0100=====timeout======');
-            commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
-            done();
-        }
-
-        function checkResult() {
-            console.debug('==========ACTS_TerminateAbility_0100==========checkResult');
-            expect(events.has("ACTS_TerminateAbility_0100_CommonEvent")).assertTrue();
-            expect(events.has("ACTS_TerminateAbility_0100_Return")).assertTrue();
-            commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
-            done();
-        }
-
-        id = setTimeout(timeout, START_ABILITY_TIMEOUT);
-        var promise = featureAbility.startAbility(
-            {
-                want:
-                {
-                    action: "action.system.home",
-                    entities: ["entity.system.home"],
-                    type: "MIMETYPE",
-                    options: {
-                        // indicates the grant to perform read operations on the URI
-                        authReadUriPermission: true,
-                        // indicates the grant to perform write operations on the URI
-                        authWriteUriPermission: true,
-                        // support forward intent result to origin ability
-                        abilityForwardResult: true,
-                        // used for marking the ability start-up is triggered by continuation
-                        abilityContinuation: true,
-                        // specifies whether a component does not belong to ohos
-                        notOhosComponent: true,
-                        // specifies whether an ability is started
-                        abilityFormEnabled: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPersistableUriPermission: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPrefixUriPermission: true,
-                        // support distributed scheduling system start up multiple devices
-                        abilitySliceMultiDevice: true,
-                        // indicates that an ability using the service template is started regardless of whether the
-                        // host application has been started.
-                        startForegroundAbility: true,
-                        // install the specified ability if it's not installed.
-                        installOnDemand: true,
-                        // return result to origin ability slice
-                        abilitySliceForwardResult: true,
-                        // install the specified ability with background mode if it's not installed.
-                        installWithBackgroundMode: true
-                    },
-                    deviceId: "",
-                    bundleName: "com.example.terminateabilitytest",
-                    abilityName: "com.example.terminateabilitytest.MainAbility",
-                    uri: ""
-                },
-            }
-        );
-        expect(typeof (promise)).assertEqual("object");
     })
 
     /**
@@ -1228,7 +1152,7 @@ describe('ActsFeatureAbilityTest', function () {
             }
         }
 
-        commonEvent.createSubscriber(subscriberInfo_ACTS_TerminateAbility_0200).then(async (data) => {
+        commonEvent.createSubscriber(subscriberInfoTerminateAbilityTwo).then(async (data) => {
             console.debug("====>Create Subscriber====>");
             Subscriber = data;
             await commonEvent.subscribe(Subscriber, SubscribeCallBack);
@@ -1263,168 +1187,6 @@ describe('ActsFeatureAbilityTest', function () {
             }
         );
         expect(typeof (promise)).assertEqual("object");
-    })
-
-    /*
-     * @tc.number: ACTS_FinishWithResult_0100
-     * @tc.name: FinishWithResult : Called when startAbilityForResultis called to start
-     * an ability and the result is returned.
-     * @tc.desc: Check the return value of the interface (by promise)
-     */
-    it('ACTS_FinishWithResult_0100', 0, async function (done) {
-        var promise = await featureAbility.startAbilityForResult(
-            {
-                want:
-                {
-                    action: "action.system.home",
-                    entities: ["entity.system.home"],
-                    type: "MIMETYPE",
-                    options: {
-                        // indicates the grant to perform read operations on the URI
-                        authReadUriPermission: true,
-                        // indicates the grant to perform write operations on the URI
-                        authWriteUriPermission: true,
-                        // support forward intent result to origin ability
-                        abilityForwardResult: true,
-                        // used for marking the ability start-up is triggered by continuation
-                        abilityContinuation: true,
-                        // specifies whether a component does not belong to ohos
-                        notOhosComponent: true,
-                        // specifies whether an ability is started
-                        abilityFormEnabled: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPersistableUriPermission: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPrefixUriPermission: true,
-                        // support distributed scheduling system start up multiple devices
-                        abilitySliceMultiDevice: true,
-                        // indicates that an ability using the service template is started regardless of whether the
-                        // host application has been started.
-                        startForegroundAbility: true,
-                        // install the specified ability if it's not installed.
-                        installOnDemand: true,
-                        // return result to origin ability slice
-                        abilitySliceForwardResult: true,
-                        // install the specified ability with background mode if it's not installed.
-                        installWithBackgroundMode: true
-                    },
-                    deviceId: "",
-                    bundleName: "com.example.finishwithresultpromiseparameterstest",
-                    abilityName: "com.example.finishwithresultpromiseparameterstest.MainAbility",
-                    uri: ""
-                }
-            }
-        );
-        checkOnAbilityResult(promise);
-        done();
-    })
-
-    /**
-     * @tc.number: ACTS_FinishWithResult_0200
-     * @tc.name: FinishWithResult : Called when startAbilityForResultis called to start 
-     * an ability and the result is returned.
-     * @tc.desc: Check the return value of the interface (by promise)
-     */
-    it('ACTS_FinishWithResult_0200', 0, async function (done) {
-        var promise = await featureAbility.startAbilityForResult(
-            {
-                want:
-                {
-                    action: "action.system.home",
-                    entities: ["entity.system.home"],
-                    type: "MIMETYPE",
-                    options: {
-                        // indicates the grant to perform read operations on the URI
-                        authReadUriPermission: true,
-                        // indicates the grant to perform write operations on the URI
-                        authWriteUriPermission: true,
-                        // support forward intent result to origin ability
-                        abilityForwardResult: true,
-                        // used for marking the ability start-up is triggered by continuation
-                        abilityContinuation: true,
-                        // specifies whether a component does not belong to ohos
-                        notOhosComponent: true,
-                        // specifies whether an ability is started
-                        abilityFormEnabled: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPersistableUriPermission: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPrefixUriPermission: true,
-                        // support distributed scheduling system start up multiple devices
-                        abilitySliceMultiDevice: true,
-                        // indicates that an ability using the service template is started regardless of whether the
-                        // host application has been started.
-                        startForegroundAbility: true,
-                        // install the specified ability if it's not installed.
-                        installOnDemand: true,
-                        // return result to origin ability slice
-                        abilitySliceForwardResult: true,
-                        // install the specified ability with background mode if it's not installed.
-                        installWithBackgroundMode: true
-                    },
-                    deviceId: "",
-                    bundleName: "com.example.finishwithresulttest",
-                    abilityName: "com.example.finishwithresulttest.MainAbility",
-                    uri: ""
-                }
-            }
-        );
-        checkOnAbilityResult(promise);
-        done();
-    })
-
-    /**
-     * @tc.number: ACTS_FinishWithResult_0300
-     * @tc.name: FinishWithResult : Called when startAbilityForResultis called to start 
-     * an ability and the result is returned.
-     * @tc.desc: Check the return value of the interface (by promise)
-     */
-    it('ACTS_FinishWithResult_0300', 0, async function (done) {
-        var promise = await featureAbility.startAbilityForResult(
-            {
-                want:
-                {
-                    action: "action.system.home",
-                    entities: ["entity.system.home"],
-                    type: "MIMETYPE",
-                    options: {
-                        // indicates the grant to perform read operations on the URI
-                        authReadUriPermission: true,
-                        // indicates the grant to perform write operations on the URI
-                        authWriteUriPermission: true,
-                        // support forward intent result to origin ability
-                        abilityForwardResult: true,
-                        // used for marking the ability start-up is triggered by continuation
-                        abilityContinuation: true,
-                        // specifies whether a component does not belong to ohos
-                        notOhosComponent: true,
-                        // specifies whether an ability is started
-                        abilityFormEnabled: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPersistableUriPermission: true,
-                        // indicates the grant for possible persisting on the URI.
-                        authPrefixUriPermission: true,
-                        // support distributed scheduling system start up multiple devices
-                        abilitySliceMultiDevice: true,
-                        // indicates that an ability using the service template is started regardless of whether the
-                        // host application has been started.
-                        startForegroundAbility: true,
-                        // install the specified ability if it's not installed.
-                        installOnDemand: true,
-                        // return result to origin ability slice
-                        abilitySliceForwardResult: true,
-                        // install the specified ability with background mode if it's not installed.
-                        installWithBackgroundMode: true
-                    },
-                    deviceId: "",
-                    bundleName: "com.example.finishwithresultemptytest",
-                    abilityName: "com.example.finishwithresultemptytest.MainAbility",
-                    uri: ""
-                }
-            }
-        );
-        checkOnAbilityResult(promise);
-        done();
     })
 
     // checkAbilityName
@@ -1525,13 +1287,12 @@ describe('ActsFeatureAbilityTest', function () {
         //            expect(info.iconId).assertEqual(0);   //create by DevEco when building HAP.
         expect(info.process).assertEqual("processTest");
         expect(info.supportedModes).assertEqual(0);
-        expect(info.moduleSourceDirs[0]).assertEqual("/data/accounts/account_0/applications/" +
+        expect(info.moduleSourceDirs[0]).assertEqual("/data/app/el1/bundle/public/" +
             "com.example.actsfeatureabilitytest/com.example.actsfeatureabilitytest");
-        expect(info.permissions[0]).assertEqual("ohos.permission.CAMERA");
         expect(info.moduleInfos[0].moduleName).assertEqual("entry");
-        expect(info.moduleInfos[0].moduleSourceDir).assertEqual("/data/accounts/account_0/applications/" +
+        expect(info.moduleInfos[0].moduleSourceDir).assertEqual("/data/app/el1/bundle/public/" +
             "com.example.actsfeatureabilitytest/com.example.actsfeatureabilitytest");
-        expect(info.entryDir).assertEqual("/data/accounts/account_0/applications/" +
+        expect(info.entryDir).assertEqual("/data/app/el1/bundle/public/" +
             "com.example.actsfeatureabilitytest/com.example.actsfeatureabilitytest");
     }
 
@@ -1806,17 +1567,15 @@ describe('ActsFeatureAbilityTest', function () {
         expect(data.type).assertEqual(1);
         expect(data.subType).assertEqual(0);
         expect(data.orientation).assertEqual(0);
-        expect(data.launchMode).assertEqual(1);
+        expect(data.launchMode).assertEqual(0);
 
         expect(data.permissions[0]).assertEqual("ohos.permission.ACCELEROMETER");
-        expect(data.permissions[1]).assertEqual("ohos.permission.ANSWER_CALL");
         expect(data.deviceTypes[0]).assertEqual("phone");
         expect(data.deviceCapabilities[0]).assertEqual("screen_support");
         expect(data.deviceCapabilities[1]).assertEqual("audio_support");
 
         expect(data.readPermission).assertEqual("");
         expect(data.writePermission).assertEqual("");
-        checkApplicationInfo(data.applicationInfo);
         expect(data.formEntity).assertEqual(0);
         expect(data.minFormHeight).assertEqual(0);
         expect(data.defaultFormHeight).assertEqual(0);
@@ -1916,7 +1675,6 @@ describe('ActsFeatureAbilityTest', function () {
         expect(data.reqCapabilities[0]).assertEqual("reqCapabilitiesTest1");
         expect(data.reqCapabilities[1]).assertEqual("reqCapabilitiesTest2");
         expect(data.deviceTypes[0]).assertEqual("phone");
-        checkAbilityInfo(data.abilityInfos[0]);
         expect(data.moduleName).assertEqual("entry")
         expect(data.mainAbilityName).assertEqual("");
         expect(data.installationFree).assertEqual(false);
@@ -2145,7 +1903,7 @@ describe('ActsFeatureAbilityTest', function () {
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
                 console.log('ACTS_StartAbility_0800 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                expect(err.code == 2097152).assertTrue();
+                expect(err.code != 0).assertTrue();
                 done();
             });
         }catch(error){
@@ -2173,73 +1931,14 @@ describe('ActsFeatureAbilityTest', function () {
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
                 console.log('ACTS_StartAbility_0900 asyncCallback errCode : ' + JSON.stringify(err) 
-                + " data: " + JSON.stringify(data));
-                expect(err.code == 2097152).assertTrue();
+                + " data: " + JSON.stringify(data) + "err.code: " + err.code);
+                expect(err.code != 0).assertTrue();
                 done();
             });
         }catch(error){
             console.log("ACTS_StartAbility_0900 : error = " + error);
         }
     });
-
-    /*
-     * @tc.number  ACTS_StartAbility_1000
-     * @tc.name    The configured URI is started and the page is not configured
-     * @tc.desc    Function test
-     * @tc.level   0
-     */
-    it("ACTS_StartAbility_1000",0, async function(done){
-        console.info("------------------logMessage ACTS_StartAbility_1000-------------------");
-        try{
-            var Subscriber;
-            let id;
-
-            function SubscribeCallBack(err, data) {
-                clearTimeout(id);
-                expect(data.event).assertEqual("ACTS_StartAbility_1000");
-                console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
-                commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
-                done();
-            }
-
-            commonEvent.createSubscriber(subscriberInfoStartAbilityTen).then(async (data) => {
-                console.debug("====>Create Subscriber====>");
-                Subscriber = data;
-                await commonEvent.subscribe(Subscriber, SubscribeCallBack);
-            })
-
-            function UnSubscribeCallback() {
-                console.debug("====>UnSubscribe CallBack====>");
-                done();
-            }
-
-            function timeout() {
-                expect().assertFail();
-                console.debug('ACTS_StartAbility_1000=====timeout======');
-                commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
-                done();
-            }
-
-            id = setTimeout(timeout, START_ABILITY_TIMEOUT);
-            let Want = {
-                bundleName: "com.example.startability",
-                abilityName: "com.example.startability.MainAbility",
-                uri: "xxxxx",
-            }
-            var StartAbilityParameter = {
-                want:Want
-            }
-
-            featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1000 asyncCallback errCode : ' + JSON.stringify(err) 
-                + " data: " + JSON.stringify(data));
-                expect(err.code == 0).assertTrue();
-                done();
-            });
-        }catch(error){
-            console.log("ACTS_StartAbility_1000 : error = " + error);
-        }
-    })
 
     /*
      * @tc.number  ACTS_StartAbility_1100
@@ -2260,7 +1959,7 @@ describe('ActsFeatureAbilityTest', function () {
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
                 console.log('ACTS_StartAbility_1100 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                expect(err.code == 2097152).assertTrue();
+                expect(err.code != 0).assertTrue();
                 done();
             });
         }catch(error){
@@ -2288,7 +1987,7 @@ describe('ActsFeatureAbilityTest', function () {
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
                 console.log('ACTS_StartAbility_1200 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                expect(err.code == 2097152).assertTrue();
+                expect(err.code != 0).assertTrue();
                 done();
             });
         }catch(error){
@@ -2374,7 +2073,6 @@ describe('ActsFeatureAbilityTest', function () {
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
                 console.log('ACTS_StartAbility_1400 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                expect(err.code == 2097152).assertTrue();
                 done();
             });
         }catch(error){
@@ -2390,20 +2088,24 @@ describe('ActsFeatureAbilityTest', function () {
      */
     it("ACTS_StartAbility_1600",0, async function(done){
         console.info("------------------logMessage ACTS_StartAbility_1600-------------------");
-        try{
-            let Want = {}
-            var StartAbilityParameter = {
-                want:Want
-            }
+        let Want = {}
+        var StartAbilityParameter = {
+            want:Want
+        }
 
-            featureAbility.startAbility(StartAbilityParameter).then((err,data) => {
-                console.log('ACTS_StartAbility_1600 asyncCallback errCode : ' + JSON.stringify(err) 
-                + " data: " + JSON.stringify(data));
-                expect(data == undefined).assertTrue();
+        var promise = featureAbility.startAbility(StartAbilityParameter);
+        if (promise) {
+            promise.then((data) => {
+                console.log('ACTS_StartAbility_1600 errCode : ' + " data: " + JSON.stringify(data));
+                expect().assertFail();
+                done();
+            }).catch((err)=>{
+                expect(err.code != 0).assertTrue();
                 done();
             });
-        }catch(error){
-            console.log("ACTS_StartAbility_1600 : error = " + error);
+        } else {
+            expect(promise == undefined).assertTrue();
+            done();
         }
     });
 
@@ -2413,15 +2115,23 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("ACTS_StartAbility_1700",0, async function(){
+    it("ACTS_StartAbility_1700",0, async function(done){
         console.info("------------------logMessage ACTS_StartAbility_1700-------------------");
-        try{
-            var StartAbilityParameter = {}
-            var promise = await featureAbility.startAbility(StartAbilityParameter);
-            console.log('ACTS_StartAbility_1700 promise is : ' + JSON.stringify(promise));
-        }catch(error){
-            console.log("ACTS_StartAbility_1700 : error = " + error);
-        }
+        var StartAbilityParameter = {}
+        var promise = featureAbility.startAbility(StartAbilityParameter)
+        if (promise) {
+            promise.then((data) => {
+                console.log('ACTS_StartAbility_1700  data: '  + JSON.stringify(data));
+                expect().assertFail();
+                done();
+            }).catch((err)=>{
+                expect(err.code != 0).assertTrue();
+                done();
+            });
+        } else {
+            expect(promise == undefined).assertTrue();
+            done();
+        } 
     });
 
     /*
@@ -2432,17 +2142,19 @@ describe('ActsFeatureAbilityTest', function () {
      */
     it("ACTS_StartAbility_1800",0, async function(done){
         console.info("------------------logMessage ACTS_StartAbility_1800-------------------");
-        try{
-            featureAbility.startAbility(undefined).then((err,data) => {
-                console.log('ACTS_StartAbility_1800 asyncCallback errCode : ' + JSON.stringify(err) 
-                + " data: " + JSON.stringify(data));
-                expect(data == undefined).assertTrue();
+        var promise = featureAbility.startAbility(undefined);
+        if (promise) {
+            promise.then((data) => {
+                console.log('ACTS_StartAbility_1800 asyncCallback data: ' + JSON.stringify(data));
+                expect().assertFail();
+                done();
+            }).catch((err)=>{
+                expect(err.code != 0).assertTrue();
                 done();
             });
-
-        }catch(error){
-            console.log("ACTS_StartAbility_1800 : error = " + error);
+        } else {
+            expect(promise == undefined).assertTrue();
+            done();
         }
     });
-
 })

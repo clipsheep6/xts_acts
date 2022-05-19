@@ -22,6 +22,34 @@ describe('AccountTest', function () {
     })
     afterEach(function () {
     })
+
+    /**
+    * @tc.number     ActsDistributedAccountDeviceId_0100
+    * @tc.name       Test query the distribruted id by callback.
+    * @tc.desc       Test distributedAccount.queryOsAccountDistributedInfo API functionality by callback.
+    */
+   it('ActsDistributedAccountDeviceId_0100', 0, async function(done){
+        console.log("test query distribtued id start");
+        const distributedId = '5994471ABB01112AFCC18159F6CC74B4F511B99806DA59B3CAF5A9C173CACFC5';
+        const accountAbility = account.getDistributedAccountAbility();
+        accountAbility.updateOsAccountDistributedInfo(
+        {
+            name: 'ZhangSan',
+            id: '12345',
+            event: "Ohos.account.event.LOGIN"
+        }, (err)=>{
+            console.log("update distributedInfo err:" + JSON.stringify(err));
+            accountAbility.queryOsAccountDistributedInfo((err, distributedInfo)=>{
+                console.log("query distributedInfo err:" + JSON.stringify(err));
+                console.log("query distributedInfo:" + JSON.stringify(distributedInfo));
+                expect(distributedInfo.name).assertEqual('ZhangSan');
+                expect(distributedInfo.id).assertEqual(distributedId);
+                console.log("test query distribtued id end");
+                done();
+            })
+        })
+    })
+
     /**
     * @tc.number     SUB_Account_distributedAccount_JS_API_0100
     * @tc.name       Test distributedAccount.getDistributedAccountAbility.

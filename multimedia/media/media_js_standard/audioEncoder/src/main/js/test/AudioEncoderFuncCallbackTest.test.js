@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,13 +14,19 @@
  */
 
 import media from '@ohos.multimedia.media'
-import Fileio from '@ohos.fileio'
+import fileio from '@ohos.fileio'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import bundle from '@ohos.bundle'
+import featureAbility from '@ohos.ability.featureAbility'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import {getFileDescriptor, closeFileDescriptor} from './AudioEncoderTestBase.test.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('AudioEncoderFuncCallback', function () {
-    const AUDIOPATH =  '/data/media/S32LE.pcm';
-    const AUDIOPATH2 =  '/data/media/S32LE_2.pcm';
-    const BASIC_PATH = '/data/media/results/encode_func_';
+    const RESOURCEPATH = '/data/accounts/account_0/appdata/ohos.acts.multimedia.audio.audioencoder/'
+    const AUDIOPATH = 'S16LE.pcm';
+    const BASIC_PATH = RESOURCEPATH + 'results/encode_func_callback_';
+    let audioEncodeProcessor;
     let readStreamSync;
     let eosframenum = 0;
     let stopAtEOS = false;
@@ -37,13 +43,24 @@ describe('AudioEncoderFuncCallback', function () {
     let outputQueue = [];
     const ES = [0, 4096];
     let ES_LENGTH = 1500;
+    let readpath;
+    let savepath;
+    let fdRead;
+    let fdWrite;
+    let fileAsset;
+    const context = featureAbility.getContext();
+    const mediaTest = mediaLibrary.getMediaLibrary(context);
+    let fileKeyObj = mediaLibrary.FileKey;
 
-    beforeAll(function() {
-        console.info('beforeAll case');
+    beforeAll(async function() {
+        console.info('beforeAll case 1');
+        await applyPermission();
+        console.info('beforeAll case after get permission');
     })
 
     beforeEach(function() {
         console.info('beforeEach case');
+        audioEncodeProcessor = null;
         readStreamSync = undefined;
         eosframenum = 0;
         stopAtEOS = false;
@@ -58,16 +75,24 @@ describe('AudioEncoderFuncCallback', function () {
         sawOutputEOS = false;
         inputQueue = [];
         outputQueue = [];
-        ES_LENGTH = 2000;
+        ES_LENGTH = 1500;
     })
 
-    afterEach(function() {
+    afterEach(async function() {
         console.info('afterEach case');
-        wait(2000);
+        if (audioEncodeProcessor != null) {
+            await audioEncodeProcessor.release().then(() => {
+                console.info('audioEncodeProcessor release success');
+                audioEncodeProcessor = null;
+            }, failCallback).catch(failCatch);
+        }
+        await closeFileDescriptor(AUDIOPATH);
+        await closeFdWrite();
     })
 
-    afterAll(function() {
+    afterAll(async function() {
         console.info('afterAll case');
+        await closeFileDescriptor(AUDIOPATH);
     })
 
     function resetParam() {
@@ -83,54 +108,133 @@ describe('AudioEncoderFuncCallback', function () {
         timestamp = 0;
         sawInputEOS = false;
         sawOutputEOS = false;
+        inputQueue = [];
+        outputQueue = [];
     }
 
-    function writeHead(path, len) {
-        try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
-            let head = new ArrayBuffer(7);
-            addADTStoPacket(head, len);
-            let num = writestream.writeSync(head, {length:7});
-            console.info(' writeSync head num = ' + num);
-            writestream.flushSync();
-            writestream.closeSync();
-        } catch(e) {
-            console.info(e);
+    async function getFdRead(pathName, done) {
+        await getFileDescriptor(pathName).then((res) => {
+            if (res == undefined) {
+                expect().assertFail();
+                console.info('case error fileDescriptor undefined, open file fail');
+                done();
+            } else {
+                fdRead = res.fd;
+                console.info("case pathName is: " + pathName);
+                console.info("case fdRead is: " + fdRead);
+            }
+        })
+    }
+
+    async function applyPermission() {
+        let appInfo = await bundle.getApplicationInfo('ohos.acts.multimedia.audio.audioencoder', 0, 100);
+        let atManager = abilityAccessCtrl.createAtManager();
+        if (atManager != null) {
+            let tokenID = appInfo.accessTokenId;
+            console.info('[permission] case accessTokenID is ' + tokenID);
+            let permissionName1 = 'ohos.permission.MEDIA_LOCATION';
+            let permissionName2 = 'ohos.permission.READ_MEDIA';
+            let permissionName3 = 'ohos.permission.WRITE_MEDIA';
+            await atManager.grantUserGrantedPermission(tokenID, permissionName1, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+            await atManager.grantUserGrantedPermission(tokenID, permissionName2, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+            await atManager.grantUserGrantedPermission(tokenID, permissionName3, 1).then((result) => {
+                console.info('[permission] case grantUserGrantedPermission success :' + result);
+            }).catch((err) => {
+                console.info('[permission] case grantUserGrantedPermission failed :' + err);
+            });
+        } else {
+            console.info('[permission] case apply permission failed, createAtManager failed');
         }
     }
-    function writeFile(path, buf, len) {
-        try{
-            let writestream = Fileio.createStreamSync(path, "ab+");
-            let num = writestream.writeSync(buf, {length:len});
-            writestream.flushSync();
-            writestream.closeSync();
-        } catch(e) {
-            console.info(e);
+
+    async function getFdWrite(pathName) {
+        console.info('[mediaLibrary] case start getFdWrite');
+        console.info('[mediaLibrary] case getFdWrite pathName is ' + pathName);
+        let mediaType = mediaLibrary.MediaType.AUDIO;
+        console.info('[mediaLibrary] case mediaType is ' + mediaType);
+        let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
+        console.info('[mediaLibrary] case getFdWrite publicPath is ' + publicPath);
+        let dataUri = await mediaTest.createAsset(mediaType, pathName, publicPath);
+        if (dataUri != undefined) {
+            let args = dataUri.id.toString();
+            let fetchOp = {
+                selections : fileKeyObj.ID + "=?",
+                selectionArgs : [args],
+            }
+            let fetchWriteFileResult = await mediaTest.getFileAssets(fetchOp);
+            console.info('[mediaLibrary] case getFdWrite getFileAssets() success');
+            fileAsset = await fetchWriteFileResult.getAllObject();
+            console.info('[mediaLibrary] case getFdWrite getAllObject() success');
+            fdWrite = await fileAsset[0].open('Rw');
+            console.info('[mediaLibrary] case getFdWrite fdWrite is ' + fdWrite);
+        }
+    }
+
+    async function closeFdWrite() {
+        if (fileAsset != null) {
+            await fileAsset[0].close(fdWrite).then(() => {
+                console.info('[mediaLibrary] case close fdWrite success, fd is ' + fdWrite);
+            }).catch((err) => {
+                console.info('[mediaLibrary] case close fdWrite failed');
+            });
+        } else {
+            console.info('[mediaLibrary] case fileAsset is null');
         }
     }
 
     function readFile(path) {
+        console.info('case read file start execution');
         try{
-            console.info('filepath: ' + path);
-            readStreamSync = Fileio.createStreamSync(path, 'rb');
-        } catch(e) {
+            console.info('case filepath: ' + path);
+            readStreamSync = fileio.fdopenStreamSync(fdRead, 'rb');
+        }catch(e) {
             console.info(e);
         }
     }
 
     function getContent(buf, len) {
+        console.info("case start get content");
         let lengthreal = -1;
         lengthreal = readStreamSync.readSync(buf,{length:len});
-        console.info('lengthreal: ' + lengthreal);
+        console.info('case lengthreal is :' + lengthreal);
+    }
+
+    function writeHead(path, len) {
+        console.info('case writeFile buffer.length is: ' + len);
+        try{
+            let head = new ArrayBuffer(7);
+            addADTStoPacket(head, len);
+            let res = fileio.writeSync(fdWrite, head, {length: 7});
+            console.info('case fileio.write head success');
+        } catch(e) {
+            console.info('case fileio.write head error is ' + e);
+        }
+    }
+
+    function writeFile(path, buf, len) {
+        try{
+            let res = fileio.writeSync(fdWrite, buf, {length: len});
+            console.info('case fileio.write buffer success');
+        } catch(e) {
+            console.info('case fileio.write buffer error is ' + e);
+        }
     }
 
     function addADTStoPacket(head, len) {
-        let view = new Uint8Array(head)
+        let view = new Uint8Array(head);
         console.info("start add ADTS to Packet");
         let packetLen = len + 7; // 7: head length
         let profile = 2; // 2: AAC LC  
-        let freqIdx = 3; // 3: 48000HZ 
-        let chanCfg = 1; // 1: 1 channel
+        let freqIdx = 4; // 4: 44100HZ 
+        let chanCfg = 2; // 2: 2 channel
         view[0] = 0xFF;
         view[1] = 0xF9;
         view[2] = ((profile - 1) << 6) + (freqIdx << 2) + (chanCfg >> 2);
@@ -140,24 +244,33 @@ describe('AudioEncoderFuncCallback', function () {
         view[6] = 0xFC;
     }
 
-    async function stopWork(audioEncodeProcessor) {
+    async function stopWork() {
         audioEncodeProcessor.stop((err) => {
             expect(err).assertUndefined();
             console.info("case stop success")
         })
     }
 
-    async function resetWork(audioEncodeProcessor) {
+    async function resetWork() {
+        resetParam();
         audioEncodeProcessor.reset((err) => {
             expect(err).assertUndefined();
             console.info("case reset success");
             if (needrelease) {
-                audioEncodeProcessor = null
+                audioEncodeProcessor.release((err) => {
+                    expect(err).assertUndefined();
+                    console.info("case release success");
+                    audioEncodeProcessor = null;
+                })
             }
         })
     }
 
-    async function flushWork(audioEncodeProcessor) {
+    async function flushWork(done) {
+        inputQueue = [];
+        outputQueue = [];
+        await closeFileDescriptor(readpath);
+        await getFdRead(readpath, done);
         audioEncodeProcessor.flush((err) => {
             expect(err).assertUndefined();
             console.info("case flush at inputeos success");
@@ -167,15 +280,21 @@ describe('AudioEncoderFuncCallback', function () {
         })
     }
 
-    async function doneWork(audioEncodeProcessor, done) {
+    async function doneWork(done) {
         audioEncodeProcessor.stop((err) => {
             expect(err).assertUndefined();
             console.info("case stop success");
+            resetParam();
             audioEncodeProcessor.reset((err) => {
                 expect(err).assertUndefined();
-                console.log("case reset success");
-                audioEncodeProcessor = null;
-                done();
+                audioEncodeProcessor.release(async(err) => {
+                    expect(err).assertUndefined();
+                    console.log("case release success");
+                    audioEncodeProcessor = null;
+                    await closeFileDescriptor(AUDIOPATH);
+                    await closeFdWrite();
+                    done();
+                })
             })
         })
     }
@@ -188,7 +307,7 @@ describe('AudioEncoderFuncCallback', function () {
         for(let t = Date.now(); Date.now() - t <= time;);
     }
 
-    async function enqueueAllInputs(audioEncodeProcessor, queue) {
+    async function enqueueAllInputs(queue) {
         while (queue.length > 0 && !sawInputEOS) {
             let inputobject = queue.shift();
             if (frameCnt == eosframenum || frameCnt == ES_LENGTH + 1) {
@@ -207,48 +326,47 @@ describe('AudioEncoderFuncCallback', function () {
             }
             timestamp += 23;
             frameCnt += 1;
-            audioEncodeProcessor.queueInput(inputobject, () => {
+            audioEncodeProcessor.pushInputData(inputobject, () => {
                 console.info('queueInput success');
             })
         }
     }
 
-    async function dequeueAllOutputs(audioEncodeProcessor, queue, savepath, done) {
+    async function dequeueAllOutputs(queue, savepath, done) {
         while (queue.length > 0 && !sawOutputEOS) {
             let outputobject = queue.shift();
             if (outputobject.flags == 1) {
                 sawOutputEOS = true;
                 if (stopAtEOS) {
-                    await stopWork(audioEncodeProcessor);
+                    await stopWork();
                 } else if (resetAtEOS) {
-                    await resetWork(audioEncodeProcessor);
+                    await resetWork();
                 } else if (flushAtEOS) {
-                    await flushWork(audioEncodeProcessor);
+                    await flushWork(done);
                 } else if (workdoneAtEOS) {
-                    await doneWork(audioEncodeProcessor, done);
+                    await doneWork(done);
                 } else {
                     console.info("sawOutputEOS = true");
                 }
             }
             else{
-                writeHead(savepath, outputobject.length);
                 writeFile(savepath, outputobject.data, outputobject.length);
                 console.info("write to file success");
             }
-            audioEncodeProcessor.releaseOutput(outputobject, () => {
+            audioEncodeProcessor.freeOutputBuffer(outputobject, () => {
                 console.info('release output success');
             })
         }
     }
 
-    function setCallback(audioEncodeProcessor, savepath, done) {
+    function setCallback(savepath, done) {
         console.info('case callback');
-        audioEncodeProcessor.on('inputBufferAvailable', async(inBuffer) => {
+        audioEncodeProcessor.on('needInputData', async(inBuffer) => {
             console.info('case inputBufferAvailable');
             inputQueue.push(inBuffer);
-            await enqueueAllInputs(audioEncodeProcessor, inputQueue);
+            await enqueueAllInputs(inputQueue);
         });
-        audioEncodeProcessor.on('outputBufferAvailable', async(outBuffer) => {
+        audioEncodeProcessor.on('newOutputData', async(outBuffer) => {
             console.info('case outputBufferAvailable');
             if (needGetMediaDes) {
                 audioEncodeProcessor.getOutputMediaDescription((err, MediaDescription) => {
@@ -259,12 +377,12 @@ describe('AudioEncoderFuncCallback', function () {
                 });
             }
             outputQueue.push(outBuffer);
-            await dequeueAllOutputs(audioEncodeProcessor, outputQueue, savepath, done);
+            await dequeueAllOutputs(outputQueue, savepath, done);
         });
         audioEncodeProcessor.on('error',(err) => {
             console.info('case error called,errName is' + err);
         });
-        audioEncodeProcessor.on('outputFormatChanged',(format) => {
+        audioEncodeProcessor.on('streamChanged',(format) => {
             console.info('case Output format changed: ' + format);
         });
     }
@@ -279,18 +397,20 @@ describe('AudioEncoderFuncCallback', function () {
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_00_0100', 0, async function (done) {
         console.info("test set EOS after last frame and reset");
-        let audioEncodeProcessor;
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_raw_format": 16,
+            "channel_count": 2,
+            "sample_rate": 44100,
+            "audio_sample_format": 1,
         }
         let mediaDescription2 = {
             "codec_mime": 'audio/mp4a-latm',
         }
-        let savepath = BASIC_PATH + 'callback0000.txt';
+        readpath = AUDIOPATH;
+        savepath = 'audioEncode_function_callback_00.aac';
+        await getFdWrite(savepath);
+        await getFdRead(readpath, done);
         needGetMediaDes = true;
         workdoneAtEOS = true;
         eventEmitter.on('getAudioEncoderCaps', () => {
@@ -313,7 +433,7 @@ describe('AudioEncoderFuncCallback', function () {
             audioEncodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioEncodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -328,7 +448,7 @@ describe('AudioEncoderFuncCallback', function () {
             console.info(`case getMediaCapability 1`);
             mediaCaps.getAudioEncoderCaps((err, audioCaps) => {
                 expect(err).assertUndefined();
-                console.info('getAudioDecoderCaps success');
+                console.info('getAudioEncoderCaps success');
                 if (typeof (audioCaps) != 'undefined') {
                     console.info("case audioCaps " + audioCaps);
                 } else {
@@ -345,7 +465,7 @@ describe('AudioEncoderFuncCallback', function () {
                 }
             })
         })
-        media.createAudioEncoderByName('avdec_aac', (err, processor) => {
+        media.createAudioEncoderByName('avenc_aac', (err, processor) => {
             expect(err).assertUndefined();
             console.info(`case createAudioEncoder by mime 1`);
             audioEncodeProcessor = processor;
@@ -363,15 +483,17 @@ describe('AudioEncoderFuncCallback', function () {
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0100', 0, async function (done) {
         console.info("case test set EOS manually before last frame and reset");
-        let audioEncodeProcessor;
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_raw_format": 16,
+            "channel_count": 2,
+            "sample_rate": 44100,
+            "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'callback0100.txt';
+        readpath = AUDIOPATH;
+        savepath = 'audioEncode_function_callback_01.aac';
+        await getFdWrite(savepath);
+        await getFdRead(readpath, done);
         eosframenum = 500;
         workdoneAtEOS = true;
         eventEmitter.on('getAudioEncoderCaps', () => {
@@ -394,7 +516,7 @@ describe('AudioEncoderFuncCallback', function () {
             audioEncodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioEncodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -422,15 +544,17 @@ describe('AudioEncoderFuncCallback', function () {
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0200', 0, async function (done) {
         console.info("case test flush at running state");
-        let audioEncodeProcessor;
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_raw_format": 16,
+            "channel_count": 2,
+            "sample_rate": 44100,
+            "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'callback0200.txt';
+        readpath = AUDIOPATH;
+        savepath = 'audioEncode_function_callback_02.aac';
+        await getFdWrite(savepath);
+        await getFdRead(readpath, done);
         workdoneAtEOS = true;
         eventEmitter.on('getAudioEncoderCaps', () => {
             audioEncodeProcessor.getAudioEncoderCaps((err, Audiocaps) => {
@@ -452,21 +576,24 @@ describe('AudioEncoderFuncCallback', function () {
             audioEncodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioEncodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
         eventEmitter.on('start', () => {
-            audioEncodeProcessor.start((err) => {
+            audioEncodeProcessor.start(async(err) => {
                 expect(err).assertUndefined();
                 console.info(`case start 1`);
-                setTimeout(() => {eventEmitter.emit('flush')},5000)
+                await sleep(2000);
+                eventEmitter.emit('flush');
             })
         });
         eventEmitter.on('flush', () => {
+            inputQueue = [];
+            outputQueue = [];
             audioEncodeProcessor.flush((err) => {
                 expect(err).assertUndefined();
-                console.info(`case flush after 5s`);
+                console.info(`case flush after 2s success`);
             })
         });
         media.createAudioEncoderByMime('audio/mp4a-latm', (err, processor) => {
@@ -487,15 +614,17 @@ describe('AudioEncoderFuncCallback', function () {
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0300', 0, async function (done) {
         console.info("case test flush at EOS state");
-        let audioEncodeProcessor;
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_raw_format": 16,
+            "channel_count": 2,
+            "sample_rate": 44100,
+            "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'callback0300.txt';
+        readpath = AUDIOPATH;
+        savepath = 'audioEncode_function_callback_03.aac';
+        await getFdWrite(savepath);
+        await getFdRead(readpath, done);
         eosframenum = 500;
         flushAtEOS = true;
         eventEmitter.on('getAudioEncoderCaps', () => {
@@ -518,7 +647,7 @@ describe('AudioEncoderFuncCallback', function () {
             audioEncodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioEncodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -546,15 +675,17 @@ describe('AudioEncoderFuncCallback', function () {
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0400', 0, async function (done) {
         console.info("case test stop at running state and reset");
-        let audioEncodeProcessor;
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_raw_format": 16,
+            "channel_count": 2,
+            "sample_rate": 44100,
+            "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'callback0400.txt';
+        readpath = AUDIOPATH;
+        savepath = 'audioEncode_function_callback_04.aac';
+        await getFdWrite(savepath);
+        await getFdRead(readpath, done);
         eventEmitter.on('getAudioEncoderCaps', () => {
             audioEncodeProcessor.getAudioEncoderCaps((err, Audiocaps) => {
                 expect(err).assertUndefined();
@@ -575,7 +706,7 @@ describe('AudioEncoderFuncCallback', function () {
             audioEncodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioEncodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -596,10 +727,20 @@ describe('AudioEncoderFuncCallback', function () {
             })
         });
         eventEmitter.on('reset', () => {
+            resetParam();
             audioEncodeProcessor.reset((err) => {
                 expect(err).assertUndefined();
                 console.info(`case reset 1`);
+                eventEmitter.emit('release');
+            })
+        });
+        eventEmitter.on('release', () => {
+            audioEncodeProcessor.release(async(err) => {
+                expect(err).assertUndefined();
+                console.info(`case release 1`);
                 audioEncodeProcessor = null;
+                await closeFileDescriptor(AUDIOPATH);
+                await closeFdWrite();
                 done();
             })
         });
@@ -621,15 +762,17 @@ describe('AudioEncoderFuncCallback', function () {
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0500', 0, async function (done) {
         console.info("case test stop and restart");
-        let audioEncodeProcessor;
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_raw_format": 16,
+            "channel_count": 2,
+            "sample_rate": 44100,
+            "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'callback0500.txt';
+        readpath = AUDIOPATH;
+        savepath = 'audioEncode_function_callback_05.aac';
+        await getFdWrite(savepath);
+        await getFdRead(readpath, done);
         eosframenum = 100;
         eventEmitter.on('getAudioEncoderCaps', () => {
             audioEncodeProcessor.getAudioEncoderCaps((err, Audiocaps) => {
@@ -651,7 +794,7 @@ describe('AudioEncoderFuncCallback', function () {
             audioEncodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioEncodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -674,12 +817,16 @@ describe('AudioEncoderFuncCallback', function () {
             })
         });
         eventEmitter.on('restart', () => {
-            sleep(2000).then(() => {
+            sleep(2000).then(async() => {
+                resetParam();
+                await closeFileDescriptor(readpath);
+                await getFdRead(readpath, done);
+                readFile(readpath);
                 audioEncodeProcessor.start((err) => {
                     expect(err).assertUndefined();
                     console.info(`restart after 2s`);
                     workdoneAtEOS = true;
-                    enqueueAllInputs(audioEncodeProcessor, inputQueue);
+                    enqueueAllInputs(inputQueue);
                 })
             })
         });
@@ -701,21 +848,23 @@ describe('AudioEncoderFuncCallback', function () {
     */
     it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0600', 0, async function (done) {
         console.info("case test reconfigure for new file with the same format");
-        let audioEncodeProcessor;
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
         let mediaDescription = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_raw_format": 16,
+            "channel_count": 2,
+            "sample_rate": 44100,
+            "audio_sample_format": 1,
         }
-        let savepath = BASIC_PATH + 'callback0600.txt';
+        readpath = AUDIOPATH;
+        savepath = 'audioEncode_function_callback_06.aac';
+        await getFdWrite(savepath);
+        await getFdRead(readpath, done);
         eosframenum = 100;
         resetAtEOS = true;
         let mediaDescription2 = {
-            "channel_count": 1,
-            "sample_rate": 48000,
-            "audio_raw_format": 16,
+            "channel_count": 2,
+            "sample_rate": 44100,
+            "audio_sample_format": 1,
         }
         let hasreconfigured = false;
         eventEmitter.on('getAudioEncoderCaps', () => {
@@ -738,7 +887,7 @@ describe('AudioEncoderFuncCallback', function () {
             audioEncodeProcessor.prepare((err) => {
                 expect(err).assertUndefined();
                 console.info(`case prepare 1`);
-                setCallback(audioEncodeProcessor, savepath, done);
+                setCallback(savepath, done);
                 eventEmitter.emit('start');
             })
         });
@@ -752,13 +901,19 @@ describe('AudioEncoderFuncCallback', function () {
             })
         });
         eventEmitter.on('reconfigure', (mediaDescription2) => {
-            sleep(10000).then(() => {
-                audioEncodeProcessor.configure(mediaDescription2, (err) => {
+            sleep(10000).then(async() => {
+                resetParam();
+                await closeFileDescriptor(readpath);
+                await closeFdWrite();
+                audioEncodeProcessor.configure(mediaDescription2, async(err) => {
                     expect(err).assertUndefined();
                     console.info(`case configure 2`);
                     resetParam();
-                    readFile(AUDIOPATH2)
-                    savepath = BASIC_PATH + 'callback0601.txt';
+                    readpath = AUDIOPATH;
+                    savepath = 'audioEncode_function_callback_06_2.aac';
+                    await getFdWrite(savepath);
+                    await getFdRead(readpath, done);
+                    readFile(AUDIOPATH);
                     workdoneAtEOS = true;
                     hasreconfigured = true;
                     eventEmitter.emit('prepare');

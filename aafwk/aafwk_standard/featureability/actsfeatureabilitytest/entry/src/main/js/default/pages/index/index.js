@@ -12,34 +12,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import file from '@system.file'
-import app from '@system.app'
+
 import {Core, ExpectExtend} from 'deccjsunit/index'
 
 const injectRef = Object.getPrototypeOf(global) || global
 injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
+let once = true
 
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = this.$t('strings.world');
     },
-    onShow() {
-        console.info('onShow finish')
+    onActive() {
+        if (!once) {
+            return;
+        }
+        once = false;
+        console.info('onShow finish');
         const core = Core.getInstance()
         const expectExtend = new ExpectExtend({
-            'id': 'extend'
+            id: 'extend'
         })
         core.addService('expect', expectExtend)
         core.init()
         const configService = core.getDefaultService('config')
+        this.timeout = 10000;
         configService.setConfig(this)
 
         require('../../../test/List.test')
         core.execute()
     },
     onReady() {
+        console.info('onReady');
     },
 }

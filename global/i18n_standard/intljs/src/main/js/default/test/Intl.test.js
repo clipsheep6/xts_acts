@@ -20,6 +20,45 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 describe('intlTest', function () {
     console.log('*************start IntlTest*************');
 
+    let hour = I18n.is24HourClock();
+    console.log('init 24 hour clock value ' + hour);
+
+    /* *
+    * execute this step before all testcases
+    */
+    beforeAll(function(){
+        console.log('step before all cases in intl.'
+        + ' 24hour: ' + I18n.is24HourClock()
+        + ' prelang: ' + I18n.getPreferredLanguageList()
+        + ' syslocale: ' + I18n.getSystemLocale());
+    })
+
+    /* *
+    * execute this step before every testcase
+    */
+    beforeEach(function(){
+        console.log('step before every case in intl.');
+    })
+
+    /* *
+    * execute this step after every testcase
+    */
+    afterEach(function(){
+        let afterValue = I18n.set24HourClock(hour);
+        console.log('step after every cases.' + afterValue);
+        console.log('24 hour clock after every cases ' + I18n.is24HourClock());
+    })
+
+    /* *
+    * execute this step after all testcases
+    */
+    afterAll(function(){
+        console.log('step after all cases in intl.'
+        + ' 24hour: ' + I18n.is24HourClock()
+        + ' prelang: ' + I18n.getPreferredLanguageList()
+        + ' syslocale: ' + I18n.getSystemLocale());
+    })
+
     /* *
     * @tc.number SUB_GLOBAL_INTL_JS_LOCALE_0100
     * @tc.name test the language in en-Latn-GB locale
@@ -568,7 +607,7 @@ describe('intlTest', function () {
         let option = { dateStyle: 'full' };
         let datefmt = new Intl.DateTimeFormat(['abc', 'ban'], option);
         console.log('dateTimeFormat_test_0800 ' + datefmt.format(date));
-        expect(datefmt.format(date)).assertEqual('12/20/20, 2:23 PM');
+        expect(datefmt.format(date)).assertEqual('2020年12月20日星期日');
     })
 
     /* *
@@ -1057,19 +1096,6 @@ describe('intlTest', function () {
     })
 
     /* *
-    * @tc.number SUB_GLOBAL_INTL_JS_NUMBER_2250
-    * @tc.name format the number with unitUsage
-    * @tc.desc check the number with unitUsage
-    */
-    it('formatNumber_test_2250', 0, function () {
-        let numfmt = new Intl.NumberFormat('zh-CN', { style: 'unit', unit: 'meter',
-            unitDisplay: 'long', unitUsage: 'length-road' });
-        console.log('formatNumber_test_2250 ' + numfmt.format(123456.789));
-        expect(numfmt.format(123456.789)).assertEqual('123,456.789米');
-        expect(numfmt.resolvedOptions().unitUsage).assertEqual('length-road');
-    })
-
-    /* *
     * @tc.number SUB_GLOBAL_INTL_JS_NUMBER_2100
     * @tc.name format the number with signDisplay
     * @tc.desc check the number with signDisplay
@@ -1103,6 +1129,71 @@ describe('intlTest', function () {
         expect(numfmt.resolvedOptions().style).assertEqual('unit');
         expect(numfmt.resolvedOptions().unit).assertEqual('meter');
         expect(numfmt.resolvedOptions().unitDisplay).assertEqual('long');
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_INTL_JS_NUMBER_2250
+    * @tc.name format the number with unitUsage
+    * @tc.desc check the number with unitUsage
+    */
+    it('formatNumber_test_2250', 0, function () {
+        let numfmt = new Intl.NumberFormat('zh-CN', { style: 'unit', unit: 'meter',
+            unitDisplay: 'long', unitUsage: 'length-road' });
+        console.log('formatNumber_test_2250 ' + numfmt.format(123456.789));
+        expect(numfmt.format(123456.789)).assertEqual('123,456.789米');
+        expect(numfmt.resolvedOptions().unitUsage).assertEqual('length-road');
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_INTL_JS_NUMBER_2260
+    * @tc.name format the number with narrow value in unitUsage param
+    * @tc.desc check the number with unitUsage
+    */
+    it('formatNumber_test_2260', 0, function () {
+        let numfmt = new Intl.NumberFormat('zh-CN', { style: 'unit', unit: 'meter',
+            unitDisplay: 'narrow', unitUsage: 'length-road' });
+        console.log('formatNumber_test_2260 ' + numfmt.format(123456.789));
+        expect(numfmt.format(123456.789)).assertEqual('123,456.789米');
+        expect(numfmt.resolvedOptions().unitUsage).assertEqual('length-road');
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_INTL_JS_NUMBER_2270
+    * @tc.name format the number with short value in unitUsage param
+    * @tc.desc check the number with unitUsage
+    */
+    it('formatNumber_test_2270', 0, function () {
+        let numfmt = new Intl.NumberFormat('zh-CN', { style: 'unit', unit: 'meter',
+            unitDisplay: 'short', unitUsage: 'length-road' });
+        console.log('formatNumber_test_2270 ' + numfmt.format(123456.789));
+        expect(numfmt.format(123456.789)).assertEqual('123,456.789米');
+        expect(numfmt.resolvedOptions().unitUsage).assertEqual('length-road');
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_INTL_JS_NUMBER_2280
+    * @tc.name format the number with narrow value in unitUsage param
+    * @tc.desc check the number with unitUsage
+    */
+    it('formatNumber_test_2280', 0, function () {
+        let numfmt = new Intl.NumberFormat('en-US', { style: 'unit', unit: 'meter',
+            unitDisplay: 'narrow', unitUsage: 'length-road' });
+        console.log('formatNumber_test_2280 ' + numfmt.format(123456.789));
+        expect(numfmt.format(123456.789)).assertEqual('76.712mi');
+        expect(numfmt.resolvedOptions().unitUsage).assertEqual('length-road');
+    })
+
+    /* *
+    * @tc.number SUB_GLOBAL_INTL_JS_NUMBER_2290
+    * @tc.name format the number with short value in unitUsage param
+    * @tc.desc check the number with unitUsage
+    */
+    it('formatNumber_test_2290', 0, function () {
+        let numfmt = new Intl.NumberFormat('en-US', { style: 'unit', unit: 'meter',
+            unitDisplay: 'short', unitUsage: 'length-road' });
+        console.log('formatNumber_test_2290 ' + numfmt.format(123456.789));
+        expect(numfmt.format(123456.789)).assertEqual('76.712 mi');
+        expect(numfmt.resolvedOptions().unitUsage).assertEqual('length-road');
     })
 
     /* *
@@ -1313,6 +1404,7 @@ describe('intlTest', function () {
         let value = coll.compare('a', 'b');
         console.log('collator_test_3700 ' + value);
         expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().collation).assertEqual('eor');
     })
 
     /* *
@@ -1325,6 +1417,7 @@ describe('intlTest', function () {
         let value = coll.compare('a', 'b');
         console.log('collator_test_3800 ' + value);
         expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().sensitivity).assertEqual('base');
     })
 
     /* *
@@ -1337,6 +1430,7 @@ describe('intlTest', function () {
         let value = coll.compare('a', 'b');
         console.log('collator_test_3900 ' + value);
         expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().caseFirst).assertEqual('upper');
     })
 
     /* *
@@ -1349,6 +1443,7 @@ describe('intlTest', function () {
         let value = coll.compare('a', 'b');
         console.log('collator_test_4000 ' + value);
         expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().numeric).assertTrue();
     })
 
     /* *
@@ -1361,6 +1456,7 @@ describe('intlTest', function () {
         let value = coll.compare('a', 'b');
         console.log('collator_test_4100 ' + value);
         expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().ignorePunctuation).assertTrue();
     })
 
     /* *
@@ -1373,6 +1469,7 @@ describe('intlTest', function () {
         let value = coll.compare('a', 'b');
         console.log('collator_test_4200 ' + value);
         expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().usage).assertEqual('sort');
     })
 
     /* *
@@ -1385,6 +1482,7 @@ describe('intlTest', function () {
         let value = coll.compare('a', 'b');
         console.log('collator_test_4300 ' + value);
         expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().localeMatcher).assertEqual('lookup');
     })
 
     /* *

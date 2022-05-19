@@ -18,10 +18,10 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import sensor from '@ohos.sensor'
 
-function sleep (NumberMillis) {
-    var now = new Date()
-    var exitTime = now.getTime() + NumberMillis
-    while(true) {
+function sleep(NumberMillis) {
+    let now = new Date()
+    let exitTime = now.getTime() + NumberMillis
+    while (true) {
         now = new Date()
         if (now.getTime > exitTime) {
             return
@@ -30,62 +30,75 @@ function sleep (NumberMillis) {
 }
 
 describe('SystemParameterTest', function () {
-    beforeAll(function() {
-         console.info('beforeAll caled')
+    beforeAll(function () {
+        console.info('beforeAll caled')
     })
-    
-    afterAll(function() {
-         console.info('afterAll caled')
+
+    afterAll(function () {
+        console.info('afterAll caled')
     })
-    
-    beforeEach(function() {
-         console.info('beforeEach caled')
+
+    beforeEach(function () {
+        console.info('beforeEach caled')
     })
-    
-    afterEach(function() {
-         console.info('afterEach caled')
+
+    afterEach(function () {
+        console.info('afterEach caled')
     })
+
+    let testSensorId = 0;
+    let testNullSensorId = -1;
+
 
     /**
      * @tc.number    SUB_SENSORS_Sensor_JSTest_0010
      * @tc.name      testRegisterSensortest001
      * @tc.desc      test get sensor data by sensor id.
      */
-     it('SUB_SENSORS_Sensor_JSTest_0010', 0, async function (done) {
+    it('SUB_SENSORS_Sensor_JSTest_0010', 0, async function (done) {
         console.info('SUB_SENSORS_Sensor_JSTest_0010 start');
-        await sensor.on(0, function(error, data) {
-            if (error) {
-                console.info('testRegisterSensortest001  on error');
-                expect(false).assertTrue();
-                done();
-            } else {
-                console.info('testRegisterSensortest001  on success');
-                expect(data.x).assertInstanceOf('Number');
-                done();
-            }
-        });
-        console.info('SUB_SENSORS_Sensor_JSTest_0010 end');
-    })
-
-    /**
-     * @tc.number    SUB_SENSORS_Sensor_JSTest_0020
-     * @tc.name      testRegisterSensortest002
-     * @tc.desc      test get sensor data by wrong sensor id.
-     */
-         it('SUB_SENSORS_Sensor_JSTest_0020', 0, async function (done) {
-            console.info('SUB_SENSORS_Sensor_JSTest_0020 start');
-            await sensor.on(-1, function(error, data) {
-                if (error) {
-                    console.info('testRegisterSensortest002  on error');
-                    expect(true).assertTrue();
+        try {
+            sensor.on(testSensorId, function (data) {
+                if (data) {
+                    console.info('testRegisterSensortest001  on success');
+                    expect(data.x).assertInstanceOf('Number');
+                    expect(data.timestamp).assertInstanceOf('Number');
                     done();
                 } else {
-                    console.info('testRegisterSensortest002  on success');
+                    console.info('testRegisterSensortest001  on error');
                     expect(false).assertTrue();
                     done();
                 }
             });
-            console.info('SUB_SENSORS_Sensor_JSTest_0020 end');
-        })
+        } catch (error) {
+            console.info(error);
+            expect(true).assertTrue();
+            done();
+        }
+        console.info('SUB_SENSORS_Sensor_JSTest_0010 end');
+    })
 
+   /**
+   * @tc.number    SUB_SENSORS_Sensor_JSTest_0020
+   * @tc.name      testRegisterSensortest002
+   * @tc.desc      test get sensor data by wrong sensor id.
+   */
+    it('SUB_SENSORS_Sensor_JSTest_0020', 0, async function (done) {
+        console.info('SUB_SENSORS_Sensor_JSTest_0020 start');
+
+        function onSensorCallback(data) {
+            console.info('SensorJsTest002  on error');
+            expect(false).assertTrue();
+            done();
+        }
+
+        try {
+            sensor.on(testNullSensorId, onSensorCallback);
+        } catch (error) {
+            console.info(error);
+            expect(true).assertTrue();
+            done();
+        }
+        console.info('SUB_SENSORS_Sensor_JSTest_0020 end');
+    })
 })

@@ -14,10 +14,13 @@
  */
 import file from '@system.file'
 import {Core, ExpectExtend, ReportExtend} from 'deccjsunit/index'
-var once = true
+
+const injectRef = Object.getPrototypeOf(global) || global
+injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
+let once = true
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = this.$t('strings.world');

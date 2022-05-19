@@ -12,15 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import file from '@system.file'
+
 import {Core, ExpectExtend} from 'deccjsunit/index'
 
 const injectRef = Object.getPrototypeOf(global) || global
 injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
-var once = true
+let once = true
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = this.$t('strings.world');
@@ -39,6 +39,7 @@ export default {
 
             const configService = core.getDefaultService('config')
             configService.setConfig(this)
+            this.timeout = 10000
 
             require('../../../test/List.test')
             core.execute()

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/lite'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import xml from '@ohos.xml'
 describe('XmlSerializerXmlPullParserTest', function () {
 
@@ -113,7 +113,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
 
     /**
      * @tc.name: testStartElement001
-     * @tc.desc: Writes a elemnet start tag with the given name.
+     * @tc.desc: Writes an elemnet start tag with the given name.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
@@ -134,7 +134,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
 
     /**
      * @tc.name: testStartElement002
-     * @tc.desc: Writes a elemnet start tag with the given name.
+     * @tc.desc: Writes an elemnet start tag with the given name.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
@@ -157,7 +157,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
 
     /**
      * @tc.name: testStartElement003
-     * @tc.desc: Writes a elemnet start tag with the given name.
+     * @tc.desc: Writes an elemnet start tag with the given name.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
@@ -180,7 +180,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
 
     /**
      * @tc.name: testStartElement004
-     * @tc.desc: Writes a elemnet start tag with the given name.
+     * @tc.desc: Writes an elemnet start tag with the given name.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
@@ -205,7 +205,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
 
     /**
      * @tc.name: testStartElement005
-     * @tc.desc: Writes a elemnet start tag with the given name.
+     * @tc.desc: Writes an elemnet start tag with the given name.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
@@ -803,17 +803,17 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCommnet001
-     * @tc.desc: Writes the commnet.
+     * @tc.name: testSetComment001
+     * @tc.desc: Writes the comment.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCommnet001', 0, function () {
+    it('testSetComment001', 0, function () {
         const myMAX = 2048;
         var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
-        thatSer.setCommnet("Hi!");
+        thatSer.setComment("Hi!");
         thatSer.endElement();
         var result = '<note>\r\n  <!--Hi!-->\r\n</note>';
         var view = new Uint8Array(arrayBuffer);
@@ -825,17 +825,17 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCommnet002
-     * @tc.desc: Writes the commnet.
+     * @tc.name: testSetComment002
+     * @tc.desc: Writes the comment.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCommnet002', 0, function () {
+    it('testSetComment002', 0, function () {
         const myMAX = 2048;
         var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
-        thatSer.setCommnet("Hello, World!");
+        thatSer.setComment("Hello, World!");
         thatSer.endElement();
         var result = '<note>\r\n  <!--Hello, World!-->\r\n</note>';
         var view = new Uint8Array(arrayBuffer);
@@ -847,16 +847,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCommnet003
-     * @tc.desc: Writes the commnet.
+     * @tc.name: testSetComment003
+     * @tc.desc: Writes the comment.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCommnet003', 0, function () {
+    it('testSetComment003', 0, function () {
         const myMAX = 2048;
         var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCommnet("Hello, World!");
+        thatSer.setComment("Hello, World!");
         var result = '<!--Hello, World!-->';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
@@ -867,16 +867,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCommnet004
-     * @tc.desc: Writes the commnet.
+     * @tc.name: testSetComment004
+     * @tc.desc: Writes the comment.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCommnet004', 0, function () {
+    it('testSetComment004', 0, function () {
         const myMAX = 2048;
         var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCommnet("Hello, World!");
+        thatSer.setComment("Hello, World!");
         var result = '<!--Hello, World!-->';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
@@ -887,16 +887,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCommnet005
-     * @tc.desc: Writes the commnet.
+     * @tc.name: testSetComment005
+     * @tc.desc: Writes the comment.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCommnet005', 0, function () {
+    it('testSetComment005', 0, function () {
         const myMAX = 2048;
         var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCommnet("Hello, World!");
+        thatSer.setComment("Hello, World!");
         thatSer.startElement("note");
         thatSer.endElement();
         var result = '<!--Hello, World!-->\r\n<note/>';
@@ -1015,16 +1015,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCData001
+     * @tc.name: testSetCDATA001
      * @tc.desc: Writes the CDATA.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCData001', 0, function () {
+    it('testSetCDATA001', 0, function () {
         const myMAX = 2048;
         var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCData('root SYSTEM')
+        thatSer.setCDATA('root SYSTEM')
         var result = '<![CDATA[root SYSTEM]]>';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
@@ -1035,16 +1035,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCData002
+     * @tc.name: testSetCDATA002
      * @tc.desc: Writes the CDATA.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCData002', 0, function () {
+    it('testSetCDATA002', 0, function () {
         const myMAX = 2048;
         var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCData('root SYSTEM "http://www.test.org/test.dtd"')
+        thatSer.setCDATA('root SYSTEM "http://www.test.org/test.dtd"')
         var result = '<![CDATA[root SYSTEM "http://www.test.org/test.dtd"]]>';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
@@ -1055,18 +1055,18 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCData003
+     * @tc.name: testSetCDATA003
      * @tc.desc: Writes the CDATA.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCData003', 0, function () {
+    it('testSetCDATA003', 0, function () {
         const myMAX = 2048;
         var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
         thatSer.endElement();
-        thatSer.setCData('root SYSTEM "http://www.test.org/test.dtd"')
+        thatSer.setCDATA('root SYSTEM "http://www.test.org/test.dtd"')
         var result = '<note/>\r\n<![CDATA[root SYSTEM "http://www.test.org/test.dtd"]]>';
         var view = new Uint8Array(arrayBuffer);
         var view1 = "";
@@ -1077,16 +1077,16 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCData004
+     * @tc.name: testSetCDATA004
      * @tc.desc: Writes the CDATA.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCData004', 0, function () {
+    it('testSetCDATA004', 0, function () {
         const myMAX = 2048;
         var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
-        thatSer.setCData('root SYSTEM "http://www.test.org/test.dtd"')
+        thatSer.setCDATA('root SYSTEM "http://www.test.org/test.dtd"')
         thatSer.startElement("note");
         thatSer.endElement();
         var result = '<![CDATA[root SYSTEM "http://www.test.org/test.dtd"]]>\r\n<note/>';
@@ -1099,17 +1099,17 @@ describe('XmlSerializerXmlPullParserTest', function () {
     })
 
     /**
-     * @tc.name: testSetCData005
+     * @tc.name: testSetCDATA005
      * @tc.desc: Writes the CDATA.
      * @tc.require: AR000GGRB8
      * @tc.author: lihucheng
      */
-    it('testSetCData005', 0, function () {
+    it('testSetCDATA005', 0, function () {
         const myMAX = 2048;
         var arrayBuffer = new ArrayBuffer(myMAX);
         var thatSer = new xml.XmlSerializer(arrayBuffer);
         thatSer.startElement("note");
-        thatSer.setCData('root SYSTEM "http://www.test.org/test.dtd"')
+        thatSer.setCDATA('root SYSTEM "http://www.test.org/test.dtd"')
         thatSer.endElement();
         var result = '<note>\r\n  <![CDATA[root SYSTEM "http://www.test.org/test.dtd"]]>\r\n</note>';
         var view = new Uint8Array(arrayBuffer);
@@ -1136,8 +1136,8 @@ describe('XmlSerializerXmlPullParserTest', function () {
             '    <company>John &amp; Hans</company>' +
             '    <title>Happy</title>' +
             '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
+            '    <lens>Work</lens>' +
+            '    <lens>Play</lens>' +
             '    <?go there?>' +
             '    <a><b/></a>' +
             '    <h:table xmlns:h="http://www.w3.org/TR/html4/">' +
@@ -1175,8 +1175,8 @@ describe('XmlSerializerXmlPullParserTest', function () {
         'falsefalsekey:925170amp;amp;falsetruekey:425670  Hansfalsefalsekey:326670companyfalsetruekey:1017070     ' +
         'falsetruekey:227770titlefalsetruekey:428270 Happyfalsefalsekey:329070titlefalsetruekey:1019470     ' +
         'falsetruekey:2210170titlefalsetruekey:4210670 Happyfalsefalsekey:3211470titlefalsetruekey:10111870     ' +
-        'falsetruekey:2212470todofalsetruekey:4212870 Workfalsefalsekey:3213570todofalsetruekey:10113970     ' +
-        'falsetruekey:2214570todofalsetruekey:4214970 Playfalsefalsekey:3215670todofalsetruekey:10116070     ' +
+        'falsetruekey:2212470lensfalsetruekey:4212870 Workfalsefalsekey:3213570lensfalsetruekey:10113970     ' +
+        'falsetruekey:2214570lensfalsetruekey:4214970 Playfalsefalsekey:3215670lensfalsetruekey:10116070     ' +
         'falsetruekey:8117270go therefalsetruekey:10117670     falsetruekey:2217970afalsetruekey:' +
         '2318370btruetruekey:3318370bfalsetruekey:3218770afalsetruekey:10119170     falsetruekey:2223870table ' +
         'http://www.w3.org/TR/html4/hfalsefalsekey:10224670         ' +
@@ -1206,8 +1206,8 @@ describe('XmlSerializerXmlPullParserTest', function () {
             '    <company>John &amp; Hans</company>' +
             '    <title>Happy</title>' +
             '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
+            '    <lens>Work</lens>' +
+            '    <lens>Play</lens>' +
             '    <?go there?>' +
             '    <a><b/></a>' +
             '    <h:table xmlns:h="http://www.w3.org/TR/html4/">' +
@@ -1245,8 +1245,8 @@ describe('XmlSerializerXmlPullParserTest', function () {
         'John falsefalsekey:925170amp;amp;falsetruekey:425670  Hansfalsefalsekey:326670companyfalsetruekey:1017070' +
         '     falsetruekey:227770titlefalsetruekey:428270 Happyfalsefalsekey:329070titlefalsetruekey:1019470     ' +
         'falsetruekey:2210170titlefalsetruekey:4210670 Happyfalsefalsekey:3211470titlefalsetruekey:10111870     ' +
-        'falsetruekey:2212470todofalsetruekey:4212870 Workfalsefalsekey:3213570todofalsetruekey:10113970     ' +
-        'falsetruekey:2214570todofalsetruekey:4214970 Playfalsefalsekey:3215670todofalsetruekey:10116070     ' +
+        'falsetruekey:2212470lensfalsetruekey:4212870 Workfalsefalsekey:3213570lensfalsetruekey:10113970     ' +
+        'falsetruekey:2214570lensfalsetruekey:4214970 Playfalsefalsekey:3215670lensfalsetruekey:10116070     ' +
         'falsetruekey:8117270go therefalsetruekey:10117670     falsetruekey:2217970afalsetruekey:' +
         '2318370btruetruekey:3318370bfalsetruekey:3218770afalsetruekey:10119170     falsetruekey:' +
         '2223871h:tablefalsefalsekey:10224670         falsetruekey:2325270h:trfalsetruekey:10326470             ' +
@@ -1273,8 +1273,8 @@ describe('XmlSerializerXmlPullParserTest', function () {
             '    <company>John &amp; Hans</company>' +
             '    <title>Happy</title>' +
             '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
+            '    <lens>Work</lens>' +
+            '    <lens>Play</lens>' +
             '    <?go there?>' +
             '    <a><b/></a>' +
             '    <h:table xmlns:h="http://www.w3.org/TR/html4/">' +
@@ -1311,9 +1311,9 @@ describe('XmlSerializerXmlPullParserTest', function () {
         ':1013270     falsetruekey:224170companyfalsetruekey:424670 John falsefalsekey:925170amp;amp;falsetruekey' +
         ':425670  Hansfalsefalsekey:326670companyfalsetruekey:1017070     falsetruekey:227770titlefalsetruekey:428' +
         '270 Happyfalsefalsekey:329070titlefalsetruekey:1019470     falsetruekey:2210170titlefalsetruekey:4210670 ' +
-        'Happyfalsefalsekey:3211470titlefalsetruekey:10111870     falsetruekey:2212470todofalsetruekey:4212870 ' +
-        'Workfalsefalsekey:3213570todofalsetruekey:10113970     falsetruekey:2214570todofalsetruekey:4214970 ' +
-        'Playfalsefalsekey:3215670todofalsetruekey:10116070     falsetruekey:8117270go therefalsetruekey' +
+        'Happyfalsefalsekey:3211470titlefalsetruekey:10111870     falsetruekey:2212470lensfalsetruekey:4212870 ' +
+        'Workfalsefalsekey:3213570lensfalsetruekey:10113970     falsetruekey:2214570lensfalsetruekey:4214970 ' +
+        'Playfalsefalsekey:3215670lensfalsetruekey:10116070     falsetruekey:8117270go therefalsetruekey' +
         ':10117670     falsetruekey:2217970afalsetruekey:2318370btruetruekey:3318370bfalsetruekey' +
         ':3218770afalsetruekey:10119170     falsetruekey:2223871h:tablefalsefalsekey:10224670         ' +
         'falsetruekey:2325270h:trfalsetruekey:10326470             falsetruekey:' +
@@ -1341,8 +1341,8 @@ describe('XmlSerializerXmlPullParserTest', function () {
             '    <company>John &amp; Hans</company>' +
             '    <title>Happy</title>' +
             '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
+            '    <lens>Work</lens>' +
+            '    <lens>Play</lens>' +
             '    <?go there?>' +
             '    <a><b/></a>' +
             '    <h:table xmlns:h="http://www.w3.org/TR/html4/">' +
@@ -1386,8 +1386,8 @@ describe('XmlSerializerXmlPullParserTest', function () {
             '    <company>John &amp; Hans</company>' +
             '    <title>Happy</title>' +
             '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
+            '    <lens>Work</lens>' +
+            '    <lens>Play</lens>' +
             '    <?go there?>' +
             '    <a><b/></a>' +
             '    <h:table xmlns:h="http://www.w3.org/TR/html4/">' +
@@ -1411,7 +1411,7 @@ describe('XmlSerializerXmlPullParserTest', function () {
         }
         var options = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func1}
         that.parse(options);
-        var str3 = 'note:company:title:title:todo:todo:a:b:h:table:h:tr:h:td:h:td:'
+        var str3 = 'note:company:title:title:lens:lens:a:b:h:table:h:tr:h:td:h:td:'
         expect(str1).assertEqual(str3)
     })
 })
