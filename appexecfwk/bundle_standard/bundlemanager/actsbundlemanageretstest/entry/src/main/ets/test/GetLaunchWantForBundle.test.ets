@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import bundleMgr from '@ohos.bundle';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index';
 
 const NAME1 = "com.example.third1";
 const NAME2 = "com.example.l3jsdemo";

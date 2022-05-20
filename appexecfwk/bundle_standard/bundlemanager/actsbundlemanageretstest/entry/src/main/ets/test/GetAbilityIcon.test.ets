@@ -15,7 +15,7 @@
 
 import bundle from '@ohos.bundle'
 import image from '@ohos.multimedia.image'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
 
 const BUNDLE_NAME = "com.open.harmony.packagemag";
 const ABILITIY_NAME = "com.open.harmony.packagemag.MainAbility";

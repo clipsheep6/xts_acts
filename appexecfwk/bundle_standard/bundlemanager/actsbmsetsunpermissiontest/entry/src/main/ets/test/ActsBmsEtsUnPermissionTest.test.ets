@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index.ets"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "hypium/index"
 import bundle from '@ohos.bundle'
 import pkg from '@system.package'
 
