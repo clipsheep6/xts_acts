@@ -18,13 +18,19 @@ ohos_js_hap_suite("ActsHiTraceChainTest") {
   deps = [
     ":hitracechain_ets_assets",
     ":hitracechain_ets_resources",
+    ":hitracechain_ets_test_assets",
   ]
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsHiTraceChainTest"
+  subsystem_name="hiviewdfx"
+  part_name="hidumper"
 }
 ohos_js_assets("hitracechain_ets_assets") {
   source_dir = "./entry/src/main/ets/MainAbility"
+}
+ohos_js_assets("hitracechain_ets_test_assets") {
+  source_dir = "./entry/src/main/ets/TestAbility"
 }
 ohos_resources("hitracechain_ets_resources") {
   sources = [ "./entry/src/main/resources" ]
