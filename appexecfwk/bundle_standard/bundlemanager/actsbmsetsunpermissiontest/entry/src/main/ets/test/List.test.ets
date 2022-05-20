@@ -13,11 +13,8 @@
  * limitations under the License.
  */
  
-export default {
-  onCreate() {
-    console.info('Application onCreate')
-  },
-  onDestroy() {
-    console.info('Application onDestroy')
-  },
+import actsBmsEtsUnPermissionTest from './ActsBmsEtsUnPermissionTest.test.ets';
+
+export default function testsuite() {
+  actsBmsEtsUnPermissionTest();
 }
