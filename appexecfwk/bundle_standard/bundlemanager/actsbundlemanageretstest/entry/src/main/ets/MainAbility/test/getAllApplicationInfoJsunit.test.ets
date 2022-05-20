@@ -312,16 +312,16 @@ export default function applicationBundleJsunit() {
                     expect(data[i].supportedModes).assertEqual(0);
                     expect(data[i].process).assertEqual("");
                     expect(data[i].entryDir).assertEqual('/data/app/el1/bundle/public/com.open.harmony.packagemag' +
-                        '/com.open.harmony.packagemag');
+                        '/entry');
                     expect(data[i].enabled).assertEqual(true);
                     expect(data[i].flags).assertEqual(0);
                     expect(data[i].entityType).assertEqual('unspecified');
                     expect(data[i].removable).assertEqual(true);
                     expect(data[i].moduleInfos[0].moduleName).assertEqual('entry');
                     expect(data[i].moduleInfos[0].moduleSourceDir).assertEqual('/data/app/el1/bundle/public/' +
-                        'com.open.harmony.packagemag/com.open.harmony.packagemag');
+                        'com.open.harmony.packagemag/entry');
                     expect(data[i].moduleSourceDirs[0]).assertEqual('/data/app/el1/bundle/public/' +
-                        'com.open.harmony.packagemag/com.open.harmony.packagemag');
+                        'com.open.harmony.packagemag/entry');
                 }
             }
         }

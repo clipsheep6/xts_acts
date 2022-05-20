@@ -57,7 +57,7 @@ export default function getAbilityLabel() {
             await Bundle.getAbilityLabel(OTHER_BUNDLE_NAME, OTHER_ABILITY_NAME).then((data) => {
                 let timeNewStamp = Utils.getNowTime();
                 Utils.getDurationTime('[getAbilityLabel_test_0200]', timeOldStamp, timeNewStamp);
-                expect(data).assertEqual("bmsfirstright");
+                expect(data).assertEqual("bmssecondright");
             }).catch((error) => {
                 expect(error).assertFail();
             });
@@ -65,7 +65,7 @@ export default function getAbilityLabel() {
             Bundle.getAbilityLabel(OTHER_BUNDLE_NAME, OTHER_ABILITY_NAME, (error, data) => {
                 let timeNewStamp = Utils.getNowTime();
                 Utils.getDurationTime('[context_getAbilityLabel_test_0200]', timeOldStamp, timeNewStamp);
-                expect(data).assertEqual("bmsfirstright");
+                expect(data).assertEqual("bmssecondright");
                 expect(error).assertEqual(0);
                 done();
             });

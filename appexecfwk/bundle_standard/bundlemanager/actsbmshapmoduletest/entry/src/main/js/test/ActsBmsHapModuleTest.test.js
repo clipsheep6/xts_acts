@@ -23,6 +23,8 @@ const BUNDLE_NAME5 = 'com.example.system1';
 const BUNDLE_NAME6 = "com.example.bmsmainabilitysecondscene";
 const FIRSTMAINABILITY = 'com.example.bmsmainabilityfirstscene.MainAbility';
 const SECONDMAINABILITY = 'com.example.bmsmainabilitysecondscene.MainAbility';
+const MODULE_NAME1 = "bmsmainabilityfirstscene";
+const MODULE_NAME2 = "bmsmainabilitysecondscene";
 
 describe('ActsBmsHapModuleTest', function () {
 
@@ -39,8 +41,8 @@ describe('ActsBmsHapModuleTest', function () {
             expect(result.hapModuleInfos.length).assertEqual(2);
             if (result.hapModuleInfos.length > 0) {
                 let hapModuleInfo = result.hapModuleInfos[0];
-                expect(hapModuleInfo.name).assertEqual(BUNDLE_NAME1);
-                expect(hapModuleInfo.moduleName).assertEqual('entry');
+                expect(hapModuleInfo.name).assertEqual(MODULE_NAME1);
+                expect(hapModuleInfo.moduleName).assertEqual(MODULE_NAME1);
                 expect(hapModuleInfo.description).assertEqual('');
                 expect(hapModuleInfo.descriptionId).assertEqual(0);
                 expect(hapModuleInfo.iconPath).assertEqual("$media:icon");
@@ -80,12 +82,12 @@ describe('ActsBmsHapModuleTest', function () {
                 checkHapMoudleInfos(hapModuleInfo);
                 checkHapMoudleInfos(hapModuleInfo1);
                 expect(hapModuleInfo.label).assertEqual('$string:app_name');
-                expect(hapModuleInfo.name).assertEqual(BUNDLE_NAME1);
-                expect(hapModuleInfo1.name).assertEqual(BUNDLE_NAME6);
-                expect(hapModuleInfo.moduleName).assertEqual('entry');
+                expect(hapModuleInfo.name).assertEqual(MODULE_NAME1);
+                expect(hapModuleInfo.moduleName).assertEqual(MODULE_NAME1);
                 expect(hapModuleInfo.mainAbilityName).assertEqual(FIRSTMAINABILITY);
                 expect(hapModuleInfo.mainElementName).assertEqual(FIRSTMAINABILITY);
-                expect(hapModuleInfo1.moduleName).assertEqual('bmsmainabilitysecondscene');
+                expect(hapModuleInfo1.name).assertEqual(MODULE_NAME2);
+                expect(hapModuleInfo1.moduleName).assertEqual(MODULE_NAME2);
                 expect(hapModuleInfo1.mainAbilityName).assertEqual(SECONDMAINABILITY);
                 expect(hapModuleInfo1.mainElementName).assertEqual(SECONDMAINABILITY);
                 done();
@@ -105,7 +107,7 @@ describe('ActsBmsHapModuleTest', function () {
             expect(result.hapModuleInfos.length).assertEqual(1);
             if (result.hapModuleInfos.length > 0) {
                 let hapModuleInfo = result.hapModuleInfos[0];
-                expect(hapModuleInfo.name).assertEqual(BUNDLE_NAME2);
+                expect(hapModuleInfo.name).assertEqual('entry');
                 expect(hapModuleInfo.moduleName).assertEqual('entry');
                 expect(hapModuleInfo.description).assertEqual('');
                 expect(hapModuleInfo.descriptionId).assertEqual(0);
@@ -142,7 +144,7 @@ describe('ActsBmsHapModuleTest', function () {
             expect(result.hapModuleInfos.length).assertEqual(1);
             if (result.hapModuleInfos.length == 1) {
                 let hapModuleInfo = result.hapModuleInfos[0];
-                expect(hapModuleInfo.name).assertEqual(BUNDLE_NAME3);
+                expect(hapModuleInfo.name).assertEqual('entry');
                 expect(hapModuleInfo.moduleName).assertEqual('entry');
                 expect(hapModuleInfo.description).assertEqual('');
                 expect(hapModuleInfo.descriptionId).assertEqual(0);
@@ -180,7 +182,7 @@ describe('ActsBmsHapModuleTest', function () {
             expect(data.hapModuleInfos.length).assertEqual(1);
             if (data.hapModuleInfos.length == 1) {
                 let hapModuleInfo = data.hapModuleInfos[0];
-                expect(hapModuleInfo.name).assertEqual(BUNDLE_NAME5);
+                expect(hapModuleInfo.name).assertEqual('entry');
                 expect(hapModuleInfo.moduleName).assertEqual('entry');
                 expect(hapModuleInfo.description).assertEqual('');
                 expect(hapModuleInfo.descriptionId).assertEqual(0);

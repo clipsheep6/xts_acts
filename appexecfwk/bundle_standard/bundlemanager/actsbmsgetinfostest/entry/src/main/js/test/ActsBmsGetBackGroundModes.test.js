@@ -192,10 +192,10 @@ describe('ActsBmsGetBackGroundModes', function () {
         }, bundle.BundleFlag.GET_BUNDLE_DEFAULT, USERID);
         expect(dataInfos.length).assertEqual(NUM_FOUR);
         if (dataInfos.length == NUM_FOUR) {
-            expect(dataInfos[1].name).assertEqual(ABILITIY_NAME5)
+            expect(dataInfos[1].name).assertEqual(ABILITIY_NAME6)
             expect(dataInfos[1].backgroundModes).assertEqual(DATATRANSFER | AUDIOPLAYBACK | AUDIORECORDING |
                 LOCATION | BLUETOOTHINTERACTION | MULTIDEVICECONNECTION | WIFIINTERACTION | VOIP | TASKKEEPING)
-            expect(dataInfos[3].name).assertEqual(ABILITIY_NAME6)
+            expect(dataInfos[3].name).assertEqual(ABILITIY_NAME5)
             expect(dataInfos[3].backgroundModes).assertEqual(DATATRANSFER | AUDIOPLAYBACK | AUDIORECORDING |
                 LOCATION | BLUETOOTHINTERACTION | MULTIDEVICECONNECTION | WIFIINTERACTION | VOIP | TASKKEEPING)
         }

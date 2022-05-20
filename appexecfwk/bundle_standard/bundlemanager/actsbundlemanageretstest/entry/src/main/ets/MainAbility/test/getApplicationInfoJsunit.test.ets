@@ -373,15 +373,15 @@ export default function applicationBundleJsunit() {
             expect(data.flags).assertEqual(0);
             expect(data.process).assertEqual("");
             expect(data.entryDir).assertEqual('/data/app/el1/bundle/public/com.open.harmony.packagemag' +
-                '/com.open.harmony.packagemag');
+                '/entry');
             expect(data.enabled).assertEqual(true);
             expect(data.entityType).assertEqual('unspecified');
             expect(data.removable).assertEqual(true);
             expect(data.moduleInfos[0].moduleName).assertEqual('entry');
             expect(data.moduleInfos[0].moduleSourceDir).assertEqual('/data/app/el1/bundle/public/' +
-                'com.open.harmony.packagemag/com.open.harmony.packagemag');
+                'com.open.harmony.packagemag/entry');
             expect(data.moduleSourceDirs[0]).assertEqual('/data/app/el1/bundle/public/' +
-                'com.open.harmony.packagemag/com.open.harmony.packagemag');
+                'com.open.harmony.packagemag/entry');
             expect(data.permissions[0]).assertEqual("ohos.permission.CHANGE_ABILITY_ENABLED_STATE");
             expect(data.permissions[1]).assertEqual("ohos.permission.GET_BUNDLE_INFO");
             expect(data.permissions[2]).assertEqual("ohos.permission.GET_BUNDLE_INFO_PRIVILEGED");
@@ -404,15 +404,15 @@ export default function applicationBundleJsunit() {
             expect(data.flags).assertEqual(0);
             expect(data.process).assertEqual("");
             expect(data.entryDir).assertEqual('/data/app/el1/bundle/public/com.open.harmony.packagemag' +
-                '/com.open.harmony.packagemag');
+                '/entry');
             expect(data.enabled).assertEqual(true);
             expect(data.entityType).assertEqual('unspecified');
             expect(data.removable).assertEqual(true);
             expect(data.moduleInfos[0].moduleName).assertEqual('entry');
             expect(data.moduleInfos[0].moduleSourceDir).assertEqual('/data/app/el1/bundle/public/' +
-                'com.open.harmony.packagemag/com.open.harmony.packagemag');
+                'com.open.harmony.packagemag/entry');
             expect(data.moduleSourceDirs[0]).assertEqual('/data/app/el1/bundle/public/' +
-                'com.open.harmony.packagemag/com.open.harmony.packagemag');
+                'com.open.harmony.packagemag/entry');
             console.log(msg + ' end  ' + JSON.stringify(data));
         }
 
