@@ -31,7 +31,6 @@ group("aafwk_standard") {
       "amsgetabilityprocessinfo:amsgetabilityprocessinfo",
       "context:context",
       "featureability:featureability",
-      "formmanager:formmanager",
       "want:want",
     ]
   }
