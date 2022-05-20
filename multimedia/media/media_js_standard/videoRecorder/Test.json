@@ -10,7 +10,7 @@
         {
             "type": "ShellKit",
             "run-command": [
-                "rm -rf /storage/media/100/local/files/Videos/*"
+                "rm -rf /storage/media/100/local/files/Videos/recorder_*"
             ],
             "teardown-command":[
             ]
