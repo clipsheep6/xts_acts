@@ -23,8 +23,6 @@ ohos_js_hap_suite("ActsHiTraceChainTest") {
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsHiTraceChainTest"
-  subsystem_name="hiviewdfx"
-  part_name="hidumper"
 }
 ohos_js_assets("hitracechain_ets_assets") {
   source_dir = "./entry/src/main/ets/MainAbility"
