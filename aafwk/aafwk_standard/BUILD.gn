@@ -33,6 +33,7 @@ group("aafwk_standard") {
       "featureability:featureability",
       "formmanager:formmanager",
       "want:want",
+      "stage:stage"
     ]
   }
 }
