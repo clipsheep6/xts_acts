@@ -2174,5 +2174,4 @@ describe('window_test', function () {
         expect(!lastPro.isPrivacyMode).assertTrue();
         done();
     })
-
 })
