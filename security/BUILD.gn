@@ -20,6 +20,8 @@ group("security") {
       "access_token/AccessTokenTest_Normal_js:ActsAccessTokenJSApiTestNormal",
       "huks_standard",
       "security_huks_basic",
+      "cipher/datacipher:datacipher",
+      "cipher/datacipher2:datacipher2",
     ]
   }
 }
