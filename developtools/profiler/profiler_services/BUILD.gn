@@ -55,5 +55,5 @@ ohos_moduletest_suite("profiler_service_test") {
 
   external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
   subsystem_name = "${OHOS_PROFILER_SUBSYS_NAME}"
-  part_name = "${OHOS_PROFILER_PART_NAME}
+  part_name = "${OHOS_PROFILER_PART_NAME}"
 }
