@@ -1,0 +1,1790 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, it, expect } from 'deccjsunit/index'
+import huks from '@ohos.security.huks'
+
+import * as Control from '../../../switchControl.js'
+
+let gInData5 = 'RSA_5'
+let gInData12 = 'RSA_12_ttttt'
+let gInData14 = 'RSA_14_ttttttt'
+let gInData20 = 'RSA_20_ttttttttttttt'
+let gInData32 = 'RSA_32_ttttttttttttttttttttttttt'
+let gInData64 =
+	'RSA_64_ttttttttttttttttttttttttttttttttttttttttttttttttttttttttt'
+let gInData96 =
+	'RSA_96_ttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttt'
+let gInData128 =
+	'RSA_128_tttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt'
+let gInData256 =
+	'RSA_256_tttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt'
+let gInData384 =
+	'RSA_384_tttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt'
+let gInData512 =
+	'RSA_512_tttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt' +
+	'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt'
+
+let HksKeyAlg = {
+	HKS_ALG_RSA: 1,
+}
+
+let HksKeyPurpose = {
+	HKS_KEY_PURPOSE_ENCRYPT: 1,
+	HKS_KEY_PURPOSE_DECRYPT: 2,
+}
+
+let HksKeyPadding = {
+	HKS_PADDING_NONE: 0,
+	HKS_PADDING_OAEP: 1,
+	HKS_PADDING_PKCS1_V1_5: 3,
+}
+
+let HksKeyDigest = {
+	HKS_DIGEST_NONE: 0,
+	HKS_DIGEST_MD5: 1,
+	HKS_DIGEST_SHA1: 10,
+	HKS_DIGEST_SHA224: 11,
+	HKS_DIGEST_SHA256: 12,
+	HKS_DIGEST_SHA384: 13,
+	HKS_DIGEST_SHA512: 14,
+}
+
+let HksKeySize = {
+	HKS_RSA_KEY_SIZE_512: 512,
+	HKS_RSA_KEY_SIZE_768: 768,
+	HKS_RSA_KEY_SIZE_1024: 1024,
+	HKS_RSA_KEY_SIZE_2048: 2048,
+	HKS_RSA_KEY_SIZE_3072: 3072,
+	HKS_RSA_KEY_SIZE_4096: 4096,
+}
+
+let HksTagType = {
+	HKS_TAG_TYPE_UINT: 2 << 28,
+	HKS_TAG_TYPE_BYTES: 5 << 28,
+}
+
+let HksCipherMode = {
+	HKS_MODE_ECB: 1,
+	HKS_MODE_CBC: 2,
+	HKS_MODE_CTR: 3,
+	HKS_MODE_OFB: 4,
+	HKS_MODE_CCM: 31,
+	HKS_MODE_GCM: 32,
+}
+
+let HksTag = {
+	HKS_TAG_ALGORITHM: HksTagType.HKS_TAG_TYPE_UINT | 1,
+	HKS_TAG_PURPOSE: HksTagType.HKS_TAG_TYPE_UINT | 2,
+	HKS_TAG_KEY_SIZE: HksTagType.HKS_TAG_TYPE_UINT | 3,
+	HKS_TAG_DIGEST: HksTagType.HKS_TAG_TYPE_UINT | 4,
+	HKS_TAG_PADDING: HksTagType.HKS_TAG_TYPE_UINT | 5,
+	HKS_TAG_BLOCK_MODE: HksTagType.HKS_TAG_TYPE_UINT | 6,
+	HKS_TAG_ASSOCIATED_DATA: HksTagType.HKS_TAG_TYPE_BYTES | 8,
+	HKS_TAG_NONCE: HksTagType.HKS_TAG_TYPE_BYTES | 9,
+	HKS_TAG_IV: HksTagType.HKS_TAG_TYPE_BYTES | 10,
+	HKS_TAG_AGREE_PUBLIC_KEY: HksTagType.HKS_TAG_TYPE_BYTES | 22,
+}
+
+let HuksCipher002 = {
+	HuksKeyAlgRSA: {
+		tag: HksTag.HKS_TAG_ALGORITHM,
+		value: HksKeyAlg.HKS_ALG_RSA,
+	},
+	HuksKeyPurpose: {
+		tag: HksTag.HKS_TAG_PURPOSE,
+		value:
+			HksKeyPurpose.HKS_KEY_PURPOSE_ENCRYPT |
+			HksKeyPurpose.HKS_KEY_PURPOSE_DECRYPT,
+	},
+	HuksKeyPurposeENCRYPT: {
+		tag: HksTag.HKS_TAG_PURPOSE,
+		value: HksKeyPurpose.HKS_KEY_PURPOSE_ENCRYPT,
+	},
+	HuksKeyPurposeDECRYPT: {
+		tag: HksTag.HKS_TAG_PURPOSE,
+		value: HksKeyPurpose.HKS_KEY_PURPOSE_DECRYPT,
+	},
+	HuksKeyRSASize2048: {
+		tag: HksTag.HKS_TAG_KEY_SIZE,
+		value: HksKeySize.HKS_RSA_KEY_SIZE_2048,
+	},
+	HuksKeyRSAPADDINGNONE: {
+		tag: HksTag.HKS_TAG_PADDING,
+		value: HksKeyPadding.HKS_PADDING_NONE,
+	},
+	HuksKeyRSAPADDINGPKCS1V15: {
+		tag: HksTag.HKS_TAG_PADDING,
+		value: HksKeyPadding.HKS_PADDING_PKCS1_V1_5,
+	},
+	HuksKeyRSAPADDINGOAEP: {
+		tag: HksTag.HKS_TAG_PADDING,
+		value: HksKeyPadding.HKS_PADDING_OAEP,
+	},
+	HuksKeyRSABLOCKMODEECB: {
+		tag: HksTag.HKS_TAG_BLOCK_MODE,
+		value: HksCipherMode.HKS_MODE_ECB,
+	},
+	HuksKeyRSADIGESTNONE: {
+		tag: HksTag.HKS_TAG_DIGEST,
+		value: HksKeyDigest.HKS_DIGEST_NONE,
+	},
+	HuksKeyRSADIGESTSHA1: {
+		tag: HksTag.HKS_TAG_DIGEST,
+		value: HksKeyDigest.HKS_DIGEST_SHA1,
+	},
+	HuksKeyRSADIGESTSHA224: {
+		tag: HksTag.HKS_TAG_DIGEST,
+		value: HksKeyDigest.HKS_DIGEST_SHA224,
+	},
+	HuksKeyRSADIGESTSHA256: {
+		tag: HksTag.HKS_TAG_DIGEST,
+		value: HksKeyDigest.HKS_DIGEST_SHA256,
+	},
+	HuksKeyRSADIGESTSHA384: {
+		tag: HksTag.HKS_TAG_DIGEST,
+		value: HksKeyDigest.HKS_DIGEST_SHA384,
+	},
+	HuksKeyRSADIGESTSHA512: {
+		tag: HksTag.HKS_TAG_DIGEST,
+		value: HksKeyDigest.HKS_DIGEST_SHA512,
+	},
+}
+let defaultData = '0'
+
+let gInData5Array = stringToUint8Array(gInData5)
+let gInData12Array = stringToUint8Array(gInData12)
+let gInData14Array = stringToUint8Array(gInData14)
+let gInData20Array = stringToUint8Array(gInData20)
+let gInData32Array = stringToUint8Array(gInData32)
+let gInData64Array = stringToUint8Array(gInData64)
+let gInData96Array = stringToUint8Array(gInData96)
+let gInData128Array = stringToUint8Array(gInData128)
+let gInData256Array = stringToUint8Array(gInData256)
+let gInData384Array = stringToUint8Array(gInData384)
+let gInData512Array = stringToUint8Array(gInData512)
+
+function stringToUint8Array(str) {
+	var arr = []
+	for (var i = 0, j = str.length; i < j; ++i) {
+		arr.push(str.charCodeAt(i))
+	}
+	var tmpUint8Array = new Uint8Array(arr)
+	return tmpUint8Array
+}
+
+function uint8ArrayToString(fileData) {
+	var dataString = ''
+	for (var i = 0; i < fileData.length; i++) {
+		dataString += String.fromCharCode(fileData[i])
+	}
+	return dataString
+}
+
+let encryptedData
+let inputInData
+var handle = {}
+var handle1
+var handle2
+let updateResult = new Array()
+let exportKey
+let importKey
+
+let genHuksOptions = {
+	properties: new Array(
+		HuksCipher002.HuksKeyAlgRSA,
+		HuksCipher002.HuksKeyPurpose,
+		HuksCipher002.HuksKeyRSASize2048
+	),
+	inData: new Uint8Array(defaultData),
+}
+
+async function publicGenerateKeyFunc(srcKeyAlies, genHuksOptionsNONC) {
+	console.log(
+		`test Generate HuksOptions: ${JSON.stringify(genHuksOptionsNONC)}`
+	)
+	await generateKey(srcKeyAlies, genHuksOptionsNONC)
+		.then((data) => {
+			console.log(`test generateKey data: ${JSON.stringify(data)}`)
+			expect(data.errorCode == 0).assertTrue()
+		})
+		.catch((err) => {
+			console.log(
+				'test generateKey err information: ' + JSON.stringify(err)
+			)
+			expect(null).assertFail()
+		})
+}
+
+function generateKey(srcKeyAlies, HuksOptions) {
+	return new Promise((resolve, reject) => {
+		huks.generateKey(srcKeyAlies, HuksOptions, function (err, data) {
+			console.log(`test generateKey data: ${JSON.stringify(data)}`)
+			if (err.code !== 0) {
+				console.log(
+					'test generateKey err information: ' + JSON.stringify(err)
+				)
+				reject(err)
+			} else {
+				resolve(data)
+			}
+		})
+	})
+}
+
+async function publicExportKeyFunc(srcKeyAlies, genHuksOptionsNONC) {
+	console.log(
+		`test ExportKey HuksOptions: ${JSON.stringify(genHuksOptionsNONC)}`
+	)
+	await exportkey(srcKeyAlies, genHuksOptionsNONC)
+		.then((data) => {
+			console.log(`test ExportKey data: ${JSON.stringify(data)}`)
+			exportKey = data.outData
+			expect(data.errorCode == 0).assertTrue()
+		})
+		.catch((err) => {
+			console.log(
+				'test ImportKey err information: ' + JSON.stringify(err)
+			)
+			expect(null).assertFail()
+		})
+}
+
+function exportkey(srcKeyAlies, HuksOptions) {
+	return new Promise((resolve, reject) => {
+		huks.exportKey(srcKeyAlies, HuksOptions, function (err, data) {
+			console.log(`test exportKey data: ${JSON.stringify(data)}`)
+			if (err.code !== 0) {
+				console.log(
+					'test exportKey err information: ' + JSON.stringify(err)
+				)
+				reject(err)
+			} else {
+				resolve(data)
+			}
+		})
+	})
+}
+
+async function publicImportKeyFunc(srcKeyAlies, HuksOptions) {
+	HuksOptions.inData = exportKey
+	console.log(`test importKey HuksOptions: ${JSON.stringify(HuksOptions)}`)
+	await importkey(srcKeyAlies, HuksOptions)
+		.then((data) => {
+			console.log(`test ImportKey data: ${JSON.stringify(data)}`)
+			importKey = data.outData
+			expect(data.errorCode == 0).assertTrue()
+		})
+		.catch((err) => {
+			console.log(
+				'test ImportKey err information: ' + JSON.stringify(err)
+			)
+			expect(null).assertFail()
+		})
+}
+
+function importkey(srcKeyAlies, HuksOptions) {
+	return new Promise((resolve, reject) => {
+		huks.importKey(srcKeyAlies, HuksOptions, function (err, data) {
+			console.log(`test importKey data: ${JSON.stringify(data)}`)
+			if (err.code !== 0) {
+				console.log(
+					'test importKey err information: ' + JSON.stringify(err)
+				)
+				reject(err)
+			} else {
+				resolve(data)
+			}
+		})
+	})
+}
+
+async function publicInitFunc(srcKeyAlies, HuksOptions) {
+	console.log(`test init HuksOptions: ${JSON.stringify(HuksOptions)}`)
+	await init(srcKeyAlies, HuksOptions)
+		.then((data) => {
+			console.log(`test init data: ${JSON.stringify(data)}`)
+			handle1 = data.handle1
+			handle2 = data.handle2
+			handle = {
+				handle1: handle1,
+				handle2: handle2,
+			}
+			expect(data.errorCode == 0).assertTrue()
+		})
+		.catch((err) => {
+			console.log('test init err information: ' + JSON.stringify(err))
+			expect(null).assertFail()
+		})
+}
+
+function init(srcKeyAlies, HuksOptions) {
+	return new Promise((resolve, reject) => {
+		huks.init(srcKeyAlies, HuksOptions, function (err, data) {
+			if (err.code !== 0) {
+				console.log('test init err information: ' + JSON.stringify(err))
+				reject(err)
+			} else {
+				resolve(data)
+			}
+		})
+	})
+}
+
+async function publicUpdateFunc(HuksOptions) {
+	console.log(
+		`test update before handle: ${JSON.stringify(
+			handle
+		)} HuksOptions: ${JSON.stringify(HuksOptions)}`
+	)
+	let dateSize = 64
+	let tempHuksOptionsInData = HuksOptions.inData
+	let inDataArray = HuksOptions.inData
+	console.log(
+		'test update finish HuksOptions inData: ' +
+			Array.from(inDataArray).length
+	)
+	if (Array.from(inDataArray).length < dateSize) {
+		await update(handle, HuksOptions)
+		HuksOptions.inData = stringToUint8Array('0')
+	} else {
+		let count = Math.floor(Array.from(inDataArray).length / dateSize)
+		let remainder = Array.from(inDataArray).length % dateSize
+		for (let i = 0; i < count; i++) {
+			HuksOptions.inData = new Uint8Array(
+				Array.from(tempHuksOptionsInData).slice(
+					dateSize * i,
+					dateSize * (i + 1)
+				)
+			)
+			console.log(
+				'test ' +
+					uint8ArrayToString(
+						new Uint8Array(
+							Array.from(tempHuksOptionsInData).slice(
+								dateSize * i,
+								dateSize * (i + 1)
+							)
+						)
+					)
+			)
+			await update(handle, HuksOptions)
+			HuksOptions.inData = tempHuksOptionsInData
+		}
+		if (remainder !== 0) {
+			HuksOptions.inData = new Uint8Array(
+				Array.from(tempHuksOptionsInData).slice(
+					dateSize * count,
+					uint8ArrayToString(inDataArray).length
+				)
+			)
+			await update(handle, HuksOptions)
+			console.log(
+				'test ' +
+					uint8ArrayToString(
+						new Uint8Array(
+							Array.from(tempHuksOptionsInData).slice(
+								dateSize * count,
+								uint8ArrayToString(inDataArray).length
+							)
+						)
+					)
+			)
+		}
+	}
+}
+
+async function update(handle, HuksOptions) {
+	console.log(`test update data ${JSON.stringify(HuksOptions)}`)
+	await updateCallback(handle, HuksOptions)
+		.then(async (data) => {
+			console.log(`test update data ${JSON.stringify(data)}`)
+			expect(data.errorCode == 0).assertTrue()
+		})
+		.catch((err) => {
+			console.log('test update err information: ' + err)
+			expect(null).assertFail()
+		})
+}
+
+function updateCallback(handle, HuksOptions) {
+	return new Promise((resolve, reject) => {
+		huks.update(handle, HuksOptions, function (err, data) {
+			if (err.code !== 0) {
+				console.log(
+					'test update err information: ' + JSON.stringify(err)
+				)
+				reject(err)
+			} else {
+				resolve(data)
+			}
+		})
+	})
+}
+
+async function publicFinishAbortFunc(
+	HuksOptions,
+	thirdInderfaceName,
+	isEncrypt
+) {
+	if (thirdInderfaceName == 'finish') {
+		HuksOptions.outData = new Uint8Array(new Array(1024))
+		HuksOptions.inData = new Uint8Array(new Array())
+		await finish(HuksOptions, isEncrypt)
+	} else if (thirdInderfaceName == 'abort') {
+		await abort(HuksOptions)
+	}
+}
+
+async function finish(HuksOptions, isEncrypt) {
+	await finishCallback(handle, HuksOptions)
+		.then((data) => {
+			console.log(`test finish data: ${JSON.stringify(data)}`)
+			if (isEncrypt) {
+				updateResult = Array.from(data.outData)
+				if (
+					uint8ArrayToString(data.outData) ===
+					uint8ArrayToString(encryptedData)
+				) {
+					expect(null).assertFail()
+				} else {
+					expect(data.errorCode == 0).assertTrue()
+				}
+			}
+			if (!isEncrypt) {
+				if (
+					uint8ArrayToString(data.outData) ===
+					uint8ArrayToString(encryptedData)
+				) {
+					expect(data.errorCode == 0).assertTrue()
+				} else {
+					expect(null).assertFail()
+				}
+			}
+		})
+		.catch((err) => {
+			console.log('test finish err information: ' + JSON.stringify(err))
+			expect(null).assertFail()
+		})
+}
+
+function finishCallback(handle, HuksOptionsFinish) {
+	return new Promise((resolve, reject) => {
+		huks.finish(handle, HuksOptionsFinish, function (err, data) {
+			if (err.code !== 0) {
+				console.log(
+					'test generateKey err information: ' + JSON.stringify(err)
+				)
+				reject(err)
+			} else {
+				resolve(data)
+			}
+		})
+	})
+}
+
+async function abort(HuksOptions) {
+	await abortCallback(handle, HuksOptions)
+		.then((data) => {
+			console.log(`test abort data: ${JSON.stringify(data)}`)
+			expect(data.errorCode == 0).assertTrue()
+		})
+		.catch((err) => {
+			console.log('test abort err information: ' + JSON.stringify(err))
+			expect(null).assertFail()
+		})
+}
+
+function abortCallback(handle, HuksOptionsAbort) {
+	return new Promise((resolve, reject) => {
+		huks.abort(handle, HuksOptionsAbort, function (err, data) {
+			if (err.code !== 0) {
+				console.log(
+					'test abort err information: ' + JSON.stringify(err)
+				)
+				reject(err)
+			} else {
+				resolve(data)
+			}
+		})
+	})
+}
+
+async function publicDeleteKeyFunc(srcKeyAlies, genHuksOptionsNONC) {
+	await deleteKey(srcKeyAlies, genHuksOptionsNONC)
+		.then((data) => {
+			console.log(`test deleteKey data: ${JSON.stringify(data)}`)
+			expect(data.errorCode == 0).assertTrue()
+		})
+		.catch((err) => {
+			console.log(
+				'test deleteKey err information: ' + JSON.stringify(err)
+			)
+			expect(null).assertFail()
+		})
+}
+
+function deleteKey(srcKeyAlies, HuksOptions) {
+	return new Promise((resolve, reject) => {
+		huks.deleteKey(srcKeyAlies, HuksOptions, function (err, data) {
+			if (err.code !== 0) {
+				console.log(
+					'test deleteKey err information: ' + JSON.stringify(err)
+				)
+				reject(err)
+			} else {
+				resolve(data)
+			}
+		})
+	})
+}
+async function publicCipherFunc(
+	srcKeyAlies,
+	newSrcKeyAlies,
+	genHuksOptionsNONC,
+	HuksOptions,
+	thirdInderfaceName,
+	isEncrypt
+) {
+	inputInData = HuksOptions.inData
+	try {
+		updateResult = new Array()
+		let KeyAlias = srcKeyAlies
+		if (isEncrypt) {
+			await publicGenerateKeyFunc(srcKeyAlies, genHuksOptionsNONC)
+			encryptedData = HuksOptions.inData
+			await publicExportKeyFunc(srcKeyAlies, genHuksOptionsNONC)
+			await publicImportKeyFunc(newSrcKeyAlies, HuksOptions)
+			KeyAlias = newSrcKeyAlies
+		}
+		HuksOptions.inData = inputInData
+		await publicInitFunc(KeyAlias, HuksOptions)
+		await publicUpdateFunc(HuksOptions)
+		await publicFinishAbortFunc(HuksOptions, thirdInderfaceName, isEncrypt)
+		if (!isEncrypt || (isEncrypt && thirdInderfaceName == 'abort')) {
+			await publicDeleteKeyFunc(srcKeyAlies, genHuksOptionsNONC)
+			await publicDeleteKeyFunc(newSrcKeyAlies, genHuksOptionsNONC)
+		}
+	} catch (e) {
+		expect(null).assertFail()
+	}
+}
+describe('SecurityHuksCipherRSACallbackJsunit', function () {
+	if (Control.isOpenSSL) {
+		it(
+			'testCipherRSASize2048PADDINGNONESHA256001',
+			0,
+			async function (done) {
+				const srcKeyAlies =
+					'testCipherRSASize2048PADDINGNONESHA256KeyAlias001'
+				const newSrcKeyAlies =
+					'testCipherRSASize2048PADDINGNONESHA256NewKeyAlias001'
+				genHuksOptions.properties.splice(
+					3,
+					1,
+					HuksCipher002.HuksKeyRSABLOCKMODEECB
+				)
+				genHuksOptions.properties.splice(
+					4,
+					1,
+					HuksCipher002.HuksKeyRSAPADDINGNONE
+				)
+				genHuksOptions.properties.splice(
+					5,
+					1,
+					HuksCipher002.HuksKeyRSADIGESTSHA256
+				)
+
+				let HuksOptions = {
+					properties: new Array(
+						HuksCipher002.HuksKeyAlgRSA,
+						HuksCipher002.HuksKeyPurposeENCRYPT,
+						HuksCipher002.HuksKeyRSASize2048,
+						HuksCipher002.HuksKeyRSAPADDINGNONE,
+						HuksCipher002.HuksKeyRSABLOCKMODEECB,
+						HuksCipher002.HuksKeyRSADIGESTSHA256
+					),
+					inData: gInData256Array,
+					outData: stringToUint8Array('0'),
+				}
+				await publicCipherFunc(
+					srcKeyAlies,
+					newSrcKeyAlies,
+					genHuksOptions,
+					HuksOptions,
+					'finish',
+					true
+				)
+				HuksOptions = {
+					properties: new Array(
+						HuksCipher002.HuksKeyAlgRSA,
+						HuksCipher002.HuksKeyPurposeDECRYPT,
+						HuksCipher002.HuksKeyRSASize2048,
+						HuksCipher002.HuksKeyRSAPADDINGNONE,
+						HuksCipher002.HuksKeyRSABLOCKMODEECB,
+						HuksCipher002.HuksKeyRSADIGESTSHA256
+					),
+					inData: new Uint8Array(updateResult),
+					outData: stringToUint8Array('0'),
+				}
+				await publicCipherFunc(
+					srcKeyAlies,
+					newSrcKeyAlies,
+					genHuksOptions,
+					HuksOptions,
+					'finish',
+					false
+				)
+				done()
+			}
+		)
+
+		it(
+			'testCipherRSASize2048PADDINGNONESHA256002',
+			0,
+			async function (done) {
+				const srcKeyAlies =
+					'testCipherRSASize2048PADDINGNONESHA256KeyAlias002'
+				const newSrcKeyAlies =
+					'testCipherRSASize2048PADDINGNONESHA256NewKeyAlias001'
+				let HuksOptions = {
+					properties: new Array(
+						HuksCipher002.HuksKeyAlgRSA,
+						HuksCipher002.HuksKeyPurposeENCRYPT,
+						HuksCipher002.HuksKeyRSASize2048,
+						HuksCipher002.HuksKeyRSAPADDINGNONE,
+						HuksCipher002.HuksKeyRSABLOCKMODEECB,
+						HuksCipher002.HuksKeyRSADIGESTSHA256
+					),
+					inData: gInData256Array,
+					outData: stringToUint8Array('0'),
+				}
+				await publicCipherFunc(
+					srcKeyAlies,
+					newSrcKeyAlies,
+					genHuksOptions,
+					HuksOptions,
+					'abort',
+					true
+				)
+				done()
+			}
+		)
+
+		it(
+			'testCipherRSASize2048PADDINGNONESHA256003',
+			0,
+			async function (done) {
+				const srcKeyAlies =
+					'testCipherRSASize2048PADDINGNONESHA256KeyAlias001'
+				const newSrcKeyAlies =
+					'testCipherRSASize2048PADDINGNONESHA256NewKeyAlias001'
+				let HuksOptions = {
+					properties: new Array(
+						HuksCipher002.HuksKeyAlgRSA,
+						HuksCipher002.HuksKeyPurposeENCRYPT,
+						HuksCipher002.HuksKeyRSASize2048,
+						HuksCipher002.HuksKeyRSAPADDINGNONE,
+						HuksCipher002.HuksKeyRSABLOCKMODEECB,
+						HuksCipher002.HuksKeyRSADIGESTSHA256
+					),
+					inData: gInData256Array,
+					outData: stringToUint8Array('0'),
+				}
+				await publicCipherFunc(
+					srcKeyAlies,
+					newSrcKeyAlies,
+					genHuksOptions,
+					HuksOptions,
+					'finish',
+					true
+				)
+				HuksOptions = {
+					properties: new Array(
+						HuksCipher002.HuksKeyAlgRSA,
+						HuksCipher002.HuksKeyPurposeDECRYPT,
+						HuksCipher002.HuksKeyRSASize2048,
+						HuksCipher002.HuksKeyRSAPADDINGNONE,
+						HuksCipher002.HuksKeyRSABLOCKMODEECB,
+						HuksCipher002.HuksKeyRSADIGESTSHA256
+					),
+					inData: new Uint8Array(updateResult),
+					outData: stringToUint8Array('0'),
+				}
+				await publicCipherFunc(
+					srcKeyAlies,
+					newSrcKeyAlies,
+					genHuksOptions,
+					HuksOptions,
+					'finish',
+					false
+				)
+				done()
+			}
+		)
+
+		it(
+			'testCipherRSASize2048PADDINGNONESHA256004',
+			0,
+			async function (done) {
+				const srcKeyAlies =
+					'testCipherRSASize2048PADDINGNONESHA256KeyAlias002'
+				const newSrcKeyAlies =
+					'testCipherRSASize2048PADDINGNONESHA256NewKeyAlias001'
+				let HuksOptions = {
+					properties: new Array(
+						HuksCipher002.HuksKeyAlgRSA,
+						HuksCipher002.HuksKeyPurposeENCRYPT,
+						HuksCipher002.HuksKeyRSASize2048,
+						HuksCipher002.HuksKeyRSAPADDINGNONE,
+						HuksCipher002.HuksKeyRSABLOCKMODEECB,
+						HuksCipher002.HuksKeyRSADIGESTSHA256
+					),
+					inData: gInData256Array,
+					outData: stringToUint8Array('0'),
+				}
+				await publicCipherFunc(
+					srcKeyAlies,
+					newSrcKeyAlies,
+					genHuksOptions,
+					HuksOptions,
+					'abort',
+					true
+				)
+				done()
+			}
+		)
+	}
+
+	it(
+		'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256001',
+		0,
+		async function (done) {
+			const srcKeyAlies =
+				'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256KeyAlias001'
+			const newSrcKeyAlies =
+				'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256NewKeyAlias001'
+			genHuksOptions.properties.splice(
+				3,
+				1,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB
+			)
+			genHuksOptions.properties.splice(
+				4,
+				1,
+				HuksCipher002.HuksKeyRSAPADDINGPKCS1V15
+			)
+			genHuksOptions.properties.splice(
+				5,
+				1,
+				HuksCipher002.HuksKeyRSADIGESTSHA256
+			)
+
+			let HuksOptions = {
+				properties: new Array(
+					HuksCipher002.HuksKeyAlgRSA,
+					HuksCipher002.HuksKeyPurposeENCRYPT,
+					HuksCipher002.HuksKeyRSASize2048,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
+					HuksCipher002.HuksKeyRSABLOCKMODEECB,
+					HuksCipher002.HuksKeyRSADIGESTSHA256
+				),
+				inData: gInData32Array,
+				outData: stringToUint8Array('0'),
+			}
+			await publicCipherFunc(
+				srcKeyAlies,
+				newSrcKeyAlies,
+				genHuksOptions,
+				HuksOptions,
+				'finish',
+				true
+			)
+			HuksOptions = {
+				properties: new Array(
+					HuksCipher002.HuksKeyAlgRSA,
+					HuksCipher002.HuksKeyPurposeDECRYPT,
+					HuksCipher002.HuksKeyRSASize2048,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
+					HuksCipher002.HuksKeyRSABLOCKMODEECB,
+					HuksCipher002.HuksKeyRSADIGESTSHA256
+				),
+				inData: new Uint8Array(updateResult),
+				outData: stringToUint8Array('0'),
+			}
+			await publicCipherFunc(
+				srcKeyAlies,
+				newSrcKeyAlies,
+				genHuksOptions,
+				HuksOptions,
+				'finish',
+				false
+			)
+			done()
+		}
+	)
+
+	it(
+		'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256002',
+		0,
+		async function (done) {
+			const srcKeyAlies =
+				'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256KeyAlias002'
+			const newSrcKeyAlies =
+				'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256NewKeyAlias001'
+			let HuksOptions = {
+				properties: new Array(
+					HuksCipher002.HuksKeyAlgRSA,
+					HuksCipher002.HuksKeyPurposeENCRYPT,
+					HuksCipher002.HuksKeyRSASize2048,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
+					HuksCipher002.HuksKeyRSABLOCKMODEECB,
+					HuksCipher002.HuksKeyRSADIGESTSHA256
+				),
+				inData: gInData32Array,
+				outData: stringToUint8Array('0'),
+			}
+			await publicCipherFunc(
+				srcKeyAlies,
+				newSrcKeyAlies,
+				genHuksOptions,
+				HuksOptions,
+				'abort',
+				true
+			)
+			done()
+		}
+	)
+
+	it(
+		'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256003',
+		0,
+		async function (done) {
+			const srcKeyAlies =
+				'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256KeyAlias001'
+			const newSrcKeyAlies =
+				'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256NewKeyAlias001'
+			let HuksOptions = {
+				properties: new Array(
+					HuksCipher002.HuksKeyAlgRSA,
+					HuksCipher002.HuksKeyPurposeENCRYPT,
+					HuksCipher002.HuksKeyRSASize2048,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
+					HuksCipher002.HuksKeyRSABLOCKMODEECB,
+					HuksCipher002.HuksKeyRSADIGESTSHA256
+				),
+				inData: gInData32Array,
+				outData: stringToUint8Array('0'),
+			}
+			await publicCipherFunc(
+				srcKeyAlies,
+				newSrcKeyAlies,
+				genHuksOptions,
+				HuksOptions,
+				'finish',
+				true
+			)
+			HuksOptions = {
+				properties: new Array(
+					HuksCipher002.HuksKeyAlgRSA,
+					HuksCipher002.HuksKeyPurposeDECRYPT,
+					HuksCipher002.HuksKeyRSASize2048,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
+					HuksCipher002.HuksKeyRSABLOCKMODEECB,
+					HuksCipher002.HuksKeyRSADIGESTSHA256
+				),
+				inData: new Uint8Array(updateResult),
+				outData: stringToUint8Array('0'),
+			}
+			await publicCipherFunc(
+				srcKeyAlies,
+				newSrcKeyAlies,
+				genHuksOptions,
+				HuksOptions,
+				'finish',
+				false
+			)
+			done()
+		}
+	)
+
+	it(
+		'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256004',
+		0,
+		async function (done) {
+			const srcKeyAlies =
+				'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256KeyAlias002'
+			const newSrcKeyAlies =
+				'testCipherRSASize2048PADDINGPKCS1_V1_5SHA256NewKeyAlias001'
+			let HuksOptions = {
+				properties: new Array(
+					HuksCipher002.HuksKeyAlgRSA,
+					HuksCipher002.HuksKeyPurposeENCRYPT,
+					HuksCipher002.HuksKeyRSASize2048,
+					HuksCipher002.HuksKeyRSAPADDINGPKCS1V15,
+					HuksCipher002.HuksKeyRSABLOCKMODEECB,
+					HuksCipher002.HuksKeyRSADIGESTSHA256
+				),
+				inData: gInData32Array,
+				outData: stringToUint8Array('0'),
+			}
+			await publicCipherFunc(
+				srcKeyAlies,
+				newSrcKeyAlies,
+				genHuksOptions,
+				HuksOptions,
+				'abort',
+				true
+			)
+			done()
+		}
+	)
+
+	it('testCipherRSASize2048PADDINGOAEPSHA1001', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA1KeyAlias001'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA1NewKeyAlias001'
+		genHuksOptions.properties.splice(
+			3,
+			1,
+			HuksCipher002.HuksKeyRSABLOCKMODEECB
+		)
+		genHuksOptions.properties.splice(
+			4,
+			1,
+			HuksCipher002.HuksKeyRSAPADDINGOAEP
+		)
+		genHuksOptions.properties.splice(
+			5,
+			1,
+			HuksCipher002.HuksKeyRSADIGESTSHA1
+		)
+
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA1
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			true
+		)
+		HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeDECRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA1
+			),
+			inData: new Uint8Array(updateResult),
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			false
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA1002', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA256KeyAlias002'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA256NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA1
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'abort',
+			true
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA1003', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA1KeyAlias001'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA1NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA1
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			true
+		)
+		HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeDECRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA1
+			),
+			inData: new Uint8Array(updateResult),
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			false
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA1004', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA1KeyAlias002'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA1NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA1
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'abort',
+			true
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA224001', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA224KeyAlias001'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA224NewKeyAlias001'
+		genHuksOptions.properties.splice(
+			3,
+			1,
+			HuksCipher002.HuksKeyRSABLOCKMODEECB
+		)
+		genHuksOptions.properties.splice(
+			4,
+			1,
+			HuksCipher002.HuksKeyRSAPADDINGOAEP
+		)
+		genHuksOptions.properties.splice(
+			5,
+			1,
+			HuksCipher002.HuksKeyRSADIGESTSHA224
+		)
+
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA224
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			true
+		)
+		HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeDECRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA224
+			),
+			inData: new Uint8Array(updateResult),
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			false
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA224002', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA256KeyAlias002'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA256NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA224
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'abort',
+			true
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA224003', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA224KeyAlias001'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA224NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA224
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			true
+		)
+		HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeDECRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA224
+			),
+			inData: new Uint8Array(updateResult),
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			false
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA224004', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA224KeyAlias002'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA224NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA224
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'abort',
+			true
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA256001', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA256KeyAlias001'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA256NewKeyAlias001'
+		genHuksOptions.properties.splice(
+			3,
+			1,
+			HuksCipher002.HuksKeyRSABLOCKMODEECB
+		)
+		genHuksOptions.properties.splice(
+			4,
+			1,
+			HuksCipher002.HuksKeyRSAPADDINGOAEP
+		)
+		genHuksOptions.properties.splice(
+			5,
+			1,
+			HuksCipher002.HuksKeyRSADIGESTSHA256
+		)
+
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA256
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			true
+		)
+		HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeDECRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA256
+			),
+			inData: new Uint8Array(updateResult),
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			false
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA256002', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA256KeyAlias002'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA256NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA256
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'abort',
+			true
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA256003', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA256KeyAlias001'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA256NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA256
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			true
+		)
+		HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeDECRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA256
+			),
+			inData: new Uint8Array(updateResult),
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			false
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA256004', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA256KeyAlias002'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA256NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA256
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'abort',
+			true
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA384001', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA384KeyAlias001'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA384NewKeyAlias001'
+		genHuksOptions.properties.splice(
+			3,
+			1,
+			HuksCipher002.HuksKeyRSABLOCKMODEECB
+		)
+		genHuksOptions.properties.splice(
+			4,
+			1,
+			HuksCipher002.HuksKeyRSAPADDINGOAEP
+		)
+		genHuksOptions.properties.splice(
+			5,
+			1,
+			HuksCipher002.HuksKeyRSADIGESTSHA384
+		)
+
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA384
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			true
+		)
+		HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeDECRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA384
+			),
+			inData: new Uint8Array(updateResult),
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			false
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA384002', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA384KeyAlias002'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA384NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA384
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'abort',
+			true
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA384003', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA384KeyAlias001'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA384NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA384
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			true
+		)
+		HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeDECRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA384
+			),
+			inData: new Uint8Array(updateResult),
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			false
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA384004', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA384KeyAlias002'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA384NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA384
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'abort',
+			true
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA512001', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA512KeyAlias001'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA512NewKeyAlias001'
+		genHuksOptions.properties.splice(
+			3,
+			1,
+			HuksCipher002.HuksKeyRSABLOCKMODEECB
+		)
+		genHuksOptions.properties.splice(
+			4,
+			1,
+			HuksCipher002.HuksKeyRSAPADDINGOAEP
+		)
+		genHuksOptions.properties.splice(
+			5,
+			1,
+			HuksCipher002.HuksKeyRSADIGESTSHA512
+		)
+
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA512
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			true
+		)
+		HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeDECRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA512
+			),
+			inData: new Uint8Array(updateResult),
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			false
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA512002', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA512KeyAlias002'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA512NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA512
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'abort',
+			true
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA512003', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA512KeyAlias001'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA512NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA512
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			true
+		)
+		HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeDECRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA512
+			),
+			inData: new Uint8Array(updateResult),
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'finish',
+			false
+		)
+		done()
+	})
+
+	it('testCipherRSASize2048PADDINGOAEPSHA512004', 0, async function (done) {
+		const srcKeyAlies = 'testCipherRSASize2048PADDINGOAEPSHA512KeyAlias002'
+		const newSrcKeyAlies =
+			'testCipherRSASize2048PADDINGOAEPSHA512NewKeyAlias001'
+		let HuksOptions = {
+			properties: new Array(
+				HuksCipher002.HuksKeyAlgRSA,
+				HuksCipher002.HuksKeyPurposeENCRYPT,
+				HuksCipher002.HuksKeyRSASize2048,
+				HuksCipher002.HuksKeyRSAPADDINGOAEP,
+				HuksCipher002.HuksKeyRSABLOCKMODEECB,
+				HuksCipher002.HuksKeyRSADIGESTSHA512
+			),
+			inData: gInData32Array,
+			outData: stringToUint8Array('0'),
+		}
+		await publicCipherFunc(
+			srcKeyAlies,
+			newSrcKeyAlies,
+			genHuksOptions,
+			HuksOptions,
+			'abort',
+			true
+		)
+		done()
+	})
+})
