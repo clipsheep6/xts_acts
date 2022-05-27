@@ -18,26 +18,26 @@ import router from '@system.router'
 
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = this.$t('strings.world');
     },
     onclick: function () {
         router.replace({
-            uri: "pages/second/second"
+            uri: 'pages/second/second'
         })
     },
     onShow(){
         console.info('Ability2 onShow');
-        commonEvent.publish("Ability2_onShow", () => {
-            console.log("Ability2_onShow Publish success");
+        commonEvent.publish('Ability2_onShow', () => {
+            console.log('Ability2_onShow Publish success');
         });
     },
     onHide(){
         console.info('Ability2 onHide');
-        commonEvent.publish("Ability2_onHide", () => {
-            console.log("Ability2_onHide Publish success");
+        commonEvent.publish('Ability2_onHide', () => {
+            console.log('Ability2_onHide Publish success');
         });
     }
 }

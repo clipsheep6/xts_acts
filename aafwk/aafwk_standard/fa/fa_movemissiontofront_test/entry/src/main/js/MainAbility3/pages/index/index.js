@@ -18,35 +18,35 @@ import commonEvent from '@ohos.commonEvent';
 
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = 'yingyong3';
     },
     onclick: function () {
         router.replace({
-            uri: "pages/second/second"
+            uri: 'pages/second/second'
         })
     },
     onShow() {
         console.info('onShow start')
     },
     onHide(){
-        console.log("singletonEntryAbulity_onHide")
-        commonEvent.publish("singletonEntryAbulity3_onHide",()=>{
-            console.log("singletonEntryAbulity3_onHide publish callBack singletonEntryAbulity3_onHide");
+        console.log('singletonEntryAbulity_onHide')
+        commonEvent.publish('singletonEntryAbulity3_onHide',()=>{
+            console.log('singletonEntryAbulity3_onHide publish callBack singletonEntryAbulity3_onHide');
         });
     },
     onActive(){
-        console.log("singletonEntryAbulity_onActive")
-        commonEvent.publish("singletonEntryAbulity3_onActive",()=>{
-            console.log("singletonEntryAbulity3_onActive publish callBack singletonEntryAbulity3_onActive");
+        console.log('singletonEntryAbulity_onActive')
+        commonEvent.publish('singletonEntryAbulity3_onActive',()=>{
+            console.log('singletonEntryAbulity3_onActive publish callBack singletonEntryAbulity3_onActive');
         });
     },
     onInactive(){
-        console.log("singletonEntryAbulity_onInactive")
-        commonEvent.publish("singletonEntryAbulity3_onHide",()=>{
-            console.log("singletonEntryAbulity3_onInactive publish callBack singletonEntryAbulity3_onInactive");
+        console.log('singletonEntryAbulity_onInactive')
+        commonEvent.publish('singletonEntryAbulity3_onHide',()=>{
+            console.log('singletonEntryAbulity3_onInactive publish callBack singletonEntryAbulity3_onInactive');
         });
     }
 }

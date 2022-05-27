@@ -16,25 +16,25 @@ import featureAbility from '@ohos.ability.featureAbility';
 import commonEvent from '@ohos.commonEvent';
 export default {
     onCreate() {
-        console.info("Application onCreate MainAbility3");
+        console.info('Application onCreate MainAbility3');
         setTimeout(()=>{
             featureAbility.terminateSelf().then((data)=>{
-                console.log("Application terminateSelf data：" + JSON.stringify(data) )
+                console.log('Application terminateSelf data：' + JSON.stringify(data) )
             }).catch((error)=>{
-                console.log("Application terminateSelf data：" + JSON.stringify(error) )
+                console.log('Application terminateSelf data：' + JSON.stringify(error) )
             })
         },2500)
     },
     onDestroy() {
-        console.log("singletonEntryAbulity_onDestroy222");
-        commonEvent.publish("ApplicationMainAbility3_onDestroy",()=>{
-            console.log("ApplicationMainAbility3_onDestroy publish callBack ApplicationMainAbility2_onDestroy");
+        console.log('singletonEntryAbulity_onDestroy222');
+        commonEvent.publish('ApplicationMainAbility3_onDestroy',()=>{
+            console.log('ApplicationMainAbility3_onDestroy publish callBack ApplicationMainAbility2_onDestroy');
         });
     },
     onForgeGround(){
-        console.log("singletonEntryAbulity_onForgeGround");
-        commonEvent.publish("ApplicationMainAbility3_onForgeGround",()=>{
-            console.log("ApplicationMainAbility3_onHide publish callBack ApplicationMainAbility2_onForgeGround");
+        console.log('singletonEntryAbulity_onForgeGround');
+        commonEvent.publish('ApplicationMainAbility3_onForgeGround',()=>{
+            console.log('ApplicationMainAbility3_onHide publish callBack ApplicationMainAbility2_onForgeGround');
         });
     }
 };

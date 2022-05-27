@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 // @ts-nocheck
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import abilityFeatureAbility from '@ohos.ability.featureAbility';
 import bundleManager from '@ohos.bundle';
-import appManager from "@ohos.application.appManager"
+import appManager from '@ohos.application.appManager'
 
 describe('AbilityDisableTests', function () {
-    console.log("AbilityDisableTests --- start");
+    console.log('AbilityDisableTests --- start');
 
         /*
          * @tc.number  SUB_AA_OpenHarmony_EqueryAbilityByWant_0100
@@ -28,22 +28,22 @@ describe('AbilityDisableTests', function () {
          * @tc.desc    Function test
          * @tc.level   0
          */
-        it("SUB_AA_OpenHarmony_EqueryAbilityByWant_0100", 0, async function (done) {
-            console.info("------------------logMessage SUB_AA_OpenHarmony_EqueryAbilityByWant_0100-------------------");
+        it('SUB_AA_OpenHarmony_EqueryAbilityByWant_0100', 0, async function (done) {
+            console.info('------------------logMessage SUB_AA_OpenHarmony_EqueryAbilityByWant_0100-------------------');
             var context = abilityFeatureAbility.getContext();
-            console.log("+++++++++++++",context);
+            console.log('+++++++++++++',context);
             let bundleFlags=bundleManager.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION;
             let userId=100;
             let want={
-                bundleName:"com.example.abilitydisable",
-                abilityName:"com.example.abilitydisable.MainAbility"
+                bundleName:'com.example.abilitydisable',
+                abilityName:'com.example.abilitydisable.MainAbility'
             };
             bundleManager.queryAbilityByWant(want,bundleFlags,userId,(err, data) => {
                 console.log('SUB_AA_OpenHarmony_Clear_0100 queryAbilityByWant errCode : '
-                + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
                 for(var i=0;i<data.length;i++){
-                    console.log("data[i]['moduleName']"+data[i]['moduleName']);
-                    expect(data[i]['moduleName'] == "entry").assertTrue();
+                    console.log('data[i]['moduleName']'+data[i]['moduleName']);
+                    expect(data[i]['moduleName'] == 'entry').assertTrue();
                 }
             })
             done();
@@ -55,21 +55,21 @@ describe('AbilityDisableTests', function () {
          * @tc.desc    Function test
          * @tc.level   0
          */
-        it("SUB_AA_OpenHarmony_EqueryAbilityByWant_0200", 0, async function (done) {
-            console.info("------------------logMessage SUB_AA_OpenHarmony_EqueryAbilityByWant_0200-------------------");
+        it('SUB_AA_OpenHarmony_EqueryAbilityByWant_0200', 0, async function (done) {
+            console.info('------------------logMessage SUB_AA_OpenHarmony_EqueryAbilityByWant_0200-------------------');
             var context = abilityFeatureAbility.getContext();
             let bundleFlags=bundleManager.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION;
             let userId=100;
             let want={
-                bundleName:"com.example.abilitydisable",
-                abilityName:"com.example.abilitydisable.MainAbility"
+                bundleName:'com.example.abilitydisable',
+                abilityName:'com.example.abilitydisable.MainAbility'
             };
             bundleManager.queryAbilityByWant(want,bundleFlags,userId,(err, data) => {
                 console.log('SUB_AA_OpenHarmony_EqueryAbilityByWant_0200 queryAbilityByWant errCode : '
-                + JSON.stringify(err) + " data: " + JSON.stringify(data));
+                + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
                 for(var i=0;i<data.length;i++){
-                    console.log("data[i]['uri']"+data[i]['uri']);
-                    expect(data[i]['uri'] == "").assertTrue();
+                    console.log('data[i]['uri']'+data[i]['uri']);
+                    expect(data[i]['uri'] == '').assertTrue();
                 }
             })
             done();
@@ -81,15 +81,15 @@ describe('AbilityDisableTests', function () {
          * @tc.desc    Function test
          * @tc.level   0
          */
-        it("SUB_AA_OpenHarmony_EqueryAbilityByWant_0300", 0, async function (done) {
-            console.info("------------------logMessage SUB_AA_OpenHarmony_EqueryAbilityByWant_0300-------------------");
-            let bundleName="com.example.abilitydisable";
+        it('SUB_AA_OpenHarmony_EqueryAbilityByWant_0300', 0, async function (done) {
+            console.info('------------------logMessage SUB_AA_OpenHarmony_EqueryAbilityByWant_0300-------------------');
+            let bundleName='com.example.abilitydisable';
             let bundleFlags=bundleManager.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION;
             let userId=100;
             bundleManager.getApplicationInfo(bundleName, bundleFlags,userId,(err, data) => {
                 console.log('SUB_AA_OpenHarmony_EqueryAbilityByWant_0300 getapplicationInfo errCode : '
-                + JSON.stringify(err) + " data: " + JSON.stringify(data));
-                expect(data['name']).assertEqual("com.example.abilitydisable");
+                + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+                expect(data['name']).assertEqual('com.example.abilitydisable');
             })
             done();
         });

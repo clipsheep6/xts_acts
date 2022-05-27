@@ -18,23 +18,23 @@ import commonEvent from '@ohos.commonEvent';
 
 export default {
     onCreate() {
-        commonEvent.publish("ApplicationMainAbility2_onCreate",()=>{
-            console.log("ApplicationMainAbility2_onCreate publish callBack ApplicationMainAbility2_onCreate");
+        commonEvent.publish('ApplicationMainAbility2_onCreate',()=>{
+            console.log('ApplicationMainAbility2_onCreate publish callBack ApplicationMainAbility2_onCreate');
         });
-        console.info("ApplicationMainAbility2 onCreate");
+        console.info('ApplicationMainAbility2 onCreate');
         setTimeout(()=>{
-            console.info("ApplicationMainAbility2 terminateSelf");
+            console.info('ApplicationMainAbility2 terminateSelf');
             featureAbility.terminateSelf().then((data)=>{
-                console.log("ApplicationMainAbility2 terminateSelf data：" + JSON.stringify(data) )
+                console.log('ApplicationMainAbility2 terminateSelf data：' + JSON.stringify(data) )
             }).catch((error)=>{
-                console.log("ApplicationMainAbility2 terminateSelf error：" + JSON.stringify(error) )
+                console.log('ApplicationMainAbility2 terminateSelf error：' + JSON.stringify(error) )
             })
         },1000);
     },
     onDestroy() {
-        console.log("singletonEntryAbulity_onDestroy222");
-        commonEvent.publish("ApplicationMainAbility2_onDestroy",()=>{
-            console.log("singletonEntryAbulity2_onDestroy publish callBack singletonEntryAbulity2onDestroy");
+        console.log('singletonEntryAbulity_onDestroy222');
+        commonEvent.publish('ApplicationMainAbility2_onDestroy',()=>{
+            console.log('singletonEntryAbulity2_onDestroy publish callBack singletonEntryAbulity2onDestroy');
         });
     },
 

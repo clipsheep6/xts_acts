@@ -14,12 +14,12 @@
  */
 export default {
     onCreate() {
-        console.info("Application onCreate");
+        console.info('Application onCreate');
     },
     onDestroy() {
-        console.info("Application onDestroy");
+        console.info('Application onDestroy');
     },
     onForgeGround(){
-        console.info("Application onForgeGround");
+        console.info('Application onForgeGround');
     }
 };

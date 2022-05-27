@@ -20,7 +20,7 @@ export default {
     },
     onclick: function () {
         router.replace({
-            uri: "pages/index/index"
+            uri: 'pages/index/index'
         })
     }
 }

@@ -16,12 +16,12 @@
 import commonEvent from '@ohos.commonEvent';
 export default {
     onCreate() {
-        console.info("Application2 onCreate");
-        commonEvent.publish("Ability2_onCreate", () => {
-            console.log("Ability2_onCreate Publish success");
+        console.info('Application2 onCreate');
+        commonEvent.publish('Ability2_onCreate', () => {
+            console.log('Ability2_onCreate Publish success');
         });
     },
     onDestroy() {
-        console.info("Application onDestroy");
+        console.info('Application onDestroy');
     }
 };

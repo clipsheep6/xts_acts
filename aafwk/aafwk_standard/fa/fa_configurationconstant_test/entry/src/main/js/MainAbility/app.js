@@ -15,10 +15,10 @@
  */
 export default {
     onCreate() {
-        console.info("Application onCreate 1");
+        console.info('Application onCreate 1');
     },
     onDestroy() {
-        console.info("Application onDestroy 1");
+        console.info('Application onDestroy 1');
 
     }
 };
