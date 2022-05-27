@@ -1,0 +1,64 @@
+# Copyright (C) 2021-2022 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+module_output_path = "hit/HitsMediaCppStandardTest"
+
+###############################################################################
+config("media_cpp_config") {
+  visibility = [ ":*" ]
+  include_dirs = [
+    "include",
+    "//foundation/multimedia/media_standard/interfaces/innerkits/native/media/include",
+    "//foundation/graphic/standard/rosen/modules/render_service_client/core",
+  ]
+}
+
+ohos_moduletest_suite("HitsMediaCppStandardTest") {
+  module_out_path = module_output_path
+  sources = [
+    "avmetadatahelper/src/TestAVMetadataHelper.cpp",
+    "avmetadatahelper/src/api/01.SetSource.cpp",
+    "avmetadatahelper/src/api/02.ResolveMetadata.cpp",
+    "avmetadatahelper/src/api/03.FetchFrameAtTime.cpp",
+    "avmetadatahelper/src/api/04.Release.cpp",
+    "avmetadatahelper/src/function/HitsAVMetadataFuncTest.cpp",
+    "avmetadatahelper/src/function/HitsThumbnailFuncTest.cpp",
+  ]
+  include_dirs = [
+    "include",
+    "avmetadatahelper/include",
+    "//base/startup/syspara_lite/interfaces/innerkits/native/syspara/include",
+    "//foundation/graphic/standard/interfaces/innerkits/wmclient",
+  ]
+  cflags = [ 
+    "-Wall",
+    "-Wno-integer-overflow",
+  ]
+  cflags_cc = cflags
+  deps = [
+    "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog",
+    "//base/startup/syspara_lite/interfaces/innerkits/native/syspara:syspara",
+    "//foundation/graphic/standard:libwmclient",
+    "//foundation/multimedia/image_standard/interfaces/innerkits:image_native",
+    "//foundation/graphic/standard/rosen/modules/render_service_client:librender_service_client",
+    "//foundation/windowmanager/wm:libwm",
+    "//third_party/googletest:gtest_main",
+    "//third_party/libjpeg:libjpeg_static",
+  ]
+  external_deps = [
+    "ipc:ipc_core",
+    "multimedia_media_standard:media_client",
+  ]
+  configs = [ ":media_cpp_config" ]
+}
