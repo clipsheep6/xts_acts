@@ -13,20 +13,17 @@
 
 import("//test/xts/tools/lite/build/suite_lite.gni")
 
-hcpptest_suite("ActsParameterTest") {
+hctest_suite("ActsParameterTest") {
   suite_name = "acts"
-  sources = [ "src/ParameterTest.cpp" ]
+  sources = [
+    "src/parameter_func_test.c",
+    "src/parameter_reli_test.c",
+    "src/parameter_utils.c",
+  ]
 
   include_dirs = [
     "src",
-    "//base/startup/syspara_lite/interfaces/kits",
+    "//base/startup/init_lite/interfaces/innerkits/include/syspara",
   ]
-
-  deps = [ "//base/startup/syspara_lite/frameworks/parameter:parameter" ]
   cflags = [ "-Wno-error" ]
-  ldflags = [
-    "-lstdc++",
-    "-lm",
-    "-lpthread",
-  ]
 }
