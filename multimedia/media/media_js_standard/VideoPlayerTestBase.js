@@ -162,9 +162,6 @@ export async function playVideoSource(url, width, height, duration, playTime, do
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
 
     videoPlayer.url = url;
-    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-        console.info('case setDisplaySurface success, surfaceID: ' + surfaceID);
-    }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
 
     await videoPlayer.prepare().then(() => {
         console.info('case prepare called');

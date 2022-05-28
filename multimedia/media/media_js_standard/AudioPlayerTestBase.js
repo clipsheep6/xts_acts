@@ -98,6 +98,7 @@ export function playAudioSource(src, duration, playTime, checkSeekTime, done) {
             audioPlayer.release();
             expect().assertFail();
             done();
+	    return;
         }
         console.info('case seek success, and seek time is ' + seekDoneTime);
         if (seekCount == 1) {
