@@ -16,16 +16,16 @@ import abilityFeatureAbility from '@ohos.ability.featureAbility';
 
 export default {
     onCreate() {
-        console.info("Application onCreate MainAbility3");
+        console.info('Application onCreate MainAbility3');
         setTimeout(()=>{
             abilityFeatureAbility.terminateSelf().then((data)=>{
-                console.log("Application terminateSelf data：" + JSON.stringify(data) )
+                console.log('Application terminateSelf data：' + JSON.stringify(data) )
             }).catch((error)=>{
-                console.log("Application terminateSelf data：" + JSON.stringify(error) )
+                console.log('Application terminateSelf data：' + JSON.stringify(error) )
             })
         },4000)
     },
     onDestroy() {
-        console.info("Application onDestroy");
+        console.info('Application onDestroy');
     }
 };

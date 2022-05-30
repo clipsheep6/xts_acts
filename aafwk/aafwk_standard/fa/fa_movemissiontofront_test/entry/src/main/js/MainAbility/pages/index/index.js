@@ -19,20 +19,20 @@ import {Core} from 'deccjsunit/index'
 
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = 'yingyong1';
     },
     onclick: function () {
         router.replace({
-            uri: "pages/second/second"
+            uri: 'pages/second/second'
         })
     },
     onShow() {
-        console.log("singletonEntryAbulity1_onShow")
-        commonEvent.publish("singletonEntryAbulity1_onShow",()=>{
-            console.log("singletonEntryAbulity1_onHide publish callBack singletonEntryAbulity1_onHide");
+        console.log('singletonEntryAbulity1_onShow')
+        commonEvent.publish('singletonEntryAbulity1_onShow',()=>{
+            console.log('singletonEntryAbulity1_onHide publish callBack singletonEntryAbulity1_onHide');
         });
         const core = Core.getInstance()
         core.init()
@@ -44,21 +44,21 @@ export default {
         core.execute()
     },
     onHide(){
-        console.log("singletonEntryAbulity_onHide")
-        commonEvent.publish("singletonEntryAbulity1_onHide",()=>{
-            console.log("singletonEntryAbulity1_onHide publish callBack singletonEntryAbulity1_onHide");
+        console.log('singletonEntryAbulity_onHide')
+        commonEvent.publish('singletonEntryAbulity1_onHide',()=>{
+            console.log('singletonEntryAbulity1_onHide publish callBack singletonEntryAbulity1_onHide');
         });
     },
     onActive(){
-        console.log("singletonEntryAbulity_onActive")
-        commonEvent.publish("singletonEntryAbulity1_onActive",()=>{
-            console.log("singletonEntryAbulity1_onActive publish callBack singletonEntryAbulity1_onActive");
+        console.log('singletonEntryAbulity_onActive')
+        commonEvent.publish('singletonEntryAbulity1_onActive',()=>{
+            console.log('singletonEntryAbulity1_onActive publish callBack singletonEntryAbulity1_onActive');
         });
     },
     onInactive(){
-        console.log("singletonEntryAbulity_onInactive")
-        commonEvent.publish("singletonEntryAbulity1_onInactive",()=>{
-            console.log("singletonEntryAbulity1_onInactive publish callBack singletonEntryAbulity1_onInactive");
+        console.log('singletonEntryAbulity_onInactive')
+        commonEvent.publish('singletonEntryAbulity1_onInactive',()=>{
+            console.log('singletonEntryAbulity1_onInactive publish callBack singletonEntryAbulity1_onInactive');
         });
     }
 }

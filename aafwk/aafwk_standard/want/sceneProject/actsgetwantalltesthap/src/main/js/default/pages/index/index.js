@@ -27,12 +27,12 @@ export default {
         featureAbility.getWant(
             (err, data) => {
                 data = data;
-                console.debug("==========data=" + JSON.stringify(data));
+                console.debug('==========data=' + JSON.stringify(data));
                 if (data.parameters.mykey5[1] == 'test123'){
                     featureAbility.getWant().then((data) =>{
                         data = data
                         setTimeout(function(){
-                            console.debug("==========data2 bundleName is==========="
+                            console.debug('==========data2 bundleName is==========='
                                            + JSON.stringify(data.bundleName));
                             featureAbility.terminateSelfWithResult(
                                 {
@@ -44,7 +44,7 @@ export default {
                     })
                 }else{
                     setTimeout(function(){
-                        console.debug("==========data1 bundleName is==========="
+                        console.debug('==========data1 bundleName is==========='
                                        + JSON.stringify(data.bundleName));
                         featureAbility.terminateSelfWithResult(
                             {

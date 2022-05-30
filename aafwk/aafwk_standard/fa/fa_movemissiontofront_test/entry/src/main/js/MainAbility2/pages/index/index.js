@@ -18,38 +18,38 @@ import commonEvent from '@ohos.commonEvent';
 
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = 'yingyong2';
     },
     onclick: function () {
         router.replace({
-            uri: "pages/second/second"
+            uri: 'pages/second/second'
         })
     },
     onShow() {
-        console.log("singletonEntryAbulity_onShow")
-        commonEvent.publish("singletonEntryAbulity2_onShow",()=>{
-            console.log("singletonEntryAbulity2_onShow publish callBack singletonEntryAbulity2_onShow");
+        console.log('singletonEntryAbulity_onShow')
+        commonEvent.publish('singletonEntryAbulity2_onShow',()=>{
+            console.log('singletonEntryAbulity2_onShow publish callBack singletonEntryAbulity2_onShow');
         });
     },
     onHide(){
-        console.log("singletonEntryAbulity_onHide")
-        commonEvent.publish("singletonEntryAbulity2_onHide",()=>{
-            console.log("singletonEntryAbulity2_onHide publish callBack singletonEntryAbulity2onHide");
+        console.log('singletonEntryAbulity_onHide')
+        commonEvent.publish('singletonEntryAbulity2_onHide',()=>{
+            console.log('singletonEntryAbulity2_onHide publish callBack singletonEntryAbulity2onHide');
         });
     },
     onActive(){
-        console.log("singletonEntryAbulity_onActive")
-        commonEvent.publish("singletonEntryAbulity2_onActive",()=>{
-            console.log("singletonEntryAbulity2_onActive publish callBack singletonEntryAbulity2_onActive");
+        console.log('singletonEntryAbulity_onActive')
+        commonEvent.publish('singletonEntryAbulity2_onActive',()=>{
+            console.log('singletonEntryAbulity2_onActive publish callBack singletonEntryAbulity2_onActive');
         });
     },
     onInactive(){
-        console.log("singletonEntryAbulity_onInactive");
-        commonEvent.publish("singletonEntryAbulity2_onInactive",()=>{
-            console.log("singletonEntryAbulity2_onInactive publish callBack singletonEntryAbulity2_onInactive");
+        console.log('singletonEntryAbulity_onInactive');
+        commonEvent.publish('singletonEntryAbulity2_onInactive',()=>{
+            console.log('singletonEntryAbulity2_onInactive publish callBack singletonEntryAbulity2_onInactive');
         });
     }
 

@@ -16,15 +16,15 @@ import commonEvent from '@ohos.commonEvent';
 import abilityFeatureAbility from '@ohos.ability.featureAbility';
 export default {
     onCreate() {
-        commonEvent.publish("ApplicationMainAbility1_onCreate",()=>{
-            console.log("ApplicationMainAbility1_onCreate publish callBack ApplicationMainAbility1_onCreate");
+        commonEvent.publish('ApplicationMainAbility1_onCreate',()=>{
+            console.log('ApplicationMainAbility1_onCreate publish callBack ApplicationMainAbility1_onCreate');
         });
 
     },
     onDestroy() {
-        console.info("Application onDestroy");
+        console.info('Application onDestroy');
     },
     onForgeGround(){
-        console.info("Application onForgeGround");
+        console.info('Application onForgeGround');
     }
 };
