@@ -14,7 +14,12 @@
  */
 
 import fileio from '@ohos.fileio';
-import { describe,it,expect}from 'deccjsunit/index'
+import {
+  describe,
+  it,
+  expect
+}
+  from 'deccjsunit/index'
 import {
   FILE_CONTENT,
   prepareFile,
@@ -33,11 +38,11 @@ describe('fileIOTestDir', function () {
   it('fileio_test_dir_open_sync_000', 0, async function () {
     let dpath = await nextFileName('fileio_test_dir_open_sync_000') + 'd'
     try {
-      fileio.mkdirSync(dpath);
+      expect(fileio.mkdirSync(dpath) !== null).assertTrue();
       let dd = fileio.opendirSync(dpath);
       expect(dd !== null).assertTrue();
-      dd.closeSync();
-      fileio.rmdirSync(dpath);
+      expect(dd.closeSync() == null).assertTrue();
+      expect(fileio.rmdirSync(dpath) !== null).assertTrue();
     }
     catch (e) {
       console.log('fileio_test_dir_open_sync_000 has failed for ' + e);
@@ -66,14 +71,13 @@ describe('fileIOTestDir', function () {
    * @tc.desc Function of API, dpath value is not exist.
    */
   it('fileio_test_dir_open_sync_002', 0, async function () {
-    let dpath = await nextFileName('fileio_test_dir_open_sync_002') + 'd'
+    let dpath = await nextFileName('fileio_test_dir_open_sync_003') + 'd'
     try {
       fileio.opendirSync(dpath);
       expect(null).assertFail();
     }
     catch (e) {
       console.log('fileio_test_dir_open_sync_002 has failed for ' + e);
-      expect(e.message == 'No such file or directory').assertTrue();
     }
   });
 
@@ -83,7 +87,7 @@ describe('fileIOTestDir', function () {
    * @tc.desc Function of API, dpath too long.
    */
   it('fileio_test_dir_open_sync_003', 0, async function () {
-    let dpath = await nextFileName('fileio_test_dir_open_sync_003');
+    let dpath = await nextFileName('fileio_dir11');
     fileio.mkdirSync(dpath);
     try {
       for (let i = 0; i < 16; i++) {
@@ -120,7 +124,7 @@ describe('fileIOTestDir', function () {
    * @tc.desc Function of API, uri dir too many layers.
    */
   it('fileio_test_dir_open_sync_005', 0, async function () {
-    let dpath = await nextFileName('fileio_test_dir_open_sync_005');
+    let dpath = await nextFileName('dir');
     fileio.mkdirSync(dpath);
     try {
       for (let i = 0; i < 1024; i++) {
@@ -148,41 +152,7 @@ describe('fileIOTestDir', function () {
     }
     catch (e) {
       console.log('fileio_test_dir_open_sync_006 has failed for ' + e);
-      expect(e.message == 'No such file or directory').assertTrue();
     }
-  });
-
-  /**
-   * @tc.number SUB_STORAGE_FileIO_dir_OpenASync_001
-   * @tc.name fileio_test_dir_open_async_001
-   * @tc.desc Function of API, file name contain special character.
-   */
-   it('fileio_test_dir_open_async_001', 0, async function () {
-    let dpath = await nextFileName('fileio_test_dir_open_async_001') + 'd'
-    expect(fileio.mkdirSync(dpath) !== null).assertTrue();
-    fileio.opendir(dpath, function (err, dir) {
-      expect(dir !== null).assertTrue();
-      expect(dir.closeSync() == null).assertTrue();
-      expect(fileio.rmdirSync(dpath) !== null).assertTrue();
-    });
-  });
-
-  /**
-   * @tc.number SUB_STORAGE_FileIO_dir_OpenASync_001
-   * @tc.name fileio_test_dir_open_async_001
-   * @tc.desc Function of API, file name contain special character.
-   */
-  it('fileio_test_dir_open_async_002', 0, async function () {
-    let dpath = await nextFileName('fileio_test_dir_open_async_002') + 'd'
-    expect(fileio.mkdirSync(dpath) !== null).assertTrue();
-    let dir = await fileio.opendir(dpath).then(()=> {
-      expect(dir !== null).assertTrue();
-      expect(dir.closeSync() == null).assertTrue();
-      expect(fileio.rmdirSync(dpath) !== null).assertTrue();
-      console.log('fileio opendir Success');
-    }).catch((err) => {
-        console.log("fileio opendir err: "  + JSON.stringify(err));
-    });
   });
 
   /**
@@ -194,14 +164,14 @@ describe('fileIOTestDir', function () {
     let dpath = await nextFileName('fileio_test_dir_read_sync_000') + 'd'
     let fpath = dpath + '/f0'
     try {
-      fileio.mkdirSync(dpath);
+      expect(typeof(fileio.mkdirSync(dpath)) == 'undefined').assertTrue();
       expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
       let dd = fileio.opendirSync(dpath);
       expect(dd !== null).assertTrue();
       expect(dd.readSync() !== null).assertTrue();
-      dd.closeSync();
-      fileio.unlinkSync(fpath);
-      fileio.rmdirSync(dpath);
+      expect(dd.closeSync() == null).assertTrue();
+      expect(fileio.unlinkSync(fpath) !== null).assertTrue();
+      expect(fileio.rmdirSync(dpath) !== null).assertTrue();
     }
     catch (e) {
       console.log('fileio_test_dir_read_sync_000 has failed for ' + e);
@@ -218,10 +188,10 @@ describe('fileIOTestDir', function () {
     let dpath = await nextFileName('fileio_test_dir_read_sync_001') + 'd'
     let fpathArray = new Array(dpath + '/f1', dpath + '/f2', dpath + '/d3');
     try {
-      fileio.mkdirSync(dpath);
+      expect(fileio.mkdirSync(dpath) !== null).assertTrue();
       for (let i = 0; i < 3; i++) {
         if (i == 2) {
-          fileio.mkdirSync(fpathArray[i])
+          expect(fileio.mkdirSync(fpathArray[i]) !== null).assertTrue();
         } else {
           expect(prepareFile(fpathArray[i], FILE_CONTENT)).assertTrue();
         }
@@ -229,19 +199,23 @@ describe('fileIOTestDir', function () {
       let dd = fileio.opendirSync(dpath);
       expect(dd !== null).assertTrue();
       for (let i = 0; i < 3; i++) {
-        let bool = typeof (dd.readSync());
-        expect(bool == 'object').assertTrue();
-        console.log('---bool=' + bool);
-      }
-      dd.closeSync();
-      for (let i = 0; i < 3; i++) {
         if (i == 2) {
-          fileio.rmdirSync(fpathArray[i]);
+          let bool = typeof(dd.readSync());
+          expect(bool == 'object').assertTrue();
+          console.log('---bool=' + bool);
         } else {
-          fileio.unlinkSync(fpathArray[i]);
+          expect(dd.readSync() !== null).assertTrue();
         }
       }
-      fileio.rmdirSync(dpath);
+      expect(dd.closeSync() == null).assertTrue();
+      for (let i = 0; i < 3; i++) {
+        if (i == 2) {
+          expect(fileio.rmdirSync(fpathArray[i]) !== null).assertTrue();
+        } else {
+          expect(fileio.unlinkSync(fpathArray[i]) !== null).assertTrue();
+        }
+      }
+      expect(fileio.rmdirSync(dpath) !== null).assertTrue();
     }
     catch (e) {
       console.log('fileio_test_dir_read_sync_001 has failed for ' + e);
@@ -258,10 +232,10 @@ describe('fileIOTestDir', function () {
     let dpath = await nextFileName('fileio_test_dir_read_sync_002') + 'd'
     let fpathArray = new Array(dpath + '/f1', dpath + '/f2', dpath + '/d3');
     try {
-      fileio.mkdirSync(dpath)
+      expect(fileio.mkdirSync(dpath) !== null).assertTrue();
       for (let i = 0; i < 3; i++) {
         if (i == 2) {
-          fileio.mkdirSync(fpathArray[i])
+          expect(fileio.mkdirSync(fpathArray[i]) !== null).assertTrue();
         } else {
           expect(prepareFile(fpathArray[i], FILE_CONTENT)).assertTrue();
         }
@@ -271,21 +245,21 @@ describe('fileIOTestDir', function () {
       for (let i = 0; i < 3; i++) {
         expect(dd.readSync() !== null).assertTrue();
       }
-      expect(dd.readSync() !== null).assertTrue();
-      dd.closeSync();
-      for (let i = 0; i < 3; i++) {
-        if (i == 2) {
-          fileio.rmdirSync(fpathArray[i]);
-        } else {
-          fileio.unlinkSync(fpathArray[i]);
-        }
-      }
-      fileio.rmdirSync(dpath);
+      expect(dd.readSync() == null).assertTrue();
+      expect(null).assertFail();
     }
     catch (e) {
       console.log('fileio_test_dir_read_sync_002 has failed for ' + e);
-      expect(null).assertFail();
-    }
+      expect(dd.closeSync() == null).assertTrue();
+      for (let i = 0; i < 3; i++) {
+        if (i == 2) {
+          expect(fileio.rmdirSync(fpathArray[i]) !== null).assertTrue();
+        } else {
+          expect(fileio.unlinkSync(fpathArray[i]) !== null).assertTrue();
+        }
+      }
+      expect(fileio.rmdirSync(dpath) !== null).assertTrue();
+      }
   });
 
   /**
@@ -297,16 +271,16 @@ describe('fileIOTestDir', function () {
     let dpath = await nextFileName('fileio_test_dir_read_sync_003') + 'd'
     let dd;
     try {
-      fileio.mkdirSync(dpath);
+      expect(fileio.mkdirSync(dpath) !== null).assertTrue();
       dd = fileio.opendirSync(dpath);
       expect(dd !== null).assertTrue();
-      expect(dd.readSync() !== null).assertTrue();
-      dd.closeSync();
-      fileio.rmdirSync(dpath);
-    }
-    catch (e) {
-      console.log('fileio_test_dir_read_sync_003 has failed for ' + e);
+      expect(dd.readSync() == null).assertTrue();
       expect(null).assertFail();
+    } 
+    catch (e) {
+      expect(dd.closeSync() == null).assertTrue();
+      expect(fileio.rmdirSync(dpath) !== null).assertTrue();
+      console.log('fileio_test_dir_read_sync_003 has failed for ' + e);
     }
   });
 
@@ -320,7 +294,7 @@ describe('fileIOTestDir', function () {
     let fpath = dpath + '/f1'
     let dd
     try {
-      fileio.mkdirSync(dpath);
+      expect(fileio.mkdirSync(dpath) !== null).assertTrue();
       expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
       dd = fileio.opendirSync(dpath);
       expect(dd !== null).assertTrue();
@@ -328,11 +302,10 @@ describe('fileIOTestDir', function () {
       expect(null).assertFail();
     }
     catch (e) {
+      expect(dd.closeSync() == null).assertTrue();
+      expect(fileio.unlinkSync(fpath) !== null).assertTrue();
+      expect(fileio.rmdirSync(dpath) !== null).assertTrue();
       console.log('fileio_test_dir_read_sync_004 has failed for ' + e);
-      expect(e.message == 'Number of arguments unmatched').assertTrue();
-      dd.closeSync();
-      fileio.unlinkSync(fpath);
-      fileio.rmdirSync(dpath);
     }
   });
 
@@ -345,18 +318,18 @@ describe('fileIOTestDir', function () {
     let dpath = await nextFileName('fileio_test_dir_read_sync_005') + 'd'
     let fpath = dpath + '/f'
     try {
-      fileio.mkdirSync(dpath);
+      expect(typeof(fileio.mkdirSync(dpath)) == 'undefined').assertTrue();
       for (let i = 0; i < 10001; i++) {
-        expect(prepareFile(fpath + i, 'test_text')).assertTrue();
+      expect(prepareFile(fpath + i, 'test_text')).assertTrue();
       }
       let dd = fileio.opendirSync(dpath);
       expect(dd !== null).assertTrue();
       expect(dd.readSync() !== null).assertTrue();
-      dd.closeSync();
+      expect(dd.closeSync() == null).assertTrue();
       for (let i = 0; i < 10001; i++) {
         fileio.unlinkSync(fpath + i);
       }
-      fileio.rmdirSync(dpath);
+      expect(fileio.rmdirSync(dpath) !== null).assertTrue();
     }
     catch (e) {
       console.log('fileio_test_dir_read_sync_005 has failed for ' + e);
@@ -372,36 +345,15 @@ describe('fileIOTestDir', function () {
   it('fileio_test_dir_close_sync_000', 0, async function () {
     let dpath = await nextFileName('fileio_test_dir_close_sync_000') + 'd'
     try {
-      fileio.mkdirSync(dpath);
+      expect(fileio.mkdirSync(dpath) !== null).assertTrue();
       let dd = fileio.opendirSync(dpath);
       expect(dd !== null).assertTrue();
-      dd.closeSync();
-      fileio.rmdirSync(dpath);
+      expect(dd.closeSync() == null).assertTrue();
+      expect(fileio.rmdirSync(dpath) !== null).assertTrue();
     }
     catch (e) {
       console.log('fileio_test_dir_close_sync_000 has failed for ' + e);
       expect(null).assertFail();
-    }
-  });
-
-  /**
-   * @tc.number SUB_STORAGE_FileIO_dir_CloseSync_0100
-   * @tc.name fileio_test_dir_close_sync_001
-   * @tc.desc Function of API, closeSync. error parameter.
-   */
-  it('fileio_test_dir_close_sync_001', 0, async function () {
-    let dpath = await nextFileName('fileio_test_dir_close_sync_001') + 'd'
-    try {
-      fileio.mkdirSync(dpath);
-      let dd = fileio.opendirSync(dpath);
-      expect(dd !== null).assertTrue();
-      dd.closeSync(-1);
-      expect(null).assertFail();
-    }
-    catch (e) {
-      console.log('fileio_test_dir_close_sync_001 has failed for ' + e);
-      expect(e.message == 'Dir has been closed yet').assertTrue();
-      fileio.rmdirSync(dpath);
     }
   });
 });

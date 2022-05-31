@@ -1,0 +1,36 @@
+build:
+  stage: build
+  script:
+    - /home/gitlab-runner/backup/./updatexts.sh
+  only:
+    - dev
+format:
+  stage: test
+  script:
+    - /home/gitlab-runner/backup/./checkGn.sh /home/gitlab-runner/backup/openharmony_standard_system_new
+  only:
+    - dev
+copyrightXtsaafwk:
+  stage: test
+  script:
+    - /home/gitlab-runner/backup/checkcopyright/./copyrightxtsaafwk.sh /home/gitlab-runner/backup/openharmony_standard_system_new
+  only:
+    - dev
+copyrightXtsappexecfwk:
+  stage: test
+  script:
+    - /home/gitlab-runner/backup/checkcopyright/./copyrightxtsappexecfwk.sh /home/gitlab-runner/backup/openharmony_standard_system_new
+  only:
+    - dev
+copyrightXtsans:
+  stage: test
+  script:
+    - /home/gitlab-runner/backup/checkcopyright/./copyrightxtsans.sh /home/gitlab-runner/backup/openharmony_standard_system_new
+  only:
+    - dev
+copyrightXtsces:
+  stage: test
+  script:
+   - /home/gitlab-runner/backup/checkcopyright/./copyrightxtsces.sh /home/gitlab-runner/backup/openharmony_standard_system_new
+  only:
+    - dev

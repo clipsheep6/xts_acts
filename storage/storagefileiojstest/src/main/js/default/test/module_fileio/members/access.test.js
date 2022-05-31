@@ -25,7 +25,7 @@ describe('fileio_access', function () {
    * @tc.name fileio_test_access_sync_000
    * @tc.desc Test accessSync() interface.
    * This interface shall work properly in normal case
-   * @tc.size MEDIUM
+   * @tc.size MEDIUM(中型)
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
@@ -35,20 +35,20 @@ describe('fileio_access', function () {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      fileio.accessSync(fpath);
-      fileio.unlinkSync(fpath);
-    } catch (err) {
-      console.info('fileio_test_access_sync_000 has failed for ' + err);
+      expect(fileio.accessSync(fpath) == null).assertTrue();
+      expect(fileio.unlinkSync(fpath) == null).assertTrue();
+    } catch (e) {
+      console.log('fileio_test_access_sync_000 has failed for ' + e);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_ACCESSSYNC_0100
+   * @tc.number SUB_DF_FILEIO_ACCESSSYNC_0010
    * @tc.name fileio_test_access_sync_001
    * @tc.desc Test accessSync() interface.
-   * Test that the current process has write permission.
-   * @tc.size MEDIUM
+   * This interface shall throw an exception when the fpath is not given
+   * @tc.size MEDIUM(中型)
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
@@ -58,20 +58,20 @@ describe('fileio_access', function () {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      fileio.accessSync(fpath, 2);
-      fileio.unlinkSync(fpath);
-    } catch (err) {
-      console.info('fileio_test_access_sync_001 has failed for ' + err);
+      expect(fileio.accessSync(fpath, 0x2) == null).assertTrue();
+      expect(fileio.unlinkSync(fpath) == null).assertTrue();
+    } catch (e) {
+      console.log('fileio_test_access_sync_001' + e);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_ACCESSSYNC_0200
+   * @tc.number SUB_DF_FILEIO_ACCESSSYNC_0020
    * @tc.name fileio_test_access_sync_002
    * @tc.desc Test accessSync() interface.
-   * Test that the current process has read permission.
-   * @tc.size MEDIUM
+   * This interface shall throw an exception when the fpath is not given
+   * @tc.size MEDIUM(中型)
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
@@ -81,20 +81,20 @@ describe('fileio_access', function () {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      fileio.accessSync(fpath, 4);
-      fileio.unlinkSync(fpath);
-    } catch (err) {
-      console.info('fileio_test_access_sync_002 has failed for ' + err);
+      expect(fileio.accessSync(fpath, 0x4) == null).assertTrue();
+      expect(fileio.unlinkSync(fpath) == null).assertTrue();
+    } catch (e) {
+      console.log('fileio_test_access_sync_002' + e);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_ACCESSSYNC_0300
+   * @tc.number SUB_DF_FILEIO_ACCESSSYNC_0030
    * @tc.name fileio_test_access_sync_003
    * @tc.desc Test accessSync() interface.
-   * Test that the current process has read and write permissions.
-   * @tc.size MEDIUM
+   * This interface shall throw an exception when the fpath is not given.
+   * @tc.size MEDIUM(中型)
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
@@ -104,55 +104,32 @@ describe('fileio_access', function () {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      fileio.accessSync(fpath, 2 | 4);
-      fileio.unlinkSync(fpath);
-    } catch (err) {
-      console.info('fileio_test_access_sync_003 has failed for ' + err);
+      expect(fileio.accessSync(fpath, 0x2 | 0x4) == null).assertTrue();
+      expect(fileio.unlinkSync(fpath) == null).assertTrue();
+    } catch (e) {
+      console.log('fileio_test_access_sync_003' + e);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_ACCESSSYNC_0400
+   * @tc.number SUB_DF_FILEIO_ACCESSSYNC_0040
    * @tc.name fileio_test_access_sync_004
    * @tc.desc Test accessSync() interface.
-   * Test that the current process has executable permissions.
-   * @tc.size MEDIUM
+   * This interface shall throw an exception when the fpath is not given
+   * @tc.size MEDIUM(中型)
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
    */
   it('fileio_test_access_sync_004', 0, async function () {
-    let fpath = await nextFileName('fileio_test_access_sync_004');
-    fileio.openSync(fpath, 0o102, 0o777);
-
-    try {
-      fileio.accessSync(fpath, 1);
-      fileio.unlinkSync(fpath);
-    } catch (err) {
-      console.info('fileio_test_access_sync_004 has failed for ' + err);
-      expect(null).assertFail();
-    }
-  });
-
-  /**
-   * @tc.number SUB_DF_FILEIO_ACCESSSYNC_0500
-   * @tc.name fileio_test_access_sync_005
-   * @tc.desc Test accessSync() interface.
-   * The test file is not exist.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it('fileio_test_access_sync_005', 0, async function () {
-    let fpath = await nextFileName('fileio_test_access_sync_005');
+    let fpath = await nextFileName('fileIOTest');
 
     try {
       fileio.accessSync(fpath);
-    } catch (err) {
-      console.info('fileio_test_access_sync_005 has failed for ' + err);
-      expect(err.message == 'No such file or directory').assertTrue();
+      expect(null).assertFail();
+    } catch (e) {
+      console.log('fileio_test_access_sync_004' + e);
     }
   });
 
@@ -160,8 +137,8 @@ describe('fileio_access', function () {
    * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0000
    * @tc.name fileio_test_access_async_000
    * @tc.desc Test accessAsync() interface.
-   * This interface shall work properly in normal case.
-   * @tc.size MEDIUM
+   * This interface shall throw an exception when the fpath is not given
+   * @tc.size MEDIUM(中型)
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
@@ -172,20 +149,20 @@ describe('fileio_access', function () {
 
     try {
       await fileio.access(fpath);
-      fileio.unlinkSync(fpath);
+      expect(fileio.unlinkSync(fpath) == null).assertTrue();
       done();
-    } catch (err) {
-      console.info('fileio_test_access_async_000 has failed for ' + err);
+    } catch (error) {
+      console.log('fileio_test_access_async_000 has failed for ' + error);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0100
+   * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0010
    * @tc.name fileio_test_access_async_001
    * @tc.desc Test accessAsync() interface.
-   * Use promise to test that the current process has read permission. Async method reads data from file.
-   * @tc.size MEDIUM
+   * This interface shall throw an exception when the fpath is not given
+   * @tc.size MEDIUM(中型)
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
@@ -195,25 +172,27 @@ describe('fileio_access', function () {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      await fileio.access(fpath, 4);
+      expect(await fileio.access(fpath, 4) == null).assertTrue();
       let fd = fileio.openSync(fpath);
       expect(isIntNum(fd)).assertTrue();
-      expect((await fileio.read(fd, new ArrayBuffer(4096))) != null).assertTrue();
-      fileio.closeSync(fd);
-      fileio.unlinkSync(fpath);
+      expect(
+        (await fileio.read(fd, new ArrayBuffer(4096))) != null
+      ).assertTrue();
+      expect(fileio.closeSync(fd) == null).assertTrue();
+      expect(fileio.unlinkSync(fpath) == null).assertTrue();
       done();
-    } catch (err) {
-      console.info('fileio_test_access_async_001 has failed for ' + err);
+    } catch (error) {
+      console.log('fileio_test_access_async_001 has failed for ' + error);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0200
+   * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0020
    * @tc.name fileio_test_access_async_002
    * @tc.desc Test accessAsync() interface.
-   * Test file exists.
-   * @tc.size MEDIUM
+   * This interface shall throw an exception when the fpath is not given
+   * @tc.size MEDIUM(中型)
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
@@ -224,21 +203,21 @@ describe('fileio_access', function () {
 
     try {
       fileio.access(fpath, function (error) {
-        fileio.unlinkSync(fpath);
+        expect(fileio.unlinkSync(fpath) == null).assertTrue();
         done();
       });
-    } catch (err) {
-      console.info('fileio_test_access_async_002 has failed for ' + err);
+    } catch (error) {
+      console.log('fileio_test_access_async_002 has failed for ' + error);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0300
+   * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0030
    * @tc.name fileio_test_access_async_003
    * @tc.desc Test accessAsync() interface.
-   * Use callback to test that the current process has read permission. Async method reads data from file.
-   * @tc.size MEDIUM
+   * This interface shall throw an exception when the fpath is not given
+   * @tc.size MEDIUM(中型)
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
@@ -251,85 +230,46 @@ describe('fileio_access', function () {
       fileio.access(fpath, 4, async function (error) {
         let fd = fileio.openSync(fpath);
         expect(isIntNum(fd)).assertTrue();
-        expect((await fileio.read(fd, new ArrayBuffer(4096))) != null).assertTrue();
-        fileio.closeSync(fd);
-        fileio.unlinkSync(fpath);
+        expect(
+          (await fileio.read(fd, new ArrayBuffer(4096))) != null
+        ).assertTrue();
+        expect(fileio.closeSync(fd) == null).assertTrue();
+        expect(fileio.unlinkSync(fpath) == null).assertTrue();
       });
       done();
-    } catch (err) {
-      console.info('fileio_test_access_async_003 has failed for ' + err);
+    } catch (error) {
+      console.log('fileio_test_access_async_003 has failed for ' + error);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0400
+   * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0040
    * @tc.name fileio_test_access_async_004
    * @tc.desc Test accessAsync() interface.
-   * Use promises to test that the current process has executable permissions.
-   * @tc.size MEDIUM
+   * This interface shall throw an exception when the fpath is not given.
+   * @tc.size MEDIUM(中型)
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
    */
   it('fileio_test_access_async_004', 0, async function (done) {
     let fpath = await nextFileName('fileio_test_access_async_004');
-    fileio.openSync(fpath, 0o102, 0o777);
 
     try {
-      await fileio.access(fpath, 1);
-      fileio.unlinkSync(fpath);
-      done();
-    } catch (err) {
-      console.info('fileio_test_access_async_004 has failed for ' + err);
+      fileio
+        .access(fpath)
+        .then(function (err) {
+          expect(null).assertFail();
+          done();
+        })
+        .catch(function (e) {
+          expect(!!e).assertTrue();
+          done();
+        });
+    } catch (e) {
+      console.log('fileio_test_access_async_004 has failed for ' + e);
       expect(null).assertFail();
-    }
-  });
-
-  /**
-   * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0500
-   * @tc.name fileio_test_access_async_005
-   * @tc.desc Test accessAsync() interface.
-   * Use callback to test that the current process has write permission.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it('fileio_test_access_async_005', 0, async function (done) {
-    let fpath = await nextFileName('fileio_test_access_async_005');
-    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
-
-    try {
-      fileio.access(fpath, 2, function (error) {
-        fileio.unlinkSync(fpath);
-        done();
-      });
-    } catch (err) {
-      console.info('fileio_test_access_async_005 has failed for ' + err);
-      expect(null).assertFail();
-    }
-  });
-
-  /**
-   * @tc.number SUB_DF_FILEIO_ACCESSASYNC_0600
-   * @tc.name fileio_test_access_async_006
-   * @tc.desc Test accessAsync() interface.
-   * Async test file does not exist.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it('fileio_test_access_async_006', 0, async function (done) {
-    let fpath = await nextFileName('fileio_test_access_async_006');
-
-    try {
-      await fileio.access(fpath);
-    } catch (err) {
-      console.info('fileio_test_access_async_006 has failed for ' + err);
-      expect(err.message == 'No such file or directory').assertTrue();
-      done();
     }
   });
 });

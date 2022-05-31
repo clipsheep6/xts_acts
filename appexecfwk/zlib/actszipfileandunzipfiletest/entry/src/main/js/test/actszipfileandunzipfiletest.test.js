@@ -263,7 +263,7 @@ it('ACTS_ZipFile_2300', 0, async function (done) {
           done();
       })
     }).catch(function (err) {
-        console.info("ACTS_ZipFile_2300 write data to file failed with error:" + err);
+        console.info("ACTS_ZipFile_2200 write data to file failed with error:" + err);
         expect(err).assertFail();
         done();
     });
@@ -813,7 +813,7 @@ it('ACTS_ZipFile_3200', 0, async function (done) {
 /*
 * @tc.number: ACTS_ZipFile_3300
 * @tc.name: zipFile
-* @tc.desc: COMPRESS_STRATEGY_FIXED,,
+* @tc.desc: COMPRESS_STRATEGY_FILTERED,,
 */
 it('ACTS_ZipFile_3300', 0, async function (done) {
     console.log("==================ACTS_ZipFile_3300 start==================");
@@ -822,7 +822,7 @@ it('ACTS_ZipFile_3300', 0, async function (done) {
     var unzipdir = dir + "/ACTS_ZipFile_3300";
     var unzipresultfile = unzipdir + "/ACTS_ZipFile_3300.txt";
     var options = {};
-    options.strategy = zlib.CompressStrategy.COMPRESS_STRATEGY_FIXED;
+    options.strategy = zlib.CompressStrategy.COMPRESS_STRATEGY_FILTERED;
     var fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
     fileio.write(fd, infos).then(function (number) {
       console.info("ACTS_ZipFile_3300 write data to file successfully:" + number);
@@ -873,7 +873,7 @@ it('ACTS_ZipFile_3300', 0, async function (done) {
 /*
 * @tc.number: ACTS_ZipFile_3500
 * @tc.name: zipFile
-* @tc.desc: INPUT_FILE_NOT_EXIST,,
+* @tc.desc: FLUSH_TYPE_NO_FLUSH,,
 */
 it('ACTS_ZipFile_3500', 0, async function (done) {
     console.log("==================ACTS_ZipFile_3500 start==================");
@@ -905,7 +905,7 @@ it('ACTS_ZipFile_3500', 0, async function (done) {
 /*
 * @tc.number: ACTS_ZipFile_3600
 * @tc.name: zipFile
-* @tc.desc: INPUT_FILE_NULL,,
+* @tc.desc: FLUSH_TYPE_NO_FLUSH,,
 */
 it('ACTS_ZipFile_3600', 0, async function (done) {
     console.log("==================ACTS_ZipFile_3600 start==================");
@@ -936,7 +936,7 @@ it('ACTS_ZipFile_3600', 0, async function (done) {
 /*
 * @tc.number: ACTS_ZipFile_4500
 * @tc.name: zipFile
-* @tc.desc: COMPRESS_STRATEGY_FILTERED_CALLBACK,,
+* @tc.desc: COMPRESS_STRATEGY_FILTERED,,
 */
 it('ACTS_ZipFile_4500', 0, async function (done) {
     console.log("==================ACTS_ZipFile_4500 start==================");
@@ -975,7 +975,7 @@ it('ACTS_ZipFile_4500', 0, async function (done) {
             done();
           });
       }).catch((err) => {
-         console.log("ACTS_ZipFile_4500 zipFile fail: " + err);
+         console.log("zipFile fail: " + err);
          expect(err).assertFail();
          done();
       })
@@ -990,7 +990,7 @@ it('ACTS_ZipFile_4500', 0, async function (done) {
 /*
 * @tc.number: ACTS_ZipFile_4900
 * @tc.name: zipFile
-* @tc.desc: COMPRESS_STRATEGY_FILTERED_PROMISE,
+* @tc.desc: COMPRESS_STRATEGY_FILTERED,
 */
 it('ACTS_ZipFile_4900', 0, async function (done) {
     console.log("==================ACTS_ZipFile_4900 start==================");
@@ -1019,7 +1019,7 @@ it('ACTS_ZipFile_4900', 0, async function (done) {
             expect(data).assertEqual(zlib.ErrorCode.ERROR_CODE_OK);
             done();
           }).catch(err => {
-            console.log("ACTS_ZipFile_4900 err: " + err);
+            console.log("unzipFile fail: " + err);
             expect(err).assertFail();
             done();
           })
@@ -1029,7 +1029,7 @@ it('ACTS_ZipFile_4900', 0, async function (done) {
           done();
         });
       }).catch(err => {
-        console.log("ACTS_ZipFile_4900 zipFile fail: " + err);
+        console.log("zipFile fail: " + err);
         expect(err).assertFail();
         done();
       })

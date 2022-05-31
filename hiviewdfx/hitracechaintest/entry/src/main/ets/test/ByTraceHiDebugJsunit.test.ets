@@ -99,7 +99,7 @@ export default function byTraceHiDebugJsunit() {
       console.log("************* DFX_HiLog_HiLog_isLoggable_0100 Test start*************");
       try {
         const res = hiLog.isLoggable(0xD000700, "HILOGTEST", 3)
-        expect(res).assertEqual(false);
+        expect(res).assertEqual(true);
       } catch (error) {
         expect().assertFail();
       }
