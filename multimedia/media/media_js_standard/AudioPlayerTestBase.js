@@ -16,8 +16,8 @@
 import media from '@ohos.multimedia.media'
 import * as mediaTestBase from './MediaTestBase.js';
 
-export function playAudioSource(src, duration, playTime, checkSeekTime, done) {
-    console.info(`case media source url: ${src}`)
+export function playAudioSource(fileDescriptor, duration, playTime, checkSeekTime, done) {
+    console.info(`case media source type: ${typeof (fileDescriptor)}`)
     let volumeChanged = false;
     let playCount = 0;
     let pauseCount = 0;
@@ -29,7 +29,13 @@ export function playAudioSource(src, duration, playTime, checkSeekTime, done) {
         expect().assertFail();
         done();
     }
-    audioPlayer.src = src;
+    if (typeof (fileDescriptor) == 'string') {
+        console.error('case src test');
+        audioPlayer.src = fileDescriptor;
+    } else {
+        console.error('case fdsrc test');
+        audioPlayer.fdSrc = fileDescriptor;
+    }
     audioPlayer.on('dataLoad', () => {
         console.info('case set source success');
         expect(audioPlayer.state).assertEqual('paused');
@@ -88,7 +94,13 @@ export function playAudioSource(src, duration, playTime, checkSeekTime, done) {
         console.info('case reset success');
         expect(audioPlayer.state).assertEqual('idle');
         // step 11: reset -> dataLoad
-        audioPlayer.src = src;
+        if (typeof (fileDescriptor) == 'string') {
+            console.error('case src test');
+            audioPlayer.src = fileDescriptor;
+        } else {
+            console.error('case fdsrc test');
+            audioPlayer.fdSrc = fileDescriptor;
+        }
     });
     audioPlayer.on('timeUpdate', (seekDoneTime) => {
         seekCount++;
@@ -125,7 +137,12 @@ export function playAudioSource(src, duration, playTime, checkSeekTime, done) {
             audioPlayer.loop = false;
             audioPlayer.setVolume(0.5);
             audioPlayer.seek(audioPlayer.duration);
-        } else if (seekCount == 4){
+        } else if (seekCount == 4) {
+            // loop = ture
+            if (checkSeekTime) {
+                expect(0).assertEqual(seekDoneTime);
+            }
+        } else if (seekCount == 5){
             // step 7: seek duration -> setVolume + seek duration when loop is false
             if (checkSeekTime) {
                 expect(audioPlayer.duration).assertEqual(seekDoneTime);

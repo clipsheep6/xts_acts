@@ -14,7 +14,7 @@
  */
 
 import media from '@ohos.multimedia.media'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('RecorderLocalTestAudioAPI', function () {
@@ -28,29 +28,21 @@ describe('RecorderLocalTestAudioAPI', function () {
     const RESET_STATE = 6;
     const RELEASE_STATE = 7;
     const ERROR_STATE = 8;
-    const FORMAT_M4A = 6;
     const SOURCE_TYPE = 1;
-    const ENCORDER_AACLC = 3;
     const CHANNEL_TWO = 2;
     const RECORDER_TIME = 3000;
     let fdPath;
-    let fileAsset;
-    let fdNumber;
+    let fdObject;
     let audioConfig = {
         audioSourceType : SOURCE_TYPE,
-        audioEncoder : ENCORDER_AACLC,
-        audioEncodeBitRate : 22050,
-        audioSampleRate : 22050,
+        audioEncodeBitRate : 48000,
+        audioSampleRate : 48000,
         numberOfChannels : CHANNEL_TWO,
-        format : FORMAT_M4A,
-        uri : 'file:///data/accounts/account_0/appdata/recorder/testAPI.m4a',
-        location : { latitude : 1, longitude : 1 },
+        uri : 'fd://',
+        location : { latitude : 30, longitude : 30 },
+        audioEncoderMime : media.CodecMimeType.AUDIO_AAC,
+        fileFormat : media.ContainerFormatType.CFT_MPEG_4A,
     }
-
-    function sleep(time) {
-        for(let t = Date.now();Date.now() - t <= time;);
-    }
-
     function initAudioRecorder() {
         if (typeof (audioRecorder) != 'undefined') {
             audioRecorder.release();
@@ -112,7 +104,7 @@ describe('RecorderLocalTestAudioAPI', function () {
 
         audioRecorder.on('start', () => {
             console.info('setCallback start() case callback is called');
-            sleep(RECORDER_TIME);
+            mediaTestBase.msleep(RECORDER_TIME);
             mySteps.shift();
             nextStep(mySteps,done);
         });
@@ -158,7 +150,9 @@ describe('RecorderLocalTestAudioAPI', function () {
     }
 
     beforeAll(async function () {
-        await getFd('testAPI.m4a');
+        fdObject = await mediaTestBase.getFd('audio_api.mp4');
+        fdPath = "fd://" + fdObject.fdNumber.toString();
+        audioConfig.uri = fdPath;
         console.info('beforeAll case');
     })
 
@@ -171,41 +165,9 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     afterAll(async function () {
-        await closeFd();
+        await mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
         console.info('afterAll case');
     })
-
-    async function getFd(pathName) {
-        let displayName = pathName;
-        const mediaTest = mediaLibrary.getMediaLibrary();
-        let fileKeyObj = mediaLibrary.FileKey;
-        let mediaType = mediaLibrary.MediaType.VIDEO;
-        let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
-        let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
-        if (dataUri != undefined) {
-            let args = dataUri.id.toString();
-            let fetchOp = {
-                selections : fileKeyObj.ID + "=?",
-                selectionArgs : [args],
-            }
-            let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
-            fileAsset = await fetchFileResult.getAllObject();
-            fdNumber = await fileAsset[0].open('Rw');
-            fdPath = "fd://" + fdNumber.toString();
-        }
-    }
-
-    async function closeFd() {
-        if (fileAsset != null) {
-            await fileAsset[0].close(fdNumber).then(() => {
-                console.info('[mediaLibrary] case close fd success');
-            }).catch((err) => {
-                console.info('[mediaLibrary] case close fd failed');
-            });
-        } else {
-            console.info('[mediaLibrary] case fileAsset is null');
-        }
-    }
 
     /* *
         * @tc.number    : SUB_MEDIA_RECORDER_createAudioRecorder_API_0100
@@ -231,7 +193,6 @@ describe('RecorderLocalTestAudioAPI', function () {
         * @tc.level     : Level2
     */
     it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0100', 0, async function (done) {
-        audioConfig.uri = fdPath;
         let testAudioRecorder= media.createAudioRecorder();
         expect(testAudioRecorder != null).assertTrue();
         testAudioRecorder.prepare(audioConfig);
