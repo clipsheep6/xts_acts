@@ -27,9 +27,7 @@
             "push":[
                 "bmsThirdBundleTest1.hap -> /data/bmsThirdBundleTest1.hap ",
                 "first_right.hap -> /data/test/first_right.hap",
-                "second_right.hap -> /data/second_right.hap",
-                "bmsStageDemo1.hap -> /data/test/bmsStageDemo1.hap",
-                "bmsStageDemo2.hap -> /data/test/bmsStageDemo2.hap"
+                "second_right.hap -> /data/second_right.hap"
             ]
         },
         {
@@ -37,14 +35,11 @@
             "run-command": [
                 "bm install -p /data/bmsThirdBundleTest1.hap",
                 "bm install -p /data/test/first_right.hap",
-                "bm install -p /data/second_right.hap",
-                "bm install -p /data/test/bmsStageDemo1.hap",
-                "bm install -p /data/test/bmsStageDemo2.hap"
+                "bm install -p /data/second_right.hap"
             ],
             "teardown-command":[
                 "bm uninstall -n com.example.third1",
-                "bm uninstall -n com.example.l3jsdemo",
-                "bm uninstall -n ohos.acts.bundle.stage"
+                "bm uninstall -n com.example.l3jsdemo"
             ]
         }
     ]

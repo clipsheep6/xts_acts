@@ -8,12 +8,6 @@
     },
     "kits": [
         {
-            "type": "ShellKit",
-            "run-command": [
-                "power-shell wakeup"
-            ]
-        },
-        {
             "test-file-name": [
                 "ActsPowerMgrBatteryTest.hap"
             ],
@@ -22,3 +16,4 @@
         }
     ]
 }
+
