@@ -321,4 +321,114 @@ describe('SystemParameterTest', function () {
         }, '1000');
         console.info('testWait05 end');
     })
+
+    /**
+     * @tc.number    SUB_STARTUP_JS_SYSTEM_PARAMETER_0811
+     * @tc.name      testWatcher01
+     * @tc.desc      Watch the value of the attribute with the specified key.
+     */
+    it('testWatcher01', 0, function () {
+        console.info('testWatcher01 start');
+        var ret = true;
+        try {
+            let watcher = systemparameter.getWatcher("test.watcher_param.205");
+            console.info('testWatcher01 watcher' + watcher);
+            if (watcher === undefined) {
+                ret = false;
+            }
+        } catch (e) {
+            ret = false;
+            console.info("input error: " + e);
+        }
+        expect(ret).assertTrue();
+        console.info('testWatcher01 end');
+    })
+
+    /**
+     * @tc.number    SUB_STARTUP_JS_SYSTEM_PARAMETER_0812
+     * @tc.name      testWatcher02
+     * @tc.desc      Watch the value of the attribute with the specified key.
+     */
+    it('testWatcher02', 0, function () {
+        console.info('testWatcher02 start');
+        var ret = true;
+        try {
+            let watcher = systemparameter.getWatcher("test.watch_param.205", -1);
+            console.info('testWatcher02 watcher' + watcher);
+            if (watcher === undefined) {
+                ret = false;
+            }
+        } catch (e) {
+            ret = false;
+            console.info("input error: " + e);
+        }
+        expect(ret).assertTrue();
+        console.info('testWatcher02 end');
+    })
+
+    /**
+     * @tc.number    SUB_STARTUP_JS_SYSTEM_PARAMETER_0813
+     * @tc.name      testWatcher03
+     * @tc.desc      Watch the value of the attribute with the specified key.
+     */
+    it('testWatcher03', 0, function () {
+        console.info('testWatcher03 start');
+        var ret = false;
+        try {
+            ret = true;
+            let watcher = systemparameter.getWatcher("");
+            if (watcher === undefined) {
+                ret = false;
+            }
+        } catch (e) {
+            ret = true;
+            console.info("input error: " + e);
+        }
+        expect(ret).assertTrue();
+        console.info('testWatcher03 end');
+    })
+
+    /**
+     * @tc.number    SUB_STARTUP_JS_SYSTEM_PARAMETER_0814
+     * @tc.name      testWatcher04
+     * @tc.desc      Watch the value of the attribute with the specified key.
+     */
+    it('testWatcher03', 0, function () {
+        console.info('testWatcher03 start');
+        var ret = false;
+        try {
+            ret = true;
+            let watcher = systemparameter.getWatcher("test.watcher.304^^^^");
+            if (watcher === undefined) {
+                ret = false;
+            }
+        } catch (e) {
+            ret = true;
+            console.info("input error: " + e);
+        }
+        expect(ret).assertTrue();
+        console.info('testWatcher03 end');
+    })
+
+    /**
+     * @tc.number    SUB_STARTUP_JS_SYSTEM_PARAMETER_0815
+     * @tc.name      testWatcher05
+     * @tc.desc      Watch the value of the attribute with the specified key.
+     */
+    it('testWatcher05', 0, function () {
+        console.info('testWatcher05 start');
+        var ret = true;
+        try {
+            let watcher = systemparameter.getWatcher("test.watcher.304");
+            console.info('testWatcher05 start watcher ' + watcher);
+            if (watcher === undefined) {
+                ret = false;
+            }
+        } catch (e) {
+            ret = false;
+            console.info("input error: " + e);
+        }
+        expect(ret).assertTrue();
+        console.info('testWatcher05 end');
+    })
 })
