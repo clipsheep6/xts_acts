@@ -107,7 +107,6 @@ describe('ActsAmsCallBackFifthScene', function () {
                 ' + error.code + ', data length [' + data.length + ']');
             }
         );
-        setTimeout(done, 5000);
     });
 
     function timeout(done) {
@@ -156,7 +155,6 @@ describe('ActsAmsCallBackFifthScene', function () {
                 done();
             }
         );
-        setTimeout(timeout, 5000);
     })
 
     /*
@@ -192,7 +190,6 @@ describe('ActsAmsCallBackFifthScene', function () {
                 done();
             }
         );
-        setTimeout(timeout, 5000);
     })
 
     /*
@@ -214,6 +211,5 @@ describe('ActsAmsCallBackFifthScene', function () {
                 done();
             }
         );
-        setTimeout(timeout, 5000);
     })
 })
