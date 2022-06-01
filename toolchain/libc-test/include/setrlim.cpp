@@ -1,7 +1,8 @@
 #include <cstring>
 #include <cerrno>
-#include <sys/resource.h>
 #include <cstdio>
+#include <sys/resource.h>
+
 #include "runtest.h"
 
 int t_setrlim(int r, long lim)
