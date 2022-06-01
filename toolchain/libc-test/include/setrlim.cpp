@@ -1,7 +1,7 @@
 #include <cstring>
-#include <errno.h>
+#include <cerrno>
 #include <sys/resource.h>
-#include <stdio.h>
+#include <cstdio>
 #include "runtest.h"
 
 int t_setrlim(int r, long lim)
@@ -14,10 +14,10 @@ int t_setrlim(int r, long lim)
     }
     if (lim > rl.rlim_max) {
         return -1;
-	}
+    }
     if (lim == rl.rlim_max && lim == rl.rlim_cur) {
         return 0;
-	}
+    }
     rl.rlim_max = lim;
     rl.rlim_cur = lim;
     if (setrlimit(r, &rl)) {

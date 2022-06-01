@@ -97,13 +97,12 @@ static int runtests(const char *argvs)
  * @tc.desc      : start test
  * @tc.level     : Level 2
  */
-HWTEST_F(ActToolChainTest, RunTest, Function | MediumTest | Level2)
+HWTEST_F(ActToolChainTest, LibcTest, Function | MediumTest | Level2)
 {
     int ret;
     vector<string> temp;
     GetFileNames("/data/local/tmp/libc-test/src", temp);
     for (size_t i = 0; i < temp.size(); i++) {
-        // out << "testcase: " << temp[i] << endl;
         ret = runtests(temp[i].c_str());
         EXPECT_EQ(0, ret) << "test  " << temp[i]  << "  failed" << endl;
     }
