@@ -4,7 +4,6 @@
         "type": "JSUnitTest",
         "test-timeout": "120000",
         "package": "com.example.myapplication11",
-        "abilityName": "com.ohos.launcherSed11.MainAbility",
         "shell-timeout": "600000"
     },
     "kits": [

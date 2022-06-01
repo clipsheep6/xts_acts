@@ -28,7 +28,7 @@
     "abilities": [
       {
         "visible": true,
-        "name": "com.ohos.launcherSed111.MainAbility",
+        "name": "com.example.myapplication111.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:app_name",
