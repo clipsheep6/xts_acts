@@ -1,0 +1,55 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "1500000",
+        "package": "ohos.acts.multimedia.image",
+		"shell-timeout": "120000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/Pictures/*"
+            ],
+            "teardown-command":[
+              
+            ]
+        },
+		{
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+               
+                "./resource/image/test_large.webp ->/storage/media/100/local/files"
+				
+            ]
+        },
+   
+		{
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir /storage/media/100/local/files/Pictures",
+				
+                "cp /storage/media/100/local/files/test_large.webp /storage/media/100/local/files/Pictures/",
+                "chmod -R 666 /data/media/*",
+                "chmod -R 666 /storage/media/100/local/files/Pictures/*",
+				"killall com.ohos.medialibrary.MediaScannerAbilityA",
+                "aa start  -a MediaScannerAbility -b com.ohos.medialibrary.MediaScannerAbilityA"
+            ],
+            "teardown-command":[
+              
+            ]
+        },
+        
+        {
+            "test-file-name": [
+                "ActsImageTwoJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+    
+}
