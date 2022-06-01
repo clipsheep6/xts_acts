@@ -13,7 +13,6 @@
 
 group("ActsCapabilityTest") {
   deps = [
-    "./jffs:ActsJFFS2CapabilityTest",
     "./vfat:ActsVFATCapabilityTest",
   ]
 }
