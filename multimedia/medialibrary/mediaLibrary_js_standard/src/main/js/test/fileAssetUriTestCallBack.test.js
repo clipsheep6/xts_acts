@@ -51,7 +51,7 @@ describe('fileAssetUriTestCallback.test.js', async function() {
             const uri = firstObject.uri;
             console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_CALLBACK_005_35  uri:'
                          + uri);
-            const serachUri = 'dataability:///media/image/' + id;
+            const serachUri = 'datashare:///media/image/' + id;
             console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_CALLBACK_005_35  serachUri:'
                          + serachUri);
 

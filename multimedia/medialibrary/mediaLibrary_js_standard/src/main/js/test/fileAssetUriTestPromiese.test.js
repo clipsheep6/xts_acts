@@ -50,7 +50,7 @@ describe('fileAssetUriTestPromise.test.js', async function() {
             const id = firstObject.id;
             const uri = firstObject.uri;
             console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_PROMISE_005_35  uri:' + uri);
-            const serachUri = 'dataability:///media/image/' + id;
+            const serachUri = 'datashare:///media/image/' + id;
             console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_PROMISE_005_35  serachUri:'
                          + serachUri);
 

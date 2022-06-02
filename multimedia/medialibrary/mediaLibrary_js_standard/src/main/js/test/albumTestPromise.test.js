@@ -41,7 +41,7 @@ let allTypeInfofetchOp = {
 };
 
 let imageAlbumInfofetchOp = {
-    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + 
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' +
                 fileKeyObj.ALBUM_NAME + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: ['Pictures/', 'AblumInfo', imageType.toString()],
 };
@@ -60,22 +60,22 @@ let audioAlbumInfofetchOp = {
 
 let imageAndVideoAlbumInfofetchOp = {
     selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' +
-                fileKeyObj.ALBUM_NAME + '= ? AND (' + 
-                fileKeyObj.MEDIA_TYPE + '= ? or ' + 
+                fileKeyObj.ALBUM_NAME + '= ? AND (' +
+                fileKeyObj.MEDIA_TYPE + '= ? or ' +
                 fileKeyObj.MEDIA_TYPE + '= ?)',
     selectionArgs: ['Pictures/', 'AblumInfo', imageType.toString(), videoType.toString()],
 };
 let imageAndAudioAlbumInfofetchOp = {
     selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' +
-                fileKeyObj.ALBUM_NAME + '= ? AND (' + 
+                fileKeyObj.ALBUM_NAME + '= ? AND (' +
                 fileKeyObj.MEDIA_TYPE + '= ? or ' +
                 fileKeyObj.MEDIA_TYPE + '= ?)',
     selectionArgs: ['Pictures/', 'AblumInfo', imageType.toString(), audioType.toString()],
 };
 let videoAndAudioAlbumInfofetchOp = {
-    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + 
-                fileKeyObj.ALBUM_NAME + '= ? AND (' + 
-                fileKeyObj.MEDIA_TYPE + '= ? or ' + 
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' +
+                fileKeyObj.ALBUM_NAME + '= ? AND (' +
+                fileKeyObj.MEDIA_TYPE + '= ? or ' +
                 fileKeyObj.MEDIA_TYPE + '= ?)',
     selectionArgs: ['Pictures/', 'AblumInfo', videoType.toString(), audioType.toString()],
 };
@@ -92,7 +92,7 @@ function printAlbumMessage(testNum, album) {
 
 const props = {
     albumName: 'AblumInfo',
-    albumUri: 'dataability:///media/album/',
+    albumUri: 'datashare:///media/album/',
     relativePath: 'Pictures/',
     count: 1
 }
