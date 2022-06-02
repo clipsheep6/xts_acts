@@ -101,9 +101,14 @@ HWTEST_F(ActToolChainTest, LibcTest, Function | MediumTest | Level2)
 {
     int ret;
     vector<string> temp;
-    GetFileNames("/data/local/tmp/libc-test/src", temp);
+    string filepath = "/data/local/tmp/libc-test/src";
+    GetFileNames(filepath, temp);
     for (size_t i = 0; i < temp.size(); i++) {
-        // out << "testcase: " << temp[i] << endl;
+        if ((temp[i].find("stat", filepath.length()-1) != -1) ||
+            (temp[i].find("sem_close-unmap", filepath.length()-1) != -1) ||
+            (temp[i].find("runtest", filepath.length()-1) != -1)) {
+            continue;
+        }
         ret = runtests(temp[i].c_str());
         EXPECT_EQ(0, ret) << "test  " << temp[i]  << "  failed" << endl;
     }
