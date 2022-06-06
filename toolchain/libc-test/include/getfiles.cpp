@@ -1,9 +1,9 @@
 #include <iostream>
+#include <vector>
 #include <cstring>
 #include <dirent.h>
-#include <cstdio>
-#include <cstdlib>
-#include <vector>
+
+#include "runtest.h"
 
 void GetFileNames(std::string path, std::vector<std::string>& filenames)
 {
@@ -14,7 +14,7 @@ void GetFileNames(std::string path, std::vector<std::string>& filenames)
         std::cout << "Folder doesn't Exist!" << std::endl;
         return;
     }
-    while ((ptr = readdir(pDir)) != 0) {
+    while ((ptr = readdir(pDir)) != nullptr) {
         if (ptr->d_type == DT_DIR) {
             if (strcmp(ptr->d_name, ".") != 0 && strcmp(ptr->d_name, "..") != 0) {
                 GetFileNames(path + "/" + ptr->d_name, filenames);

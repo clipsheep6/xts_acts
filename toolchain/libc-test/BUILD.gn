@@ -35,7 +35,7 @@ ohos_moduletest_suite("ActToolChainTest") {
   sources = [
     "include/getfiles.cpp",
     "include/setrlim.cpp",
-    "src/runtest.cpp",
+    "src/toolchaintest.cpp",
   ]
 
   include_dirs = [
