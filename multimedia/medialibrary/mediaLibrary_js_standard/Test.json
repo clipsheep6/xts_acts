@@ -13,9 +13,9 @@
             ],
             "run-command": [
                 "rm -rf /storage/media/100/local/files/*",
-                "rm -rf /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA/*",
+                "rm -rf /data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata/*",
                 "mkdir -pv /storage/media/100/local/files/{Pictures,Videos,Audios,Documents}",
-                "mkdir -p /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA"
+                "mkdir -p /data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata"
             ]
         },
         {
@@ -23,10 +23,10 @@
             "pre-push": [
             ],
             "push": [
-                "./resource/medialibrary/01.jpg ->/data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA",
-                "./resource/medialibrary/01.mp3 ->/data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA",
-                "./resource/medialibrary/01.mp4 ->/data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA",
-                "./resource/medialibrary/01.dat ->/data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA"
+                "./resource/medialibrary/01.jpg ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata",
+                "./resource/medialibrary/01.mp3 ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata",
+                "./resource/medialibrary/01.mp4 ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata",
+                "./resource/medialibrary/01.dat ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata"
             ]
         },
         {
@@ -49,9 +49,10 @@
 
                 "chmod -R 777 /storage/media/100/local/files/*",
                 "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*",
-                "killall com.ohos.medialibrary.MediaScannerAbilityA",
-                "aa start  -a MediaScannerAbility -b com.ohos.medialibrary.MediaScannerAbilityA",
-                "sleep 20"
+                "aa start -a com.ohos.photos.MainAbility -b com.ohos.photos",
+                "sleep 60",
+                "sleep 60",
+                "sleep 60"
             ]
         },
         {

@@ -1,3 +1,4 @@
+
 import Ability from '@ohos.application.Ability'
 
 export default class MainAbility extends Ability {

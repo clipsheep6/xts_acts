@@ -37,4 +37,5 @@ ohos_resources("mediaLibrary_resources") {
   sources = [ "entry/src/main/resources" ]
   deps = [ ":medialibrary_app_profile" ]
   hap_profile = "entry/src/main/module.json"
+
 }
