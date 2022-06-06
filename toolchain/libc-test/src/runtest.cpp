@@ -110,6 +110,6 @@ HWTEST_F(ActToolChainTest, LibcTest, Function | MediumTest | Level2)
             continue;
         }
         ret = runtests(temp[i].c_str());
-        EXPECT_EQ(0, ret) << "test  " << temp[i]  << "  failed" << endl;
+        EXPECT_EQ(0, ret) << "test  " << temp[i] << "  failed" << endl;
     }
 }

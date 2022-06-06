@@ -14,13 +14,10 @@ def copyFiles(sourceDir, targetDir):
         sourceF = os.path.join(sourceDir, f)
         targetF = os.path.join(targetDir, f)
         if os.path.isfile(sourceF):
-            #创建目录
             if not os.path.exists(targetDir):
                 os.makedirs(targetDir)
             copyFileCounts += 1
-            #文件不存在，或者存在但是大小不同，覆盖
             if not os.path.exists(targetF) or (os.path.exists(targetF) and (os.path.getsize(targetF) != os.path.getsize(sourceF))):
-                #2进制文件
                 open(targetF, "wb").write(open(sourceF, "rb").read())
         if os.path.isdir(sourceF):
             copyFiles(sourceF, targetF)
@@ -39,9 +36,6 @@ if __name__ == "__main__":
     parser.add_argument("--output_path", type=str, default="0")
     parser.add_argument("--temp_path", type=str, default="0")
     args = parser.parse_args()
-    print(args.input_path)
-    print(args.output_path)
-    print(args.temp_path)
 
     copyFiles(args.input_path, args.temp_path)
     make_targz_one_by_one(args.output_path, args.temp_path)
