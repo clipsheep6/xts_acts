@@ -24,7 +24,6 @@ volatile int t_status = 0;
 
 static void handler(int s)
 {
-    return;
 }
 
 static int start(char *wrap, const char *argvs)
