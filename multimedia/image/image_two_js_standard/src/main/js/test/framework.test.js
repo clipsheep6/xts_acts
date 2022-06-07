@@ -624,6 +624,7 @@ describe('Image', function () {
         }
         done();
     })
+
     /**
      * @tc.number    : frmwk_013
      * @tc.name      : createAlphaPixelmap-promise
@@ -635,6 +636,7 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+    
      it('frmwk_013', 0, async function (done) {
         let logger = Logger('frmwk_013')
         try {

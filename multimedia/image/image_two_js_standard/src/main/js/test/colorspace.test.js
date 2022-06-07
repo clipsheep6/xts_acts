@@ -228,7 +228,8 @@ describe('Image', function () {
         }
         
     })
-    /**
+
+    /** 
      * @tc.number    : encodeP3_002
      * @tc.name      : Encode -promise
      * @tc.desc      : 1.create imagesource
@@ -238,6 +239,7 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+
      it('encodeP3_002', 0, async function (done) {
         let logger = Logger('encodeP3_002')
         let testNum = 'encodeP3_002'

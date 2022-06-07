@@ -32,6 +32,7 @@
         {
             "type": "ShellKit",
             "run-command": [
+                
                 "mkdir -pv /storage/media/100/local/files/Pictures/{Static,Static01,Album/Static,SR001PRO,SR001CB,Dynamic,Dynamic01,Dynamic02,Dynamic022,DynamicCb03,DynamicPro03,DeleteCb01,AblumInfo,DeletePro01,Delete01,FavoritePro,FavoriteCB,Thumbnail,OnOff}",
                 "mkdir -pv /storage/media/100/local/files/Videos/{Static,Static01,Album/Static,SR001PRO,SR001CB,Dynamic,Dynamic01,Dynamic02,DynamicCb03,DeleteCb01,DynamicPro03,AblumInfo,DeletePro01,Delete01,FavoritePro,FavoriteCB,Thumbnail,OnOff}",
                 "mkdir -pv /storage/media/100/local/files/Audios/{Static,Static01,Album/Static,SR001PRO,SR001CB,Dynamic,Dynamic01,Dynamic02,DynamicCb03,DeleteCb01,DynamicPro03,AblumInfo,DeletePro01,Delete01,FavoritePro,FavoriteCB,Thumbnail,OnOff}",
