@@ -55,6 +55,16 @@
           "autoDesignWidth": false
         }
       }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.RUNNING_LOCK",
+        "reason": "use ohos.permission.RUNNING_LOCK"
+      },
+      {
+        "name": "ohos.permission.REBOOT",
+        "reason": "use ohos.permission.REBOOT"
+      }
     ]
   }
 }
