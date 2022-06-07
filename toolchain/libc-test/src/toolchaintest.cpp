@@ -13,8 +13,8 @@
 #include <sys/time.h>
 #include <sys/resource.h>
 
-#include "runtest.h"
 #include "gtest/gtest.h"
+#include "runtest.h"
 
 using namespace std;
 using namespace testing::ext;
@@ -24,6 +24,7 @@ volatile int t_status = 0;
 
 static void handler(int s)
 {
+    return;
 }
 
 static int start(char *wrap, const char *argvs)
