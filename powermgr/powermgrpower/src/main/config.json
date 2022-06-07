@@ -55,6 +55,12 @@
           "autoDesignWidth": false
         }
       }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.POWER_OPTIMIZATION",
+        "reason": "use ohos.permission.POWER_OPTIMIZATION"
+      }
     ]
   }
 }
