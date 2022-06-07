@@ -57,19 +57,17 @@ static int start(char *wrap, const char *argvs)
 static int runtests(const char *argvs)
 {
     char wrap[] = "";
-    int timeoutsec = 5;
-    int timeout = 0;
-    int status;
+    int timeoutsec = 5, timeout = 0;
+    int status, pid;
     sigset_t set;
-    sighandler_t sigerrno;
-    int pid;
+    void (*retfunc)(int);
 
     sigemptyset(&set);
     sigaddset(&set, SIGCHLD);
     sigprocmask(SIG_BLOCK, &set, nullptr);
-    sigerrno = signal(SIGCHLD, handler);
-    if (sigerrno == SIG_ERR) {
-        printf("signal triggering failed\n");
+    retfunc = signal(SIGCHLD, handler);
+    if (retfunc == SIG_ERR) {
+        printf("signal triggering failed:%s\n", strerror(errno));
     }
     pid = start(wrap, argvs);
     if (pid == -1) {
