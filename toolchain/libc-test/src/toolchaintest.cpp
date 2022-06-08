@@ -122,7 +122,12 @@ HWTEST_F(ToolChainTest, LibcTest, Function | MediumTest | Level2)
     for (size_t i = 0; i < temp.size(); i++) {
         if ((temp[i].find("stat", filepath.length()-1) != -1) ||
             (temp[i].find("sem_close-unmap", filepath.length()-1) != -1) ||
-            (temp[i].find("runtest", filepath.length()-1) != -1)) {
+            (temp[i].find("runtest", filepath.length()-1) != -1) ||
+            (temp[i].find("math", filepath.length()-1) != -1) ||
+            (temp[i].find("functional", filepath.length()-1) != -1) ||
+            (temp[i].find("pthread_atfork-errno-clobber", filepath.length()-1) != -1) ||
+            (temp[i].find("tls_get_new-dtv", filepath.length()-1) != -1) ||
+            (temp[i].find("malloc-brk-fail", filepath.length()-1) != -1)) {
             continue;
         }
         ret = runtests(temp[i].c_str());
