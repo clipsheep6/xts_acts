@@ -44,6 +44,7 @@ group("bundlemanager") {
       "sceneProject/bmsgetinfosscenevendor:bmsVendorBundleTest1",
       "sceneProject/bmsgetinfossecondscene:bmsThirdBundleTest2",
       "sceneProject/bmsgetinfossixthscene:bmsThirdBundleTest6",
+      "sceneProject/bmsgetinfosseventhscene:bmsThirdBundleTest7",
       "sceneProject/bmsgetinfosthirdscene:bmsThirdBundleTest3",
       "sceneProject/bmsmainabilityfirstscene:bmsMainAbilityFirstScene",
       "sceneProject/bmsmainabilitysecondscene:bmsMainAbilitySecondScene",
