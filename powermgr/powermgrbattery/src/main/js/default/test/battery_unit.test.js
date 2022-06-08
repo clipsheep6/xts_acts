@@ -288,8 +288,16 @@ describe('appInfoTest', function () {
     it('nowCurrent_test', 0, function () {
         let nowCurrent = batteryInfo.nowCurrent;
         console.info('nowCurrent = ' + nowCurrent);
-        expect(nowCurrent >= 0).assertTrue();
-    })
+        let chargeStatus = batteryInfo.chargingStatus;
+        console.info('chargeStatus = ' + chargeStatus);
+        if (chargeStatus === batteryInfo.BatteryChargeState.ENABLE) {
+          expect(nowCurrent >= 0).assertTrue();
+        }
+        else if (chargeStatus !== batteryInfo.BatteryChargeState.ENABLE) {
+          expect(nowCurrent <= 0).assertTrue();
+        }
+      })
+  
 
     /**
      * @tc.number battery_manager_js_2500
