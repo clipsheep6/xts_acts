@@ -821,6 +821,7 @@ describe('Image', function () {
         done();
     })
 
+
     /**
      * @tc.number    : frmwk_018
      * @tc.name      : setAlpha-promise
@@ -832,8 +833,9 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('frmwk_018', 0, async function (done) {
-        let logger = loger('frmwk_018')
+     it('frmwk_018', 0, async function (done) {
+        let logger = loger('frmwk_018');
+        var res = true;
         try {
             var pixelMap = await genPixelMap()
             logger.log("pixelMap " + (pixelMap != undefined));
@@ -846,15 +848,22 @@ describe('Image', function () {
                 var bufferArr2 = new Uint8Array(readBuffer);
                 for (var i = 0; i < bufferArr2.length; i++) {
                     if (bufferArr2[i] != setAlpha8[i]) {
+                        res = false;
                         logger.log(`pixel[${i}] current[${bufferArr2[i]}] target[${setAlpha8[i]}]`);
                         expect(false).assertTrue();
-                        done();
+                        break;
                     }
                 }
+                if (res) {
+                    console.info('frmwk_018 success');
+                    expect(true).assertTrue()
+                }
+                done();
             }
+            
         } catch (error) {
             logger.log('failed ' + error);
-            expect(false).assertTrue;
+            expect(false).assertTrue();
             done();
         }
         done();
@@ -872,7 +881,8 @@ describe('Image', function () {
      * @tc.level     : Level 1
      */
     it('frmwk_019', 0, async function (done) {
-        let logger = loger('frmwk_019')
+        let logger = loger('frmwk_019');
+        var res = true;
         try {
             var pixelMap = await genPixelMap()
             logger.log("pixelMap " + (pixelMap != undefined));
@@ -885,14 +895,18 @@ describe('Image', function () {
                     var bufferArr2 = new Uint8Array(readBuffer);
                     for (var i = 0; i < bufferArr2.length; i++) {
                         if (bufferArr2[i] != setAlpha8[i]) {
+                            res = false;
                             logger.log(`pixel[${i}] current[${bufferArr2[i]}] target[${setAlpha8[i]}]`);
                             expect(false).assertTrue();
-                            done();
+                            break;
                         }
                     }
+                    if (res) {
+                        console.info('frmwk_019 success');
+                        expect(true).assertTrue()
+                    }
+                    done();
                 })
-                expect(true).assertTrue();
-                done();
             }
         } catch (error) {
             logger.log('failed ' + error);
@@ -901,6 +915,7 @@ describe('Image', function () {
         }
 
     })
+
 
     /**
      * @tc.number    : frmwk_020
