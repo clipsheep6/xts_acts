@@ -15,6 +15,15 @@
           "cleanup-apps": true
         },
         {
+          "type": "ShellKit",
+          "run-command": [
+              "mkdir -p /data/accounts/account_0/appdata/ohos.acts.multimedia.video.videoplayer"
+          ],
+          "teardown-command":[
+            
+          ]
+        },
+        {
           "type": "PushKit",
           "pre-push": [
           ],
