@@ -411,8 +411,8 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
         expect(true).assertTrue()
         console.info(TAG + 'Entering CREATE_CAPTURE_SESSION_PROMISE PASSED')
       } else {
-        expect(true).assertTrue()
-        console.info(TAG + 'Entering CREATE_CAPTURE_SESSION_PROMISE PASSED')
+        expect().assertFail()
+        console.info(TAG + 'Entering CREATE_CAPTURE_SESSION_PROMISE FAILED')
       }
       console.info(TAG + 'Entering CREATE_CAPTURE_SESSION_PROMISE ends here');
       await sleep(1);
