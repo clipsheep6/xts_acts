@@ -14,6 +14,7 @@
  */
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import account from '@ohos.account.appAccount'
+import osaccount from '@ohos.account.osAccount'
 import bundle from '@ohos.bundle'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
@@ -24,7 +25,9 @@ var tokenID = undefined;
 describe('ActsSetCheckSyncEnable', function () {
     beforeAll(async function (done) {
         console.debug("====>beforeAll start====");
-        var appInfo = await bundle.getApplicationInfo('com.example.actssetchecksyncenable', 0, 100);
+        var osAccountManager = osaccount.getAccountManager();
+        var userId  = await osAccountManager.queryActivatedOsAccountIds();
+        var appInfo = await bundle.getApplicationInfo('com.example.actssetchecksyncenable', 0, userId[0]);
         tokenID = appInfo.accessTokenId;
         console.debug("accessTokenId" + appInfo.accessTokenId + " bundleName:" + appInfo.bundleName);
         var atManager = abilityAccessCtrl.createAtManager();
