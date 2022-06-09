@@ -1,0 +1,28 @@
+{
+    "kits": [
+        {
+            "push": [
+                "SimCDMAFunctionTest->/data/local/tmp/SimCDMAFunctionTest"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/local/tmp/*"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "SimCDMAFunctionTest",
+        "runtime-hint": "10s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "description": "Configuration SimCDMAFunctionTest Function Tests"
+}

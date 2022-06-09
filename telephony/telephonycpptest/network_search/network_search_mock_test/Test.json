@@ -1,0 +1,28 @@
+{
+    "kits": [
+        {
+            "push": [
+                "NetworkSearchMockTest->/data/local/tmp/NetworkSearchMockTest"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/local/tmp/*"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "NetworkSearchMockTest",
+        "runtime-hint": "10s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "description": "Configuration call manager Function Tests"
+}
