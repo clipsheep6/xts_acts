@@ -32,11 +32,7 @@ ohos_moduletest_suite("ActToolChainTest") {
   cflags_cc = [ "-DHILOG_ENABLE" ]
   defines = [ "_STANDARD_SYSTEM_" ]
 
-  sources = [
-    "include/getfiles.cpp",
-    "include/setrlim.cpp",
-    "src/toolchaintest.cpp",
-  ]
+  sources = [ "src/toolchaintest.cpp" ]
 
   include_dirs = [
     "//utils/native/base/include",
@@ -44,7 +40,6 @@ ohos_moduletest_suite("ActToolChainTest") {
     "//third_party/musl/porting/linux/user/include/",
     "//third_party/musl/porting/linux/user/src/sched",
     "/third_party/musl/libc-test/src/commom",
-    "./include",
   ]
 
   deps = [
