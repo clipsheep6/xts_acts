@@ -168,9 +168,9 @@ describe('fileio_copyfile', function () {
     let fpath = await nextFileName('fileio_copy_file_async_003');
     try {
       await fileio.copyFile(1, fpath);
-      expect(null).assertFail();
     } catch (e) {
       console.log('fileio_copy_file_async_003 has failed for ' + e);
+      expect(e.message == "Invalid argument").assertTrue();
       done();
     }
   });
