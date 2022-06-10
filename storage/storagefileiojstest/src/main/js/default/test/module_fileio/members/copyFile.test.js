@@ -167,15 +167,11 @@ describe('fileio_copyfile', function () {
   it('fileio_copy_file_async_003', 0, async function (done) {
     let fpath = await nextFileName('fileio_copy_file_async_003');
     try {
-      fileio
-        .copyFile(1, fpath)
-        .then(function (err) {
-          fileio.unlinkSync(fpath);
-          done();
-        })
+      await fileio.copyFile(1, fpath);
+      expect(null).assertFail();
     } catch (e) {
       console.log('fileio_copy_file_async_003 has failed for ' + e);
-      expect(null).assertFail();
+      done();
     }
   });
 
