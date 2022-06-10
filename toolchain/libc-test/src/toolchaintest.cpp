@@ -44,7 +44,7 @@ void ToolChainTest::TearDown()
  * @tc.size      : MEDIUM
  * @tc.type      : FUNC
  */
-HWTEST_F(ToolChainTest, LibcTest, TestSize.Level1)
+HWTEST_F(ToolChainTest, LibcTest, Function | SmallTest | Level3)
 {
     printf("**************hello world*******************");
 }
