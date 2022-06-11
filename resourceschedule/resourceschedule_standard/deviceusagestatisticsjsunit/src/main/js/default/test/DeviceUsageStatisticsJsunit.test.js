@@ -82,7 +82,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         console.info('----------------------DeviceUsageStatisticsJsTest002---------------------------');
         let bundleName = 'com.explace.deviceUsageStatistics';
         bundleState.isIdleState(bundleName, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 console.info('BUNDLE_ACTIVE isIdleState callback success.');
                 expect(true).assertEqual(true);
             } else {
@@ -126,7 +126,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
     it("DeviceUsageStatisticsJsTest004", 0, async function (done) {
         console.info('----------------------DeviceUsageStatisticsJsTest004---------------------------');
         bundleState.queryAppUsagePriorityGroup((err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 console.info('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback success.');
                 expect(true).assertEqual(true)
             } else {
@@ -174,7 +174,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 0;
         let endTime = 20000000000000;
         bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 console.info('BUNDLE_ACTIVE queryBundleActiveStates callback success.');
                 expect(true).assertEqual(true);
             } else {
@@ -222,7 +222,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 0;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfos(beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 console.info('BUNDLE_ACTIVE queryBundleStateInfos callback success.');
                 expect(true).assertEqual(true);
             } else {
@@ -270,7 +270,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 0;
         let endTime = 20000000000000;
         bundleState.queryCurrentBundleActiveStates(beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 console.info('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback success.');
                 expect(true).assertEqual(true);
             } else {
@@ -320,7 +320,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 0;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 console.info('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback success.');
                 expect(true).assertEqual(true);
             } else {
@@ -411,7 +411,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 1000;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{id: 1}];
@@ -439,7 +439,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 100;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{bundleName: 'www.explace.com'}];
@@ -467,7 +467,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 1001;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{infosEndTime: 0}];
@@ -495,7 +495,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 1001;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{abilityPrevSeenTime: 0}];
@@ -523,7 +523,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 1001;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{abilitySeenTotalTime: 0}];
@@ -551,7 +551,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 1001;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{fgAbilityAccessTotalTime: 0}];
@@ -579,7 +579,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 1001;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{fgAbilityPrevAccessTime: 0}];
@@ -607,7 +607,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 1001;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{abilityPrevAccessTime: 0}];
@@ -635,7 +635,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 1001;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{infosBeginTime: 0}];
@@ -663,7 +663,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 1001;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(intervalType, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{abilityInFgTotalTime: 0}];
@@ -690,7 +690,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 10;
         let endTime = 20000000000000;
         bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{bundleName: 'www.baidu.com'}];
@@ -717,7 +717,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 10;
         let endTime = 20000000000000;
         bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{stateType: 0}];
@@ -744,7 +744,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 10;
         let endTime = 20000000000000;
         bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{stateOccurredTime: 0}];
@@ -771,7 +771,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 10;
         let endTime = 20000000000000;
         bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{appUsagePriorityGroup: 0}];
@@ -798,7 +798,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 10;
         let endTime = 20000000000000;
         bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{indexOfLink: 'id'}];
@@ -825,7 +825,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 10;
         let endTime = 20000000000000;
         bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					res = [{nameOfClass: 'BundleStates'}];
@@ -891,7 +891,7 @@ describe("DeviceUsageStatisticsJsTest", function () {
         let beginTime = 1001;
         let endTime = 20000000000000;
         bundleState.queryBundleStateInfoByInterval(0, beginTime, endTime, (err, res) => {
-            if(err.code === 0) {
+            if(!err) {
                 expect(true).assertEqual(true);
 				if(res === undefined) {
 					let bundleStateInfo = {
