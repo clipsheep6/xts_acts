@@ -1,3 +1,17 @@
+/*
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
@@ -5,20 +19,20 @@
 #include <ctime>
 #include <cstdio>
 #include <vector>
-#include <signal.h>
+#include <csignal>
+#include <unistd.h>
+#include <dirent.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/time.h>
 #include <sys/resource.h>
-#include <unistd.h>
-#include <dirent.h>
 
-#include "runtest.h"
 #include "gtest/gtest.h"
+#include "runtest.h"
 
 using namespace std;
 using namespace testing::ext;
-class ActToolChainTest : public testing::Test {};
+class ToolChainTest : public testing::Test {};
 
 volatile int t_status = 0;
 
@@ -28,11 +42,11 @@ static void handler(int s)
 
 static int start(char *wrap, const char *argvs)
 {
-    int pid;
+    int pid, space_size = 100*1024;
 
     pid = fork();
     if (pid == 0) {
-        t_setrlim(RLIMIT_STACK, 100*1024);
+        t_setrlim(RLIMIT_STACK, space_size);
         int exe = execl(argvs, "strptime", nullptr);
         printf("exe:%d %s exec failed: %s\n", exe, argvs, strerror(errno));
         exit(1);
@@ -43,16 +57,18 @@ static int start(char *wrap, const char *argvs)
 static int runtests(const char *argvs)
 {
     char wrap[] = "";
-    int timeoutsec = 5;
-    int timeout = 0;
-    int status;
+    int timeoutsec = 5, timeout = 0;
+    int status, pid;
     sigset_t set;
-    int pid;
+    void (*retfunc)(int);
 
     sigemptyset(&set);
     sigaddset(&set, SIGCHLD);
-    sigprocmask(SIG_BLOCK, &set, 0);
-    signal(SIGCHLD, handler);
+    sigprocmask(SIG_BLOCK, &set, nullptr);
+    retfunc = signal(SIGCHLD, handler);
+    if (retfunc == SIG_ERR) {
+        printf("signal triggering failed:%s\n", strerror(errno));
+    }
     pid = start(wrap, argvs);
     if (pid == -1) {
         printf("%s fork failed: %s\n", argvs, strerror(errno));
@@ -62,7 +78,7 @@ static int runtests(const char *argvs)
     struct timespec tp;
     tp.tv_sec = timeoutsec;
     tp.tv_nsec = 0;
-    if (sigtimedwait(&set, 0, &tp) == -1) {
+    if (sigtimedwait(&set, nullptr, &tp) == -1) {
         if (errno == EAGAIN) {
             timeout = 1;
         } else {
@@ -93,11 +109,11 @@ static int runtests(const char *argvs)
 }
 
 /**
- * @tc.name      : ActToolChainTest.RunTest
+ * @tc.name      : ToolChainTest.LibcTest
  * @tc.desc      : start test
  * @tc.level     : Level 2
  */
-HWTEST_F(ActToolChainTest, LibcTest, Function | MediumTest | Level2)
+HWTEST_F(ToolChainTest, LibcTest, Function | MediumTest | Level2)
 {
     int ret;
     vector<string> temp;
@@ -110,6 +126,6 @@ HWTEST_F(ActToolChainTest, LibcTest, Function | MediumTest | Level2)
             continue;
         }
         ret = runtests(temp[i].c_str());
-        EXPECT_EQ(0, ret) << "test  " << temp[i] << "  failed" << endl;
+        EXPECT_EQ(0, ret) << "test  " << temp[i]  << "  failed" << endl;
     }
 }
