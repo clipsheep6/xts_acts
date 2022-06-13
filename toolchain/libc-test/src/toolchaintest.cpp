@@ -113,7 +113,7 @@ static int runtests(const char *argvs)
  * @tc.desc      : start test
  * @tc.level     : Level 2
  */
-HWTEST_F(ToolChainTest, LibcTest, Function | MediumTest | Level2)
+HWTEST_F(ToolChainTest, LibcTest, Function | MediumTest | Level3)
 {
     int ret;
     vector<string> temp;
