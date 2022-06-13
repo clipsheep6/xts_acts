@@ -129,7 +129,7 @@ describe('fileio_copyfile', function () {
         done();
       });
     } catch (e) {
-      console.log('fileio_copy_file_async_000 has failed for ' + e);
+      console.log('fileio_copy_file_async_001 has failed for ' + e);
       expect(null).assertFail();
     }
   });
@@ -150,6 +150,7 @@ describe('fileio_copyfile', function () {
       expect(await fileio.copyFile(fpath, fpathTarget).indexOf('<pending>') > -1).assertTrue();
       expect(null).assertFail();
     } catch (e) {
+      console.log('fileio_copy_file_async_002 has failed for ' + e);
       done();
     }
   });
@@ -166,16 +167,10 @@ describe('fileio_copyfile', function () {
   it('fileio_copy_file_async_003', 0, async function (done) {
     let fpath = await nextFileName('fileio_copy_file_async_003');
     try {
-      fileio
-        .copyFile(1, fpath)
-        .then(function (err) {
-        })
-        .catch(function (e) {
-          expect(!!e).assertTrue();
-          done();
-        });
+      await fileio.copyFile(1, fpath);
     } catch (e) {
-      expect(!!e).assertTrue();
+      console.log('fileio_copy_file_async_003 has failed for ' + e);
+      expect(e.message == "Invalid argument").assertTrue();
       done();
     }
   });
@@ -198,6 +193,7 @@ describe('fileio_copyfile', function () {
       expect(null).assertFail();
       done();
     } catch (e) {
+      console.log('fileio_copy_file_async_004 has failed for ' + e);
       done();
     }
   });
