@@ -1,0 +1,45 @@
+<div class="div-button">
+    <div class="logarea">
+        <textarea class="log">
+            {{logmessage}}
+        </textarea>
+    </div>
+    <div class="buttonarea">
+        <divider class="divider" vertical="false"></divider>  
+        <text class="title">bundle manage</text>
+        <div class="circleall">
+            <button class="btn" value="installHap1" onclick="installHap1"></button>
+            <button class="btn" value="installHap2" onclick="installHap2"></button>
+            <button class="btn" value="installHap3" onclick="installHap3"></button>
+            <button class="btn" value="uninstallHap" onclick="uninstallHap"></button>
+        </div>
+        <text class="title">target id</text>
+        <div class="circleall">
+            <button class="btn" value="GetNetWorkId" onclick="GetNetWorkId"></button>
+            <button class="btn" value="Clear" onclick="clearLog"></button>
+        </div>
+        <text class="title">ACTS_DistributedBundleInfo</text>
+        <div class="circleall">
+            <button class="btn" value="0100" onclick="actsDistributedBundleInfo0100"></button>
+            <button class="btn" value="0200" onclick="actsDistributedBundleInfo0200"></button>
+            <button class="btn" value="0300_1" onclick="actsDistributedBundleInfo03001"></button>
+            <button class="btn" value="0300_2" onclick="actsDistributedBundleInfo03002"></button>
+        </div>
+        <div class="circleall">
+            <button class="btn" value="0400_1" onclick="actsDistributedBundleInfo04001"></button>
+            <button class="btn" value="0400_2" onclick="actsDistributedBundleInfo04002"></button>
+            <button class="btn" value="0500" onclick="actsDistributedBundleInfo0500"></button>
+            <button class="btn" value="0600_1" onclick="actsDistributedBundleInfo06001"></button>
+        </div>
+        <div class="circleall">
+            <button class="btn" value="0600_2" onclick="actsDistributedBundleInfo06002"></button>
+            <button class="btn" value="0700" onclick="actsDistributedBundleInfo0700"></button>
+            <button class="btn" value="0800" onclick="actsDistributedBundleInfo0800"></button>
+            <button class="btn" value="0900" onclick="actsDistributedBundleInfo0900"></button>
+        </div>
+        <div class="circleall">
+            <button class="btn" value="1000to1200" onclick="actsDistributedBundleInfo1000To1200"></button>
+        </div>
+    </div>
+</div>
+
