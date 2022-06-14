@@ -14,11 +14,12 @@
  */
 import osAccount from '@ohos.account.osAccount'
 import distributedAccount from '@ohos.account.distributedAccount'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const TIMEOUT = 1000;
 const ERR_OSACCOUNT_KIT_IS_OS_ACCOUNT_ACTIVED_ERROR = 4587542;
 const ERR_OSACCOUNT_KIT_IS_OS_ACCOUNT_VERIFIED_ERROR = 4587545;
+export function ActsOsAccountThirdPartyTest() {
 describe('ActsOsAccountThirdPartyTest', function () {
 
     /*
@@ -502,4 +503,4 @@ describe('ActsOsAccountThirdPartyTest', function () {
         console.debug("====>ActsOsAccountIsTest_0200 end====");
         done();
     })
-})
+})}

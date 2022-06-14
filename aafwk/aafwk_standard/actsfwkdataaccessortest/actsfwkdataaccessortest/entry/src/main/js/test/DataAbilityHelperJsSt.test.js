@@ -15,8 +15,9 @@
 import featureAbility from '@ohos.ability.featureAbility'
 import ohosDataAbility from '@ohos.data.dataability'
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
+export function ActsDataAbilityHelperTest() {
 describe('ActsDataAbilityHelperTest', function () {
     let dataAbilityUri = ("dataability:///com.example.myapplication.DataAbility");
     let dataAbilityUri2 = ("dataability:///com.example.myapplication.DataAbility2");
@@ -8522,4 +8523,4 @@ describe('ActsDataAbilityHelperTest', function () {
             done();
         }
     })
-})
+})}

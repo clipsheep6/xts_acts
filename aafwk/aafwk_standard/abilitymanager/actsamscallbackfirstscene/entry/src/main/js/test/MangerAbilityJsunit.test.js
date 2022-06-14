@@ -16,6 +16,7 @@ import featureAbility from '@ohos.ability.featureability'
 import appManager from "@ohos.application.appManager"
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit'
 
+export function ActsAmsCallBackFirstScene() {
 describe('ActsAmsCallBackFirstScene', function () {
     console.info('----ActsAmsCallBackFirstScene----');
     beforeAll(async function (done) {
@@ -84,4 +85,4 @@ describe('ActsAmsCallBackFirstScene', function () {
                 done();
             });
     })
-})
+})}

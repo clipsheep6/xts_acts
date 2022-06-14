@@ -14,8 +14,9 @@
  */
 import featureAbility from '@ohos.ability.featureAbility'
 import bundle from '@ohos.bundle'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function ActsContextTest() {
 describe('ActsContextTest', function () {
 
     //  @tc.number: ACTS_GetBundleName_0100
@@ -422,3 +423,4 @@ describe('ActsContextTest', function () {
     })
 
 })
+}

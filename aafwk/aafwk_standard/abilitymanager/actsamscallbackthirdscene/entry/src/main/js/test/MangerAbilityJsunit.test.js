@@ -14,8 +14,9 @@
  */
 import featureAbility from '@ohos.ability.featureability'
 import appManager from "@ohos.application.appManager"
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
+export function ActsAmsCallBackThirdScene() {
 describe('ActsAmsCallBackThirdScene', function () {
     console.info('----ActsAmsCallBackThirdScene----');
     beforeAll(async function (done) {
@@ -95,4 +96,4 @@ describe('ActsAmsCallBackThirdScene', function () {
                 done();
             });
     })
-})
+})}

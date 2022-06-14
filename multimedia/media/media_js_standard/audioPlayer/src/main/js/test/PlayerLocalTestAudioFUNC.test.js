@@ -15,8 +15,9 @@
 
 import media from '@ohos.multimedia.media'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function PlayerLocalTestAudioFUNC() {
 describe('PlayerLocalTestAudioFUNC', function () {
     let audioPlayer = media.createAudioPlayer();
     let isTimeOut = false;
@@ -991,3 +992,4 @@ describe('PlayerLocalTestAudioFUNC', function () {
         audioPlayer.fdSrc = fileDescriptor;
     })
 })
+}

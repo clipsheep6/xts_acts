@@ -14,8 +14,9 @@
  */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var time = 500
+export function ActsAnsGetAllActiveTestXts() {
 describe('ActsAnsGetAllActiveTestXts', function () {
     console.info("===========ActsAnsGetAllActiveTest  start====================>");
     function getAllCallback(err, data){
@@ -97,3 +98,4 @@ describe('ActsAnsGetAllActiveTestXts', function () {
     })
 })
 
+}

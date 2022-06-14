@@ -17,7 +17,6 @@ import file from '@system.file'
 import app from '@system.app'
 import device from '@system.device'
 import router from '@system.router'
-import {Core} from 'deccjsunit/index'
 
 export default {
     data: {
@@ -28,10 +27,6 @@ export default {
     },
     onShow() {
         console.info('onShow finish')
-        const core = Core.getInstance()
-        core.init()
-        require('../../../test/Main.test')
-        core.execute()
     },
     onReady() {
     },

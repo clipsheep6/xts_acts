@@ -13,4 +13,28 @@
  * limitations under the License.
  */
 
-require('./ActsGetWantAllTest.js')
+require('./ActsGetWantAllTest.js')export default function testsuite() {
+ActsAmsCallBackFifthScene()
+ActsAmsCallBackFirstScene()
+ActsAmsCallBackFourthScene()
+ActsAmsCallBackSecondScene()
+ActsAmsCallBackThirdScene()
+ActsAmsTestFifthScene()
+ActsAmsTestFirstScene()
+ActsAmsTestFourthScene()
+ActsAmsTestSecondScene()
+ActsAmsTestThirdScene()
+ActsStServiceAbilityTest()
+ActsGetAbilityStateTest()
+ActsDataAbilityHelperTest()
+ActsStServiceAbilityTest()
+ActsStServiceAbilityTest()
+ActsDataUriUtilsTest()
+ActsAbilityRunningInfosTest()
+ActsContextTest()
+ConfigurationTest()
+CoverApiTest()
+ActsFeatureAbilityTest()
+ConnectAbilityTest()
+ActsGetWantTest()
+}

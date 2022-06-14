@@ -15,9 +15,10 @@
 
 // @ts-nocheck
 import app from '@system.app'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import worker from "@ohos.worker"
 
+export function workerTest() {
 describe('workerTest', function () {
 
     afterAll(function () {
@@ -202,4 +203,4 @@ describe('workerTest', function () {
         expect(int32[0]).assertEqual(21)
         done()
     })
-})
+})}

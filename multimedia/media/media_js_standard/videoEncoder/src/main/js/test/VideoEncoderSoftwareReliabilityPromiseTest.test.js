@@ -16,8 +16,9 @@
 import media from '@ohos.multimedia.media'
 import mediademo from '@ohos.multimedia.mediademo'
 import Fileio from '@ohos.fileio'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function videoEncoderReliabilityPromise() {
 describe('videoEncoderReliabilityPromise', function () {
     const ROOT = '/data/app/el1/bundle/results/';
     const BASIC_PATH = ROOT + 'video_reliability_promise_';
@@ -1521,3 +1522,4 @@ describe('videoEncoderReliabilityPromise', function () {
         done();
     })
 })
+}

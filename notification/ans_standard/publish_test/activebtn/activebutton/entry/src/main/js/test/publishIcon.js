@@ -15,7 +15,7 @@
 
 import notification from '@ohos.notification'
 import image from '@ohos.multimedia.image'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var largeIconA
 var smallIconA
 var largeBufferA
@@ -44,6 +44,7 @@ var smallBufferD
 var largeOptsD
 var smallOptsD
 
+export function ActsAnsPublishIconTest() {
 describe('ActsAnsPublishIconTest', function () {
     function publishCallbackA(err){
         console.log('ActsAnsPublishIconTest publishCallbackA asyncCallback'+err.code)
@@ -187,3 +188,4 @@ describe('ActsAnsPublishIconTest', function () {
         });
     });
 }) 
+}

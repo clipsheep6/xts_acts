@@ -15,7 +15,7 @@
 
 import bundle from '@ohos.bundle'
 import account from '@ohos.account.osAccount'
-import { describe, beforeAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, it, expect } from '@ohos/hypium'
 
 const LAUNCHER_BUNDLE_NAME = 'com.example.myapplication1';
 const LAUNCHER_MAIN_ABILITY = 'com.example.myapplication1.MainAbility';
@@ -23,6 +23,7 @@ const DEFAULT_FLAG = bundle.BundleFlag.GET_BUNDLE_DEFAULT;
 const INVALID_CODE = 1;
 let userId = 0;
 
+export function ActsBmsJsUnPermissionTest() {
 describe('ActsBmsJsUnPermissionTest', function () {
 
     beforeAll(async function (done) {
@@ -190,3 +191,4 @@ describe('ActsBmsJsUnPermissionTest', function () {
         });
     });
 })
+}

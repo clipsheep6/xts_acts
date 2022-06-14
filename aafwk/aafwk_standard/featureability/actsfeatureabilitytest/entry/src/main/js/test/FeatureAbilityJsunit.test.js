@@ -14,7 +14,7 @@
  */
 import featureAbility from '@ohos.ability.featureAbility'
 import wantconstant from '@ohos.ability.wantConstant'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent'
 import notification from '@ohos.notification';
 import wantAgent from '@ohos.wantAgent';
@@ -83,6 +83,7 @@ var subscriberInfo_ACTS_GetCallingBundle_0100 = {
         "com.example.actsfeatureabilitytest.callback"],
 };
 
+export function ActsFeatureAbilityTest() {
 describe('ActsFeatureAbilityTest', function () {
 
     beforeAll(function() {
@@ -2156,3 +2157,4 @@ describe('ActsFeatureAbilityTest', function () {
         }
     });
 })
+}

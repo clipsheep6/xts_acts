@@ -16,7 +16,7 @@
 import wantAgent from '@ohos.wantAgent';
 import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
 
 var WantAgenta;
 var WantAgentb;
@@ -24,6 +24,7 @@ var WantAgentc;
 var WantAgentd;
 var WantAgente;
 var time = 1000
+export function ActsAnsGetWantAgentInfoTest() {
 describe('ActsAnsGetWantAgentInfoTest', function () {
     console.info('----ActsGetWantAgentInfoTest----');
     /*
@@ -982,3 +983,4 @@ describe('ActsAnsGetWantAgentInfoTest', function () {
 })
 
 
+}

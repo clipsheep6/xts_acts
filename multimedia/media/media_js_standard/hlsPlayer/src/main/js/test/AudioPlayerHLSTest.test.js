@@ -15,8 +15,9 @@
 
 import media from '@ohos.multimedia.media'
 import {playAudioSource} from '../../../../../AudioPlayerTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function AudioPlayerHLSTest() {
 describe('AudioPlayerHLSTest', function () {
     const HTTP_PATH = 'http://123.57.24.33:8000/';
     const PLAY_TIME = 3000;
@@ -61,3 +62,4 @@ describe('AudioPlayerHLSTest', function () {
         playAudioSource(HTTP_PATH + '05.hls/hls_variant_audio/index.m3u8', 219600, PLAY_TIME, false, done);
     })
 })
+}

@@ -14,9 +14,10 @@
  */
 
 import netSocket from '@ohos.net.socket';
-import {describe, afterAll, it, expect, beforeAll, afterEach} from 'deccjsunit/index';
+import {describe, afterAll, it, expect, beforeAll, afterEach} from '@ohos/hypium';
 
 
+export function Telephony_NETSTACK_SocketTest() {
 describe('Telephony_NETSTACK_SocketTest',function(){
 
 
@@ -519,4 +520,4 @@ describe('Telephony_NETSTACK_SocketTest',function(){
                 done()
         });
 
-});
+});}
