@@ -20,8 +20,9 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import bundle from '@ohos.bundle'
 import featureAbility from '@ohos.ability.featureAbility'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function videoSoftwareEncoderFuncPromise() {
 describe('videoSoftwareEncoderFuncPromise', function () {
     const BASIC_PATH = 'videoencode_func_promise_';
     let videoEncodeProcessor;
@@ -772,3 +773,4 @@ describe('videoSoftwareEncoderFuncPromise', function () {
     })
 })
         
+}

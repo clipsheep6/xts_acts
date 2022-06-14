@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 import account from '@ohos.account.appAccount'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const TIMEOUT = 5000;
 const ERR_APPACCOUNT_SERVICE_PERMISSION_DENIED = 4521993;
+export function ActsAccountNoPermission() {
 describe('ActsAccountNoPermission', function () {
     function sleep(delay) {
         return new Promise((resolve, reject) => {
@@ -232,4 +233,4 @@ describe('ActsAccountNoPermission', function () {
             done();
         }          
     });
-})
+})}

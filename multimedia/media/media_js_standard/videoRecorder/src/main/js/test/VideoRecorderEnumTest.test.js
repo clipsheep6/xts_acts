@@ -14,8 +14,9 @@
  */
 
 import media from '@ohos.multimedia.media'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function VideoRecorderEnumTest() {
 describe('VideoRecorderEnumTest', function () {
     beforeAll(function() {
         console.info('beforeAll case');
@@ -60,4 +61,4 @@ describe('VideoRecorderEnumTest', function () {
         expect(media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES).assertEqual(1);
         done();
     })
-})
+})}

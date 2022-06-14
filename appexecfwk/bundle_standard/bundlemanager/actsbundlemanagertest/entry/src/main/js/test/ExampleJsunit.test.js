@@ -14,7 +14,7 @@
  */
 
 import app from '@system.app'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import demo from '@ohos.bundle'
 import account from '@ohos.account.osAccount'
 
@@ -32,6 +32,7 @@ const DIR3 = "/data/app/el1/bundle/public/com.example.myapplication2/com.example
 const DESCRIPTION = "$string:mainability_description"
 let userId = 0;
 
+export function ActsBundleManagerTest() {
 describe('ActsBundleManagerTest', function () {
 
     beforeAll(async function (done) {
@@ -1801,3 +1802,4 @@ describe('ActsBundleManagerTest', function () {
     })
 })
 
+}

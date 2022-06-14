@@ -14,7 +14,6 @@
  */
 
 import file from '@system.file';
-import {Core, ExpectExtend, ReportExtend} from 'deccjsunit/index';
 
 export default {
   data: {

@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 import notification from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const TIMEOUT = 2000;
+export function ActsAnsGetSlotWithoutAdd() {
 describe('ActsAnsGetSlotWithoutAdd', function () {
 
     /*
@@ -237,4 +238,4 @@ describe('ActsAnsGetSlotWithoutAdd', function () {
             console.debug("====>time out ActsAnsGetSlotWithoutAdd_1000====>");
         }, TIMEOUT);
     })
-}) 
+}) }

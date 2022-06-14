@@ -15,13 +15,14 @@
 
 import bundle from '@ohos.bundle'
 import account from '@ohos.account.osAccount'
-import { describe,beforeAll, it, expect } from 'deccjsunit/index'
+import { describe,beforeAll, it, expect } from '@ohos/hypium'
 
 const BUNDLE_NAME1 = 'com.example.bmsaccesstoken1';
 const BUNDLE_NAME2 = 'com.example.bmsaccesstoken2';
 const BUNDLE_NAME3 = 'com.example.bmsaccesstoken3';
 let userId = 0;
 
+export function ActsBmsAccessTokenTest() {
 describe('ActsBmsAccessTokenTest', function () {
 
     beforeAll(async function (done) {
@@ -190,3 +191,4 @@ describe('ActsBmsAccessTokenTest', function () {
     });
 
 });
+}

@@ -15,9 +15,10 @@
 
 import wantAgent from '@ohos.wantAgent';
 import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
 var time = 1000
 var WantAgent;
+export function ActsAnsWantAgentTwoProTest() {
 describe('ActsAnsWantAgentTwoProTest', function () {
 
     /*
@@ -102,3 +103,4 @@ describe('ActsAnsWantAgentTwoProTest', function () {
 
 })
 
+}

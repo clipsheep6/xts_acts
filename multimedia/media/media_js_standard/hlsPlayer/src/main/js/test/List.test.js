@@ -14,5 +14,3 @@
  */
 
 require('./VideoPlayerHLSTest.test.js')
-require('./AudioPlayerHLSTest.test.js')
-// require('./VideoPlayerHLSBitrateTest.test.js')

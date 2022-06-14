@@ -15,12 +15,13 @@
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import account from '@ohos.account.appAccount'
 import bundle from '@ohos.bundle'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const TIMEOUT = 2000;
 const PERMISSION_USER_SET = 1;
 const PERMISSION_USER_NAME = "ohos.permission.DISTRIBUTED_DATASYNC";
 var tokenID = undefined;
+export function ActsSetCheckSyncEnable() {
 describe('ActsSetCheckSyncEnable', function () {
     beforeAll(async function (done) {
         console.debug("====>beforeAll start====");
@@ -570,4 +571,4 @@ describe('ActsSetCheckSyncEnable', function () {
             done();
         }
     });
-})
+})}

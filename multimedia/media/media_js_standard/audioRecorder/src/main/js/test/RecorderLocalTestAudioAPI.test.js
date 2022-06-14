@@ -15,8 +15,9 @@
 
 import media from '@ohos.multimedia.media'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function RecorderLocalTestAudioAPI() {
 describe('RecorderLocalTestAudioAPI', function () {
     let audioRecorder = media.createAudioRecorder();
     const END_STATE = 0;
@@ -1130,4 +1131,4 @@ describe('RecorderLocalTestAudioAPI', function () {
         setCallback(mySteps, done);
         audioRecorder.prepare(audioConfig);
     })
-})
+})}

@@ -1,15 +1,16 @@
 {
     "description": "Configuration for hjunit demo Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "60000",
-        "package": "com.example.amsZipfileUnzipfileST",
-        "shell-timeout": "60000"
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.amsZipfileUnzipfileST",
+        "package-name": "com.example.amsZipfileUnzipfileST"
     },
     "kits": [
         {
             "test-file-name": [
-                "ActsZipFileAndUnzipFileTest.hap"  
+                "ActsZipFileAndUnzipFileTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

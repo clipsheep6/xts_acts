@@ -13,5 +13,3 @@
  * limitations under the License.
  */
 require('./HttpPlayerCompatibilityTest.test.js')
-require('./HttpPlayerFuncPromiseTest.test.js')
-require('./HttpPlayerFuncCallbackTest.test.js')

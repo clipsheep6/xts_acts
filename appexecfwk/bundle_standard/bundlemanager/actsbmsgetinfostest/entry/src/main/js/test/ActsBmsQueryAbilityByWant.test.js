@@ -23,6 +23,7 @@ const ACTION_NAME = 'action.system.home';
 const ENTITY_NAME = 'entity.system.home';
 let userId = 0;
 
+export function ActsBmsQueryAbilityByWant() {
 describe('ActsBmsQueryAbilityByWant', function () {
 
     beforeAll(async function (done) {
@@ -180,4 +181,4 @@ describe('ActsBmsQueryAbilityByWant', function () {
         expect(data.enabled).assertEqual(true);
     }
 
-})
+})}

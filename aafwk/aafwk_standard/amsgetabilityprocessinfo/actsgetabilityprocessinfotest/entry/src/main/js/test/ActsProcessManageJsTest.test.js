@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import appManager from '@ohos.application.AppManager'
 
+export function ActsAbilityRunningInfosTest() {
 describe('ActsAbilityRunningInfosTest', function () {
 
 
@@ -75,3 +76,4 @@ describe('ActsAbilityRunningInfosTest', function () {
         })
     })
 })
+}

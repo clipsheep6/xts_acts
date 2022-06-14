@@ -16,8 +16,9 @@
 import media from '@ohos.multimedia.media'
 import {toNewPage, clearRouter} from '../../../../../VideoPlayerTestBase.js';
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function VideoPlayerHLSBitrateTest.test() {
 describe('VideoPlayerHLSBitrateTest.test', function () {
     const HTTP_PATH = 'http://123.57.24.33:8000/';
     const PLAY_TIME = 3000;
@@ -176,3 +177,4 @@ describe('VideoPlayerHLSBitrateTest.test', function () {
         })
     })
 })
+}

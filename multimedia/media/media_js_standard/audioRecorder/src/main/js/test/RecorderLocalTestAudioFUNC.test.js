@@ -17,8 +17,9 @@ import media from '@ohos.multimedia.media'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import bundle from '@ohos.bundle'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function RecorderLocalTestAudioFUNC() {
 describe('RecorderLocalTestAudioFUNC', function () {
     let audioRecorder = media.createAudioRecorder();
     const BASIC_PATH = 'file:///data/accounts/account_0/appdata/recorder/'
@@ -829,3 +830,4 @@ describe('RecorderLocalTestAudioFUNC', function () {
         audioRecorder.prepare(newAudioConfig);
     })
 })
+}

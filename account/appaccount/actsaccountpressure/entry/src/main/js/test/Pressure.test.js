@@ -16,7 +16,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import account from '@ohos.account.appAccount'
 import bundle from '@ohos.bundle'
 import featureAbility from '@ohos.ability.featureability'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const STRESSLEVEL = 100;
 const TIMEOUT = 300;
@@ -24,6 +24,7 @@ const ACCOUNTLIMIT = 1000;
 const PERMISSION_USER_SET = 1;
 const PERMISSION_USER_NAME = "ohos.permission.DISTRIBUTED_DATASYNC";
 var tokenID = undefined;
+export function ActsAccountPressure() {
 describe('ActsAccountPressure', function () {
 
     beforeAll(async function (done) {
@@ -783,4 +784,4 @@ describe('ActsAccountPressure', function () {
             done();
         });
     });
-})
+})}

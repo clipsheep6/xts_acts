@@ -14,8 +14,9 @@
  */
 
 import media from '@ohos.multimedia.media'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function AudioRecorderEnumTest() {
 describe('AudioRecorderEnumTest', function () {
     beforeAll(function() {
         console.info('beforeAll case');
@@ -66,4 +67,4 @@ describe('AudioRecorderEnumTest', function () {
         expect(media.AudioEncoder.HE_AAC).assertEqual(4);
         done();
     })
-})
+})}

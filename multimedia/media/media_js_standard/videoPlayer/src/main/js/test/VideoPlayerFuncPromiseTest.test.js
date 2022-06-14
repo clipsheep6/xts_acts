@@ -16,8 +16,9 @@
 import media from '@ohos.multimedia.media'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import * as videoPlayerBase from '../../../../../VideoPlayerTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function VideoPlayerFuncPromiseTest() {
 describe('VideoPlayerFuncPromiseTest', function () {
     const VIDEO_SOURCE = 'H264_AAC.mp4';
     const PLAY_TIME = 3000;
@@ -687,3 +688,4 @@ describe('VideoPlayerFuncPromiseTest', function () {
         videoPlayer.loop = false;
     })
 })
+}

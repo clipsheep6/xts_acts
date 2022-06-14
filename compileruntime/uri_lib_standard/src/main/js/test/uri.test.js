@@ -12,8 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import  uri from '@ohos.uri'
+export function UriTest() {
 describe('UriTest', function () {
 
     /**
@@ -801,4 +802,4 @@ describe('UriTest', function () {
         let res = gaogao.checkIsAbsolute();
         expect(res).assertEqual(true);
     })
-})
+})}

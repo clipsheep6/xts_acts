@@ -12,4 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require('./ContextJsunit.test.js')
+import ActsAmsCallBackFifthScene from './ContextJsunit.test.js'
+export default function testsuite() {
+ActsAmsCallBackFifthScene()
+ActsAmsCallBackFirstScene()
+ActsAmsCallBackFourthScene()
+ActsAmsCallBackSecondScene()
+ActsAmsCallBackThirdScene()
+ActsAmsTestFifthScene()
+ActsAmsTestFirstScene()
+ActsAmsTestFourthScene()
+ActsAmsTestSecondScene()
+ActsAmsTestThirdScene()
+ActsStServiceAbilityTest()
+ActsGetAbilityStateTest()
+ActsDataAbilityHelperTest()
+ActsStServiceAbilityTest()
+ActsStServiceAbilityTest()
+ActsDataUriUtilsTest()
+ActsAbilityRunningInfosTest()
+ActsContextTest()
+}
