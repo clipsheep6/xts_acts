@@ -18,8 +18,13 @@ import featureAbility from '@ohos.ability.featureAbility'
 import fileio from '@ohos.fileio';
 import {describe, it, expect} from 'deccjsunit/index';
 
+import { sleep } from './common.ets';
+
 export default function fileAssetUriTestCallBackTest(abilityContext){
     describe('fileAssetUriTestCallBackTest', function() {
+        beforeEach(async function () {
+           await sleep()
+        });
         var context = featureAbility.getContext();
         console.info('MediaLibraryTest : getMediaLibrary IN');
         var media = mediaLibrary.getMediaLibrary(abilityContext);
@@ -52,7 +57,7 @@ export default function fileAssetUriTestCallBackTest(abilityContext){
                 const uri = firstObject.uri;
                 console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_CALLBACK_005_35  uri:'
                 + uri);
-                const serachUri = 'datashare:///media/image/' + id;
+                const serachUri = 'dataability:///media/image/' + id;
                 console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_CALLBACK_005_35  serachUri:'
                 + serachUri);
 

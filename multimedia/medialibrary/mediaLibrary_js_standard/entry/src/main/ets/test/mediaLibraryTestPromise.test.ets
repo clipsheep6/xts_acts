@@ -16,6 +16,9 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 import fileio from '@ohos.fileio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+
+import { sleep } from './common.ets';
+
 let fileKeyObj = mediaLibrary.FileKey;
 let fetchOp = {
     selections: fileKeyObj.PATH + ' LIKE ? ',
@@ -206,7 +209,9 @@ export default function mediaLibraryTestPromiseTest(abilityContext){
         const media = mediaLibrary.getMediaLibrary(abilityContext);
 
         beforeAll(function () { });
-        beforeEach(function () { });
+        beforeEach(async function () {
+           await sleep()
+        });
         afterEach(function () { });
         afterAll(function () { });
 
@@ -923,4 +928,3 @@ export default function mediaLibraryTestPromiseTest(abilityContext){
         });
     });
 }
-

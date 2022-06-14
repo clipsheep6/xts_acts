@@ -36,6 +36,8 @@ import mediaLibraryTestPromiseTest from './mediaLibraryTestPromise.test.ets'
 import albumTestCallBackTest from './albumTestCallBack.test.ets'
 import albumTestPromiseTest from './albumTestPromise.test.ets'
 import mediaLibraryTestPromiseOnOffTest from './mediaLibraryTestPromiseOnOff.test.ets'
+import SR001Callback from './SR001Callback.test.ets'
+import SR001Promise from './SR001Promise.test.ets'
 
 export default function testsuite(abilityContext) {
   getPermissionTest()
@@ -62,4 +64,8 @@ export default function testsuite(abilityContext) {
   albumTestCallBackTest(abilityContext)
   albumTestPromiseTest(abilityContext)
   mediaLibraryTestPromiseOnOffTest(abilityContext)
+  SR001Callback(abilityContext)
+  SR001Promise(abilityContext)
+
+
 }

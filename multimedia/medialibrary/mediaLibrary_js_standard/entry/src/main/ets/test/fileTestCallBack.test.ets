@@ -16,8 +16,10 @@
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 import fileio from '@ohos.fileio';
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+
+import { sleep } from './common.ets';
+
 let fileKeyObj = mediaLibrary.FileKey;
 let fileType = mediaLibrary.MediaType.FILE;
 let imageType = mediaLibrary.MediaType.IMAGE;
@@ -66,7 +68,9 @@ export default function fileTestCallBackTest(abilityContext){
         var media = mediaLibrary.getMediaLibrary(abilityContext);
         console.info('getMediaLibrary OUT');
         beforeAll(function () { });
-        beforeEach(function () { });
+        beforeEach(async function () {
+           await sleep()
+        });
         afterEach(function () { });
         afterAll(function () { });
 
@@ -738,4 +742,3 @@ export default function fileTestCallBackTest(abilityContext){
         // -------------------------------  file type end -----------------------------
     });
 }
-

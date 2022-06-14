@@ -18,8 +18,13 @@ import featureAbility from '@ohos.ability.featureAbility';
 import fileio from '@ohos.fileio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
+import { sleep } from './common.ets';
+
 export default function fileAssetTestPromiseTest(abilityContext){
     describe('fileAssetTestPromiseTest', function () {
+        beforeEach(async function () {
+           await sleep()
+        });
         var context = featureAbility.getContext();
         console.info('MediaLibraryTest : getMediaLibrary IN');
         var media = mediaLibrary.getMediaLibrary(abilityContext);

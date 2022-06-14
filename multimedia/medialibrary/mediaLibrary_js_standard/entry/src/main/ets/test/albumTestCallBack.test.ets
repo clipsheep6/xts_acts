@@ -15,8 +15,10 @@
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import featureAbility from '@ohos.ability.featureAbility';
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+
+import { sleep } from './common.ets';
+
 let fileKeyObj = mediaLibrary.FileKey;
 let imageType = mediaLibrary.MediaType.IMAGE;
 let videoType = mediaLibrary.MediaType.VIDEO;
@@ -93,7 +95,7 @@ function printAlbumMessage(testNum, album) {
 
 const props = {
     albumName: 'AblumInfo',
-    albumUri: 'datashare:///media/album/',
+    albumUri: 'dataability:///media/album/',
     count: 3
 }
 function checkAlbumAttr(done, album, relativePaths) {
@@ -115,7 +117,9 @@ export default function albumTestCallBackTest(abilityContext){
         var context = featureAbility.getContext();
         var media = mediaLibrary.getMediaLibrary(abilityContext);
         beforeAll(function () { });
-        beforeEach(function () { });
+        beforeEach(async function () {
+           await sleep()
+        });
         afterEach(function () { });
         afterAll(function () { });
 
@@ -883,6 +887,3 @@ export default function albumTestCallBackTest(abilityContext){
         // ------------------------------ 006 test end -------------------------
     });
 }
-
-
-

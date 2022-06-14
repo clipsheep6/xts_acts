@@ -16,6 +16,8 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
+import { sleep } from './common.ets';
+
 export default function albumGetFileAssetsCallbackTest(abilityContext) {
     describe('albumGetFileAssetsCallbackTest', function () {
         var context = featureAbility.getContext();
@@ -24,7 +26,8 @@ export default function albumGetFileAssetsCallbackTest(abilityContext) {
         console.info('MediaLibraryTest : getMediaLibrary OUT');
         beforeAll(function () {
         });
-        beforeEach(function () {
+        beforeEach(async function () {
+            await sleep()
         });
         afterEach(function () {
         });

@@ -15,8 +15,10 @@
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import featureAbility from '@ohos.ability.featureAbility';
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+
+import { sleep } from './common.ets';
+
 let fileKeyObj = mediaLibrary.FileKey;
 
 let fileType = mediaLibrary.MediaType.FILE;
@@ -103,7 +105,9 @@ function printAttr (done, asset, tNum) {
 export default function filekeyTestCallBackTest(abilityContext){
     describe('filekeyTestCallBackTest', function () {
         beforeAll(function () {});
-        beforeEach(function () {});
+        beforeEach(async function () {
+           await sleep()
+        });
         afterEach(function () {});
         afterAll(function () {});
         const media = mediaLibrary.getMediaLibrary(abilityContext);
@@ -325,4 +329,3 @@ export default function filekeyTestCallBackTest(abilityContext){
         });
     });
 }
-

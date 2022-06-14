@@ -17,12 +17,16 @@ import featureAbility from '@ohos.ability.featureAbility';
 import fileio from '@ohos.fileio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
+import { sleep } from './common.ets';
+
 export default function mediaLibraryTestPromiseOnOffTest(abilityContext){
     describe('mediaLibraryTestPromiseOnOffTest', function () {
         const context = featureAbility.getContext();
         const media = mediaLibrary.getMediaLibrary(abilityContext);
         beforeAll(function () { });
-        beforeEach(function () { });
+        beforeEach(async function () {
+           await sleep()
+        });
         afterEach(function () { });
         afterAll(function () { });
         let fileKeyObj = mediaLibrary.FileKey;
@@ -32,20 +36,20 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext){
         let fileType = mediaLibrary.MediaType.FILE;
 
         let imagesfetchOp = {
-            selections: fileKeyObj.MEDIA_TYPE + '= ?',
-            selectionArgs: [imageType.toString()],
+            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+            selectionArgs: ['Pictures/OnOff/', imageType.toString()],
         };
         let videosfetchOp = {
-            selections: fileKeyObj.MEDIA_TYPE + '= ?',
-            selectionArgs: [videoType.toString()],
+            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+            selectionArgs: ['Videos/OnOff/', videoType.toString()],
         };
         let audiosfetchOp = {
-            selections: fileKeyObj.MEDIA_TYPE + '= ?',
-            selectionArgs: [audioType.toString()],
+            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+            selectionArgs: ['Audios/OnOff/', audioType.toString()],
         };
         let filesfetchOp = {
-            selections: fileKeyObj.MEDIA_TYPE + '= ?',
-            selectionArgs: [fileType.toString()],
+            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+            selectionArgs: ['Documents/OnOff/', fileType.toString()],
         };
 
         /**
@@ -82,7 +86,6 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext){
                 done();
             }
         });
-
         /**
          * @tc.number    : SUB_MEDIA_MIDIALIBRARY_PROMISE_ON_002
          * @tc.name      : ON
@@ -643,5 +646,3 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext){
         });
     });
 }
-
-

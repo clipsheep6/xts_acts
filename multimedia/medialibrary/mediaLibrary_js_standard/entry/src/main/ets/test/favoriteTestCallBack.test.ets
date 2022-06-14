@@ -15,28 +15,30 @@
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import featureAbility from '@ohos.ability.featureAbility';
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+
+import { sleep } from './common.ets';
+
 const fileKeyObj = mediaLibrary.FileKey;
 const fileType = mediaLibrary.MediaType.FILE;
 const imageType = mediaLibrary.MediaType.IMAGE;
 const videoType = mediaLibrary.MediaType.VIDEO;
 const audioType = mediaLibrary.MediaType.AUDIO;
 const fileFetchOp = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [fileType.toString()],
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: ['Documents/FavoriteCB/', fileType.toString()],
 };
 const imageFetchOp = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [imageType.toString()],
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: ['Pictures/FavoriteCB/', imageType.toString()],
 };
 const videoFetchOp = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [videoType.toString()],
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: ['Videos/FavoriteCB/', videoType.toString()],
 };
 const audioFetchOp = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [audioType.toString()],
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: ['Audios/FavoriteCB/', audioType.toString()],
 };
 export default function favoriteTestCallBackTest(abilityContext) {
     describe('favoriteTestCallBackTest', function () {
@@ -46,7 +48,8 @@ export default function favoriteTestCallBackTest(abilityContext) {
         console.info('getMediaLibrary OUT');
         beforeAll(function () {
         });
-        beforeEach(function () {
+        beforeEach(async function () {
+            await sleep()
         });
         afterEach(function () {
         });

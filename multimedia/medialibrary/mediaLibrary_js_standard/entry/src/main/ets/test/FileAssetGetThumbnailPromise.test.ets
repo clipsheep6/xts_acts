@@ -16,8 +16,9 @@
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import image from '@ohos.multimedia.image';
 import featureAbility from '@ohos.ability.featureAbility';
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+
+import { sleep } from './common.ets';
 
 export default function FileAssetGetThumbnailPromiseTest(abilityContext){
     describe('FileAssetGetThumbnailPromiseTest', function () {
@@ -33,22 +34,24 @@ export default function FileAssetGetThumbnailPromiseTest(abilityContext){
         let videoType = mediaLibrary.MediaType.VIDEO;
         let audioType = mediaLibrary.MediaType.AUDIO;
         let imageFetchOp = {
-            selections: fileKeyObj.MEDIA_TYPE + '=?',
-            selectionArgs: [imagetype.toString()],
+            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '=?',
+            selectionArgs: ['Pictures/Thumbnail/', imagetype.toString()],
             order: fileKeyObj.DATE_ADDED,
         };
         let videoFetchOp = {
-            selections: fileKeyObj.MEDIA_TYPE + '=?',
-            selectionArgs: [videoType.toString()],
+            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' +  fileKeyObj.MEDIA_TYPE + '=?',
+            selectionArgs: ['Videos/Thumbnail/', videoType.toString()],
             order: fileKeyObj.DATE_ADDED,
         };
         let audioFetchOp = {
-            selections: fileKeyObj.MEDIA_TYPE + '=?',
-            selectionArgs: [audioType.toString()],
+            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' +  fileKeyObj.MEDIA_TYPE + '=?',
+            selectionArgs: ['Audios/Thumbnail/', audioType.toString()],
             order: fileKeyObj.DATE_ADDED,
         };
         beforeAll(function () {});
-        beforeEach(function () {});
+        beforeEach(async function () {
+            await sleep()
+        });
         afterEach(function () {});
         afterAll(function () {});
 
@@ -762,4 +765,3 @@ export default function FileAssetGetThumbnailPromiseTest(abilityContext){
         // ------------------------------audio type end--------------------------
     });
 }
-
