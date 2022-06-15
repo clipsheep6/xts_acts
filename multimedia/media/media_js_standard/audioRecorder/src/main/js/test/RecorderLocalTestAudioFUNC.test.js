@@ -389,7 +389,7 @@ describe('RecorderLocalTestAudioFUNC', function () {
         * @tc.type      : Function
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_RECORDER_CODEC_AAC_0340', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_CODEC_AAC_0350', 0, async function (done) {
         await getFd('test8.m4a');
         audioConfig.uri = fdPath;
         audioConfig.audioSampleRate = 96000; // samplerate 96000
@@ -528,14 +528,14 @@ describe('RecorderLocalTestAudioFUNC', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_Format_M4A_Function_0200
+        * @tc.number    : SUB_MEDIA_RECORDER_Format_M4A_FUNCTION_0200
         * @tc.name      : 02.AAC,mp4
         * @tc.desc      : Audio recordr control test
         * @tc.size      : MediumTest
         * @tc.type      : Function
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_RECORDER_FORMAT_MP4_0200', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_FORMAT_FUNCTION_0200', 0, async function (done) {
         await getFd('test15.m4a');
         audioConfig.uri = fdPath;
         audioConfig.audioEncodeBitRate = 22050; // samplerate 22050
