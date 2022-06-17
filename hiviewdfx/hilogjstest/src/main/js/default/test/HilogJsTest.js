@@ -207,7 +207,7 @@ describe('HilogJsTest', function () {
     it('testHilogJsApi13', 2, function () {
         console.info('testHilogJsApi13 start');
         const res = hilog.isLoggable(0xD001400, "HILOGTEST", 100);
-        expect(res).assertEqual(true);
+        expect(res).assertEqual(false);
         console.info('testHilogJsApi13 end');
     })
 
@@ -243,7 +243,7 @@ describe('HilogJsTest', function () {
     it('testHilogJsApi16', 2, function () {
         console.info('testHilogJsApi16 start');
         try{
-            hilog.debug(0xD001400, "HILOGTEST", "%{public}", ['hilogJs1800'])
+            hilog.debug(0xD001400, "HILOGTEST", "%{public}s", ['hilogJs1800'])
         }catch(error){
             console.log(`testHilogJsApi16 got an error: ${JSON.stringify(error)}`)
             expect().assertFail();
