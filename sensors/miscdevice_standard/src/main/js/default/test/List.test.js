@@ -14,3 +14,4 @@
  */
 
 require('./Vibrator.test.js')
+require('./Subscribe_vibrate.js')
