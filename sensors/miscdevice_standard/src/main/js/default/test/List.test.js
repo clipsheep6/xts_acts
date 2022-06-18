@@ -13,5 +13,5 @@
  * limitations under the License.
  */
 
-require('./Vibrator.test.js')
-require('./Subscribe_vibrate.js')
+require('./Vibrator_old.test.js')
+require('./Vibrator_new.test.js')
