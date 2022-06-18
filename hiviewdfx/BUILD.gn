@@ -18,6 +18,8 @@ group("hiviewdfxtestacts") {
       "hiappeventtest/hiappeventjstest:ActsHiAppeventTest",
       "hicheckertest/hicheckerjstest:hicheckerjstest",
       "hiview/faultlogger/faultloggerjs:faultloggerjs_test",
+      "hilogjstest:ActsHilogJsTest",
+      "hitracechainjstest:ActsHiTraceChainJsTest",
     ]
   }
 }
