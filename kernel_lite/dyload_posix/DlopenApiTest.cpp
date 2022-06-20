@@ -50,14 +50,14 @@ HWTEST_F(DlopenApiTest, testDlopenError, Function | MediumTest | Level3)
 {
     dlerror(); // clear any old error info
     void* h = dlopen(0, 0);
-    EXPECT_TRUE(h == NULL) << "dlopen with flag=0 succeed!";
+    EXPECT_TRUE(h == nullptr) << "dlopen with flag=0 succeed!";
 
     char* errMsg = dlerror();
     LOG("err_msg:%s", errMsg);
-    ASSERT_TRUE(errMsg != NULL) << "dlerror message is empty";
+    ASSERT_TRUE(errMsg != nullptr) << "dlerror message is empty";
 
     char *p = strcasestr(errMsg, "invalid mode");
-    ASSERT_TRUE(p != NULL) << "dlerror msg check failed";
+    ASSERT_TRUE(p != nullptr) << "dlerror msg check failed";
 }
 
 /**

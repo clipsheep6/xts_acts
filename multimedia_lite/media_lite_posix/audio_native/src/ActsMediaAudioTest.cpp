@@ -20,15 +20,12 @@ using namespace std;
 using namespace OHOS::Audio;
 using namespace testing::ext;
 
-
 namespace OHOS {
-const int32_t BUFFER_SIZE = 1024;
 const int32_t SAMPLE_RATE = 24000;
 const int32_t BIT_RATE = 1024;
 const int32_t CHANNEL_COUNT = 2;
 
 void AudioliteTest::SetUpTestCase(void) {}
-
 void AudioliteTest::TearDownTestCase(void) {}
 
 void AudioliteTest::SetUp()
@@ -63,7 +60,7 @@ HWTEST_F(AudioliteTest, audio_buffer_001, TestSize.Level1)
 
     uint64_t frameCnt = audioCapturer->GetFrameCount();
     uint32_t framesize = static_cast<uint32_t>((frameCnt * info.channelCount * info.bitWidth) / sizeof(uint8_t));
-    uint8_t *buffer;
+    uint8_t *buffer = nullptr;
 
     audioCapturer->Read(buffer, framesize, false);
     EXPECT_TRUE(sizeof(buffer) > 0);

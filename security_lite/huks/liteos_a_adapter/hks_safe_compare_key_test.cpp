@@ -82,7 +82,7 @@ static int32_t SafeTestGenerateKey(struct HksBlob *keyAlias)
     uint32_t index = 0;
     uint32_t performTimes = 1;
 
-    struct HksParamSet *paramSet = NULL;
+    struct HksParamSet *paramSet = nullptr;
     struct GenerateKeyParamSetStructure paramStruct = {
         &paramSet,
         g_testGenKeyParams[index].paramSetParams.paramSetExist,
@@ -98,7 +98,7 @@ static int32_t SafeTestGenerateKey(struct HksBlob *keyAlias)
     int32_t ret = TestConstructGenerateKeyParamSet(&paramStruct);
     HKS_TEST_ASSERT(ret == 0);
 
-    struct HksParamSet *paramSetOut = NULL;
+    struct HksParamSet *paramSetOut = nullptr;
     ret = TestConstructGenerateKeyParamSetOut(&paramSetOut,
         g_testGenKeyParams[index].paramSetParamsOut.paramSetExist,
         g_testGenKeyParams[index].paramSetParamsOut.paramSetSize);
@@ -124,14 +124,14 @@ static int32_t CompareKeyData(struct HksBlob *keyAliasOne, struct HksBlob *keyAl
 {
     uint32_t sizeOne = HksTestFileSize(g_storePath, (char *)keyAliasOne->data);
     uint8_t *bufOne = (uint8_t *)HksTestMalloc(sizeOne);
-    if (bufOne == NULL) {
+    if (bufOne == nullptr) {
         return HKS_ERROR_MALLOC_FAIL;
     }
     uint32_t sizeRead = HksTestFileRead(g_storePath, (char *)keyAliasOne->data, 0, bufOne, sizeOne);
 
     uint32_t sizeTwo = HksTestFileSize(g_storePath, (char *)keyAliasTwo->data);
     uint8_t *bufTwo = (uint8_t *)HksTestMalloc(sizeTwo);
-    if (bufTwo == NULL) {
+    if (bufTwo == nullptr) {
         HksTestFree(bufOne);
         return HKS_ERROR_MALLOC_FAIL;
     }

@@ -27,7 +27,7 @@ using namespace testing::ext;
 
 namespace OHOS {
 const int32_t RET_OK = 0;
-const int32_t RET_NOK = -1;
+
 static int32_t g_recorderSourceMaxCount = 4; // max recorder source setting
 
 void RecoderLiteTest::SetUpTestCase(void) {}
@@ -1727,7 +1727,7 @@ HWTEST_F(RecoderLiteTest, medialite_recorder_SetMaxDuration_test_003, Level1)
 HWTEST_F(RecoderLiteTest, medialite_recorder_SetMaxDuration_test_004, Level1)
 {
     Recorder *recorder = new Recorder();
-    int32_t ret = recorder->SetMaxDuration(4294967295);
+    int32_t ret = recorder->SetMaxDuration(2147483647);
     EXPECT_EQ(ERR_INVALID_PARAM, ret);
     delete recorder;
     recorder = NULL;

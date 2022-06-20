@@ -37,7 +37,7 @@ const int32_t FdNull = -1;               // fd is null
 
 /* *
  * get current dir
- * @return  string - current file path of the test suits
+ * @return  string - current file path of the test suites
  */
 std::string GetCurDir();
 
