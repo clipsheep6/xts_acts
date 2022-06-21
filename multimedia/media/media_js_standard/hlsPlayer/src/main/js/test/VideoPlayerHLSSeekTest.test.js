@@ -14,7 +14,7 @@
  */
 
 import media from '@ohos.multimedia.media'
-import {playVideoSource} from '../../../../../VideoPlayerTestBase.js';
+import {testVideoSeek} from '../../../../../VideoPlayerTestBase.js';
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
@@ -47,68 +47,80 @@ describe('VideoPlayerHLSTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS
+        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS_SEEK
         * @tc.name      : 001.test hls
         * @tc.desc      : HLS Video playback control test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('testHlsVideoPlayer', 0, async function (done) {
-        await playVideoSource(HTTP_PATH + '05.hls/1/index.m3u8', 640, 320, 10033, PLAY_TIME, done);
+    it('testHlsVideoPlayerSeek', 0, async function (done) {
+        await testVideoSeek(HTTP_PATH + '05.hls/1/index.m3u8', 10033, PLAY_TIME, done);
         done();
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS_SEPARATE
+        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS_SEEK_SEPARATE
         * @tc.name      : 001.test hls audio video separate
         * @tc.desc      : HLS Video playback control test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('testHlsVideoPlayerSeparate', 0, async function (done) {
-        await playVideoSource(HTTP_PATH + '05.hls/2/index.m3u8', 640, 320, 10033, PLAY_TIME, done);
+    it('testHlsVideoPlayerSeekSeparate', 0, async function (done) {
+        await testVideoSeek(HTTP_PATH + '05.hls/2/index.m3u8', 10033, PLAY_TIME, done);
         done();
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS_VARIANT
+        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS_SEEK_AUDIOONLY
+        * @tc.name      : 001.test hls audio only
+        * @tc.desc      : HLS Video playback control test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level1
+    */
+    it('testHlsVideoPlayerSeekAudioOnly', 0, async function (done) {
+        await testVideoSeek(HTTP_PATH + '05.hls/audio_only/index.m3u8', 10033, PLAY_TIME, done);
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS_SEEK_VARIANT
         * @tc.name      : 001.test hls variant
         * @tc.desc      : HLS Video playback control test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('testHlsVideoPlayerVariant', 0, async function (done) {
-        await playVideoSource(HTTP_PATH + '05.hls/hls_variant/index.m3u8', null, null, 10033, PLAY_TIME, done);
+    it('testHlsVideoPlayerSeekVariant', 0, async function (done) {
+        await testVideoSeek(HTTP_PATH + '05.hls/hls_variant/index.m3u8', 10033, PLAY_TIME, done);
         done();
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS_AUDIOOFF
+        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS_SEEK_AUDIOOFF
         * @tc.name      : 001.test hls variant
         * @tc.desc      : HLS Video playback control test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('testHlsVideoPlayerVariantAudioOff', 0, async function (done) {
-        await playVideoSource(HTTP_PATH + '05.hls/hls_variant2/index.m3u8', null, null, 10080, PLAY_TIME, done);
+    it('testHlsVideoPlayerSeekVariantAudioOff', 0, async function (done) {
+        await testVideoSeek(HTTP_PATH + '05.hls/hls_variant2/index.m3u8', 10080, PLAY_TIME, done);
         done();
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS_CODEC_CHAGNGE
+        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_HLS_SEEK_CODEC_CHAGNGE
         * @tc.name      : 001.test hls variant
         * @tc.desc      : HLS Video playback control test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level2
     */
-    it('testHlsVideoPlayerCodecChange', 0, async function (done) {
-        await playVideoSource(HTTP_PATH + '05.hls/hls_variant3/index.m3u8', null, null, 10080, PLAY_TIME, done);
+    it('testHlsVideoPlayerSeekCodecChange', 0, async function (done) {
+        await testVideoSeek(HTTP_PATH + '05.hls/hls_variant3/index.m3u8', 10080, PLAY_TIME, done);
         done();
     })
-
 })
