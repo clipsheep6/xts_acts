@@ -801,7 +801,6 @@ HWTEST_F(CapabilityTestSuite, CapabilityTest1500, Reliability | MediumTest | Lev
             sizeof(struct __user_cap_header_struct));
         if (result != EOK) {
             LOG("CapgetWithAllCap memset_s failed");
-            return FALSE;
         };
         capheader.version = _LINUX_CAPABILITY_VERSION_3;
         capheader.pid = 0;
@@ -810,7 +809,6 @@ HWTEST_F(CapabilityTestSuite, CapabilityTest1500, Reliability | MediumTest | Lev
             LINUX_FULL_CAP, CAP_NUM * sizeof(struct __user_cap_data_struct));
         if (result != EOK) {
             LOG("CapgetWithAllCap memset_s failed");
-            return FALSE;
         };
         capdata[CAP_TO_INDEX(INVALID_CAP_TO_INDEX)].permitted &= ~CAP_TO_MASK(INVALID_CAP_TO_INDEX);
         capdata[CAP_TO_INDEX(INVALID_CAP_TO_INDEX)].effective &= ~CAP_TO_MASK(INVALID_CAP_TO_INDEX);
@@ -1136,7 +1134,6 @@ HWTEST_F(CapabilityTestSuite, CapabilityTest2300, Security | MediumTest | Level1
         sizeof(struct __user_cap_header_struct));
     if (result != EOK) {
         LOG("CapgetWithAllCap memset_s failed");
-        return FALSE;
     };
     capheader.version = _LINUX_CAPABILITY_VERSION_3;
     struct __user_cap_data_struct capdataget[CAP_NUM] = { { 0 }, { 0 } };
@@ -1144,7 +1141,6 @@ HWTEST_F(CapabilityTestSuite, CapabilityTest2300, Security | MediumTest | Level1
         0, CAP_NUM * sizeof(struct __user_cap_data_struct));
     if (result != EOK) {
         LOG("CapgetWithAllCap memset_s failed");
-        return FALSE;
     };
     pid_t pid = getpid();
     for (int num = OTHER_PID; num <= pid; num++) {
