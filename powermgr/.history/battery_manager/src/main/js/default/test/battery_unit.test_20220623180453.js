@@ -501,7 +501,7 @@ describe('appInfoTest', function () {
         expect(Extra_Present = 9).assertTrue();
       })
 	  
-	/**
+	     /**
      * @tc.number battery_manager_js_4400
      * @tc.name ennum_ChangedCode_test_Extra_Charge_Counter
      * @tc.desc Battry Present Interface Test
@@ -512,7 +512,7 @@ describe('appInfoTest', function () {
         expect(Extra_Charge_Counter = 8).assertTrue();
       })
 	  
-	/**
+	      /**
      * @tc.number battery_manager_js_4500
      * @tc.name ennum_ChangedCode_test_Extra_Technology
      * @tc.desc Battry Present Interface Test
