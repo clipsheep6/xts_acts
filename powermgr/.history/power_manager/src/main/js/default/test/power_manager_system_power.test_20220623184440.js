@@ -29,7 +29,7 @@ describe('appInfoTest', function () {
         function shutPromise(){
             new Promise((resolve,reject)=>{
                 power.isScreenOn(()=>{
-                    if(error){
+                    if(typeof error === "undefined"){
                         console.log('devices shutdown error');
                         setTimeout(()=>{reject()},500);
                     }else{
