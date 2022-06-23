@@ -288,7 +288,7 @@ describe('appInfoTest', function () {
     it('nowCurrent_test', 0, function () {
         let nowCurrent = batteryInfo.nowCurrent;
         console.info('nowCurrent = ' + nowCurrent);
-        expect((nowCurrent >= -20000 && nowCurrent <= 20000)).assertTrue();
+        expect(nowCurrent >= -20000 && nowCurrent <= 20000).assertTrue();
     })
 
     /**
@@ -401,8 +401,8 @@ describe('appInfoTest', function () {
         console.info('remainingChargeTime = ' + remainingChargeTime);
         expect(remainingChargeTime >= 0).assertTrue();
       })
-	  
-	   /**
+    
+    	   /**
      * @tc.number battery_manager_js_3500
      * @tc.name ennum_ChangedCode_test_extra_soc
      * @tc.desc Battry Present Interface Test
@@ -520,6 +520,14 @@ describe('appInfoTest', function () {
         console.info('extra_technology_test = ' + extra_technology);
         expect(extra_technology = 10).assertTrue();
       })
-	   
-	  
+       /**
+     * @tc.number battery_manager_js_3500
+     * @tc.name ennum_ChangedCode_test_extra_soc
+     * @tc.desc Battry Present Interface Test
+     */
+    it('ennum_ChangedCode_test_extra_soc', 0, function () {
+        let extra_soc = batteryInfo.CommonEventBatteryChangedCode.EXTRA_SOC;
+        console.info('extra_soc_test = ' + extra_soc);
+        expect(extra_soc = 0).assertTrue();
+    })
 })
