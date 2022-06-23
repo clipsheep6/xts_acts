@@ -14,12 +14,13 @@
  */
 
 import pkg from '@system.package'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 const NUM_TWO = 2;
 const ERR_CODE = 202;
 const ERR_MERSSAGE = 'value is not an available number';
 
+export function ActsBmsHasInstalldTest() {
 describe('ActsBmsHasInstalldTest', function () {
 
     /**
@@ -162,4 +163,4 @@ describe('ActsBmsHasInstalldTest', function () {
             }
         })
     });
-})
+})}

@@ -16,8 +16,9 @@
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import featureAbility from '@ohos.ability.featureAbility'
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
+export function ActsGetAbilityStateTest() {
 describe('ActsGetAbilityStateTest', function () {
 
 let gSetTimeout = 1000
@@ -97,4 +98,4 @@ it('ACTS_AGetAbilityState_0400', 0, async function (done) {
     }
 })
 
-})
+})}

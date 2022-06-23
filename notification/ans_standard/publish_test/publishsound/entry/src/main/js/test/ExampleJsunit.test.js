@@ -14,7 +14,8 @@
  */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+export function ActsAnsPublishSoundTest() {
 describe('ActsAnsPublishSoundTest', function () {
     console.info("===========ActsAnsPublishSoundTest start====================>");
     var timeout = 1000
@@ -1022,3 +1023,4 @@ describe('ActsAnsPublishSoundTest', function () {
         }),timeout);
     });
 }) 
+}

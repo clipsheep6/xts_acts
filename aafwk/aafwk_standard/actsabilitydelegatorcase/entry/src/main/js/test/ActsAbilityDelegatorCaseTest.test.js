@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import featureAbility from '@ohos.ability.featureAbility'
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import bundle from '@ohos.bundle'
 
+export function ActsStServiceAbilityTest() {
 describe('ActsStServiceAbilityTest', function () {
     let gSetTimeout = 1000
     beforeAll(async (done) => {
@@ -400,4 +401,4 @@ describe('ActsStServiceAbilityTest', function () {
             done();
         }
     })
-})
+})}

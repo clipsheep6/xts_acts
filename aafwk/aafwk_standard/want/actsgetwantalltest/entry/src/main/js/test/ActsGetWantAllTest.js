@@ -14,8 +14,9 @@
  */
 import featureAbility from '@ohos.ability.featureAbility'
 import wantConstant from '@ohos.ability.wantConstant'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
+export function ActsGetWantTest() {
 describe('ActsGetWantTest', function () {
     beforeAll(async (done) => {
         console.info('ActsGetWantTest begin')
@@ -1423,3 +1424,4 @@ describe('ActsGetWantTest', function () {
         done()
         })
 })
+}

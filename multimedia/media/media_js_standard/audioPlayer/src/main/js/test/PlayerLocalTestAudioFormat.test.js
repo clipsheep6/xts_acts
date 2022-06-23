@@ -15,8 +15,9 @@
 
 import media from '@ohos.multimedia.media'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function PlayerLocalTestAudioFormat() {
 describe('PlayerLocalTestAudioFormat', function () {
     let audioSource = '01.mp3';
     const MAX_VOLUME = 1;
@@ -510,3 +511,4 @@ describe('PlayerLocalTestAudioFormat', function () {
         playSource('62.m4a', done);
     })
 })
+}

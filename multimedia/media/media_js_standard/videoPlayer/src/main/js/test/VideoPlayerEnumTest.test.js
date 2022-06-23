@@ -14,8 +14,9 @@
  */
 
 import media from '@ohos.multimedia.media'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function VideoPlayerEnumTest() {
 describe('VideoPlayerEnumTest', function () {
     beforeAll(function() {
         console.info('beforeAll case');
@@ -167,4 +168,4 @@ describe('VideoPlayerEnumTest', function () {
         expect(media.MediaDescriptionKey.MD_KEY_AUD_SAMPLE_RATE).assertEqual("sample_rate");
         done();
     })
-})
+})}
