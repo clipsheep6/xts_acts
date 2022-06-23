@@ -2,9 +2,9 @@
     "description": "Configuration for hjunit demo Tests",
     "driver": {
         "type": "JSUnitTest",
-        "test-timeout": "1800000",
+        "test-timeout": "360000",
         "package": "com.example.accessiblesendevent",
-        "shell-timeout": "1800000"
+        "shell-timeout": "360000"
     },
     "kits": [
         {
