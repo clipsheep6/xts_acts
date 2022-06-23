@@ -15,7 +15,8 @@
 
 
 import notification from '@system.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+export function ActsNotificationShowTest() {
 describe('ActsNotificationShowTest', function () {
     console.info("===========ActsNotificationShowTest start====================>");
 
@@ -245,3 +246,4 @@ describe('ActsNotificationShowTest', function () {
         done();
     })
 })
+}

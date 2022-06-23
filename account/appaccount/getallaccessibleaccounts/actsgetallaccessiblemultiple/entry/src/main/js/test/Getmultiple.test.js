@@ -14,9 +14,10 @@
  */
 import account from '@ohos.account.appAccount'
 import featureAbility from '@ohos.ability.featureability'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const TIMEOUT = 5000;
+export function ActsGetAllAccessibleMultiple() {
 describe('ActsGetAllAccessibleMultiple', function () {
     beforeAll(async function (done) {
         console.debug("====>startAbility first start====");
@@ -125,4 +126,4 @@ describe('ActsGetAllAccessibleMultiple', function () {
         console.debug("====>ActsGetAllAccessibleAccounts_0100 end====");
         done();
     });
-})
+})}

@@ -24,7 +24,9 @@ ohos_js_hap_suite("audio_decoder_js_hap") {
   hap_name = "ActsAudioDecoderJsTest"
 }
 ohos_js_assets("audio_decoder_js_assets") {
-  source_dir = "./src/main/js/default"
+  js2abc=true
+  hap_profile = "./src/main/config.json"
+  source_dir = "./src/main/js"
 }
 ohos_resources("audio_decoder_resources") {
   sources = [ "./src/main/resources" ]

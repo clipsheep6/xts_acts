@@ -14,8 +14,9 @@
  */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var ERR_ANS_INVALID_PARAM = 67108867
+export function ActsAnsDoNotDisturbTest() {
 describe('ActsAnsDoNotDisturbTest', function () {
     console.info("===ActsAnsDoNotDisturbTest start===>");
     function connectCallbacka() {
@@ -78,3 +79,4 @@ describe('ActsAnsDoNotDisturbTest', function () {
 })
 
 
+}

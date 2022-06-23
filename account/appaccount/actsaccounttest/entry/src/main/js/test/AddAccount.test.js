@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 import account from '@ohos.account.appAccount'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const NAMELIMIT = 512;
 const LENGTHLIMIT = 1024;
+export function ActsAccountAddAccount() {
 describe('ActsAccountAddAccount', function () {
 
     /*
@@ -643,4 +644,4 @@ describe('ActsAccountAddAccount', function () {
         console.debug("====>ActsAccountAddAccount_2800 end====");
         done();
     });
-})
+})}

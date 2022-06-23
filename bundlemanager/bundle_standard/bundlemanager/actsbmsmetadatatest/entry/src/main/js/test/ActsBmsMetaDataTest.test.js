@@ -15,7 +15,7 @@
 
 import bundle from '@ohos.bundle'
 import account from '@ohos.account.osAccount'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 const BUNDLE_NAME1 = 'com.example.third1';
 const BUNDLE_NAME2 = 'com.example.third5';
@@ -31,6 +31,7 @@ const ABILITY_NAME5 = 'com.example.vendor1.MainAbility';
 const ABILITY_NAME6 = 'com.example.l3jsdemo.MainAbility';
 let userId = 0;
 
+export function ActsBmsMetaDataTest() {
 describe('ActsBmsMetaDataTest', function () {
 
     beforeAll(async function (done) {
@@ -224,4 +225,4 @@ describe('ActsBmsMetaDataTest', function () {
             done();
         });
     });
-})
+})}

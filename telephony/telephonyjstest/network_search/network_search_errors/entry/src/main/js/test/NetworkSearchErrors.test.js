@@ -15,8 +15,9 @@
 
 import radio from '@ohos.telephony.radio';
 import observer from '@ohos.telephony.observer';
-import { describe, beforeAll, afterAll, it, expect, afterEach } from 'deccjsunit/index';
+import { describe, beforeAll, afterAll, it, expect, afterEach } from '@ohos/hypium';
 
+export function ActsNetworkSearchTest() {
 describe('ActsNetworkSearchTest', function () {
 
     const SLOT_0 = 0;
@@ -487,3 +488,4 @@ describe('ActsNetworkSearchTest', function () {
     });
 
 });
+}

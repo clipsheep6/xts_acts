@@ -15,8 +15,9 @@
 
 import notify from '@ohos.notification';
 import image from '@ohos.multimedia.image'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var timeout = 500;
+export function ActsAnsConversationTest() {
 describe('ActsAnsConversationTest', function () {
     console.info("===========ActsAnsConversationTest start====================>");
 
@@ -136,4 +137,4 @@ describe('ActsAnsConversationTest', function () {
             done();
         }),timeout);
     })
-})
+})}

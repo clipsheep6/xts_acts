@@ -16,10 +16,11 @@
 import zlib from '@ohos.zlib'
 import fileio from '@ohos.fileio'
 import featureAbility from '@ohos.ability.featureAbility'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var dir = "";
 var infos = "";
 
+export function ActsZlibTest() {
 describe('ActsZlibTest', function () {
     beforeEach(async (done) => {
       var context = featureAbility.getContext();
@@ -1095,3 +1096,4 @@ it('ACTS_ZipFile_5000', 0, async function (done) {
 })
 
 
+}

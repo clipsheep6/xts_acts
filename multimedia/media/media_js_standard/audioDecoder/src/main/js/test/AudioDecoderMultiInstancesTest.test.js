@@ -15,8 +15,9 @@
 
 import media from '@ohos.multimedia.media'
 import fileio from '@ohos.fileio'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function AudioDecoderMultiInstances() {
 describe('AudioDecoderMultiInstances', function () {
     const AUDIOPATH = 'AAC_48000_32_1.aac';
     let readStreamSync;
@@ -268,4 +269,4 @@ describe('AudioDecoderMultiInstances', function () {
         }
         done();
     })
-})
+})}
