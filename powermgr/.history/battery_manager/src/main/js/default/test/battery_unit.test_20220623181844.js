@@ -409,8 +409,8 @@ describe('appInfoTest', function () {
      */
     it('ennum_ChangedCode_test_Extra_Soc', 0, function () {
         let ExtraSoc = batteryInfo.CommonEventBatteryChangedCode.EXTRA_SOC;
-        console.info('Extra_Soc_Test = ' + ExtraSoc);
-        expect(ExtraSoc = 0).assertTrue();
+        console.info('Extra_Soc_Test = ' + Extra_Soc);
+        expect(Extra_Soc = 0).assertTrue();
       })
 
 	/**

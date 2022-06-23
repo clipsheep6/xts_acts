@@ -408,9 +408,9 @@ describe('appInfoTest', function () {
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Soc', 0, function () {
-        let ExtraSoc = batteryInfo.CommonEventBatteryChangedCode.EXTRA_SOC;
-        console.info('Extra_Soc_Test = ' + ExtraSoc);
-        expect(ExtraSoc = 0).assertTrue();
+        let Extra_Soc = batteryInfo.CommonEventBatteryChangedCode.EXTRA_SOC;
+        console.info('Extra_Soc_Test = ' + Extra_Soc);
+        expect(Extra_Soc = 0).assertTrue();
       })
 
 	/**
@@ -419,9 +419,9 @@ describe('appInfoTest', function () {
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Voltage', 0, function () {
-        let ExtraVoltage = batteryInfo.CommonEventBatteryChangedCode.EXTRA_VOLTAGE;
-        console.info('Extra_Voltage_test = ' + ExtraVoltage);
-        expect(ExtraVoltage = 1).assertTrue();
+        let Extra_Voltage = batteryInfo.CommonEventBatteryChangedCode.EXTRA_VOLTAGE;
+        console.info('Extra_Voltage_test = ' + Extra_Voltage);
+        expect(Extra_Voltage = 1).assertTrue();
       })
 	  
 	/**
@@ -430,9 +430,9 @@ describe('appInfoTest', function () {
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Temperature', 0, function () {
-        let ExtraTemperature = batteryInfo.CommonEventBatteryChangedCode.EXTRA_TEMPERATURE;
-        console.info('Extra_Temperature_test = ' + ExtraTemperature);
-        expect(ExtraTemperature = 2).assertTrue();
+        let Extra_Temperature = batteryInfo.CommonEventBatteryChangedCode.EXTRA_TEMPERATURE;
+        console.info('Extra_Temperature_test = ' + Extra_Temperature);
+        expect(Extra_Temperature = 2).assertTrue();
       })
 
 	/**
@@ -441,9 +441,9 @@ describe('appInfoTest', function () {
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Health_State', 0, function () {
-        let ExtraHealthState = batteryInfo.CommonEventBatteryChangedCode.EXTRA_HEALTH_STATE;
-        console.info('Extra_Health_State_test = ' + ExtraHealthState);
-        expect(ExtraHealthState = 3).assertTrue();
+        let Extra_Health_State = batteryInfo.CommonEventBatteryChangedCode.EXTRA_HEALTH_STATE;
+        console.info('Extra_Health_State_test = ' + Extra_Health_State);
+        expect(Extra_Health_State = 3).assertTrue();
       })
 	  
 	/**
@@ -452,8 +452,8 @@ describe('appInfoTest', function () {
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Plugged_Type', 0, function () {
-        let ExtraPluggedType = batteryInfo.CommonEventBatteryChangedCode.EXTRA_PLUGGED_TYPE;
-        console.info('Extra_Plugged_Type_test = ' + ExtraPluggedType);
+        let Extra_Plugged_Type = batteryInfo.CommonEventBatteryChangedCode.EXTRA_PLUGGED_TYPE;
+        console.info('Extra_Plugged_Type_test = ' + Extra_Plugged_Type);
         expect(ExtraPluggedType = 4).assertTrue();
       })
 	  

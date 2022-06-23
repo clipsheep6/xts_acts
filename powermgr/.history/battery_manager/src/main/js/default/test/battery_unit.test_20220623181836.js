@@ -408,9 +408,9 @@ describe('appInfoTest', function () {
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Soc', 0, function () {
-        let ExtraSoc = batteryInfo.CommonEventBatteryChangedCode.EXTRA_SOC;
-        console.info('Extra_Soc_Test = ' + ExtraSoc);
-        expect(ExtraSoc = 0).assertTrue();
+        let Extra_Soc = batteryInfo.CommonEventBatteryChangedCode.EXTRA_SOC;
+        console.info('Extra_Soc_Test = ' + Extra_Soc);
+        expect(Extra_Soc = 0).assertTrue();
       })
 
 	/**
@@ -419,8 +419,8 @@ describe('appInfoTest', function () {
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Voltage', 0, function () {
-        let ExtraVoltage = batteryInfo.CommonEventBatteryChangedCode.EXTRA_VOLTAGE;
-        console.info('Extra_Voltage_test = ' + ExtraVoltage);
+        let Extra_Voltage = batteryInfo.CommonEventBatteryChangedCode.EXTRA_VOLTAGE;
+        console.info('Extra_Voltage_test = ' + Extra_Voltage);
         expect(ExtraVoltage = 1).assertTrue();
       })
 	  
