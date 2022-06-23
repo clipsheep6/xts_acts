@@ -18,8 +18,9 @@ import fileio from '@ohos.fileio'
 import featureAbility from '@ohos.ability.featureAbility'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function AudioDecoderFormatCallback() {
 describe('AudioDecoderFormatCallback', function () {
     const AUDIOPATH1 = 'AAC_48000_32_1.aac';
     const AUDIOPATH2 = 'FLAC_48000_32_1.flac'
@@ -990,4 +991,4 @@ describe('AudioDecoderFormatCallback', function () {
             eventEmitter.emit('getAudioDecoderCaps');
         })
     })
-})
+})}

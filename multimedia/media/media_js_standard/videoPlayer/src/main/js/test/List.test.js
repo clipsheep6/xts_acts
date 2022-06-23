@@ -15,5 +15,3 @@
 
 require('./VideoPlayerFuncCallbackTest.test.js')
 require('./VideoPlayerFuncPromiseTest.test.js')
-require('./VideoPlayerAPICallbackTest.test.js')
-require('./VideoPlayerEnumTest.test.js')

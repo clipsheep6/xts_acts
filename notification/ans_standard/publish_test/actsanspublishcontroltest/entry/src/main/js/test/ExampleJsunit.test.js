@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import notification from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 var notificationSubscriberInfo ={
     bundleNames: ["com.example.actsanspublishcontroltest"]
@@ -187,6 +187,7 @@ function publish_the_nineteenth_notification(err){
     console.debug("====>publish the nineteenth notification 19 19 err: ====>" + JSON.stringify(err));
 }
 
+export function ActsAnsPublishControlTest() {
 describe('ActsAnsPublishControlTest', function () {
 
     /*
@@ -448,4 +449,4 @@ describe('ActsAnsPublishControlTest', function () {
             id: 20
         }, publish_the_twentieth_notification);
     })
-})
+})}

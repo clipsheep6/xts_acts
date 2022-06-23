@@ -17,8 +17,9 @@ import media from '@ohos.multimedia.media'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import {playAudioSource} from '../../../../../AudioPlayerTestBase.js';
 import {playVideoSource} from '../../../../../VideoPlayerTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function HttpPlayerCompatibilityTest() {
 describe('HttpPlayerCompatibilityTest', function () {
     const HTTP_PATH = 'http://123.57.24.33:8000/';
     const VIDEO_PATH = HTTP_PATH + '01.video/';
@@ -269,3 +270,4 @@ describe('HttpPlayerCompatibilityTest', function () {
         await playAudioSource(path, 10009, PLAY_TIME, true, done);
     })
 })
+}

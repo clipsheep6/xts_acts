@@ -12,4 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require('./StServiceAbilityClient.test.js')
+import ActsAmsCallBackFifthScene from './StServiceAbilityClient.test.js'
+export default function testsuite() {
+ActsAmsCallBackFifthScene()
+ActsAmsCallBackFirstScene()
+ActsAmsCallBackFourthScene()
+ActsAmsCallBackSecondScene()
+ActsAmsCallBackThirdScene()
+ActsAmsTestFifthScene()
+ActsAmsTestFirstScene()
+ActsAmsTestFourthScene()
+ActsAmsTestSecondScene()
+ActsAmsTestThirdScene()
+ActsStServiceAbilityTest()
+ActsGetAbilityStateTest()
+ActsDataAbilityHelperTest()
+ActsStServiceAbilityTest()
+}

@@ -14,7 +14,7 @@
  */
 import featureAbility from '@ohos.ability.featureAbility'
 import appManager from "@ohos.application.appManager"
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 let abilityNameList = [
     "com.ohos.launcher.MainAbility",
@@ -38,6 +38,7 @@ let bundleNameList = [
     "com.example.actsamscallbackfifthscene"
 ]
 
+export function ActsAmsCallBackFifthScene() {
 describe('ActsAmsCallBackFifthScene', function () {
     console.info('----ActsAmsCallBackFifthScene----');
     beforeAll(async function (done) {
@@ -141,4 +142,4 @@ describe('ActsAmsCallBackFifthScene', function () {
             }
         );
     })
-})
+})}

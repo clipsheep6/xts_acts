@@ -14,7 +14,7 @@
  */
 import notify from '@ohos.notification'
 import image from '@ohos.multimedia.image'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var BufferA
 var BufferB
 var BufferC
@@ -27,6 +27,7 @@ var pubimageA
 var pubimageB
 var pubimageC
 var pubimageD
+export function ActsAnsPublishImageTest() {
 describe('ActsAnsPublishImageTest', function () {
     console.info("===ActsAnsPublishImageTest start===>");
 
@@ -135,3 +136,4 @@ describe('ActsAnsPublishImageTest', function () {
    })
 
 
+}

@@ -14,8 +14,9 @@
  */
 import featureAbility from '@ohos.ability.featureAbility'
 import commonEvent from '@ohos.commonEvent'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
+export function ActsStServiceAbilityTest() {
 describe('ActsStServiceAbilityTest', function () {
     let bundleName = "com.amsst.stserviceabilityserver";
     let abilityName = "com.amsst.stserviceabilityserver.ServiceAbility";
@@ -427,4 +428,4 @@ it("ACTS_AAbilityStartSettingNew_0500",0, async function(done){
             done();
         }
     })
-})
+})}

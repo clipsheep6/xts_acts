@@ -14,9 +14,10 @@
  */
 import account from '@ohos.account.appAccount'
 import featureAbility from '@ohos.ability.featureability'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const TIMEOUT = 2000;
+export function ActsGetAllAccessibleAccounts() {
 describe('ActsGetAllAccessibleAccounts', function () {
 
     /*
@@ -598,4 +599,4 @@ describe('ActsGetAllAccessibleAccounts', function () {
             done();
         }, TIMEOUT);
     });
-})
+})}

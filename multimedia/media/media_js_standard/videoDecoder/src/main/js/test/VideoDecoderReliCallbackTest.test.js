@@ -17,7 +17,7 @@ import media from '@ohos.multimedia.media'
 import fileio from '@ohos.fileio'
 import router from '@system.router'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const DECODE_STEP = {
     WAIT_FOR_EOS : 'waitForEOS',
@@ -33,6 +33,7 @@ const DECODE_STEP = {
     RELEASE : 'release',
 }
 
+export function VideoDecoderReliCallbackTest() {
 describe('VideoDecoderReliCallbackTest', function () {
     let videoDecodeProcessor = null;
     let readStreamSync = undefined;
@@ -1281,3 +1282,4 @@ describe('VideoDecoderReliCallbackTest', function () {
         toCreateVideoDecoderByMime('video/avc', mySteps, done);
     })
 })
+}
