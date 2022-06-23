@@ -28,8 +28,8 @@ describe('appInfoTest', function () {
      it('creat_shutdownDevice_test01', 0, async function () {
         function shutPromise(){
             new Promise((resolve,reject)=>{
-                power.isScreenOn((error, screenOn)=>{
-                    if(typeof error === "undefined"){
+                power.isScreenOn(()=>{
+                    if(data){
                         console.log('devices shutdown error');
                         setTimeout(()=>{reject()},500);
                     }else{
@@ -80,7 +80,7 @@ describe('appInfoTest', function () {
             })
         }, 2000); 
     })
-
+    
     /**
      * @tc.number power_js_003
      * @tc.name power_creat_rebootDeviceDevice_test
