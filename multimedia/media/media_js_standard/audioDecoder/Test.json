@@ -1,10 +1,11 @@
 {
     "description": "Configuration for audioDecoder Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "2000000",
-        "package": "ohos.acts.multimedia.audio.audiodecoder",
-        "shell-timeout": "60000"
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.multimedia.audio.audiodecoder",
+        "package-name": "ohos.acts.multimedia.audio.audiodecoder"
     },
     "kits": [
         {
@@ -21,13 +22,11 @@
                 "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.audiodecoder/haps/entry/files/",
                 "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.audio.audiodecoder/haps/entry/files/"
             ],
-            "teardown-command":[
-            ]
+            "teardown-command": []
         },
         {
             "type": "PushKit",
-            "pre-push": [
-            ],
+            "pre-push": [],
             "push": [
                 "./resource/audio/audioDecode/AAC_48000_32_1.aac ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audiodecoder/haps/entry/files/",
                 "./resource/audio/audioDecode/AAC_16000_1.aac ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audiodecoder/haps/entry/files/",
@@ -46,8 +45,7 @@
                 "killall com.ohos.medialibrary.MediaScannerAbilityA",
                 "aa start  -a MediaScannerAbility -b com.ohos.medialibrary.MediaScannerAbilityA"
             ],
-            "teardown-command":[
-            ]
+            "teardown-command": []
         }
     ]
 }

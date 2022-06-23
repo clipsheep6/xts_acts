@@ -17,8 +17,9 @@ import media from '@ohos.multimedia.media'
 import camera from '@ohos.multimedia.camera'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import * as videoRecorderBase from '../../../../../VideoRecorderTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function VideoRecorderFuncPromiseTest() {
 describe('VideoRecorderFuncPromiseTest', function () {
     const RECORDER_TIME = 3000;
     const PAUSE_TIME = 1000;
@@ -1774,3 +1775,4 @@ describe('VideoRecorderFuncPromiseTest', function () {
         done();
     })
 })
+}

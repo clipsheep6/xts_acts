@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 import dataUriUtils from '@ohos.ability.dataUriUtils'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function ActsDataUriUtilsTest() {
 describe('ActsDataUriUtilsTest', function () {
 
 /*
@@ -367,3 +368,4 @@ describe('ActsDataUriUtilsTest', function () {
         done();
     })
 })
+}

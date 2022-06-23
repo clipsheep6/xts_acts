@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 import account from '@ohos.account.appAccount'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const NAMELIMIT = 512;
 const TIMEOUT = 5000;
+export function ActsAccountDeleteAccount() {
 describe('ActsAccountDeleteAccount', function () {
     function sleep(delay) {
         return new Promise((resolve, reject) => {
@@ -242,3 +243,4 @@ describe('ActsAccountDeleteAccount', function () {
         }
     })
 })
+}

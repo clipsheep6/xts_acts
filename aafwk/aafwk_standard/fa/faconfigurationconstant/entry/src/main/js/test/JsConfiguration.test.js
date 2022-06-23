@@ -14,8 +14,9 @@
  */
 
 import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
+export function ConfigurationTest() {
 describe('ConfigurationTest', function () {
 
     /*
@@ -186,4 +187,4 @@ describe('ConfigurationTest', function () {
         done();
         console.log("------------end SUB_AA_OpenHarmony_ConfigurationConstant_ScreenDensity_0700-------------");
     });
-})
+})}

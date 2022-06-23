@@ -14,8 +14,9 @@
  */
 
 import media from '@ohos.multimedia.media'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function AudioDecoderEnum() {
 describe('AudioDecoderEnum', function () {
 
     beforeAll(function() {
@@ -145,4 +146,4 @@ describe('AudioDecoderEnum', function () {
         expect(media.AVCodecType.AVCODEC_TYPE_AUDIO_DECODER).assertEqual(3);
         done();
     })
-})
+})}
