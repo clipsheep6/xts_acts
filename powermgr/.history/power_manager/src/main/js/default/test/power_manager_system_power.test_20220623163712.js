@@ -14,6 +14,7 @@
  */
 
 import power from '@ohos.power';
+import 'ohos.permission.POWER_REBOOT'
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 
