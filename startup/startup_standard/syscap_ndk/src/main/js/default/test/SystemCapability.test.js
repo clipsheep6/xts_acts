@@ -20,6 +20,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 describe('SystemCapabilityTest', function () {
 
     console.info('SystemCapabilityTest start################################start');
+    
     /**
      * @tc.number    SUB_STARTUP_JS_SYSTEM_CAPABILITY_001
      * @tc.name      testSysCaps01
