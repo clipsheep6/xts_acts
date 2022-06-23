@@ -14,8 +14,9 @@
  */
 
 import netHttp from '@ohos.net.http';
-import {describe, afterAll, it, expect, beforeAll, afterEach} from 'deccjsunit/index';
+import {describe, afterAll, it, expect, beforeAll, afterEach} from '@ohos/hypium';
 
+export function Telephony_NETSTACK_HTTPTest() {
 describe('Telephony_NETSTACK_HTTPTest',function(){
 
     /**
@@ -137,3 +138,4 @@ describe('Telephony_NETSTACK_HTTPTest',function(){
         })
     });
 });
+}

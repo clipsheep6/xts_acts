@@ -20,8 +20,9 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import bundle from '@ohos.bundle'
 import featureAbility from '@ohos.ability.featureAbility'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function videoEncoderSoftwareMultiInstances() {
 describe('videoEncoderSoftwareMultiInstances', function () {
     const events = require('events');
     const eventEmitter = new events.EventEmitter();
@@ -391,4 +392,4 @@ describe('videoEncoderSoftwareMultiInstances', function () {
     })
 })
 
-  
+  }

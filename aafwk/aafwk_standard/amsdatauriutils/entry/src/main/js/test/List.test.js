@@ -12,4 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require('./DataUriUtilsJsSt.test.js')
+import ActsAmsCallBackFifthScene from './DataUriUtilsJsSt.test.js'
+export default function testsuite() {
+ActsAmsCallBackFifthScene()
+ActsAmsCallBackFirstScene()
+ActsAmsCallBackFourthScene()
+ActsAmsCallBackSecondScene()
+ActsAmsCallBackThirdScene()
+ActsAmsTestFifthScene()
+ActsAmsTestFirstScene()
+ActsAmsTestFourthScene()
+ActsAmsTestSecondScene()
+ActsAmsTestThirdScene()
+ActsStServiceAbilityTest()
+ActsGetAbilityStateTest()
+ActsDataAbilityHelperTest()
+ActsStServiceAbilityTest()
+ActsStServiceAbilityTest()
+ActsDataUriUtilsTest()
+}

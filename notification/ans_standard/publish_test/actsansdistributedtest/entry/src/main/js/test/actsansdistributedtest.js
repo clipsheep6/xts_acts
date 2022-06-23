@@ -14,9 +14,10 @@
  */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var timeout = 1800;
 
+export function ActsAnsDistributeTest() {
 describe('ActsAnsDistributeTest', function () {
 
     /*
@@ -161,3 +162,4 @@ describe('ActsAnsDistributeTest', function () {
   })
 
 
+}

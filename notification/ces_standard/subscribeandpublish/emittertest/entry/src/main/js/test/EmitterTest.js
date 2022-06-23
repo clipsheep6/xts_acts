@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 import emitter from '@ohos.events.emitter'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function EmitterTest() {
 describe('EmitterTest', function () {
     console.info("===========EmitterTest start====================>");
 
@@ -95,3 +96,4 @@ describe('EmitterTest', function () {
 
 
 })
+}

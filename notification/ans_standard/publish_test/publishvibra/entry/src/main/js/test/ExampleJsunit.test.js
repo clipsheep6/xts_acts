@@ -14,7 +14,8 @@
  */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+export function ActsAnsPublishVibraTest() {
 describe('ActsAnsPublishVibraTest', function () {
     console.info("===========ActsAnsPublishVibraTest start====================>");
     var timeout = 200
@@ -1118,4 +1119,4 @@ describe('ActsAnsPublishVibraTest', function () {
             done();
         }),timeout);
     });
-}) 
+}) }

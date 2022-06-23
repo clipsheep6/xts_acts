@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 import CommonEvent from '@ohos.commonEvent'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function Actspublish_0100() {
 describe('Actspublish_0100', function () {
     console.info("===========ActspublishAsUser start====================>");
    
@@ -36,3 +37,4 @@ describe('Actspublish_0100', function () {
 
 
 
+}

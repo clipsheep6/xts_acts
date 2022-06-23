@@ -14,10 +14,11 @@
  */
 import account from '@ohos.account.appAccount'
 import featureAbility from '@ohos.ability.featureability'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const TIMEOUT = 2000;
 const LENGTHLIMIT = 1024;
+export function ActsGetAllAccounts() {
 describe('ActsGetAllAccounts', function () {
 
     /*
@@ -648,4 +649,4 @@ describe('ActsGetAllAccounts', function () {
         console.debug("====>ActsGetAllAccounts_1800 end====");
         done();
     });
-})
+})}

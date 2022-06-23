@@ -18,8 +18,9 @@ import fileio from '@ohos.fileio'
 import featureAbility from '@ohos.ability.featureAbility'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function AudioEncoderFormatCompatibilityPromise() {
 describe('AudioEncoderFormatCompatibilityPromise', function () {
     let audioEncodeProcessor;
     let eosframenum = 0;
@@ -457,4 +458,4 @@ describe('AudioEncoderFormatCompatibilityPromise', function () {
         let nextStep = eventEmitter.emit('nextStep', done);
         nextStep();
     })
-})
+})}
