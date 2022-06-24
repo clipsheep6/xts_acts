@@ -13,3 +13,25 @@
  * limitations under the License.
  */
 require('./JsCoverApi.test')
+export default function testsuite() {
+ActsAmsCallBackFifthScene()
+ActsAmsCallBackFirstScene()
+ActsAmsCallBackFourthScene()
+ActsAmsCallBackSecondScene()
+ActsAmsCallBackThirdScene()
+ActsAmsTestFifthScene()
+ActsAmsTestFirstScene()
+ActsAmsTestFourthScene()
+ActsAmsTestSecondScene()
+ActsAmsTestThirdScene()
+ActsStServiceAbilityTest()
+ActsGetAbilityStateTest()
+ActsDataAbilityHelperTest()
+ActsStServiceAbilityTest()
+ActsStServiceAbilityTest()
+ActsDataUriUtilsTest()
+ActsAbilityRunningInfosTest()
+ActsContextTest()
+ConfigurationTest()
+CoverApiTest()
+}

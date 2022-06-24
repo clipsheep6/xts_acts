@@ -14,8 +14,9 @@
  */
 import featureAbility from '@ohos.ability.featureAbility'
 import appManager from "@ohos.application.appManager"
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
+export function ActsAmsTestFirstScene() {
 describe('ActsAmsTestFirstScene', function () {
     console.info('----ActsAmsTestFirstScene----');
     beforeAll(async function (done) {
@@ -85,4 +86,4 @@ describe('ActsAmsTestFirstScene', function () {
         }
         done();
     })
-})
+})}

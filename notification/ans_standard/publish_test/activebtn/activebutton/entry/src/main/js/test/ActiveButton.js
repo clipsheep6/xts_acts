@@ -15,8 +15,9 @@
 import notify from '@ohos.notification'
 import WantAgent from '@ohos.wantAgent'
 //import { OperationType, WantAgentFlags } from '@ohos.wantagent'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function ActsAnsActionButtonTest() {
 describe('ActsAnsActionButtonTest', function () {
     console.info("===ActsDoNotSubscriberTest start===>");
     function publishCallbacka(err){
@@ -236,3 +237,4 @@ describe('ActsAnsActionButtonTest', function () {
     }
 })
 
+}

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import util from '@ohos.util'
 import url from '@ohos.url'
 import app from '@system.app'
@@ -4832,6 +4832,7 @@ describe('LruBufferFunTest', function () {
     })
 })
 
+export function TypesTest() {
 describe('TypesTest', function() {
 
     /**
@@ -6913,3 +6914,4 @@ describe('TypesTest', function() {
         expect(result).assertEqual(false);
     })
 })
+}

@@ -18,8 +18,9 @@ import fileio from '@ohos.fileio'
 import featureAbility from '@ohos.ability.featureAbility'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function AudioEncoderFuncPromise() {
 describe('AudioEncoderFuncPromise', function () {
     const AUDIOPATH = 'S16LE.pcm';
     let audioEncodeProcessor;
@@ -729,4 +730,4 @@ describe('AudioEncoderFuncPromise', function () {
             console.info("start2 success");
         }, failCallback).catch(failCatch);
     })
-})
+})}

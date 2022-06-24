@@ -16,8 +16,9 @@
 import media from '@ohos.multimedia.media'
 import fileio from '@ohos.fileio'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function AudioDecoderReliabilityCallback() {
 describe('AudioDecoderReliabilityCallback', function () {
     const AUDIOPATH = 'AAC_48000_32_1.aac';
     const BASIC_PATH = 'results/decode_reliability_callback';
@@ -1345,4 +1346,4 @@ describe('AudioDecoderReliabilityCallback', function () {
         EOSFrameNum = 2;
         createAudioDecoder(savepath, mySteps, done);
     })
-})
+})}

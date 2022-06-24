@@ -14,10 +14,11 @@
  */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var time = 300
 var ERR_ANS_NON_SYSTEM_APP = 67108877
 var cancalAllFlag = false
+export function ActsAnsActiveTest() {
 describe('ActsAnsActiveTest', function () {
     console.info("===========ActsAnsActiveTest start====================>");
     function getCallback(err, data){
@@ -1083,3 +1084,4 @@ describe('ActsAnsActiveTest', function () {
     })
 })
 
+}

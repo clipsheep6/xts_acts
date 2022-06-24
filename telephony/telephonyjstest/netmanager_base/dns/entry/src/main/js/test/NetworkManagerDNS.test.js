@@ -14,9 +14,10 @@
  */
 
  import netConnection from '@ohos.net.connection';
- import {describe, afterAll, it, expect, beforeAll, afterEach} from 'deccjsunit/index';
+ import {describe, afterAll, it, expect, beforeAll, afterEach} from '@ohos/hypium';
  
  
+export function Telephony_NETMANAGER_TestDNSTest() {
  describe('Telephony_NETMANAGER_TestDNSTest',function(){
  
  
@@ -157,4 +158,4 @@
          })
      });
  
- });
+ });}

@@ -12,4 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require('./Pressure.test.js')
+import ActsAmsCallBackFifthScene from './Pressure.test.js'
+export default function testsuite() {
+ActsAmsCallBackFifthScene()
+ActsAmsCallBackFirstScene()
+ActsAmsCallBackFourthScene()
+ActsAmsCallBackSecondScene()
+ActsAmsCallBackThirdScene()
+ActsAmsTestFifthScene()
+ActsAmsTestFirstScene()
+ActsAmsTestFourthScene()
+ActsAmsTestSecondScene()
+ActsAmsTestThirdScene()
+ActsStServiceAbilityTest()
+ActsGetAbilityStateTest()
+ActsDataAbilityHelperTest()
+ActsStServiceAbilityTest()
+ActsStServiceAbilityTest()
+ActsDataUriUtilsTest()
+ActsAbilityRunningInfosTest()
+ActsContextTest()
+ConfigurationTest()
+CoverApiTest()
+ActsFeatureAbilityTest()
+ConnectAbilityTest()
+ActsGetWantTest()
+ActsAccountPressure()
+}

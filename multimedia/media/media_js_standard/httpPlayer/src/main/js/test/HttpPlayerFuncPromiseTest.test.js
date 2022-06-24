@@ -15,8 +15,9 @@
 
 import media from '@ohos.multimedia.media'
 import router from '@system.router'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function HttpPlayerFuncPromiseTest() {
 describe('HttpPlayerFuncPromiseTest', function () {
     const HTTP_SOURCE = 'http://123.57.24.33:8000/MPEG2_AAC.mp4';
     const PLAY_TIME = 3000;
@@ -769,3 +770,4 @@ describe('HttpPlayerFuncPromiseTest', function () {
         done();
     })
 })
+}
