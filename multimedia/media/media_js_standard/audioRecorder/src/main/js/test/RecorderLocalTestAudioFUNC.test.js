@@ -16,8 +16,9 @@
 import media from '@ohos.multimedia.media'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import * as videoRecorderBase from '../../../../../VideoRecorderTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function RecorderLocalTestAudioFUNC() {
 describe('RecorderLocalTestAudioFUNC', function () {
     let audioRecorder = media.createAudioRecorder();
     const END_STATE = 0;
@@ -842,3 +843,4 @@ describe('RecorderLocalTestAudioFUNC', function () {
         audioRecorder.prepare(newAudioConfig);
     })
 })
+}

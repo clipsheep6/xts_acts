@@ -1,10 +1,11 @@
 {
     "description": "Configuration for audio codec format Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "2000000",
-        "package": "ohos.acts.multimedia.audio.codecformat",
-        "shell-timeout": "600000"
+        "shell-timeout": "600000",
+        "bundle-name": "ohos.acts.multimedia.audio.codecformat",
+        "package-name": "ohos.acts.multimedia.audio.codecformat"
     },
     "kits": [
         {
@@ -21,13 +22,11 @@
                 "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.codecformat/haps/entry/files/",
                 "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.audio.codecformat/haps/entry/files/"
             ],
-            "teardown-command":[
-            ]
+            "teardown-command": []
         },
         {
             "type": "PushKit",
-            "pre-push": [
-            ],
+            "pre-push": [],
             "push": [
                 "./resource/audio/codecFormat/HEv2_AAC_2_96000.aac ->/data/app/el2/100/base/ohos.acts.multimedia.audio.codecformat/haps/entry/files/",
                 "./resource/audio/codecFormat/LC_AAC_2_96000.aac ->/data/app/el2/100/base/ohos.acts.multimedia.audio.codecformat/haps/entry/files/",
@@ -112,8 +111,7 @@
                 "killall com.ohos.medialibrary.MediaScannerAbilityA",
                 "aa start  -a MediaScannerAbility -b com.ohos.medialibrary.MediaScannerAbilityA"
             ],
-            "teardown-command":[
-            ]
+            "teardown-command": []
         }
     ]
 }

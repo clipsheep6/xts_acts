@@ -1,10 +1,11 @@
 {
     "description": "Configuration for videoRecorder Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "2000000",
-        "package": "ohos.acts.multimedia.video.videorecorder",
-        "shell-timeout": "60000"
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.multimedia.video.videorecorder",
+        "package-name": "ohos.acts.multimedia.video.videorecorder"
     },
     "kits": [
         {
@@ -12,8 +13,7 @@
             "run-command": [
                 "rm -rf /storage/media/100/local/files/Videos/*"
             ],
-            "teardown-command":[
-            ]
+            "teardown-command": []
         },
         {
             "test-file-name": [

@@ -16,7 +16,7 @@
 import media from '@ohos.multimedia.media'
 import mediademo from '@ohos.multimedia.mediademo'
 import Fileio from '@ohos.fileio'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const ENCODE_STEP = {
     WAIT_FOR_EOS : 'encode:waitForEOS',
@@ -39,6 +39,7 @@ const STREAM_STEP = {
     START : 'stream:start',
     STOP : 'stream:stop',
 }
+export function VideoEncoderSoftwareReliCallbackTest() {
 describe('VideoEncoderSoftwareReliCallbackTest', function () {
     let videoEncodeProcessor = null;
     let mediaTest = null;
@@ -1549,3 +1550,4 @@ describe('VideoEncoderSoftwareReliCallbackTest', function () {
     })
 })
 
+}

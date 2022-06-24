@@ -14,8 +14,9 @@
  */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var time = 1000
+export function ActsAnsEnableNotificationTest() {
 describe('ActsAnsEnableNotificationTest', function () {
     console.info("===========ActsAnsEnableNotificationTest start====================>");
     
@@ -187,3 +188,4 @@ describe('ActsAnsEnableNotificationTest', function () {
     })
 })
 
+}
