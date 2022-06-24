@@ -408,119 +408,119 @@ describe('appInfoTest', function () {
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Soc', 0, function () {
-        let ExtraSoc = batteryInfo.CommonEventBatteryChangedCode.EXTRA_SOC;
-        console.info('Extra_Soc_Test = ' + ExtraSoc);
-        expect(ExtraSoc = 0).assertTrue();
+        let Extra_Soc = batteryInfo.CommonEventBatteryChangedCode.EXTRA_SOC;
+        console.info('Extra_Soc_Test = ' + Extra_Soc);
+        expect(Extra_Soc = 0).assertTrue();
       })
 
-	/**
+	     /**
      * @tc.number battery_manager_js_3600
      * @tc.name ennum_ChangedCode_test_Extra_Voltage
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Voltage', 0, function () {
-        let ExtraVoltage = batteryInfo.CommonEventBatteryChangedCode.EXTRA_VOLTAGE;
-        console.info('Extra_Voltage_test = ' + ExtraVoltage);
-        expect(ExtraVoltage = 1).assertTrue();
+        let Extra_Voltage = batteryInfo.CommonEventBatteryChangedCode.EXTRA_VOLTAGE;
+        console.info('Extra_Voltage_test = ' + Extra_Voltage);
+        expect(Extra_Voltage = 1).assertTrue();
       })
 	  
-	/**
+	     /**
      * @tc.number battery_manager_js_3700
      * @tc.name ennum_ChangedCode_test_Extra_Temperature
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Temperature', 0, function () {
-        let ExtraTemperature = batteryInfo.CommonEventBatteryChangedCode.EXTRA_TEMPERATURE;
-        console.info('Extra_Temperature_test = ' + ExtraTemperature);
-        expect(ExtraTemperature = 2).assertTrue();
+        let Extra_Temperature = batteryInfo.CommonEventBatteryChangedCode.EXTRA_TEMPERATURE;
+        console.info('Extra_Temperature_test = ' + Extra_Temperature);
+        expect(Extra_Temperature = 2).assertTrue();
       })
 
-	/**
+	     /**
      * @tc.number battery_manager_js_3800
      * @tc.name ennum_ChangedCode_test_Extra_Health_State
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Health_State', 0, function () {
-        let ExtraHealthState = batteryInfo.CommonEventBatteryChangedCode.EXTRA_HEALTH_STATE;
-        console.info('Extra_Health_State_test = ' + ExtraHealthState);
-        expect(ExtraHealthState = 3).assertTrue();
+        let Extra_Health_State = batteryInfo.CommonEventBatteryChangedCode.EXTRA_HEALTH_STATE;
+        console.info('Extra_Health_State_test = ' + Extra_Health_State);
+        expect(Extra_Health_State = 3).assertTrue();
       })
 	  
-	/**
+	     /**
      * @tc.number battery_manager_js_3900
      * @tc.name ennum_ChangedCode_test_Extra_Plugged_Type
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Plugged_Type', 0, function () {
-        let ExtraPluggedType = batteryInfo.CommonEventBatteryChangedCode.EXTRA_PLUGGED_TYPE;
-        console.info('Extra_Plugged_Type_test = ' + ExtraPluggedType);
-        expect(ExtraPluggedType = 4).assertTrue();
+        let Extra_Plugged_Type = batteryInfo.CommonEventBatteryChangedCode.EXTRA_PLUGGED_TYPE;
+        console.info('Extra_Plugged_Type_test = ' + Extra_Plugged_Type);
+        expect(Extra_Plugged_Type = 4).assertTrue();
       })
 	  
-	/**
+	     /**
      * @tc.number battery_manager_js_4000
      * @tc.name ennum_ChangedCode_test_Extra_Max_Current
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Max_Current', 0, function () {
-        let ExtraMaxCurrent = batteryInfo.CommonEventBatteryChangedCode.EXTRA_MAX_CURRENT;
-        console.info('Extra_Max_Current_test = ' + ExtraMaxCurrent);
-        expect(ExtraMaxCurrent = 5).assertTrue();
+        let Extra_Max_Current = batteryInfo.CommonEventBatteryChangedCode.EXTRA_MAX_CURRENT;
+        console.info('Extra_Max_Current_test = ' + Extra_Max_Current);
+        expect(Extra_Max_Current = 5).assertTrue();
       })
 	  
-	/**
+	     /**
      * @tc.number battery_manager_js_4100
      * @tc.name ennum_ChangedCode_test_Extra_Max_Voltage
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Max_Voltage', 0, function () {
-        let ExtraMaxVoltage = batteryInfo.CommonEventBatteryChangedCode.EXTRA_MAX_VOLTAGE;
-        console.info('Extra_Max_Voltage_test = ' + ExtraMaxVoltage);
-        expect(ExtraMaxVoltage = 6).assertTrue();
+        let Extra_Max_Voltage = batteryInfo.CommonEventBatteryChangedCode.EXTRA_MAX_VOLTAGE;
+        console.info('Extra_Max_Voltage_test = ' + Extra_Max_Voltage);
+        expect(Extra_Max_Voltage = 6).assertTrue();
       })
 	  
-	/**
+	     /**
      * @tc.number battery_manager_js_4200
      * @tc.name ennum_ChangedCode_test_Extra_Charge_State
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Charge_State', 0, function () {
-        let ExtraChargeState = batteryInfo.CommonEventBatteryChangedCode.EXTRA_CHARGE_STATE;
-        console.info('Extra_Charge_State_test = ' + ExtraChargeState);
-        expect(ExtraChargeState = 7).assertTrue();
+        let Extra_Charge_State = batteryInfo.CommonEventBatteryChangedCode.EXTRA_CHARGE_STATE;
+        console.info('Extra_Charge_State_test = ' + Extra_Charge_State);
+        expect(Extra_Charge_State = 7).assertTrue();
       })
 	  
-	/**
+	     /**
      * @tc.number battery_manager_js_4300
      * @tc.name ennum_ChangedCode_test_Extra_Present
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Present', 0, function () {
-        let ExtraPresent = batteryInfo.CommonEventBatteryChangedCode.EXTRA_PRESENT;
-        console.info('Extra_Present_test = ' + ExtraPresent);
-        expect(ExtraPresent = 9).assertTrue();
+        let Extra_Present = batteryInfo.CommonEventBatteryChangedCode.EXTRA_PRESENT;
+        console.info('Extra_Present_test = ' + Extra_Present);
+        expect(Extra_Present = 9).assertTrue();
       })
 	  
-	/**
+	     /**
      * @tc.number battery_manager_js_4400
      * @tc.name ennum_ChangedCode_test_Extra_Charge_Counter
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Charge_Counter', 0, function () {
-        let ExtraChargeCounter = batteryInfo.CommonEventBatteryChangedCode.EXTRA_CHARGE_COUNTER;
-        console.info('Extra_Charge_Counter_test = ' + ExtraChargeCounter);
-        expect(ExtraChargeCounter = 8).assertTrue();
+        let Extra_Charge_Counter = batteryInfo.CommonEventBatteryChangedCode.EXTRA_CHARGE_COUNTER;
+        console.info('Extra_Charge_Counter_test = ' + Extra_Charge_Counter);
+        expect(Extra_Charge_Counter = 8).assertTrue();
       })
 	  
-	/**
+	      /**
      * @tc.number battery_manager_js_4500
      * @tc.name ennum_ChangedCode_test_Extra_Technology
      * @tc.desc Battry Present Interface Test
      */
     it('ennum_ChangedCode_test_Extra_Technology', 0, function () {
-        let ExtraTechnology= batteryInfo.CommonEventBatteryChangedCode.EXTRA_TECHNOLOGY;
-        console.info('Extra_Technology_test = ' + ExtraTechnology);
-        expect(ExtraTechnology = 10).assertTrue();
+        let Extra_Technology= batteryInfo.CommonEventBatteryChangedCode.EXTRA_TECHNOLOGY;
+        console.info('Extra_Technology_test = ' + Extra_Technology);
+        expect(Extra_Technology = 10).assertTrue();
       })
 	   
 	  
