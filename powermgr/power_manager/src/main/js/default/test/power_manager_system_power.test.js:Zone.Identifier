@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=1
+ReferrerUrl=vscode-file://vscode-app/d:/vscode/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-browser/workbench/workbench.html
+HostUrl=file://wsl%24/Ubuntu-20.04/home/oh/harmony_master/test/xts/acts/powermgr/power_manager/src/main/js/default/test/power_manager_system_power.test.js
