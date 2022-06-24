@@ -31,10 +31,10 @@ describe('appInfoTest', function () {
                 power.isScreenOn((error, screenOn)=>{
                     if(screenOn){
                         console.log('devices shutdown error');
-                        reject(screenOn);
+                        reject(error);
                     }else{
                         console.log('devices shutdown success');
-                        resolve(error);
+                        resolve(screenOn);
                     }
                 },1000)
             })

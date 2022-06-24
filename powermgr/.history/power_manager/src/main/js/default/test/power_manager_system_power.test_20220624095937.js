@@ -34,7 +34,7 @@ describe('appInfoTest', function () {
                         reject(screenOn);
                     }else{
                         console.log('devices shutdown success');
-                        resolve(error);
+                        resolve(screenOn);
                     }
                 },1000)
             })

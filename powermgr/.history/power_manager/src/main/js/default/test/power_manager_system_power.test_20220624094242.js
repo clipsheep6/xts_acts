@@ -28,14 +28,16 @@ describe('appInfoTest', function () {
      it('creat_shutdownDevice_test01', 0, async function () {
         function shutPromise(){
             new Promise(function(resolve,reject){
-                power.isScreenOn((error, screenOn)=>{
-                    if(screenOn){
+                power.isScreenOn(()=>{
+                    setTimeout(()=>{
                         console.log('devices shutdown error');
-                        reject(screenOn);
-                    }else{
+                        reject()
+                    },500);
+                    setTimeout(()=>{
                         console.log('devices shutdown success');
-                        resolve(error);
-                    }
+                        resolve()
+                    },500);
+                    
                 },1000)
             })
         }

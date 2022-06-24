@@ -29,12 +29,12 @@ describe('appInfoTest', function () {
         function shutPromise(){
             new Promise(function(resolve,reject){
                 power.isScreenOn((error, screenOn)=>{
-                    if(screenOn){
+                    if(error){
                         console.log('devices shutdown error');
-                        reject(screenOn);
+                        reject(error);
                     }else{
                         console.log('devices shutdown success');
-                        resolve(error);
+                        resolve();
                     }
                 },1000)
             })
