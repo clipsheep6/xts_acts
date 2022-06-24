@@ -20,30 +20,30 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 describe('appInfoTest', function () {
     console.log("*************Power Unit Test Begin*************");
     
-    /**
-     * @tc.number power_js_001
-     * @tc.name power_creat_shutdownDevice_test
-     * @tc.desc Device shutdown interface validation
-     */
-     it('creat_shutdownDevice_test01', 0, async function () {
-        function shutPromise(){
-            new Promise(function(resolve,reject){
-                power.isScreenOn(()=>{
-                    setTimeout(()=>{
-                        console.log('devices shutdown error');
-                        reject()
-                    },500);
-                    setTimeout(()=>{
-                        console.log('devices shutdown success');
-                        resolve()
-                    },500);
-                    
-                },1000)
-            })
-        }
-        power.shutdownDevice("shutsown");
-        shutPromise();
-    })
+    // /**
+    //  * @tc.number power_js_001
+    //  * @tc.name power_creat_shutdownDevice_test
+    //  * @tc.desc Device shutdown interface validation
+    //  */
+    //  it('creat_shutdownDevice_test01', 0, async function () {
+    //     function shutPromise(){
+    //         new Promise((resolve,reject)=>{
+    //             power.isScreenOn(()=>{
+    //                 if(error){
+    //                     console.log('devices shutdown error');
+    //                     setTimeout(()=>{reject()},500);
+    //                 }else{
+    //                     console.log('devices shutdown success');
+    //                     setTimeout(()=>{
+    //                         resolve()
+    //                     },500);
+    //                 }
+    //             },1000)
+    //         })
+    //     }
+    //     power.shutdownDevice("shutsown");
+    //     shutPromise();
+    // })
 
     /**
      * @tc.number power_js_002

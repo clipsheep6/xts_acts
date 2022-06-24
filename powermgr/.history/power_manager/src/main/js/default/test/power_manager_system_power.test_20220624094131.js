@@ -33,11 +33,12 @@ describe('appInfoTest', function () {
                         console.log('devices shutdown error');
                         reject()
                     },500);
-                    setTimeout(()=>{
+                    else{
                         console.log('devices shutdown success');
-                        resolve()
-                    },500);
-                    
+                        setTimeout(()=>{
+                            resolve()
+                        },500);
+                    }
                 },1000)
             })
         }
