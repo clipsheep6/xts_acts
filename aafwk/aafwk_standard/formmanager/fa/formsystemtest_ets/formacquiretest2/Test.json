@@ -9,7 +9,7 @@
     "kits": [
         {
             "test-file-name": [
-                "FormAcquireTest2.hap",
+                "ActsFormAcquire2Test.hap",
                 "FormSystemHost.hap",
                 "FormSystemHostI.hap",
                 "FormSystemHostJ.hap",

@@ -21,6 +21,7 @@ import wantAgent from '@ohos.wantAgent';
 import particleAbility from '@ohos.ability.particleAbility'
 import backgroundTaskManager from '@ohos.backgroundTaskManager'
 
+const CREATELOCALDIR = "/data/storage/el2/base/haps/entry";
 const START_ABILITY_TIMEOUT = 4000;
 const TERMINATE_ABILITY_TIMEOUT = 1000;
 const TIMEOUT = 1000;
@@ -1570,8 +1571,8 @@ describe('ActsFeatureAbilityTest', function () {
 
         expect(data.permissions[0]).assertEqual("ohos.permission.ACCELEROMETER");
         expect(data.deviceTypes[0]).assertEqual("phone");
-        expect(data.deviceCapabilities[0]).assertEqual("screen_support");
-        expect(data.deviceCapabilities[1]).assertEqual("audio_support");
+        expect(data.deviceCapabilities[0]).assertEqual("ability_base");
+        expect(data.deviceCapabilities[1]).assertEqual("ability_runtime");
 
         expect(data.readPermission).assertEqual("");
         expect(data.writePermission).assertEqual("");
@@ -1815,12 +1816,6 @@ describe('ActsFeatureAbilityTest', function () {
         );
     })
 
-    // checkGetOrCreateLocalDir
-    function checkGetOrCreateLocalDir(info) {
-        console.log("checkGetOrCreateLocalDir root dir : " + info);
-        expect(typeof (info)).assertEqual("string");
-    }
-
     // @tc.number: ACTS_GetOrCreateLocalDir_0100
     // @tc.name: GetProcessName : Obtains the name of the current process.
     // @tc.desc: Check the return value of the interface (by promise)
@@ -1829,7 +1824,7 @@ describe('ActsFeatureAbilityTest', function () {
         var promise = context.getOrCreateLocalDir();
         expect(typeof (promise)).assertEqual("object");
         var info = await context.getOrCreateLocalDir();
-        checkGetOrCreateLocalDir(info);
+        expect(info).assertEqual(CREATELOCALDIR);
         done();
         setTimeout(function () {
             console.info('====> ACTS_GetOrCreateLocalDir_0100 =====>')
@@ -1843,7 +1838,7 @@ describe('ActsFeatureAbilityTest', function () {
         var context = featureAbility.getContext();
         var result = context.getOrCreateLocalDir(
             (err, data) => {
-                checkGetOrCreateLocalDir(data);
+                expect(data).assertEqual(CREATELOCALDIR);
                 done()
             }
         );

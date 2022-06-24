@@ -15,6 +15,8 @@
 
 import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
 import commonEvent from "@ohos.commonEvent"
+import Want from '@ohos.application.Want';
+import rpc from '@ohos.rpc';
 
 export default class ServiceAbility2 extends ServiceExtensionAbility {
     onCreate(want) {
@@ -30,7 +32,7 @@ export default class ServiceAbility2 extends ServiceExtensionAbility {
         console.log('ServiceAbility2 onRequest');
     }
 
-    onConnect(want) {
+    onConnect(want: Want) {
         console.log('ServiceAbility2 onConnect');
         commonEvent.publish("AMS_ConnectAbility_0700_commonEvent", () => {
             console.log("publish Publish AMS_ConnectAbility_0700_commonEvent callback");
@@ -47,6 +49,7 @@ export default class ServiceAbility2 extends ServiceExtensionAbility {
         commonEvent.publish("AMS_ConnectAbility_1200_commonEvent", () => {
             console.log("publish Publish AMS_ConnectAbility_1200_commonEvent callback");
         })
+		return new rpc.RemoteObject('connect');
     }
 
 

@@ -26,6 +26,21 @@ class Stub extends rpc.RemoteObject {
     return true;
   }
 }
+
+function onConnectCallback(element) {
+    console.log('connectAbilityWithAccount onConnect element.bundleName : ' + element.bundleName)
+    console.log('connectAbilityWithAccount onConnect element.abilityName : ' + element.abilityName)
+}
+
+function onDisconnectCallback(element) {
+    console.log('connectAbilityWithAccount onDisconnect element.bundleName : ' + element.bundleName)
+    console.log('connectAbilityWithAccount onDisconnect element.abilityName : ' + element.abilityName)
+}
+
+function onFailedCallback(code) {
+    console.log('connectAbilityWithAccount onFailed errCode : ' + code)
+}
+
 export default class ServiceAbility extends ServiceExtensionAbility {
   onCreate(want) {
     console.log('ServiceAbility onCreate');
@@ -82,7 +97,11 @@ export default class ServiceAbility extends ServiceExtensionAbility {
           {
             bundleName: 'com.example.actsspecifieduseractionextensionzerotest',
             abilityName: 'com.example.actsspecifieduseractionextensionzerotest.ServiceAbility2'
-          }, globalThis.ACCOUNT_ID100)
+          }, globalThis.ACCOUNT_ID100, {
+                    onConnect: onConnectCallback,
+                    onDisconnect: onDisconnectCallback,
+                    onFailed: onFailedCallback,
+                },)
         console.debug("====>case 5 end====>");
         var myStub = new Stub("com.example.actsspecifieduseractionextensiononetest.MainAbility");
         console.log('ThirdAbility onConnect before return:')

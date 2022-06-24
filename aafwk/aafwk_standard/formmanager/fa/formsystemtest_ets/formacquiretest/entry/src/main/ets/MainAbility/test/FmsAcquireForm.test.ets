@@ -15,7 +15,7 @@
 
 import featureAbility from "@ohos.ability.featureAbility";
 import commonEvent from '@ohos.commonEvent';
-import { beforeEach, describe, expect, it } from "deccjsunit/index.ets";
+import { beforeEach, describe, expect, it } from "deccjsunit/index";
 
 var onErrorForm_Event = {
     events: ["FMS_FormOnError_commonEvent"],
@@ -337,7 +337,9 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formId1
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_1100", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                    console.info('FMS_acquireForm_1100 publish' + JSON.stringify(err));
+                    });
                 }
             }
 
@@ -368,7 +370,9 @@ export default function test() {
                         let commonEventPublishData = {
                             data: formId1
                         };
-                        commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_1100", done));
+                        commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                    console.info('FMS_acquireForm_1100 publish' + JSON.stringify(err));
+                    });
                     }
                 }
             }
@@ -417,7 +421,9 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formId1
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_1200", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                    console.info('FMS_acquireForm_1200 publish' + JSON.stringify(err));
+                    });
                 }
             }
             function onSupplyCallBack(_, data) {
@@ -446,7 +452,9 @@ export default function test() {
                         let commonEventPublishData = {
                             data: formId1
                         };
-                        commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_1200", done));
+                        commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                        console.info('FMS_acquireForm_1200 publish' + JSON.stringify(err));
+                        });
                     }
                 }
             }
@@ -491,7 +499,9 @@ export default function test() {
                 var commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_1400", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_acquireForm_1400 publish' + JSON.stringify(err));
+                });
             }
             async function onAcquiredCallBack(_, data) {
                 console.info("!!!====>FMS_acquireForm_1400 onAcquiredCallBack data:====>" + JSON.stringify(data));
@@ -567,7 +577,9 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formId1
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_1500", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                    console.info('FMS_acquireForm_1500 publish' + JSON.stringify(err));
+                    });
                 }
             }
             async function onAcquiredCallBack(_, data) {
@@ -614,7 +626,9 @@ export default function test() {
                         let commonEventPublishData = {
                             data: formId1
                         };
-                        commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_1500", done));
+                        commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                        console.info('FMS_acquireForm_1500 publish' + JSON.stringify(err));
+                        });
                     }
                 }
             }
@@ -1089,7 +1103,9 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formId1
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_1900", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                    console.info('FMS_acquireForm_1900 publish' + JSON.stringify(err));
+                    });
                 }
             }
 
@@ -1120,7 +1136,9 @@ export default function test() {
                         let commonEventPublishData = {
                             data: formId1
                         };
-                        commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_1900", done));
+                        commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                        console.info('FMS_acquireForm_1900 publish' + JSON.stringify(err));
+                        });
                     }
                 }
             }
@@ -1167,7 +1185,9 @@ export default function test() {
                 var commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_2100", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_acquireForm_2100 publish' + JSON.stringify(err));
+                });
             }
             async function onAcquiredCallBack(_, data) {
                 console.info("!!!====>FMS_acquireForm_2100 onAcquiredCallBack data:====>" + JSON.stringify(data));
@@ -1238,7 +1258,9 @@ export default function test() {
                 var commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_2200", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_acquireForm_2200 publish' + JSON.stringify(err));
+                });
             }
 
             commonEvent.subscribe(subscriberCast, onCastCallBack);
@@ -1282,7 +1304,9 @@ export default function test() {
                 var commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_2300", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_acquireForm_2300 publish' + JSON.stringify(err));
+                });
             }
             commonEvent.subscribe(subscriberCast, onCastCallBack);
             console.info(`FMS_acquireForm_2300 featureAbility.startAbility start`);
@@ -1325,7 +1349,9 @@ export default function test() {
                 var commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_2400", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_acquireForm_2400 publish' + JSON.stringify(err));
+                });
             }
             async function onAcquiredCallBack(_, data) {
                 console.info("!!!====>FMS_acquireForm_2400 onAcquiredCallBack data:====>" + JSON.stringify(data));
@@ -1396,7 +1422,9 @@ export default function test() {
                 var commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_2500", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_acquireForm_2500 publish' + JSON.stringify(err));
+                });
             }
             commonEvent.subscribe(subscriberCast, onCastCallBack);
             console.info(`FMS_acquireForm_2500 featureAbility.startAbility start`);
@@ -1445,8 +1473,8 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formId1
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_2600", done));
                 }
+                    commonEvent.publish(deleteForm_Event, () => delPublishCallBack("FMS_acquireForm_2600", done));
             }
 
             async function onAcquiredCallBack(_, data) {
@@ -1490,7 +1518,8 @@ export default function test() {
                         let commonEventPublishData = {
                             data: formId1
                         };
-                        commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_2600", done));
+                        commonEvent.publish(deleteForm_Event, commonEventPublishData, () =>
+                        publishCallback1("FMS_acquireForm_2600"));
                     }
                 }
             }

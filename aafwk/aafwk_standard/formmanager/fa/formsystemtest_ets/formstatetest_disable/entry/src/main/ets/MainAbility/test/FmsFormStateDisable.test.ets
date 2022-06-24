@@ -15,7 +15,7 @@
 
 import featureAbility from "@ohos.ability.featureAbility";
 import commonEvent from '@ohos.commonEvent';
-import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index.ets";
+import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index";
 
 var onAcquiredForm_Event = {
     events: ["FMS_FormOnAcquired_commonEvent"],
@@ -261,7 +261,9 @@ export default function test() {
                 const commonEventPublishData = {
                     data: hostFormId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_disableFormsUpdate_0600", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_disableFormsUpdate_0600 publish' + JSON.stringify(err));
+                });
             }
 
             const onAcquiredCallBack = async (_, data) => {
@@ -413,7 +415,9 @@ export default function test() {
                 let commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_disableFormsUpdate_0800", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_disableFormsUpdate_0800 publish' + JSON.stringify(err));
+                });
             }
 
             commonEvent.subscribe(subscriberOnState, onStateCallBack);
@@ -461,7 +465,9 @@ export default function test() {
                 let commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_disableFormsUpdate_0900", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_disableFormsUpdate_0900 publish' + JSON.stringify(err));
+                });
             }
             async function OnEnableCallBack(_, data) {
                 console.info("!!!====>FMS_disableFormsUpdate_0900 OnEnableCallBack data:====>" + JSON.stringify(data));
@@ -567,7 +573,9 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formId
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_disableFormsUpdate_1000", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                    console.info('FMS_disableFormsUpdate_1000 publish' + JSON.stringify(err));
+                    });
                 }, 10000);
             }
 
@@ -679,7 +687,9 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formId
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_disableFormsUpdate_1100", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                    console.info('FMS_disableFormsUpdate_1100 publish' + JSON.stringify(err));
+                    });
                 }, 10000);
             }
 

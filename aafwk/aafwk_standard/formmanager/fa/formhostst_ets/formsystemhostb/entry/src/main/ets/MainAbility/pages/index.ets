@@ -15,7 +15,7 @@
 
 import commonEvent from '@ohos.commonEvent';
 import featureAbility from "@ohos.ability.featureAbility";
-import formManager from '@ohos.application.formHost';
+import formHost from '@ohos.application.formHost';
 
 @Entry
 @Component
@@ -61,7 +61,7 @@ struct Index {
     if(data.bundleName && data.bundleName != "com.ohos.st.formsystemhostb") {
       return;
     }
-    formManager.deleteForm(data.data)
+    formHost.deleteForm(data.data)
       .then((data2) => {
         console.info('[FormComponent] deleteForm result:' + data2);
       });
@@ -115,11 +115,11 @@ struct Index {
 
       if(!want.parameters.isCreate && this.deleteForm) {
         console.log("formsystemhostb deleteForm start");
-        formManager.deleteForm(this.deleteId)
+        formHost.deleteForm(this.deleteId)
           .then((data) => {
           console.info('formsystemhostb deleteForm result:' + data);
           let commonEventPublishData = {
-            data: data.toString(),
+            data: data + "",
             parameters: {
               "formId" : this.deleteId.toString()
             }
@@ -167,12 +167,12 @@ struct Index {
               this.formId = form.id;
               if(this.castForm) {
                 console.log("[FormComponent.host] castTempForm start");
-                formManager.castTempForm(this.temporaryId)
+                formHost.castTempForm(this.temporaryId)
                     .then((data) => {
                     console.info('[FormComponent] castTempForm result:' + data);
                      setTimeout(() => {
                       let commonEventPublishData = {
-                        data: data.toString(),
+                        data: data + "",
                         parameters: {
                           "formId" : this.formId.toString()
                         }
@@ -200,11 +200,11 @@ struct Index {
                   this.deleteId = this.formId.toString();
                 }
                 setTimeout(() => {
-                  formManager.deleteForm(this.deleteId)
+                  formHost.deleteForm(this.deleteId)
                     .then((data) => {
                     console.info('[FormComponent] deleteForm result:' + data);
                     let commonEventPublishData = {
-                      data: data.toString(),
+                      data: data + "",
                       parameters: {
                         "formId" : this.deleteId.toString()
                       }

@@ -15,7 +15,7 @@
 
 import featureAbility from "@ohos.ability.featureAbility";
 import commonEvent from '@ohos.commonEvent';
-import { describe, beforeEach, expect, it } from "deccjsunit/index.ets";
+import { describe, beforeEach, expect, it } from "deccjsunit/index";
 
 var onAcquiredForm_Event = {
     events: ["FMS_FormOnAcquired_commonEvent"],
@@ -256,7 +256,9 @@ export default function test() {
                 let commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_notifyInvisibleForms_0600", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_notifyInvisibleForms_0600 publish' + JSON.stringify(err));
+                });
             }
 
             async function onAcquiredCallBack(_, data) {
@@ -428,7 +430,9 @@ export default function test() {
                         let commonEventPublishData = {
                             data: formIdInvisible
                         };
-                        commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_notifyInvisibleForms_0800", done));
+                        commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                        console.info('FMS_notifyInvisibleForms_0800 publish' + JSON.stringify(err));
+                        });
                     }
                 }
             }
@@ -443,7 +447,9 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formIdInvisible
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_notifyInvisibleForms_0800", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                    console.info('FMS_notifyInvisibleForms_0600 publish' + JSON.stringify(err));
+                    });
                 }
             }
             async function onVisibleCallBack(_, data) {

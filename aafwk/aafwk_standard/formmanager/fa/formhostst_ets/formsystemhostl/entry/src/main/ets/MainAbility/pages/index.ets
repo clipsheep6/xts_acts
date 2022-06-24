@@ -15,7 +15,7 @@
 
 import commonEvent from '@ohos.commonEvent';
 import featureAbility from '@ohos.ability.featureAbility';
-import formManager from '@ohos.application.formHost';
+import formHost from '@ohos.application.formHost';
 
 // @ts-nocheck
 @Entry
@@ -54,7 +54,7 @@ struct Index {
     console.info(`${this.TAG} unSubscribeDeleteCallback====>`);
   }
 
-  async private aboutToAppear() {
+  private async aboutToAppear() {
     const onDeleteEventSubscriber = await commonEvent.createSubscriber(this.subscriberFormDeleteEvent);
     commonEvent.subscribe(onDeleteEventSubscriber, async (err, data) => {
       console.info(`${this.TAG} deleteCallBack start:====> ${JSON.stringify(data)}`);
@@ -98,11 +98,11 @@ struct Index {
 
         if (!this.canCreateForm && this.requestForm) {
           let commonEventPublishData;
-          formManager.requestForm(this.requestId)
+          formHost.requestForm(this.requestId)
             .then((data) => {
               console.info(`${this.TAG} requestForm result: ${JSON.stringify(data)}`);
               commonEventPublishData = {
-                data: data.toString(),
+                data: data + "",
                 parameters: {
                   "formId": this.requestId
                 }

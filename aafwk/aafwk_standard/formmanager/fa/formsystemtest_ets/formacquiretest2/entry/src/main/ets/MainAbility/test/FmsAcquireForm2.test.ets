@@ -15,7 +15,7 @@
 
 import featureAbility from "@ohos.ability.featureAbility";
 import commonEvent from '@ohos.commonEvent';
-import { beforeEach, describe, expect, it } from "deccjsunit/index.ets";
+import { beforeEach, describe, expect, it } from "deccjsunit/index";
 
 var onErrorForm_Event = {
     events: ["FMS_FormOnError_commonEvent"],
@@ -143,7 +143,9 @@ export default function test() {
                 var commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_4000", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_acquireForm_4000 publish' + JSON.stringify(err));
+                });
             }
             function onAcquiredCallBack(_, data) {
                 console.info("!!!====>FMS_acquireForm_4000 onAcquiredCallBack data:====>" + JSON.stringify(data));
@@ -265,7 +267,8 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formId1
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_4200", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                    () => delPublishCallBack('FMS_acquireForm_4200', done));
                 }
             }
             commonEvent.subscribe(subscriberOnAcquired, onAcquiredCallBack);
@@ -285,7 +288,8 @@ export default function test() {
                         let commonEventPublishData = {
                             data: formId1
                         };
-                        commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_4200", done));
+                        commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                        () => delPublishCallBack('FMS_acquireForm_4200', done));
                     }
                 }
             }
@@ -409,7 +413,9 @@ export default function test() {
                 var commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_acquireForm_4900", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData,(err) => {
+                console.info('FMS_acquireForm_4900 publish' + JSON.stringify(err));
+                });
             }
             function onAcquiredCallBack(_, data) {
                 console.info("!!!====>FMS_acquireForm_4900 onAcquiredCallBack data:====>" + JSON.stringify(data));

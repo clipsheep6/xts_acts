@@ -16,7 +16,7 @@
 import featureAbility from '@ohos.ability.featureAbility';
 import formHost from '@ohos.application.formHost';
 import commonEvent from '@ohos.commonEvent';
-import { beforeEach, describe, expect, it } from 'deccjsunit/index.ets';
+import { beforeEach, describe, expect, it } from 'deccjsunit/index';
 
 const onDeletedEvent = {
     events: [`FMS_FormOnDeleted_commonEvent`]
@@ -550,76 +550,6 @@ export default function test() {
         });
 
         /**
-         * @tc.number: FMS_stressTest_1300
-         * @tc.name: Forms update test.
-         * @tc.desc: enableFormsUpdate and disableFormsUpdate method working well.
-         */
-        it(`FMS_stressTest_1300`, 0, async (done) => {
-            const tcNumber = `FMS_stressTest_1300`;
-            let hostCounter = 0;
-
-            subscribeDeletedEvent(tcNumber, 1, done);
-
-            commonEvent.subscribe(onAcquiredEventSubscriber, async (err, data) => {
-                const kind = data.parameters.kind;
-                const formId = data.parameters.formId;
-                console.info(`${tcNumber} onAcquiredCallback data: ${JSON.stringify(data)}, error: ${JSON.stringify(err)}`);
-                console.info(`${tcNumber} onAcquiredCallback formId: ${formId}`);
-
-                if (`enableUpdate` == kind) {
-                    expect(err.code).assertEqual(0);
-                    if (++hostCounter == 2) {
-                        commonEvent.unsubscribe(onAcquiredEventSubscriber, () => unsubscribeOnAcquiredCallback(tcNumber));
-                        setTimeout(() => {
-                            commonEvent.publish(formOnDeleteEvent, {
-                                parameters: {
-                                    formIds: [].concat(formId)
-                                }
-                            }, () => publishOnDeleteCallback(tcNumber));
-                        }, 500);
-                        console.info(`${tcNumber} onAcquiredCallback end`);
-                    }
-                } else if (`disableUpdate` == kind) {
-                    expect(err.code).assertEqual(0);
-                    if (++hostCounter == 2) {
-                        commonEvent.unsubscribe(onAcquiredEventSubscriber, () => unsubscribeOnAcquiredCallback(tcNumber));
-                        setTimeout(() => {
-                            commonEvent.publish(formOnDeleteEvent, {
-                                parameters: {
-                                    formIds: [].concat(formId)
-                                }
-                            }, () => publishOnDeleteCallback(tcNumber));
-                        }, 500);
-                        console.info(`${tcNumber} onAcquiredCallback end`);
-                    }
-                }
-            });
-
-            try {
-                const res = await featureAbility.startAbility({
-                    want: {
-                        bundleName: `com.ohos.st.formsystemhostk`,
-                        abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
-                        parameters: {
-                            formId: `0`,
-                            name: `Form_Js001`,
-                            bundle: `com.form.formsystemtestservicef.hmservice`,
-                            ability: `com.form.formsystemtestservicef.hmservice.FormAbility`,
-                            moduleName: `entry`,
-                            update: true,
-                            isCreate: true
-                        }
-                    }
-                });
-                console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
-            } catch (error) {
-                console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
-                console.info(`${tcNumber} should not reach here`);
-                expect().assertFail();
-            }
-        });
-
-        /**
          * @tc.number: FMS_stressTest_1700
          * @tc.name: Get forms info test.
          * @tc.desc: getAllFormsInfo and getFormsInfo method working well.
@@ -637,7 +567,7 @@ export default function test() {
             console.info(`${tcNumber} before filter size: ${JSON.stringify(allFormsInfo.length)}`);
             allFormsInfo = allFormsInfo.filter((formsInfo) => providerBundleNameList.includes(formsInfo.bundleName));
             console.info(`${tcNumber} after filter size: ${JSON.stringify(allFormsInfo.length)}`);
-            expect(allFormsInfo.length).assertEqual(2);
+            expect(allFormsInfo.length).assertEqual(3);
 
             allFormsInfo.forEach(async (formsInfo, index) => {
                 const providerFormsInfo1 = await formHost.getFormsInfo(formsInfo.bundleName);
@@ -645,13 +575,14 @@ export default function test() {
 
                 console.info(`${tcNumber} getFormsInfo: ${JSON.stringify(providerFormsInfo1)}`);
                 console.info(`${tcNumber} getFormsInfo: ${JSON.stringify(providerFormsInfo2)}`);
-                expect(providerFormsInfo1.bundleName).assertEqual(providerFormsInfo2.bundleName);
+                expect(providerFormsInfo1[0].bundleName).assertEqual(providerFormsInfo2[0].bundleName);
 
                 if (index == allFormsInfo.length - 1) {
                     done();
                 }
             });
         });
+
 
         /**
          * @tc.number: FMS_stressTest_1800

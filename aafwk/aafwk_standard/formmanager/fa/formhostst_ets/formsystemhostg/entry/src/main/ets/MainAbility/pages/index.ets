@@ -15,7 +15,7 @@
 
 import commonEvent from '@ohos.commonEvent';
 import featureAbility from "@ohos.ability.featureAbility";
-import formManager from '@ohos.application.formHost';
+import formHost from '@ohos.application.formHost';
 
 @Entry
 @Component
@@ -69,7 +69,7 @@ struct Index {
     if(data.bundleName && data.bundleName != "com.ohos.st.formsystemhostg") {
       return;
     }
-    formManager.deleteForm(data.data)
+    formHost.deleteForm(data.data)
       .then((data2) => {
         console.info('[FormComponent] deleteForm result:' + data2);
       });
@@ -128,13 +128,13 @@ struct Index {
 
       if(!want.parameters.isCreate && this.deleteForm) {
         console.log("[FormComponent.host] deleteForm start");
-        formManager.deleteForm(this.deleteId)
+        formHost.deleteForm(this.deleteId)
           .then((data) => {
           console.info('[FormComponent.host] deleteForm result:' + data);
           let commonEventPublishData = {
             data: "0",
             parameters: {
-              "formId" : this.deleteId;
+              "formId" : this.deleteId,
             }
           };
           commonEvent.publish(this.formOnDeletedEvent, commonEventPublishData, this.publishOnDeletedCallBack);
@@ -144,7 +144,7 @@ struct Index {
           let commonEventPublishData = {
             data: error.code.toString(),
             parameters: {
-              "formId" : this.deleteId;
+              "formId" : this.deleteId,
             }
           };
           commonEvent.publish(this.formOnDeletedEvent, commonEventPublishData, this.publishOnDeletedCallBack);
@@ -156,7 +156,7 @@ struct Index {
       if(!want.parameters.isCreate && this.stateForm) {        
         if(this.stateForm == "visible") {
           console.log("[FormComponent.host] notifyVisibleForm start");
-          formManager.notifyVisibleForms(this.stateIds)
+          formHost.notifyVisibleForms(this.stateIds)
             .then((data) => {
             console.info('[FormComponent.host] notifyVisibleForm result:' + data);
             console.info('[FormComponent.host] notifyVisibleForm formId:' + this.stateIds[0]);
@@ -183,7 +183,7 @@ struct Index {
           console.log("[FormComponent.host] notifyVisibleForm end");
         } else if(this.stateForm == "invisible") {
           console.log("[FormComponent.host] notifyInvisibleForm start");
-          formManager.notifyInvisibleForms(this.stateIds)
+          formHost.notifyInvisibleForms(this.stateIds)
             .then((data) => {
             console.info('[FormComponent.host] notifyInvisibleForm result:' + data);
             console.info('[FormComponent.host] notifyInvisibleForm formId:' + this.stateIds[0]);
@@ -210,7 +210,7 @@ struct Index {
           console.log("[FormComponent.host] notifyInvisibleForm end");
         } else if(this.stateForm == "enable") {
           console.log("[FormComponent.host] enableFormsUpdate start");
-          formManager.enableFormsUpdate(this.stateIds)
+          formHost.enableFormsUpdate(this.stateIds)
             .then((data) => {
             console.info('[FormComponent.host] enableFormsUpdate result:' + data);
             let commonEventPublishData = {
@@ -236,7 +236,7 @@ struct Index {
           console.log("[FormComponent.host] enableFormsUpdate end");
         } else {
           console.log("[FormComponent.host] disableFormsUpdate start");
-          formManager.disableFormsUpdate(this.stateIds)
+          formHost.disableFormsUpdate(this.stateIds)
             .then((data) => {
             console.info('[FormComponent.host] disableFormsUpdate result:' + data);
             let commonEventPublishData = {
@@ -295,13 +295,13 @@ struct Index {
                   this.deleteId = this.formId.toString();
                 }
                 setTimeout(() => {
-                  formManager.deleteForm(this.deleteId)
+                  formHost.deleteForm(this.deleteId)
                     .then((data) => {
                     console.info('[FormComponent] deleteForm result:' + data);
                     let commonEventPublishData = {
                       data: "0",
                       parameters: {
-                        "formId" : this.deleteId;
+                        "formId" : this.deleteId,
                       }
                     };
                     commonEvent.publish(this.formOnDeletedEvent, commonEventPublishData, this.publishOnDeletedCallBack);
@@ -328,7 +328,7 @@ struct Index {
                 setTimeout(() => {
                   if(this.stateForm == "visible") {
                     console.log("[FormComponent.host] notifyVisibleForm start");
-                    formManager.notifyVisibleForms(this.stateIds)
+                    formHost.notifyVisibleForms(this.stateIds)
                       .then((data) => {
                       console.info('[FormComponent.host] notifyVisibleForm result:' + data);
                       console.info('[FormComponent.host] notifyVisibleForm formId:' + this.stateIds[0]);
@@ -361,7 +361,7 @@ struct Index {
                     console.log("[FormComponent.host] notifyVisibleForm end");
                   } else if(this.stateForm == "invisible") {
                     console.log("[FormComponent.host] notifyInvisibleForm start");
-                    formManager.notifyInvisibleForms(this.stateIds)
+                    formHost.notifyInvisibleForms(this.stateIds)
                     .then((data) => {
                       console.info('[FormComponent.host] notifyInvisibleForm result:' + data);                      
                       if(this.stateIds.length == 0) {
@@ -394,7 +394,7 @@ struct Index {
                     console.log("[FormComponent.host] notifyInvisibleForm end");
                   } else if(this.stateForm == "enable") {
                     console.log("[FormComponent.host] enableFormsUpdate start");
-                    formManager.enableFormsUpdate(this.stateIds)
+                    formHost.enableFormsUpdate(this.stateIds)
                       .then((data) => {
                       console.info('[FormComponent.host] enableFormsUpdate result:' + data);
                       if(this.stateIds.length == 0) {
@@ -426,7 +426,7 @@ struct Index {
                     console.log("[FormComponent.host] enableFormsUpdate end");
                   } else {
                     console.log("[FormComponent.host] disableFormsUpdate start");
-                    formManager.disableFormsUpdate(this.stateIds)
+                    formHost.disableFormsUpdate(this.stateIds)
                       .then((data) => {
                       console.info('[FormComponent.host] disableFormsUpdate result:' + data);
                       if(this.stateIds.length == 0) {

@@ -15,7 +15,7 @@
 
 import featureAbility from "@ohos.ability.featureAbility";
 import commonEvent from '@ohos.commonEvent';
-import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index.ets";
+import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index";
 
 var onAcquiredForm_Event = {
     events: ["FMS_FormOnAcquired_commonEvent"],
@@ -63,7 +63,9 @@ export default function test() {
                 let commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_releaseForm_0200", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_releaseForm_0200 publish' + JSON.stringify(err));
+                });
             }
 
             function onAcquiredCallBack(_, data) {
@@ -231,7 +233,9 @@ export default function test() {
                 let commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_releaseForm_0500", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_releaseForm_0500 publish' + JSON.stringify(err));
+                });
             }
             function onAcquiredCallBack(_, data) {
                 console.info("!!!====>FMS_releaseForm_0500 onAcquiredCallBack data:====>" + JSON.stringify(data));
@@ -306,7 +310,9 @@ export default function test() {
                     bundleName: "com.ohos.st.formsystemhostc",
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_releaseForm_0600", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_releaseForm_0600 publish' + JSON.stringify(err));
+                });
             }
             function onDeletedCallBack(_, data) {
                 console.info("!!!====>FMS_releaseForm_0600 onDeletedCallBack data:====>" + JSON.stringify(data));
@@ -520,13 +526,13 @@ export default function test() {
                 console.info("!!!====>FMS_releaseForm_1400 onReleasedCallBack data:====>" + JSON.stringify(data));
                 expect(data.event).assertEqual("FMS_FormOnReleased_commonEvent");
                 expect(data.data).assertEqual("0");
-                commonEvent.unsubscribe(subscriberOnReleased, () => unsubscribeOnReleasedCallback("FMS_releaseForm_1400"));
-
                 let commonEventPublishData = {
                     bundleName: "com.ohos.st.formsystemhostc",
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, (delPublishCallBack("FMS_releaseForm_1400", done)));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_releaseForm_1400 publish' + JSON.stringify(err));
+                });
             }
             commonEvent.subscribe(subscriberOnReleased, onReleasedCallBack);
 

@@ -15,82 +15,14 @@
 // @ts-nocheck
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "deccjsunit/index";
 import commonEvent from '@ohos.commonEvent';
-import bundle from '@ohos.bundle';
-import missionManager from '@ohos.application.missionManager';
 
-const BUNDLE_PATH = ['/data/ActsAmsStaticARelyHap.hap','/data/ActsAmsStaticBRelyHap.hap'];
-const BUNDLE_NAME = ['com.example.staticinformationmultihappackage'];
-const PATHS_COUNT = 1;
-const BUNDLE_COUNT = 1;
-const MAX_MISSION_NUM = 1024;
 var subscriberInfo = {
     events: ['MainAbility_Start_CommonEvent_multi_hap_entry', 'MainAbility_Start_CommonEvent_multi_hap_feature'],
 };
 
-function getMissionId() {
-    return new Promise(async (resolve, reject) => {
-        var missionId = -1;
-        var missionInfos = await missionManager.getMissionInfos('', MAX_MISSION_NUM);
-        console.log('======>ACTS_getAbilityInfo_0400 getMissionId missionInfos<=======' + missionInfos);
-        for (let i = 0; i < missionInfos.length; i++) {
-            console.log('getMissionId result: ' + i + '= ' + JSON.stringify(missionInfos[i]))
-            if ((missionInfos[i].want.abilityName == "com.example.staticinformationmultihap.MainAbility") &&
-            (missionInfos[i].runningState == 0)) {
-                missionId = missionInfos[i].missionId;
-                break;
-            }
-        }
-        console.log('======>ACTS_getAbilityInfo_0400 getMissionId resolve missionId<=======' + missionId);
-        resolve(missionId);
-    })
-}
 
 export default function abilityTest(abilityContext) {
-    describe('ActsAbilityTest', function () {
-
-        beforeEach(async (done) => {
-            let installer = await bundle.getBundleInstaller();
-            var count = 0;
-            installer.install(BUNDLE_PATH, {
-                userId: 100,
-                installFlag: 1,
-                isKeepData: false
-            }, (err, data) => {
-                count++;
-                console.log('======>ACTS_getAbilityInfo_0400 beforeEach install finish<=======' + err.code);
-                console.log('======>ACTS_getAbilityInfo_0400 beforeEach install finish<=======' + data.status);
-                console.log('======>ACTS_getAbilityInfo_0400 beforeEach install finish<======='
-                + data.statusMessage);
-                if(count == PATHS_COUNT){
-                    done();
-                }
-            })
-        })
-
-        afterEach(async (done) => {
-            let installer = await bundle.getBundleInstaller();
-            var count = 0;
-            var testMissionId;
-
-            testMissionId = await getMissionId();
-            console.log('======>ACTS_getAbilityInfo_0400 afterEach test missionId<=======' + testMissionId);
-            await missionManager.moveMissionToFront(testMissionId);
-            console.log('======>ACTS_getAbilityInfo_0400 afterEach test move<=======');
-            installer.uninstall(BUNDLE_NAME, {
-                userId: 100,
-                installFlag: 1,
-                isKeepData: false
-            }, (err, data) => {
-                count++;
-                console.log('======>ACTS_getAbilityInfo_0400 afterEach uninstall finish<=======' + err.code);
-                console.log('======>ACTS_getAbilityInfo_0400 afterEach uninstall finish<=======' + data.status);
-                console.log('======>ACTS_getAbilityInfo_0400 afterEach uninstall finish<======='
-                + data.statusMessage);
-                if(count == BUNDLE_COUNT){
-                    done();
-                }
-            })
-        })
+    describe('ActsAbilityMultiTest', function () {
 
         /**
          * @tc.number: ACTS_getAbilityInfo_0400

@@ -15,7 +15,7 @@
 
 import commonEvent from '@ohos.commonEvent';
 import featureAbility from '@ohos.ability.featureAbility';
-import formManager from '@ohos.application.formHost';
+import formHost from '@ohos.application.formHost';
 import formProvider from '@ohos.application.formProvider';
 
 @Entry
@@ -80,7 +80,7 @@ struct Index {
     if (data.bundleName && data.bundleName != "com.ohos.st.formsystemhost") {
       return;
     }
-    formManager.deleteForm(data.data)
+    formHost.deleteForm(data.data)
       .then((data2) => {
         console.info('[FormComponent] deleteForm result:' + data2);
       });
@@ -153,7 +153,7 @@ struct Index {
 
         if (!want.parameters.isCreate && this.deleteForm) {
           console.log("formsystemhost deleteForm start");
-          formManager.deleteForm(this.deleteId)
+          formHost.deleteForm(this.deleteId)
             .then((data) => {
               console.info('formsystemhost deleteForm result:' + data);
               let commonEventPublishData = {
@@ -205,7 +205,7 @@ struct Index {
         }
         if (!want.parameters.isCreate && this.requestForm) {
           console.log("[FormComponent.host] requestForm start");
-          formManager.requestForm(this.requestId)
+          formHost.requestForm(this.requestId)
             .then((data) => {
               console.info('[FormComponent] requestForm result:' + data);
               var commonEventPublishData = {
@@ -262,7 +262,7 @@ struct Index {
                   this.deleteId = this.formId.toString();
                 }
                 setTimeout(() => {
-                  formManager.deleteForm(this.deleteId)
+                  formHost.deleteForm(this.deleteId)
                     .then((data) => {
                       console.info('[FormComponent] deleteForm result:' + data);
                       var commonEventPublishData = {
@@ -292,7 +292,7 @@ struct Index {
                   this.requestId = this.formId.toString();
                 }
                 setTimeout(() => {
-                  formManager.requestForm(this.requestId)
+                  formHost.requestForm(this.requestId)
                     .then((data) => {
                       console.info('[FormComponent] requestForm result:' + data);
                       var delFormId = this.requestId;
@@ -358,7 +358,7 @@ struct Index {
                   this.notifyVisibleId = this.formId.toString();
                 }
                 setTimeout(() => {
-                  formManager.notifyVisibleForms([this.notifyVisibleId])
+                  formHost.notifyVisibleForms([this.notifyVisibleId])
                     .then((data) => {
                       console.info('formsystemhost notifyVisibleForms result:' + data);
                       let commonEventPublishData = {
