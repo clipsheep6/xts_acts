@@ -14,7 +14,7 @@
  */
 
 import formProvider from '@ohos.application.formProvider';
-import { describe, expect, it } from 'deccjsunit/index.ets';
+import { describe, expect, it } from 'deccjsunit/index';
 import { DATA_TYPE_LIST, getFuzzData } from './getParam.ets';
 
 export const updateFormFuzzTest = (describeName, filterParameter) => {
@@ -36,7 +36,7 @@ export const updateFormFuzzTest = (describeName, filterParameter) => {
       it(`${callbackName}_${tcNumber}`, filterParameter, async (done) => {
         const dataType = DATA_TYPE_LIST[i];
         const formId = getFuzzData(dataType);
-        const formBindingData = {};
+        let formBindingData = null;
         console.log(`${callbackName} ${tcNumber} formId typeof: ${typeof formId}`);
         console.log(`${callbackName} ${tcNumber} formBindingData typeof: ${typeof formBindingData}`);
         try {
@@ -66,7 +66,7 @@ export const updateFormFuzzTest = (describeName, filterParameter) => {
       it(`${promiseName}_${tcNumber}`, filterParameter, async (done) => {
         const dataType = DATA_TYPE_LIST[i];
         const formId = getFuzzData(dataType);
-        const formBindingData = {};
+        let formBindingData = null;
         console.log(`${promiseName} ${tcNumber} formId typeof: ${typeof formId}`);
         console.log(`${promiseName} ${tcNumber} formBindingData typeof: ${typeof formBindingData}`);
         try {

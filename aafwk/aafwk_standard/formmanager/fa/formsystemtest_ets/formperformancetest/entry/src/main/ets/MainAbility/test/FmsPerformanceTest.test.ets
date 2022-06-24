@@ -16,8 +16,8 @@
 import featureAbility from '@ohos.ability.featureAbility';
 import formHost from '@ohos.application.formHost';
 import commonEvent from '@ohos.commonEvent';
-import { getCurrentTime } from '@ohos.systemTime';
-import { beforeEach, describe, expect, it } from 'deccjsunit/index.ets';
+import systemTime from '@ohos.systemTime';
+import { beforeEach, describe, expect, it } from 'deccjsunit/index';
 
 const onAcquiredEvent = {
     events: [`FMS_FormOnAcquired_commonEvent`],
@@ -109,7 +109,7 @@ export default function test() {
                 }
             });
 
-            const startTime = await getCurrentTime();
+            const startTime = await systemTime.getCurrentTime();
             try {
                 const res = await featureAbility.startAbility({
                     want: {
@@ -870,10 +870,10 @@ export default function test() {
             const tcNumber = `FMS_performanceTest_1300`;
             const timeout = 10;
 
-            const startTime = await getCurrentTime();
+            const startTime = await systemTime.getCurrentTime();
             const data = await formHost.getAllFormsInfo();
             console.info(`${tcNumber} getAllFormsInfo result: ${JSON.stringify(data)}`);
-            const endTime = await getCurrentTime();
+            const endTime = await systemTime.getCurrentTime();
 
             console.info(`${tcNumber} hostTime: ${JSON.stringify(endTime - startTime)}`);
             expect(endTime - startTime < timeout);
@@ -889,10 +889,10 @@ export default function test() {
             const tcNumber = `FMS_performanceTest_1400`;
             const timeout = 10;
 
-            const startTime = await getCurrentTime();
+            const startTime = await systemTime.getCurrentTime();
             const data = await formHost.getFormsInfo(`com.form.formsystemtestserviceg.hmservice`);
             console.info(`${tcNumber} getFormsInfoByBundle result: ${JSON.stringify(data)}`);
-            const endTime = await getCurrentTime();
+            const endTime = await systemTime.getCurrentTime();
 
             console.info(`${tcNumber} hostTime: ${JSON.stringify(endTime - startTime)}`);
             expect(endTime - startTime < timeout);
@@ -908,10 +908,10 @@ export default function test() {
             const tcNumber = `FMS_performanceTest_1500`;
             const timeout = 10;
 
-            const startTime = await getCurrentTime();
+            const startTime = await systemTime.getCurrentTime();
             const data = await formHost.getFormsInfo(`com.form.formsystemtestserviceg.hmservice`, `entry`);
             console.info(`${tcNumber} getFormsInfoByModule result: ${JSON.stringify(data)}`);
-            const endTime = await getCurrentTime();
+            const endTime = await systemTime.getCurrentTime();
 
             console.info(`${tcNumber} hostTime: ${JSON.stringify(endTime - startTime)}`);
             expect(endTime - startTime < timeout);
@@ -927,10 +927,10 @@ export default function test() {
             const tcNumber = `FMS_performanceTest_1600`;
             const timeout = 10;
 
-            const startTime = await getCurrentTime();
+            const startTime = await systemTime.getCurrentTime();
             const data = await formHost.isSystemReady();
             console.info(`${tcNumber} isSystemReady result: ${JSON.stringify(data)}`);
-            const endTime = await getCurrentTime();
+            const endTime = await systemTime.getCurrentTime();
 
             console.info(`${tcNumber} hostTime: ${JSON.stringify(endTime - startTime)}`);
             expect(endTime - startTime < timeout);

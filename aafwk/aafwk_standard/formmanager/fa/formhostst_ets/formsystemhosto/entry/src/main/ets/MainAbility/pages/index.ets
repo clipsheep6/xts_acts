@@ -104,7 +104,7 @@ struct Index {
       formManager.castTempForm(formId)
         .then((data) => {
           console.info('[FormComponent] castTempForm result:' + data);
-          this.startAbility("com.ohos.st.formsystemhostc", "com.ohos.st.formsystemhostc.MainAbility", data.toString());
+          this.startAbility("com.ohos.st.formsystemhostc", "com.ohos.st.formsystemhostc.MainAbility", data);
         })
         .catch((error) => {
           console.info('[FormComponent] castTempForm error:' + JSON.stringify(error));
@@ -244,7 +244,7 @@ struct Index {
             .then((data) => {
               console.info('[FormComponent] castTempForm result:' + data);
               let commonEventPublishData = {
-                data: data || `0`,
+                data: (data + "") || `0`,
                 bundleName: "com.ohos.st.formsystemhosto",
                 parameters: {
                   formId: this.castFormId.toString()
@@ -277,7 +277,7 @@ struct Index {
 
                 if (this.delCount == this.deleteIds.length) {
                   let commonEventPublishData = {
-                    data: data.toString(),
+                    data: data + "",
                     bundleName: "com.ohos.st.formsystemhosto",
                     parameters: {
                       "formIds": this.deleteIds

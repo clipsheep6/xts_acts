@@ -14,8 +14,23 @@
  */
 import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
 import commonEvent from '@ohos.commonEvent'
+import Want from '@ohos.application.Want';
+import rpc from '@ohos.rpc';
 function publishCallBackOne () {
     console.log("========Publish CallBack AMS_ConnectAbility_0300_commonEvent========");
+}
+function onConnectCallback(element) {
+    console.log('connectAbilityWithAccount onConnect element.bundleName : ' + element.bundleName)
+    console.log('connectAbilityWithAccount onConnect element.abilityName : ' + element.abilityName)
+}
+
+function onDisconnectCallback(element) {
+    console.log('connectAbilityWithAccount onDisconnect element.bundleName : ' + element.bundleName)
+    console.log('connectAbilityWithAccount onDisconnect element.abilityName : ' + element.abilityName)
+}
+
+function onFailedCallback(code) {
+    console.log('connectAbilityWithAccount onFailed errCode : ' + code)
 }
 var conn = -1;
 export default class ServiceAbility extends ServiceExtensionAbility {
@@ -30,7 +45,7 @@ export default class ServiceAbility extends ServiceExtensionAbility {
         console.log('ServiceAbility registerApplicationStateObserver end, conn: ' + conn);
     }
 
-    onConnect(want) {
+    onConnect(want: Want) {
         console.log('ServiceAbility onConnect, want:' + want.abilityName);
         let extensionContext = this.context
         if (want.action == "Three") {
@@ -39,7 +54,11 @@ export default class ServiceAbility extends ServiceExtensionAbility {
                 {
                     bundleName: 'com.example.actsserviceabilityrelytest',
                     abilityName: 'com.example.actsserviceabilityrelytest.ServiceAbility'
-                })
+                }, {
+                    onConnect: onConnectCallback,
+                    onDisconnect: onDisconnectCallback,
+                    onFailed: onFailedCallback,
+                },)
             setTimeout(()=>{
                 extensionContext.disconnectAbility(num).then(()=>{
                     console.log('in disconnectAbility');
@@ -48,7 +67,7 @@ export default class ServiceAbility extends ServiceExtensionAbility {
 
         };
         commonEvent.publish("AMS_ConnectAbility_0300_commonEvent", publishCallBackOne);
-    
+		return new rpc.RemoteObject('connect');
         };
 
     onDisconnect(want) {

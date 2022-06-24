@@ -15,7 +15,7 @@
 
 import featureAbility from '@ohos.ability.featureAbility';
 import commonEvent from '@ohos.commonEvent';
-import { beforeEach, describe, expect, it } from 'deccjsunit/index.ets';
+import { beforeEach, describe, expect, it } from 'deccjsunit/index';
 
 const onAcquiredForm_Event = {
     events: ["FMS_FormOnAcquired_commonEvent"],
@@ -68,7 +68,9 @@ export default function test() {
                 const commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_timedRefresh_0100 publish' + JSON.stringify(err));
+                });
             };
             commonEvent.subscribe(subscriberOnRefresh, onRefreshCallback);
 
@@ -115,7 +117,9 @@ export default function test() {
                 const commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_timedRefresh_0200 publish' + JSON.stringify(err));
+                });
             };
             commonEvent.subscribe(subscriberOnRefresh, onRefreshCallback);
 
@@ -163,7 +167,9 @@ export default function test() {
                 const commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_timedRefresh_0300 publish' + JSON.stringify(err));
+                });
             };
             commonEvent.subscribe(subscriberOnRefresh, onRefreshCallback);
 
@@ -242,7 +248,9 @@ export default function test() {
                     bundleName: "com.ohos.st.formsystemhostc",
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_timedRefresh_0400 publish' + JSON.stringify(err));
+                });
             };
             commonEvent.subscribe(subscriberOnRefresh, onRefreshCallback);
 
@@ -322,7 +330,9 @@ export default function test() {
                 const commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_timedRefresh_0500 publish' + JSON.stringify(err));
+                });
             };
             commonEvent.subscribe(subscriberOnRefresh, onRefreshCallback);
 
@@ -372,7 +382,9 @@ export default function test() {
                     const commonEventPublishData = {
                         data: data.parameters.formId
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                    console.info('FMS_timedRefresh_0600 publish' + JSON.stringify(err));
+                    });
                 }
             };
             commonEvent.subscribe(subscriberSupply, onSupplyCallback);

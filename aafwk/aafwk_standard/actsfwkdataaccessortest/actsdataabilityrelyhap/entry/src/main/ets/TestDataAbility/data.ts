@@ -12,17 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import dataAbility from '@ohos.data.dataability'
+import dataAbility from '@ohos.data.dataAbility'
 import featureAbility from '@ohos.ability.featureAbility'
 import fileio from '@ohos.fileio'
 import dataRdb from '@ohos.data.rdb'
 
 const TABLE_NAME = 'book'
-const STORE_CONFIG = { name: 'book.db', encryptKey: new Uint8Array([]) }
+const STORE_CONFIG = {name: 'book.db'}
 const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS book' +
     '(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER, introduction TEXT NOT NULL)'
 let rdbStore: any = undefined
 const TAG = 'ACTS_ DataAbility.data'
+const context = featureAbility.getContext()
 
 let defaultReturn = 1;
 let returnError = 0;
@@ -35,7 +36,7 @@ export default {
 
     onInitialized(abilityInfo) {
         console.debug('ACTS_ DataAbility onInitialized,abilityInfo=' + abilityInfo.bundleName)
-        dataRdb.getRdbStore(STORE_CONFIG, 1, (err, store) => {
+        dataRdb.getRdbStore(context, STORE_CONFIG, 1, (err, store) => {
             console.debug('ACTS_ [data]getRdbStoreThen')
             store.executeSql(SQL_CREATE_TABLE, [])
             rdbStore = store

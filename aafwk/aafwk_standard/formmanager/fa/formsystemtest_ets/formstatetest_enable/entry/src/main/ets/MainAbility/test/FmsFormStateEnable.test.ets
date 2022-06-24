@@ -15,7 +15,7 @@
 
 import featureAbility from "@ohos.ability.featureAbility";
 import commonEvent from '@ohos.commonEvent';
-import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index.ets";
+import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index";
 
 var onAcquiredForm_Event = {
     events: ["FMS_FormOnAcquired_commonEvent"],
@@ -263,7 +263,9 @@ export default function test() {
                 const commonEventPublishData = {
                     data: hostFormId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_enableFormsUpdate_0600", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_enableFormsUpdate_0600 publish' + JSON.stringify(err));
+                });
             }
 
             const onAcquiredCallBack = async (_, data) => {
@@ -428,7 +430,9 @@ export default function test() {
                         let commonEventPublishData = {
                             data: formIds[0]
                         };
-                        commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_enableFormsUpdate_0900", done));
+                        commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                        console.info('FMS_enableFormsUpdate_0900 publish' + JSON.stringify(err));
+                        });
                     }, 2000);
                 }
             }
@@ -566,7 +570,9 @@ export default function test() {
                         let commonEventPublishData = {
                             data: formIds[0]
                         };
-                        commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_enableFormsUpdate_1000", done));
+                        commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                        console.info('FMS_enableFormsUpdate_1000 publish' + JSON.stringify(err));
+                        });
                     }, 2000);
                 }
             }

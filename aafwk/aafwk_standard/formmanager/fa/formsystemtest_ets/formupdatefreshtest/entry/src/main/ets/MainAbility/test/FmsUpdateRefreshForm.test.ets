@@ -15,7 +15,7 @@
 
 import featureAbility from "@ohos.ability.featureAbility";
 import commonEvent from '@ohos.commonEvent';
-import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index.ets";
+import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index";
 
 var onAcquiredForm_Event = {
     events: ["FMS_FormOnAcquired_commonEvent"],
@@ -70,7 +70,8 @@ export default function test() {
                 let commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_updateForm_0100", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                () => delPublishCallBack("FMS_updateForm_0100", done));
             }
             commonEvent.subscribe(subscriberOnRefresh, onRefreshCallBack);
             console.log(`FMS_updateForm_0100 featureAbility.startAbility start`);
@@ -115,7 +116,9 @@ export default function test() {
                 let commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_updateForm_0200", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                () => delPublishCallBack("FMS_updateForm_0200", done));
+                done();
             }
             commonEvent.subscribe(subscriberOnRefresh, onRefreshCallBack);
             console.log(`FMS_updateForm_0200 featureAbility.startAbility start`);
@@ -161,7 +164,9 @@ export default function test() {
                 let commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_updateForm_0300", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                () => delPublishCallBack("FMS_updateForm_0300", done));
+                done();
             }
             function onAcquiredCallBack(_, data) {
                 console.info("!!!====>FMS_updateForm_0300 onAcquiredCallBack data:====>" + JSON.stringify(data));
@@ -312,7 +317,9 @@ export default function test() {
                 let commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_updateForm_0500", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                () => delPublishCallBack("FMS_updateForm_0500", done));
+                done();
             }
             commonEvent.subscribe(subscriberOnRefresh, onRefreshCallBack);
             console.log(`FMS_updateForm_0500 featureAbility.startAbility start`);
@@ -358,7 +365,8 @@ export default function test() {
                 let commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_hostRefresh_0100", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                () => delPublishCallBack("FMS_hostRefresh_0100", done));
             }
             commonEvent.subscribe(subscriberOnRequest, onRequestCallBack);
             console.log(`FMS_hostRefresh_0100 featureAbility.startAbility start`);
@@ -403,7 +411,9 @@ export default function test() {
                 let commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_hostRefresh_0200", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                () => delPublishCallBack("FMS_hostRefresh_0200", done));
+                done();
             }
             commonEvent.subscribe(subscriberOnRequest, onRequestCallBack);
             console.log(`FMS_hostRefresh_0200 featureAbility.startAbility start`);
@@ -449,7 +459,9 @@ export default function test() {
                 let commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_hostRefresh_0300", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                () => delPublishCallBack("FMS_hostRefresh_0300", done));
+                done();
             }
 
             function onAcquiredCallBack(_, data) {
@@ -650,7 +662,8 @@ export default function test() {
                 let commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallBack("FMS_hostRefresh_0700", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, () => delPublishCallBack("FMS_hostRefresh_0700", done));
+                done();
             }
 
             commonEvent.subscribe(subscriberOnRequest, onRequestCallBack);

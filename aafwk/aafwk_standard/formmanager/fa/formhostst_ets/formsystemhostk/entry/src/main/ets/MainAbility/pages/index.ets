@@ -16,7 +16,7 @@
 import featureAbility from '@ohos.ability.featureAbility';
 import formHost from '@ohos.application.formHost';
 import commonEvent from '@ohos.commonEvent';
-import { getCurrentTime } from '@ohos.systemTime';
+import systemTime from '@ohos.systemTime';
 
 // @ts-nocheck
 @Entry
@@ -87,7 +87,7 @@ struct Index {
     console.info(`${this.TAG} unSubscribeDeleteCallback`);
   }
 
-  async private aboutToAppear() {
+  private async aboutToAppear() {
     const onDeleteEventSubscriber = await commonEvent.createSubscriber(this.subscriberFormDeleteEvent);
     const onTerminateEventSubscriber = await commonEvent.createSubscriber(this.subscriberFormTerminateEvent);
     commonEvent.subscribe(onDeleteEventSubscriber, async (err, data) => {
@@ -153,6 +153,7 @@ struct Index {
         if (want.parameters.createSecondForm) {
           this.createSecondForm = want.parameters.createSecondForm;
           this.secondParam = want.parameters.secondParam;
+          console.info(`====onRequestCallback123====>` + JSON.stringify(want.parameters.secondParam));
         }
         if (want.parameters.createTempAndNormal) {
           this.createTempAndNormal = want.parameters.createTempAndNormal;
@@ -213,7 +214,7 @@ struct Index {
             .then((data) => {
               console.info(`${this.TAG} deleteForm result: ${JSON.stringify(data)}`);
               let commonEventPublishData = {
-                data: data || `0`,
+                data: (data + "") || "0",
                 parameters: {
                   "formId": this.deleteId
                 }
@@ -238,7 +239,7 @@ struct Index {
             .then((data) => {
               console.info(`${this.TAG} releaseForm result: ${JSON.stringify(data)}`);
               let commonEventPublishData = {
-                data: data || `0`,
+                data: (data + "") || "0",
                 parameters: {
                   "formId": this.releaseId
                 }
@@ -263,7 +264,7 @@ struct Index {
             .then((data) => {
               console.info(`${this.TAG} requestForm result: ${JSON.stringify(data)}`);
               commonEventPublishData = {
-                data: data || `0`,
+                data: (data + "") || "0",
                 parameters: {
                   "formId": this.requestId
                 }
@@ -303,17 +304,17 @@ struct Index {
             .allowUpdate(this.allowUpdate)
             .visibility(this.isShowing ? Visibility.Visible : Visibility.Hidden)
             .onAcquired(async (form) => {
-              const createdTime = await getCurrentTime();
+              const createdTime = await systemTime.getCurrentTime();
               this.formId = form.id;
               console.info(`${this.TAG} get form, form id: ${form.id}`);
               if (this.deleteForm) {
                 try {
-                  const startTime = await getCurrentTime();
-                  const res = await formHost.deleteForm(this.formId);
-                  const endTime = await getCurrentTime();
+                  const startTime = await systemTime.getCurrentTime();
+                  let res = await formHost.deleteForm(this.formId.toString());
+                  const endTime = await systemTime.getCurrentTime();
                   console.info(`${this.TAG} deleteForm result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `deleteForm`,
                       formId: this.formId,
@@ -321,18 +322,18 @@ struct Index {
                       hostTime: endTime - startTime
                     }
                   };
-                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.formOnAcquiredEvent());
+                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.onAcquiredCallback());
                 } catch (error) {
                   console.info(`${this.TAG} deleteForm error: ${JSON.stringify(error)}`);
                 }
               } else if (this.castTempForm) {
                 try {
-                  const startTime = await getCurrentTime();
-                  const res = await formHost.castTempForm(this.formId);
-                  const endTime = await getCurrentTime();
+                  const startTime = await systemTime.getCurrentTime();
+                  let res = await formHost.castTempForm(this.formId.toString());
+                  const endTime = await systemTime.getCurrentTime();
                   console.info(`${this.TAG} castTempForm result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `castTempForm`,
                       formId: this.formId,
@@ -340,47 +341,47 @@ struct Index {
                       hostTime: endTime - startTime
                     }
                   };
-                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.formOnAcquiredEvent());
+                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.onAcquiredCallback());
                 } catch (error) {
                   console.info(`${this.TAG} castTempForm error: ${JSON.stringify(error)}`);
                 }
               } else if (this.notifyVisibility) {
                 try {
-                  const res = await formHost.notifyVisibleForms([this.formId]);
+                  let res = await formHost.notifyVisibleForms([this.formId.toString()]);
                   console.info(`${this.TAG} notifyVisibleForms result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `notifyVisibleForms`,
                       formId: this.formId,
                     }
                   };
-                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.formOnAcquiredEvent());
+                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.onAcquiredCallback());
                 } catch (error) {
                   console.info(`${this.TAG} notifyVisibleForms error: ${JSON.stringify(error)}`);
                 }
                 try {
-                  const res = await formHost.notifyInvisibleForms([this.formId]);
+                  let res = await formHost.notifyInvisibleForms([this.formId.toString()]);
                   console.info(`${this.TAG} notifyInvisibleForms result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `notifyInvisibleForms`,
                       formId: this.formId,
                     }
                   };
-                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.formOnAcquiredEvent());
+                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.onAcquiredCallback());
                 } catch (error) {
                   console.info(`${this.TAG} notifyInvisibleForms error: ${JSON.stringify(error)}`);
                 }
               } else if (this.notifyVisibleForms) {
                 try {
-                  const startTime = await getCurrentTime();
-                  const res = await formHost.notifyVisibleForms([this.formId]);
-                  const endTime = await getCurrentTime();
+                  const startTime = await systemTime.getCurrentTime();
+                  let res = await formHost.notifyVisibleForms([this.formId.toString()]);
+                  const endTime = await systemTime.getCurrentTime();
                   console.info(`${this.TAG} notifyVisibleForms result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `notifyVisibleForms`,
                       formId: this.formId,
@@ -388,18 +389,18 @@ struct Index {
                       hostTime: endTime - startTime
                     }
                   };
-                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.formOnAcquiredEvent());
+                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.onAcquiredCallback());
                 } catch (error) {
                   console.info(`${this.TAG} notifyVisibleForms error: ${JSON.stringify(error)}`);
                 }
               } else if (this.notifyInvisibleForms) {
                 try {
-                  const startTime = await getCurrentTime();
-                  const res = await formHost.notifyInvisibleForms([this.formId]);
-                  const endTime = await getCurrentTime();
+                  const startTime = await systemTime.getCurrentTime();
+                  let res = await formHost.notifyInvisibleForms([this.formId.toString()]);
+                  const endTime = await systemTime.getCurrentTime();
                   console.info(`${this.TAG} notifyInvisibleForms result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `notifyInvisibleForms`,
                       formId: this.formId,
@@ -407,18 +408,18 @@ struct Index {
                       hostTime: endTime - startTime
                     }
                   };
-                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.formOnAcquiredEvent());
+                  commonEvent.publish(this.formOnAcquiredEvent, commonEventPublishData, () => this.onAcquiredCallback());
                 } catch (error) {
                   console.info(`${this.TAG} notifyInvisibleForms error: ${JSON.stringify(error)}`);
                 }
               } else if (this.requestForm) {
                 try {
-                  const startTime = await getCurrentTime();
-                  const res = await formHost.requestForm(this.formId);
-                  const endTime = await getCurrentTime();
+                  const startTime = await systemTime.getCurrentTime();
+                  let res = await formHost.requestForm(this.formId.toString());
+                  const endTime = await systemTime.getCurrentTime();
                   console.info(`${this.TAG} requestForm result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `request`,
                       formId: this.formId,
@@ -432,12 +433,12 @@ struct Index {
                 }
               } else if (this.releaseForm) {
                 try {
-                  const startTime = await getCurrentTime();
-                  const res = await formHost.releaseForm(this.formId);
-                  const endTime = await getCurrentTime();
+                  const startTime = await systemTime.getCurrentTime();
+                  let res = await formHost.releaseForm(this.formId.toString());
+                  const endTime = await systemTime.getCurrentTime();
                   console.info(`${this.TAG} releaseForm result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `release`,
                       formId: this.formId,
@@ -450,10 +451,10 @@ struct Index {
                 }
               } else if (this.update) {
                 try {
-                  const res = await formHost.enableFormsUpdate([this.formId]);
+                  let res = await formHost.enableFormsUpdate([this.formId.toString()]);
                   console.info(`${this.TAG} enableUpdate result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `enableUpdate`,
                       formId: this.formId,
@@ -464,10 +465,10 @@ struct Index {
                   console.info(`${this.TAG} enableUpdate error: ${JSON.stringify(error)}`);
                 }
                 try {
-                  const res = await formHost.disableFormsUpdate([this.formId]);
+                  let res = await formHost.disableFormsUpdate([this.formId.toString()]);
                   console.info(`${this.TAG} disableUpdate result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `disableUpdate`,
                       formId: this.formId,
@@ -479,12 +480,12 @@ struct Index {
                 }
               } else if (this.enableUpdate) {
                 try {
-                  const startTime = await getCurrentTime();
-                  const res = await formHost.enableFormsUpdate([this.formId]);
-                  const endTime = await getCurrentTime();
+                  const startTime = await systemTime.getCurrentTime();
+                  let res = await formHost.enableFormsUpdate([this.formId.toString()]);
+                  const endTime = await systemTime.getCurrentTime();
                   console.info(`${this.TAG} enableUpdate result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                    data: (res + "") || "0",
                     parameters: {
                       kind: `enableUpdate`,
                       formId: this.formId,
@@ -497,12 +498,12 @@ struct Index {
                 }
               } else if (this.disableUpdate) {
                 try {
-                  const startTime = await getCurrentTime();
-                  const res = await formHost.disableFormsUpdate([this.formId]);
-                  const endTime = await getCurrentTime();
+                  const startTime = await systemTime.getCurrentTime();
+                  const res = await formHost.disableFormsUpdate([this.formId.toString()]);
+                  const endTime = await systemTime.getCurrentTime();
                   console.info(`${this.TAG} disableUpdate result: ${JSON.stringify(res)}`);
                   const commonEventPublishData = {
-                    data: res || `0`,
+                   data: (res + "") || "0",
                     parameters: {
                       kind: `disableUpdate`,
                       formId: this.formId,
@@ -540,13 +541,13 @@ struct Index {
         }
         if (this.createSecondForm) {
           FormComponent({
-            id: this.secondParam.formId,
-            name: this.secondParam.name,
-            bundle: this.secondParam.bundle,
-            ability: this.secondParam.ability,
-            module: this.secondParam.moduleName,
-            dimension: FormDimension.Dimension_1_2,
-            temporary: this.secondParam.temporary,
+            id: this.formId,
+            name: this.name,
+            bundle: this.bundle,
+            ability: this.ability,
+            module: this.moduleName,
+            dimension: this.dimension,
+            temporary: this.temporary,
           })
             .allowUpdate(this.allowUpdate)
             .visibility(this.isShowing ? Visibility.Visible : Visibility.Hidden)
@@ -570,13 +571,13 @@ struct Index {
         }
         if (this.createTempAndNormal) {
           FormComponent({
-            id: this.tempParam.formId,
-            name: this.tempParam.name,
-            bundle: this.tempParam.bundle,
-            ability: this.tempParam.ability,
-            module: this.tempParam.moduleName,
-            dimension: FormDimension.Dimension_1_2,
-            temporary: true,
+            id: this.formId,
+            name: this.name,
+            bundle: this.bundle,
+            ability: this.ability,
+            module: this.moduleName,
+            dimension: this.dimension,
+            temporary: this.temporary,
           })
             .allowUpdate(this.allowUpdate)
             .visibility(this.isShowing ? Visibility.Visible : Visibility.Hidden)

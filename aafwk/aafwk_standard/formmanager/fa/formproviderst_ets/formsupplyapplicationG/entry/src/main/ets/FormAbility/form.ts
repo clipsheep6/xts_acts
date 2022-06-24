@@ -1,7 +1,7 @@
 import commonEvent from '@ohos.commonEvent';
 import formBindingData from '@ohos.application.formBindingData';
 import formProvider from '@ohos.application.formProvider';
-import {getCurrentTime} from '@ohos.systemTime';
+import systemTime from '@ohos.systemTime';
 
 let supplyForm_Event = "FMS_FormSupply_commonEvent";
 
@@ -11,7 +11,7 @@ function publishCallBack() {
 
 export default {
     async onCreate(want) {
-        const time = await getCurrentTime();
+        const time = await systemTime.getCurrentTime();
         console.info('FormAbility onCreate, want:' + JSON.stringify(want));
         let formData = {
             temperature: "11°",
@@ -46,7 +46,7 @@ export default {
         return bindingData;
     },
     async onUpdate(formId) {
-        const time = await getCurrentTime();
+        const time = await systemTime.getCurrentTime();
         console.info('FormAbility onUpdate, formId: ' + formId);
         var commonEventPublishData = {
             parameters: {
@@ -59,7 +59,7 @@ export default {
         commonEvent.publish(supplyForm_Event, commonEventPublishData, publishCallBack);
     },
     async onCastToNormal(formId) {
-        const time = await getCurrentTime();
+        const time = await systemTime.getCurrentTime();
         console.info('FormAbility onCastTemp, formId: ' + formId);
         var commonEventPublishData = {
             parameters: {
@@ -72,7 +72,7 @@ export default {
         commonEvent.publish(supplyForm_Event, commonEventPublishData, publishCallBack);
     },
     async onEvent(formId, message) {
-        const time = await getCurrentTime();
+        const time = await systemTime.getCurrentTime();
         console.info('FormAbility onTriggerEvent, formId: ' + formId + 'message: ' + message);
         var commonEventPublishData = {
             parameters: {
@@ -85,7 +85,7 @@ export default {
         commonEvent.publish(supplyForm_Event, commonEventPublishData, publishCallBack);
     },
     async onVisibilityChange(formEvents) {
-        const time = await getCurrentTime();
+        const time = await systemTime.getCurrentTime();
         console.info('FormAbility onVisibilityChanged, ' + JSON.stringify(formEvents));
         var commonEventPublishData = {
             parameters: {
@@ -108,10 +108,10 @@ export default {
             };
             let obj = formBindingData.createFormBindingData(dataObj);
 
-            const updateFormStartTime = await getCurrentTime();
+            const updateFormStartTime = await systemTime.getCurrentTime();
             let data = await formProvider.updateForm(key, obj);
             console.info('FormAbility onUpdateForm, res: ' + data);
-            const updateFormEndTime = await getCurrentTime();
+            const updateFormEndTime = await systemTime.getCurrentTime();
 
             commonEventPublishData = {
                 parameters: {
@@ -123,10 +123,10 @@ export default {
             };
             commonEvent.publish(supplyForm_Event, commonEventPublishData, publishCallBack);
 
-            const setFormNextRefreshTimeStartTime = await getCurrentTime();
+            const setFormNextRefreshTimeStartTime = await systemTime.getCurrentTime();
             data = await formProvider.setFormNextRefreshTime(key, 5);
             console.info('FormAbility setFormNextRefreshTime, res: ' + data);
-            const setFormNextRefreshTimeEndTime = await getCurrentTime();
+            const setFormNextRefreshTimeEndTime = await systemTime.getCurrentTime();
 
             commonEventPublishData = {
                 parameters: {
@@ -140,7 +140,7 @@ export default {
         }
     },
     async onDestroy(formId) {
-        const time = await getCurrentTime();
+        const time = await systemTime.getCurrentTime();
         console.info('FormAbility onDestroy, formId: ' + formId);
         var commonEventPublishData = {
             parameters: {

@@ -15,7 +15,7 @@
 
 import featureAbility from "@ohos.ability.featureAbility";
 import commonEvent from '@ohos.commonEvent';
-import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index.ets";
+import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index";
 
 var onAcquiredForm_Event = {
     events: ["FMS_FormOnAcquired_commonEvent"],
@@ -254,7 +254,8 @@ export default function test() {
                 let commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_notifyVisibleForms_0600", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                () => delPublishCallback("FMS_notifyVisibleForms_0600", done));
             }
             async function onAcquiredCallBack(_, data) {
                 console.info("!!!====>FMS_notifyVisibleForms_0600 onAcquiredCallBack data:====>" + JSON.stringify(data));
@@ -382,7 +383,8 @@ export default function test() {
                         let commonEventPublishData = {
                             data: formIdInvisible
                         };
-                        commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_notifyVisibleForms_1000", done));
+                        commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                        () => delPublishCallback("FMS_notifyVisibleForms_1000", done));
                     }
                 }
             }
@@ -397,7 +399,8 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formIdInvisible
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_notifyVisibleForms_1000", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                    () => delPublishCallback("FMS_notifyVisibleForms_1000", done));
                 }
             }
             async function OnInvisibleCallBack(_, data) {
@@ -483,7 +486,8 @@ export default function test() {
                     let commonEventPublishData = {
                         data: formId
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_notifyVisibleForms_1000", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                    () => delPublishCallback("FMS_notifyVisibleForms_1000", done));
                 }
             }
 
@@ -551,7 +555,8 @@ export default function test() {
                     let commonEventPublishData = {
                         data: data.parameters.formId
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_notifyVisibleForms_1200", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                    () => delPublishCallback("FMS_notifyVisibleForms_1200", done));
                 }, 2000);
             }
             function onSupplyEventCallBack(_, data) {
@@ -614,7 +619,8 @@ export default function test() {
                 let commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_notifyVisibleForms_1300", done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                () => delPublishCallback("FMS_notifyVisibleForms_1300", done));
             }
 
             commonEvent.subscribe(subscriberOnState, OnVisibleCallBack);
@@ -1166,7 +1172,8 @@ export default function test() {
                     let commonEventPublishData = {
                         data: data.parameters.formId
                     };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback("FMS_notifyVisibleForms_1700", done));
+                    commonEvent.publish(deleteForm_Event, commonEventPublishData,
+                    () => delPublishCallback("FMS_notifyVisibleForms_1700", done));
                 }, 2000);
             }
 

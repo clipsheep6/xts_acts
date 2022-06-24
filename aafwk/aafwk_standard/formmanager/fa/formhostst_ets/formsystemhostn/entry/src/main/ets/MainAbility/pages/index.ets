@@ -15,7 +15,7 @@
 
 import commonEvent from '@ohos.commonEvent';
 import featureAbility from "@ohos.ability.featureAbility";
-import formManager from '@ohos.application.formHost';
+import formHost from '@ohos.application.formHost';
 
 @Entry
 @Component
@@ -102,10 +102,10 @@ struct Index {
     let formId = data.parameters.castFormId;
     setTimeout(function () {
       console.info("[FormComponent.host] castTempForm start, formId: " + formId);
-      formManager.castTempForm(formId)
+      formHost.castTempForm(formId)
         .then((data) => {
           console.info('[FormComponent] castTempForm result:' + data);
-          this.startAbility("com.ohos.st.formsystemhostc", "com.ohos.st.formsystemhostc.MainAbility", data.toString());
+          this.startAbility("com.ohos.st.formsystemhostc", "com.ohos.st.formsystemhostc.MainAbility", data);
         })
         .catch((error) => {
           console.info('[FormComponent] castTempForm error:' + JSON.stringify(error));
@@ -136,7 +136,7 @@ struct Index {
     delFormIds.forEach(async (formId, index) => {
       console.info(`[FormComponent] formsystemhostn deleteForm ${index}`);
       try {
-        const res = await formManager.deleteForm(formId);
+        const res = await formHost.deleteForm(formId);
         console.info(`[FormComponent] formsystemhostn deleteForm ${index} ${formId} result: ${JSON.stringify(res)}`);
       } catch (error) {
         console.info(`[FormComponent] formsystemhostn deleteForm ${index} ${formId} error: ${JSON.stringify(error)}`);
@@ -172,7 +172,7 @@ struct Index {
           });
           let delCounter = 0;
           delFormIds.forEach((formId) => {
-            formManager.deleteForm(formId, (error, data) => {
+            formHost.deleteForm(formId, (error, data) => {
               console.info(`[FormComponent] formsystemhostn deleteForm ${++delCounter} ${formId} data: ${JSON.stringify(data)} err: ${JSON.stringify(error)}`);
             });
           });
@@ -233,7 +233,7 @@ struct Index {
 
           const formId = want.parameters.releaseFormId;
           const isReleaseCache = want.parameters.isReleaseCache;
-          const res = await formManager.releaseForm(formId, isReleaseCache);
+          const res = await formHost.releaseForm(formId, isReleaseCache);
           console.info(`[FormComponent] releaseForm res: ${JSON.stringify(res)}`);
           const commonEventPublishData = {
             data: `releaseForm`,
@@ -263,11 +263,11 @@ struct Index {
             console.info("====> [FormComponent] formsystemhostn optType unSubscribeCastFormCallback CallBack====>");
           });
 
-          formManager.castTempForm(this.castFormId)
+          formHost.castTempForm(this.castFormId)
             .then((data) => {
               console.info('[FormComponent] castTempForm result:' + data);
               let commonEventPublishData = {
-                data: data || `0`,
+                data: (data + "") || `0`,
                 bundleName: "com.ohos.st.formsystemhostn",
                 parameters: {
                   formId: this.castFormId.toString()
@@ -293,14 +293,14 @@ struct Index {
         if (want.parameters.optType == 2 && this.deleteIds.length > 0) {
           for (let iIndex = 0; iIndex < this.deleteIds.length; ++iIndex) {
             console.info("[FormComponent] formsystemhostn deleteForm start");
-            formManager.deleteForm(this.deleteIds[iIndex])
+            formHost.deleteForm(this.deleteIds[iIndex])
               .then((data) => {
                 console.info('[FormComponent] formsystemhostn deleteForm result:' + data);
                 this.delCount++;
 
                 if (this.delCount == this.deleteIds.length) {
                   let commonEventPublishData = {
-                    data: data.toString(),
+                    data: data + "",
                     bundleName: "com.ohos.st.formsystemhostn",
                     parameters: {
                       "formIds": this.deleteIds

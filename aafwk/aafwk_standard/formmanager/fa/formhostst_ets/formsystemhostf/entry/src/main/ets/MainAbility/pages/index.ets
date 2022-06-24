@@ -217,7 +217,13 @@ struct Index {
             count: 10
         };
         if(this.jsonEmpty) {
-          formData = {};
+          formData = {
+          temperature: "",
+          time: "",
+          area: "",
+          epidemic: true,
+          count: 1
+          };
         }
         let bindingData = formBindingData.createFormBindingData(formData);
         formProvider.updateForm(this.updateId, bindingData)
@@ -340,7 +346,13 @@ struct Index {
                     count: 10
                 };
                 if(this.jsonEmpty) {
-                  formData = {};
+                  formData = {
+                  temperature: "",
+                  time: "",
+                  area: "",
+                  epidemic: true,
+                  count: 1
+                  };
                 }
                 let bindingData = formBindingData.createFormBindingData(formData);
                 formProvider.updateForm(this.updateId, bindingData)

@@ -15,8 +15,8 @@
 
 import featureAbility from '@ohos.ability.featureAbility';
 import commonEvent from '@ohos.commonEvent';
-import { setTime } from '@ohos.systemTime';
-import { beforeEach, describe, expect, it } from 'deccjsunit/index.ets';
+import systemTime from '@ohos.systemTime';
+import { beforeEach, describe, expect, it } from 'deccjsunit/index';
 
 const onAcquiredForm_Event = {
     events: ["FMS_FormOnAcquired_commonEvent"],
@@ -67,7 +67,9 @@ export default function test() {
                 const commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_deleteForm_0200 publish' + JSON.stringify(err));
+                });
             };
             commonEvent.subscribe(subscriberOnDeleted, onDeletedCallback);
 
@@ -143,7 +145,9 @@ export default function test() {
                 const commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_deleteForm_0300 publish' + JSON.stringify(err));
+                });
             };
             commonEvent.subscribe(subscriberOnDeleted, onDeletedCallback);
 
@@ -189,7 +193,9 @@ export default function test() {
                 const commonEventPublishData = {
                     data: data.parameters.formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_deleteForm_0400 publish' + JSON.stringify(err));
+                });
             };
             commonEvent.subscribe(subscriberOnDeleted, onDeletedCallback);
 
@@ -237,7 +243,9 @@ export default function test() {
                 const commonEventPublishData = {
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_deleteForm_0500 publish' + JSON.stringify(err));
+                });
             };
             commonEvent.subscribe(subscriberOnDeleted, onDeletedCallback);
 
@@ -836,7 +844,9 @@ export default function test() {
                     bundleName: "com.ohos.st.formsystemhostc",
                     data: formId
                 };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, delPublishCallback(tcNumber, done));
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                console.info('FMS_deleteForm_0900 publish' + JSON.stringify(err));
+                });
             }
 
             const onDeletedCallback = async (_, data) => {
@@ -1124,7 +1134,7 @@ const changeTime = async (hour, min, second) => {
     console.info(`FMS_deleteForm changeTime s: ${s}`);
 
     try {
-        await setTime(s);
+        await systemTiem.setTime(s);
         console.info(`FMS_deleteForm set time success: ${formatTime}`);
     } catch (error) {
         console.info(`FMS_deleteForm set time failure: ${error}`);
