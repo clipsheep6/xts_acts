@@ -14,8 +14,9 @@
 */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var timeout = 1000;
+export function ActsAnsNotificationPublishXts() {
 describe('ActsAnsNotificationPublishXts', function () {
     console.info("===========ActsAnsNotificationPublish start====================>");
     function onConsumeA(data) {
@@ -2390,3 +2391,4 @@ describe('ActsAnsNotificationPublishXts', function () {
         }),timeout);
     });
 }) 
+}

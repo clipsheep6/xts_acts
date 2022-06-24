@@ -14,9 +14,10 @@
  */
 import osaccount from '@ohos.account.osAccount'
 import bundle from '@ohos.bundle'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const ERR_OS_ACCOUNT_SERVICE_MANAGER_BAD_UID_ERR = 4653057;
+export function ActsOsAccountThirdPartyTest_third_1() {
 describe('ActsOsAccountThirdPartyTest_third_1', function () {
 
     /*
@@ -466,4 +467,4 @@ describe('ActsOsAccountThirdPartyTest_third_1', function () {
         console.debug("====>ActsOsAccountGetCount_0200 end====");
         done();
     })
-})
+})}

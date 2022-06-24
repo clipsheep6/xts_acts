@@ -16,8 +16,9 @@
 import media from '@ohos.multimedia.media'
 import {playAudioSource} from '../../../../../AudioPlayerTestBase.js';
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function PlayerLocalTestAudioFUNC() {
 describe('PlayerLocalTestAudioFUNC', function () {
     let audioPlayer = media.createAudioPlayer();
     const AUDIO_SOURCE = '01.mp3';
@@ -439,3 +440,4 @@ describe('PlayerLocalTestAudioFUNC', function () {
         playAudioSource(fdHead + fileDescriptor.fd, DURATION_TIME, PLAY_TIME, true, done);
     })
 })
+}

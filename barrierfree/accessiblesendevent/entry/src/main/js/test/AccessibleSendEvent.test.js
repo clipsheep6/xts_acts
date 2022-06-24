@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import accessibility from '@ohos.accessibility'
 
 const bundleName = 'com.sample.testfora11y';
 const triggerAction = 'accessibilityFocus';
 const eventType = 'accessibilityFocus';
 
+export function AccessibleSendEvent() {
 describe('AccessibleSendEvent', function () {
 
     beforeEach(async function (done) {
@@ -3898,3 +3899,4 @@ describe('AccessibleSendEvent', function () {
     
 })
 
+}

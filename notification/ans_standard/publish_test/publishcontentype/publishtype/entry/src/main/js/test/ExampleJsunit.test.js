@@ -14,7 +14,7 @@
  */
 import notification from '@ohos.notification'
 import Subscriber from '@ohos.commonevent'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var time = 5000
 var multiLineDataOne
 var multiLineDataTwo
@@ -44,6 +44,7 @@ var SocialDataThree
 var SocialDataFour
 var SocialDataFive
 var SocialDataSix
+export function ActsAnsNotificationTest() {
 describe('ActsAnsNotificationTest', function () {
     function publishMULTILINEContentCallback001(error){
         console.log('ActsNotificationTest ACTS_PublishMULTILINEContent_0100 asyncCallback'+JSON.stringify(error.code))
@@ -1868,4 +1869,4 @@ describe('ActsAnsNotificationTest', function () {
             }
         }).then(console.log("===ACTS_PublishSlotTypeSocial_0800 finished==="))
     })
-})
+})}

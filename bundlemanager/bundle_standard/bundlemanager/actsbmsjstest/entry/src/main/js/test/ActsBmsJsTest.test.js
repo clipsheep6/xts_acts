@@ -14,7 +14,7 @@
  */
 import bundle from '@ohos.bundle'
 import pkg from '@system.package'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 const NUM_TWO = 2;
 const NUM_FOUR = 4;
@@ -31,6 +31,7 @@ const ABILITIY_NAME6 = "com.example.third2.MainAbilityA";
 const ABILITIY_NAME7 = "com.example.third5.MainAbilityA";
 const ABILITIY_NAME8 = "com.example.third5.MainAbilityB";
 
+export function ActsBmsJsTest() {
 describe('ActsBmsJsTest', function () {
 
     /*
@@ -228,4 +229,4 @@ describe('ActsBmsJsTest', function () {
         expect(info.metaData[0].extra).assertEqual("$string:mainability_description");
         expect(info.enabled).assertEqual(true);
     }
-})
+})}

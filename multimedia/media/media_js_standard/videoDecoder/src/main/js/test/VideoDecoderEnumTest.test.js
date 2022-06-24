@@ -17,9 +17,10 @@ import media from '@ohos.multimedia.media'
 import fileio from '@ohos.fileio'
 import router from '@system.router'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 
+export function VideoDecoderEnum() {
 describe('VideoDecoderEnum', function () {
     let videoDecodeProcessor = null;
     let videoPlayer = null;
@@ -337,3 +338,4 @@ describe('VideoDecoderEnum', function () {
     })
 })
     
+}

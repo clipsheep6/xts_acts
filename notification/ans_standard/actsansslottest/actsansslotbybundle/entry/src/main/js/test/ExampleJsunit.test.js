@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 import notification from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function ActsAnsSlotByBundle() {
 describe('ActsAnsSlotByBundle', function () {
     /*
      * @tc.number    : ActsAnsGetSlotsByBundle_0100
@@ -1821,3 +1822,4 @@ describe('ActsAnsSlotByBundle', function () {
     })
 })
 
+}
