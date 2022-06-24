@@ -1,10 +1,11 @@
 {
     "description": "Configuration for powermgr display Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "60000",
-        "package": "com.example.mypowerdisplayapp",
-        "shell-timeout": "60000"
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.mypowerdisplayapp",
+        "package-name": "com.example.mypowerdisplayapp"
     },
     "kits": [
         {
@@ -16,4 +17,3 @@
         }
     ]
 }
-

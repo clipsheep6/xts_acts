@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var time = 1000
+export function ActsAnsSubscriberTest() {
 describe('ActsAnsSubscriberTest', function () {
     console.info("==ActsAnsSubscriberTest start==>");
     //ActsSubscriber_test_0100
@@ -487,3 +488,4 @@ describe('ActsAnsSubscriberTest', function () {
     })
 })
 
+}

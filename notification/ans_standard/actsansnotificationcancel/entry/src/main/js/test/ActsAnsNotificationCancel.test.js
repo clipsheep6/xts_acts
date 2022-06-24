@@ -14,8 +14,9 @@
 */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 let timeout = 500;
+export function ActsAnsNotificationCancel() {
 describe('ActsAnsNotificationCancel', function () {
     console.info('===========ActsAnsNotificationCancel start====================>');
     let timesOfOnConsume
@@ -2021,4 +2022,4 @@ describe('ActsAnsNotificationCancel', function () {
             done();
         }),timeout);
     })
-}) 
+}) }

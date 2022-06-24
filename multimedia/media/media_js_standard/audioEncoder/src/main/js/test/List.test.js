@@ -16,5 +16,3 @@
 require('./AudioEncoderFuncCallbackTest.test.js')
 require('./AudioEncoderFuncPromiseTest.test.js')
 require('./AudioEncoderReliabilityCallbackTest.test.js')
-require('./AudioEncoderReliabilityPromiseTest.test.js')
-require('./AudioEncoderMultiInstancesTest.test.js')

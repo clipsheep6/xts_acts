@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import featureAbility from '@ohos.ability.featureAbility'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 let resultCode = 123;
 let bundleName = 'ohso.act.aafwk';
@@ -22,6 +22,7 @@ const errCode = -104;
 const errCode1 = 2097152;
 const errCode2 = 29360157;
 
+export function ConnectAbilityTest() {
 describe('ConnectAbilityTest', function () {
   
     /*
@@ -463,3 +464,4 @@ describe('ConnectAbilityTest', function () {
         })
     })
 })
+}

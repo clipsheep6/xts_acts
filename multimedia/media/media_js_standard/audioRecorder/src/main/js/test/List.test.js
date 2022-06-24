@@ -14,5 +14,3 @@
  */
 
 require('./RecorderLocalTestAudioFUNC.test.js')
-require('./RecorderLocalTestAudioAPI.test.js')
-require('./AudioRecorderEnumTest.test.js')

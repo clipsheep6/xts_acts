@@ -14,8 +14,9 @@
  */
 
 import media from '@ohos.multimedia.media'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function VideoEncoderEnum() {
 describe('VideoEncoderEnum', function () {
 
     beforeAll(function() {
@@ -49,4 +50,4 @@ describe('VideoEncoderEnum', function () {
         expect(media.VideoEncodeBitrateMode.CQ).assertEqual(2);
         done();
     })
-})
+})}

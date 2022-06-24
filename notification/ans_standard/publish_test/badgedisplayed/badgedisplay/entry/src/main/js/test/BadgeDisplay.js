@@ -14,8 +14,9 @@
  */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 var time = 1000
+export function ActsAnsBadgeDisplayTest() {
 describe('ActsAnsBadgeDisplayTest', function () {
     console.info("===ActsAnsBadgeDisplayTest start===>");
     /*
@@ -184,3 +185,4 @@ describe('ActsAnsBadgeDisplayTest', function () {
 })
 
 
+}

@@ -14,8 +14,9 @@
 */
 
 import notify from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 let timeout = 300;
+export function ActsAnsNotificationRemove() {
 describe('ActsAnsNotificationRemove', function () {
     console.info("===========ActsAnsNotificationRemove start====================>");
     let subscriber;
@@ -3075,4 +3076,4 @@ describe('ActsAnsNotificationRemove', function () {
             done();
         }),timeout);
     })
-}) 
+}) }

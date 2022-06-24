@@ -18,8 +18,9 @@ import fileio from '@ohos.fileio'
 import featureAbility from '@ohos.ability.featureAbility'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function AudioDecoderFormatCompatibilityPromise() {
 describe('AudioDecoderFormatCompatibilityPromise', function () {
     let audioDecodeProcessor;
     let readStreamSync;
@@ -2539,4 +2540,4 @@ describe('AudioDecoderFormatCompatibilityPromise', function () {
 
     })
 
-})
+})}

@@ -14,8 +14,9 @@
  */
 
 import media from '@ohos.multimedia.media'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function VideoHardwareEncoderEnum() {
 describe('VideoHardwareEncoderEnum', function () {
 
     beforeAll(function() {
@@ -61,4 +62,4 @@ describe('VideoHardwareEncoderEnum', function () {
         expect(media.MediaDescriptionKey.MD_KEY_REPEAT_FRAME_AFTER).assertEqual("repeat_frame_after");
         done();
     })
-})
+})}

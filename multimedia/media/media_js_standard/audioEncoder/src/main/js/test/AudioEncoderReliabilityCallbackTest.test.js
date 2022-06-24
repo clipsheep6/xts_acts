@@ -16,8 +16,9 @@
 import media from '@ohos.multimedia.media'
 import fileio from '@ohos.fileio'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function AudioEncoderReliabilityCallback() {
 describe('AudioEncoderReliabilityCallback', function () {
     const AUDIOPATH = 'S16LE.pcm';
     const BASIC_PATH = 'results/encode_reliability_callback_';
@@ -1165,4 +1166,4 @@ describe('AudioEncoderReliabilityCallback', function () {
         EOSFrameNum = 2;
         createAudioEncoder(savepath, mySteps, done);
     })
-})
+})}
