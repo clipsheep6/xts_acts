@@ -15,9 +15,10 @@
 import account from '@ohos.account.appAccount'
 import commonevent from '@ohos.commonevent'
 import featureAbility from '@ohos.ability.featureability'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const TIMEOUT = 5000;
+export function ActsAccountChangeOnOff() {
 describe('ActsAccountChangeOnOff', async function () {
 
     function sleep(delay) {
@@ -913,4 +914,4 @@ describe('ActsAccountChangeOnOff', async function () {
             });
         }, 1000)
     });
-})
+})}

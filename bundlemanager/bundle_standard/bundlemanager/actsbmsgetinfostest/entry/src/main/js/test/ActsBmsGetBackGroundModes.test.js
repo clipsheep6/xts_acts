@@ -43,6 +43,7 @@ const VOIP = 128;
 const TASKKEEPING = 256;
 let userId = 0;
 
+export function ActsBmsGetBackGroundModes() {
 describe('ActsBmsGetBackGroundModes', function () {
 
     beforeAll(async function (done) {
@@ -204,4 +205,4 @@ describe('ActsBmsGetBackGroundModes', function () {
         done();
     });
 
-})
+})}

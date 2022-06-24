@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 import Subscriber from '@ohos.commonEvent'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export function ActsSubscriberTestUnorder() {
 describe('ActsSubscriberTestUnorder', async function (done) {
     console.info("===========ActsSubscriberTestUnorder start====================>");
     let commonEventSubscriber001;
@@ -274,3 +275,4 @@ describe('ActsSubscriberTestUnorder', async function (done) {
 
 })
 
+}

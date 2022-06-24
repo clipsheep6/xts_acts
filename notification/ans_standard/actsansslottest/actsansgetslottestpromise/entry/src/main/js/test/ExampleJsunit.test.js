@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 import notification from '@ohos.notification'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 const TIMEOUT = 2000;
 const SOUNDURL = "file://system/etc/Light.ogg";
+export function ActsAnsGetSlotTestPromise() {
 describe('ActsAnsGetSlotTestPromise', function () {
 
     /*
@@ -233,4 +234,4 @@ describe('ActsAnsGetSlotTestPromise', function () {
             console.debug("====>time out ActsAnsGetSlotTestPromise_0500====>");
         }, TIMEOUT);
     })
-}) 
+}) }

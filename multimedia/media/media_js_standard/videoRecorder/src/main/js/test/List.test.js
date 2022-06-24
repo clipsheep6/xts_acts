@@ -14,5 +14,3 @@
  */
 require('./VideoRecorderFuncCallbackTest.test.js')
 require('./VideoRecorderFuncPromiseTest.test.js')
-require('./VideoRecorderAPICallbackTest.test.js')
-require('./VideoRecorderEnumTest.test.js')

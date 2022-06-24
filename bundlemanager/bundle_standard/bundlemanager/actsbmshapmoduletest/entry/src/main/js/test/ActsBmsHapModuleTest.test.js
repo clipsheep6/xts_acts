@@ -14,7 +14,7 @@
 */
 
 import bundle from '@ohos.bundle'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 const BUNDLE_NAME1 = 'com.example.bmsmainabilityfirstscene';
 const BUNDLE_NAME2 = 'com.example.third2';
@@ -27,6 +27,7 @@ const MODULE_NAME = 'entry';
 const LABEL = '$string:app_name';
 const DEVICE_TYPES = 'phone';
 
+export function ActsBmsHapModuleTest() {
 describe('ActsBmsHapModuleTest', function () {
 
     /*
@@ -221,4 +222,4 @@ describe('ActsBmsHapModuleTest', function () {
         expect(info.hashValue).assertEqual("");
 
     }
-})
+})}

@@ -16,7 +16,7 @@
 import account from '@ohos.account.appAccount'
 import resmgr from '@ohos.resourceManager'
 import featureAbility from '@ohos.ability.featureAbility'
-import {describe, it, expect, beforeAll, beforeEach} from 'deccjsunit/index'
+import {describe, it, expect, beforeAll, beforeEach} from '@ohos/hypium'
 
 
 const TIMEOUT = 1000;
@@ -28,6 +28,7 @@ const OWNERLENGTHLIMIT = 1024;
 
 const OWNERSELF = "com.example.actsaccounttest";
 
+export function ActsAccountOAuthToken() {
 describe('ActsAccountOAuthToken', function () {
     function sleep(delay) {
         return new Promise((resolve, reject) => {
@@ -3386,3 +3387,4 @@ describe('ActsAccountOAuthToken', function () {
             done();
         });
 })
+}
