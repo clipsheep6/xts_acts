@@ -15,7 +15,6 @@
 import app from '@system.app'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import window from '@ohos.window'
-import screen from '@ohos.screen'
 import display from '@ohos.display'
 import featureAbility from '@ohos.ability.featureAbility'
 const TRUE_WINDOW = true;
@@ -1895,55 +1894,6 @@ describe('window_test', function () {
             console.log('windowTest getTopWindowTest1 getTopWindow failed, err :' + JSON.stringify(err));
             expect().assertFail();
             done();
-        })
-    })
-
-    /**
-     * @tc.number		SUB_WMS_SETSCREENACTIVEMODE_JSAPI_001
-     * @tc.name			Test setScreenActiveMode_Test_001.
-     * @tc.desc			To set the function of setting screen parameters
-     */
-    it('setScreenActiveMode_Test_001', 0, async function (done) {
-        console.log('screenshotTest setScreenActiveModeTest1 begin');
-        screen.getAllScreen().then(src => {
-            console.log('screenshotTest setScreenActiveModeTest1 getAllScreen src' + src);
-            expect(src[0] != null).assertTrue();
-            let screenIndex = src[0];
-            screenIndex.setScreenActiveMode(0).then(res => {
-                console.log('screenshotTest setScreenActiveModeTest1 setScreenActiveMode 0 res: ' + res);
-                expect(res).assertTrue();
-                done();
-            },(err) => {
-                console.log('screenshotTest setScreenActiveModeTest1 setScreenActiveMode 0 failed: err' + JSON.stringify(err));
-                expect().assertFail();
-                done();
-            })
-        }, (err) => {
-            console.log('screenshotTest setScreenActiveModeTest1 failed: err: ' + JSON.stringify(err));
-            done();
-        })
-    })
-
-    /**
-     * @tc.number		SUB_WMS_SETSCREENACTIVEMODE_JSAPI_002
-     * @tc.name			Test setScreenActiveMode_Test_002.
-     * @tc.desc			To set the function of screen parameters to abnormal values.
-     */
-    it('setScreenActiveMode_Test_002', 0, async function (done) {
-        console.log('screenshotTest setScreenActiveModeTest2 begin');
-        screen.getAllScreen().then(src => {
-            console.log('screenshotTest setScreenActiveModeTest2 getAllScreen src' + src);
-            expect(src[0] != null).assertTrue();
-            let screenIndex = src[0];
-            screenIndex.setScreenActiveMode(-5).then(res => {
-                console.log('screenshotTest setScreenActiveModeTest2 setScreenActiveMode -5 res: ' + res);
-                expect().assertFail();
-                done();
-            },(err) => {
-                console.log('screenshotTest setScreenActiveModeTest2 setScreenActiveMode -5 failed: err' + JSON.stringify(err));
-                expect(err.code).assertEqual(0);
-                done();
-            })
         })
     })
 
