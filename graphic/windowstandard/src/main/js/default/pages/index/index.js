@@ -12,20 +12,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {Core} from 'deccjsunit/index'
-const core = Core.getInstance()
-core.init()
-require('../../test/List.test.js')
-core.execute()
+
+import file from '@system.file'
+import {Core, ExpectExtend, ReportExtend} from 'deccjsunit/index'
 
 export default {
     data: {
-        title: ""
+        title: ''
     },
     onInit() {
         this.title = this.$t('strings.world');
-		const configService = core.getDefaultService('config');
-		this.timeout = 15000;
-		configService.setConfig(this);
-    }
+    },
+    onShow() {
+        console.info('====onShow finish====<')
+        const core = Core.getInstance()
+        const expectExtend = new ExpectExtend({
+            id: 'extend'
+        })
+        const reportExtend = new ReportExtend(file)
+        core.addService('expect', expectExtend)
+        core.addService('report', reportExtend)
+        core.init()
+        const configService = core.getDefaultService('config')
+        configService.setConfig(this)
+        this.timeout = 15000
+        require('../../test/List.test')
+        core.execute()
+    },
+    onReady() {
+    },
 }
