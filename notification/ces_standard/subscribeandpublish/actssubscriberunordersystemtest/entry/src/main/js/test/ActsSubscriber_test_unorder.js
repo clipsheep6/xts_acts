@@ -108,8 +108,7 @@ describe('ActsSubscriberTestUnorderSystem', async function (done) {
             Subscriber.Support.COMMON_EVENT_SMS_RECEIVE_COMPLETED,
             Subscriber.Support.COMMON_EVENT_SPN_INFO_UPDATED,
             Subscriber.Support.COMMON_EVENT_BOOT_COMPLETED,
-            Subscriber.Support.COMMON_EVENT_SPLIT_SCREEN,
-            Subscriber.Support.COMMON_EVENT_BATTERY_CHANGED
+            Subscriber.Support.COMMON_EVENT_SPLIT_SCREEN
     ];
 
     function publishCallback(err) {
@@ -187,8 +186,7 @@ describe('ActsSubscriberTestUnorderSystem', async function (done) {
                     Subscriber.Support.COMMON_EVENT_HWID_TOKEN_INVALID,
                     Subscriber.Support.COMMON_EVENT_HWID_LOGOFF,
                     Subscriber.Support.COMMON_EVENT_WIFI_POWER_STATE,
-                    Subscriber.Support.COMMON_EVENT_WIFI_CONN_STATE,
-                    Subscriber.Support.COMMON_EVENT_BATTERY_CHANGED
+                    Subscriber.Support.COMMON_EVENT_WIFI_CONN_STATE
             ],
         };
 
