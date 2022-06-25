@@ -186,7 +186,7 @@ describe('ActsSubscriberTestUnorderSystem', async function (done) {
                     Subscriber.Support.COMMON_EVENT_HWID_TOKEN_INVALID,
                     Subscriber.Support.COMMON_EVENT_HWID_LOGOFF,
                     Subscriber.Support.COMMON_EVENT_WIFI_POWER_STATE,
-                    Subscriber.Support.COMMON_EVENT_WIFI_CONN_STATE,
+                    Subscriber.Support.COMMON_EVENT_WIFI_CONN_STATE
             ],
         };
 
@@ -287,7 +287,8 @@ describe('ActsSubscriberTestUnorderSystem', async function (done) {
                 Subscriber.Support.COMMON_EVENT_ABILITY_UPDATED,
                 Subscriber.Support.COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED,
                 Subscriber.Support.COMMON_EVENT_ACCOUNT_DELETED,
-                Subscriber.Support.COMMON_EVENT_FOUNDATION_READY
+                Subscriber.Support.COMMON_EVENT_FOUNDATION_READY,
+                Subscriber.Support.COMMON_EVENT_BATTERY_CHANGED
             ],
         };
 
