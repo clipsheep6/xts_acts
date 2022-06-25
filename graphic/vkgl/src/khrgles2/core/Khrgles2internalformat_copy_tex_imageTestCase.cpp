@@ -24,13 +24,11 @@ using namespace OHOS;
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000449, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000449 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalf"
-        "ormat.copy_tex_image.rgb",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.rgb",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -41,23 +39,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000449, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000449 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000449 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000450, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000450 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgba start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalf"
-        "ormat.copy_tex_image.rgba",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.rgba",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -68,23 +65,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000450, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000450 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgba Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000450 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgba end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000451, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000451 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.alpha start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalfo"
-        "rmat.copy_tex_image.alpha",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.alpha",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -95,23 +91,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000451, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000451 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.alpha Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000451 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.alpha end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000452, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000452 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalform"
-        "at.copy_tex_image.luminance",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.luminance",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -122,23 +117,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000452, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000452 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000452 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000453, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000453 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance_alpha start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat."
-        "copy_tex_image.luminance_alpha",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.luminance_alpha",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -149,23 +143,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000453, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000453 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance_alpha Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000453 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance_alpha end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000454, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000454 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb5_a1 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalfor"
-        "mat.copy_tex_image.rgb5_a1",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.rgb5_a1",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -176,23 +169,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000454, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000454 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb5_a1 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000454 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb5_a1 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000455, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000455 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb565 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalfo"
-        "rmat.copy_tex_image.rgb565",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.rgb565",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -203,23 +195,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000455, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000455 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb565 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000455 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb565 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000456, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000456 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgba4 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalfo"
-        "rmat.copy_tex_image.rgba4",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.rgba4",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -230,23 +221,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000456, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000456 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgba4 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000456 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgba4 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000457, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000457 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance4_alpha4_oes start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.cop"
-        "y_tex_image.luminance4_alpha4_oes",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.luminance4_alpha4_oes",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -257,23 +247,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000457, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000457 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance4_alpha4_oes Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000457 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance4_alpha4_oes end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000458, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000458 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance8_alpha8_oes start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.cop"
-        "y_tex_image.luminance8_alpha8_oes",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.luminance8_alpha8_oes",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -284,23 +273,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000458, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000458 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance8_alpha8_oes Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000458 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance8_alpha8_oes end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000459, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000459 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance8_oes start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat"
-        ".copy_tex_image.luminance8_oes",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.luminance8_oes",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -311,23 +299,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000459, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000459 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance8_oes Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000459 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.luminance8_oes end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000460, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000460 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.alpha8_oes start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalform"
-        "at.copy_tex_image.alpha8_oes",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.alpha8_oes",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -338,23 +325,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000460, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000460 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.alpha8_oes Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000460 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.alpha8_oes end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000461, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000461 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb10_a2 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalfor"
-        "mat.copy_tex_image.rgb10_a2",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.rgb10_a2",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -365,23 +351,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000461, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000461 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb10_a2 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000461 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb10_a2 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000462, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000462 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb10 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalfo"
-        "rmat.copy_tex_image.rgb10",
+        "--deqp-case=KHR-GLES2.core.internalformat.copy_tex_image.rgb10",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -392,10 +377,11 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000462, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000462 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb10 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000462 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.copy_tex_image.rgb10 end";
 }

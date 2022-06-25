@@ -15,7 +15,7 @@
 
 #include <climits>
 #include <gtest/gtest.h>
-#include "../Khrgles2BaseFunc.h"
+#include "../Khrgles2BaseFunc.hpp"
 #include "../ActsKhrgles20001TestSuite.h"
 
 using namespace std;
@@ -24,13 +24,12 @@ using namespace OHOS;
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000376, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000376 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.texture_3d.sub_image.rgba8 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.texture_"
-        "3d.sub_image.rgba8",
+        "--deqp-case=KHR-GLES2.texture_3d.sub_image.rgba8",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -41,23 +40,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000376, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000376 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.texture_3d.sub_image.rgba8 notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000376 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.texture_3d.sub_image.rgba8 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000377, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000377 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.texture_3d.sub_image.negative start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.texture_3"
-        "d.sub_image.negative",
+        "--deqp-case=KHR-GLES2.texture_3d.sub_image.negative",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -68,10 +68,12 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000377, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000377 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.texture_3d.sub_image.negative notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000377 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.texture_3d.sub_image.negative end";
 }

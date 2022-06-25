@@ -15,7 +15,7 @@
 
 #include <climits>
 #include <gtest/gtest.h>
-#include "../Khrgles2BaseFunc.h"
+#include "../Khrgles2BaseFunc.hpp"
 #include "../ActsKhrgles20001TestSuite.h"
 
 using namespace std;
@@ -24,13 +24,12 @@ using namespace OHOS;
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000003, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000003 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_float_vert start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.sin_float_vert",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.sin_float_vert",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -41,23 +40,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000003, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000003 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.sin_float_vert notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000003 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_float_vert end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000004, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000004 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_float_frag start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.sin_float_frag",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.sin_float_frag",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -68,23 +68,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000004, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000004 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.sin_float_frag notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000004 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_float_frag end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000005, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000005 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_vec2_vert start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.sin_vec2_vert",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.sin_vec2_vert",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -95,23 +96,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000005, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000005 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.sin_vec2_vert notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000005 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_vec2_vert end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000006, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000006 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_vec2_frag start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.sin_vec2_frag",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.sin_vec2_frag",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -122,23 +124,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000006, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000006 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.sin_vec2_frag notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000006 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_vec2_frag end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000007, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000007 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_vec3_vert start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.sin_vec3_vert",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.sin_vec3_vert",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -149,23 +152,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000007, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000007 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.sin_vec3_vert notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000007 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_vec3_vert end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000008, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000008 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_vec3_frag start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.sin_vec3_frag",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.sin_vec3_frag",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -176,23 +180,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000008, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000008 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.sin_vec3_frag notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000008 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.sin_vec3_frag end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000009, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000009 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_float_vert start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.cos_float_vert",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.cos_float_vert",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -203,23 +208,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000009, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000009 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.cos_float_vert notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000009 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_float_vert end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000010, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000010 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_float_frag start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.cos_float_frag",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.cos_float_frag",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -230,23 +236,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000010, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000010 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.cos_float_frag notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000010 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_float_frag end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000011, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000011 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_vec2_vert start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.cos_vec2_vert",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.cos_vec2_vert",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -257,23 +264,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000011, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000011 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.cos_vec2_vert notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000011 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_vec2_vert end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000012, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000012 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_vec2_frag start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.cos_vec2_frag",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.cos_vec2_frag",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -284,23 +292,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000012, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000012 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.cos_vec2_frag notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000012 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_vec2_frag end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000013, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000013 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_vec3_vert start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.cos_vec3_vert",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.cos_vec3_vert",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -311,23 +320,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000013, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000013 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.cos_vec3_vert notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000013 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_vec3_vert end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000014, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000014 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_vec3_frag start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.aggressive"
-        "_optimizations.cos_vec3_frag",
+        "--deqp-case=KHR-GLES2.shaders.aggressive_optimizations.cos_vec3_frag",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -338,10 +348,12 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000014, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000014 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.aggressive_optimizations.cos_vec3_frag notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000014 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.aggressive_optimizations.cos_vec3_frag end";
 }

@@ -13,11 +13,15 @@
  * limitations under the License.
  */
 
+#include <cstdio>
+
 #include "tcuDefs.hpp"
 #include "tcuCommandLine.hpp"
 #include "tcuPlatform.hpp"
-#include "ActsApp.h"
+#include "ActsApp.hpp"
 #include "tcuResource.hpp"
 #include "tcuTestLog.hpp"
 #include "tcuTestSessionExecutor.hpp"
 #include "deUniquePtr.hpp"
+
+static tcu::TestLog tcutestlog("/data/local/tmp/ActsKhrgles2TestSuite0001.qpa", 0);

@@ -16,8 +16,9 @@
 #ifndef KHRGLES2_TESTCASE_H
 #define KHRGLES2_TESTCASE_H
 
+
 #include <gtest/gtest.h>
-#include "Khrgles2BaseFunc.h"
+#include "Khrgles2BaseFunc.hpp"
 
 namespace OHOS {
     class ActsKhrgles20001TestSuite : public testing::Test {
@@ -38,3 +39,4 @@ namespace OHOS {
 } // namespace OHOS
 
 #endif // KHRGLES2_TESTCASE_H
+    

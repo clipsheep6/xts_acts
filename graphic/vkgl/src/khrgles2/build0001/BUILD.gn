@@ -65,8 +65,6 @@ ohos_moduletest_suite("ActsKhrgles2TestSuite0001") {
   ]
 
   include_dirs = [ "//test/xts/acts/graphic/vkglcts/src" ]
-
   deps = [ ":libkhrgles2func0001" ]
-
   cflags = [ "-Wno-error" ]
 }

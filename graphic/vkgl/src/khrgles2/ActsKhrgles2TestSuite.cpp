@@ -19,6 +19,7 @@
 #include "Khrgles2BaseFunc.h"
 #include "ActsKhrgles2TestSuite.h"
 
+
 namespace OHOS {
     using namespace std;
     using namespace testing::ext;
@@ -26,7 +27,7 @@ namespace OHOS {
     time_t ActsKhrgles2TestSuite::starttime;
     time_t ActsKhrgles2TestSuite::endtime;
     FuncRunResult ActsKhrgles2TestSuite::runResult;
-
+        
     // Preset action of the test suite, which is executed before the first test case
     void ActsKhrgles2TestSuite::SetUpTestCase(void)
     {
@@ -58,3 +59,4 @@ namespace OHOS {
     {
     }
 }
+    

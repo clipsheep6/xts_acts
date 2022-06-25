@@ -15,7 +15,7 @@
 
 #include <climits>
 #include <gtest/gtest.h>
-#include "../Khrgles2BaseFunc.h"
+#include "../Khrgles2BaseFunc.hpp"
 #include "../ActsKhrgles20001TestSuite.h"
 
 using namespace std;
@@ -24,13 +24,12 @@ using namespace OHOS;
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000001, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000001 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.negative.initialize start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders."
-        "negative.initialize",
+        "--deqp-case=KHR-GLES2.shaders.negative.initialize",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -41,23 +40,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000001, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000001 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.negative.initialize notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000001 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.negative.initialize end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000002, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000002 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.negative.constant_sequence start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.shaders.nega"
-        "tive.constant_sequence",
+        "--deqp-case=KHR-GLES2.shaders.negative.constant_sequence",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -68,10 +68,12 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000002, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000002 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.shaders.negative.constant_sequence notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000002 end";
+    }
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.shaders.negative.constant_sequence end";
 }

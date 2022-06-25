@@ -15,7 +15,7 @@
 
 #include <climits>
 #include <gtest/gtest.h>
-#include "../Khrgles2BaseFunc.h"
+#include "../Khrgles2BaseFunc.hpp"
 #include "../ActsKhrgles20001TestSuite.h"
 
 using namespace std;
@@ -24,13 +24,11 @@ using namespace OHOS;
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000412, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000412 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgba start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.t"
-        "exture2d.rgba_unsigned_byte_rgba",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgba",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -41,23 +39,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000412, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000412 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgba Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000412 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgba end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000413, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000413 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_byte_rgb start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat."
-        "texture2d.rgb_unsigned_byte_rgb",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_byte_rgb",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -68,23 +65,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000413, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000413 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_byte_rgb Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000413 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_byte_rgb end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000414, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000414 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_4_4_4_4_rgba start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.textur"
-        "e2d.rgba_unsigned_short_4_4_4_4_rgba",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_4_4_4_4_rgba",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -95,23 +91,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000414, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000414 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_4_4_4_4_rgba Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000414 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_4_4_4_4_rgba end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000415, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000415 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance_alpha start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d.lu"
-        "minance_alpha_unsigned_byte_luminance_alpha",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance_alpha",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -122,23 +117,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000415, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000415 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance_alpha Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000415 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance_alpha end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000416, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000416 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.luminance_unsigned_byte_luminance start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.textur"
-        "e2d.luminance_unsigned_byte_luminance",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.luminance_unsigned_byte_luminance",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -149,23 +144,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000416, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000416 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.luminance_unsigned_byte_luminance Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000416 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.luminance_unsigned_byte_luminance end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000417, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000417 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.alpha_unsigned_byte_alpha start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.te"
-        "xture2d.alpha_unsigned_byte_alpha",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.alpha_unsigned_byte_alpha",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -176,23 +170,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000417, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000417 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.alpha_unsigned_byte_alpha Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000417 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.alpha_unsigned_byte_alpha end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000418, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000418 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgba start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2"
-        "d.rgba_unsigned_int_2_10_10_10_rev_rgba",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgba",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -203,23 +196,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000418, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000418 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgba Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000418 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgba end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000419, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000419 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgb10_a2 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d."
-        "rgba_unsigned_int_2_10_10_10_rev_rgb10_a2",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgb10_a2",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -230,23 +223,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000419, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000419 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgb10_a2 Unavaliable!";
+
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000419 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgb10_a2 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000420, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000420 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgb5_a1 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d."
-        "rgba_unsigned_int_2_10_10_10_rev_rgb5_a1",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgb5_a1",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -257,23 +251,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000420, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000420 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgb5_a1 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000420 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_int_2_10_10_10_rev_rgb5_a1 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000421, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000421 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_int_2_10_10_10_rev_rgb start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture"
-        "2d.rgb_unsigned_int_2_10_10_10_rev_rgb",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_int_2_10_10_10_rev_rgb",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -284,23 +278,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000421, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000421 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_int_2_10_10_10_rev_rgb Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000421 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_int_2_10_10_10_rev_rgb end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000422, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000422 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_short_depth_component start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d.dep"
-        "th_component_unsigned_short_depth_component",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_short_depth_component",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -311,23 +305,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000422, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000422 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_short_depth_component Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000422 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_short_depth_component end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000423, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000423 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d.de"
-        "pth_component_unsigned_int_depth_component",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -338,23 +332,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000423, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000423 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000423 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000424, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000424 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.depth_stencil_unsigned_int_24_8_depth_stencil start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d.de"
-        "pth_stencil_unsigned_int_24_8_depth_stencil",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.depth_stencil_unsigned_int_24_8_depth_stencil",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -365,23 +359,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000424, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000424 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.depth_stencil_unsigned_int_24_8_depth_stencil Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000424 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.depth_stencil_unsigned_int_24_8_depth_stencil end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000425, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000425 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_half_float_oes_rgb start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.t"
-        "exture2d.rgb_half_float_oes_rgb",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgb_half_float_oes_rgb",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -392,23 +386,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000425, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000425 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_half_float_oes_rgb Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000425 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_half_float_oes_rgb end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000426, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000426 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_half_float_oes_rgba start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.te"
-        "xture2d.rgba_half_float_oes_rgba",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_half_float_oes_rgba",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -419,23 +412,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000426, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000426 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_half_float_oes_rgba Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000426 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_half_float_oes_rgba end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000427, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000427 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_half_float_oes_rgb_linear start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.text"
-        "ure2d.rgb_half_float_oes_rgb_linear",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgb_half_float_oes_rgb_linear",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -446,23 +438,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000427, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000427 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_half_float_oes_rgb_linear Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000427 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_half_float_oes_rgb_linear end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000428, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000428 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_half_float_oes_rgba_linear start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.textu"
-        "re2d.rgba_half_float_oes_rgba_linear",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_half_float_oes_rgba_linear",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -473,23 +464,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000428, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000428 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_half_float_oes_rgba_linear Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000428 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_half_float_oes_rgba_linear end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000429, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000429 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_float_rgb32f start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalforma"
-        "t.texture2d.rgb_float_rgb32f",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgb_float_rgb32f",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -500,23 +490,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000429, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000429 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_float_rgb32f Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000429 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_float_rgb32f end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000430, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000430 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_float_rgba32f start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat"
-        ".texture2d.rgba_float_rgba32f",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_float_rgba32f",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -527,23 +516,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000430, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000430 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_float_rgba32f Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000430 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_float_rgba32f end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000431, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000431 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_float_rgb32f_linear start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.t"
-        "exture2d.rgb_float_rgb32f_linear",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgb_float_rgb32f_linear",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -554,23 +542,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000431, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000431 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_float_rgb32f_linear Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000431 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_float_rgb32f_linear end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000432, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000432 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_float_rgba32f_linear start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.te"
-        "xture2d.rgba_float_rgba32f_linear",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_float_rgba32f_linear",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -581,23 +568,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000432, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000432 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_float_rgba32f_linear Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000432 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_float_rgba32f_linear end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000433, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000433 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgb5_a1 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.tex"
-        "ture2d.rgba_unsigned_byte_rgb5_a1",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgb5_a1",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -608,23 +594,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000433, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000433 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgb5_a1 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000433 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgb5_a1 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000434, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000434 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgba4 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.te"
-        "xture2d.rgba_unsigned_byte_rgba4",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgba4",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -635,23 +620,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000434, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000434 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgba4 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000434 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_byte_rgba4 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000435, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000435 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_byte_rgb565 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.te"
-        "xture2d.rgb_unsigned_byte_rgb565",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_byte_rgb565",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -662,23 +646,22 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000435, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000435 notsupport!";
+        GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_byte_rgb565 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000435 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_byte_rgb565 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000436, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000436 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_4_4_4_4_rgba4 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.textur"
-        "e2d.rgba_unsigned_short_4_4_4_4_rgba4",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_4_4_4_4_rgba4",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -689,23 +672,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000436, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000436 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_4_4_4_4_rgba4 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000436 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_4_4_4_4_rgba4 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000437, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000437 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_5_5_5_1_rgba start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.textur"
-        "e2d.rgba_unsigned_short_5_5_5_1_rgba",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_5_5_5_1_rgba",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -716,23 +699,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000437, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000437 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_5_5_5_1_rgba Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000437 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_5_5_5_1_rgba end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000438, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000438 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_5_5_5_1_rgb5_a1 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture"
-        "2d.rgba_unsigned_short_5_5_5_1_rgb5_a1",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_5_5_5_1_rgb5_a1",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -743,23 +726,25 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000438, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000438 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_5_5_5_1_rgb5_a1 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000438 end";
+    
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.core.internalformat.texture2d.rgba_unsigned_short_5_5_5_1_rgb5_a1 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000439, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000439 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_short_5_6_5_rgb start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.text"
-        "ure2d.rgb_unsigned_short_5_6_5_rgb",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_short_5_6_5_rgb",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -770,23 +755,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000439, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000439 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_short_5_6_5_rgb Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000439 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_short_5_6_5_rgb end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000440, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000440 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_short_5_6_5_rgb565 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.textu"
-        "re2d.rgb_unsigned_short_5_6_5_rgb565",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_short_5_6_5_rgb565",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -797,23 +782,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000440, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000440 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_short_5_6_5_rgb565 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000440 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.rgb_unsigned_short_5_6_5_rgb565 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000441, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000441 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance8_alpha8_oes start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d.lumin"
-        "ance_alpha_unsigned_byte_luminance8_alpha8_oes",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance8_alpha8_oes",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -824,23 +810,25 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000441, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000441 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance8_alpha8_oes Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000441 end";
+    
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance8_alpha8_oes end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000442, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000442 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance4_alpha4_oes start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d.lumin"
-        "ance_alpha_unsigned_byte_luminance4_alpha4_oes",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance4_alpha4_oes",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -851,23 +839,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000442, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000442 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance4_alpha4_oes Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000442 end";
+    
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.core.internalformat.texture2d.luminance_alpha_unsigned_byte_luminance4_alpha4_oes end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000443, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000443 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.luminance_unsigned_byte_luminance8_oes start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d"
-        ".luminance_unsigned_byte_luminance8_oes",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.luminance_unsigned_byte_luminance8_oes",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -878,23 +867,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000443, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000443 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.luminance_unsigned_byte_luminance8_oes Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000443 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.luminance_unsigned_byte_luminance8_oes end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000444, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000444 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.alpha_unsigned_byte_alpha8_oes start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.textu"
-        "re2d.alpha_unsigned_byte_alpha8_oes",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.alpha_unsigned_byte_alpha8_oes",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -905,23 +894,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000444, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000444 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.alpha_unsigned_byte_alpha8_oes Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000444 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.alpha_unsigned_byte_alpha8_oes end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000445, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000445 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component16 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d.dep"
-        "th_component_unsigned_int_depth_component16",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component16",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -932,23 +922,24 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000445, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000445 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component16 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000445 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component16 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000446, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000446 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_short_depth_component16 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d.dept"
-        "h_component_unsigned_short_depth_component16",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_short_depth_component16",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -959,23 +950,25 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000446, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000446 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_short_depth_component16 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000446 end";
+    }
+    
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_short_depth_component16 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000447, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000447 start";
+    GTEST_LOG_(INFO) <<
+        "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component24 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d.dep"
-        "th_component_unsigned_int_depth_component24",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component24",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -986,23 +979,23 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000447, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000447 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component24 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000447 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component24 end";
 }
 
 static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000448, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000448 start";
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component32 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
-        "--deqp-case="
-        "KHR-GLES2.core.internalformat.texture2d.dep"
-        "th_component_unsigned_int_depth_component32",
+        "--deqp-case=KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component32",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -1013,10 +1006,12 @@ static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000448, Function | MediumTes
     ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000448 notsupport!";
+        GTEST_LOG_(INFO) <<
+            "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component32 Unavaliable!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000448 end";
+    
+    GTEST_LOG_(INFO) << "KHR-GLES2.core.internalformat.texture2d.depth_component_unsigned_int_depth_component32 end";
 }
