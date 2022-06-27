@@ -14,7 +14,6 @@
  */
 
 import image from '@ohos.multimedia.image'
-import fileio from '@ohos.fileio'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 
 describe('Image', function () {
@@ -67,7 +66,7 @@ describe('Image', function () {
         }
     }
 
-    function packing_promise(done, testNum, pixFormat, arg) {
+    function packingPromise(done, testNum, pixFormat, arg) {
         let opts;
         const Color = new ArrayBuffer(96);
         if (pixFormat == 2) {
@@ -113,7 +112,7 @@ describe('Image', function () {
             })
     }
 
-    function packing_cb(done, testNum, pixFormat, arg) {
+    function packingCallback(done, testNum, pixFormat, arg) {
         let opts;
         const Color = new ArrayBuffer(96);
         if (pixFormat == 2) {
@@ -153,7 +152,7 @@ describe('Image', function () {
             })
     }
 
-    function packing_cb_fail(done, testNum, pixFormat, arg) {
+    function packingCallbackFail(done, testNum, pixFormat, arg) {
         const Color = new ArrayBuffer(96);
         if (pixFormat == 2) {
             var opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
@@ -186,7 +185,7 @@ describe('Image', function () {
             })
     }
 
-    function packing_promise_fail(done, testNum, pixFormat, arg) {
+    function packingPromiseFail(done, testNum, pixFormat, arg) {
         const Color = new ArrayBuffer(96);
         if (pixFormat == 2) {
             var opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
@@ -234,7 +233,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_P_001', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 99 }
-        packing_promise(done, 'SUB_IMAGE_packing_P_001', 2, packOpts)
+        packingPromise(done, 'SUB_IMAGE_packing_P_001', 2, packOpts)
     })
 
     /**
@@ -249,7 +248,7 @@ describe('Image', function () {
      */
      it('SUB_IMAGE_packing_P_002', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 123 }
-        packing_promise_fail(done, 'SUB_IMAGE_packing_P_002', 2, packOpts)
+        packingPromiseFail(done, 'SUB_IMAGE_packing_P_002', 2, packOpts)
     })
 
     /**
@@ -264,7 +263,7 @@ describe('Image', function () {
      */
      it('SUB_IMAGE_packing_P_003', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"] }
-        packing_promise_fail(done, 'SUB_IMAGE_packing_P_003', 2, packOpts)
+        packingPromiseFail(done, 'SUB_IMAGE_packing_P_003', 2, packOpts)
     })
 
     /**
@@ -279,7 +278,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_P_004', 0, async function (done) {
         let packOpts = { quality: 99 }
-        packing_promise_fail(done, 'SUB_IMAGE_packing_P_004', 2, packOpts)
+        packingPromiseFail(done, 'SUB_IMAGE_packing_P_004', 2, packOpts)
     })
 
     /**
@@ -294,7 +293,7 @@ describe('Image', function () {
      */
      it('SUB_IMAGE_packing_P_005', 0, async function (done) {
         let packOpts = { format: ["image/png"], quality: 99 }
-        packing_promise_fail(done, 'SUB_IMAGE_packing_P_005', 2, packOpts)
+        packingPromiseFail(done, 'SUB_IMAGE_packing_P_005', 2, packOpts)
     })
 
     /**
@@ -309,7 +308,7 @@ describe('Image', function () {
      */
      it('SUB_IMAGE_packing_P_006', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 50 }
-        packing_promise(done, 'SUB_IMAGE_packing_P_006', 5, packOpts)
+        packingPromise(done, 'SUB_IMAGE_packing_P_006', 5, packOpts)
     })
 
     /**
@@ -324,7 +323,7 @@ describe('Image', function () {
      */
      it('SUB_IMAGE_packing_P_007', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 123 }
-        packing_promise_fail(done, 'SUB_IMAGE_packing_P_007', 5, packOpts)
+        packingPromiseFail(done, 'SUB_IMAGE_packing_P_007', 5, packOpts)
     })
 
     /**
@@ -339,7 +338,7 @@ describe('Image', function () {
      */
      it('SUB_IMAGE_packing_P_008', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"] }
-        packing_promise_fail(done, 'SUB_IMAGE_packing_P_008', 5, packOpts)
+        packingPromiseFail(done, 'SUB_IMAGE_packing_P_008', 5, packOpts)
     })
 
     /**
@@ -354,7 +353,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_P_009', 0, async function (done) {
         let packOpts = { quality: 99 }
-        packing_promise_fail(done, 'SUB_IMAGE_packing_P_009', 5, packOpts)
+        packingPromiseFail(done, 'SUB_IMAGE_packing_P_009', 5, packOpts)
     })
 
     /**
@@ -369,7 +368,7 @@ describe('Image', function () {
      */
      it('SUB_IMAGE_packing_P_010', 0, async function (done) {
         let packOpts = { format: ["image/png"], quality: 99 }
-        packing_promise_fail(done, 'SUB_IMAGE_packing_P_010', 5, packOpts)
+        packingPromiseFail(done, 'SUB_IMAGE_packing_P_010', 5, packOpts)
     })
 
     /**
@@ -384,7 +383,7 @@ describe('Image', function () {
      */
      it('SUB_IMAGE_packing_CB_001', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 99 }
-        packing_cb(done, 'SUB_IMAGE_packing_CB_001', 2, packOpts)
+        packingCallback(done, 'SUB_IMAGE_packing_CB_001', 2, packOpts)
     })
 
     /**
@@ -399,7 +398,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_CB_002', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 123 }
-        packing_cb_fail(done, 'SUB_IMAGE_packing_CB_002', 2, packOpts)
+        packingCallbackFail(done, 'SUB_IMAGE_packing_CB_002', 2, packOpts)
         
     })
 
@@ -415,7 +414,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_CB_003', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"] }
-        packing_cb_fail(done, 'SUB_IMAGE_packing_CB_003', 2, packOpts)
+        packingCallbackFail(done, 'SUB_IMAGE_packing_CB_003', 2, packOpts)
     })
 
     /**
@@ -430,7 +429,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_CB_004', 0, async function (done) {
         let packOpts = { quality: 99 }
-        packing_cb_fail(done, 'SUB_IMAGE_packing_CB_004', 2, packOpts)
+        packingCallbackFail(done, 'SUB_IMAGE_packing_CB_004', 2, packOpts)
     })
 
     /**
@@ -445,7 +444,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_CB_005', 0, async function (done) {
         let packOpts = { format: ["image/png"], quality: 99 }
-        packing_cb_fail(done, 'SUB_IMAGE_packing_CB_005', 2, packOpts)
+        packingCallbackFail(done, 'SUB_IMAGE_packing_CB_005', 2, packOpts)
     })
 
     /**
@@ -460,7 +459,7 @@ describe('Image', function () {
      */
      it('SUB_IMAGE_packing_CB_006', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 50 }
-        packing_cb(done, 'SUB_IMAGE_packing_CB_006', 5, packOpts)
+        packingCallback(done, 'SUB_IMAGE_packing_CB_006', 5, packOpts)
     })
 
     /**
@@ -475,7 +474,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_CB_007', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 123 }
-        packing_cb_fail(done, 'SUB_IMAGE_packing_CB_007', 5, packOpts)
+        packingCallbackFail(done, 'SUB_IMAGE_packing_CB_007', 5, packOpts)
         
     })
 
@@ -491,7 +490,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_CB_008', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"] }
-        packing_cb_fail(done, 'SUB_IMAGE_packing_CB_008', 5, packOpts)
+        packingCallbackFail(done, 'SUB_IMAGE_packing_CB_008', 5, packOpts)
     })
 
     /**
@@ -506,7 +505,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_CB_009', 0, async function (done) {
         let packOpts = { quality: 99 }
-        packing_cb_fail(done, 'SUB_IMAGE_packing_CB_009', 5, packOpts)
+        packingCallbackFail(done, 'SUB_IMAGE_packing_CB_009', 5, packOpts)
     })
 
     /**
@@ -521,7 +520,7 @@ describe('Image', function () {
      */
     it('SUB_IMAGE_packing_CB_010', 0, async function (done) {
         let packOpts = { format: ["image/png"], quality: 99 }
-        packing_cb_fail(done, 'SUB_IMAGE_packing_CB_010', 5, packOpts)
+        packingCallbackFail(done, 'SUB_IMAGE_packing_CB_010', 5, packOpts)
     })
 
 })
