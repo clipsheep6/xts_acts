@@ -25,7 +25,7 @@ group("bundlemanager") {
       "actsbmsjstest:ActsBmsJsTest",
       "actsbmsjsunpermissiontest:ActsBmsJsUnPermissionTest",
       "actsbmsmetadatatest:ActsBmsMetaDataTest",
-      "actsbundlemanageretstest:ActsBundleManagerEtsTest",
+      "actsbundlemanageretstest:ActsBundleManagerEtsTest1",
       "actsbundlemanagertest:ActsBundleManagerTest",
       "sceneProject/bmsaccesstokenfive:bmsAccessTokenTest5",
       "sceneProject/bmsaccesstokenfour:bmsAccessTokenTest4",
