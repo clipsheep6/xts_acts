@@ -44,7 +44,7 @@ describe('AccessTokenTest', function () {
         var localled = await accountManager.getOsAccountTypeFromProcess();
         var appInfo = await bundle.getApplicationInfo('ohos.acts.security.access_token.normal', 0, localled);
         tokenID = appInfo.accessTokenId;
-        console.log("AccessTokenTest accessTokenId:" + appInfo.accessTokenId + ", name:" + appInfo.name
+        console.info("AccessTokenTest accessTokenId:" + appInfo.accessTokenId + ", name:" + appInfo.name
             + ", bundleName:" + appInfo.bundleName)
         // setTimeout(done(),TIMEOUT);
 
