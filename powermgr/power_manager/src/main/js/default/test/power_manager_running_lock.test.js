@@ -14,7 +14,6 @@
  */
 
 import runningLock from '@ohos.runninglock'
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 
 describe('appInfoTest_power_2', function () {
