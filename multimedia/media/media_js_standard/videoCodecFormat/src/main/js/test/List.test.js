@@ -13,5 +13,3 @@
  * limitations under the License.
  */
 
-require('./VideoDecoderFormatPromiseTest.test.js')
-require('./VideoEncoderFormatPromiseTest.test.js')

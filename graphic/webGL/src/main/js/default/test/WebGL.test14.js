@@ -12,9 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import app from '@system.app'
-import Context from '@ohos.napi_context'
-
 import {
 	describe,
 	beforeAll,
