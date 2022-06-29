@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import workScheduler from '@ohos.workScheduler'
-import workSchedulerCallback from '@ohos.workSchedulerExtensionAbility'
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
