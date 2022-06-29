@@ -14,4 +14,3 @@
  */
 require('./battery_unit.test.js')
 require('./battery_common_event.test.js')
-require('./system_battery.test.js')
