@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "180000",
+        "package": "com.samples.datasharerdbtest",
+        "shell-timeout": "600000"
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsDataShareRdbTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "type": "ShellKit",
+        "run-command": [
+            "remount",
+            "mkdir /data/test"
+        ],
+		"type": "PushKit",
+        "push": [
+            "ActsRdbServiceHap.hap->/data/test/ActsRdbServiceHap.hap"
+		],
+		"type": "ShellKit",
+        "run-command": [
+            "bm install -p /data/test/ActsRdbServiceHap.hap" 
+        ],
+        "cleanup-apps": true
+    }]
+}
