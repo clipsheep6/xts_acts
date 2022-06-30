@@ -30,6 +30,9 @@
       },
       {
         "name": "ohos.permission.CHANGE_ABILITY_ENABLED_STATE"
+      },
+      {
+        "name": "ohos.permission.MANAGE_DISPOSED_APP_STATUS"
       }
     ],
     "distro": {
