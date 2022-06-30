@@ -70,14 +70,12 @@ export default function settingUiJsunit() {
       done();
     });
 
-    it('settings_get_value_006', 0, async function () {
+    it('settings_get_value_006', 0, async function (done) {
       var name = 'settings.screen.brightness2';
       var uri = settings.getUriSync(name);
       console.info("[settings_get_value_006] uri is: " + uri);
       var helper = featureAbility.acquireDataAbilityHelper(uri);
-      let obj = {
-        "aa": aa
-      }
+      let obj = "aa"
       try {
         let value = settings.getValueSync(helper, name, obj);
         console.info("[settings_get_value_006] value is: " + value);
@@ -90,7 +88,7 @@ export default function settingUiJsunit() {
       done();
     });
 
-    it('settings_get_value_007', 0, async function () {
+    it('settings_get_value_007', 0, async function (done) {
       var name = 'settings.screen.brightness3';
       var uri = settings.getUriSync(name);
       console.info("[settings_get_value_007] uri is: " + uri);
@@ -261,7 +259,7 @@ export default function settingUiJsunit() {
       done();
     });
 
-    it('settings_get_value_0016', 0, async function () {
+    it('settings_get_value_0016', 0, async function (done) {
       let name = 1332;
       try {
         var uri = settings.getUriSync(name);
