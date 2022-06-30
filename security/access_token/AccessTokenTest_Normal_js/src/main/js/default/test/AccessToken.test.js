@@ -36,7 +36,7 @@ const TIMEOUT = 5000;
 const DEFAULT_PERMISSION_FALG = 0
 var permissionNameUser = "ohos.permission.ALPHA";
 var permissionNameSystem = "ohos.permission.BETA";
-var tokenID = undefined
+var tokenID = undefined;
 describe('AccessTokenTest', function () {
     console.info('##########start AccessTokenTest');
     beforeAll(async function (done){
