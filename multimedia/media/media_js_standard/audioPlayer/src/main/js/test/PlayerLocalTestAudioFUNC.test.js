@@ -449,4 +449,75 @@ describe('PlayerLocalTestAudioFUNC', function () {
         mediaTestBase.msleep(1000);
         playAudioSource(fdPath, DURATION_TIME, PLAY_TIME, true, done);
     })
+
+    /* *
+        * @tc.number    : SUB_MEDIA_PLAYER_LOCAL_AUDIO_FUNCTION_AUDIOINTERRUPTMODE_0100
+        * @tc.name      : 001.test audioInterruptMode Function
+        * @tc.desc      : Audio playback control test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
+    */
+    it('SUB_MEDIA_PLAYER_LOCAL_AUDIO_FUNCTION_AUDIOINTERRUPTMODE_0100', 0, async function (done) {
+        mediaTestBase.isFileOpen(fileDescriptor, done);
+        let counts = 0;
+        let testAudioPlayer1 = media.createAudioPlayer();
+        let testAudioPlayer2 = media.createAudioPlayer();
+
+        testAudioPlayer1.on('dataLoad', () => {
+            console.info('case dataLoad called');
+            testAudioPlayer1.audioInterruptMode = audio.InterruptMode.INDEPENDENT_MODE; 
+            testAudioPlayer1.play();
+        });
+        testAudioPlayer1.on('play', () => {
+            console.info('case play called');
+            testAudioPlayer2.on('dataLoad', () => {
+                console.info('case dataLoad called');
+                testAudioPlayer2.play();
+            });
+            testAudioPlayer2.on('play', () => {
+                console.info('case play called');
+                mediaTestBase.msleep(PLAY_TIME);
+                testAudioPlayer2.seek(testAudioPlayer2.duration - 3000);
+            });
+            testAudioPlayer2.on('finish', () => {
+                expect(counts).assertEqual(1);
+                testAudioPlayer2.release();
+                done();
+            });
+            testAudioPlayer2.src = fdPath;
+        });
+
+        testAudioPlayer1.on('audioInterrupt', (info) => {
+            console.info('case audioInterrupt is called, info is :' + JSON.stringify(info));
+            counts++;
+            testAudioPlayer1.release();
+        });
+        testAudioPlayer1.src = fdPath;
+    })
+
+    /* *
+        * @tc.number    : SUB_MEDIA_PLAYER_LOCAL_AUDIO_FUNCTION_AUDIOINTERRUPTMODE_0200
+        * @tc.name      : 001.test audioInterruptMode error mode Function
+        * @tc.desc      : Audio playback control test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
+    */
+    it('SUB_MEDIA_PLAYER_LOCAL_AUDIO_FUNCTION_AUDIOINTERRUPTMODE_0200', 0, async function (done) {
+        mediaTestBase.isFileOpen(fileDescriptor, done);
+        let testAudioPlayer1 = media.createAudioPlayer();
+
+        testAudioPlayer1.on('dataLoad', () => {
+            console.info('case dataLoad called');
+            testAudioPlayer1.audioInterruptMode = -1;
+        });
+
+        testAudioPlayer1.on('error', (error) => {
+            console.info('case error is called, info is :' + JSON.stringify(error));
+            testAudioPlayer1.release();
+            done();
+        });
+        testAudioPlayer1.src = fdPath;
+    })
 })
