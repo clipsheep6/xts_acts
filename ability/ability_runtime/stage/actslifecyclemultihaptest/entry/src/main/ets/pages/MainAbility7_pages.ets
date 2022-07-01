@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +15,8 @@
  */
 @Entry
 @Component
-struct Hap2MainAbility4_pages {
-  @State message: string = 'Hap2MainAbility4'
+struct MainAbility7_pages {
+  @State message: string = 'MainAbility7'
 
   build() {
     Row() {
