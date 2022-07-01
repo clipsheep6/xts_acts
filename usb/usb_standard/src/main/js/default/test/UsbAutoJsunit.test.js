@@ -319,47 +319,47 @@ describe('UsbAutoJsunit', function () {
    * @tc.name      : getSupportedModes
    * @tc.desc      : 获取指定的端口支持的模式列表的组合掩码
    */
-  it('SUB_USB_get_supported_modes_test_01', 0, function () {
-    console.info('usb get_supported_modes_test_01 begin');
-    var usbPortList = usb.getPorts()
-    if (usbPortList.length == 0) {
-      console.info('usb get_supported_modes_test_01 usbPortList is null');
-      expect(false).assertTrue();
-      return
-    }
+  // it('SUB_USB_get_supported_modes_test_01', 0, function () {
+  //   console.info('usb get_supported_modes_test_01 begin');
+  //   var usbPortList = usb.getPorts()
+  //   if (usbPortList.length == 0) {
+  //     console.info('usb get_supported_modes_test_01 usbPortList is null');
+  //     expect(false).assertTrue();
+  //     return
+  //   }
 
-    expect(usbPortList.length > 0).assertTrue();
-    for (var i = 0; i < usbPortList.length; i++) {
-      var maskCode = usb.getSupportedModes(usbPortList[i].id)
-      expect(maskCode).assertEqual(usbPortList[i].supportedModes);
-    }
+  //   expect(usbPortList.length > 0).assertTrue();
+  //   for (var i = 0; i < usbPortList.length; i++) {
+  //     var maskCode = usb.getSupportedModes(usbPortList[i].id)
+  //     expect(maskCode).assertEqual(usbPortList[i].supportedModes);
+  //   }
 
-    console.info('usb get_supported_modes_test_01 :  PASS');
-    expect(true).assertTrue();
-  })
+  //   console.info('usb get_supported_modes_test_01 :  PASS');
+  //   expect(true).assertTrue();
+  // })
 
   /**
    * @tc.number    : get_supported_modes_test_02
    * @tc.name      : getSupportedModes
    * @tc.desc      : 反向测试 改变id 获取指定的端口支持的模式列表的组合掩码
    */
-  it('SUB_USB_get_supported_modes_test_02', 0, function () {
-    console.info('usb get_supported_modes_test_02 begin');
-    var usbPortList = usb.getPorts()
-    if (usbPortList.length == 0) {
-      console.info('usb get_supported_modes_test_01 usbPortList is null');
-      expect(false).assertTrue();
-      return
-    }
+  // it('SUB_USB_get_supported_modes_test_02', 0, function () {
+  //   console.info('usb get_supported_modes_test_02 begin');
+  //   var usbPortList = usb.getPorts()
+  //   if (usbPortList.length == 0) {
+  //     console.info('usb get_supported_modes_test_01 usbPortList is null');
+  //     expect(false).assertTrue();
+  //     return
+  //   }
 
-    expect(usbPortList.length > 0).assertTrue();
+  //   expect(usbPortList.length > 0).assertTrue();
 
-    var portID = usbPortList[0].id + 10
-    var maskCode = usb.getSupportedModes(portID)
-    expect(maskCode).assertEqual(0);
+  //   var portID = usbPortList[0].id + 10
+  //   var maskCode = usb.getSupportedModes(portID)
+  //   expect(maskCode).assertEqual(0);
 
-    console.info('usb get_supported_modes_test_02 :  PASS');
-    expect(true).assertTrue();
-  })
+  //   console.info('usb get_supported_modes_test_02 :  PASS');
+  //   expect(true).assertTrue();
+  // })
 
 })
