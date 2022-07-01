@@ -27,6 +27,7 @@ const ABILITIY_NAME_OTHER = "com.example.myapplication1.MainAbility";
 const BUNDLE_NAME1 = "ohos.acts.bundle.stage";
 const ABILITY_NAME1 = "ExtensionAbility1";
 let userId = 0;
+const DEFAULT_DISPOSED_STATUS = 0;
 
 export default function actsBmsJsUnPermissionTest() {
     describe('actsBmsJsUnPermissionTest', function () {
@@ -285,4 +286,36 @@ export default function actsBmsJsUnPermissionTest() {
             console.info("checkApplicationInfo end !!!");
         }
     })
+
+    /*
+    * @tc.number: bundle_setDisposedStatus_test_0100
+    * @tc.name: test setDisposedStatus api
+    * @tc.desc: test setDisposedStatus no permission
+    */
+    it('bundle_setDisposedStatus_test_0100', 0, async function (done) {
+        await bundleManager.setDisposedStatus(SELF_BUNDLENAME, DEFAULT_DISPOSED_STATUS).then((data) => {
+            expect(data).assertFail();
+            done();
+        }).catch((error) => {
+            console.error('[bundle_setDisposedStatus_test_0100]Operation failed: ' + JSON.stringify(error));
+            expect(error).assertEqual(1);
+            done();
+        });
+    )}
+
+    /*
+    * @tc.number: bundle_getDisposedStatus_test_0100
+    * @tc.name: test getDisposedStatus api
+    * @tc.desc: test getDisposedStatus no permission
+    */
+    it('bundle_getDisposedStatus_test_0100', 0, async function (done) {
+        await bundleManager.getDisposedStatus(SELF_BUNDLENAME).then((data) => {
+            expect(data).assertEqual(DEFAULT_DISPOSED_STATUS);
+            done();
+        }).catch((error) => {
+            console.error('[bundle_setDisposedStatus_test_0100]Operation failed: ' + JSON.stringify(error));
+            expect(error).assertFail();
+            done();
+        });
+    )}
 }
