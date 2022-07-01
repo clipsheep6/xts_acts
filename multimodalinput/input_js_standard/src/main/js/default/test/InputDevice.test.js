@@ -312,9 +312,6 @@ describe('MultimodalInput_test', function () {
     console.log(`inputDevice::setPointerLocation_test-01 exit`);
   })
 
-  
-    
-
   it("inputDevice::setPointerLocation_test-02", 0, function () {
     console.log(`inputDevice::setPointerLocation_test-02 enter`);
         inputDevice.setPointerLocation(1,2,(data,error)=>{
@@ -419,7 +416,6 @@ describe('MultimodalInput_test', function () {
       console.log(`inputDevice::InputDeviceData_test-02 exit`);
   })
 
-
   it('inputDevice::InputDeviceData_test-03', 0, function () {
       console.log(`inputDevice::InputDeviceData_test-03 enter`);
 
@@ -427,7 +423,6 @@ describe('MultimodalInput_test', function () {
 
       console.log(`inputDevice::InputDeviceData_test-03 exit`);
   })
-
 
   it('inputDevice::InputDeviceData_test-04', 0, function () {
       console.log(`inputDevice::InputDeviceData_test-04 enter`);
@@ -437,7 +432,6 @@ describe('MultimodalInput_test', function () {
       console.log(`inputDevice::InputDeviceData_test-04 exit`);
   })
 
-
   it('inputDevice::InputDeviceData_test-05', 0, function () {
       console.log(`inputDevice::InputDeviceData_test-05 enter`);
 
@@ -445,8 +439,6 @@ describe('MultimodalInput_test', function () {
 
       console.log(`inputDevice::InputDeviceData_test-05 exit`);
   })
-
-
 
   it('inputDevice::InputDeviceData_test-06', 0, function () {
       console.log(`inputDevice::InputDeviceData_test-06 enter`);
