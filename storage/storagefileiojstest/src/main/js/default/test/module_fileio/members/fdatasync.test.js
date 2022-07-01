@@ -23,60 +23,64 @@ describe('fileio_fdatasync', async function () {
   /**
    * @tc.number SUB_DF_FILEIO_FDATASYNC_ASYNC_0000
    * @tc.name fileio_test_fdatasync_async_000
-   * @tc.desc Test fdatasync() interfaces.
+   * @tc.desc Test fdatasync() interfaces, return in callback mode. Test file content data synchronization.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileio_test_fdatasync_async_000', 0, async function () {
+  it('fileio_test_fdatasync_async_000', 0, async function (done) {
     let fpath = await nextFileName('fileio_test_fdatasync_async_000');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let text = 'hello';
 
     try {
-      let fd = fileio.openSync(fpath, 0o102, 0o666);
+      let fd = fileio.openSync(fpath, 0o2002);
+      fileio.writeSync(fd, text);
       fileio.fdatasync(fd, function (err) {
-        expect(fileio.closeSync(fd) == null).assertTrue();
-        expect(fileio.unlinkSync(fpath) == null).assertTrue();
+        let num = fileio.readSync(fd, new ArrayBuffer(4096), { position: 0 });
+        expect(num == FILE_CONTENT.length + text.length).assertTrue();
+        fileio.closeSync(fd);
+        fileio.unlinkSync(fpath);
+        done();
       });
     } catch (e) {
-      console.log('fileio_test_fdatasync_async_000 has failed for ' + e);
+      console.info('fileio_test_fdatasync_async_000 has failed for ' + e);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_FDATASYNC_ASYNC_0010
+   * @tc.number SUB_DF_FILEIO_FDATASYNC_ASYNC_0100
    * @tc.name fileio_test_fdatasync_async_001
-   * @tc.desc Test fdatasync() interfaces.
+   * @tc.desc Test fdatasync() interfaces, return in promise mode. Test file content data synchronization.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileio_test_fdatasync_async_001', 0, async function () {
+  it('fileio_test_fdatasync_async_001', 0, async function (done) {
     let fpath = await nextFileName('fileio_test_fdatasync_async_001');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let text = 'hello';
 
     try {
-      let fd = fileio.openSync(fpath, 0o102, 0o666);
-      fileio
-        .fdatasync(fd)
-        .then(function (err) {
-          expect(fileio.closeSync(fd) == null).assertTrue();
-          expect(fileio.unlinkSync(fpath) == null).assertTrue();
-        })
-        .catch(function (err) {
-          expect(null).assertFail();
-        });
+      let fd = fileio.openSync(fpath, 0o2002);
+      fileio.writeSync(fd, text);
+      await fileio.fdatasync(fd);
+      let num = fileio.readSync(fd, new ArrayBuffer(4096), { position: 0 });
+      expect(num == FILE_CONTENT.length + text.length).assertTrue();
+      fileio.closeSync(fd);
+      fileio.unlinkSync(fpath);
+      done();
     } catch (e) {
-      console.log('fileio_test_fdatasync_async_001 has failed for ' + e);
+      console.info('fileio_test_fdatasync_async_001 has failed for ' + e);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_FDATASYNC_ASYNC_0020
+   * @tc.number SUB_DF_FILEIO_FDATASYNC_ASYNC_0200
    * @tc.name fileio_test_fdatasync_async_002
    * @tc.desc Test fdatasync() interfaces.
    * @tc.size MEDIUM
@@ -84,14 +88,54 @@ describe('fileio_fdatasync', async function () {
    * @tc.level Level 0
    * @tc.require
    */
-   it('fileio_test_fdatasync_async_002', 0, async function (done) {
+  it('fileio_test_fdatasync_async_002', 0, async function (done) {
     try {
-      let fd = -1;
-      await fileio.fdatasync(fd);
-      expect(null).assertFail();
-      done()
+      await fileio.fdatasync(-1);
     } catch (e) {
       console.info('fileio_test_fdatasync_async_002 has failed for ' + e);
+      expect(e.message == 'Bad file descriptor').assertTrue();
+      done();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_FDATASYNC_ASYNC_0300
+   * @tc.name fileio_test_fdatasync_async_003
+   * @tc.desc Test fdatasync() interfaces. Number of arguments unmatched.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileio_test_fdatasync_async_003', 0, async function (done) {
+    let fpath = await nextFileName('fileio_test_fdatasync_async_003');
+    try {
+      let fd = fileio.openSync(fpath, 0o102, 0o666);
+      fileio.fdatasync(fd, '', function (err) {
+      });
+    } catch (e) {
+      console.info('fileio_test_fdatasync_async_003 has failed for ' + e);
+      expect(e.message == 'Number of arguments unmatched').assertTrue();
+      fileio.unlinkSync(fpath);
+      done();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_FDATASYNC_ASYNC_0400
+   * @tc.name fileio_test_fdatasync_async_004
+   * @tc.desc Test fdatasync() interfaces. Invalid fd.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileio_test_fdatasync_async_004', 0, async function (done) {
+    try {
+      await fileio.fdatasync('');
+    } catch (e) {
+      console.info('fileio_test_fdatasync_async_004 has failed for ' + e);
+      expect(e.message == 'Invalid fd').assertTrue();
       done();
     }
   });
@@ -99,7 +143,7 @@ describe('fileio_fdatasync', async function () {
   /**
    * @tc.number SUB_DF_FILEIO_FDATASYNC_SYNC_0000
    * @tc.name fileio_test_fdatasync_sync_000
-   * @tc.desc Test fdatasyncSync() interfaces.
+   * @tc.desc Test fdatasyncSync() interfaces. Test file content data synchronization.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 0
@@ -108,20 +152,24 @@ describe('fileio_fdatasync', async function () {
   it('fileio_test_fdatasync_sync_000', 0, async function () {
     let fpath = await nextFileName('fileio_test_fdatasync_sync_000');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let text = 'hello';
 
     try {
-      let fd = fileio.openSync(fpath, 0o102, 0o666);
-      expect(fileio.fdatasyncSync(fd) == null).assertTrue();
-      expect(fileio.closeSync(fd) == null).assertTrue();
-      expect(fileio.unlinkSync(fpath) == null).assertTrue();
+      let fd = fileio.openSync(fpath, 0o2002);
+      fileio.writeSync(fd, text);
+      fileio.fdatasyncSync(fd);
+      let num = fileio.readSync(fd, new ArrayBuffer(4096), { position: 0 });
+      expect(num == FILE_CONTENT.length + text.length).assertTrue();
+      fileio.closeSync(fd);
+      fileio.unlinkSync(fpath);
     } catch (e) {
-      console.log('fileio_test_fdatasync_sync_000 has failed for ' + e);
+      console.info('fileio_test_fdatasync_sync_000 has failed for ' + e);
       expect(null).assertFail();
     }
   });
-  
+
   /**
-   * @tc.number SUB_DF_FILEIO_FDATASYNC_SYNC_0010
+   * @tc.number SUB_DF_FILEIO_FDATASYNC_SYNC_0100
    * @tc.name fileio_test_fdatasync_sync_001
    * @tc.desc Test fdatasyncSync() interfaces.
    * @tc.size MEDIUM
@@ -132,9 +180,45 @@ describe('fileio_fdatasync', async function () {
   it('fileio_test_fdatasync_sync_001', 0, async function () {
     try {
       fileio.fdatasyncSync(-1);
-      expect(null).assertFail();
     } catch (e) {
-      console.log('fileio_test_fdatasync_sync_001 has failed for ' + e);
+      console.info('fileio_test_fdatasync_sync_001 has failed for ' + e);
+      expect(e.message == 'Bad file descriptor').assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_FDATASYNC_SYNC_0200
+   * @tc.name fileio_test_fdatasync_sync_002
+   * @tc.desc Test fdatasyncSync() interfaces.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+   it('fileio_test_fdatasync_sync_002', 0, async function () {
+    try {
+      fileio.fdatasyncSync('');
+    } catch (e) {
+      console.info('fileio_test_fdatasync_sync_002 has failed for ' + e);
+      expect(e.message == 'Invalid fd').assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_FDATASYNC_SYNC_0300
+   * @tc.name fileio_test_fdatasync_sync_003
+   * @tc.desc Test fdatasyncSync() interfaces.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+   it('fileio_test_fdatasync_sync_003', 0, async function () {
+    try {
+      fileio.fdatasyncSync();
+    } catch (e) {
+      console.info('fileio_test_fdatasync_sync_003 has failed for ' + e);
+      expect(e.message == 'Number of arguments unmatched').assertTrue();
     }
   });
 });
