@@ -12,6 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-require('./image.test.js')
-require('./addImage.test.js')
+import Image from './image.test.js'
+import Image from './addImage.test.js'
+export default function testsuite() {
+Image()
+Image()
+}

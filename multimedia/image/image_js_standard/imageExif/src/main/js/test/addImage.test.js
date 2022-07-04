@@ -14,9 +14,10 @@
  */
 
 import image from '@ohos.multimedia.image'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { testPng } from '../../../../../image/src/main/js/test/testImg'
 
+export default function Image() {
 describe('Image', function () {
 
     beforeAll(async function () {
@@ -299,4 +300,4 @@ describe('Image', function () {
             console.info('add_053-1 updateData failed ' + error);
         }
     })
-})
+})}
