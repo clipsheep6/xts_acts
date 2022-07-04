@@ -22,6 +22,13 @@ group("barrierfree") {
       "accessiblecheckability:ActsAccessibleCheckAbilityTest",
       "accessibleregisterstate:ActsAccessibleRegisterStateTest",
       "accessiblesendevent:ActsAccessibleSendEventTest",
-    ]
+      "accessibilityconfig:ActsAccessibilityConfigTest",
+      "accessibilityextension:ActsAccessibilityExtensionTest",
+      "accessibilityelement:ActsAccessibilityElementTest",
+      "accessibilityextensioncontext:ActsAccessibilityExtensionContextTest",
+      "accessibilityevent:ActsAccessibilityEventTest",
+      "accessibilitygestureevent:ActsAccessibilityGestureEventTest",
+      "targetProject/aceTest:aceTest"
+    ] 
   }
 }
