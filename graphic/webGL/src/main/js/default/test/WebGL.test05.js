@@ -1322,7 +1322,7 @@ describe('webgl1Test_webgl5', function() {
 	 * @tc.desc Test uniformMatrix2fv.
 	 */
 	it('testUniformMatrix2fv_03', 0, async function(done) {
-		//initContext();
+		for(let err; (err = gl.getError()) != gl.NO_ERROR; ){}
 		console.info('jsWebGL testUniformMatrix2fv_03 test start ...66');
 		const buffer = gl.createBuffer();
 		const uniformlocationObj = gl.getUniformLocation(buffer, "a_Position");
@@ -1330,7 +1330,7 @@ describe('webgl1Test_webgl5', function() {
 		gl.uniformMatrix2fv(uniformlocationObj, true, flaot32list);
 		const uniformMatrix2fvError = gl.getError();
 		console.info("uniformMatrix2fvError: " + uniformMatrix2fvError);
-		expect(uniformMatrix2fvError).assertEqual(gl.INVALID_OPERATION);
+		expect(uniformMatrix2fvError).assertEqual(gl.NO_ERROR);
 		done();
 	})
 
