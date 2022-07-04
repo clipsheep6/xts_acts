@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
-require('./colorspace.test.js')
+import Image from './colorspace.test.js'
+export default function testsuite() {
+Image()
+}
