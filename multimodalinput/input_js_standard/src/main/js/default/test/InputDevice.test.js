@@ -192,8 +192,8 @@ describe('MultimodalInput_test', function () {
 
   /**
    * @tc.number MultimodalInputDevice_js_0010
-   * @tc.name remainingChargeTime_test
-   * @tc.desc Battry Present Interface Test
+   * @tc.name MultimodalInputDevice_KeyboardType_NONE_test
+   * @tc.desc inputDevice.KeyboardType.NONE test
    */
   it('MultimodalInputDevice_KeyboardType_NONE_test', 0, function () {
     console.info('MultimodalInputDevice_KeyboardType_NONE_test = ' + inputDevice.KeyboardType.NONE);
@@ -202,8 +202,8 @@ describe('MultimodalInput_test', function () {
 
   /**
    * @tc.number MultimodalInputDevice_js_0020
-   * @tc.name remainingChargeTime_test
-   * @tc.desc Battry Present Interface Test
+   * @tc.name MultimodalInputDevice_KeyboardType_UNKNOWN_test
+   * @tc.desc inputDevice.KeyboardType.UNKNOWN test
    */
   it('MultimodalInputDevice_KeyboardType_UNKNOWN_test', 0, function () {
     console.info('MultimodalInputDevice_KeyboardType_UNKNOWN_test = ' + inputDevice.KeyboardType.UNKNOWN);
@@ -212,8 +212,8 @@ describe('MultimodalInput_test', function () {
 
   /**
    * @tc.number MultimodalInputDevice_js_0030
-   * @tc.name remainingChargeTime_test
-   * @tc.desc Battry Present Interface Test
+   * @tc.name MultimodalInputDevice_KeyboardType_ALPHABETIC_KEYBOARD_test
+   * @tc.desc inputDevice.KeyboardType.ALPHABETIC_KEYBOARD test
    */
   it('MultimodalInputDevice_KeyboardType_ALPHABETIC_KEYBOARD_test', 0, function () {
     console.info('MultimodalInputDevice_KeyboardType_ALPHABETIC_KEYBOARD_test = '
@@ -223,8 +223,8 @@ describe('MultimodalInput_test', function () {
 
   /**
    * @tc.number MultimodalInputDevice_js_0040
-   * @tc.name remainingChargeTime_test
-   * @tc.desc Battry Present Interface Test
+   * @tc.name MultimodalInputDevice_KeyboardType_ALPHABETIC_DIGITAL_KEYBOARD_test
+   * @tc.desc inputDevice.KeyboardType.DIGITAL_KEYBOARD test
    */
   it('MultimodalInputDevice_KeyboardType_ALPHABETIC_DIGITAL_KEYBOARD_test', 0, function () {
     console.info('MultimodalInputDevice_KeyboardType_ALPHABETIC_DIGITAL_KEYBOARD_test = '
@@ -233,9 +233,9 @@ describe('MultimodalInput_test', function () {
   })
 
   /**
-   * @tc.number MultimodalInputDevice_js_0040
-   * @tc.name remainingChargeTime_test
-   * @tc.desc Battry Present Interface Test
+   * @tc.number MultimodalInputDevice_js_0050
+   * @tc.name MultimodalInputDevice_KeyboardType_ALPHABETIC_HANDWRITING_PEN_test
+   * @tc.desc inputDevice.KeyboardType.HANDWRITING_PEN test
    */
   it('MultimodalInputDevice_KeyboardType_ALPHABETIC_HANDWRITING_PEN_test', 0, function () {
     console.info('MultimodalInputDevice_KeyboardType_ALPHABETIC_HANDWRITING_PEN_test = '
@@ -244,13 +244,36 @@ describe('MultimodalInput_test', function () {
   })
 
   /**
-   * @tc.number MultimodalInputDevice_js_0040
-   * @tc.name remainingChargeTime_test
-   * @tc.desc Battry Present Interface Test
+   * @tc.number MultimodalInputDevice_js_0060
+   * @tc.name MultimodalInputDevice_KeyboardType_ALPHABETIC_REMOTE_CONTROL_test
+   * @tc.desc inputDevice.KeyboardType.REMOTE_CONTROL test
    */
   it('MultimodalInputDevice_KeyboardType_ALPHABETIC_REMOTE_CONTROL_test', 0, function () {
     console.info('MultimodalInputDevice_KeyboardType_ALPHABETIC_REMOTE_CONTROL_test = '
       + inputDevice.KeyboardType.REMOTE_CONTROL);
     expect(inputDevice.KeyboardType.REMOTE_CONTROL == 5).assertTrue();
+  })
+
+  /**
+   * @tc.number MultimodalInputDevice_js_0070
+   * @tc.name MultimodalInputDevice_getDeviceIds_Promise_test
+   * @tc.desc inputdevice interface getDeviceIds & supportKeys test
+   */
+  it("MultimodalInputDevice_getDeviceIds_Promise_test", 0, async function () {
+    console.log(`inputDevice::supportKeys_test-01 enter`);
+    await inputDevice.getDeviceIds().then((data, err) => {
+      if (err) {
+        expect(false).assertTrue();
+        done();
+      } else {
+        for (let i = 0; i < data.length; ++i) {
+          inputDevice.supportKeys(data[i], [17, 22, 2055]).then((res, err) => {
+            expect(res).assertInstanceOf('Array');
+          })
+        }
+        done();
+      }
+      console.log(`inputDevice::supportKeys_test-01 exit`);
+    });
   })
 })

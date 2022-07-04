@@ -18,9 +18,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 let resultCode = 123;
 let bundleName = 'ohso.act.aafwk';
 let mainAbilityName = 'ohos.acts.aafwk.jsap';
-const errCode = -104;
-const errCode1 = 2097152;
-const errCode2 = 29360157;
+const errCode = 1;
 
 describe('ConnectAbilityTest', function () {
   
@@ -38,7 +36,7 @@ describe('ConnectAbilityTest', function () {
             expect().assertFail()
         }).catch((error) => {
             console.log('testAbility0100 error: ' + JSON.stringify(error))
-            expect(errCode1).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
         })
         done()
     })
@@ -55,7 +53,7 @@ describe('ConnectAbilityTest', function () {
         featureAbility.startAbility(parameter, (error, data) => {
             console.log('testAbility0200 data: ' + JSON.stringify(data))
             console.log('testAbility0200 error: ' + JSON.stringify(error))
-            expect(errCode1).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
             done();
         })
     })
@@ -119,7 +117,7 @@ describe('ConnectAbilityTest', function () {
             expect().assertFail()
         }).catch((error) => {
             console.log('testAblity0500 error: ' + JSON.stringify(error))
-            expect(errCode1).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
         })
         done()
     })
@@ -141,7 +139,7 @@ describe('ConnectAbilityTest', function () {
         featureAbility.startAbility((parameter), (error, data) => {
             console.log('testAbility0600 data: ' + JSON.stringify(data))
             console.log('testAbility0600 error: ' + JSON.stringify(error))
-            expect(errCode1).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
             done()
         })
     })
@@ -163,7 +161,7 @@ describe('ConnectAbilityTest', function () {
             expect().assertFail()
         }).catch((error) => {
             console.log('testAblity0700 error: ' + JSON.stringify(error))
-            expect(errCode1).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
         })
         done()
     })
@@ -183,7 +181,7 @@ describe('ConnectAbilityTest', function () {
         featureAbility.startAbility((parameter), (error, data) => {
             console.log('testAblity0800 data: ' + JSON.stringify(data))
             console.log('testAblity0800 error: ' + JSON.stringify(error))
-            expect(errCode1).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
             done()
         })
     })
@@ -310,7 +308,7 @@ describe('ConnectAbilityTest', function () {
             expect.assertFail()
         }).catch((error) => {
             console.log('testAblity1500' + JSON.stringify(error));
-            expect().assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
         })
         done()
     })
@@ -325,7 +323,8 @@ describe('ConnectAbilityTest', function () {
         featureAbility.startAbilityForResult(parameter, (error, data) => {
             console.log('testAblity1600 data: ' + JSON.stringify(data))
             console.log('testAblity1600 error: ' + JSON.stringify(error))
-            expect().assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
+            console.log('testAblity1600-1 error: ' + JSON.stringify(error))
             done();
         })
     })
@@ -341,7 +340,7 @@ describe('ConnectAbilityTest', function () {
             expect.assertFail()
         }).catch((error) => {
             console.log('testAblity1700' + JSON.stringify(error));
-            expect(errCode1).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
         })
         done()
     })
@@ -354,7 +353,7 @@ describe('ConnectAbilityTest', function () {
     it("SUB_AA_JsApi_Ability_1800", 0, async function (done) {
         featureAbility.startAbilityForResult(undefined, (error) => {
             console.log('testAblity1800' + JSON.stringify(error));
-            expect(errCode1).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
             done()
         })
     })
@@ -382,7 +381,7 @@ describe('ConnectAbilityTest', function () {
             expect.assertFail()
         }).catch((error) => {
             console.log('testAblity1900 err:' + JSON.stringify(error));
-            expect(errCode1).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
         })
         done()
     })
@@ -407,7 +406,7 @@ describe('ConnectAbilityTest', function () {
         }
         featureAbility.startAbilityForResult(parameter, (error, data) => {
             console.log('testAblity2000' + JSON.stringify(error));
-            expect(errCode1).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
             done()
         })
     })
@@ -434,7 +433,7 @@ describe('ConnectAbilityTest', function () {
             expect.assertFail()
         }).catch((error) => {
             console.log('testAblity2100' + JSON.stringify(error));
-            expect(undefined).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
         })
         done()
     })
@@ -458,7 +457,7 @@ describe('ConnectAbilityTest', function () {
         }
         featureAbility.startAbilityForResult(parameter, (error, data) => {
             console.log('testAblity2200' + JSON.stringify(error));
-            expect(undefined).assertEqual(error.code)
+            expect(errCode).assertEqual(error.code)
             done()
         })
     })
