@@ -15,11 +15,12 @@
 
 import image from '@ohos.multimedia.image'
 import fileio from '@ohos.fileio'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { tc_020buf, tc_020_1buf, tc_021buf, tc_021_1buf, tc_022buf } from './testImg'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import bundle from '@ohos.bundle'
 
+export default function Image() {
 describe('Image', function () {
     var pathExifJpg = '/data/storage/el2/base/files/test_exif.jpg';
     let globalpixelmap;
@@ -2109,3 +2110,4 @@ describe('Image', function () {
         }
     })
 })
+}
