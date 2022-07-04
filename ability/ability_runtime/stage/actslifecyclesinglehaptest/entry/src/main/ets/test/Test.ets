@@ -181,23 +181,5 @@ export default function lifecycleTest(abilityContext) {
         })
       }, 3000);
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   })
 }
