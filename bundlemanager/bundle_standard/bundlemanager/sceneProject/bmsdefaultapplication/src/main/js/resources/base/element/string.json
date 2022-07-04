@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+        "name": "app_name",
+        "value": "defaultApp"
+    },
+    {
+        "name": "MainAbility_desc",
+        "value": "MainAbility_desc"
+    },
+    {
+        "name": "MainAbility_label",
+        "value": "MainAbility_label"
+    }
+  ]
+}
