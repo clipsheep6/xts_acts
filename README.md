@@ -61,6 +61,7 @@ java -jar adbportforward.jar client adblocation=path/to/adb remotehost=192.168.0
 ## 下一步计划
 
 1.OpenHarmony XTS引入了新测试框架，由元能力提供TestRunner，在TestRunner拉起测试用例，需要在跨平台项目中适配新测试框架
+
 2.当前跨平台XTS通过日志查看执行结果，需要搭建可视化报告能力
 
 
