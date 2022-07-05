@@ -1,0 +1,214 @@
+/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// @ts-nocheck
+import file from '@system.file';
+import {Core, ExpectExtend, InstrumentLog, ReportExtend} from "deccjsunit/index.ets"
+import testsuite from "../../test/List.test"
+import featureAbility from "@ohos.ability.featureAbility"
+
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct XComponentTest {
+  private xcomponentContext1 = null;
+  private xcomponentContext2 = null;
+  private xcomponentId1 = 'xcomponentId1';
+  private xcomponentId2 = 'xcomponentId2';
+  @State private isHidden:boolean = false;
+  @State private changeSize:boolean = true;
+  @State private flag:boolean = true;
+  @State private xcomponentHeight:number = 300;
+  @State private xcomponentWidth:number = 720;
+  private offset_x:double = 0.000;
+  private offset_y:double = 610.000;
+  private touchTypeDown:number = 0;
+  private touchTypeUp:number = 1;
+  private touchTypeMove:number = 2;
+  private touchTypeCancel:number = 3;
+
+
+  onPageShow() {
+      console.info("xclog start run testcase!!!!")
+      featureAbility.getWant()
+        .then((Want) => {
+          const core = Core.getInstance()
+          const expectExtend = new ExpectExtend({
+            'id': 'extend'
+          })
+          core.addService('expect', expectExtend)
+          const reportExtend = new ReportExtend(file)
+
+          core.addService('report', reportExtend)
+          core.init()
+          core.subscribeEvent('task', reportExtend)
+          const configService = core.getDefaultService('config')
+          const timeout = 10000
+          configService.setConfig(timeout)
+          console.info('parameters---->' + JSON.stringify(Want.parameters))
+
+          configService.setConfig(Want.parameters)
+          testsuite()
+          core.execute()
+          console.info('Operation successful. Data: ' + JSON.stringify(Want));
+          console.info('Operation successful. Data: ' + JSON.stringify(Want));
+
+        })
+        .catch((error) => {
+          console.error('Operation failed. Cause: ' + JSON.stringify(error));
+        })
+  }
+
+
+  build() {
+    Flex({
+      direction: FlexDirection.Column,
+      alignItems: ItemAlign.Center,
+//      justifyContent: FlexAlign.Center
+    }) {
+
+//      Button('back')
+//        .key('backToIndex')
+//        .onClick(() => {
+//          router.replace({url: 'pages/endcase'});
+//        })
+      Button('back')
+        .key('backToIndex')
+        .onClick(() => {
+          router.replace({url: 'pages/XComponentPage'});
+        })
+        .width('300px')
+        .height('60px')
+
+      Button('ChangeColor')
+        .key('changeXcColor')
+        .onClick(() => {
+          if (this.xcomponentContext1) {
+            this.xcomponentContext1.changeColor();
+          }
+        })
+        .width('300px')
+        .height('60px')
+      Button('ChangeShape')
+        .onClick(() => {
+          if (this.xcomponentContext1) {
+            this.xcomponentContext1.changeShape();
+            console.info('xclog changshape1');
+          }
+        })
+        .width('300px')
+        .height('60px')
+
+      XComponent({ id: this.xcomponentId1, type: 'texture', libraryname: 'nativerender'})
+        .onLoad((context) => {
+          console.info("xclog xcomponent1 build");
+          this.xcomponentContext1 = context;
+          globalThis.xcomponentContext1 = this.xcomponentContext1;
+          globalThis.xcomponentId1 = this.xcomponentId1;
+          globalThis.xcomponentHeight = this.xcomponentHeight;
+          globalThis.xcomponentWidth = this.xcomponentWidth;
+          globalThis.touchTypeDown = this.touchTypeDown;
+          globalThis.touchTypeUp = this.touchTypeUp;
+          globalThis.touchTypeMove = this.touchTypeMove;
+          globalThis.touchTypeCancel = this.touchTypeCancel;
+          globalThis.offset_x = this.offset_x;
+          globalThis.offset_y = this.offset_y;
+
+        })
+        .width(this.xcomponentWidth+'px')
+        .height(this.xcomponentHeight+'px')
+        .key('xc_num1')
+//        .onClick(() => {
+//          this.xcomponentContext1 = context;
+//          console.info('xclog xcomponent.context1 onClick');
+//        })
+        .onDestroy(() => {
+          globalThis.flag = false;
+          console.info("xclog xcomponet flag: " + globalThis.flag);
+        })
+
+
+//      Button('surfaceChangedTest')
+//        .key('surfaceChanged')
+//        .onClick( () => {
+//          this.isHidden = !this.isHidden;
+//        })
+//        .width('300px')
+//        .height('60px')
+//      if (this.isHidden) {
+//        Button('hiddenButton')
+//          .width('300px')
+//          .height('60px')
+//      }
+
+      Button('ChangeXComponentSizeTest')
+        .key('changeXcSize')
+        .width('300px')
+        .height('60px')
+        .onClick( () => {
+
+          if (this.changeSize) {
+            this.xcomponentHeight = 250;
+
+          } else
+          {
+            this.xcomponentHeight = 300;
+          }
+          this.changeSize = !this.changeSize;
+        })
+
+      Button('ChangeColor')
+        .onClick(() => {
+          if (this.xcomponentContext2) {
+            this.xcomponentContext2.changeColor();
+          }
+        })
+        .width('300px')
+        .height('60px')
+
+      Button('ChangeShape')
+        .onClick(() => {
+          if (this.xcomponentContext2) {
+            this.xcomponentContext2.changeShape();
+          }
+        })
+        .width('300px')
+        .height('60px')
+
+      XComponent({ id: this.xcomponentId2, type: 'texture', libraryname: 'nativerender'})
+        .onLoad((context) => {
+          console.info("xclog xcomponent_2 build");
+          this.xcomponentContext2 = context;
+          globalThis.xcomponentContext2 = this.xcomponentContext2;
+          globalThis.xcomponentId2 = this.xcomponentId2;
+          globalThis.xcomponentHeight = this.xcomponentHeight;
+          globalThis.xcomponentWidth = this.xcomponentWidth;
+          globalThis.offset_x = this.offset_x;
+          globalThis.offset_y = this.offset_y;
+          //this.RunTestCase();
+        })
+        .width(this.xcomponentWidth+'px')
+        .height(this.xcomponentHeight+'px')
+        .onDestroy(() => {
+        })
+
+
+    }
+    .width('720px')
+    .height('1200px')
+
+  }
+}
