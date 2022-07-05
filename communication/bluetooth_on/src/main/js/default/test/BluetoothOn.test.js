@@ -132,22 +132,22 @@ describe('bluetoothhostTest', function() {
     }
 
     async function tryToEnableBt() {
-        let sta = bluetooth.getState();
-        switch(sta){
+        let state = bluetooth.getState();
+        switch(state){
             case 0:
-                console.info('[bluetooth_js] bt turn off:'+ JSON.stringify(sta));
+                console.info('[bluetooth_js] bt turn off:'+ JSON.stringify(state));
                 bluetooth.enableBluetooth();
                 await sleep(3000);
                 break;
             case 1:
-                console.info('[bluetooth_js] bt turning on:'+ JSON.stringify(sta));
+                console.info('[bluetooth_js] bt turning on:'+ JSON.stringify(state));
                 await sleep(3000);
                 break;
             case 2:
-                console.info('[bluetooth_js] bt turn on:'+ JSON.stringify(sta));
+                console.info('[bluetooth_js] bt turn on:'+ JSON.stringify(state));
                 break;
             case 3:
-                console.info('[bluetooth_js] bt turning off:'+ JSON.stringify(sta));
+                console.info('[bluetooth_js] bt turning off:'+ JSON.stringify(state));
                 bluetooth.enableBluetooth();
                 await sleep(3000);
                 break;
