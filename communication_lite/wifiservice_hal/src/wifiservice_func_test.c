@@ -294,7 +294,7 @@ static BOOL WifiServiceFuncTestSuiteTearDown(void)
 LITE_TEST_CASE(WifiServiceFuncTestSuite, testEnableDisableWifi, Function | MediumTest | Level2)
 {
     int stat = IsWifiActive();
-    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVALIABLE, stat);
+    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVAILABLE, stat);
 
     WifiErrorCode error = EnableWifi();
     TEST_ASSERT_EQUAL_INT(WIFI_SUCCESS, error);
@@ -309,12 +309,12 @@ LITE_TEST_CASE(WifiServiceFuncTestSuite, testEnableDisableWifi, Function | Mediu
     error = DisableWifi();
     TEST_ASSERT_EQUAL_INT(WIFI_SUCCESS, error);
     stat = IsWifiActive();
-    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVALIABLE, stat);
+    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVAILABLE, stat);
 
     error = DisableWifi();
     TEST_ASSERT_EQUAL_INT(ERROR_WIFI_NOT_STARTED, error);
     stat = IsWifiActive();
-    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVALIABLE, stat);
+    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVAILABLE, stat);
 }
 
 /**
@@ -351,7 +351,7 @@ LITE_TEST_CASE(WifiServiceFuncTestSuite, testScan, Function | MediumTest | Level
     error = DisableWifi();
     TEST_ASSERT_EQUAL_INT(WIFI_SUCCESS, error);
     stat = IsWifiActive();
-    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVALIABLE, stat);
+    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVAILABLE, stat);
 }
 
 /**
@@ -631,7 +631,7 @@ LITE_TEST_CASE(WifiServiceFuncTestSuite, testAdvanceScanType, Function | MediumT
     error = DisableWifi();
     TEST_ASSERT_EQUAL_INT(WIFI_SUCCESS, error);
     stat = IsWifiActive();
-    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVALIABLE, stat);
+    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVAILABLE, stat);
 }
 
 /**
@@ -659,7 +659,7 @@ LITE_TEST_CASE(WifiServiceFuncTestSuite, testAdvanceScanInvalidParam01, Function
     error = DisableWifi();
     TEST_ASSERT_EQUAL_INT(WIFI_SUCCESS, error);
     stat = IsWifiActive();
-    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVALIABLE, stat);
+    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVAILABLE, stat);
 }
 
 /**
@@ -702,7 +702,7 @@ LITE_TEST_CASE(WifiServiceFuncTestSuite, testAdvanceScanInvalidParam02, Function
     error = DisableWifi();
     TEST_ASSERT_EQUAL_INT(WIFI_SUCCESS, error);
     stat = IsWifiActive();
-    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVALIABLE, stat);
+    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVAILABLE, stat);
 
     free(scanParams);
 }
@@ -750,7 +750,7 @@ LITE_TEST_CASE(WifiServiceFuncTestSuite, testAdvanceScanInvalidParam03, Function
     error = DisableWifi();
     TEST_ASSERT_EQUAL_INT(WIFI_SUCCESS, error);
     stat = IsWifiActive();
-    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVALIABLE, stat);
+    TEST_ASSERT_EQUAL_INT(WIFI_STATE_NOT_AVAILABLE, stat);
 
     free(scanParams);
 }
