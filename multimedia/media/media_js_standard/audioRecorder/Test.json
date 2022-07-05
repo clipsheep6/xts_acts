@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for audioRecorder Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "7200000",
+        "package": "ohos.acts.multimedia.audio.audiorecorder",
+        "shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.audiorecorder/haps/entry/files/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.audio.audiorecorder/haps/entry/files/",
+                "rm -rf /storage/media/100/local/files/Videos/*",
+                "rm -rf /storage/media/100/local/files/Audios/*"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsAudioRecorderJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
