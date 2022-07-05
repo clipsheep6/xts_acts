@@ -69,6 +69,7 @@ export default function test() {
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
                 console.info('FMS_deleteForm_0200 publish' + JSON.stringify(err));
+                done()
                 });
             };
             commonEvent.subscribe(subscriberOnDeleted, onDeletedCallback);
@@ -147,6 +148,7 @@ export default function test() {
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
                 console.info('FMS_deleteForm_0300 publish' + JSON.stringify(err));
+                done()
                 });
             };
             commonEvent.subscribe(subscriberOnDeleted, onDeletedCallback);
@@ -195,6 +197,7 @@ export default function test() {
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
                 console.info('FMS_deleteForm_0400 publish' + JSON.stringify(err));
+                done()
                 });
             };
             commonEvent.subscribe(subscriberOnDeleted, onDeletedCallback);
@@ -245,6 +248,7 @@ export default function test() {
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
                 console.info('FMS_deleteForm_0500 publish' + JSON.stringify(err));
+                done()
                 });
             };
             commonEvent.subscribe(subscriberOnDeleted, onDeletedCallback);
@@ -707,6 +711,7 @@ export default function test() {
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
                 console.info('FMS_deleteForm_0900 publish' + JSON.stringify(err));
+                done()
                 });
             }
 

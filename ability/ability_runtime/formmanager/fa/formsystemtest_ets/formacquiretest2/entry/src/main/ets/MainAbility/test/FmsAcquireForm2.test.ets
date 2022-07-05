@@ -144,7 +144,8 @@ export default function test() {
                     data: formId
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
-                console.info('FMS_acquireForm_4000 publish' + JSON.stringify(err));
+                    console.info('FMS_acquireForm_4000 publish' + JSON.stringify(err));
+                    done()
                 });
             }
             function onAcquiredCallBack(_, data) {
@@ -374,7 +375,8 @@ export default function test() {
                     data: data.parameters.formId
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData,(err) => {
-                console.info('FMS_acquireForm_4900 publish' + JSON.stringify(err));
+                    console.info('FMS_acquireForm_4900 publish' + JSON.stringify(err));
+                    done()
                 });
             }
             function onAcquiredCallBack(_, data) {
