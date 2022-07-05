@@ -398,7 +398,7 @@ describe('fileio_createStream', function () {
   /**
    * @tc.number SUB_DF_FILEIO_STREAM_CREATE_STREAM_ASYNC_1400
    * @tc.name fileio_test_stream_create_stream_async_014
-   * @tc.desc Test createStreamAsync() interfaces.
+   * @tc.desc Test createStreamAsync() interfaces. Mode is not assigned.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 0
@@ -412,7 +412,7 @@ describe('fileio_createStream', function () {
     }
     catch (e) {
       console.info('fileio_test_stream_create_stream_async_014 has failed for ' + e);
-      expect(e.message == 'Invalid mode').assertTrue();
+      expect(e.message == 'Mode is not assigned').assertTrue();
       fileio.unlinkSync(fpath);
       done();
     }
