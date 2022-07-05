@@ -33,7 +33,7 @@ class AccessibilityExtAbility extends AccessibilityExtensionAbility {
             console.info("onConnect====>onConnect publish call back result:" + JSON.stringify(err));
         }
 
-        this.context.setEventTypeFilter(['windowUpdate']);
+        this.context.setEventTypeFilter(['click']);
     }
 
     onDisconnect() {

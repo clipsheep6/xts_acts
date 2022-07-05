@@ -36,7 +36,7 @@ describe('AccessibleSendEvent', function () {
     /*    are for accessibility.sendEvent() API test                                  */
     /******************************************************************************** */
     
-    /*
+   /*
     * @tc.number  SendEvent_0010
     * @tc.name    SendEvent_0010
     * @tc.desc    The parameter input is EventInfo, test the sendEvent() function
@@ -158,11 +158,13 @@ describe('AccessibleSendEvent', function () {
           done();
       })
     })
+
     /*********************************************************************************************************** */
-    /* Cases SendEvent_type_0010-SendEvent_itemCount_constructor_0030 are for interface accessibility.EventInfo API test   */                               
+    /* Cases SendEvent_type_0010-SendEvent_itemCount_constructor_0030 
+    /* are for interface accessibility.EventInfo API test                                                        */                               
     /*********************************************************************************************************** */
 
-  /*
+   /*
     * @tc.number  SendEvent_type_0010
     * @tc.name    SendEvent_type_0010
     * @tc.desc    The type of EventInfo is 'accessibilityFocus', test sendEvent() function

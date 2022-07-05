@@ -27,7 +27,6 @@ group("barrierfree") {
       "accessibilityelement:ActsAccessibilityElementTest",
       "accessibilityextensioncontext:ActsAccessibilityExtensionContextTest",
       "accessibilityevent:ActsAccessibilityEventTest",
-      "accessibilitygestureevent:ActsAccessibilityGestureEventTest",
       "targetProject/aceTest:aceTest"
     ] 
   }

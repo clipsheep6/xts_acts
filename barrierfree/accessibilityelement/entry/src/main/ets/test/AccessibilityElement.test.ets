@@ -347,6 +347,36 @@ export default function abilityTest(abilityContext) {
         })
 
         /*
+         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_1100
+         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_1100
+         * @tc.desc    Test attributeValue() when input is 'description', should return a string type.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_attributeValue_asyncPromise_1100', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_1100';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
          * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_1200
          * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_1200
          * @tc.desc    Test attributeValue() when input is 'resourceName', should return a string type.
@@ -775,6 +805,246 @@ export default function abilityTest(abilityContext) {
          */
         it('AccessibilityElementTest_attributeValue_asyncPromise_2900', 0, async function (done) {
             let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_2900';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_3300
+         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_3300
+         * @tc.desc    Test attributeValue() when input is 'itemCount', should return a number type.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_attributeValue_asyncPromise_3300', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_3300';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_3400
+         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_3400
+         * @tc.desc    Test attributeValue() when input is 'currentIndex', should return a number type.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_attributeValue_asyncPromise_3400', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_3400';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_3500
+         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_3500
+         * @tc.desc    Test attributeValue() when input is 'startIndex', should return a number type.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_attributeValue_asyncPromise_3500', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_3500';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_3600
+         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_3600
+         * @tc.desc    Test attributeValue() when input is 'endIndex', should return a number type.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_attributeValue_asyncPromise_3600', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_3600';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_4300
+         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_4300
+         * @tc.desc    Test attributeValue() when input is 'triggerAction', should return a string type.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_attributeValue_asyncPromise_4300', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_4300';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_4400
+         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_4400
+         * @tc.desc    Test attributeValue() when input is 'textMoveUnit', should return a string type.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_attributeValue_asyncPromise_4400', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_4400';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_4500
+         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_4500
+         * @tc.desc    Test attributeValue() when input is 'contents', should return an array of string.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_attributeValue_asyncPromise_4500', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_4500';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_4600
+         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_4600
+         * @tc.desc    Test attributeValue() when input is 'lastContent', should return a string type.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_attributeValue_asyncPromise_4600', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_4600';
             console.info(caseName + ' start');
             if (isConnect) {
                 publishCaseExecute(caseName);
@@ -1609,7 +1879,7 @@ export default function abilityTest(abilityContext) {
         /*
          * @tc.number  AccessibilityElementTest_findElement_asyncPromise_7800
          * @tc.name    AccessibilityElementTest_findElement_asyncPromise_7800
-         * @tc.desc    Test findElement() when input is 'content' and 'xxx', should return an AccessibilityElement type.
+         * @tc.desc    Test findElement() when input is 'content' and 'button1', should return an AccessibilityElement type.
          * @tc.size    SmallTest
          * @tc.type    User
          */
@@ -1855,6 +2125,126 @@ export default function abilityTest(abilityContext) {
          */
         it('AccessibilityElementTest_findElement_asyncPromise_8600', 0, async function (done) {
             let caseName = 'AccessibilityElementTest_findElement_asyncPromise_8600';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_findElement_asyncPromise_8700
+         * @tc.name    AccessibilityElementTest_findElement_asyncPromise_8700
+         * @tc.desc    Test findElement() when input is 'focusType' and 'xxx', should return an AccessibilityElement type.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_findElement_asyncPromise_8700', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_findElement_asyncPromise_8700';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_findElement_asyncPromise_8800
+         * @tc.name    AccessibilityElementTest_findElement_asyncPromise_8800
+         * @tc.desc    Test findElement() when input is 'focusDirection' and 'xxx', should return an AccessibilityElement type.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_findElement_asyncPromise_8800', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_findElement_asyncPromise_8800';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_performAction_asyncPromise_8900
+         * @tc.name    AccessibilityElementTest_performAction_asyncPromise_8900
+         * @tc.desc    Test performAction() when input is 'xxx'.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_performAction_asyncPromise_8900', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_performAction_asyncPromise_8900';
+            console.info(caseName + ' start');
+            if (isConnect) {
+                publishCaseExecute(caseName);
+
+                setTimeout(() => {
+                    if (caseResult != undefined) {
+                        expect(passStr).assertEqual(caseResult.data);
+                        expect(caseName).assertEqual(caseResult.parameters.case);
+                    } else {
+                        console.info(caseName + ': fail, for no caseResult');
+                        expect(null).assertFail();
+                    }
+                    done();
+                }, 2000);
+            } else {
+                console.error(caseName + ': extension not connected');
+                expect(null).assertFail();
+                done();
+            }
+        })
+
+        /*
+         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_9000
+         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_9000
+         * @tc.desc    Test attributeValue() when input is 'xxx', should catch error.
+         * @tc.size    SmallTest
+         * @tc.type    User
+         */
+        it('AccessibilityElementTest_attributeValue_asyncPromise_9000', 0, async function (done) {
+            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_9000';
             console.info(caseName + ' start');
             if (isConnect) {
                 publishCaseExecute(caseName);
