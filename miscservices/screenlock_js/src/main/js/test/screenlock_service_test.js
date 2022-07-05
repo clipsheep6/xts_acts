@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import screenLock from '@ohos.app.screenlockability';
+import screenLock from '@ohos.screenLock';
 import {describe, expect, it} from 'deccjsunit/index'
 
 const SCREEN_STATE_BEGIN_OFF = 0;
