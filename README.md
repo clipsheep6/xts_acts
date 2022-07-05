@@ -3,6 +3,10 @@
 ## 介绍
 XTS是为了保证多平台下ArkUI的功能与OpenHarmony ArkUI功能保持一致，均为从OpenHarmony [acts仓](https://gitee.com/openharmony/xts_acts/tree/master/arkui)移植过来的测试套
 
+## XTS移植说明
+
+XTS移植跟向对应平台上移植应用时一样的，需要将xts 工程编译成jsbundle，然后放置到对应平台工程中，如放到Android的assets目录中，应用启动时，会回调aboutToAppear，继而触发用例执行
+
 ## 目录说明
 
 ```
@@ -53,6 +57,11 @@ java -jar adbportforward.jar client adblocation=path/to/adb remotehost=192.168.0
 ```
 ./run.sh {模块名}
 ```
+
+## 下一步计划
+
+1.OpenHarmony XTS引入了新测试框架，由元能力提供TestRunner，在TestRunner拉起测试用例，需要在跨平台项目中适配新测试框架
+2.当前跨平台XTS通过日志查看执行结果，需要搭建可视化报告能力
 
 
 
