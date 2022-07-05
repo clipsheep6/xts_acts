@@ -1,10 +1,11 @@
 {
     "description": "Configuration for time js api Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "600000",
-        "package": "ohos.acts.miscservices.timer",
-        "shell-timeout": "600000"
+        "shell-timeout": "600000",
+        "bundle-name": "ohos.acts.miscservices.timer",
+        "package-name": "ohos.acts.miscservices.timer"
     },
     "kits": [
         {
