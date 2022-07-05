@@ -65,6 +65,7 @@ export default function test() {
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
                 console.info('FMS_releaseForm_0200 publish' + JSON.stringify(err));
+                done()
                 });
             }
 
@@ -235,6 +236,7 @@ export default function test() {
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
                 console.info('FMS_releaseForm_0500 publish' + JSON.stringify(err));
+                done()
                 });
             }
             function onAcquiredCallBack(_, data) {
@@ -312,6 +314,7 @@ export default function test() {
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
                 console.info('FMS_releaseForm_0600 publish' + JSON.stringify(err));
+                done()
                 });
             }
             function onDeletedCallBack(_, data) {
@@ -532,6 +535,7 @@ export default function test() {
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
                 console.info('FMS_releaseForm_1400 publish' + JSON.stringify(err));
+                done()
                 });
             }
             commonEvent.subscribe(subscriberOnReleased, onReleasedCallBack);
