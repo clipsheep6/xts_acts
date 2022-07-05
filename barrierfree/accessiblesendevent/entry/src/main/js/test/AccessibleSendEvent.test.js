@@ -161,7 +161,7 @@ describe('AccessibleSendEvent', function () {
 
     /*********************************************************************************************************** */
     /* Cases SendEvent_type_0010-SendEvent_itemCount_constructor_0030 
-    /* are for interface accessibility.EventInfo API test                                                        */                               
+    /* are for interface accessibility.EventInfo API test                                                        */
     /*********************************************************************************************************** */
 
    /*
