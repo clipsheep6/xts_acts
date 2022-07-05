@@ -12,5 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require('./screenlock_service_test.js');
-require('./screenlock_service_test_promise.js');
+import ScreenLockServiceTest from './screenlock_service_test.js'
+import ScreenLockServicePromiseTest from './screenlock_service_test_promise.js'
+export default function testsuite() {
+ScreenLockServiceTest()
+ScreenLockServicePromiseTest()
+}

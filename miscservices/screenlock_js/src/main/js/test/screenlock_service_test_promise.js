@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 import screenLock from '@ohos.app.screenlockability';
-import {describe, expect, it} from 'deccjsunit/index'
+import {describe, expect, it} from '@ohos/hypium'
 
 const SLEEP_TIME = 1000;
 
+export default function ScreenLockServicePromiseTest() {
 describe('ScreenLockServicePromiseTest', function () {
     console.log("-----------------------ScreenlockPromiseTest is starting-----------------------");
 
@@ -194,4 +195,4 @@ describe('ScreenLockServicePromiseTest', function () {
         console.info("------------------end ScreenLock_Test_Promise_0500-------------------");
     });
 
-})
+})}
