@@ -99,7 +99,10 @@ if (build_xts == true && XTS_SUITENAME == "acts") {
   print(selected_packages)
 
   # always include testtools
-  selected_packages += [ "testtools:deploy_testtools" ]
+  selected_packages += [
+    "testtools:deploy_testtools",
+    "${ACTS_ROOT}/bundlemanager:appexecfwk",
+    ]
   selected_packages_ivi += [ "testtools:deploy_testtools" ]
   selected_packages_intellitv += [ "testtools:deploy_testtools" ]
   selected_packages_wearable += [ "testtools:deploy_testtools" ]

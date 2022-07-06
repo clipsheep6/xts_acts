@@ -30,6 +30,12 @@
       },
       {
         "name": "ohos.permission.CHANGE_ABILITY_ENABLED_STATE"
+      },
+      {
+        "name": "ohos.permission.GET_DEFAULT_APPLICATION"
+      },
+      {
+        "name": "ohos.permission.SET_DEFAULT_APPLICATION"
       }
     ],
     "distro": {
@@ -80,6 +86,48 @@
         "srcLanguage": "ets",
         "description": "$string:description_serviceability",
         "type": "service"
+      },
+      {
+        "skills": [
+          {
+            "actions": [
+              "ohos.want.action.viewData"
+            ],
+            "uris": [
+              {
+                "type": "image/*"
+              }
+            ]
+          }
+        ],
+
+        "visible": true,
+        "srcPath": "TestAbility",
+        "name": "IMAGE",
+        "srcLanguage": "ets",
+        "type": "page",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label"
+      },
+      {
+        "skills": [
+            {
+              "uris": [
+                {
+                  "type": "image/png"
+                }
+              ]
+            }
+        ],
+        "visible": true,
+        "name": "ImagePng",
+        "srcPath": "TestAbility",
+        "srcLanguage": "ets",
+        "type": "page",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label"
       }
     ],
     "js": [
@@ -111,6 +159,26 @@
           "designWidth": 720,
           "autoDesignWidth": false
         }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": "IMAGE"
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": "ImagePng"
       }
     ],
     "description":"$string:entry_description"

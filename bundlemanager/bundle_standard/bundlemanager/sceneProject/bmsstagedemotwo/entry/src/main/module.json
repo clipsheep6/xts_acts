@@ -118,7 +118,7 @@
 				"srcEntrance": "./ets/MainAbility/MainAbility.ts",
 				"startWindowIcon": "$media:icon",
 				"orientation": "locked"
-			}
+            }
         ],
         "extensionAbilities": [
             {
