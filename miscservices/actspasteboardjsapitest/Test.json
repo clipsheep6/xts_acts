@@ -1,10 +1,11 @@
 {
     "description": "Configuration for PasteBoard js api Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "1800000",
-        "package": "com.open.harmony.pasteboard",
-        "shell-timeout": "1800000"
+        "shell-timeout": "1800000",
+        "bundle-name": "com.open.harmony.pasteboard",
+        "package-name": "com.open.harmony.pasteboard"
     },
     "kits": [
         {
