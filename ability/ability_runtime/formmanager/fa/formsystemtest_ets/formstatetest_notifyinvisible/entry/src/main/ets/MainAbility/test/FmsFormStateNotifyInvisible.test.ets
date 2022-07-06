@@ -257,7 +257,8 @@ export default function test() {
                     data: formId
                 };
                 commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
-                console.info('FMS_notifyInvisibleForms_0600 publish' + JSON.stringify(err));
+                    console.info('FMS_notifyInvisibleForms_0600 publish' + JSON.stringify(err));
+                    done()
                 });
             }
 
@@ -431,7 +432,8 @@ export default function test() {
                             data: formIdInvisible
                         };
                         commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
-                        console.info('FMS_notifyInvisibleForms_0800 publish' + JSON.stringify(err));
+                            console.info('FMS_notifyInvisibleForms_0800 publish' + JSON.stringify(err));
+                            done()
                         });
                     }
                 }
@@ -448,7 +450,8 @@ export default function test() {
                         data: formIdInvisible
                     };
                     commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
-                    console.info('FMS_notifyInvisibleForms_0600 publish' + JSON.stringify(err));
+                        console.info('FMS_notifyInvisibleForms_0600 publish' + JSON.stringify(err));
+                        done()
                     });
                 }
             }
