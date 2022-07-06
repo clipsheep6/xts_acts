@@ -12,7 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-require('./PlayerLocalTestAudioFUNC.test.js')
-require('./PlayerLocalTestAudioFormat.test.js')
-require('./PlayerLocalTestAudioAPI.test.js')
+import PlayerLocalTestAudioAPI from './PlayerLocalTestAudioFUNC.test.js'
+import PlayerLocalTestAudioFormat from './PlayerLocalTestAudioFormat.test.js'
+import PlayerLocalTestAudioFUNC from './PlayerLocalTestAudioAPI.test.js'
+export default function testsuite() {
+PlayerLocalTestAudioAPI()
+PlayerLocalTestAudioFormat()
+PlayerLocalTestAudioFUNC()
+}

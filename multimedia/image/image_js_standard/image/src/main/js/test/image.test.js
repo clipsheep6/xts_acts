@@ -15,11 +15,12 @@
 
 import image from '@ohos.multimedia.image'
 import fileio from '@ohos.fileio'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { testPng, testJpg } from './testImg'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import bundle from '@ohos.bundle'
 
+export default function Image() {
 describe('Image', function () {
     var pathJpg = '/data/storage/el2/base/files/test.jpg';
     var pathBmp = '/data/storage/el2/base/files/test.bmp';
@@ -1686,4 +1687,4 @@ describe('Image', function () {
             }
         })
     })
-})
+})}
