@@ -1,0 +1,18 @@
+{
+  "description": "Configuration for profile Tests",
+  "driver": {
+    "type": "JSUnitTest",
+    "test-timeout": "2000000",
+    "package": "ohos.acts.multimedia.audio.profile",
+    "shell-timeout": "60000"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsProfileJsTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}
