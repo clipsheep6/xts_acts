@@ -60,9 +60,9 @@ describe('ACTS_WifiTest', function() {
     afterEach(function() {})
 
     /**
-     * @tc.number     open_0001
-     * @tc.name       SUB_Communication_WiFi_Sta_Open_0001
-     * @tc.desc       Test wifi.isWifiEnable API functionality.
+     * @tc.number open_0001
+     * @tc.name SUB_Communication_WiFi_Sta_Open_0001
+     * @tc.desc Test wifi.isWifiEnable API functionality.
      */
     it('SUB_Communication_WiFi_Sta_Open_0001', 0,  function() {
         console.info("[wifi_test] check the state of wifi, if it's close, open it.");
