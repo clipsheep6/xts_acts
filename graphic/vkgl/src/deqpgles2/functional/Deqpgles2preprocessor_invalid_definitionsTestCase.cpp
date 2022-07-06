@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-#include <climits>
 #include <gtest/gtest.h>
 #include "../Deqpgles2BaseFunc.h"
 #include "../ActsDeqpgles20001TestSuite.h"
@@ -22,15 +21,15 @@ using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000001, Function | MediumTest | Level2)
+static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000159, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000001 start";
+    GTEST_LOG_(INFO) << "TestCase_000159 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
         "--deqp-case="
-        "dEQP-GLES2."
-        "info.vendor",
+        "dEQP-GLES2.functional.shaders.preprocessor.in"
+        "valid_definitions.define_non_identifier_vertex",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -41,23 +40,23 @@ static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000001, Function | MediumTe
     ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000001 notsupport!";
+        GTEST_LOG_(INFO) << "TestCase_000159 notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000001 end";
+    GTEST_LOG_(INFO) << "TestCase_000159 end";
 }
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000002, Function | MediumTest | Level2)
+static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000160, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000002 start";
+    GTEST_LOG_(INFO) << "TestCase_000160 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
         "--deqp-case="
-        "dEQP-GLES2.i"
-        "nfo.renderer",
+        "dEQP-GLES2.functional.shaders.preprocessor.inv"
+        "alid_definitions.define_non_identifier_fragment",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -68,23 +67,23 @@ static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000002, Function | MediumTe
     ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000002 notsupport!";
+        GTEST_LOG_(INFO) << "TestCase_000160 notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000002 end";
+    GTEST_LOG_(INFO) << "TestCase_000160 end";
 }
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000003, Function | MediumTest | Level2)
+static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000161, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000003 start";
+    GTEST_LOG_(INFO) << "TestCase_000161 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
         "--deqp-case="
-        "dEQP-GLES2."
-        "info.version",
+        "dEQP-GLES2.functional.shaders.preprocessor.inv"
+        "alid_definitions.undef_non_identifier_1_vertex",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -95,23 +94,23 @@ static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000003, Function | MediumTe
     ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000003 notsupport!";
+        GTEST_LOG_(INFO) << "TestCase_000161 notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000003 end";
+    GTEST_LOG_(INFO) << "TestCase_000161 end";
 }
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000004, Function | MediumTest | Level2)
+static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000162, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000004 start";
+    GTEST_LOG_(INFO) << "TestCase_000162 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
         "--deqp-case="
-        "dEQP-GLES2.info.shad"
-        "ing_language_version",
+        "dEQP-GLES2.functional.shaders.preprocessor.inva"
+        "lid_definitions.undef_non_identifier_1_fragment",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -122,23 +121,23 @@ static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000004, Function | MediumTe
     ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000004 notsupport!";
+        GTEST_LOG_(INFO) << "TestCase_000162 notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000004 end";
+    GTEST_LOG_(INFO) << "TestCase_000162 end";
 }
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000005, Function | MediumTest | Level2)
+static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000163, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000005 start";
+    GTEST_LOG_(INFO) << "TestCase_000163 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
         "--deqp-case="
-        "dEQP-GLES2.in"
-        "fo.extensions",
+        "dEQP-GLES2.functional.shaders.preprocessor.inv"
+        "alid_definitions.undef_non_identifier_2_vertex",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -149,23 +148,23 @@ static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000005, Function | MediumTe
     ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000005 notsupport!";
+        GTEST_LOG_(INFO) << "TestCase_000163 notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000005 end";
+    GTEST_LOG_(INFO) << "TestCase_000163 end";
 }
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000006, Function | MediumTest | Level2)
+static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000164, Function | MediumTest | Level2)
 {
-    GTEST_LOG_(INFO) << "TestCase_000006 start";
+    GTEST_LOG_(INFO) << "TestCase_000164 start";
     int argc = 3;
     const char *argv[3] = {
         ".",
         "--deqp-case="
-        "dEQP-GLES2.inf"
-        "o.render_target",
+        "dEQP-GLES2.functional.shaders.preprocessor.inva"
+        "lid_definitions.undef_non_identifier_2_fragment",
         "--deqp-archive-dir=/data/local/tmp/"
     };
     
@@ -176,10 +175,10 @@ static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000006, Function | MediumTe
     ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
     ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
     if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000006 notsupport!";
+        GTEST_LOG_(INFO) << "TestCase_000164 notsupport!";
     } else if (result.isComplete) {
         EXPECT_TRUE(result.isComplete);
         EXPECT_TRUE(result.numPassed == 1);
     };
-    GTEST_LOG_(INFO) << "TestCase_000006 end";
+    GTEST_LOG_(INFO) << "TestCase_000164 end";
 }

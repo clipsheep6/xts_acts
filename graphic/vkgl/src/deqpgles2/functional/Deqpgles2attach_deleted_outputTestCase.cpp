@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-#include <climits>
 #include <gtest/gtest.h>
 #include "../Deqpgles2BaseFunc.h"
 #include "../ActsDeqpgles20017TestSuite.h"
