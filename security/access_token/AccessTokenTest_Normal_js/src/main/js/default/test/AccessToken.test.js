@@ -45,7 +45,7 @@ describe('AccessTokenTest', function () {
         var appInfo = await bundle.getApplicationInfo('ohos.acts.security.access_token.normal', 0, userId);
         tokenID = appInfo.accessTokenId;
         console.info("AccessTokenTest accessTokenId:" + appInfo.accessTokenId + ", name:" + appInfo.name
-            + ", bundleName:" + appInfo.bundleName)
+            + ", bundleName:" + appInfo.bundleName);
         // setTimeout(done(),TIMEOUT);
 
         console.info("sleep begin");
@@ -73,7 +73,7 @@ describe('AccessTokenTest', function () {
         console.info("Test_verifyAccessToken_001 start");
         var atManager = abilityAccessCtrl.createAtManager();
         var result = await atManager.verifyAccessToken(tokenID, permissionNameUser);
-        console.info("Test_verifyAccessToken_001 tokenID" + tokenID + "-" + result)
+        console.info("Test_verifyAccessToken_001 tokenID" + tokenID + "-" + result);
         expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
 
         done();
@@ -88,7 +88,7 @@ describe('AccessTokenTest', function () {
         console.info("Test_verifyAccessToken_002 start");
         var atManager = abilityAccessCtrl.createAtManager();
         var result = await atManager.verifyAccessToken(tokenID, permissionNameSystem);
-        console.info("Test_verifyAccessToken_002 tokenID" + tokenID + "-" + result)
+        console.info("Test_verifyAccessToken_002 tokenID" + tokenID + "-" + result);
         expect(result).assertEqual(GrantStatus.PERMISSION_GRANTED);
 
         done();
@@ -103,7 +103,7 @@ describe('AccessTokenTest', function () {
         console.info("Test_verifyAccessToken_003 start");
         var atManager = abilityAccessCtrl.createAtManager();
         var result = await atManager.verifyAccessToken(0, permissionNameUser);
-        console.info("Test_verifyAccessToken_003 tokenID" + tokenID + "-" + result)
+        console.info("Test_verifyAccessToken_003 tokenID" + tokenID + "-" + result);
         expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
 
         done();
@@ -118,7 +118,7 @@ describe('AccessTokenTest', function () {
         console.info("Test_verifyAccessToken_004 start");
         var atManager = abilityAccessCtrl.createAtManager();
         var result = await atManager.verifyAccessToken(tokenID, "");
-        console.info("Test_verifyAccessToken_004 tokenID" + tokenID + "-" + result)
+        console.info("Test_verifyAccessToken_004 tokenID" + tokenID + "-" + result);
         expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
 
         done();
@@ -137,7 +137,7 @@ describe('AccessTokenTest', function () {
             + "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest";
 
         var result = await atManager.verifyAccessToken(tokenID, permissionName);
-        console.info("Test_verifyAccessToken_005 tokenID" + tokenID + "-" + result)
+        console.info("Test_verifyAccessToken_005 tokenID" + tokenID + "-" + result);
         expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
 
         done();
