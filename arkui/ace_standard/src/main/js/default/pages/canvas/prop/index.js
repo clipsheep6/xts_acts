@@ -105,5 +105,5 @@ export default {
         this.showPropTrue = this.$element("showPropTrue").getInspector()
         this.showPropFalse = this.$element("showPropFalse").getInspector()
         this.showPropNone = this.$element("showPropNone").getInspector()
-    },
+    }
 }
