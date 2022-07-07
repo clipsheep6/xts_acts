@@ -36,7 +36,7 @@ struct Index {
     core.subscribeEvent('task', reportExtend)
     const configService = core.getDefaultService('config')
     console.info('parameters---->' + JSON.stringify(globalThis.abilityWant.parameters))
-    globalThis.abilityWant.parameters.timeout = 70000;
+    globalThis.abilityWant.parameters.timeout = 70000
     configService.setConfig(globalThis.abilityWant.parameters)
     testsuite(globalThis.abilityContext)
     core.execute()
