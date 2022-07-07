@@ -1996,8 +1996,14 @@ describe('webgl1Test_webgl1', function() {
 			return;
 		}
 
-		var viewPortParameter = gl.getParameter(gl.MAX_VIEWPORT_DIMS);
+		var maxViewPortDimsParameter = gl.getParameter(gl.MAX_VIEWPORT_DIMS);
+		console.log('maxViewPortDimsParameter: ' + maxViewPortDimsParameter);
+		var viewPortParameter = gl.getParameter(gl.VIEWPORT);
 		console.log('viewPortParameter: ' + viewPortParameter);
+		var boolParameter = gl.getParameter(gl.BOOL);
+		console.log('boolParameter: ' + boolParameter);
+		var SamplerCubeParameter = gl.getParameter(gl.SAMPLER_CUBE);
+		console.log('SamplerCubeParameter: ' + SamplerCubeParameter);
 
 		const isContextLostValue = gl.isContextLost();
 		console.info("isContextLostValue: " + isContextLostValue);
@@ -27152,6 +27158,9 @@ describe('webgl1Test_webgl1', function() {
 	
 		var x8 = gl2.SYNC_FLAGS;
 		expect(x8).assertEqual(37141);
+
+		var x9 = gl2.OBJECT_TYPE;
+		expect(x9).assertEqual(37138);
 		
 		done();
 		
@@ -27165,11 +27174,15 @@ describe('webgl1Test_webgl1', function() {
 	it('testAttributeBase', 0, async function(done) {
 		console.info('jsWebGL testAttributeBase test start');
 		var attribute = gl.getContextAttributes();
-		expect(atttribute.desynchronized).assertEqual(false);
+		expect(atttribute.alpha).assertEqual(true);
 		expect(atttribute.antialias).assertEqual(true);
+		expect(atttribute.depth).assertEqual(true);
+		expect(atttribute.failIfMajorPerformanceCaveat).assertEqual(false);
+		expect(atttribute.desynchronized).assertEqual(false);
 		expect(atttribute.premultipliedAlpha).assertEqual(true);
 		expect(atttribute.preserveDrawingBuffer).assertEqual(false);
-		expect(atttribute.failIfMajorPerformanceCaveat).assertEqual(false);
+		expect(atttribute.powerPreference).assertEqual("default");
+		expect(atttribute.stencil).assertEqual(false);
 		done()
 	});
 })

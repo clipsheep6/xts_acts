@@ -2004,8 +2004,14 @@ describe('webgl1Test_webgl2', function() {
 			gl.STATIC_DRAW
 		);
 
-		var viewPortParameter = gl.getParameter(gl.MAX_VIEWPORT_DIMS);
+		var maxViewPortDimsParameter = gl.getParameter(gl.MAX_VIEWPORT_DIMS);
+		console.log('maxViewPortDimsParameter: ' + maxViewPortDimsParameter);
+		var viewPortParameter = gl.getParameter(gl.VIEWPORT);
 		console.log('viewPortParameter: ' + viewPortParameter);
+		var boolParameter = gl.getParameter(gl.BOOL);
+		console.log('boolParameter: ' + boolParameter);
+		var SamplerCubeParameter = gl.getParameter(gl.SAMPLER_CUBE);
+		console.log('SamplerCubeParameter: ' + SamplerCubeParameter);
 
 		const isContextLostValue = gl.isContextLost();
 		console.info("isContextLostValue: " + isContextLostValue);
