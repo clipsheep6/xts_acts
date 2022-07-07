@@ -248,14 +248,14 @@ describe('ActsRpcClientJsTest', function(){
     }
 
     beforeAll(async function (done) {
-        console.info('beforeAll called')
+        console.info('beforeAll called');
         await connectAbility().then((remote) => {
-            console.info("got remote proxy: " + remote)
+            console.info("got remote proxy: " + remote);
         }).catch((err) => {
-            console.info("got exception: " + err)
+            console.info("got exception: " + err);
         })
-        done()
-        console.info("beforeAll done")
+        done();
+        console.info("beforeAll done");
     })
 
     /*
