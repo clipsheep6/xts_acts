@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import file from '@system.file';
+import file from '@system.file'
 import {Core, ExpectExtend, InstrumentLog, ReportExtend} from "deccjsunit/index"
 import list from '../test/ListTest'
 
@@ -23,7 +23,7 @@ struct Index {
   @State message: string = 'MainAbility'
 
   aboutToAppear() {
-    console.info("start run testcase!!!!")
+    console.info('start run testcase!!!!')
     const core = Core.getInstance()
     const expectExtend = new ExpectExtend({
       'id': 'extend'
@@ -33,7 +33,7 @@ struct Index {
 
     core.addService('report', reportExtend)
     core.init()
-    globalThis.abilityWant.parameters.timeout = 20000;
+    globalThis.abilityWant.parameters.timeout = 20000
 
     core.subscribeEvent('task', reportExtend)
     const configService = core.getDefaultService('config')
