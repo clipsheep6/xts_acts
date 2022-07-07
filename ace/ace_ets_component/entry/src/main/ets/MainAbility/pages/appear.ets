@@ -21,11 +21,11 @@ import prompt from '@system.prompt'
 @Preview
 @Component
 struct AppearExample {
-  @State isShow: boolean = true
-  @State appearFlag: boolean = false
-  @State disAppearFlag: boolean = false
-  private changeAppear: string = 'Hide Text'
-  private myText: string = 'Text for onAppear'
+  @State isShow: boolean = true;
+  @State appearFlag: boolean = false;
+  @State disAppearFlag: boolean = false;
+  private changeAppear: string = 'Hide Text';
+  private myText: string = 'Text for onAppear';
 
   onPageShow() {
     console.info('[appear] page show called');
