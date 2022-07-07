@@ -22,19 +22,19 @@ export default {
         this.title = "Application account js test";
     },
     onShow() {
-        console.info('onShow finish')
-        const core = Core.getInstance()
+        console.info('onShow finish');
+        const core = Core.getInstance();
         const expectExtend = new ExpectExtend({
             'id': 'extend'
-        })
-        core.addService('expect', expectExtend)
-        core.init()
+        });
+        core.addService('expect', expectExtend);
+        core.init();
 
-        const configService = core.getDefaultService('config')
-        configService.setConfig(this)
+        const configService = core.getDefaultService('config');
+        configService.setConfig(this);
 
-        require('../../../test/List.test')
-        core.execute()
+        require('../../../test/List.test');
+        core.execute();
     },
     onReady() {
     },
