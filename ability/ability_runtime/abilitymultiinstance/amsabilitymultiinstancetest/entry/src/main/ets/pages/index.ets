@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import file from '@system.file';
+import file from '@system.file'
 
-import {Core, ExpectExtend, InstrumentLog, ReportExtend} from "deccjsunit/index"
-import testsuite from "../../test/List.test.ets"
+import {Core, ExpectExtend, InstrumentLog, ReportExtend} from 'deccjsunit/index'
+import testsuite from './../test/List.test.ets'
 
 @Entry
 @Component
 struct Index {
 
   aboutToAppear() {
-      console.info("start run testcase!!!!")
+      console.info('start run testcase!!!!')
       const core = Core.getInstance()
       const expectExtend = new ExpectExtend({
         'id': 'extend'
