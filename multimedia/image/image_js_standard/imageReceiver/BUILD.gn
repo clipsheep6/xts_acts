@@ -23,9 +23,10 @@ ohos_js_hap_suite("image_receiver_js_hap") {
   hap_name = "ActsImageReceiverJsTest"
 }
 ohos_js_assets("image_receiver_js_assets") {
-  js2abc=true
+  js2abc = true
   hap_profile = "./src/main/config.json"
-  source_dir = "./src/main/js"}
+  source_dir = "./src/main/js"
+}
 ohos_resources("image_receiver_resources") {
   sources = [ "./src/main/resources" ]
   hap_profile = "./src/main/config.json"

@@ -22,7 +22,7 @@ ohos_js_hap_suite("ActsAmsTestSecondSceneTest") {
   hap_name = "ActsAmsTestSecondSceneTest"
 }
 ohos_js_assets("hjs_demo_js_assets") {
-  js2abc=true
+  js2abc = true
   hap_profile = "./src/main/config.json"
   source_dir = "./src/main/js"
 }
