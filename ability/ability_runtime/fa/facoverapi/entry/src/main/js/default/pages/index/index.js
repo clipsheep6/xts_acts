@@ -27,22 +27,22 @@ export default {
     },
     onShow() {
         if (once) {
-            once = false
-            console.info('onShow finish')
+            once = false;
+            console.info('onShow finish');
 
-            const core = Core.getInstance()
+            const core = Core.getInstance();
             const expectExtend = new ExpectExtend({
                 id: 'extend'
-            })
-            core.addService('expect', expectExtend)
-            core.init()
+            });
+            core.addService('expect', expectExtend);
+            core.init();
     
-            const configService = core.getDefaultService('config')
-            configService.setConfig(this)
-            this.timeout = 10000
+            const configService = core.getDefaultService('config');
+            configService.setConfig(this);
+            this.timeout = 10000;
     
-            require('../../../test/List.test')
-            core.execute()
+            require('../../../test/List.test');
+            core.execute();
         }
     },
     onReady() {
