@@ -83,7 +83,7 @@ struct PopupExample {
             console.info("button1 start to emit action state")
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("button1 emit action state err: " + JSON.stringify(err.message))
+            console.error("button1 emit action state err: " + JSON.stringify(err.message))
           }
         })
         .position({ x: 100, y: 200 })
@@ -106,7 +106,7 @@ struct PopupExample {
             console.info("button start to emit action state")
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("button emit action state err: " + JSON.stringify(err.message))
+            console.error("button emit action state err: " + JSON.stringify(err.message))
           }
         })
         .bindPopup(this.customPopup, {
