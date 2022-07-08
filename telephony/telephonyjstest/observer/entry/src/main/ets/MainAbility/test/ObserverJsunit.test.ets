@@ -17,6 +17,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 import observer from '@ohos.telephony.observer'
 import cellular from '@ohos.telephony.data'
 import radio from '@ohos.telephony.radio'
+import call from '@ohos.telephony.call'
 import utils from './Utils.ets'
 import {SimStateData} from '@ohos.telephony.observer'
 import {LockReason} from '@ohos.telephony.observer'
@@ -36,6 +37,11 @@ export default function observerJsunit() {
      * @tc.desc      : check the getCellularDataState callback to verify the call back data
      */
     it('Telephony_observer_observer_DataConnectState_0100', 0, function (done) {
+      expect(observer.NetworkState == radio.NetworkState).assertTrue();
+      expect(observer.SignalInformation == radio.SignalInformation).assertTrue();
+      expect(observer.CellInformation == radio.CellInformation ).assertTrue();
+      expect(observer.RatType == radio.RadioTechnology).assertTrue();
+      expect(observer.CallState == call.CallState).assertTrue();
       console.log("************* Telephony_observer_observer_DataConnectState_0100 Test start *************")
       cellular.getCellularDataState((err, data) => {
         if (!err) {
@@ -128,14 +134,14 @@ export default function observerJsunit() {
      */
     it('Telephony_observer_observer_off_networkStateChange_0100', 0, async function (done) {
       console.log("************* Telephony_observer_observer_off_networkStateChange_0100 Test start *************")
-      let callback = data => {
-        console.log("on networkStateChange, data:" + JSON.stringify(data));
-      }
-      observer.on('networkStateChange', callback);
-      observer.off('networkStateChange', callback);
-      expect(true).assertTrue();
-      done();
+      observer.off('networkStateChange', (networkState) => {
+        expect().assertFail()
+        done()
+        return
+      })
+      setTimeout(timeout, 3000)
       console.log("************* Telephony_observer_observer_off_networkStateChange_0100 Test end *************")
+      done()
     })
 
     /*
@@ -181,14 +187,14 @@ export default function observerJsunit() {
      */
     it('Telephony_observer_observer_off_signalInfoChange_0100', 0, async function (done) {
       console.log("************* Telephony_observer_observer_off_signalInfoChange_0100 Test start *************")
-      let callback = data => {
-        console.log("on signalInfoChange, data:" + JSON.stringify(data));
-      }
-      observer.on('signalInfoChange', callback);
-      observer.off('signalInfoChange', callback);
-      expect(true).assertTrue();
-      done();
+      observer.off('signalInfoChange', (networkState) => {
+        expect().assertFail()
+        done()
+        return
+      })
+      setTimeout(timeout, 3000)
       console.log("************* Telephony_observer_observer_off_signalInfoChange_0100 Test end *************")
+      done()
     })
 
     
@@ -236,14 +242,14 @@ export default function observerJsunit() {
      */
     it('Telephony_observer_observer_off_cellularDataConnectionStateChange_0100', 0, async function (done) {
       console.log("************* Telephony_observer_observer_off_cellularDataConnectionStateChange_0100 Test start *************")
-      let callback = value => {
-        console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
-      }
-      observer.on('cellularDataConnectionStateChange', callback);
-      observer.off('cellularDataConnectionStateChange', callback);
-      expect(true).assertTrue();
-      done();
+      observer.off('cellularDataConnectionStateChange', (data) => {
+        expect().assertFail()
+        done()
+        return
+      })
+      setTimeout(timeout, 3000)
       console.log("************* Telephony_observer_observer_off_cellularDataConnectionStateChange_0100 Test end *************")
+      done()
     })
 
     /*
@@ -289,14 +295,14 @@ export default function observerJsunit() {
      */
     it('Telephony_observer_observer_off_cellularDataFlowChange_0100', 0, async function (done) {
       console.log("************* Telephony_observer_observer_off_cellularDataFlowChange_0100 Test start *************")
-      let callback = data => {
-        console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
-      }
-      observer.on('cellularDataFlowChange', callback);
-      observer.off('cellularDataFlowChange', callback);
-      expect(true).assertTrue();
-      done();
+      observer.off('cellularDataFlowChange', (data) => {
+        expect().assertFail()
+        done()
+        return
+      })
+      setTimeout(timeout, 3000)
       console.log("************* Telephony_observer_observer_off_cellularDataFlowChange_0100 Test end *************")
+      done()
     })
 
     /*
@@ -342,14 +348,14 @@ export default function observerJsunit() {
      */
     it('Telephony_observer_observer_off_callStateChange_0100', 0, async function (done) {
       console.log("************* Telephony_observer_observer_off_callStateChange_0100 Test start *************")
-      let callback = value => {
-        console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
-      }
-      observer.on('callStateChange', callback);
-      observer.off('callStateChange', callback);
-      expect(true).assertTrue();
-      done();
+      observer.off('callStateChange', (data) => {
+        expect().assertFail()
+        done()
+        return
+      })
+      setTimeout(timeout, 3000)
       console.log("************* Telephony_observer_observer_off_callStateChange_0100 Test end *************")
+      done()
     })
 
     /*
@@ -395,14 +401,14 @@ export default function observerJsunit() {
      */
     it('Telephony_observer_observer_off_simStateChange_0100', 0, async function (done) {
       console.log("************* Telephony_observer_observer_off_simStateChange_0100 Test start *************")
-     let callback = data => {
-    console.log("on simStateChange, data:" + JSON.stringify(data));
-    }
-      observer.on('simStateChange', callback);
-      observer.off('simStateChange',callback);
-      expect(true).assertTrue();
-      done();
+      observer.off('simStateChange', (data) => {
+        expect().assertFail()
+        done()
+        return
+      })
+      setTimeout(timeout, 3000)
       console.log("************* Telephony_observer_observer_off_simStateChange_0100 Test end *************")
+      done()
     })
 
     /*
@@ -553,11 +559,58 @@ export default function observerJsunit() {
         expect(true).assertTrue()
         done()
       }
-      //      expect(0).assertEqual(LockReason.SIM_NONE)
+      expect(0).assertEqual(LockReason.SIM_NONE)
       done()
       console.log("************* Telephony_observer_LockReason_SIM_NONE_0100 Test end *************")
     })
 
+    /*
+     * @tc.number    : Telephony_observer_LockReason_SIM_PIN_0100
+     * @tc.name      : SIM_PIN
+     * @tc.desc      : check the SIM_PIN property of LockReason
+     */
+    it('Telephony_observer_LockReason_SIM_PIN_0100', 0, function (done) {
+      console.log("************* Telephony_observer_LockReason_SIM_PIN_0100 Test start *************")
+      if (utils.notCheck) {
+        expect(true).assertTrue()
+        done()
+      }
+      expect(1).assertEqual(LockReason.SIM_PIN)
+      done()
+      console.log("************* Telephony_observer_LockReason_SIM_PIN_0100 Test end *************")
+    })
+
+    /*
+     * @tc.number    : Telephony_observer_LockReason_SIM_PUK_0100
+     * @tc.name      : SIM_PUK
+     * @tc.desc      : check the SIM_PUK property of LockReason
+     */
+    it('Telephony_observer_LockReason_SIM_PUK_0100', 0, function (done) {
+      console.log("************* Telephony_observer_LockReason_SIM_PUK_0100 Test start *************")
+      if (utils.notCheck) {
+        expect(true).assertTrue()
+        done()
+      }
+      expect(2).assertEqual(LockReason.SIM_PUK)
+      done()
+      console.log("************* Telephony_observer_LockReason_SIM_PUK_0100 Test end *************")
+    })
+
+    /*
+    * @tc.number    : Telephony_observer_LockReason_SIM_PN_PIN_0100
+    * @tc.name      : SIM_PN_PIN
+    * @tc.desc      : check the SIM_PN_PIN property of LockReason
+    */
+    it('Telephony_observer_LockReason_SIM_PN_PIN_0100', 0, function (done) {
+      console.log("************* Telephony_observer_LockReason_SIM_PN_PIN_0100 Test start *************")
+      if (utils.notCheck) {
+        expect(true).assertTrue()
+        done()
+      }
+      expect(3).assertEqual(LockReason.SIM_PN_PIN)
+      done()
+      console.log("************* Telephony_observer_LockReason_SIM_PN_PIN_0100 Test end *************")
+    })
     /*
      * @tc.number    : Telephony_observer_LockReason_SIM_PN_PUK_0100
      * @tc.name      : SIM_PN_PUK
@@ -569,7 +622,7 @@ export default function observerJsunit() {
         expect(true).assertTrue()
         done()
       }
-      //      expect(4).assertEqual(LockReason.SIM_PN_PUK)
+      expect(4).assertEqual(LockReason.SIM_PN_PUK)
       done()
       console.log("************* Telephony_observer_LockReason_SIM_PN_PUK_0100 Test end *************")
     })
@@ -585,7 +638,7 @@ export default function observerJsunit() {
         expect(true).assertTrue()
         done()
       }
-      //      expect(5).assertEqual(LockReason.SIM_PU_PIN)
+       expect(5).assertEqual(LockReason.SIM_PU_PIN)
       done()
       console.log("************* Telephony_observer_LockReason_SIM_PU_PIN_0100 Test end *************")
     })
@@ -601,7 +654,7 @@ export default function observerJsunit() {
         expect(true).assertTrue()
         done()
       }
-      //      expect(6).assertEqual(LockReason.SIM_PU_PUK)
+      expect(6).assertEqual(LockReason.SIM_PU_PUK)
       done()
       console.log("************* Telephony_observer_LockReason_SIM_PU_PUK_0100 Test end *************")
     })
@@ -617,7 +670,7 @@ export default function observerJsunit() {
         expect(true).assertTrue()
         done()
       }
-      //      expect(7).assertEqual(LockReason.SIM_PP_PIN)
+      expect(7).assertEqual(LockReason.SIM_PP_PIN)
       done()
       console.log("************* Telephony_observer_LockReason_SIM_PP_PIN_0100 Test end *************")
     })
@@ -633,7 +686,7 @@ export default function observerJsunit() {
         expect(true).assertTrue()
         done()
       }
-      //      expect(8).assertEqual(LockReason.SIM_PP_PUK)
+      expect(8).assertEqual(LockReason.SIM_PP_PUK)
       done()
       console.log("************* Telephony_observer_LockReason_SIM_PP_PUK_0100 Test end *************")
     })
@@ -649,7 +702,7 @@ export default function observerJsunit() {
         expect(true).assertTrue()
         done()
       }
-      //      expect(9).assertEqual(LockReason.SIM_PC_PIN)
+      expect(9).assertEqual(LockReason.SIM_PC_PIN)
       done()
       console.log("************* Telephony_observer_LockReason_SIM_PC_PIN_0100 Test end *************")
     })
@@ -665,7 +718,7 @@ export default function observerJsunit() {
         expect(true).assertTrue()
         done()
       }
-      //      expect(10).assertEqual(LockReason.SIM_PC_PUK)
+      expect(10).assertEqual(LockReason.SIM_PC_PUK)
       done()
       console.log("************* Telephony_observer_LockReason_SIM_PC_PUK_0100 Test end *************")
     })
@@ -681,7 +734,7 @@ export default function observerJsunit() {
         expect(true).assertTrue()
         done()
       }
-      //      expect(11).assertEqual(LockReason.SIM_SIM_PIN)
+      expect(11).assertEqual(LockReason.SIM_SIM_PIN)
       done()
       console.log("************* Telephony_observer_LockReason_SIM_SIM_PIN_0100 Test end *************")
     })
@@ -697,7 +750,7 @@ export default function observerJsunit() {
         expect(true).assertTrue()
         done()
       }
-      //      expect(12).assertEqual(LockReason.SIM_SIM_PUK)
+      expect(12).assertEqual(LockReason.SIM_SIM_PUK)
       done()
       console.log("************* Telephony_observer_LockReason_SIM_SIM_PUK_0100 Test end *************")
     })
