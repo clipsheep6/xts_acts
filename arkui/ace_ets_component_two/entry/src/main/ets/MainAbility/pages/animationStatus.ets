@@ -99,7 +99,7 @@ struct ImageAnimatorExample {
             console.info("button2 start to emit action state")
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("button2 emit action state err: " + JSON.stringify(err.message))
+            console.error("button2 emit action state err: " + JSON.stringify(err.message))
           }
         })
 
@@ -118,7 +118,7 @@ struct ImageAnimatorExample {
             console.info("button3 start to emit action state")
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("button3 emit action state err: " + JSON.stringify(err.message))
+            console.error("button3 emit action state err: " + JSON.stringify(err.message))
           }
         })
       }
