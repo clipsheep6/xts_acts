@@ -1,6 +1,6 @@
 // @ts-nocheck
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License')
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import connection from '@ohos.net.connection';
-import {describe, it, expect} from 'deccjsunit/index';
+import {describe, it, expect} from 'hypium/index';
 import utils from './Utils.ets'
 
 export default function connectionSecondJsUnit() {
@@ -121,6 +121,19 @@ export default function connectionSecondJsUnit() {
     it("Telephony_connection_RouteInfo_0300", 0, function (done) {
       console.log("----------------------RouteInfo Properties Test is starting-----------------------");
       try {
+        let resultInterface = {
+          interface: '123'
+        };
+        let resultDestination = {
+          destination: {
+            address: "192.168.1.2"
+          }
+        };
+        let resultGateway = {
+          gateway: {
+            address: "192.168.1.3"
+          }
+        };
         let resultDefaultRoute = {
           isDefaultRoute: true
         };
@@ -129,6 +142,9 @@ export default function connectionSecondJsUnit() {
         };
         expect(true).assertEqual(resultDefaultRoute.isDefaultRoute);
         expect(true).assertEqual(resultHasGateway.hasGateway);
+        expect("123").assertEqual(resultInterface.interface);
+        expect("192.168.1.2").assertEqual(resultDestination.destination.address);
+        expect("192.168.1.3").assertEqual(resultGateway.gateway.address);
         console.log("-----------------------RouteInfo Properties Test end-----------------------");
         done();
       } catch (err) {
