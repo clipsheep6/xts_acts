@@ -280,8 +280,8 @@ describe('TextEncoderTest', function () {
                 callback('type err');
             }
         }
-        let newPromiseObj = util.promiseWrapper(aysnFun)("Hello", 'World');
-        newPromiseObj.then(res => {
+        let newPromiseObj = util.promiseWrapper(aysnFun);
+        newPromiseObj("Hello", 'World').then(res => {
             expect(res).strictEqual('HelloWorld');
         })
     })
@@ -300,8 +300,8 @@ describe('TextEncoderTest', function () {
                 callback('type err');
             }
         }
-        let newPromiseObj = util.promiseWrapper(aysnFun)([1, 2], 'World');
-        newPromiseObj.catch(err => {
+        let newPromiseObj = util.promiseWrapper(aysnFun);
+        newPromiseObj([1, 2], 'World').catch(err => {
             expect(err).strictEqual('type err');
         })
     })
@@ -386,8 +386,8 @@ describe('TextEncoderTest', function () {
             callback(err, val);
         }
         (async () => {
-            const value = await util.promiseWrapper(fn)(null, 42);
-            expect(value).strictEqual(42);
+            const value = await util.promiseWrapper(fn);
+            expect(value(null, 42)).strictEqual(42);
         })();
     })
 
