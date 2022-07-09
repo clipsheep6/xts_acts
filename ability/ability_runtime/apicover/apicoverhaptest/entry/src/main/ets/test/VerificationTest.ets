@@ -183,7 +183,7 @@ export default function verificationTest(abilityContext){
             screenDensity = data.parameters.screenDensity
           }
           if (data.event == "Stage_MainAbility4_onDestroy") {
-            expect(typeof screenDensity).assertEqual("number");
+	    expect(typeof screenDensity).assertEqual("number");
             expect(screenDensity).assertLarger(0);
             commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
           }
@@ -358,89 +358,6 @@ export default function verificationTest(abilityContext){
           console.info(TAG + "startAbility err = " + JSON.stringify(err));
           expect().assertFail();
           done();
-        });
-      } catch (err) {
-        console.info(TAG + "catch err = " + JSON.stringify(err));
-        expect().assertFail();
-        done();
-      }
-    })
-
-    /*
-    * @tc.number  SUB_AA_OpenHarmony_StartAbilityFlags_0100
-    * @tc.name    Validate the input parameter flags of startAbility.
-    * @tc.desc    Function test
-    * @tc.level   3
-    */
-    it('SUB_AA_OpenHarmony_StartAbilityFlags_0100', 0, async function(done) {
-      TAG = 'SUB_AA_OpenHarmony_StartAbilityFlags_0100 ==>';
-
-      try {
-        let number1 = undefined
-        let number2 = 536870912
-        let code1 = undefined
-        let code2 = undefined
-        let subscriber = null
-        let subscribeInfo = {
-          events: ["Stage_MainAbility7_onCreate", "Stage_MainAbility7_onDestroy"]
-        }
-        function SubscribeInfoCallback(err, data) {
-          console.info(TAG + "===SubscribeInfoCallback===" + JSON.stringify(data))
-          if (data.event == "Stage_MainAbility7_onCreate") {
-            number1 = data.parameters.flags
-          }
-          if (data.event == "Stage_MainAbility7_onDestroy") {
-            expect(code1).assertEqual(22);
-            expect(code2).assertEqual(14);
-            expect(number1).assertEqual(number2);
-            commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
-          }
-        }
-        function UnSubscribeInfoCallback(err, data) {
-          console.info(TAG + "===UnSubscribeInfoCallback===")
-          done()
-        }
-        commonEvent.createSubscriber(subscribeInfo, (err, data) => {
-          console.info(TAG + "===CreateSubscriberCallback===")
-          subscriber = data
-          commonEvent.subscribe(subscriber, SubscribeInfoCallback)
-        })
-
-        let wantNum1 = {
-          bundleName: 'ohos.acts.aafwk.test.stagesupplement',
-          abilityName: 'MainAbility6',
-          flags: wantConstant.Flags.FLAG_ABILITY_CONTINUATION
-        }
-        abilityContext.startAbility(wantNum1).then((data) => {
-          console.info(TAG + "startAbility data = " + JSON.stringify(data));
-        }).catch((err) => {
-          code1 = err.code
-          console.info(TAG + "startAbility err = " + JSON.stringify(err));
-        });
-
-        let wantNum2 = {
-          bundleName: 'ohos.acts.aafwk.test.stagesupplement',
-          abilityName: 'MainAbility7',
-          flags: wantConstant.Flags.FLAG_ABILITY_MISSION_TOP
-        }
-        abilityContext.startAbility(wantNum2).then((data) => {
-          console.info(TAG + "startAbility data = " + JSON.stringify(data));
-        }).catch((err) => {
-          console.info(TAG + "startAbility err = " + JSON.stringify(err));
-          expect().assertFail();
-          done();
-        });
-
-        let wantNum3 = {
-          bundleName: 'ohos.acts.aafwk.test.stagesupplement',
-          abilityName: 'MainAbility8',
-          flags: wantConstant.Flags.FLAG_INSTALL_ON_DEMAND
-        }
-        abilityContext.startAbility(wantNum3).then((data) => {
-          console.info(TAG + "startAbility data = " + JSON.stringify(data));
-        }).catch((err) => {
-          code2 = err.code
-          console.info(TAG + "startAbility err = " + JSON.stringify(err));
         });
       } catch (err) {
         console.info(TAG + "catch err = " + JSON.stringify(err));
