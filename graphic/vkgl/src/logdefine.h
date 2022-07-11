@@ -13,20 +13,24 @@
  * limitations under the License.
  */
 
-#include <climits>
-#include <gtest/gtest.h>
-#include "../Khrgles2BaseFunc.h"
-#include "../ActsKhrgles20001TestSuite.h"
-#include "shrinkdefine.h"
+#ifndef TEST_LOGDEFINE_H
+#define TEST_LOGDEFINE_H
 
-using namespace std;
-using namespace testing::ext;
-using namespace OHOS;
+#include <cstdio>
+#include "tcuDefs.hpp"
+#include "tcuCommandLine.hpp"
+#include "tcuPlatform.hpp"
+#include "ActsApp.h"
+#include "tcuResource.hpp"
+#include "tcuTestLog.hpp"
+#include "tcuTestSessionExecutor.hpp"
+#include "deUniquePtr.hpp"
 
-#define VkglTestCase_000376_1 "KHR-GLES2.texture_"
-#define VkglTestCase_000376_2 "3d.sub_image.rgba8"
-SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000376, VkglTestCase_000376_1, VkglTestCase_000376_2);
+namespace OHOS {
+    class Qpalog {
+    public:
+        static tcu::TestLog tcutestlog;
+    };
+} // OHOS
 
-#define VkglTestCase_000377_1 "KHR-GLES2.texture_3"
-#define VkglTestCase_000377_2 "d.sub_image.negative"
-SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000377, VkglTestCase_000377_1, VkglTestCase_000377_2);
+#endif // TEST_LOGDEFINE_H
