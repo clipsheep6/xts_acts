@@ -41,8 +41,8 @@ describe('AccessTokenTest', function () {
     console.info('##########start AccessTokenTest');
     beforeAll(async function (done){
         var accountManager = osAccount.getAccountManager();  
-        var localled = await accountManager.getOsAccountTypeFromProcess();
-        var appInfo = await bundle.getApplicationInfo('ohos.acts.security.access_token.normal', 0, localled);
+        var userId = await accountManager.getOsAccountLocalIdFromProcess();
+        var appInfo = await bundle.getApplicationInfo('ohos.acts.security.access_token.normal', 0, userId);
         tokenID = appInfo.accessTokenId;
         console.info("AccessTokenTest accessTokenId:" + appInfo.accessTokenId + ", name:" + appInfo.name
             + ", bundleName:" + appInfo.bundleName)
@@ -70,10 +70,10 @@ describe('AccessTokenTest', function () {
      * @tc.desc After the installation, user_grant permission is not granted by default(Promise).
      */
     it('Test_verifyAccessToken_001', 0, async function(done){
-        console.log("Test_verifyAccessToken_001 start");
+        console.info("Test_verifyAccessToken_001 start");
         var atManager = abilityAccessCtrl.createAtManager();
         var result = await atManager.verifyAccessToken(tokenID, permissionNameUser);
-        console.log("Test_verifyAccessToken_001 tokenID" + tokenID + "-" + result)
+        console.info("Test_verifyAccessToken_001 tokenID" + tokenID + "-" + result)
         expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
 
         done();
@@ -82,13 +82,13 @@ describe('AccessTokenTest', function () {
     /**
      * @tc.number Test_verifyAccessToken_002
      * @tc.name Test atManager.verifyAccessToken.
-     * @tc.desc After the installation, system_grant permission is not granted by default(Promise).
+     * @tc.desc After the installation, system_grant permission is granted by default(Promise).
      */
     it('Test_verifyAccessToken_002', 0, async function(done){
-        console.log("Test_verifyAccessToken_002 start");
+        console.info("Test_verifyAccessToken_002 start");
         var atManager = abilityAccessCtrl.createAtManager();
         var result = await atManager.verifyAccessToken(tokenID, permissionNameSystem);
-        console.log("Test_verifyAccessToken_002 tokenID" + tokenID + "-" + result)
+        console.info("Test_verifyAccessToken_002 tokenID" + tokenID + "-" + result)
         expect(result).assertEqual(GrantStatus.PERMISSION_GRANTED);
 
         done();
@@ -100,10 +100,10 @@ describe('AccessTokenTest', function () {
      * @tc.desc Test invalid TokenID(0)(Promise).
      */
     it('Test_verifyAccessToken_003', 0, async function(done){
-        console.log("Test_verifyAccessToken_003 start");
+        console.info("Test_verifyAccessToken_003 start");
         var atManager = abilityAccessCtrl.createAtManager();
         var result = await atManager.verifyAccessToken(0, permissionNameUser);
-        console.log("Test_verifyAccessToken_003 tokenID" + tokenID + "-" + result)
+        console.info("Test_verifyAccessToken_003 tokenID" + tokenID + "-" + result)
         expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
 
         done();
@@ -115,10 +115,10 @@ describe('AccessTokenTest', function () {
      * @tc.desc Test invalid permission(empty)(Promise).
      */
     it('Test_verifyAccessToken_004', 0, async function(done){
-        console.log("Test_verifyAccessToken_004 start");
+        console.info("Test_verifyAccessToken_004 start");
         var atManager = abilityAccessCtrl.createAtManager();
         var result = await atManager.verifyAccessToken(tokenID, "");
-        console.log("Test_verifyAccessToken_004 tokenID" + tokenID + "-" + result)
+        console.info("Test_verifyAccessToken_004 tokenID" + tokenID + "-" + result)
         expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
 
         done();
@@ -130,16 +130,85 @@ describe('AccessTokenTest', function () {
      * @tc.desc Test invalid permission(length exceeds 256)(Promise).
      */
     it('Test_verifyAccessToken_005', 0, async function(done){
-        console.log("Test_verifyAccessToken_005 start");
+        console.info("Test_verifyAccessToken_005 start");
         var atManager = abilityAccessCtrl.createAtManager();
         var permissionName = "ohos.permission.testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"
             + "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"
             + "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest";
 
         var result = await atManager.verifyAccessToken(tokenID, permissionName);
-        console.log("Test_verifyAccessToken_005 tokenID" + tokenID + "-" + result)
+        console.info("Test_verifyAccessToken_005 tokenID" + tokenID + "-" + result)
         expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
 
         done();
+    })
+
+    /**
+     * @tc.number Test_verifyAccessTokenSync_0000
+     * @tc.name Test_verifyAccessTokenSync_000.
+     * @tc.desc Test verifyAccessTokenSync, After the installation, user_grant permission is not granted by default.
+     */
+     it('Test_verifyAccessTokenSync_000', 0, function(){
+        console.info("Test_verifyAccessTokenSync_000 start");
+        var atManager = abilityAccessCtrl.createAtManager();
+        var result = atManager.verifyAccessTokenSync(tokenID, permissionNameUser);
+        console.info("Test_verifyAccessTokenSync_000 tokenID" + tokenID + "-" + result)
+        expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
+    })
+
+    /**
+     * @tc.number Test_verifyAccessTokenSync_0100
+     * @tc.name Test_verifyAccessTokenSync_001.
+     * @tc.desc Test verifyAccessTokenSync, After the installation, system_grant permission is granted by default.
+     */
+    it('Test_verifyAccessTokenSync_001', 0, function(){
+        console.info("Test_verifyAccessTokenSync_001 start");
+        var atManager = abilityAccessCtrl.createAtManager();
+        var result = atManager.verifyAccessTokenSync(tokenID, permissionNameSystem);
+        console.info("Test_verifyAccessTokenSync_001 tokenID" + tokenID + "-" + result)
+        expect(result).assertEqual(GrantStatus.PERMISSION_GRANTED);
+    })
+
+    /**
+     * @tc.number Test_verifyAccessTokenSync_0200
+     * @tc.name Test_verifyAccessTokenSync_002.
+     * @tc.desc Test verifyAccessTokenSync, invalid TokenID(0).
+     */
+    it('Test_verifyAccessTokenSync_002', 0, function(){
+        console.info("Test_verifyAccessTokenSync_002 start");
+        var atManager = abilityAccessCtrl.createAtManager();
+        var result = atManager.verifyAccessTokenSync(0, permissionNameUser);
+        console.info("Test_verifyAccessTokenSync_002 tokenID" + tokenID + "-" + result)
+        expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
+    })
+
+    /**
+     * @tc.number Test_verifyAccessTokenSync_0300
+     * @tc.name Test_verifyAccessTokenSync_003.
+     * @tc.desc Test verifyAccessTokenSync, invalid permission(empty).
+     */
+    it('Test_verifyAccessTokenSync_003', 0, function(){
+        console.info("Test_verifyAccessTokenSync_003 start");
+        var atManager = abilityAccessCtrl.createAtManager();
+        var result = atManager.verifyAccessTokenSync(tokenID, "");
+        console.info("Test_verifyAccessTokenSync_003 tokenID" + tokenID + "-" + result)
+        expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
+    })
+
+    /**
+     * @tc.number Test_verifyAccessTokenSync_0400
+     * @tc.name Test_verifyAccessTokenSync_004.
+     * @tc.desc Test verifyAccessTokenSync, invalid permission(length exceeds 256).
+     */
+    it('Test_verifyAccessTokenSync_004', 0, function(){
+        console.info("Test_verifyAccessTokenSync_004 start");
+        var atManager = abilityAccessCtrl.createAtManager();
+        var permissionName = "ohos.permission.testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"
+            + "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"
+            + "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest";
+
+        var result = atManager.verifyAccessTokenSync(tokenID, permissionName);
+        console.info("Test_verifyAccessTokenSync_004 tokenID" + tokenID + "-" + result)
+        expect(result).assertEqual(GrantStatus.PERMISSION_DENIED);
     })
 })
