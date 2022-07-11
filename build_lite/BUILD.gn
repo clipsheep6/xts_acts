@@ -11,8 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/lite/config/subsystem/aafwk/config.gni")
-import("//build/lite/config/test.gni")
+import("//build/hb/config/subsystem/aafwk/config.gni")
+import("//build/hb/config/test.gni")
 import("//test/xts/tools/lite/build/suite_lite.gni")
 
 lite_component("acts_component") {

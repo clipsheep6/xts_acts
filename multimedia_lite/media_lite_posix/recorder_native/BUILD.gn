@@ -31,7 +31,7 @@ hcpptest_suite("ActsMediaRecorderTest") {
   ]
 
   deps = [
-    "//build/lite/config/component/cJSON:cjson_shared",
+    "//build/hb/config/component/cJSON:cjson_shared",
     "//foundation/multimedia/camera_lite/frameworks:camera_lite",
     "//foundation/multimedia/media_lite/frameworks/recorder_lite:recorder_lite",
   ]

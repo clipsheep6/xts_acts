@@ -11,9 +11,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/lite/config/component/lite_component.gni")
-import("//build/lite/config/hap_pack.gni")
-import("//build/lite/config/subsystem/aafwk/config.gni")
+import("//build/hb/config/component/lite_component.gni")
+import("//build/hb/config/hap_pack.gni")
+import("//build/hb/config/subsystem/aafwk/config.gni")
 import("//test/xts/tools/lite/build/suite_lite.gni")
 
 executable("ActsKitFwkApiTest") {
@@ -32,7 +32,7 @@ executable("ActsKitFwkApiTest") {
 
   deps = [
     "//base/startup/init_lite/interfaces/kits/token:token_shared",
-    "//build/lite/config/component/cJSON:cjson_shared",
+    "//build/hb/config/component/cJSON:cjson_shared",
     "//test/xts/tools/lite/hcpptest:hcpptest_main",
     "//third_party/bounds_checking_function:libsec_shared",
     "//third_party/mbedtls:mbedtls_shared",
