@@ -13,64 +13,20 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Khrgles32BaseFunc.h"
 #include "../ActsKhrgles320002TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001028, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_001028 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES32.core.cop"
-        "y_image.r32i_texture",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles320002TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles320002TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles320002TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles320002TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles320002TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_001028 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_001028 end";
-}
+#define VkglTestCase_001028_1 "KHR-GLES32.core.cop"
+#define VkglTestCase_001028_2 "y_image.r32i_texture"
+SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001028, VkglTestCase_001028_1, VkglTestCase_001028_2);
 
-static HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001029, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_001029 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES32.core.copy"
-        "_image.r32ui_texture",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles320002TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles320002TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles320002TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles320002TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles320002TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_001029 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_001029 end";
-}
+#define VkglTestCase_001029_1 "KHR-GLES32.core.copy"
+#define VkglTestCase_001029_2 "_image.r32ui_texture"
+SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001029, VkglTestCase_001029_1, VkglTestCase_001029_2);

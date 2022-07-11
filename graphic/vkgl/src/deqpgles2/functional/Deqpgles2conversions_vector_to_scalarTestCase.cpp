@@ -13,1468 +13,228 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Deqpgles2BaseFunc.h"
 #include "../ActsDeqpgles20001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000849, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000849 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.vec2_to_float_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000849 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000849 end";
-}
+#define VkglTestCase_000849_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000849_2 "ns.vector_to_scalar.vec2_to_float_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000849, VkglTestCase_000849_1, VkglTestCase_000849_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000850, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000850 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.vec2_to_float_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000850 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000850 end";
-}
+#define VkglTestCase_000850_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000850_2 "s.vector_to_scalar.vec2_to_float_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000850, VkglTestCase_000850_1, VkglTestCase_000850_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000851, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000851 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversi"
-        "ons.vector_to_scalar.vec2_to_int_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000851 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000851 end";
-}
+#define VkglTestCase_000851_1 "dEQP-GLES2.functional.shaders.conversi"
+#define VkglTestCase_000851_2 "ons.vector_to_scalar.vec2_to_int_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000851, VkglTestCase_000851_1, VkglTestCase_000851_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000852, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000852 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.vec2_to_int_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000852 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000852 end";
-}
+#define VkglTestCase_000852_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000852_2 "ns.vector_to_scalar.vec2_to_int_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000852, VkglTestCase_000852_1, VkglTestCase_000852_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000853, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000853 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.vec2_to_bool_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000853 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000853 end";
-}
+#define VkglTestCase_000853_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000853_2 "ns.vector_to_scalar.vec2_to_bool_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000853, VkglTestCase_000853_1, VkglTestCase_000853_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000854, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000854 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.vec2_to_bool_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000854 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000854 end";
-}
+#define VkglTestCase_000854_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000854_2 "s.vector_to_scalar.vec2_to_bool_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000854, VkglTestCase_000854_1, VkglTestCase_000854_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000855, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000855 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.vec3_to_float_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000855 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000855 end";
-}
+#define VkglTestCase_000855_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000855_2 "ns.vector_to_scalar.vec3_to_float_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000855, VkglTestCase_000855_1, VkglTestCase_000855_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000856, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000856 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.vec3_to_float_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000856 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000856 end";
-}
+#define VkglTestCase_000856_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000856_2 "s.vector_to_scalar.vec3_to_float_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000856, VkglTestCase_000856_1, VkglTestCase_000856_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000857, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000857 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversi"
-        "ons.vector_to_scalar.vec3_to_int_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000857 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000857 end";
-}
+#define VkglTestCase_000857_1 "dEQP-GLES2.functional.shaders.conversi"
+#define VkglTestCase_000857_2 "ons.vector_to_scalar.vec3_to_int_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000857, VkglTestCase_000857_1, VkglTestCase_000857_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000858, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000858 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.vec3_to_int_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000858 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000858 end";
-}
+#define VkglTestCase_000858_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000858_2 "ns.vector_to_scalar.vec3_to_int_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000858, VkglTestCase_000858_1, VkglTestCase_000858_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000859, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000859 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.vec3_to_bool_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000859 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000859 end";
-}
+#define VkglTestCase_000859_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000859_2 "ns.vector_to_scalar.vec3_to_bool_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000859, VkglTestCase_000859_1, VkglTestCase_000859_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000860, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000860 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.vec3_to_bool_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000860 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000860 end";
-}
+#define VkglTestCase_000860_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000860_2 "s.vector_to_scalar.vec3_to_bool_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000860, VkglTestCase_000860_1, VkglTestCase_000860_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000861, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000861 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.vec4_to_float_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000861 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000861 end";
-}
+#define VkglTestCase_000861_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000861_2 "ns.vector_to_scalar.vec4_to_float_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000861, VkglTestCase_000861_1, VkglTestCase_000861_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000862, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000862 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.vec4_to_float_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000862 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000862 end";
-}
+#define VkglTestCase_000862_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000862_2 "s.vector_to_scalar.vec4_to_float_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000862, VkglTestCase_000862_1, VkglTestCase_000862_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000863, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000863 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversi"
-        "ons.vector_to_scalar.vec4_to_int_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000863 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000863 end";
-}
+#define VkglTestCase_000863_1 "dEQP-GLES2.functional.shaders.conversi"
+#define VkglTestCase_000863_2 "ons.vector_to_scalar.vec4_to_int_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000863, VkglTestCase_000863_1, VkglTestCase_000863_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000864, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000864 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.vec4_to_int_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000864 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000864 end";
-}
+#define VkglTestCase_000864_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000864_2 "ns.vector_to_scalar.vec4_to_int_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000864, VkglTestCase_000864_1, VkglTestCase_000864_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000865, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000865 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.vec4_to_bool_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000865 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000865 end";
-}
+#define VkglTestCase_000865_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000865_2 "ns.vector_to_scalar.vec4_to_bool_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000865, VkglTestCase_000865_1, VkglTestCase_000865_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000866, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000866 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.vec4_to_bool_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000866 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000866 end";
-}
+#define VkglTestCase_000866_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000866_2 "s.vector_to_scalar.vec4_to_bool_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000866, VkglTestCase_000866_1, VkglTestCase_000866_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000867, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000867 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.ivec2_to_float_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000867 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000867 end";
-}
+#define VkglTestCase_000867_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000867_2 "s.vector_to_scalar.ivec2_to_float_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000867, VkglTestCase_000867_1, VkglTestCase_000867_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000868, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000868 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversions"
-        ".vector_to_scalar.ivec2_to_float_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000868 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000868 end";
-}
+#define VkglTestCase_000868_1 "dEQP-GLES2.functional.shaders.conversions"
+#define VkglTestCase_000868_2 ".vector_to_scalar.ivec2_to_float_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000868, VkglTestCase_000868_1, VkglTestCase_000868_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000869, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000869 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.ivec2_to_int_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000869 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000869 end";
-}
+#define VkglTestCase_000869_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000869_2 "ns.vector_to_scalar.ivec2_to_int_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000869, VkglTestCase_000869_1, VkglTestCase_000869_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000870, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000870 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.ivec2_to_int_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000870 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000870 end";
-}
+#define VkglTestCase_000870_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000870_2 "s.vector_to_scalar.ivec2_to_int_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000870, VkglTestCase_000870_1, VkglTestCase_000870_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000871, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000871 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.ivec2_to_bool_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000871 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000871 end";
-}
+#define VkglTestCase_000871_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000871_2 "ns.vector_to_scalar.ivec2_to_bool_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000871, VkglTestCase_000871_1, VkglTestCase_000871_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000872, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000872 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.ivec2_to_bool_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000872 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000872 end";
-}
+#define VkglTestCase_000872_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000872_2 "s.vector_to_scalar.ivec2_to_bool_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000872, VkglTestCase_000872_1, VkglTestCase_000872_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000873, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000873 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.ivec3_to_float_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000873 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000873 end";
-}
+#define VkglTestCase_000873_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000873_2 "s.vector_to_scalar.ivec3_to_float_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000873, VkglTestCase_000873_1, VkglTestCase_000873_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000874, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000874 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversions"
-        ".vector_to_scalar.ivec3_to_float_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000874 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000874 end";
-}
+#define VkglTestCase_000874_1 "dEQP-GLES2.functional.shaders.conversions"
+#define VkglTestCase_000874_2 ".vector_to_scalar.ivec3_to_float_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000874, VkglTestCase_000874_1, VkglTestCase_000874_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000875, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000875 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.ivec3_to_int_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000875 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000875 end";
-}
+#define VkglTestCase_000875_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000875_2 "ns.vector_to_scalar.ivec3_to_int_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000875, VkglTestCase_000875_1, VkglTestCase_000875_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000876, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000876 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.ivec3_to_int_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000876 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000876 end";
-}
+#define VkglTestCase_000876_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000876_2 "s.vector_to_scalar.ivec3_to_int_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000876, VkglTestCase_000876_1, VkglTestCase_000876_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000877, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000877 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.ivec3_to_bool_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000877 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000877 end";
-}
+#define VkglTestCase_000877_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000877_2 "ns.vector_to_scalar.ivec3_to_bool_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000877, VkglTestCase_000877_1, VkglTestCase_000877_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000878, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000878 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.ivec3_to_bool_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000878 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000878 end";
-}
+#define VkglTestCase_000878_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000878_2 "s.vector_to_scalar.ivec3_to_bool_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000878, VkglTestCase_000878_1, VkglTestCase_000878_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000879, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000879 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.ivec4_to_float_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000879 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000879 end";
-}
+#define VkglTestCase_000879_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000879_2 "s.vector_to_scalar.ivec4_to_float_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000879, VkglTestCase_000879_1, VkglTestCase_000879_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000880, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000880 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversions"
-        ".vector_to_scalar.ivec4_to_float_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000880 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000880 end";
-}
+#define VkglTestCase_000880_1 "dEQP-GLES2.functional.shaders.conversions"
+#define VkglTestCase_000880_2 ".vector_to_scalar.ivec4_to_float_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000880, VkglTestCase_000880_1, VkglTestCase_000880_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000881, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000881 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.ivec4_to_int_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000881 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000881 end";
-}
+#define VkglTestCase_000881_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000881_2 "ns.vector_to_scalar.ivec4_to_int_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000881, VkglTestCase_000881_1, VkglTestCase_000881_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000882, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000882 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.ivec4_to_int_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000882 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000882 end";
-}
+#define VkglTestCase_000882_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000882_2 "s.vector_to_scalar.ivec4_to_int_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000882, VkglTestCase_000882_1, VkglTestCase_000882_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000883, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000883 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.ivec4_to_bool_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000883 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000883 end";
-}
+#define VkglTestCase_000883_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000883_2 "ns.vector_to_scalar.ivec4_to_bool_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000883, VkglTestCase_000883_1, VkglTestCase_000883_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000884, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000884 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.ivec4_to_bool_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000884 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000884 end";
-}
+#define VkglTestCase_000884_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000884_2 "s.vector_to_scalar.ivec4_to_bool_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000884, VkglTestCase_000884_1, VkglTestCase_000884_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000885, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000885 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.bvec2_to_float_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000885 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000885 end";
-}
+#define VkglTestCase_000885_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000885_2 "s.vector_to_scalar.bvec2_to_float_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000885, VkglTestCase_000885_1, VkglTestCase_000885_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000886, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000886 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversions"
-        ".vector_to_scalar.bvec2_to_float_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000886 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000886 end";
-}
+#define VkglTestCase_000886_1 "dEQP-GLES2.functional.shaders.conversions"
+#define VkglTestCase_000886_2 ".vector_to_scalar.bvec2_to_float_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000886, VkglTestCase_000886_1, VkglTestCase_000886_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000887, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000887 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.bvec2_to_int_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000887 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000887 end";
-}
+#define VkglTestCase_000887_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000887_2 "ns.vector_to_scalar.bvec2_to_int_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000887, VkglTestCase_000887_1, VkglTestCase_000887_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000888, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000888 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.bvec2_to_int_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000888 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000888 end";
-}
+#define VkglTestCase_000888_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000888_2 "s.vector_to_scalar.bvec2_to_int_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000888, VkglTestCase_000888_1, VkglTestCase_000888_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000889, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000889 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.bvec2_to_bool_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000889 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000889 end";
-}
+#define VkglTestCase_000889_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000889_2 "ns.vector_to_scalar.bvec2_to_bool_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000889, VkglTestCase_000889_1, VkglTestCase_000889_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000890, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000890 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.bvec2_to_bool_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000890 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000890 end";
-}
+#define VkglTestCase_000890_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000890_2 "s.vector_to_scalar.bvec2_to_bool_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000890, VkglTestCase_000890_1, VkglTestCase_000890_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000891, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000891 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.bvec3_to_float_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000891 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000891 end";
-}
+#define VkglTestCase_000891_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000891_2 "s.vector_to_scalar.bvec3_to_float_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000891, VkglTestCase_000891_1, VkglTestCase_000891_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000892, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000892 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversions"
-        ".vector_to_scalar.bvec3_to_float_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000892 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000892 end";
-}
+#define VkglTestCase_000892_1 "dEQP-GLES2.functional.shaders.conversions"
+#define VkglTestCase_000892_2 ".vector_to_scalar.bvec3_to_float_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000892, VkglTestCase_000892_1, VkglTestCase_000892_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000893, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000893 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.bvec3_to_int_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000893 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000893 end";
-}
+#define VkglTestCase_000893_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000893_2 "ns.vector_to_scalar.bvec3_to_int_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000893, VkglTestCase_000893_1, VkglTestCase_000893_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000894, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000894 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.bvec3_to_int_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000894 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000894 end";
-}
+#define VkglTestCase_000894_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000894_2 "s.vector_to_scalar.bvec3_to_int_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000894, VkglTestCase_000894_1, VkglTestCase_000894_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000895, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000895 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.bvec3_to_bool_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000895 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000895 end";
-}
+#define VkglTestCase_000895_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000895_2 "ns.vector_to_scalar.bvec3_to_bool_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000895, VkglTestCase_000895_1, VkglTestCase_000895_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000896, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000896 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.bvec3_to_bool_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000896 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000896 end";
-}
+#define VkglTestCase_000896_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000896_2 "s.vector_to_scalar.bvec3_to_bool_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000896, VkglTestCase_000896_1, VkglTestCase_000896_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000897, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000897 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.bvec4_to_float_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000897 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000897 end";
-}
+#define VkglTestCase_000897_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000897_2 "s.vector_to_scalar.bvec4_to_float_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000897, VkglTestCase_000897_1, VkglTestCase_000897_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000898, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000898 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversions"
-        ".vector_to_scalar.bvec4_to_float_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000898 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000898 end";
-}
+#define VkglTestCase_000898_1 "dEQP-GLES2.functional.shaders.conversions"
+#define VkglTestCase_000898_2 ".vector_to_scalar.bvec4_to_float_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000898, VkglTestCase_000898_1, VkglTestCase_000898_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000899, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000899 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.bvec4_to_int_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000899 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000899 end";
-}
+#define VkglTestCase_000899_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000899_2 "ns.vector_to_scalar.bvec4_to_int_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000899, VkglTestCase_000899_1, VkglTestCase_000899_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000900, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000900 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.bvec4_to_int_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000900 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000900 end";
-}
+#define VkglTestCase_000900_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000900_2 "s.vector_to_scalar.bvec4_to_int_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000900, VkglTestCase_000900_1, VkglTestCase_000900_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000901, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000901 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversio"
-        "ns.vector_to_scalar.bvec4_to_bool_vertex",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000901 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000901 end";
-}
+#define VkglTestCase_000901_1 "dEQP-GLES2.functional.shaders.conversio"
+#define VkglTestCase_000901_2 "ns.vector_to_scalar.bvec4_to_bool_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000901, VkglTestCase_000901_1, VkglTestCase_000901_2);
 
-static HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000902, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000902 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.shaders.conversion"
-        "s.vector_to_scalar.bvec4_to_bool_fragment",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000902 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000902 end";
-}
+#define VkglTestCase_000902_1 "dEQP-GLES2.functional.shaders.conversion"
+#define VkglTestCase_000902_2 "s.vector_to_scalar.bvec4_to_bool_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000902, VkglTestCase_000902_1, VkglTestCase_000902_2);

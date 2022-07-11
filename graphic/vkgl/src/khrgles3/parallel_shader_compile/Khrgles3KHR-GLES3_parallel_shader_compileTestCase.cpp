@@ -13,91 +13,24 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Khrgles3BaseFunc.h"
 #include "../ActsKhrgles30004TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003709, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003709 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.parallel_shade"
-        "r_compile.simple_queries",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003709 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003709 end";
-}
+#define VkglTestCase_003709_1 "KHR-GLES3.parallel_shade"
+#define VkglTestCase_003709_2 "r_compile.simple_queries"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003709, VkglTestCase_003709_1, VkglTestCase_003709_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003710, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003710 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.parallel_shader_comp"
-        "ile.max_shader_compile_threads",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003710 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003710 end";
-}
+#define VkglTestCase_003710_1 "KHR-GLES3.parallel_shader_comp"
+#define VkglTestCase_003710_2 "ile.max_shader_compile_threads"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003710, VkglTestCase_003710_1, VkglTestCase_003710_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003711, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003711 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.parallel_shader_compil"
-        "e.compilation_completion_parallel",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003711 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003711 end";
-}
+#define VkglTestCase_003711_1 "KHR-GLES3.parallel_shader_compil"
+#define VkglTestCase_003711_2 "e.compilation_completion_parallel"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003711, VkglTestCase_003711_1, VkglTestCase_003711_2);

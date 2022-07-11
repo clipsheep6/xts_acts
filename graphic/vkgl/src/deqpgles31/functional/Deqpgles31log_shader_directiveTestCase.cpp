@@ -1,0 +1,76 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../Deqpgles31BaseFunc.h"
+#include "../ActsDeqpgles310020TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+#define VkglTestCase_019295_1 "dEQP-GLES31.functional.debug.negative_coverag"
+#define VkglTestCase_019295_2 "e.log.shader_directive.primitive_bounding_box"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019295, VkglTestCase_019295_1, VkglTestCase_019295_2);
+
+#define VkglTestCase_019296_1 "dEQP-GLES31.functional.debug.negative_coverag"
+#define VkglTestCase_019296_2 "e.log.shader_directive.blend_equation_advanced"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019296, VkglTestCase_019296_1, VkglTestCase_019296_2);
+
+#define VkglTestCase_019297_1 "dEQP-GLES31.functional.debug.negative_cove"
+#define VkglTestCase_019297_2 "rage.log.shader_directive.sample_variables"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019297, VkglTestCase_019297_1, VkglTestCase_019297_2);
+
+#define VkglTestCase_019298_1 "dEQP-GLES31.functional.debug.negative_cover"
+#define VkglTestCase_019298_2 "age.log.shader_directive.shader_image_atomic"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019298, VkglTestCase_019298_1, VkglTestCase_019298_2);
+
+#define VkglTestCase_019299_1 "dEQP-GLES31.functional.debug.negative_coverage.log"
+#define VkglTestCase_019299_2 ".shader_directive.shader_multisample_interpolation"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019299, VkglTestCase_019299_1, VkglTestCase_019299_2);
+
+#define VkglTestCase_019300_1 "dEQP-GLES31.functional.debug.negative_coverage.log.s"
+#define VkglTestCase_019300_2 "hader_directive.texture_storage_multisample_2d_array"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019300, VkglTestCase_019300_1, VkglTestCase_019300_2);
+
+#define VkglTestCase_019301_1 "dEQP-GLES31.functional.debug.negative_cov"
+#define VkglTestCase_019301_2 "erage.log.shader_directive.geometry_shader"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019301, VkglTestCase_019301_1, VkglTestCase_019301_2);
+
+#define VkglTestCase_019302_1 "dEQP-GLES31.functional.debug.negative_co"
+#define VkglTestCase_019302_2 "verage.log.shader_directive.gpu_shader_5"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019302, VkglTestCase_019302_1, VkglTestCase_019302_2);
+
+#define VkglTestCase_019303_1 "dEQP-GLES31.functional.debug.negative_cove"
+#define VkglTestCase_019303_2 "rage.log.shader_directive.shader_io_blocks"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019303, VkglTestCase_019303_1, VkglTestCase_019303_2);
+
+#define VkglTestCase_019304_1 "dEQP-GLES31.functional.debug.negative_cover"
+#define VkglTestCase_019304_2 "age.log.shader_directive.tessellation_shader"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019304, VkglTestCase_019304_1, VkglTestCase_019304_2);
+
+#define VkglTestCase_019305_1 "dEQP-GLES31.functional.debug.negative_cov"
+#define VkglTestCase_019305_2 "erage.log.shader_directive.texture_buffer"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019305, VkglTestCase_019305_1, VkglTestCase_019305_2);
+
+#define VkglTestCase_019306_1 "dEQP-GLES31.functional.debug.negative_coverag"
+#define VkglTestCase_019306_2 "e.log.shader_directive.texture_cube_map_array"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019306, VkglTestCase_019306_1, VkglTestCase_019306_2);
+
+#define VkglTestCase_019307_1 "dEQP-GLES31.functional.debug.negative_coverage."
+#define VkglTestCase_019307_2 "log.shader_directive.accessing_bounding_box_type"
+SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019307, VkglTestCase_019307_1, VkglTestCase_019307_2);

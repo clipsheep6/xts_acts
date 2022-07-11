@@ -13,91 +13,24 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../KhrglesextBaseFunc.h"
 #include "../ActsKhrglesext0001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000085, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000085 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.geometry_shader.primiti"
-        "ve_queries.primitive_queries_points",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000085 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000085 end";
-}
+#define VkglTestCase_000085_1 "KHR-GLESEXT.geometry_shader.primiti"
+#define VkglTestCase_000085_2 "ve_queries.primitive_queries_points"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000085, VkglTestCase_000085_1, VkglTestCase_000085_2);
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000086, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000086 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.geometry_shader.primit"
-        "ive_queries.primitive_queries_lines",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000086 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000086 end";
-}
+#define VkglTestCase_000086_1 "KHR-GLESEXT.geometry_shader.primit"
+#define VkglTestCase_000086_2 "ive_queries.primitive_queries_lines"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000086, VkglTestCase_000086_1, VkglTestCase_000086_2);
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000087, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000087 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.geometry_shader.primitiv"
-        "e_queries.primitive_queries_triangles",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000087 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000087 end";
-}
+#define VkglTestCase_000087_1 "KHR-GLESEXT.geometry_shader.primitiv"
+#define VkglTestCase_000087_2 "e_queries.primitive_queries_triangles"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000087, VkglTestCase_000087_1, VkglTestCase_000087_2);

@@ -1,0 +1,56 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../Deqpgles3BaseFunc.h"
+#include "../ActsDeqpgles30018TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+#define VkglTestCase_017653_1 "dEQP-GLES3.functional.shaders.der"
+#define VkglTestCase_017653_2 "ivate.dfdy.fbo_msaa2.float_mediump"
+SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017653, VkglTestCase_017653_1, VkglTestCase_017653_2);
+
+#define VkglTestCase_017654_1 "dEQP-GLES3.functional.shaders.de"
+#define VkglTestCase_017654_2 "rivate.dfdy.fbo_msaa2.float_highp"
+SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017654, VkglTestCase_017654_1, VkglTestCase_017654_2);
+
+#define VkglTestCase_017655_1 "dEQP-GLES3.functional.shaders.der"
+#define VkglTestCase_017655_2 "ivate.dfdy.fbo_msaa2.vec2_mediump"
+SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017655, VkglTestCase_017655_1, VkglTestCase_017655_2);
+
+#define VkglTestCase_017656_1 "dEQP-GLES3.functional.shaders.de"
+#define VkglTestCase_017656_2 "rivate.dfdy.fbo_msaa2.vec2_highp"
+SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017656, VkglTestCase_017656_1, VkglTestCase_017656_2);
+
+#define VkglTestCase_017657_1 "dEQP-GLES3.functional.shaders.der"
+#define VkglTestCase_017657_2 "ivate.dfdy.fbo_msaa2.vec3_mediump"
+SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017657, VkglTestCase_017657_1, VkglTestCase_017657_2);
+
+#define VkglTestCase_017658_1 "dEQP-GLES3.functional.shaders.de"
+#define VkglTestCase_017658_2 "rivate.dfdy.fbo_msaa2.vec3_highp"
+SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017658, VkglTestCase_017658_1, VkglTestCase_017658_2);
+
+#define VkglTestCase_017659_1 "dEQP-GLES3.functional.shaders.der"
+#define VkglTestCase_017659_2 "ivate.dfdy.fbo_msaa2.vec4_mediump"
+SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017659, VkglTestCase_017659_1, VkglTestCase_017659_2);
+
+#define VkglTestCase_017660_1 "dEQP-GLES3.functional.shaders.de"
+#define VkglTestCase_017660_2 "rivate.dfdy.fbo_msaa2.vec4_highp"
+SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017660, VkglTestCase_017660_1, VkglTestCase_017660_2);

@@ -13,64 +13,20 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Khrgles31BaseFunc.h"
 #include "../ActsKhrgles310002TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001811, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_001811 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.blend_equation_adv"
-        "anced.test_coherency.mixedSequence",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310002TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310002TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310002TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310002TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310002TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_001811 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_001811 end";
-}
+#define VkglTestCase_001811_1 "KHR-GLES31.core.blend_equation_adv"
+#define VkglTestCase_001811_2 "anced.test_coherency.mixedSequence"
+SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001811, VkglTestCase_001811_1, VkglTestCase_001811_2);
 
-static HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001812, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_001812 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.blend_equation_adva"
-        "nced.test_coherency.multiplySequence",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310002TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310002TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310002TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310002TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310002TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_001812 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_001812 end";
-}
+#define VkglTestCase_001812_1 "KHR-GLES31.core.blend_equation_adva"
+#define VkglTestCase_001812_2 "nced.test_coherency.multiplySequence"
+SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001812, VkglTestCase_001812_1, VkglTestCase_001812_2);

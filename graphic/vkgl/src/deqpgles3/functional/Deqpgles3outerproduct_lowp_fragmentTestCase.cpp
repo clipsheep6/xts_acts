@@ -1,0 +1,60 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../Deqpgles3BaseFunc.h"
+#include "../ActsDeqpgles30020TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+#define VkglTestCase_019495_1 "dEQP-GLES3.functional.shaders.builtin_functi"
+#define VkglTestCase_019495_2 "ons.precision.outerproduct.lowp_fragment.mat2"
+SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019495, VkglTestCase_019495_1, VkglTestCase_019495_2);
+
+#define VkglTestCase_019496_1 "dEQP-GLES3.functional.shaders.builtin_functio"
+#define VkglTestCase_019496_2 "ns.precision.outerproduct.lowp_fragment.mat2x3"
+SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019496, VkglTestCase_019496_1, VkglTestCase_019496_2);
+
+#define VkglTestCase_019497_1 "dEQP-GLES3.functional.shaders.builtin_functio"
+#define VkglTestCase_019497_2 "ns.precision.outerproduct.lowp_fragment.mat2x4"
+SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019497, VkglTestCase_019497_1, VkglTestCase_019497_2);
+
+#define VkglTestCase_019498_1 "dEQP-GLES3.functional.shaders.builtin_functio"
+#define VkglTestCase_019498_2 "ns.precision.outerproduct.lowp_fragment.mat3x2"
+SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019498, VkglTestCase_019498_1, VkglTestCase_019498_2);
+
+#define VkglTestCase_019499_1 "dEQP-GLES3.functional.shaders.builtin_functi"
+#define VkglTestCase_019499_2 "ons.precision.outerproduct.lowp_fragment.mat3"
+SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019499, VkglTestCase_019499_1, VkglTestCase_019499_2);
+
+#define VkglTestCase_019500_1 "dEQP-GLES3.functional.shaders.builtin_functio"
+#define VkglTestCase_019500_2 "ns.precision.outerproduct.lowp_fragment.mat3x4"
+SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019500, VkglTestCase_019500_1, VkglTestCase_019500_2);
+
+#define VkglTestCase_019501_1 "dEQP-GLES3.functional.shaders.builtin_functio"
+#define VkglTestCase_019501_2 "ns.precision.outerproduct.lowp_fragment.mat4x2"
+SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019501, VkglTestCase_019501_1, VkglTestCase_019501_2);
+
+#define VkglTestCase_019502_1 "dEQP-GLES3.functional.shaders.builtin_functio"
+#define VkglTestCase_019502_2 "ns.precision.outerproduct.lowp_fragment.mat4x3"
+SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019502, VkglTestCase_019502_1, VkglTestCase_019502_2);
+
+#define VkglTestCase_019503_1 "dEQP-GLES3.functional.shaders.builtin_functi"
+#define VkglTestCase_019503_2 "ons.precision.outerproduct.lowp_fragment.mat4"
+SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019503, VkglTestCase_019503_1, VkglTestCase_019503_2);

@@ -15,65 +15,18 @@
 
 #include <climits>
 #include <gtest/gtest.h>
-#include "../Khrgles2BaseFunc.hpp"
+#include "../Khrgles2BaseFunc.h"
 #include "../ActsKhrgles20001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000001, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.shaders.negative.initialize start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case=KHR-GLES2.shaders.negative.initialize",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) <<
-            "KHR-GLES2.shaders.negative.initialize notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    }
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.shaders.negative.initialize end";
-}
+#define VkglTestCase_000001_1 "KHR-GLES2.shaders."
+#define VkglTestCase_000001_2 "negative.initialize"
+SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000001, VkglTestCase_000001_1, VkglTestCase_000001_2);
 
-static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000002, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.shaders.negative.constant_sequence start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case=KHR-GLES2.shaders.negative.constant_sequence",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) <<
-            "KHR-GLES2.shaders.negative.constant_sequence notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    }
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.shaders.negative.constant_sequence end";
-}
+#define VkglTestCase_000002_1 "KHR-GLES2.shaders.nega"
+#define VkglTestCase_000002_2 "tive.constant_sequence"
+SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000002, VkglTestCase_000002_1, VkglTestCase_000002_2);

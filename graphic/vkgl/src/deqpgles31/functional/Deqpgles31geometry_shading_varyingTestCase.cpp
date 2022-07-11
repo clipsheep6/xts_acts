@@ -1,0 +1,44 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../Deqpgles31BaseFunc.h"
+#include "../ActsDeqpgles310017TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+#define VkglTestCase_016373_1 "dEQP-GLES31.functional.geometry_shadi"
+#define VkglTestCase_016373_2 "ng.varying.vertex_no_op_geometry_out_1"
+SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016373, VkglTestCase_016373_1, VkglTestCase_016373_2);
+
+#define VkglTestCase_016374_1 "dEQP-GLES31.functional.geometry_shadi"
+#define VkglTestCase_016374_2 "ng.varying.vertex_out_0_geometry_out_1"
+SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016374, VkglTestCase_016374_1, VkglTestCase_016374_2);
+
+#define VkglTestCase_016375_1 "dEQP-GLES31.functional.geometry_shadi"
+#define VkglTestCase_016375_2 "ng.varying.vertex_out_0_geometry_out_2"
+SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016375, VkglTestCase_016375_1, VkglTestCase_016375_2);
+
+#define VkglTestCase_016376_1 "dEQP-GLES31.functional.geometry_shadi"
+#define VkglTestCase_016376_2 "ng.varying.vertex_out_1_geometry_out_0"
+SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016376, VkglTestCase_016376_1, VkglTestCase_016376_2);
+
+#define VkglTestCase_016377_1 "dEQP-GLES31.functional.geometry_shadi"
+#define VkglTestCase_016377_2 "ng.varying.vertex_out_1_geometry_out_2"
+SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016377, VkglTestCase_016377_1, VkglTestCase_016377_2);

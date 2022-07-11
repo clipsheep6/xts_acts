@@ -13,172 +13,36 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Khrgles31BaseFunc.h"
 #include "../ActsKhrgles310003TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002719, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_002719 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.pixelstor"
-        "agemodes.teximage2d.r8.0_0",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310003TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310003TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310003TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310003TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310003TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_002719 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_002719 end";
-}
+#define VkglTestCase_002719_1 "KHR-GLES31.core.pixelstor"
+#define VkglTestCase_002719_2 "agemodes.teximage2d.r8.0_0"
+SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002719, VkglTestCase_002719_1, VkglTestCase_002719_2);
 
-static HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002720, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_002720 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.pixelstor"
-        "agemodes.teximage2d.r8.1_0",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310003TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310003TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310003TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310003TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310003TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_002720 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_002720 end";
-}
+#define VkglTestCase_002720_1 "KHR-GLES31.core.pixelstor"
+#define VkglTestCase_002720_2 "agemodes.teximage2d.r8.1_0"
+SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002720, VkglTestCase_002720_1, VkglTestCase_002720_2);
 
-static HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002721, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_002721 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.pixelstora"
-        "gemodes.teximage2d.r8.16_0",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310003TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310003TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310003TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310003TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310003TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_002721 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_002721 end";
-}
+#define VkglTestCase_002721_1 "KHR-GLES31.core.pixelstora"
+#define VkglTestCase_002721_2 "gemodes.teximage2d.r8.16_0"
+SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002721, VkglTestCase_002721_1, VkglTestCase_002721_2);
 
-static HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002722, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_002722 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.pixelstor"
-        "agemodes.teximage2d.r8.1_1",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310003TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310003TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310003TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310003TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310003TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_002722 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_002722 end";
-}
+#define VkglTestCase_002722_1 "KHR-GLES31.core.pixelstor"
+#define VkglTestCase_002722_2 "agemodes.teximage2d.r8.1_1"
+SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002722, VkglTestCase_002722_1, VkglTestCase_002722_2);
 
-static HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002723, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_002723 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.pixelstora"
-        "gemodes.teximage2d.r8.16_1",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310003TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310003TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310003TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310003TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310003TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_002723 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_002723 end";
-}
+#define VkglTestCase_002723_1 "KHR-GLES31.core.pixelstora"
+#define VkglTestCase_002723_2 "gemodes.teximage2d.r8.16_1"
+SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002723, VkglTestCase_002723_1, VkglTestCase_002723_2);
 
-static HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002724, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_002724 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.pixelstora"
-        "gemodes.teximage2d.r8.16_16",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310003TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310003TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310003TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310003TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310003TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_002724 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_002724 end";
-}
+#define VkglTestCase_002724_1 "KHR-GLES31.core.pixelstora"
+#define VkglTestCase_002724_2 "gemodes.teximage2d.r8.16_16"
+SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002724, VkglTestCase_002724_1, VkglTestCase_002724_2);

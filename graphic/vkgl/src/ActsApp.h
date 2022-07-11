@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,49 +13,61 @@
  * limitations under the License.
  */
 
-#ifndef _ActsApp_HPP
-#define _ActsApp_HPP
+#ifndef _ACTSAPP_HPP
+#define _ACTSAPP_HPP
 
 #include "tcuDefs.hpp"
 #include "qpWatchDog.h"
 #include "qpCrashHandler.h"
 #include "deMutex.hpp"
-#include "tcuResource.hpp"
-#include "tcuPlatform.hpp"
-#include "tcuTestContext.hpp"
-#include "tcuTestSessionExecutor.hpp"
-#include "tcuTestSessionExecutor.hpp"
-#include "tcuCommandLine.hpp"
-#include "tcuTestLog.hpp"
-#include "tcuTestPackageRoot.hpp"
-#include "tcuTestSessionExecutor.hpp"
 
-namespace tcu {
-    enum class EWATCHDOG {
-        WATCHDOG_TOTAL_TIME_LIMIT_SECS        = 300,
-        WATCHDOG_INTERVAL_TIME_LIMIT_SECS    = 30
-    };
+namespace tcu
+{
 
-    class ActsApp {
-    public:
-        ActsApp(Platform& platform, Archive& archive, TestLog& log, const CommandLine& cmdLine);
-        virtual ~ActsApp(void);
+class Archive;
+class Platform;
+class TestContext;
+class TestSessionExecutor;
+class CommandLine;
+class TestLog;
+class TestPackageRoot;
+class TestRunStatus;
 
-        bool iterate(void);
-        const TestRunStatus& getResult (void) const;
-    protected:
-        void cleanup                (void);
+enum
+{
+	WATCHDOG_TOTAL_TIME_LIMIT_SECS		= 300,
+	WATCHDOG_INTERVAL_TIME_LIMIT_SECS	= 30
+};
 
-        Platform&                m_platform;
-        qpWatchDog*                m_watchDog;
-        qpCrashHandler*            m_crashHandler;
-        de::Mutex                m_crashLock;
-        bool                    m_crashed;
+class ActsApp
+{
+public:
+							ActsApp					(Platform& platform, Archive& archive, TestLog& log, const CommandLine& cmdLine);
+	virtual					~ActsApp				(void);
 
-        TestContext*            m_testCtx;
-        TestPackageRoot*        m_testRoot;
-        TestSessionExecutor*    m_testExecutor;
-    };
+	bool					iterate				(void);
+	const TestRunStatus&	getResult			(void) const;
+
+protected:
+	void					cleanup				(void);
+
+	void					onWatchdogTimeout	(qpTimeoutReason reason);
+	void					onCrash				(void);
+
+	static void				onWatchdogTimeout	(qpWatchDog* watchDog, void* userPtr, qpTimeoutReason reason);
+	static void				onCrash				(qpCrashHandler* crashHandler, void* userPtr);
+
+	Platform&				m_platform;
+	qpWatchDog*				m_watchDog;
+	qpCrashHandler*			m_crashHandler;
+	de::Mutex				m_crashLock;
+	bool					m_crashed;
+
+	TestContext*			m_testCtx;
+	TestPackageRoot*		m_testRoot;
+	TestSessionExecutor*	m_testExecutor;
+};
+
 } // tcu
 
-#endif // _ActsApp_HPP
+#endif // _ACTSAPP_HPP
