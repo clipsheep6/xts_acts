@@ -17,169 +17,32 @@
 #include <gtest/gtest.h>
 #include "../Deqpgles31BaseFunc.h"
 #include "../ActsDeqpgles310001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000001, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000001 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES31"
-        ".info.vendor",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000001 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000001 end";
-}
+static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000001,
+        "dEQP-GLES31", 
+        ".info.vendor");
 
-static HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000002, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000002 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES31."
-        "info.renderer",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000002 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000002 end";
-}
+static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000002,
+        "dEQP-GLES31.", 
+        "info.renderer");
 
-static HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000003, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000003 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES31."
-        "info.version",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000003 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000003 end";
-}
+static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000003,
+        "dEQP-GLES31.", 
+        "info.version");
 
-static HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000004, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000004 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES31.info.sha"
-        "ding_language_version",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000004 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000004 end";
-}
+static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000004,
+        "dEQP-GLES31.info.sha", 
+        "ding_language_version");
 
-static HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000005, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000005 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES31.i"
-        "nfo.extensions",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000005 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000005 end";
-}
+static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000005,
+        "dEQP-GLES31.i", 
+        "nfo.extensions");
 
-static HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000006, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000006 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES31.inf"
-        "o.render_target",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000006 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000006 end";
-}
+static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000006,
+        "dEQP-GLES31.inf", 
+        "o.render_target");

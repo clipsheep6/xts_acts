@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+#include <cstdio>
+
 #include "tcuDefs.hpp"
 #include "tcuCommandLine.hpp"
 #include "tcuPlatform.hpp"
@@ -21,6 +23,7 @@
 #include "tcuTestLog.hpp"
 #include "tcuTestSessionExecutor.hpp"
 #include "deUniquePtr.hpp"
+#include "tcuOhosPlatform.hpp"
 
 #include "external/openglcts/modules/common/glcConfigPackage.hpp"
 #include "external/openglcts/modules/common/glcTestPackage.hpp"
@@ -30,24 +33,26 @@
 #include "external/openglcts/modules/gles3/es3cTestPackage.hpp"
 #include "external/openglcts/modules/glesext/esextcTestPackage.hpp"
 #include "external/openglcts/modules/common/glcSingleConfigTestPackage.hpp"
+
 #include "modules/gles2/tes2TestPackage.hpp"
 #include "modules/gles3/tes3TestPackage.hpp"
 #include "modules/gles31/tes31TestPackage.hpp"
 
 #include "ohos_context_i.h"
+#include "logdefine.h"
 #include "Deqpgles2BaseFunc.h"
 
+//tcu::Platform *createOhosPlatform(void);
 static tcu::TestPackage* createDeqpgles2Package(tcu::TestContext& testCtx)
 {
-    return new deqp::gles2::TestPackage(testCtx);
-}
-
+    return new deqp::gles2::TestPackage(testCtx);}
 void RegistPackage(void)
 {
     tcu::TestPackageRegistry *registry = tcu::TestPackageRegistry::getSingleton();
     registry->registerPackage("dEQP-GLES2", createDeqpgles2Package);
 }
 
+// extern tcu::TestLog tcutestlog;
 FuncRunResult RunTestKHRGLES(int argc, const char** argv)
 {
     FuncRunResult runResult;
@@ -56,7 +61,7 @@ FuncRunResult RunTestKHRGLES(int argc, const char** argv)
         tcu::DirArchive archive(cmdLine.getArchiveDir());
         
         de::UniquePtr<tcu::Platform> platform(createOhosPlatform());
-        de::UniquePtr<tcu::ActsApp> app(new tcu::ActsApp(*platform, archive, tcutestlog, cmdLine));
+        de::UniquePtr<tcu::ActsApp> app(new tcu::ActsApp(*platform, archive, OHOS::Logdefine::tcutestlog, cmdLine));
         for (;;) {
             if (!app->iterate()) {
                 break;

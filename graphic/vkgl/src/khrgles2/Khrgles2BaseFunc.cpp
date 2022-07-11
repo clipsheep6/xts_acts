@@ -18,11 +18,12 @@
 #include "tcuDefs.hpp"
 #include "tcuCommandLine.hpp"
 #include "tcuPlatform.hpp"
-#include "ActsApp.hpp"
+#include "ActsApp.h"
 #include "tcuResource.hpp"
 #include "tcuTestLog.hpp"
 #include "tcuTestSessionExecutor.hpp"
 #include "deUniquePtr.hpp"
+#include "tcuOhosPlatform.hpp"
 
 #include "external/openglcts/modules/common/glcConfigPackage.hpp"
 #include "external/openglcts/modules/common/glcTestPackage.hpp"
@@ -32,46 +33,50 @@
 #include "external/openglcts/modules/gles3/es3cTestPackage.hpp"
 #include "external/openglcts/modules/glesext/esextcTestPackage.hpp"
 #include "external/openglcts/modules/common/glcSingleConfigTestPackage.hpp"
+
 #include "modules/gles2/tes2TestPackage.hpp"
 #include "modules/gles3/tes3TestPackage.hpp"
 #include "modules/gles31/tes31TestPackage.hpp"
 
-
 #include "ohos_context_i.h"
+#include "logdefine.h"
 #include "Khrgles2BaseFunc.h"
 
+//tcu::Platform *createOhosPlatform(void);
 static tcu::TestPackage* createKhrgles2Package(tcu::TestContext& testCtx)
 {
-    return new es2cts::TestPackage(testCtx, "KHR-KHRGLES2");
+    return new es2cts::TestPackage(testCtx, "KHR-GLES2");
 }
-
 void RegistPackage(void)
 {
     tcu::TestPackageRegistry *registry = tcu::TestPackageRegistry::getSingleton();
     registry->registerPackage("KHR-GLES2", createKhrgles2Package);
 }
 
+// extern tcu::TestLog tcutestlog;
 FuncRunResult RunTestKHRGLES(int argc, const char** argv)
 {
     FuncRunResult runResult;
-    tcu::CommandLine cmdLine(argc, argv);
-    tcu::DirArchive archive(cmdLine.getArchiveDir());
-    
-    de::UniquePtr<tcu::Platform> platform(createOhosPlatform());
-    de::UniquePtr<tcu::ActsApp> app(new tcu::ActsApp(*platform, archive, tcutestlog, cmdLine));
-    for (;;) {
-        if (!app->iterate()) {
-            break;
+    try {
+        tcu::CommandLine cmdLine(argc, argv);
+        tcu::DirArchive archive(cmdLine.getArchiveDir());
+        
+        de::UniquePtr<tcu::Platform> platform(createOhosPlatform());
+        de::UniquePtr<tcu::ActsApp> app(new tcu::ActsApp(*platform, archive, OHOS::Logdefine::tcutestlog, cmdLine));
+        for (;;) {
+            if (!app->iterate()) {
+                break;
+            };
         };
+        runResult.isComplete = app->getResult().isComplete;
+        runResult.numPassed = app->getResult().numPassed;
+        runResult.numExecuted = app->getResult().numExecuted;
+        runResult.numFailed = app->getResult().numFailed;
+        runResult.numNotSupported = app->getResult().numNotSupported;
+        runResult.numWarnings = app->getResult().numWarnings;
+        runResult.numWaived = app->getResult().numWaived;
+    } catch (const std::exception &e) {
+        tcu::die("%s", e.what());
     };
-    TestRunStatus result = app->getResult();
-    runResult.isComplete = app->getResult().isComplete;
-    runResult.numPassed = app->getResult().numPassed;
-    runResult.numExecuted = app->getResult().numExecuted;
-    runResult.numFailed = app->getResult().numFailed;
-    runResult.numNotSupported = app->getResult().numNotSupported;
-    runResult.numWarnings = app->getResult().numWarnings;
-    runResult.numWaived = app->getResult().numWaived;
-
     return runResult;
 }

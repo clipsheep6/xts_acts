@@ -13,1981 +13,1068 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Deqpgles2BaseFunc.h"
 #include "../ActsDeqpgles20017TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016039, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016039 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vert"
-        "ex.clip_three.clip_neg_x_and_pos_x_and_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016039 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016039 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016040, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016040 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vert"
-        "ex.clip_three.clip_neg_x_and_pos_x_and_neg_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016040 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016040 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016041, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016041 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_neg_x_and_pos_x_and_neg_x_neg_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016041 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016041 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016042, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016042 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_neg_x_and_pos_x_and_pos_x_neg_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016042 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016042 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016043, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016043 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_neg_x_and_pos_x_and_pos_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016043 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016043 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016044, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016044 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_neg_x_and_pos_x_and_neg_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016044 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016044 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016045, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016045 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_neg_x_and_pos_x_and_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016045 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016045 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016046, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016046 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_neg_x_and_pos_x_and_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016046 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016046 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016047, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016047 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_neg_x_and_pos_x_and_pos_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016047 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016047 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016048, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016048 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_neg_x_and_pos_x_and_neg_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016048 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016048 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016049, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016049 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_x_and_neg_x_neg_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016049 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016049 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016050, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016050 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_x_and_pos_x_neg_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016050 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016050 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016051, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016051 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_x_and_pos_x_pos_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016051 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016051 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016052, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016052 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_x_and_neg_x_pos_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016052 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016052 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016053, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016053 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_x_and_neg_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016053 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016053 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016054, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016054 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_x_and_pos_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016054 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016054 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016055, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016055 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_x_and_pos_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016055 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016055 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016056, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016056 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_x_and_neg_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016056 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016056 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016057, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016057 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vert"
-        "ex.clip_three.clip_neg_x_and_pos_y_and_neg_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016057 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016057 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016058, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016058 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_neg_x_and_pos_y_and_pos_x_neg_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016058 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016058 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016059, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016059 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_neg_x_and_neg_y_and_pos_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016059 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016059 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016060, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016060 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_neg_x_neg_y_and_pos_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016060 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016060 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016061, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016061 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_x_neg_y_and_pos_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016061 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016061 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016062, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016062 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_x_neg_y_and_neg_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016062 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016062 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016063, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016063 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_neg_y_neg_z_and_pos_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016063 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016063 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016064, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016064 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t"
-        "hree.clip_neg_x_and_neg_y_neg_z_and_pos_x_pos_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016064 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016064 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016065, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016065 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_neg_x_and_pos_y_neg_z_and_neg_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016065 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016065 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016066, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016066 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t"
-        "hree.clip_neg_x_and_pos_y_neg_z_and_pos_x_neg_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016066 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016066 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016067, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016067 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t"
-        "hree.clip_neg_x_and_pos_y_pos_z_and_pos_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016067 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016067 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016068, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016068 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t"
-        "hree.clip_neg_x_and_neg_y_pos_z_and_pos_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016068 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016068 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016069, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016069 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_neg_x_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016069 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016069 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016070, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016070 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_neg_x_and_pos_x_neg_y_pos_z_and_pos_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016070 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016070 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016071, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016071 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_neg_x_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016071 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016071 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016072, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016072 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_neg_x_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016072 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016072 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016073, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016073 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_neg_x_and_pos_x_pos_y_pos_z_and_pos_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016073 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016073 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016074, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016074 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_neg_x_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016074 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016074 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016075, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016075 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vert"
-        "ex.clip_three.clip_pos_x_and_pos_y_and_neg_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016075 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016075 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016076, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016076 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_pos_x_and_pos_y_and_neg_x_neg_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016076 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016076 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016077, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016077 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_pos_x_and_neg_y_and_neg_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016077 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016077 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016078, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016078 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_x_and_neg_x_neg_y_and_pos_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016078 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016078 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016079, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016079 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_x_and_neg_x_neg_y_and_neg_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016079 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016079 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016080, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016080 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_x_and_pos_x_neg_y_and_neg_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016080 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016080 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016081, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016081 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_x_and_neg_y_neg_z_and_pos_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016081 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016081 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016082, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016082 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t"
-        "hree.clip_pos_x_and_neg_y_neg_z_and_neg_x_pos_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016082 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016082 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016083, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016083 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_x_and_pos_y_neg_z_and_neg_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016083 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016083 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016084, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016084 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t"
-        "hree.clip_pos_x_and_pos_y_neg_z_and_neg_x_neg_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016084 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016084 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016085, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016085 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t"
-        "hree.clip_pos_x_and_pos_y_pos_z_and_neg_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016085 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016085 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016086, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016086 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t"
-        "hree.clip_pos_x_and_neg_y_pos_z_and_neg_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016086 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016086 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016087, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016087 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_pos_x_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016087 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016087 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016088, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016088 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_pos_x_and_neg_x_neg_y_pos_z_and_neg_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016088 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016088 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016089, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016089 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_pos_x_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016089 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016089 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016090, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016090 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_pos_x_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016090 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016090 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016091, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016091 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_pos_x_and_neg_x_pos_y_pos_z_and_neg_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016091 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016091 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016092, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016092 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre"
-        "e.clip_pos_x_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016092 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016092 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016093, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016093 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_pos_y_and_neg_y_and_neg_x_neg_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016093 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016093 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016094, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016094 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_pos_y_and_neg_y_and_pos_x_neg_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016094 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016094 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016095, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016095 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_pos_y_and_neg_y_and_pos_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016095 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016095 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016096, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016096 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_pos_y_and_neg_y_and_neg_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016096 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016096 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016097, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016097 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_pos_y_and_neg_y_and_neg_x_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016097 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016097 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016098, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016098 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_pos_y_and_neg_y_and_pos_x_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016098 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016098 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016099, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016099 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_pos_y_and_neg_y_and_pos_x_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016099 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016099 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016100, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016100 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex."
-        "clip_three.clip_pos_y_and_neg_y_and_neg_x_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016100 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016100 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016101, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016101 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_neg_y_and_neg_x_neg_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016101 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016101 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016102, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016102 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_neg_y_and_pos_x_neg_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016102 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016102 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016103, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016103 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_neg_y_and_pos_x_pos_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016103 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016103 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016104, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016104 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_neg_y_and_neg_x_pos_y_pos_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016104 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016104 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016105, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016105 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_neg_y_and_neg_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016105 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016105 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016106, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016106 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_neg_y_and_pos_x_neg_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016106 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016106 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016107, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016107 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_neg_y_and_pos_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016107 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016107 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016108, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016108 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_neg_y_and_neg_x_pos_y_neg_z",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016108 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016108 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016109, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016109 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_neg_x_neg_y_and_pos_x_neg_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016109 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016109 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016110, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016110 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_neg_x_neg_y_and_pos_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016110 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016110 end";
-}
-
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016111, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016111 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.clipping.triangle_vertex.cli"
-        "p_three.clip_pos_y_and_pos_x_neg_y_and_neg_x_pos_y",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016111 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016111 end";
-}
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016039,
+        "dEQP-GLES2.functional.clipping.triangle_vert", 
+        "ex.clip_three.clip_neg_x_and_pos_x_and_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016040,
+        "dEQP-GLES2.functional.clipping.triangle_vert", 
+        "ex.clip_three.clip_neg_x_and_pos_x_and_neg_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016041,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_neg_x_and_pos_x_and_neg_x_neg_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016042,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_neg_x_and_pos_x_and_pos_x_neg_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016043,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_neg_x_and_pos_x_and_pos_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016044,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_neg_x_and_pos_x_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016045,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_neg_x_and_pos_x_and_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016046,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_neg_x_and_pos_x_and_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016047,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_neg_x_and_pos_x_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016048,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_neg_x_and_pos_x_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016049,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_x_and_neg_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016050,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_x_and_pos_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016051,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_x_and_pos_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016052,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_x_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016053,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_x_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016054,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_x_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016055,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_x_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016056,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_x_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016057,
+        "dEQP-GLES2.functional.clipping.triangle_vert", 
+        "ex.clip_three.clip_neg_x_and_pos_y_and_neg_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016058,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_neg_x_and_pos_y_and_pos_x_neg_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016059,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_neg_x_and_neg_y_and_pos_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016060,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_neg_x_neg_y_and_pos_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016061,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_x_neg_y_and_pos_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016062,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_x_neg_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016063,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_neg_y_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016064,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_and_neg_y_neg_z_and_pos_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016065,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_x_and_pos_y_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016066,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_and_pos_y_neg_z_and_pos_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016067,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_and_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016068,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_and_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016069,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016070,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_and_pos_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016071,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016072,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016073,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_and_pos_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016074,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016075,
+        "dEQP-GLES2.functional.clipping.triangle_vert", 
+        "ex.clip_three.clip_pos_x_and_pos_y_and_neg_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016076,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_pos_x_and_pos_y_and_neg_x_neg_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016077,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_pos_x_and_neg_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016078,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_x_and_neg_x_neg_y_and_pos_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016079,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_x_and_neg_x_neg_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016080,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_x_and_pos_x_neg_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016081,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_x_and_neg_y_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016082,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_and_neg_y_neg_z_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016083,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_x_and_pos_y_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016084,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_and_pos_y_neg_z_and_neg_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016085,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_and_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016086,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_and_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016087,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016088,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_and_neg_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016089,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016090,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016091,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_and_neg_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016092,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016093,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_pos_y_and_neg_y_and_neg_x_neg_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016094,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_pos_y_and_neg_y_and_pos_x_neg_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016095,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_pos_y_and_neg_y_and_pos_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016096,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_pos_y_and_neg_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016097,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_pos_y_and_neg_y_and_neg_x_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016098,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_pos_y_and_neg_y_and_pos_x_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016099,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_pos_y_and_neg_y_and_pos_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016100,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.", 
+        "clip_three.clip_pos_y_and_neg_y_and_neg_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016101,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_y_and_neg_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016102,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_y_and_pos_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016103,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_y_and_pos_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016104,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_y_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016105,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_y_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016106,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_y_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016107,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_y_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016108,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_y_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016109,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_x_neg_y_and_pos_x_neg_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016110,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_x_neg_y_and_pos_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016111,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_pos_x_neg_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016112,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_neg_x_neg_z_and_pos_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016113,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_y_and_neg_x_neg_z_and_pos_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016114,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_pos_y_and_pos_x_neg_z_and_neg_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016115,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_y_and_pos_x_neg_z_and_neg_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016116,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_y_and_pos_x_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016117,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_y_and_neg_x_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016118,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_and_neg_x_neg_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016119,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016120,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_and_pos_x_neg_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016121,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016122,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016123,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016124,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_y_and_neg_x_neg_y_and_pos_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016125,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_y_and_pos_x_neg_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016126,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_y_and_pos_x_pos_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016127,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_y_and_neg_x_neg_z_and_pos_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016128,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_y_and_neg_x_neg_z_and_pos_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016129,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.cli", 
+        "p_three.clip_neg_y_and_pos_x_neg_z_and_neg_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016130,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_y_and_pos_x_neg_z_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016131,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_y_and_pos_x_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016132,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_y_and_neg_x_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016133,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016134,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016135,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016136,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_and_pos_x_pos_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016137,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016138,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_and_neg_x_pos_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016139,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_neg_y_and_pos_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016140,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_neg_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016141,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_pos_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016142,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_pos_y_and_neg_x_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016143,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_pos_y_and_pos_x_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016144,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_pos_y_and_pos_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016145,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_pos_y_and_neg_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016146,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_pos_y_and_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016147,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_pos_y_and_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016148,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_pos_y_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016149,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_pos_y_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016150,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_y_and_pos_x_pos_y_and_pos_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016151,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_y_and_pos_x_pos_y_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016152,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_y_and_pos_x_pos_y_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016153,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_y_and_pos_x_pos_y_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016154,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_neg_x_neg_z_and_pos_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016155,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_neg_z_and_neg_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016156,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016157,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_x_pos_z_and_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016158,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_neg_y_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016159,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_y_and_pos_y_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016160,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_neg_y_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016161,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_neg_y_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016162,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_pos_x_pos_y_and_neg_x_pos_y");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016163,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_pos_y_and_neg_x_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016164,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_pos_y_and_pos_x_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016165,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_pos_y_and_pos_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016166,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_pos_y_and_neg_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016167,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_pos_y_and_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016168,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_pos_y_and_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016169,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_pos_y_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016170,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_pos_y_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016171,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_y_and_neg_x_pos_y_and_neg_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016172,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_y_and_neg_x_pos_y_and_pos_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016173,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_y_and_neg_x_pos_y_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016174,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_y_and_neg_x_pos_y_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016175,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_neg_z_and_pos_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016176,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016177,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_pos_x_neg_z_and_neg_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016178,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_x_pos_z_and_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016179,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_neg_y_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016180,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_y_and_pos_y_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016181,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_neg_y_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016182,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_neg_y_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016183,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_pos_y_and_neg_x_neg_z_and_pos_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016184,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_pos_y_and_neg_x_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016185,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_pos_y_and_pos_x_neg_z_and_neg_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016186,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_pos_y_and_neg_x_pos_z_and_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016187,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_pos_y_and_neg_y_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016188,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_pos_y_and_pos_y_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016189,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_pos_y_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016190,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_pos_y_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016191,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_pos_y_and_neg_x_neg_z_and_pos_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016192,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_pos_y_and_pos_x_neg_z_and_neg_x_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016193,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_pos_y_and_pos_x_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016194,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_pos_y_and_pos_x_pos_z_and_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016195,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_pos_y_and_neg_y_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016196,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_pos_y_and_pos_y_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016197,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_pos_y_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016198,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_pos_y_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016199,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_z_and_pos_x_pos_z_and_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016200,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_z_and_pos_x_pos_z_and_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016201,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_z_and_pos_x_pos_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016202,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_z_and_pos_x_pos_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016203,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_z_and_pos_x_pos_z_and_neg_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016204,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_z_and_pos_x_pos_z_and_pos_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016205,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_z_and_pos_x_pos_z_and_pos_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016206,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_z_and_pos_x_pos_z_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016207,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_z_and_pos_x_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016208,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_z_and_pos_x_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016209,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_z_and_pos_x_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016210,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_x_neg_z_and_pos_x_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016211,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_z_and_neg_y_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016212,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_neg_z_and_pos_y_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016213,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_neg_z_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016214,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_neg_z_and_pos_x_neg_y_pos_z_and_pos_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016215,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_neg_z_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016216,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_neg_z_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016217,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_neg_z_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016218,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_z_and_neg_x_pos_z_and_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016219,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_z_and_neg_x_pos_z_and_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016220,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_z_and_neg_x_pos_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016221,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_z_and_neg_x_pos_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016222,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_z_and_neg_x_pos_z_and_neg_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016223,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_z_and_neg_x_pos_z_and_pos_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016224,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_z_and_neg_x_pos_z_and_pos_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016225,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_z_and_neg_x_pos_z_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016226,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_z_and_neg_x_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016227,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_z_and_neg_x_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016228,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_z_and_neg_x_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016229,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_x_neg_z_and_neg_x_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016230,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_z_and_neg_y_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016231,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_neg_z_and_pos_y_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016232,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_neg_z_and_neg_x_neg_y_pos_z_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016233,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_neg_z_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016234,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_neg_z_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016235,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_neg_z_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016236,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_neg_z_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016237,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_pos_z_and_neg_y_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016238,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_pos_x_pos_z_and_pos_y_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016239,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_pos_z_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016240,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_pos_z_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016241,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_pos_z_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016242,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_pos_z_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016243,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_x_pos_z_and_neg_x_neg_y_neg_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016244,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_pos_z_and_neg_y_neg_z_and_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016245,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_t", 
+        "hree.clip_neg_x_pos_z_and_pos_y_neg_z_and_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016246,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_pos_z_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016247,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_pos_z_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016248,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_pos_z_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016249,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_pos_z_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016250,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_x_pos_z_and_pos_x_neg_y_neg_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016251,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_neg_z_and_pos_y_pos_z_and_neg_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016252,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_neg_z_and_pos_y_pos_z_and_pos_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016253,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_neg_z_and_pos_y_pos_z_and_pos_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016254,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_neg_z_and_pos_y_pos_z_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016255,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_neg_z_and_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016256,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_neg_z_and_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016257,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_neg_z_and_pos_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016258,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_neg_y_neg_z_and_pos_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016259,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_y_neg_z_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016260,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_y_neg_z_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016261,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_y_neg_z_and_pos_x_pos_y_pos_z_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016262,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_y_neg_z_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016263,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_y_neg_z_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016264,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_neg_z_and_neg_y_pos_z_and_neg_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016265,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_neg_z_and_neg_y_pos_z_and_pos_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016266,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_neg_z_and_neg_y_pos_z_and_pos_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016267,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_neg_z_and_neg_y_pos_z_and_neg_x_pos_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016268,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_neg_z_and_neg_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016269,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_neg_z_and_neg_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016270,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_neg_z_and_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016271,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_thre", 
+        "e.clip_pos_y_neg_z_and_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016272,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_y_neg_z_and_neg_x_neg_y_pos_z_and_pos_x_neg_y_pos_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016273,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_y_neg_z_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016274,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_y_neg_z_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016275,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_y_neg_z_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016276,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_y_neg_z_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016277,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_y_pos_z_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016278,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_y_pos_z_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016279,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_y_pos_z_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016280,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_y_pos_z_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016281,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_pos_y_pos_z_and_neg_x_neg_y_neg_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016282,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_y_pos_z_and_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016283,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_y_pos_z_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016284,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_y_pos_z_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016285,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_y_pos_z_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016286,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.c", 
+        "lip_neg_y_pos_z_and_pos_x_pos_y_neg_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016287,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_neg_x_neg_y_pos_z_and_pos_x_neg_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016288,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_neg_x_neg_y_pos_z_and_pos_x_neg_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016289,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_neg_x_neg_y_pos_z_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016290,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_neg_x_neg_y_pos_z_and_neg_x_pos_y_pos_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016291,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_neg_x_neg_y_pos_z_and_pos_x_neg_y_neg_z_and_pos_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016292,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_neg_x_neg_y_pos_z_and_pos_x_pos_y_neg_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016293,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_pos_x_neg_y_pos_z_and_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016294,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_pos_x_neg_y_pos_z_and_pos_x_pos_y_pos_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016295,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_pos_x_neg_y_pos_z_and_neg_x_neg_y_neg_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016296,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_pos_x_neg_y_pos_z_and_pos_x_pos_y_neg_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016297,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_pos_x_pos_y_pos_z_and_neg_x_pos_y_pos_z_and_neg_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016298,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_pos_x_pos_y_pos_z_and_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016299,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016300,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_pos_x_pos_y_pos_z_and_neg_x_neg_y_neg_z_and_neg_x_pos_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016301,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_neg_x_pos_y_pos_z_and_neg_x_neg_y_neg_z_and_pos_x_neg_y_neg_z");
+
+static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016302,
+        "dEQP-GLES2.functional.clipping.triangle_vertex.clip_three.clip", 
+        "_neg_x_pos_y_pos_z_and_pos_x_neg_y_neg_z_and_pos_x_pos_y_neg_z");

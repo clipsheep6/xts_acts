@@ -15,65 +15,18 @@
 
 #include <climits>
 #include <gtest/gtest.h>
-#include "../Khrgles2BaseFunc.hpp"
+#include "../Khrgles2BaseFunc.h"
 #include "../ActsKhrgles20001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000380, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.framebuffer_texture.rgba start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case=KHR-GLES2.texture_3d.framebuffer_texture.rgba",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) <<
-            "KHR-GLES2.texture_3d.framebuffer_texture.rgba notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    }
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.framebuffer_texture.rgba end";
-}
+static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000380,
+        "KHR-GLES2.texture_3d.f", 
+        "ramebuffer_texture.rgba");
 
-static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000381, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.framebuffer_texture.negative start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case=KHR-GLES2.texture_3d.framebuffer_texture.negative",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) <<
-            "KHR-GLES2.texture_3d.framebuffer_texture.negative notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    }
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.framebuffer_texture.negative end";
-}
+static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000381,
+        "KHR-GLES2.texture_3d.fra", 
+        "mebuffer_texture.negative");

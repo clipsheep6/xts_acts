@@ -15,177 +15,34 @@
 
 #include <climits>
 #include <gtest/gtest.h>
-#include "../Khrgles2BaseFunc.hpp"
+#include "../Khrgles2BaseFunc.h"
 #include "../ActsKhrgles20001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000015, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case=KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) <<
-            "KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    }
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest end";
-}
+static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000015,
+        "KHR-GLES2.texture_3d.filte", 
+        "ring.formats.rgba8_nearest");
 
-static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000016, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_linear start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case=KHR-GLES2.texture_3d.filtering.formats.rgba8_linear",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) <<
-            "KHR-GLES2.texture_3d.filtering.formats.rgba8_linear notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    }
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_linear end";
-}
+static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000016,
+        "KHR-GLES2.texture_3d.filt", 
+        "ering.formats.rgba8_linear");
 
-static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000017, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest_mipmap_nearest start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case=KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest_mipmap_nearest",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) <<
-            "KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest_mipmap_nearest notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    }
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest_mipmap_nearest end";
-}
+static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000017,
+        "KHR-GLES2.texture_3d.filtering.fo", 
+        "rmats.rgba8_nearest_mipmap_nearest");
 
-static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000018, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_linear_mipmap_nearest start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case=KHR-GLES2.texture_3d.filtering.formats.rgba8_linear_mipmap_nearest",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) <<
-            "KHR-GLES2.texture_3d.filtering.formats.rgba8_linear_mipmap_nearest notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    }
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_linear_mipmap_nearest end";
-}
+static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000018,
+        "KHR-GLES2.texture_3d.filtering.fo", 
+        "rmats.rgba8_linear_mipmap_nearest");
 
-static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000019, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest_mipmap_linear start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case=KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest_mipmap_linear",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) <<
-            "KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest_mipmap_linear notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    }
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_nearest_mipmap_linear end";
-}
+static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000019,
+        "KHR-GLES2.texture_3d.filtering.fo", 
+        "rmats.rgba8_nearest_mipmap_linear");
 
-static HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000020, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_linear_mipmap_linear start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case=KHR-GLES2.texture_3d.filtering.formats.rgba8_linear_mipmap_linear",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles20001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles20001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles20001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles20001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles20001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) <<
-            "KHR-GLES2.texture_3d.filtering.formats.rgba8_linear_mipmap_linear notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    }
-    GTEST_LOG_(INFO) <<
-        "KHR-GLES2.texture_3d.filtering.formats.rgba8_linear_mipmap_linear end";
-}
+static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000020,
+        "KHR-GLES2.texture_3d.filtering.f", 
+        "ormats.rgba8_linear_mipmap_linear");
