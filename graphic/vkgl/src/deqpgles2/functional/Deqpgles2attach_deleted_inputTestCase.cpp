@@ -13,91 +13,24 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Deqpgles2BaseFunc.h"
 #include "../ActsDeqpgles20017TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016485, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016485 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.lifetime.atta"
-        "ch.deleted_input.texture_framebuffer",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016485 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016485 end";
-}
+#define VkglTestCase_016485_1 "dEQP-GLES2.functional.lifetime.atta"
+#define VkglTestCase_016485_2 "ch.deleted_input.texture_framebuffer"
+SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016485, VkglTestCase_016485_1, VkglTestCase_016485_2);
 
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016486, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016486 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.lifetime.attach."
-        "deleted_input.renderbuffer_framebuffer",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016486 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016486 end";
-}
+#define VkglTestCase_016486_1 "dEQP-GLES2.functional.lifetime.attach."
+#define VkglTestCase_016486_2 "deleted_input.renderbuffer_framebuffer"
+SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016486, VkglTestCase_016486_1, VkglTestCase_016486_2);
 
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016487, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016487 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.lifetime.at"
-        "tach.deleted_input.shader_program",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016487 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016487 end";
-}
+#define VkglTestCase_016487_1 "dEQP-GLES2.functional.lifetime.at"
+#define VkglTestCase_016487_2 "tach.deleted_input.shader_program"
+SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016487, VkglTestCase_016487_1, VkglTestCase_016487_2);

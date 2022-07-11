@@ -13,253 +13,48 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Khrgles31BaseFunc.h"
 #include "../ActsKhrgles310001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000021, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000021 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.m"
-        "ultisample_texture_get_multisamplefv_index_equal_gl_samples_rejected",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000021 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000021 end";
-}
+#define VkglTestCase_000021_1 "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.m"
+#define VkglTestCase_000021_2 "ultisample_texture_get_multisamplefv_index_equal_gl_samples_rejected"
+SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000021, VkglTestCase_000021_1, VkglTestCase_000021_2);
 
-static HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000022, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000022 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.mu"
-        "ltisample_texture_get_multisamplefv_index_greater_gl_samples_rejected",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000022 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000022 end";
-}
+#define VkglTestCase_000022_1 "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.mu"
+#define VkglTestCase_000022_2 "ltisample_texture_get_multisamplefv_index_greater_gl_samples_rejected"
+SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000022, VkglTestCase_000022_1, VkglTestCase_000022_2);
 
-static HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000023, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000023 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisample"
-        "fv.multisample_texture_get_multisamplefv_invalid_pname_rejected",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000023 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000023 end";
-}
+#define VkglTestCase_000023_1 "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisample"
+#define VkglTestCase_000023_2 "fv.multisample_texture_get_multisamplefv_invalid_pname_rejected"
+SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000023, VkglTestCase_000023_1, VkglTestCase_000023_2);
 
-static HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000024, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000024 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv"
-        ".multisample_texture_get_multisamplefv_null_val_arguments_accepted",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000024 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000024 end";
-}
+#define VkglTestCase_000024_1 "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv"
+#define VkglTestCase_000024_2 ".multisample_texture_get_multisamplefv_null_val_arguments_accepted"
+SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000024, VkglTestCase_000024_1, VkglTestCase_000024_2);
 
-static HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000025, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000025 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.mu"
-        "ltisample_texture_get_multisamplefv_sample_position_values_validation",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000025 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000025 end";
-}
+#define VkglTestCase_000025_1 "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.mu"
+#define VkglTestCase_000025_2 "ltisample_texture_get_multisamplefv_sample_position_values_validation"
+SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000025, VkglTestCase_000025_1, VkglTestCase_000025_2);
 
-static HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000026, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000026 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGetM"
-        "ultisamplefv.multisample_texture_sample_maski_getters",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000026 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000026 end";
-}
+#define VkglTestCase_000026_1 "KHR-GLES31.core.texture_storage_multisample.APIGLGetM"
+#define VkglTestCase_000026_2 "ultisamplefv.multisample_texture_sample_maski_getters"
+SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000026, VkglTestCase_000026_1, VkglTestCase_000026_2);
 
-static HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000027, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000027 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.mult"
-        "isample_texture_sample_maski_index_lower_than_gl_max_sample_mask_words",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000027 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000027 end";
-}
+#define VkglTestCase_000027_1 "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.mult"
+#define VkglTestCase_000027_2 "isample_texture_sample_maski_index_lower_than_gl_max_sample_mask_words"
+SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000027, VkglTestCase_000027_1, VkglTestCase_000027_2);
 
-static HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000028, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000028 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.m"
-        "ultisample_texture_sample_maski_index_equal_gl_max_sample_mask_words",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000028 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000028 end";
-}
+#define VkglTestCase_000028_1 "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.m"
+#define VkglTestCase_000028_2 "ultisample_texture_sample_maski_index_equal_gl_max_sample_mask_words"
+SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000028, VkglTestCase_000028_1, VkglTestCase_000028_2);
 
-static HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000029, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000029 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.mu"
-        "ltisample_texture_sample_maski_index_greater_gl_max_sample_mask_words",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles310001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles310001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles310001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles310001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles310001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000029 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000029 end";
-}
+#define VkglTestCase_000029_1 "KHR-GLES31.core.texture_storage_multisample.APIGLGetMultisamplefv.mu"
+#define VkglTestCase_000029_2 "ltisample_texture_sample_maski_index_greater_gl_max_sample_mask_words"
+SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000029, VkglTestCase_000029_1, VkglTestCase_000029_2);

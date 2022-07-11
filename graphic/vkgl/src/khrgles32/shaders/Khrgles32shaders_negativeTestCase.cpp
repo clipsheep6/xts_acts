@@ -13,91 +13,24 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Khrgles32BaseFunc.h"
 #include "../ActsKhrgles320001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000014, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000014 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES32.shaders."
-        "negative.initialize",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles320001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles320001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles320001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles320001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles320001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000014 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000014 end";
-}
+#define VkglTestCase_000014_1 "KHR-GLES32.shaders."
+#define VkglTestCase_000014_2 "negative.initialize"
+SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000014, VkglTestCase_000014_1, VkglTestCase_000014_2);
 
-static HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000015, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000015 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES32.shaders.neg"
-        "ative.constant_sequence",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles320001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles320001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles320001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles320001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles320001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000015 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000015 end";
-}
+#define VkglTestCase_000015_1 "KHR-GLES32.shaders.neg"
+#define VkglTestCase_000015_2 "ative.constant_sequence"
+SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000015, VkglTestCase_000015_1, VkglTestCase_000015_2);
 
-static HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000016, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000016 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES32.shaders.negative.u"
-        "sed_uniform_precision_matching",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles320001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles320001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles320001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles320001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles320001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000016 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000016 end";
-}
+#define VkglTestCase_000016_1 "KHR-GLES32.shaders.negative.u"
+#define VkglTestCase_000016_2 "sed_uniform_precision_matching"
+SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000016, VkglTestCase_000016_1, VkglTestCase_000016_2);

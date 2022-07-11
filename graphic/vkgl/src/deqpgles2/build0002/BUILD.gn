@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//test/xts/acts/graphic/vkglcts/comm.gni")
+import("//test/xts/acts/graphic/vkgl/comm.gni")
 
 config("deqp_platform_ohos_config") {
   cflags_cc = deqp_common_cflags_cc
@@ -41,8 +41,6 @@ ohos_static_library("libdeqpgles2func0002") {
     "hilog_native:libhilog",
     "multimedia_image_standard:image_native",
   ]
-  lib_dirs = [ "//third_party/VK-GL-CTS/outlibs" ]
-  libs = [ "png" ]
   configs = [ ":deqp_platform_ohos_config" ]
   public_deps = [ "//foundation/ace/ace_engine/build/external_config/flutter/skia:ace_skia_ohos" ]
 }
@@ -61,7 +59,7 @@ ohos_moduletest_suite("ActsDeqpgles2TestSuite0002") {
     "../functional/Deqpgles2swizzles_vector_swizzlesTestCase.cpp",
   ]
 
-  include_dirs = [ "//test/xts/acts/graphic/vkglcts/src" ]
+  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 
   deps = [ ":libdeqpgles2func0002" ]
 

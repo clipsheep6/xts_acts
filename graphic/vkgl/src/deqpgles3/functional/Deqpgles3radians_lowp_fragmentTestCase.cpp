@@ -1,0 +1,40 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../Deqpgles3BaseFunc.h"
+#include "../ActsDeqpgles30019TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+#define VkglTestCase_018459_1 "dEQP-GLES3.functional.shaders.builtin_funct"
+#define VkglTestCase_018459_2 "ions.precision.radians.lowp_fragment.scalar"
+SHRINK_HWTEST_F(ActsDeqpgles30019TestSuite, TestCase_018459, VkglTestCase_018459_1, VkglTestCase_018459_2);
+
+#define VkglTestCase_018460_1 "dEQP-GLES3.functional.shaders.builtin_func"
+#define VkglTestCase_018460_2 "tions.precision.radians.lowp_fragment.vec2"
+SHRINK_HWTEST_F(ActsDeqpgles30019TestSuite, TestCase_018460, VkglTestCase_018460_1, VkglTestCase_018460_2);
+
+#define VkglTestCase_018461_1 "dEQP-GLES3.functional.shaders.builtin_func"
+#define VkglTestCase_018461_2 "tions.precision.radians.lowp_fragment.vec3"
+SHRINK_HWTEST_F(ActsDeqpgles30019TestSuite, TestCase_018461, VkglTestCase_018461_1, VkglTestCase_018461_2);
+
+#define VkglTestCase_018462_1 "dEQP-GLES3.functional.shaders.builtin_func"
+#define VkglTestCase_018462_2 "tions.precision.radians.lowp_fragment.vec4"
+SHRINK_HWTEST_F(ActsDeqpgles30019TestSuite, TestCase_018462, VkglTestCase_018462_1, VkglTestCase_018462_2);

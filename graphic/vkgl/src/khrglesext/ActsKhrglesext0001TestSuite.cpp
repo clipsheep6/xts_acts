@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include <ctime>
 #include "KhrglesextBaseFunc.h"
