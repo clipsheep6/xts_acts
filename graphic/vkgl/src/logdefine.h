@@ -27,7 +27,7 @@
 #include "deUniquePtr.hpp"
 
 namespace OHOS {
-    class Qpalog {
+    class Logdefine {
     public:
         static tcu::TestLog tcutestlog;
     };
