@@ -13,64 +13,20 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Khrgles3BaseFunc.h"
 #include "../ActsKhrgles30003TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002974, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_002974 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.texture_filt"
-        "er_anisotropic.queries",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30003TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30003TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30003TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30003TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30003TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_002974 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_002974 end";
-}
+#define VkglTestCase_002974_1 "KHR-GLES3.texture_filt"
+#define VkglTestCase_002974_2 "er_anisotropic.queries"
+SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002974, VkglTestCase_002974_1, VkglTestCase_002974_2);
 
-static HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002975, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_002975 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.texture_filt"
-        "er_anisotropic.drawing",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30003TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30003TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30003TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30003TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30003TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_002975 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_002975 end";
-}
+#define VkglTestCase_002975_1 "KHR-GLES3.texture_filt"
+#define VkglTestCase_002975_2 "er_anisotropic.drawing"
+SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002975, VkglTestCase_002975_1, VkglTestCase_002975_2);

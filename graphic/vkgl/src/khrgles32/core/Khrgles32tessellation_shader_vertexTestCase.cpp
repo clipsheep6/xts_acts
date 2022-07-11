@@ -13,64 +13,20 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Khrgles32BaseFunc.h"
 #include "../ActsKhrgles320001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000186, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000186 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES32.core.tessellation_"
-        "shader.vertex.vertex_ordering",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles320001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles320001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles320001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles320001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles320001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000186 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000186 end";
-}
+#define VkglTestCase_000186_1 "KHR-GLES32.core.tessellation_"
+#define VkglTestCase_000186_2 "shader.vertex.vertex_ordering"
+SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000186, VkglTestCase_000186_1, VkglTestCase_000186_2);
 
-static HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000187, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000187 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES32.core.tessellation"
-        "_shader.vertex.vertex_spacing",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles320001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles320001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles320001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles320001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles320001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000187 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000187 end";
-}
+#define VkglTestCase_000187_1 "KHR-GLES32.core.tessellation"
+#define VkglTestCase_000187_2 "_shader.vertex.vertex_spacing"
+SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000187, VkglTestCase_000187_1, VkglTestCase_000187_2);

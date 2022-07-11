@@ -13,145 +13,32 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../KhrglesextBaseFunc.h"
 #include "../ActsKhrglesext0001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000174, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000174 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.tessellation_shader.tessellation_shader_te"
-        "ssellation.gl_InvocationID_PatchVerticesIn_PrimitiveID",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000174 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000174 end";
-}
+#define VkglTestCase_000174_1 "KHR-GLESEXT.tessellation_shader.tessellation_shader_te"
+#define VkglTestCase_000174_2 "ssellation.gl_InvocationID_PatchVerticesIn_PrimitiveID"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000174, VkglTestCase_000174_1, VkglTestCase_000174_2);
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000175, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000175 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.tessellation_shader.tess"
-        "ellation_shader_tessellation.TCS_TES",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000175 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000175 end";
-}
+#define VkglTestCase_000175_1 "KHR-GLESEXT.tessellation_shader.tess"
+#define VkglTestCase_000175_2 "ellation_shader_tessellation.TCS_TES"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000175, VkglTestCase_000175_1, VkglTestCase_000175_2);
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000176, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000176 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.tessellation_shader.te"
-        "ssellation_shader_tessellation.TES",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000176 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000176 end";
-}
+#define VkglTestCase_000176_1 "KHR-GLESEXT.tessellation_shader.te"
+#define VkglTestCase_000176_2 "ssellation_shader_tessellation.TES"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000176, VkglTestCase_000176_1, VkglTestCase_000176_2);
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000177, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000177 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.tessellation_shader.tessellati"
-        "on_shader_tessellation.input_patch_discard",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000177 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000177 end";
-}
+#define VkglTestCase_000177_1 "KHR-GLESEXT.tessellation_shader.tessellati"
+#define VkglTestCase_000177_2 "on_shader_tessellation.input_patch_discard"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000177, VkglTestCase_000177_1, VkglTestCase_000177_2);
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000178, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000178 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.tessellation_shader.tessellatio"
-        "n_shader_tessellation.max_in_out_attributes",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000178 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000178 end";
-}
+#define VkglTestCase_000178_1 "KHR-GLESEXT.tessellation_shader.tessellatio"
+#define VkglTestCase_000178_2 "n_shader_tessellation.max_in_out_attributes"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000178, VkglTestCase_000178_1, VkglTestCase_000178_2);

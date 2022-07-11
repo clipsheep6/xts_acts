@@ -13,64 +13,20 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Deqpgles2BaseFunc.h"
 #include "../ActsDeqpgles20011TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010659, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_010659 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.texture.mip"
-        "map.cube.projected.linear_nearest",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20011TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20011TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20011TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20011TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20011TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_010659 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_010659 end";
-}
+#define VkglTestCase_010659_1 "dEQP-GLES2.functional.texture.mip"
+#define VkglTestCase_010659_2 "map.cube.projected.linear_nearest"
+SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010659, VkglTestCase_010659_1, VkglTestCase_010659_2);
 
-static HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010660, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_010660 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.texture.mi"
-        "pmap.cube.projected.linear_linear",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20011TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20011TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20011TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20011TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20011TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_010660 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_010660 end";
-}
+#define VkglTestCase_010660_1 "dEQP-GLES2.functional.texture.mi"
+#define VkglTestCase_010660_2 "pmap.cube.projected.linear_linear"
+SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010660, VkglTestCase_010660_1, VkglTestCase_010660_2);

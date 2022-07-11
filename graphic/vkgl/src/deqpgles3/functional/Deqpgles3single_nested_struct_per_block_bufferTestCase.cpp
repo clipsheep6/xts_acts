@@ -1,0 +1,88 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../Deqpgles3BaseFunc.h"
+#include "../ActsDeqpgles30036TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+#define VkglTestCase_035244_1 "dEQP-GLES3.functional.ubo.single_neste"
+#define VkglTestCase_035244_2 "d_struct.per_block_buffer.shared_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035244, VkglTestCase_035244_1, VkglTestCase_035244_2);
+
+#define VkglTestCase_035245_1 "dEQP-GLES3.functional.ubo.single_nested"
+#define VkglTestCase_035245_2 "_struct.per_block_buffer.shared_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035245, VkglTestCase_035245_1, VkglTestCase_035245_2);
+
+#define VkglTestCase_035246_1 "dEQP-GLES3.functional.ubo.single_nest"
+#define VkglTestCase_035246_2 "ed_struct.per_block_buffer.shared_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035246, VkglTestCase_035246_1, VkglTestCase_035246_2);
+
+#define VkglTestCase_035247_1 "dEQP-GLES3.functional.ubo.single_nested_struct"
+#define VkglTestCase_035247_2 ".per_block_buffer.shared_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035247, VkglTestCase_035247_1, VkglTestCase_035247_2);
+
+#define VkglTestCase_035248_1 "dEQP-GLES3.functional.ubo.single_nested_struct."
+#define VkglTestCase_035248_2 "per_block_buffer.shared_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035248, VkglTestCase_035248_1, VkglTestCase_035248_2);
+
+#define VkglTestCase_035249_1 "dEQP-GLES3.functional.ubo.single_nested_struc"
+#define VkglTestCase_035249_2 "t.per_block_buffer.shared_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035249, VkglTestCase_035249_1, VkglTestCase_035249_2);
+
+#define VkglTestCase_035250_1 "dEQP-GLES3.functional.ubo.single_neste"
+#define VkglTestCase_035250_2 "d_struct.per_block_buffer.packed_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035250, VkglTestCase_035250_1, VkglTestCase_035250_2);
+
+#define VkglTestCase_035251_1 "dEQP-GLES3.functional.ubo.single_nested"
+#define VkglTestCase_035251_2 "_struct.per_block_buffer.packed_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035251, VkglTestCase_035251_1, VkglTestCase_035251_2);
+
+#define VkglTestCase_035252_1 "dEQP-GLES3.functional.ubo.single_nested_struct"
+#define VkglTestCase_035252_2 ".per_block_buffer.packed_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035252, VkglTestCase_035252_1, VkglTestCase_035252_2);
+
+#define VkglTestCase_035253_1 "dEQP-GLES3.functional.ubo.single_nested_struct."
+#define VkglTestCase_035253_2 "per_block_buffer.packed_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035253, VkglTestCase_035253_1, VkglTestCase_035253_2);
+
+#define VkglTestCase_035254_1 "dEQP-GLES3.functional.ubo.single_neste"
+#define VkglTestCase_035254_2 "d_struct.per_block_buffer.std140_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035254, VkglTestCase_035254_1, VkglTestCase_035254_2);
+
+#define VkglTestCase_035255_1 "dEQP-GLES3.functional.ubo.single_nested"
+#define VkglTestCase_035255_2 "_struct.per_block_buffer.std140_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035255, VkglTestCase_035255_1, VkglTestCase_035255_2);
+
+#define VkglTestCase_035256_1 "dEQP-GLES3.functional.ubo.single_nest"
+#define VkglTestCase_035256_2 "ed_struct.per_block_buffer.std140_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035256, VkglTestCase_035256_1, VkglTestCase_035256_2);
+
+#define VkglTestCase_035257_1 "dEQP-GLES3.functional.ubo.single_nested_struct"
+#define VkglTestCase_035257_2 ".per_block_buffer.std140_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035257, VkglTestCase_035257_1, VkglTestCase_035257_2);
+
+#define VkglTestCase_035258_1 "dEQP-GLES3.functional.ubo.single_nested_struct."
+#define VkglTestCase_035258_2 "per_block_buffer.std140_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035258, VkglTestCase_035258_1, VkglTestCase_035258_2);
+
+#define VkglTestCase_035259_1 "dEQP-GLES3.functional.ubo.single_nested_struc"
+#define VkglTestCase_035259_2 "t.per_block_buffer.std140_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035259, VkglTestCase_035259_1, VkglTestCase_035259_2);

@@ -17,115 +17,24 @@
 #include <gtest/gtest.h>
 #include "../Deqpgles31BaseFunc.h"
 #include "../ActsDeqpgles310026TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025192, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_025192 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES31.functional.android_extension_pac"
-        "k.limits.max_fragment_atomic_counter_buffers",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles310026TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles310026TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles310026TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles310026TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles310026TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_025192 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_025192 end";
-}
+#define VkglTestCase_025192_1 "dEQP-GLES31.functional.android_extension_pac"
+#define VkglTestCase_025192_2 "k.limits.max_fragment_atomic_counter_buffers"
+SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025192, VkglTestCase_025192_1, VkglTestCase_025192_2);
 
-static HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025193, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_025193 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES31.functional.android_extension"
-        "_pack.limits.max_fragment_atomic_counters",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles310026TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles310026TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles310026TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles310026TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles310026TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_025193 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_025193 end";
-}
+#define VkglTestCase_025193_1 "dEQP-GLES31.functional.android_extension"
+#define VkglTestCase_025193_2 "_pack.limits.max_fragment_atomic_counters"
+SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025193, VkglTestCase_025193_1, VkglTestCase_025193_2);
 
-static HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025194, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_025194 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES31.functional.android_extension"
-        "_pack.limits.max_fragment_image_uniforms",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles310026TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles310026TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles310026TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles310026TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles310026TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_025194 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_025194 end";
-}
+#define VkglTestCase_025194_1 "dEQP-GLES31.functional.android_extension"
+#define VkglTestCase_025194_2 "_pack.limits.max_fragment_image_uniforms"
+SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025194, VkglTestCase_025194_1, VkglTestCase_025194_2);
 
-static HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025195, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_025195 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES31.functional.android_extension_pa"
-        "ck.limits.max_fragment_shader_storage_blocks",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles310026TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles310026TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles310026TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles310026TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles310026TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_025195 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_025195 end";
-}
+#define VkglTestCase_025195_1 "dEQP-GLES31.functional.android_extension_pa"
+#define VkglTestCase_025195_2 "ck.limits.max_fragment_shader_storage_blocks"
+SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025195, VkglTestCase_025195_1, VkglTestCase_025195_2);

@@ -13,64 +13,20 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Khrgles32BaseFunc.h"
 #include "../ActsKhrgles320002TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001026, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_001026 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES32.core.separable_pr"
-        "ograms_tf.tessellation_active",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles320002TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles320002TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles320002TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles320002TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles320002TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_001026 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_001026 end";
-}
+#define VkglTestCase_001026_1 "KHR-GLES32.core.separable_pr"
+#define VkglTestCase_001026_2 "ograms_tf.tessellation_active"
+SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001026, VkglTestCase_001026_1, VkglTestCase_001026_2);
 
-static HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001027, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_001027 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES32.core.separable_"
-        "programs_tf.geometry_active",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles320002TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles320002TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles320002TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles320002TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles320002TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_001027 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_001027 end";
-}
+#define VkglTestCase_001027_1 "KHR-GLES32.core.separable_"
+#define VkglTestCase_001027_2 "programs_tf.geometry_active"
+SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001027, VkglTestCase_001027_1, VkglTestCase_001027_2);

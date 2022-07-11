@@ -13,64 +13,20 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Deqpgles2BaseFunc.h"
 #include "../ActsDeqpgles20013TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012659, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_012659 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.fbo.re"
-        "nder.repeated_clear.tex2d_rgb",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20013TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20013TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20013TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20013TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20013TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_012659 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_012659 end";
-}
+#define VkglTestCase_012659_1 "dEQP-GLES2.functional.fbo.re"
+#define VkglTestCase_012659_2 "nder.repeated_clear.tex2d_rgb"
+SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012659, VkglTestCase_012659_1, VkglTestCase_012659_2);
 
-static HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012660, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_012660 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.fbo.ren"
-        "der.repeated_clear.tex2d_rgba",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20013TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20013TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20013TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20013TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20013TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_012660 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_012660 end";
-}
+#define VkglTestCase_012660_1 "dEQP-GLES2.functional.fbo.ren"
+#define VkglTestCase_012660_2 "der.repeated_clear.tex2d_rgba"
+SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012660, VkglTestCase_012660_1, VkglTestCase_012660_2);

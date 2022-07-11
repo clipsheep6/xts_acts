@@ -1,0 +1,536 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../Deqpgles3BaseFunc.h"
+#include "../ActsDeqpgles30036TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+#define VkglTestCase_035268_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_bloc"
+#define VkglTestCase_035268_2 "k_buffer.shared_block_row_major_matrix_row_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035268, VkglTestCase_035268_1, VkglTestCase_035268_2);
+
+#define VkglTestCase_035269_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block"
+#define VkglTestCase_035269_2 "_buffer.shared_block_row_major_matrix_row_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035269, VkglTestCase_035269_1, VkglTestCase_035269_2);
+
+#define VkglTestCase_035270_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_blo"
+#define VkglTestCase_035270_2 "ck_buffer.shared_block_row_major_matrix_row_major_matrixarray_row_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035270, VkglTestCase_035270_1, VkglTestCase_035270_2);
+
+#define VkglTestCase_035271_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer"
+#define VkglTestCase_035271_2 ".shared_block_row_major_matrix_row_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035271, VkglTestCase_035271_1, VkglTestCase_035271_2);
+
+#define VkglTestCase_035272_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035272_2 "shared_block_row_major_matrix_row_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035272, VkglTestCase_035272_1, VkglTestCase_035272_2);
+
+#define VkglTestCase_035273_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffe"
+#define VkglTestCase_035273_2 "r.shared_block_row_major_matrix_row_major_matrixarray_row_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035273, VkglTestCase_035273_1, VkglTestCase_035273_2);
+
+#define VkglTestCase_035274_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035274_2 "buffer.shared_block_row_major_matrix_row_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035274, VkglTestCase_035274_1, VkglTestCase_035274_2);
+
+#define VkglTestCase_035275_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035275_2 "uffer.shared_block_row_major_matrix_row_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035275, VkglTestCase_035275_1, VkglTestCase_035275_2);
+
+#define VkglTestCase_035276_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block"
+#define VkglTestCase_035276_2 "_buffer.shared_block_row_major_matrix_row_major_matrixarray_column_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035276, VkglTestCase_035276_1, VkglTestCase_035276_2);
+
+#define VkglTestCase_035277_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035277_2 "shared_block_row_major_matrix_row_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035277, VkglTestCase_035277_1, VkglTestCase_035277_2);
+
+#define VkglTestCase_035278_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035278_2 "hared_block_row_major_matrix_row_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035278, VkglTestCase_035278_1, VkglTestCase_035278_2);
+
+#define VkglTestCase_035279_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer"
+#define VkglTestCase_035279_2 ".shared_block_row_major_matrix_row_major_matrixarray_column_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035279, VkglTestCase_035279_1, VkglTestCase_035279_2);
+
+#define VkglTestCase_035280_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035280_2 "buffer.shared_block_row_major_matrix_column_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035280, VkglTestCase_035280_1, VkglTestCase_035280_2);
+
+#define VkglTestCase_035281_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035281_2 "uffer.shared_block_row_major_matrix_column_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035281, VkglTestCase_035281_1, VkglTestCase_035281_2);
+
+#define VkglTestCase_035282_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block"
+#define VkglTestCase_035282_2 "_buffer.shared_block_row_major_matrix_column_major_matrixarray_row_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035282, VkglTestCase_035282_1, VkglTestCase_035282_2);
+
+#define VkglTestCase_035283_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035283_2 "shared_block_row_major_matrix_column_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035283, VkglTestCase_035283_1, VkglTestCase_035283_2);
+
+#define VkglTestCase_035284_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035284_2 "hared_block_row_major_matrix_column_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035284, VkglTestCase_035284_1, VkglTestCase_035284_2);
+
+#define VkglTestCase_035285_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer"
+#define VkglTestCase_035285_2 ".shared_block_row_major_matrix_column_major_matrixarray_row_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035285, VkglTestCase_035285_1, VkglTestCase_035285_2);
+
+#define VkglTestCase_035286_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035286_2 "uffer.shared_block_row_major_matrix_column_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035286, VkglTestCase_035286_1, VkglTestCase_035286_2);
+
+#define VkglTestCase_035287_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035287_2 "ffer.shared_block_row_major_matrix_column_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035287, VkglTestCase_035287_1, VkglTestCase_035287_2);
+
+#define VkglTestCase_035288_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035288_2 "buffer.shared_block_row_major_matrix_column_major_matrixarray_column_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035288, VkglTestCase_035288_1, VkglTestCase_035288_2);
+
+#define VkglTestCase_035289_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.sh"
+#define VkglTestCase_035289_2 "ared_block_row_major_matrix_column_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035289, VkglTestCase_035289_1, VkglTestCase_035289_2);
+
+#define VkglTestCase_035290_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.sha"
+#define VkglTestCase_035290_2 "red_block_row_major_matrix_column_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035290, VkglTestCase_035290_1, VkglTestCase_035290_2);
+
+#define VkglTestCase_035291_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035291_2 "hared_block_row_major_matrix_column_major_matrixarray_column_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035291, VkglTestCase_035291_1, VkglTestCase_035291_2);
+
+#define VkglTestCase_035292_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035292_2 "buffer.shared_block_column_major_matrix_row_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035292, VkglTestCase_035292_1, VkglTestCase_035292_2);
+
+#define VkglTestCase_035293_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035293_2 "uffer.shared_block_column_major_matrix_row_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035293, VkglTestCase_035293_1, VkglTestCase_035293_2);
+
+#define VkglTestCase_035294_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block"
+#define VkglTestCase_035294_2 "_buffer.shared_block_column_major_matrix_row_major_matrixarray_row_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035294, VkglTestCase_035294_1, VkglTestCase_035294_2);
+
+#define VkglTestCase_035295_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035295_2 "shared_block_column_major_matrix_row_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035295, VkglTestCase_035295_1, VkglTestCase_035295_2);
+
+#define VkglTestCase_035296_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035296_2 "hared_block_column_major_matrix_row_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035296, VkglTestCase_035296_1, VkglTestCase_035296_2);
+
+#define VkglTestCase_035297_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer"
+#define VkglTestCase_035297_2 ".shared_block_column_major_matrix_row_major_matrixarray_row_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035297, VkglTestCase_035297_1, VkglTestCase_035297_2);
+
+#define VkglTestCase_035298_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035298_2 "uffer.shared_block_column_major_matrix_row_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035298, VkglTestCase_035298_1, VkglTestCase_035298_2);
+
+#define VkglTestCase_035299_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035299_2 "ffer.shared_block_column_major_matrix_row_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035299, VkglTestCase_035299_1, VkglTestCase_035299_2);
+
+#define VkglTestCase_035300_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035300_2 "buffer.shared_block_column_major_matrix_row_major_matrixarray_column_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035300, VkglTestCase_035300_1, VkglTestCase_035300_2);
+
+#define VkglTestCase_035301_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.sh"
+#define VkglTestCase_035301_2 "ared_block_column_major_matrix_row_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035301, VkglTestCase_035301_1, VkglTestCase_035301_2);
+
+#define VkglTestCase_035302_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.sha"
+#define VkglTestCase_035302_2 "red_block_column_major_matrix_row_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035302, VkglTestCase_035302_1, VkglTestCase_035302_2);
+
+#define VkglTestCase_035303_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035303_2 "hared_block_column_major_matrix_row_major_matrixarray_column_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035303, VkglTestCase_035303_1, VkglTestCase_035303_2);
+
+#define VkglTestCase_035304_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035304_2 "uffer.shared_block_column_major_matrix_column_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035304, VkglTestCase_035304_1, VkglTestCase_035304_2);
+
+#define VkglTestCase_035305_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035305_2 "ffer.shared_block_column_major_matrix_column_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035305, VkglTestCase_035305_1, VkglTestCase_035305_2);
+
+#define VkglTestCase_035306_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035306_2 "buffer.shared_block_column_major_matrix_column_major_matrixarray_row_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035306, VkglTestCase_035306_1, VkglTestCase_035306_2);
+
+#define VkglTestCase_035307_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.sh"
+#define VkglTestCase_035307_2 "ared_block_column_major_matrix_column_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035307, VkglTestCase_035307_1, VkglTestCase_035307_2);
+
+#define VkglTestCase_035308_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.sha"
+#define VkglTestCase_035308_2 "red_block_column_major_matrix_column_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035308, VkglTestCase_035308_1, VkglTestCase_035308_2);
+
+#define VkglTestCase_035309_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035309_2 "hared_block_column_major_matrix_column_major_matrixarray_row_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035309, VkglTestCase_035309_1, VkglTestCase_035309_2);
+
+#define VkglTestCase_035310_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buf"
+#define VkglTestCase_035310_2 "fer.shared_block_column_major_matrix_column_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035310, VkglTestCase_035310_1, VkglTestCase_035310_2);
+
+#define VkglTestCase_035311_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buff"
+#define VkglTestCase_035311_2 "er.shared_block_column_major_matrix_column_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035311, VkglTestCase_035311_1, VkglTestCase_035311_2);
+
+#define VkglTestCase_035312_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035312_2 "ffer.shared_block_column_major_matrix_column_major_matrixarray_column_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035312, VkglTestCase_035312_1, VkglTestCase_035312_2);
+
+#define VkglTestCase_035313_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.sha"
+#define VkglTestCase_035313_2 "red_block_column_major_matrix_column_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035313, VkglTestCase_035313_1, VkglTestCase_035313_2);
+
+#define VkglTestCase_035314_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.shar"
+#define VkglTestCase_035314_2 "ed_block_column_major_matrix_column_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035314, VkglTestCase_035314_1, VkglTestCase_035314_2);
+
+#define VkglTestCase_035315_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.sh"
+#define VkglTestCase_035315_2 "ared_block_column_major_matrix_column_major_matrixarray_column_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035315, VkglTestCase_035315_1, VkglTestCase_035315_2);
+
+#define VkglTestCase_035316_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_bloc"
+#define VkglTestCase_035316_2 "k_buffer.packed_block_row_major_matrix_row_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035316, VkglTestCase_035316_1, VkglTestCase_035316_2);
+
+#define VkglTestCase_035317_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block"
+#define VkglTestCase_035317_2 "_buffer.packed_block_row_major_matrix_row_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035317, VkglTestCase_035317_1, VkglTestCase_035317_2);
+
+#define VkglTestCase_035318_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer"
+#define VkglTestCase_035318_2 ".packed_block_row_major_matrix_row_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035318, VkglTestCase_035318_1, VkglTestCase_035318_2);
+
+#define VkglTestCase_035319_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035319_2 "packed_block_row_major_matrix_row_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035319, VkglTestCase_035319_1, VkglTestCase_035319_2);
+
+#define VkglTestCase_035320_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035320_2 "buffer.packed_block_row_major_matrix_row_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035320, VkglTestCase_035320_1, VkglTestCase_035320_2);
+
+#define VkglTestCase_035321_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035321_2 "uffer.packed_block_row_major_matrix_row_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035321, VkglTestCase_035321_1, VkglTestCase_035321_2);
+
+#define VkglTestCase_035322_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035322_2 "packed_block_row_major_matrix_row_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035322, VkglTestCase_035322_1, VkglTestCase_035322_2);
+
+#define VkglTestCase_035323_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.p"
+#define VkglTestCase_035323_2 "acked_block_row_major_matrix_row_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035323, VkglTestCase_035323_1, VkglTestCase_035323_2);
+
+#define VkglTestCase_035324_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035324_2 "buffer.packed_block_row_major_matrix_column_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035324, VkglTestCase_035324_1, VkglTestCase_035324_2);
+
+#define VkglTestCase_035325_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035325_2 "uffer.packed_block_row_major_matrix_column_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035325, VkglTestCase_035325_1, VkglTestCase_035325_2);
+
+#define VkglTestCase_035326_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035326_2 "packed_block_row_major_matrix_column_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035326, VkglTestCase_035326_1, VkglTestCase_035326_2);
+
+#define VkglTestCase_035327_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.p"
+#define VkglTestCase_035327_2 "acked_block_row_major_matrix_column_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035327, VkglTestCase_035327_1, VkglTestCase_035327_2);
+
+#define VkglTestCase_035328_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035328_2 "uffer.packed_block_row_major_matrix_column_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035328, VkglTestCase_035328_1, VkglTestCase_035328_2);
+
+#define VkglTestCase_035329_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035329_2 "ffer.packed_block_row_major_matrix_column_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035329, VkglTestCase_035329_1, VkglTestCase_035329_2);
+
+#define VkglTestCase_035330_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.pa"
+#define VkglTestCase_035330_2 "cked_block_row_major_matrix_column_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035330, VkglTestCase_035330_1, VkglTestCase_035330_2);
+
+#define VkglTestCase_035331_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.pac"
+#define VkglTestCase_035331_2 "ked_block_row_major_matrix_column_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035331, VkglTestCase_035331_1, VkglTestCase_035331_2);
+
+#define VkglTestCase_035332_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035332_2 "buffer.packed_block_column_major_matrix_row_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035332, VkglTestCase_035332_1, VkglTestCase_035332_2);
+
+#define VkglTestCase_035333_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035333_2 "uffer.packed_block_column_major_matrix_row_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035333, VkglTestCase_035333_1, VkglTestCase_035333_2);
+
+#define VkglTestCase_035334_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035334_2 "packed_block_column_major_matrix_row_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035334, VkglTestCase_035334_1, VkglTestCase_035334_2);
+
+#define VkglTestCase_035335_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.p"
+#define VkglTestCase_035335_2 "acked_block_column_major_matrix_row_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035335, VkglTestCase_035335_1, VkglTestCase_035335_2);
+
+#define VkglTestCase_035336_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035336_2 "uffer.packed_block_column_major_matrix_row_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035336, VkglTestCase_035336_1, VkglTestCase_035336_2);
+
+#define VkglTestCase_035337_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035337_2 "ffer.packed_block_column_major_matrix_row_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035337, VkglTestCase_035337_1, VkglTestCase_035337_2);
+
+#define VkglTestCase_035338_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.pa"
+#define VkglTestCase_035338_2 "cked_block_column_major_matrix_row_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035338, VkglTestCase_035338_1, VkglTestCase_035338_2);
+
+#define VkglTestCase_035339_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.pac"
+#define VkglTestCase_035339_2 "ked_block_column_major_matrix_row_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035339, VkglTestCase_035339_1, VkglTestCase_035339_2);
+
+#define VkglTestCase_035340_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035340_2 "uffer.packed_block_column_major_matrix_column_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035340, VkglTestCase_035340_1, VkglTestCase_035340_2);
+
+#define VkglTestCase_035341_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035341_2 "ffer.packed_block_column_major_matrix_column_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035341, VkglTestCase_035341_1, VkglTestCase_035341_2);
+
+#define VkglTestCase_035342_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.pa"
+#define VkglTestCase_035342_2 "cked_block_column_major_matrix_column_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035342, VkglTestCase_035342_1, VkglTestCase_035342_2);
+
+#define VkglTestCase_035343_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.pac"
+#define VkglTestCase_035343_2 "ked_block_column_major_matrix_column_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035343, VkglTestCase_035343_1, VkglTestCase_035343_2);
+
+#define VkglTestCase_035344_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buf"
+#define VkglTestCase_035344_2 "fer.packed_block_column_major_matrix_column_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035344, VkglTestCase_035344_1, VkglTestCase_035344_2);
+
+#define VkglTestCase_035345_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buff"
+#define VkglTestCase_035345_2 "er.packed_block_column_major_matrix_column_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035345, VkglTestCase_035345_1, VkglTestCase_035345_2);
+
+#define VkglTestCase_035346_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.pac"
+#define VkglTestCase_035346_2 "ked_block_column_major_matrix_column_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035346, VkglTestCase_035346_1, VkglTestCase_035346_2);
+
+#define VkglTestCase_035347_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.pack"
+#define VkglTestCase_035347_2 "ed_block_column_major_matrix_column_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035347, VkglTestCase_035347_1, VkglTestCase_035347_2);
+
+#define VkglTestCase_035348_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_bloc"
+#define VkglTestCase_035348_2 "k_buffer.std140_block_row_major_matrix_row_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035348, VkglTestCase_035348_1, VkglTestCase_035348_2);
+
+#define VkglTestCase_035349_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block"
+#define VkglTestCase_035349_2 "_buffer.std140_block_row_major_matrix_row_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035349, VkglTestCase_035349_1, VkglTestCase_035349_2);
+
+#define VkglTestCase_035350_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_blo"
+#define VkglTestCase_035350_2 "ck_buffer.std140_block_row_major_matrix_row_major_matrixarray_row_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035350, VkglTestCase_035350_1, VkglTestCase_035350_2);
+
+#define VkglTestCase_035351_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer"
+#define VkglTestCase_035351_2 ".std140_block_row_major_matrix_row_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035351, VkglTestCase_035351_1, VkglTestCase_035351_2);
+
+#define VkglTestCase_035352_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035352_2 "std140_block_row_major_matrix_row_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035352, VkglTestCase_035352_1, VkglTestCase_035352_2);
+
+#define VkglTestCase_035353_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffe"
+#define VkglTestCase_035353_2 "r.std140_block_row_major_matrix_row_major_matrixarray_row_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035353, VkglTestCase_035353_1, VkglTestCase_035353_2);
+
+#define VkglTestCase_035354_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035354_2 "buffer.std140_block_row_major_matrix_row_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035354, VkglTestCase_035354_1, VkglTestCase_035354_2);
+
+#define VkglTestCase_035355_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035355_2 "uffer.std140_block_row_major_matrix_row_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035355, VkglTestCase_035355_1, VkglTestCase_035355_2);
+
+#define VkglTestCase_035356_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block"
+#define VkglTestCase_035356_2 "_buffer.std140_block_row_major_matrix_row_major_matrixarray_column_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035356, VkglTestCase_035356_1, VkglTestCase_035356_2);
+
+#define VkglTestCase_035357_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035357_2 "std140_block_row_major_matrix_row_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035357, VkglTestCase_035357_1, VkglTestCase_035357_2);
+
+#define VkglTestCase_035358_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035358_2 "td140_block_row_major_matrix_row_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035358, VkglTestCase_035358_1, VkglTestCase_035358_2);
+
+#define VkglTestCase_035359_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer"
+#define VkglTestCase_035359_2 ".std140_block_row_major_matrix_row_major_matrixarray_column_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035359, VkglTestCase_035359_1, VkglTestCase_035359_2);
+
+#define VkglTestCase_035360_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035360_2 "buffer.std140_block_row_major_matrix_column_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035360, VkglTestCase_035360_1, VkglTestCase_035360_2);
+
+#define VkglTestCase_035361_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035361_2 "uffer.std140_block_row_major_matrix_column_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035361, VkglTestCase_035361_1, VkglTestCase_035361_2);
+
+#define VkglTestCase_035362_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block"
+#define VkglTestCase_035362_2 "_buffer.std140_block_row_major_matrix_column_major_matrixarray_row_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035362, VkglTestCase_035362_1, VkglTestCase_035362_2);
+
+#define VkglTestCase_035363_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035363_2 "std140_block_row_major_matrix_column_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035363, VkglTestCase_035363_1, VkglTestCase_035363_2);
+
+#define VkglTestCase_035364_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035364_2 "td140_block_row_major_matrix_column_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035364, VkglTestCase_035364_1, VkglTestCase_035364_2);
+
+#define VkglTestCase_035365_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer"
+#define VkglTestCase_035365_2 ".std140_block_row_major_matrix_column_major_matrixarray_row_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035365, VkglTestCase_035365_1, VkglTestCase_035365_2);
+
+#define VkglTestCase_035366_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035366_2 "uffer.std140_block_row_major_matrix_column_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035366, VkglTestCase_035366_1, VkglTestCase_035366_2);
+
+#define VkglTestCase_035367_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035367_2 "ffer.std140_block_row_major_matrix_column_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035367, VkglTestCase_035367_1, VkglTestCase_035367_2);
+
+#define VkglTestCase_035368_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035368_2 "buffer.std140_block_row_major_matrix_column_major_matrixarray_column_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035368, VkglTestCase_035368_1, VkglTestCase_035368_2);
+
+#define VkglTestCase_035369_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.st"
+#define VkglTestCase_035369_2 "d140_block_row_major_matrix_column_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035369, VkglTestCase_035369_1, VkglTestCase_035369_2);
+
+#define VkglTestCase_035370_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.std"
+#define VkglTestCase_035370_2 "140_block_row_major_matrix_column_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035370, VkglTestCase_035370_1, VkglTestCase_035370_2);
+
+#define VkglTestCase_035371_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035371_2 "td140_block_row_major_matrix_column_major_matrixarray_column_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035371, VkglTestCase_035371_1, VkglTestCase_035371_2);
+
+#define VkglTestCase_035372_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035372_2 "buffer.std140_block_column_major_matrix_row_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035372, VkglTestCase_035372_1, VkglTestCase_035372_2);
+
+#define VkglTestCase_035373_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035373_2 "uffer.std140_block_column_major_matrix_row_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035373, VkglTestCase_035373_1, VkglTestCase_035373_2);
+
+#define VkglTestCase_035374_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block"
+#define VkglTestCase_035374_2 "_buffer.std140_block_column_major_matrix_row_major_matrixarray_row_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035374, VkglTestCase_035374_1, VkglTestCase_035374_2);
+
+#define VkglTestCase_035375_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer."
+#define VkglTestCase_035375_2 "std140_block_column_major_matrix_row_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035375, VkglTestCase_035375_1, VkglTestCase_035375_2);
+
+#define VkglTestCase_035376_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035376_2 "td140_block_column_major_matrix_row_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035376, VkglTestCase_035376_1, VkglTestCase_035376_2);
+
+#define VkglTestCase_035377_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer"
+#define VkglTestCase_035377_2 ".std140_block_column_major_matrix_row_major_matrixarray_row_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035377, VkglTestCase_035377_1, VkglTestCase_035377_2);
+
+#define VkglTestCase_035378_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035378_2 "uffer.std140_block_column_major_matrix_row_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035378, VkglTestCase_035378_1, VkglTestCase_035378_2);
+
+#define VkglTestCase_035379_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035379_2 "ffer.std140_block_column_major_matrix_row_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035379, VkglTestCase_035379_1, VkglTestCase_035379_2);
+
+#define VkglTestCase_035380_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035380_2 "buffer.std140_block_column_major_matrix_row_major_matrixarray_column_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035380, VkglTestCase_035380_1, VkglTestCase_035380_2);
+
+#define VkglTestCase_035381_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.st"
+#define VkglTestCase_035381_2 "d140_block_column_major_matrix_row_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035381, VkglTestCase_035381_1, VkglTestCase_035381_2);
+
+#define VkglTestCase_035382_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.std"
+#define VkglTestCase_035382_2 "140_block_column_major_matrix_row_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035382, VkglTestCase_035382_1, VkglTestCase_035382_2);
+
+#define VkglTestCase_035383_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035383_2 "td140_block_column_major_matrix_row_major_matrixarray_column_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035383, VkglTestCase_035383_1, VkglTestCase_035383_2);
+
+#define VkglTestCase_035384_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_b"
+#define VkglTestCase_035384_2 "uffer.std140_block_column_major_matrix_column_major_matrixarray_row_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035384, VkglTestCase_035384_1, VkglTestCase_035384_2);
+
+#define VkglTestCase_035385_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035385_2 "ffer.std140_block_column_major_matrix_column_major_matrixarray_row_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035385, VkglTestCase_035385_1, VkglTestCase_035385_2);
+
+#define VkglTestCase_035386_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_"
+#define VkglTestCase_035386_2 "buffer.std140_block_column_major_matrix_column_major_matrixarray_row_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035386, VkglTestCase_035386_1, VkglTestCase_035386_2);
+
+#define VkglTestCase_035387_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.st"
+#define VkglTestCase_035387_2 "d140_block_column_major_matrix_column_major_matrixarray_row_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035387, VkglTestCase_035387_1, VkglTestCase_035387_2);
+
+#define VkglTestCase_035388_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.std"
+#define VkglTestCase_035388_2 "140_block_column_major_matrix_column_major_matrixarray_row_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035388, VkglTestCase_035388_1, VkglTestCase_035388_2);
+
+#define VkglTestCase_035389_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.s"
+#define VkglTestCase_035389_2 "td140_block_column_major_matrix_column_major_matrixarray_row_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035389, VkglTestCase_035389_1, VkglTestCase_035389_2);
+
+#define VkglTestCase_035390_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buf"
+#define VkglTestCase_035390_2 "fer.std140_block_column_major_matrix_column_major_matrixarray_column_major_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035390, VkglTestCase_035390_1, VkglTestCase_035390_2);
+
+#define VkglTestCase_035391_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buff"
+#define VkglTestCase_035391_2 "er.std140_block_column_major_matrix_column_major_matrixarray_column_major_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035391, VkglTestCase_035391_1, VkglTestCase_035391_2);
+
+#define VkglTestCase_035392_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_bu"
+#define VkglTestCase_035392_2 "ffer.std140_block_column_major_matrix_column_major_matrixarray_column_major_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035392, VkglTestCase_035392_1, VkglTestCase_035392_2);
+
+#define VkglTestCase_035393_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.std"
+#define VkglTestCase_035393_2 "140_block_column_major_matrix_column_major_matrixarray_column_major_instance_array_vertex"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035393, VkglTestCase_035393_1, VkglTestCase_035393_2);
+
+#define VkglTestCase_035394_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.std1"
+#define VkglTestCase_035394_2 "40_block_column_major_matrix_column_major_matrixarray_column_major_instance_array_fragment"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035394, VkglTestCase_035394_1, VkglTestCase_035394_2);
+
+#define VkglTestCase_035395_1 "dEQP-GLES3.functional.ubo.single_nested_struct_mixed_matrix_packing.per_block_buffer.st"
+#define VkglTestCase_035395_2 "d140_block_column_major_matrix_column_major_matrixarray_column_major_instance_array_both"
+SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035395, VkglTestCase_035395_1, VkglTestCase_035395_2);

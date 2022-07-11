@@ -1,0 +1,40 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../Deqpgles3BaseFunc.h"
+#include "../ActsDeqpgles30044TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+#define VkglTestCase_043986_1 "dEQP-GLES3.functional.draw.draw_e"
+#define VkglTestCase_043986_2 "lements.line_loop.single_attribute"
+SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043986, VkglTestCase_043986_1, VkglTestCase_043986_2);
+
+#define VkglTestCase_043987_1 "dEQP-GLES3.functional.draw.draw_ele"
+#define VkglTestCase_043987_2 "ments.line_loop.multiple_attributes"
+SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043987, VkglTestCase_043987_1, VkglTestCase_043987_2);
+
+#define VkglTestCase_043988_1 "dEQP-GLES3.functional.draw.draw_ele"
+#define VkglTestCase_043988_2 "ments.line_loop.instanced_attributes"
+SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043988, VkglTestCase_043988_1, VkglTestCase_043988_2);
+
+#define VkglTestCase_043989_1 "dEQP-GLES3.functional.draw.draw_el"
+#define VkglTestCase_043989_2 "ements.line_loop.default_attribute"
+SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043989, VkglTestCase_043989_1, VkglTestCase_043989_2);

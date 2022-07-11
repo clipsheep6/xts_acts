@@ -26,7 +26,7 @@ namespace OHOS {
     time_t ActsKhrgles20001TestSuite::starttime;
     time_t ActsKhrgles20001TestSuite::endtime;
     FuncRunResult ActsKhrgles20001TestSuite::runResult;
-        
+
     // Preset action of the test suite, which is executed before the first test case
     void ActsKhrgles20001TestSuite::SetUpTestCase(void)
     {
@@ -58,4 +58,3 @@ namespace OHOS {
     {
     }
 }
-    

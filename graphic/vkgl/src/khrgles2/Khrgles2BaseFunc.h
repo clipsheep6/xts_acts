@@ -18,16 +18,15 @@
 
 struct FuncRunResult {
     int numExecuted; // !< Total number of cases executed.
-    int numPassed; // !< Number of cases passed.
-    int numFailed; // !< Number of cases failed.
+    int numPassed;     // !< Number of cases passed.
+    int numFailed;     // !< Number of cases failed.
     int numNotSupported;    // !< Number of cases not supported.
     int numWarnings; // !< Number of QualityWarning / CompatibilityWarning results.
-    int numWaived; // !< Number of waived tests.
-    bool isComplete; // !< Is run complete.
+    int numWaived;     // !< Number of waived tests.
+    bool isComplete;     // !< Is run complete.
 };
 
 void RegistPackage(void);
-
 FuncRunResult RunTestKHRGLES(int argc, const char** argv);
 
-#endif
+#endif // KHRGLES2_FUNC_H

@@ -11,65 +11,68 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//test/xts/acts/graphic/vkglcts/comm.gni")
+import("//test/xts/acts/graphic/vkgl/comm.gni")
 
 config("deqp_platform_ohos_config") {
   cflags_cc = deqp_common_cflags_cc
 
   cflags_cc += [
-    # "-Wno-conversion",
-    # "-Wno-unused-function",
-    "-Wno-unused-parameter",
-  ]
-
+      # "-Wno-conversion",
+      # "-Wno-unused-function",
+      "-Wno-unused-parameter",
+    ]
+  
   defines = deqp_common_defines
-
   # defines -=["DE_PTR_SIZE=8"]
   defines += [
-    "DE_PTR_SIZE=4",
-    "_XOPEN_SOURCE=600",
+    "DE_PTR_SIZE=4", 
+    "_XOPEN_SOURCE=600"
   ]
 }
 
+
 ohos_static_library("libkhrgles32func0002") {
   sources = common_src
-  sources += [ "../Khrgles32BaseFunc.cpp" ]
-
+  sources += [
+    "../Khrgles32BaseFunc.cpp",]
+  
   include_dirs = common_include
   deps = common_depends
   external_deps = [
-    "hilog_native:libhilog",
-    "multimedia_image_standard:image_native",
+      "hilog_native:libhilog",
+      "multimedia_image_standard:image_native",
   ]
-  lib_dirs = [ "//third_party/VK-GL-CTS/outlibs" ]
-  libs = [ "png" ]
   configs = [ ":deqp_platform_ohos_config" ]
   public_deps = [ "//foundation/ace/ace_engine/build/external_config/flutter/skia:ace_skia_ohos" ]
 }
 
 ohos_moduletest_suite("ActsKhrgles32TestSuite0002") {
-  sources = [
+  
+  sources = [ 
     "../ActsKhrgles320002TestSuite.cpp",
-    "../core/Khrgles32compressed_format_apiTestCase.cpp",
-    "../core/Khrgles32compressed_format_formatTestCase.cpp",
-    "../core/Khrgles32core_copy_imageTestCase.cpp",
-    "../core/Khrgles32core_framebuffer_completenessTestCase.cpp",
-    "../core/Khrgles32core_nearest_edgeTestCase.cpp",
-    "../core/Khrgles32core_separable_programs_tfTestCase.cpp",
     "../core/Khrgles32core_shader_macrosTestCase.cpp",
-    "../core/Khrgles32core_texture_compatibilityTestCase.cpp",
-    "../core/Khrgles32ext_texture_shadow_lod_textureTestCase.cpp",
-    "../core/Khrgles32ext_texture_shadow_lod_texturelodTestCase.cpp",
-    "../core/Khrgles32ext_texture_shadow_lod_texturelodoffsetTestCase.cpp",
-    "../core/Khrgles32ext_texture_shadow_lod_textureoffsetTestCase.cpp",
+    "../core/Khrgles32core_separable_programs_tfTestCase.cpp",
+    "../core/Khrgles32core_copy_imageTestCase.cpp",
+    "../core/Khrgles32internalformat_texture2dTestCase.cpp",
     "../core/Khrgles32internalformat_copy_tex_imageTestCase.cpp",
     "../core/Khrgles32internalformat_renderbufferTestCase.cpp",
-    "../core/Khrgles32internalformat_texture2dTestCase.cpp",
+    "../core/Khrgles32ext_texture_shadow_lod_textureTestCase.cpp",
+    "../core/Khrgles32ext_texture_shadow_lod_textureoffsetTestCase.cpp",
+    "../core/Khrgles32ext_texture_shadow_lod_texturelodTestCase.cpp",
+    "../core/Khrgles32ext_texture_shadow_lod_texturelodoffsetTestCase.cpp",
+    "../core/Khrgles32core_nearest_edgeTestCase.cpp",
+    "../core/Khrgles32core_framebuffer_completenessTestCase.cpp",
+    "../core/Khrgles32core_texture_compatibilityTestCase.cpp",
+    "../core/Khrgles32compressed_format_apiTestCase.cpp",
+    "../core/Khrgles32compressed_format_formatTestCase.cpp", ]
+
+  include_dirs = [
+    "//test/xts/acts/graphic/vkgl/src",
   ]
 
-  include_dirs = [ "//test/xts/acts/graphic/vkglcts/src" ]
-
-  deps = [ ":libkhrgles32func0002" ]
+  deps = [
+    ":libkhrgles32func0002",
+  ]
 
   cflags = [ "-Wno-error" ]
 }

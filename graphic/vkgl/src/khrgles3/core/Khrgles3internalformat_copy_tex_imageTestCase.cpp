@@ -13,361 +13,64 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Khrgles3BaseFunc.h"
 #include "../ActsKhrgles30004TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003688, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003688 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalf"
-        "ormat.copy_tex_image.rgb",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003688 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003688 end";
-}
+#define VkglTestCase_003688_1 "KHR-GLES3.core.internalf"
+#define VkglTestCase_003688_2 "ormat.copy_tex_image.rgb"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003688, VkglTestCase_003688_1, VkglTestCase_003688_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003689, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003689 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalf"
-        "ormat.copy_tex_image.rgba",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003689 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003689 end";
-}
+#define VkglTestCase_003689_1 "KHR-GLES3.core.internalf"
+#define VkglTestCase_003689_2 "ormat.copy_tex_image.rgba"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003689, VkglTestCase_003689_1, VkglTestCase_003689_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003690, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003690 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalfo"
-        "rmat.copy_tex_image.alpha",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003690 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003690 end";
-}
+#define VkglTestCase_003690_1 "KHR-GLES3.core.internalfo"
+#define VkglTestCase_003690_2 "rmat.copy_tex_image.alpha"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003690, VkglTestCase_003690_1, VkglTestCase_003690_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003691, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003691 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalform"
-        "at.copy_tex_image.luminance",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003691 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003691 end";
-}
+#define VkglTestCase_003691_1 "KHR-GLES3.core.internalform"
+#define VkglTestCase_003691_2 "at.copy_tex_image.luminance"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003691, VkglTestCase_003691_1, VkglTestCase_003691_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003692, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003692 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalformat."
-        "copy_tex_image.luminance_alpha",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003692 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003692 end";
-}
+#define VkglTestCase_003692_1 "KHR-GLES3.core.internalformat."
+#define VkglTestCase_003692_2 "copy_tex_image.luminance_alpha"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003692, VkglTestCase_003692_1, VkglTestCase_003692_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003693, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003693 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalfo"
-        "rmat.copy_tex_image.rgba4",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003693 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003693 end";
-}
+#define VkglTestCase_003693_1 "KHR-GLES3.core.internalfo"
+#define VkglTestCase_003693_2 "rmat.copy_tex_image.rgba4"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003693, VkglTestCase_003693_1, VkglTestCase_003693_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003694, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003694 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalfor"
-        "mat.copy_tex_image.rgb5_a1",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003694 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003694 end";
-}
+#define VkglTestCase_003694_1 "KHR-GLES3.core.internalfor"
+#define VkglTestCase_003694_2 "mat.copy_tex_image.rgb5_a1"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003694, VkglTestCase_003694_1, VkglTestCase_003694_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003695, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003695 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalfo"
-        "rmat.copy_tex_image.rgb565",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003695 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003695 end";
-}
+#define VkglTestCase_003695_1 "KHR-GLES3.core.internalfo"
+#define VkglTestCase_003695_2 "rmat.copy_tex_image.rgb565"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003695, VkglTestCase_003695_1, VkglTestCase_003695_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003696, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003696 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalfo"
-        "rmat.copy_tex_image.rgba8",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003696 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003696 end";
-}
+#define VkglTestCase_003696_1 "KHR-GLES3.core.internalfo"
+#define VkglTestCase_003696_2 "rmat.copy_tex_image.rgba8"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003696, VkglTestCase_003696_1, VkglTestCase_003696_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003697, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003697 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalf"
-        "ormat.copy_tex_image.rgb8",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003697 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003697 end";
-}
+#define VkglTestCase_003697_1 "KHR-GLES3.core.internalf"
+#define VkglTestCase_003697_2 "ormat.copy_tex_image.rgb8"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003697, VkglTestCase_003697_1, VkglTestCase_003697_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003698, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003698 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalforma"
-        "t.copy_tex_image.srgb8_alpha8",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003698 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003698 end";
-}
+#define VkglTestCase_003698_1 "KHR-GLES3.core.internalforma"
+#define VkglTestCase_003698_2 "t.copy_tex_image.srgb8_alpha8"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003698, VkglTestCase_003698_1, VkglTestCase_003698_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003699, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003699 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalfo"
-        "rmat.copy_tex_image.srgb8",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003699 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003699 end";
-}
+#define VkglTestCase_003699_1 "KHR-GLES3.core.internalfo"
+#define VkglTestCase_003699_2 "rmat.copy_tex_image.srgb8"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003699, VkglTestCase_003699_1, VkglTestCase_003699_2);
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003700, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003700 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.internalformat"
-        ".copy_tex_image.r11f_g11f_b10f",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003700 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003700 end";
-}
+#define VkglTestCase_003700_1 "KHR-GLES3.core.internalformat"
+#define VkglTestCase_003700_2 ".copy_tex_image.r11f_g11f_b10f"
+SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003700, VkglTestCase_003700_1, VkglTestCase_003700_2);

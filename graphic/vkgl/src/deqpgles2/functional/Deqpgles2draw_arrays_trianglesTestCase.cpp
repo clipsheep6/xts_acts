@@ -13,91 +13,24 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../Deqpgles2BaseFunc.h"
 #include "../ActsDeqpgles20017TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016317, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016317 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.draw.draw_"
-        "arrays.triangles.single_attribute",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016317 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016317 end";
-}
+#define VkglTestCase_016317_1 "dEQP-GLES2.functional.draw.draw_"
+#define VkglTestCase_016317_2 "arrays.triangles.single_attribute"
+SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016317, VkglTestCase_016317_1, VkglTestCase_016317_2);
 
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016318, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016318 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.draw.draw_ar"
-        "rays.triangles.multiple_attributes",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016318 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016318 end";
-}
+#define VkglTestCase_016318_1 "dEQP-GLES2.functional.draw.draw_ar"
+#define VkglTestCase_016318_2 "rays.triangles.multiple_attributes"
+SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016318, VkglTestCase_016318_1, VkglTestCase_016318_2);
 
-static HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016319, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_016319 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "dEQP-GLES2.functional.draw.draw_a"
-        "rrays.triangles.default_attribute",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsDeqpgles20017TestSuite::runResult.numPassed += result.numPassed;
-    ActsDeqpgles20017TestSuite::runResult.numFailed += result.numFailed;
-    ActsDeqpgles20017TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsDeqpgles20017TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsDeqpgles20017TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_016319 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_016319 end";
-}
+#define VkglTestCase_016319_1 "dEQP-GLES2.functional.draw.draw_a"
+#define VkglTestCase_016319_2 "rrays.triangles.default_attribute"
+SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016319, VkglTestCase_016319_1, VkglTestCase_016319_2);

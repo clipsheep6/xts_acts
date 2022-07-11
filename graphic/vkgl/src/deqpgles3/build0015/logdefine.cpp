@@ -13,11 +13,8 @@
  * limitations under the License.
  */
 
-#include "tcuDefs.hpp"
-#include "tcuCommandLine.hpp"
-#include "tcuPlatform.hpp"
-#include "ActsApp.h"
-#include "tcuResource.hpp"
-#include "tcuTestLog.hpp"
-#include "tcuTestSessionExecutor.hpp"
-#include "deUniquePtr.hpp"
+#include "logdefine.h"
+
+namespace OHOS {
+    tcu::TestLog Qpalog::tcutestlog("/data/local/tmp/ActsDeqpgles3TestSuite0015.qpa", 0);
+} // OHOS

@@ -13,91 +13,24 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include "../KhrglesextBaseFunc.h"
 #include "../ActsKhrglesext0001TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000179, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000179 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.tessellation_shader.tessellation_sh"
-        "ader_triangles_tessellation.degenerate_triangle",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000179 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000179 end";
-}
+#define VkglTestCase_000179_1 "KHR-GLESEXT.tessellation_shader.tessellation_sh"
+#define VkglTestCase_000179_2 "ader_triangles_tessellation.degenerate_triangle"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000179, VkglTestCase_000179_1, VkglTestCase_000179_2);
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000180, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000180 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.tessellation_shader.tessellation_sh"
-        "ader_triangles_tessellation.identical_triangles",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000180 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000180 end";
-}
+#define VkglTestCase_000180_1 "KHR-GLESEXT.tessellation_shader.tessellation_sh"
+#define VkglTestCase_000180_2 "ader_triangles_tessellation.identical_triangles"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000180, VkglTestCase_000180_1, VkglTestCase_000180_2);
 
-static HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000181, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_000181 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLESEXT.tessellation_shader.tessellation_shader_tr"
-        "iangles_tessellation.inner_tessellation_level_rounding",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrglesext0001TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrglesext0001TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrglesext0001TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrglesext0001TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrglesext0001TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_000181 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_000181 end";
-}
+#define VkglTestCase_000181_1 "KHR-GLESEXT.tessellation_shader.tessellation_shader_tr"
+#define VkglTestCase_000181_2 "iangles_tessellation.inner_tessellation_level_rounding"
+SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000181, VkglTestCase_000181_1, VkglTestCase_000181_2);
