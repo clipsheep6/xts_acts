@@ -42,7 +42,6 @@
 #include "logdefine.h"
 #include "Khrgles31BaseFunc.h"
 
-//tcu::Platform *createOhosPlatform(void);
 static tcu::TestPackage* createKhrgles31Package(tcu::TestContext& testCtx)
 {
     return new es31cts::ES31TestPackage(testCtx, "KHR-GLES31");

@@ -42,7 +42,6 @@
 #include "logdefine.h"
 #include "Khrgles3BaseFunc.h"
 
-//tcu::Platform *createOhosPlatform(void);
 static tcu::TestPackage* createKhrgles3Package(tcu::TestContext& testCtx)
 {
     return new es3cts::ES30TestPackage(testCtx, "KHR-GLES3");

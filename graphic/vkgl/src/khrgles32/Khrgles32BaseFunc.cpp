@@ -42,7 +42,6 @@
 #include "logdefine.h"
 #include "Khrgles32BaseFunc.h"
 
-//tcu::Platform *createOhosPlatform(void);
 static tcu::TestPackage* createKhrgles32Package(tcu::TestContext& testCtx)
 {
     return new es32cts::ES32TestPackage(testCtx, "KHR-GLES32");

@@ -42,7 +42,6 @@
 #include "logdefine.h"
 #include "KhrglesextBaseFunc.h"
 
-//tcu::Platform *createOhosPlatform(void);
 static tcu::TestPackage* createKhrglesextPackage(tcu::TestContext& testCtx)
 {
     return new esextcts::ESEXTTestPackage(testCtx, "KHR-GLESEXT");

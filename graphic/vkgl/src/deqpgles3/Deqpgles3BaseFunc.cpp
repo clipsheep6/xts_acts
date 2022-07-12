@@ -42,10 +42,10 @@
 #include "logdefine.h"
 #include "Deqpgles3BaseFunc.h"
 
-//tcu::Platform *createOhosPlatform(void);
 static tcu::TestPackage* createDeqpgles3Package(tcu::TestContext& testCtx)
 {
-    return new deqp::gles3::TestPackage(testCtx);}
+    return new deqp::gles3::TestPackage(testCtx);
+}
 void RegistPackage(void)
 {
     tcu::TestPackageRegistry *registry = tcu::TestPackageRegistry::getSingleton();
