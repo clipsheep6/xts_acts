@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+require('./videoPlayerDataSrcTestPromise.test.js')
+require('./videoPlayerDataSrcTestCallback.test.js') 
+ 
 require('./VideoPlayerFuncCallbackTest.test.js')
 require('./VideoPlayerFuncPromiseTest.test.js')
 require('./VideoPlayerAPICallbackTest.test.js')

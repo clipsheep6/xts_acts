@@ -13,6 +13,11 @@
  * limitations under the License.
  */
 
+require('./audioPlayerDataSrcTestFunc.test.js')
+require('./audioPlayerDataSrcTestAPI.test.js')
+require('./audioPlayerDataSrcTestNoseekAPI.test.js') 
+ 
 require('./PlayerLocalTestAudioFUNC.test.js')
 require('./PlayerLocalTestAudioFormat.test.js')
 require('./PlayerLocalTestAudioAPI.test.js')
+
