@@ -24,53 +24,53 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002505,
-        "KHR-GLES31.core.geometry_shader.l", 
+        "KHR-GLES31.core.geometry_shader.l",
         "inking.incomplete_program_objects");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002506,
-        "KHR-GLES31.core.geometry_s", 
+        "KHR-GLES31.core.geometry_s",
         "hader.linking.incomplete_gs");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002507,
-        "KHR-GLES31.core.geometry_shader.lin", 
+        "KHR-GLES31.core.geometry_shader.lin",
         "king.invalid_arrayed_input_variables");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002508,
-        "KHR-GLES31.core.geometry_shader.li", 
+        "KHR-GLES31.core.geometry_shader.li",
         "nking.vs_gs_variable_type_mismatch");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002509,
-        "KHR-GLES31.core.geometry_shader.link", 
+        "KHR-GLES31.core.geometry_shader.link",
         "ing.vs_gs_variable_qualifier_mismatch");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002510,
-        "KHR-GLES31.core.geometry_shader.linkin", 
+        "KHR-GLES31.core.geometry_shader.linkin",
         "g.vs_gs_arrayed_variable_size_mismatch");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002511,
-        "KHR-GLES31.core.geometry_shader", 
+        "KHR-GLES31.core.geometry_shader",
         ".linking.fragcoord_redeclaration");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002512,
-        "KHR-GLES31.core.geometry_sha", 
+        "KHR-GLES31.core.geometry_sha",
         "der.linking.location_aliasing");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002513,
-        "KHR-GLES31.core.geometry_shader.li", 
+        "KHR-GLES31.core.geometry_shader.li",
         "nking.more_ACs_in_GS_than_supported");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002514,
-        "KHR-GLES31.core.geometry_shader.lin", 
+        "KHR-GLES31.core.geometry_shader.lin",
         "king.more_ACBs_in_GS_than_supported");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002515,
-        "KHR-GLES31.core.geometry_shader.link", 
+        "KHR-GLES31.core.geometry_shader.link",
         "ing.geometry_shader_compilation_fail");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002516,
-        "KHR-GLES31.core.geometry_shader.linking.", 
+        "KHR-GLES31.core.geometry_shader.linking.",
         "more_input_vertices_in_GS_than_available");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002517,
-        "KHR-GLES31.core.geometry_shader.linki", 
+        "KHR-GLES31.core.geometry_shader.linki",
         "ng.tf_capture_from_gs_and_vs_variables");

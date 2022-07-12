@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042338,
-        "dEQP-GLES3.functional.dith", 
+        "dEQP-GLES3.functional.dith",
         "er.disabled.gradient_white");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042339,
-        "dEQP-GLES3.functional.dit", 
+        "dEQP-GLES3.functional.dit",
         "her.disabled.gradient_red");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042340,
-        "dEQP-GLES3.functional.dith", 
+        "dEQP-GLES3.functional.dith",
         "er.disabled.gradient_green");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042341,
-        "dEQP-GLES3.functional.dit", 
+        "dEQP-GLES3.functional.dit",
         "her.disabled.gradient_blue");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042342,
-        "dEQP-GLES3.functional.dith", 
+        "dEQP-GLES3.functional.dith",
         "er.disabled.gradient_alpha");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042343,
-        "dEQP-GLES3.functional.dither.", 
+        "dEQP-GLES3.functional.dither.",
         "disabled.unicolored_quad_white");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042344,
-        "dEQP-GLES3.functional.dither", 
+        "dEQP-GLES3.functional.dither",
         ".disabled.unicolored_quad_red");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042345,
-        "dEQP-GLES3.functional.dither.", 
+        "dEQP-GLES3.functional.dither.",
         "disabled.unicolored_quad_green");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042346,
-        "dEQP-GLES3.functional.dither.", 
+        "dEQP-GLES3.functional.dither.",
         "disabled.unicolored_quad_blue");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042347,
-        "dEQP-GLES3.functional.dither.", 
+        "dEQP-GLES3.functional.dither.",
         "disabled.unicolored_quad_alpha");

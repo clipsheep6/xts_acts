@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002737,
-        "dEQP-GLES2.functional.shaders.misc.compound_", 
+        "dEQP-GLES2.functional.shaders.misc.compound_",
         "assignment.mul_swizzled_vec_by_matrix_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002738,
-        "dEQP-GLES2.functional.shaders.misc.compound_a", 
+        "dEQP-GLES2.functional.shaders.misc.compound_a",
         "ssignment.mul_swizzled_vec_by_matrix_fragment");

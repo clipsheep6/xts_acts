@@ -24,97 +24,97 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039942,
-        "dEQP-GLES3.functional.primitive_restart", 
+        "dEQP-GLES3.functional.primitive_restart",
         ".basic.points.unsigned_int.draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039943,
-        "dEQP-GLES3.functional.primitive_restart.basi", 
+        "dEQP-GLES3.functional.primitive_restart.basi",
         "c.points.unsigned_int.draw_elements_instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039944,
-        "dEQP-GLES3.functional.primitive_restart.ba", 
+        "dEQP-GLES3.functional.primitive_restart.ba",
         "sic.points.unsigned_int.draw_range_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040005,
-        "dEQP-GLES3.functional.primitive_restart.duplic", 
+        "dEQP-GLES3.functional.primitive_restart.duplic",
         "ate_restarts.points.unsigned_int.draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040006,
-        "dEQP-GLES3.functional.primitive_restart.duplicate_r", 
+        "dEQP-GLES3.functional.primitive_restart.duplicate_r",
         "estarts.points.unsigned_int.draw_elements_instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040007,
-        "dEQP-GLES3.functional.primitive_restart.duplicate", 
+        "dEQP-GLES3.functional.primitive_restart.duplicate",
         "_restarts.points.unsigned_int.draw_range_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040068,
-        "dEQP-GLES3.functional.primitive_restart.en", 
+        "dEQP-GLES3.functional.primitive_restart.en",
         "d_restart.points.unsigned_int.draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040069,
-        "dEQP-GLES3.functional.primitive_restart.end_res", 
+        "dEQP-GLES3.functional.primitive_restart.end_res",
         "tart.points.unsigned_int.draw_elements_instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040070,
-        "dEQP-GLES3.functional.primitive_restart.end_r", 
+        "dEQP-GLES3.functional.primitive_restart.end_r",
         "estart.points.unsigned_int.draw_range_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040131,
-        "dEQP-GLES3.functional.primitive_restart.end_restart_", 
+        "dEQP-GLES3.functional.primitive_restart.end_restart_",
         "duplicate_restarts.points.unsigned_int.draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040132,
-        "dEQP-GLES3.functional.primitive_restart.end_restart_dupli", 
+        "dEQP-GLES3.functional.primitive_restart.end_restart_dupli",
         "cate_restarts.points.unsigned_int.draw_elements_instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040133,
-        "dEQP-GLES3.functional.primitive_restart.end_restart_dup", 
+        "dEQP-GLES3.functional.primitive_restart.end_restart_dup",
         "licate_restarts.points.unsigned_int.draw_range_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040194,
-        "dEQP-GLES3.functional.primitive_restart.beg", 
+        "dEQP-GLES3.functional.primitive_restart.beg",
         "in_restart.points.unsigned_int.draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040195,
-        "dEQP-GLES3.functional.primitive_restart.begin_re", 
+        "dEQP-GLES3.functional.primitive_restart.begin_re",
         "start.points.unsigned_int.draw_elements_instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040196,
-        "dEQP-GLES3.functional.primitive_restart.begin_", 
+        "dEQP-GLES3.functional.primitive_restart.begin_",
         "restart.points.unsigned_int.draw_range_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040257,
-        "dEQP-GLES3.functional.primitive_restart.begin_restart", 
+        "dEQP-GLES3.functional.primitive_restart.begin_restart",
         "_duplicate_restarts.points.unsigned_int.draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040258,
-        "dEQP-GLES3.functional.primitive_restart.begin_restart_dupl", 
+        "dEQP-GLES3.functional.primitive_restart.begin_restart_dupl",
         "icate_restarts.points.unsigned_int.draw_elements_instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040259,
-        "dEQP-GLES3.functional.primitive_restart.begin_restart_du", 
+        "dEQP-GLES3.functional.primitive_restart.begin_restart_du",
         "plicate_restarts.points.unsigned_int.draw_range_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040320,
-        "dEQP-GLES3.functional.primitive_restart.begin_res", 
+        "dEQP-GLES3.functional.primitive_restart.begin_res",
         "tart_end_restart.points.unsigned_int.draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040321,
-        "dEQP-GLES3.functional.primitive_restart.begin_restart_", 
+        "dEQP-GLES3.functional.primitive_restart.begin_restart_",
         "end_restart.points.unsigned_int.draw_elements_instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040322,
-        "dEQP-GLES3.functional.primitive_restart.begin_restar", 
+        "dEQP-GLES3.functional.primitive_restart.begin_restar",
         "t_end_restart.points.unsigned_int.draw_range_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040383,
-        "dEQP-GLES3.functional.primitive_restart.begin_restart_end_r", 
+        "dEQP-GLES3.functional.primitive_restart.begin_restart_end_r",
         "estart_duplicate_restarts.points.unsigned_int.draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040384,
-        "dEQP-GLES3.functional.primitive_restart.begin_restart_end_restar", 
+        "dEQP-GLES3.functional.primitive_restart.begin_restart_end_restar",
         "t_duplicate_restarts.points.unsigned_int.draw_elements_instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_040385,
-        "dEQP-GLES3.functional.primitive_restart.begin_restart_end_rest", 
+        "dEQP-GLES3.functional.primitive_restart.begin_restart_end_rest",
         "art_duplicate_restarts.points.unsigned_int.draw_range_elements");

@@ -24,161 +24,161 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004070,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "31.assignment.implicit_to_implicit.float_3x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004071,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "1.assignment.implicit_to_implicit.float_3x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004072,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.e", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.e",
         "s31.assignment.implicit_to_implicit.int_2x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004073,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "31.assignment.implicit_to_implicit.int_2x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004074,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "1.assignment.implicit_to_implicit.bool_3x3x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004075,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31",
         ".assignment.implicit_to_implicit.bool_3x3x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004076,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31",
         ".assignment.implicit_to_implicit.struct_5x5x4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004077,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31.", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31.",
         "assignment.implicit_to_implicit.struct_5x5x4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004078,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "31.assignment.implicit_to_implicit.vec3_1x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004079,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "1.assignment.implicit_to_implicit.vec3_1x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004080,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "1.assignment.implicit_to_implicit.ivec3_3x1x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004081,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31",
         ".assignment.implicit_to_implicit.ivec3_3x1x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004082,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "31.assignment.implicit_to_implicit.bvec3_3x1_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004083,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "1.assignment.implicit_to_implicit.bvec3_3x1_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004084,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "31.assignment.implicit_to_implicit.mat3_3x2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004085,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "1.assignment.implicit_to_implicit.mat3_3x2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004086,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "1.assignment.implicit_to_implicit.mat3_3x3x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004087,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31",
         ".assignment.implicit_to_implicit.mat3_3x3x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004088,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "31.assignment.implicit_to_implicit.mat3_3x4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004089,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "1.assignment.implicit_to_implicit.mat3_3x4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004362,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "32.assignment.implicit_to_implicit.float_3x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004363,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "2.assignment.implicit_to_implicit.float_3x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004364,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.e", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.e",
         "s32.assignment.implicit_to_implicit.int_2x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004365,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "32.assignment.implicit_to_implicit.int_2x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004366,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "2.assignment.implicit_to_implicit.bool_3x3x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004367,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32",
         ".assignment.implicit_to_implicit.bool_3x3x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004368,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32",
         ".assignment.implicit_to_implicit.struct_5x5x4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004369,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32.", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32.",
         "assignment.implicit_to_implicit.struct_5x5x4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004370,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "32.assignment.implicit_to_implicit.vec3_1x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004371,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "2.assignment.implicit_to_implicit.vec3_1x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004372,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "2.assignment.implicit_to_implicit.ivec3_3x1x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004373,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32",
         ".assignment.implicit_to_implicit.ivec3_3x1x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004374,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "32.assignment.implicit_to_implicit.bvec3_3x1_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004375,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "2.assignment.implicit_to_implicit.bvec3_3x1_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004376,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "32.assignment.implicit_to_implicit.mat3_3x2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004377,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "2.assignment.implicit_to_implicit.mat3_3x2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004378,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "2.assignment.implicit_to_implicit.mat3_3x3x3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004379,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32",
         ".assignment.implicit_to_implicit.mat3_3x3x3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004380,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es",
         "32.assignment.implicit_to_implicit.mat3_3x4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004381,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es3",
         "2.assignment.implicit_to_implicit.mat3_3x4_fragment");

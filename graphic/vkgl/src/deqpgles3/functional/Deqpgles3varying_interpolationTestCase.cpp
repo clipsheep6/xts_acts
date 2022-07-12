@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001547,
-        "dEQP-GLES3.functional.shaders.lin", 
+        "dEQP-GLES3.functional.shaders.lin",
         "kage.varying.interpolation.smooth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001548,
-        "dEQP-GLES3.functional.shaders.link", 
+        "dEQP-GLES3.functional.shaders.link",
         "age.varying.interpolation.centroid");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001549,
-        "dEQP-GLES3.functional.shaders.li", 
+        "dEQP-GLES3.functional.shaders.li",
         "nkage.varying.interpolation.flat");

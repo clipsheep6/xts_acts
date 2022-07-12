@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013133,
-        "dEQP-GLES31.functional.texture.gather", 
+        "dEQP-GLES31.functional.texture.gather",
         ".basic.2d.depth32f.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013134,
-        "dEQP-GLES31.functional.texture.gather", 
+        "dEQP-GLES31.functional.texture.gather",
         ".basic.2d.depth32f.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013202,
-        "dEQP-GLES31.functional.texture.gather.ba", 
+        "dEQP-GLES31.functional.texture.gather.ba",
         "sic.2d_array.depth32f.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013203,
-        "dEQP-GLES31.functional.texture.gather.ba", 
+        "dEQP-GLES31.functional.texture.gather.ba",
         "sic.2d_array.depth32f.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013411,
-        "dEQP-GLES31.functional.texture.gather.offset.imp", 
+        "dEQP-GLES31.functional.texture.gather.offset.imp",
         "lementation_offset.2d.depth32f.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013412,
-        "dEQP-GLES31.functional.texture.gather.offset.imp", 
+        "dEQP-GLES31.functional.texture.gather.offset.imp",
         "lementation_offset.2d.depth32f.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013480,
-        "dEQP-GLES31.functional.texture.gather.offset.implem", 
+        "dEQP-GLES31.functional.texture.gather.offset.implem",
         "entation_offset.2d_array.depth32f.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013481,
-        "dEQP-GLES31.functional.texture.gather.offset.implem", 
+        "dEQP-GLES31.functional.texture.gather.offset.implem",
         "entation_offset.2d_array.depth32f.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013609,
-        "dEQP-GLES31.functional.texture.gather.offset_dynamic", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynamic",
         ".implementation_offset.2d.depth32f.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013610,
-        "dEQP-GLES31.functional.texture.gather.offset_dynamic", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynamic",
         ".implementation_offset.2d.depth32f.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013678,
-        "dEQP-GLES31.functional.texture.gather.offset_dynamic.im", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynamic.im",
         "plementation_offset.2d_array.depth32f.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013679,
-        "dEQP-GLES31.functional.texture.gather.offset_dynamic.im", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynamic.im",
         "plementation_offset.2d_array.depth32f.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013807,
-        "dEQP-GLES31.functional.texture.gather.offsets.imp", 
+        "dEQP-GLES31.functional.texture.gather.offsets.imp",
         "lementation_offset.2d.depth32f.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013808,
-        "dEQP-GLES31.functional.texture.gather.offsets.imp", 
+        "dEQP-GLES31.functional.texture.gather.offsets.imp",
         "lementation_offset.2d.depth32f.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013876,
-        "dEQP-GLES31.functional.texture.gather.offsets.implem", 
+        "dEQP-GLES31.functional.texture.gather.offsets.implem",
         "entation_offset.2d_array.depth32f.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013877,
-        "dEQP-GLES31.functional.texture.gather.offsets.implem", 
+        "dEQP-GLES31.functional.texture.gather.offsets.implem",
         "entation_offset.2d_array.depth32f.base_level.level_2");

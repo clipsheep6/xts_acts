@@ -24,81 +24,81 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004377,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.arrays.return.float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004378,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".arrays.return.float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004379,
-        "dEQP-GLES3.functional.shade", 
+        "dEQP-GLES3.functional.shade",
         "rs.arrays.return.int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004380,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.arrays.return.int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004381,
-        "dEQP-GLES3.functional.shade", 
+        "dEQP-GLES3.functional.shade",
         "rs.arrays.return.bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004382,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.arrays.return.bool_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004383,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "arrays.return.float_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004384,
-        "dEQP-GLES3.functional.shaders.a", 
+        "dEQP-GLES3.functional.shaders.a",
         "rrays.return.float_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004385,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.arrays.return.struct_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004386,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".arrays.return.struct_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004387,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".arrays.return.int_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004388,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "arrays.return.int_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004389,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "arrays.return.bool_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004390,
-        "dEQP-GLES3.functional.shaders.a", 
+        "dEQP-GLES3.functional.shaders.a",
         "rrays.return.bool_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004391,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "arrays.return.float_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004392,
-        "dEQP-GLES3.functional.shaders.a", 
+        "dEQP-GLES3.functional.shaders.a",
         "rrays.return.float_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004393,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".arrays.return.int_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004394,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "arrays.return.int_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004395,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "arrays.return.bool_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004396,
-        "dEQP-GLES3.functional.shaders.a", 
+        "dEQP-GLES3.functional.shaders.a",
         "rrays.return.bool_mat3_fragment");

@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033033,
-        "dEQP-GLES3.functional.vertex_arrays.single_attri", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attri",
         "bute.normalize.unsigned_short.components2_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033034,
-        "dEQP-GLES3.functional.vertex_arrays.single_attrib", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attrib",
         "ute.normalize.unsigned_short.components2_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033035,
-        "dEQP-GLES3.functional.vertex_arrays.single_attri", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attri",
         "bute.normalize.unsigned_short.components3_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033036,
-        "dEQP-GLES3.functional.vertex_arrays.single_attrib", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attrib",
         "ute.normalize.unsigned_short.components3_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033037,
-        "dEQP-GLES3.functional.vertex_arrays.single_attri", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attri",
         "bute.normalize.unsigned_short.components4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033038,
-        "dEQP-GLES3.functional.vertex_arrays.single_attrib", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attrib",
         "ute.normalize.unsigned_short.components4_quads256");

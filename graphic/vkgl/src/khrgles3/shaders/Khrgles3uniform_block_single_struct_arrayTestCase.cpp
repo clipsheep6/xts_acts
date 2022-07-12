@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001977,
-        "KHR-GLES3.shaders.uniform_block.singl", 
+        "KHR-GLES3.shaders.uniform_block.singl",
         "e_struct_array.per_block_buffer_shared");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001978,
-        "KHR-GLES3.shaders.uniform_block.single_struct", 
+        "KHR-GLES3.shaders.uniform_block.single_struct",
         "_array.per_block_buffer_shared_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001979,
-        "KHR-GLES3.shaders.uniform_block.singl", 
+        "KHR-GLES3.shaders.uniform_block.singl",
         "e_struct_array.per_block_buffer_packed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001980,
-        "KHR-GLES3.shaders.uniform_block.single_struct", 
+        "KHR-GLES3.shaders.uniform_block.single_struct",
         "_array.per_block_buffer_packed_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001981,
-        "KHR-GLES3.shaders.uniform_block.singl", 
+        "KHR-GLES3.shaders.uniform_block.singl",
         "e_struct_array.per_block_buffer_std140");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001982,
-        "KHR-GLES3.shaders.uniform_block.single_struct", 
+        "KHR-GLES3.shaders.uniform_block.single_struct",
         "_array.per_block_buffer_std140_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001983,
-        "KHR-GLES3.shaders.uniform_block.single_stru", 
+        "KHR-GLES3.shaders.uniform_block.single_stru",
         "ct_array.single_buffer_shared_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001984,
-        "KHR-GLES3.shaders.uniform_block.single_stru", 
+        "KHR-GLES3.shaders.uniform_block.single_stru",
         "ct_array.single_buffer_packed_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001985,
-        "KHR-GLES3.shaders.uniform_block.single_stru", 
+        "KHR-GLES3.shaders.uniform_block.single_stru",
         "ct_array.single_buffer_std140_instance_array");

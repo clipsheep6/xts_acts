@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016494,
-        "dEQP-GLES31.functional.sample_shading.min", 
+        "dEQP-GLES31.functional.sample_shading.min",
         "_sample_shading.default_framebuffer_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016495,
-        "dEQP-GLES31.functional.sample_shading.min_", 
+        "dEQP-GLES31.functional.sample_shading.min_",
         "sample_shading.default_framebuffer_discard");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016496,
-        "dEQP-GLES31.functional.sample_shading.min_samp", 
+        "dEQP-GLES31.functional.sample_shading.min_samp",
         "le_shading.multisample_texture_samples_2_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016497,
-        "dEQP-GLES31.functional.sample_shading.min_sampl", 
+        "dEQP-GLES31.functional.sample_shading.min_sampl",
         "e_shading.multisample_texture_samples_2_discard");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016498,
-        "dEQP-GLES31.functional.sample_shading.min_samp", 
+        "dEQP-GLES31.functional.sample_shading.min_samp",
         "le_shading.multisample_texture_samples_4_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016499,
-        "dEQP-GLES31.functional.sample_shading.min_sampl", 
+        "dEQP-GLES31.functional.sample_shading.min_sampl",
         "e_shading.multisample_texture_samples_4_discard");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016500,
-        "dEQP-GLES31.functional.sample_shading.min_samp", 
+        "dEQP-GLES31.functional.sample_shading.min_samp",
         "le_shading.multisample_texture_samples_8_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016501,
-        "dEQP-GLES31.functional.sample_shading.min_sampl", 
+        "dEQP-GLES31.functional.sample_shading.min_sampl",
         "e_shading.multisample_texture_samples_8_discard");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016502,
-        "dEQP-GLES31.functional.sample_shading.min_samp", 
+        "dEQP-GLES31.functional.sample_shading.min_samp",
         "le_shading.multisample_texture_samples_16_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016503,
-        "dEQP-GLES31.functional.sample_shading.min_sampl", 
+        "dEQP-GLES31.functional.sample_shading.min_sampl",
         "e_shading.multisample_texture_samples_16_discard");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016504,
-        "dEQP-GLES31.functional.sample_shading.min_sample", 
+        "dEQP-GLES31.functional.sample_shading.min_sample",
         "_shading.multisample_renderbuffer_samples_2_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016505,
-        "dEQP-GLES31.functional.sample_shading.min_sample_", 
+        "dEQP-GLES31.functional.sample_shading.min_sample_",
         "shading.multisample_renderbuffer_samples_2_discard");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016506,
-        "dEQP-GLES31.functional.sample_shading.min_sample", 
+        "dEQP-GLES31.functional.sample_shading.min_sample",
         "_shading.multisample_renderbuffer_samples_4_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016507,
-        "dEQP-GLES31.functional.sample_shading.min_sample_", 
+        "dEQP-GLES31.functional.sample_shading.min_sample_",
         "shading.multisample_renderbuffer_samples_4_discard");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016508,
-        "dEQP-GLES31.functional.sample_shading.min_sample", 
+        "dEQP-GLES31.functional.sample_shading.min_sample",
         "_shading.multisample_renderbuffer_samples_8_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016509,
-        "dEQP-GLES31.functional.sample_shading.min_sample_", 
+        "dEQP-GLES31.functional.sample_shading.min_sample_",
         "shading.multisample_renderbuffer_samples_8_discard");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016510,
-        "dEQP-GLES31.functional.sample_shading.min_sample_", 
+        "dEQP-GLES31.functional.sample_shading.min_sample_",
         "shading.multisample_renderbuffer_samples_16_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016511,
-        "dEQP-GLES31.functional.sample_shading.min_sample_s", 
+        "dEQP-GLES31.functional.sample_shading.min_sample_s",
         "hading.multisample_renderbuffer_samples_16_discard");

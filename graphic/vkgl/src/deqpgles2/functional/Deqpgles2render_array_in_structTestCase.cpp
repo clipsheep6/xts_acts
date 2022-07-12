@@ -24,157 +24,157 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014408,
-        "dEQP-GLES2.functional.uniform_api.value.init", 
+        "dEQP-GLES2.functional.uniform_api.value.init",
         "ial.render.array_in_struct.float_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014409,
-        "dEQP-GLES2.functional.uniform_api.value.initi", 
+        "dEQP-GLES2.functional.uniform_api.value.initi",
         "al.render.array_in_struct.float_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014410,
-        "dEQP-GLES2.functional.uniform_api.value.ini", 
+        "dEQP-GLES2.functional.uniform_api.value.ini",
         "tial.render.array_in_struct.float_vec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014411,
-        "dEQP-GLES2.functional.uniform_api.value.ini", 
+        "dEQP-GLES2.functional.uniform_api.value.ini",
         "tial.render.array_in_struct.mat4_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014412,
-        "dEQP-GLES2.functional.uniform_api.value.init", 
+        "dEQP-GLES2.functional.uniform_api.value.init",
         "ial.render.array_in_struct.mat4_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014413,
-        "dEQP-GLES2.functional.uniform_api.value.in", 
+        "dEQP-GLES2.functional.uniform_api.value.in",
         "itial.render.array_in_struct.mat4_mat2_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014414,
-        "dEQP-GLES2.functional.uniform_api.value.ini", 
+        "dEQP-GLES2.functional.uniform_api.value.ini",
         "tial.render.array_in_struct.int_ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014415,
-        "dEQP-GLES2.functional.uniform_api.value.init", 
+        "dEQP-GLES2.functional.uniform_api.value.init",
         "ial.render.array_in_struct.int_ivec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014416,
-        "dEQP-GLES2.functional.uniform_api.value.in", 
+        "dEQP-GLES2.functional.uniform_api.value.in",
         "itial.render.array_in_struct.int_ivec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014417,
-        "dEQP-GLES2.functional.uniform_api.value.init", 
+        "dEQP-GLES2.functional.uniform_api.value.init",
         "ial.render.array_in_struct.bool_bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014418,
-        "dEQP-GLES2.functional.uniform_api.value.initi", 
+        "dEQP-GLES2.functional.uniform_api.value.initi",
         "al.render.array_in_struct.bool_bvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014419,
-        "dEQP-GLES2.functional.uniform_api.value.ini", 
+        "dEQP-GLES2.functional.uniform_api.value.ini",
         "tial.render.array_in_struct.bool_bvec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014734,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.b", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.b",
         "y_pointer.render.array_in_struct.float_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014735,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by",
         "_pointer.render.array_in_struct.float_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014736,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "by_pointer.render.array_in_struct.float_vec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014737,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "by_pointer.render.array_in_struct.mat4_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014738,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.b", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.b",
         "y_pointer.render.array_in_struct.mat4_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014739,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".by_pointer.render.array_in_struct.mat4_mat2_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014740,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "by_pointer.render.array_in_struct.int_ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014741,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.b", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.b",
         "y_pointer.render.array_in_struct.int_ivec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014742,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".by_pointer.render.array_in_struct.int_ivec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014743,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.b", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.b",
         "y_pointer.render.array_in_struct.bool_bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014744,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by",
         "_pointer.render.array_in_struct.bool_bvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014745,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "by_pointer.render.array_in_struct.bool_bvec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014746,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by_poi", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by_poi",
         "nter.render.array_in_struct.sampler2D_samplerCube_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014747,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by_poin", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by_poin",
         "ter.render.array_in_struct.sampler2D_samplerCube_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014748,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by_po", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by_po",
         "inter.render.array_in_struct.sampler2D_samplerCube_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015020,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "by_value.render.array_in_struct.float_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015021,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.b", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.b",
         "y_value.render.array_in_struct.float_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015022,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".by_value.render.array_in_struct.float_vec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015023,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".by_value.render.array_in_struct.int_ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015024,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "by_value.render.array_in_struct.int_ivec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015025,
-        "dEQP-GLES2.functional.uniform_api.value.assigne", 
+        "dEQP-GLES2.functional.uniform_api.value.assigne",
         "d.by_value.render.array_in_struct.int_ivec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015026,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "by_value.render.array_in_struct.bool_bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015027,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.b", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.b",
         "y_value.render.array_in_struct.bool_bvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015028,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".by_value.render.array_in_struct.bool_bvec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015029,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by_va", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by_va",
         "lue.render.array_in_struct.sampler2D_samplerCube_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015030,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by_val", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by_val",
         "ue.render.array_in_struct.sampler2D_samplerCube_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015031,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by_v", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by_v",
         "alue.render.array_in_struct.sampler2D_samplerCube_both");

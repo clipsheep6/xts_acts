@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001968,
-        "KHR-GLES3.shaders.uniform_block.si", 
+        "KHR-GLES3.shaders.uniform_block.si",
         "ngle_struct.per_block_buffer_shared");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001969,
-        "KHR-GLES3.shaders.uniform_block.single_str", 
+        "KHR-GLES3.shaders.uniform_block.single_str",
         "uct.per_block_buffer_shared_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001970,
-        "KHR-GLES3.shaders.uniform_block.si", 
+        "KHR-GLES3.shaders.uniform_block.si",
         "ngle_struct.per_block_buffer_packed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001971,
-        "KHR-GLES3.shaders.uniform_block.single_str", 
+        "KHR-GLES3.shaders.uniform_block.single_str",
         "uct.per_block_buffer_packed_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001972,
-        "KHR-GLES3.shaders.uniform_block.si", 
+        "KHR-GLES3.shaders.uniform_block.si",
         "ngle_struct.per_block_buffer_std140");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001973,
-        "KHR-GLES3.shaders.uniform_block.single_str", 
+        "KHR-GLES3.shaders.uniform_block.single_str",
         "uct.per_block_buffer_std140_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001974,
-        "KHR-GLES3.shaders.uniform_block.single_s", 
+        "KHR-GLES3.shaders.uniform_block.single_s",
         "truct.single_buffer_shared_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001975,
-        "KHR-GLES3.shaders.uniform_block.single_s", 
+        "KHR-GLES3.shaders.uniform_block.single_s",
         "truct.single_buffer_packed_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001976,
-        "KHR-GLES3.shaders.uniform_block.single_s", 
+        "KHR-GLES3.shaders.uniform_block.single_s",
         "truct.single_buffer_std140_instance_array");

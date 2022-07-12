@@ -24,145 +24,145 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016241,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_",
         "memory_barrier.ssbo_atomic_dispatch_2_calls_1k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016242,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_",
         "memory_barrier.ssbo_atomic_dispatch_5_calls_1k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016243,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_m", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_m",
         "emory_barrier.ssbo_atomic_dispatch_100_calls_1k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016244,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_",
         "memory_barrier.ssbo_atomic_dispatch_2_calls_4k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016245,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_",
         "memory_barrier.ssbo_atomic_dispatch_5_calls_4k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016246,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_m", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_m",
         "emory_barrier.ssbo_atomic_dispatch_100_calls_4k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016247,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_",
         "memory_barrier.ssbo_atomic_dispatch_2_calls_32k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016248,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_",
         "memory_barrier.ssbo_atomic_dispatch_5_calls_32k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016249,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_m", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_m",
         "emory_barrier.ssbo_atomic_dispatch_100_calls_32k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016250,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_m", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_m",
         "emory_barrier.image_atomic_dispatch_2_calls_8x8_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016251,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_m", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_m",
         "emory_barrier.image_atomic_dispatch_5_calls_8x8_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016252,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_me", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_me",
         "mory_barrier.image_atomic_dispatch_100_calls_8x8_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016253,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_me", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_me",
         "mory_barrier.image_atomic_dispatch_2_calls_32x32_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016254,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_me", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_me",
         "mory_barrier.image_atomic_dispatch_5_calls_32x32_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016255,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_mem", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_mem",
         "ory_barrier.image_atomic_dispatch_100_calls_32x32_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016256,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_mem", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_mem",
         "ory_barrier.image_atomic_dispatch_2_calls_128x128_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016257,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_mem", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_mem",
         "ory_barrier.image_atomic_dispatch_5_calls_128x128_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016258,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_memo", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_memo",
         "ry_barrier.image_atomic_dispatch_100_calls_128x128_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016259,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_m", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_m",
         "emory_barrier.atomic_counter_dispatch_2_calls_32_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016260,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_m", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_m",
         "emory_barrier.atomic_counter_dispatch_5_calls_32_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016261,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_me", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_me",
         "mory_barrier.atomic_counter_dispatch_100_calls_32_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016262,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_me", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_me",
         "mory_barrier.atomic_counter_dispatch_2_calls_128_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016263,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_me", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_me",
         "mory_barrier.atomic_counter_dispatch_5_calls_128_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016264,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_mem", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_mem",
         "ory_barrier.atomic_counter_dispatch_100_calls_128_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016265,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_m", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_m",
         "emory_barrier.atomic_counter_dispatch_2_calls_1k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016266,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_m", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_m",
         "emory_barrier.atomic_counter_dispatch_5_calls_1k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016267,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_me", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_me",
         "mory_barrier.atomic_counter_dispatch_100_calls_1k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016268,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_",
         "barrier.ssbo_atomic_counter_mixed_dispatch_2_calls_32_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016269,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_",
         "barrier.ssbo_atomic_counter_mixed_dispatch_5_calls_32_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016270,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_b", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_b",
         "arrier.ssbo_atomic_counter_mixed_dispatch_100_calls_32_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016271,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_",
         "barrier.ssbo_atomic_counter_mixed_dispatch_2_calls_128_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016272,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_",
         "barrier.ssbo_atomic_counter_mixed_dispatch_5_calls_128_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016273,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_b", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_b",
         "arrier.ssbo_atomic_counter_mixed_dispatch_100_calls_128_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016274,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_",
         "barrier.ssbo_atomic_counter_mixed_dispatch_2_calls_1k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016275,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_",
         "barrier.ssbo_atomic_counter_mixed_dispatch_5_calls_1k_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016276,
-        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_b", 
+        "dEQP-GLES31.functional.synchronization.inter_call.without_memory_b",
         "arrier.ssbo_atomic_counter_mixed_dispatch_100_calls_1k_invocations");

@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001342,
-        "dEQP-GLES2.functional.shaders.declarations.i", 
+        "dEQP-GLES2.functional.shaders.declarations.i",
         "nvalid_declarations.attribute_in_vertex_main");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001343,
-        "dEQP-GLES2.functional.shaders.declarations", 
+        "dEQP-GLES2.functional.shaders.declarations",
         ".invalid_declarations.attribute_in_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001344,
-        "dEQP-GLES2.functional.shaders.declarations.", 
+        "dEQP-GLES2.functional.shaders.declarations.",
         "invalid_declarations.uniform_in_vertex_main");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001345,
-        "dEQP-GLES2.functional.shaders.declarations.i", 
+        "dEQP-GLES2.functional.shaders.declarations.i",
         "nvalid_declarations.uniform_in_fragment_main");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001346,
-        "dEQP-GLES2.functional.shaders.declarations.", 
+        "dEQP-GLES2.functional.shaders.declarations.",
         "invalid_declarations.varying_in_vertex_main");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001347,
-        "dEQP-GLES2.functional.shaders.declarations.i", 
+        "dEQP-GLES2.functional.shaders.declarations.i",
         "nvalid_declarations.varying_in_fragment_main");

@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020608,
-        "dEQP-GLES31.functional.program_interface", 
+        "dEQP-GLES31.functional.program_interface",
         "_query.uniform.location.named_block.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020609,
-        "dEQP-GLES31.functional.program_interfac", 
+        "dEQP-GLES31.functional.program_interfac",
         "e_query.uniform.location.named_block.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020610,
-        "dEQP-GLES31.functional.program_interface", 
+        "dEQP-GLES31.functional.program_interface",
         "_query.uniform.location.named_block.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020611,
-        "dEQP-GLES31.functional.program_interface", 
+        "dEQP-GLES31.functional.program_interface",
         "_query.uniform.location.named_block.bool");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020612,
-        "dEQP-GLES31.functional.program_interface", 
+        "dEQP-GLES31.functional.program_interface",
         "_query.uniform.location.named_block.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020613,
-        "dEQP-GLES31.functional.program_interface", 
+        "dEQP-GLES31.functional.program_interface",
         "_query.uniform.location.named_block.vec4");

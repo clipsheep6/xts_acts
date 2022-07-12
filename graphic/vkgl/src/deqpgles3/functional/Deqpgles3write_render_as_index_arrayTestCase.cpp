@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000401,
-        "dEQP-GLES3.functional.buffer.map.wr", 
+        "dEQP-GLES3.functional.buffer.map.wr",
         "ite.render_as_index_array.array_full");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000402,
-        "dEQP-GLES3.functional.buffer.map.writ", 
+        "dEQP-GLES3.functional.buffer.map.writ",
         "e.render_as_index_array.array_partial");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000403,
-        "dEQP-GLES3.functional.buffer.map.writ", 
+        "dEQP-GLES3.functional.buffer.map.writ",
         "e.render_as_index_array.copy_read_full");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000404,
-        "dEQP-GLES3.functional.buffer.map.write.", 
+        "dEQP-GLES3.functional.buffer.map.write.",
         "render_as_index_array.copy_read_partial");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000405,
-        "dEQP-GLES3.functional.buffer.map.write", 
+        "dEQP-GLES3.functional.buffer.map.write",
         ".render_as_index_array.copy_write_full");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000406,
-        "dEQP-GLES3.functional.buffer.map.write.", 
+        "dEQP-GLES3.functional.buffer.map.write.",
         "render_as_index_array.copy_write_partial");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000407,
-        "dEQP-GLES3.functional.buffer.map.write.", 
+        "dEQP-GLES3.functional.buffer.map.write.",
         "render_as_index_array.element_array_full");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000408,
-        "dEQP-GLES3.functional.buffer.map.write.re", 
+        "dEQP-GLES3.functional.buffer.map.write.re",
         "nder_as_index_array.element_array_partial");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000409,
-        "dEQP-GLES3.functional.buffer.map.write", 
+        "dEQP-GLES3.functional.buffer.map.write",
         ".render_as_index_array.pixel_pack_full");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000410,
-        "dEQP-GLES3.functional.buffer.map.write.", 
+        "dEQP-GLES3.functional.buffer.map.write.",
         "render_as_index_array.pixel_pack_partial");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000411,
-        "dEQP-GLES3.functional.buffer.map.write.", 
+        "dEQP-GLES3.functional.buffer.map.write.",
         "render_as_index_array.pixel_unpack_full");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000412,
-        "dEQP-GLES3.functional.buffer.map.write.r", 
+        "dEQP-GLES3.functional.buffer.map.write.r",
         "ender_as_index_array.pixel_unpack_partial");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000413,
-        "dEQP-GLES3.functional.buffer.map.write.ren", 
+        "dEQP-GLES3.functional.buffer.map.write.ren",
         "der_as_index_array.transform_feedback_full");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000414,
-        "dEQP-GLES3.functional.buffer.map.write.rend", 
+        "dEQP-GLES3.functional.buffer.map.write.rend",
         "er_as_index_array.transform_feedback_partial");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000415,
-        "dEQP-GLES3.functional.buffer.map.wri", 
+        "dEQP-GLES3.functional.buffer.map.wri",
         "te.render_as_index_array.uniform_full");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000416,
-        "dEQP-GLES3.functional.buffer.map.write", 
+        "dEQP-GLES3.functional.buffer.map.write",
         ".render_as_index_array.uniform_partial");

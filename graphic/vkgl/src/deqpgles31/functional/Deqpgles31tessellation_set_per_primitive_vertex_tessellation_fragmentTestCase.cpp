@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025006,
-        "dEQP-GLES31.functional.primitive_bounding_box.triangles.tessellatio", 
+        "dEQP-GLES31.functional.primitive_bounding_box.triangles.tessellatio",
         "n_set_per_primitive.vertex_tessellation_fragment.default_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025007,
-        "dEQP-GLES31.functional.primitive_bounding_box.triangles.tes", 
+        "dEQP-GLES31.functional.primitive_bounding_box.triangles.tes",
         "sellation_set_per_primitive.vertex_tessellation_fragment.fbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025046,
-        "dEQP-GLES31.functional.primitive_bounding_box.lines.tessellation_", 
+        "dEQP-GLES31.functional.primitive_bounding_box.lines.tessellation_",
         "set_per_primitive.vertex_tessellation_fragment.default_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025047,
-        "dEQP-GLES31.functional.primitive_bounding_box.lines.tesse", 
+        "dEQP-GLES31.functional.primitive_bounding_box.lines.tesse",
         "llation_set_per_primitive.vertex_tessellation_fragment.fbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025086,
-        "dEQP-GLES31.functional.primitive_bounding_box.points.tessellation_", 
+        "dEQP-GLES31.functional.primitive_bounding_box.points.tessellation_",
         "set_per_primitive.vertex_tessellation_fragment.default_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025087,
-        "dEQP-GLES31.functional.primitive_bounding_box.points.tesse", 
+        "dEQP-GLES31.functional.primitive_bounding_box.points.tesse",
         "llation_set_per_primitive.vertex_tessellation_fragment.fbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025126,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_lines.tessellatio", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_lines.tessellatio",
         "n_set_per_primitive.vertex_tessellation_fragment.default_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025127,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_lines.tes", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_lines.tes",
         "sellation_set_per_primitive.vertex_tessellation_fragment.fbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025166,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_points.tessellati", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_points.tessellati",
         "on_set_per_primitive.vertex_tessellation_fragment.default_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025167,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_points.te", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_points.te",
         "ssellation_set_per_primitive.vertex_tessellation_fragment.fbo");

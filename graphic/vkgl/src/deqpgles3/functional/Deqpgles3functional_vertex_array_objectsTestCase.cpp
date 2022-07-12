@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039926,
-        "dEQP-GLES3.functional.verte", 
+        "dEQP-GLES3.functional.verte",
         "x_array_objects.diff_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039927,
-        "dEQP-GLES3.functional.vert", 
+        "dEQP-GLES3.functional.vert",
         "ex_array_objects.diff_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039928,
-        "dEQP-GLES3.functional.verte", 
+        "dEQP-GLES3.functional.verte",
         "x_array_objects.diff_stride");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039929,
-        "dEQP-GLES3.functional.vert", 
+        "dEQP-GLES3.functional.vert",
         "ex_array_objects.diff_type");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039930,
-        "dEQP-GLES3.functional.verte", 
+        "dEQP-GLES3.functional.verte",
         "x_array_objects.diff_integer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039931,
-        "dEQP-GLES3.functional.verte", 
+        "dEQP-GLES3.functional.verte",
         "x_array_objects.diff_divisor");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039932,
-        "dEQP-GLES3.functional.verte", 
+        "dEQP-GLES3.functional.verte",
         "x_array_objects.diff_offset");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039933,
-        "dEQP-GLES3.functional.vertex", 
+        "dEQP-GLES3.functional.vertex",
         "_array_objects.diff_normalize");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039934,
-        "dEQP-GLES3.functional.verte", 
+        "dEQP-GLES3.functional.verte",
         "x_array_objects.diff_indices");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039935,
-        "dEQP-GLES3.functional.vertex", 
+        "dEQP-GLES3.functional.vertex",
         "_array_objects.all_attributes");

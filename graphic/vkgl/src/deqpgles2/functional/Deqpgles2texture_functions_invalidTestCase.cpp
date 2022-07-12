@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007822,
-        "dEQP-GLES2.functional.shaders.texture_fun", 
+        "dEQP-GLES2.functional.shaders.texture_fun",
         "ctions.invalid.texturecubelod_in_fragment");

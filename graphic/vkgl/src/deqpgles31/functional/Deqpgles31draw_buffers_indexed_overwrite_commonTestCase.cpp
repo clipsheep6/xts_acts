@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037643,
-        "dEQP-GLES31.functional.draw_buffers_indexed.", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.",
         "overwrite_common.common_enable_buffer_enable");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037644,
-        "dEQP-GLES31.functional.draw_buffers_indexed.o", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.o",
         "verwrite_common.common_disable_buffer_disable");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037645,
-        "dEQP-GLES31.functional.draw_buffers_indexed.", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.",
         "overwrite_common.common_disable_buffer_enable");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037646,
-        "dEQP-GLES31.functional.draw_buffers_indexed.", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.",
         "overwrite_common.common_enable_buffer_disable");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037647,
-        "dEQP-GLES31.functional.draw_buffers_indexed.ov", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.ov",
         "erwrite_common.common_blend_eq_buffer_blend_eq");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037648,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwr", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwr",
         "ite_common.common_blend_eq_buffer_separate_blend_eq");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037649,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwr", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwr",
         "ite_common.common_blend_eq_buffer_advanced_blend_eq");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037650,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwr", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwr",
         "ite_common.common_separate_blend_eq_buffer_blend_eq");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037651,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwrite_c", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwrite_c",
         "ommon.common_separate_blend_eq_buffer_separate_blend_eq");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037652,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwrite_c", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwrite_c",
         "ommon.common_separate_blend_eq_buffer_advanced_blend_eq");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037653,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwr", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwr",
         "ite_common.common_advanced_blend_eq_buffer_blend_eq");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037654,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwrite_c", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwrite_c",
         "ommon.common_advanced_blend_eq_buffer_separate_blend_eq");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037655,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwrite_c", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwrite_c",
         "ommon.common_advanced_blend_eq_buffer_advanced_blend_eq");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037656,
-        "dEQP-GLES31.functional.draw_buffers_indexed.over", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.over",
         "write_common.common_blend_func_buffer_blend_func");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037657,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwrit", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwrit",
         "e_common.common_blend_func_buffer_separate_blend_func");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037658,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwrit", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwrit",
         "e_common.common_separate_blend_func_buffer_blend_func");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037659,
-        "dEQP-GLES31.functional.draw_buffers_indexed.overwrite_com", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.overwrite_com",
         "mon.common_separate_blend_func_buffer_separate_blend_func");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037660,
-        "dEQP-GLES31.functional.draw_buffers_indexed.over", 
+        "dEQP-GLES31.functional.draw_buffers_indexed.over",
         "write_common.common_color_mask_buffer_color_mask");

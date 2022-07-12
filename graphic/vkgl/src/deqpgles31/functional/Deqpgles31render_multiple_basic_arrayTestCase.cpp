@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017062,
-        "dEQP-GLES31.functional.program_uniform.by_", 
+        "dEQP-GLES31.functional.program_uniform.by_",
         "pointer.render.multiple_basic_array.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017063,
-        "dEQP-GLES31.functional.program_uniform.by_p", 
+        "dEQP-GLES31.functional.program_uniform.by_p",
         "ointer.render.multiple_basic_array.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017064,
-        "dEQP-GLES31.functional.program_uniform.by", 
+        "dEQP-GLES31.functional.program_uniform.by",
         "_pointer.render.multiple_basic_array.both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017431,
-        "dEQP-GLES31.functional.program_uniform.by", 
+        "dEQP-GLES31.functional.program_uniform.by",
         "_value.render.multiple_basic_array.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017432,
-        "dEQP-GLES31.functional.program_uniform.by_", 
+        "dEQP-GLES31.functional.program_uniform.by_",
         "value.render.multiple_basic_array.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017433,
-        "dEQP-GLES31.functional.program_uniform.b", 
+        "dEQP-GLES31.functional.program_uniform.b",
         "y_value.render.multiple_basic_array.both");

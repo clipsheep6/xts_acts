@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023077,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.vertex_fragment.builtin.gl_position");

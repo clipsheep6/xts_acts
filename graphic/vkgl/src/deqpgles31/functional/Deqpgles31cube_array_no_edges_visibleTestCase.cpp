@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012489,
-        "dEQP-GLES31.functional.texture.filteri", 
+        "dEQP-GLES31.functional.texture.filteri",
         "ng.cube_array.no_edges_visible.nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012490,
-        "dEQP-GLES31.functional.texture.filter", 
+        "dEQP-GLES31.functional.texture.filter",
         "ing.cube_array.no_edges_visible.linear");

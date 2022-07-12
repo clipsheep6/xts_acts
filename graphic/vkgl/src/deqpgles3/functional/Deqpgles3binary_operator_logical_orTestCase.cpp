@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012146,
-        "dEQP-GLES3.functional.shaders.operator", 
+        "dEQP-GLES3.functional.shaders.operator",
         ".binary_operator.logical_or.bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012147,
-        "dEQP-GLES3.functional.shaders.operator.", 
+        "dEQP-GLES3.functional.shaders.operator.",
         "binary_operator.logical_or.bool_fragment");

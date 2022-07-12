@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007972,
-        "dEQP-GLES31.functional.tesse", 
+        "dEQP-GLES31.functional.tesse",
         "llation.winding.triangles_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007973,
-        "dEQP-GLES31.functional.tesse", 
+        "dEQP-GLES31.functional.tesse",
         "llation.winding.triangles_cw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007974,
-        "dEQP-GLES31.functional.tes", 
+        "dEQP-GLES31.functional.tes",
         "sellation.winding.quads_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007975,
-        "dEQP-GLES31.functional.tes", 
+        "dEQP-GLES31.functional.tes",
         "sellation.winding.quads_cw");

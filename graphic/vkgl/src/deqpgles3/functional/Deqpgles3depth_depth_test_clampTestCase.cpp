@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032046,
-        "dEQP-GLES3.functional.fbo.depth.d", 
+        "dEQP-GLES3.functional.fbo.depth.d",
         "epth_test_clamp.depth_component32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032047,
-        "dEQP-GLES3.functional.fbo.depth.d", 
+        "dEQP-GLES3.functional.fbo.depth.d",
         "epth_test_clamp.depth_component24");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032048,
-        "dEQP-GLES3.functional.fbo.depth.d", 
+        "dEQP-GLES3.functional.fbo.depth.d",
         "epth_test_clamp.depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032049,
-        "dEQP-GLES3.functional.fbo.depth.d", 
+        "dEQP-GLES3.functional.fbo.depth.d",
         "epth_test_clamp.depth32f_stencil8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032050,
-        "dEQP-GLES3.functional.fbo.depth.", 
+        "dEQP-GLES3.functional.fbo.depth.",
         "depth_test_clamp.depth24_stencil8");

@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001164,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.conditionals.ifdef_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001165,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".conditionals.ifdef_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001166,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.conditionals.ifdef_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001167,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".conditionals.ifdef_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001168,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.conditionals.ifdef_3_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001169,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".conditionals.ifdef_3_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001170,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.conditionals.ifndef_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001171,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".conditionals.ifndef_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001172,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.conditionals.ifndef_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001173,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".conditionals.ifndef_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001174,
-        "KHR-GLES3.shaders.preprocessor.conditio", 
+        "KHR-GLES3.shaders.preprocessor.conditio",
         "nals.mixed_conditional_inclusion_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001175,
-        "KHR-GLES3.shaders.preprocessor.condition", 
+        "KHR-GLES3.shaders.preprocessor.condition",
         "als.mixed_conditional_inclusion_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001176,
-        "KHR-GLES3.shaders.preprocessor.", 
+        "KHR-GLES3.shaders.preprocessor.",
         "conditionals.nested_if_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001177,
-        "KHR-GLES3.shaders.preprocessor.c", 
+        "KHR-GLES3.shaders.preprocessor.c",
         "onditionals.nested_if_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001178,
-        "KHR-GLES3.shaders.preprocessor.", 
+        "KHR-GLES3.shaders.preprocessor.",
         "conditionals.nested_if_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001179,
-        "KHR-GLES3.shaders.preprocessor.c", 
+        "KHR-GLES3.shaders.preprocessor.c",
         "onditionals.nested_if_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001180,
-        "KHR-GLES3.shaders.preprocessor.", 
+        "KHR-GLES3.shaders.preprocessor.",
         "conditionals.nested_if_3_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001181,
-        "KHR-GLES3.shaders.preprocessor.c", 
+        "KHR-GLES3.shaders.preprocessor.c",
         "onditionals.nested_if_3_fragment");

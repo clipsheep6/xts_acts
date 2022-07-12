@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007639,
-        "dEQP-GLES31.functional.compute.", 
+        "dEQP-GLES31.functional.compute.",
         "shared_var.atomic.add.lowp_uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007640,
-        "dEQP-GLES31.functional.compute", 
+        "dEQP-GLES31.functional.compute",
         ".shared_var.atomic.add.lowp_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007641,
-        "dEQP-GLES31.functional.compute.s", 
+        "dEQP-GLES31.functional.compute.s",
         "hared_var.atomic.add.mediump_uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007642,
-        "dEQP-GLES31.functional.compute.s", 
+        "dEQP-GLES31.functional.compute.s",
         "hared_var.atomic.add.mediump_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007643,
-        "dEQP-GLES31.functional.compute.", 
+        "dEQP-GLES31.functional.compute.",
         "shared_var.atomic.add.highp_uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007644,
-        "dEQP-GLES31.functional.compute.", 
+        "dEQP-GLES31.functional.compute.",
         "shared_var.atomic.add.highp_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_010339,
-        "dEQP-GLES31.functional.s", 
+        "dEQP-GLES31.functional.s",
         "sbo.atomic.add.lowp_uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_010340,
-        "dEQP-GLES31.functional.", 
+        "dEQP-GLES31.functional.",
         "ssbo.atomic.add.lowp_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_010341,
-        "dEQP-GLES31.functional.ss", 
+        "dEQP-GLES31.functional.ss",
         "bo.atomic.add.mediump_uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_010342,
-        "dEQP-GLES31.functional.ss", 
+        "dEQP-GLES31.functional.ss",
         "bo.atomic.add.mediump_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_010343,
-        "dEQP-GLES31.functional.s", 
+        "dEQP-GLES31.functional.s",
         "sbo.atomic.add.highp_uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_010344,
-        "dEQP-GLES31.functional.s", 
+        "dEQP-GLES31.functional.s",
         "sbo.atomic.add.highp_int");

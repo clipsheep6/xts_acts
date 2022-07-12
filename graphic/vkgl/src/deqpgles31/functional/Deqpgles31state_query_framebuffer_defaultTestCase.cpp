@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016146,
-        "dEQP-GLES31.functional.state_query.framebuffer_default", 
+        "dEQP-GLES31.functional.state_query.framebuffer_default",
         ".framebuffer_default_width_get_framebuffer_parameteriv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016147,
-        "dEQP-GLES31.functional.state_query.framebuffer_default", 
+        "dEQP-GLES31.functional.state_query.framebuffer_default",
         ".framebuffer_default_height_get_framebuffer_parameteriv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016148,
-        "dEQP-GLES31.functional.state_query.framebuffer_default.", 
+        "dEQP-GLES31.functional.state_query.framebuffer_default.",
         "framebuffer_default_samples_get_framebuffer_parameteriv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016149,
-        "dEQP-GLES31.functional.state_query.framebuffer_default.framebu", 
+        "dEQP-GLES31.functional.state_query.framebuffer_default.framebu",
         "ffer_default_fixed_sample_locations_get_framebuffer_parameteriv");

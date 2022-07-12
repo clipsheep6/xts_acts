@@ -24,121 +24,121 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036562,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u",
         "niformsiv.basic_array_first_elem_without_brackets.float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036563,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un",
         "iformsiv.basic_array_first_elem_without_brackets.float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036564,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_",
         "uniformsiv.basic_array_first_elem_without_brackets.float_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036565,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u",
         "niformsiv.basic_array_first_elem_without_brackets.vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036566,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un",
         "iformsiv.basic_array_first_elem_without_brackets.vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036567,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_",
         "uniformsiv.basic_array_first_elem_without_brackets.vec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036568,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u",
         "niformsiv.basic_array_first_elem_without_brackets.mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036569,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un",
         "iformsiv.basic_array_first_elem_without_brackets.mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036570,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_",
         "uniformsiv.basic_array_first_elem_without_brackets.mat4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036571,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_",
         "uniformsiv.basic_array_first_elem_without_brackets.int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036572,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u",
         "niformsiv.basic_array_first_elem_without_brackets.int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036573,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active",
         "_uniformsiv.basic_array_first_elem_without_brackets.int_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036574,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u",
         "niformsiv.basic_array_first_elem_without_brackets.ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036575,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un",
         "iformsiv.basic_array_first_elem_without_brackets.ivec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036576,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_",
         "uniformsiv.basic_array_first_elem_without_brackets.ivec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036577,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u",
         "niformsiv.basic_array_first_elem_without_brackets.uint_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036578,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un",
         "iformsiv.basic_array_first_elem_without_brackets.uint_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036579,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_",
         "uniformsiv.basic_array_first_elem_without_brackets.uint_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036580,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u",
         "niformsiv.basic_array_first_elem_without_brackets.uvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036581,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un",
         "iformsiv.basic_array_first_elem_without_brackets.uvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036582,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_",
         "uniformsiv.basic_array_first_elem_without_brackets.uvec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036583,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u",
         "niformsiv.basic_array_first_elem_without_brackets.bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036584,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un",
         "iformsiv.basic_array_first_elem_without_brackets.bool_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036585,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_",
         "uniformsiv.basic_array_first_elem_without_brackets.bool_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036586,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_u",
         "niformsiv.basic_array_first_elem_without_brackets.bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036587,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un",
         "iformsiv.basic_array_first_elem_without_brackets.bvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036588,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_",
         "uniformsiv.basic_array_first_elem_without_brackets.bvec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036589,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_uni", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_uni",
         "formsiv.basic_array_first_elem_without_brackets.sampler2D_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036590,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_unif", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_unif",
         "ormsiv.basic_array_first_elem_without_brackets.sampler2D_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036591,
-        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un", 
+        "dEQP-GLES3.functional.uniform_api.info_query.indices_active_un",
         "iformsiv.basic_array_first_elem_without_brackets.sampler2D_both");

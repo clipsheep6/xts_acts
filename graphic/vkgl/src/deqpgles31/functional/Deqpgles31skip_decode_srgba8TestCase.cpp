@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037720,
-        "dEQP-GLES31.functional.srgb_textur", 
+        "dEQP-GLES31.functional.srgb_textur",
         "e_decode.skip_decode.srgba8.skipped");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037721,
-        "dEQP-GLES31.functional.srgb_textur", 
+        "dEQP-GLES31.functional.srgb_textur",
         "e_decode.skip_decode.srgba8.enabled");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037722,
-        "dEQP-GLES31.functional.srgb_texture_", 
+        "dEQP-GLES31.functional.srgb_texture_",
         "decode.skip_decode.srgba8.texel_fetch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037723,
-        "dEQP-GLES31.functional.srgb_texture_de", 
+        "dEQP-GLES31.functional.srgb_texture_de",
         "code.skip_decode.srgba8.conversion_gpu");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037724,
-        "dEQP-GLES31.functional.srgb_textur", 
+        "dEQP-GLES31.functional.srgb_textur",
         "e_decode.skip_decode.srgba8.toggled");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037725,
-        "dEQP-GLES31.functional.srgb_texture_dec", 
+        "dEQP-GLES31.functional.srgb_texture_dec",
         "ode.skip_decode.srgba8.multiple_textures");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037726,
-        "dEQP-GLES31.functional.srgb_texture_d", 
+        "dEQP-GLES31.functional.srgb_texture_d",
         "ecode.skip_decode.srgba8.using_sampler");

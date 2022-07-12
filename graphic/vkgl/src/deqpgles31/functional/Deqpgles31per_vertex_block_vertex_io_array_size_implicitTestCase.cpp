@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008303,
-        "dEQP-GLES31.functional.tessellation.user_defined_io.pe", 
+        "dEQP-GLES31.functional.tessellation.user_defined_io.pe",
         "r_vertex_block.vertex_io_array_size_implicit.triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008304,
-        "dEQP-GLES31.functional.tessellation.user_defined_io.", 
+        "dEQP-GLES31.functional.tessellation.user_defined_io.",
         "per_vertex_block.vertex_io_array_size_implicit.quads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008305,
-        "dEQP-GLES31.functional.tessellation.user_defined_io.p", 
+        "dEQP-GLES31.functional.tessellation.user_defined_io.p",
         "er_vertex_block.vertex_io_array_size_implicit.isolines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008306,
-        "dEQP-GLES31.functional.tessellation.user_defined_io.per_vertex_bl", 
+        "dEQP-GLES31.functional.tessellation.user_defined_io.per_vertex_bl",
         "ock.vertex_io_array_size_implicit.triangles_explicit_tcs_out_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008307,
-        "dEQP-GLES31.functional.tessellation.user_defined_io.per_vertex_", 
+        "dEQP-GLES31.functional.tessellation.user_defined_io.per_vertex_",
         "block.vertex_io_array_size_implicit.quads_explicit_tcs_out_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008308,
-        "dEQP-GLES31.functional.tessellation.user_defined_io.per_vertex_b", 
+        "dEQP-GLES31.functional.tessellation.user_defined_io.per_vertex_b",
         "lock.vertex_io_array_size_implicit.isolines_explicit_tcs_out_size");

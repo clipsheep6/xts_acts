@@ -24,145 +24,145 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008177,
-        "dEQP-GLES31.functional.tessellation.invariance.tes", 
+        "dEQP-GLES31.functional.tessellation.invariance.tes",
         "s_coord_component_range.triangles_equal_spacing_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008178,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coor", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coor",
         "d_component_range.triangles_equal_spacing_ccw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008179,
-        "dEQP-GLES31.functional.tessellation.invariance.tes", 
+        "dEQP-GLES31.functional.tessellation.invariance.tes",
         "s_coord_component_range.triangles_equal_spacing_cw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008180,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coo", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coo",
         "rd_component_range.triangles_equal_spacing_cw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008181,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coo", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coo",
         "rd_component_range.triangles_fractional_odd_spacing_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008182,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co",
         "mponent_range.triangles_fractional_odd_spacing_ccw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008183,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_co",
         "ord_component_range.triangles_fractional_odd_spacing_cw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008184,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co",
         "mponent_range.triangles_fractional_odd_spacing_cw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008185,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coo", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coo",
         "rd_component_range.triangles_fractional_even_spacing_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008186,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_com", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_com",
         "ponent_range.triangles_fractional_even_spacing_ccw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008187,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coo", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coo",
         "rd_component_range.triangles_fractional_even_spacing_cw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008188,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co",
         "mponent_range.triangles_fractional_even_spacing_cw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008189,
-        "dEQP-GLES31.functional.tessellation.invariance.t", 
+        "dEQP-GLES31.functional.tessellation.invariance.t",
         "ess_coord_component_range.quads_equal_spacing_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008190,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_co",
         "ord_component_range.quads_equal_spacing_ccw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008191,
-        "dEQP-GLES31.functional.tessellation.invariance.t", 
+        "dEQP-GLES31.functional.tessellation.invariance.t",
         "ess_coord_component_range.quads_equal_spacing_cw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008192,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_c", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_c",
         "oord_component_range.quads_equal_spacing_cw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008193,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_c", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_c",
         "oord_component_range.quads_fractional_odd_spacing_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008194,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_",
         "component_range.quads_fractional_odd_spacing_ccw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008195,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_",
         "coord_component_range.quads_fractional_odd_spacing_cw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008196,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_",
         "component_range.quads_fractional_odd_spacing_cw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008197,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_c", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_c",
         "oord_component_range.quads_fractional_even_spacing_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008198,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_c", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_c",
         "omponent_range.quads_fractional_even_spacing_ccw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008199,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_c", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_c",
         "oord_component_range.quads_fractional_even_spacing_cw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008200,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_",
         "component_range.quads_fractional_even_spacing_cw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008201,
-        "dEQP-GLES31.functional.tessellation.invariance.tes", 
+        "dEQP-GLES31.functional.tessellation.invariance.tes",
         "s_coord_component_range.isolines_equal_spacing_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008202,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coo", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coo",
         "rd_component_range.isolines_equal_spacing_ccw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008203,
-        "dEQP-GLES31.functional.tessellation.invariance.te", 
+        "dEQP-GLES31.functional.tessellation.invariance.te",
         "ss_coord_component_range.isolines_equal_spacing_cw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008204,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coo", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coo",
         "rd_component_range.isolines_equal_spacing_cw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008205,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_co",
         "ord_component_range.isolines_fractional_odd_spacing_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008206,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co",
         "mponent_range.isolines_fractional_odd_spacing_ccw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008207,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_co",
         "ord_component_range.isolines_fractional_odd_spacing_cw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008208,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_c", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_c",
         "omponent_range.isolines_fractional_odd_spacing_cw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008209,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coo", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coo",
         "rd_component_range.isolines_fractional_even_spacing_ccw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008210,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co",
         "mponent_range.isolines_fractional_even_spacing_ccw_point_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008211,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_co",
         "ord_component_range.isolines_fractional_even_spacing_cw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008212,
-        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co", 
+        "dEQP-GLES31.functional.tessellation.invariance.tess_coord_co",
         "mponent_range.isolines_fractional_even_spacing_cw_point_mode");

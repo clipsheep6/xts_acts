@@ -24,57 +24,57 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012993,
-        "dEQP-GLES31.functional.texture.mul", 
+        "dEQP-GLES31.functional.texture.mul",
         "tisample.samples_12.sample_position");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012994,
-        "dEQP-GLES31.functional.texture.mult", 
+        "dEQP-GLES31.functional.texture.mult",
         "isample.samples_12.sample_mask_only");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012995,
-        "dEQP-GLES31.functional.texture.multisample.", 
+        "dEQP-GLES31.functional.texture.multisample.",
         "samples_12.sample_mask_and_alpha_to_coverage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012996,
-        "dEQP-GLES31.functional.texture.multisample", 
+        "dEQP-GLES31.functional.texture.multisample",
         ".samples_12.sample_mask_and_sample_coverage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012997,
-        "dEQP-GLES31.functional.texture.multisample.samples_12", 
+        "dEQP-GLES31.functional.texture.multisample.samples_12",
         ".sample_mask_and_sample_coverage_and_alpha_to_coverage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012998,
-        "dEQP-GLES31.functional.texture.multisample", 
+        "dEQP-GLES31.functional.texture.multisample",
         ".samples_12.sample_mask_non_effective_bits");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012999,
-        "dEQP-GLES31.functional.texture.multis", 
+        "dEQP-GLES31.functional.texture.multis",
         "ample.samples_12.use_texture_color_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_013000,
-        "dEQP-GLES31.functional.texture.multisamp", 
+        "dEQP-GLES31.functional.texture.multisamp",
         "le.samples_12.use_texture_color_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_013001,
-        "dEQP-GLES31.functional.texture.multi", 
+        "dEQP-GLES31.functional.texture.multi",
         "sample.samples_12.use_texture_int_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_013002,
-        "dEQP-GLES31.functional.texture.multisam", 
+        "dEQP-GLES31.functional.texture.multisam",
         "ple.samples_12.use_texture_int_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_013003,
-        "dEQP-GLES31.functional.texture.multi", 
+        "dEQP-GLES31.functional.texture.multi",
         "sample.samples_12.use_texture_uint_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_013004,
-        "dEQP-GLES31.functional.texture.multisam", 
+        "dEQP-GLES31.functional.texture.multisam",
         "ple.samples_12.use_texture_uint_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_013005,
-        "dEQP-GLES31.functional.texture.multis", 
+        "dEQP-GLES31.functional.texture.multis",
         "ample.samples_12.use_texture_depth_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_013006,
-        "dEQP-GLES31.functional.texture.multisamp", 
+        "dEQP-GLES31.functional.texture.multisamp",
         "le.samples_12.use_texture_depth_2d_array");

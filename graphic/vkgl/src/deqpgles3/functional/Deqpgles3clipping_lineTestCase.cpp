@@ -24,61 +24,61 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043312,
-        "dEQP-GLES3.functional.c", 
+        "dEQP-GLES3.functional.c",
         "lipping.line.line_z_clip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043313,
-        "dEQP-GLES3.functional.clipping.", 
+        "dEQP-GLES3.functional.clipping.",
         "line.line_z_clip_viewport_center");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043314,
-        "dEQP-GLES3.functional.clipping.", 
+        "dEQP-GLES3.functional.clipping.",
         "line.line_z_clip_viewport_corner");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043315,
-        "dEQP-GLES3.functional.clipping", 
+        "dEQP-GLES3.functional.clipping",
         ".line.line_clip_viewport_center");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043316,
-        "dEQP-GLES3.functional.clipping", 
+        "dEQP-GLES3.functional.clipping",
         ".line.line_clip_viewport_corner");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043317,
-        "dEQP-GLES3.functional.clip", 
+        "dEQP-GLES3.functional.clip",
         "ping.line.wide_line_z_clip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043318,
-        "dEQP-GLES3.functional.clipping.lin", 
+        "dEQP-GLES3.functional.clipping.lin",
         "e.wide_line_z_clip_viewport_center");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043319,
-        "dEQP-GLES3.functional.clipping.lin", 
+        "dEQP-GLES3.functional.clipping.lin",
         "e.wide_line_z_clip_viewport_corner");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043320,
-        "dEQP-GLES3.functional.cli", 
+        "dEQP-GLES3.functional.cli",
         "pping.line.wide_line_clip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043321,
-        "dEQP-GLES3.functional.clipping.li", 
+        "dEQP-GLES3.functional.clipping.li",
         "ne.wide_line_clip_viewport_center");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043322,
-        "dEQP-GLES3.functional.clipping.li", 
+        "dEQP-GLES3.functional.clipping.li",
         "ne.wide_line_clip_viewport_corner");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043323,
-        "dEQP-GLES3.functional.cli", 
+        "dEQP-GLES3.functional.cli",
         "pping.line.long_line_clip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043324,
-        "dEQP-GLES3.functional.clipp", 
+        "dEQP-GLES3.functional.clipp",
         "ing.line.long_wide_line_clip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043325,
-        "dEQP-GLES3.functional.clip", 
+        "dEQP-GLES3.functional.clip",
         "ping.line.line_attrib_clip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043326,
-        "dEQP-GLES3.functional.clippi", 
+        "dEQP-GLES3.functional.clippi",
         "ng.line.wide_line_attrib_clip");

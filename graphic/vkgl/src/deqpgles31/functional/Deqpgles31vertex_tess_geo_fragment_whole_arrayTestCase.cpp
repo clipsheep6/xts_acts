@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023235,
-        "dEQP-GLES31.functional.program_interface_query.transform_fee", 
+        "dEQP-GLES31.functional.program_interface_query.transform_fee",
         "dback_varying.type.vertex_tess_geo_fragment.whole_array.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023236,
-        "dEQP-GLES31.functional.program_interface_query.transform_fe", 
+        "dEQP-GLES31.functional.program_interface_query.transform_fe",
         "edback_varying.type.vertex_tess_geo_fragment.whole_array.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023237,
-        "dEQP-GLES31.functional.program_interface_query.transform_fee", 
+        "dEQP-GLES31.functional.program_interface_query.transform_fee",
         "dback_varying.type.vertex_tess_geo_fragment.whole_array.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023238,
-        "dEQP-GLES31.functional.program_interface_query.transform_fee", 
+        "dEQP-GLES31.functional.program_interface_query.transform_fee",
         "dback_varying.type.vertex_tess_geo_fragment.whole_array.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023239,
-        "dEQP-GLES31.functional.program_interface_query.transform_fee", 
+        "dEQP-GLES31.functional.program_interface_query.transform_fee",
         "dback_varying.type.vertex_tess_geo_fragment.whole_array.ivec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023240,
-        "dEQP-GLES31.functional.program_interface_query.transform_fee", 
+        "dEQP-GLES31.functional.program_interface_query.transform_fee",
         "dback_varying.type.vertex_tess_geo_fragment.whole_array.uvec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023241,
-        "dEQP-GLES31.functional.program_interface_query.transform_feed", 
+        "dEQP-GLES31.functional.program_interface_query.transform_feed",
         "back_varying.type.vertex_tess_geo_fragment.whole_array.mat3x4");

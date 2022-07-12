@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016512,
-        "dEQP-GLES31.functional.vertex_attribute", 
+        "dEQP-GLES31.functional.vertex_attribute",
         "_binding.usage.single_binding.elements_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016513,
-        "dEQP-GLES31.functional.vertex_attribute", 
+        "dEQP-GLES31.functional.vertex_attribute",
         "_binding.usage.single_binding.elements_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016514,
-        "dEQP-GLES31.functional.vertex_attribute_binding", 
+        "dEQP-GLES31.functional.vertex_attribute_binding",
         ".usage.single_binding.elements_2_share_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016515,
-        "dEQP-GLES31.functional.vertex_attribute_bin", 
+        "dEQP-GLES31.functional.vertex_attribute_bin",
         "ding.usage.single_binding.offset_elements_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016516,
-        "dEQP-GLES31.functional.vertex_attribute_bin", 
+        "dEQP-GLES31.functional.vertex_attribute_bin",
         "ding.usage.single_binding.offset_elements_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016517,
-        "dEQP-GLES31.functional.vertex_attribute_binding.us", 
+        "dEQP-GLES31.functional.vertex_attribute_binding.us",
         "age.single_binding.offset_elements_2_share_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016518,
-        "dEQP-GLES31.functional.vertex_attribute_binding.usage.si", 
+        "dEQP-GLES31.functional.vertex_attribute_binding.usage.si",
         "ngle_binding.unaligned_offset_elements_1_aligned_elements");

@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009932,
-        "dEQP-GLES31.functional.ssbo.layout.mul", 
+        "dEQP-GLES31.functional.ssbo.layout.mul",
         "ti_basic_types.per_block_buffer.shared");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009933,
-        "dEQP-GLES31.functional.ssbo.layout.multi_basi", 
+        "dEQP-GLES31.functional.ssbo.layout.multi_basi",
         "c_types.per_block_buffer.shared_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009934,
-        "dEQP-GLES31.functional.ssbo.layout.mul", 
+        "dEQP-GLES31.functional.ssbo.layout.mul",
         "ti_basic_types.per_block_buffer.packed");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009935,
-        "dEQP-GLES31.functional.ssbo.layout.multi_basi", 
+        "dEQP-GLES31.functional.ssbo.layout.multi_basi",
         "c_types.per_block_buffer.packed_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009936,
-        "dEQP-GLES31.functional.ssbo.layout.mul", 
+        "dEQP-GLES31.functional.ssbo.layout.mul",
         "ti_basic_types.per_block_buffer.std140");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009937,
-        "dEQP-GLES31.functional.ssbo.layout.multi_basi", 
+        "dEQP-GLES31.functional.ssbo.layout.multi_basi",
         "c_types.per_block_buffer.std140_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009938,
-        "dEQP-GLES31.functional.ssbo.layout.mul", 
+        "dEQP-GLES31.functional.ssbo.layout.mul",
         "ti_basic_types.per_block_buffer.std430");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009939,
-        "dEQP-GLES31.functional.ssbo.layout.multi_basi", 
+        "dEQP-GLES31.functional.ssbo.layout.multi_basi",
         "c_types.per_block_buffer.std430_instance_array");

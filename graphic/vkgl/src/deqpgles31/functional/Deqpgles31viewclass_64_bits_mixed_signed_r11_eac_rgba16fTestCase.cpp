@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037443,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_b", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_b",
         "its_mixed.signed_r11_eac_rgba16f.texture2d_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037444,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_b", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_b",
         "its_mixed.signed_r11_eac_rgba16f.texture2d_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037445,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_",
         "bits_mixed.signed_r11_eac_rgba16f.texture2d_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037446,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_bits", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_bits",
         "_mixed.signed_r11_eac_rgba16f.texture2d_to_texture2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037447,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_",
         "bits_mixed.signed_r11_eac_rgba16f.cubemap_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037448,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_",
         "bits_mixed.signed_r11_eac_rgba16f.cubemap_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037449,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64",
         "_bits_mixed.signed_r11_eac_rgba16f.cubemap_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037450,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_bit", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_bit",
         "s_mixed.signed_r11_eac_rgba16f.cubemap_to_texture2d_array");

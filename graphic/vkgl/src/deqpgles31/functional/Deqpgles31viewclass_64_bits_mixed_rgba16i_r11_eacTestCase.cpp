@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037491,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_6", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_6",
         "4_bits_mixed.rgba16i_r11_eac.texture2d_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037492,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_",
         "64_bits_mixed.rgba16i_r11_eac.texture2d_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037493,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_6", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_6",
         "4_bits_mixed.rgba16i_r11_eac.texture3d_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037494,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_",
         "64_bits_mixed.rgba16i_r11_eac.texture3d_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037495,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_",
         "64_bits_mixed.rgba16i_r11_eac.cubemap_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037496,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass",
         "_64_bits_mixed.rgba16i_r11_eac.cubemap_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037497,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_b", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_b",
         "its_mixed.rgba16i_r11_eac.texture2d_array_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037498,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64_",
         "bits_mixed.rgba16i_r11_eac.texture2d_array_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037499,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_64",
         "_bits_mixed.rgba16i_r11_eac.renderbuffer_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037500,
-        "dEQP-GLES31.functional.copy_image.mixed.viewclass_6", 
+        "dEQP-GLES31.functional.copy_image.mixed.viewclass_6",
         "4_bits_mixed.rgba16i_r11_eac.renderbuffer_to_cubemap");

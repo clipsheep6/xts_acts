@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000958,
-        "KHR-GLES3.shaders.preprocessor.", 
+        "KHR-GLES3.shaders.preprocessor.",
         "line_continuation.comment_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000959,
-        "KHR-GLES3.shaders.preprocessor.l", 
+        "KHR-GLES3.shaders.preprocessor.l",
         "ine_continuation.comment_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000960,
-        "KHR-GLES3.shaders.preprocessor.", 
+        "KHR-GLES3.shaders.preprocessor.",
         "line_continuation.define_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000961,
-        "KHR-GLES3.shaders.preprocessor.l", 
+        "KHR-GLES3.shaders.preprocessor.l",
         "ine_continuation.define_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000962,
-        "KHR-GLES3.shaders.preprocessor.line_c", 
+        "KHR-GLES3.shaders.preprocessor.line_c",
         "ontinuation.preprocessing_token_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000963,
-        "KHR-GLES3.shaders.preprocessor.line_co", 
+        "KHR-GLES3.shaders.preprocessor.line_co",
         "ntinuation.preprocessing_token_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000964,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".line_continuation.token_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000965,
-        "KHR-GLES3.shaders.preprocessor.", 
+        "KHR-GLES3.shaders.preprocessor.",
         "line_continuation.token_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000966,
-        "KHR-GLES3.shaders.preprocessor.line", 
+        "KHR-GLES3.shaders.preprocessor.line",
         "_continuation.middle_of_line_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000967,
-        "KHR-GLES3.shaders.preprocessor.line_", 
+        "KHR-GLES3.shaders.preprocessor.line_",
         "continuation.middle_of_line_fragment");

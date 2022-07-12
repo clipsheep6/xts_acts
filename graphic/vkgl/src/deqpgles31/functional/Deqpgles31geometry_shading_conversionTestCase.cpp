@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016344,
-        "dEQP-GLES31.functional.geometry_sha", 
+        "dEQP-GLES31.functional.geometry_sha",
         "ding.conversion.triangles_to_points");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016345,
-        "dEQP-GLES31.functional.geometry_s", 
+        "dEQP-GLES31.functional.geometry_s",
         "hading.conversion.lines_to_points");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016346,
-        "dEQP-GLES31.functional.geometry_s", 
+        "dEQP-GLES31.functional.geometry_s",
         "hading.conversion.points_to_lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016347,
-        "dEQP-GLES31.functional.geometry_sh", 
+        "dEQP-GLES31.functional.geometry_sh",
         "ading.conversion.triangles_to_lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016348,
-        "dEQP-GLES31.functional.geometry_sha", 
+        "dEQP-GLES31.functional.geometry_sha",
         "ding.conversion.points_to_triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016349,
-        "dEQP-GLES31.functional.geometry_sh", 
+        "dEQP-GLES31.functional.geometry_sh",
         "ading.conversion.lines_to_triangles");

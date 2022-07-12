@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041906,
-        "dEQP-GLES3.functional.shader_api.program_bi", 
+        "dEQP-GLES3.functional.shader_api.program_bi",
         "nary.binary_persistence.detach_shader_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041907,
-        "dEQP-GLES3.functional.shader_api.program_bin", 
+        "dEQP-GLES3.functional.shader_api.program_bin",
         "ary.binary_persistence.detach_shader_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041908,
-        "dEQP-GLES3.functional.shader_api.program_bin", 
+        "dEQP-GLES3.functional.shader_api.program_bin",
         "ary.binary_persistence.reattach_shader_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041909,
-        "dEQP-GLES3.functional.shader_api.program_bina", 
+        "dEQP-GLES3.functional.shader_api.program_bina",
         "ry.binary_persistence.reattach_shader_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041910,
-        "dEQP-GLES3.functional.shader_api.program_bi", 
+        "dEQP-GLES3.functional.shader_api.program_bi",
         "nary.binary_persistence.delete_shader_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041911,
-        "dEQP-GLES3.functional.shader_api.program_bin", 
+        "dEQP-GLES3.functional.shader_api.program_bin",
         "ary.binary_persistence.delete_shader_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041912,
-        "dEQP-GLES3.functional.shader_api.program_bin", 
+        "dEQP-GLES3.functional.shader_api.program_bin",
         "ary.binary_persistence.replace_shader_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041913,
-        "dEQP-GLES3.functional.shader_api.program_bina", 
+        "dEQP-GLES3.functional.shader_api.program_bina",
         "ry.binary_persistence.replace_shader_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041914,
-        "dEQP-GLES3.functional.shader_api.program_bina", 
+        "dEQP-GLES3.functional.shader_api.program_bina",
         "ry.binary_persistence.recompile_shader_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041915,
-        "dEQP-GLES3.functional.shader_api.program_binar", 
+        "dEQP-GLES3.functional.shader_api.program_binar",
         "y.binary_persistence.recompile_shader_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041916,
-        "dEQP-GLES3.functional.shader_api.program_bin", 
+        "dEQP-GLES3.functional.shader_api.program_bin",
         "ary.binary_persistence.replace_source_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041917,
-        "dEQP-GLES3.functional.shader_api.program_bina", 
+        "dEQP-GLES3.functional.shader_api.program_bina",
         "ry.binary_persistence.replace_source_fragment");

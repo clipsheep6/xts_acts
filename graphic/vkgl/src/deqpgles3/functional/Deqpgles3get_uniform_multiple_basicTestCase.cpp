@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30038TestSuite, TestCase_037120,
-        "dEQP-GLES3.functional.uniform_api.value.", 
+        "dEQP-GLES3.functional.uniform_api.value.",
         "initial.get_uniform.multiple_basic.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30038TestSuite, TestCase_037121,
-        "dEQP-GLES3.functional.uniform_api.value.i", 
+        "dEQP-GLES3.functional.uniform_api.value.i",
         "nitial.get_uniform.multiple_basic.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30038TestSuite, TestCase_037122,
-        "dEQP-GLES3.functional.uniform_api.value", 
+        "dEQP-GLES3.functional.uniform_api.value",
         ".initial.get_uniform.multiple_basic.both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30038TestSuite, TestCase_037603,
-        "dEQP-GLES3.functional.uniform_api.value.assign", 
+        "dEQP-GLES3.functional.uniform_api.value.assign",
         "ed.by_pointer.get_uniform.multiple_basic.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30038TestSuite, TestCase_037604,
-        "dEQP-GLES3.functional.uniform_api.value.assigne", 
+        "dEQP-GLES3.functional.uniform_api.value.assigne",
         "d.by_pointer.get_uniform.multiple_basic.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30038TestSuite, TestCase_037605,
-        "dEQP-GLES3.functional.uniform_api.value.assig", 
+        "dEQP-GLES3.functional.uniform_api.value.assig",
         "ned.by_pointer.get_uniform.multiple_basic.both");

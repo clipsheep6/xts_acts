@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000132,
-        "dEQP-GLES2.functional.multisamp", 
+        "dEQP-GLES2.functional.multisamp",
         "led_render_to_texture.readpixels");

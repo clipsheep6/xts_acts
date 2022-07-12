@@ -24,57 +24,57 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027528,
-        "dEQP-GLES3.functional.texture.compresse", 
+        "dEQP-GLES3.functional.texture.compresse",
         "d.astc.endpoint_value_hdr_cem_not_15.4x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027529,
-        "dEQP-GLES3.functional.texture.compresse", 
+        "dEQP-GLES3.functional.texture.compresse",
         "d.astc.endpoint_value_hdr_cem_not_15.5x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027530,
-        "dEQP-GLES3.functional.texture.compresse", 
+        "dEQP-GLES3.functional.texture.compresse",
         "d.astc.endpoint_value_hdr_cem_not_15.5x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027531,
-        "dEQP-GLES3.functional.texture.compresse", 
+        "dEQP-GLES3.functional.texture.compresse",
         "d.astc.endpoint_value_hdr_cem_not_15.6x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027532,
-        "dEQP-GLES3.functional.texture.compresse", 
+        "dEQP-GLES3.functional.texture.compresse",
         "d.astc.endpoint_value_hdr_cem_not_15.6x6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027533,
-        "dEQP-GLES3.functional.texture.compresse", 
+        "dEQP-GLES3.functional.texture.compresse",
         "d.astc.endpoint_value_hdr_cem_not_15.8x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027534,
-        "dEQP-GLES3.functional.texture.compresse", 
+        "dEQP-GLES3.functional.texture.compresse",
         "d.astc.endpoint_value_hdr_cem_not_15.8x6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027535,
-        "dEQP-GLES3.functional.texture.compresse", 
+        "dEQP-GLES3.functional.texture.compresse",
         "d.astc.endpoint_value_hdr_cem_not_15.8x8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027536,
-        "dEQP-GLES3.functional.texture.compressed", 
+        "dEQP-GLES3.functional.texture.compressed",
         ".astc.endpoint_value_hdr_cem_not_15.10x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027537,
-        "dEQP-GLES3.functional.texture.compressed", 
+        "dEQP-GLES3.functional.texture.compressed",
         ".astc.endpoint_value_hdr_cem_not_15.10x6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027538,
-        "dEQP-GLES3.functional.texture.compressed", 
+        "dEQP-GLES3.functional.texture.compressed",
         ".astc.endpoint_value_hdr_cem_not_15.10x8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027539,
-        "dEQP-GLES3.functional.texture.compressed", 
+        "dEQP-GLES3.functional.texture.compressed",
         ".astc.endpoint_value_hdr_cem_not_15.10x10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027540,
-        "dEQP-GLES3.functional.texture.compressed", 
+        "dEQP-GLES3.functional.texture.compressed",
         ".astc.endpoint_value_hdr_cem_not_15.12x10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027541,
-        "dEQP-GLES3.functional.texture.compressed", 
+        "dEQP-GLES3.functional.texture.compressed",
         ".astc.endpoint_value_hdr_cem_not_15.12x12");

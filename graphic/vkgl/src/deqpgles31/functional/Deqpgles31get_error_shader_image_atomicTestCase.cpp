@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019710,
-        "dEQP-GLES31.functional.debug.negative_cover", 
+        "dEQP-GLES31.functional.debug.negative_cover",
         "age.get_error.shader_image_atomic.texture_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019711,
-        "dEQP-GLES31.functional.debug.negative_cover", 
+        "dEQP-GLES31.functional.debug.negative_cover",
         "age.get_error.shader_image_atomic.texture_3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019712,
-        "dEQP-GLES31.functional.debug.negative_co", 
+        "dEQP-GLES31.functional.debug.negative_co",
         "verage.get_error.shader_image_atomic.cube");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019713,
-        "dEQP-GLES31.functional.debug.negative_cove", 
+        "dEQP-GLES31.functional.debug.negative_cove",
         "rage.get_error.shader_image_atomic.2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019714,
-        "dEQP-GLES31.functional.debug.negative_cov", 
+        "dEQP-GLES31.functional.debug.negative_cov",
         "erage.get_error.shader_image_atomic.buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019715,
-        "dEQP-GLES31.functional.debug.negative_cover", 
+        "dEQP-GLES31.functional.debug.negative_cover",
         "age.get_error.shader_image_atomic.cube_array");

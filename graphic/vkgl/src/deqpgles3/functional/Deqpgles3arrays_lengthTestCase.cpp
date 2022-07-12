@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004447,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.arrays.length.float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004448,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".arrays.length.float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004449,
-        "dEQP-GLES3.functional.shade", 
+        "dEQP-GLES3.functional.shade",
         "rs.arrays.length.int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004450,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.arrays.length.int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004451,
-        "dEQP-GLES3.functional.shade", 
+        "dEQP-GLES3.functional.shade",
         "rs.arrays.length.bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004452,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.arrays.length.bool_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004453,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.arrays.length.struct_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004454,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".arrays.length.struct_fragment");

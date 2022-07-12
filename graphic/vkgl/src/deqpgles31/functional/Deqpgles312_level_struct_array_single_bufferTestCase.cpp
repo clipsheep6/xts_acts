@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011097,
-        "dEQP-GLES31.functional.ubo.2_level_struct_arr", 
+        "dEQP-GLES31.functional.ubo.2_level_struct_arr",
         "ay.single_buffer.shared_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011098,
-        "dEQP-GLES31.functional.ubo.2_level_struct_arra", 
+        "dEQP-GLES31.functional.ubo.2_level_struct_arra",
         "y.single_buffer.shared_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011099,
-        "dEQP-GLES31.functional.ubo.2_level_struct_ar", 
+        "dEQP-GLES31.functional.ubo.2_level_struct_ar",
         "ray.single_buffer.shared_instance_array_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011100,
-        "dEQP-GLES31.functional.ubo.2_level_struct_arr", 
+        "dEQP-GLES31.functional.ubo.2_level_struct_arr",
         "ay.single_buffer.packed_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011101,
-        "dEQP-GLES31.functional.ubo.2_level_struct_arra", 
+        "dEQP-GLES31.functional.ubo.2_level_struct_arra",
         "y.single_buffer.packed_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011102,
-        "dEQP-GLES31.functional.ubo.2_level_struct_arr", 
+        "dEQP-GLES31.functional.ubo.2_level_struct_arr",
         "ay.single_buffer.std140_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011103,
-        "dEQP-GLES31.functional.ubo.2_level_struct_arra", 
+        "dEQP-GLES31.functional.ubo.2_level_struct_arra",
         "y.single_buffer.std140_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011104,
-        "dEQP-GLES31.functional.ubo.2_level_struct_ar", 
+        "dEQP-GLES31.functional.ubo.2_level_struct_ar",
         "ray.single_buffer.std140_instance_array_both");

@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000070,
-        "dEQP-GLES2.functional.buffer", 
+        "dEQP-GLES2.functional.buffer",
         ".write.use.vertex_array.array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000071,
-        "dEQP-GLES2.functional.buffer.wri", 
+        "dEQP-GLES2.functional.buffer.wri",
         "te.use.vertex_array.element_array");

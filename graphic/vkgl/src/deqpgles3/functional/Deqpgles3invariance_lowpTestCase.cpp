@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019628,
-        "dEQP-GLES3.functional.shaders.inva", 
+        "dEQP-GLES3.functional.shaders.inva",
         "riance.lowp.common_subexpression_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019629,
-        "dEQP-GLES3.functional.shaders.inva", 
+        "dEQP-GLES3.functional.shaders.inva",
         "riance.lowp.common_subexpression_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019630,
-        "dEQP-GLES3.functional.shaders.inva", 
+        "dEQP-GLES3.functional.shaders.inva",
         "riance.lowp.common_subexpression_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019631,
-        "dEQP-GLES3.functional.shaders.inva", 
+        "dEQP-GLES3.functional.shaders.inva",
         "riance.lowp.common_subexpression_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019632,
-        "dEQP-GLES3.functional.shaders.invaria", 
+        "dEQP-GLES3.functional.shaders.invaria",
         "nce.lowp.subexpression_precision_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019633,
-        "dEQP-GLES3.functional.shaders.invarian", 
+        "dEQP-GLES3.functional.shaders.invarian",
         "ce.lowp.subexpression_precision_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019634,
-        "dEQP-GLES3.functional.shaders.invaria", 
+        "dEQP-GLES3.functional.shaders.invaria",
         "nce.lowp.subexpression_precision_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019635,
-        "dEQP-GLES3.functional.shad", 
+        "dEQP-GLES3.functional.shad",
         "ers.invariance.lowp.loop_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019636,
-        "dEQP-GLES3.functional.shad", 
+        "dEQP-GLES3.functional.shad",
         "ers.invariance.lowp.loop_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019637,
-        "dEQP-GLES3.functional.shad", 
+        "dEQP-GLES3.functional.shad",
         "ers.invariance.lowp.loop_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019638,
-        "dEQP-GLES3.functional.shad", 
+        "dEQP-GLES3.functional.shad",
         "ers.invariance.lowp.loop_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019639,
-        "dEQP-GLES3.functional.shad", 
+        "dEQP-GLES3.functional.shad",
         "ers.invariance.lowp.loop_4");

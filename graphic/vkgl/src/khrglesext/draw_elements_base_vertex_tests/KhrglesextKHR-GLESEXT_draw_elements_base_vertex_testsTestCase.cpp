@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000290,
-        "KHR-GLESEXT.draw_elements_base_v", 
+        "KHR-GLESEXT.draw_elements_base_v",
         "ertex_tests.basevertex_behavior1");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000291,
-        "KHR-GLESEXT.draw_elements_base_v", 
+        "KHR-GLESEXT.draw_elements_base_v",
         "ertex_tests.basevertex_behavior2");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000292,
-        "KHR-GLESEXT.draw_elements_base", 
+        "KHR-GLESEXT.draw_elements_base",
         "_vertex_tests.AEP_shader_stages");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000293,
-        "KHR-GLESEXT.draw_elements_", 
+        "KHR-GLESEXT.draw_elements_",
         "base_vertex_tests.underflow");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000294,
-        "KHR-GLESEXT.draw_elements_", 
+        "KHR-GLESEXT.draw_elements_",
         "base_vertex_tests.overflow");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000295,
-        "KHR-GLESEXT.draw_elements_bas", 
+        "KHR-GLESEXT.draw_elements_bas",
         "e_vertex_tests.valid_active_tf");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000296,
-        "KHR-GLESEXT.draw_elements_base_ve", 
+        "KHR-GLESEXT.draw_elements_base_ve",
         "rtex_tests.invalid_count_argument");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000297,
-        "KHR-GLESEXT.draw_elements_base_vertex", 
+        "KHR-GLESEXT.draw_elements_base_vertex",
         "_tests.invalid_instancecount_argument");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000298,
-        "KHR-GLESEXT.draw_elements_base_v", 
+        "KHR-GLESEXT.draw_elements_base_v",
         "ertex_tests.invalid_mode_argument");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000299,
-        "KHR-GLESEXT.draw_elements_base_vert", 
+        "KHR-GLESEXT.draw_elements_base_vert",
         "ex_tests.invalid_primcount_argument");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000300,
-        "KHR-GLESEXT.draw_elements_base_vert", 
+        "KHR-GLESEXT.draw_elements_base_vert",
         "ex_tests.invalid_start_end_arguments");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000301,
-        "KHR-GLESEXT.draw_elements_base_v", 
+        "KHR-GLESEXT.draw_elements_base_v",
         "ertex_tests.invalid_type_argument");

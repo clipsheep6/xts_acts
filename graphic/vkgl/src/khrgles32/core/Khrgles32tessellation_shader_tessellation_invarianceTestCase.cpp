@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000233,
-        "KHR-GLES32.core.tessellation_shader.te", 
+        "KHR-GLES32.core.tessellation_shader.te",
         "ssellation_invariance.invariance_rule1");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000234,
-        "KHR-GLES32.core.tessellation_shader.te", 
+        "KHR-GLES32.core.tessellation_shader.te",
         "ssellation_invariance.invariance_rule2");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000235,
-        "KHR-GLES32.core.tessellation_shader.te", 
+        "KHR-GLES32.core.tessellation_shader.te",
         "ssellation_invariance.invariance_rule3");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000236,
-        "KHR-GLES32.core.tessellation_shader.te", 
+        "KHR-GLES32.core.tessellation_shader.te",
         "ssellation_invariance.invariance_rule4");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000237,
-        "KHR-GLES32.core.tessellation_shader.te", 
+        "KHR-GLES32.core.tessellation_shader.te",
         "ssellation_invariance.invariance_rule5");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000238,
-        "KHR-GLES32.core.tessellation_shader.te", 
+        "KHR-GLES32.core.tessellation_shader.te",
         "ssellation_invariance.invariance_rule6");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000239,
-        "KHR-GLES32.core.tessellation_shader.te", 
+        "KHR-GLES32.core.tessellation_shader.te",
         "ssellation_invariance.invariance_rule7");

@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000721,
-        "dEQP-GLES3.functional.bu", 
+        "dEQP-GLES3.functional.bu",
         "ffer.copy.subrange.middle");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000722,
-        "dEQP-GLES3.functional.buffer", 
+        "dEQP-GLES3.functional.buffer",
         ".copy.subrange.small_to_large");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000723,
-        "dEQP-GLES3.functional.buffer", 
+        "dEQP-GLES3.functional.buffer",
         ".copy.subrange.large_to_small");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000724,
-        "dEQP-GLES3.functional.buffer", 
+        "dEQP-GLES3.functional.buffer",
         ".copy.subrange.low_to_high_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000725,
-        "dEQP-GLES3.functional.buffer", 
+        "dEQP-GLES3.functional.buffer",
         ".copy.subrange.low_to_high_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000726,
-        "dEQP-GLES3.functional.buffer", 
+        "dEQP-GLES3.functional.buffer",
         ".copy.subrange.high_to_low_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000727,
-        "dEQP-GLES3.functional.buffer", 
+        "dEQP-GLES3.functional.buffer",
         ".copy.subrange.high_to_low_2");

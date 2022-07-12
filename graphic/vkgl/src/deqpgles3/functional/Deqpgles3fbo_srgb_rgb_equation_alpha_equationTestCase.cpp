@@ -24,101 +24,101 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030593,
-        "dEQP-GLES3.functional.fragment_ops.blend.f", 
+        "dEQP-GLES3.functional.fragment_ops.blend.f",
         "bo_srgb.rgb_equation_alpha_equation.add_add");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030594,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_",
         "srgb.rgb_equation_alpha_equation.add_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030595,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb",
         ".rgb_equation_alpha_equation.add_reverse_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030596,
-        "dEQP-GLES3.functional.fragment_ops.blend.f", 
+        "dEQP-GLES3.functional.fragment_ops.blend.f",
         "bo_srgb.rgb_equation_alpha_equation.add_min");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030597,
-        "dEQP-GLES3.functional.fragment_ops.blend.f", 
+        "dEQP-GLES3.functional.fragment_ops.blend.f",
         "bo_srgb.rgb_equation_alpha_equation.add_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030598,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_",
         "srgb.rgb_equation_alpha_equation.subtract_add");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030599,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_sr", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_sr",
         "gb.rgb_equation_alpha_equation.subtract_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030600,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb.r", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb.r",
         "gb_equation_alpha_equation.subtract_reverse_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030601,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_",
         "srgb.rgb_equation_alpha_equation.subtract_min");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030602,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_",
         "srgb.rgb_equation_alpha_equation.subtract_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030603,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb",
         ".rgb_equation_alpha_equation.reverse_subtract_add");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030604,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb.r", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb.r",
         "gb_equation_alpha_equation.reverse_subtract_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030605,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb.rgb_e", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb.rgb_e",
         "quation_alpha_equation.reverse_subtract_reverse_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030606,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb",
         ".rgb_equation_alpha_equation.reverse_subtract_min");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030607,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb",
         ".rgb_equation_alpha_equation.reverse_subtract_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030608,
-        "dEQP-GLES3.functional.fragment_ops.blend.f", 
+        "dEQP-GLES3.functional.fragment_ops.blend.f",
         "bo_srgb.rgb_equation_alpha_equation.min_add");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030609,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_",
         "srgb.rgb_equation_alpha_equation.min_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030610,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb",
         ".rgb_equation_alpha_equation.min_reverse_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030611,
-        "dEQP-GLES3.functional.fragment_ops.blend.f", 
+        "dEQP-GLES3.functional.fragment_ops.blend.f",
         "bo_srgb.rgb_equation_alpha_equation.min_min");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030612,
-        "dEQP-GLES3.functional.fragment_ops.blend.f", 
+        "dEQP-GLES3.functional.fragment_ops.blend.f",
         "bo_srgb.rgb_equation_alpha_equation.min_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030613,
-        "dEQP-GLES3.functional.fragment_ops.blend.f", 
+        "dEQP-GLES3.functional.fragment_ops.blend.f",
         "bo_srgb.rgb_equation_alpha_equation.max_add");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030614,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_",
         "srgb.rgb_equation_alpha_equation.max_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030615,
-        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb", 
+        "dEQP-GLES3.functional.fragment_ops.blend.fbo_srgb",
         ".rgb_equation_alpha_equation.max_reverse_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030616,
-        "dEQP-GLES3.functional.fragment_ops.blend.f", 
+        "dEQP-GLES3.functional.fragment_ops.blend.f",
         "bo_srgb.rgb_equation_alpha_equation.max_min");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30031TestSuite, TestCase_030617,
-        "dEQP-GLES3.functional.fragment_ops.blend.f", 
+        "dEQP-GLES3.functional.fragment_ops.blend.f",
         "bo_srgb.rgb_equation_alpha_equation.max_max");

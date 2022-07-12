@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039702,
-        "dEQP-GLES3.function", 
+        "dEQP-GLES3.function",
         "al.pbo.native.clears");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039703,
-        "dEQP-GLES3.functional", 
+        "dEQP-GLES3.functional",
         ".pbo.native.triangles");

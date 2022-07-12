@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000084,
-        "dEQP-GLES2.functional.buffer.writ", 
+        "dEQP-GLES2.functional.buffer.writ",
         "e.basic_subdata.array_stream_draw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000085,
-        "dEQP-GLES2.functional.buffer.writ", 
+        "dEQP-GLES2.functional.buffer.writ",
         "e.basic_subdata.array_static_draw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000086,
-        "dEQP-GLES2.functional.buffer.writ", 
+        "dEQP-GLES2.functional.buffer.writ",
         "e.basic_subdata.array_dynamic_draw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000087,
-        "dEQP-GLES2.functional.buffer.write.ba", 
+        "dEQP-GLES2.functional.buffer.write.ba",
         "sic_subdata.element_array_stream_draw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000088,
-        "dEQP-GLES2.functional.buffer.write.ba", 
+        "dEQP-GLES2.functional.buffer.write.ba",
         "sic_subdata.element_array_static_draw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000089,
-        "dEQP-GLES2.functional.buffer.write.ba", 
+        "dEQP-GLES2.functional.buffer.write.ba",
         "sic_subdata.element_array_dynamic_draw");

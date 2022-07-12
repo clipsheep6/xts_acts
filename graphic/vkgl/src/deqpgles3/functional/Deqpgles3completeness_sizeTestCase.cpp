@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031403,
-        "dEQP-GLES3.functional.fb", 
+        "dEQP-GLES3.functional.fb",
         "o.completeness.size.zero");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031404,
-        "dEQP-GLES3.functional.fbo.", 
+        "dEQP-GLES3.functional.fbo.",
         "completeness.size.distinct");

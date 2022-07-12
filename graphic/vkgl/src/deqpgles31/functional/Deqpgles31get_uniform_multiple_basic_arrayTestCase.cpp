@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016840,
-        "dEQP-GLES31.functional.program_uniform.by_po", 
+        "dEQP-GLES31.functional.program_uniform.by_po",
         "inter.get_uniform.multiple_basic_array.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016841,
-        "dEQP-GLES31.functional.program_uniform.by_poi", 
+        "dEQP-GLES31.functional.program_uniform.by_poi",
         "nter.get_uniform.multiple_basic_array.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016842,
-        "dEQP-GLES31.functional.program_uniform.by_p", 
+        "dEQP-GLES31.functional.program_uniform.by_p",
         "ointer.get_uniform.multiple_basic_array.both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_017284,
-        "dEQP-GLES31.functional.program_uniform.by_v", 
+        "dEQP-GLES31.functional.program_uniform.by_v",
         "alue.get_uniform.multiple_basic_array.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_017285,
-        "dEQP-GLES31.functional.program_uniform.by_va", 
+        "dEQP-GLES31.functional.program_uniform.by_va",
         "lue.get_uniform.multiple_basic_array.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_017286,
-        "dEQP-GLES31.functional.program_uniform.by_", 
+        "dEQP-GLES31.functional.program_uniform.by_",
         "value.get_uniform.multiple_basic_array.both");

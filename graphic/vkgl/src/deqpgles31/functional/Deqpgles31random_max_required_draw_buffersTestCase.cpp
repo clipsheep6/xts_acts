@@ -24,81 +24,81 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037679,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037680,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037681,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037682,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037683,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037684,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037685,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037686,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037687,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037688,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.9");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037689,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037690,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.11");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037691,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.12");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037692,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.13");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037693,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.14");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037694,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.15");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037695,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037696,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.17");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037697,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.18");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037698,
-        "dEQP-GLES31.functional.draw_buffers_ind", 
+        "dEQP-GLES31.functional.draw_buffers_ind",
         "exed.random.max_required_draw_buffers.19");

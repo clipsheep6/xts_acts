@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014436,
-        "dEQP-GLES2.functional.uniform_api.value.initia", 
+        "dEQP-GLES2.functional.uniform_api.value.initia",
         "l.render.multiple_nested_structs_arrays.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014437,
-        "dEQP-GLES2.functional.uniform_api.value.initial", 
+        "dEQP-GLES2.functional.uniform_api.value.initial",
         ".render.multiple_nested_structs_arrays.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014438,
-        "dEQP-GLES2.functional.uniform_api.value.initi", 
+        "dEQP-GLES2.functional.uniform_api.value.initi",
         "al.render.multiple_nested_structs_arrays.both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014768,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by_", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by_",
         "pointer.render.multiple_nested_structs_arrays.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014769,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by_p", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by_p",
         "ointer.render.multiple_nested_structs_arrays.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_014770,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by",
         "_pointer.render.multiple_nested_structs_arrays.both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015047,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by",
         "_value.render.multiple_nested_structs_arrays.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015048,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.by_", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.by_",
         "value.render.multiple_nested_structs_arrays.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20015TestSuite, TestCase_015049,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.b", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.b",
         "y_value.render.multiple_nested_structs_arrays.both");

@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002449,
-        "KHR-GLES31.core.geometry_shade", 
+        "KHR-GLES31.core.geometry_shade",
         "r.nonarray_input.nonarray_input");

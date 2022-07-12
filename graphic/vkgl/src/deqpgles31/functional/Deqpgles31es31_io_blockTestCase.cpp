@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004661,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "1.io_block.mismatch_number_of_declarations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004662,
-        "dEQP-GLES31.functional.shaders.li", 
+        "dEQP-GLES31.functional.shaders.li",
         "nkage.es31.io_block.mismatch_order");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004663,
-        "dEQP-GLES31.functional.shaders.li", 
+        "dEQP-GLES31.functional.shaders.li",
         "nkage.es31.io_block.mismatch_type");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004664,
-        "dEQP-GLES31.functional.shaders.linka", 
+        "dEQP-GLES31.functional.shaders.linka",
         "ge.es31.io_block.mismatch_member_name");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004665,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es31.io_block.mismatch_member_array_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004666,
-        "dEQP-GLES31.functional.shaders.linkage.es", 
+        "dEQP-GLES31.functional.shaders.linkage.es",
         "31.io_block.with_and_without_instance_name");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004667,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es31.io_block.mismatch_block_array_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004668,
-        "dEQP-GLES31.functional.shaders.linka", 
+        "dEQP-GLES31.functional.shaders.linka",
         "ge.es31.io_block.missing_output_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004669,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es31.io_block.ambiguous_variable_name_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004670,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es31.io_block.ambiguous_variable_name_2");

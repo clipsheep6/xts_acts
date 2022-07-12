@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000026,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".clip_control.initial");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000027,
-        "dEQP-GLES2.functional.", 
+        "dEQP-GLES2.functional.",
         "clip_control.modify_get");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000028,
-        "dEQP-GLES2.functiona", 
+        "dEQP-GLES2.functiona",
         "l.clip_control.errors");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000029,
-        "dEQP-GLES2.functiona", 
+        "dEQP-GLES2.functiona",
         "l.clip_control.origin");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000030,
-        "dEQP-GLES2.functional.clip_c", 
+        "dEQP-GLES2.functional.clip_c",
         "ontrol.depth_mode_zero_to_one");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000031,
-        "dEQP-GLES2.functional.clip_c", 
+        "dEQP-GLES2.functional.clip_c",
         "ontrol.depth_mode_one_to_one");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000032,
-        "dEQP-GLES2.functional.c", 
+        "dEQP-GLES2.functional.c",
         "lip_control.face_culling");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000033,
-        "dEQP-GLES2.functional.cli", 
+        "dEQP-GLES2.functional.cli",
         "p_control.viewport_bounds");

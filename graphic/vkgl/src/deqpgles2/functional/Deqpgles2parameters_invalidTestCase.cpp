@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002389,
-        "dEQP-GLES2.functional.shaders.qualification_order.p", 
+        "dEQP-GLES2.functional.shaders.qualification_order.p",
         "arameters.invalid.storage_precision_parameter_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002390,
-        "dEQP-GLES2.functional.shaders.qualification_order.pa", 
+        "dEQP-GLES2.functional.shaders.qualification_order.pa",
         "rameters.invalid.storage_precision_parameter_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002391,
-        "dEQP-GLES2.functional.shaders.qualification_order.p", 
+        "dEQP-GLES2.functional.shaders.qualification_order.p",
         "arameters.invalid.parameter_storage_precision_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002392,
-        "dEQP-GLES2.functional.shaders.qualification_order.pa", 
+        "dEQP-GLES2.functional.shaders.qualification_order.pa",
         "rameters.invalid.parameter_storage_precision_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002393,
-        "dEQP-GLES2.functional.shaders.qualification_order.p", 
+        "dEQP-GLES2.functional.shaders.qualification_order.p",
         "arameters.invalid.parameter_precision_storage_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002394,
-        "dEQP-GLES2.functional.shaders.qualification_order.pa", 
+        "dEQP-GLES2.functional.shaders.qualification_order.pa",
         "rameters.invalid.parameter_precision_storage_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002395,
-        "dEQP-GLES2.functional.shaders.qualification_order.p", 
+        "dEQP-GLES2.functional.shaders.qualification_order.p",
         "arameters.invalid.precision_storage_parameter_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002396,
-        "dEQP-GLES2.functional.shaders.qualification_order.pa", 
+        "dEQP-GLES2.functional.shaders.qualification_order.pa",
         "rameters.invalid.precision_storage_parameter_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002397,
-        "dEQP-GLES2.functional.shaders.qualification_order.p", 
+        "dEQP-GLES2.functional.shaders.qualification_order.p",
         "arameters.invalid.precision_parameter_storage_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002398,
-        "dEQP-GLES2.functional.shaders.qualification_order.pa", 
+        "dEQP-GLES2.functional.shaders.qualification_order.pa",
         "rameters.invalid.precision_parameter_storage_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002399,
-        "dEQP-GLES2.functional.shaders.qualification_or", 
+        "dEQP-GLES2.functional.shaders.qualification_or",
         "der.parameters.invalid.parameter_storage_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002400,
-        "dEQP-GLES2.functional.shaders.qualification_ord", 
+        "dEQP-GLES2.functional.shaders.qualification_ord",
         "er.parameters.invalid.parameter_storage_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002401,
-        "dEQP-GLES2.functional.shaders.qualification_or", 
+        "dEQP-GLES2.functional.shaders.qualification_or",
         "der.parameters.invalid.precision_storage_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002402,
-        "dEQP-GLES2.functional.shaders.qualification_ord", 
+        "dEQP-GLES2.functional.shaders.qualification_ord",
         "er.parameters.invalid.precision_storage_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002403,
-        "dEQP-GLES2.functional.shaders.qualification_ord", 
+        "dEQP-GLES2.functional.shaders.qualification_ord",
         "er.parameters.invalid.precision_parameter_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002404,
-        "dEQP-GLES2.functional.shaders.qualification_orde", 
+        "dEQP-GLES2.functional.shaders.qualification_orde",
         "r.parameters.invalid.precision_parameter_fragment");

@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000852,
-        "dEQP-GLES3.functional.shaders.preprocessor.inv", 
+        "dEQP-GLES3.functional.shaders.preprocessor.inv",
         "alid_redefinitions.invalid_identifier_2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000853,
-        "dEQP-GLES3.functional.shaders.preprocessor.inva", 
+        "dEQP-GLES3.functional.shaders.preprocessor.inva",
         "lid_redefinitions.invalid_identifier_2_fragment");

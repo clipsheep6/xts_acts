@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009720,
-        "dEQP-GLES31.functional.ssbo.layout.single_nested", 
+        "dEQP-GLES31.functional.ssbo.layout.single_nested",
         "_struct_array.single_buffer.shared_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009721,
-        "dEQP-GLES31.functional.ssbo.layout.single_nested", 
+        "dEQP-GLES31.functional.ssbo.layout.single_nested",
         "_struct_array.single_buffer.packed_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009722,
-        "dEQP-GLES31.functional.ssbo.layout.single_nested", 
+        "dEQP-GLES31.functional.ssbo.layout.single_nested",
         "_struct_array.single_buffer.std140_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009723,
-        "dEQP-GLES31.functional.ssbo.layout.single_nested", 
+        "dEQP-GLES31.functional.ssbo.layout.single_nested",
         "_struct_array.single_buffer.std430_instance_array");

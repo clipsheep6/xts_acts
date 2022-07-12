@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039798,
-        "dEQP-GLES3.functional.rasterizatio", 
+        "dEQP-GLES3.functional.rasterizatio",
         "n.interpolation.projected.triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039799,
-        "dEQP-GLES3.functional.rasterization.i", 
+        "dEQP-GLES3.functional.rasterization.i",
         "nterpolation.projected.triangle_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039800,
-        "dEQP-GLES3.functional.rasterization.", 
+        "dEQP-GLES3.functional.rasterization.",
         "interpolation.projected.triangle_fan");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039801,
-        "dEQP-GLES3.functional.rasterizat", 
+        "dEQP-GLES3.functional.rasterizat",
         "ion.interpolation.projected.lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039802,
-        "dEQP-GLES3.functional.rasterization", 
+        "dEQP-GLES3.functional.rasterization",
         ".interpolation.projected.line_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039803,
-        "dEQP-GLES3.functional.rasterizatio", 
+        "dEQP-GLES3.functional.rasterizatio",
         "n.interpolation.projected.line_loop");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039804,
-        "dEQP-GLES3.functional.rasterization", 
+        "dEQP-GLES3.functional.rasterization",
         ".interpolation.projected.lines_wide");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039805,
-        "dEQP-GLES3.functional.rasterization.i", 
+        "dEQP-GLES3.functional.rasterization.i",
         "nterpolation.projected.line_strip_wide");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039806,
-        "dEQP-GLES3.functional.rasterization.i", 
+        "dEQP-GLES3.functional.rasterization.i",
         "nterpolation.projected.line_loop_wide");

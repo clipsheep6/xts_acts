@@ -24,53 +24,53 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007913,
-        "dEQP-GLES31.functional.draw_indire", 
+        "dEQP-GLES31.functional.draw_indire",
         "ct.negative.command_bad_alignment_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007914,
-        "dEQP-GLES31.functional.draw_indire", 
+        "dEQP-GLES31.functional.draw_indire",
         "ct.negative.command_bad_alignment_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007915,
-        "dEQP-GLES31.functional.draw_indire", 
+        "dEQP-GLES31.functional.draw_indire",
         "ct.negative.command_bad_alignment_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007916,
-        "dEQP-GLES31.functional.draw_indirect.neg", 
+        "dEQP-GLES31.functional.draw_indirect.neg",
         "ative.command_offset_partially_in_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007917,
-        "dEQP-GLES31.functional.draw_indirect.", 
+        "dEQP-GLES31.functional.draw_indirect.",
         "negative.command_offset_not_in_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007918,
-        "dEQP-GLES31.functional.draw_indirect.negative", 
+        "dEQP-GLES31.functional.draw_indirect.negative",
         ".command_offset_not_in_buffer_unsigned32_wrap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007919,
-        "dEQP-GLES31.functional.draw_indirect.negativ", 
+        "dEQP-GLES31.functional.draw_indirect.negativ",
         "e.command_offset_not_in_buffer_signed32_wrap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007920,
-        "dEQP-GLES31.functional.draw_indirect", 
+        "dEQP-GLES31.functional.draw_indirect",
         ".negative.client_vertex_attrib_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007921,
-        "dEQP-GLES31.functional.draw_indir", 
+        "dEQP-GLES31.functional.draw_indir",
         "ect.negative.client_command_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007922,
-        "dEQP-GLES31.functional.draw_", 
+        "dEQP-GLES31.functional.draw_",
         "indirect.negative.default_vao");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007923,
-        "dEQP-GLES31.functional.draw_indirec", 
+        "dEQP-GLES31.functional.draw_indirec",
         "t.negative.invalid_mode_draw_arrays");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007924,
-        "dEQP-GLES31.functional.draw_indirect", 
+        "dEQP-GLES31.functional.draw_indirect",
         ".negative.invalid_mode_draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007925,
-        "dEQP-GLES31.functional.draw_indirect", 
+        "dEQP-GLES31.functional.draw_indirect",
         ".negative.invalid_type_draw_elements");

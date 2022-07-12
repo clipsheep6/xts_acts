@@ -24,53 +24,53 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011229,
-        "dEQP-GLES31.functional.image", 
+        "dEQP-GLES31.functional.image",
         "_load_store.2d.store.rgba32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011230,
-        "dEQP-GLES31.functional.image", 
+        "dEQP-GLES31.functional.image",
         "_load_store.2d.store.rgba16f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011231,
-        "dEQP-GLES31.functional.ima", 
+        "dEQP-GLES31.functional.ima",
         "ge_load_store.2d.store.r32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011232,
-        "dEQP-GLES31.functional.image", 
+        "dEQP-GLES31.functional.image",
         "_load_store.2d.store.rgba32ui");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011233,
-        "dEQP-GLES31.functional.image", 
+        "dEQP-GLES31.functional.image",
         "_load_store.2d.store.rgba16ui");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011234,
-        "dEQP-GLES31.functional.image", 
+        "dEQP-GLES31.functional.image",
         "_load_store.2d.store.rgba8ui");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011235,
-        "dEQP-GLES31.functional.imag", 
+        "dEQP-GLES31.functional.imag",
         "e_load_store.2d.store.r32ui");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011236,
-        "dEQP-GLES31.functional.image", 
+        "dEQP-GLES31.functional.image",
         "_load_store.2d.store.rgba32i");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011237,
-        "dEQP-GLES31.functional.image", 
+        "dEQP-GLES31.functional.image",
         "_load_store.2d.store.rgba16i");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011238,
-        "dEQP-GLES31.functional.imag", 
+        "dEQP-GLES31.functional.imag",
         "e_load_store.2d.store.rgba8i");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011239,
-        "dEQP-GLES31.functional.ima", 
+        "dEQP-GLES31.functional.ima",
         "ge_load_store.2d.store.r32i");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011240,
-        "dEQP-GLES31.functional.imag", 
+        "dEQP-GLES31.functional.imag",
         "e_load_store.2d.store.rgba8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011241,
-        "dEQP-GLES31.functional.image_l", 
+        "dEQP-GLES31.functional.image_l",
         "oad_store.2d.store.rgba8_snorm");

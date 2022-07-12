@@ -24,45 +24,45 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013944,
-        "dEQP-GLES31.functional.texture.texture_buffer.rende", 
+        "dEQP-GLES31.functional.texture.texture_buffer.rende",
         "r.as_vertex_array_as_vertex_texture.buffer_size_512");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013945,
-        "dEQP-GLES31.functional.texture.texture_buffer.rende", 
+        "dEQP-GLES31.functional.texture.texture_buffer.rende",
         "r.as_vertex_array_as_vertex_texture.buffer_size_513");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013946,
-        "dEQP-GLES31.functional.texture.texture_buffer.render", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render",
         ".as_vertex_array_as_vertex_texture.buffer_size_65536");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013947,
-        "dEQP-GLES31.functional.texture.texture_buffer.render", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render",
         ".as_vertex_array_as_vertex_texture.buffer_size_65537");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013948,
-        "dEQP-GLES31.functional.texture.texture_buffer.render", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render",
         ".as_vertex_array_as_vertex_texture.buffer_size_131071");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013949,
-        "dEQP-GLES31.functional.texture.texture_buffer.rend", 
+        "dEQP-GLES31.functional.texture.texture_buffer.rend",
         "er.as_vertex_array_as_vertex_texture.range_size_512");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013950,
-        "dEQP-GLES31.functional.texture.texture_buffer.rend", 
+        "dEQP-GLES31.functional.texture.texture_buffer.rend",
         "er.as_vertex_array_as_vertex_texture.range_size_513");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013951,
-        "dEQP-GLES31.functional.texture.texture_buffer.rende", 
+        "dEQP-GLES31.functional.texture.texture_buffer.rende",
         "r.as_vertex_array_as_vertex_texture.range_size_65537");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013952,
-        "dEQP-GLES31.functional.texture.texture_buffer.rende", 
+        "dEQP-GLES31.functional.texture.texture_buffer.rende",
         "r.as_vertex_array_as_vertex_texture.range_size_98304");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013953,
-        "dEQP-GLES31.functional.texture.texture_buffer.render.", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render.",
         "as_vertex_array_as_vertex_texture.offset_1_alignments");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013954,
-        "dEQP-GLES31.functional.texture.texture_buffer.render.", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render.",
         "as_vertex_array_as_vertex_texture.offset_7_alignments");

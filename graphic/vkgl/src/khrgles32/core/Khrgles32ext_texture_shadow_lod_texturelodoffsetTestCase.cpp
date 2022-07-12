@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001145,
-        "KHR-GLES32.core.ext_texture_shadow_lod.te", 
+        "KHR-GLES32.core.ext_texture_shadow_lod.te",
         "xturelodoffset.sampler2darrayshadow_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001146,
-        "KHR-GLES32.core.ext_texture_shadow_lod.tex", 
+        "KHR-GLES32.core.ext_texture_shadow_lod.tex",
         "turelodoffset.sampler2darrayshadow_fragment");

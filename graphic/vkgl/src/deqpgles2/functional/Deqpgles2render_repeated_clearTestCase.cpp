@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012659,
-        "dEQP-GLES2.functional.fbo.re", 
+        "dEQP-GLES2.functional.fbo.re",
         "nder.repeated_clear.tex2d_rgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012660,
-        "dEQP-GLES2.functional.fbo.ren", 
+        "dEQP-GLES2.functional.fbo.ren",
         "der.repeated_clear.tex2d_rgba");

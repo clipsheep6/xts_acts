@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000660,
-        "KHR-GLES31.core.shader_multi", 
+        "KHR-GLES31.core.shader_multi",
         "sample_interpolation.api.api");

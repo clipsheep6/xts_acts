@@ -24,57 +24,57 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000035,
-        "KHR-GLES31.core.texture_storage_multisample.APIDepende", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDepende",
         "ncies.fbo_with_attachments_of_varying_amount_of_samples");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000036,
-        "KHR-GLES31.core.texture_storage_multisample.APIDepe", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDepe",
         "ndencies.fbo_with_single_and_multisample_attachments");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000037,
-        "KHR-GLES31.core.texture_storage_multisample.APIDependenci", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDependenci",
         "es.fbo_with_fixed_and_varying_sample_locations_attachments");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000038,
-        "KHR-GLES31.core.texture_storage_multisample.APIDependencies.fbo_with", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDependencies.fbo_with",
         "_different_fixedsamplelocations_texture_and_renderbuffer_attachments");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000039,
-        "KHR-GLES31.core.texture_storage_multisample.APIDependencies.fbo_with_render", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDependencies.fbo_with_render",
         "buffer_and_multisample_texture_attachments_with_different_number_of_samples");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000040,
-        "KHR-GLES31.core.texture_storage_multisample.APIDependenci", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDependenci",
         "es.framebuffer_texture2d_used_with_invalid_texture_target");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000041,
-        "KHR-GLES31.core.texture_storage_multisample.APIDepen", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDepen",
         "dencies.framebuffer_texture2d_used_with_invalid_level");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000042,
-        "KHR-GLES31.core.texture_storage_multisample.APIDependencie", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDependencie",
         "s.framebuffer_texture_layer_used_for_invalid_texture_target");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000043,
-        "KHR-GLES31.core.texture_storage_multisample.APIDependencies", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDependencies",
         ".framebuffer_texture_layer_used_with_invalid_level_argument");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000044,
-        "KHR-GLES31.core.texture_storage_multisample.APIDependencies.renderbuffer_s", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDependencies.renderbuffer_s",
         "torage_multisample_invalid_samples_argument_for_noninteger_internalformats");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000045,
-        "KHR-GLES31.core.texture_storage_multisample.APIDependencies.renderbuffer", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDependencies.renderbuffer",
         "_storage_multisample_invalid_samples_argument_for_integer_internalformats");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000046,
-        "KHR-GLES31.core.texture_storage_multisample.APIDependencie", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDependencie",
         "s.no_error_generated_for_valid_framebuffer_texture2d_calls");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000047,
-        "KHR-GLES31.core.texture_storage_multisample.APIDependencies.no_", 
+        "KHR-GLES31.core.texture_storage_multisample.APIDependencies.no_",
         "error_generated_for_valid_renderbuffer_storage_multisample_calls");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000048,
-        "KHR-GLES31.core.texture_storage_multisam", 
+        "KHR-GLES31.core.texture_storage_multisam",
         "ple.APIDependencies.tex_parameter_support");

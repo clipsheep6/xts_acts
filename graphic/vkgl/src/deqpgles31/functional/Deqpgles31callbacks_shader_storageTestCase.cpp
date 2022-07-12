@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018817,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.callbacks.shader_storage.block_number_limits");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018818,
-        "dEQP-GLES31.functional.debug.negative_coverage.call", 
+        "dEQP-GLES31.functional.debug.negative_coverage.call",
         "backs.shader_storage.max_combined_block_number_limit");

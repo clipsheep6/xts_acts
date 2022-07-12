@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017432,
-        "dEQP-GLES3.functional.shaders.der", 
+        "dEQP-GLES3.functional.shaders.der",
         "ivate.dfdx.static_if.float_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017433,
-        "dEQP-GLES3.functional.shaders.de", 
+        "dEQP-GLES3.functional.shaders.de",
         "rivate.dfdx.static_if.float_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017434,
-        "dEQP-GLES3.functional.shaders.der", 
+        "dEQP-GLES3.functional.shaders.der",
         "ivate.dfdx.static_if.vec2_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017435,
-        "dEQP-GLES3.functional.shaders.de", 
+        "dEQP-GLES3.functional.shaders.de",
         "rivate.dfdx.static_if.vec2_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017436,
-        "dEQP-GLES3.functional.shaders.der", 
+        "dEQP-GLES3.functional.shaders.der",
         "ivate.dfdx.static_if.vec3_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017437,
-        "dEQP-GLES3.functional.shaders.de", 
+        "dEQP-GLES3.functional.shaders.de",
         "rivate.dfdx.static_if.vec3_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017438,
-        "dEQP-GLES3.functional.shaders.de", 
+        "dEQP-GLES3.functional.shaders.de",
         "rivate.dfdx.static_if.vec4_highp");

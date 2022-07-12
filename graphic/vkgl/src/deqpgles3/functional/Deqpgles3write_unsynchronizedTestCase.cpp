@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000537,
-        "dEQP-GLES3.functional.buffer.", 
+        "dEQP-GLES3.functional.buffer.",
         "map.write.unsynchronized.array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000538,
-        "dEQP-GLES3.functional.buffer.ma", 
+        "dEQP-GLES3.functional.buffer.ma",
         "p.write.unsynchronized.copy_read");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000539,
-        "dEQP-GLES3.functional.buffer.map", 
+        "dEQP-GLES3.functional.buffer.map",
         ".write.unsynchronized.copy_write");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000540,
-        "dEQP-GLES3.functional.buffer.map.", 
+        "dEQP-GLES3.functional.buffer.map.",
         "write.unsynchronized.element_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000541,
-        "dEQP-GLES3.functional.buffer.map", 
+        "dEQP-GLES3.functional.buffer.map",
         ".write.unsynchronized.pixel_pack");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000542,
-        "dEQP-GLES3.functional.buffer.map.", 
+        "dEQP-GLES3.functional.buffer.map.",
         "write.unsynchronized.pixel_unpack");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000543,
-        "dEQP-GLES3.functional.buffer.map.wri", 
+        "dEQP-GLES3.functional.buffer.map.wri",
         "te.unsynchronized.transform_feedback");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000544,
-        "dEQP-GLES3.functional.buffer.m", 
+        "dEQP-GLES3.functional.buffer.m",
         "ap.write.unsynchronized.uniform");

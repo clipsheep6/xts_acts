@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002258,
-        "KHR-GLES31.core.polygon_offset_cl", 
+        "KHR-GLES31.core.polygon_offset_cl",
         "amp.PolygonOffsetClampAvailability");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002259,
-        "KHR-GLES31.core.polygon_offset", 
+        "KHR-GLES31.core.polygon_offset",
         "_clamp.PolygonOffsetClampMinMax");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002260,
-        "KHR-GLES31.core.polygon_offset_cl", 
+        "KHR-GLES31.core.polygon_offset_cl",
         "amp.PolygonOffsetClampZeroInfinity");

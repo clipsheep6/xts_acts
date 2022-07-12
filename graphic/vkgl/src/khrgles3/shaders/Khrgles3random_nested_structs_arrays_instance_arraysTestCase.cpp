@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002253,
-        "KHR-GLES3.shaders.uniform_block.random.", 
+        "KHR-GLES3.shaders.uniform_block.random.",
         "nested_structs_arrays_instance_arrays.0");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002254,
-        "KHR-GLES3.shaders.uniform_block.random.", 
+        "KHR-GLES3.shaders.uniform_block.random.",
         "nested_structs_arrays_instance_arrays.1");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002255,
-        "KHR-GLES3.shaders.uniform_block.random.", 
+        "KHR-GLES3.shaders.uniform_block.random.",
         "nested_structs_arrays_instance_arrays.2");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002256,
-        "KHR-GLES3.shaders.uniform_block.random.", 
+        "KHR-GLES3.shaders.uniform_block.random.",
         "nested_structs_arrays_instance_arrays.3");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002257,
-        "KHR-GLES3.shaders.uniform_block.random.", 
+        "KHR-GLES3.shaders.uniform_block.random.",
         "nested_structs_arrays_instance_arrays.4");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002258,
-        "KHR-GLES3.shaders.uniform_block.random.", 
+        "KHR-GLES3.shaders.uniform_block.random.",
         "nested_structs_arrays_instance_arrays.5");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002259,
-        "KHR-GLES3.shaders.uniform_block.random.", 
+        "KHR-GLES3.shaders.uniform_block.random.",
         "nested_structs_arrays_instance_arrays.6");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002260,
-        "KHR-GLES3.shaders.uniform_block.random.", 
+        "KHR-GLES3.shaders.uniform_block.random.",
         "nested_structs_arrays_instance_arrays.7");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002261,
-        "KHR-GLES3.shaders.uniform_block.random.", 
+        "KHR-GLES3.shaders.uniform_block.random.",
         "nested_structs_arrays_instance_arrays.8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002262,
-        "KHR-GLES3.shaders.uniform_block.random.", 
+        "KHR-GLES3.shaders.uniform_block.random.",
         "nested_structs_arrays_instance_arrays.9");

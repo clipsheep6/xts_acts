@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017767,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.fwidth.linear.float_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017768,
-        "dEQP-GLES3.functional.shaders.der", 
+        "dEQP-GLES3.functional.shaders.der",
         "ivate.fwidth.linear.float_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017769,
-        "dEQP-GLES3.functional.shaders.de", 
+        "dEQP-GLES3.functional.shaders.de",
         "rivate.fwidth.linear.float_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017770,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.fwidth.linear.vec2_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017771,
-        "dEQP-GLES3.functional.shaders.de", 
+        "dEQP-GLES3.functional.shaders.de",
         "rivate.fwidth.linear.vec2_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017772,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.fwidth.linear.vec2_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017773,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.fwidth.linear.vec3_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017774,
-        "dEQP-GLES3.functional.shaders.de", 
+        "dEQP-GLES3.functional.shaders.de",
         "rivate.fwidth.linear.vec3_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017775,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.fwidth.linear.vec3_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017776,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.fwidth.linear.vec4_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017777,
-        "dEQP-GLES3.functional.shaders.de", 
+        "dEQP-GLES3.functional.shaders.de",
         "rivate.fwidth.linear.vec4_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017778,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.fwidth.linear.vec4_highp");

@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004671,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es31.uniform.basic.precision_conflict_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004672,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es31.uniform.basic.precision_conflict_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004673,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es31.uniform.basic.precision_conflict_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004674,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es31.uniform.basic.precision_conflict_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004931,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es32.uniform.basic.precision_conflict_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004932,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es32.uniform.basic.precision_conflict_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004933,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es32.uniform.basic.precision_conflict_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004934,
-        "dEQP-GLES31.functional.shaders.linkage.", 
+        "dEQP-GLES31.functional.shaders.linkage.",
         "es32.uniform.basic.precision_conflict_4");

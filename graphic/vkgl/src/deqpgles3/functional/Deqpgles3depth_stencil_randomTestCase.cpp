@@ -24,101 +24,101 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028289,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth_stencil.random.0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028290,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth_stencil.random.1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028291,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth_stencil.random.2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028292,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth_stencil.random.3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028293,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth_stencil.random.4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028294,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth_stencil.random.5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028295,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth_stencil.random.6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028296,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth_stencil.random.7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028297,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth_stencil.random.8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028298,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth_stencil.random.9");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028299,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028300,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.11");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028301,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.12");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028302,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.13");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028303,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.14");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028304,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.15");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028305,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028306,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.17");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028307,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.18");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028308,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.19");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028309,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.20");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028310,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.21");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028311,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.22");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028312,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.23");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028313,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth_stencil.random.24");

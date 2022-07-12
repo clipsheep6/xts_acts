@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021214,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenced", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenced",
         "_by_shader.vertex_tess_fragment_only_tess_ctrl.default_block.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021215,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by",
         "_shader.vertex_tess_fragment_only_tess_ctrl.default_block.float_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021216,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by_", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by_",
         "shader.vertex_tess_fragment_only_tess_ctrl.default_block.float_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021217,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_",
         "by_shader.vertex_tess_fragment_only_tess_ctrl.default_block.sampler");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021218,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by_", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by_",
         "shader.vertex_tess_fragment_only_tess_ctrl.default_block.sampler_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021219,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by_s", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by_s",
         "hader.vertex_tess_fragment_only_tess_ctrl.default_block.sampler_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021220,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by",
         "_shader.vertex_tess_fragment_only_tess_ctrl.default_block.atomic_uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021221,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by_sh", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenced_by_sh",
         "ader.vertex_tess_fragment_only_tess_ctrl.default_block.atomic_uint_array");

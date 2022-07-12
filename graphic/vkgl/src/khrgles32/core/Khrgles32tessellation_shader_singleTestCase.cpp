@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000188,
-        "KHR-GLES32.core.tessellation_shader.single", 
+        "KHR-GLES32.core.tessellation_shader.single",
         ".default_values_of_context_wide_properties");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000189,
-        "KHR-GLES32.core.tessellation_sha", 
+        "KHR-GLES32.core.tessellation_sha",
         "der.single.isolines_tessellation");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000190,
-        "KHR-GLES32.core.tessellation_shader.sing", 
+        "KHR-GLES32.core.tessellation_shader.sing",
         "le.ext_program_interface_query_dependency");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000191,
-        "KHR-GLES32.core.tessellation_shade", 
+        "KHR-GLES32.core.tessellation_shade",
         "r.single.program_object_properties");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000192,
-        "KHR-GLES32.core.tessellation_shader.sin", 
+        "KHR-GLES32.core.tessellation_shader.sin",
         "gle.xfb_captures_data_from_correct_stage");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000193,
-        "KHR-GLES32.core.tessellation_s", 
+        "KHR-GLES32.core.tessellation_s",
         "hader.single.max_patch_vertices");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000194,
-        "KHR-GLES32.core.tessellation_s", 
+        "KHR-GLES32.core.tessellation_s",
         "hader.single.primitive_coverage");

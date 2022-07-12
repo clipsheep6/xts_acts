@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002475,
-        "KHR-GLES31.core.geometry_shad", 
+        "KHR-GLES31.core.geometry_shad",
         "er.blitting.layered_nonlayered");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002476,
-        "KHR-GLES31.core.geometry_shad", 
+        "KHR-GLES31.core.geometry_shad",
         "er.blitting.nonlayered_layered");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002477,
-        "KHR-GLES31.core.geometry_sha", 
+        "KHR-GLES31.core.geometry_sha",
         "der.blitting.layered_layered");

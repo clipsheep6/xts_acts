@@ -24,57 +24,57 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026816,
-        "dEQP-GLES3.functional.texture.specific", 
+        "dEQP-GLES3.functional.texture.specific",
         "ation.texstorage2d.size.2d_1x1_1_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026817,
-        "dEQP-GLES3.functional.texture.specific", 
+        "dEQP-GLES3.functional.texture.specific",
         "ation.texstorage2d.size.2d_2x2_2_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026818,
-        "dEQP-GLES3.functional.texture.specifica", 
+        "dEQP-GLES3.functional.texture.specifica",
         "tion.texstorage2d.size.2d_64x32_7_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026819,
-        "dEQP-GLES3.functional.texture.specifica", 
+        "dEQP-GLES3.functional.texture.specifica",
         "tion.texstorage2d.size.2d_32x64_4_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026820,
-        "dEQP-GLES3.functional.texture.specifica", 
+        "dEQP-GLES3.functional.texture.specifica",
         "tion.texstorage2d.size.2d_57x63_1_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026821,
-        "dEQP-GLES3.functional.texture.specifica", 
+        "dEQP-GLES3.functional.texture.specifica",
         "tion.texstorage2d.size.2d_57x63_2_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026822,
-        "dEQP-GLES3.functional.texture.specifica", 
+        "dEQP-GLES3.functional.texture.specifica",
         "tion.texstorage2d.size.2d_57x63_6_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026823,
-        "dEQP-GLES3.functional.texture.specifica", 
+        "dEQP-GLES3.functional.texture.specifica",
         "tion.texstorage2d.size.cube_1x1_1_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026824,
-        "dEQP-GLES3.functional.texture.specifica", 
+        "dEQP-GLES3.functional.texture.specifica",
         "tion.texstorage2d.size.cube_2x2_2_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026825,
-        "dEQP-GLES3.functional.texture.specificat", 
+        "dEQP-GLES3.functional.texture.specificat",
         "ion.texstorage2d.size.cube_57x57_1_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026826,
-        "dEQP-GLES3.functional.texture.specificat", 
+        "dEQP-GLES3.functional.texture.specificat",
         "ion.texstorage2d.size.cube_57x57_2_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026827,
-        "dEQP-GLES3.functional.texture.specificat", 
+        "dEQP-GLES3.functional.texture.specificat",
         "ion.texstorage2d.size.cube_57x57_6_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026828,
-        "dEQP-GLES3.functional.texture.specificat", 
+        "dEQP-GLES3.functional.texture.specificat",
         "ion.texstorage2d.size.cube_64x64_4_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026829,
-        "dEQP-GLES3.functional.texture.specificat", 
+        "dEQP-GLES3.functional.texture.specificat",
         "ion.texstorage2d.size.cube_64x64_7_levels");

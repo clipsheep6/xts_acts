@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018303,
-        "dEQP-GLES31.functional.tessellation_geo", 
+        "dEQP-GLES31.functional.tessellation_geo",
         "metry_interaction.point_size.vertex_set");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018304,
-        "dEQP-GLES31.functional.tessellation_geome", 
+        "dEQP-GLES31.functional.tessellation_geome",
         "try_interaction.point_size.evaluation_set");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018305,
-        "dEQP-GLES31.functional.tessellation_geom", 
+        "dEQP-GLES31.functional.tessellation_geom",
         "etry_interaction.point_size.geometry_set");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018306,
-        "dEQP-GLES31.functional.tessellation_geometry_", 
+        "dEQP-GLES31.functional.tessellation_geometry_",
         "interaction.point_size.vertex_set_control_set");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018307,
-        "dEQP-GLES31.functional.tessellation_geometry_i", 
+        "dEQP-GLES31.functional.tessellation_geometry_i",
         "nteraction.point_size.vertex_set_evaluation_set");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018308,
-        "dEQP-GLES31.functional.tessellation_geometry_", 
+        "dEQP-GLES31.functional.tessellation_geometry_",
         "interaction.point_size.vertex_set_eval_default");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018309,
-        "dEQP-GLES31.functional.tessellation_geometry_", 
+        "dEQP-GLES31.functional.tessellation_geometry_",
         "interaction.point_size.vertex_set_geometry_set");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018310,
-        "dEQP-GLES31.functional.tessellation_geometry_interact", 
+        "dEQP-GLES31.functional.tessellation_geometry_interact",
         "ion.point_size.vertex_set_evaluation_set_geometry_set");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018311,
-        "dEQP-GLES31.functional.tessellation_geometry_interaction", 
+        "dEQP-GLES31.functional.tessellation_geometry_interaction",
         ".point_size.vertex_set_control_pass_eval_add_geometry_add");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018312,
-        "dEQP-GLES31.functional.tessellation_geometry_interactio", 
+        "dEQP-GLES31.functional.tessellation_geometry_interactio",
         "n.point_size.vertex_set_evaluation_set_geometry_default");

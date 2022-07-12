@@ -24,121 +24,121 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000914,
-        "KHR-GLES3.shaders.preprocessor.object_r", 
+        "KHR-GLES3.shaders.preprocessor.object_r",
         "edefinitions.invalid_object_ident_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000915,
-        "KHR-GLES3.shaders.preprocessor.object_re", 
+        "KHR-GLES3.shaders.preprocessor.object_re",
         "definitions.invalid_object_ident_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000916,
-        "KHR-GLES3.shaders.preprocessor.object_rede", 
+        "KHR-GLES3.shaders.preprocessor.object_rede",
         "finitions.invalid_object_whitespace_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000917,
-        "KHR-GLES3.shaders.preprocessor.object_redef", 
+        "KHR-GLES3.shaders.preprocessor.object_redef",
         "initions.invalid_object_whitespace_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000918,
-        "KHR-GLES3.shaders.preprocessor.object_", 
+        "KHR-GLES3.shaders.preprocessor.object_",
         "redefinitions.invalid_object_op_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000919,
-        "KHR-GLES3.shaders.preprocessor.object_r", 
+        "KHR-GLES3.shaders.preprocessor.object_r",
         "edefinitions.invalid_object_op_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000920,
-        "KHR-GLES3.shaders.preprocessor.object_rede", 
+        "KHR-GLES3.shaders.preprocessor.object_rede",
         "finitions.invalid_object_floatval_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000921,
-        "KHR-GLES3.shaders.preprocessor.object_redef", 
+        "KHR-GLES3.shaders.preprocessor.object_redef",
         "initions.invalid_object_floatval_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000922,
-        "KHR-GLES3.shaders.preprocessor.object_rede", 
+        "KHR-GLES3.shaders.preprocessor.object_rede",
         "finitions.invalid_object_floatval_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000923,
-        "KHR-GLES3.shaders.preprocessor.object_redef", 
+        "KHR-GLES3.shaders.preprocessor.object_redef",
         "initions.invalid_object_floatval_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000924,
-        "KHR-GLES3.shaders.preprocessor.object_red", 
+        "KHR-GLES3.shaders.preprocessor.object_red",
         "efinitions.invalid_object_intval_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000925,
-        "KHR-GLES3.shaders.preprocessor.object_rede", 
+        "KHR-GLES3.shaders.preprocessor.object_rede",
         "finitions.invalid_object_intval_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000926,
-        "KHR-GLES3.shaders.preprocessor.object_red", 
+        "KHR-GLES3.shaders.preprocessor.object_red",
         "efinitions.invalid_object_intval_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000927,
-        "KHR-GLES3.shaders.preprocessor.object_rede", 
+        "KHR-GLES3.shaders.preprocessor.object_rede",
         "finitions.invalid_object_intval_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000928,
-        "KHR-GLES3.shaders.preprocessor.object_", 
+        "KHR-GLES3.shaders.preprocessor.object_",
         "redefinitions.redefine_object_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000929,
-        "KHR-GLES3.shaders.preprocessor.object_r", 
+        "KHR-GLES3.shaders.preprocessor.object_r",
         "edefinitions.redefine_object_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000930,
-        "KHR-GLES3.shaders.preprocessor.object_re", 
+        "KHR-GLES3.shaders.preprocessor.object_re",
         "definitions.redefine_object_ifdef_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000931,
-        "KHR-GLES3.shaders.preprocessor.object_red", 
+        "KHR-GLES3.shaders.preprocessor.object_red",
         "efinitions.redefine_object_ifdef_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000932,
-        "KHR-GLES3.shaders.preprocessor.object_redef", 
+        "KHR-GLES3.shaders.preprocessor.object_redef",
         "initions.redefine_object_undef_ifdef_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000933,
-        "KHR-GLES3.shaders.preprocessor.object_redefi", 
+        "KHR-GLES3.shaders.preprocessor.object_redefi",
         "nitions.redefine_object_undef_ifdef_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000934,
-        "KHR-GLES3.shaders.preprocessor.object_re", 
+        "KHR-GLES3.shaders.preprocessor.object_re",
         "definitions.redefine_object_ifndef_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000935,
-        "KHR-GLES3.shaders.preprocessor.object_red", 
+        "KHR-GLES3.shaders.preprocessor.object_red",
         "efinitions.redefine_object_ifndef_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000936,
-        "KHR-GLES3.shaders.preprocessor.object_rede", 
+        "KHR-GLES3.shaders.preprocessor.object_rede",
         "finitions.redefine_object_defined_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000937,
-        "KHR-GLES3.shaders.preprocessor.object_redef", 
+        "KHR-GLES3.shaders.preprocessor.object_redef",
         "initions.redefine_object_defined_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000938,
-        "KHR-GLES3.shaders.preprocessor.object_rede", 
+        "KHR-GLES3.shaders.preprocessor.object_rede",
         "finitions.redefine_object_defined_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000939,
-        "KHR-GLES3.shaders.preprocessor.object_redef", 
+        "KHR-GLES3.shaders.preprocessor.object_redef",
         "initions.redefine_object_defined_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000940,
-        "KHR-GLES3.shaders.preprocessor.object_red", 
+        "KHR-GLES3.shaders.preprocessor.object_red",
         "efinitions.redefine_object_comment_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000941,
-        "KHR-GLES3.shaders.preprocessor.object_rede", 
+        "KHR-GLES3.shaders.preprocessor.object_rede",
         "finitions.redefine_object_comment_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000942,
-        "KHR-GLES3.shaders.preprocessor.object_redefini", 
+        "KHR-GLES3.shaders.preprocessor.object_redefini",
         "tions.redefine_object_multiline_comment_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000943,
-        "KHR-GLES3.shaders.preprocessor.object_redefinit", 
+        "KHR-GLES3.shaders.preprocessor.object_redefinit",
         "ions.redefine_object_multiline_comment_fragment");

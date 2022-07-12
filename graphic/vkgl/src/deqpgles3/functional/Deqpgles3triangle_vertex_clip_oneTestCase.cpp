@@ -24,105 +24,105 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043385,
-        "dEQP-GLES3.functional.clipping.tr", 
+        "dEQP-GLES3.functional.clipping.tr",
         "iangle_vertex.clip_one.clip_neg_x");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043386,
-        "dEQP-GLES3.functional.clipping.tr", 
+        "dEQP-GLES3.functional.clipping.tr",
         "iangle_vertex.clip_one.clip_pos_x");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043387,
-        "dEQP-GLES3.functional.clipping.tr", 
+        "dEQP-GLES3.functional.clipping.tr",
         "iangle_vertex.clip_one.clip_pos_y");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043388,
-        "dEQP-GLES3.functional.clipping.tr", 
+        "dEQP-GLES3.functional.clipping.tr",
         "iangle_vertex.clip_one.clip_neg_y");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043389,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_neg_x_neg_y");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043390,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_pos_x_neg_y");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043391,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_pos_x_pos_y");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043392,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_neg_x_pos_y");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043393,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_neg_x_neg_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043394,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_pos_x_neg_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043395,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_pos_x_pos_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043396,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_neg_x_pos_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043397,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_neg_y_neg_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043398,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_pos_y_neg_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043399,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_pos_y_pos_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043400,
-        "dEQP-GLES3.functional.clipping.trian", 
+        "dEQP-GLES3.functional.clipping.trian",
         "gle_vertex.clip_one.clip_neg_y_pos_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043401,
-        "dEQP-GLES3.functional.clipping.triangle", 
+        "dEQP-GLES3.functional.clipping.triangle",
         "_vertex.clip_one.clip_neg_x_neg_y_pos_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043402,
-        "dEQP-GLES3.functional.clipping.triangle", 
+        "dEQP-GLES3.functional.clipping.triangle",
         "_vertex.clip_one.clip_pos_x_neg_y_pos_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043403,
-        "dEQP-GLES3.functional.clipping.triangle", 
+        "dEQP-GLES3.functional.clipping.triangle",
         "_vertex.clip_one.clip_pos_x_pos_y_pos_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043404,
-        "dEQP-GLES3.functional.clipping.triangle", 
+        "dEQP-GLES3.functional.clipping.triangle",
         "_vertex.clip_one.clip_neg_x_pos_y_pos_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043405,
-        "dEQP-GLES3.functional.clipping.triangle", 
+        "dEQP-GLES3.functional.clipping.triangle",
         "_vertex.clip_one.clip_neg_x_neg_y_neg_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043406,
-        "dEQP-GLES3.functional.clipping.triangle", 
+        "dEQP-GLES3.functional.clipping.triangle",
         "_vertex.clip_one.clip_pos_x_neg_y_neg_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043407,
-        "dEQP-GLES3.functional.clipping.triangle", 
+        "dEQP-GLES3.functional.clipping.triangle",
         "_vertex.clip_one.clip_pos_x_pos_y_neg_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043408,
-        "dEQP-GLES3.functional.clipping.triangle", 
+        "dEQP-GLES3.functional.clipping.triangle",
         "_vertex.clip_one.clip_neg_x_pos_y_neg_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043409,
-        "dEQP-GLES3.functional.clipping.tr", 
+        "dEQP-GLES3.functional.clipping.tr",
         "iangle_vertex.clip_one.clip_pos_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043410,
-        "dEQP-GLES3.functional.clipping.tr", 
+        "dEQP-GLES3.functional.clipping.tr",
         "iangle_vertex.clip_one.clip_neg_z");

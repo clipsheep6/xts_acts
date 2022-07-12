@@ -24,113 +24,113 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001078,
-        "KHR-GLES3.shaders.preprocessor.undefined_ide", 
+        "KHR-GLES3.shaders.preprocessor.undefined_ide",
         "ntifiers.valid_undefined_identifier_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001079,
-        "KHR-GLES3.shaders.preprocessor.undefined_iden", 
+        "KHR-GLES3.shaders.preprocessor.undefined_iden",
         "tifiers.valid_undefined_identifier_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001080,
-        "KHR-GLES3.shaders.preprocessor.undefined_ide", 
+        "KHR-GLES3.shaders.preprocessor.undefined_ide",
         "ntifiers.valid_undefined_identifier_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001081,
-        "KHR-GLES3.shaders.preprocessor.undefined_iden", 
+        "KHR-GLES3.shaders.preprocessor.undefined_iden",
         "tifiers.valid_undefined_identifier_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001082,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001083,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001084,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001085,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001086,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_3_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001087,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_3_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001088,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_4_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001089,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_4_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001090,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_5_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001091,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_5_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001092,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_6_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001093,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_6_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001094,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_7_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001095,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_7_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001096,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_8_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001097,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_8_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001098,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_9_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001099,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_9_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001100,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_10_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001101,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_10_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001102,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_11_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001103,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_11_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001104,
-        "KHR-GLES3.shaders.preprocessor.undefined_", 
+        "KHR-GLES3.shaders.preprocessor.undefined_",
         "identifiers.undefined_identifier_12_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001105,
-        "KHR-GLES3.shaders.preprocessor.undefined_i", 
+        "KHR-GLES3.shaders.preprocessor.undefined_i",
         "dentifiers.undefined_identifier_12_fragment");

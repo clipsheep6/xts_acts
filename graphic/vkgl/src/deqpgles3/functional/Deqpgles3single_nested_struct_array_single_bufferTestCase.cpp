@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035476,
-        "dEQP-GLES3.functional.ubo.single_nested_struct_", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct_",
         "array.single_buffer.shared_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035477,
-        "dEQP-GLES3.functional.ubo.single_nested_struct_a", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct_a",
         "rray.single_buffer.shared_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035478,
-        "dEQP-GLES3.functional.ubo.single_nested_struct", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct",
         "_array.single_buffer.shared_instance_array_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035479,
-        "dEQP-GLES3.functional.ubo.single_nested_struct_", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct_",
         "array.single_buffer.packed_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035480,
-        "dEQP-GLES3.functional.ubo.single_nested_struct_a", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct_a",
         "rray.single_buffer.packed_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035481,
-        "dEQP-GLES3.functional.ubo.single_nested_struct_", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct_",
         "array.single_buffer.std140_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035482,
-        "dEQP-GLES3.functional.ubo.single_nested_struct_a", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct_a",
         "rray.single_buffer.std140_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035483,
-        "dEQP-GLES3.functional.ubo.single_nested_struct", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct",
         "_array.single_buffer.std140_instance_array_both");

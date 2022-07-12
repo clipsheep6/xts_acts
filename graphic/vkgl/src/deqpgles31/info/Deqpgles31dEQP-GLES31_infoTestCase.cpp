@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000001,
-        "dEQP-GLES31", 
+        "dEQP-GLES31",
         ".info.vendor");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000002,
-        "dEQP-GLES31.", 
+        "dEQP-GLES31.",
         "info.renderer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000003,
-        "dEQP-GLES31.", 
+        "dEQP-GLES31.",
         "info.version");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000004,
-        "dEQP-GLES31.info.sha", 
+        "dEQP-GLES31.info.sha",
         "ding_language_version");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000005,
-        "dEQP-GLES31.i", 
+        "dEQP-GLES31.i",
         "nfo.extensions");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000006,
-        "dEQP-GLES31.inf", 
+        "dEQP-GLES31.inf",
         "o.render_target");

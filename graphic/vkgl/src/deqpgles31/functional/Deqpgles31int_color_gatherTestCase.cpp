@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014657,
-        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mode.t", 
+        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mode.t",
         "exture_2d.int_color.gather.s_clamp_to_edge_t_clamp_to_border_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014658,
-        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mode.t", 
+        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mode.t",
         "exture_2d.int_color.gather.s_clamp_to_edge_t_clamp_to_border_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014659,
-        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mo", 
+        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mo",
         "de.texture_2d.int_color.gather.s_repeat_t_clamp_to_border_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014660,
-        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mod", 
+        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mod",
         "e.texture_2d.int_color.gather.s_repeat_t_clamp_to_border_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014661,
-        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mode.te", 
+        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mode.te",
         "xture_2d.int_color.gather.s_mirrored_repeat_t_clamp_to_border_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014662,
-        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mode.te", 
+        "dEQP-GLES31.functional.texture.border_clamp.per_axis_wrap_mode.te",
         "xture_2d.int_color.gather.s_mirrored_repeat_t_clamp_to_border_npot");

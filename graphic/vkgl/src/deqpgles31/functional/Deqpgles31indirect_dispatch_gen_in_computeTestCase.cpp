@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007696,
-        "dEQP-GLES31.functional.compute.indirect_", 
+        "dEQP-GLES31.functional.compute.indirect_",
         "dispatch.gen_in_compute.single_invocation");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007697,
-        "dEQP-GLES31.functional.compute.indirect", 
+        "dEQP-GLES31.functional.compute.indirect",
         "_dispatch.gen_in_compute.multiple_groups");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007698,
-        "dEQP-GLES31.functional.compute.indirect_dispatch.g", 
+        "dEQP-GLES31.functional.compute.indirect_dispatch.g",
         "en_in_compute.multiple_groups_multiple_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007699,
-        "dEQP-GLES31.functional.compute.indirec", 
+        "dEQP-GLES31.functional.compute.indirec",
         "t_dispatch.gen_in_compute.small_offset");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007700,
-        "dEQP-GLES31.functional.compute.indirec", 
+        "dEQP-GLES31.functional.compute.indirec",
         "t_dispatch.gen_in_compute.large_offset");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007701,
-        "dEQP-GLES31.functional.compute.indirect_dispatch", 
+        "dEQP-GLES31.functional.compute.indirect_dispatch",
         ".gen_in_compute.large_offset_multiple_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007702,
-        "dEQP-GLES31.functional.compute.indirec", 
+        "dEQP-GLES31.functional.compute.indirec",
         "t_dispatch.gen_in_compute.empty_command");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007703,
-        "dEQP-GLES31.functional.compute.indirect", 
+        "dEQP-GLES31.functional.compute.indirect",
         "_dispatch.gen_in_compute.multi_dispatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007704,
-        "dEQP-GLES31.functional.compute.indirect_dispat", 
+        "dEQP-GLES31.functional.compute.indirect_dispat",
         "ch.gen_in_compute.multi_dispatch_reuse_command");

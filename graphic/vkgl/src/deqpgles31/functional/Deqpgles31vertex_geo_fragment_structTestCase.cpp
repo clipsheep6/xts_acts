@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023213,
-        "dEQP-GLES31.functional.program_interface_query.transfor", 
+        "dEQP-GLES31.functional.program_interface_query.transfor",
         "m_feedback_varying.type.vertex_geo_fragment.struct.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023214,
-        "dEQP-GLES31.functional.program_interface_query.transfo", 
+        "dEQP-GLES31.functional.program_interface_query.transfo",
         "rm_feedback_varying.type.vertex_geo_fragment.struct.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023215,
-        "dEQP-GLES31.functional.program_interface_query.transfor", 
+        "dEQP-GLES31.functional.program_interface_query.transfor",
         "m_feedback_varying.type.vertex_geo_fragment.struct.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023216,
-        "dEQP-GLES31.functional.program_interface_query.transfor", 
+        "dEQP-GLES31.functional.program_interface_query.transfor",
         "m_feedback_varying.type.vertex_geo_fragment.struct.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023217,
-        "dEQP-GLES31.functional.program_interface_query.transfor", 
+        "dEQP-GLES31.functional.program_interface_query.transfor",
         "m_feedback_varying.type.vertex_geo_fragment.struct.ivec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023218,
-        "dEQP-GLES31.functional.program_interface_query.transfor", 
+        "dEQP-GLES31.functional.program_interface_query.transfor",
         "m_feedback_varying.type.vertex_geo_fragment.struct.uvec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023219,
-        "dEQP-GLES31.functional.program_interface_query.transform", 
+        "dEQP-GLES31.functional.program_interface_query.transform",
         "_feedback_varying.type.vertex_geo_fragment.struct.mat3x4");

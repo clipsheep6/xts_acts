@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000044,
-        "KHR-GLESEXT.geometry_shader", 
+        "KHR-GLESEXT.geometry_shader",
         ".input.gl_in_array_contents");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000045,
-        "KHR-GLESEXT.geometry_shade", 
+        "KHR-GLESEXT.geometry_shade",
         "r.input.gl_in_array_length");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000046,
-        "KHR-GLESEXT.geometry_shade", 
+        "KHR-GLESEXT.geometry_shade",
         "r.input.gl_pointsize_value");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000047,
-        "KHR-GLESEXT.geometry_shad", 
+        "KHR-GLESEXT.geometry_shad",
         "er.input.gl_position_value");

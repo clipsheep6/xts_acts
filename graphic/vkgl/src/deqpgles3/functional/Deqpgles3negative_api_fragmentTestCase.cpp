@@ -24,93 +24,93 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042120,
-        "dEQP-GLES3.functional.neg", 
+        "dEQP-GLES3.functional.neg",
         "ative_api.fragment.scissor");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042121,
-        "dEQP-GLES3.functional.negat", 
+        "dEQP-GLES3.functional.negat",
         "ive_api.fragment.depth_func");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042122,
-        "dEQP-GLES3.functional.nega", 
+        "dEQP-GLES3.functional.nega",
         "tive_api.fragment.viewport");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042123,
-        "dEQP-GLES3.functional.negati", 
+        "dEQP-GLES3.functional.negati",
         "ve_api.fragment.stencil_func");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042124,
-        "dEQP-GLES3.functional.negative_a", 
+        "dEQP-GLES3.functional.negative_a",
         "pi.fragment.stencil_func_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042125,
-        "dEQP-GLES3.functional.negat", 
+        "dEQP-GLES3.functional.negat",
         "ive_api.fragment.stencil_op");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042126,
-        "dEQP-GLES3.functional.negative_", 
+        "dEQP-GLES3.functional.negative_",
         "api.fragment.stencil_op_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042127,
-        "dEQP-GLES3.functional.negative_a", 
+        "dEQP-GLES3.functional.negative_a",
         "pi.fragment.stencil_mask_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042128,
-        "dEQP-GLES3.functional.negativ", 
+        "dEQP-GLES3.functional.negativ",
         "e_api.fragment.blend_equation");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042129,
-        "dEQP-GLES3.functional.negative_ap", 
+        "dEQP-GLES3.functional.negative_ap",
         "i.fragment.blend_equation_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042130,
-        "dEQP-GLES3.functional.negat", 
+        "dEQP-GLES3.functional.negat",
         "ive_api.fragment.blend_func");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042131,
-        "dEQP-GLES3.functional.negative_", 
+        "dEQP-GLES3.functional.negative_",
         "api.fragment.blend_func_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042132,
-        "dEQP-GLES3.functional.nega", 
+        "dEQP-GLES3.functional.nega",
         "tive_api.fragment.cull_face");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042133,
-        "dEQP-GLES3.functional.negat", 
+        "dEQP-GLES3.functional.negat",
         "ive_api.fragment.front_face");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042134,
-        "dEQP-GLES3.functional.negat", 
+        "dEQP-GLES3.functional.negat",
         "ive_api.fragment.line_width");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042135,
-        "dEQP-GLES3.functional.negat", 
+        "dEQP-GLES3.functional.negat",
         "ive_api.fragment.gen_queries");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042136,
-        "dEQP-GLES3.functional.negat", 
+        "dEQP-GLES3.functional.negat",
         "ive_api.fragment.begin_query");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042137,
-        "dEQP-GLES3.functional.nega", 
+        "dEQP-GLES3.functional.nega",
         "tive_api.fragment.end_query");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042138,
-        "dEQP-GLES3.functional.negativ", 
+        "dEQP-GLES3.functional.negativ",
         "e_api.fragment.delete_queries");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042139,
-        "dEQP-GLES3.functional.negat", 
+        "dEQP-GLES3.functional.negat",
         "ive_api.fragment.fence_sync");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042140,
-        "dEQP-GLES3.functional.nega", 
+        "dEQP-GLES3.functional.nega",
         "tive_api.fragment.wait_sync");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042141,
-        "dEQP-GLES3.functional.negative", 
+        "dEQP-GLES3.functional.negative",
         "_api.fragment.client_wait_sync");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042142,
-        "dEQP-GLES3.functional.negat", 
+        "dEQP-GLES3.functional.negat",
         "ive_api.fragment.delete_sync");

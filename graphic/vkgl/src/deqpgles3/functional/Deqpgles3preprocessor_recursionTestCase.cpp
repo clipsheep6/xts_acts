@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000888,
-        "dEQP-GLES3.functional.shaders.prepr", 
+        "dEQP-GLES3.functional.shaders.prepr",
         "ocessor.recursion.recursion_1_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000889,
-        "dEQP-GLES3.functional.shaders.prepro", 
+        "dEQP-GLES3.functional.shaders.prepro",
         "cessor.recursion.recursion_1_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000890,
-        "dEQP-GLES3.functional.shaders.prepr", 
+        "dEQP-GLES3.functional.shaders.prepr",
         "ocessor.recursion.recursion_2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000891,
-        "dEQP-GLES3.functional.shaders.prepro", 
+        "dEQP-GLES3.functional.shaders.prepro",
         "cessor.recursion.recursion_2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000892,
-        "dEQP-GLES3.functional.shaders.prepr", 
+        "dEQP-GLES3.functional.shaders.prepr",
         "ocessor.recursion.recursion_3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000893,
-        "dEQP-GLES3.functional.shaders.prepro", 
+        "dEQP-GLES3.functional.shaders.prepro",
         "cessor.recursion.recursion_3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000894,
-        "dEQP-GLES3.functional.shaders.prepr", 
+        "dEQP-GLES3.functional.shaders.prepr",
         "ocessor.recursion.recursion_4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000895,
-        "dEQP-GLES3.functional.shaders.prepro", 
+        "dEQP-GLES3.functional.shaders.prepro",
         "cessor.recursion.recursion_4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000896,
-        "dEQP-GLES3.functional.shaders.prepr", 
+        "dEQP-GLES3.functional.shaders.prepr",
         "ocessor.recursion.recursion_5_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000897,
-        "dEQP-GLES3.functional.shaders.prepro", 
+        "dEQP-GLES3.functional.shaders.prepro",
         "cessor.recursion.recursion_5_fragment");

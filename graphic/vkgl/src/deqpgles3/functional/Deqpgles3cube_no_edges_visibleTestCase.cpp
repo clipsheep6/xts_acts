@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024325,
-        "dEQP-GLES3.functional.texture.filt", 
+        "dEQP-GLES3.functional.texture.filt",
         "ering.cube.no_edges_visible.nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024326,
-        "dEQP-GLES3.functional.texture.filt", 
+        "dEQP-GLES3.functional.texture.filt",
         "ering.cube.no_edges_visible.linear");

@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014594,
-        "dEQP-GLES31.functional.texture.", 
+        "dEQP-GLES31.functional.texture.",
         "border_clamp.sampler.unorm_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014595,
-        "dEQP-GLES31.functional.texture.", 
+        "dEQP-GLES31.functional.texture.",
         "border_clamp.sampler.snorm_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014596,
-        "dEQP-GLES31.functional.texture.", 
+        "dEQP-GLES31.functional.texture.",
         "border_clamp.sampler.float_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014597,
-        "dEQP-GLES31.functional.texture", 
+        "dEQP-GLES31.functional.texture",
         ".border_clamp.sampler.int_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014598,
-        "dEQP-GLES31.functional.texture.", 
+        "dEQP-GLES31.functional.texture.",
         "border_clamp.sampler.uint_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014599,
-        "dEQP-GLES31.functional.texture.", 
+        "dEQP-GLES31.functional.texture.",
         "border_clamp.sampler.unorm_depth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014600,
-        "dEQP-GLES31.functional.texture.", 
+        "dEQP-GLES31.functional.texture.",
         "border_clamp.sampler.float_depth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014601,
-        "dEQP-GLES31.functional.texture.b", 
+        "dEQP-GLES31.functional.texture.b",
         "order_clamp.sampler.uint_stencil");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014602,
-        "dEQP-GLES31.functional.texture.bor", 
+        "dEQP-GLES31.functional.texture.bor",
         "der_clamp.sampler.compressed_color");

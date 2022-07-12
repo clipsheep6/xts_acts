@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019684,
-        "dEQP-GLES3.functional.shaders.constan", 
+        "dEQP-GLES3.functional.shaders.constan",
         "t_expressions.other.switch_case_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019685,
-        "dEQP-GLES3.functional.shaders.constant", 
+        "dEQP-GLES3.functional.shaders.constant",
         "_expressions.other.switch_case_fragment");

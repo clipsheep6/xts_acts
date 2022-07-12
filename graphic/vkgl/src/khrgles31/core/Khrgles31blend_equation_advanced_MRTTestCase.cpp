@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001746,
-        "KHR-GLES31.core.blend_equa", 
+        "KHR-GLES31.core.blend_equa",
         "tion_advanced.MRT.MRT_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001747,
-        "KHR-GLES31.core.blend_equati", 
+        "KHR-GLES31.core.blend_equati",
         "on_advanced.MRT.MRT_separate");

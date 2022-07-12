@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023163,
-        "dEQP-GLES31.functional.program_interface_query.transform_f", 
+        "dEQP-GLES31.functional.program_interface_query.transform_f",
         "eedback_varying.type.vertex_tess_fragment.basic_type.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023164,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.vertex_tess_fragment.basic_type.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023165,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.vertex_tess_fragment.basic_type.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023166,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.vertex_tess_fragment.basic_type.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023167,
-        "dEQP-GLES31.functional.program_interface_query.transform_f", 
+        "dEQP-GLES31.functional.program_interface_query.transform_f",
         "eedback_varying.type.vertex_tess_fragment.basic_type.ivec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023168,
-        "dEQP-GLES31.functional.program_interface_query.transform_f", 
+        "dEQP-GLES31.functional.program_interface_query.transform_f",
         "eedback_varying.type.vertex_tess_fragment.basic_type.uvec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023169,
-        "dEQP-GLES31.functional.program_interface_query.transform_f", 
+        "dEQP-GLES31.functional.program_interface_query.transform_f",
         "eedback_varying.type.vertex_tess_fragment.basic_type.mat3x4");

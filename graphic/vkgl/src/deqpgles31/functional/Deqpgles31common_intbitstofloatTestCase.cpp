@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000949,
-        "dEQP-GLES31.functional.shaders.builtin_funct", 
+        "dEQP-GLES31.functional.shaders.builtin_funct",
         "ions.common.intbitstofloat.int_highp_geometry");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000950,
-        "dEQP-GLES31.functional.shaders.builtin_functio", 
+        "dEQP-GLES31.functional.shaders.builtin_functio",
         "ns.common.intbitstofloat.int_highp_tess_control");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000951,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.common.intbitstofloat.int_highp_tess_eval");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000952,
-        "dEQP-GLES31.functional.shaders.builtin_funct", 
+        "dEQP-GLES31.functional.shaders.builtin_funct",
         "ions.common.intbitstofloat.int_highp_compute");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000953,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.common.intbitstofloat.ivec2_highp_geometry");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000954,
-        "dEQP-GLES31.functional.shaders.builtin_function", 
+        "dEQP-GLES31.functional.shaders.builtin_function",
         "s.common.intbitstofloat.ivec2_highp_tess_control");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000955,
-        "dEQP-GLES31.functional.shaders.builtin_functio", 
+        "dEQP-GLES31.functional.shaders.builtin_functio",
         "ns.common.intbitstofloat.ivec2_highp_tess_eval");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000956,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.common.intbitstofloat.ivec2_highp_compute");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000957,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.common.intbitstofloat.ivec3_highp_geometry");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000958,
-        "dEQP-GLES31.functional.shaders.builtin_function", 
+        "dEQP-GLES31.functional.shaders.builtin_function",
         "s.common.intbitstofloat.ivec3_highp_tess_control");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000959,
-        "dEQP-GLES31.functional.shaders.builtin_functio", 
+        "dEQP-GLES31.functional.shaders.builtin_functio",
         "ns.common.intbitstofloat.ivec3_highp_tess_eval");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000960,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.common.intbitstofloat.ivec3_highp_compute");

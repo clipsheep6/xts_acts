@@ -24,109 +24,109 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006854,
-        "dEQP-GLES2.functional.shaders.operator", 
+        "dEQP-GLES2.functional.shaders.operator",
         ".sequence.side_effects.lowp_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006855,
-        "dEQP-GLES2.functional.shaders.operator.", 
+        "dEQP-GLES2.functional.shaders.operator.",
         "sequence.side_effects.lowp_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006856,
-        "dEQP-GLES2.functional.shaders.operator.s", 
+        "dEQP-GLES2.functional.shaders.operator.s",
         "equence.side_effects.mediump_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006857,
-        "dEQP-GLES2.functional.shaders.operator.se", 
+        "dEQP-GLES2.functional.shaders.operator.se",
         "quence.side_effects.mediump_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006858,
-        "dEQP-GLES2.functional.shaders.operator.", 
+        "dEQP-GLES2.functional.shaders.operator.",
         "sequence.side_effects.highp_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006859,
-        "dEQP-GLES2.functional.shaders.operator.s", 
+        "dEQP-GLES2.functional.shaders.operator.s",
         "equence.side_effects.highp_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006860,
-        "dEQP-GLES2.functional.shaders.operator.se", 
+        "dEQP-GLES2.functional.shaders.operator.se",
         "quence.side_effects.lowp_float_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006861,
-        "dEQP-GLES2.functional.shaders.operator.seq", 
+        "dEQP-GLES2.functional.shaders.operator.seq",
         "uence.side_effects.lowp_float_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006862,
-        "dEQP-GLES2.functional.shaders.operator.seq", 
+        "dEQP-GLES2.functional.shaders.operator.seq",
         "uence.side_effects.mediump_float_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006863,
-        "dEQP-GLES2.functional.shaders.operator.sequ", 
+        "dEQP-GLES2.functional.shaders.operator.sequ",
         "ence.side_effects.mediump_float_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006864,
-        "dEQP-GLES2.functional.shaders.operator.se", 
+        "dEQP-GLES2.functional.shaders.operator.se",
         "quence.side_effects.highp_float_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006865,
-        "dEQP-GLES2.functional.shaders.operator.seq", 
+        "dEQP-GLES2.functional.shaders.operator.seq",
         "uence.side_effects.highp_float_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006866,
-        "dEQP-GLES2.functional.shaders.operator.se", 
+        "dEQP-GLES2.functional.shaders.operator.se",
         "quence.side_effects.lowp_bool_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006867,
-        "dEQP-GLES2.functional.shaders.operator.seq", 
+        "dEQP-GLES2.functional.shaders.operator.seq",
         "uence.side_effects.lowp_bool_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006868,
-        "dEQP-GLES2.functional.shaders.operator.seq", 
+        "dEQP-GLES2.functional.shaders.operator.seq",
         "uence.side_effects.mediump_bool_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006869,
-        "dEQP-GLES2.functional.shaders.operator.sequ", 
+        "dEQP-GLES2.functional.shaders.operator.sequ",
         "ence.side_effects.mediump_bool_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006870,
-        "dEQP-GLES2.functional.shaders.operator.se", 
+        "dEQP-GLES2.functional.shaders.operator.se",
         "quence.side_effects.highp_bool_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006871,
-        "dEQP-GLES2.functional.shaders.operator.seq", 
+        "dEQP-GLES2.functional.shaders.operator.seq",
         "uence.side_effects.highp_bool_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006872,
-        "dEQP-GLES2.functional.shaders.operator.seque", 
+        "dEQP-GLES2.functional.shaders.operator.seque",
         "nce.side_effects.lowp_vec4_ivec4_bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006873,
-        "dEQP-GLES2.functional.shaders.operator.sequen", 
+        "dEQP-GLES2.functional.shaders.operator.sequen",
         "ce.side_effects.lowp_vec4_ivec4_bvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006874,
-        "dEQP-GLES2.functional.shaders.operator.sequenc", 
+        "dEQP-GLES2.functional.shaders.operator.sequenc",
         "e.side_effects.mediump_vec4_ivec4_bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006875,
-        "dEQP-GLES2.functional.shaders.operator.sequence", 
+        "dEQP-GLES2.functional.shaders.operator.sequence",
         ".side_effects.mediump_vec4_ivec4_bvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006876,
-        "dEQP-GLES2.functional.shaders.operator.sequen", 
+        "dEQP-GLES2.functional.shaders.operator.sequen",
         "ce.side_effects.highp_vec4_ivec4_bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006877,
-        "dEQP-GLES2.functional.shaders.operator.sequenc", 
+        "dEQP-GLES2.functional.shaders.operator.sequenc",
         "e.side_effects.highp_vec4_ivec4_bvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006878,
-        "dEQP-GLES2.functional.shaders.operato", 
+        "dEQP-GLES2.functional.shaders.operato",
         "r.sequence.side_effects.affect_ternary");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006879,
-        "dEQP-GLES2.functional.shaders.opera", 
+        "dEQP-GLES2.functional.shaders.opera",
         "tor.sequence.side_effects.affect_and");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006880,
-        "dEQP-GLES2.functional.shaders.opera", 
+        "dEQP-GLES2.functional.shaders.opera",
         "tor.sequence.side_effects.affect_or");

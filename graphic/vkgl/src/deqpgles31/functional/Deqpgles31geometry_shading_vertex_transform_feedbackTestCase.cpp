@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016472,
-        "dEQP-GLES31.functional.geometry_shading.verte", 
+        "dEQP-GLES31.functional.geometry_shading.verte",
         "x_transform_feedback.capture_vertex_line_loop");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016473,
-        "dEQP-GLES31.functional.geometry_shading.verte", 
+        "dEQP-GLES31.functional.geometry_shading.verte",
         "x_transform_feedback.capture_vertex_line_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016474,
-        "dEQP-GLES31.functional.geometry_shading.vertex_", 
+        "dEQP-GLES31.functional.geometry_shading.vertex_",
         "transform_feedback.capture_vertex_triangle_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016475,
-        "dEQP-GLES31.functional.geometry_shading.vertex", 
+        "dEQP-GLES31.functional.geometry_shading.vertex",
         "_transform_feedback.capture_vertex_triangle_fan");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016476,
-        "dEQP-GLES31.functional.geometry_shading.vertex", 
+        "dEQP-GLES31.functional.geometry_shading.vertex",
         "_transform_feedback.capture_vertex_draw_arrays");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016477,
-        "dEQP-GLES31.functional.geometry_shading.vertex_tran", 
+        "dEQP-GLES31.functional.geometry_shading.vertex_tran",
         "sform_feedback.capture_vertex_draw_arrays_instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016478,
-        "dEQP-GLES31.functional.geometry_shading.vertex_tra", 
+        "dEQP-GLES31.functional.geometry_shading.vertex_tra",
         "nsform_feedback.capture_vertex_draw_arrays_indirect");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016479,
-        "dEQP-GLES31.functional.geometry_shading.vertex_", 
+        "dEQP-GLES31.functional.geometry_shading.vertex_",
         "transform_feedback.capture_vertex_draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016480,
-        "dEQP-GLES31.functional.geometry_shading.vertex_trans", 
+        "dEQP-GLES31.functional.geometry_shading.vertex_trans",
         "form_feedback.capture_vertex_draw_elements_instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016481,
-        "dEQP-GLES31.functional.geometry_shading.vertex_tran", 
+        "dEQP-GLES31.functional.geometry_shading.vertex_tran",
         "sform_feedback.capture_vertex_draw_elements_indirect");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016482,
-        "dEQP-GLES31.functional.geometry_shading.vertex_transform_", 
+        "dEQP-GLES31.functional.geometry_shading.vertex_transform_",
         "feedback.capture_vertex_draw_arrays_overflow_single_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016483,
-        "dEQP-GLES31.functional.geometry_shading.vertex_transform_f", 
+        "dEQP-GLES31.functional.geometry_shading.vertex_transform_f",
         "eedback.capture_vertex_draw_elements_overflow_single_buffer");

@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000002,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMult", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMult",
         "isample.multisample_texture_tex_storage_2d_general_samples_number");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000003,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultisample", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultisample",
         ".multisample_texture_tex_storage_2d_invalid_and_border_case_texture_sizes");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000004,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultisample.multisa", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultisample.multisa",
         "mple_texture_tex_storage_2d_non_color_depth_or_stencil_internal_formats_rejected");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000005,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMulti", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMulti",
         "sample.multisample_texture_tex_storage_2d_reconfiguration_rejected");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000006,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultis", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultis",
         "ample.multisample_texture_tex_storage_2d_texture_2d_multsample_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000007,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultisample.multisa", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultisample.multisa",
         "mple_texture_tex_storage_2d_unsupported_samples_count_for_color_textures_rejected");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000008,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultisample.multisa", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultisample.multisa",
         "mple_texture_tex_storage_2d_unsupported_samples_count_for_depth_textures_rejected");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000009,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultisample.multisample", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage2DMultisample.multisample",
         "_texture_tex_storage_2d_unsupported_samples_count_for_depth_stencil_textures_rejected");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000010,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage",
         "2DMultisample.multisample_texture_tex_storage_2d_valid_calls");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000011,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLTexStorage",
         "2DMultisample.multisample_texture_tex_storage_2d_zero_sample");

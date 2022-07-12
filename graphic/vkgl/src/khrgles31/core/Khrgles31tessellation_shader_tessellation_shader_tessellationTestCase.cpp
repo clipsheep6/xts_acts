@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002580,
-        "KHR-GLES31.core.tessellation_shader.tessellation_shader_", 
+        "KHR-GLES31.core.tessellation_shader.tessellation_shader_",
         "tessellation.gl_InvocationID_PatchVerticesIn_PrimitiveID");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002581,
-        "KHR-GLES31.core.tessellation_shader.te", 
+        "KHR-GLES31.core.tessellation_shader.te",
         "ssellation_shader_tessellation.TCS_TES");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002582,
-        "KHR-GLES31.core.tessellation_shader.", 
+        "KHR-GLES31.core.tessellation_shader.",
         "tessellation_shader_tessellation.TES");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002583,
-        "KHR-GLES31.core.tessellation_shader.tessella", 
+        "KHR-GLES31.core.tessellation_shader.tessella",
         "tion_shader_tessellation.input_patch_discard");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002584,
-        "KHR-GLES31.core.tessellation_shader.tessellat", 
+        "KHR-GLES31.core.tessellation_shader.tessellat",
         "ion_shader_tessellation.max_in_out_attributes");

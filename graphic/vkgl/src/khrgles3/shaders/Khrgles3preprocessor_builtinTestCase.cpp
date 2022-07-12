@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001206,
-        "KHR-GLES3.shaders.preproc", 
+        "KHR-GLES3.shaders.preproc",
         "essor.builtin.line_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001207,
-        "KHR-GLES3.shaders.preproce", 
+        "KHR-GLES3.shaders.preproce",
         "ssor.builtin.line_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001208,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.builtin.line_and_file_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001209,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".builtin.line_and_file_fragment");

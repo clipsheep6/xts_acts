@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004708,
-        "dEQP-GLES31.functional.shaders.linkage", 
+        "dEQP-GLES31.functional.shaders.linkage",
         ".es31.uniform.block.differing_precision");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004709,
-        "dEQP-GLES31.functional.shaders.link", 
+        "dEQP-GLES31.functional.shaders.link",
         "age.es31.uniform.block.type_mismatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004710,
-        "dEQP-GLES31.functional.shaders.linkag", 
+        "dEQP-GLES31.functional.shaders.linkag",
         "e.es31.uniform.block.members_mismatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004711,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "1.uniform.block.layout_qualifier_mismatch_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004712,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "1.uniform.block.layout_qualifier_mismatch_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004713,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "1.uniform.block.layout_qualifier_mismatch_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004714,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "1.uniform.block.layout_qualifier_mismatch_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004715,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "1.uniform.block.layout_qualifier_mismatch_5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004968,
-        "dEQP-GLES31.functional.shaders.linkage", 
+        "dEQP-GLES31.functional.shaders.linkage",
         ".es32.uniform.block.differing_precision");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004969,
-        "dEQP-GLES31.functional.shaders.link", 
+        "dEQP-GLES31.functional.shaders.link",
         "age.es32.uniform.block.type_mismatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004970,
-        "dEQP-GLES31.functional.shaders.linkag", 
+        "dEQP-GLES31.functional.shaders.linkag",
         "e.es32.uniform.block.members_mismatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004971,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "2.uniform.block.layout_qualifier_mismatch_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004972,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "2.uniform.block.layout_qualifier_mismatch_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004973,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "2.uniform.block.layout_qualifier_mismatch_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004974,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "2.uniform.block.layout_qualifier_mismatch_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004975,
-        "dEQP-GLES31.functional.shaders.linkage.es3", 
+        "dEQP-GLES31.functional.shaders.linkage.es3",
         "2.uniform.block.layout_qualifier_mismatch_5");

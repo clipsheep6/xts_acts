@@ -24,61 +24,61 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014109,
-        "dEQP-GLES31.functional.texture.texture_buff", 
+        "dEQP-GLES31.functional.texture.texture_buff",
         "er.modify_render.bufferdata.as_vertex_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014110,
-        "dEQP-GLES31.functional.texture.texture_buf", 
+        "dEQP-GLES31.functional.texture.texture_buf",
         "fer.modify_render.bufferdata.as_index_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014111,
-        "dEQP-GLES31.functional.texture.texture_buffer.modi", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modi",
         "fy_render.bufferdata.as_vertex_array_as_index_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014112,
-        "dEQP-GLES31.functional.texture.texture_buffe", 
+        "dEQP-GLES31.functional.texture.texture_buffe",
         "r.modify_render.bufferdata.as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014113,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify",
         "_render.bufferdata.as_vertex_array_as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014114,
-        "dEQP-GLES31.functional.texture.texture_buffer.modif", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modif",
         "y_render.bufferdata.as_index_array_as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014115,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render",
         ".bufferdata.as_vertex_array_as_index_array_as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014116,
-        "dEQP-GLES31.functional.texture.texture_buffer", 
+        "dEQP-GLES31.functional.texture.texture_buffer",
         ".modify_render.bufferdata.as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014117,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_",
         "render.bufferdata.as_vertex_array_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014118,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify",
         "_render.bufferdata.as_index_array_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014119,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.",
         "bufferdata.as_vertex_array_as_index_array_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014120,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_r", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_r",
         "ender.bufferdata.as_vertex_texture_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014121,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.bu", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.bu",
         "fferdata.as_vertex_array_as_vertex_texture_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014122,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.b", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.b",
         "ufferdata.as_index_array_as_vertex_texture_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014123,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.bufferdat", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.bufferdat",
         "a.as_vertex_array_as_index_array_as_vertex_texture_as_fragment_texture");

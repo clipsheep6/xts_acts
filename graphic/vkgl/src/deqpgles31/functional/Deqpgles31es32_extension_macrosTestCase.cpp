@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025232,
-        "dEQP-GLES31.functional.android_extension_pack.shader", 
+        "dEQP-GLES31.functional.android_extension_pack.shader",
         "s.es32.extension_macros.android_extension_pack_es31a");

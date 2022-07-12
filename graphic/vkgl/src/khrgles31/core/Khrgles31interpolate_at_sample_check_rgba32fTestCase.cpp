@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000718,
-        "KHR-GLES31.core.shader_multisample_interpolation.r", 
+        "KHR-GLES31.core.shader_multisample_interpolation.r",
         "ender.interpolate_at_sample_check.rgba32f.samples_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000719,
-        "KHR-GLES31.core.shader_multisample_interpolation.r", 
+        "KHR-GLES31.core.shader_multisample_interpolation.r",
         "ender.interpolate_at_sample_check.rgba32f.samples_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000720,
-        "KHR-GLES31.core.shader_multisample_interpolation.r", 
+        "KHR-GLES31.core.shader_multisample_interpolation.r",
         "ender.interpolate_at_sample_check.rgba32f.samples_4");

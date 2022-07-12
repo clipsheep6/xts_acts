@@ -24,53 +24,53 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003073,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample",
         "_mask.discard_half_per_two_samples.default_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003074,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample",
         "_mask.discard_half_per_two_samples.singlesample_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003075,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_",
         "mask.discard_half_per_two_samples.multisample_texture_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003076,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_",
         "mask.discard_half_per_two_samples.multisample_texture_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003077,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_",
         "mask.discard_half_per_two_samples.multisample_texture_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003078,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_",
         "mask.discard_half_per_two_samples.multisample_texture_8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003079,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_",
         "mask.discard_half_per_two_samples.multisample_texture_16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003080,
-        "dEQP-GLES31.functional.shaders.sample_variables.samp", 
+        "dEQP-GLES31.functional.shaders.sample_variables.samp",
         "le_mask.discard_half_per_two_samples.singlesample_rbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003081,
-        "dEQP-GLES31.functional.shaders.sample_variables.sampl", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sampl",
         "e_mask.discard_half_per_two_samples.multisample_rbo_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003082,
-        "dEQP-GLES31.functional.shaders.sample_variables.sampl", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sampl",
         "e_mask.discard_half_per_two_samples.multisample_rbo_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003083,
-        "dEQP-GLES31.functional.shaders.sample_variables.sampl", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sampl",
         "e_mask.discard_half_per_two_samples.multisample_rbo_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003084,
-        "dEQP-GLES31.functional.shaders.sample_variables.sampl", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sampl",
         "e_mask.discard_half_per_two_samples.multisample_rbo_8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003085,
-        "dEQP-GLES31.functional.shaders.sample_variables.sampl", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sampl",
         "e_mask.discard_half_per_two_samples.multisample_rbo_16");

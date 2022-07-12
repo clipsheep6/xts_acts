@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002223,
-        "KHR-GLES3.shaders.uniform_b", 
+        "KHR-GLES3.shaders.uniform_b",
         "lock.random.nested_structs.0");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002224,
-        "KHR-GLES3.shaders.uniform_b", 
+        "KHR-GLES3.shaders.uniform_b",
         "lock.random.nested_structs.1");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002225,
-        "KHR-GLES3.shaders.uniform_b", 
+        "KHR-GLES3.shaders.uniform_b",
         "lock.random.nested_structs.2");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002226,
-        "KHR-GLES3.shaders.uniform_b", 
+        "KHR-GLES3.shaders.uniform_b",
         "lock.random.nested_structs.3");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002227,
-        "KHR-GLES3.shaders.uniform_b", 
+        "KHR-GLES3.shaders.uniform_b",
         "lock.random.nested_structs.4");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002228,
-        "KHR-GLES3.shaders.uniform_b", 
+        "KHR-GLES3.shaders.uniform_b",
         "lock.random.nested_structs.5");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002229,
-        "KHR-GLES3.shaders.uniform_b", 
+        "KHR-GLES3.shaders.uniform_b",
         "lock.random.nested_structs.6");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002230,
-        "KHR-GLES3.shaders.uniform_b", 
+        "KHR-GLES3.shaders.uniform_b",
         "lock.random.nested_structs.7");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002231,
-        "KHR-GLES3.shaders.uniform_b", 
+        "KHR-GLES3.shaders.uniform_b",
         "lock.random.nested_structs.8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002232,
-        "KHR-GLES3.shaders.uniform_b", 
+        "KHR-GLES3.shaders.uniform_b",
         "lock.random.nested_structs.9");

@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000872,
-        "dEQP-GLES3.functional.shaders.preproc", 
+        "dEQP-GLES3.functional.shaders.preproc",
         "essor.line_continuation.comment_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000873,
-        "dEQP-GLES3.functional.shaders.preproce", 
+        "dEQP-GLES3.functional.shaders.preproce",
         "ssor.line_continuation.comment_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000874,
-        "dEQP-GLES3.functional.shaders.preproc", 
+        "dEQP-GLES3.functional.shaders.preproc",
         "essor.line_continuation.define_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000875,
-        "dEQP-GLES3.functional.shaders.preproce", 
+        "dEQP-GLES3.functional.shaders.preproce",
         "ssor.line_continuation.define_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000876,
-        "dEQP-GLES3.functional.shaders.preprocessor.", 
+        "dEQP-GLES3.functional.shaders.preprocessor.",
         "line_continuation.preprocessing_token_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000877,
-        "dEQP-GLES3.functional.shaders.preprocessor.l", 
+        "dEQP-GLES3.functional.shaders.preprocessor.l",
         "ine_continuation.preprocessing_token_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000878,
-        "dEQP-GLES3.functional.shaders.prepro", 
+        "dEQP-GLES3.functional.shaders.prepro",
         "cessor.line_continuation.token_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000879,
-        "dEQP-GLES3.functional.shaders.preproc", 
+        "dEQP-GLES3.functional.shaders.preproc",
         "essor.line_continuation.token_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000880,
-        "dEQP-GLES3.functional.shaders.preprocesso", 
+        "dEQP-GLES3.functional.shaders.preprocesso",
         "r.line_continuation.middle_of_line_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000881,
-        "dEQP-GLES3.functional.shaders.preprocessor", 
+        "dEQP-GLES3.functional.shaders.preprocessor",
         ".line_continuation.middle_of_line_fragment");

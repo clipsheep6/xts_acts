@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033131,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_etc2_rgba.rgb8_pun", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_etc2_rgba.rgb8_pun",
         "chthrough_alpha1_etc2_rgb8_punchthrough_alpha1_etc2.texture2d_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033132,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_etc2_rgba.rgb8_pu", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_etc2_rgba.rgb8_pu",
         "nchthrough_alpha1_etc2_rgb8_punchthrough_alpha1_etc2.texture2d_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033133,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_etc2_rgba.rgb8_pu", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_etc2_rgba.rgb8_pu",
         "nchthrough_alpha1_etc2_rgb8_punchthrough_alpha1_etc2.cubemap_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033134,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_etc2_rgba.rgb8_p", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_etc2_rgba.rgb8_p",
         "unchthrough_alpha1_etc2_rgb8_punchthrough_alpha1_etc2.cubemap_to_cubemap");

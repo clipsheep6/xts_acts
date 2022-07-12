@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000974,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.recursion.recursion_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000975,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".recursion.recursion_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000976,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.recursion.recursion_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000977,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".recursion.recursion_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000978,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.recursion.recursion_3_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000979,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".recursion.recursion_3_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000980,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.recursion.recursion_4_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000981,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".recursion.recursion_4_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000982,
-        "KHR-GLES3.shaders.preprocesso", 
+        "KHR-GLES3.shaders.preprocesso",
         "r.recursion.recursion_5_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000983,
-        "KHR-GLES3.shaders.preprocessor", 
+        "KHR-GLES3.shaders.preprocessor",
         ".recursion.recursion_5_fragment");

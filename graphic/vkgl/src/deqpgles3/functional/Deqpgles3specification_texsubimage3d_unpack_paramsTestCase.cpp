@@ -24,57 +24,57 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026579,
-        "dEQP-GLES3.functional.texture.specification.", 
+        "dEQP-GLES3.functional.texture.specification.",
         "texsubimage3d_unpack_params.rgb8_image_height");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026580,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".texsubimage3d_unpack_params.rgb8_row_length");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026581,
-        "dEQP-GLES3.functional.texture.specification.", 
+        "dEQP-GLES3.functional.texture.specification.",
         "texsubimage3d_unpack_params.rgb8_skip_images");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026582,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".texsubimage3d_unpack_params.rgb8_skip_rows");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026583,
-        "dEQP-GLES3.functional.texture.specification.", 
+        "dEQP-GLES3.functional.texture.specification.",
         "texsubimage3d_unpack_params.rgb8_skip_pixels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026584,
-        "dEQP-GLES3.functional.texture.specificati", 
+        "dEQP-GLES3.functional.texture.specificati",
         "on.texsubimage3d_unpack_params.r8_complex1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026585,
-        "dEQP-GLES3.functional.texture.specificati", 
+        "dEQP-GLES3.functional.texture.specificati",
         "on.texsubimage3d_unpack_params.r8_complex2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026586,
-        "dEQP-GLES3.functional.texture.specificati", 
+        "dEQP-GLES3.functional.texture.specificati",
         "on.texsubimage3d_unpack_params.r8_complex3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026587,
-        "dEQP-GLES3.functional.texture.specificati", 
+        "dEQP-GLES3.functional.texture.specificati",
         "on.texsubimage3d_unpack_params.r8_complex4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026588,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".texsubimage3d_unpack_params.rgba8_complex1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026589,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".texsubimage3d_unpack_params.rgba8_complex2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026590,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".texsubimage3d_unpack_params.rgba8_complex3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026591,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".texsubimage3d_unpack_params.rgba8_complex4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026592,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".texsubimage3d_unpack_params.rgba32f_complex");

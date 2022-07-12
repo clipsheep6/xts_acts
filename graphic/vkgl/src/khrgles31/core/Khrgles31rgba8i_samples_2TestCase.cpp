@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000201,
-        "KHR-GLES31.core.sample_variables", 
+        "KHR-GLES31.core.sample_variables",
         ".mask.rgba8i.samples_2.mask_zero");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000202,
-        "KHR-GLES31.core.sample_variabl", 
+        "KHR-GLES31.core.sample_variabl",
         "es.mask.rgba8i.samples_2.mask_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000203,
-        "KHR-GLES31.core.sample_variabl", 
+        "KHR-GLES31.core.sample_variabl",
         "es.mask.rgba8i.samples_2.mask_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000204,
-        "KHR-GLES31.core.sample_variabl", 
+        "KHR-GLES31.core.sample_variabl",
         "es.mask.rgba8i.samples_2.mask_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000205,
-        "KHR-GLES31.core.sample_variabl", 
+        "KHR-GLES31.core.sample_variabl",
         "es.mask.rgba8i.samples_2.mask_3");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000206,
-        "KHR-GLES31.core.sample_variabl", 
+        "KHR-GLES31.core.sample_variabl",
         "es.mask.rgba8i.samples_2.mask_4");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000207,
-        "KHR-GLES31.core.sample_variabl", 
+        "KHR-GLES31.core.sample_variabl",
         "es.mask.rgba8i.samples_2.mask_5");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000208,
-        "KHR-GLES31.core.sample_variabl", 
+        "KHR-GLES31.core.sample_variabl",
         "es.mask.rgba8i.samples_2.mask_6");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000209,
-        "KHR-GLES31.core.sample_variabl", 
+        "KHR-GLES31.core.sample_variabl",
         "es.mask.rgba8i.samples_2.mask_7");

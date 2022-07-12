@@ -24,61 +24,61 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043198,
-        "dEQP-GLES3.functional.state_query.fbo", 
+        "dEQP-GLES3.functional.state_query.fbo",
         ".draw_framebuffer_default_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043199,
-        "dEQP-GLES3.functional.state_query.fbo", 
+        "dEQP-GLES3.functional.state_query.fbo",
         ".read_framebuffer_default_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043200,
-        "dEQP-GLES3.functional.state_query", 
+        "dEQP-GLES3.functional.state_query",
         ".fbo.framebuffer_attachment_object");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043201,
-        "dEQP-GLES3.functional.state_query.fbo", 
+        "dEQP-GLES3.functional.state_query.fbo",
         ".framebuffer_attachment_texture_level");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043202,
-        "dEQP-GLES3.functional.state_query.fbo.fra", 
+        "dEQP-GLES3.functional.state_query.fbo.fra",
         "mebuffer_attachment_texture_cube_map_face");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043203,
-        "dEQP-GLES3.functional.state_query.fbo", 
+        "dEQP-GLES3.functional.state_query.fbo",
         ".framebuffer_attachment_texture_layer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043204,
-        "dEQP-GLES3.functional.state_query.fbo", 
+        "dEQP-GLES3.functional.state_query.fbo",
         ".framebuffer_attachment_color_encoding");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043205,
-        "dEQP-GLES3.functional.state_query.fbo", 
+        "dEQP-GLES3.functional.state_query.fbo",
         ".framebuffer_attachment_component_type");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043206,
-        "dEQP-GLES3.functional.state_query.fbo", 
+        "dEQP-GLES3.functional.state_query.fbo",
         ".framebuffer_attachment_x_size_initial");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043207,
-        "dEQP-GLES3.functional.state_query.f", 
+        "dEQP-GLES3.functional.state_query.f",
         "bo.framebuffer_attachment_x_size_rbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043208,
-        "dEQP-GLES3.functional.state_query.fbo", 
+        "dEQP-GLES3.functional.state_query.fbo",
         ".framebuffer_attachment_x_size_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043209,
-        "dEQP-GLES3.functional.state_query.fbo.frame", 
+        "dEQP-GLES3.functional.state_query.fbo.frame",
         "buffer_unspecified_attachment_color_encoding");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043210,
-        "dEQP-GLES3.functional.state_query.fbo.frame", 
+        "dEQP-GLES3.functional.state_query.fbo.frame",
         "buffer_unspecified_attachment_component_type");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043211,
-        "dEQP-GLES3.functional.state_query.fbo.fra", 
+        "dEQP-GLES3.functional.state_query.fbo.fra",
         "mebuffer_unspecified_attachment_x_size_rbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043212,
-        "dEQP-GLES3.functional.state_query.fbo.frame", 
+        "dEQP-GLES3.functional.state_query.fbo.frame",
         "buffer_unspecified_attachment_x_size_texture");

@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008019,
-        "dEQP-GLES31.functional.tessel", 
+        "dEQP-GLES31.functional.tessel",
         "lation.fractional_spacing.odd");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008020,
-        "dEQP-GLES31.functional.tessel", 
+        "dEQP-GLES31.functional.tessel",
         "lation.fractional_spacing.even");

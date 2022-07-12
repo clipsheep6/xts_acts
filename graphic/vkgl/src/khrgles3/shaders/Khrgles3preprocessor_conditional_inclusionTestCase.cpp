@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001048,
-        "KHR-GLES3.shaders.preprocessor.co", 
+        "KHR-GLES3.shaders.preprocessor.co",
         "nditional_inclusion.basic_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001049,
-        "KHR-GLES3.shaders.preprocessor.con", 
+        "KHR-GLES3.shaders.preprocessor.con",
         "ditional_inclusion.basic_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001050,
-        "KHR-GLES3.shaders.preprocessor.co", 
+        "KHR-GLES3.shaders.preprocessor.co",
         "nditional_inclusion.basic_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001051,
-        "KHR-GLES3.shaders.preprocessor.con", 
+        "KHR-GLES3.shaders.preprocessor.con",
         "ditional_inclusion.basic_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001052,
-        "KHR-GLES3.shaders.preprocessor.co", 
+        "KHR-GLES3.shaders.preprocessor.co",
         "nditional_inclusion.basic_3_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001053,
-        "KHR-GLES3.shaders.preprocessor.con", 
+        "KHR-GLES3.shaders.preprocessor.con",
         "ditional_inclusion.basic_3_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001054,
-        "KHR-GLES3.shaders.preprocessor.co", 
+        "KHR-GLES3.shaders.preprocessor.co",
         "nditional_inclusion.basic_4_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001055,
-        "KHR-GLES3.shaders.preprocessor.con", 
+        "KHR-GLES3.shaders.preprocessor.con",
         "ditional_inclusion.basic_4_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001056,
-        "KHR-GLES3.shaders.preprocessor.co", 
+        "KHR-GLES3.shaders.preprocessor.co",
         "nditional_inclusion.basic_5_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001057,
-        "KHR-GLES3.shaders.preprocessor.con", 
+        "KHR-GLES3.shaders.preprocessor.con",
         "ditional_inclusion.basic_5_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001058,
-        "KHR-GLES3.shaders.preprocessor.cond", 
+        "KHR-GLES3.shaders.preprocessor.cond",
         "itional_inclusion.expression_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001059,
-        "KHR-GLES3.shaders.preprocessor.condi", 
+        "KHR-GLES3.shaders.preprocessor.condi",
         "tional_inclusion.expression_fragment");

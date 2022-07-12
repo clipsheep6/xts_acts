@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001226,
-        "dEQP-GLES3.functional.shaders.preprocessor.i", 
+        "dEQP-GLES3.functional.shaders.preprocessor.i",
         "nvalid_expressions.invalid_unary_expr_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001227,
-        "dEQP-GLES3.functional.shaders.preprocessor.in", 
+        "dEQP-GLES3.functional.shaders.preprocessor.in",
         "valid_expressions.invalid_unary_expr_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001228,
-        "dEQP-GLES3.functional.shaders.preprocessor.i", 
+        "dEQP-GLES3.functional.shaders.preprocessor.i",
         "nvalid_expressions.invalid_binary_expr_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001229,
-        "dEQP-GLES3.functional.shaders.preprocessor.in", 
+        "dEQP-GLES3.functional.shaders.preprocessor.in",
         "valid_expressions.invalid_binary_expr_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001230,
-        "dEQP-GLES3.functional.shaders.preprocesso", 
+        "dEQP-GLES3.functional.shaders.preprocesso",
         "r.invalid_expressions.missing_expr_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001231,
-        "dEQP-GLES3.functional.shaders.preprocessor", 
+        "dEQP-GLES3.functional.shaders.preprocessor",
         ".invalid_expressions.missing_expr_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001232,
-        "dEQP-GLES3.functional.shaders.preprocessor", 
+        "dEQP-GLES3.functional.shaders.preprocessor",
         ".invalid_expressions.invalid_expr_1_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001233,
-        "dEQP-GLES3.functional.shaders.preprocessor.", 
+        "dEQP-GLES3.functional.shaders.preprocessor.",
         "invalid_expressions.invalid_expr_1_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001234,
-        "dEQP-GLES3.functional.shaders.preprocessor", 
+        "dEQP-GLES3.functional.shaders.preprocessor",
         ".invalid_expressions.invalid_expr_2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001235,
-        "dEQP-GLES3.functional.shaders.preprocessor.", 
+        "dEQP-GLES3.functional.shaders.preprocessor.",
         "invalid_expressions.invalid_expr_2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001236,
-        "dEQP-GLES3.functional.shaders.preprocessor", 
+        "dEQP-GLES3.functional.shaders.preprocessor",
         ".invalid_expressions.invalid_expr_3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001237,
-        "dEQP-GLES3.functional.shaders.preprocessor.", 
+        "dEQP-GLES3.functional.shaders.preprocessor.",
         "invalid_expressions.invalid_expr_3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001238,
-        "dEQP-GLES3.functional.shaders.preprocessor.in", 
+        "dEQP-GLES3.functional.shaders.preprocessor.in",
         "valid_expressions.unopened_parenthesis_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001239,
-        "dEQP-GLES3.functional.shaders.preprocessor.inv", 
+        "dEQP-GLES3.functional.shaders.preprocessor.inv",
         "alid_expressions.unopened_parenthesis_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001240,
-        "dEQP-GLES3.functional.shaders.preprocessor.in", 
+        "dEQP-GLES3.functional.shaders.preprocessor.in",
         "valid_expressions.unclosed_parenthesis_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001241,
-        "dEQP-GLES3.functional.shaders.preprocessor.inv", 
+        "dEQP-GLES3.functional.shaders.preprocessor.inv",
         "alid_expressions.unclosed_parenthesis_fragment");

@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013085,
-        "dEQP-GLES31.functional.texture.gather.ba", 
+        "dEQP-GLES31.functional.texture.gather.ba",
         "sic.2d.rgba8.incomplete.mipmap_incomplete");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013154,
-        "dEQP-GLES31.functional.texture.gather.basic", 
+        "dEQP-GLES31.functional.texture.gather.basic",
         ".2d_array.rgba8.incomplete.mipmap_incomplete");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013229,
-        "dEQP-GLES31.functional.texture.gather.bas", 
+        "dEQP-GLES31.functional.texture.gather.bas",
         "ic.cube.rgba8.incomplete.mipmap_incomplete");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013363,
-        "dEQP-GLES31.functional.texture.gather.offset.impleme", 
+        "dEQP-GLES31.functional.texture.gather.offset.impleme",
         "ntation_offset.2d.rgba8.incomplete.mipmap_incomplete");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013432,
-        "dEQP-GLES31.functional.texture.gather.offset.implementa", 
+        "dEQP-GLES31.functional.texture.gather.offset.implementa",
         "tion_offset.2d_array.rgba8.incomplete.mipmap_incomplete");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013561,
-        "dEQP-GLES31.functional.texture.gather.offset_dynamic.imp", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynamic.imp",
         "lementation_offset.2d.rgba8.incomplete.mipmap_incomplete");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013630,
-        "dEQP-GLES31.functional.texture.gather.offset_dynamic.implem", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynamic.implem",
         "entation_offset.2d_array.rgba8.incomplete.mipmap_incomplete");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013759,
-        "dEQP-GLES31.functional.texture.gather.offsets.implem", 
+        "dEQP-GLES31.functional.texture.gather.offsets.implem",
         "entation_offset.2d.rgba8.incomplete.mipmap_incomplete");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013828,
-        "dEQP-GLES31.functional.texture.gather.offsets.implement", 
+        "dEQP-GLES31.functional.texture.gather.offsets.implement",
         "ation_offset.2d_array.rgba8.incomplete.mipmap_incomplete");

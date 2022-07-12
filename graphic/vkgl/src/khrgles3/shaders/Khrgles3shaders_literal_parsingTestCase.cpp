@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001388,
-        "KHR-GLES3.shaders.literal_pars", 
+        "KHR-GLES3.shaders.literal_pars",
         "ing.correct_int_literal_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001389,
-        "KHR-GLES3.shaders.literal_parsi", 
+        "KHR-GLES3.shaders.literal_parsi",
         "ng.correct_int_literal_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001390,
-        "KHR-GLES3.shaders.literal_p", 
+        "KHR-GLES3.shaders.literal_p",
         "arsing.int_overflow_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001391,
-        "KHR-GLES3.shaders.literal_pa", 
+        "KHR-GLES3.shaders.literal_pa",
         "rsing.int_overflow_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001392,
-        "KHR-GLES3.shaders.literal_p", 
+        "KHR-GLES3.shaders.literal_p",
         "arsing.int_overflow_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001393,
-        "KHR-GLES3.shaders.literal_pa", 
+        "KHR-GLES3.shaders.literal_pa",
         "rsing.int_overflow_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001394,
-        "KHR-GLES3.shaders.lite", 
+        "KHR-GLES3.shaders.lite",
         "ral_parsing.int_wrap_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001395,
-        "KHR-GLES3.shaders.lite", 
+        "KHR-GLES3.shaders.lite",
         "ral_parsing.int_wrap_2");

@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044375,
-        "dEQP-GLES3.functional.lif", 
+        "dEQP-GLES3.functional.lif",
         "etime.delete_used.program");

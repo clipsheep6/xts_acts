@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020028,
-        "dEQP-GLES31.functional.fbo.no_attachments", 
+        "dEQP-GLES31.functional.fbo.no_attachments",
         ".interaction.256x256ms0_default_128x128ms1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020029,
-        "dEQP-GLES31.functional.fbo.no_attachments", 
+        "dEQP-GLES31.functional.fbo.no_attachments",
         ".interaction.256x256ms1_default_128x128ms0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020030,
-        "dEQP-GLES31.functional.fbo.no_attachments", 
+        "dEQP-GLES31.functional.fbo.no_attachments",
         ".interaction.256x256ms0_default_512x512ms2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020031,
-        "dEQP-GLES31.functional.fbo.no_attachments", 
+        "dEQP-GLES31.functional.fbo.no_attachments",
         ".interaction.256x256ms2_default_128x512ms0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020032,
-        "dEQP-GLES31.functional.fbo.no_attachments", 
+        "dEQP-GLES31.functional.fbo.no_attachments",
         ".interaction.127x127ms0_default_129x129ms0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020033,
-        "dEQP-GLES31.functional.fbo.no_attachment", 
+        "dEQP-GLES31.functional.fbo.no_attachment",
         "s.interaction.17x512ms4_default_16x16ms2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020034,
-        "dEQP-GLES31.functional.fbo.no_attachment", 
+        "dEQP-GLES31.functional.fbo.no_attachment",
         "s.interaction.2048x2048ms4_default_1x1ms0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020035,
-        "dEQP-GLES31.functional.fbo.no_attachment", 
+        "dEQP-GLES31.functional.fbo.no_attachment",
         "s.interaction.1x1ms0_default_2048x2048ms4");

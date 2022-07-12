@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027236,
-        "dEQP-GLES3.functional.tex", 
+        "dEQP-GLES3.functional.tex",
         "ture.units.4_units.mixed.0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027237,
-        "dEQP-GLES3.functional.tex", 
+        "dEQP-GLES3.functional.tex",
         "ture.units.4_units.mixed.1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027238,
-        "dEQP-GLES3.functional.tex", 
+        "dEQP-GLES3.functional.tex",
         "ture.units.4_units.mixed.2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027239,
-        "dEQP-GLES3.functional.tex", 
+        "dEQP-GLES3.functional.tex",
         "ture.units.4_units.mixed.3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027240,
-        "dEQP-GLES3.functional.tex", 
+        "dEQP-GLES3.functional.tex",
         "ture.units.4_units.mixed.4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027241,
-        "dEQP-GLES3.functional.tex", 
+        "dEQP-GLES3.functional.tex",
         "ture.units.4_units.mixed.5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027242,
-        "dEQP-GLES3.functional.tex", 
+        "dEQP-GLES3.functional.tex",
         "ture.units.4_units.mixed.6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027243,
-        "dEQP-GLES3.functional.tex", 
+        "dEQP-GLES3.functional.tex",
         "ture.units.4_units.mixed.7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027244,
-        "dEQP-GLES3.functional.tex", 
+        "dEQP-GLES3.functional.tex",
         "ture.units.4_units.mixed.8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027245,
-        "dEQP-GLES3.functional.tex", 
+        "dEQP-GLES3.functional.tex",
         "ture.units.4_units.mixed.9");

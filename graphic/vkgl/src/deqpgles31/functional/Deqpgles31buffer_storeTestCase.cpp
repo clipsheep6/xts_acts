@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011831,
-        "dEQP-GLES31.functional.image_l", 
+        "dEQP-GLES31.functional.image_l",
         "oad_store.buffer.store.rgba32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011832,
-        "dEQP-GLES31.functional.image_l", 
+        "dEQP-GLES31.functional.image_l",
         "oad_store.buffer.store.rgba16f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011833,
-        "dEQP-GLES31.functional.image", 
+        "dEQP-GLES31.functional.image",
         "_load_store.buffer.store.r32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011834,
-        "dEQP-GLES31.functional.image_l", 
+        "dEQP-GLES31.functional.image_l",
         "oad_store.buffer.store.rgba32ui");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011835,
-        "dEQP-GLES31.functional.image_l", 
+        "dEQP-GLES31.functional.image_l",
         "oad_store.buffer.store.rgba16ui");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011836,
-        "dEQP-GLES31.functional.image_l", 
+        "dEQP-GLES31.functional.image_l",
         "oad_store.buffer.store.rgba8ui");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011837,
-        "dEQP-GLES31.functional.image_", 
+        "dEQP-GLES31.functional.image_",
         "load_store.buffer.store.r32ui");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011838,
-        "dEQP-GLES31.functional.image_l", 
+        "dEQP-GLES31.functional.image_l",
         "oad_store.buffer.store.rgba32i");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011839,
-        "dEQP-GLES31.functional.image_l", 
+        "dEQP-GLES31.functional.image_l",
         "oad_store.buffer.store.rgba16i");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011840,
-        "dEQP-GLES31.functional.image_", 
+        "dEQP-GLES31.functional.image_",
         "load_store.buffer.store.rgba8i");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011841,
-        "dEQP-GLES31.functional.image", 
+        "dEQP-GLES31.functional.image",
         "_load_store.buffer.store.r32i");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011842,
-        "dEQP-GLES31.functional.image_", 
+        "dEQP-GLES31.functional.image_",
         "load_store.buffer.store.rgba8");

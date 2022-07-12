@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024705,
-        "dEQP-GLES31.functional.program_interface_query", 
+        "dEQP-GLES31.functional.program_interface_query",
         ".shader_storage_block.resource_list.named_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024706,
-        "dEQP-GLES31.functional.program_interface_query.", 
+        "dEQP-GLES31.functional.program_interface_query.",
         "shader_storage_block.resource_list.unnamed_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024707,
-        "dEQP-GLES31.functional.program_interface_query", 
+        "dEQP-GLES31.functional.program_interface_query",
         ".shader_storage_block.resource_list.block_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024708,
-        "dEQP-GLES31.functional.program_interface_query.shader_", 
+        "dEQP-GLES31.functional.program_interface_query.shader_",
         "storage_block.resource_list.block_array_single_element");

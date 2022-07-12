@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000124,
-        "KHR-GLES31.core.samp", 
+        "KHR-GLES31.core.samp",
         "le_shading.api.verify");

@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002397,
-        "KHR-GLES31.core.compress", 
+        "KHR-GLES31.core.compress",
         "ed_format.format.r11_eac");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002398,
-        "KHR-GLES31.core.compressed_", 
+        "KHR-GLES31.core.compressed_",
         "format.format.signed_r11_eac");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002399,
-        "KHR-GLES31.core.compress", 
+        "KHR-GLES31.core.compress",
         "ed_format.format.rg11_eac");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002400,
-        "KHR-GLES31.core.compressed_f", 
+        "KHR-GLES31.core.compressed_f",
         "ormat.format.signed_rg11_eac");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002401,
-        "KHR-GLES31.core.compresse", 
+        "KHR-GLES31.core.compresse",
         "d_format.format.rgb8_etc2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002402,
-        "KHR-GLES31.core.compresse", 
+        "KHR-GLES31.core.compresse",
         "d_format.format.srgb8_etc2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002403,
-        "KHR-GLES31.core.compressed_format.f", 
+        "KHR-GLES31.core.compressed_format.f",
         "ormat.rgb8_punchthrough_alpha1_etc2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002404,
-        "KHR-GLES31.core.compressed_format.f", 
+        "KHR-GLES31.core.compressed_format.f",
         "ormat.srgb8_punchthrough_alpha1_etc2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002405,
-        "KHR-GLES31.core.compressed_", 
+        "KHR-GLES31.core.compressed_",
         "format.format.rgba8_etc2_eac");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002406,
-        "KHR-GLES31.core.compressed_form", 
+        "KHR-GLES31.core.compressed_form",
         "at.format.srgb8_alpha8_etc2_eac");

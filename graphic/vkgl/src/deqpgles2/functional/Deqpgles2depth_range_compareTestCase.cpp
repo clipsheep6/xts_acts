@@ -24,57 +24,57 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015271,
-        "dEQP-GLES2.functional.de", 
+        "dEQP-GLES2.functional.de",
         "pth_range.compare.default");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015272,
-        "dEQP-GLES2.functional.de", 
+        "dEQP-GLES2.functional.de",
         "pth_range.compare.reverse");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015273,
-        "dEQP-GLES2.functional.depth", 
+        "dEQP-GLES2.functional.depth",
         "_range.compare.zero_to_half");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015274,
-        "dEQP-GLES2.functional.dept", 
+        "dEQP-GLES2.functional.dept",
         "h_range.compare.half_to_one");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015275,
-        "dEQP-GLES2.functional.depth", 
+        "dEQP-GLES2.functional.depth",
         "_range.compare.half_to_zero");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015276,
-        "dEQP-GLES2.functional.dept", 
+        "dEQP-GLES2.functional.dept",
         "h_range.compare.one_to_half");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015277,
-        "dEQP-GLES2.functional.depth", 
+        "dEQP-GLES2.functional.depth",
         "_range.compare.third_to_0_8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015278,
-        "dEQP-GLES2.functional.depth", 
+        "dEQP-GLES2.functional.depth",
         "_range.compare.0_8_to_third");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015279,
-        "dEQP-GLES2.functional.depth", 
+        "dEQP-GLES2.functional.depth",
         "_range.compare.zero_to_zero");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015280,
-        "dEQP-GLES2.functional.depth", 
+        "dEQP-GLES2.functional.depth",
         "_range.compare.half_to_half");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015281,
-        "dEQP-GLES2.functional.dept", 
+        "dEQP-GLES2.functional.dept",
         "h_range.compare.one_to_one");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015282,
-        "dEQP-GLES2.functional.dept", 
+        "dEQP-GLES2.functional.dept",
         "h_range.compare.clamp_near");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015283,
-        "dEQP-GLES2.functional.dep", 
+        "dEQP-GLES2.functional.dep",
         "th_range.compare.clamp_far");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015284,
-        "dEQP-GLES2.functional.dept", 
+        "dEQP-GLES2.functional.dept",
         "h_range.compare.clamp_both");

@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019313,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.log.advanced_blend.blend_qualifier_mismatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019314,
-        "dEQP-GLES31.functional.debug.negative_coverage.", 
+        "dEQP-GLES31.functional.debug.negative_coverage.",
         "log.advanced_blend.attachment_advanced_equation");

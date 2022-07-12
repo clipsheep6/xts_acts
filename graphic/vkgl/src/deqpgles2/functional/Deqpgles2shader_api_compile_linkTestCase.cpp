@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013593,
-        "dEQP-GLES2.functional.shader_api.", 
+        "dEQP-GLES2.functional.shader_api.",
         "compile_link.compile_vertex_shader");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013594,
-        "dEQP-GLES2.functional.shader_api.c", 
+        "dEQP-GLES2.functional.shader_api.c",
         "ompile_link.compile_fragment_shader");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013595,
-        "dEQP-GLES2.functional.shader_api.", 
+        "dEQP-GLES2.functional.shader_api.",
         "compile_link.link_vertex_fragment");

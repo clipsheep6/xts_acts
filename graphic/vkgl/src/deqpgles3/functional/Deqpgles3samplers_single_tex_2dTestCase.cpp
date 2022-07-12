@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039660,
-        "dEQP-GLES3.functional.sample", 
+        "dEQP-GLES3.functional.sample",
         "rs.single_tex_2d.diff_wrap_t");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039661,
-        "dEQP-GLES3.functional.sample", 
+        "dEQP-GLES3.functional.sample",
         "rs.single_tex_2d.diff_wrap_s");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039662,
-        "dEQP-GLES3.functional.sample", 
+        "dEQP-GLES3.functional.sample",
         "rs.single_tex_2d.diff_wrap_r");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039663,
-        "dEQP-GLES3.functional.samplers", 
+        "dEQP-GLES3.functional.samplers",
         ".single_tex_2d.diff_min_filter");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039664,
-        "dEQP-GLES3.functional.samplers", 
+        "dEQP-GLES3.functional.samplers",
         ".single_tex_2d.diff_mag_filter");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039665,
-        "dEQP-GLES3.functional.sample", 
+        "dEQP-GLES3.functional.sample",
         "rs.single_tex_2d.diff_max_lod");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039666,
-        "dEQP-GLES3.functional.sample", 
+        "dEQP-GLES3.functional.sample",
         "rs.single_tex_2d.diff_min_lod");

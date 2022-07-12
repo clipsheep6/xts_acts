@@ -24,113 +24,113 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027640,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.4x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027641,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.5x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027642,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.5x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027643,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.6x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027644,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.6x6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027645,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.8x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027646,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.8x6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027647,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.8x8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027648,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.10x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027649,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.10x6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027650,
-        "dEQP-GLES3.functional.texture.compr", 
+        "dEQP-GLES3.functional.texture.compr",
         "essed.astc.block_size_remainder.10x8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027651,
-        "dEQP-GLES3.functional.texture.compre", 
+        "dEQP-GLES3.functional.texture.compre",
         "ssed.astc.block_size_remainder.10x10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027652,
-        "dEQP-GLES3.functional.texture.compre", 
+        "dEQP-GLES3.functional.texture.compre",
         "ssed.astc.block_size_remainder.12x10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027653,
-        "dEQP-GLES3.functional.texture.compre", 
+        "dEQP-GLES3.functional.texture.compre",
         "ssed.astc.block_size_remainder.12x12");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027654,
-        "dEQP-GLES3.functional.texture.compres", 
+        "dEQP-GLES3.functional.texture.compres",
         "sed.astc.block_size_remainder.4x4_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027655,
-        "dEQP-GLES3.functional.texture.compres", 
+        "dEQP-GLES3.functional.texture.compres",
         "sed.astc.block_size_remainder.5x4_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027656,
-        "dEQP-GLES3.functional.texture.compres", 
+        "dEQP-GLES3.functional.texture.compres",
         "sed.astc.block_size_remainder.5x5_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027657,
-        "dEQP-GLES3.functional.texture.compres", 
+        "dEQP-GLES3.functional.texture.compres",
         "sed.astc.block_size_remainder.6x5_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027658,
-        "dEQP-GLES3.functional.texture.compres", 
+        "dEQP-GLES3.functional.texture.compres",
         "sed.astc.block_size_remainder.6x6_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027659,
-        "dEQP-GLES3.functional.texture.compres", 
+        "dEQP-GLES3.functional.texture.compres",
         "sed.astc.block_size_remainder.8x5_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027660,
-        "dEQP-GLES3.functional.texture.compres", 
+        "dEQP-GLES3.functional.texture.compres",
         "sed.astc.block_size_remainder.8x6_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027661,
-        "dEQP-GLES3.functional.texture.compres", 
+        "dEQP-GLES3.functional.texture.compres",
         "sed.astc.block_size_remainder.8x8_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027662,
-        "dEQP-GLES3.functional.texture.compress", 
+        "dEQP-GLES3.functional.texture.compress",
         "ed.astc.block_size_remainder.10x5_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027663,
-        "dEQP-GLES3.functional.texture.compress", 
+        "dEQP-GLES3.functional.texture.compress",
         "ed.astc.block_size_remainder.10x6_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027664,
-        "dEQP-GLES3.functional.texture.compress", 
+        "dEQP-GLES3.functional.texture.compress",
         "ed.astc.block_size_remainder.10x8_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027665,
-        "dEQP-GLES3.functional.texture.compress", 
+        "dEQP-GLES3.functional.texture.compress",
         "ed.astc.block_size_remainder.10x10_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027666,
-        "dEQP-GLES3.functional.texture.compress", 
+        "dEQP-GLES3.functional.texture.compress",
         "ed.astc.block_size_remainder.12x10_srgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027667,
-        "dEQP-GLES3.functional.texture.compress", 
+        "dEQP-GLES3.functional.texture.compress",
         "ed.astc.block_size_remainder.12x12_srgb");

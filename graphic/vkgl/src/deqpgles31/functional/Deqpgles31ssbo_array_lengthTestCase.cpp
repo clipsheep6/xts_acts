@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010387,
-        "dEQP-GLES31.functional.ssb", 
+        "dEQP-GLES31.functional.ssb",
         "o.array_length.sized_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010388,
-        "dEQP-GLES31.functional.ssbo.arr", 
+        "dEQP-GLES31.functional.ssbo.arr",
         "ay_length.sized_writeonly_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010389,
-        "dEQP-GLES31.functional.ssbo.ar", 
+        "dEQP-GLES31.functional.ssbo.ar",
         "ray_length.sized_readonly_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010390,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".array_length.unsized_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010391,
-        "dEQP-GLES31.functional.ssbo.arra", 
+        "dEQP-GLES31.functional.ssbo.arra",
         "y_length.unsized_writeonly_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010392,
-        "dEQP-GLES31.functional.ssbo.arr", 
+        "dEQP-GLES31.functional.ssbo.arr",
         "ay_length.unsized_readonly_array");

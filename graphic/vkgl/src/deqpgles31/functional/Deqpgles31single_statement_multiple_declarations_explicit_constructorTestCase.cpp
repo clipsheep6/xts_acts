@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004106,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31.single_statement", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31.single_statement",
         "_multiple_declarations.explicit_constructor.float_2_dimensions_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004107,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31.single_statement_", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31.single_statement_",
         "multiple_declarations.explicit_constructor.float_2_dimensions_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004108,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31.single_statemen", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31.single_statemen",
         "t_multiple_declarations.explicit_constructor.int_3_dimensions_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004109,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31.single_statement", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es31.single_statement",
         "_multiple_declarations.explicit_constructor.int_3_dimensions_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004398,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32.single_statement", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32.single_statement",
         "_multiple_declarations.explicit_constructor.float_2_dimensions_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004399,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32.single_statement_", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32.single_statement_",
         "multiple_declarations.explicit_constructor.float_2_dimensions_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004400,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32.single_statemen", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32.single_statemen",
         "t_multiple_declarations.explicit_constructor.int_3_dimensions_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004401,
-        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32.single_statement", 
+        "dEQP-GLES31.functional.shaders.arrays_of_arrays.es32.single_statement",
         "_multiple_declarations.explicit_constructor.int_3_dimensions_fragment");

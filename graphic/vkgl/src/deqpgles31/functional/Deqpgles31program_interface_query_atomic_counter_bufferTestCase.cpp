@@ -24,113 +24,113 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021742,
-        "dEQP-GLES31.functional.program_interface_", 
+        "dEQP-GLES31.functional.program_interface_",
         "query.atomic_counter_buffer.resource_list");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021743,
-        "dEQP-GLES31.functional.program_interface_q", 
+        "dEQP-GLES31.functional.program_interface_q",
         "uery.atomic_counter_buffer.active_variables");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021744,
-        "dEQP-GLES31.functional.program_interface_", 
+        "dEQP-GLES31.functional.program_interface_",
         "query.atomic_counter_buffer.buffer_binding");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021745,
-        "dEQP-GLES31.functional.program_interface_q", 
+        "dEQP-GLES31.functional.program_interface_q",
         "uery.atomic_counter_buffer.buffer_data_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021746,
-        "dEQP-GLES31.functional.program_interface_quer", 
+        "dEQP-GLES31.functional.program_interface_quer",
         "y.atomic_counter_buffer.referenced_by_compute");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021747,
-        "dEQP-GLES31.functional.program_interface_query.at", 
+        "dEQP-GLES31.functional.program_interface_query.at",
         "omic_counter_buffer.referenced_by_separable_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021748,
-        "dEQP-GLES31.functional.program_interface_query.ato", 
+        "dEQP-GLES31.functional.program_interface_query.ato",
         "mic_counter_buffer.referenced_by_separable_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021749,
-        "dEQP-GLES31.functional.program_interface_query.ato", 
+        "dEQP-GLES31.functional.program_interface_query.ato",
         "mic_counter_buffer.referenced_by_separable_geometry");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021750,
-        "dEQP-GLES31.functional.program_interface_query.atom", 
+        "dEQP-GLES31.functional.program_interface_query.atom",
         "ic_counter_buffer.referenced_by_separable_tess_ctrl");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021751,
-        "dEQP-GLES31.functional.program_interface_query.atom", 
+        "dEQP-GLES31.functional.program_interface_query.atom",
         "ic_counter_buffer.referenced_by_separable_tess_eval");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021752,
-        "dEQP-GLES31.functional.program_interface_query.at", 
+        "dEQP-GLES31.functional.program_interface_query.at",
         "omic_counter_buffer.referenced_by_vertex_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021753,
-        "dEQP-GLES31.functional.program_interface_query.atomic_c", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_c",
         "ounter_buffer.referenced_by_vertex_fragment_only_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021754,
-        "dEQP-GLES31.functional.program_interface_query.atomic_co", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_co",
         "unter_buffer.referenced_by_vertex_fragment_only_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021755,
-        "dEQP-GLES31.functional.program_interface_query.atom", 
+        "dEQP-GLES31.functional.program_interface_query.atom",
         "ic_counter_buffer.referenced_by_vertex_tess_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021756,
-        "dEQP-GLES31.functional.program_interface_query.atomic_cou", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_cou",
         "nter_buffer.referenced_by_vertex_tess_fragment_only_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021757,
-        "dEQP-GLES31.functional.program_interface_query.atomic_coun", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_coun",
         "ter_buffer.referenced_by_vertex_tess_fragment_only_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021758,
-        "dEQP-GLES31.functional.program_interface_query.atomic_count", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_count",
         "er_buffer.referenced_by_vertex_tess_fragment_only_tess_ctrl");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021759,
-        "dEQP-GLES31.functional.program_interface_query.atomic_count", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_count",
         "er_buffer.referenced_by_vertex_tess_fragment_only_tess_eval");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021760,
-        "dEQP-GLES31.functional.program_interface_query.atom", 
+        "dEQP-GLES31.functional.program_interface_query.atom",
         "ic_counter_buffer.referenced_by_vertex_geo_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021761,
-        "dEQP-GLES31.functional.program_interface_query.atomic_cou", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_cou",
         "nter_buffer.referenced_by_vertex_geo_fragment_only_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021762,
-        "dEQP-GLES31.functional.program_interface_query.atomic_coun", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_coun",
         "ter_buffer.referenced_by_vertex_geo_fragment_only_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021763,
-        "dEQP-GLES31.functional.program_interface_query.atomic_c", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_c",
         "ounter_buffer.referenced_by_vertex_geo_fragment_only_geo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021764,
-        "dEQP-GLES31.functional.program_interface_query.atomic", 
+        "dEQP-GLES31.functional.program_interface_query.atomic",
         "_counter_buffer.referenced_by_vertex_tess_geo_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021765,
-        "dEQP-GLES31.functional.program_interface_query.atomic_count", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_count",
         "er_buffer.referenced_by_vertex_tess_geo_fragment_only_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021766,
-        "dEQP-GLES31.functional.program_interface_query.atomic_counte", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_counte",
         "r_buffer.referenced_by_vertex_tess_geo_fragment_only_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021767,
-        "dEQP-GLES31.functional.program_interface_query.atomic_coun", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_coun",
         "ter_buffer.referenced_by_vertex_tess_geo_fragment_only_geo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021768,
-        "dEQP-GLES31.functional.program_interface_query.atomic_counter", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_counter",
         "_buffer.referenced_by_vertex_tess_geo_fragment_only_tess_ctrl");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021769,
-        "dEQP-GLES31.functional.program_interface_query.atomic_counter", 
+        "dEQP-GLES31.functional.program_interface_query.atomic_counter",
         "_buffer.referenced_by_vertex_tess_geo_fragment_only_tess_eval");

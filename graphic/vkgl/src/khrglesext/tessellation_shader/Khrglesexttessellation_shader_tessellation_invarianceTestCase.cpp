@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000205,
-        "KHR-GLESEXT.tessellation_shader.tess", 
+        "KHR-GLESEXT.tessellation_shader.tess",
         "ellation_invariance.invariance_rule1");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000206,
-        "KHR-GLESEXT.tessellation_shader.tess", 
+        "KHR-GLESEXT.tessellation_shader.tess",
         "ellation_invariance.invariance_rule2");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000207,
-        "KHR-GLESEXT.tessellation_shader.tess", 
+        "KHR-GLESEXT.tessellation_shader.tess",
         "ellation_invariance.invariance_rule3");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000208,
-        "KHR-GLESEXT.tessellation_shader.tess", 
+        "KHR-GLESEXT.tessellation_shader.tess",
         "ellation_invariance.invariance_rule4");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000209,
-        "KHR-GLESEXT.tessellation_shader.tess", 
+        "KHR-GLESEXT.tessellation_shader.tess",
         "ellation_invariance.invariance_rule5");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000210,
-        "KHR-GLESEXT.tessellation_shader.tess", 
+        "KHR-GLESEXT.tessellation_shader.tess",
         "ellation_invariance.invariance_rule6");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000211,
-        "KHR-GLESEXT.tessellation_shader.tess", 
+        "KHR-GLESEXT.tessellation_shader.tess",
         "ellation_invariance.invariance_rule7");

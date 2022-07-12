@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002213,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.basic_instance_arrays.0");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002214,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.basic_instance_arrays.1");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002215,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.basic_instance_arrays.2");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002216,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.basic_instance_arrays.3");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002217,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.basic_instance_arrays.4");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002218,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.basic_instance_arrays.5");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002219,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.basic_instance_arrays.6");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002220,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.basic_instance_arrays.7");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002221,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.basic_instance_arrays.8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002222,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.basic_instance_arrays.9");

@@ -24,145 +24,145 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033163,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components2_vec2_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033164,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components2_vec2_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033165,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components3_vec2_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033166,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components3_vec2_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033167,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components4_vec2_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033168,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components4_vec2_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033169,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components2_vec3_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033170,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components2_vec3_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033171,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components3_vec3_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033172,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components3_vec3_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033173,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components4_vec3_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033174,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components4_vec3_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033175,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components2_vec4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033176,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components2_vec4_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033177,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components3_vec4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033178,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components3_vec4_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033179,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components4_vec4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033180,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components4_vec4_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033181,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components2_uvec2_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033182,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components2_uvec2_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033183,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components3_uvec2_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033184,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components3_uvec2_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033185,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components4_uvec2_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033186,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components4_uvec2_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033187,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components2_uvec3_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033188,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components2_uvec3_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033189,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components3_uvec3_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033190,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components3_uvec3_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033191,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components4_uvec3_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033192,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components4_uvec3_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033193,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components2_uvec4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033194,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components2_uvec4_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033195,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components3_uvec4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033196,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components3_uvec4_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033197,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".output_types.unsigned_short.components4_uvec4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033198,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "output_types.unsigned_short.components4_uvec4_quads256");

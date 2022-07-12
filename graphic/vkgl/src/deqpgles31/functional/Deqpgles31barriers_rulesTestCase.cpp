@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004614,
-        "dEQP-GLES31.functional.shaders.linkage.es31.tessellation", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.tessellation",
         ".barriers.rules.invalid_barrier_usage_within_control_flow");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004615,
-        "dEQP-GLES31.functional.shaders.linkage.es31.tessellat", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.tessellat",
         "ion.barriers.rules.invalid_barrier_usage_after_return");

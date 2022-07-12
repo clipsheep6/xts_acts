@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001021,
-        "KHR-GLES32.core.shader_macros.", 
+        "KHR-GLES32.core.shader_macros.",
         "fragment_precision_high_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001022,
-        "KHR-GLES32.core.shader_macros.f", 
+        "KHR-GLES32.core.shader_macros.f",
         "ragment_precision_high_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001023,
-        "KHR-GLES32.core.shader_macros.f", 
+        "KHR-GLES32.core.shader_macros.f",
         "ragment_precision_high_geometry");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001024,
-        "KHR-GLES32.core.shader_macros.fra", 
+        "KHR-GLES32.core.shader_macros.fra",
         "gment_precision_high_tess_control");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001025,
-        "KHR-GLES32.core.shader_macros.f", 
+        "KHR-GLES32.core.shader_macros.f",
         "ragment_precision_high_tess_eval");

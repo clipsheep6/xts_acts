@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025181,
-        "dEQP-GLES31.functional.primitiv", 
+        "dEQP-GLES31.functional.primitiv",
         "e_bounding_box.clear.full_clear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025182,
-        "dEQP-GLES31.functional.primitive_bound", 
+        "dEQP-GLES31.functional.primitive_bound",
         "ing_box.clear.full_clear_with_triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025183,
-        "dEQP-GLES31.functional.primitive_bounding_box.cl", 
+        "dEQP-GLES31.functional.primitive_bounding_box.cl",
         "ear.full_clear_with_triangles_per_primitive_bbox");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025184,
-        "dEQP-GLES31.functional.primitive_", 
+        "dEQP-GLES31.functional.primitive_",
         "bounding_box.clear.scissored_clear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025185,
-        "dEQP-GLES31.functional.primitive_bounding", 
+        "dEQP-GLES31.functional.primitive_bounding",
         "_box.clear.scissored_clear_with_triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025186,
-        "dEQP-GLES31.functional.primitive_bounding_box.clea", 
+        "dEQP-GLES31.functional.primitive_bounding_box.clea",
         "r.scissored_clear_with_triangles_per_primitive_bbox");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025187,
-        "dEQP-GLES31.functional.primitive_bou", 
+        "dEQP-GLES31.functional.primitive_bou",
         "nding_box.clear.scissored_full_clear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025188,
-        "dEQP-GLES31.functional.primitive_bounding_b", 
+        "dEQP-GLES31.functional.primitive_bounding_b",
         "ox.clear.scissored_full_clear_with_triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025189,
-        "dEQP-GLES31.functional.primitive_bounding_box.clear.s", 
+        "dEQP-GLES31.functional.primitive_bounding_box.clear.s",
         "cissored_full_clear_with_triangles_per_primitive_bbox");

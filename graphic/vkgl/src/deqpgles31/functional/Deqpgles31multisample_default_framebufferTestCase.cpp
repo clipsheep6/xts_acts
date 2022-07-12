@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016165,
-        "dEQP-GLES31.functional.multisample.", 
+        "dEQP-GLES31.functional.multisample.",
         "default_framebuffer.sample_position");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016166,
-        "dEQP-GLES31.functional.multisample.defaul", 
+        "dEQP-GLES31.functional.multisample.defaul",
         "t_framebuffer.sample_mask_sum_of_inverses");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016167,
-        "dEQP-GLES31.functional.multisample.defaul", 
+        "dEQP-GLES31.functional.multisample.defaul",
         "t_framebuffer.proportionality_sample_mask");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016168,
-        "dEQP-GLES31.functional.multisample.def", 
+        "dEQP-GLES31.functional.multisample.def",
         "ault_framebuffer.constancy_sample_mask");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016169,
-        "dEQP-GLES31.functional.multisample.default_fram", 
+        "dEQP-GLES31.functional.multisample.default_fram",
         "ebuffer.constancy_alpha_to_coverage_sample_mask");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016170,
-        "dEQP-GLES31.functional.multisample.default_fra", 
+        "dEQP-GLES31.functional.multisample.default_fra",
         "mebuffer.constancy_sample_coverage_sample_mask");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016171,
-        "dEQP-GLES31.functional.multisample.default_framebuffer.", 
+        "dEQP-GLES31.functional.multisample.default_framebuffer.",
         "constancy_alpha_to_coverage_sample_coverage_sample_mask");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016172,
-        "dEQP-GLES31.functional.multisample.default", 
+        "dEQP-GLES31.functional.multisample.default",
         "_framebuffer.sample_mask_non_effective_bits");

@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039688,
-        "dEQP-GLES3.functional.sample", 
+        "dEQP-GLES3.functional.sample",
         "rs.single_cubemap.diff_wrap_t");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039689,
-        "dEQP-GLES3.functional.sample", 
+        "dEQP-GLES3.functional.sample",
         "rs.single_cubemap.diff_wrap_s");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039690,
-        "dEQP-GLES3.functional.sample", 
+        "dEQP-GLES3.functional.sample",
         "rs.single_cubemap.diff_wrap_r");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039691,
-        "dEQP-GLES3.functional.samplers", 
+        "dEQP-GLES3.functional.samplers",
         ".single_cubemap.diff_min_filter");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039692,
-        "dEQP-GLES3.functional.samplers", 
+        "dEQP-GLES3.functional.samplers",
         ".single_cubemap.diff_mag_filter");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039693,
-        "dEQP-GLES3.functional.sampler", 
+        "dEQP-GLES3.functional.sampler",
         "s.single_cubemap.diff_max_lod");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039694,
-        "dEQP-GLES3.functional.sampler", 
+        "dEQP-GLES3.functional.sampler",
         "s.single_cubemap.diff_min_lod");

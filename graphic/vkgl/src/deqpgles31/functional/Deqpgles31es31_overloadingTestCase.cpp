@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003810,
-        "dEQP-GLES31.functional.shaders.functions.es", 
+        "dEQP-GLES31.functional.shaders.functions.es",
         "31.overloading.arrays_of_arrays_size_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003811,
-        "dEQP-GLES31.functional.shaders.functions.es3", 
+        "dEQP-GLES31.functional.shaders.functions.es3",
         "1.overloading.arrays_of_arrays_size_fragment");

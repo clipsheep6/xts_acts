@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040536,
-        "dEQP-GLES3.functional.transform_", 
+        "dEQP-GLES3.functional.transform_",
         "feedback.position.points_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040537,
-        "dEQP-GLES3.functional.transform_fe", 
+        "dEQP-GLES3.functional.transform_fe",
         "edback.position.points_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040538,
-        "dEQP-GLES3.functional.transform_", 
+        "dEQP-GLES3.functional.transform_",
         "feedback.position.lines_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040539,
-        "dEQP-GLES3.functional.transform_f", 
+        "dEQP-GLES3.functional.transform_f",
         "eedback.position.lines_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040540,
-        "dEQP-GLES3.functional.transform_fe", 
+        "dEQP-GLES3.functional.transform_fe",
         "edback.position.triangles_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040541,
-        "dEQP-GLES3.functional.transform_fee", 
+        "dEQP-GLES3.functional.transform_fee",
         "dback.position.triangles_interleaved");

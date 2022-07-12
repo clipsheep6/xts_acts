@@ -24,81 +24,81 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002772,
-        "dEQP-GLES3.functional.shaders.conditiona", 
+        "dEQP-GLES3.functional.shaders.conditiona",
         "ls.invalid_if.missing_parenthesis_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002773,
-        "dEQP-GLES3.functional.shaders.conditional", 
+        "dEQP-GLES3.functional.shaders.conditional",
         "s.invalid_if.missing_parenthesis_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002774,
-        "dEQP-GLES3.functional.shaders.conditiona", 
+        "dEQP-GLES3.functional.shaders.conditiona",
         "ls.invalid_if.unclosed_parenthesis_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002775,
-        "dEQP-GLES3.functional.shaders.conditional", 
+        "dEQP-GLES3.functional.shaders.conditional",
         "s.invalid_if.unclosed_parenthesis_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002776,
-        "dEQP-GLES3.functional.shaders.conditi", 
+        "dEQP-GLES3.functional.shaders.conditi",
         "onals.invalid_if.int_condition_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002777,
-        "dEQP-GLES3.functional.shaders.conditio", 
+        "dEQP-GLES3.functional.shaders.conditio",
         "nals.invalid_if.int_condition_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002778,
-        "dEQP-GLES3.functional.shaders.condition", 
+        "dEQP-GLES3.functional.shaders.condition",
         "als.invalid_if.int_zero_condition_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002779,
-        "dEQP-GLES3.functional.shaders.conditiona", 
+        "dEQP-GLES3.functional.shaders.conditiona",
         "ls.invalid_if.int_zero_condition_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002780,
-        "dEQP-GLES3.functional.shaders.condition", 
+        "dEQP-GLES3.functional.shaders.condition",
         "als.invalid_if.int_one_condition_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002781,
-        "dEQP-GLES3.functional.shaders.conditiona", 
+        "dEQP-GLES3.functional.shaders.conditiona",
         "ls.invalid_if.int_one_condition_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002782,
-        "dEQP-GLES3.functional.shaders.conditional", 
+        "dEQP-GLES3.functional.shaders.conditional",
         "s.invalid_if.int_uniform_condition_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002783,
-        "dEQP-GLES3.functional.shaders.conditionals", 
+        "dEQP-GLES3.functional.shaders.conditionals",
         ".invalid_if.int_uniform_condition_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002784,
-        "dEQP-GLES3.functional.shaders.conditio", 
+        "dEQP-GLES3.functional.shaders.conditio",
         "nals.invalid_if.float_condition_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002785,
-        "dEQP-GLES3.functional.shaders.condition", 
+        "dEQP-GLES3.functional.shaders.condition",
         "als.invalid_if.float_condition_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002786,
-        "dEQP-GLES3.functional.shaders.conditiona", 
+        "dEQP-GLES3.functional.shaders.conditiona",
         "ls.invalid_if.float_zero_condition_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002787,
-        "dEQP-GLES3.functional.shaders.conditional", 
+        "dEQP-GLES3.functional.shaders.conditional",
         "s.invalid_if.float_zero_condition_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002788,
-        "dEQP-GLES3.functional.shaders.conditiona", 
+        "dEQP-GLES3.functional.shaders.conditiona",
         "ls.invalid_if.float_one_condition_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002789,
-        "dEQP-GLES3.functional.shaders.conditional", 
+        "dEQP-GLES3.functional.shaders.conditional",
         "s.invalid_if.float_one_condition_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002790,
-        "dEQP-GLES3.functional.shaders.condition", 
+        "dEQP-GLES3.functional.shaders.condition",
         "als.invalid_if.sampler_condition_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30003TestSuite, TestCase_002791,
-        "dEQP-GLES3.functional.shaders.conditiona", 
+        "dEQP-GLES3.functional.shaders.conditiona",
         "ls.invalid_if.sampler_condition_fragment");

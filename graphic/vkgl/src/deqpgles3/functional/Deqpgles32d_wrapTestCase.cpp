@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026984,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.vertex.2d.wrap.clamp_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026985,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.vertex.2d.wrap.clamp_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026986,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.vertex.2d.wrap.clamp_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026987,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.vertex.2d.wrap.repeat_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026988,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".vertex.2d.wrap.repeat_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026989,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".vertex.2d.wrap.repeat_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026990,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.vertex.2d.wrap.mirror_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026991,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".vertex.2d.wrap.mirror_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026992,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".vertex.2d.wrap.mirror_mirror");

@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007859,
-        "dEQP-GLES2.functional.shader", 
+        "dEQP-GLES2.functional.shader",
         "s.fragdata.valid_static_index");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007860,
-        "dEQP-GLES2.functional.shaders", 
+        "dEQP-GLES2.functional.shaders",
         ".fragdata.valid_uniform_index");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007861,
-        "dEQP-GLES2.functional.shaders", 
+        "dEQP-GLES2.functional.shaders",
         ".fragdata.valid_dynamic_index");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007862,
-        "dEQP-GLES2.functional.shaders", 
+        "dEQP-GLES2.functional.shaders",
         ".fragdata.invalid_assign_to_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007863,
-        "dEQP-GLES2.functional.shaders.fragdat", 
+        "dEQP-GLES2.functional.shaders.fragdat",
         "a.write_fragcolor_and_fragdata_simple");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007864,
-        "dEQP-GLES2.functional.shaders.fragdata", 
+        "dEQP-GLES2.functional.shaders.fragdata",
         ".write_fragcolor_and_fragdata_static_if");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007865,
-        "dEQP-GLES2.functional.shaders.fragdata.", 
+        "dEQP-GLES2.functional.shaders.fragdata.",
         "write_fragcolor_and_fragdata_unused_func");

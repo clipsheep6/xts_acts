@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001589,
-        "dEQP-GLES3.functional.shaders.li", 
+        "dEQP-GLES3.functional.shaders.li",
         "nkage.uniform.block.type_mismatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001590,
-        "dEQP-GLES3.functional.shaders.link", 
+        "dEQP-GLES3.functional.shaders.link",
         "age.uniform.block.members_mismatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001591,
-        "dEQP-GLES3.functional.shaders.linkage.u", 
+        "dEQP-GLES3.functional.shaders.linkage.u",
         "niform.block.layout_qualifier_mismatch_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001592,
-        "dEQP-GLES3.functional.shaders.linkage.u", 
+        "dEQP-GLES3.functional.shaders.linkage.u",
         "niform.block.layout_qualifier_mismatch_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001593,
-        "dEQP-GLES3.functional.shaders.linkage.u", 
+        "dEQP-GLES3.functional.shaders.linkage.u",
         "niform.block.layout_qualifier_mismatch_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001594,
-        "dEQP-GLES3.functional.shaders.linkage.u", 
+        "dEQP-GLES3.functional.shaders.linkage.u",
         "niform.block.layout_qualifier_mismatch_5");

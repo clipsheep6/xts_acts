@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013113,
-        "dEQP-GLES31.functional.texture.gather.basic.2d.rgba8", 
+        "dEQP-GLES31.functional.texture.gather.basic.2d.rgba8",
         "i.filter_mode.min_nearest_mipmap_nearest_mag_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013182,
-        "dEQP-GLES31.functional.texture.gather.basic.2d_array.rg", 
+        "dEQP-GLES31.functional.texture.gather.basic.2d_array.rg",
         "ba8i.filter_mode.min_nearest_mipmap_nearest_mag_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013269,
-        "dEQP-GLES31.functional.texture.gather.basic.cube.rgba", 
+        "dEQP-GLES31.functional.texture.gather.basic.cube.rgba",
         "8i.filter_mode.min_nearest_mipmap_nearest_mag_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013391,
-        "dEQP-GLES31.functional.texture.gather.offset.implementation_off", 
+        "dEQP-GLES31.functional.texture.gather.offset.implementation_off",
         "set.2d.rgba8i.filter_mode.min_nearest_mipmap_nearest_mag_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013460,
-        "dEQP-GLES31.functional.texture.gather.offset.implementation_offset", 
+        "dEQP-GLES31.functional.texture.gather.offset.implementation_offset",
         ".2d_array.rgba8i.filter_mode.min_nearest_mipmap_nearest_mag_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013589,
-        "dEQP-GLES31.functional.texture.gather.offset_dynamic.implementation", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynamic.implementation",
         "_offset.2d.rgba8i.filter_mode.min_nearest_mipmap_nearest_mag_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013658,
-        "dEQP-GLES31.functional.texture.gather.offset_dynamic.implementation_of", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynamic.implementation_of",
         "fset.2d_array.rgba8i.filter_mode.min_nearest_mipmap_nearest_mag_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013787,
-        "dEQP-GLES31.functional.texture.gather.offsets.implementation_off", 
+        "dEQP-GLES31.functional.texture.gather.offsets.implementation_off",
         "set.2d.rgba8i.filter_mode.min_nearest_mipmap_nearest_mag_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013856,
-        "dEQP-GLES31.functional.texture.gather.offsets.implementation_offset", 
+        "dEQP-GLES31.functional.texture.gather.offsets.implementation_offset",
         ".2d_array.rgba8i.filter_mode.min_nearest_mipmap_nearest_mag_nearest");

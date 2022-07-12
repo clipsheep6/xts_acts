@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007773,
-        "dEQP-GLES31.functional.draw_indirect.i", 
+        "dEQP-GLES31.functional.draw_indirect.i",
         "nstancing.draw_arrays_indirect_grid_2x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007774,
-        "dEQP-GLES31.functional.draw_indirect.i", 
+        "dEQP-GLES31.functional.draw_indirect.i",
         "nstancing.draw_arrays_indirect_grid_5x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007775,
-        "dEQP-GLES31.functional.draw_indirect.in", 
+        "dEQP-GLES31.functional.draw_indirect.in",
         "stancing.draw_arrays_indirect_grid_10x10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007776,
-        "dEQP-GLES31.functional.draw_indirect.in", 
+        "dEQP-GLES31.functional.draw_indirect.in",
         "stancing.draw_arrays_indirect_grid_32x32");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007777,
-        "dEQP-GLES31.functional.draw_indirect.ins", 
+        "dEQP-GLES31.functional.draw_indirect.ins",
         "tancing.draw_arrays_indirect_grid_100x100");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007778,
-        "dEQP-GLES31.functional.draw_indirect.in", 
+        "dEQP-GLES31.functional.draw_indirect.in",
         "stancing.draw_elements_indirect_grid_2x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007779,
-        "dEQP-GLES31.functional.draw_indirect.in", 
+        "dEQP-GLES31.functional.draw_indirect.in",
         "stancing.draw_elements_indirect_grid_5x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007780,
-        "dEQP-GLES31.functional.draw_indirect.ins", 
+        "dEQP-GLES31.functional.draw_indirect.ins",
         "tancing.draw_elements_indirect_grid_10x10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007781,
-        "dEQP-GLES31.functional.draw_indirect.ins", 
+        "dEQP-GLES31.functional.draw_indirect.ins",
         "tancing.draw_elements_indirect_grid_32x32");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007782,
-        "dEQP-GLES31.functional.draw_indirect.inst", 
+        "dEQP-GLES31.functional.draw_indirect.inst",
         "ancing.draw_elements_indirect_grid_100x100");

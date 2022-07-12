@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018826,
-        "dEQP-GLES31.functional.debug.negative_coverage.call", 
+        "dEQP-GLES31.functional.debug.negative_coverage.call",
         "backs.oes_sample_variables.write_to_read_only_types");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018827,
-        "dEQP-GLES31.functional.debug.negative_coverage.callbacks.oes", 
+        "dEQP-GLES31.functional.debug.negative_coverage.callbacks.oes",
         "_sample_variables.access_built_in_types_inside_other_shaders");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018828,
-        "dEQP-GLES31.functional.debug.negative_coverage.callbac", 
+        "dEQP-GLES31.functional.debug.negative_coverage.callbac",
         "ks.oes_sample_variables.index_outside_sample_mask_range");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018829,
-        "dEQP-GLES31.functional.debug.negative_coverage.callbacks.o", 
+        "dEQP-GLES31.functional.debug.negative_coverage.callbacks.o",
         "es_sample_variables.access_built_in_types_without_extension");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018830,
-        "dEQP-GLES31.functional.debug.negative_coverage.call", 
+        "dEQP-GLES31.functional.debug.negative_coverage.call",
         "backs.oes_sample_variables.redeclare_built_in_types");

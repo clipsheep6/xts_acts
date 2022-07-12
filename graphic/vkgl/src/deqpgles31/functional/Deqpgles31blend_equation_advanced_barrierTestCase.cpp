@@ -24,61 +24,61 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017614,
-        "dEQP-GLES31.functional.blend_eq", 
+        "dEQP-GLES31.functional.blend_eq",
         "uation_advanced.barrier.multiply");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017615,
-        "dEQP-GLES31.functional.blend_e", 
+        "dEQP-GLES31.functional.blend_e",
         "quation_advanced.barrier.screen");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017616,
-        "dEQP-GLES31.functional.blend_eq", 
+        "dEQP-GLES31.functional.blend_eq",
         "uation_advanced.barrier.overlay");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017617,
-        "dEQP-GLES31.functional.blend_e", 
+        "dEQP-GLES31.functional.blend_e",
         "quation_advanced.barrier.darken");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017618,
-        "dEQP-GLES31.functional.blend_eq", 
+        "dEQP-GLES31.functional.blend_eq",
         "uation_advanced.barrier.lighten");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017619,
-        "dEQP-GLES31.functional.blend_equ", 
+        "dEQP-GLES31.functional.blend_equ",
         "ation_advanced.barrier.colordodge");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017620,
-        "dEQP-GLES31.functional.blend_equ", 
+        "dEQP-GLES31.functional.blend_equ",
         "ation_advanced.barrier.colorburn");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017621,
-        "dEQP-GLES31.functional.blend_equ", 
+        "dEQP-GLES31.functional.blend_equ",
         "ation_advanced.barrier.hardlight");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017622,
-        "dEQP-GLES31.functional.blend_equ", 
+        "dEQP-GLES31.functional.blend_equ",
         "ation_advanced.barrier.softlight");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017623,
-        "dEQP-GLES31.functional.blend_equ", 
+        "dEQP-GLES31.functional.blend_equ",
         "ation_advanced.barrier.difference");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017624,
-        "dEQP-GLES31.functional.blend_equ", 
+        "dEQP-GLES31.functional.blend_equ",
         "ation_advanced.barrier.exclusion");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017625,
-        "dEQP-GLES31.functional.blend_eq", 
+        "dEQP-GLES31.functional.blend_eq",
         "uation_advanced.barrier.hsl_hue");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017626,
-        "dEQP-GLES31.functional.blend_equat", 
+        "dEQP-GLES31.functional.blend_equat",
         "ion_advanced.barrier.hsl_saturation");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017627,
-        "dEQP-GLES31.functional.blend_equ", 
+        "dEQP-GLES31.functional.blend_equ",
         "ation_advanced.barrier.hsl_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017628,
-        "dEQP-GLES31.functional.blend_equat", 
+        "dEQP-GLES31.functional.blend_equat",
         "ion_advanced.barrier.hsl_luminosity");

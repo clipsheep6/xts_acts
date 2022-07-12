@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002588,
-        "KHR-GLES31.core.tessellation_shader.tesse", 
+        "KHR-GLES31.core.tessellation_shader.tesse",
         "llation_shader_point_mode.point_rendering");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002589,
-        "KHR-GLES31.core.tessellation_shader.tessell", 
+        "KHR-GLES31.core.tessellation_shader.tessell",
         "ation_shader_point_mode.points_verification");

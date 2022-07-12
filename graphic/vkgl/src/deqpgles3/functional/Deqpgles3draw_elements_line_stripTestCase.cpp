@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043982,
-        "dEQP-GLES3.functional.draw.draw_el", 
+        "dEQP-GLES3.functional.draw.draw_el",
         "ements.line_strip.single_attribute");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043983,
-        "dEQP-GLES3.functional.draw.draw_ele", 
+        "dEQP-GLES3.functional.draw.draw_ele",
         "ments.line_strip.multiple_attributes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043984,
-        "dEQP-GLES3.functional.draw.draw_elem", 
+        "dEQP-GLES3.functional.draw.draw_elem",
         "ents.line_strip.instanced_attributes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043985,
-        "dEQP-GLES3.functional.draw.draw_el", 
+        "dEQP-GLES3.functional.draw.draw_el",
         "ements.line_strip.default_attribute");

@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013926,
-        "dEQP-GLES2.functional.att", 
+        "dEQP-GLES2.functional.att",
         "ribute_location.bind.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013927,
-        "dEQP-GLES2.functional.att", 
+        "dEQP-GLES2.functional.att",
         "ribute_location.bind.vec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013928,
-        "dEQP-GLES2.functional.att", 
+        "dEQP-GLES2.functional.att",
         "ribute_location.bind.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013929,
-        "dEQP-GLES2.functional.att", 
+        "dEQP-GLES2.functional.att",
         "ribute_location.bind.vec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013930,
-        "dEQP-GLES2.functional.att", 
+        "dEQP-GLES2.functional.att",
         "ribute_location.bind.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013931,
-        "dEQP-GLES2.functional.att", 
+        "dEQP-GLES2.functional.att",
         "ribute_location.bind.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013932,
-        "dEQP-GLES2.functional.att", 
+        "dEQP-GLES2.functional.att",
         "ribute_location.bind.mat4");

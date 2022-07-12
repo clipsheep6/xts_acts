@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013874,
-        "dEQP-GLES2.functional.raster", 
+        "dEQP-GLES2.functional.raster",
         "ization.primitives.triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013875,
-        "dEQP-GLES2.functional.rasteriz", 
+        "dEQP-GLES2.functional.rasteriz",
         "ation.primitives.triangle_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013876,
-        "dEQP-GLES2.functional.rasteri", 
+        "dEQP-GLES2.functional.rasteri",
         "zation.primitives.triangle_fan");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013877,
-        "dEQP-GLES2.functional.rast", 
+        "dEQP-GLES2.functional.rast",
         "erization.primitives.lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013878,
-        "dEQP-GLES2.functional.raster", 
+        "dEQP-GLES2.functional.raster",
         "ization.primitives.line_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013879,
-        "dEQP-GLES2.functional.raster", 
+        "dEQP-GLES2.functional.raster",
         "ization.primitives.line_loop");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013880,
-        "dEQP-GLES2.functional.raster", 
+        "dEQP-GLES2.functional.raster",
         "ization.primitives.lines_wide");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013881,
-        "dEQP-GLES2.functional.rasteriza", 
+        "dEQP-GLES2.functional.rasteriza",
         "tion.primitives.line_strip_wide");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013882,
-        "dEQP-GLES2.functional.rasteriz", 
+        "dEQP-GLES2.functional.rasteriz",
         "ation.primitives.line_loop_wide");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013883,
-        "dEQP-GLES2.functional.rast", 
+        "dEQP-GLES2.functional.rast",
         "erization.primitives.points");

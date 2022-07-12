@@ -24,89 +24,89 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032697,
-        "dEQP-GLES3.functional.f", 
+        "dEQP-GLES3.functional.f",
         "bo.msaa.4_samples.rgba8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032698,
-        "dEQP-GLES3.functional.fbo.", 
+        "dEQP-GLES3.functional.fbo.",
         "msaa.4_samples.srgb8_alpha8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032699,
-        "dEQP-GLES3.functional.fb", 
+        "dEQP-GLES3.functional.fb",
         "o.msaa.4_samples.rgb10_a2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032700,
-        "dEQP-GLES3.functional.f", 
+        "dEQP-GLES3.functional.f",
         "bo.msaa.4_samples.rgba4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032701,
-        "dEQP-GLES3.functional.fb", 
+        "dEQP-GLES3.functional.fb",
         "o.msaa.4_samples.rgb5_a1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032702,
-        "dEQP-GLES3.functional.", 
+        "dEQP-GLES3.functional.",
         "fbo.msaa.4_samples.rgb8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032703,
-        "dEQP-GLES3.functional.f", 
+        "dEQP-GLES3.functional.f",
         "bo.msaa.4_samples.rgb565");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032704,
-        "dEQP-GLES3.functional.", 
+        "dEQP-GLES3.functional.",
         "fbo.msaa.4_samples.rg8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032705,
-        "dEQP-GLES3.functional", 
+        "dEQP-GLES3.functional",
         ".fbo.msaa.4_samples.r8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032706,
-        "dEQP-GLES3.functional.fb", 
+        "dEQP-GLES3.functional.fb",
         "o.msaa.4_samples.rgba32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032707,
-        "dEQP-GLES3.functional.fb", 
+        "dEQP-GLES3.functional.fb",
         "o.msaa.4_samples.rgba16f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032708,
-        "dEQP-GLES3.functional.fbo.m", 
+        "dEQP-GLES3.functional.fbo.m",
         "saa.4_samples.r11f_g11f_b10f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032709,
-        "dEQP-GLES3.functional.f", 
+        "dEQP-GLES3.functional.f",
         "bo.msaa.4_samples.rg32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032710,
-        "dEQP-GLES3.functional.f", 
+        "dEQP-GLES3.functional.f",
         "bo.msaa.4_samples.rg16f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032711,
-        "dEQP-GLES3.functional.", 
+        "dEQP-GLES3.functional.",
         "fbo.msaa.4_samples.r32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032712,
-        "dEQP-GLES3.functional.", 
+        "dEQP-GLES3.functional.",
         "fbo.msaa.4_samples.r16f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032713,
-        "dEQP-GLES3.functional.fbo.msa", 
+        "dEQP-GLES3.functional.fbo.msa",
         "a.4_samples.depth_component32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032714,
-        "dEQP-GLES3.functional.fbo.msa", 
+        "dEQP-GLES3.functional.fbo.msa",
         "a.4_samples.depth_component24");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032715,
-        "dEQP-GLES3.functional.fbo.msa", 
+        "dEQP-GLES3.functional.fbo.msa",
         "a.4_samples.depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032716,
-        "dEQP-GLES3.functional.fbo.msa", 
+        "dEQP-GLES3.functional.fbo.msa",
         "a.4_samples.depth32f_stencil8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032717,
-        "dEQP-GLES3.functional.fbo.ms", 
+        "dEQP-GLES3.functional.fbo.ms",
         "aa.4_samples.depth24_stencil8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30033TestSuite, TestCase_032718,
-        "dEQP-GLES3.functional.fbo.m", 
+        "dEQP-GLES3.functional.fbo.m",
         "saa.4_samples.stencil_index8");

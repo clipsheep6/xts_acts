@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000096,
-        "KHR-GLES32.core.geometry", 
+        "KHR-GLES32.core.geometry",
         "_shader.clipping.clipping");

@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001140,
-        "dEQP-GLES3.functional.shaders.pr", 
+        "dEQP-GLES3.functional.shaders.pr",
         "eprocessor.pragmas.pragma_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001141,
-        "dEQP-GLES3.functional.shaders.pre", 
+        "dEQP-GLES3.functional.shaders.pre",
         "processor.pragmas.pragma_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001142,
-        "dEQP-GLES3.functional.shaders.preproc", 
+        "dEQP-GLES3.functional.shaders.preproc",
         "essor.pragmas.pragma_macro_exp_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001143,
-        "dEQP-GLES3.functional.shaders.preproce", 
+        "dEQP-GLES3.functional.shaders.preproce",
         "ssor.pragmas.pragma_macro_exp_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001144,
-        "dEQP-GLES3.functional.shaders.preprocesso", 
+        "dEQP-GLES3.functional.shaders.preprocesso",
         "r.pragmas.pragma_unrecognized_debug_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001145,
-        "dEQP-GLES3.functional.shaders.preprocessor", 
+        "dEQP-GLES3.functional.shaders.preprocessor",
         ".pragmas.pragma_unrecognized_debug_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001146,
-        "dEQP-GLES3.functional.shaders.preprocesso", 
+        "dEQP-GLES3.functional.shaders.preprocesso",
         "r.pragmas.pragma_unrecognized_token_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001147,
-        "dEQP-GLES3.functional.shaders.preprocessor", 
+        "dEQP-GLES3.functional.shaders.preprocessor",
         ".pragmas.pragma_unrecognized_token_fragment");

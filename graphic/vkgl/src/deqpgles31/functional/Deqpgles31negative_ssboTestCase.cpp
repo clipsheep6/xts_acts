@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024911,
-        "dEQP-GLES31.functional.layout_binding", 
+        "dEQP-GLES31.functional.layout_binding",
         ".negative.ssbo.vertex_binding_over_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024912,
-        "dEQP-GLES31.functional.layout_binding.", 
+        "dEQP-GLES31.functional.layout_binding.",
         "negative.ssbo.fragment_binding_over_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024913,
-        "dEQP-GLES31.functional.layout_binding.ne", 
+        "dEQP-GLES31.functional.layout_binding.ne",
         "gative.ssbo.tess_control_binding_over_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024914,
-        "dEQP-GLES31.functional.layout_binding.nega", 
+        "dEQP-GLES31.functional.layout_binding.nega",
         "tive.ssbo.tess_evaluation_binding_over_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024915,
-        "dEQP-GLES31.functional.layout_bindi", 
+        "dEQP-GLES31.functional.layout_bindi",
         "ng.negative.ssbo.vertex_binding_neg");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024916,
-        "dEQP-GLES31.functional.layout_bindin", 
+        "dEQP-GLES31.functional.layout_bindin",
         "g.negative.ssbo.fragment_binding_neg");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024917,
-        "dEQP-GLES31.functional.layout_binding.", 
+        "dEQP-GLES31.functional.layout_binding.",
         "negative.ssbo.tess_control_binding_neg");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024918,
-        "dEQP-GLES31.functional.layout_binding.n", 
+        "dEQP-GLES31.functional.layout_binding.n",
         "egative.ssbo.tess_evaluation_binding_neg");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024919,
-        "dEQP-GLES31.functional.layout_binding.ne", 
+        "dEQP-GLES31.functional.layout_binding.ne",
         "gative.ssbo.vertex_binding_over_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024920,
-        "dEQP-GLES31.functional.layout_binding.neg", 
+        "dEQP-GLES31.functional.layout_binding.neg",
         "ative.ssbo.fragment_binding_over_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024921,
-        "dEQP-GLES31.functional.layout_binding.negat", 
+        "dEQP-GLES31.functional.layout_binding.negat",
         "ive.ssbo.tess_control_binding_over_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024922,
-        "dEQP-GLES31.functional.layout_binding.negativ", 
+        "dEQP-GLES31.functional.layout_binding.negativ",
         "e.ssbo.tess_evaluation_binding_over_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024923,
-        "dEQP-GLES31.functional.layout_binding.", 
+        "dEQP-GLES31.functional.layout_binding.",
         "negative.ssbo.vertex_binding_neg_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024924,
-        "dEQP-GLES31.functional.layout_binding.n", 
+        "dEQP-GLES31.functional.layout_binding.n",
         "egative.ssbo.fragment_binding_neg_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024925,
-        "dEQP-GLES31.functional.layout_binding.neg", 
+        "dEQP-GLES31.functional.layout_binding.neg",
         "ative.ssbo.tess_control_binding_neg_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024926,
-        "dEQP-GLES31.functional.layout_binding.nega", 
+        "dEQP-GLES31.functional.layout_binding.nega",
         "tive.ssbo.tess_evaluation_binding_neg_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024927,
-        "dEQP-GLES31.functional.layout_bindin", 
+        "dEQP-GLES31.functional.layout_bindin",
         "g.negative.ssbo.binding_contradictory");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024928,
-        "dEQP-GLES31.functional.layout_binding.n", 
+        "dEQP-GLES31.functional.layout_binding.n",
         "egative.ssbo.binding_contradictory_array");

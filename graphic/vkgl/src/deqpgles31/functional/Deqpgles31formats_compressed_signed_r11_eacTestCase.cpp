@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014527,
-        "dEQP-GLES31.functional.texture.border_clamp.formats.", 
+        "dEQP-GLES31.functional.texture.border_clamp.formats.",
         "compressed_signed_r11_eac.nearest_size_tile_multiple");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014528,
-        "dEQP-GLES31.functional.texture.border_clamp.formats.co", 
+        "dEQP-GLES31.functional.texture.border_clamp.formats.co",
         "mpressed_signed_r11_eac.nearest_size_not_tile_multiple");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014529,
-        "dEQP-GLES31.functional.texture.border_clamp.formats", 
+        "dEQP-GLES31.functional.texture.border_clamp.formats",
         ".compressed_signed_r11_eac.linear_size_tile_multiple");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014530,
-        "dEQP-GLES31.functional.texture.border_clamp.formats.c", 
+        "dEQP-GLES31.functional.texture.border_clamp.formats.c",
         "ompressed_signed_r11_eac.linear_size_not_tile_multiple");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014531,
-        "dEQP-GLES31.functional.texture.border_clamp.formats", 
+        "dEQP-GLES31.functional.texture.border_clamp.formats",
         ".compressed_signed_r11_eac.gather_size_tile_multiple");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014532,
-        "dEQP-GLES31.functional.texture.border_clamp.formats.c", 
+        "dEQP-GLES31.functional.texture.border_clamp.formats.c",
         "ompressed_signed_r11_eac.gather_size_not_tile_multiple");

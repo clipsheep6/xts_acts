@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003603,
-        "KHR-GLES3.core.shader_macros.", 
+        "KHR-GLES3.core.shader_macros.",
         "fragment_precision_high_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003604,
-        "KHR-GLES3.core.shader_macros.f", 
+        "KHR-GLES3.core.shader_macros.f",
         "ragment_precision_high_fragment");

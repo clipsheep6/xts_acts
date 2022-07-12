@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000003,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.sin_float_vert");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000004,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.sin_float_frag");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000005,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.sin_vec2_vert");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000006,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.sin_vec2_frag");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000007,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.sin_vec3_vert");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000008,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.sin_vec3_frag");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000009,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.cos_float_vert");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000010,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.cos_float_frag");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000011,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.cos_vec2_vert");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000012,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.cos_vec2_frag");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000013,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.cos_vec3_vert");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000014,
-        "KHR-GLES2.shaders.aggressive", 
+        "KHR-GLES2.shaders.aggressive",
         "_optimizations.cos_vec3_frag");

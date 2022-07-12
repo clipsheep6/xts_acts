@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013884,
-        "dEQP-GLES2.functional.ra", 
+        "dEQP-GLES2.functional.ra",
         "sterization.limits.points");

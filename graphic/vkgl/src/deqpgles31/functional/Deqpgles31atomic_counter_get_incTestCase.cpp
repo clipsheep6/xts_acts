@@ -24,77 +24,77 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012071,
-        "dEQP-GLES31.functional.atomic_count", 
+        "dEQP-GLES31.functional.atomic_count",
         "er.get_inc.1_counter_1_call_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012072,
-        "dEQP-GLES31.functional.atomic_counte", 
+        "dEQP-GLES31.functional.atomic_counte",
         "r.get_inc.1_counter_1_call_10_threads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012073,
-        "dEQP-GLES31.functional.atomic_counter", 
+        "dEQP-GLES31.functional.atomic_counter",
         ".get_inc.1_counter_1_call_5000_threads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012074,
-        "dEQP-GLES31.functional.atomic_counte", 
+        "dEQP-GLES31.functional.atomic_counte",
         "r.get_inc.1_counter_5_calls_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012075,
-        "dEQP-GLES31.functional.atomic_counter", 
+        "dEQP-GLES31.functional.atomic_counter",
         ".get_inc.1_counter_5_calls_10_threads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012076,
-        "dEQP-GLES31.functional.atomic_counter", 
+        "dEQP-GLES31.functional.atomic_counter",
         ".get_inc.1_counter_100_calls_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012077,
-        "dEQP-GLES31.functional.atomic_counter.", 
+        "dEQP-GLES31.functional.atomic_counter.",
         "get_inc.1_counter_100_calls_10_threads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012078,
-        "dEQP-GLES31.functional.atomic_counte", 
+        "dEQP-GLES31.functional.atomic_counte",
         "r.get_inc.4_counters_1_call_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012079,
-        "dEQP-GLES31.functional.atomic_counter", 
+        "dEQP-GLES31.functional.atomic_counter",
         ".get_inc.4_counters_1_call_10_threads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012080,
-        "dEQP-GLES31.functional.atomic_counte", 
+        "dEQP-GLES31.functional.atomic_counte",
         "r.get_inc.4_counters_5_calls_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012081,
-        "dEQP-GLES31.functional.atomic_counter", 
+        "dEQP-GLES31.functional.atomic_counter",
         ".get_inc.4_counters_5_calls_10_threads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012082,
-        "dEQP-GLES31.functional.atomic_counter", 
+        "dEQP-GLES31.functional.atomic_counter",
         ".get_inc.4_counters_100_calls_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012083,
-        "dEQP-GLES31.functional.atomic_counter.", 
+        "dEQP-GLES31.functional.atomic_counter.",
         "get_inc.4_counters_100_calls_10_threads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012084,
-        "dEQP-GLES31.functional.atomic_counte", 
+        "dEQP-GLES31.functional.atomic_counte",
         "r.get_inc.8_counters_1_call_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012085,
-        "dEQP-GLES31.functional.atomic_counter", 
+        "dEQP-GLES31.functional.atomic_counter",
         ".get_inc.8_counters_1_call_10_threads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012086,
-        "dEQP-GLES31.functional.atomic_counte", 
+        "dEQP-GLES31.functional.atomic_counte",
         "r.get_inc.8_counters_5_calls_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012087,
-        "dEQP-GLES31.functional.atomic_counter", 
+        "dEQP-GLES31.functional.atomic_counter",
         ".get_inc.8_counters_5_calls_10_threads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012088,
-        "dEQP-GLES31.functional.atomic_counter", 
+        "dEQP-GLES31.functional.atomic_counter",
         ".get_inc.8_counters_100_calls_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012089,
-        "dEQP-GLES31.functional.atomic_counter.", 
+        "dEQP-GLES31.functional.atomic_counter.",
         "get_inc.8_counters_100_calls_10_threads");

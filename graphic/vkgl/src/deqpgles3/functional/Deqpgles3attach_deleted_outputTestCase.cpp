@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044385,
-        "dEQP-GLES3.functional.lifetime.attac", 
+        "dEQP-GLES3.functional.lifetime.attac",
         "h.deleted_output.texture_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044386,
-        "dEQP-GLES3.functional.lifetime.attach.", 
+        "dEQP-GLES3.functional.lifetime.attach.",
         "deleted_output.renderbuffer_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044387,
-        "dEQP-GLES3.functional.lifetime.attach.d", 
+        "dEQP-GLES3.functional.lifetime.attach.d",
         "eleted_output.buffer_transform_feedback");

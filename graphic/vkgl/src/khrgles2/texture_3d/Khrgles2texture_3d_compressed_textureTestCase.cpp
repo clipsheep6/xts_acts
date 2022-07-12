@@ -24,121 +24,121 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000382,
-        "KHR-GLES2.texture_3d.compres", 
+        "KHR-GLES2.texture_3d.compres",
         "sed_texture.rgba_astc_4x4_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000383,
-        "KHR-GLES2.texture_3d.compres", 
+        "KHR-GLES2.texture_3d.compres",
         "sed_texture.rgba_astc_5x4_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000384,
-        "KHR-GLES2.texture_3d.compres", 
+        "KHR-GLES2.texture_3d.compres",
         "sed_texture.rgba_astc_5x5_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000385,
-        "KHR-GLES2.texture_3d.compres", 
+        "KHR-GLES2.texture_3d.compres",
         "sed_texture.rgba_astc_6x5_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000386,
-        "KHR-GLES2.texture_3d.compres", 
+        "KHR-GLES2.texture_3d.compres",
         "sed_texture.rgba_astc_6x6_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000387,
-        "KHR-GLES2.texture_3d.compres", 
+        "KHR-GLES2.texture_3d.compres",
         "sed_texture.rgba_astc_8x5_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000388,
-        "KHR-GLES2.texture_3d.compres", 
+        "KHR-GLES2.texture_3d.compres",
         "sed_texture.rgba_astc_8x6_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000389,
-        "KHR-GLES2.texture_3d.compres", 
+        "KHR-GLES2.texture_3d.compres",
         "sed_texture.rgba_astc_8x8_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000390,
-        "KHR-GLES2.texture_3d.compress", 
+        "KHR-GLES2.texture_3d.compress",
         "ed_texture.rgba_astc_10x5_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000391,
-        "KHR-GLES2.texture_3d.compress", 
+        "KHR-GLES2.texture_3d.compress",
         "ed_texture.rgba_astc_10x6_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000392,
-        "KHR-GLES2.texture_3d.compress", 
+        "KHR-GLES2.texture_3d.compress",
         "ed_texture.rgba_astc_10x8_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000393,
-        "KHR-GLES2.texture_3d.compress", 
+        "KHR-GLES2.texture_3d.compress",
         "ed_texture.rgba_astc_10x10_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000394,
-        "KHR-GLES2.texture_3d.compress", 
+        "KHR-GLES2.texture_3d.compress",
         "ed_texture.rgba_astc_12x10_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000395,
-        "KHR-GLES2.texture_3d.compress", 
+        "KHR-GLES2.texture_3d.compress",
         "ed_texture.rgba_astc_12x12_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000396,
-        "KHR-GLES2.texture_3d.compressed_", 
+        "KHR-GLES2.texture_3d.compressed_",
         "texture.srgb8_alpha8_astc_4x4_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000397,
-        "KHR-GLES2.texture_3d.compressed_", 
+        "KHR-GLES2.texture_3d.compressed_",
         "texture.srgb8_alpha8_astc_5x4_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000398,
-        "KHR-GLES2.texture_3d.compressed_", 
+        "KHR-GLES2.texture_3d.compressed_",
         "texture.srgb8_alpha8_astc_5x5_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000399,
-        "KHR-GLES2.texture_3d.compressed_", 
+        "KHR-GLES2.texture_3d.compressed_",
         "texture.srgb8_alpha8_astc_6x5_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000400,
-        "KHR-GLES2.texture_3d.compressed_", 
+        "KHR-GLES2.texture_3d.compressed_",
         "texture.srgb8_alpha8_astc_6x6_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000401,
-        "KHR-GLES2.texture_3d.compressed_", 
+        "KHR-GLES2.texture_3d.compressed_",
         "texture.srgb8_alpha8_astc_8x5_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000402,
-        "KHR-GLES2.texture_3d.compressed_", 
+        "KHR-GLES2.texture_3d.compressed_",
         "texture.srgb8_alpha8_astc_8x6_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000403,
-        "KHR-GLES2.texture_3d.compressed_", 
+        "KHR-GLES2.texture_3d.compressed_",
         "texture.srgb8_alpha8_astc_8x8_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000404,
-        "KHR-GLES2.texture_3d.compressed_", 
+        "KHR-GLES2.texture_3d.compressed_",
         "texture.sgb8_alpha8_astc_10x5_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000405,
-        "KHR-GLES2.texture_3d.compressed_t", 
+        "KHR-GLES2.texture_3d.compressed_t",
         "exture.srgb8_alpha8_astc_10x6_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000406,
-        "KHR-GLES2.texture_3d.compressed_t", 
+        "KHR-GLES2.texture_3d.compressed_t",
         "exture.srgb8_alpha8_astc_10x8_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000407,
-        "KHR-GLES2.texture_3d.compressed_t", 
+        "KHR-GLES2.texture_3d.compressed_t",
         "exture.srgb8_alpha8_astc_10x10_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000408,
-        "KHR-GLES2.texture_3d.compressed_t", 
+        "KHR-GLES2.texture_3d.compressed_t",
         "exture.srgb8_alpha8_astc_12x10_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000409,
-        "KHR-GLES2.texture_3d.compressed_t", 
+        "KHR-GLES2.texture_3d.compressed_t",
         "exture.srgb8_alpha8_astc_12x12_khr");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000410,
-        "KHR-GLES2.texture_3d.compressed_te", 
+        "KHR-GLES2.texture_3d.compressed_te",
         "xture.negative_compressed_tex_image");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000411,
-        "KHR-GLES2.texture_3d.compressed_text", 
+        "KHR-GLES2.texture_3d.compressed_text",
         "ure.negative_compressed_tex_sub_image");

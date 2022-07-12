@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033673,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribut", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribut",
         "e.first.int2_10_10_10.first6_offset16_stride8_quads5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033674,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".first.int2_10_10_10.first24_offset16_stride8_quads5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033675,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".first.int2_10_10_10.first6_offset16_stride32_quads5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033676,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".first.int2_10_10_10.first24_offset16_stride32_quads5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033677,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".first.int2_10_10_10.first6_offset16_stride8_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033678,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "first.int2_10_10_10.first24_offset16_stride8_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033679,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "first.int2_10_10_10.first6_offset16_stride32_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033680,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute.", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute.",
         "first.int2_10_10_10.first24_offset16_stride32_quads256");

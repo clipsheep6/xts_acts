@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001026,
-        "KHR-GLES32.core.separable_pr", 
+        "KHR-GLES32.core.separable_pr",
         "ograms_tf.tessellation_active");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001027,
-        "KHR-GLES32.core.separable_", 
+        "KHR-GLES32.core.separable_",
         "programs_tf.geometry_active");

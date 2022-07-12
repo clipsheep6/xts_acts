@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013957,
-        "dEQP-GLES2.functional.attrib", 
+        "dEQP-GLES2.functional.attrib",
         "ute_location.bind_hole.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013958,
-        "dEQP-GLES2.functional.attri", 
+        "dEQP-GLES2.functional.attri",
         "bute_location.bind_hole.vec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013959,
-        "dEQP-GLES2.functional.attri", 
+        "dEQP-GLES2.functional.attri",
         "bute_location.bind_hole.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013960,
-        "dEQP-GLES2.functional.attri", 
+        "dEQP-GLES2.functional.attri",
         "bute_location.bind_hole.vec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013961,
-        "dEQP-GLES2.functional.attri", 
+        "dEQP-GLES2.functional.attri",
         "bute_location.bind_hole.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013962,
-        "dEQP-GLES2.functional.attri", 
+        "dEQP-GLES2.functional.attri",
         "bute_location.bind_hole.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013963,
-        "dEQP-GLES2.functional.attri", 
+        "dEQP-GLES2.functional.attri",
         "bute_location.bind_hole.mat4");

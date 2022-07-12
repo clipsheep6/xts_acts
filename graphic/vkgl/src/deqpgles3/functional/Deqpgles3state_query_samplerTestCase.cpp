@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043169,
-        "dEQP-GLES3.functional.state_query.sampler.", 
+        "dEQP-GLES3.functional.state_query.sampler.",
         "sampler_texture_wrap_s_getsamplerparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043170,
-        "dEQP-GLES3.functional.state_query.sampler.", 
+        "dEQP-GLES3.functional.state_query.sampler.",
         "sampler_texture_wrap_s_getsamplerparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043171,
-        "dEQP-GLES3.functional.state_query.sampler.", 
+        "dEQP-GLES3.functional.state_query.sampler.",
         "sampler_texture_wrap_t_getsamplerparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043172,
-        "dEQP-GLES3.functional.state_query.sampler.", 
+        "dEQP-GLES3.functional.state_query.sampler.",
         "sampler_texture_wrap_t_getsamplerparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043173,
-        "dEQP-GLES3.functional.state_query.sampler.", 
+        "dEQP-GLES3.functional.state_query.sampler.",
         "sampler_texture_wrap_r_getsamplerparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043174,
-        "dEQP-GLES3.functional.state_query.sampler.", 
+        "dEQP-GLES3.functional.state_query.sampler.",
         "sampler_texture_wrap_r_getsamplerparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043175,
-        "dEQP-GLES3.functional.state_query.sampler.sa", 
+        "dEQP-GLES3.functional.state_query.sampler.sa",
         "mpler_texture_mag_filter_getsamplerparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043176,
-        "dEQP-GLES3.functional.state_query.sampler.sa", 
+        "dEQP-GLES3.functional.state_query.sampler.sa",
         "mpler_texture_mag_filter_getsamplerparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043177,
-        "dEQP-GLES3.functional.state_query.sampler.sa", 
+        "dEQP-GLES3.functional.state_query.sampler.sa",
         "mpler_texture_min_filter_getsamplerparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043178,
-        "dEQP-GLES3.functional.state_query.sampler.sa", 
+        "dEQP-GLES3.functional.state_query.sampler.sa",
         "mpler_texture_min_filter_getsamplerparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043179,
-        "dEQP-GLES3.functional.state_query.sampler.s", 
+        "dEQP-GLES3.functional.state_query.sampler.s",
         "ampler_texture_min_lod_getsamplerparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043180,
-        "dEQP-GLES3.functional.state_query.sampler.s", 
+        "dEQP-GLES3.functional.state_query.sampler.s",
         "ampler_texture_min_lod_getsamplerparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043181,
-        "dEQP-GLES3.functional.state_query.sampler.s", 
+        "dEQP-GLES3.functional.state_query.sampler.s",
         "ampler_texture_max_lod_getsamplerparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043182,
-        "dEQP-GLES3.functional.state_query.sampler.s", 
+        "dEQP-GLES3.functional.state_query.sampler.s",
         "ampler_texture_max_lod_getsamplerparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043183,
-        "dEQP-GLES3.functional.state_query.sampler.sam", 
+        "dEQP-GLES3.functional.state_query.sampler.sam",
         "pler_texture_compare_mode_getsamplerparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043184,
-        "dEQP-GLES3.functional.state_query.sampler.sam", 
+        "dEQP-GLES3.functional.state_query.sampler.sam",
         "pler_texture_compare_mode_getsamplerparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043185,
-        "dEQP-GLES3.functional.state_query.sampler.sam", 
+        "dEQP-GLES3.functional.state_query.sampler.sam",
         "pler_texture_compare_func_getsamplerparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043186,
-        "dEQP-GLES3.functional.state_query.sampler.sam", 
+        "dEQP-GLES3.functional.state_query.sampler.sam",
         "pler_texture_compare_func_getsamplerparameterf");

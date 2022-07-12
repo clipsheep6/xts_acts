@@ -24,109 +24,109 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027119,
-        "dEQP-GLES3.functional.texture.v", 
+        "dEQP-GLES3.functional.texture.v",
         "ertex.3d.wrap.clamp_clamp_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027120,
-        "dEQP-GLES3.functional.texture.v", 
+        "dEQP-GLES3.functional.texture.v",
         "ertex.3d.wrap.clamp_clamp_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027121,
-        "dEQP-GLES3.functional.texture.v", 
+        "dEQP-GLES3.functional.texture.v",
         "ertex.3d.wrap.clamp_clamp_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027122,
-        "dEQP-GLES3.functional.texture.v", 
+        "dEQP-GLES3.functional.texture.v",
         "ertex.3d.wrap.clamp_repeat_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027123,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.clamp_repeat_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027124,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.clamp_repeat_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027125,
-        "dEQP-GLES3.functional.texture.v", 
+        "dEQP-GLES3.functional.texture.v",
         "ertex.3d.wrap.clamp_mirror_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027126,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.clamp_mirror_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027127,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.clamp_mirror_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027128,
-        "dEQP-GLES3.functional.texture.v", 
+        "dEQP-GLES3.functional.texture.v",
         "ertex.3d.wrap.repeat_clamp_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027129,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.repeat_clamp_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027130,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.repeat_clamp_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027131,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.repeat_repeat_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027132,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.repeat_repeat_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027133,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.repeat_repeat_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027134,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.repeat_mirror_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027135,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.repeat_mirror_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027136,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.repeat_mirror_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027137,
-        "dEQP-GLES3.functional.texture.v", 
+        "dEQP-GLES3.functional.texture.v",
         "ertex.3d.wrap.mirror_clamp_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027138,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.mirror_clamp_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027139,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.mirror_clamp_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027140,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.mirror_repeat_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027141,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.mirror_repeat_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027142,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.mirror_repeat_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027143,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.mirror_mirror_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027144,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.mirror_mirror_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027145,
-        "dEQP-GLES3.functional.texture.ve", 
+        "dEQP-GLES3.functional.texture.ve",
         "rtex.3d.wrap.mirror_mirror_mirror");

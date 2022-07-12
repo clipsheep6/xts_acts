@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018819,
-        "dEQP-GLES31.functional.debug.negative_coverage.", 
+        "dEQP-GLES31.functional.debug.negative_coverage.",
         "callbacks.tessellation.single_tessellation_stage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018820,
-        "dEQP-GLES31.functional.debug.negative_coverage", 
+        "dEQP-GLES31.functional.debug.negative_coverage",
         ".callbacks.tessellation.invalid_primitive_mode");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018821,
-        "dEQP-GLES31.functional.debug.negative_coverage", 
+        "dEQP-GLES31.functional.debug.negative_coverage",
         ".callbacks.tessellation.tessellation_not_active");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018822,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.callbacks.tessellation.invalid_program_state");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018823,
-        "dEQP-GLES31.functional.debug.negative_cov", 
+        "dEQP-GLES31.functional.debug.negative_cov",
         "erage.callbacks.tessellation.get_programiv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018824,
-        "dEQP-GLES31.functional.debug.negative_coverage", 
+        "dEQP-GLES31.functional.debug.negative_coverage",
         ".callbacks.tessellation.invalid_program_queries");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018825,
-        "dEQP-GLES31.functional.debug.negative_coverage.callback", 
+        "dEQP-GLES31.functional.debug.negative_coverage.callback",
         "s.tessellation.tessellation_control_invalid_vertex_count");

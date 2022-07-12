@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019897,
-        "dEQP-GLES31.functional", 
+        "dEQP-GLES31.functional",
         ".debug.async.case_0_log");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019898,
-        "dEQP-GLES31.functional.de", 
+        "dEQP-GLES31.functional.de",
         "bug.async.case_1_callback");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019899,
-        "dEQP-GLES31.functional", 
+        "dEQP-GLES31.functional",
         ".debug.async.case_2_log");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019900,
-        "dEQP-GLES31.functional.de", 
+        "dEQP-GLES31.functional.de",
         "bug.async.case_3_callback");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019901,
-        "dEQP-GLES31.functional", 
+        "dEQP-GLES31.functional",
         ".debug.async.case_4_log");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019902,
-        "dEQP-GLES31.functional.de", 
+        "dEQP-GLES31.functional.de",
         "bug.async.case_5_callback");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019903,
-        "dEQP-GLES31.functional", 
+        "dEQP-GLES31.functional",
         ".debug.async.case_6_log");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019904,
-        "dEQP-GLES31.functional.de", 
+        "dEQP-GLES31.functional.de",
         "bug.async.case_7_callback");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019905,
-        "dEQP-GLES31.functional", 
+        "dEQP-GLES31.functional",
         ".debug.async.case_8_log");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019906,
-        "dEQP-GLES31.functional.de", 
+        "dEQP-GLES31.functional.de",
         "bug.async.case_9_callback");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019907,
-        "dEQP-GLES31.functional.", 
+        "dEQP-GLES31.functional.",
         "debug.async.case_10_log");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019908,
-        "dEQP-GLES31.functional.de", 
+        "dEQP-GLES31.functional.de",
         "bug.async.case_11_callback");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019909,
-        "dEQP-GLES31.functional.", 
+        "dEQP-GLES31.functional.",
         "debug.async.case_12_log");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019910,
-        "dEQP-GLES31.functional.de", 
+        "dEQP-GLES31.functional.de",
         "bug.async.case_13_callback");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019911,
-        "dEQP-GLES31.functional.", 
+        "dEQP-GLES31.functional.",
         "debug.async.case_14_log");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019912,
-        "dEQP-GLES31.functional.de", 
+        "dEQP-GLES31.functional.de",
         "bug.async.case_15_callback");

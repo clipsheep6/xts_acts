@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033387,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgb", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgb",
         "a.srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture2d_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033388,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgb", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgb",
         "a.srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture2d_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033389,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rg", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rg",
         "ba.srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture2d_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033390,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.s", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.s",
         "rgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture2d_to_texture2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033391,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgb", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgb",
         "a.srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture3d_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033392,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgb", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgb",
         "a.srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture3d_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033393,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rg", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rg",
         "ba.srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture3d_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033394,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.s", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.s",
         "rgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture3d_to_texture2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033395,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rg", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rg",
         "ba.srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.cubemap_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033396,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rg", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rg",
         "ba.srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.cubemap_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033397,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_r", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_r",
         "gba.srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.cubemap_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033398,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.",
         "srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.cubemap_to_texture2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033399,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.s", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.s",
         "rgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture2d_array_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033400,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.s", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.s",
         "rgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture2d_array_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033401,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.",
         "srgb8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture2d_array_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033402,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.srgb", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclass_astc_6x5_rgba.srgb",
         "8_alpha8_astc_6x5_khr_rgba_astc_6x5_khr.texture2d_array_to_texture2d_array");

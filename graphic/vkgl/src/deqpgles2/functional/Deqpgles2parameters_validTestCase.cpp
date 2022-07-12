@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002381,
-        "dEQP-GLES2.functional.shaders.qualification_order.", 
+        "dEQP-GLES2.functional.shaders.qualification_order.",
         "parameters.valid.storage_parameter_precision_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002382,
-        "dEQP-GLES2.functional.shaders.qualification_order.p", 
+        "dEQP-GLES2.functional.shaders.qualification_order.p",
         "arameters.valid.storage_parameter_precision_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002383,
-        "dEQP-GLES2.functional.shaders.qualification_o", 
+        "dEQP-GLES2.functional.shaders.qualification_o",
         "rder.parameters.valid.storage_parameter_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002384,
-        "dEQP-GLES2.functional.shaders.qualification_or", 
+        "dEQP-GLES2.functional.shaders.qualification_or",
         "der.parameters.valid.storage_parameter_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002385,
-        "dEQP-GLES2.functional.shaders.qualification_o", 
+        "dEQP-GLES2.functional.shaders.qualification_o",
         "rder.parameters.valid.storage_precision_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002386,
-        "dEQP-GLES2.functional.shaders.qualification_or", 
+        "dEQP-GLES2.functional.shaders.qualification_or",
         "der.parameters.valid.storage_precision_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002387,
-        "dEQP-GLES2.functional.shaders.qualification_or", 
+        "dEQP-GLES2.functional.shaders.qualification_or",
         "der.parameters.valid.parameter_precision_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002388,
-        "dEQP-GLES2.functional.shaders.qualification_ord", 
+        "dEQP-GLES2.functional.shaders.qualification_ord",
         "er.parameters.valid.parameter_precision_fragment");

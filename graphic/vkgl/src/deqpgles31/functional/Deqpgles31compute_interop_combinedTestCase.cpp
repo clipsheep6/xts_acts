@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007793,
-        "dEQP-GLES31.functional.draw_indirect.compute_i", 
+        "dEQP-GLES31.functional.draw_indirect.compute_i",
         "nterop.combined.drawarrays_compute_cmd_and_data");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007794,
-        "dEQP-GLES31.functional.draw_indirect.compute_in", 
+        "dEQP-GLES31.functional.draw_indirect.compute_in",
         "terop.combined.drawelements_compute_cmd_and_data");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007795,
-        "dEQP-GLES31.functional.draw_indirect.compute_inte", 
+        "dEQP-GLES31.functional.draw_indirect.compute_inte",
         "rop.combined.drawelements_compute_cmd_and_indices");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007796,
-        "dEQP-GLES31.functional.draw_indirect.compute_inte", 
+        "dEQP-GLES31.functional.draw_indirect.compute_inte",
         "rop.combined.drawelements_compute_data_and_indices");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007797,
-        "dEQP-GLES31.functional.draw_indirect.compute_interop.", 
+        "dEQP-GLES31.functional.draw_indirect.compute_interop.",
         "combined.drawelements_compute_cmd_and_data_and_indices");

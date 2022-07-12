@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007475,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "pre_increment.dynamic_lowp_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007476,
-        "dEQP-GLES2.functional.shaders.matrix.p", 
+        "dEQP-GLES2.functional.shaders.matrix.p",
         "re_increment.dynamic_lowp_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007477,
-        "dEQP-GLES2.functional.shaders.matrix.pr", 
+        "dEQP-GLES2.functional.shaders.matrix.pr",
         "e_increment.dynamic_mediump_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007478,
-        "dEQP-GLES2.functional.shaders.matrix.pre", 
+        "dEQP-GLES2.functional.shaders.matrix.pre",
         "_increment.dynamic_mediump_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007479,
-        "dEQP-GLES2.functional.shaders.matrix.p", 
+        "dEQP-GLES2.functional.shaders.matrix.p",
         "re_increment.dynamic_highp_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007480,
-        "dEQP-GLES2.functional.shaders.matrix.pr", 
+        "dEQP-GLES2.functional.shaders.matrix.pr",
         "e_increment.dynamic_highp_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007481,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "pre_increment.dynamic_lowp_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007482,
-        "dEQP-GLES2.functional.shaders.matrix.p", 
+        "dEQP-GLES2.functional.shaders.matrix.p",
         "re_increment.dynamic_lowp_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007483,
-        "dEQP-GLES2.functional.shaders.matrix.pr", 
+        "dEQP-GLES2.functional.shaders.matrix.pr",
         "e_increment.dynamic_mediump_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007484,
-        "dEQP-GLES2.functional.shaders.matrix.pre", 
+        "dEQP-GLES2.functional.shaders.matrix.pre",
         "_increment.dynamic_mediump_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007485,
-        "dEQP-GLES2.functional.shaders.matrix.p", 
+        "dEQP-GLES2.functional.shaders.matrix.p",
         "re_increment.dynamic_highp_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007486,
-        "dEQP-GLES2.functional.shaders.matrix.pr", 
+        "dEQP-GLES2.functional.shaders.matrix.pr",
         "e_increment.dynamic_highp_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007487,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "pre_increment.dynamic_lowp_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007488,
-        "dEQP-GLES2.functional.shaders.matrix.p", 
+        "dEQP-GLES2.functional.shaders.matrix.p",
         "re_increment.dynamic_lowp_mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007489,
-        "dEQP-GLES2.functional.shaders.matrix.pr", 
+        "dEQP-GLES2.functional.shaders.matrix.pr",
         "e_increment.dynamic_mediump_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007490,
-        "dEQP-GLES2.functional.shaders.matrix.pre", 
+        "dEQP-GLES2.functional.shaders.matrix.pre",
         "_increment.dynamic_mediump_mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007491,
-        "dEQP-GLES2.functional.shaders.matrix.p", 
+        "dEQP-GLES2.functional.shaders.matrix.p",
         "re_increment.dynamic_highp_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007492,
-        "dEQP-GLES2.functional.shaders.matrix.pr", 
+        "dEQP-GLES2.functional.shaders.matrix.pr",
         "e_increment.dynamic_highp_mat4_fragment");

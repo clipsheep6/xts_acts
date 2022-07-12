@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025165,
-        "dEQP-GLES3.functional.texture.mipma", 
+        "dEQP-GLES3.functional.texture.mipma",
         "p.3d.projected.nearest_nearest_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025166,
-        "dEQP-GLES3.functional.texture.mipmap", 
+        "dEQP-GLES3.functional.texture.mipmap",
         ".3d.projected.nearest_nearest_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025167,
-        "dEQP-GLES3.functional.texture.mipmap", 
+        "dEQP-GLES3.functional.texture.mipmap",
         ".3d.projected.nearest_nearest_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025168,
-        "dEQP-GLES3.functional.texture.mipma", 
+        "dEQP-GLES3.functional.texture.mipma",
         "p.3d.projected.linear_nearest_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025169,
-        "dEQP-GLES3.functional.texture.mipma", 
+        "dEQP-GLES3.functional.texture.mipma",
         "p.3d.projected.linear_nearest_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025170,
-        "dEQP-GLES3.functional.texture.mipma", 
+        "dEQP-GLES3.functional.texture.mipma",
         "p.3d.projected.linear_nearest_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025171,
-        "dEQP-GLES3.functional.texture.mipma", 
+        "dEQP-GLES3.functional.texture.mipma",
         "p.3d.projected.nearest_linear_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025172,
-        "dEQP-GLES3.functional.texture.mipma", 
+        "dEQP-GLES3.functional.texture.mipma",
         "p.3d.projected.nearest_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025173,
-        "dEQP-GLES3.functional.texture.mipma", 
+        "dEQP-GLES3.functional.texture.mipma",
         "p.3d.projected.nearest_linear_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025174,
-        "dEQP-GLES3.functional.texture.mipm", 
+        "dEQP-GLES3.functional.texture.mipm",
         "ap.3d.projected.linear_linear_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025175,
-        "dEQP-GLES3.functional.texture.mipma", 
+        "dEQP-GLES3.functional.texture.mipma",
         "p.3d.projected.linear_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025176,
-        "dEQP-GLES3.functional.texture.mipma", 
+        "dEQP-GLES3.functional.texture.mipma",
         "p.3d.projected.linear_linear_mirror");

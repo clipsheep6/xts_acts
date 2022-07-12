@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019881,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019882,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019883,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019884,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019885,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019886,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019887,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019888,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019889,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019890,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_9");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019891,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019892,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_11");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019893,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_12");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019894,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_13");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019895,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_14");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019896,
-        "dEQP-GLES31.functional.d", 
+        "dEQP-GLES31.functional.d",
         "ebug.error_groups.case_15");

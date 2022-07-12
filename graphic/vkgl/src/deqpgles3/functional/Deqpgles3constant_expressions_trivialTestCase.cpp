@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019648,
-        "dEQP-GLES3.functional.shaders.const", 
+        "dEQP-GLES3.functional.shaders.const",
         "ant_expressions.trivial.float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019649,
-        "dEQP-GLES3.functional.shaders.consta", 
+        "dEQP-GLES3.functional.shaders.consta",
         "nt_expressions.trivial.float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019650,
-        "dEQP-GLES3.functional.shaders.cons", 
+        "dEQP-GLES3.functional.shaders.cons",
         "tant_expressions.trivial.int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019651,
-        "dEQP-GLES3.functional.shaders.const", 
+        "dEQP-GLES3.functional.shaders.const",
         "ant_expressions.trivial.int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019652,
-        "dEQP-GLES3.functional.shaders.const", 
+        "dEQP-GLES3.functional.shaders.const",
         "ant_expressions.trivial.bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019653,
-        "dEQP-GLES3.functional.shaders.consta", 
+        "dEQP-GLES3.functional.shaders.consta",
         "nt_expressions.trivial.bool_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019654,
-        "dEQP-GLES3.functional.shaders.const", 
+        "dEQP-GLES3.functional.shaders.const",
         "ant_expressions.trivial.cast_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019655,
-        "dEQP-GLES3.functional.shaders.consta", 
+        "dEQP-GLES3.functional.shaders.consta",
         "nt_expressions.trivial.cast_fragment");

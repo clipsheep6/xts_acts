@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013969,
-        "dEQP-GLES2.functional.attribute", 
+        "dEQP-GLES2.functional.attribute",
         "_location.bind_relink_hole.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013970,
-        "dEQP-GLES2.functional.attribute", 
+        "dEQP-GLES2.functional.attribute",
         "_location.bind_relink_hole.vec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013971,
-        "dEQP-GLES2.functional.attribute", 
+        "dEQP-GLES2.functional.attribute",
         "_location.bind_relink_hole.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013972,
-        "dEQP-GLES2.functional.attribute", 
+        "dEQP-GLES2.functional.attribute",
         "_location.bind_relink_hole.vec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013973,
-        "dEQP-GLES2.functional.attribute", 
+        "dEQP-GLES2.functional.attribute",
         "_location.bind_relink_hole.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013974,
-        "dEQP-GLES2.functional.attribute", 
+        "dEQP-GLES2.functional.attribute",
         "_location.bind_relink_hole.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013975,
-        "dEQP-GLES2.functional.attribute", 
+        "dEQP-GLES2.functional.attribute",
         "_location.bind_relink_hole.mat4");

@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002407,
-        "KHR-GLES31.core.geometry_shader.ad", 
+        "KHR-GLES31.core.geometry_shader.ad",
         "jacency.adjacency_non_indiced_lines");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002408,
-        "KHR-GLES31.core.geometry_shader.", 
+        "KHR-GLES31.core.geometry_shader.",
         "adjacency.adjacency_indiced_lines");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002409,
-        "KHR-GLES31.core.geometry_shader.adjac", 
+        "KHR-GLES31.core.geometry_shader.adjac",
         "ency.adjacency_non_indiced_line_strip");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002410,
-        "KHR-GLES31.core.geometry_shader.adj", 
+        "KHR-GLES31.core.geometry_shader.adj",
         "acency.adjacency_indiced_line_strip");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002411,
-        "KHR-GLES31.core.geometry_shader.adja", 
+        "KHR-GLES31.core.geometry_shader.adja",
         "cency.adjacency_non_indiced_triangles");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002412,
-        "KHR-GLES31.core.geometry_shader.ad", 
+        "KHR-GLES31.core.geometry_shader.ad",
         "jacency.adjacency_indiced_triangles");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002413,
-        "KHR-GLES31.core.geometry_shader.adjacen", 
+        "KHR-GLES31.core.geometry_shader.adjacen",
         "cy.adjacency_non_indiced_triangle_strip");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002414,
-        "KHR-GLES31.core.geometry_shader.adjac", 
+        "KHR-GLES31.core.geometry_shader.adjac",
         "ency.adjacency_indiced_triangle_strip");

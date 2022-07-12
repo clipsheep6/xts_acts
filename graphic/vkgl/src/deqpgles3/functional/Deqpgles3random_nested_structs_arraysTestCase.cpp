@@ -24,101 +24,101 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036066,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036067,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036068,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036069,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036070,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036071,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036072,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036073,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036074,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036075,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.9");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036076,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036077,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.11");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036078,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.12");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036079,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.13");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036080,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.14");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036081,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.15");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036082,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036083,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.17");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036084,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.18");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036085,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.19");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036086,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.20");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036087,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.21");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036088,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.22");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036089,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.23");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036090,
-        "dEQP-GLES3.functional.ubo.ra", 
+        "dEQP-GLES3.functional.ubo.ra",
         "ndom.nested_structs_arrays.24");

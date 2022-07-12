@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000001,
-        "KHR-GLES31.core.texture_storage_multisample.API", 
+        "KHR-GLES31.core.texture_storage_multisample.API",
         "GLGetActiveUniform.multisample_texture_samplers");

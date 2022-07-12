@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005590,
-        "dEQP-GLES2.functional.shaders.operator.b", 
+        "dEQP-GLES2.functional.shaders.operator.b",
         "inary_operator.greater.lowp_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005591,
-        "dEQP-GLES2.functional.shaders.operator.bi", 
+        "dEQP-GLES2.functional.shaders.operator.bi",
         "nary_operator.greater.lowp_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005592,
-        "dEQP-GLES2.functional.shaders.operator.bi", 
+        "dEQP-GLES2.functional.shaders.operator.bi",
         "nary_operator.greater.mediump_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005593,
-        "dEQP-GLES2.functional.shaders.operator.bin", 
+        "dEQP-GLES2.functional.shaders.operator.bin",
         "ary_operator.greater.mediump_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005594,
-        "dEQP-GLES2.functional.shaders.operator.b", 
+        "dEQP-GLES2.functional.shaders.operator.b",
         "inary_operator.greater.highp_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005595,
-        "dEQP-GLES2.functional.shaders.operator.bi", 
+        "dEQP-GLES2.functional.shaders.operator.bi",
         "nary_operator.greater.highp_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005596,
-        "dEQP-GLES2.functional.shaders.operator.", 
+        "dEQP-GLES2.functional.shaders.operator.",
         "binary_operator.greater.lowp_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005597,
-        "dEQP-GLES2.functional.shaders.operator.b", 
+        "dEQP-GLES2.functional.shaders.operator.b",
         "inary_operator.greater.lowp_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005598,
-        "dEQP-GLES2.functional.shaders.operator.b", 
+        "dEQP-GLES2.functional.shaders.operator.b",
         "inary_operator.greater.mediump_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005599,
-        "dEQP-GLES2.functional.shaders.operator.bi", 
+        "dEQP-GLES2.functional.shaders.operator.bi",
         "nary_operator.greater.mediump_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005600,
-        "dEQP-GLES2.functional.shaders.operator.", 
+        "dEQP-GLES2.functional.shaders.operator.",
         "binary_operator.greater.highp_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20006TestSuite, TestCase_005601,
-        "dEQP-GLES2.functional.shaders.operator.b", 
+        "dEQP-GLES2.functional.shaders.operator.b",
         "inary_operator.greater.highp_int_fragment");

@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040542,
-        "dEQP-GLES3.functional.transform_f", 
+        "dEQP-GLES3.functional.transform_f",
         "eedback.point_size.points_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040543,
-        "dEQP-GLES3.functional.transform_fee", 
+        "dEQP-GLES3.functional.transform_fee",
         "dback.point_size.points_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040544,
-        "dEQP-GLES3.functional.transform_f", 
+        "dEQP-GLES3.functional.transform_f",
         "eedback.point_size.lines_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040545,
-        "dEQP-GLES3.functional.transform_fe", 
+        "dEQP-GLES3.functional.transform_fe",
         "edback.point_size.lines_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040546,
-        "dEQP-GLES3.functional.transform_fee", 
+        "dEQP-GLES3.functional.transform_fee",
         "dback.point_size.triangles_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040547,
-        "dEQP-GLES3.functional.transform_feed", 
+        "dEQP-GLES3.functional.transform_feed",
         "back.point_size.triangles_interleaved");

@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000089,
-        "KHR-GLESEXT.geometry_shader.cons", 
+        "KHR-GLESEXT.geometry_shader.cons",
         "tant_variables.constant_variables");

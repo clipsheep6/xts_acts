@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001811,
-        "KHR-GLES31.core.blend_equation_adv", 
+        "KHR-GLES31.core.blend_equation_adv",
         "anced.test_coherency.mixedSequence");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001812,
-        "KHR-GLES31.core.blend_equation_adva", 
+        "KHR-GLES31.core.blend_equation_adva",
         "nced.test_coherency.multiplySequence");

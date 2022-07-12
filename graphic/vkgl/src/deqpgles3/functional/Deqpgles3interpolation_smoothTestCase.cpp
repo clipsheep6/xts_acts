@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041682,
-        "dEQP-GLES3.functional.transform_feedback.in", 
+        "dEQP-GLES3.functional.transform_feedback.in",
         "terpolation.smooth.lowp_vec4_points_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041683,
-        "dEQP-GLES3.functional.transform_feedback.inte", 
+        "dEQP-GLES3.functional.transform_feedback.inte",
         "rpolation.smooth.lowp_vec4_points_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041684,
-        "dEQP-GLES3.functional.transform_feedback.in", 
+        "dEQP-GLES3.functional.transform_feedback.in",
         "terpolation.smooth.lowp_vec4_lines_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041685,
-        "dEQP-GLES3.functional.transform_feedback.int", 
+        "dEQP-GLES3.functional.transform_feedback.int",
         "erpolation.smooth.lowp_vec4_lines_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041686,
-        "dEQP-GLES3.functional.transform_feedback.inte", 
+        "dEQP-GLES3.functional.transform_feedback.inte",
         "rpolation.smooth.lowp_vec4_triangles_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041687,
-        "dEQP-GLES3.functional.transform_feedback.inter", 
+        "dEQP-GLES3.functional.transform_feedback.inter",
         "polation.smooth.lowp_vec4_triangles_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041688,
-        "dEQP-GLES3.functional.transform_feedback.inte", 
+        "dEQP-GLES3.functional.transform_feedback.inte",
         "rpolation.smooth.mediump_vec4_points_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041689,
-        "dEQP-GLES3.functional.transform_feedback.inter", 
+        "dEQP-GLES3.functional.transform_feedback.inter",
         "polation.smooth.mediump_vec4_points_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041690,
-        "dEQP-GLES3.functional.transform_feedback.int", 
+        "dEQP-GLES3.functional.transform_feedback.int",
         "erpolation.smooth.mediump_vec4_lines_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041691,
-        "dEQP-GLES3.functional.transform_feedback.inter", 
+        "dEQP-GLES3.functional.transform_feedback.inter",
         "polation.smooth.mediump_vec4_lines_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041692,
-        "dEQP-GLES3.functional.transform_feedback.inter", 
+        "dEQP-GLES3.functional.transform_feedback.inter",
         "polation.smooth.mediump_vec4_triangles_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041693,
-        "dEQP-GLES3.functional.transform_feedback.interpo", 
+        "dEQP-GLES3.functional.transform_feedback.interpo",
         "lation.smooth.mediump_vec4_triangles_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041694,
-        "dEQP-GLES3.functional.transform_feedback.int", 
+        "dEQP-GLES3.functional.transform_feedback.int",
         "erpolation.smooth.highp_vec4_points_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041695,
-        "dEQP-GLES3.functional.transform_feedback.inte", 
+        "dEQP-GLES3.functional.transform_feedback.inte",
         "rpolation.smooth.highp_vec4_points_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041696,
-        "dEQP-GLES3.functional.transform_feedback.in", 
+        "dEQP-GLES3.functional.transform_feedback.in",
         "terpolation.smooth.highp_vec4_lines_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041697,
-        "dEQP-GLES3.functional.transform_feedback.inte", 
+        "dEQP-GLES3.functional.transform_feedback.inte",
         "rpolation.smooth.highp_vec4_lines_interleaved");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041698,
-        "dEQP-GLES3.functional.transform_feedback.inte", 
+        "dEQP-GLES3.functional.transform_feedback.inte",
         "rpolation.smooth.highp_vec4_triangles_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041699,
-        "dEQP-GLES3.functional.transform_feedback.interp", 
+        "dEQP-GLES3.functional.transform_feedback.interp",
         "olation.smooth.highp_vec4_triangles_interleaved");

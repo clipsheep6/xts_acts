@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000319,
-        "KHR-GLESEXT.ext_texture_shadow_lod.", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.",
         "texture.sampler2darrayshadow_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000320,
-        "KHR-GLESEXT.ext_texture_shadow_lod.t", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.t",
         "exture.sampler2darrayshadow_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000321,
-        "KHR-GLESEXT.ext_texture_shadow_lod.tex", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.tex",
         "ture.sampler2darrayshadow_bias_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000322,
-        "KHR-GLESEXT.ext_texture_shadow_lod.t", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.t",
         "exture.samplercubearrayshadow_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000323,
-        "KHR-GLESEXT.ext_texture_shadow_lod.te", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.te",
         "xture.samplercubearrayshadow_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000324,
-        "KHR-GLESEXT.ext_texture_shadow_lod.text", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.text",
         "ure.samplercubearrayshadow_bias_fragment");

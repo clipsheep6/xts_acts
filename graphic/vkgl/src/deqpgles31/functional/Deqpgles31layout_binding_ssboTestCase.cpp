@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024827,
-        "dEQP-GLES31.functional.layout_bi", 
+        "dEQP-GLES31.functional.layout_bi",
         "nding.ssbo.vertex_binding_single");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024828,
-        "dEQP-GLES31.functional.layout_", 
+        "dEQP-GLES31.functional.layout_",
         "binding.ssbo.vertex_binding_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024829,
-        "dEQP-GLES31.functional.layout_bin", 
+        "dEQP-GLES31.functional.layout_bin",
         "ding.ssbo.vertex_binding_multiple");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024830,
-        "dEQP-GLES31.functional.layout_b", 
+        "dEQP-GLES31.functional.layout_b",
         "inding.ssbo.vertex_binding_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024831,
-        "dEQP-GLES31.functional.layout_bin", 
+        "dEQP-GLES31.functional.layout_bin",
         "ding.ssbo.vertex_binding_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024832,
-        "dEQP-GLES31.functional.layout_bin", 
+        "dEQP-GLES31.functional.layout_bin",
         "ding.ssbo.fragment_binding_single");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024833,
-        "dEQP-GLES31.functional.layout_b", 
+        "dEQP-GLES31.functional.layout_b",
         "inding.ssbo.fragment_binding_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024834,
-        "dEQP-GLES31.functional.layout_bind", 
+        "dEQP-GLES31.functional.layout_bind",
         "ing.ssbo.fragment_binding_multiple");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024835,
-        "dEQP-GLES31.functional.layout_bi", 
+        "dEQP-GLES31.functional.layout_bi",
         "nding.ssbo.fragment_binding_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024836,
-        "dEQP-GLES31.functional.layout_bind", 
+        "dEQP-GLES31.functional.layout_bind",
         "ing.ssbo.fragment_binding_max_array");

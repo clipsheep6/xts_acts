@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007783,
-        "dEQP-GLES31.functional.draw_indirect.compu", 
+        "dEQP-GLES31.functional.draw_indirect.compu",
         "te_interop.separate.drawarrays_compute_cmd");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007784,
-        "dEQP-GLES31.functional.draw_indirect.compu", 
+        "dEQP-GLES31.functional.draw_indirect.compu",
         "te_interop.separate.drawarrays_compute_data");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007785,
-        "dEQP-GLES31.functional.draw_indirect.compute_i", 
+        "dEQP-GLES31.functional.draw_indirect.compute_i",
         "nterop.separate.drawarrays_compute_cmd_and_data");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007786,
-        "dEQP-GLES31.functional.draw_indirect.comput", 
+        "dEQP-GLES31.functional.draw_indirect.comput",
         "e_interop.separate.drawelements_compute_cmd");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007787,
-        "dEQP-GLES31.functional.draw_indirect.comput", 
+        "dEQP-GLES31.functional.draw_indirect.comput",
         "e_interop.separate.drawelements_compute_data");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007788,
-        "dEQP-GLES31.functional.draw_indirect.compute_", 
+        "dEQP-GLES31.functional.draw_indirect.compute_",
         "interop.separate.drawelements_compute_indices");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007789,
-        "dEQP-GLES31.functional.draw_indirect.compute_in", 
+        "dEQP-GLES31.functional.draw_indirect.compute_in",
         "terop.separate.drawelements_compute_cmd_and_data");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007790,
-        "dEQP-GLES31.functional.draw_indirect.compute_inte", 
+        "dEQP-GLES31.functional.draw_indirect.compute_inte",
         "rop.separate.drawelements_compute_cmd_and_indices");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007791,
-        "dEQP-GLES31.functional.draw_indirect.compute_inte", 
+        "dEQP-GLES31.functional.draw_indirect.compute_inte",
         "rop.separate.drawelements_compute_data_and_indices");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007792,
-        "dEQP-GLES31.functional.draw_indirect.compute_interop.", 
+        "dEQP-GLES31.functional.draw_indirect.compute_interop.",
         "separate.drawelements_compute_cmd_and_data_and_indices");

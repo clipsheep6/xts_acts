@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000212,
-        "KHR-GLESEXT.tessellation_s", 
+        "KHR-GLESEXT.tessellation_s",
         "hader.winding.triangles_ccw");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000213,
-        "KHR-GLESEXT.tessellation_s", 
+        "KHR-GLESEXT.tessellation_s",
         "hader.winding.triangles_cw");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000214,
-        "KHR-GLESEXT.tessellation", 
+        "KHR-GLESEXT.tessellation",
         "_shader.winding.quads_ccw");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000215,
-        "KHR-GLESEXT.tessellation", 
+        "KHR-GLESEXT.tessellation",
         "_shader.winding.quads_cw");

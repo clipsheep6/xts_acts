@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000328,
-        "KHR-GLESEXT.ext_texture_shadow_lod.t", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.t",
         "exturelod.sampler2darrayshadow_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000329,
-        "KHR-GLESEXT.ext_texture_shadow_lod.te", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.te",
         "xturelod.sampler2darrayshadow_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000330,
-        "KHR-GLESEXT.ext_texture_shadow_lod.", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.",
         "texturelod.samplercubeshadow_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000331,
-        "KHR-GLESEXT.ext_texture_shadow_lod.t", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.t",
         "exturelod.samplercubeshadow_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000332,
-        "KHR-GLESEXT.ext_texture_shadow_lod.tex", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.tex",
         "turelod.samplercubearrayshadow_fragment");

@@ -24,89 +24,89 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002115,
-        "dEQP-GLES2.functional.shaders.function", 
+        "dEQP-GLES2.functional.shaders.function",
         "s.array_arguments.local_in_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002116,
-        "dEQP-GLES2.functional.shaders.functions", 
+        "dEQP-GLES2.functional.shaders.functions",
         ".array_arguments.local_in_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002117,
-        "dEQP-GLES2.functional.shaders.functions", 
+        "dEQP-GLES2.functional.shaders.functions",
         ".array_arguments.global_in_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002118,
-        "dEQP-GLES2.functional.shaders.functions.", 
+        "dEQP-GLES2.functional.shaders.functions.",
         "array_arguments.global_in_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002119,
-        "dEQP-GLES2.functional.shaders.functio", 
+        "dEQP-GLES2.functional.shaders.functio",
         "ns.array_arguments.local_in_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002120,
-        "dEQP-GLES2.functional.shaders.function", 
+        "dEQP-GLES2.functional.shaders.function",
         "s.array_arguments.local_in_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002121,
-        "dEQP-GLES2.functional.shaders.function", 
+        "dEQP-GLES2.functional.shaders.function",
         "s.array_arguments.global_in_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002122,
-        "dEQP-GLES2.functional.shaders.functions", 
+        "dEQP-GLES2.functional.shaders.functions",
         ".array_arguments.global_in_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002123,
-        "dEQP-GLES2.functional.shaders.function", 
+        "dEQP-GLES2.functional.shaders.function",
         "s.array_arguments.local_in_bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002124,
-        "dEQP-GLES2.functional.shaders.functions", 
+        "dEQP-GLES2.functional.shaders.functions",
         ".array_arguments.local_in_bool_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002125,
-        "dEQP-GLES2.functional.shaders.function", 
+        "dEQP-GLES2.functional.shaders.function",
         "s.array_arguments.global_in_bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002126,
-        "dEQP-GLES2.functional.shaders.functions", 
+        "dEQP-GLES2.functional.shaders.functions",
         ".array_arguments.global_in_bool_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002127,
-        "dEQP-GLES2.functional.shaders.functio", 
+        "dEQP-GLES2.functional.shaders.functio",
         "ns.array_arguments.test_helpers_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002128,
-        "dEQP-GLES2.functional.shaders.function", 
+        "dEQP-GLES2.functional.shaders.function",
         "s.array_arguments.test_helpers_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002129,
-        "dEQP-GLES2.functional.shaders.functions.ar", 
+        "dEQP-GLES2.functional.shaders.functions.ar",
         "ray_arguments.copy_local_in_on_call_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002130,
-        "dEQP-GLES2.functional.shaders.functions.arr", 
+        "dEQP-GLES2.functional.shaders.functions.arr",
         "ay_arguments.copy_local_in_on_call_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002131,
-        "dEQP-GLES2.functional.shaders.functions.ar", 
+        "dEQP-GLES2.functional.shaders.functions.ar",
         "ray_arguments.copy_global_in_on_call_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002132,
-        "dEQP-GLES2.functional.shaders.functions.arr", 
+        "dEQP-GLES2.functional.shaders.functions.arr",
         "ay_arguments.copy_global_in_on_call_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002133,
-        "dEQP-GLES2.functional.shaders.functions.arr", 
+        "dEQP-GLES2.functional.shaders.functions.arr",
         "ay_arguments.copy_local_inout_on_call_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002134,
-        "dEQP-GLES2.functional.shaders.functions.arra", 
+        "dEQP-GLES2.functional.shaders.functions.arra",
         "y_arguments.copy_local_inout_on_call_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002135,
-        "dEQP-GLES2.functional.shaders.functions.arra", 
+        "dEQP-GLES2.functional.shaders.functions.arra",
         "y_arguments.copy_global_inout_on_call_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002136,
-        "dEQP-GLES2.functional.shaders.functions.array", 
+        "dEQP-GLES2.functional.shaders.functions.array",
         "_arguments.copy_global_inout_on_call_fragment");

@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000007,
-        "dEQP-GLES31.functional.shaders.bu", 
+        "dEQP-GLES31.functional.shaders.bu",
         "iltin_var.compute.num_work_groups");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000008,
-        "dEQP-GLES31.functional.shaders.bu", 
+        "dEQP-GLES31.functional.shaders.bu",
         "iltin_var.compute.work_group_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000009,
-        "dEQP-GLES31.functional.shaders.b", 
+        "dEQP-GLES31.functional.shaders.b",
         "uiltin_var.compute.work_group_id");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000010,
-        "dEQP-GLES31.functional.shaders.buil", 
+        "dEQP-GLES31.functional.shaders.buil",
         "tin_var.compute.local_invocation_id");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000011,
-        "dEQP-GLES31.functional.shaders.buil", 
+        "dEQP-GLES31.functional.shaders.buil",
         "tin_var.compute.global_invocation_id");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310001TestSuite, TestCase_000012,
-        "dEQP-GLES31.functional.shaders.built", 
+        "dEQP-GLES31.functional.shaders.built",
         "in_var.compute.local_invocation_index");

@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016321,
-        "dEQP-GLES31.functional.geometry_sh", 
+        "dEQP-GLES31.functional.geometry_sh",
         "ading.input.basic_primitive.points");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016322,
-        "dEQP-GLES31.functional.geometry_s", 
+        "dEQP-GLES31.functional.geometry_s",
         "hading.input.basic_primitive.lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016323,
-        "dEQP-GLES31.functional.geometry_sha", 
+        "dEQP-GLES31.functional.geometry_sha",
         "ding.input.basic_primitive.line_loop");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016324,
-        "dEQP-GLES31.functional.geometry_shad", 
+        "dEQP-GLES31.functional.geometry_shad",
         "ing.input.basic_primitive.line_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016325,
-        "dEQP-GLES31.functional.geometry_sha", 
+        "dEQP-GLES31.functional.geometry_sha",
         "ding.input.basic_primitive.triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016326,
-        "dEQP-GLES31.functional.geometry_shadin", 
+        "dEQP-GLES31.functional.geometry_shadin",
         "g.input.basic_primitive.triangle_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016327,
-        "dEQP-GLES31.functional.geometry_shadi", 
+        "dEQP-GLES31.functional.geometry_shadi",
         "ng.input.basic_primitive.triangle_fan");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016328,
-        "dEQP-GLES31.functional.geometry_shadin", 
+        "dEQP-GLES31.functional.geometry_shadin",
         "g.input.basic_primitive.lines_adjacency");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016329,
-        "dEQP-GLES31.functional.geometry_shading.i", 
+        "dEQP-GLES31.functional.geometry_shading.i",
         "nput.basic_primitive.line_strip_adjacency");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016330,
-        "dEQP-GLES31.functional.geometry_shading.", 
+        "dEQP-GLES31.functional.geometry_shading.",
         "input.basic_primitive.triangles_adjacency");

@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007806,
-        "dEQP-GLES2.functional.shaders.te", 
+        "dEQP-GLES2.functional.shaders.te",
         "xture_functions.vertex.texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007807,
-        "dEQP-GLES2.functional.shaders.textur", 
+        "dEQP-GLES2.functional.shaders.textur",
         "e_functions.vertex.texture2dproj_vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007808,
-        "dEQP-GLES2.functional.shaders.textur", 
+        "dEQP-GLES2.functional.shaders.textur",
         "e_functions.vertex.texture2dproj_vec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007809,
-        "dEQP-GLES2.functional.shaders.tex", 
+        "dEQP-GLES2.functional.shaders.tex",
         "ture_functions.vertex.texture2dlod");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007810,
-        "dEQP-GLES2.functional.shaders.texture_", 
+        "dEQP-GLES2.functional.shaders.texture_",
         "functions.vertex.texture2dprojlod_vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007811,
-        "dEQP-GLES2.functional.shaders.texture_", 
+        "dEQP-GLES2.functional.shaders.texture_",
         "functions.vertex.texture2dprojlod_vec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007812,
-        "dEQP-GLES2.functional.shaders.tex", 
+        "dEQP-GLES2.functional.shaders.tex",
         "ture_functions.vertex.texturecube");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007813,
-        "dEQP-GLES2.functional.shaders.text", 
+        "dEQP-GLES2.functional.shaders.text",
         "ure_functions.vertex.texturecubelod");

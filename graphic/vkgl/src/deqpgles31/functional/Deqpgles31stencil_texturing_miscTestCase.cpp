@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012277,
-        "dEQP-GLES31.functional.stencil_t", 
+        "dEQP-GLES31.functional.stencil_t",
         "exturing.misc.compare_mode_effect");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012278,
-        "dEQP-GLES31.functional.stenc", 
+        "dEQP-GLES31.functional.stenc",
         "il_texturing.misc.base_level");

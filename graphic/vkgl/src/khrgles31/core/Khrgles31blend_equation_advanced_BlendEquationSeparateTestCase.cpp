@@ -24,61 +24,61 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001731,
-        "KHR-GLES31.core.blend_equation_advance", 
+        "KHR-GLES31.core.blend_equation_advance",
         "d.BlendEquationSeparate.GL_MULTIPLY_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001732,
-        "KHR-GLES31.core.blend_equation_advanc", 
+        "KHR-GLES31.core.blend_equation_advanc",
         "ed.BlendEquationSeparate.GL_SCREEN_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001733,
-        "KHR-GLES31.core.blend_equation_advance", 
+        "KHR-GLES31.core.blend_equation_advance",
         "d.BlendEquationSeparate.GL_OVERLAY_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001734,
-        "KHR-GLES31.core.blend_equation_advanc", 
+        "KHR-GLES31.core.blend_equation_advanc",
         "ed.BlendEquationSeparate.GL_DARKEN_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001735,
-        "KHR-GLES31.core.blend_equation_advance", 
+        "KHR-GLES31.core.blend_equation_advance",
         "d.BlendEquationSeparate.GL_LIGHTEN_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001736,
-        "KHR-GLES31.core.blend_equation_advanced", 
+        "KHR-GLES31.core.blend_equation_advanced",
         ".BlendEquationSeparate.GL_COLORDODGE_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001737,
-        "KHR-GLES31.core.blend_equation_advanced", 
+        "KHR-GLES31.core.blend_equation_advanced",
         ".BlendEquationSeparate.GL_COLORBURN_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001738,
-        "KHR-GLES31.core.blend_equation_advanced", 
+        "KHR-GLES31.core.blend_equation_advanced",
         ".BlendEquationSeparate.GL_HARDLIGHT_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001739,
-        "KHR-GLES31.core.blend_equation_advanced", 
+        "KHR-GLES31.core.blend_equation_advanced",
         ".BlendEquationSeparate.GL_SOFTLIGHT_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001740,
-        "KHR-GLES31.core.blend_equation_advanced", 
+        "KHR-GLES31.core.blend_equation_advanced",
         ".BlendEquationSeparate.GL_DIFFERENCE_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001741,
-        "KHR-GLES31.core.blend_equation_advanced", 
+        "KHR-GLES31.core.blend_equation_advanced",
         ".BlendEquationSeparate.GL_EXCLUSION_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001742,
-        "KHR-GLES31.core.blend_equation_advance", 
+        "KHR-GLES31.core.blend_equation_advance",
         "d.BlendEquationSeparate.GL_HSL_HUE_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001743,
-        "KHR-GLES31.core.blend_equation_advanced.B", 
+        "KHR-GLES31.core.blend_equation_advanced.B",
         "lendEquationSeparate.GL_HSL_SATURATION_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001744,
-        "KHR-GLES31.core.blend_equation_advanced", 
+        "KHR-GLES31.core.blend_equation_advanced",
         ".BlendEquationSeparate.GL_HSL_COLOR_KHR");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001745,
-        "KHR-GLES31.core.blend_equation_advanced.B", 
+        "KHR-GLES31.core.blend_equation_advanced.B",
         "lendEquationSeparate.GL_HSL_LUMINOSITY_KHR");

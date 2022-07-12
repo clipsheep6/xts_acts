@@ -24,69 +24,69 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040502,
-        "dEQP-GLES3.functional.rasterizer_", 
+        "dEQP-GLES3.functional.rasterizer_",
         "discard.scissor.write_depth_points");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040503,
-        "dEQP-GLES3.functional.rasterizer_", 
+        "dEQP-GLES3.functional.rasterizer_",
         "discard.scissor.write_depth_lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040504,
-        "dEQP-GLES3.functional.rasterizer_di", 
+        "dEQP-GLES3.functional.rasterizer_di",
         "scard.scissor.write_depth_line_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040505,
-        "dEQP-GLES3.functional.rasterizer_di", 
+        "dEQP-GLES3.functional.rasterizer_di",
         "scard.scissor.write_depth_line_loop");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040506,
-        "dEQP-GLES3.functional.rasterizer_di", 
+        "dEQP-GLES3.functional.rasterizer_di",
         "scard.scissor.write_depth_triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040507,
-        "dEQP-GLES3.functional.rasterizer_disc", 
+        "dEQP-GLES3.functional.rasterizer_disc",
         "ard.scissor.write_depth_triangle_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040508,
-        "dEQP-GLES3.functional.rasterizer_dis", 
+        "dEQP-GLES3.functional.rasterizer_dis",
         "card.scissor.write_depth_triangle_fan");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040509,
-        "dEQP-GLES3.functional.rasterizer_d", 
+        "dEQP-GLES3.functional.rasterizer_d",
         "iscard.scissor.write_stencil_points");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040510,
-        "dEQP-GLES3.functional.rasterizer_d", 
+        "dEQP-GLES3.functional.rasterizer_d",
         "iscard.scissor.write_stencil_lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040511,
-        "dEQP-GLES3.functional.rasterizer_dis", 
+        "dEQP-GLES3.functional.rasterizer_dis",
         "card.scissor.write_stencil_line_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040512,
-        "dEQP-GLES3.functional.rasterizer_dis", 
+        "dEQP-GLES3.functional.rasterizer_dis",
         "card.scissor.write_stencil_line_loop");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040513,
-        "dEQP-GLES3.functional.rasterizer_dis", 
+        "dEQP-GLES3.functional.rasterizer_dis",
         "card.scissor.write_stencil_triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040514,
-        "dEQP-GLES3.functional.rasterizer_disca", 
+        "dEQP-GLES3.functional.rasterizer_disca",
         "rd.scissor.write_stencil_triangle_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040515,
-        "dEQP-GLES3.functional.rasterizer_disc", 
+        "dEQP-GLES3.functional.rasterizer_disc",
         "ard.scissor.write_stencil_triangle_fan");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040516,
-        "dEQP-GLES3.functional.rasteriz", 
+        "dEQP-GLES3.functional.rasteriz",
         "er_discard.scissor.clear_color");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040517,
-        "dEQP-GLES3.functional.rasteriz", 
+        "dEQP-GLES3.functional.rasteriz",
         "er_discard.scissor.clear_depth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30041TestSuite, TestCase_040518,
-        "dEQP-GLES3.functional.rasterize", 
+        "dEQP-GLES3.functional.rasterize",
         "r_discard.scissor.clear_stencil");

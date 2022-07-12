@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035244,
-        "dEQP-GLES3.functional.ubo.single_neste", 
+        "dEQP-GLES3.functional.ubo.single_neste",
         "d_struct.per_block_buffer.shared_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035245,
-        "dEQP-GLES3.functional.ubo.single_nested", 
+        "dEQP-GLES3.functional.ubo.single_nested",
         "_struct.per_block_buffer.shared_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035246,
-        "dEQP-GLES3.functional.ubo.single_nest", 
+        "dEQP-GLES3.functional.ubo.single_nest",
         "ed_struct.per_block_buffer.shared_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035247,
-        "dEQP-GLES3.functional.ubo.single_nested_struct", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct",
         ".per_block_buffer.shared_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035248,
-        "dEQP-GLES3.functional.ubo.single_nested_struct.", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct.",
         "per_block_buffer.shared_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035249,
-        "dEQP-GLES3.functional.ubo.single_nested_struc", 
+        "dEQP-GLES3.functional.ubo.single_nested_struc",
         "t.per_block_buffer.shared_instance_array_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035250,
-        "dEQP-GLES3.functional.ubo.single_neste", 
+        "dEQP-GLES3.functional.ubo.single_neste",
         "d_struct.per_block_buffer.packed_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035251,
-        "dEQP-GLES3.functional.ubo.single_nested", 
+        "dEQP-GLES3.functional.ubo.single_nested",
         "_struct.per_block_buffer.packed_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035252,
-        "dEQP-GLES3.functional.ubo.single_nested_struct", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct",
         ".per_block_buffer.packed_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035253,
-        "dEQP-GLES3.functional.ubo.single_nested_struct.", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct.",
         "per_block_buffer.packed_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035254,
-        "dEQP-GLES3.functional.ubo.single_neste", 
+        "dEQP-GLES3.functional.ubo.single_neste",
         "d_struct.per_block_buffer.std140_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035255,
-        "dEQP-GLES3.functional.ubo.single_nested", 
+        "dEQP-GLES3.functional.ubo.single_nested",
         "_struct.per_block_buffer.std140_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035256,
-        "dEQP-GLES3.functional.ubo.single_nest", 
+        "dEQP-GLES3.functional.ubo.single_nest",
         "ed_struct.per_block_buffer.std140_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035257,
-        "dEQP-GLES3.functional.ubo.single_nested_struct", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct",
         ".per_block_buffer.std140_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035258,
-        "dEQP-GLES3.functional.ubo.single_nested_struct.", 
+        "dEQP-GLES3.functional.ubo.single_nested_struct.",
         "per_block_buffer.std140_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035259,
-        "dEQP-GLES3.functional.ubo.single_nested_struc", 
+        "dEQP-GLES3.functional.ubo.single_nested_struc",
         "t.per_block_buffer.std140_instance_array_both");

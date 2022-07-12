@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007432,
-        "dEQP-GLES3.functional.shaders.operator.un", 
+        "dEQP-GLES3.functional.shaders.operator.un",
         "ary_operator.bitwise_not.highp_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007433,
-        "dEQP-GLES3.functional.shaders.operator.una", 
+        "dEQP-GLES3.functional.shaders.operator.una",
         "ry_operator.bitwise_not.highp_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007434,
-        "dEQP-GLES3.functional.shaders.operator.una", 
+        "dEQP-GLES3.functional.shaders.operator.una",
         "ry_operator.bitwise_not.highp_ivec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007435,
-        "dEQP-GLES3.functional.shaders.operator.unar", 
+        "dEQP-GLES3.functional.shaders.operator.unar",
         "y_operator.bitwise_not.highp_ivec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007436,
-        "dEQP-GLES3.functional.shaders.operator.una", 
+        "dEQP-GLES3.functional.shaders.operator.una",
         "ry_operator.bitwise_not.highp_ivec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007437,
-        "dEQP-GLES3.functional.shaders.operator.unar", 
+        "dEQP-GLES3.functional.shaders.operator.unar",
         "y_operator.bitwise_not.highp_ivec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007438,
-        "dEQP-GLES3.functional.shaders.operator.una", 
+        "dEQP-GLES3.functional.shaders.operator.una",
         "ry_operator.bitwise_not.highp_ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007439,
-        "dEQP-GLES3.functional.shaders.operator.unar", 
+        "dEQP-GLES3.functional.shaders.operator.unar",
         "y_operator.bitwise_not.highp_ivec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007440,
-        "dEQP-GLES3.functional.shaders.operator.un", 
+        "dEQP-GLES3.functional.shaders.operator.un",
         "ary_operator.bitwise_not.highp_uint_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007441,
-        "dEQP-GLES3.functional.shaders.operator.una", 
+        "dEQP-GLES3.functional.shaders.operator.una",
         "ry_operator.bitwise_not.highp_uint_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007442,
-        "dEQP-GLES3.functional.shaders.operator.una", 
+        "dEQP-GLES3.functional.shaders.operator.una",
         "ry_operator.bitwise_not.highp_uvec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007443,
-        "dEQP-GLES3.functional.shaders.operator.unar", 
+        "dEQP-GLES3.functional.shaders.operator.unar",
         "y_operator.bitwise_not.highp_uvec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007444,
-        "dEQP-GLES3.functional.shaders.operator.una", 
+        "dEQP-GLES3.functional.shaders.operator.una",
         "ry_operator.bitwise_not.highp_uvec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007445,
-        "dEQP-GLES3.functional.shaders.operator.unar", 
+        "dEQP-GLES3.functional.shaders.operator.unar",
         "y_operator.bitwise_not.highp_uvec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007446,
-        "dEQP-GLES3.functional.shaders.operator.una", 
+        "dEQP-GLES3.functional.shaders.operator.una",
         "ry_operator.bitwise_not.highp_uvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007447,
-        "dEQP-GLES3.functional.shaders.operator.unar", 
+        "dEQP-GLES3.functional.shaders.operator.unar",
         "y_operator.bitwise_not.highp_uvec4_fragment");

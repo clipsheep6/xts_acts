@@ -24,53 +24,53 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003688,
-        "KHR-GLES3.core.internalf", 
+        "KHR-GLES3.core.internalf",
         "ormat.copy_tex_image.rgb");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003689,
-        "KHR-GLES3.core.internalf", 
+        "KHR-GLES3.core.internalf",
         "ormat.copy_tex_image.rgba");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003690,
-        "KHR-GLES3.core.internalfo", 
+        "KHR-GLES3.core.internalfo",
         "rmat.copy_tex_image.alpha");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003691,
-        "KHR-GLES3.core.internalform", 
+        "KHR-GLES3.core.internalform",
         "at.copy_tex_image.luminance");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003692,
-        "KHR-GLES3.core.internalformat.", 
+        "KHR-GLES3.core.internalformat.",
         "copy_tex_image.luminance_alpha");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003693,
-        "KHR-GLES3.core.internalfo", 
+        "KHR-GLES3.core.internalfo",
         "rmat.copy_tex_image.rgba4");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003694,
-        "KHR-GLES3.core.internalfor", 
+        "KHR-GLES3.core.internalfor",
         "mat.copy_tex_image.rgb5_a1");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003695,
-        "KHR-GLES3.core.internalfo", 
+        "KHR-GLES3.core.internalfo",
         "rmat.copy_tex_image.rgb565");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003696,
-        "KHR-GLES3.core.internalfo", 
+        "KHR-GLES3.core.internalfo",
         "rmat.copy_tex_image.rgba8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003697,
-        "KHR-GLES3.core.internalf", 
+        "KHR-GLES3.core.internalf",
         "ormat.copy_tex_image.rgb8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003698,
-        "KHR-GLES3.core.internalforma", 
+        "KHR-GLES3.core.internalforma",
         "t.copy_tex_image.srgb8_alpha8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003699,
-        "KHR-GLES3.core.internalfo", 
+        "KHR-GLES3.core.internalfo",
         "rmat.copy_tex_image.srgb8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003700,
-        "KHR-GLES3.core.internalformat", 
+        "KHR-GLES3.core.internalformat",
         ".copy_tex_image.r11f_g11f_b10f");

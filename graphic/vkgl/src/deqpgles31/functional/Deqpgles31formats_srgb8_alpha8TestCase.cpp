@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014335,
-        "dEQP-GLES31.functional.texture.border_cl", 
+        "dEQP-GLES31.functional.texture.border_cl",
         "amp.formats.srgb8_alpha8.nearest_size_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014336,
-        "dEQP-GLES31.functional.texture.border_cla", 
+        "dEQP-GLES31.functional.texture.border_cla",
         "mp.formats.srgb8_alpha8.nearest_size_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014337,
-        "dEQP-GLES31.functional.texture.border_cl", 
+        "dEQP-GLES31.functional.texture.border_cl",
         "amp.formats.srgb8_alpha8.linear_size_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014338,
-        "dEQP-GLES31.functional.texture.border_cl", 
+        "dEQP-GLES31.functional.texture.border_cl",
         "amp.formats.srgb8_alpha8.linear_size_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014339,
-        "dEQP-GLES31.functional.texture.border_cl", 
+        "dEQP-GLES31.functional.texture.border_cl",
         "amp.formats.srgb8_alpha8.gather_size_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014340,
-        "dEQP-GLES31.functional.texture.border_cl", 
+        "dEQP-GLES31.functional.texture.border_cl",
         "amp.formats.srgb8_alpha8.gather_size_npot");

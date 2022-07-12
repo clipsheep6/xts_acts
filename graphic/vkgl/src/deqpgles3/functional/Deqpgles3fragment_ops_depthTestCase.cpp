@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027668,
-        "dEQP-GLES3.functional.fra", 
+        "dEQP-GLES3.functional.fra",
         "gment_ops.depth.cmp_always");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027669,
-        "dEQP-GLES3.functional.fra", 
+        "dEQP-GLES3.functional.fra",
         "gment_ops.depth.cmp_never");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027670,
-        "dEQP-GLES3.functional.fra", 
+        "dEQP-GLES3.functional.fra",
         "gment_ops.depth.cmp_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027671,
-        "dEQP-GLES3.functional.fragm", 
+        "dEQP-GLES3.functional.fragm",
         "ent_ops.depth.cmp_not_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027672,
-        "dEQP-GLES3.functional.fragm", 
+        "dEQP-GLES3.functional.fragm",
         "ent_ops.depth.cmp_less_than");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027673,
-        "dEQP-GLES3.functional.fragmen", 
+        "dEQP-GLES3.functional.fragmen",
         "t_ops.depth.cmp_less_or_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027674,
-        "dEQP-GLES3.functional.fragme", 
+        "dEQP-GLES3.functional.fragme",
         "nt_ops.depth.cmp_greater_than");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027675,
-        "dEQP-GLES3.functional.fragment", 
+        "dEQP-GLES3.functional.fragment",
         "_ops.depth.cmp_greater_or_equal");

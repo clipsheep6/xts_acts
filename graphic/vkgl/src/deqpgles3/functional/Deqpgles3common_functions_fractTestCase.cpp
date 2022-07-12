@@ -24,97 +24,97 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012718,
-        "dEQP-GLES3.functional.shaders.operator.", 
+        "dEQP-GLES3.functional.shaders.operator.",
         "common_functions.fract.lowp_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012719,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.lowp_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012720,
-        "dEQP-GLES3.functional.shaders.operator.co", 
+        "dEQP-GLES3.functional.shaders.operator.co",
         "mmon_functions.fract.mediump_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012721,
-        "dEQP-GLES3.functional.shaders.operator.com", 
+        "dEQP-GLES3.functional.shaders.operator.com",
         "mon_functions.fract.mediump_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012722,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.highp_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012723,
-        "dEQP-GLES3.functional.shaders.operator.co", 
+        "dEQP-GLES3.functional.shaders.operator.co",
         "mmon_functions.fract.highp_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012724,
-        "dEQP-GLES3.functional.shaders.operator.", 
+        "dEQP-GLES3.functional.shaders.operator.",
         "common_functions.fract.lowp_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012725,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.lowp_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012726,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.mediump_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012727,
-        "dEQP-GLES3.functional.shaders.operator.co", 
+        "dEQP-GLES3.functional.shaders.operator.co",
         "mmon_functions.fract.mediump_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012728,
-        "dEQP-GLES3.functional.shaders.operator.", 
+        "dEQP-GLES3.functional.shaders.operator.",
         "common_functions.fract.highp_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012729,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.highp_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012730,
-        "dEQP-GLES3.functional.shaders.operator.", 
+        "dEQP-GLES3.functional.shaders.operator.",
         "common_functions.fract.lowp_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012731,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.lowp_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012732,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.mediump_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012733,
-        "dEQP-GLES3.functional.shaders.operator.co", 
+        "dEQP-GLES3.functional.shaders.operator.co",
         "mmon_functions.fract.mediump_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012734,
-        "dEQP-GLES3.functional.shaders.operator.", 
+        "dEQP-GLES3.functional.shaders.operator.",
         "common_functions.fract.highp_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012735,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.highp_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012736,
-        "dEQP-GLES3.functional.shaders.operator.", 
+        "dEQP-GLES3.functional.shaders.operator.",
         "common_functions.fract.lowp_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012737,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.lowp_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012738,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.mediump_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012739,
-        "dEQP-GLES3.functional.shaders.operator.co", 
+        "dEQP-GLES3.functional.shaders.operator.co",
         "mmon_functions.fract.mediump_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012740,
-        "dEQP-GLES3.functional.shaders.operator.", 
+        "dEQP-GLES3.functional.shaders.operator.",
         "common_functions.fract.highp_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012741,
-        "dEQP-GLES3.functional.shaders.operator.c", 
+        "dEQP-GLES3.functional.shaders.operator.c",
         "ommon_functions.fract.highp_vec4_fragment");

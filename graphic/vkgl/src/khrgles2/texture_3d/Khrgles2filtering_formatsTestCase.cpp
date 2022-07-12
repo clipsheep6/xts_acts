@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000015,
-        "KHR-GLES2.texture_3d.filte", 
+        "KHR-GLES2.texture_3d.filte",
         "ring.formats.rgba8_nearest");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000016,
-        "KHR-GLES2.texture_3d.filt", 
+        "KHR-GLES2.texture_3d.filt",
         "ering.formats.rgba8_linear");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000017,
-        "KHR-GLES2.texture_3d.filtering.fo", 
+        "KHR-GLES2.texture_3d.filtering.fo",
         "rmats.rgba8_nearest_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000018,
-        "KHR-GLES2.texture_3d.filtering.fo", 
+        "KHR-GLES2.texture_3d.filtering.fo",
         "rmats.rgba8_linear_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000019,
-        "KHR-GLES2.texture_3d.filtering.fo", 
+        "KHR-GLES2.texture_3d.filtering.fo",
         "rmats.rgba8_nearest_mipmap_linear");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000020,
-        "KHR-GLES2.texture_3d.filtering.f", 
+        "KHR-GLES2.texture_3d.filtering.f",
         "ormats.rgba8_linear_mipmap_linear");

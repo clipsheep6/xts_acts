@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000137,
-        "KHR-GLES31.core.sample_vari", 
+        "KHR-GLES31.core.sample_vari",
         "ables.verification.extension");

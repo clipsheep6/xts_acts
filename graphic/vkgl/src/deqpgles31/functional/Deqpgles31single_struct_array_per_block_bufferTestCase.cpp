@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009688,
-        "dEQP-GLES31.functional.ssbo.layout.sing", 
+        "dEQP-GLES31.functional.ssbo.layout.sing",
         "le_struct_array.per_block_buffer.shared");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009689,
-        "dEQP-GLES31.functional.ssbo.layout.single_stru", 
+        "dEQP-GLES31.functional.ssbo.layout.single_stru",
         "ct_array.per_block_buffer.shared_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009690,
-        "dEQP-GLES31.functional.ssbo.layout.sing", 
+        "dEQP-GLES31.functional.ssbo.layout.sing",
         "le_struct_array.per_block_buffer.packed");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009691,
-        "dEQP-GLES31.functional.ssbo.layout.single_stru", 
+        "dEQP-GLES31.functional.ssbo.layout.single_stru",
         "ct_array.per_block_buffer.packed_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009692,
-        "dEQP-GLES31.functional.ssbo.layout.sing", 
+        "dEQP-GLES31.functional.ssbo.layout.sing",
         "le_struct_array.per_block_buffer.std140");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009693,
-        "dEQP-GLES31.functional.ssbo.layout.single_stru", 
+        "dEQP-GLES31.functional.ssbo.layout.single_stru",
         "ct_array.per_block_buffer.std140_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009694,
-        "dEQP-GLES31.functional.ssbo.layout.sing", 
+        "dEQP-GLES31.functional.ssbo.layout.sing",
         "le_struct_array.per_block_buffer.std430");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009695,
-        "dEQP-GLES31.functional.ssbo.layout.single_stru", 
+        "dEQP-GLES31.functional.ssbo.layout.single_stru",
         "ct_array.per_block_buffer.std430_instance_array");

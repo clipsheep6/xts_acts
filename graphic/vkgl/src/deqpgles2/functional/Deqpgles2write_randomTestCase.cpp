@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000103,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".buffer.write.random.0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000104,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".buffer.write.random.1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000105,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".buffer.write.random.2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000106,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".buffer.write.random.3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000107,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".buffer.write.random.4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000108,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".buffer.write.random.5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000109,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".buffer.write.random.6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000110,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".buffer.write.random.7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000111,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".buffer.write.random.8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000112,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".buffer.write.random.9");

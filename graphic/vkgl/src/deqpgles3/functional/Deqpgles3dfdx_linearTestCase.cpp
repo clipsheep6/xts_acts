@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017415,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "derivate.dfdx.linear.float_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017416,
-        "dEQP-GLES3.functional.shaders.de", 
+        "dEQP-GLES3.functional.shaders.de",
         "rivate.dfdx.linear.float_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017417,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.dfdx.linear.float_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017418,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "derivate.dfdx.linear.vec2_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017419,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.dfdx.linear.vec2_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017420,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "derivate.dfdx.linear.vec2_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017421,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "derivate.dfdx.linear.vec3_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017422,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.dfdx.linear.vec3_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017423,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "derivate.dfdx.linear.vec3_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017424,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "derivate.dfdx.linear.vec4_highp");

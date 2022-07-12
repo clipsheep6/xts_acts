@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013933,
-        "dEQP-GLES2.functional.attribute_l", 
+        "dEQP-GLES2.functional.attribute_l",
         "ocation.bind_max_attributes.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013934,
-        "dEQP-GLES2.functional.attribute_", 
+        "dEQP-GLES2.functional.attribute_",
         "location.bind_max_attributes.vec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013935,
-        "dEQP-GLES2.functional.attribute_", 
+        "dEQP-GLES2.functional.attribute_",
         "location.bind_max_attributes.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013936,
-        "dEQP-GLES2.functional.attribute_", 
+        "dEQP-GLES2.functional.attribute_",
         "location.bind_max_attributes.vec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013937,
-        "dEQP-GLES2.functional.attribute_", 
+        "dEQP-GLES2.functional.attribute_",
         "location.bind_max_attributes.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013938,
-        "dEQP-GLES2.functional.attribute_", 
+        "dEQP-GLES2.functional.attribute_",
         "location.bind_max_attributes.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013939,
-        "dEQP-GLES2.functional.attribute_", 
+        "dEQP-GLES2.functional.attribute_",
         "location.bind_max_attributes.mat4");

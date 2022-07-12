@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000380,
-        "KHR-GLES2.texture_3d.f", 
+        "KHR-GLES2.texture_3d.f",
         "ramebuffer_texture.rgba");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000381,
-        "KHR-GLES2.texture_3d.fra", 
+        "KHR-GLES2.texture_3d.fra",
         "mebuffer_texture.negative");

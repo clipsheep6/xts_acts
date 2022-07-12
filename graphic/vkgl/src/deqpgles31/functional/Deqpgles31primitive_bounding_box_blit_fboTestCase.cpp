@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025178,
-        "dEQP-GLES31.functional.primitive_boun", 
+        "dEQP-GLES31.functional.primitive_boun",
         "ding_box.blit_fbo.blit_default_to_fbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025179,
-        "dEQP-GLES31.functional.primitive_boun", 
+        "dEQP-GLES31.functional.primitive_boun",
         "ding_box.blit_fbo.blit_fbo_to_default");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025180,
-        "dEQP-GLES31.functional.primitive_bo", 
+        "dEQP-GLES31.functional.primitive_bo",
         "unding_box.blit_fbo.blit_fbo_to_fbo");

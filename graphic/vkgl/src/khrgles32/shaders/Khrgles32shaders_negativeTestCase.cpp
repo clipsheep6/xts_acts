@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000014,
-        "KHR-GLES32.shaders.", 
+        "KHR-GLES32.shaders.",
         "negative.initialize");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000015,
-        "KHR-GLES32.shaders.neg", 
+        "KHR-GLES32.shaders.neg",
         "ative.constant_sequence");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000016,
-        "KHR-GLES32.shaders.negative.u", 
+        "KHR-GLES32.shaders.negative.u",
         "sed_uniform_precision_matching");

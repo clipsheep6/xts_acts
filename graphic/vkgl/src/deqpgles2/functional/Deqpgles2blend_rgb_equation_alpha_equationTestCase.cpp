@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012203,
-        "dEQP-GLES2.functional.fragment_ops.ble", 
+        "dEQP-GLES2.functional.fragment_ops.ble",
         "nd.rgb_equation_alpha_equation.add_add");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012204,
-        "dEQP-GLES2.functional.fragment_ops.blend", 
+        "dEQP-GLES2.functional.fragment_ops.blend",
         ".rgb_equation_alpha_equation.add_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012205,
-        "dEQP-GLES2.functional.fragment_ops.blend.rgb", 
+        "dEQP-GLES2.functional.fragment_ops.blend.rgb",
         "_equation_alpha_equation.add_reverse_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012206,
-        "dEQP-GLES2.functional.fragment_ops.blend", 
+        "dEQP-GLES2.functional.fragment_ops.blend",
         ".rgb_equation_alpha_equation.subtract_add");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012207,
-        "dEQP-GLES2.functional.fragment_ops.blend.rg", 
+        "dEQP-GLES2.functional.fragment_ops.blend.rg",
         "b_equation_alpha_equation.subtract_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012208,
-        "dEQP-GLES2.functional.fragment_ops.blend.rgb_eq", 
+        "dEQP-GLES2.functional.fragment_ops.blend.rgb_eq",
         "uation_alpha_equation.subtract_reverse_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012209,
-        "dEQP-GLES2.functional.fragment_ops.blend.rgb", 
+        "dEQP-GLES2.functional.fragment_ops.blend.rgb",
         "_equation_alpha_equation.reverse_subtract_add");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012210,
-        "dEQP-GLES2.functional.fragment_ops.blend.rgb_eq", 
+        "dEQP-GLES2.functional.fragment_ops.blend.rgb_eq",
         "uation_alpha_equation.reverse_subtract_subtract");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012211,
-        "dEQP-GLES2.functional.fragment_ops.blend.rgb_equati", 
+        "dEQP-GLES2.functional.fragment_ops.blend.rgb_equati",
         "on_alpha_equation.reverse_subtract_reverse_subtract");

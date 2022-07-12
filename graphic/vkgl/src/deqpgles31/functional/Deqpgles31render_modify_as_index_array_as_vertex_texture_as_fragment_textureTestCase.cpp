@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014221,
-        "dEQP-GLES31.functional.texture.texture_buffer.render_modify.a", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render_modify.a",
         "s_index_array_as_vertex_texture_as_fragment_texture.bufferdata");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014222,
-        "dEQP-GLES31.functional.texture.texture_buffer.render_modify.as_", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render_modify.as_",
         "index_array_as_vertex_texture_as_fragment_texture.buffersubdata");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014223,
-        "dEQP-GLES31.functional.texture.texture_buffer.render_modify.as_i", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render_modify.as_i",
         "ndex_array_as_vertex_texture_as_fragment_texture.mapbuffer_write");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014224,
-        "dEQP-GLES31.functional.texture.texture_buffer.render_modify.as_ind", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render_modify.as_ind",
         "ex_array_as_vertex_texture_as_fragment_texture.mapbuffer_readwrite");

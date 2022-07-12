@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033069,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribut", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribut",
         "e.normalize.usigned_int2_10_10_10.components4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033070,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribute", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribute",
         ".normalize.usigned_int2_10_10_10.components4_quads256");

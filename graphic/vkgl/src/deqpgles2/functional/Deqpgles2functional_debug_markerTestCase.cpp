@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016490,
-        "dEQP-GLES2.functional.", 
+        "dEQP-GLES2.functional.",
         "debug_marker.supported");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016491,
-        "dEQP-GLES2.functiona", 
+        "dEQP-GLES2.functiona",
         "l.debug_marker.random");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016492,
-        "dEQP-GLES2.functional", 
+        "dEQP-GLES2.functional",
         ".debug_marker.invalid");

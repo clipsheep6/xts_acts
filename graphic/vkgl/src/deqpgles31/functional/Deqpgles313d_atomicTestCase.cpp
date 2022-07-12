@@ -24,129 +24,129 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011569,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.exchange_r32f_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011570,
-        "dEQP-GLES31.functional.image_load_stor", 
+        "dEQP-GLES31.functional.image_load_stor",
         "e.3d.atomic.exchange_r32f_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011571,
-        "dEQP-GLES31.functional.image_load", 
+        "dEQP-GLES31.functional.image_load",
         "_store.3d.atomic.add_r32ui_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011572,
-        "dEQP-GLES31.functional.image_load_st", 
+        "dEQP-GLES31.functional.image_load_st",
         "ore.3d.atomic.add_r32ui_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011573,
-        "dEQP-GLES31.functional.image_load", 
+        "dEQP-GLES31.functional.image_load",
         "_store.3d.atomic.min_r32ui_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011574,
-        "dEQP-GLES31.functional.image_load_st", 
+        "dEQP-GLES31.functional.image_load_st",
         "ore.3d.atomic.min_r32ui_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011575,
-        "dEQP-GLES31.functional.image_load", 
+        "dEQP-GLES31.functional.image_load",
         "_store.3d.atomic.max_r32ui_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011576,
-        "dEQP-GLES31.functional.image_load_st", 
+        "dEQP-GLES31.functional.image_load_st",
         "ore.3d.atomic.max_r32ui_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011577,
-        "dEQP-GLES31.functional.image_load", 
+        "dEQP-GLES31.functional.image_load",
         "_store.3d.atomic.and_r32ui_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011578,
-        "dEQP-GLES31.functional.image_load_st", 
+        "dEQP-GLES31.functional.image_load_st",
         "ore.3d.atomic.and_r32ui_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011579,
-        "dEQP-GLES31.functional.image_loa", 
+        "dEQP-GLES31.functional.image_loa",
         "d_store.3d.atomic.or_r32ui_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011580,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.or_r32ui_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011581,
-        "dEQP-GLES31.functional.image_load", 
+        "dEQP-GLES31.functional.image_load",
         "_store.3d.atomic.xor_r32ui_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011582,
-        "dEQP-GLES31.functional.image_load_st", 
+        "dEQP-GLES31.functional.image_load_st",
         "ore.3d.atomic.xor_r32ui_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011583,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.exchange_r32ui_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011584,
-        "dEQP-GLES31.functional.image_load_stor", 
+        "dEQP-GLES31.functional.image_load_stor",
         "e.3d.atomic.exchange_r32ui_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011585,
-        "dEQP-GLES31.functional.image_load_st", 
+        "dEQP-GLES31.functional.image_load_st",
         "ore.3d.atomic.comp_swap_r32ui_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011586,
-        "dEQP-GLES31.functional.image_loa", 
+        "dEQP-GLES31.functional.image_loa",
         "d_store.3d.atomic.add_r32i_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011587,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.add_r32i_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011588,
-        "dEQP-GLES31.functional.image_loa", 
+        "dEQP-GLES31.functional.image_loa",
         "d_store.3d.atomic.min_r32i_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011589,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.min_r32i_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011590,
-        "dEQP-GLES31.functional.image_loa", 
+        "dEQP-GLES31.functional.image_loa",
         "d_store.3d.atomic.max_r32i_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011591,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.max_r32i_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011592,
-        "dEQP-GLES31.functional.image_loa", 
+        "dEQP-GLES31.functional.image_loa",
         "d_store.3d.atomic.and_r32i_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011593,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.and_r32i_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011594,
-        "dEQP-GLES31.functional.image_loa", 
+        "dEQP-GLES31.functional.image_loa",
         "d_store.3d.atomic.or_r32i_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011595,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.or_r32i_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011596,
-        "dEQP-GLES31.functional.image_loa", 
+        "dEQP-GLES31.functional.image_loa",
         "d_store.3d.atomic.xor_r32i_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011597,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.xor_r32i_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011598,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.exchange_r32i_result");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011599,
-        "dEQP-GLES31.functional.image_load_stor", 
+        "dEQP-GLES31.functional.image_load_stor",
         "e.3d.atomic.exchange_r32i_return_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011600,
-        "dEQP-GLES31.functional.image_load_s", 
+        "dEQP-GLES31.functional.image_load_s",
         "tore.3d.atomic.comp_swap_r32i_result");

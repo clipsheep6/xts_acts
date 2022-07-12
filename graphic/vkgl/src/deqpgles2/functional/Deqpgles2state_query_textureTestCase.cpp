@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015632,
-        "dEQP-GLES2.functional.state_query.texture.", 
+        "dEQP-GLES2.functional.state_query.texture.",
         "texture_2d_texture_wrap_s_gettexparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015633,
-        "dEQP-GLES2.functional.state_query.texture.", 
+        "dEQP-GLES2.functional.state_query.texture.",
         "texture_2d_texture_wrap_s_gettexparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015634,
-        "dEQP-GLES2.functional.state_query.texture.", 
+        "dEQP-GLES2.functional.state_query.texture.",
         "texture_2d_texture_wrap_t_gettexparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015635,
-        "dEQP-GLES2.functional.state_query.texture.", 
+        "dEQP-GLES2.functional.state_query.texture.",
         "texture_2d_texture_wrap_t_gettexparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015636,
-        "dEQP-GLES2.functional.state_query.texture.te", 
+        "dEQP-GLES2.functional.state_query.texture.te",
         "xture_2d_texture_mag_filter_gettexparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015637,
-        "dEQP-GLES2.functional.state_query.texture.te", 
+        "dEQP-GLES2.functional.state_query.texture.te",
         "xture_2d_texture_mag_filter_gettexparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015638,
-        "dEQP-GLES2.functional.state_query.texture.te", 
+        "dEQP-GLES2.functional.state_query.texture.te",
         "xture_2d_texture_min_filter_gettexparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015639,
-        "dEQP-GLES2.functional.state_query.texture.te", 
+        "dEQP-GLES2.functional.state_query.texture.te",
         "xture_2d_texture_min_filter_gettexparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015640,
-        "dEQP-GLES2.functional.state_query.texture.tex", 
+        "dEQP-GLES2.functional.state_query.texture.tex",
         "ture_cube_map_texture_wrap_s_gettexparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015641,
-        "dEQP-GLES2.functional.state_query.texture.tex", 
+        "dEQP-GLES2.functional.state_query.texture.tex",
         "ture_cube_map_texture_wrap_s_gettexparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015642,
-        "dEQP-GLES2.functional.state_query.texture.tex", 
+        "dEQP-GLES2.functional.state_query.texture.tex",
         "ture_cube_map_texture_wrap_t_gettexparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015643,
-        "dEQP-GLES2.functional.state_query.texture.tex", 
+        "dEQP-GLES2.functional.state_query.texture.tex",
         "ture_cube_map_texture_wrap_t_gettexparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015644,
-        "dEQP-GLES2.functional.state_query.texture.textu", 
+        "dEQP-GLES2.functional.state_query.texture.textu",
         "re_cube_map_texture_mag_filter_gettexparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015645,
-        "dEQP-GLES2.functional.state_query.texture.textu", 
+        "dEQP-GLES2.functional.state_query.texture.textu",
         "re_cube_map_texture_mag_filter_gettexparameterf");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015646,
-        "dEQP-GLES2.functional.state_query.texture.textu", 
+        "dEQP-GLES2.functional.state_query.texture.textu",
         "re_cube_map_texture_min_filter_gettexparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015647,
-        "dEQP-GLES2.functional.state_query.texture.textu", 
+        "dEQP-GLES2.functional.state_query.texture.textu",
         "re_cube_map_texture_min_filter_gettexparameterf");

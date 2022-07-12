@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013616,
-        "dEQP-GLES2.functional.shader_api.", 
+        "dEQP-GLES2.functional.shader_api.",
         "program_state.detach_shader_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013617,
-        "dEQP-GLES2.functional.shader_api.p", 
+        "dEQP-GLES2.functional.shader_api.p",
         "rogram_state.detach_shader_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013618,
-        "dEQP-GLES2.functional.shader_api.p", 
+        "dEQP-GLES2.functional.shader_api.p",
         "rogram_state.reattach_shader_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013619,
-        "dEQP-GLES2.functional.shader_api.pr", 
+        "dEQP-GLES2.functional.shader_api.pr",
         "ogram_state.reattach_shader_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013620,
-        "dEQP-GLES2.functional.shader_api.", 
+        "dEQP-GLES2.functional.shader_api.",
         "program_state.delete_shader_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013621,
-        "dEQP-GLES2.functional.shader_api.p", 
+        "dEQP-GLES2.functional.shader_api.p",
         "rogram_state.delete_shader_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013622,
-        "dEQP-GLES2.functional.shader_api.p", 
+        "dEQP-GLES2.functional.shader_api.p",
         "rogram_state.replace_shader_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013623,
-        "dEQP-GLES2.functional.shader_api.pr", 
+        "dEQP-GLES2.functional.shader_api.pr",
         "ogram_state.replace_shader_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013624,
-        "dEQP-GLES2.functional.shader_api.pr", 
+        "dEQP-GLES2.functional.shader_api.pr",
         "ogram_state.recompile_shader_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013625,
-        "dEQP-GLES2.functional.shader_api.pro", 
+        "dEQP-GLES2.functional.shader_api.pro",
         "gram_state.recompile_shader_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013626,
-        "dEQP-GLES2.functional.shader_api.p", 
+        "dEQP-GLES2.functional.shader_api.p",
         "rogram_state.replace_source_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013627,
-        "dEQP-GLES2.functional.shader_api.pr", 
+        "dEQP-GLES2.functional.shader_api.pr",
         "ogram_state.replace_source_fragment");

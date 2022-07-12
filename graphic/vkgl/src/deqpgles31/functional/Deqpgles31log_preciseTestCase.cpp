@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019310,
-        "dEQP-GLES31.functional.debug.negative_cov", 
+        "dEQP-GLES31.functional.debug.negative_cov",
         "erage.log.precise.precise_as_variable_name");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019311,
-        "dEQP-GLES31.functional.debug.negative_cov", 
+        "dEQP-GLES31.functional.debug.negative_cov",
         "erage.log.precise.precise_as_function_name");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019312,
-        "dEQP-GLES31.functional.debug.negative_cover", 
+        "dEQP-GLES31.functional.debug.negative_cover",
         "age.log.precise.precise_as_function_argument");

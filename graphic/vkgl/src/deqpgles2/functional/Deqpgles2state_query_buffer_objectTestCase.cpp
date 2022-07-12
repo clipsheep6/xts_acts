@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015653,
-        "dEQP-GLES2.functional.state_query.buffe", 
+        "dEQP-GLES2.functional.state_query.buffe",
         "r_object.buffer_size_getbufferparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015654,
-        "dEQP-GLES2.functional.state_query.buffer", 
+        "dEQP-GLES2.functional.state_query.buffer",
         "_object.buffer_usage_getbufferparameteri");

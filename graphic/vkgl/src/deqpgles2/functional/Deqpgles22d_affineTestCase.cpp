@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010611,
-        "dEQP-GLES2.functional.texture.mipm", 
+        "dEQP-GLES2.functional.texture.mipm",
         "ap.2d.affine.nearest_nearest_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010612,
-        "dEQP-GLES2.functional.texture.mipm", 
+        "dEQP-GLES2.functional.texture.mipm",
         "ap.2d.affine.nearest_nearest_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010613,
-        "dEQP-GLES2.functional.texture.mipm", 
+        "dEQP-GLES2.functional.texture.mipm",
         "ap.2d.affine.nearest_nearest_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010614,
-        "dEQP-GLES2.functional.texture.mip", 
+        "dEQP-GLES2.functional.texture.mip",
         "map.2d.affine.linear_nearest_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010615,
-        "dEQP-GLES2.functional.texture.mipm", 
+        "dEQP-GLES2.functional.texture.mipm",
         "ap.2d.affine.linear_nearest_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010616,
-        "dEQP-GLES2.functional.texture.mipm", 
+        "dEQP-GLES2.functional.texture.mipm",
         "ap.2d.affine.linear_nearest_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010617,
-        "dEQP-GLES2.functional.texture.mip", 
+        "dEQP-GLES2.functional.texture.mip",
         "map.2d.affine.nearest_linear_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010618,
-        "dEQP-GLES2.functional.texture.mipm", 
+        "dEQP-GLES2.functional.texture.mipm",
         "ap.2d.affine.nearest_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010619,
-        "dEQP-GLES2.functional.texture.mipm", 
+        "dEQP-GLES2.functional.texture.mipm",
         "ap.2d.affine.nearest_linear_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010620,
-        "dEQP-GLES2.functional.texture.mip", 
+        "dEQP-GLES2.functional.texture.mip",
         "map.2d.affine.linear_linear_repeat");

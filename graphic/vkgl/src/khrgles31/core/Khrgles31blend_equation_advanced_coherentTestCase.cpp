@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001725,
-        "KHR-GLES31.core.blend_equation_", 
+        "KHR-GLES31.core.blend_equation_",
         "advanced.coherent.enableDisable");
