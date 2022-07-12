@@ -20,6 +20,8 @@
 #include "qpWatchDog.h"
 #include "qpCrashHandler.h"
 #include "deMutex.hpp"
+#include "tcuTestSessionExecutor.hpp"
+#include "tcuTestPackage.hpp"
 
 namespace tcu {
 enum class EWATCHDOG {
@@ -39,7 +41,6 @@ protected:
     void cleanup (void);
 
     void onWatchdogTimeout (qpTimeoutReason reason);
-    void onCrash (void);
 
     Platform& m_platform;
     qpWatchDog* m_watchDog;

@@ -23,9 +23,7 @@
 #include "qpDebugOut.h"
 #include "deMath.h"
 #include "ActsApp.h"
-
 namespace tcu {
-
 using std::string;
 /*
  *  Writes all packages found stdout without any
@@ -62,12 +60,11 @@ static void writeCaselistsToStdout (TestPackageRoot& root, TestContext& testCtx)
  */
 static void verifyAmberCapabilityCoherency (TestPackageRoot& root, TestContext& testCtx)
 {
-    DefaultHierarchyInflater            inflater(testCtx);
+    DefaultHierarchyInflater inflater(testCtx);
     de::MovePtr<const CaseListFilter> caseListFilter(
         testCtx.getCommandLine().createCaseListFilter(testCtx.getArchive()));
-    TestHierarchyIterator                iter(root, inflater, *caseListFilter);
-    int                                    count = 0;
-    int                                    errorCount = 0;
+    TestHierarchyIterator iter(root, inflater, *caseListFilter);
+    int count = 0;
 
     bool ok = true;
 
@@ -79,10 +76,6 @@ static void verifyAmberCapabilityCoherency (TestPackageRoot& root, TestContext& 
                 std::cout << iter.getNodePath() << "\n";
                 testCtx.getLog() << tcu::TestLog::Message <<
                     iter.getNodePath() << tcu::TestLog::EndMessage;
-                if (!iter.getNode()->validateRequirements()) {
-                    ok = false;
-                    errorCount++;
-                }
                 count++;
             }
             iter.next();
@@ -92,7 +85,6 @@ static void verifyAmberCapabilityCoherency (TestPackageRoot& root, TestContext& 
             iter.getNode()->getNodeType() == NODETYPE_PACKAGE);
         iter.next();
     }
-    std::cout << count << " amber tests, " << errorCount << " errors.\n";
     if (!ok) {
         TCU_THROW(InternalError, "One or more CTS and Amber test requirements do not match; check log for details");
     }
@@ -218,38 +210,4 @@ void ActsApp::onWatchdogTimeout (qpTimeoutReason reason)
     die("Watchdog timer timeout for %s",
         (reason == QP_TIMEOUT_REASON_INTERVAL_LIMIT ? "touch interval" : "total time"));
 }
-
-static void writeCrashToLog (void* userPtr, const char* infoString)
-{
-    // \note THIS IS CALLED BY SIGNAL HANDLER! CALLING MALLOC/FREE IS NOT ALLOWED!
-    TestLog* log = static_cast<TestLog*>(userPtr);
-    log->writeMessage(infoString);
-}
-
-static void writeCrashToConsole (void* userPtr, const char* infoString)
-{
-    // \note THIS IS CALLED BY SIGNAL HANDLER! CALLING MALLOC/FREE IS NOT ALLOWED!
-    DE_UNREF(userPtr);
-    qpPrint(infoString);
-}
-
-void ActsApp::onCrash (void)
-{
-    // \note THIS IS CALLED BY SIGNAL HANDLER! CALLING MALLOC/FREE IS NOT ALLOWED!
-
-    if (!m_crashLock.tryLock() || m_crashed) {
-        return; // In crash handler already.
-    }
-    m_crashed = true;
-    bool isInCase = m_testExecutor ? m_testExecutor->isInTestCase() : false;
-
-    if (isInCase) {
-        qpCrashHandler_writeCrashInfo(m_crashHandler, writeCrashToLog, &m_testCtx->getLog());
-        m_testCtx->getLog().terminateCase(QP_TEST_RESULT_CRASH);
-    } else {
-        qpCrashHandler_writeCrashInfo(m_crashHandler, writeCrashToConsole, DE_NULL);
-    }
-    die("Test program crashed");
-}
-
 } // tcu
