@@ -12,8 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#include "ActsApp.h"
+#include <iostream>
 #include "tcuPlatform.hpp"
 #include "tcuTestContext.hpp"
 #include "tcuTestSessionExecutor.hpp"
@@ -23,12 +22,11 @@
 #include "qpInfo.h"
 #include "qpDebugOut.h"
 #include "deMath.h"
-#include <iostream>
+#include "ActsApp.h"
 
 namespace tcu {
 
 using std::string;
-
 /*
  *  Writes all packages found stdout without any
  *  separations. Recommended to be used with a single package
@@ -57,7 +55,6 @@ static void writeCaselistsToStdout (TestPackageRoot& root, TestContext& testCtx)
         iter.next();
     }
 }
-
 
 /*
  * Verifies that amber capability requirements in the .amber files
@@ -127,15 +124,6 @@ ActsApp::ActsApp (Platform& platform, Archive& archive, TestLog& log, const Comm
     try {
         const RunMode    runMode    = cmdLine.getRunMode();
 
-        // Initialize watchdog
-        if (cmdLine.isWatchDogEnabled()) {
-            TCU_CHECK_INTERNAL(m_watchDog = qpWatchDog_create(onWatchdogTimeout,
-                this, WATCHDOG_TOTAL_TIME_LIMIT_SECS, WATCHDOG_INTERVAL_TIME_LIMIT_SECS));
-        }
-        // Initialize crash handler.
-        if (cmdLine.isCrashHandlingEnabled()) {
-            TCU_CHECK_INTERNAL(m_crashHandler = qpCrashHandler_create(onCrash, this));
-        }
         // Create test context
         m_testCtx = new TestContext(m_platform, archive, log, cmdLine, m_watchDog);
 
@@ -172,6 +160,10 @@ void ActsApp::cleanup (void)
     delete m_testExecutor;
     delete m_testRoot;
     delete m_testCtx;
+
+    m_testExecutor = DE_NULL;
+    m_testRoot = DE_NULL;
+    m_testCtx = DE_NULL;
 
     if (m_crashHandler) {
         qpCrashHandler_destroy(m_crashHandler);
@@ -213,18 +205,6 @@ bool ActsApp::iterate (void)
 const TestRunStatus& ActsApp::getResult (void) const
 {
     return m_testExecutor->getStatus();
-}
-
-void ActsApp::onWatchdogTimeout (qpWatchDog* watchDog, void* userPtr, qpTimeoutReason reason)
-{
-    DE_UNREF(watchDog);
-    static_cast<ActsApp*>(userPtr)->onWatchdogTimeout(reason);
-}
-
-void ActsApp::onCrash (qpCrashHandler* crashHandler, void* userPtr)
-{
-    DE_UNREF(crashHandler);
-    static_cast<ActsApp*>(userPtr)->onCrash();
 }
 
 void ActsApp::onWatchdogTimeout (qpTimeoutReason reason)

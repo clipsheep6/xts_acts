@@ -22,18 +22,9 @@
 #include "deMutex.hpp"
 
 namespace tcu {
-class Archive;
-class Platform;
-class TestContext;
-class TestSessionExecutor;
-class CommandLine;
-class TestLog;
-class TestPackageRoot;
-class TestRunStatus;
-
-enum EWATCHDOG {
-    WATCHDOG_TOTAL_TIME_LIMIT_SECS    = 300,
-    WATCHDOG_INTERVAL_TIME_LIMIT_SECS    = 30
+enum class EWATCHDOG {
+    WATCHDOG_TOTAL_TIME_LIMIT_SECS = 300,
+    WATCHDOG_INTERVAL_TIME_LIMIT_SECS = 30
 };
 
 class ActsApp {
@@ -49,9 +40,6 @@ protected:
 
     void onWatchdogTimeout (qpTimeoutReason reason);
     void onCrash (void);
-
-    static void onWatchdogTimeout (qpWatchDog* watchDog, void* userPtr, qpTimeoutReason reason);
-    static void onCrash (qpCrashHandler* crashHandler, void* userPtr);
 
     Platform& m_platform;
     qpWatchDog* m_watchDog;
