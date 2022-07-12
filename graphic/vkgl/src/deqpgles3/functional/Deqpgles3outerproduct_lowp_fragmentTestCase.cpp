@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019495,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.outerproduct.lowp_fragment.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019496,
-        "dEQP-GLES3.functional.shaders.builtin_functio", 
+        "dEQP-GLES3.functional.shaders.builtin_functio",
         "ns.precision.outerproduct.lowp_fragment.mat2x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019497,
-        "dEQP-GLES3.functional.shaders.builtin_functio", 
+        "dEQP-GLES3.functional.shaders.builtin_functio",
         "ns.precision.outerproduct.lowp_fragment.mat2x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019498,
-        "dEQP-GLES3.functional.shaders.builtin_functio", 
+        "dEQP-GLES3.functional.shaders.builtin_functio",
         "ns.precision.outerproduct.lowp_fragment.mat3x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019499,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.outerproduct.lowp_fragment.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019500,
-        "dEQP-GLES3.functional.shaders.builtin_functio", 
+        "dEQP-GLES3.functional.shaders.builtin_functio",
         "ns.precision.outerproduct.lowp_fragment.mat3x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019501,
-        "dEQP-GLES3.functional.shaders.builtin_functio", 
+        "dEQP-GLES3.functional.shaders.builtin_functio",
         "ns.precision.outerproduct.lowp_fragment.mat4x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019502,
-        "dEQP-GLES3.functional.shaders.builtin_functio", 
+        "dEQP-GLES3.functional.shaders.builtin_functio",
         "ns.precision.outerproduct.lowp_fragment.mat4x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019503,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.outerproduct.lowp_fragment.mat4");

@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000376,
-        "KHR-GLES31.core.shader_bitfi", 
+        "KHR-GLES31.core.shader_bitfi",
         "eld_operation.packUnorm4x8.0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000377,
-        "KHR-GLES31.core.shader_bitfi", 
+        "KHR-GLES31.core.shader_bitfi",
         "eld_operation.packUnorm4x8.1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000378,
-        "KHR-GLES31.core.shader_bitfi", 
+        "KHR-GLES31.core.shader_bitfi",
         "eld_operation.packUnorm4x8.2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000379,
-        "KHR-GLES31.core.shader_bitfi", 
+        "KHR-GLES31.core.shader_bitfi",
         "eld_operation.packUnorm4x8.3");

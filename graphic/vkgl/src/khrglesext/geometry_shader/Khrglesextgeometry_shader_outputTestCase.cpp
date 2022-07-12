@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000080,
-        "KHR-GLESEXT.geometry_shader.out", 
+        "KHR-GLESEXT.geometry_shader.out",
         "put.conflicted_output_primitive");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000081,
-        "KHR-GLESEXT.geometry_shader.outp", 
+        "KHR-GLESEXT.geometry_shader.outp",
         "ut.conflicted_output_vertices_max");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000082,
-        "KHR-GLESEXT.geometry_shade", 
+        "KHR-GLESEXT.geometry_shade",
         "r.output.vertex_emit_at_end");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000083,
-        "KHR-GLESEXT.geometry_shader.ou", 
+        "KHR-GLESEXT.geometry_shader.ou",
         "tput.primitive_end_done_at_end");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000084,
-        "KHR-GLESEXT.geometry_shader.output.p", 
+        "KHR-GLESEXT.geometry_shader.output.p",
         "rimite_end_done_for_single_primitive");

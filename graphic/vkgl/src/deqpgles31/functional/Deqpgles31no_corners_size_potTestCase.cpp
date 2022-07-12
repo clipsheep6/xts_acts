@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013210,
-        "dEQP-GLES31.functional.texture.gather.basic.cub", 
+        "dEQP-GLES31.functional.texture.gather.basic.cub",
         "e.rgba8.no_corners.size_pot.clamp_to_edge_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013211,
-        "dEQP-GLES31.functional.texture.gather.basic.cube", 
+        "dEQP-GLES31.functional.texture.gather.basic.cube",
         ".rgba8.no_corners.size_pot.repeat_mirrored_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013212,
-        "dEQP-GLES31.functional.texture.gather.basic.cube.rgb", 
+        "dEQP-GLES31.functional.texture.gather.basic.cube.rgb",
         "a8.no_corners.size_pot.mirrored_repeat_clamp_to_edge");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013236,
-        "dEQP-GLES31.functional.texture.gather.basic.cube", 
+        "dEQP-GLES31.functional.texture.gather.basic.cube",
         ".rgba8ui.no_corners.size_pot.clamp_to_edge_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013237,
-        "dEQP-GLES31.functional.texture.gather.basic.cube.", 
+        "dEQP-GLES31.functional.texture.gather.basic.cube.",
         "rgba8ui.no_corners.size_pot.repeat_mirrored_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013238,
-        "dEQP-GLES31.functional.texture.gather.basic.cube.rgba", 
+        "dEQP-GLES31.functional.texture.gather.basic.cube.rgba",
         "8ui.no_corners.size_pot.mirrored_repeat_clamp_to_edge");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013257,
-        "dEQP-GLES31.functional.texture.gather.basic.cube", 
+        "dEQP-GLES31.functional.texture.gather.basic.cube",
         ".rgba8i.no_corners.size_pot.clamp_to_edge_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013258,
-        "dEQP-GLES31.functional.texture.gather.basic.cube.", 
+        "dEQP-GLES31.functional.texture.gather.basic.cube.",
         "rgba8i.no_corners.size_pot.repeat_mirrored_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013259,
-        "dEQP-GLES31.functional.texture.gather.basic.cube.rgb", 
+        "dEQP-GLES31.functional.texture.gather.basic.cube.rgb",
         "a8i.no_corners.size_pot.mirrored_repeat_clamp_to_edge");

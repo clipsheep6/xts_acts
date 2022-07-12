@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021787,
-        "dEQP-GLES31.functional.program_interface_que", 
+        "dEQP-GLES31.functional.program_interface_que",
         "ry.program_input.resource_list.compute.empty");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022371,
-        "dEQP-GLES31.functional.program_interface_que", 
+        "dEQP-GLES31.functional.program_interface_que",
         "ry.program_output.resource_list.compute.empty");

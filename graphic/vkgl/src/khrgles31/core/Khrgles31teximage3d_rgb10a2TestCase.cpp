@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003355,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb10a2.0_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003356,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb10a2.1_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003357,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb10a2.16_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003358,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb10a2.1_1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003359,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb10a2.16_1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003360,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgb10a2.16_16_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003361,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb10a2.1_1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003362,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb10a2.16_1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003363,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgb10a2.16_16_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003364,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgb10a2.16_16_4");

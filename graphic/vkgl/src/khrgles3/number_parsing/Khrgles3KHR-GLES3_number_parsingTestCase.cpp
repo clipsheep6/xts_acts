@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004062,
-        "KHR-GLES3.number_parsing.unsigned_", 
+        "KHR-GLES3.number_parsing.unsigned_",
         "integer_above_signed_range_decimal");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004063,
-        "KHR-GLES3.number_parsing.unsigned", 
+        "KHR-GLES3.number_parsing.unsigned",
         "_integer_above_signed_range_base8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004064,
-        "KHR-GLES3.number_parsing.unsigned", 
+        "KHR-GLES3.number_parsing.unsigned",
         "_integer_above_signed_range_base16");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004065,
-        "KHR-GLES3.number_parsing.unsigned_integer", 
+        "KHR-GLES3.number_parsing.unsigned_integer",
         "_smallest_value_above_signed_range_decimal");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004066,
-        "KHR-GLES3.number_parsing.unsigned_intege", 
+        "KHR-GLES3.number_parsing.unsigned_intege",
         "r_smallest_value_above_signed_range_base8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004067,
-        "KHR-GLES3.number_parsing.unsigned_integer", 
+        "KHR-GLES3.number_parsing.unsigned_integer",
         "_smallest_value_above_signed_range_base16");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004068,
-        "KHR-GLES3.number_parsing.unsi", 
+        "KHR-GLES3.number_parsing.unsi",
         "gned_integer_max_value_decimal");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004069,
-        "KHR-GLES3.number_parsing.uns", 
+        "KHR-GLES3.number_parsing.uns",
         "igned_integer_max_value_base8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004070,
-        "KHR-GLES3.number_parsing.unsi", 
+        "KHR-GLES3.number_parsing.unsi",
         "gned_integer_max_value_base16");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004071,
-        "KHR-GLES3.number_parsing.unsigne", 
+        "KHR-GLES3.number_parsing.unsigne",
         "d_integer_too_large_value_invalid");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004072,
-        "KHR-GLES3.number_parsing.unsigne", 
+        "KHR-GLES3.number_parsing.unsigne",
         "d_integer_negative_value_as_uint");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004073,
-        "KHR-GLES3.number_parsing.fl", 
+        "KHR-GLES3.number_parsing.fl",
         "oat_out_of_range_as_infinity");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004074,
-        "KHR-GLES3.number_parsing.", 
+        "KHR-GLES3.number_parsing.",
         "float_out_of_range_as_zero");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004075,
-        "KHR-GLES3.number_parsing.float_no_limi", 
+        "KHR-GLES3.number_parsing.float_no_limi",
         "t_on_number_of_digits_positive_exponent");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004076,
-        "KHR-GLES3.number_parsing.float_no_limi", 
+        "KHR-GLES3.number_parsing.float_no_limi",
         "t_on_number_of_digits_negative_exponent");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004077,
-        "KHR-GLES3.number_parsing.float_slightly_o", 
+        "KHR-GLES3.number_parsing.float_slightly_o",
         "ut_of_range_exponent_as_positive_infinity");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004078,
-        "KHR-GLES3.number_parsing.float", 
+        "KHR-GLES3.number_parsing.float",
         "_overflow_to_positive_infinity");
 
 static SHRINK_HWTEST_F(ActsKhrgles30005TestSuite, TestCase_004079,
-        "KHR-GLES3.number_parsing.float", 
+        "KHR-GLES3.number_parsing.float",
         "_overflow_to_negative_infinity");

@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033621,
-        "dEQP-GLES3.functional.vertex_arrays.single_attri", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attri",
         "bute.offset.int2_10_10_10.offset4_stride4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033622,
-        "dEQP-GLES3.functional.vertex_arrays.single_attri", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attri",
         "bute.offset.int2_10_10_10.offset4_stride32_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033623,
-        "dEQP-GLES3.functional.vertex_arrays.single_attrib", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attrib",
         "ute.offset.int2_10_10_10.offset4_stride4_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033624,
-        "dEQP-GLES3.functional.vertex_arrays.single_attrib", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attrib",
         "ute.offset.int2_10_10_10.offset4_stride32_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033625,
-        "dEQP-GLES3.functional.vertex_arrays.single_attri", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attri",
         "bute.offset.int2_10_10_10.offset32_stride4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033626,
-        "dEQP-GLES3.functional.vertex_arrays.single_attrib", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attrib",
         "ute.offset.int2_10_10_10.offset32_stride32_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033627,
-        "dEQP-GLES3.functional.vertex_arrays.single_attrib", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attrib",
         "ute.offset.int2_10_10_10.offset32_stride4_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033628,
-        "dEQP-GLES3.functional.vertex_arrays.single_attribu", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attribu",
         "te.offset.int2_10_10_10.offset32_stride32_quads256");

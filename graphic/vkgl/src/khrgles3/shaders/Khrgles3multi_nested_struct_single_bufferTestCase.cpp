@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002163,
-        "KHR-GLES3.shaders.uniform_block.multi_n", 
+        "KHR-GLES3.shaders.uniform_block.multi_n",
         "ested_struct.single_buffer.shared_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002164,
-        "KHR-GLES3.shaders.uniform_block.multi_", 
+        "KHR-GLES3.shaders.uniform_block.multi_",
         "nested_struct.single_buffer.shared_both");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002165,
-        "KHR-GLES3.shaders.uniform_block.multi_nested_s", 
+        "KHR-GLES3.shaders.uniform_block.multi_nested_s",
         "truct.single_buffer.shared_instance_array_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002166,
-        "KHR-GLES3.shaders.uniform_block.multi_nested_s", 
+        "KHR-GLES3.shaders.uniform_block.multi_nested_s",
         "truct.single_buffer.shared_instance_array_both");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002167,
-        "KHR-GLES3.shaders.uniform_block.multi_n", 
+        "KHR-GLES3.shaders.uniform_block.multi_n",
         "ested_struct.single_buffer.packed_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002168,
-        "KHR-GLES3.shaders.uniform_block.multi_nested_s", 
+        "KHR-GLES3.shaders.uniform_block.multi_nested_s",
         "truct.single_buffer.packed_instance_array_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002169,
-        "KHR-GLES3.shaders.uniform_block.multi_n", 
+        "KHR-GLES3.shaders.uniform_block.multi_n",
         "ested_struct.single_buffer.std140_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002170,
-        "KHR-GLES3.shaders.uniform_block.multi_", 
+        "KHR-GLES3.shaders.uniform_block.multi_",
         "nested_struct.single_buffer.std140_both");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002171,
-        "KHR-GLES3.shaders.uniform_block.multi_nested_s", 
+        "KHR-GLES3.shaders.uniform_block.multi_nested_s",
         "truct.single_buffer.std140_instance_array_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002172,
-        "KHR-GLES3.shaders.uniform_block.multi_nested_s", 
+        "KHR-GLES3.shaders.uniform_block.multi_nested_s",
         "truct.single_buffer.std140_instance_array_both");

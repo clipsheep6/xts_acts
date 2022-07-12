@@ -24,101 +24,101 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028043,
-        "dEQP-GLES31.functional.copy_image.non_compressed.vi", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.vi",
         "ewclass_32_bits.rg16ui_r32ui.texture2d_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028044,
-        "dEQP-GLES31.functional.copy_image.non_compressed.vi", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.vi",
         "ewclass_32_bits.rg16ui_r32ui.texture2d_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028045,
-        "dEQP-GLES31.functional.copy_image.non_compressed.v", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.v",
         "iewclass_32_bits.rg16ui_r32ui.texture2d_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028046,
-        "dEQP-GLES31.functional.copy_image.non_compressed.viewc", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.viewc",
         "lass_32_bits.rg16ui_r32ui.texture2d_to_texture2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028047,
-        "dEQP-GLES31.functional.copy_image.non_compressed.vie", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.vie",
         "wclass_32_bits.rg16ui_r32ui.texture2d_to_renderbuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028048,
-        "dEQP-GLES31.functional.copy_image.non_compressed.vi", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.vi",
         "ewclass_32_bits.rg16ui_r32ui.texture3d_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028049,
-        "dEQP-GLES31.functional.copy_image.non_compressed.vi", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.vi",
         "ewclass_32_bits.rg16ui_r32ui.texture3d_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028050,
-        "dEQP-GLES31.functional.copy_image.non_compressed.v", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.v",
         "iewclass_32_bits.rg16ui_r32ui.texture3d_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028051,
-        "dEQP-GLES31.functional.copy_image.non_compressed.viewc", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.viewc",
         "lass_32_bits.rg16ui_r32ui.texture3d_to_texture2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028052,
-        "dEQP-GLES31.functional.copy_image.non_compressed.vie", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.vie",
         "wclass_32_bits.rg16ui_r32ui.texture3d_to_renderbuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028053,
-        "dEQP-GLES31.functional.copy_image.non_compressed.v", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.v",
         "iewclass_32_bits.rg16ui_r32ui.cubemap_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028054,
-        "dEQP-GLES31.functional.copy_image.non_compressed.v", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.v",
         "iewclass_32_bits.rg16ui_r32ui.cubemap_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028055,
-        "dEQP-GLES31.functional.copy_image.non_compressed.", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.",
         "viewclass_32_bits.rg16ui_r32ui.cubemap_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028056,
-        "dEQP-GLES31.functional.copy_image.non_compressed.view", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.view",
         "class_32_bits.rg16ui_r32ui.cubemap_to_texture2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028057,
-        "dEQP-GLES31.functional.copy_image.non_compressed.vi", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.vi",
         "ewclass_32_bits.rg16ui_r32ui.cubemap_to_renderbuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028058,
-        "dEQP-GLES31.functional.copy_image.non_compressed.viewc", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.viewc",
         "lass_32_bits.rg16ui_r32ui.texture2d_array_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028059,
-        "dEQP-GLES31.functional.copy_image.non_compressed.viewc", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.viewc",
         "lass_32_bits.rg16ui_r32ui.texture2d_array_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028060,
-        "dEQP-GLES31.functional.copy_image.non_compressed.view", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.view",
         "class_32_bits.rg16ui_r32ui.texture2d_array_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028061,
-        "dEQP-GLES31.functional.copy_image.non_compressed.viewclas", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.viewclas",
         "s_32_bits.rg16ui_r32ui.texture2d_array_to_texture2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028062,
-        "dEQP-GLES31.functional.copy_image.non_compressed.viewcl", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.viewcl",
         "ass_32_bits.rg16ui_r32ui.texture2d_array_to_renderbuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028063,
-        "dEQP-GLES31.functional.copy_image.non_compressed.vie", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.vie",
         "wclass_32_bits.rg16ui_r32ui.renderbuffer_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028064,
-        "dEQP-GLES31.functional.copy_image.non_compressed.vie", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.vie",
         "wclass_32_bits.rg16ui_r32ui.renderbuffer_to_texture3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028065,
-        "dEQP-GLES31.functional.copy_image.non_compressed.vi", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.vi",
         "ewclass_32_bits.rg16ui_r32ui.renderbuffer_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028066,
-        "dEQP-GLES31.functional.copy_image.non_compressed.viewcl", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.viewcl",
         "ass_32_bits.rg16ui_r32ui.renderbuffer_to_texture2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310029TestSuite, TestCase_028067,
-        "dEQP-GLES31.functional.copy_image.non_compressed.viewc", 
+        "dEQP-GLES31.functional.copy_image.non_compressed.viewc",
         "lass_32_bits.rg16ui_r32ui.renderbuffer_to_renderbuffer");

@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002917,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage2d.rgba8snorm.0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002918,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage2d.rgba8snorm.1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002919,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage2d.rgba8snorm.16_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002920,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage2d.rgba8snorm.1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002921,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage2d.rgba8snorm.16_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002922,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage2d.rgba8snorm.16_16");

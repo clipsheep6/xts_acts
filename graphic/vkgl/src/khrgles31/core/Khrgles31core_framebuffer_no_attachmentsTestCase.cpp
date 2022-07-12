@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002188,
-        "KHR-GLES31.core.framebu", 
+        "KHR-GLES31.core.framebu",
         "ffer_no_attachments.api");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002189,
-        "KHR-GLES31.core.framebuf", 
+        "KHR-GLES31.core.framebuf",
         "fer_no_attachments.render");

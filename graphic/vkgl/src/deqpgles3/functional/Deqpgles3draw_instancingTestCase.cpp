@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044084,
-        "dEQP-GLES3.functional.draw.instanc", 
+        "dEQP-GLES3.functional.draw.instanc",
         "ing.draw_arrays_instanced_grid_2x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044085,
-        "dEQP-GLES3.functional.draw.instanc", 
+        "dEQP-GLES3.functional.draw.instanc",
         "ing.draw_arrays_instanced_grid_5x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044086,
-        "dEQP-GLES3.functional.draw.instanci", 
+        "dEQP-GLES3.functional.draw.instanci",
         "ng.draw_arrays_instanced_grid_10x10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044087,
-        "dEQP-GLES3.functional.draw.instanci", 
+        "dEQP-GLES3.functional.draw.instanci",
         "ng.draw_arrays_instanced_grid_32x32");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044088,
-        "dEQP-GLES3.functional.draw.instancin", 
+        "dEQP-GLES3.functional.draw.instancin",
         "g.draw_arrays_instanced_grid_100x100");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044089,
-        "dEQP-GLES3.functional.draw.instanci", 
+        "dEQP-GLES3.functional.draw.instanci",
         "ng.draw_elements_instanced_grid_2x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044090,
-        "dEQP-GLES3.functional.draw.instanci", 
+        "dEQP-GLES3.functional.draw.instanci",
         "ng.draw_elements_instanced_grid_5x5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044091,
-        "dEQP-GLES3.functional.draw.instancin", 
+        "dEQP-GLES3.functional.draw.instancin",
         "g.draw_elements_instanced_grid_10x10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044092,
-        "dEQP-GLES3.functional.draw.instancin", 
+        "dEQP-GLES3.functional.draw.instancin",
         "g.draw_elements_instanced_grid_32x32");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044093,
-        "dEQP-GLES3.functional.draw.instancing", 
+        "dEQP-GLES3.functional.draw.instancing",
         ".draw_elements_instanced_grid_100x100");

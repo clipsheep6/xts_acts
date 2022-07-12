@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017803,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.fwidth.static_switch.float_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017804,
-        "dEQP-GLES3.functional.shaders.deriv", 
+        "dEQP-GLES3.functional.shaders.deriv",
         "ate.fwidth.static_switch.float_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017805,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.fwidth.static_switch.vec2_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017806,
-        "dEQP-GLES3.functional.shaders.deriv", 
+        "dEQP-GLES3.functional.shaders.deriv",
         "ate.fwidth.static_switch.vec2_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017807,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.fwidth.static_switch.vec3_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017808,
-        "dEQP-GLES3.functional.shaders.deriv", 
+        "dEQP-GLES3.functional.shaders.deriv",
         "ate.fwidth.static_switch.vec3_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017809,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.fwidth.static_switch.vec4_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017810,
-        "dEQP-GLES3.functional.shaders.deriv", 
+        "dEQP-GLES3.functional.shaders.deriv",
         "ate.fwidth.static_switch.vec4_highp");

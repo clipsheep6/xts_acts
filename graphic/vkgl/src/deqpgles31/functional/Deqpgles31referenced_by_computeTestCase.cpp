@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021670,
-        "dEQP-GLES31.functional.program_interface_query.", 
+        "dEQP-GLES31.functional.program_interface_query.",
         "uniform_block.referenced_by.compute.named_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021671,
-        "dEQP-GLES31.functional.program_interface_query.u", 
+        "dEQP-GLES31.functional.program_interface_query.u",
         "niform_block.referenced_by.compute.unnamed_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021672,
-        "dEQP-GLES31.functional.program_interface_query.", 
+        "dEQP-GLES31.functional.program_interface_query.",
         "uniform_block.referenced_by.compute.block_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_024725,
-        "dEQP-GLES31.functional.program_interface_query.sha", 
+        "dEQP-GLES31.functional.program_interface_query.sha",
         "der_storage_block.referenced_by.compute.named_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_024726,
-        "dEQP-GLES31.functional.program_interface_query.shad", 
+        "dEQP-GLES31.functional.program_interface_query.shad",
         "er_storage_block.referenced_by.compute.unnamed_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_024727,
-        "dEQP-GLES31.functional.program_interface_query.sha", 
+        "dEQP-GLES31.functional.program_interface_query.sha",
         "der_storage_block.referenced_by.compute.block_array");

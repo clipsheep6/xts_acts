@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017646,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "derivate.dfdy.fbo.float_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017647,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".derivate.dfdy.fbo.float_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017648,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "derivate.dfdy.fbo.vec2_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017649,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".derivate.dfdy.fbo.vec2_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017650,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "derivate.dfdy.fbo.vec3_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017651,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".derivate.dfdy.fbo.vec3_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017652,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".derivate.dfdy.fbo.vec4_highp");

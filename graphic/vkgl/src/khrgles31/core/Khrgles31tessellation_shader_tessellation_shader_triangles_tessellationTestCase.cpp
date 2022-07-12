@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002585,
-        "KHR-GLES31.core.tessellation_shader.tessellation_", 
+        "KHR-GLES31.core.tessellation_shader.tessellation_",
         "shader_triangles_tessellation.degenerate_triangle");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002586,
-        "KHR-GLES31.core.tessellation_shader.tessellation_", 
+        "KHR-GLES31.core.tessellation_shader.tessellation_",
         "shader_triangles_tessellation.identical_triangles");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002587,
-        "KHR-GLES31.core.tessellation_shader.tessellation_shader_", 
+        "KHR-GLES31.core.tessellation_shader.tessellation_shader_",
         "triangles_tessellation.inner_tessellation_level_rounding");

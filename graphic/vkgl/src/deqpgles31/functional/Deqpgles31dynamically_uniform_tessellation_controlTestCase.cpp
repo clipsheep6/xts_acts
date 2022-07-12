@@ -24,77 +24,77 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003712,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam",
         "pler.dynamically_uniform.tessellation_control.sampler2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003713,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.samp", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.samp",
         "ler.dynamically_uniform.tessellation_control.samplercube");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003714,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampl", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampl",
         "er.dynamically_uniform.tessellation_control.sampler2darray");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003715,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam",
         "pler.dynamically_uniform.tessellation_control.sampler3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003716,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sample", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sample",
         "r.dynamically_uniform.tessellation_control.sampler2dshadow");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003717,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler",
         ".dynamically_uniform.tessellation_control.samplercubeshadow");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003718,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.",
         "dynamically_uniform.tessellation_control.sampler2darrayshadow");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003719,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam",
         "pler.dynamically_uniform.tessellation_control.isampler2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003720,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.samp", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.samp",
         "ler.dynamically_uniform.tessellation_control.isamplercube");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003721,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sample", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sample",
         "r.dynamically_uniform.tessellation_control.isampler2darray");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003722,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam",
         "pler.dynamically_uniform.tessellation_control.isampler3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003723,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam",
         "pler.dynamically_uniform.tessellation_control.usampler2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003724,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.samp", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.samp",
         "ler.dynamically_uniform.tessellation_control.usamplercube");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003725,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sample", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sample",
         "r.dynamically_uniform.tessellation_control.usampler2darray");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003726,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sam",
         "pler.dynamically_uniform.tessellation_control.usampler3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003727,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sample", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sample",
         "r.dynamically_uniform.tessellation_control.samplercubearray");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003728,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.d", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.d",
         "ynamically_uniform.tessellation_control.samplercubearrayshadow");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003729,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler",
         ".dynamically_uniform.tessellation_control.isamplercubearray");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003730,
-        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler", 
+        "dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler",
         ".dynamically_uniform.tessellation_control.usamplercubearray");

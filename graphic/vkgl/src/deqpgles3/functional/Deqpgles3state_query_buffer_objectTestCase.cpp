@@ -24,45 +24,45 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043187,
-        "dEQP-GLES3.functional.state_query.buffe", 
+        "dEQP-GLES3.functional.state_query.buffe",
         "r_object.buffer_size_getbufferparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043188,
-        "dEQP-GLES3.functional.state_query.buffer", 
+        "dEQP-GLES3.functional.state_query.buffer",
         "_object.buffer_size_getbufferparameteri64");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043189,
-        "dEQP-GLES3.functional.state_query.buffer", 
+        "dEQP-GLES3.functional.state_query.buffer",
         "_object.buffer_usage_getbufferparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043190,
-        "dEQP-GLES3.functional.state_query.buffer_", 
+        "dEQP-GLES3.functional.state_query.buffer_",
         "object.buffer_usage_getbufferparameteri64");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043191,
-        "dEQP-GLES3.functional.state_query.buffer_ob", 
+        "dEQP-GLES3.functional.state_query.buffer_ob",
         "ject.buffer_access_flags_getbufferparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043192,
-        "dEQP-GLES3.functional.state_query.buffer_obj", 
+        "dEQP-GLES3.functional.state_query.buffer_obj",
         "ect.buffer_access_flags_getbufferparameteri64");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043193,
-        "dEQP-GLES3.functional.state_query.buffer", 
+        "dEQP-GLES3.functional.state_query.buffer",
         "_object.buffer_mapped_getbufferparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043194,
-        "dEQP-GLES3.functional.state_query.buffer_", 
+        "dEQP-GLES3.functional.state_query.buffer_",
         "object.buffer_mapped_getbufferparameteri64");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043195,
-        "dEQP-GLES3.functional.state_query.buffer_objec", 
+        "dEQP-GLES3.functional.state_query.buffer_objec",
         "t.buffer_map_offset_length_getbufferparameteri");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043196,
-        "dEQP-GLES3.functional.state_query.buffer_object", 
+        "dEQP-GLES3.functional.state_query.buffer_object",
         ".buffer_map_offset_length_getbufferparameteri64");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043197,
-        "dEQP-GLES3.functional.state_que", 
+        "dEQP-GLES3.functional.state_que",
         "ry.buffer_object.buffer_pointer");

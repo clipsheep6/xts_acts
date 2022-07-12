@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002806,
-        "dEQP-GLES31.functional.shaders.builtin_funct", 
+        "dEQP-GLES31.functional.shaders.builtin_funct",
         "ions.precision.determinant.highp_compute.mat2");

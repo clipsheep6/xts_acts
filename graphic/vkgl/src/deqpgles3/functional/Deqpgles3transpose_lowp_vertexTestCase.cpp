@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019540,
-        "dEQP-GLES3.functional.shaders.builtin_func", 
+        "dEQP-GLES3.functional.shaders.builtin_func",
         "tions.precision.transpose.lowp_vertex.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019541,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.transpose.lowp_vertex.mat2x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019542,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.transpose.lowp_vertex.mat2x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019543,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.transpose.lowp_vertex.mat3x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019544,
-        "dEQP-GLES3.functional.shaders.builtin_func", 
+        "dEQP-GLES3.functional.shaders.builtin_func",
         "tions.precision.transpose.lowp_vertex.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019545,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.transpose.lowp_vertex.mat3x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019546,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.transpose.lowp_vertex.mat4x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019547,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.transpose.lowp_vertex.mat4x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019548,
-        "dEQP-GLES3.functional.shaders.builtin_func", 
+        "dEQP-GLES3.functional.shaders.builtin_func",
         "tions.precision.transpose.lowp_vertex.mat4");

@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023349,
-        "dEQP-GLES31.functional.program_interface_query.transform_f", 
+        "dEQP-GLES31.functional.program_interface_query.transform_f",
         "eedback_varying.type.separable_tess_eval.whole_array.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023350,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.separable_tess_eval.whole_array.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023351,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.separable_tess_eval.whole_array.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023352,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.separable_tess_eval.whole_array.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023353,
-        "dEQP-GLES31.functional.program_interface_query.transform_f", 
+        "dEQP-GLES31.functional.program_interface_query.transform_f",
         "eedback_varying.type.separable_tess_eval.whole_array.ivec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023354,
-        "dEQP-GLES31.functional.program_interface_query.transform_f", 
+        "dEQP-GLES31.functional.program_interface_query.transform_f",
         "eedback_varying.type.separable_tess_eval.whole_array.uvec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023355,
-        "dEQP-GLES31.functional.program_interface_query.transform_f", 
+        "dEQP-GLES31.functional.program_interface_query.transform_f",
         "eedback_varying.type.separable_tess_eval.whole_array.mat3x4");

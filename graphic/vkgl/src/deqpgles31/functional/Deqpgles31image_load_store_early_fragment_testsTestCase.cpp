@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011954,
-        "dEQP-GLES31.functional.image_load_store.early", 
+        "dEQP-GLES31.functional.image_load_store.early",
         "_fragment_tests.no_early_fragment_tests_depth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011955,
-        "dEQP-GLES31.functional.image_load_store.early_", 
+        "dEQP-GLES31.functional.image_load_store.early_",
         "fragment_tests.no_early_fragment_tests_stencil");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011956,
-        "dEQP-GLES31.functional.image_load_store.ear", 
+        "dEQP-GLES31.functional.image_load_store.ear",
         "ly_fragment_tests.early_fragment_tests_depth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011957,
-        "dEQP-GLES31.functional.image_load_store.earl", 
+        "dEQP-GLES31.functional.image_load_store.earl",
         "y_fragment_tests.early_fragment_tests_stencil");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011958,
-        "dEQP-GLES31.functional.image_load_store.early_f", 
+        "dEQP-GLES31.functional.image_load_store.early_f",
         "ragment_tests.no_early_fragment_tests_depth_fbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011959,
-        "dEQP-GLES31.functional.image_load_store.early_fr", 
+        "dEQP-GLES31.functional.image_load_store.early_fr",
         "agment_tests.no_early_fragment_tests_stencil_fbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011960,
-        "dEQP-GLES31.functional.image_load_store.early", 
+        "dEQP-GLES31.functional.image_load_store.early",
         "_fragment_tests.early_fragment_tests_depth_fbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011961,
-        "dEQP-GLES31.functional.image_load_store.early_", 
+        "dEQP-GLES31.functional.image_load_store.early_",
         "fragment_tests.early_fragment_tests_stencil_fbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011962,
-        "dEQP-GLES31.functional.image_load_store.early_fragment", 
+        "dEQP-GLES31.functional.image_load_store.early_fragment",
         "_tests.no_early_fragment_tests_depth_fbo_with_no_depth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011963,
-        "dEQP-GLES31.functional.image_load_store.early_fragment_t", 
+        "dEQP-GLES31.functional.image_load_store.early_fragment_t",
         "ests.no_early_fragment_tests_stencil_fbo_with_no_stencil");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011964,
-        "dEQP-GLES31.functional.image_load_store.early_fragme", 
+        "dEQP-GLES31.functional.image_load_store.early_fragme",
         "nt_tests.early_fragment_tests_depth_fbo_with_no_depth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011965,
-        "dEQP-GLES31.functional.image_load_store.early_fragment", 
+        "dEQP-GLES31.functional.image_load_store.early_fragment",
         "_tests.early_fragment_tests_stencil_fbo_with_no_stencil");

@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033629,
-        "dEQP-GLES3.functional.vertex_arrays.single_attr", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attr",
         "ibute.first.float.first6_offset16_stride8_quads5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033630,
-        "dEQP-GLES3.functional.vertex_arrays.single_attri", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attri",
         "bute.first.float.first24_offset16_stride8_quads5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033631,
-        "dEQP-GLES3.functional.vertex_arrays.single_attri", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attri",
         "bute.first.float.first6_offset16_stride32_quads5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033632,
-        "dEQP-GLES3.functional.vertex_arrays.single_attri", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attri",
         "bute.first.float.first24_offset16_stride32_quads5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033633,
-        "dEQP-GLES3.functional.vertex_arrays.single_attri", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attri",
         "bute.first.float.first6_offset16_stride8_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033634,
-        "dEQP-GLES3.functional.vertex_arrays.single_attrib", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attrib",
         "ute.first.float.first24_offset16_stride8_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033635,
-        "dEQP-GLES3.functional.vertex_arrays.single_attrib", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attrib",
         "ute.first.float.first6_offset16_stride32_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033636,
-        "dEQP-GLES3.functional.vertex_arrays.single_attrib", 
+        "dEQP-GLES3.functional.vertex_arrays.single_attrib",
         "ute.first.float.first24_offset16_stride32_quads256");

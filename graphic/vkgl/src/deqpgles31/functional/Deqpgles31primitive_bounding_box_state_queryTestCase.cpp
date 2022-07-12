@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024965,
-        "dEQP-GLES31.functional.primitive_bo", 
+        "dEQP-GLES31.functional.primitive_bo",
         "unding_box.state_query.initial_value");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024966,
-        "dEQP-GLES31.functional.primitive_", 
+        "dEQP-GLES31.functional.primitive_",
         "bounding_box.state_query.getfloat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024967,
-        "dEQP-GLES31.functional.primitive_b", 
+        "dEQP-GLES31.functional.primitive_b",
         "ounding_box.state_query.getboolean");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024968,
-        "dEQP-GLES31.functional.primitive_b", 
+        "dEQP-GLES31.functional.primitive_b",
         "ounding_box.state_query.getinteger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024969,
-        "dEQP-GLES31.functional.primitive_bo", 
+        "dEQP-GLES31.functional.primitive_bo",
         "unding_box.state_query.getinteger64");

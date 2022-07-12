@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002143,
-        "KHR-GLES3.shaders.uniform_block.multi_", 
+        "KHR-GLES3.shaders.uniform_block.multi_",
         "basic_types.single_buffer.shared_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002144,
-        "KHR-GLES3.shaders.uniform_block.multi", 
+        "KHR-GLES3.shaders.uniform_block.multi",
         "_basic_types.single_buffer.shared_both");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002145,
-        "KHR-GLES3.shaders.uniform_block.multi_basic_t", 
+        "KHR-GLES3.shaders.uniform_block.multi_basic_t",
         "ypes.single_buffer.shared_instance_array_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002146,
-        "KHR-GLES3.shaders.uniform_block.multi_basic_t", 
+        "KHR-GLES3.shaders.uniform_block.multi_basic_t",
         "ypes.single_buffer.shared_instance_array_both");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002147,
-        "KHR-GLES3.shaders.uniform_block.multi_", 
+        "KHR-GLES3.shaders.uniform_block.multi_",
         "basic_types.single_buffer.packed_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002148,
-        "KHR-GLES3.shaders.uniform_block.multi_basic_t", 
+        "KHR-GLES3.shaders.uniform_block.multi_basic_t",
         "ypes.single_buffer.packed_instance_array_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002149,
-        "KHR-GLES3.shaders.uniform_block.multi_", 
+        "KHR-GLES3.shaders.uniform_block.multi_",
         "basic_types.single_buffer.std140_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002150,
-        "KHR-GLES3.shaders.uniform_block.multi", 
+        "KHR-GLES3.shaders.uniform_block.multi",
         "_basic_types.single_buffer.std140_both");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002151,
-        "KHR-GLES3.shaders.uniform_block.multi_basic_t", 
+        "KHR-GLES3.shaders.uniform_block.multi_basic_t",
         "ypes.single_buffer.std140_instance_array_mixed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002152,
-        "KHR-GLES3.shaders.uniform_block.multi_basic_t", 
+        "KHR-GLES3.shaders.uniform_block.multi_basic_t",
         "ypes.single_buffer.std140_instance_array_both");

@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003305,
-        "KHR-GLES31.core.pixelstorage", 
+        "KHR-GLES31.core.pixelstorage",
         "modes.teximage3d.rgb32i.0_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003306,
-        "KHR-GLES31.core.pixelstorage", 
+        "KHR-GLES31.core.pixelstorage",
         "modes.teximage3d.rgb32i.1_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003307,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb32i.16_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003308,
-        "KHR-GLES31.core.pixelstorage", 
+        "KHR-GLES31.core.pixelstorage",
         "modes.teximage3d.rgb32i.1_1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003309,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb32i.16_1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003310,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb32i.16_16_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003311,
-        "KHR-GLES31.core.pixelstorage", 
+        "KHR-GLES31.core.pixelstorage",
         "modes.teximage3d.rgb32i.1_1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003312,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb32i.16_1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003313,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb32i.16_16_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003314,
-        "KHR-GLES31.core.pixelstoragem", 
+        "KHR-GLES31.core.pixelstoragem",
         "odes.teximage3d.rgb32i.16_16_4");

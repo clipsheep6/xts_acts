@@ -24,61 +24,61 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019329,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.log.compute.program_not_active");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019330,
-        "dEQP-GLES31.functional.debug.negative_co", 
+        "dEQP-GLES31.functional.debug.negative_co",
         "verage.log.compute.invalid_program_query");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019331,
-        "dEQP-GLES31.functional.debug.negative_coverage", 
+        "dEQP-GLES31.functional.debug.negative_coverage",
         ".log.compute.invalid_dispatch_compute_indirect");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019332,
-        "dEQP-GLES31.functional.debug.negative_coverage", 
+        "dEQP-GLES31.functional.debug.negative_coverage",
         ".log.compute.invalid_maximum_work_group_counts");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019333,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.log.compute.invalid_maximum_work_group_sizes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019334,
-        "dEQP-GLES31.functional.debug.negative_cove", 
+        "dEQP-GLES31.functional.debug.negative_cove",
         "rage.log.compute.invalid_layout_qualifiers");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019335,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.log.compute.invalid_write_built_in_constants");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019336,
-        "dEQP-GLES31.functional.debug.negative_cove", 
+        "dEQP-GLES31.functional.debug.negative_cove",
         "rage.log.compute.exceed_uniform_block_limit");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019337,
-        "dEQP-GLES31.functional.debug.negative_coverage", 
+        "dEQP-GLES31.functional.debug.negative_coverage",
         ".log.compute.exceed_shader_storage_block_limit");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019338,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.log.compute.exceed_texture_image_units_limit");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019339,
-        "dEQP-GLES31.functional.debug.negative_cover", 
+        "dEQP-GLES31.functional.debug.negative_cover",
         "age.log.compute.exceed_image_uniforms_limit");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019340,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.log.compute.exceed_shared_memory_size_limit");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019341,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.log.compute.exceed_uniform_components_limit");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019342,
-        "dEQP-GLES31.functional.debug.negative_coverage", 
+        "dEQP-GLES31.functional.debug.negative_coverage",
         ".log.compute.exceed_atomic_counter_buffer_limit");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019343,
-        "dEQP-GLES31.functional.debug.negative_cover", 
+        "dEQP-GLES31.functional.debug.negative_cover",
         "age.log.compute.exceed_atomic_counters_limit");

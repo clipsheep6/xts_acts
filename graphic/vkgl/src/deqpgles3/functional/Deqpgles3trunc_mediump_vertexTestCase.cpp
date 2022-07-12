@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019007,
-        "dEQP-GLES3.functional.shaders.builtin_func", 
+        "dEQP-GLES3.functional.shaders.builtin_func",
         "tions.precision.trunc.mediump_vertex.scalar");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019008,
-        "dEQP-GLES3.functional.shaders.builtin_fun", 
+        "dEQP-GLES3.functional.shaders.builtin_fun",
         "ctions.precision.trunc.mediump_vertex.vec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019009,
-        "dEQP-GLES3.functional.shaders.builtin_fun", 
+        "dEQP-GLES3.functional.shaders.builtin_fun",
         "ctions.precision.trunc.mediump_vertex.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019010,
-        "dEQP-GLES3.functional.shaders.builtin_fun", 
+        "dEQP-GLES3.functional.shaders.builtin_fun",
         "ctions.precision.trunc.mediump_vertex.vec4");

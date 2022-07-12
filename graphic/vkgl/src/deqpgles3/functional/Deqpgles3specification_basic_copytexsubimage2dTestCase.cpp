@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026286,
-        "dEQP-GLES3.functional.texture.specific", 
+        "dEQP-GLES3.functional.texture.specific",
         "ation.basic_copytexsubimage2d.2d_alpha");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026287,
-        "dEQP-GLES3.functional.texture.specificat", 
+        "dEQP-GLES3.functional.texture.specificat",
         "ion.basic_copytexsubimage2d.2d_luminance");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026288,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".basic_copytexsubimage2d.2d_luminance_alpha");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026289,
-        "dEQP-GLES3.functional.texture.specifi", 
+        "dEQP-GLES3.functional.texture.specifi",
         "cation.basic_copytexsubimage2d.2d_rgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026290,
-        "dEQP-GLES3.functional.texture.specifi", 
+        "dEQP-GLES3.functional.texture.specifi",
         "cation.basic_copytexsubimage2d.2d_rgba");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026291,
-        "dEQP-GLES3.functional.texture.specifica", 
+        "dEQP-GLES3.functional.texture.specifica",
         "tion.basic_copytexsubimage2d.cube_alpha");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026292,
-        "dEQP-GLES3.functional.texture.specificati", 
+        "dEQP-GLES3.functional.texture.specificati",
         "on.basic_copytexsubimage2d.cube_luminance");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026293,
-        "dEQP-GLES3.functional.texture.specification.", 
+        "dEQP-GLES3.functional.texture.specification.",
         "basic_copytexsubimage2d.cube_luminance_alpha");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026294,
-        "dEQP-GLES3.functional.texture.specific", 
+        "dEQP-GLES3.functional.texture.specific",
         "ation.basic_copytexsubimage2d.cube_rgb");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026295,
-        "dEQP-GLES3.functional.texture.specific", 
+        "dEQP-GLES3.functional.texture.specific",
         "ation.basic_copytexsubimage2d.cube_rgba");

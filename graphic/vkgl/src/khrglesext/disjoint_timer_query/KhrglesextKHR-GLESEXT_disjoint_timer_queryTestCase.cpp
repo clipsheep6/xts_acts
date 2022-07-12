@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000335,
-        "KHR-GLESEXT.disjoint_t", 
+        "KHR-GLESEXT.disjoint_t",
         "imer_query.handle_reuse");

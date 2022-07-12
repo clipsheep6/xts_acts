@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000908,
-        "KHR-GLES3.shaders.preprocessor.invalid_", 
+        "KHR-GLES3.shaders.preprocessor.invalid_",
         "definitions.define_non_identifier_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000909,
-        "KHR-GLES3.shaders.preprocessor.invalid_d", 
+        "KHR-GLES3.shaders.preprocessor.invalid_d",
         "efinitions.define_non_identifier_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000910,
-        "KHR-GLES3.shaders.preprocessor.invalid_d", 
+        "KHR-GLES3.shaders.preprocessor.invalid_d",
         "efinitions.undef_non_identifier_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000911,
-        "KHR-GLES3.shaders.preprocessor.invalid_de", 
+        "KHR-GLES3.shaders.preprocessor.invalid_de",
         "finitions.undef_non_identifier_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000912,
-        "KHR-GLES3.shaders.preprocessor.invalid_d", 
+        "KHR-GLES3.shaders.preprocessor.invalid_d",
         "efinitions.undef_non_identifier_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000913,
-        "KHR-GLES3.shaders.preprocessor.invalid_de", 
+        "KHR-GLES3.shaders.preprocessor.invalid_de",
         "finitions.undef_non_identifier_2_fragment");

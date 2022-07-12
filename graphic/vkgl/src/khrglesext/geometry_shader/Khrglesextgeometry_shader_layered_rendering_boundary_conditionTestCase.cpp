@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000072,
-        "KHR-GLESEXT.geometry_shader.layered_rendering_boundary_cond", 
+        "KHR-GLESEXT.geometry_shader.layered_rendering_boundary_cond",
         "ition.layered_rendering_boundary_condition_various_textures");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000073,
-        "KHR-GLESEXT.geometry_shader.layered_rendering_boundar", 
+        "KHR-GLESEXT.geometry_shader.layered_rendering_boundar",
         "y_condition.layered_rendering_boundary_condition_no_gs");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000074,
-        "KHR-GLESEXT.geometry_shader.layered_rendering_boundary_cond", 
+        "KHR-GLESEXT.geometry_shader.layered_rendering_boundary_cond",
         "ition.layered_rendering_boundary_condition_no_default_layer");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000075,
-        "KHR-GLESEXT.geometry_shader.layered_rendering_boundary_con", 
+        "KHR-GLESEXT.geometry_shader.layered_rendering_boundary_con",
         "dition.layered_rendering_boundary_condition_no_layered_fbo");

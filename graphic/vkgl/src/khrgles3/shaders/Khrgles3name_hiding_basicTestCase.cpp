@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001396,
-        "KHR-GLES3.shaders.name_hidin", 
+        "KHR-GLES3.shaders.name_hidin",
         "g.basic.hidden_name_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001397,
-        "KHR-GLES3.shaders.name_hiding", 
+        "KHR-GLES3.shaders.name_hiding",
         ".basic.hidden_name_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001398,
-        "KHR-GLES3.shaders.name_hidin", 
+        "KHR-GLES3.shaders.name_hidin",
         "g.basic.hidden_name_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001399,
-        "KHR-GLES3.shaders.name_hiding", 
+        "KHR-GLES3.shaders.name_hiding",
         ".basic.hidden_name_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001400,
-        "KHR-GLES3.shaders.name_hidin", 
+        "KHR-GLES3.shaders.name_hidin",
         "g.basic.hidden_name_3_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001401,
-        "KHR-GLES3.shaders.name_hiding", 
+        "KHR-GLES3.shaders.name_hiding",
         ".basic.hidden_name_3_fragment");

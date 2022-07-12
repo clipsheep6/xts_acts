@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002575,
-        "KHR-GLES31.core.tessellation_shader.tessellation_c", 
+        "KHR-GLES31.core.tessellation_shader.tessellation_c",
         "ontrol_to_tessellation_evaluation.data_pass_through");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002576,
-        "KHR-GLES31.core.tessellation_shader.tessella", 
+        "KHR-GLES31.core.tessellation_shader.tessella",
         "tion_control_to_tessellation_evaluation.gl_in");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002577,
-        "KHR-GLES31.core.tessellation_shader.tessellation_control_to_t", 
+        "KHR-GLES31.core.tessellation_shader.tessellation_control_to_t",
         "essellation_evaluation.gl_MaxPatchVertices_Position_PointSize");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002578,
-        "KHR-GLES31.core.tessellation_shader.tessellation_co", 
+        "KHR-GLES31.core.tessellation_shader.tessellation_co",
         "ntrol_to_tessellation_evaluation.gl_PatchVerticesIn");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002579,
-        "KHR-GLES31.core.tessellation_shader.tessellation", 
+        "KHR-GLES31.core.tessellation_shader.tessellation",
         "_control_to_tessellation_evaluation.gl_tessLevel");

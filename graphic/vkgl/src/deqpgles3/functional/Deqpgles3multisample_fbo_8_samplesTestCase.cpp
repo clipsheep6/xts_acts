@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042258,
-        "dEQP-GLES3.functional.multisample", 
+        "dEQP-GLES3.functional.multisample",
         ".fbo_8_samples.num_samples_polygon");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042259,
-        "dEQP-GLES3.functional.multisampl", 
+        "dEQP-GLES3.functional.multisampl",
         "e.fbo_8_samples.num_samples_line");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042260,
-        "dEQP-GLES3.functional.multisample.f", 
+        "dEQP-GLES3.functional.multisample.f",
         "bo_8_samples.common_edge_small_quads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042261,
-        "dEQP-GLES3.functional.multisample.", 
+        "dEQP-GLES3.functional.multisample.",
         "fbo_8_samples.common_edge_big_quad");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042262,
-        "dEQP-GLES3.functional.multisample.fb", 
+        "dEQP-GLES3.functional.multisample.fb",
         "o_8_samples.common_edge_viewport_quad");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042263,
-        "dEQP-GLES3.functional.mult", 
+        "dEQP-GLES3.functional.mult",
         "isample.fbo_8_samples.depth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042264,
-        "dEQP-GLES3.functional.multi", 
+        "dEQP-GLES3.functional.multi",
         "sample.fbo_8_samples.stencil");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042265,
-        "dEQP-GLES3.functional.multisample.f", 
+        "dEQP-GLES3.functional.multisample.f",
         "bo_8_samples.sample_coverage_invert");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042266,
-        "dEQP-GLES3.functional.multisample.fbo_8_", 
+        "dEQP-GLES3.functional.multisample.fbo_8_",
         "samples.proportionality_alpha_to_coverage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042267,
-        "dEQP-GLES3.functional.multisample.fbo_8", 
+        "dEQP-GLES3.functional.multisample.fbo_8",
         "_samples.proportionality_sample_coverage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042268,
-        "dEQP-GLES3.functional.multisample.fbo_8_samp", 
+        "dEQP-GLES3.functional.multisample.fbo_8_samp",
         "les.proportionality_sample_coverage_inverted");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042269,
-        "dEQP-GLES3.functional.multisample.fbo", 
+        "dEQP-GLES3.functional.multisample.fbo",
         "_8_samples.constancy_alpha_to_coverage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042270,
-        "dEQP-GLES3.functional.multisample.fb", 
+        "dEQP-GLES3.functional.multisample.fb",
         "o_8_samples.constancy_sample_coverage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042271,
-        "dEQP-GLES3.functional.multisample.fbo_8_s", 
+        "dEQP-GLES3.functional.multisample.fbo_8_s",
         "amples.constancy_sample_coverage_inverted");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042272,
-        "dEQP-GLES3.functional.multisamp", 
+        "dEQP-GLES3.functional.multisamp",
         "le.fbo_8_samples.constancy_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042273,
-        "dEQP-GLES3.functional.multisample.f", 
+        "dEQP-GLES3.functional.multisample.f",
         "bo_8_samples.constancy_both_inverted");

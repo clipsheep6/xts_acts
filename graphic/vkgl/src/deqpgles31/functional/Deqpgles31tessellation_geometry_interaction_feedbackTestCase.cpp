@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018296,
-        "dEQP-GLES31.functional.tessellation_geometry_interaction.fe", 
+        "dEQP-GLES31.functional.tessellation_geometry_interaction.fe",
         "edback.tessellation_output_triangles_geometry_output_points");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018297,
-        "dEQP-GLES31.functional.tessellation_geometry_interaction.", 
+        "dEQP-GLES31.functional.tessellation_geometry_interaction.",
         "feedback.tessellation_output_quads_geometry_output_points");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018298,
-        "dEQP-GLES31.functional.tessellation_geometry_interaction.f", 
+        "dEQP-GLES31.functional.tessellation_geometry_interaction.f",
         "eedback.tessellation_output_isolines_geometry_output_points");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018299,
-        "dEQP-GLES31.functional.tessellation_geometry_interaction.feedbac", 
+        "dEQP-GLES31.functional.tessellation_geometry_interaction.feedbac",
         "k.tessellation_output_triangles_point_mode_geometry_output_lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018300,
-        "dEQP-GLES31.functional.tessellation_geometry_interaction.feedb", 
+        "dEQP-GLES31.functional.tessellation_geometry_interaction.feedb",
         "ack.tessellation_output_quads_point_mode_geometry_output_lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018301,
-        "dEQP-GLES31.functional.tessellation_geometry_interaction.feedback", 
+        "dEQP-GLES31.functional.tessellation_geometry_interaction.feedback",
         ".tessellation_output_isolines_point_mode_geometry_output_triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018302,
-        "dEQP-GLES31.functional.tessellation_geometry_", 
+        "dEQP-GLES31.functional.tessellation_geometry_",
         "interaction.feedback.record_variable_selection");

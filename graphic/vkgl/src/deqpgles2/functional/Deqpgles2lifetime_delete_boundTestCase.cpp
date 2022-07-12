@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016473,
-        "dEQP-GLES2.functional.lif", 
+        "dEQP-GLES2.functional.lif",
         "etime.delete_bound.buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016474,
-        "dEQP-GLES2.functional.lif", 
+        "dEQP-GLES2.functional.lif",
         "etime.delete_bound.texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016475,
-        "dEQP-GLES2.functional.lifeti", 
+        "dEQP-GLES2.functional.lifeti",
         "me.delete_bound.renderbuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016476,
-        "dEQP-GLES2.functional.lifet", 
+        "dEQP-GLES2.functional.lifet",
         "ime.delete_bound.framebuffer");

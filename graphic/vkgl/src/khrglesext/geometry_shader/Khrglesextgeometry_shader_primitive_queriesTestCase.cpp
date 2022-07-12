@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000085,
-        "KHR-GLESEXT.geometry_shader.primiti", 
+        "KHR-GLESEXT.geometry_shader.primiti",
         "ve_queries.primitive_queries_points");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000086,
-        "KHR-GLESEXT.geometry_shader.primit", 
+        "KHR-GLESEXT.geometry_shader.primit",
         "ive_queries.primitive_queries_lines");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000087,
-        "KHR-GLESEXT.geometry_shader.primitiv", 
+        "KHR-GLESEXT.geometry_shader.primitiv",
         "e_queries.primitive_queries_triangles");

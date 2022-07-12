@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002960,
-        "KHR-GLES3.shaders.", 
+        "KHR-GLES3.shaders.",
         "negative.initialize");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002961,
-        "KHR-GLES3.shaders.nega", 
+        "KHR-GLES3.shaders.nega",
         "tive.constant_sequence");

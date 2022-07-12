@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003215,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgb8snorm.0_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003216,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgb8snorm.1_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003217,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgb8snorm.16_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003218,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgb8snorm.1_1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003219,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgb8snorm.16_1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003220,
-        "KHR-GLES31.core.pixelstoragemod", 
+        "KHR-GLES31.core.pixelstoragemod",
         "es.teximage3d.rgb8snorm.16_16_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003221,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgb8snorm.1_1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003222,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgb8snorm.16_1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003223,
-        "KHR-GLES31.core.pixelstoragemod", 
+        "KHR-GLES31.core.pixelstoragemod",
         "es.teximage3d.rgb8snorm.16_16_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003224,
-        "KHR-GLES31.core.pixelstoragemod", 
+        "KHR-GLES31.core.pixelstoragemod",
         "es.teximage3d.rgb8snorm.16_16_4");

@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008093,
-        "dEQP-GLES31.functional.tessellation.invarianc", 
+        "dEQP-GLES31.functional.tessellation.invarianc",
         "e.outer_edge_division.triangles_equal_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008094,
-        "dEQP-GLES31.functional.tessellation.invariance.ou", 
+        "dEQP-GLES31.functional.tessellation.invariance.ou",
         "ter_edge_division.triangles_fractional_odd_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008095,
-        "dEQP-GLES31.functional.tessellation.invariance.out", 
+        "dEQP-GLES31.functional.tessellation.invariance.out",
         "er_edge_division.triangles_fractional_even_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008096,
-        "dEQP-GLES31.functional.tessellation.invaria", 
+        "dEQP-GLES31.functional.tessellation.invaria",
         "nce.outer_edge_division.quads_equal_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008097,
-        "dEQP-GLES31.functional.tessellation.invariance.", 
+        "dEQP-GLES31.functional.tessellation.invariance.",
         "outer_edge_division.quads_fractional_odd_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008098,
-        "dEQP-GLES31.functional.tessellation.invariance.o", 
+        "dEQP-GLES31.functional.tessellation.invariance.o",
         "uter_edge_division.quads_fractional_even_spacing");

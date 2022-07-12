@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014445,
-        "dEQP-GLES31.functional.texture.border", 
+        "dEQP-GLES31.functional.texture.border",
         "_clamp.formats.rgb8ui.nearest_size_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014446,
-        "dEQP-GLES31.functional.texture.border_", 
+        "dEQP-GLES31.functional.texture.border_",
         "clamp.formats.rgb8ui.nearest_size_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014447,
-        "dEQP-GLES31.functional.texture.border", 
+        "dEQP-GLES31.functional.texture.border",
         "_clamp.formats.rgb8ui.gather_size_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014448,
-        "dEQP-GLES31.functional.texture.border", 
+        "dEQP-GLES31.functional.texture.border",
         "_clamp.formats.rgb8ui.gather_size_npot");

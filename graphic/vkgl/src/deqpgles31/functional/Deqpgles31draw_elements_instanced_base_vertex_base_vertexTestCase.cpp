@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037820,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_elem", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_elem",
         "ents_instanced_base_vertex.base_vertex.index_byte");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037821,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_elem", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_elem",
         "ents_instanced_base_vertex.base_vertex.index_short");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037822,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_ele", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_ele",
         "ments_instanced_base_vertex.base_vertex.index_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037823,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_elemen", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_elemen",
         "ts_instanced_base_vertex.base_vertex.index_neg_byte");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037824,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_elemen", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_elemen",
         "ts_instanced_base_vertex.base_vertex.index_neg_short");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037825,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_eleme", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_eleme",
         "nts_instanced_base_vertex.base_vertex.index_neg_int");

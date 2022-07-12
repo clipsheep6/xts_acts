@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001126,
-        "KHR-GLES32.core.internal", 
+        "KHR-GLES32.core.internal",
         "format.renderbuffer.rgba8");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001127,
-        "KHR-GLES32.core.internal", 
+        "KHR-GLES32.core.internal",
         "format.renderbuffer.rgb8");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001128,
-        "KHR-GLES32.core.internalf", 
+        "KHR-GLES32.core.internalf",
         "ormat.renderbuffer.rgb5_a1");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001129,
-        "KHR-GLES32.core.internalform", 
+        "KHR-GLES32.core.internalform",
         "at.renderbuffer.srgb8_alpha8");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001130,
-        "KHR-GLES32.core.internalformat.", 
+        "KHR-GLES32.core.internalformat.",
         "renderbuffer.depth_component32f");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001131,
-        "KHR-GLES32.core.internalformat", 
+        "KHR-GLES32.core.internalformat",
         ".renderbuffer.depth32f_stencil8");

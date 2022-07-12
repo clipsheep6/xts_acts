@@ -24,45 +24,45 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014087,
-        "dEQP-GLES31.functional.texture.texture_buf", 
+        "dEQP-GLES31.functional.texture.texture_buf",
         "fer.modify.mapbuffer_write.buffer_size_512");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014088,
-        "dEQP-GLES31.functional.texture.texture_buf", 
+        "dEQP-GLES31.functional.texture.texture_buf",
         "fer.modify.mapbuffer_write.buffer_size_513");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014089,
-        "dEQP-GLES31.functional.texture.texture_buff", 
+        "dEQP-GLES31.functional.texture.texture_buff",
         "er.modify.mapbuffer_write.buffer_size_65536");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014090,
-        "dEQP-GLES31.functional.texture.texture_buff", 
+        "dEQP-GLES31.functional.texture.texture_buff",
         "er.modify.mapbuffer_write.buffer_size_65537");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014091,
-        "dEQP-GLES31.functional.texture.texture_buff", 
+        "dEQP-GLES31.functional.texture.texture_buff",
         "er.modify.mapbuffer_write.buffer_size_131071");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014092,
-        "dEQP-GLES31.functional.texture.texture_bu", 
+        "dEQP-GLES31.functional.texture.texture_bu",
         "ffer.modify.mapbuffer_write.range_size_512");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014093,
-        "dEQP-GLES31.functional.texture.texture_bu", 
+        "dEQP-GLES31.functional.texture.texture_bu",
         "ffer.modify.mapbuffer_write.range_size_513");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014094,
-        "dEQP-GLES31.functional.texture.texture_buf", 
+        "dEQP-GLES31.functional.texture.texture_buf",
         "fer.modify.mapbuffer_write.range_size_65537");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014095,
-        "dEQP-GLES31.functional.texture.texture_buf", 
+        "dEQP-GLES31.functional.texture.texture_buf",
         "fer.modify.mapbuffer_write.range_size_98304");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014096,
-        "dEQP-GLES31.functional.texture.texture_buffe", 
+        "dEQP-GLES31.functional.texture.texture_buffe",
         "r.modify.mapbuffer_write.offset_1_alignments");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014097,
-        "dEQP-GLES31.functional.texture.texture_buffe", 
+        "dEQP-GLES31.functional.texture.texture_buffe",
         "r.modify.mapbuffer_write.offset_7_alignments");

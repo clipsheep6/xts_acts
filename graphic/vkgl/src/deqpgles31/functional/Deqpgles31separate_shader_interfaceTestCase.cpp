@@ -24,81 +24,81 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017690,
-        "dEQP-GLES31.functional.separate_shader.inter", 
+        "dEQP-GLES31.functional.separate_shader.inter",
         "face.same_name_vertex_smooth_fragment_smooth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017691,
-        "dEQP-GLES31.functional.separate_shader.interf", 
+        "dEQP-GLES31.functional.separate_shader.interf",
         "ace.same_name_vertex_smooth_fragment_centroid");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017692,
-        "dEQP-GLES31.functional.separate_shad", 
+        "dEQP-GLES31.functional.separate_shad",
         "er.interface.same_name_vertex_smooth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017693,
-        "dEQP-GLES31.functional.separate_shader.int", 
+        "dEQP-GLES31.functional.separate_shader.int",
         "erface.same_name_vertex_flat_fragment_flat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017694,
-        "dEQP-GLES31.functional.separate_shader.interf", 
+        "dEQP-GLES31.functional.separate_shader.interf",
         "ace.same_name_vertex_centroid_fragment_smooth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017695,
-        "dEQP-GLES31.functional.separate_shader.interfa", 
+        "dEQP-GLES31.functional.separate_shader.interfa",
         "ce.same_name_vertex_centroid_fragment_centroid");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017696,
-        "dEQP-GLES31.functional.separate_shade", 
+        "dEQP-GLES31.functional.separate_shade",
         "r.interface.same_name_vertex_centroid");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017697,
-        "dEQP-GLES31.functional.separate_shade", 
+        "dEQP-GLES31.functional.separate_shade",
         "r.interface.same_name_fragment_smooth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017698,
-        "dEQP-GLES31.functional.separate_shader", 
+        "dEQP-GLES31.functional.separate_shader",
         ".interface.same_name_fragment_centroid");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017699,
-        "dEQP-GLES31.functional.separa", 
+        "dEQP-GLES31.functional.separa",
         "te_shader.interface.same_name");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017700,
-        "dEQP-GLES31.functional.separate_shader.interfa", 
+        "dEQP-GLES31.functional.separate_shader.interfa",
         "ce.same_location_vertex_smooth_fragment_smooth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017701,
-        "dEQP-GLES31.functional.separate_shader.interfac", 
+        "dEQP-GLES31.functional.separate_shader.interfac",
         "e.same_location_vertex_smooth_fragment_centroid");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017702,
-        "dEQP-GLES31.functional.separate_shader", 
+        "dEQP-GLES31.functional.separate_shader",
         ".interface.same_location_vertex_smooth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017703,
-        "dEQP-GLES31.functional.separate_shader.inter", 
+        "dEQP-GLES31.functional.separate_shader.inter",
         "face.same_location_vertex_flat_fragment_flat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017704,
-        "dEQP-GLES31.functional.separate_shader.interfac", 
+        "dEQP-GLES31.functional.separate_shader.interfac",
         "e.same_location_vertex_centroid_fragment_smooth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017705,
-        "dEQP-GLES31.functional.separate_shader.interface", 
+        "dEQP-GLES31.functional.separate_shader.interface",
         ".same_location_vertex_centroid_fragment_centroid");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017706,
-        "dEQP-GLES31.functional.separate_shader.", 
+        "dEQP-GLES31.functional.separate_shader.",
         "interface.same_location_vertex_centroid");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017707,
-        "dEQP-GLES31.functional.separate_shader.", 
+        "dEQP-GLES31.functional.separate_shader.",
         "interface.same_location_fragment_smooth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017708,
-        "dEQP-GLES31.functional.separate_shader.i", 
+        "dEQP-GLES31.functional.separate_shader.i",
         "nterface.same_location_fragment_centroid");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017709,
-        "dEQP-GLES31.functional.separate", 
+        "dEQP-GLES31.functional.separate",
         "_shader.interface.same_location");

@@ -24,45 +24,45 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043301,
-        "dEQP-GLES3.functional.cl", 
+        "dEQP-GLES3.functional.cl",
         "ipping.point.point_z_clip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043302,
-        "dEQP-GLES3.functional.clipping.p", 
+        "dEQP-GLES3.functional.clipping.p",
         "oint.point_z_clip_viewport_center");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043303,
-        "dEQP-GLES3.functional.clipping.p", 
+        "dEQP-GLES3.functional.clipping.p",
         "oint.point_z_clip_viewport_corner");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043304,
-        "dEQP-GLES3.functional.clipping.", 
+        "dEQP-GLES3.functional.clipping.",
         "point.point_clip_viewport_center");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043305,
-        "dEQP-GLES3.functional.clipping.", 
+        "dEQP-GLES3.functional.clipping.",
         "point.point_clip_viewport_corner");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043306,
-        "dEQP-GLES3.functional.clipp", 
+        "dEQP-GLES3.functional.clipp",
         "ing.point.wide_point_z_clip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043307,
-        "dEQP-GLES3.functional.clipping.poin", 
+        "dEQP-GLES3.functional.clipping.poin",
         "t.wide_point_z_clip_viewport_center");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043308,
-        "dEQP-GLES3.functional.clipping.poin", 
+        "dEQP-GLES3.functional.clipping.poin",
         "t.wide_point_z_clip_viewport_corner");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043309,
-        "dEQP-GLES3.functional.clip", 
+        "dEQP-GLES3.functional.clip",
         "ping.point.wide_point_clip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043310,
-        "dEQP-GLES3.functional.clipping.poi", 
+        "dEQP-GLES3.functional.clipping.poi",
         "nt.wide_point_clip_viewport_center");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043311,
-        "dEQP-GLES3.functional.clipping.poi", 
+        "dEQP-GLES3.functional.clipping.poi",
         "nt.wide_point_clip_viewport_corner");

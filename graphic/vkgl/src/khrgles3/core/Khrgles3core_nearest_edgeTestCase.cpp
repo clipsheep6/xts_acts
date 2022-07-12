@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003707,
-        "KHR-GLES3.core.near", 
+        "KHR-GLES3.core.near",
         "est_edge.offset_left");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003708,
-        "KHR-GLES3.core.neare", 
+        "KHR-GLES3.core.neare",
         "st_edge.offset_right");

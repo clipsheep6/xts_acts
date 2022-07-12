@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022103,
-        "dEQP-GLES31.functional.program_interface_query.pro", 
+        "dEQP-GLES31.functional.program_interface_query.pro",
         "gram_input.type.separable_tess_eval.patch_var.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022104,
-        "dEQP-GLES31.functional.program_interface_query.pr", 
+        "dEQP-GLES31.functional.program_interface_query.pr",
         "ogram_input.type.separable_tess_eval.patch_var.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022105,
-        "dEQP-GLES31.functional.program_interface_query.pro", 
+        "dEQP-GLES31.functional.program_interface_query.pro",
         "gram_input.type.separable_tess_eval.patch_var.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022106,
-        "dEQP-GLES31.functional.program_interface_query.pro", 
+        "dEQP-GLES31.functional.program_interface_query.pro",
         "gram_input.type.separable_tess_eval.patch_var.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022107,
-        "dEQP-GLES31.functional.program_interface_query.pro", 
+        "dEQP-GLES31.functional.program_interface_query.pro",
         "gram_input.type.separable_tess_eval.patch_var.ivec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022108,
-        "dEQP-GLES31.functional.program_interface_query.pro", 
+        "dEQP-GLES31.functional.program_interface_query.pro",
         "gram_input.type.separable_tess_eval.patch_var.uvec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022109,
-        "dEQP-GLES31.functional.program_interface_query.prog", 
+        "dEQP-GLES31.functional.program_interface_query.prog",
         "ram_input.type.separable_tess_eval.patch_var.mat3x2");

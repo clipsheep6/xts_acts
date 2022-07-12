@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005008,
-        "dEQP-GLES31.functional.shaders.builtin_constant", 
+        "dEQP-GLES31.functional.shaders.builtin_constant",
         "s.geometry_shader.max_geometry_input_components");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005009,
-        "dEQP-GLES31.functional.shaders.builtin_constant", 
+        "dEQP-GLES31.functional.shaders.builtin_constant",
         "s.geometry_shader.max_geometry_output_components");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005010,
-        "dEQP-GLES31.functional.shaders.builtin_constan", 
+        "dEQP-GLES31.functional.shaders.builtin_constan",
         "ts.geometry_shader.max_geometry_image_uniforms");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005011,
-        "dEQP-GLES31.functional.shaders.builtin_constants", 
+        "dEQP-GLES31.functional.shaders.builtin_constants",
         ".geometry_shader.max_geometry_texture_image_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005012,
-        "dEQP-GLES31.functional.shaders.builtin_constan", 
+        "dEQP-GLES31.functional.shaders.builtin_constan",
         "ts.geometry_shader.max_geometry_output_vertices");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005013,
-        "dEQP-GLES31.functional.shaders.builtin_constants.g", 
+        "dEQP-GLES31.functional.shaders.builtin_constants.g",
         "eometry_shader.max_geometry_total_output_components");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005014,
-        "dEQP-GLES31.functional.shaders.builtin_constants", 
+        "dEQP-GLES31.functional.shaders.builtin_constants",
         ".geometry_shader.max_geometry_uniform_components");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005015,
-        "dEQP-GLES31.functional.shaders.builtin_constan", 
+        "dEQP-GLES31.functional.shaders.builtin_constan",
         "ts.geometry_shader.max_geometry_atomic_counters");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005016,
-        "dEQP-GLES31.functional.shaders.builtin_constants.g", 
+        "dEQP-GLES31.functional.shaders.builtin_constants.g",
         "eometry_shader.max_geometry_atomic_counter_buffers");

@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008270,
-        "dEQP-GLES31.functional.tessellation.user_defined_io.per_", 
+        "dEQP-GLES31.functional.tessellation.user_defined_io.per_",
         "patch_block.vertex_io_array_size_shader_builtin.triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008271,
-        "dEQP-GLES31.functional.tessellation.user_defined_io.pe", 
+        "dEQP-GLES31.functional.tessellation.user_defined_io.pe",
         "r_patch_block.vertex_io_array_size_shader_builtin.quads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310009TestSuite, TestCase_008272,
-        "dEQP-GLES31.functional.tessellation.user_defined_io.per_", 
+        "dEQP-GLES31.functional.tessellation.user_defined_io.per_",
         "patch_block.vertex_io_array_size_shader_builtin.isolines");

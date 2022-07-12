@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019344,
-        "dEQP-GLES3.functional.shaders.builtin", 
+        "dEQP-GLES3.functional.shaders.builtin",
         "_functions.precision.cross.lowp_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019345,
-        "dEQP-GLES3.functional.shaders.builtin_", 
+        "dEQP-GLES3.functional.shaders.builtin_",
         "functions.precision.cross.lowp_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019346,
-        "dEQP-GLES3.functional.shaders.builtin_f", 
+        "dEQP-GLES3.functional.shaders.builtin_f",
         "unctions.precision.cross.mediump_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019347,
-        "dEQP-GLES3.functional.shaders.builtin_fu", 
+        "dEQP-GLES3.functional.shaders.builtin_fu",
         "nctions.precision.cross.mediump_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019348,
-        "dEQP-GLES3.functional.shaders.builtin_", 
+        "dEQP-GLES3.functional.shaders.builtin_",
         "functions.precision.cross.highp_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019349,
-        "dEQP-GLES3.functional.shaders.builtin_f", 
+        "dEQP-GLES3.functional.shaders.builtin_f",
         "unctions.precision.cross.highp_fragment");

@@ -24,57 +24,57 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000273,
-        "dEQP-GLES2.functional.shaders.preproc", 
+        "dEQP-GLES2.functional.shaders.preproc",
         "essor.predefined_macros.version_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000274,
-        "dEQP-GLES2.functional.shaders.preproce", 
+        "dEQP-GLES2.functional.shaders.preproce",
         "ssor.predefined_macros.version_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000275,
-        "dEQP-GLES2.functional.shaders.preproc", 
+        "dEQP-GLES2.functional.shaders.preproc",
         "essor.predefined_macros.gl_es_1_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000276,
-        "dEQP-GLES2.functional.shaders.preproce", 
+        "dEQP-GLES2.functional.shaders.preproce",
         "ssor.predefined_macros.gl_es_1_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000277,
-        "dEQP-GLES2.functional.shaders.preproc", 
+        "dEQP-GLES2.functional.shaders.preproc",
         "essor.predefined_macros.gl_es_2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000278,
-        "dEQP-GLES2.functional.shaders.preproce", 
+        "dEQP-GLES2.functional.shaders.preproce",
         "ssor.predefined_macros.gl_es_2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000279,
-        "dEQP-GLES2.functional.shaders.preproc", 
+        "dEQP-GLES2.functional.shaders.preproc",
         "essor.predefined_macros.line_1_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000280,
-        "dEQP-GLES2.functional.shaders.preproce", 
+        "dEQP-GLES2.functional.shaders.preproce",
         "ssor.predefined_macros.line_1_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000281,
-        "dEQP-GLES2.functional.shaders.prepro", 
+        "dEQP-GLES2.functional.shaders.prepro",
         "cessor.predefined_macros.file_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000282,
-        "dEQP-GLES2.functional.shaders.preproc", 
+        "dEQP-GLES2.functional.shaders.preproc",
         "essor.predefined_macros.file_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000283,
-        "dEQP-GLES2.functional.shaders.preproce", 
+        "dEQP-GLES2.functional.shaders.preproce",
         "ssor.predefined_macros.if_gl_es_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000284,
-        "dEQP-GLES2.functional.shaders.preproces", 
+        "dEQP-GLES2.functional.shaders.preproces",
         "sor.predefined_macros.if_gl_es_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000285,
-        "dEQP-GLES2.functional.shaders.preproces", 
+        "dEQP-GLES2.functional.shaders.preproces",
         "sor.predefined_macros.if_version_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000286,
-        "dEQP-GLES2.functional.shaders.preprocess", 
+        "dEQP-GLES2.functional.shaders.preprocess",
         "or.predefined_macros.if_version_fragment");

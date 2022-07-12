@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005008,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "negative.c_cast.float_0_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005009,
-        "dEQP-GLES3.functional.shaders.n", 
+        "dEQP-GLES3.functional.shaders.n",
         "egative.c_cast.float_0_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005010,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "negative.c_cast.float_1_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005011,
-        "dEQP-GLES3.functional.shaders.n", 
+        "dEQP-GLES3.functional.shaders.n",
         "egative.c_cast.float_1_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005012,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "negative.c_cast.float_2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005013,
-        "dEQP-GLES3.functional.shaders.n", 
+        "dEQP-GLES3.functional.shaders.n",
         "egative.c_cast.float_2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005014,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.negative.c_cast.int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005015,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".negative.c_cast.int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005016,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.negative.c_cast.uint_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005017,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".negative.c_cast.uint_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005018,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.negative.c_cast.bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30006TestSuite, TestCase_005019,
-        "dEQP-GLES3.functional.shaders", 
+        "dEQP-GLES3.functional.shaders",
         ".negative.c_cast.bool_fragment");

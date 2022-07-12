@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004839,
-        "dEQP-GLES3.functional.shaders.keyword", 
+        "dEQP-GLES3.functional.shaders.keyword",
         "s.invalid_identifiers.gl_begin_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004840,
-        "dEQP-GLES3.functional.shaders.keywords", 
+        "dEQP-GLES3.functional.shaders.keywords",
         ".invalid_identifiers.gl_begin_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004841,
-        "dEQP-GLES3.functional.shaders.keywo", 
+        "dEQP-GLES3.functional.shaders.keywo",
         "rds.invalid_identifiers.digit_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004842,
-        "dEQP-GLES3.functional.shaders.keywor", 
+        "dEQP-GLES3.functional.shaders.keywor",
         "ds.invalid_identifiers.digit_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004843,
-        "dEQP-GLES3.functional.shaders.keywords", 
+        "dEQP-GLES3.functional.shaders.keywords",
         ".invalid_identifiers.digit_begin_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004844,
-        "dEQP-GLES3.functional.shaders.keywords.", 
+        "dEQP-GLES3.functional.shaders.keywords.",
         "invalid_identifiers.digit_begin_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004845,
-        "dEQP-GLES3.functional.shaders.keywords", 
+        "dEQP-GLES3.functional.shaders.keywords",
         ".invalid_identifiers.max_length_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004846,
-        "dEQP-GLES3.functional.shaders.keywords.", 
+        "dEQP-GLES3.functional.shaders.keywords.",
         "invalid_identifiers.max_length_fragment");

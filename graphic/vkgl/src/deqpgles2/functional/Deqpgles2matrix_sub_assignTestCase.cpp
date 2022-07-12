@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007565,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".sub_assign.dynamic_lowp_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007566,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "sub_assign.dynamic_lowp_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007567,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "sub_assign.dynamic_mediump_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007568,
-        "dEQP-GLES2.functional.shaders.matrix.s", 
+        "dEQP-GLES2.functional.shaders.matrix.s",
         "ub_assign.dynamic_mediump_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007569,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".sub_assign.dynamic_highp_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007570,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "sub_assign.dynamic_highp_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007571,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".sub_assign.dynamic_lowp_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007572,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "sub_assign.dynamic_lowp_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007573,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "sub_assign.dynamic_mediump_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007574,
-        "dEQP-GLES2.functional.shaders.matrix.s", 
+        "dEQP-GLES2.functional.shaders.matrix.s",
         "ub_assign.dynamic_mediump_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007575,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".sub_assign.dynamic_highp_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007576,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "sub_assign.dynamic_highp_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007577,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".sub_assign.dynamic_lowp_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007578,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "sub_assign.dynamic_lowp_mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007579,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "sub_assign.dynamic_mediump_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007580,
-        "dEQP-GLES2.functional.shaders.matrix.s", 
+        "dEQP-GLES2.functional.shaders.matrix.s",
         "ub_assign.dynamic_mediump_mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007581,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".sub_assign.dynamic_highp_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007582,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "sub_assign.dynamic_highp_mat4_fragment");

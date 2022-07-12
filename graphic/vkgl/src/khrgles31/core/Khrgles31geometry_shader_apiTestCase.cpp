@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002518,
-        "KHR-GLES31.core.geometry_sha", 
+        "KHR-GLES31.core.geometry_sha",
         "der.api.createShaderProgramv");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002519,
-        "KHR-GLES31.core.geometr", 
+        "KHR-GLES31.core.geometr",
         "y_shader.api.shader_type");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002520,
-        "KHR-GLES31.core.geometry", 
+        "KHR-GLES31.core.geometry",
         "_shader.api.getProgramiv");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002521,
-        "KHR-GLES31.core.geometry", 
+        "KHR-GLES31.core.geometry",
         "_shader.api.getProgramiv2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002522,
-        "KHR-GLES31.core.geometry", 
+        "KHR-GLES31.core.geometry",
         "_shader.api.getProgramiv3");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002523,
-        "KHR-GLES31.core.geometry_", 
+        "KHR-GLES31.core.geometry_",
         "shader.api.fs_gs_draw_call");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002524,
-        "KHR-GLES31.core.geometry_sh", 
+        "KHR-GLES31.core.geometry_sh",
         "ader.api.max_image_uniforms");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002525,
-        "KHR-GLES31.core.geometry_shade", 
+        "KHR-GLES31.core.geometry_shade",
         "r.api.max_shader_storage_blocks");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002526,
-        "KHR-GLES31.core.geometry_sh", 
+        "KHR-GLES31.core.geometry_sh",
         "ader.api.max_atomic_counters");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002527,
-        "KHR-GLES31.core.geometry_shader", 
+        "KHR-GLES31.core.geometry_shader",
         ".api.max_atomic_counter_buffers");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002528,
-        "KHR-GLES31.core.geometry_shader.api", 
+        "KHR-GLES31.core.geometry_shader.api",
         ".pipeline_program_without_active_vs");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002529,
-        "KHR-GLES31.core.geometry_shader", 
+        "KHR-GLES31.core.geometry_shader",
         ".api.incompatible_draw_call_mode");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002530,
-        "KHR-GLES31.core.geometry_shader.", 
+        "KHR-GLES31.core.geometry_shader.",
         "api.insufficient_emitted_vertices");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002531,
-        "KHR-GLES31.core.geometry_shader.a", 
+        "KHR-GLES31.core.geometry_shader.a",
         "pi.program_pipeline_vs_gs_capture");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002532,
-        "KHR-GLES31.core.geometry_shader.api.draw_", 
+        "KHR-GLES31.core.geometry_shader.api.draw_",
         "primitives_do_not_match_output_primitives");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002533,
-        "KHR-GLES31.core.geometry_shader.", 
+        "KHR-GLES31.core.geometry_shader.",
         "api.draw_calls_while_tf_is_paused");

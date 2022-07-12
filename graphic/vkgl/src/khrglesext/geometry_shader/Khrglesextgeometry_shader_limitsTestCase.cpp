@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000090,
-        "KHR-GLESEXT.geometry_shader.", 
+        "KHR-GLESEXT.geometry_shader.",
         "limits.max_uniform_components");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000091,
-        "KHR-GLESEXT.geometry_shade", 
+        "KHR-GLESEXT.geometry_shade",
         "r.limits.max_uniform_blocks");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000092,
-        "KHR-GLESEXT.geometry_shader", 
+        "KHR-GLESEXT.geometry_shader",
         ".limits.max_input_components");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000093,
-        "KHR-GLESEXT.geometry_shader.", 
+        "KHR-GLESEXT.geometry_shader.",
         "limits.max_output_components");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000094,
-        "KHR-GLESEXT.geometry_shader", 
+        "KHR-GLESEXT.geometry_shader",
         ".limits.max_output_vertices");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000095,
-        "KHR-GLESEXT.geometry_shader.limits", 
+        "KHR-GLESEXT.geometry_shader.limits",
         ".max_output_components_single_point");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000096,
-        "KHR-GLESEXT.geometry_shade", 
+        "KHR-GLESEXT.geometry_shade",
         "r.limits.max_texture_units");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000097,
-        "KHR-GLESEXT.geometry_shad", 
+        "KHR-GLESEXT.geometry_shad",
         "er.limits.max_invocations");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000098,
-        "KHR-GLESEXT.geometry_shader.li", 
+        "KHR-GLESEXT.geometry_shader.li",
         "mits.max_combined_texture_units");

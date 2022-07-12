@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022554,
-        "dEQP-GLES31.functional.program_interface_query.progr", 
+        "dEQP-GLES31.functional.program_interface_query.progr",
         "am_output.referenced_by.referenced_by_vertex_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022555,
-        "dEQP-GLES31.functional.program_interface_query.program_", 
+        "dEQP-GLES31.functional.program_interface_query.program_",
         "output.referenced_by.referenced_by_vertex_tess_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022556,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_output.referenced_by.referenced_by_vertex_geo_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022557,
-        "dEQP-GLES31.functional.program_interface_query.program_ou", 
+        "dEQP-GLES31.functional.program_interface_query.program_ou",
         "tput.referenced_by.referenced_by_vertex_tess_geo_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022558,
-        "dEQP-GLES31.functional.program_interface_query.progra", 
+        "dEQP-GLES31.functional.program_interface_query.progra",
         "m_output.referenced_by.referenced_by_separable_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022559,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_output.referenced_by.referenced_by_separable_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022560,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_output.referenced_by.referenced_by_separable_geometry");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022561,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_output.referenced_by.referenced_by_separable_tess_eval");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022562,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_output.referenced_by.referenced_by_separable_tess_ctrl");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022563,
-        "dEQP-GLES31.functional.program_interface_query.program_outp", 
+        "dEQP-GLES31.functional.program_interface_query.program_outp",
         "ut.referenced_by.referenced_by_separable_tess_ctrl_patch_out");

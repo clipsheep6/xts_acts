@@ -24,81 +24,81 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025197,
-        "dEQP-GLES3.functional.texture.", 
+        "dEQP-GLES3.functional.texture.",
         "swizzle.single_channel.r_green");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025198,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.r_blue");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025199,
-        "dEQP-GLES3.functional.texture.", 
+        "dEQP-GLES3.functional.texture.",
         "swizzle.single_channel.r_alpha");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025200,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.r_zero");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025201,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.r_one");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025202,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.g_red");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025203,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.g_blue");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025204,
-        "dEQP-GLES3.functional.texture.", 
+        "dEQP-GLES3.functional.texture.",
         "swizzle.single_channel.g_alpha");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025205,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.g_zero");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025206,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.g_one");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025207,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.b_red");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025208,
-        "dEQP-GLES3.functional.texture.", 
+        "dEQP-GLES3.functional.texture.",
         "swizzle.single_channel.b_green");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025209,
-        "dEQP-GLES3.functional.texture.", 
+        "dEQP-GLES3.functional.texture.",
         "swizzle.single_channel.b_alpha");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025210,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.b_zero");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025211,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.b_one");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025212,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.a_red");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025213,
-        "dEQP-GLES3.functional.texture.", 
+        "dEQP-GLES3.functional.texture.",
         "swizzle.single_channel.a_green");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025214,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.a_blue");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025215,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.a_zero");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025216,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".swizzle.single_channel.a_one");

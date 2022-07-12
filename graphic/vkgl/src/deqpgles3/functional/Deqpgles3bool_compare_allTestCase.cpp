@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30014TestSuite, TestCase_013624,
-        "dEQP-GLES3.functional.shaders.oper", 
+        "dEQP-GLES3.functional.shaders.oper",
         "ator.bool_compare.all.bvec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30014TestSuite, TestCase_013625,
-        "dEQP-GLES3.functional.shaders.opera", 
+        "dEQP-GLES3.functional.shaders.opera",
         "tor.bool_compare.all.bvec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30014TestSuite, TestCase_013626,
-        "dEQP-GLES3.functional.shaders.oper", 
+        "dEQP-GLES3.functional.shaders.oper",
         "ator.bool_compare.all.bvec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30014TestSuite, TestCase_013627,
-        "dEQP-GLES3.functional.shaders.opera", 
+        "dEQP-GLES3.functional.shaders.opera",
         "tor.bool_compare.all.bvec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30014TestSuite, TestCase_013628,
-        "dEQP-GLES3.functional.shaders.oper", 
+        "dEQP-GLES3.functional.shaders.oper",
         "ator.bool_compare.all.bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30014TestSuite, TestCase_013629,
-        "dEQP-GLES3.functional.shaders.opera", 
+        "dEQP-GLES3.functional.shaders.opera",
         "tor.bool_compare.all.bvec4_fragment");

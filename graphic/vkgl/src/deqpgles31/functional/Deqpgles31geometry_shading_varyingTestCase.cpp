@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016373,
-        "dEQP-GLES31.functional.geometry_shadi", 
+        "dEQP-GLES31.functional.geometry_shadi",
         "ng.varying.vertex_no_op_geometry_out_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016374,
-        "dEQP-GLES31.functional.geometry_shadi", 
+        "dEQP-GLES31.functional.geometry_shadi",
         "ng.varying.vertex_out_0_geometry_out_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016375,
-        "dEQP-GLES31.functional.geometry_shadi", 
+        "dEQP-GLES31.functional.geometry_shadi",
         "ng.varying.vertex_out_0_geometry_out_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016376,
-        "dEQP-GLES31.functional.geometry_shadi", 
+        "dEQP-GLES31.functional.geometry_shadi",
         "ng.varying.vertex_out_1_geometry_out_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016377,
-        "dEQP-GLES31.functional.geometry_shadi", 
+        "dEQP-GLES31.functional.geometry_shadi",
         "ng.varying.vertex_out_1_geometry_out_2");

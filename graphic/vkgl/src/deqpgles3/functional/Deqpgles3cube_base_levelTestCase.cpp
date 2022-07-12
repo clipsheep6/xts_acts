@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025121,
-        "dEQP-GLES3.functional.texture.mipm", 
+        "dEQP-GLES3.functional.texture.mipm",
         "ap.cube.base_level.nearest_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025122,
-        "dEQP-GLES3.functional.texture.mip", 
+        "dEQP-GLES3.functional.texture.mip",
         "map.cube.base_level.linear_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025123,
-        "dEQP-GLES3.functional.texture.mip", 
+        "dEQP-GLES3.functional.texture.mip",
         "map.cube.base_level.nearest_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025124,
-        "dEQP-GLES3.functional.texture.mip", 
+        "dEQP-GLES3.functional.texture.mip",
         "map.cube.base_level.linear_linear");

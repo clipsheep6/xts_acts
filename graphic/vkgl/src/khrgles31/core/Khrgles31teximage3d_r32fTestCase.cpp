@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003025,
-        "KHR-GLES31.core.pixelstorag", 
+        "KHR-GLES31.core.pixelstorag",
         "emodes.teximage3d.r32f.0_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003026,
-        "KHR-GLES31.core.pixelstorag", 
+        "KHR-GLES31.core.pixelstorag",
         "emodes.teximage3d.r32f.1_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003027,
-        "KHR-GLES31.core.pixelstorage", 
+        "KHR-GLES31.core.pixelstorage",
         "modes.teximage3d.r32f.16_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003028,
-        "KHR-GLES31.core.pixelstorag", 
+        "KHR-GLES31.core.pixelstorag",
         "emodes.teximage3d.r32f.1_1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003029,
-        "KHR-GLES31.core.pixelstorage", 
+        "KHR-GLES31.core.pixelstorage",
         "modes.teximage3d.r32f.16_1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003030,
-        "KHR-GLES31.core.pixelstorage", 
+        "KHR-GLES31.core.pixelstorage",
         "modes.teximage3d.r32f.16_16_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003031,
-        "KHR-GLES31.core.pixelstorag", 
+        "KHR-GLES31.core.pixelstorag",
         "emodes.teximage3d.r32f.1_1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003032,
-        "KHR-GLES31.core.pixelstorage", 
+        "KHR-GLES31.core.pixelstorage",
         "modes.teximage3d.r32f.16_1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003033,
-        "KHR-GLES31.core.pixelstorage", 
+        "KHR-GLES31.core.pixelstorage",
         "modes.teximage3d.r32f.16_16_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003034,
-        "KHR-GLES31.core.pixelstorage", 
+        "KHR-GLES31.core.pixelstorage",
         "modes.teximage3d.r32f.16_16_4");

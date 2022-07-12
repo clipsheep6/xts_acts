@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019486,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.outerproduct.lowp_vertex.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019487,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.outerproduct.lowp_vertex.mat2x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019488,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.outerproduct.lowp_vertex.mat2x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019489,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.outerproduct.lowp_vertex.mat3x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019490,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.outerproduct.lowp_vertex.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019491,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.outerproduct.lowp_vertex.mat3x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019492,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.outerproduct.lowp_vertex.mat4x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019493,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.outerproduct.lowp_vertex.mat4x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019494,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.outerproduct.lowp_vertex.mat4");

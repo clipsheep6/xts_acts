@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016484,
-        "dEQP-GLES31.functional.sample_shading", 
+        "dEQP-GLES31.functional.sample_shading",
         ".state_query.sample_shading_is_enabled");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016485,
-        "dEQP-GLES31.functional.sample_shading.", 
+        "dEQP-GLES31.functional.sample_shading.",
         "state_query.sample_shading_get_boolean");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016486,
-        "dEQP-GLES31.functional.sample_shading.", 
+        "dEQP-GLES31.functional.sample_shading.",
         "state_query.sample_shading_get_integer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016487,
-        "dEQP-GLES31.functional.sample_shading", 
+        "dEQP-GLES31.functional.sample_shading",
         ".state_query.sample_shading_get_float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016488,
-        "dEQP-GLES31.functional.sample_shading.s", 
+        "dEQP-GLES31.functional.sample_shading.s",
         "tate_query.sample_shading_get_integer64");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016489,
-        "dEQP-GLES31.functional.sample_shading.state", 
+        "dEQP-GLES31.functional.sample_shading.state",
         "_query.min_sample_shading_value_get_boolean");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016490,
-        "dEQP-GLES31.functional.sample_shading.state", 
+        "dEQP-GLES31.functional.sample_shading.state",
         "_query.min_sample_shading_value_get_integer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016491,
-        "dEQP-GLES31.functional.sample_shading.stat", 
+        "dEQP-GLES31.functional.sample_shading.stat",
         "e_query.min_sample_shading_value_get_float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016492,
-        "dEQP-GLES31.functional.sample_shading.state_", 
+        "dEQP-GLES31.functional.sample_shading.state_",
         "query.min_sample_shading_value_get_integer64");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016493,
-        "dEQP-GLES31.functional.sample_shading.sta", 
+        "dEQP-GLES31.functional.sample_shading.sta",
         "te_query.min_sample_shading_value_clamping");

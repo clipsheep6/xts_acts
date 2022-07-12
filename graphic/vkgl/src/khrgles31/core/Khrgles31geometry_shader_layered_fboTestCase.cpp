@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002535,
-        "KHR-GLES31.core.geometry_sh", 
+        "KHR-GLES31.core.geometry_sh",
         "ader.layered_fbo.layered_fbo");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002536,
-        "KHR-GLES31.core.geometry_shader.l", 
+        "KHR-GLES31.core.geometry_shader.l",
         "ayered_fbo.layered_fbo_attachments");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002537,
-        "KHR-GLES31.core.geometry_shader.la", 
+        "KHR-GLES31.core.geometry_shader.la",
         "yered_fbo.fb_texture_invalid_target");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002538,
-        "KHR-GLES31.core.geometry_shader.layere", 
+        "KHR-GLES31.core.geometry_shader.layere",
         "d_fbo.fb_texture_no_fbo_bound_to_target");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002539,
-        "KHR-GLES31.core.geometry_shader.laye", 
+        "KHR-GLES31.core.geometry_shader.laye",
         "red_fbo.fb_texture_invalid_attachment");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002540,
-        "KHR-GLES31.core.geometry_shader.la", 
+        "KHR-GLES31.core.geometry_shader.la",
         "yered_fbo.fb_texture_invalid_value");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002541,
-        "KHR-GLES31.core.geometry_shader.layer", 
+        "KHR-GLES31.core.geometry_shader.layer",
         "ed_fbo.fb_texture_invalid_level_number");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002542,
-        "KHR-GLES31.core.geometry_shader.layered_fbo.", 
+        "KHR-GLES31.core.geometry_shader.layered_fbo.",
         "fb_texture_argument_refers_to_buffer_texture");

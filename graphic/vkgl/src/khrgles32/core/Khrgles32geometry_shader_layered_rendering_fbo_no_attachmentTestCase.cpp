@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000116,
-        "KHR-GLES32.core.geometry_shader.layered_rendering_f", 
+        "KHR-GLES32.core.geometry_shader.layered_rendering_f",
         "bo_no_attachment.layered_rendering_fbo_no_attachment");

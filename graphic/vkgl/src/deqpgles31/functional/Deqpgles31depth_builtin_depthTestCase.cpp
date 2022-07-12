@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025170,
-        "dEQP-GLES31.functional.primitive_bounding_bo", 
+        "dEQP-GLES31.functional.primitive_bounding_bo",
         "x.depth.builtin_depth.global_state_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025171,
-        "dEQP-GLES31.functional.primitive_bounding_box", 
+        "dEQP-GLES31.functional.primitive_bounding_box",
         ".depth.builtin_depth.global_state_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025172,
-        "dEQP-GLES31.functional.primitive_bounding_box", 
+        "dEQP-GLES31.functional.primitive_bounding_box",
         ".depth.builtin_depth.per_primitive_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025173,
-        "dEQP-GLES31.functional.primitive_bounding_box", 
+        "dEQP-GLES31.functional.primitive_bounding_box",
         ".depth.builtin_depth.per_primitive_bbox_larger");

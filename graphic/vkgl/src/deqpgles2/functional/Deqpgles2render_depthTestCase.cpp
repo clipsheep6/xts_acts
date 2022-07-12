@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012490,
-        "dEQP-GLES2.functional.fbo.render.", 
+        "dEQP-GLES2.functional.fbo.render.",
         "depth.tex2d_rgb_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012491,
-        "dEQP-GLES2.functional.fbo.render.", 
+        "dEQP-GLES2.functional.fbo.render.",
         "depth.tex2d_rgba_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012492,
-        "dEQP-GLES2.functional.fbo.render.", 
+        "dEQP-GLES2.functional.fbo.render.",
         "depth.rbo_rgb565_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012493,
-        "dEQP-GLES2.functional.fbo.render.d", 
+        "dEQP-GLES2.functional.fbo.render.d",
         "epth.rbo_rgb5_a1_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012494,
-        "dEQP-GLES2.functional.fbo.render.", 
+        "dEQP-GLES2.functional.fbo.render.",
         "depth.rbo_rgba4_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012495,
-        "dEQP-GLES2.functional.fbo.render.de", 
+        "dEQP-GLES2.functional.fbo.render.de",
         "pth.npot_tex2d_rgb_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012496,
-        "dEQP-GLES2.functional.fbo.render.dep", 
+        "dEQP-GLES2.functional.fbo.render.dep",
         "th.npot_tex2d_rgba_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012497,
-        "dEQP-GLES2.functional.fbo.render.dep", 
+        "dEQP-GLES2.functional.fbo.render.dep",
         "th.npot_rbo_rgb565_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012498,
-        "dEQP-GLES2.functional.fbo.render.dep", 
+        "dEQP-GLES2.functional.fbo.render.dep",
         "th.npot_rbo_rgb5_a1_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012499,
-        "dEQP-GLES2.functional.fbo.render.de", 
+        "dEQP-GLES2.functional.fbo.render.de",
         "pth.npot_rbo_rgba4_depth_component16");

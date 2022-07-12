@@ -24,81 +24,81 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043903,
-        "dEQP-GLES3.functional.pol", 
+        "dEQP-GLES3.functional.pol",
         "ygon_offset.default_enable");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043904,
-        "dEQP-GLES3.functional.polygon_offs", 
+        "dEQP-GLES3.functional.polygon_offs",
         "et.default_displacement_with_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043905,
-        "dEQP-GLES3.functional.polygon_o", 
+        "dEQP-GLES3.functional.polygon_o",
         "ffset.default_render_with_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043906,
-        "dEQP-GLES3.functional.polygon_o", 
+        "dEQP-GLES3.functional.polygon_o",
         "ffset.default_render_with_factor");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043907,
-        "dEQP-GLES3.functional.polygon", 
+        "dEQP-GLES3.functional.polygon",
         "_offset.default_factor_0_slope");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043908,
-        "dEQP-GLES3.functional.pol", 
+        "dEQP-GLES3.functional.pol",
         "ygon_offset.fixed16_enable");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043909,
-        "dEQP-GLES3.functional.polygon_offs", 
+        "dEQP-GLES3.functional.polygon_offs",
         "et.fixed16_displacement_with_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043910,
-        "dEQP-GLES3.functional.polygon_o", 
+        "dEQP-GLES3.functional.polygon_o",
         "ffset.fixed16_render_with_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043911,
-        "dEQP-GLES3.functional.polygon_o", 
+        "dEQP-GLES3.functional.polygon_o",
         "ffset.fixed16_render_with_factor");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043912,
-        "dEQP-GLES3.functional.polygon", 
+        "dEQP-GLES3.functional.polygon",
         "_offset.fixed16_factor_0_slope");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043913,
-        "dEQP-GLES3.functional.pol", 
+        "dEQP-GLES3.functional.pol",
         "ygon_offset.fixed24_enable");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043914,
-        "dEQP-GLES3.functional.polygon_offs", 
+        "dEQP-GLES3.functional.polygon_offs",
         "et.fixed24_displacement_with_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043915,
-        "dEQP-GLES3.functional.polygon_o", 
+        "dEQP-GLES3.functional.polygon_o",
         "ffset.fixed24_render_with_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043916,
-        "dEQP-GLES3.functional.polygon_o", 
+        "dEQP-GLES3.functional.polygon_o",
         "ffset.fixed24_render_with_factor");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043917,
-        "dEQP-GLES3.functional.polygon", 
+        "dEQP-GLES3.functional.polygon",
         "_offset.fixed24_factor_0_slope");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043918,
-        "dEQP-GLES3.functional.pol", 
+        "dEQP-GLES3.functional.pol",
         "ygon_offset.float32_enable");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043919,
-        "dEQP-GLES3.functional.polygon_offs", 
+        "dEQP-GLES3.functional.polygon_offs",
         "et.float32_displacement_with_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043920,
-        "dEQP-GLES3.functional.polygon_o", 
+        "dEQP-GLES3.functional.polygon_o",
         "ffset.float32_render_with_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043921,
-        "dEQP-GLES3.functional.polygon_o", 
+        "dEQP-GLES3.functional.polygon_o",
         "ffset.float32_render_with_factor");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043922,
-        "dEQP-GLES3.functional.polygon", 
+        "dEQP-GLES3.functional.polygon",
         "_offset.float32_factor_0_slope");

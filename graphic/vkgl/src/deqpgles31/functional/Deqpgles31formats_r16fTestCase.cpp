@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014341,
-        "dEQP-GLES31.functional.texture.borde", 
+        "dEQP-GLES31.functional.texture.borde",
         "r_clamp.formats.r16f.nearest_size_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014342,
-        "dEQP-GLES31.functional.texture.border", 
+        "dEQP-GLES31.functional.texture.border",
         "_clamp.formats.r16f.nearest_size_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014343,
-        "dEQP-GLES31.functional.texture.borde", 
+        "dEQP-GLES31.functional.texture.borde",
         "r_clamp.formats.r16f.linear_size_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014344,
-        "dEQP-GLES31.functional.texture.borde", 
+        "dEQP-GLES31.functional.texture.borde",
         "r_clamp.formats.r16f.linear_size_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014345,
-        "dEQP-GLES31.functional.texture.borde", 
+        "dEQP-GLES31.functional.texture.borde",
         "r_clamp.formats.r16f.gather_size_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014346,
-        "dEQP-GLES31.functional.texture.borde", 
+        "dEQP-GLES31.functional.texture.borde",
         "r_clamp.formats.r16f.gather_size_npot");

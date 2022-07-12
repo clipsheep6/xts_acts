@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002203,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.random.basic_arrays.0");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002204,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.random.basic_arrays.1");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002205,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.random.basic_arrays.2");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002206,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.random.basic_arrays.3");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002207,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.random.basic_arrays.4");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002208,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.random.basic_arrays.5");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002209,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.random.basic_arrays.6");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002210,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.random.basic_arrays.7");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002211,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.random.basic_arrays.8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002212,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.random.basic_arrays.9");

@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004847,
-        "dEQP-GLES3.functional.shaders.qualification_order.", 
+        "dEQP-GLES3.functional.shaders.qualification_order.",
         "variables.valid.invariant_interp_storage_precision");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004848,
-        "dEQP-GLES3.functional.shaders.qualification_o", 
+        "dEQP-GLES3.functional.shaders.qualification_o",
         "rder.variables.valid.interp_storage_precision");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004849,
-        "dEQP-GLES3.functional.shaders.qualification_o", 
+        "dEQP-GLES3.functional.shaders.qualification_o",
         "rder.variables.valid.invariant_interp_storage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004850,
-        "dEQP-GLES3.functional.shaders.qualification_or", 
+        "dEQP-GLES3.functional.shaders.qualification_or",
         "der.variables.valid.invariant_storage_precision");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004851,
-        "dEQP-GLES3.functional.shaders.qualificati", 
+        "dEQP-GLES3.functional.shaders.qualificati",
         "on_order.variables.valid.storage_precision");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004852,
-        "dEQP-GLES3.functional.shaders.qualificat", 
+        "dEQP-GLES3.functional.shaders.qualificat",
         "ion_order.variables.valid.interp_storage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30005TestSuite, TestCase_004853,
-        "dEQP-GLES3.functional.shaders.qualificati", 
+        "dEQP-GLES3.functional.shaders.qualificati",
         "on_order.variables.valid.invariant_storage");

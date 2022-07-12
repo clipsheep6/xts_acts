@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016524,
-        "dEQP-GLES31.functional.vertex_attribute_bi", 
+        "dEQP-GLES31.functional.vertex_attribute_bi",
         "nding.usage.mixed_usage.mixed_attribs_basic");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016525,
-        "dEQP-GLES31.functional.vertex_attribute_binding.", 
+        "dEQP-GLES31.functional.vertex_attribute_binding.",
         "usage.mixed_usage.mixed_attribs_instanced_binding");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016526,
-        "dEQP-GLES31.functional.vertex_attribute_binding.", 
+        "dEQP-GLES31.functional.vertex_attribute_binding.",
         "usage.mixed_usage.mixed_attribs_instanced_attrib");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016527,
-        "dEQP-GLES31.functional.vertex_attribute_bind", 
+        "dEQP-GLES31.functional.vertex_attribute_bind",
         "ing.usage.mixed_usage.mixed_api_change_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016528,
-        "dEQP-GLES31.functional.vertex_attribute_binding.", 
+        "dEQP-GLES31.functional.vertex_attribute_binding.",
         "usage.mixed_usage.mixed_api_change_buffer_offset");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016529,
-        "dEQP-GLES31.functional.vertex_attribute_binding.", 
+        "dEQP-GLES31.functional.vertex_attribute_binding.",
         "usage.mixed_usage.mixed_api_change_buffer_stride");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016530,
-        "dEQP-GLES31.functional.vertex_attribute_binding.", 
+        "dEQP-GLES31.functional.vertex_attribute_binding.",
         "usage.mixed_usage.mixed_api_change_binding_point");

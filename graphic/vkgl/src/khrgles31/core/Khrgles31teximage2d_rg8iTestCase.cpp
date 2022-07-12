@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002809,
-        "KHR-GLES31.core.pixelstora", 
+        "KHR-GLES31.core.pixelstora",
         "gemodes.teximage2d.rg8i.0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002810,
-        "KHR-GLES31.core.pixelstora", 
+        "KHR-GLES31.core.pixelstora",
         "gemodes.teximage2d.rg8i.1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002811,
-        "KHR-GLES31.core.pixelstorag", 
+        "KHR-GLES31.core.pixelstorag",
         "emodes.teximage2d.rg8i.16_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002812,
-        "KHR-GLES31.core.pixelstora", 
+        "KHR-GLES31.core.pixelstora",
         "gemodes.teximage2d.rg8i.1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002813,
-        "KHR-GLES31.core.pixelstorag", 
+        "KHR-GLES31.core.pixelstorag",
         "emodes.teximage2d.rg8i.16_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002814,
-        "KHR-GLES31.core.pixelstorag", 
+        "KHR-GLES31.core.pixelstorag",
         "emodes.teximage2d.rg8i.16_16");

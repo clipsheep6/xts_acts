@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019806,
-        "dEQP-GLES31.functional.debug.negative_covera", 
+        "dEQP-GLES31.functional.debug.negative_covera",
         "ge.get_error.precise.precise_as_variable_name");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019807,
-        "dEQP-GLES31.functional.debug.negative_covera", 
+        "dEQP-GLES31.functional.debug.negative_covera",
         "ge.get_error.precise.precise_as_function_name");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019808,
-        "dEQP-GLES31.functional.debug.negative_coverage", 
+        "dEQP-GLES31.functional.debug.negative_coverage",
         ".get_error.precise.precise_as_function_argument");

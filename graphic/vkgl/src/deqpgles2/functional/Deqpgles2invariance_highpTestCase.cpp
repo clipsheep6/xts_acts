@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007823,
-        "dEQP-GLES2.functional.shaders.inva", 
+        "dEQP-GLES2.functional.shaders.inva",
         "riance.highp.common_subexpression_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007824,
-        "dEQP-GLES2.functional.shaders.inva", 
+        "dEQP-GLES2.functional.shaders.inva",
         "riance.highp.common_subexpression_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007825,
-        "dEQP-GLES2.functional.shaders.inva", 
+        "dEQP-GLES2.functional.shaders.inva",
         "riance.highp.common_subexpression_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007826,
-        "dEQP-GLES2.functional.shaders.inva", 
+        "dEQP-GLES2.functional.shaders.inva",
         "riance.highp.common_subexpression_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007827,
-        "dEQP-GLES2.functional.shaders.invaria", 
+        "dEQP-GLES2.functional.shaders.invaria",
         "nce.highp.subexpression_precision_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007828,
-        "dEQP-GLES2.functional.shaders.invarianc", 
+        "dEQP-GLES2.functional.shaders.invarianc",
         "e.highp.subexpression_precision_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007829,
-        "dEQP-GLES2.functional.shaders.invarian", 
+        "dEQP-GLES2.functional.shaders.invarian",
         "ce.highp.subexpression_precision_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007830,
-        "dEQP-GLES2.functional.shad", 
+        "dEQP-GLES2.functional.shad",
         "ers.invariance.highp.loop_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007831,
-        "dEQP-GLES2.functional.shad", 
+        "dEQP-GLES2.functional.shad",
         "ers.invariance.highp.loop_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007832,
-        "dEQP-GLES2.functional.shad", 
+        "dEQP-GLES2.functional.shad",
         "ers.invariance.highp.loop_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007833,
-        "dEQP-GLES2.functional.shad", 
+        "dEQP-GLES2.functional.shad",
         "ers.invariance.highp.loop_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007834,
-        "dEQP-GLES2.functional.shad", 
+        "dEQP-GLES2.functional.shad",
         "ers.invariance.highp.loop_4");

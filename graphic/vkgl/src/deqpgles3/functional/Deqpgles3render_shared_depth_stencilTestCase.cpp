@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031547,
-        "dEQP-GLES3.functional.fbo.render.shared_depth_st", 
+        "dEQP-GLES3.functional.fbo.render.shared_depth_st",
         "encil.tex2d_rgba8_depth_tex2d_depth_component32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031548,
-        "dEQP-GLES3.functional.fbo.render.shared_depth_s", 
+        "dEQP-GLES3.functional.fbo.render.shared_depth_s",
         "tencil.tex2d_rgba8_depth_rbo_depth_component32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031549,
-        "dEQP-GLES3.functional.fbo.render.shared_depth_s", 
+        "dEQP-GLES3.functional.fbo.render.shared_depth_s",
         "tencil.tex2d_rgba8_depth_tex2d_depth_component24");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031550,
-        "dEQP-GLES3.functional.fbo.render.shared_depth_", 
+        "dEQP-GLES3.functional.fbo.render.shared_depth_",
         "stencil.tex2d_rgba8_depth_rbo_depth_component24");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031551,
-        "dEQP-GLES3.functional.fbo.render.shared_depth_s", 
+        "dEQP-GLES3.functional.fbo.render.shared_depth_s",
         "tencil.tex2d_rgba8_depth_tex2d_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031552,
-        "dEQP-GLES3.functional.fbo.render.shared_depth_", 
+        "dEQP-GLES3.functional.fbo.render.shared_depth_",
         "stencil.tex2d_rgba8_depth_rbo_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031553,
-        "dEQP-GLES3.functional.fbo.render.shared_depth_stenc", 
+        "dEQP-GLES3.functional.fbo.render.shared_depth_stenc",
         "il.tex2d_rgba8_depth_stencil_tex2d_depth32f_stencil8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031554,
-        "dEQP-GLES3.functional.fbo.render.shared_depth_sten", 
+        "dEQP-GLES3.functional.fbo.render.shared_depth_sten",
         "cil.tex2d_rgba8_depth_stencil_rbo_depth32f_stencil8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031555,
-        "dEQP-GLES3.functional.fbo.render.shared_depth_stenc", 
+        "dEQP-GLES3.functional.fbo.render.shared_depth_stenc",
         "il.tex2d_rgba8_depth_stencil_tex2d_depth24_stencil8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031556,
-        "dEQP-GLES3.functional.fbo.render.shared_depth_sten", 
+        "dEQP-GLES3.functional.fbo.render.shared_depth_sten",
         "cil.tex2d_rgba8_depth_stencil_rbo_depth24_stencil8");

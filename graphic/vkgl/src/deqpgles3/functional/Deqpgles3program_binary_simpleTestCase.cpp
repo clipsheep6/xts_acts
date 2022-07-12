@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041904,
-        "dEQP-GLES3.functional.shader_api.program_bin", 
+        "dEQP-GLES3.functional.shader_api.program_bin",
         "ary.simple.get_program_binary_vertex_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041905,
-        "dEQP-GLES3.functional.shader_api.program_", 
+        "dEQP-GLES3.functional.shader_api.program_",
         "binary.simple.uniform_reset_on_binary_load");

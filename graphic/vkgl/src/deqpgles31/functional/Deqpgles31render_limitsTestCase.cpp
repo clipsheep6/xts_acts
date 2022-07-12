@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018287,
-        "dEQP-GLES31.functional.tessellation_geometry_intera", 
+        "dEQP-GLES31.functional.tessellation_geometry_intera",
         "ction.render.limits.output_required_max_tessellation");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018288,
-        "dEQP-GLES31.functional.tessellation_geometry_interacti", 
+        "dEQP-GLES31.functional.tessellation_geometry_interacti",
         "on.render.limits.output_implementation_max_tessellation");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018289,
-        "dEQP-GLES31.functional.tessellation_geometry_inte", 
+        "dEQP-GLES31.functional.tessellation_geometry_inte",
         "raction.render.limits.output_required_max_geometry");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018290,
-        "dEQP-GLES31.functional.tessellation_geometry_interac", 
+        "dEQP-GLES31.functional.tessellation_geometry_interac",
         "tion.render.limits.output_implementation_max_geometry");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018291,
-        "dEQP-GLES31.functional.tessellation_geometry_intera", 
+        "dEQP-GLES31.functional.tessellation_geometry_intera",
         "ction.render.limits.output_required_max_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018292,
-        "dEQP-GLES31.functional.tessellation_geometry_interacti", 
+        "dEQP-GLES31.functional.tessellation_geometry_interacti",
         "on.render.limits.output_implementation_max_invocations");

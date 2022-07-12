@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013394,
-        "dEQP-GLES2.functional.vertex_arrays.multiple_", 
+        "dEQP-GLES2.functional.vertex_arrays.multiple_",
         "attributes.storage.3_user_ptr_user_ptr_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013395,
-        "dEQP-GLES2.functional.vertex_arrays.multiple_", 
+        "dEQP-GLES2.functional.vertex_arrays.multiple_",
         "attributes.storage.3_user_ptr_buffer_user_ptr");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013396,
-        "dEQP-GLES2.functional.vertex_arrays.multiple", 
+        "dEQP-GLES2.functional.vertex_arrays.multiple",
         "_attributes.storage.3_user_ptr_buffer_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013397,
-        "dEQP-GLES2.functional.vertex_arrays.multiple_", 
+        "dEQP-GLES2.functional.vertex_arrays.multiple_",
         "attributes.storage.3_buffer_user_ptr_user_ptr");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013398,
-        "dEQP-GLES2.functional.vertex_arrays.multiple", 
+        "dEQP-GLES2.functional.vertex_arrays.multiple",
         "_attributes.storage.3_buffer_user_ptr_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013399,
-        "dEQP-GLES2.functional.vertex_arrays.multiple", 
+        "dEQP-GLES2.functional.vertex_arrays.multiple",
         "_attributes.storage.3_buffer_buffer_user_ptr");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013400,
-        "dEQP-GLES2.functional.vertex_arrays.multipl", 
+        "dEQP-GLES2.functional.vertex_arrays.multipl",
         "e_attributes.storage.3_buffer_buffer_buffer");

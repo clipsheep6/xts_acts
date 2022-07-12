@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027306,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.units.all_units.only_cube.0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027307,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.units.all_units.only_cube.1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027308,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.units.all_units.only_cube.2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027309,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.units.all_units.only_cube.3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027310,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.units.all_units.only_cube.4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027311,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.units.all_units.only_cube.5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027312,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.units.all_units.only_cube.6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027313,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.units.all_units.only_cube.7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027314,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.units.all_units.only_cube.8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027315,
-        "dEQP-GLES3.functional.textur", 
+        "dEQP-GLES3.functional.textur",
         "e.units.all_units.only_cube.9");

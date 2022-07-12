@@ -24,45 +24,45 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000053,
-        "dEQP-GLES2.functional.d", 
+        "dEQP-GLES2.functional.d",
         "epth_stencil_clear.depth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000054,
-        "dEQP-GLES2.functional.depth_", 
+        "dEQP-GLES2.functional.depth_",
         "stencil_clear.depth_scissored");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000055,
-        "dEQP-GLES2.functional.depth_sten", 
+        "dEQP-GLES2.functional.depth_sten",
         "cil_clear.depth_scissored_masked");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000056,
-        "dEQP-GLES2.functional.de", 
+        "dEQP-GLES2.functional.de",
         "pth_stencil_clear.stencil");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000057,
-        "dEQP-GLES2.functional.depth_", 
+        "dEQP-GLES2.functional.depth_",
         "stencil_clear.stencil_masked");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000058,
-        "dEQP-GLES2.functional.depth_s", 
+        "dEQP-GLES2.functional.depth_s",
         "tencil_clear.stencil_scissored");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000059,
-        "dEQP-GLES2.functional.depth_stenc", 
+        "dEQP-GLES2.functional.depth_stenc",
         "il_clear.stencil_scissored_masked");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000060,
-        "dEQP-GLES2.functional.depth", 
+        "dEQP-GLES2.functional.depth",
         "_stencil_clear.depth_stencil");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000061,
-        "dEQP-GLES2.functional.depth_ste", 
+        "dEQP-GLES2.functional.depth_ste",
         "ncil_clear.depth_stencil_masked");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000062,
-        "dEQP-GLES2.functional.depth_sten", 
+        "dEQP-GLES2.functional.depth_sten",
         "cil_clear.depth_stencil_scissored");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000063,
-        "dEQP-GLES2.functional.depth_stencil_", 
+        "dEQP-GLES2.functional.depth_stencil_",
         "clear.depth_stencil_scissored_masked");

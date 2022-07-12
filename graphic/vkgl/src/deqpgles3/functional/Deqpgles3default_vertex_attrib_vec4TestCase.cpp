@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044267,
-        "dEQP-GLES3.functional.default_ve", 
+        "dEQP-GLES3.functional.default_ve",
         "rtex_attrib.vec4.vertex_attrib_1f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044268,
-        "dEQP-GLES3.functional.default_ve", 
+        "dEQP-GLES3.functional.default_ve",
         "rtex_attrib.vec4.vertex_attrib_2f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044269,
-        "dEQP-GLES3.functional.default_ve", 
+        "dEQP-GLES3.functional.default_ve",
         "rtex_attrib.vec4.vertex_attrib_3f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044270,
-        "dEQP-GLES3.functional.default_ve", 
+        "dEQP-GLES3.functional.default_ve",
         "rtex_attrib.vec4.vertex_attrib_4f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044271,
-        "dEQP-GLES3.functional.default_ver", 
+        "dEQP-GLES3.functional.default_ver",
         "tex_attrib.vec4.vertex_attrib_1fv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044272,
-        "dEQP-GLES3.functional.default_ver", 
+        "dEQP-GLES3.functional.default_ver",
         "tex_attrib.vec4.vertex_attrib_2fv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044273,
-        "dEQP-GLES3.functional.default_ver", 
+        "dEQP-GLES3.functional.default_ver",
         "tex_attrib.vec4.vertex_attrib_3fv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044274,
-        "dEQP-GLES3.functional.default_ver", 
+        "dEQP-GLES3.functional.default_ver",
         "tex_attrib.vec4.vertex_attrib_4fv");

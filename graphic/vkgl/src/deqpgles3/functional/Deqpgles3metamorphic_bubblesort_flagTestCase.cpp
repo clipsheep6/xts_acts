@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019992,
-        "dEQP-GLES3.functional.shaders.met", 
+        "dEQP-GLES3.functional.shaders.met",
         "amorphic.bubblesort_flag.variant_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019993,
-        "dEQP-GLES3.functional.shaders.met", 
+        "dEQP-GLES3.functional.shaders.met",
         "amorphic.bubblesort_flag.variant_2");

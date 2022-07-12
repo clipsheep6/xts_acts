@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016110,
-        "dEQP-GLES31.functional.state_query.vertex_attri", 
+        "dEQP-GLES31.functional.state_query.vertex_attri",
         "bute_binding.vertex_attrib.vertex_attrib_binding");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016111,
-        "dEQP-GLES31.functional.state_query.vertex_attribute", 
+        "dEQP-GLES31.functional.state_query.vertex_attribute",
         "_binding.vertex_attrib.vertex_attrib_relative_offset");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016112,
-        "dEQP-GLES31.functional.state_query.vertex_attribute_bind", 
+        "dEQP-GLES31.functional.state_query.vertex_attribute_bind",
         "ing.vertex_attrib.vertex_attrib_binding_getvertexattribfv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016113,
-        "dEQP-GLES31.functional.state_query.vertex_attribute_binding.", 
+        "dEQP-GLES31.functional.state_query.vertex_attribute_binding.",
         "vertex_attrib.vertex_attrib_relative_offset_getvertexattribfv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016114,
-        "dEQP-GLES31.functional.state_query.vertex_attribute_bindi", 
+        "dEQP-GLES31.functional.state_query.vertex_attribute_bindi",
         "ng.vertex_attrib.vertex_attrib_binding_getvertexattribiiv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016115,
-        "dEQP-GLES31.functional.state_query.vertex_attribute_binding.v", 
+        "dEQP-GLES31.functional.state_query.vertex_attribute_binding.v",
         "ertex_attrib.vertex_attrib_relative_offset_getvertexattribiiv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016116,
-        "dEQP-GLES31.functional.state_query.vertex_attribute_bindi", 
+        "dEQP-GLES31.functional.state_query.vertex_attribute_bindi",
         "ng.vertex_attrib.vertex_attrib_binding_getvertexattribiuiv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016117,
-        "dEQP-GLES31.functional.state_query.vertex_attribute_binding.v", 
+        "dEQP-GLES31.functional.state_query.vertex_attribute_binding.v",
         "ertex_attrib.vertex_attrib_relative_offset_getvertexattribiuiv");

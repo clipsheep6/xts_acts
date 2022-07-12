@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000323,
-        "KHR-GLES31.core.sample_varia", 
+        "KHR-GLES31.core.sample_varia",
         "bles.position.fixed.samples_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000324,
-        "KHR-GLES31.core.sample_varia", 
+        "KHR-GLES31.core.sample_varia",
         "bles.position.fixed.samples_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000325,
-        "KHR-GLES31.core.sample_varia", 
+        "KHR-GLES31.core.sample_varia",
         "bles.position.fixed.samples_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000326,
-        "KHR-GLES31.core.sample_varia", 
+        "KHR-GLES31.core.sample_varia",
         "bles.position.fixed.samples_4");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000327,
-        "KHR-GLES31.core.sample_varia", 
+        "KHR-GLES31.core.sample_varia",
         "bles.position.fixed.samples_8");

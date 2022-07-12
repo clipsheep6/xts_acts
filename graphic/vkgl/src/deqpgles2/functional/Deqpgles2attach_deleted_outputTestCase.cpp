@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016488,
-        "dEQP-GLES2.functional.lifetime.attac", 
+        "dEQP-GLES2.functional.lifetime.attac",
         "h.deleted_output.texture_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016489,
-        "dEQP-GLES2.functional.lifetime.attach.", 
+        "dEQP-GLES2.functional.lifetime.attach.",
         "deleted_output.renderbuffer_framebuffer");

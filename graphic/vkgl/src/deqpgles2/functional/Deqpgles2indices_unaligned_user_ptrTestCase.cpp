@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016337,
-        "dEQP-GLES2.functional.draw.draw_element", 
+        "dEQP-GLES2.functional.draw.draw_element",
         "s.indices.unaligned_user_ptr.index_short");

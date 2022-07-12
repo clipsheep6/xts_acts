@@ -24,109 +24,109 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019576,
-        "dEQP-GLES31.functional.debug.negativ", 
+        "dEQP-GLES31.functional.debug.negativ",
         "e_coverage.get_error.fragment.scissor");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019577,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.get_error.fragment.depth_func");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019578,
-        "dEQP-GLES31.functional.debug.negative", 
+        "dEQP-GLES31.functional.debug.negative",
         "_coverage.get_error.fragment.viewport");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019579,
-        "dEQP-GLES31.functional.debug.negative_c", 
+        "dEQP-GLES31.functional.debug.negative_c",
         "overage.get_error.fragment.stencil_func");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019580,
-        "dEQP-GLES31.functional.debug.negative_cover", 
+        "dEQP-GLES31.functional.debug.negative_cover",
         "age.get_error.fragment.stencil_func_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019581,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.get_error.fragment.stencil_op");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019582,
-        "dEQP-GLES31.functional.debug.negative_cove", 
+        "dEQP-GLES31.functional.debug.negative_cove",
         "rage.get_error.fragment.stencil_op_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019583,
-        "dEQP-GLES31.functional.debug.negative_cover", 
+        "dEQP-GLES31.functional.debug.negative_cover",
         "age.get_error.fragment.stencil_mask_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019584,
-        "dEQP-GLES31.functional.debug.negative_co", 
+        "dEQP-GLES31.functional.debug.negative_co",
         "verage.get_error.fragment.blend_equation");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019585,
-        "dEQP-GLES31.functional.debug.negative_co", 
+        "dEQP-GLES31.functional.debug.negative_co",
         "verage.get_error.fragment.blend_equationi");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019586,
-        "dEQP-GLES31.functional.debug.negative_covera", 
+        "dEQP-GLES31.functional.debug.negative_covera",
         "ge.get_error.fragment.blend_equation_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019587,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.get_error.fragment.blend_equation_separatei");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019588,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.get_error.fragment.blend_func");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019589,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.get_error.fragment.blend_funci");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019590,
-        "dEQP-GLES31.functional.debug.negative_cove", 
+        "dEQP-GLES31.functional.debug.negative_cove",
         "rage.get_error.fragment.blend_func_separate");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019591,
-        "dEQP-GLES31.functional.debug.negative_cover", 
+        "dEQP-GLES31.functional.debug.negative_cover",
         "age.get_error.fragment.blend_func_separatei");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019592,
-        "dEQP-GLES31.functional.debug.negative", 
+        "dEQP-GLES31.functional.debug.negative",
         "_coverage.get_error.fragment.cull_face");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019593,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.get_error.fragment.front_face");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019594,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.get_error.fragment.line_width");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019595,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.get_error.fragment.gen_queries");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019596,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.get_error.fragment.begin_query");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019597,
-        "dEQP-GLES31.functional.debug.negative", 
+        "dEQP-GLES31.functional.debug.negative",
         "_coverage.get_error.fragment.end_query");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019598,
-        "dEQP-GLES31.functional.debug.negative_co", 
+        "dEQP-GLES31.functional.debug.negative_co",
         "verage.get_error.fragment.delete_queries");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019599,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.get_error.fragment.fence_sync");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019600,
-        "dEQP-GLES31.functional.debug.negative", 
+        "dEQP-GLES31.functional.debug.negative",
         "_coverage.get_error.fragment.wait_sync");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019601,
-        "dEQP-GLES31.functional.debug.negative_cov", 
+        "dEQP-GLES31.functional.debug.negative_cov",
         "erage.get_error.fragment.client_wait_sync");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019602,
-        "dEQP-GLES31.functional.debug.negative_", 
+        "dEQP-GLES31.functional.debug.negative_",
         "coverage.get_error.fragment.delete_sync");

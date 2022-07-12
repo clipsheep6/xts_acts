@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005007,
-        "dEQP-GLES31.functional.shaders.builtin", 
+        "dEQP-GLES31.functional.shaders.builtin",
         "_constants.sample_variables.max_samples");

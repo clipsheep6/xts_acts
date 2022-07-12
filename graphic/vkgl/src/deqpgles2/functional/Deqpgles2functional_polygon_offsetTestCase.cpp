@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016303,
-        "dEQP-GLES2.functional.pol", 
+        "dEQP-GLES2.functional.pol",
         "ygon_offset.default_enable");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016304,
-        "dEQP-GLES2.functional.polygon_offs", 
+        "dEQP-GLES2.functional.polygon_offs",
         "et.default_displacement_with_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016305,
-        "dEQP-GLES2.functional.polygon_o", 
+        "dEQP-GLES2.functional.polygon_o",
         "ffset.default_render_with_factor");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016306,
-        "dEQP-GLES2.functional.polygon", 
+        "dEQP-GLES2.functional.polygon",
         "_offset.default_factor_0_slope");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016307,
-        "dEQP-GLES2.functional.pol", 
+        "dEQP-GLES2.functional.pol",
         "ygon_offset.fixed16_enable");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016308,
-        "dEQP-GLES2.functional.polygon_offs", 
+        "dEQP-GLES2.functional.polygon_offs",
         "et.fixed16_displacement_with_units");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016309,
-        "dEQP-GLES2.functional.polygon_o", 
+        "dEQP-GLES2.functional.polygon_o",
         "ffset.fixed16_render_with_factor");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016310,
-        "dEQP-GLES2.functional.polygon", 
+        "dEQP-GLES2.functional.polygon",
         "_offset.fixed16_factor_0_slope");

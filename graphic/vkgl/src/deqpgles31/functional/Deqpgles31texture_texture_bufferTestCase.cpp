@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015471,
-        "dEQP-GLES31.functional.state_query", 
+        "dEQP-GLES31.functional.state_query",
         ".texture.texture_buffer.is_texture");

@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000161,
-        "dEQP-GLES3.functional.buffer.w", 
+        "dEQP-GLES3.functional.buffer.w",
         "rite.recreate_store.identical_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000162,
-        "dEQP-GLES3.functional.buffer.w", 
+        "dEQP-GLES3.functional.buffer.w",
         "rite.recreate_store.identical_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000163,
-        "dEQP-GLES3.functional.buffer.writ", 
+        "dEQP-GLES3.functional.buffer.writ",
         "e.recreate_store.different_target");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000164,
-        "dEQP-GLES3.functional.buffer.wri", 
+        "dEQP-GLES3.functional.buffer.wri",
         "te.recreate_store.different_usage");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000165,
-        "dEQP-GLES3.functional.buffer.wri", 
+        "dEQP-GLES3.functional.buffer.wri",
         "te.recreate_store.different_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000166,
-        "dEQP-GLES3.functional.buffer.", 
+        "dEQP-GLES3.functional.buffer.",
         "write.recreate_store.random_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000167,
-        "dEQP-GLES3.functional.buffer.", 
+        "dEQP-GLES3.functional.buffer.",
         "write.recreate_store.random_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000168,
-        "dEQP-GLES3.functional.buffer.", 
+        "dEQP-GLES3.functional.buffer.",
         "write.recreate_store.random_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000169,
-        "dEQP-GLES3.functional.buffer.", 
+        "dEQP-GLES3.functional.buffer.",
         "write.recreate_store.random_4");

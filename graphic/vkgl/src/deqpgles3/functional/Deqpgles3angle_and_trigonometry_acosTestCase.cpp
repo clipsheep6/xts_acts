@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012270,
-        "dEQP-GLES3.functional.shaders.operator.angl", 
+        "dEQP-GLES3.functional.shaders.operator.angl",
         "e_and_trigonometry.acos.mediump_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012271,
-        "dEQP-GLES3.functional.shaders.operator.angle", 
+        "dEQP-GLES3.functional.shaders.operator.angle",
         "_and_trigonometry.acos.mediump_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012272,
-        "dEQP-GLES3.functional.shaders.operator.ang", 
+        "dEQP-GLES3.functional.shaders.operator.ang",
         "le_and_trigonometry.acos.highp_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012273,
-        "dEQP-GLES3.functional.shaders.operator.angl", 
+        "dEQP-GLES3.functional.shaders.operator.angl",
         "e_and_trigonometry.acos.highp_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012274,
-        "dEQP-GLES3.functional.shaders.operator.angl", 
+        "dEQP-GLES3.functional.shaders.operator.angl",
         "e_and_trigonometry.acos.mediump_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012275,
-        "dEQP-GLES3.functional.shaders.operator.angle", 
+        "dEQP-GLES3.functional.shaders.operator.angle",
         "_and_trigonometry.acos.mediump_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012276,
-        "dEQP-GLES3.functional.shaders.operator.ang", 
+        "dEQP-GLES3.functional.shaders.operator.ang",
         "le_and_trigonometry.acos.highp_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012277,
-        "dEQP-GLES3.functional.shaders.operator.angl", 
+        "dEQP-GLES3.functional.shaders.operator.angl",
         "e_and_trigonometry.acos.highp_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012278,
-        "dEQP-GLES3.functional.shaders.operator.angl", 
+        "dEQP-GLES3.functional.shaders.operator.angl",
         "e_and_trigonometry.acos.mediump_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012279,
-        "dEQP-GLES3.functional.shaders.operator.angle", 
+        "dEQP-GLES3.functional.shaders.operator.angle",
         "_and_trigonometry.acos.mediump_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012280,
-        "dEQP-GLES3.functional.shaders.operator.ang", 
+        "dEQP-GLES3.functional.shaders.operator.ang",
         "le_and_trigonometry.acos.highp_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012281,
-        "dEQP-GLES3.functional.shaders.operator.angl", 
+        "dEQP-GLES3.functional.shaders.operator.angl",
         "e_and_trigonometry.acos.highp_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012282,
-        "dEQP-GLES3.functional.shaders.operator.angl", 
+        "dEQP-GLES3.functional.shaders.operator.angl",
         "e_and_trigonometry.acos.mediump_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012283,
-        "dEQP-GLES3.functional.shaders.operator.angle", 
+        "dEQP-GLES3.functional.shaders.operator.angle",
         "_and_trigonometry.acos.mediump_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012284,
-        "dEQP-GLES3.functional.shaders.operator.ang", 
+        "dEQP-GLES3.functional.shaders.operator.ang",
         "le_and_trigonometry.acos.highp_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30013TestSuite, TestCase_012285,
-        "dEQP-GLES3.functional.shaders.operator.angl", 
+        "dEQP-GLES3.functional.shaders.operator.angl",
         "e_and_trigonometry.acos.highp_vec4_fragment");

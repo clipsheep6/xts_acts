@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015089,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.b", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.b",
         "asic_array_assign_full.multiple_basic_array.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015090,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.ba", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.ba",
         "sic_array_assign_full.multiple_basic_array.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015091,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "basic_array_assign_full.multiple_basic_array.both");

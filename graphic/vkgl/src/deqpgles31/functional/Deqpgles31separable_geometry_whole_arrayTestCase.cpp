@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023378,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.separable_geometry.whole_array.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023379,
-        "dEQP-GLES31.functional.program_interface_query.transform", 
+        "dEQP-GLES31.functional.program_interface_query.transform",
         "_feedback_varying.type.separable_geometry.whole_array.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023380,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.separable_geometry.whole_array.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023381,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.separable_geometry.whole_array.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023382,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.separable_geometry.whole_array.ivec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023383,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.separable_geometry.whole_array.uvec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023384,
-        "dEQP-GLES31.functional.program_interface_query.transform_f", 
+        "dEQP-GLES31.functional.program_interface_query.transform_f",
         "eedback_varying.type.separable_geometry.whole_array.mat3x4");

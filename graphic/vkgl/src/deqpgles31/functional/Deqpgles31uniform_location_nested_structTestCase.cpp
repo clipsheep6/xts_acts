@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018106,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018107,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018108,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018109,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018110,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018111,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018112,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018113,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018114,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018115,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_9");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018116,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018117,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_11");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018118,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_12");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018119,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_13");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018120,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_14");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018121,
-        "dEQP-GLES31.functional.uniform", 
+        "dEQP-GLES31.functional.uniform",
         "_location.nested_struct.case_15");

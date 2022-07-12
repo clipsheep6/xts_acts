@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012235,
-        "dEQP-GLES31.functional.atomic_counter.layout.defa", 
+        "dEQP-GLES31.functional.atomic_counter.layout.defa",
         "ult_offset_set.get_inc.8_counters_1_call_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012236,
-        "dEQP-GLES31.functional.atomic_counter.layout.defaul", 
+        "dEQP-GLES31.functional.atomic_counter.layout.defaul",
         "t_offset_set.get_inc.8_counters_1_call_1000_threads");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012237,
-        "dEQP-GLES31.functional.atomic_counter.layout.defa", 
+        "dEQP-GLES31.functional.atomic_counter.layout.defa",
         "ult_offset_set.get_inc.8_counters_5_calls_1_thread");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012238,
-        "dEQP-GLES31.functional.atomic_counter.layout.defaul", 
+        "dEQP-GLES31.functional.atomic_counter.layout.defaul",
         "t_offset_set.get_inc.8_counters_5_calls_1000_threads");

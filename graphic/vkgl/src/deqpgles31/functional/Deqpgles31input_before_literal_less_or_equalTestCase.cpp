@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005483,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.comp", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.comp",
         "arisons.input_before_literal.less_or_equal.int_to_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005484,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.compa", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.compa",
         "risons.input_before_literal.less_or_equal.int_to_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005485,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.comp", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.comp",
         "arisons.input_before_literal.less_or_equal.int_to_uint_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005486,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.compa", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.compa",
         "risons.input_before_literal.less_or_equal.int_to_uint_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005487,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.compa", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.compa",
         "risons.input_before_literal.less_or_equal.uint_to_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005488,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.compar", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es31.compar",
         "isons.input_before_literal.less_or_equal.uint_to_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_006517,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.comp", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.comp",
         "arisons.input_before_literal.less_or_equal.int_to_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_006518,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.compa", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.compa",
         "risons.input_before_literal.less_or_equal.int_to_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_006519,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.comp", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.comp",
         "arisons.input_before_literal.less_or_equal.int_to_uint_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_006520,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.compa", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.compa",
         "risons.input_before_literal.less_or_equal.int_to_uint_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_006521,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.compa", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.compa",
         "risons.input_before_literal.less_or_equal.uint_to_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_006522,
-        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.compar", 
+        "dEQP-GLES31.functional.shaders.implicit_conversions.es32.compar",
         "isons.input_before_literal.less_or_equal.uint_to_float_fragment");

@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007687,
-        "dEQP-GLES31.functional.compute.indirect_", 
+        "dEQP-GLES31.functional.compute.indirect_",
         "dispatch.upload_buffer.single_invocation");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007688,
-        "dEQP-GLES31.functional.compute.indirect", 
+        "dEQP-GLES31.functional.compute.indirect",
         "_dispatch.upload_buffer.multiple_groups");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007689,
-        "dEQP-GLES31.functional.compute.indirect_dispatch.", 
+        "dEQP-GLES31.functional.compute.indirect_dispatch.",
         "upload_buffer.multiple_groups_multiple_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007690,
-        "dEQP-GLES31.functional.compute.indire", 
+        "dEQP-GLES31.functional.compute.indire",
         "ct_dispatch.upload_buffer.small_offset");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007691,
-        "dEQP-GLES31.functional.compute.indire", 
+        "dEQP-GLES31.functional.compute.indire",
         "ct_dispatch.upload_buffer.large_offset");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007692,
-        "dEQP-GLES31.functional.compute.indirect_dispatch", 
+        "dEQP-GLES31.functional.compute.indirect_dispatch",
         ".upload_buffer.large_offset_multiple_invocations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007693,
-        "dEQP-GLES31.functional.compute.indirec", 
+        "dEQP-GLES31.functional.compute.indirec",
         "t_dispatch.upload_buffer.empty_command");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007694,
-        "dEQP-GLES31.functional.compute.indirec", 
+        "dEQP-GLES31.functional.compute.indirec",
         "t_dispatch.upload_buffer.multi_dispatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007695,
-        "dEQP-GLES31.functional.compute.indirect_dispa", 
+        "dEQP-GLES31.functional.compute.indirect_dispa",
         "tch.upload_buffer.multi_dispatch_reuse_command");

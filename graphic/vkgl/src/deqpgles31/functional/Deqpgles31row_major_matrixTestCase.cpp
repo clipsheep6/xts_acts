@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020757,
-        "dEQP-GLES31.functional.program_interface_query.unif", 
+        "dEQP-GLES31.functional.program_interface_query.unif",
         "orm.matrix_stride.named_block.row_major.matrix.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020758,
-        "dEQP-GLES31.functional.program_interface_query.unifo", 
+        "dEQP-GLES31.functional.program_interface_query.unifo",
         "rm.matrix_stride.named_block.row_major.matrix.mat2x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020759,
-        "dEQP-GLES31.functional.program_interface_query.unif", 
+        "dEQP-GLES31.functional.program_interface_query.unif",
         "orm.matrix_stride.named_block.row_major.matrix.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020760,
-        "dEQP-GLES31.functional.program_interface_query.unifo", 
+        "dEQP-GLES31.functional.program_interface_query.unifo",
         "rm.matrix_stride.named_block.row_major.matrix.mat3x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020761,
-        "dEQP-GLES31.functional.program_interface_query.unifo", 
+        "dEQP-GLES31.functional.program_interface_query.unifo",
         "rm.matrix_stride.named_block.row_major.matrix.mat4x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020762,
-        "dEQP-GLES31.functional.program_interface_query.unif", 
+        "dEQP-GLES31.functional.program_interface_query.unif",
         "orm.matrix_stride.named_block.row_major.matrix.mat4");

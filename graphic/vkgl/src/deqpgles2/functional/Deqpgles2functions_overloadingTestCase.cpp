@@ -24,81 +24,81 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002095,
-        "dEQP-GLES2.functional.shaders.functions.ov", 
+        "dEQP-GLES2.functional.shaders.functions.ov",
         "erloading.user_func_arg_type_simple_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002096,
-        "dEQP-GLES2.functional.shaders.functions.ove", 
+        "dEQP-GLES2.functional.shaders.functions.ove",
         "rloading.user_func_arg_type_simple_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002097,
-        "dEQP-GLES2.functional.shaders.functions.ov", 
+        "dEQP-GLES2.functional.shaders.functions.ov",
         "erloading.user_func_arg_float_types_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002098,
-        "dEQP-GLES2.functional.shaders.functions.ove", 
+        "dEQP-GLES2.functional.shaders.functions.ove",
         "rloading.user_func_arg_float_types_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002099,
-        "dEQP-GLES2.functional.shaders.functions.o", 
+        "dEQP-GLES2.functional.shaders.functions.o",
         "verloading.user_func_arg_int_types_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002100,
-        "dEQP-GLES2.functional.shaders.functions.ov", 
+        "dEQP-GLES2.functional.shaders.functions.ov",
         "erloading.user_func_arg_int_types_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002101,
-        "dEQP-GLES2.functional.shaders.functions.o", 
+        "dEQP-GLES2.functional.shaders.functions.o",
         "verloading.user_func_arg_bool_types_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002102,
-        "dEQP-GLES2.functional.shaders.functions.ov", 
+        "dEQP-GLES2.functional.shaders.functions.ov",
         "erloading.user_func_arg_bool_types_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002103,
-        "dEQP-GLES2.functional.shaders.functions.ov", 
+        "dEQP-GLES2.functional.shaders.functions.ov",
         "erloading.user_func_arg_basic_types_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002104,
-        "dEQP-GLES2.functional.shaders.functions.ove", 
+        "dEQP-GLES2.functional.shaders.functions.ove",
         "rloading.user_func_arg_basic_types_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002105,
-        "dEQP-GLES2.functional.shaders.functions.ove", 
+        "dEQP-GLES2.functional.shaders.functions.ove",
         "rloading.user_func_arg_complex_types_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002106,
-        "dEQP-GLES2.functional.shaders.functions.over", 
+        "dEQP-GLES2.functional.shaders.functions.over",
         "loading.user_func_arg_complex_types_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002107,
-        "dEQP-GLES2.functional.shaders.functions", 
+        "dEQP-GLES2.functional.shaders.functions",
         ".overloading.user_func_arguments_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002108,
-        "dEQP-GLES2.functional.shaders.functions.", 
+        "dEQP-GLES2.functional.shaders.functions.",
         "overloading.user_func_arguments_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002109,
-        "dEQP-GLES2.functional.shaders.funct", 
+        "dEQP-GLES2.functional.shaders.funct",
         "ions.overloading.builtin_sin_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002110,
-        "dEQP-GLES2.functional.shaders.functi", 
+        "dEQP-GLES2.functional.shaders.functi",
         "ons.overloading.builtin_sin_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002111,
-        "dEQP-GLES2.functional.shaders.funct", 
+        "dEQP-GLES2.functional.shaders.funct",
         "ions.overloading.builtin_step_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002112,
-        "dEQP-GLES2.functional.shaders.functi", 
+        "dEQP-GLES2.functional.shaders.functi",
         "ons.overloading.builtin_step_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002113,
-        "dEQP-GLES2.functional.shaders.func", 
+        "dEQP-GLES2.functional.shaders.func",
         "tions.overloading.array_size_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002114,
-        "dEQP-GLES2.functional.shaders.funct", 
+        "dEQP-GLES2.functional.shaders.funct",
         "ions.overloading.array_size_fragment");

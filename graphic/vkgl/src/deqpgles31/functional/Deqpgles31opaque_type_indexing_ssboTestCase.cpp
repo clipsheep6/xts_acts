@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003774,
-        "dEQP-GLES31.functional.shaders.opaque_", 
+        "dEQP-GLES31.functional.shaders.opaque_",
         "type_indexing.ssbo.const_literal_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003775,
-        "dEQP-GLES31.functional.shaders.opaque_t", 
+        "dEQP-GLES31.functional.shaders.opaque_t",
         "ype_indexing.ssbo.const_literal_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003776,
-        "dEQP-GLES31.functional.shaders.opaque_t", 
+        "dEQP-GLES31.functional.shaders.opaque_t",
         "ype_indexing.ssbo.const_literal_compute");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003777,
-        "dEQP-GLES31.functional.shaders.opaque_t", 
+        "dEQP-GLES31.functional.shaders.opaque_t",
         "ype_indexing.ssbo.const_literal_geometry");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003778,
-        "dEQP-GLES31.functional.shaders.opaque_type_in", 
+        "dEQP-GLES31.functional.shaders.opaque_type_in",
         "dexing.ssbo.const_literal_tessellation_control");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003779,
-        "dEQP-GLES31.functional.shaders.opaque_type_inde", 
+        "dEQP-GLES31.functional.shaders.opaque_type_inde",
         "xing.ssbo.const_literal_tessellation_evaluation");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003780,
-        "dEQP-GLES31.functional.shaders.opaque_ty", 
+        "dEQP-GLES31.functional.shaders.opaque_ty",
         "pe_indexing.ssbo.const_expression_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003781,
-        "dEQP-GLES31.functional.shaders.opaque_typ", 
+        "dEQP-GLES31.functional.shaders.opaque_typ",
         "e_indexing.ssbo.const_expression_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003782,
-        "dEQP-GLES31.functional.shaders.opaque_ty", 
+        "dEQP-GLES31.functional.shaders.opaque_ty",
         "pe_indexing.ssbo.const_expression_compute");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003783,
-        "dEQP-GLES31.functional.shaders.opaque_typ", 
+        "dEQP-GLES31.functional.shaders.opaque_typ",
         "e_indexing.ssbo.const_expression_geometry");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003784,
-        "dEQP-GLES31.functional.shaders.opaque_type_inde", 
+        "dEQP-GLES31.functional.shaders.opaque_type_inde",
         "xing.ssbo.const_expression_tessellation_control");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003785,
-        "dEQP-GLES31.functional.shaders.opaque_type_index", 
+        "dEQP-GLES31.functional.shaders.opaque_type_index",
         "ing.ssbo.const_expression_tessellation_evaluation");

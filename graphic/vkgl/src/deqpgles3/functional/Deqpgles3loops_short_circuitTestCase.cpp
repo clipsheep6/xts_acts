@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007278,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "oops.short_circuit.while_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007279,
-        "dEQP-GLES3.functional.shaders.lo", 
+        "dEQP-GLES3.functional.shaders.lo",
         "ops.short_circuit.while_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007280,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "loops.short_circuit.for_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007281,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "oops.short_circuit.for_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007282,
-        "dEQP-GLES3.functional.shaders.lo", 
+        "dEQP-GLES3.functional.shaders.lo",
         "ops.short_circuit.do_while_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007283,
-        "dEQP-GLES3.functional.shaders.loo", 
+        "dEQP-GLES3.functional.shaders.loo",
         "ps.short_circuit.do_while_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007284,
-        "dEQP-GLES3.functional.shaders.loops", 
+        "dEQP-GLES3.functional.shaders.loops",
         ".short_circuit.while_sequence_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007285,
-        "dEQP-GLES3.functional.shaders.loops.", 
+        "dEQP-GLES3.functional.shaders.loops.",
         "short_circuit.while_sequence_fragment");

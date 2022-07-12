@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019585,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.transpose.highp_fragment.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019586,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.transpose.highp_fragment.mat2x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019587,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.transpose.highp_fragment.mat2x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019588,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.transpose.highp_fragment.mat3x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019589,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.transpose.highp_fragment.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019590,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.transpose.highp_fragment.mat3x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019591,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.transpose.highp_fragment.mat4x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019592,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.precision.transpose.highp_fragment.mat4x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019593,
-        "dEQP-GLES3.functional.shaders.builtin_funct", 
+        "dEQP-GLES3.functional.shaders.builtin_funct",
         "ions.precision.transpose.highp_fragment.mat4");

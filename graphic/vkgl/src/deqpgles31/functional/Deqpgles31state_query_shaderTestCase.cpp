@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015973,
-        "dEQP-GLES31.functional.stat", 
+        "dEQP-GLES31.functional.stat",
         "e_query.shader.sampler_type");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015974,
-        "dEQP-GLES31.functional.state_query.s", 
+        "dEQP-GLES31.functional.state_query.s",
         "hader.sampler_type_multisample_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015975,
-        "dEQP-GLES31.functional.state_query", 
+        "dEQP-GLES31.functional.state_query",
         ".shader.sampler_type_texture_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015976,
-        "dEQP-GLES31.functional.state_quer", 
+        "dEQP-GLES31.functional.state_quer",
         "y.shader.image_type_texture_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015977,
-        "dEQP-GLES31.functional.state_que", 
+        "dEQP-GLES31.functional.state_que",
         "ry.shader.sampler_type_cube_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015978,
-        "dEQP-GLES31.functional.state_qu", 
+        "dEQP-GLES31.functional.state_qu",
         "ery.shader.image_type_cube_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015979,
-        "dEQP-GLES31.functional.state", 
+        "dEQP-GLES31.functional.state",
         "_query.shader.info_log_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015980,
-        "dEQP-GLES31.functional.state_", 
+        "dEQP-GLES31.functional.state_",
         "query.shader.info_log_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015981,
-        "dEQP-GLES31.functional.state_", 
+        "dEQP-GLES31.functional.state_",
         "query.shader.info_log_geometry");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015982,
-        "dEQP-GLES31.functional.state_q", 
+        "dEQP-GLES31.functional.state_q",
         "uery.shader.info_log_tess_ctrl");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015983,
-        "dEQP-GLES31.functional.state_q", 
+        "dEQP-GLES31.functional.state_q",
         "uery.shader.info_log_tess_eval");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015984,
-        "dEQP-GLES31.functional.state_", 
+        "dEQP-GLES31.functional.state_",
         "query.shader.info_log_compute");

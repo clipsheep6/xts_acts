@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007467,
-        "dEQP-GLES31.functional.shaders.fr", 
+        "dEQP-GLES31.functional.shaders.fr",
         "amebuffer_fetch.basic.texel_fetch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007468,
-        "dEQP-GLES31.functional.shaders.fra", 
+        "dEQP-GLES31.functional.shaders.fra",
         "mebuffer_fetch.basic.last_frag_data");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007469,
-        "dEQP-GLES31.functional.shaders.fram", 
+        "dEQP-GLES31.functional.shaders.fram",
         "ebuffer_fetch.basic.fragment_discard");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007470,
-        "dEQP-GLES31.functional.shaders.frameb", 
+        "dEQP-GLES31.functional.shaders.frameb",
         "uffer_fetch.basic.multiple_assignment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007471,
-        "dEQP-GLES31.functional.shaders.framebuf", 
+        "dEQP-GLES31.functional.shaders.framebuf",
         "fer_fetch.basic.multiple_render_targets");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007472,
-        "dEQP-GLES31.functional.shaders.framebuff", 
+        "dEQP-GLES31.functional.shaders.framebuff",
         "er_fetch.basic.framebuffer_texture_level");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007473,
-        "dEQP-GLES31.functional.shaders.framebuff", 
+        "dEQP-GLES31.functional.shaders.framebuff",
         "er_fetch.basic.framebuffer_texture_layer");

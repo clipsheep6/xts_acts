@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026520,
-        "dEQP-GLES3.functional.texture.specification.", 
+        "dEQP-GLES3.functional.texture.specification.",
         "teximage3d_depth.depth_component32f_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026521,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".teximage3d_depth.depth_component24_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026522,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".teximage3d_depth.depth_component16_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026523,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".teximage3d_depth.depth32f_stencil8_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026524,
-        "dEQP-GLES3.functional.texture.specification", 
+        "dEQP-GLES3.functional.texture.specification",
         ".teximage3d_depth.depth24_stencil8_2d_array");

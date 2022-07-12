@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30017TestSuite, TestCase_016714,
-        "dEQP-GLES3.functional.shade", 
+        "dEQP-GLES3.functional.shade",
         "rs.fragdepth.write.no_write");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30017TestSuite, TestCase_016715,
-        "dEQP-GLES3.functional.sha", 
+        "dEQP-GLES3.functional.sha",
         "ders.fragdepth.write.const");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30017TestSuite, TestCase_016716,
-        "dEQP-GLES3.functional.shad", 
+        "dEQP-GLES3.functional.shad",
         "ers.fragdepth.write.uniform");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30017TestSuite, TestCase_016717,
-        "dEQP-GLES3.functional.shad", 
+        "dEQP-GLES3.functional.shad",
         "ers.fragdepth.write.dynamic");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30017TestSuite, TestCase_016718,
-        "dEQP-GLES3.functional.shader", 
+        "dEQP-GLES3.functional.shader",
         "s.fragdepth.write.fragcoord_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30017TestSuite, TestCase_016719,
-        "dEQP-GLES3.functional.shaders.fragd", 
+        "dEQP-GLES3.functional.shaders.fragd",
         "epth.write.uniform_conditional_write");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30017TestSuite, TestCase_016720,
-        "dEQP-GLES3.functional.shaders.fragd", 
+        "dEQP-GLES3.functional.shaders.fragd",
         "epth.write.dynamic_conditional_write");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30017TestSuite, TestCase_016721,
-        "dEQP-GLES3.functional.shaders.fr", 
+        "dEQP-GLES3.functional.shaders.fr",
         "agdepth.write.uniform_loop_write");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30017TestSuite, TestCase_016722,
-        "dEQP-GLES3.functional.shaders.f", 
+        "dEQP-GLES3.functional.shaders.f",
         "ragdepth.write.write_in_function");

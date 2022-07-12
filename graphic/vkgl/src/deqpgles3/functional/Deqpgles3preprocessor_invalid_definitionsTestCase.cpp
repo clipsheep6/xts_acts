@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000816,
-        "dEQP-GLES3.functional.shaders.preprocessor.in", 
+        "dEQP-GLES3.functional.shaders.preprocessor.in",
         "valid_definitions.define_non_identifier_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000817,
-        "dEQP-GLES3.functional.shaders.preprocessor.inv", 
+        "dEQP-GLES3.functional.shaders.preprocessor.inv",
         "alid_definitions.define_non_identifier_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000818,
-        "dEQP-GLES3.functional.shaders.preprocessor.inv", 
+        "dEQP-GLES3.functional.shaders.preprocessor.inv",
         "alid_definitions.undef_non_identifier_1_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000819,
-        "dEQP-GLES3.functional.shaders.preprocessor.inva", 
+        "dEQP-GLES3.functional.shaders.preprocessor.inva",
         "lid_definitions.undef_non_identifier_1_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000820,
-        "dEQP-GLES3.functional.shaders.preprocessor.inv", 
+        "dEQP-GLES3.functional.shaders.preprocessor.inv",
         "alid_definitions.undef_non_identifier_2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30001TestSuite, TestCase_000821,
-        "dEQP-GLES3.functional.shaders.preprocessor.inva", 
+        "dEQP-GLES3.functional.shaders.preprocessor.inva",
         "lid_definitions.undef_non_identifier_2_fragment");

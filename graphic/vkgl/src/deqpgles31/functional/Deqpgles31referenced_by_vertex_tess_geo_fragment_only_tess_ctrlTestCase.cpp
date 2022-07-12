@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021736,
-        "dEQP-GLES31.functional.program_interface_query.uniform_block.re", 
+        "dEQP-GLES31.functional.program_interface_query.uniform_block.re",
         "ferenced_by.vertex_tess_geo_fragment_only_tess_ctrl.named_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021737,
-        "dEQP-GLES31.functional.program_interface_query.uniform_block.ref", 
+        "dEQP-GLES31.functional.program_interface_query.uniform_block.ref",
         "erenced_by.vertex_tess_geo_fragment_only_tess_ctrl.unnamed_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021738,
-        "dEQP-GLES31.functional.program_interface_query.uniform_block.re", 
+        "dEQP-GLES31.functional.program_interface_query.uniform_block.re",
         "ferenced_by.vertex_tess_geo_fragment_only_tess_ctrl.block_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_024791,
-        "dEQP-GLES31.functional.program_interface_query.shader_storage_bloc", 
+        "dEQP-GLES31.functional.program_interface_query.shader_storage_bloc",
         "k.referenced_by.vertex_tess_geo_fragment_only_tess_ctrl.named_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_024792,
-        "dEQP-GLES31.functional.program_interface_query.shader_storage_block", 
+        "dEQP-GLES31.functional.program_interface_query.shader_storage_block",
         ".referenced_by.vertex_tess_geo_fragment_only_tess_ctrl.unnamed_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_024793,
-        "dEQP-GLES31.functional.program_interface_query.shader_storage_bloc", 
+        "dEQP-GLES31.functional.program_interface_query.shader_storage_bloc",
         "k.referenced_by.vertex_tess_geo_fragment_only_tess_ctrl.block_array");

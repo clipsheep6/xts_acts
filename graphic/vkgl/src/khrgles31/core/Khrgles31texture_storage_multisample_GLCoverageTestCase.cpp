@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000049,
-        "KHR-GLES31.core.texture_storage_multisample.GLC", 
+        "KHR-GLES31.core.texture_storage_multisample.GLC",
         "overage.extension_specific_enums_are_recognized");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000050,
-        "KHR-GLES31.core.texture_storage_multisample.GLCoverage.get_tex_para", 
+        "KHR-GLES31.core.texture_storage_multisample.GLCoverage.get_tex_para",
         "meter_reports_correct_default_values_for_multisample_texture_targets");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000051,
-        "KHR-GLES31.core.texture_storage_multisample.GLCover", 
+        "KHR-GLES31.core.texture_storage_multisample.GLCover",
         "age.gl_sample_mask_mode_status_is_reported_correctly");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000052,
-        "KHR-GLES31.core.texture_storage_multisample.GLCover", 
+        "KHR-GLES31.core.texture_storage_multisample.GLCover",
         "age.gl_tex_parameter_handlers_accept_zero_base_level");

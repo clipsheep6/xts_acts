@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037826,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_elemen", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_elemen",
         "ts_instanced_base_vertex.builtin_variable.vertex_id");

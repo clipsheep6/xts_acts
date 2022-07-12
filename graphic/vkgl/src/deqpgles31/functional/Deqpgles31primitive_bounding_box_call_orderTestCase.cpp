@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025190,
-        "dEQP-GLES31.functional.primitive_bounding", 
+        "dEQP-GLES31.functional.primitive_bounding",
         "_box.call_order.viewport_first_bbox_second");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025191,
-        "dEQP-GLES31.functional.primitive_bounding", 
+        "dEQP-GLES31.functional.primitive_bounding",
         "_box.call_order.bbox_first_viewport_second");

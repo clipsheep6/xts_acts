@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30019TestSuite, TestCase_018333,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.common.uintbitstofloat.uint_highp_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30019TestSuite, TestCase_018334,
-        "dEQP-GLES3.functional.shaders.builtin_functio", 
+        "dEQP-GLES3.functional.shaders.builtin_functio",
         "ns.common.uintbitstofloat.uint_highp_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30019TestSuite, TestCase_018335,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.common.uintbitstofloat.uvec2_highp_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30019TestSuite, TestCase_018336,
-        "dEQP-GLES3.functional.shaders.builtin_functio", 
+        "dEQP-GLES3.functional.shaders.builtin_functio",
         "ns.common.uintbitstofloat.uvec2_highp_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30019TestSuite, TestCase_018337,
-        "dEQP-GLES3.functional.shaders.builtin_functi", 
+        "dEQP-GLES3.functional.shaders.builtin_functi",
         "ons.common.uintbitstofloat.uvec3_highp_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30019TestSuite, TestCase_018338,
-        "dEQP-GLES3.functional.shaders.builtin_functio", 
+        "dEQP-GLES3.functional.shaders.builtin_functio",
         "ns.common.uintbitstofloat.uvec3_highp_fragment");

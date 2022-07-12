@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001778,
-        "KHR-GLES31.core.blend_equation_advanced.ext", 
+        "KHR-GLES31.core.blend_equation_advanced.ext",
         "ension_directive.extension_directive_disable");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001779,
-        "KHR-GLES31.core.blend_equation_advanced.ext", 
+        "KHR-GLES31.core.blend_equation_advanced.ext",
         "ension_directive.extension_directive_enable");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001780,
-        "KHR-GLES31.core.blend_equation_advanced.ex", 
+        "KHR-GLES31.core.blend_equation_advanced.ex",
         "tension_directive.extension_directive_warn");

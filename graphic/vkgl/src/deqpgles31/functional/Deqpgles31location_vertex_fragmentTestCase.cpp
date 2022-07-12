@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021847,
-        "dEQP-GLES31.functional.program_interface_que", 
+        "dEQP-GLES31.functional.program_interface_que",
         "ry.program_input.location.vertex_fragment.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021848,
-        "dEQP-GLES31.functional.program_interface_query.progra", 
+        "dEQP-GLES31.functional.program_interface_query.progra",
         "m_input.location.vertex_fragment.var_explicit_location");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022437,
-        "dEQP-GLES31.functional.program_interface_quer", 
+        "dEQP-GLES31.functional.program_interface_quer",
         "y.program_output.location.vertex_fragment.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022438,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_output.location.vertex_fragment.var_explicit_location");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022439,
-        "dEQP-GLES31.functional.program_interface_query.p", 
+        "dEQP-GLES31.functional.program_interface_query.p",
         "rogram_output.location.vertex_fragment.var_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022440,
-        "dEQP-GLES31.functional.program_interface_query.program_ou", 
+        "dEQP-GLES31.functional.program_interface_query.program_ou",
         "tput.location.vertex_fragment.var_array_explicit_location");

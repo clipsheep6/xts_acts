@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043025,
-        "dEQP-GLES3.functional.state_query.ind", 
+        "dEQP-GLES3.functional.state_query.ind",
         "exed.transform_feedback_buffer_binding");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043026,
-        "dEQP-GLES3.functional.state_query.index", 
+        "dEQP-GLES3.functional.state_query.index",
         "ed.transform_feedback_buffer_start_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043027,
-        "dEQP-GLES3.functional.state_query.inde", 
+        "dEQP-GLES3.functional.state_query.inde",
         "xed.transform_feedback_switching_buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043028,
-        "dEQP-GLES3.functional.state_quer", 
+        "dEQP-GLES3.functional.state_quer",
         "y.indexed.uniform_buffer_binding");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043029,
-        "dEQP-GLES3.functional.state_query", 
+        "dEQP-GLES3.functional.state_query",
         ".indexed.uniform_buffer_start_size");

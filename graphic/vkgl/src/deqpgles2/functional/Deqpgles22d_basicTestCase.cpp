@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010603,
-        "dEQP-GLES2.functional.texture.mip", 
+        "dEQP-GLES2.functional.texture.mip",
         "map.2d.basic.nearest_linear_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010604,
-        "dEQP-GLES2.functional.texture.mipmap.2", 
+        "dEQP-GLES2.functional.texture.mipmap.2",
         "d.basic.nearest_linear_clamp_non_square");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010605,
-        "dEQP-GLES2.functional.texture.mip", 
+        "dEQP-GLES2.functional.texture.mip",
         "map.2d.basic.nearest_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010606,
-        "dEQP-GLES2.functional.texture.mipmap.2d", 
+        "dEQP-GLES2.functional.texture.mipmap.2d",
         ".basic.nearest_linear_repeat_non_square");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010607,
-        "dEQP-GLES2.functional.texture.mip", 
+        "dEQP-GLES2.functional.texture.mip",
         "map.2d.basic.nearest_linear_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010608,
-        "dEQP-GLES2.functional.texture.mipmap.2d", 
+        "dEQP-GLES2.functional.texture.mipmap.2d",
         ".basic.nearest_linear_mirror_non_square");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010609,
-        "dEQP-GLES2.functional.texture.mip", 
+        "dEQP-GLES2.functional.texture.mip",
         "map.2d.basic.linear_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010610,
-        "dEQP-GLES2.functional.texture.mipmap.2", 
+        "dEQP-GLES2.functional.texture.mipmap.2",
         "d.basic.linear_linear_repeat_non_square");

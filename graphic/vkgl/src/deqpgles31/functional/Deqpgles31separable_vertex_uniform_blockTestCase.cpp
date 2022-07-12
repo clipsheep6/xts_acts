@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020999,
-        "dEQP-GLES31.functional.program_interface_query.uniform.r", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.r",
         "eferenced_by_shader.separable_vertex.uniform_block.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_021000,
-        "dEQP-GLES31.functional.program_interface_query.uniform.refe", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.refe",
         "renced_by_shader.separable_vertex.uniform_block.float_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_021001,
-        "dEQP-GLES31.functional.program_interface_query.uniform.refe", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.refe",
         "renced_by_shader.separable_vertex.uniform_block.float_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_021002,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referen", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referen",
         "ced_by_shader.separable_vertex.uniform_block.float_array_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_021003,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referen", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referen",
         "ced_by_shader.separable_vertex.uniform_block.float_struct_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_021004,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referen", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referen",
         "ced_by_shader.separable_vertex.uniform_block.float_array_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_021005,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenc", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenc",
         "ed_by_shader.separable_vertex.uniform_block.float_struct_struct");

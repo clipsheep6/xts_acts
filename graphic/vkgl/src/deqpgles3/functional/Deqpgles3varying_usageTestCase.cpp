@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001550,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.usage.readback_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001551,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.usage.writeback_1");

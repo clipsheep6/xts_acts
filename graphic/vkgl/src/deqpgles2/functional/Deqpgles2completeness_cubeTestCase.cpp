@@ -24,85 +24,85 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010890,
-        "dEQP-GLES2.functional.texture.co", 
+        "dEQP-GLES2.functional.texture.co",
         "mpleteness.cube.npot_size_level_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010891,
-        "dEQP-GLES2.functional.texture.co", 
+        "dEQP-GLES2.functional.texture.co",
         "mpleteness.cube.npot_size_level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010892,
-        "dEQP-GLES2.functional.texture.compl", 
+        "dEQP-GLES2.functional.texture.compl",
         "eteness.cube.npot_size_level_0_pos_x");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010893,
-        "dEQP-GLES2.functional.texture.compl", 
+        "dEQP-GLES2.functional.texture.compl",
         "eteness.cube.npot_size_level_1_neg_x");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010894,
-        "dEQP-GLES2.functional.texture.comp", 
+        "dEQP-GLES2.functional.texture.comp",
         "leteness.cube.not_positive_level_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010895,
-        "dEQP-GLES2.functional.texture.completene", 
+        "dEQP-GLES2.functional.texture.completene",
         "ss.cube.format_mismatch_rgb_rgba_level_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010896,
-        "dEQP-GLES2.functional.texture.completene", 
+        "dEQP-GLES2.functional.texture.completene",
         "ss.cube.format_mismatch_rgba_rgb_level_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010897,
-        "dEQP-GLES2.functional.texture.completeness.cube.", 
+        "dEQP-GLES2.functional.texture.completeness.cube.",
         "format_mismatch_luminance_luminance_alpha_level_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010898,
-        "dEQP-GLES2.functional.texture.completeness.cube.", 
+        "dEQP-GLES2.functional.texture.completeness.cube.",
         "format_mismatch_luminance_alpha_luminance_level_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010899,
-        "dEQP-GLES2.functional.texture.completeness.", 
+        "dEQP-GLES2.functional.texture.completeness.",
         "cube.format_mismatch_rgb_rgba_level_0_pos_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010900,
-        "dEQP-GLES2.functional.texture.completeness.", 
+        "dEQP-GLES2.functional.texture.completeness.",
         "cube.format_mismatch_rgba_rgb_level_0_neg_z");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010901,
-        "dEQP-GLES2.functional.texture.c", 
+        "dEQP-GLES2.functional.texture.c",
         "ompleteness.cube.missing_level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010902,
-        "dEQP-GLES2.functional.texture.c", 
+        "dEQP-GLES2.functional.texture.c",
         "ompleteness.cube.missing_level_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010903,
-        "dEQP-GLES2.functional.texture.comp", 
+        "dEQP-GLES2.functional.texture.comp",
         "leteness.cube.missing_level_1_pos_y");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010904,
-        "dEQP-GLES2.functional.texture.comp", 
+        "dEQP-GLES2.functional.texture.comp",
         "leteness.cube.missing_level_3_neg_y");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010905,
-        "dEQP-GLES2.functional.texture.", 
+        "dEQP-GLES2.functional.texture.",
         "completeness.cube.npot_t_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010906,
-        "dEQP-GLES2.functional.texture.", 
+        "dEQP-GLES2.functional.texture.",
         "completeness.cube.npot_s_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010907,
-        "dEQP-GLES2.functional.texture.c", 
+        "dEQP-GLES2.functional.texture.c",
         "ompleteness.cube.npot_all_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010908,
-        "dEQP-GLES2.functional.texture.comp", 
+        "dEQP-GLES2.functional.texture.comp",
         "leteness.cube.npot_mirrored_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010909,
-        "dEQP-GLES2.functional.texture", 
+        "dEQP-GLES2.functional.texture",
         ".completeness.cube.extra_level");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20011TestSuite, TestCase_010910,
-        "dEQP-GLES2.functional.texture.", 
+        "dEQP-GLES2.functional.texture.",
         "completeness.cube.empty_object");

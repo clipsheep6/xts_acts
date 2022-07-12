@@ -24,49 +24,49 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002169,
-        "dEQP-GLES31.functional.shaders.builtin_fu", 
+        "dEQP-GLES31.functional.shaders.builtin_fu",
         "nctions.texture_size.samples_1_texture_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002170,
-        "dEQP-GLES31.functional.shaders.builtin_fu", 
+        "dEQP-GLES31.functional.shaders.builtin_fu",
         "nctions.texture_size.samples_4_texture_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002171,
-        "dEQP-GLES31.functional.shaders.builtin_funct", 
+        "dEQP-GLES31.functional.shaders.builtin_funct",
         "ions.texture_size.samples_1_texture_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002172,
-        "dEQP-GLES31.functional.shaders.builtin_funct", 
+        "dEQP-GLES31.functional.shaders.builtin_funct",
         "ions.texture_size.samples_4_texture_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002173,
-        "dEQP-GLES31.functional.shaders.builtin_func", 
+        "dEQP-GLES31.functional.shaders.builtin_func",
         "tions.texture_size.samples_1_texture_int_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002174,
-        "dEQP-GLES31.functional.shaders.builtin_func", 
+        "dEQP-GLES31.functional.shaders.builtin_func",
         "tions.texture_size.samples_4_texture_int_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002175,
-        "dEQP-GLES31.functional.shaders.builtin_functio", 
+        "dEQP-GLES31.functional.shaders.builtin_functio",
         "ns.texture_size.samples_1_texture_int_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002176,
-        "dEQP-GLES31.functional.shaders.builtin_functio", 
+        "dEQP-GLES31.functional.shaders.builtin_functio",
         "ns.texture_size.samples_4_texture_int_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002177,
-        "dEQP-GLES31.functional.shaders.builtin_func", 
+        "dEQP-GLES31.functional.shaders.builtin_func",
         "tions.texture_size.samples_1_texture_uint_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002178,
-        "dEQP-GLES31.functional.shaders.builtin_func", 
+        "dEQP-GLES31.functional.shaders.builtin_func",
         "tions.texture_size.samples_4_texture_uint_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002179,
-        "dEQP-GLES31.functional.shaders.builtin_functio", 
+        "dEQP-GLES31.functional.shaders.builtin_functio",
         "ns.texture_size.samples_1_texture_uint_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002180,
-        "dEQP-GLES31.functional.shaders.builtin_functio", 
+        "dEQP-GLES31.functional.shaders.builtin_functio",
         "ns.texture_size.samples_4_texture_uint_2d_array");

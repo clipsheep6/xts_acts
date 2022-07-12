@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021256,
-        "dEQP-GLES31.functional.program_interface_query.uniform.re", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.re",
         "ferenced_by_shader.vertex_geo_fragment.uniform_block.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021257,
-        "dEQP-GLES31.functional.program_interface_query.uniform.refer", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.refer",
         "enced_by_shader.vertex_geo_fragment.uniform_block.float_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021258,
-        "dEQP-GLES31.functional.program_interface_query.uniform.refere", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.refere",
         "nced_by_shader.vertex_geo_fragment.uniform_block.float_struct");

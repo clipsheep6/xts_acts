@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001028,
-        "KHR-GLES32.core.cop", 
+        "KHR-GLES32.core.cop",
         "y_image.r32i_texture");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001029,
-        "KHR-GLES32.core.copy", 
+        "KHR-GLES32.core.copy",
         "_image.r32ui_texture");

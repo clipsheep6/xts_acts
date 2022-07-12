@@ -24,129 +24,129 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002803,
-        "dEQP-GLES2.functional.shaders.indexing", 
+        "dEQP-GLES2.functional.shaders.indexing",
         ".uniform_array.float_static_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002804,
-        "dEQP-GLES2.functional.shaders.indexing.", 
+        "dEQP-GLES2.functional.shaders.indexing.",
         "uniform_array.float_static_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002805,
-        "dEQP-GLES2.functional.shaders.indexing.", 
+        "dEQP-GLES2.functional.shaders.indexing.",
         "uniform_array.float_dynamic_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002806,
-        "dEQP-GLES2.functional.shaders.indexing.u", 
+        "dEQP-GLES2.functional.shaders.indexing.u",
         "niform_array.float_dynamic_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002807,
-        "dEQP-GLES2.functional.shaders.indexing.un", 
+        "dEQP-GLES2.functional.shaders.indexing.un",
         "iform_array.float_static_loop_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002808,
-        "dEQP-GLES2.functional.shaders.indexing.uni", 
+        "dEQP-GLES2.functional.shaders.indexing.uni",
         "form_array.float_static_loop_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002809,
-        "dEQP-GLES2.functional.shaders.indexing.un", 
+        "dEQP-GLES2.functional.shaders.indexing.un",
         "iform_array.float_dynamic_loop_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002810,
-        "dEQP-GLES2.functional.shaders.indexing.uni", 
+        "dEQP-GLES2.functional.shaders.indexing.uni",
         "form_array.float_dynamic_loop_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002811,
-        "dEQP-GLES2.functional.shaders.indexing", 
+        "dEQP-GLES2.functional.shaders.indexing",
         ".uniform_array.vec2_static_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002812,
-        "dEQP-GLES2.functional.shaders.indexing.", 
+        "dEQP-GLES2.functional.shaders.indexing.",
         "uniform_array.vec2_static_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002813,
-        "dEQP-GLES2.functional.shaders.indexing", 
+        "dEQP-GLES2.functional.shaders.indexing",
         ".uniform_array.vec2_dynamic_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002814,
-        "dEQP-GLES2.functional.shaders.indexing.", 
+        "dEQP-GLES2.functional.shaders.indexing.",
         "uniform_array.vec2_dynamic_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002815,
-        "dEQP-GLES2.functional.shaders.indexing.u", 
+        "dEQP-GLES2.functional.shaders.indexing.u",
         "niform_array.vec2_static_loop_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002816,
-        "dEQP-GLES2.functional.shaders.indexing.un", 
+        "dEQP-GLES2.functional.shaders.indexing.un",
         "iform_array.vec2_static_loop_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002817,
-        "dEQP-GLES2.functional.shaders.indexing.un", 
+        "dEQP-GLES2.functional.shaders.indexing.un",
         "iform_array.vec2_dynamic_loop_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002818,
-        "dEQP-GLES2.functional.shaders.indexing.uni", 
+        "dEQP-GLES2.functional.shaders.indexing.uni",
         "form_array.vec2_dynamic_loop_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002819,
-        "dEQP-GLES2.functional.shaders.indexing", 
+        "dEQP-GLES2.functional.shaders.indexing",
         ".uniform_array.vec3_static_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002820,
-        "dEQP-GLES2.functional.shaders.indexing.", 
+        "dEQP-GLES2.functional.shaders.indexing.",
         "uniform_array.vec3_static_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002821,
-        "dEQP-GLES2.functional.shaders.indexing", 
+        "dEQP-GLES2.functional.shaders.indexing",
         ".uniform_array.vec3_dynamic_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002822,
-        "dEQP-GLES2.functional.shaders.indexing.", 
+        "dEQP-GLES2.functional.shaders.indexing.",
         "uniform_array.vec3_dynamic_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002823,
-        "dEQP-GLES2.functional.shaders.indexing.u", 
+        "dEQP-GLES2.functional.shaders.indexing.u",
         "niform_array.vec3_static_loop_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002824,
-        "dEQP-GLES2.functional.shaders.indexing.un", 
+        "dEQP-GLES2.functional.shaders.indexing.un",
         "iform_array.vec3_static_loop_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002825,
-        "dEQP-GLES2.functional.shaders.indexing.un", 
+        "dEQP-GLES2.functional.shaders.indexing.un",
         "iform_array.vec3_dynamic_loop_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002826,
-        "dEQP-GLES2.functional.shaders.indexing.uni", 
+        "dEQP-GLES2.functional.shaders.indexing.uni",
         "form_array.vec3_dynamic_loop_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002827,
-        "dEQP-GLES2.functional.shaders.indexing", 
+        "dEQP-GLES2.functional.shaders.indexing",
         ".uniform_array.vec4_static_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002828,
-        "dEQP-GLES2.functional.shaders.indexing.", 
+        "dEQP-GLES2.functional.shaders.indexing.",
         "uniform_array.vec4_static_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002829,
-        "dEQP-GLES2.functional.shaders.indexing", 
+        "dEQP-GLES2.functional.shaders.indexing",
         ".uniform_array.vec4_dynamic_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002830,
-        "dEQP-GLES2.functional.shaders.indexing.", 
+        "dEQP-GLES2.functional.shaders.indexing.",
         "uniform_array.vec4_dynamic_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002831,
-        "dEQP-GLES2.functional.shaders.indexing.u", 
+        "dEQP-GLES2.functional.shaders.indexing.u",
         "niform_array.vec4_static_loop_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002832,
-        "dEQP-GLES2.functional.shaders.indexing.un", 
+        "dEQP-GLES2.functional.shaders.indexing.un",
         "iform_array.vec4_static_loop_read_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002833,
-        "dEQP-GLES2.functional.shaders.indexing.un", 
+        "dEQP-GLES2.functional.shaders.indexing.un",
         "iform_array.vec4_dynamic_loop_read_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002834,
-        "dEQP-GLES2.functional.shaders.indexing.uni", 
+        "dEQP-GLES2.functional.shaders.indexing.uni",
         "form_array.vec4_dynamic_loop_read_fragment");

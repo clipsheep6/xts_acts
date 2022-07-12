@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037771,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_e", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_e",
         "lements_base_vertex.line_strip.single_attribute");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037772,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_ele", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_ele",
         "ments_base_vertex.line_strip.multiple_attributes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037773,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_ele", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_ele",
         "ments_base_vertex.line_strip.instanced_attributes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037774,
-        "dEQP-GLES31.functional.draw_base_vertex.draw_el", 
+        "dEQP-GLES31.functional.draw_base_vertex.draw_el",
         "ements_base_vertex.line_strip.default_attribute");

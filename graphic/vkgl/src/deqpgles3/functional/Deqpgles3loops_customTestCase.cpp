@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30008TestSuite, TestCase_007277,
-        "dEQP-GLES3.functional.shaders.loops.", 
+        "dEQP-GLES3.functional.shaders.loops.",
         "custom.continue_in_fragment_for_loop");

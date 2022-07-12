@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000596,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uint_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000597,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uint_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000598,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uint_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000599,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uint_3");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000600,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec2_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000601,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec2_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000602,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec2_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000603,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec2_3");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000604,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec3_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000605,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec3_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000606,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec3_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000607,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec3_3");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000608,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec4_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000609,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec4_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000610,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec4_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000611,
-        "KHR-GLES31.core.shader_bitfie", 
+        "KHR-GLES31.core.shader_bitfie",
         "ld_operation.uaddCarry.uvec4_3");

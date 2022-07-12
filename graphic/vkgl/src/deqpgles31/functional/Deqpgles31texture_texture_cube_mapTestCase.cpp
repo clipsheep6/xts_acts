@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015381,
-        "dEQP-GLES31.functional.state_query.texture.", 
+        "dEQP-GLES31.functional.state_query.texture.",
         "texture_cube_map.depth_stencil_mode_integer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015382,
-        "dEQP-GLES31.functional.state_query.texture", 
+        "dEQP-GLES31.functional.state_query.texture",
         ".texture_cube_map.depth_stencil_mode_float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015383,
-        "dEQP-GLES31.functional.state_query.texture.", 
+        "dEQP-GLES31.functional.state_query.texture.",
         "texture_cube_map.depth_stencil_mode_pure_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015384,
-        "dEQP-GLES31.functional.state_query.texture.t", 
+        "dEQP-GLES31.functional.state_query.texture.t",
         "exture_cube_map.depth_stencil_mode_pure_uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015385,
-        "dEQP-GLES31.functional.state_query.texture.", 
+        "dEQP-GLES31.functional.state_query.texture.",
         "texture_cube_map.texture_srgb_decode_integer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015386,
-        "dEQP-GLES31.functional.state_query.texture", 
+        "dEQP-GLES31.functional.state_query.texture",
         ".texture_cube_map.texture_srgb_decode_float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015387,
-        "dEQP-GLES31.functional.state_query.texture.t", 
+        "dEQP-GLES31.functional.state_query.texture.t",
         "exture_cube_map.texture_srgb_decode_pure_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015388,
-        "dEQP-GLES31.functional.state_query.texture.t", 
+        "dEQP-GLES31.functional.state_query.texture.t",
         "exture_cube_map.texture_srgb_decode_pure_uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015389,
-        "dEQP-GLES31.functional.state_query.texture.t", 
+        "dEQP-GLES31.functional.state_query.texture.t",
         "exture_cube_map.texture_border_color_integer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015390,
-        "dEQP-GLES31.functional.state_query.texture.", 
+        "dEQP-GLES31.functional.state_query.texture.",
         "texture_cube_map.texture_border_color_float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015391,
-        "dEQP-GLES31.functional.state_query.texture.t", 
+        "dEQP-GLES31.functional.state_query.texture.t",
         "exture_cube_map.texture_border_color_pure_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015392,
-        "dEQP-GLES31.functional.state_query.texture.te", 
+        "dEQP-GLES31.functional.state_query.texture.te",
         "xture_cube_map.texture_border_color_pure_uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015393,
-        "dEQP-GLES31.functional.state_query.texture.textur", 
+        "dEQP-GLES31.functional.state_query.texture.textur",
         "e_cube_map.texture_wrap_s_clamp_to_border_integer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015394,
-        "dEQP-GLES31.functional.state_query.texture.textu", 
+        "dEQP-GLES31.functional.state_query.texture.textu",
         "re_cube_map.texture_wrap_s_clamp_to_border_float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015395,
-        "dEQP-GLES31.functional.state_query.texture.textur", 
+        "dEQP-GLES31.functional.state_query.texture.textur",
         "e_cube_map.texture_wrap_t_clamp_to_border_integer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310016TestSuite, TestCase_015396,
-        "dEQP-GLES31.functional.state_query.texture.textu", 
+        "dEQP-GLES31.functional.state_query.texture.textu",
         "re_cube_map.texture_wrap_t_clamp_to_border_float");

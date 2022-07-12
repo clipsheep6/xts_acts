@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000333,
-        "KHR-GLESEXT.ext_texture_shadow_lod.text", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.text",
         "urelodoffset.sampler2darrayshadow_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000334,
-        "KHR-GLESEXT.ext_texture_shadow_lod.textu", 
+        "KHR-GLESEXT.ext_texture_shadow_lod.textu",
         "relodoffset.sampler2darrayshadow_fragment");

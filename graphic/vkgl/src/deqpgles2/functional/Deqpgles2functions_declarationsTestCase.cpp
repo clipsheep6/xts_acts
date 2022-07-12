@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002089,
-        "dEQP-GLES2.functional.shaders.functio", 
+        "dEQP-GLES2.functional.shaders.functio",
         "ns.declarations.void_vs_no_void_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002090,
-        "dEQP-GLES2.functional.shaders.function", 
+        "dEQP-GLES2.functional.shaders.function",
         "s.declarations.void_vs_no_void_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002091,
-        "dEQP-GLES2.functional.shaders.funct", 
+        "dEQP-GLES2.functional.shaders.funct",
         "ions.declarations.in_vs_no_in_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002092,
-        "dEQP-GLES2.functional.shaders.functi", 
+        "dEQP-GLES2.functional.shaders.functi",
         "ons.declarations.in_vs_no_in_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002093,
-        "dEQP-GLES2.functional.shaders.functions.decl", 
+        "dEQP-GLES2.functional.shaders.functions.decl",
         "arations.default_vs_explicit_precision_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20003TestSuite, TestCase_002094,
-        "dEQP-GLES2.functional.shaders.functions.decla", 
+        "dEQP-GLES2.functional.shaders.functions.decla",
         "rations.default_vs_explicit_precision_fragment");

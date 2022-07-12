@@ -24,113 +24,113 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024807,
-        "dEQP-GLES31.functional.layout_binding.", 
+        "dEQP-GLES31.functional.layout_binding.",
         "sampler.sampler3d.vertex_binding_single");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024808,
-        "dEQP-GLES31.functional.layout_binding", 
+        "dEQP-GLES31.functional.layout_binding",
         ".sampler.sampler3d.vertex_binding_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024809,
-        "dEQP-GLES31.functional.layout_binding.s", 
+        "dEQP-GLES31.functional.layout_binding.s",
         "ampler.sampler3d.vertex_binding_multiple");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024810,
-        "dEQP-GLES31.functional.layout_binding.", 
+        "dEQP-GLES31.functional.layout_binding.",
         "sampler.sampler3d.vertex_binding_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024811,
-        "dEQP-GLES31.functional.layout_binding.sa", 
+        "dEQP-GLES31.functional.layout_binding.sa",
         "mpler.sampler3d.vertex_binding_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024812,
-        "dEQP-GLES31.functional.layout_binding.s", 
+        "dEQP-GLES31.functional.layout_binding.s",
         "ampler.sampler3d.fragment_binding_single");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024813,
-        "dEQP-GLES31.functional.layout_binding.", 
+        "dEQP-GLES31.functional.layout_binding.",
         "sampler.sampler3d.fragment_binding_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024814,
-        "dEQP-GLES31.functional.layout_binding.sa", 
+        "dEQP-GLES31.functional.layout_binding.sa",
         "mpler.sampler3d.fragment_binding_multiple");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024815,
-        "dEQP-GLES31.functional.layout_binding.s", 
+        "dEQP-GLES31.functional.layout_binding.s",
         "ampler.sampler3d.fragment_binding_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024816,
-        "dEQP-GLES31.functional.layout_binding.sam", 
+        "dEQP-GLES31.functional.layout_binding.sam",
         "pler.sampler3d.fragment_binding_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024875,
-        "dEQP-GLES31.functional.layout_binding.negati", 
+        "dEQP-GLES31.functional.layout_binding.negati",
         "ve.sampler.sampler3d.vertex_binding_over_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024876,
-        "dEQP-GLES31.functional.layout_binding.negativ", 
+        "dEQP-GLES31.functional.layout_binding.negativ",
         "e.sampler.sampler3d.fragment_binding_over_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024877,
-        "dEQP-GLES31.functional.layout_binding.negative.", 
+        "dEQP-GLES31.functional.layout_binding.negative.",
         "sampler.sampler3d.tess_control_binding_over_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024878,
-        "dEQP-GLES31.functional.layout_binding.negative.s", 
+        "dEQP-GLES31.functional.layout_binding.negative.s",
         "ampler.sampler3d.tess_evaluation_binding_over_max");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024879,
-        "dEQP-GLES31.functional.layout_binding.neg", 
+        "dEQP-GLES31.functional.layout_binding.neg",
         "ative.sampler.sampler3d.vertex_binding_neg");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024880,
-        "dEQP-GLES31.functional.layout_binding.nega", 
+        "dEQP-GLES31.functional.layout_binding.nega",
         "tive.sampler.sampler3d.fragment_binding_neg");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024881,
-        "dEQP-GLES31.functional.layout_binding.negati", 
+        "dEQP-GLES31.functional.layout_binding.negati",
         "ve.sampler.sampler3d.tess_control_binding_neg");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024882,
-        "dEQP-GLES31.functional.layout_binding.negative", 
+        "dEQP-GLES31.functional.layout_binding.negative",
         ".sampler.sampler3d.tess_evaluation_binding_neg");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024883,
-        "dEQP-GLES31.functional.layout_binding.negative.", 
+        "dEQP-GLES31.functional.layout_binding.negative.",
         "sampler.sampler3d.vertex_binding_over_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024884,
-        "dEQP-GLES31.functional.layout_binding.negative.s", 
+        "dEQP-GLES31.functional.layout_binding.negative.s",
         "ampler.sampler3d.fragment_binding_over_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024885,
-        "dEQP-GLES31.functional.layout_binding.negative.sam", 
+        "dEQP-GLES31.functional.layout_binding.negative.sam",
         "pler.sampler3d.tess_control_binding_over_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024886,
-        "dEQP-GLES31.functional.layout_binding.negative.samp", 
+        "dEQP-GLES31.functional.layout_binding.negative.samp",
         "ler.sampler3d.tess_evaluation_binding_over_max_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024887,
-        "dEQP-GLES31.functional.layout_binding.negati", 
+        "dEQP-GLES31.functional.layout_binding.negati",
         "ve.sampler.sampler3d.vertex_binding_neg_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024888,
-        "dEQP-GLES31.functional.layout_binding.negativ", 
+        "dEQP-GLES31.functional.layout_binding.negativ",
         "e.sampler.sampler3d.fragment_binding_neg_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024889,
-        "dEQP-GLES31.functional.layout_binding.negative.", 
+        "dEQP-GLES31.functional.layout_binding.negative.",
         "sampler.sampler3d.tess_control_binding_neg_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024890,
-        "dEQP-GLES31.functional.layout_binding.negative.sa", 
+        "dEQP-GLES31.functional.layout_binding.negative.sa",
         "mpler.sampler3d.tess_evaluation_binding_neg_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024891,
-        "dEQP-GLES31.functional.layout_binding.negat", 
+        "dEQP-GLES31.functional.layout_binding.negat",
         "ive.sampler.sampler3d.binding_contradictory");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024892,
-        "dEQP-GLES31.functional.layout_binding.negative", 
+        "dEQP-GLES31.functional.layout_binding.negative",
         ".sampler.sampler3d.binding_contradictory_array");

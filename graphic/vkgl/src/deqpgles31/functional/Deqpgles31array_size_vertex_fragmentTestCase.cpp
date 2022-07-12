@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021812,
-        "dEQP-GLES31.functional.program_interface_quer", 
+        "dEQP-GLES31.functional.program_interface_quer",
         "y.program_input.array_size.vertex_fragment.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022396,
-        "dEQP-GLES31.functional.program_interface_query", 
+        "dEQP-GLES31.functional.program_interface_query",
         ".program_output.array_size.vertex_fragment.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022397,
-        "dEQP-GLES31.functional.program_interface_query.pr", 
+        "dEQP-GLES31.functional.program_interface_query.pr",
         "ogram_output.array_size.vertex_fragment.var_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_023007,
-        "dEQP-GLES31.functional.program_interface_query.transform_fee", 
+        "dEQP-GLES31.functional.program_interface_query.transform_fee",
         "dback_varying.array_size.vertex_fragment.builtin_gl_position");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_023008,
-        "dEQP-GLES31.functional.program_interface_query.transform_feedb", 
+        "dEQP-GLES31.functional.program_interface_query.transform_feedb",
         "ack_varying.array_size.vertex_fragment.default_block_basic_type");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_023009,
-        "dEQP-GLES31.functional.program_interface_query.transform_feedbac", 
+        "dEQP-GLES31.functional.program_interface_query.transform_feedbac",
         "k_varying.array_size.vertex_fragment.default_block_struct_member");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_023010,
-        "dEQP-GLES31.functional.program_interface_query.transform_fee", 
+        "dEQP-GLES31.functional.program_interface_query.transform_fee",
         "dback_varying.array_size.vertex_fragment.default_block_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_023011,
-        "dEQP-GLES31.functional.program_interface_query.transform_feedbac", 
+        "dEQP-GLES31.functional.program_interface_query.transform_feedbac",
         "k_varying.array_size.vertex_fragment.default_block_array_element");

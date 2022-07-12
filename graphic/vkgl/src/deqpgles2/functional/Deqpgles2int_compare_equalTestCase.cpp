@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006708,
-        "dEQP-GLES2.functional.shaders.operato", 
+        "dEQP-GLES2.functional.shaders.operato",
         "r.int_compare.equal.lowp_ivec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006709,
-        "dEQP-GLES2.functional.shaders.operator", 
+        "dEQP-GLES2.functional.shaders.operator",
         ".int_compare.equal.lowp_ivec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006710,
-        "dEQP-GLES2.functional.shaders.operator", 
+        "dEQP-GLES2.functional.shaders.operator",
         ".int_compare.equal.mediump_ivec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006711,
-        "dEQP-GLES2.functional.shaders.operator.", 
+        "dEQP-GLES2.functional.shaders.operator.",
         "int_compare.equal.mediump_ivec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006712,
-        "dEQP-GLES2.functional.shaders.operato", 
+        "dEQP-GLES2.functional.shaders.operato",
         "r.int_compare.equal.highp_ivec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006713,
-        "dEQP-GLES2.functional.shaders.operator", 
+        "dEQP-GLES2.functional.shaders.operator",
         ".int_compare.equal.highp_ivec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006714,
-        "dEQP-GLES2.functional.shaders.operato", 
+        "dEQP-GLES2.functional.shaders.operato",
         "r.int_compare.equal.lowp_ivec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006715,
-        "dEQP-GLES2.functional.shaders.operator", 
+        "dEQP-GLES2.functional.shaders.operator",
         ".int_compare.equal.lowp_ivec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006716,
-        "dEQP-GLES2.functional.shaders.operator", 
+        "dEQP-GLES2.functional.shaders.operator",
         ".int_compare.equal.mediump_ivec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006717,
-        "dEQP-GLES2.functional.shaders.operator.", 
+        "dEQP-GLES2.functional.shaders.operator.",
         "int_compare.equal.mediump_ivec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006718,
-        "dEQP-GLES2.functional.shaders.operato", 
+        "dEQP-GLES2.functional.shaders.operato",
         "r.int_compare.equal.highp_ivec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006719,
-        "dEQP-GLES2.functional.shaders.operator", 
+        "dEQP-GLES2.functional.shaders.operator",
         ".int_compare.equal.highp_ivec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006720,
-        "dEQP-GLES2.functional.shaders.operato", 
+        "dEQP-GLES2.functional.shaders.operato",
         "r.int_compare.equal.lowp_ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006721,
-        "dEQP-GLES2.functional.shaders.operator", 
+        "dEQP-GLES2.functional.shaders.operator",
         ".int_compare.equal.lowp_ivec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006722,
-        "dEQP-GLES2.functional.shaders.operator", 
+        "dEQP-GLES2.functional.shaders.operator",
         ".int_compare.equal.mediump_ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006723,
-        "dEQP-GLES2.functional.shaders.operator.", 
+        "dEQP-GLES2.functional.shaders.operator.",
         "int_compare.equal.mediump_ivec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006724,
-        "dEQP-GLES2.functional.shaders.operato", 
+        "dEQP-GLES2.functional.shaders.operato",
         "r.int_compare.equal.highp_ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006725,
-        "dEQP-GLES2.functional.shaders.operator", 
+        "dEQP-GLES2.functional.shaders.operator",
         ".int_compare.equal.highp_ivec4_fragment");

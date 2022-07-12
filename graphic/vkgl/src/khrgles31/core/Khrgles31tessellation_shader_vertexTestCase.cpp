@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002564,
-        "KHR-GLES31.core.tessellation_", 
+        "KHR-GLES31.core.tessellation_",
         "shader.vertex.vertex_ordering");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002565,
-        "KHR-GLES31.core.tessellation", 
+        "KHR-GLES31.core.tessellation",
         "_shader.vertex.vertex_spacing");

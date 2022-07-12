@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000195,
-        "KHR-GLES32.core.tessellation_shader.tessellat", 
+        "KHR-GLES32.core.tessellation_shader.tessellat",
         "ion_shader_quads_tessellation.degenerate_case");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000196,
-        "KHR-GLES32.core.tessellation_shader.tessellation_shade", 
+        "KHR-GLES32.core.tessellation_shader.tessellation_shade",
         "r_quads_tessellation.inner_tessellation_level_rounding");

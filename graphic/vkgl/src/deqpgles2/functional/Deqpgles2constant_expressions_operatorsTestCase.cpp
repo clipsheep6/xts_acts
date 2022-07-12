@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007878,
-        "dEQP-GLES2.functional.shaders.constant_", 
+        "dEQP-GLES2.functional.shaders.constant_",
         "expressions.operators.math_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007879,
-        "dEQP-GLES2.functional.shaders.constant_e", 
+        "dEQP-GLES2.functional.shaders.constant_e",
         "xpressions.operators.math_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007880,
-        "dEQP-GLES2.functional.shaders.constant", 
+        "dEQP-GLES2.functional.shaders.constant",
         "_expressions.operators.math_vec_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007881,
-        "dEQP-GLES2.functional.shaders.constant_", 
+        "dEQP-GLES2.functional.shaders.constant_",
         "expressions.operators.math_vec_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007882,
-        "dEQP-GLES2.functional.shaders.constant", 
+        "dEQP-GLES2.functional.shaders.constant",
         "_expressions.operators.math_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007883,
-        "dEQP-GLES2.functional.shaders.constant_", 
+        "dEQP-GLES2.functional.shaders.constant_",
         "expressions.operators.math_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007884,
-        "dEQP-GLES2.functional.shaders.constant", 
+        "dEQP-GLES2.functional.shaders.constant",
         "_expressions.operators.math_ivec_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007885,
-        "dEQP-GLES2.functional.shaders.constant_", 
+        "dEQP-GLES2.functional.shaders.constant_",
         "expressions.operators.math_ivec_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007886,
-        "dEQP-GLES2.functional.shaders.constant", 
+        "dEQP-GLES2.functional.shaders.constant",
         "_expressions.operators.math_mat_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007887,
-        "dEQP-GLES2.functional.shaders.constant_", 
+        "dEQP-GLES2.functional.shaders.constant_",
         "expressions.operators.math_mat_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007888,
-        "dEQP-GLES2.functional.shaders.constan", 
+        "dEQP-GLES2.functional.shaders.constan",
         "t_expressions.operators.logical_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007889,
-        "dEQP-GLES2.functional.shaders.constant", 
+        "dEQP-GLES2.functional.shaders.constant",
         "_expressions.operators.logical_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007890,
-        "dEQP-GLES2.functional.shaders.constan", 
+        "dEQP-GLES2.functional.shaders.constan",
         "t_expressions.operators.compare_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007891,
-        "dEQP-GLES2.functional.shaders.constant", 
+        "dEQP-GLES2.functional.shaders.constant",
         "_expressions.operators.compare_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007892,
-        "dEQP-GLES2.functional.shaders.constant", 
+        "dEQP-GLES2.functional.shaders.constant",
         "_expressions.operators.selection_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007893,
-        "dEQP-GLES2.functional.shaders.constant_", 
+        "dEQP-GLES2.functional.shaders.constant_",
         "expressions.operators.selection_fragment");

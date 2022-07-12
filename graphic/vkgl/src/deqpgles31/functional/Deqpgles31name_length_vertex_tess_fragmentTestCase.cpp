@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023047,
-        "dEQP-GLES31.functional.program_interface_query.transform_feedba", 
+        "dEQP-GLES31.functional.program_interface_query.transform_feedba",
         "ck_varying.name_length.vertex_tess_fragment.builtin_gl_position");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023048,
-        "dEQP-GLES31.functional.program_interface_query.transform_feedback", 
+        "dEQP-GLES31.functional.program_interface_query.transform_feedback",
         "_varying.name_length.vertex_tess_fragment.default_block_basic_type");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023049,
-        "dEQP-GLES31.functional.program_interface_query.transform_feedback_v", 
+        "dEQP-GLES31.functional.program_interface_query.transform_feedback_v",
         "arying.name_length.vertex_tess_fragment.default_block_struct_member");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023050,
-        "dEQP-GLES31.functional.program_interface_query.transform_feedba", 
+        "dEQP-GLES31.functional.program_interface_query.transform_feedba",
         "ck_varying.name_length.vertex_tess_fragment.default_block_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023051,
-        "dEQP-GLES31.functional.program_interface_query.transform_feedback_v", 
+        "dEQP-GLES31.functional.program_interface_query.transform_feedback_v",
         "arying.name_length.vertex_tess_fragment.default_block_array_element");

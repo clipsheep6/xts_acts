@@ -24,81 +24,81 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041872,
-        "dEQP-GLES3.functional.shader_api.s", 
+        "dEQP-GLES3.functional.shader_api.s",
         "hader_source.replace_source_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041873,
-        "dEQP-GLES3.functional.shader_api.sh", 
+        "dEQP-GLES3.functional.shader_api.sh",
         "ader_source.replace_source_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041874,
-        "dEQP-GLES3.functional.shader_api.shader_so", 
+        "dEQP-GLES3.functional.shader_api.shader_so",
         "urce.split_source_2_null_terminated_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041875,
-        "dEQP-GLES3.functional.shader_api.shader_sou", 
+        "dEQP-GLES3.functional.shader_api.shader_sou",
         "rce.split_source_2_null_terminated_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041876,
-        "dEQP-GLES3.functional.shader_api.shader_so", 
+        "dEQP-GLES3.functional.shader_api.shader_so",
         "urce.split_source_4_null_terminated_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041877,
-        "dEQP-GLES3.functional.shader_api.shader_sou", 
+        "dEQP-GLES3.functional.shader_api.shader_sou",
         "rce.split_source_4_null_terminated_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041878,
-        "dEQP-GLES3.functional.shader_api.shader_so", 
+        "dEQP-GLES3.functional.shader_api.shader_so",
         "urce.split_source_8_null_terminated_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041879,
-        "dEQP-GLES3.functional.shader_api.shader_sou", 
+        "dEQP-GLES3.functional.shader_api.shader_sou",
         "rce.split_source_8_null_terminated_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041880,
-        "dEQP-GLES3.functional.shader_api.shader_so", 
+        "dEQP-GLES3.functional.shader_api.shader_so",
         "urce.split_source_2_specify_lengths_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041881,
-        "dEQP-GLES3.functional.shader_api.shader_sou", 
+        "dEQP-GLES3.functional.shader_api.shader_sou",
         "rce.split_source_2_specify_lengths_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041882,
-        "dEQP-GLES3.functional.shader_api.shader_so", 
+        "dEQP-GLES3.functional.shader_api.shader_so",
         "urce.split_source_4_specify_lengths_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041883,
-        "dEQP-GLES3.functional.shader_api.shader_sou", 
+        "dEQP-GLES3.functional.shader_api.shader_sou",
         "rce.split_source_4_specify_lengths_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041884,
-        "dEQP-GLES3.functional.shader_api.shader_so", 
+        "dEQP-GLES3.functional.shader_api.shader_so",
         "urce.split_source_8_specify_lengths_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041885,
-        "dEQP-GLES3.functional.shader_api.shader_sou", 
+        "dEQP-GLES3.functional.shader_api.shader_sou",
         "rce.split_source_8_specify_lengths_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041886,
-        "dEQP-GLES3.functional.shader_api.shader_sourc", 
+        "dEQP-GLES3.functional.shader_api.shader_sourc",
         "e.split_source_2_random_negative_length_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041887,
-        "dEQP-GLES3.functional.shader_api.shader_source", 
+        "dEQP-GLES3.functional.shader_api.shader_source",
         ".split_source_2_random_negative_length_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041888,
-        "dEQP-GLES3.functional.shader_api.shader_sourc", 
+        "dEQP-GLES3.functional.shader_api.shader_sourc",
         "e.split_source_4_random_negative_length_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041889,
-        "dEQP-GLES3.functional.shader_api.shader_source", 
+        "dEQP-GLES3.functional.shader_api.shader_source",
         ".split_source_4_random_negative_length_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041890,
-        "dEQP-GLES3.functional.shader_api.shader_sourc", 
+        "dEQP-GLES3.functional.shader_api.shader_sourc",
         "e.split_source_8_random_negative_length_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041891,
-        "dEQP-GLES3.functional.shader_api.shader_source", 
+        "dEQP-GLES3.functional.shader_api.shader_source",
         ".split_source_8_random_negative_length_fragment");

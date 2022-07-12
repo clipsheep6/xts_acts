@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003138,
-        "KHR-GLES3.exposed_extens", 
+        "KHR-GLES3.exposed_extens",
         "ions.validate_extensions");

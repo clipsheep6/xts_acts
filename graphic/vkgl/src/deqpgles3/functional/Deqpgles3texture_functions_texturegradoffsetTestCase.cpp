@@ -24,113 +24,113 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017125,
-        "dEQP-GLES3.functional.shaders.texture_functi", 
+        "dEQP-GLES3.functional.shaders.texture_functi",
         "ons.texturegradoffset.sampler2d_fixed_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017126,
-        "dEQP-GLES3.functional.shaders.texture_functio", 
+        "dEQP-GLES3.functional.shaders.texture_functio",
         "ns.texturegradoffset.sampler2d_fixed_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017127,
-        "dEQP-GLES3.functional.shaders.texture_functi", 
+        "dEQP-GLES3.functional.shaders.texture_functi",
         "ons.texturegradoffset.sampler2d_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017128,
-        "dEQP-GLES3.functional.shaders.texture_functio", 
+        "dEQP-GLES3.functional.shaders.texture_functio",
         "ns.texturegradoffset.sampler2d_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017129,
-        "dEQP-GLES3.functional.shaders.texture_fun", 
+        "dEQP-GLES3.functional.shaders.texture_fun",
         "ctions.texturegradoffset.isampler2d_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017130,
-        "dEQP-GLES3.functional.shaders.texture_func", 
+        "dEQP-GLES3.functional.shaders.texture_func",
         "tions.texturegradoffset.isampler2d_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017131,
-        "dEQP-GLES3.functional.shaders.texture_fun", 
+        "dEQP-GLES3.functional.shaders.texture_fun",
         "ctions.texturegradoffset.usampler2d_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017132,
-        "dEQP-GLES3.functional.shaders.texture_func", 
+        "dEQP-GLES3.functional.shaders.texture_func",
         "tions.texturegradoffset.usampler2d_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017133,
-        "dEQP-GLES3.functional.shaders.texture_function", 
+        "dEQP-GLES3.functional.shaders.texture_function",
         "s.texturegradoffset.sampler2darray_fixed_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017134,
-        "dEQP-GLES3.functional.shaders.texture_functions", 
+        "dEQP-GLES3.functional.shaders.texture_functions",
         ".texturegradoffset.sampler2darray_fixed_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017135,
-        "dEQP-GLES3.functional.shaders.texture_function", 
+        "dEQP-GLES3.functional.shaders.texture_function",
         "s.texturegradoffset.sampler2darray_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017136,
-        "dEQP-GLES3.functional.shaders.texture_functions", 
+        "dEQP-GLES3.functional.shaders.texture_functions",
         ".texturegradoffset.sampler2darray_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017137,
-        "dEQP-GLES3.functional.shaders.texture_functi", 
+        "dEQP-GLES3.functional.shaders.texture_functi",
         "ons.texturegradoffset.isampler2darray_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017138,
-        "dEQP-GLES3.functional.shaders.texture_functio", 
+        "dEQP-GLES3.functional.shaders.texture_functio",
         "ns.texturegradoffset.isampler2darray_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017139,
-        "dEQP-GLES3.functional.shaders.texture_functi", 
+        "dEQP-GLES3.functional.shaders.texture_functi",
         "ons.texturegradoffset.usampler2darray_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017140,
-        "dEQP-GLES3.functional.shaders.texture_functio", 
+        "dEQP-GLES3.functional.shaders.texture_functio",
         "ns.texturegradoffset.usampler2darray_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017141,
-        "dEQP-GLES3.functional.shaders.texture_functi", 
+        "dEQP-GLES3.functional.shaders.texture_functi",
         "ons.texturegradoffset.sampler3d_fixed_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017142,
-        "dEQP-GLES3.functional.shaders.texture_functio", 
+        "dEQP-GLES3.functional.shaders.texture_functio",
         "ns.texturegradoffset.sampler3d_fixed_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017143,
-        "dEQP-GLES3.functional.shaders.texture_functi", 
+        "dEQP-GLES3.functional.shaders.texture_functi",
         "ons.texturegradoffset.sampler3d_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017144,
-        "dEQP-GLES3.functional.shaders.texture_functio", 
+        "dEQP-GLES3.functional.shaders.texture_functio",
         "ns.texturegradoffset.sampler3d_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017145,
-        "dEQP-GLES3.functional.shaders.texture_fun", 
+        "dEQP-GLES3.functional.shaders.texture_fun",
         "ctions.texturegradoffset.isampler3d_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017146,
-        "dEQP-GLES3.functional.shaders.texture_func", 
+        "dEQP-GLES3.functional.shaders.texture_func",
         "tions.texturegradoffset.isampler3d_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017147,
-        "dEQP-GLES3.functional.shaders.texture_fun", 
+        "dEQP-GLES3.functional.shaders.texture_fun",
         "ctions.texturegradoffset.usampler3d_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017148,
-        "dEQP-GLES3.functional.shaders.texture_func", 
+        "dEQP-GLES3.functional.shaders.texture_func",
         "tions.texturegradoffset.usampler3d_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017149,
-        "dEQP-GLES3.functional.shaders.texture_functi", 
+        "dEQP-GLES3.functional.shaders.texture_functi",
         "ons.texturegradoffset.sampler2dshadow_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017150,
-        "dEQP-GLES3.functional.shaders.texture_functio", 
+        "dEQP-GLES3.functional.shaders.texture_functio",
         "ns.texturegradoffset.sampler2dshadow_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017151,
-        "dEQP-GLES3.functional.shaders.texture_function", 
+        "dEQP-GLES3.functional.shaders.texture_function",
         "s.texturegradoffset.sampler2darrayshadow_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017152,
-        "dEQP-GLES3.functional.shaders.texture_functions", 
+        "dEQP-GLES3.functional.shaders.texture_functions",
         ".texturegradoffset.sampler2darrayshadow_fragment");

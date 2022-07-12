@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022110,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_input.type.separable_tess_eval.patch_var_struct.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022111,
-        "dEQP-GLES31.functional.program_interface_query.progra", 
+        "dEQP-GLES31.functional.program_interface_query.progra",
         "m_input.type.separable_tess_eval.patch_var_struct.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022112,
-        "dEQP-GLES31.functional.program_interface_query.progra", 
+        "dEQP-GLES31.functional.program_interface_query.progra",
         "m_input.type.separable_tess_eval.patch_var_struct.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022113,
-        "dEQP-GLES31.functional.program_interface_query.progra", 
+        "dEQP-GLES31.functional.program_interface_query.progra",
         "m_input.type.separable_tess_eval.patch_var_struct.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022114,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_input.type.separable_tess_eval.patch_var_struct.ivec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022115,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_input.type.separable_tess_eval.patch_var_struct.uvec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022116,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_input.type.separable_tess_eval.patch_var_struct.mat3x2");

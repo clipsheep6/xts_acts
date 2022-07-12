@@ -24,145 +24,145 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022555,
-        "dEQP-GLES3.functional.texture.wrap.e", 
+        "dEQP-GLES3.functional.texture.wrap.e",
         "ac_signed_r11.clamp_clamp_nearest_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022556,
-        "dEQP-GLES3.functional.texture.wrap.e", 
+        "dEQP-GLES3.functional.texture.wrap.e",
         "ac_signed_r11.clamp_clamp_linear_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022557,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.clamp_repeat_nearest_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022558,
-        "dEQP-GLES3.functional.texture.wrap.e", 
+        "dEQP-GLES3.functional.texture.wrap.e",
         "ac_signed_r11.clamp_repeat_linear_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022559,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.clamp_mirror_nearest_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022560,
-        "dEQP-GLES3.functional.texture.wrap.e", 
+        "dEQP-GLES3.functional.texture.wrap.e",
         "ac_signed_r11.clamp_mirror_linear_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022561,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.repeat_clamp_nearest_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022562,
-        "dEQP-GLES3.functional.texture.wrap.e", 
+        "dEQP-GLES3.functional.texture.wrap.e",
         "ac_signed_r11.repeat_clamp_linear_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022563,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.repeat_repeat_nearest_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022564,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.repeat_repeat_linear_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022565,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.repeat_mirror_nearest_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022566,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.repeat_mirror_linear_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022567,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.mirror_clamp_nearest_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022568,
-        "dEQP-GLES3.functional.texture.wrap.e", 
+        "dEQP-GLES3.functional.texture.wrap.e",
         "ac_signed_r11.mirror_clamp_linear_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022569,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.mirror_repeat_nearest_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022570,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.mirror_repeat_linear_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022571,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.mirror_mirror_nearest_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022572,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.mirror_mirror_linear_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022573,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.clamp_clamp_nearest_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022574,
-        "dEQP-GLES3.functional.texture.wrap.e", 
+        "dEQP-GLES3.functional.texture.wrap.e",
         "ac_signed_r11.clamp_clamp_linear_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022575,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.clamp_repeat_nearest_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022576,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.clamp_repeat_linear_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022577,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.clamp_mirror_nearest_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022578,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.clamp_mirror_linear_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022579,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.repeat_clamp_nearest_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022580,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.repeat_clamp_linear_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022581,
-        "dEQP-GLES3.functional.texture.wrap.eac", 
+        "dEQP-GLES3.functional.texture.wrap.eac",
         "_signed_r11.repeat_repeat_nearest_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022582,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.repeat_repeat_linear_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022583,
-        "dEQP-GLES3.functional.texture.wrap.eac", 
+        "dEQP-GLES3.functional.texture.wrap.eac",
         "_signed_r11.repeat_mirror_nearest_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022584,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.repeat_mirror_linear_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022585,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.mirror_clamp_nearest_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022586,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.mirror_clamp_linear_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022587,
-        "dEQP-GLES3.functional.texture.wrap.eac", 
+        "dEQP-GLES3.functional.texture.wrap.eac",
         "_signed_r11.mirror_repeat_nearest_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022588,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.mirror_repeat_linear_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022589,
-        "dEQP-GLES3.functional.texture.wrap.eac", 
+        "dEQP-GLES3.functional.texture.wrap.eac",
         "_signed_r11.mirror_mirror_nearest_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30023TestSuite, TestCase_022590,
-        "dEQP-GLES3.functional.texture.wrap.ea", 
+        "dEQP-GLES3.functional.texture.wrap.ea",
         "c_signed_r11.mirror_mirror_linear_npot");

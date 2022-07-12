@@ -24,77 +24,77 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000076,
-        "KHR-GLES32.core.geometry_shader.", 
+        "KHR-GLES32.core.geometry_shader.",
         "primitive_counter.point_to_point");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000077,
-        "KHR-GLES32.core.geometry_shader.pri", 
+        "KHR-GLES32.core.geometry_shader.pri",
         "mitive_counter.points_to_line_strip");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000078,
-        "KHR-GLES32.core.geometry_shader.primi", 
+        "KHR-GLES32.core.geometry_shader.primi",
         "tive_counter.points_to_triangle_strip");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000079,
-        "KHR-GLES32.core.geometry_shader.", 
+        "KHR-GLES32.core.geometry_shader.",
         "primitive_counter.lines_to_points");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000080,
-        "KHR-GLES32.core.geometry_shader.pr", 
+        "KHR-GLES32.core.geometry_shader.pr",
         "imitive_counter.lines_to_line_strip");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000081,
-        "KHR-GLES32.core.geometry_shader.prim", 
+        "KHR-GLES32.core.geometry_shader.prim",
         "itive_counter.lines_to_triangle_strip");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000082,
-        "KHR-GLES32.core.geometry_shader.pr", 
+        "KHR-GLES32.core.geometry_shader.pr",
         "imitive_counter.triangles_to_points");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000083,
-        "KHR-GLES32.core.geometry_shader.prim", 
+        "KHR-GLES32.core.geometry_shader.prim",
         "itive_counter.triangles_to_line_strip");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000084,
-        "KHR-GLES32.core.geometry_shader.primit", 
+        "KHR-GLES32.core.geometry_shader.primit",
         "ive_counter.triangles_to_triangle_strip");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000085,
-        "KHR-GLES32.core.geometry_shader.pr", 
+        "KHR-GLES32.core.geometry_shader.pr",
         "imitive_counter.points_to_points_rp");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000086,
-        "KHR-GLES32.core.geometry_shader.prim", 
+        "KHR-GLES32.core.geometry_shader.prim",
         "itive_counter.points_to_line_strip_rp");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000087,
-        "KHR-GLES32.core.geometry_shader.primit", 
+        "KHR-GLES32.core.geometry_shader.primit",
         "ive_counter.points_to_triangle_strip_rp");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000088,
-        "KHR-GLES32.core.geometry_shader.pr", 
+        "KHR-GLES32.core.geometry_shader.pr",
         "imitive_counter.lines_to_points_rp");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000089,
-        "KHR-GLES32.core.geometry_shader.prim", 
+        "KHR-GLES32.core.geometry_shader.prim",
         "itive_counter.lines_to_line_strip_rp");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000090,
-        "KHR-GLES32.core.geometry_shader.primit", 
+        "KHR-GLES32.core.geometry_shader.primit",
         "ive_counter.lines_to_triangle_strip_rp");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000091,
-        "KHR-GLES32.core.geometry_shader.prim", 
+        "KHR-GLES32.core.geometry_shader.prim",
         "itive_counter.triangles_to_points_rp");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000092,
-        "KHR-GLES32.core.geometry_shader.primit", 
+        "KHR-GLES32.core.geometry_shader.primit",
         "ive_counter.triangles_to_line_strip_rp");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000093,
-        "KHR-GLES32.core.geometry_shader.primitiv", 
+        "KHR-GLES32.core.geometry_shader.primitiv",
         "e_counter.triangles_to_triangle_strip_rp");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000094,
-        "KHR-GLES32.core.geometry_shader.primit", 
+        "KHR-GLES32.core.geometry_shader.primit",
         "ive_counter.primitive_id_from_fragment");

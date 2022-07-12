@@ -24,85 +24,85 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001503,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001504,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.vec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001505,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001506,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.vec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001507,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001508,
-        "dEQP-GLES3.functional.shaders.li", 
+        "dEQP-GLES3.functional.shaders.li",
         "nkage.varying.basic_types.mat2x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001509,
-        "dEQP-GLES3.functional.shaders.li", 
+        "dEQP-GLES3.functional.shaders.li",
         "nkage.varying.basic_types.mat2x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001510,
-        "dEQP-GLES3.functional.shaders.li", 
+        "dEQP-GLES3.functional.shaders.li",
         "nkage.varying.basic_types.mat3x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001511,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001512,
-        "dEQP-GLES3.functional.shaders.li", 
+        "dEQP-GLES3.functional.shaders.li",
         "nkage.varying.basic_types.mat3x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001513,
-        "dEQP-GLES3.functional.shaders.li", 
+        "dEQP-GLES3.functional.shaders.li",
         "nkage.varying.basic_types.mat4x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001514,
-        "dEQP-GLES3.functional.shaders.li", 
+        "dEQP-GLES3.functional.shaders.li",
         "nkage.varying.basic_types.mat4x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001515,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.mat4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001516,
-        "dEQP-GLES3.functional.shaders.", 
+        "dEQP-GLES3.functional.shaders.",
         "linkage.varying.basic_types.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001517,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.ivec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001518,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.ivec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001519,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.ivec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001520,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001521,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.uvec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001522,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.uvec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30002TestSuite, TestCase_001523,
-        "dEQP-GLES3.functional.shaders.l", 
+        "dEQP-GLES3.functional.shaders.l",
         "inkage.varying.basic_types.uvec4");

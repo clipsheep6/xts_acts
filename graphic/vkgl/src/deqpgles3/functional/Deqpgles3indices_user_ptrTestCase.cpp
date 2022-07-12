@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043954,
-        "dEQP-GLES3.functional.draw.draw_el", 
+        "dEQP-GLES3.functional.draw.draw_el",
         "ements.indices.user_ptr.index_byte");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043955,
-        "dEQP-GLES3.functional.draw.draw_el", 
+        "dEQP-GLES3.functional.draw.draw_el",
         "ements.indices.user_ptr.index_short");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043956,
-        "dEQP-GLES3.functional.draw.draw_e", 
+        "dEQP-GLES3.functional.draw.draw_e",
         "lements.indices.user_ptr.index_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_044021,
-        "dEQP-GLES3.functional.draw.draw_element", 
+        "dEQP-GLES3.functional.draw.draw_element",
         "s_instanced.indices.user_ptr.index_byte");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_044022,
-        "dEQP-GLES3.functional.draw.draw_element", 
+        "dEQP-GLES3.functional.draw.draw_element",
         "s_instanced.indices.user_ptr.index_short");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_044023,
-        "dEQP-GLES3.functional.draw.draw_elemen", 
+        "dEQP-GLES3.functional.draw.draw_elemen",
         "ts_instanced.indices.user_ptr.index_int");

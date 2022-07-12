@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003902,
-        "KHR-GLES3.packed_depth_stencil", 
+        "KHR-GLES3.packed_depth_stencil",
         ".clear_buffer.depth24_stencil8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003903,
-        "KHR-GLES3.packed_depth_stencil", 
+        "KHR-GLES3.packed_depth_stencil",
         ".clear_buffer.depth32f_stencil8");

@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002261,
-        "KHR-GLES31.core.shader_", 
+        "KHR-GLES31.core.shader_",
         "group_vote.availability");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002262,
-        "KHR-GLES31.core.shader_g", 
+        "KHR-GLES31.core.shader_g",
         "roup_vote.all_invocations");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002263,
-        "KHR-GLES31.core.shader_g", 
+        "KHR-GLES31.core.shader_g",
         "roup_vote.any_invocation");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002264,
-        "KHR-GLES31.core.shader_grou", 
+        "KHR-GLES31.core.shader_grou",
         "p_vote.all_invocations_equal");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002265,
-        "KHR-GLES31.core.shader_group_v", 
+        "KHR-GLES31.core.shader_group_v",
         "ote.invocations_with_variables");

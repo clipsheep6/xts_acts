@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001137,
-        "KHR-GLES32.core.ext_texture_shadow_lod.t", 
+        "KHR-GLES32.core.ext_texture_shadow_lod.t",
         "extureoffset.sampler2darrayshadow_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001138,
-        "KHR-GLES32.core.ext_texture_shadow_lod.te", 
+        "KHR-GLES32.core.ext_texture_shadow_lod.te",
         "xtureoffset.sampler2darrayshadow_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles320002TestSuite, TestCase_001139,
-        "KHR-GLES32.core.ext_texture_shadow_lod.text", 
+        "KHR-GLES32.core.ext_texture_shadow_lod.text",
         "ureoffset.sampler2darrayshadow_bias_fragment");

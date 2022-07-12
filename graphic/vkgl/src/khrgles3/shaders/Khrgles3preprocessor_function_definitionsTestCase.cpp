@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000968,
-        "KHR-GLES3.shaders.preprocessor.function_defi", 
+        "KHR-GLES3.shaders.preprocessor.function_defi",
         "nitions.same_object_and_function_param_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000969,
-        "KHR-GLES3.shaders.preprocessor.function_defin", 
+        "KHR-GLES3.shaders.preprocessor.function_defin",
         "itions.same_object_and_function_param_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000970,
-        "KHR-GLES3.shaders.preprocessor.func", 
+        "KHR-GLES3.shaders.preprocessor.func",
         "tion_definitions.complex_func_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000971,
-        "KHR-GLES3.shaders.preprocessor.funct", 
+        "KHR-GLES3.shaders.preprocessor.funct",
         "ion_definitions.complex_func_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000972,
-        "KHR-GLES3.shaders.preprocessor.function_defini", 
+        "KHR-GLES3.shaders.preprocessor.function_defini",
         "tions.function_definition_with_comments_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000973,
-        "KHR-GLES3.shaders.preprocessor.function_definit", 
+        "KHR-GLES3.shaders.preprocessor.function_definit",
         "ions.function_definition_with_comments_fragment");

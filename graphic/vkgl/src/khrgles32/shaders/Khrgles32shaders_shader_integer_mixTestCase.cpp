@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000007,
-        "KHR-GLES32.shaders.sha", 
+        "KHR-GLES32.shaders.sha",
         "der_integer_mix.define");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000008,
-        "KHR-GLES32.shaders.shader_int", 
+        "KHR-GLES32.shaders.shader_int",
         "eger_mix.prototypes-extension");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000009,
-        "KHR-GLES32.shaders.shade", 
+        "KHR-GLES32.shaders.shade",
         "r_integer_mix.prototypes");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000010,
-        "KHR-GLES32.shaders.shader_in", 
+        "KHR-GLES32.shaders.shader_in",
         "teger_mix.prototypes-negative");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000011,
-        "KHR-GLES32.shaders.shad", 
+        "KHR-GLES32.shaders.shad",
         "er_integer_mix.mix-ivec4");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000012,
-        "KHR-GLES32.shaders.shad", 
+        "KHR-GLES32.shaders.shad",
         "er_integer_mix.mix-uvec4");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000013,
-        "KHR-GLES32.shaders.shad", 
+        "KHR-GLES32.shaders.shad",
         "er_integer_mix.mix-bvec4");

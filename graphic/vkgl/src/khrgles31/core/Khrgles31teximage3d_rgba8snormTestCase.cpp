@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003325,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgba8snorm.0_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003326,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgba8snorm.1_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003327,
-        "KHR-GLES31.core.pixelstoragemod", 
+        "KHR-GLES31.core.pixelstoragemod",
         "es.teximage3d.rgba8snorm.16_0_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003328,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgba8snorm.1_1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003329,
-        "KHR-GLES31.core.pixelstoragemod", 
+        "KHR-GLES31.core.pixelstoragemod",
         "es.teximage3d.rgba8snorm.16_1_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003330,
-        "KHR-GLES31.core.pixelstoragemod", 
+        "KHR-GLES31.core.pixelstoragemod",
         "es.teximage3d.rgba8snorm.16_16_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003331,
-        "KHR-GLES31.core.pixelstoragemo", 
+        "KHR-GLES31.core.pixelstoragemo",
         "des.teximage3d.rgba8snorm.1_1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003332,
-        "KHR-GLES31.core.pixelstoragemod", 
+        "KHR-GLES31.core.pixelstoragemod",
         "es.teximage3d.rgba8snorm.16_1_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003333,
-        "KHR-GLES31.core.pixelstoragemod", 
+        "KHR-GLES31.core.pixelstoragemod",
         "es.teximage3d.rgba8snorm.16_16_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310004TestSuite, TestCase_003334,
-        "KHR-GLES31.core.pixelstoragemod", 
+        "KHR-GLES31.core.pixelstoragemod",
         "es.teximage3d.rgba8snorm.16_16_4");

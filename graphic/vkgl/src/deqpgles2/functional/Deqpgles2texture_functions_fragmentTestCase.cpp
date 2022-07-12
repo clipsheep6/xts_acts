@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007814,
-        "dEQP-GLES2.functional.shaders.tex", 
+        "dEQP-GLES2.functional.shaders.tex",
         "ture_functions.fragment.texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007815,
-        "dEQP-GLES2.functional.shaders.textu", 
+        "dEQP-GLES2.functional.shaders.textu",
         "re_functions.fragment.texture2d_bias");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007816,
-        "dEQP-GLES2.functional.shaders.texture", 
+        "dEQP-GLES2.functional.shaders.texture",
         "_functions.fragment.texture2dproj_vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007817,
-        "dEQP-GLES2.functional.shaders.texture", 
+        "dEQP-GLES2.functional.shaders.texture",
         "_functions.fragment.texture2dproj_vec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007818,
-        "dEQP-GLES2.functional.shaders.texture_fu", 
+        "dEQP-GLES2.functional.shaders.texture_fu",
         "nctions.fragment.texture2dproj_vec3_bias");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007819,
-        "dEQP-GLES2.functional.shaders.texture_fu", 
+        "dEQP-GLES2.functional.shaders.texture_fu",
         "nctions.fragment.texture2dproj_vec4_bias");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007820,
-        "dEQP-GLES2.functional.shaders.text", 
+        "dEQP-GLES2.functional.shaders.text",
         "ure_functions.fragment.texturecube");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007821,
-        "dEQP-GLES2.functional.shaders.textur", 
+        "dEQP-GLES2.functional.shaders.textur",
         "e_functions.fragment.texturecube_bias");

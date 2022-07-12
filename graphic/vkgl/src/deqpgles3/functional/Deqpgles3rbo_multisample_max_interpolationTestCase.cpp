@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039861,
-        "dEQP-GLES3.functional.rasterization.fbo.r", 
+        "dEQP-GLES3.functional.rasterization.fbo.r",
         "bo_multisample_max.interpolation.triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039862,
-        "dEQP-GLES3.functional.rasterization.fbo", 
+        "dEQP-GLES3.functional.rasterization.fbo",
         ".rbo_multisample_max.interpolation.lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039863,
-        "dEQP-GLES3.functional.rasterization.fbo.rb", 
+        "dEQP-GLES3.functional.rasterization.fbo.rb",
         "o_multisample_max.interpolation.lines_wide");

@@ -24,97 +24,97 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015050,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".basic_array_assign_full.basic_array.float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015051,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "basic_array_assign_full.basic_array.float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015052,
-        "dEQP-GLES2.functional.uniform_api.value.assigne", 
+        "dEQP-GLES2.functional.uniform_api.value.assigne",
         "d.basic_array_assign_full.basic_array.float_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015053,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".basic_array_assign_full.basic_array.vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015054,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "basic_array_assign_full.basic_array.vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015055,
-        "dEQP-GLES2.functional.uniform_api.value.assigne", 
+        "dEQP-GLES2.functional.uniform_api.value.assigne",
         "d.basic_array_assign_full.basic_array.vec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015056,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".basic_array_assign_full.basic_array.mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015057,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "basic_array_assign_full.basic_array.mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015058,
-        "dEQP-GLES2.functional.uniform_api.value.assigne", 
+        "dEQP-GLES2.functional.uniform_api.value.assigne",
         "d.basic_array_assign_full.basic_array.mat4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015059,
-        "dEQP-GLES2.functional.uniform_api.value.assigne", 
+        "dEQP-GLES2.functional.uniform_api.value.assigne",
         "d.basic_array_assign_full.basic_array.int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015060,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".basic_array_assign_full.basic_array.int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015061,
-        "dEQP-GLES2.functional.uniform_api.value.assign", 
+        "dEQP-GLES2.functional.uniform_api.value.assign",
         "ed.basic_array_assign_full.basic_array.int_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015062,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".basic_array_assign_full.basic_array.ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015063,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "basic_array_assign_full.basic_array.ivec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015064,
-        "dEQP-GLES2.functional.uniform_api.value.assigne", 
+        "dEQP-GLES2.functional.uniform_api.value.assigne",
         "d.basic_array_assign_full.basic_array.ivec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015065,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".basic_array_assign_full.basic_array.bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015066,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "basic_array_assign_full.basic_array.bool_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015067,
-        "dEQP-GLES2.functional.uniform_api.value.assigne", 
+        "dEQP-GLES2.functional.uniform_api.value.assigne",
         "d.basic_array_assign_full.basic_array.bool_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015068,
-        "dEQP-GLES2.functional.uniform_api.value.assigned", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned",
         ".basic_array_assign_full.basic_array.bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015069,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "basic_array_assign_full.basic_array.bvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015070,
-        "dEQP-GLES2.functional.uniform_api.value.assigne", 
+        "dEQP-GLES2.functional.uniform_api.value.assigne",
         "d.basic_array_assign_full.basic_array.bvec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015071,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.b", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.b",
         "asic_array_assign_full.basic_array.sampler2D_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015072,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.ba", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.ba",
         "sic_array_assign_full.basic_array.sampler2D_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015073,
-        "dEQP-GLES2.functional.uniform_api.value.assigned.", 
+        "dEQP-GLES2.functional.uniform_api.value.assigned.",
         "basic_array_assign_full.basic_array.sampler2D_both");

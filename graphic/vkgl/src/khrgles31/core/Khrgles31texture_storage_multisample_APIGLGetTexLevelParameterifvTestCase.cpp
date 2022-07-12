@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000030,
-        "KHR-GLES31.core.texture_storage_multisample.", 
+        "KHR-GLES31.core.texture_storage_multisample.",
         "APIGLGetTexLevelParameterifv.functional_test");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000031,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGet", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLGet",
         "TexLevelParameterifv.invalid_texture_target_rejected");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000032,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGet", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLGet",
         "TexLevelParameterifv.invalid_value_argument_rejected");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000033,
-        "KHR-GLES31.core.texture_storage_multisample.APIGLGe", 
+        "KHR-GLES31.core.texture_storage_multisample.APIGLGe",
         "tTexLevelParameterifv.negative_lod_is_rejected_test");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000034,
-        "KHR-GLES31.core.texture_storage_multisample.APIG", 
+        "KHR-GLES31.core.texture_storage_multisample.APIG",
         "LGetTexLevelParameterifv.functional_max_lod_test");

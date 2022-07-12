@@ -24,145 +24,145 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026948,
-        "dEQP-GLES3.functional.texture.verte", 
+        "dEQP-GLES3.functional.texture.verte",
         "x.2d.filtering.nearest_nearest_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026949,
-        "dEQP-GLES3.functional.texture.vertex", 
+        "dEQP-GLES3.functional.texture.vertex",
         ".2d.filtering.nearest_nearest_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026950,
-        "dEQP-GLES3.functional.texture.vertex", 
+        "dEQP-GLES3.functional.texture.vertex",
         ".2d.filtering.nearest_nearest_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026951,
-        "dEQP-GLES3.functional.texture.verte", 
+        "dEQP-GLES3.functional.texture.verte",
         "x.2d.filtering.nearest_linear_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026952,
-        "dEQP-GLES3.functional.texture.verte", 
+        "dEQP-GLES3.functional.texture.verte",
         "x.2d.filtering.nearest_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026953,
-        "dEQP-GLES3.functional.texture.verte", 
+        "dEQP-GLES3.functional.texture.verte",
         "x.2d.filtering.nearest_linear_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026954,
-        "dEQP-GLES3.functional.texture.verte", 
+        "dEQP-GLES3.functional.texture.verte",
         "x.2d.filtering.linear_nearest_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026955,
-        "dEQP-GLES3.functional.texture.verte", 
+        "dEQP-GLES3.functional.texture.verte",
         "x.2d.filtering.linear_nearest_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026956,
-        "dEQP-GLES3.functional.texture.verte", 
+        "dEQP-GLES3.functional.texture.verte",
         "x.2d.filtering.linear_nearest_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026957,
-        "dEQP-GLES3.functional.texture.vert", 
+        "dEQP-GLES3.functional.texture.vert",
         "ex.2d.filtering.linear_linear_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026958,
-        "dEQP-GLES3.functional.texture.verte", 
+        "dEQP-GLES3.functional.texture.verte",
         "x.2d.filtering.linear_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026959,
-        "dEQP-GLES3.functional.texture.verte", 
+        "dEQP-GLES3.functional.texture.verte",
         "x.2d.filtering.linear_linear_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026960,
-        "dEQP-GLES3.functional.texture.vertex.2d.fil", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fil",
         "tering.nearest_mipmap_nearest_nearest_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026961,
-        "dEQP-GLES3.functional.texture.vertex.2d.fil", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fil",
         "tering.nearest_mipmap_nearest_nearest_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026962,
-        "dEQP-GLES3.functional.texture.vertex.2d.fil", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fil",
         "tering.nearest_mipmap_nearest_nearest_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026963,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.nearest_mipmap_nearest_linear_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026964,
-        "dEQP-GLES3.functional.texture.vertex.2d.fil", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fil",
         "tering.nearest_mipmap_nearest_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026965,
-        "dEQP-GLES3.functional.texture.vertex.2d.fil", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fil",
         "tering.nearest_mipmap_nearest_linear_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026966,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.linear_mipmap_nearest_nearest_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026967,
-        "dEQP-GLES3.functional.texture.vertex.2d.fil", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fil",
         "tering.linear_mipmap_nearest_nearest_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026968,
-        "dEQP-GLES3.functional.texture.vertex.2d.fil", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fil",
         "tering.linear_mipmap_nearest_nearest_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026969,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.linear_mipmap_nearest_linear_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026970,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.linear_mipmap_nearest_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026971,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.linear_mipmap_nearest_linear_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026972,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.nearest_mipmap_linear_nearest_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026973,
-        "dEQP-GLES3.functional.texture.vertex.2d.fil", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fil",
         "tering.nearest_mipmap_linear_nearest_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026974,
-        "dEQP-GLES3.functional.texture.vertex.2d.fil", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fil",
         "tering.nearest_mipmap_linear_nearest_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026975,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.nearest_mipmap_linear_linear_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026976,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.nearest_mipmap_linear_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026977,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.nearest_mipmap_linear_linear_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026978,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.linear_mipmap_linear_nearest_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026979,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.linear_mipmap_linear_nearest_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026980,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.linear_mipmap_linear_nearest_mirror");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026981,
-        "dEQP-GLES3.functional.texture.vertex.2d.f", 
+        "dEQP-GLES3.functional.texture.vertex.2d.f",
         "iltering.linear_mipmap_linear_linear_clamp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026982,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.linear_mipmap_linear_linear_repeat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30027TestSuite, TestCase_026983,
-        "dEQP-GLES3.functional.texture.vertex.2d.fi", 
+        "dEQP-GLES3.functional.texture.vertex.2d.fi",
         "ltering.linear_mipmap_linear_linear_mirror");

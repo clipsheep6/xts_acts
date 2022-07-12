@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003709,
-        "KHR-GLES3.parallel_shade", 
+        "KHR-GLES3.parallel_shade",
         "r_compile.simple_queries");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003710,
-        "KHR-GLES3.parallel_shader_comp", 
+        "KHR-GLES3.parallel_shader_comp",
         "ile.max_shader_compile_threads");
 
 static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003711,
-        "KHR-GLES3.parallel_shader_compil", 
+        "KHR-GLES3.parallel_shader_compil",
         "e.compilation_completion_parallel");

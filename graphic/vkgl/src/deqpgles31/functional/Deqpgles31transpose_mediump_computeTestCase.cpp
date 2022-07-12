@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002786,
-        "dEQP-GLES31.functional.shaders.builtin_funct", 
+        "dEQP-GLES31.functional.shaders.builtin_funct",
         "ions.precision.transpose.mediump_compute.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002787,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.precision.transpose.mediump_compute.mat2x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002788,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.precision.transpose.mediump_compute.mat2x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002789,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.precision.transpose.mediump_compute.mat3x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002790,
-        "dEQP-GLES31.functional.shaders.builtin_funct", 
+        "dEQP-GLES31.functional.shaders.builtin_funct",
         "ions.precision.transpose.mediump_compute.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002791,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.precision.transpose.mediump_compute.mat3x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002792,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.precision.transpose.mediump_compute.mat4x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002793,
-        "dEQP-GLES31.functional.shaders.builtin_functi", 
+        "dEQP-GLES31.functional.shaders.builtin_functi",
         "ons.precision.transpose.mediump_compute.mat4x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002794,
-        "dEQP-GLES31.functional.shaders.builtin_funct", 
+        "dEQP-GLES31.functional.shaders.builtin_funct",
         "ions.precision.transpose.mediump_compute.mat4");

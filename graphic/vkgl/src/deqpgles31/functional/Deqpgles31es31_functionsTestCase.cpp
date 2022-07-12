@@ -24,97 +24,97 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005651,
-        "dEQP-GLES31.functional.shaders.implicit_con", 
+        "dEQP-GLES31.functional.shaders.implicit_con",
         "versions.es31.functions.int_to_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005652,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.int_to_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005653,
-        "dEQP-GLES31.functional.shaders.implicit_co", 
+        "dEQP-GLES31.functional.shaders.implicit_co",
         "nversions.es31.functions.int_to_uint_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005654,
-        "dEQP-GLES31.functional.shaders.implicit_con", 
+        "dEQP-GLES31.functional.shaders.implicit_con",
         "versions.es31.functions.int_to_uint_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005655,
-        "dEQP-GLES31.functional.shaders.implicit_con", 
+        "dEQP-GLES31.functional.shaders.implicit_con",
         "versions.es31.functions.uint_to_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005656,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.uint_to_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005657,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.ivec2_to_uvec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005658,
-        "dEQP-GLES31.functional.shaders.implicit_conve", 
+        "dEQP-GLES31.functional.shaders.implicit_conve",
         "rsions.es31.functions.ivec2_to_uvec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005659,
-        "dEQP-GLES31.functional.shaders.implicit_con", 
+        "dEQP-GLES31.functional.shaders.implicit_con",
         "versions.es31.functions.ivec2_to_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005660,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.ivec2_to_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005661,
-        "dEQP-GLES31.functional.shaders.implicit_con", 
+        "dEQP-GLES31.functional.shaders.implicit_con",
         "versions.es31.functions.uvec2_to_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005662,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.uvec2_to_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005663,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.ivec3_to_uvec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005664,
-        "dEQP-GLES31.functional.shaders.implicit_conve", 
+        "dEQP-GLES31.functional.shaders.implicit_conve",
         "rsions.es31.functions.ivec3_to_uvec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005665,
-        "dEQP-GLES31.functional.shaders.implicit_con", 
+        "dEQP-GLES31.functional.shaders.implicit_con",
         "versions.es31.functions.ivec3_to_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005666,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.ivec3_to_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005667,
-        "dEQP-GLES31.functional.shaders.implicit_con", 
+        "dEQP-GLES31.functional.shaders.implicit_con",
         "versions.es31.functions.uvec3_to_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005668,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.uvec3_to_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005669,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.ivec4_to_uvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005670,
-        "dEQP-GLES31.functional.shaders.implicit_conve", 
+        "dEQP-GLES31.functional.shaders.implicit_conve",
         "rsions.es31.functions.ivec4_to_uvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005671,
-        "dEQP-GLES31.functional.shaders.implicit_con", 
+        "dEQP-GLES31.functional.shaders.implicit_con",
         "versions.es31.functions.ivec4_to_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005672,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.ivec4_to_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005673,
-        "dEQP-GLES31.functional.shaders.implicit_con", 
+        "dEQP-GLES31.functional.shaders.implicit_con",
         "versions.es31.functions.uvec4_to_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310006TestSuite, TestCase_005674,
-        "dEQP-GLES31.functional.shaders.implicit_conv", 
+        "dEQP-GLES31.functional.shaders.implicit_conv",
         "ersions.es31.functions.uvec4_to_vec4_fragment");

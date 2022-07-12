@@ -24,101 +24,101 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010014,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".layout.random.basic_types.0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010015,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".layout.random.basic_types.1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010016,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".layout.random.basic_types.2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010017,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".layout.random.basic_types.3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010018,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".layout.random.basic_types.4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010019,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".layout.random.basic_types.5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010020,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".layout.random.basic_types.6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010021,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".layout.random.basic_types.7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010022,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".layout.random.basic_types.8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010023,
-        "dEQP-GLES31.functional.ssbo", 
+        "dEQP-GLES31.functional.ssbo",
         ".layout.random.basic_types.9");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010024,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.10");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010025,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.11");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010026,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.12");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010027,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.13");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010028,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.14");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010029,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.15");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010030,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010031,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.17");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010032,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.18");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010033,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.19");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010034,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.20");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010035,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.21");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010036,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.22");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010037,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.23");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310011TestSuite, TestCase_010038,
-        "dEQP-GLES31.functional.ssbo.", 
+        "dEQP-GLES31.functional.ssbo.",
         "layout.random.basic_types.24");

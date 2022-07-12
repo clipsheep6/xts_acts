@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002233,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.nested_structs_arrays.0");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002234,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.nested_structs_arrays.1");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002235,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.nested_structs_arrays.2");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002236,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.nested_structs_arrays.3");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002237,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.nested_structs_arrays.4");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002238,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.nested_structs_arrays.5");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002239,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.nested_structs_arrays.6");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002240,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.nested_structs_arrays.7");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002241,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.nested_structs_arrays.8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002242,
-        "KHR-GLES3.shaders.uniform_block", 
+        "KHR-GLES3.shaders.uniform_block",
         ".random.nested_structs_arrays.9");

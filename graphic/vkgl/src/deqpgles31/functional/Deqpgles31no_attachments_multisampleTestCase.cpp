@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020007,
-        "dEQP-GLES31.functional.fbo.no_a", 
+        "dEQP-GLES31.functional.fbo.no_a",
         "ttachments.multisample.samples0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020008,
-        "dEQP-GLES31.functional.fbo.no_a", 
+        "dEQP-GLES31.functional.fbo.no_a",
         "ttachments.multisample.samples1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020009,
-        "dEQP-GLES31.functional.fbo.no_a", 
+        "dEQP-GLES31.functional.fbo.no_a",
         "ttachments.multisample.samples2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020010,
-        "dEQP-GLES31.functional.fbo.no_a", 
+        "dEQP-GLES31.functional.fbo.no_a",
         "ttachments.multisample.samples3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020011,
-        "dEQP-GLES31.functional.fbo.no_a", 
+        "dEQP-GLES31.functional.fbo.no_a",
         "ttachments.multisample.samples4");

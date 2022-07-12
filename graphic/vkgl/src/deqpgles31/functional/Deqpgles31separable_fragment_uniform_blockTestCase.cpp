@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021024,
-        "dEQP-GLES31.functional.program_interface_query.uniform.re", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.re",
         "ferenced_by_shader.separable_fragment.uniform_block.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021025,
-        "dEQP-GLES31.functional.program_interface_query.uniform.refer", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.refer",
         "enced_by_shader.separable_fragment.uniform_block.float_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021026,
-        "dEQP-GLES31.functional.program_interface_query.uniform.refer", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.refer",
         "enced_by_shader.separable_fragment.uniform_block.float_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021027,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenc", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenc",
         "ed_by_shader.separable_fragment.uniform_block.float_array_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021028,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenc", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenc",
         "ed_by_shader.separable_fragment.uniform_block.float_struct_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021029,
-        "dEQP-GLES31.functional.program_interface_query.uniform.referenc", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.referenc",
         "ed_by_shader.separable_fragment.uniform_block.float_array_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021030,
-        "dEQP-GLES31.functional.program_interface_query.uniform.reference", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.reference",
         "d_by_shader.separable_fragment.uniform_block.float_struct_struct");

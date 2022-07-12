@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028286,
-        "dEQP-GLES3.functional.fragment_o", 
+        "dEQP-GLES3.functional.fragment_o",
         "ps.depth_stencil.write_mask.depth");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028287,
-        "dEQP-GLES3.functional.fragment_op", 
+        "dEQP-GLES3.functional.fragment_op",
         "s.depth_stencil.write_mask.stencil");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30029TestSuite, TestCase_028288,
-        "dEQP-GLES3.functional.fragment_o", 
+        "dEQP-GLES3.functional.fragment_o",
         "ps.depth_stencil.write_mask.both");

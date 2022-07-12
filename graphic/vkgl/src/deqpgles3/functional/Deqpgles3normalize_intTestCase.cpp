@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033057,
-        "dEQP-GLES3.functional.vertex_arrays.single", 
+        "dEQP-GLES3.functional.vertex_arrays.single",
         "_attribute.normalize.int.components2_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033058,
-        "dEQP-GLES3.functional.vertex_arrays.single_", 
+        "dEQP-GLES3.functional.vertex_arrays.single_",
         "attribute.normalize.int.components2_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033059,
-        "dEQP-GLES3.functional.vertex_arrays.single", 
+        "dEQP-GLES3.functional.vertex_arrays.single",
         "_attribute.normalize.int.components3_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033060,
-        "dEQP-GLES3.functional.vertex_arrays.single_", 
+        "dEQP-GLES3.functional.vertex_arrays.single_",
         "attribute.normalize.int.components3_quads256");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033061,
-        "dEQP-GLES3.functional.vertex_arrays.single", 
+        "dEQP-GLES3.functional.vertex_arrays.single",
         "_attribute.normalize.int.components4_quads1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30034TestSuite, TestCase_033062,
-        "dEQP-GLES3.functional.vertex_arrays.single_", 
+        "dEQP-GLES3.functional.vertex_arrays.single_",
         "attribute.normalize.int.components4_quads256");

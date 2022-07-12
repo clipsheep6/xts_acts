@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014177,
-        "dEQP-GLES31.functional.texture.texture_buffer.rend", 
+        "dEQP-GLES31.functional.texture.texture_buffer.rend",
         "er_modify.as_vertex_array_as_index_array.bufferdata");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014178,
-        "dEQP-GLES31.functional.texture.texture_buffer.render", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render",
         "_modify.as_vertex_array_as_index_array.buffersubdata");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014179,
-        "dEQP-GLES31.functional.texture.texture_buffer.render_", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render_",
         "modify.as_vertex_array_as_index_array.mapbuffer_write");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014180,
-        "dEQP-GLES31.functional.texture.texture_buffer.render_mo", 
+        "dEQP-GLES31.functional.texture.texture_buffer.render_mo",
         "dify.as_vertex_array_as_index_array.mapbuffer_readwrite");

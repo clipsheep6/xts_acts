@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015776,
-        "dEQP-GLES2.functional.clipping", 
+        "dEQP-GLES2.functional.clipping",
         ".polygon_edge.quad_at_origin_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015777,
-        "dEQP-GLES2.functional.clipping", 
+        "dEQP-GLES2.functional.clipping",
         ".polygon_edge.quad_at_origin_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015778,
-        "dEQP-GLES2.functional.clipping", 
+        "dEQP-GLES2.functional.clipping",
         ".polygon_edge.quad_at_origin_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015779,
-        "dEQP-GLES2.functional.clipping", 
+        "dEQP-GLES2.functional.clipping",
         ".polygon_edge.quad_at_origin_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015780,
-        "dEQP-GLES2.functional.clipping", 
+        "dEQP-GLES2.functional.clipping",
         ".polygon_edge.quad_at_origin_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015781,
-        "dEQP-GLES2.functional.clipping", 
+        "dEQP-GLES2.functional.clipping",
         ".polygon_edge.quad_near_edge_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015782,
-        "dEQP-GLES2.functional.clipping", 
+        "dEQP-GLES2.functional.clipping",
         ".polygon_edge.quad_near_edge_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015783,
-        "dEQP-GLES2.functional.clipping", 
+        "dEQP-GLES2.functional.clipping",
         ".polygon_edge.quad_near_edge_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015784,
-        "dEQP-GLES2.functional.clip", 
+        "dEQP-GLES2.functional.clip",
         "ping.polygon_edge.poly_fan");

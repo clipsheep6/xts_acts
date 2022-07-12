@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012545,
-        "dEQP-GLES2.functional.fbo.render.shared", 
+        "dEQP-GLES2.functional.fbo.render.shared",
         "_depthbuffer.tex2d_rgb_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012546,
-        "dEQP-GLES2.functional.fbo.render.shared_depthbu", 
+        "dEQP-GLES2.functional.fbo.render.shared_depthbu",
         "ffer.tex2d_rgb_depth_component16_stencil_index8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012547,
-        "dEQP-GLES2.functional.fbo.render.shared_", 
+        "dEQP-GLES2.functional.fbo.render.shared_",
         "depthbuffer.tex2d_rgba_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012548,
-        "dEQP-GLES2.functional.fbo.render.shared_depthbu", 
+        "dEQP-GLES2.functional.fbo.render.shared_depthbu",
         "ffer.tex2d_rgba_depth_component16_stencil_index8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012549,
-        "dEQP-GLES2.functional.fbo.render.shared_", 
+        "dEQP-GLES2.functional.fbo.render.shared_",
         "depthbuffer.rbo_rgb565_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012550,
-        "dEQP-GLES2.functional.fbo.render.shared_depthbu", 
+        "dEQP-GLES2.functional.fbo.render.shared_depthbu",
         "ffer.rbo_rgb565_depth_component16_stencil_index8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012551,
-        "dEQP-GLES2.functional.fbo.render.shared_", 
+        "dEQP-GLES2.functional.fbo.render.shared_",
         "depthbuffer.rbo_rgb5_a1_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012552,
-        "dEQP-GLES2.functional.fbo.render.shared_depthbuf", 
+        "dEQP-GLES2.functional.fbo.render.shared_depthbuf",
         "fer.rbo_rgb5_a1_depth_component16_stencil_index8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012553,
-        "dEQP-GLES2.functional.fbo.render.shared", 
+        "dEQP-GLES2.functional.fbo.render.shared",
         "_depthbuffer.rbo_rgba4_depth_component16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20013TestSuite, TestCase_012554,
-        "dEQP-GLES2.functional.fbo.render.shared_depthbu", 
+        "dEQP-GLES2.functional.fbo.render.shared_depthbu",
         "ffer.rbo_rgba4_depth_component16_stencil_index8");

@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000064,
-        "dEQP-GLES2.functional.buffer.", 
+        "dEQP-GLES2.functional.buffer.",
         "write.basic.array_stream_draw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000065,
-        "dEQP-GLES2.functional.buffer.", 
+        "dEQP-GLES2.functional.buffer.",
         "write.basic.array_static_draw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000066,
-        "dEQP-GLES2.functional.buffer.", 
+        "dEQP-GLES2.functional.buffer.",
         "write.basic.array_dynamic_draw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000067,
-        "dEQP-GLES2.functional.buffer.writ", 
+        "dEQP-GLES2.functional.buffer.writ",
         "e.basic.element_array_stream_draw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000068,
-        "dEQP-GLES2.functional.buffer.writ", 
+        "dEQP-GLES2.functional.buffer.writ",
         "e.basic.element_array_static_draw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000069,
-        "dEQP-GLES2.functional.buffer.writ", 
+        "dEQP-GLES2.functional.buffer.writ",
         "e.basic.element_array_dynamic_draw");

@@ -24,89 +24,89 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020711,
-        "dEQP-GLES31.functional.program_interface_query.uniform.m", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.m",
         "atrix_row_major.unnamed_block_col_major.column_major.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020712,
-        "dEQP-GLES31.functional.program_interface_query.uniform.matr", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.matr",
         "ix_row_major.unnamed_block_col_major.column_major.var_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020713,
-        "dEQP-GLES31.functional.program_interface_query.uniform.matr", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.matr",
         "ix_row_major.unnamed_block_col_major.column_major.var_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020817,
-        "dEQP-GLES31.functional.program_interface_query.uniform", 
+        "dEQP-GLES31.functional.program_interface_query.uniform",
         ".matrix_stride.unnamed_block_col_major.column_major.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020818,
-        "dEQP-GLES31.functional.program_interface_query.uniform.mat", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.mat",
         "rix_stride.unnamed_block_col_major.column_major.var_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020819,
-        "dEQP-GLES31.functional.program_interface_query.uniform.ma", 
+        "dEQP-GLES31.functional.program_interface_query.uniform.ma",
         "trix_stride.unnamed_block_col_major.column_major.var_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_023853,
-        "dEQP-GLES31.functional.program_interface_query.buffer_vari", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_vari",
         "able.is_row_major.unnamed_block_col_major.column_major.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_023854,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variabl", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variabl",
         "e.is_row_major.unnamed_block_col_major.column_major.var_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_023855,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable.is", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable.is",
         "_row_major.unnamed_block_col_major.column_major.var_struct_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_023856,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable.i", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable.i",
         "s_row_major.unnamed_block_col_major.column_major.var_array_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_023857,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variabl", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variabl",
         "e.is_row_major.unnamed_block_col_major.column_major.var_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_023858,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable.i", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable.i",
         "s_row_major.unnamed_block_col_major.column_major.var_struct_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_023859,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable.i", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable.i",
         "s_row_major.unnamed_block_col_major.column_major.var_array_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_023860,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable.is", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable.is",
         "_row_major.unnamed_block_col_major.column_major.var_unsized_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_024008,
-        "dEQP-GLES31.functional.program_interface_query.buffer_vari", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_vari",
         "able.matrix_stride.unnamed_block_col_major.column_major.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_024009,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable",
         ".matrix_stride.unnamed_block_col_major.column_major.var_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_024010,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable.ma", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable.ma",
         "trix_stride.unnamed_block_col_major.column_major.var_struct_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_024011,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable.ma", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable.ma",
         "trix_stride.unnamed_block_col_major.column_major.var_array_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_024012,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variabl", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variabl",
         "e.matrix_stride.unnamed_block_col_major.column_major.var_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_024013,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable.ma", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable.ma",
         "trix_stride.unnamed_block_col_major.column_major.var_struct_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_024014,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable.m", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable.m",
         "atrix_stride.unnamed_block_col_major.column_major.var_array_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_024015,
-        "dEQP-GLES31.functional.program_interface_query.buffer_variable.ma", 
+        "dEQP-GLES31.functional.program_interface_query.buffer_variable.ma",
         "trix_stride.unnamed_block_col_major.column_major.var_unsized_array");

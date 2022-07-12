@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038305,
-        "dEQP-GLES3.functional.uniform_api.value.a", 
+        "dEQP-GLES3.functional.uniform_api.value.a",
         "ssigned.unused_uniforms.float_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038306,
-        "dEQP-GLES3.functional.uniform_api.value.as", 
+        "dEQP-GLES3.functional.uniform_api.value.as",
         "signed.unused_uniforms.float_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038307,
-        "dEQP-GLES3.functional.uniform_api.value.", 
+        "dEQP-GLES3.functional.uniform_api.value.",
         "assigned.unused_uniforms.float_vec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038308,
-        "dEQP-GLES3.functional.uniform_api.value.", 
+        "dEQP-GLES3.functional.uniform_api.value.",
         "assigned.unused_uniforms.mat4_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038309,
-        "dEQP-GLES3.functional.uniform_api.value.a", 
+        "dEQP-GLES3.functional.uniform_api.value.a",
         "ssigned.unused_uniforms.mat4_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038310,
-        "dEQP-GLES3.functional.uniform_api.value", 
+        "dEQP-GLES3.functional.uniform_api.value",
         ".assigned.unused_uniforms.mat4_mat2_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038311,
-        "dEQP-GLES3.functional.uniform_api.value.", 
+        "dEQP-GLES3.functional.uniform_api.value.",
         "assigned.unused_uniforms.int_ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038312,
-        "dEQP-GLES3.functional.uniform_api.value.a", 
+        "dEQP-GLES3.functional.uniform_api.value.a",
         "ssigned.unused_uniforms.int_ivec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038313,
-        "dEQP-GLES3.functional.uniform_api.value", 
+        "dEQP-GLES3.functional.uniform_api.value",
         ".assigned.unused_uniforms.int_ivec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038314,
-        "dEQP-GLES3.functional.uniform_api.value.a", 
+        "dEQP-GLES3.functional.uniform_api.value.a",
         "ssigned.unused_uniforms.uint_uvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038315,
-        "dEQP-GLES3.functional.uniform_api.value.as", 
+        "dEQP-GLES3.functional.uniform_api.value.as",
         "signed.unused_uniforms.uint_uvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038316,
-        "dEQP-GLES3.functional.uniform_api.value.", 
+        "dEQP-GLES3.functional.uniform_api.value.",
         "assigned.unused_uniforms.uint_uvec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038317,
-        "dEQP-GLES3.functional.uniform_api.value.a", 
+        "dEQP-GLES3.functional.uniform_api.value.a",
         "ssigned.unused_uniforms.bool_bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038318,
-        "dEQP-GLES3.functional.uniform_api.value.as", 
+        "dEQP-GLES3.functional.uniform_api.value.as",
         "signed.unused_uniforms.bool_bvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038319,
-        "dEQP-GLES3.functional.uniform_api.value.", 
+        "dEQP-GLES3.functional.uniform_api.value.",
         "assigned.unused_uniforms.bool_bvec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038320,
-        "dEQP-GLES3.functional.uniform_api.value.assign", 
+        "dEQP-GLES3.functional.uniform_api.value.assign",
         "ed.unused_uniforms.sampler2D_samplerCube_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038321,
-        "dEQP-GLES3.functional.uniform_api.value.assigne", 
+        "dEQP-GLES3.functional.uniform_api.value.assigne",
         "d.unused_uniforms.sampler2D_samplerCube_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038322,
-        "dEQP-GLES3.functional.uniform_api.value.assig", 
+        "dEQP-GLES3.functional.uniform_api.value.assig",
         "ned.unused_uniforms.sampler2D_samplerCube_both");

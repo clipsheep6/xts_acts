@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021849,
-        "dEQP-GLES31.functional.program_interface_quer", 
+        "dEQP-GLES31.functional.program_interface_quer",
         "y.program_input.location.separable_vertex.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021850,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_input.location.separable_vertex.var_explicit_location");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022441,
-        "dEQP-GLES31.functional.program_interface_quer", 
+        "dEQP-GLES31.functional.program_interface_quer",
         "y.program_output.location.separable_vertex.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022442,
-        "dEQP-GLES31.functional.program_interface_query.program", 
+        "dEQP-GLES31.functional.program_interface_query.program",
         "_output.location.separable_vertex.var_explicit_location");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022443,
-        "dEQP-GLES31.functional.program_interface_query.pr", 
+        "dEQP-GLES31.functional.program_interface_query.pr",
         "ogram_output.location.separable_vertex.var_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022444,
-        "dEQP-GLES31.functional.program_interface_query.program_out", 
+        "dEQP-GLES31.functional.program_interface_query.program_out",
         "put.location.separable_vertex.var_struct_explicit_location");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022445,
-        "dEQP-GLES31.functional.program_interface_query.p", 
+        "dEQP-GLES31.functional.program_interface_query.p",
         "rogram_output.location.separable_vertex.var_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022446,
-        "dEQP-GLES31.functional.program_interface_query.program_ou", 
+        "dEQP-GLES31.functional.program_interface_query.program_ou",
         "tput.location.separable_vertex.var_array_explicit_location");

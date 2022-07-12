@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039816,
-        "dEQP-GLES3.functional.rasterization", 
+        "dEQP-GLES3.functional.rasterization",
         ".fbo.texture_2d.primitives.triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039817,
-        "dEQP-GLES3.functional.rasterizati", 
+        "dEQP-GLES3.functional.rasterizati",
         "on.fbo.texture_2d.primitives.lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039818,
-        "dEQP-GLES3.functional.rasterization.", 
+        "dEQP-GLES3.functional.rasterization.",
         "fbo.texture_2d.primitives.lines_wide");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039819,
-        "dEQP-GLES3.functional.rasterizatio", 
+        "dEQP-GLES3.functional.rasterizatio",
         "n.fbo.texture_2d.primitives.points");

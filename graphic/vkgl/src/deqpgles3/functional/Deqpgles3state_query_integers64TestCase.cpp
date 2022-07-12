@@ -24,61 +24,61 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042966,
-        "dEQP-GLES3.functional.state_query.in", 
+        "dEQP-GLES3.functional.state_query.in",
         "tegers64.max_element_index_getboolean");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042967,
-        "dEQP-GLES3.functional.state_query.in", 
+        "dEQP-GLES3.functional.state_query.in",
         "tegers64.max_element_index_getinteger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042968,
-        "dEQP-GLES3.functional.state_query.i", 
+        "dEQP-GLES3.functional.state_query.i",
         "ntegers64.max_element_index_getfloat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042969,
-        "dEQP-GLES3.functional.state_query.integ", 
+        "dEQP-GLES3.functional.state_query.integ",
         "ers64.max_server_wait_timeout_getboolean");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042970,
-        "dEQP-GLES3.functional.state_query.integ", 
+        "dEQP-GLES3.functional.state_query.integ",
         "ers64.max_server_wait_timeout_getinteger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042971,
-        "dEQP-GLES3.functional.state_query.inte", 
+        "dEQP-GLES3.functional.state_query.inte",
         "gers64.max_server_wait_timeout_getfloat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042972,
-        "dEQP-GLES3.functional.state_query.integ", 
+        "dEQP-GLES3.functional.state_query.integ",
         "ers64.max_uniform_block_size_getboolean");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042973,
-        "dEQP-GLES3.functional.state_query.integ", 
+        "dEQP-GLES3.functional.state_query.integ",
         "ers64.max_uniform_block_size_getinteger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042974,
-        "dEQP-GLES3.functional.state_query.inte", 
+        "dEQP-GLES3.functional.state_query.inte",
         "gers64.max_uniform_block_size_getfloat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042975,
-        "dEQP-GLES3.functional.state_query.integers64.ma", 
+        "dEQP-GLES3.functional.state_query.integers64.ma",
         "x_combined_vertex_uniform_components_getboolean");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042976,
-        "dEQP-GLES3.functional.state_query.integers64.ma", 
+        "dEQP-GLES3.functional.state_query.integers64.ma",
         "x_combined_vertex_uniform_components_getinteger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042977,
-        "dEQP-GLES3.functional.state_query.integers64.m", 
+        "dEQP-GLES3.functional.state_query.integers64.m",
         "ax_combined_vertex_uniform_components_getfloat");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042978,
-        "dEQP-GLES3.functional.state_query.integers64.max", 
+        "dEQP-GLES3.functional.state_query.integers64.max",
         "_combined_fragment_uniform_components_getboolean");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042979,
-        "dEQP-GLES3.functional.state_query.integers64.max", 
+        "dEQP-GLES3.functional.state_query.integers64.max",
         "_combined_fragment_uniform_components_getinteger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30043TestSuite, TestCase_042980,
-        "dEQP-GLES3.functional.state_query.integers64.ma", 
+        "dEQP-GLES3.functional.state_query.integers64.ma",
         "x_combined_fragment_uniform_components_getfloat");

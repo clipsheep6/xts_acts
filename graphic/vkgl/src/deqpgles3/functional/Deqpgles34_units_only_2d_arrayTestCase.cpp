@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027216,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".units.4_units.only_2d_array.0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027217,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".units.4_units.only_2d_array.1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027218,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".units.4_units.only_2d_array.2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027219,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".units.4_units.only_2d_array.3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027220,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".units.4_units.only_2d_array.4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027221,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".units.4_units.only_2d_array.5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027222,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".units.4_units.only_2d_array.6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027223,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".units.4_units.only_2d_array.7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027224,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".units.4_units.only_2d_array.8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30028TestSuite, TestCase_027225,
-        "dEQP-GLES3.functional.texture", 
+        "dEQP-GLES3.functional.texture",
         ".units.4_units.only_2d_array.9");

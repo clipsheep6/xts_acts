@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019691,
-        "dEQP-GLES31.functional.debug.negative_coverage.ge", 
+        "dEQP-GLES31.functional.debug.negative_coverage.ge",
         "t_error.atomic_counter.atomic_max_counter_bindings");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019692,
-        "dEQP-GLES31.functional.debug.negative_covera", 
+        "dEQP-GLES31.functional.debug.negative_covera",
         "ge.get_error.atomic_counter.atomic_precision");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019693,
-        "dEQP-GLES31.functional.debug.negative_coverage.get", 
+        "dEQP-GLES31.functional.debug.negative_coverage.get",
         "_error.atomic_counter.atomic_binding_offset_overlap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019694,
-        "dEQP-GLES31.functional.debug.negative_coverage.", 
+        "dEQP-GLES31.functional.debug.negative_coverage.",
         "get_error.atomic_counter.atomic_binding_omitted");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019695,
-        "dEQP-GLES31.functional.debug.negative_cove", 
+        "dEQP-GLES31.functional.debug.negative_cove",
         "rage.get_error.atomic_counter.atomic_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019696,
-        "dEQP-GLES31.functional.debug.negative_covera", 
+        "dEQP-GLES31.functional.debug.negative_covera",
         "ge.get_error.atomic_counter.atomic_body_write");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019697,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.get_error.atomic_counter.atomic_body_declare");

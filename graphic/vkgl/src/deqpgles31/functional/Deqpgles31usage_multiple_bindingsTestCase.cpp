@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016519,
-        "dEQP-GLES31.functional.vertex_attribut", 
+        "dEQP-GLES31.functional.vertex_attribut",
         "e_binding.usage.multiple_bindings.basic");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016520,
-        "dEQP-GLES31.functional.vertex_attribute_b", 
+        "dEQP-GLES31.functional.vertex_attribute_b",
         "inding.usage.multiple_bindings.zero_stride");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016521,
-        "dEQP-GLES31.functional.vertex_attribute_", 
+        "dEQP-GLES31.functional.vertex_attribute_",
         "binding.usage.multiple_bindings.instanced");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016522,
-        "dEQP-GLES31.functional.vertex_attribute_binding.u", 
+        "dEQP-GLES31.functional.vertex_attribute_binding.u",
         "sage.multiple_bindings.aliasing_buffer_zero_stride");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016523,
-        "dEQP-GLES31.functional.vertex_attribute_binding.", 
+        "dEQP-GLES31.functional.vertex_attribute_binding.",
         "usage.multiple_bindings.aliasing_buffer_instanced");

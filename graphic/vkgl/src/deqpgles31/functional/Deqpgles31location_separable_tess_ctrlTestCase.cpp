@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021857,
-        "dEQP-GLES31.functional.program_interface_query", 
+        "dEQP-GLES31.functional.program_interface_query",
         ".program_input.location.separable_tess_ctrl.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021858,
-        "dEQP-GLES31.functional.program_interface_query.program_", 
+        "dEQP-GLES31.functional.program_interface_query.program_",
         "input.location.separable_tess_ctrl.var_explicit_location");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022451,
-        "dEQP-GLES31.functional.program_interface_query.", 
+        "dEQP-GLES31.functional.program_interface_query.",
         "program_output.location.separable_tess_ctrl.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022452,
-        "dEQP-GLES31.functional.program_interface_query.program_o", 
+        "dEQP-GLES31.functional.program_interface_query.program_o",
         "utput.location.separable_tess_ctrl.var_explicit_location");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022453,
-        "dEQP-GLES31.functional.program_interface_query.pro", 
+        "dEQP-GLES31.functional.program_interface_query.pro",
         "gram_output.location.separable_tess_ctrl.patch_var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022454,
-        "dEQP-GLES31.functional.program_interface_query.program_outp", 
+        "dEQP-GLES31.functional.program_interface_query.program_outp",
         "ut.location.separable_tess_ctrl.patch_var_explicit_location");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022455,
-        "dEQP-GLES31.functional.program_interface_query.progra", 
+        "dEQP-GLES31.functional.program_interface_query.progra",
         "m_output.location.separable_tess_ctrl.patch_var_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022456,
-        "dEQP-GLES31.functional.program_interface_query.program_output.", 
+        "dEQP-GLES31.functional.program_interface_query.program_output.",
         "location.separable_tess_ctrl.patch_var_struct_explicit_location");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022457,
-        "dEQP-GLES31.functional.program_interface_query.progra", 
+        "dEQP-GLES31.functional.program_interface_query.progra",
         "m_output.location.separable_tess_ctrl.patch_var_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_022458,
-        "dEQP-GLES31.functional.program_interface_query.program_output.", 
+        "dEQP-GLES31.functional.program_interface_query.program_output.",
         "location.separable_tess_ctrl.patch_var_array_explicit_location");

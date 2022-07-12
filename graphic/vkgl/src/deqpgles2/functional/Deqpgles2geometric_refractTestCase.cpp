@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006512,
-        "dEQP-GLES2.functional.shaders.operator.ge", 
+        "dEQP-GLES2.functional.shaders.operator.ge",
         "ometric.refract.mediump_float_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006513,
-        "dEQP-GLES2.functional.shaders.operator.geo", 
+        "dEQP-GLES2.functional.shaders.operator.geo",
         "metric.refract.mediump_float_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006514,
-        "dEQP-GLES2.functional.shaders.operator.g", 
+        "dEQP-GLES2.functional.shaders.operator.g",
         "eometric.refract.highp_float_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006515,
-        "dEQP-GLES2.functional.shaders.operator.ge", 
+        "dEQP-GLES2.functional.shaders.operator.ge",
         "ometric.refract.highp_float_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006516,
-        "dEQP-GLES2.functional.shaders.operator.ge", 
+        "dEQP-GLES2.functional.shaders.operator.ge",
         "ometric.refract.mediump_vec2_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006517,
-        "dEQP-GLES2.functional.shaders.operator.geo", 
+        "dEQP-GLES2.functional.shaders.operator.geo",
         "metric.refract.mediump_vec2_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006518,
-        "dEQP-GLES2.functional.shaders.operator.g", 
+        "dEQP-GLES2.functional.shaders.operator.g",
         "eometric.refract.highp_vec2_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006519,
-        "dEQP-GLES2.functional.shaders.operator.ge", 
+        "dEQP-GLES2.functional.shaders.operator.ge",
         "ometric.refract.highp_vec2_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006520,
-        "dEQP-GLES2.functional.shaders.operator.ge", 
+        "dEQP-GLES2.functional.shaders.operator.ge",
         "ometric.refract.mediump_vec3_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006521,
-        "dEQP-GLES2.functional.shaders.operator.geo", 
+        "dEQP-GLES2.functional.shaders.operator.geo",
         "metric.refract.mediump_vec3_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006522,
-        "dEQP-GLES2.functional.shaders.operator.g", 
+        "dEQP-GLES2.functional.shaders.operator.g",
         "eometric.refract.highp_vec3_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006523,
-        "dEQP-GLES2.functional.shaders.operator.ge", 
+        "dEQP-GLES2.functional.shaders.operator.ge",
         "ometric.refract.highp_vec3_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006524,
-        "dEQP-GLES2.functional.shaders.operator.ge", 
+        "dEQP-GLES2.functional.shaders.operator.ge",
         "ometric.refract.mediump_vec4_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006525,
-        "dEQP-GLES2.functional.shaders.operator.geo", 
+        "dEQP-GLES2.functional.shaders.operator.geo",
         "metric.refract.mediump_vec4_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006526,
-        "dEQP-GLES2.functional.shaders.operator.g", 
+        "dEQP-GLES2.functional.shaders.operator.g",
         "eometric.refract.highp_vec4_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006527,
-        "dEQP-GLES2.functional.shaders.operator.ge", 
+        "dEQP-GLES2.functional.shaders.operator.ge",
         "ometric.refract.highp_vec4_float_fragment");

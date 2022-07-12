@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000777,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.scalar_to_scalar.float_to_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000778,
-        "dEQP-GLES2.functional.shaders.conversions", 
+        "dEQP-GLES2.functional.shaders.conversions",
         ".scalar_to_scalar.float_to_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000779,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.scalar_to_scalar.float_to_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000780,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.scalar_to_scalar.float_to_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000781,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.scalar_to_scalar.float_to_bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000782,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.scalar_to_scalar.float_to_bool_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000783,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.scalar_to_scalar.int_to_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000784,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.scalar_to_scalar.int_to_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000785,
-        "dEQP-GLES2.functional.shaders.conversi", 
+        "dEQP-GLES2.functional.shaders.conversi",
         "ons.scalar_to_scalar.int_to_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000786,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.scalar_to_scalar.int_to_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000787,
-        "dEQP-GLES2.functional.shaders.conversi", 
+        "dEQP-GLES2.functional.shaders.conversi",
         "ons.scalar_to_scalar.int_to_bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000788,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.scalar_to_scalar.int_to_bool_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000789,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.scalar_to_scalar.bool_to_float_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000790,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.scalar_to_scalar.bool_to_float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000791,
-        "dEQP-GLES2.functional.shaders.conversi", 
+        "dEQP-GLES2.functional.shaders.conversi",
         "ons.scalar_to_scalar.bool_to_int_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000792,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.scalar_to_scalar.bool_to_int_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000793,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.scalar_to_scalar.bool_to_bool_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20001TestSuite, TestCase_000794,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.scalar_to_scalar.bool_to_bool_fragment");

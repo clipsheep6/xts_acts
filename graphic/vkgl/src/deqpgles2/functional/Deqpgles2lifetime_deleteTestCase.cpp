@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016463,
-        "dEQP-GLES2.functional.", 
+        "dEQP-GLES2.functional.",
         "lifetime.delete.buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016464,
-        "dEQP-GLES2.functional.", 
+        "dEQP-GLES2.functional.",
         "lifetime.delete.texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016465,
-        "dEQP-GLES2.functional.lif", 
+        "dEQP-GLES2.functional.lif",
         "etime.delete.renderbuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016466,
-        "dEQP-GLES2.functional.li", 
+        "dEQP-GLES2.functional.li",
         "fetime.delete.framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016467,
-        "dEQP-GLES2.functional.", 
+        "dEQP-GLES2.functional.",
         "lifetime.delete.shader");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20017TestSuite, TestCase_016468,
-        "dEQP-GLES2.functional.", 
+        "dEQP-GLES2.functional.",
         "lifetime.delete.program");

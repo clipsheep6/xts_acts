@@ -24,61 +24,61 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014139,
-        "dEQP-GLES31.functional.texture.texture_buffer", 
+        "dEQP-GLES31.functional.texture.texture_buffer",
         ".modify_render.mapbuffer_write.as_vertex_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014140,
-        "dEQP-GLES31.functional.texture.texture_buffer", 
+        "dEQP-GLES31.functional.texture.texture_buffer",
         ".modify_render.mapbuffer_write.as_index_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014141,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_",
         "render.mapbuffer_write.as_vertex_array_as_index_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014142,
-        "dEQP-GLES31.functional.texture.texture_buffer.", 
+        "dEQP-GLES31.functional.texture.texture_buffer.",
         "modify_render.mapbuffer_write.as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014143,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_r", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_r",
         "ender.mapbuffer_write.as_vertex_array_as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014144,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_r", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_r",
         "ender.mapbuffer_write.as_index_array_as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014145,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.ma", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.ma",
         "pbuffer_write.as_vertex_array_as_index_array_as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014146,
-        "dEQP-GLES31.functional.texture.texture_buffer.m", 
+        "dEQP-GLES31.functional.texture.texture_buffer.m",
         "odify_render.mapbuffer_write.as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014147,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_re", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_re",
         "nder.mapbuffer_write.as_vertex_array_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014148,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_re", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_re",
         "nder.mapbuffer_write.as_index_array_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014149,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.map", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.map",
         "buffer_write.as_vertex_array_as_index_array_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014150,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_ren", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_ren",
         "der.mapbuffer_write.as_vertex_texture_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014151,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.mapb", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.mapb",
         "uffer_write.as_vertex_array_as_vertex_texture_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014152,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.mapb", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.mapb",
         "uffer_write.as_index_array_as_vertex_texture_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014153,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.mapbuffer_wr", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.mapbuffer_wr",
         "ite.as_vertex_array_as_index_array_as_vertex_texture_as_fragment_texture");

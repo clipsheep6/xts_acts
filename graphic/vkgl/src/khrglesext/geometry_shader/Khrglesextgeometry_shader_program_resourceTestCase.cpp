@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000042,
-        "KHR-GLESEXT.geometry_shader.pr", 
+        "KHR-GLESEXT.geometry_shader.pr",
         "ogram_resource.program_resource");

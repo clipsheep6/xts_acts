@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016159,
-        "dEQP-GLES31.functional.state_query.program_p", 
+        "dEQP-GLES31.functional.state_query.program_p",
         "ipeline.active_program_get_program_pipelineiv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016160,
-        "dEQP-GLES31.functional.state_query.program_p", 
+        "dEQP-GLES31.functional.state_query.program_p",
         "ipeline.vertex_shader_get_program_pipelineiv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016161,
-        "dEQP-GLES31.functional.state_query.program_pi", 
+        "dEQP-GLES31.functional.state_query.program_pi",
         "peline.fragment_shader_get_program_pipelineiv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016162,
-        "dEQP-GLES31.functional.state_query.program_p", 
+        "dEQP-GLES31.functional.state_query.program_p",
         "ipeline.compute_shader_get_program_pipelineiv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016163,
-        "dEQP-GLES31.functional.state_query.program_pi", 
+        "dEQP-GLES31.functional.state_query.program_pi",
         "peline.validate_status_get_program_pipelineiv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016164,
-        "dEQP-GLES31.functional.state_q", 
+        "dEQP-GLES31.functional.state_q",
         "uery.program_pipeline.info_log");

@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021676,
-        "dEQP-GLES31.functional.program_interface_query.unifo", 
+        "dEQP-GLES31.functional.program_interface_query.unifo",
         "rm_block.referenced_by.separable_fragment.named_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021677,
-        "dEQP-GLES31.functional.program_interface_query.unifor", 
+        "dEQP-GLES31.functional.program_interface_query.unifor",
         "m_block.referenced_by.separable_fragment.unnamed_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021678,
-        "dEQP-GLES31.functional.program_interface_query.unifo", 
+        "dEQP-GLES31.functional.program_interface_query.unifo",
         "rm_block.referenced_by.separable_fragment.block_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_024731,
-        "dEQP-GLES31.functional.program_interface_query.shader_st", 
+        "dEQP-GLES31.functional.program_interface_query.shader_st",
         "orage_block.referenced_by.separable_fragment.named_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_024732,
-        "dEQP-GLES31.functional.program_interface_query.shader_sto", 
+        "dEQP-GLES31.functional.program_interface_query.shader_sto",
         "rage_block.referenced_by.separable_fragment.unnamed_block");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_024733,
-        "dEQP-GLES31.functional.program_interface_query.shader_st", 
+        "dEQP-GLES31.functional.program_interface_query.shader_st",
         "orage_block.referenced_by.separable_fragment.block_array");

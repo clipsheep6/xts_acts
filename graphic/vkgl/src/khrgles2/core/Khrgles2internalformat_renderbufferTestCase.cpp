@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000463,
-        "KHR-GLES2.core.internalf", 
+        "KHR-GLES2.core.internalf",
         "ormat.renderbuffer.rgba8");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000464,
-        "KHR-GLES2.core.internal", 
+        "KHR-GLES2.core.internal",
         "format.renderbuffer.rgb8");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000465,
-        "KHR-GLES2.core.internalformat.", 
+        "KHR-GLES2.core.internalformat.",
         "renderbuffer.stencil_index1_oes");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000466,
-        "KHR-GLES2.core.internalformat.", 
+        "KHR-GLES2.core.internalformat.",
         "renderbuffer.stencil_index4_oes");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000467,
-        "KHR-GLES2.core.internalforma", 
+        "KHR-GLES2.core.internalforma",
         "t.renderbuffer.stencil_index8");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000468,
-        "KHR-GLES2.core.internalformat.", 
+        "KHR-GLES2.core.internalformat.",
         "renderbuffer.depth_component16");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000469,
-        "KHR-GLES2.core.internalformat.", 
+        "KHR-GLES2.core.internalformat.",
         "renderbuffer.depth_component24");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000470,
-        "KHR-GLES2.core.internalformat.", 
+        "KHR-GLES2.core.internalformat.",
         "renderbuffer.depth_component32");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000471,
-        "KHR-GLES2.core.internalformat", 
+        "KHR-GLES2.core.internalformat",
         ".renderbuffer.depth24_stencil8");
 
 static SHRINK_HWTEST_F(ActsKhrgles20001TestSuite, TestCase_000472,
-        "KHR-GLES2.core.internalfo", 
+        "KHR-GLES2.core.internalfo",
         "rmat.renderbuffer.rgb5_a1");

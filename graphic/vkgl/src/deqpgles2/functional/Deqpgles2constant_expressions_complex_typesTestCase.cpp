@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007894,
-        "dEQP-GLES2.functional.shaders.constant_", 
+        "dEQP-GLES2.functional.shaders.constant_",
         "expressions.complex_types.struct_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007895,
-        "dEQP-GLES2.functional.shaders.constant_e", 
+        "dEQP-GLES2.functional.shaders.constant_e",
         "xpressions.complex_types.struct_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007896,
-        "dEQP-GLES2.functional.shaders.constant_exp", 
+        "dEQP-GLES2.functional.shaders.constant_exp",
         "ressions.complex_types.nested_struct_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007897,
-        "dEQP-GLES2.functional.shaders.constant_expr", 
+        "dEQP-GLES2.functional.shaders.constant_expr",
         "essions.complex_types.nested_struct_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007898,
-        "dEQP-GLES2.functional.shaders.constant", 
+        "dEQP-GLES2.functional.shaders.constant",
         "_expressions.complex_types.array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007899,
-        "dEQP-GLES2.functional.shaders.constant_", 
+        "dEQP-GLES2.functional.shaders.constant_",
         "expressions.complex_types.array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007900,
-        "dEQP-GLES2.functional.shaders.constant_express", 
+        "dEQP-GLES2.functional.shaders.constant_express",
         "ions.complex_types.nested_builtin_funcs_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007901,
-        "dEQP-GLES2.functional.shaders.constant_expressi", 
+        "dEQP-GLES2.functional.shaders.constant_expressi",
         "ons.complex_types.nested_builtin_funcs_fragment");

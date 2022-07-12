@@ -24,69 +24,69 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017905,
-        "dEQP-GLES31.functional.separate_shader.", 
+        "dEQP-GLES31.functional.separate_shader.",
         "validation.es32.io_blocks.missing_input");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017906,
-        "dEQP-GLES31.functional.separate_shader.", 
+        "dEQP-GLES31.functional.separate_shader.",
         "validation.es32.io_blocks.missing_output");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017907,
-        "dEQP-GLES31.functional.separate_shader.validatio", 
+        "dEQP-GLES31.functional.separate_shader.validatio",
         "n.es32.io_blocks.mismatch_number_of_declarations");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017908,
-        "dEQP-GLES31.functional.separate_shader.vali", 
+        "dEQP-GLES31.functional.separate_shader.vali",
         "dation.es32.io_blocks.mismatch_member_order");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017909,
-        "dEQP-GLES31.functional.separate_shader.val", 
+        "dEQP-GLES31.functional.separate_shader.val",
         "idation.es32.io_blocks.mismatch_member_type");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017910,
-        "dEQP-GLES31.functional.separate_shader.val", 
+        "dEQP-GLES31.functional.separate_shader.val",
         "idation.es32.io_blocks.mismatch_member_name");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017911,
-        "dEQP-GLES31.functional.separate_shader.valida", 
+        "dEQP-GLES31.functional.separate_shader.valida",
         "tion.es32.io_blocks.mismatch_member_precision");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017912,
-        "dEQP-GLES31.functional.separate_shader.validation.es", 
+        "dEQP-GLES31.functional.separate_shader.validation.es",
         "32.io_blocks.mismatch_different_member_interpolation");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017913,
-        "dEQP-GLES31.functional.separate_shader.valida", 
+        "dEQP-GLES31.functional.separate_shader.valida",
         "tion.es32.io_blocks.mismatch_member_array_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017914,
-        "dEQP-GLES31.functional.separate_shader.validation.", 
+        "dEQP-GLES31.functional.separate_shader.validation.",
         "es32.io_blocks.match_different_member_struct_names");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017915,
-        "dEQP-GLES31.functional.separate_shader.validation", 
+        "dEQP-GLES31.functional.separate_shader.validation",
         ".es32.io_blocks.mismatch_member_struct_member_name");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017916,
-        "dEQP-GLES31.functional.separate_shader.validation", 
+        "dEQP-GLES31.functional.separate_shader.validation",
         ".es32.io_blocks.mismatch_member_struct_member_type");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017917,
-        "dEQP-GLES31.functional.separate_shader.validation.es", 
+        "dEQP-GLES31.functional.separate_shader.validation.es",
         "32.io_blocks.mismatch_member_struct_member_precision");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017918,
-        "dEQP-GLES31.functional.separate_shader.validation.", 
+        "dEQP-GLES31.functional.separate_shader.validation.",
         "es32.io_blocks.mismatch_member_struct_member_order");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017919,
-        "dEQP-GLES31.functional.separate_shader.val", 
+        "dEQP-GLES31.functional.separate_shader.val",
         "idation.es32.io_blocks.mismatch_array_size");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017920,
-        "dEQP-GLES31.functional.separate_shader.validation.", 
+        "dEQP-GLES31.functional.separate_shader.validation.",
         "es32.io_blocks.mismatch_variable_and_block_member_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017921,
-        "dEQP-GLES31.functional.separate_shader.validation.", 
+        "dEQP-GLES31.functional.separate_shader.validation.",
         "es32.io_blocks.mismatch_variable_and_block_member_2");

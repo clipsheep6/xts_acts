@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001282,
-        "KHR-GLES3.shaders.preprocessor.invalid", 
+        "KHR-GLES3.shaders.preprocessor.invalid",
         "_expressions.invalid_unary_expr_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001283,
-        "KHR-GLES3.shaders.preprocessor.invalid_", 
+        "KHR-GLES3.shaders.preprocessor.invalid_",
         "expressions.invalid_unary_expr_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001284,
-        "KHR-GLES3.shaders.preprocessor.invalid", 
+        "KHR-GLES3.shaders.preprocessor.invalid",
         "_expressions.invalid_binary_expr_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001285,
-        "KHR-GLES3.shaders.preprocessor.invalid_", 
+        "KHR-GLES3.shaders.preprocessor.invalid_",
         "expressions.invalid_binary_expr_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001286,
-        "KHR-GLES3.shaders.preprocessor.inva", 
+        "KHR-GLES3.shaders.preprocessor.inva",
         "lid_expressions.missing_expr_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001287,
-        "KHR-GLES3.shaders.preprocessor.inval", 
+        "KHR-GLES3.shaders.preprocessor.inval",
         "id_expressions.missing_expr_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001288,
-        "KHR-GLES3.shaders.preprocessor.inval", 
+        "KHR-GLES3.shaders.preprocessor.inval",
         "id_expressions.invalid_expr_1_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001289,
-        "KHR-GLES3.shaders.preprocessor.invali", 
+        "KHR-GLES3.shaders.preprocessor.invali",
         "d_expressions.invalid_expr_1_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001290,
-        "KHR-GLES3.shaders.preprocessor.inval", 
+        "KHR-GLES3.shaders.preprocessor.inval",
         "id_expressions.invalid_expr_2_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001291,
-        "KHR-GLES3.shaders.preprocessor.invali", 
+        "KHR-GLES3.shaders.preprocessor.invali",
         "d_expressions.invalid_expr_2_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001292,
-        "KHR-GLES3.shaders.preprocessor.inval", 
+        "KHR-GLES3.shaders.preprocessor.inval",
         "id_expressions.invalid_expr_3_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001293,
-        "KHR-GLES3.shaders.preprocessor.invali", 
+        "KHR-GLES3.shaders.preprocessor.invali",
         "d_expressions.invalid_expr_3_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001294,
-        "KHR-GLES3.shaders.preprocessor.invalid_", 
+        "KHR-GLES3.shaders.preprocessor.invalid_",
         "expressions.unopened_parenthesis_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001295,
-        "KHR-GLES3.shaders.preprocessor.invalid_e", 
+        "KHR-GLES3.shaders.preprocessor.invalid_e",
         "xpressions.unopened_parenthesis_fragment");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001296,
-        "KHR-GLES3.shaders.preprocessor.invalid_", 
+        "KHR-GLES3.shaders.preprocessor.invalid_",
         "expressions.unclosed_parenthesis_vertex");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001297,
-        "KHR-GLES3.shaders.preprocessor.invalid_e", 
+        "KHR-GLES3.shaders.preprocessor.invalid_e",
         "xpressions.unclosed_parenthesis_fragment");

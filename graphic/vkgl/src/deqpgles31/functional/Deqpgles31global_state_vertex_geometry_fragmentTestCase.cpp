@@ -24,121 +24,121 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024982,
-        "dEQP-GLES31.functional.primitive_bounding_box.triangles.global", 
+        "dEQP-GLES31.functional.primitive_bounding_box.triangles.global",
         "_state.vertex_geometry_fragment.default_framebuffer_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024983,
-        "dEQP-GLES31.functional.primitive_bounding_box.triangles.global", 
+        "dEQP-GLES31.functional.primitive_bounding_box.triangles.global",
         "_state.vertex_geometry_fragment.default_framebuffer_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024984,
-        "dEQP-GLES31.functional.primitive_bounding_box.triangles.global_", 
+        "dEQP-GLES31.functional.primitive_bounding_box.triangles.global_",
         "state.vertex_geometry_fragment.default_framebuffer_bbox_smaller");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024985,
-        "dEQP-GLES31.functional.primitive_bounding_box.triangle", 
+        "dEQP-GLES31.functional.primitive_bounding_box.triangle",
         "s.global_state.vertex_geometry_fragment.fbo_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024986,
-        "dEQP-GLES31.functional.primitive_bounding_box.triangle", 
+        "dEQP-GLES31.functional.primitive_bounding_box.triangle",
         "s.global_state.vertex_geometry_fragment.fbo_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_024987,
-        "dEQP-GLES31.functional.primitive_bounding_box.triangles", 
+        "dEQP-GLES31.functional.primitive_bounding_box.triangles",
         ".global_state.vertex_geometry_fragment.fbo_bbox_smaller");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025022,
-        "dEQP-GLES31.functional.primitive_bounding_box.lines.global_s", 
+        "dEQP-GLES31.functional.primitive_bounding_box.lines.global_s",
         "tate.vertex_geometry_fragment.default_framebuffer_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025023,
-        "dEQP-GLES31.functional.primitive_bounding_box.lines.global_s", 
+        "dEQP-GLES31.functional.primitive_bounding_box.lines.global_s",
         "tate.vertex_geometry_fragment.default_framebuffer_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025024,
-        "dEQP-GLES31.functional.primitive_bounding_box.lines.global_st", 
+        "dEQP-GLES31.functional.primitive_bounding_box.lines.global_st",
         "ate.vertex_geometry_fragment.default_framebuffer_bbox_smaller");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025025,
-        "dEQP-GLES31.functional.primitive_bounding_box.lines.", 
+        "dEQP-GLES31.functional.primitive_bounding_box.lines.",
         "global_state.vertex_geometry_fragment.fbo_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025026,
-        "dEQP-GLES31.functional.primitive_bounding_box.lines.", 
+        "dEQP-GLES31.functional.primitive_bounding_box.lines.",
         "global_state.vertex_geometry_fragment.fbo_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025027,
-        "dEQP-GLES31.functional.primitive_bounding_box.lines.g", 
+        "dEQP-GLES31.functional.primitive_bounding_box.lines.g",
         "lobal_state.vertex_geometry_fragment.fbo_bbox_smaller");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025062,
-        "dEQP-GLES31.functional.primitive_bounding_box.points.global_", 
+        "dEQP-GLES31.functional.primitive_bounding_box.points.global_",
         "state.vertex_geometry_fragment.default_framebuffer_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025063,
-        "dEQP-GLES31.functional.primitive_bounding_box.points.global_s", 
+        "dEQP-GLES31.functional.primitive_bounding_box.points.global_s",
         "tate.vertex_geometry_fragment.default_framebuffer_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025064,
-        "dEQP-GLES31.functional.primitive_bounding_box.points.global_s", 
+        "dEQP-GLES31.functional.primitive_bounding_box.points.global_s",
         "tate.vertex_geometry_fragment.default_framebuffer_bbox_smaller");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025065,
-        "dEQP-GLES31.functional.primitive_bounding_box.points", 
+        "dEQP-GLES31.functional.primitive_bounding_box.points",
         ".global_state.vertex_geometry_fragment.fbo_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025066,
-        "dEQP-GLES31.functional.primitive_bounding_box.points.", 
+        "dEQP-GLES31.functional.primitive_bounding_box.points.",
         "global_state.vertex_geometry_fragment.fbo_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025067,
-        "dEQP-GLES31.functional.primitive_bounding_box.points.", 
+        "dEQP-GLES31.functional.primitive_bounding_box.points.",
         "global_state.vertex_geometry_fragment.fbo_bbox_smaller");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025102,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_lines.globa", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_lines.globa",
         "l_state.vertex_geometry_fragment.default_framebuffer_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025103,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_lines.global", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_lines.global",
         "_state.vertex_geometry_fragment.default_framebuffer_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025104,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_lines.global", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_lines.global",
         "_state.vertex_geometry_fragment.default_framebuffer_bbox_smaller");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025105,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_lin", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_lin",
         "es.global_state.vertex_geometry_fragment.fbo_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025106,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_line", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_line",
         "s.global_state.vertex_geometry_fragment.fbo_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025107,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_line", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_line",
         "s.global_state.vertex_geometry_fragment.fbo_bbox_smaller");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025142,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_points.globa", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_points.globa",
         "l_state.vertex_geometry_fragment.default_framebuffer_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025143,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_points.globa", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_points.globa",
         "l_state.vertex_geometry_fragment.default_framebuffer_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025144,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_points.global", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_points.global",
         "_state.vertex_geometry_fragment.default_framebuffer_bbox_smaller");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025145,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_poin", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_poin",
         "ts.global_state.vertex_geometry_fragment.fbo_bbox_equal");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025146,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_poin", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_poin",
         "ts.global_state.vertex_geometry_fragment.fbo_bbox_larger");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310025TestSuite, TestCase_025147,
-        "dEQP-GLES31.functional.primitive_bounding_box.wide_point", 
+        "dEQP-GLES31.functional.primitive_bounding_box.wide_point",
         "s.global_state.vertex_geometry_fragment.fbo_bbox_smaller");

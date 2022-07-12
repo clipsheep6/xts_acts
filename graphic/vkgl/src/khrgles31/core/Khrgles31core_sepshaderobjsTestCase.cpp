@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000328,
-        "KHR-GLES31.core.sepshad", 
+        "KHR-GLES31.core.sepshad",
         "erobjs.CreateShadProgApi");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000329,
-        "KHR-GLES31.core.sepshad", 
+        "KHR-GLES31.core.sepshad",
         "erobjs.UseProgStagesApi");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000330,
-        "KHR-GLES31.core.seps", 
+        "KHR-GLES31.core.seps",
         "haderobjs.PipelineApi");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000331,
-        "KHR-GLES31.core.sepsha", 
+        "KHR-GLES31.core.sepsha",
         "derobjs.ProgUniformAPI");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000332,
-        "KHR-GLES31.core.sepshad", 
+        "KHR-GLES31.core.sepshad",
         "erobjs.StateInteraction");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000333,
-        "KHR-GLES31.core.sepshaderobjs.", 
+        "KHR-GLES31.core.sepshaderobjs.",
         "InterfacePrecisionMatchingFloat");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000334,
-        "KHR-GLES31.core.sepshaderobjs", 
+        "KHR-GLES31.core.sepshaderobjs",
         ".InterfacePrecisionMatchingInt");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000335,
-        "KHR-GLES31.core.sepshaderobjs.", 
+        "KHR-GLES31.core.sepshaderobjs.",
         "InterfacePrecisionMatchingUInt");

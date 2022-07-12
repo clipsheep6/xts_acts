@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000628,
-        "KHR-GLES31.core.shader_bitfiel", 
+        "KHR-GLES31.core.shader_bitfiel",
         "d_operation.umulExtended.uint_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000629,
-        "KHR-GLES31.core.shader_bitfiel", 
+        "KHR-GLES31.core.shader_bitfiel",
         "d_operation.umulExtended.uint_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000630,
-        "KHR-GLES31.core.shader_bitfiel", 
+        "KHR-GLES31.core.shader_bitfiel",
         "d_operation.umulExtended.uint_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000631,
-        "KHR-GLES31.core.shader_bitfiel", 
+        "KHR-GLES31.core.shader_bitfiel",
         "d_operation.umulExtended.uint_3");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000632,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec2_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000633,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec2_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000634,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec2_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000635,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec2_3");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000636,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec3_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000637,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec3_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000638,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec3_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000639,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec3_3");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000640,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec4_0");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000641,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec4_1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000642,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec4_2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000643,
-        "KHR-GLES31.core.shader_bitfield", 
+        "KHR-GLES31.core.shader_bitfield",
         "_operation.umulExtended.uvec4_3");

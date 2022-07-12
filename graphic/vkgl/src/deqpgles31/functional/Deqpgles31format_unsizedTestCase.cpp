@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012491,
-        "dEQP-GLES31.functional.texture.fo", 
+        "dEQP-GLES31.functional.texture.fo",
         "rmat.unsized.alpha_cube_array_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012492,
-        "dEQP-GLES31.functional.texture.fo", 
+        "dEQP-GLES31.functional.texture.fo",
         "rmat.unsized.alpha_cube_array_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012493,
-        "dEQP-GLES31.functional.texture.form", 
+        "dEQP-GLES31.functional.texture.form",
         "at.unsized.luminance_cube_array_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012494,
-        "dEQP-GLES31.functional.texture.form", 
+        "dEQP-GLES31.functional.texture.form",
         "at.unsized.luminance_cube_array_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012495,
-        "dEQP-GLES31.functional.texture.format.", 
+        "dEQP-GLES31.functional.texture.format.",
         "unsized.luminance_alpha_cube_array_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012496,
-        "dEQP-GLES31.functional.texture.format.", 
+        "dEQP-GLES31.functional.texture.format.",
         "unsized.luminance_alpha_cube_array_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012497,
-        "dEQP-GLES31.functional.texture.format.unsi", 
+        "dEQP-GLES31.functional.texture.format.unsi",
         "zed.rgb_unsigned_short_5_6_5_cube_array_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012498,
-        "dEQP-GLES31.functional.texture.format.unsiz", 
+        "dEQP-GLES31.functional.texture.format.unsiz",
         "ed.rgb_unsigned_short_5_6_5_cube_array_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012499,
-        "dEQP-GLES31.functional.texture.format.u", 
+        "dEQP-GLES31.functional.texture.format.u",
         "nsized.rgb_unsigned_byte_cube_array_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012500,
-        "dEQP-GLES31.functional.texture.format.u", 
+        "dEQP-GLES31.functional.texture.format.u",
         "nsized.rgb_unsigned_byte_cube_array_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012501,
-        "dEQP-GLES31.functional.texture.format.unsize", 
+        "dEQP-GLES31.functional.texture.format.unsize",
         "d.rgba_unsigned_short_4_4_4_4_cube_array_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012502,
-        "dEQP-GLES31.functional.texture.format.unsize", 
+        "dEQP-GLES31.functional.texture.format.unsize",
         "d.rgba_unsigned_short_4_4_4_4_cube_array_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012503,
-        "dEQP-GLES31.functional.texture.format.unsize", 
+        "dEQP-GLES31.functional.texture.format.unsize",
         "d.rgba_unsigned_short_5_5_5_1_cube_array_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012504,
-        "dEQP-GLES31.functional.texture.format.unsize", 
+        "dEQP-GLES31.functional.texture.format.unsize",
         "d.rgba_unsigned_short_5_5_5_1_cube_array_npot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012505,
-        "dEQP-GLES31.functional.texture.format.u", 
+        "dEQP-GLES31.functional.texture.format.u",
         "nsized.rgba_unsigned_byte_cube_array_pot");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012506,
-        "dEQP-GLES31.functional.texture.format.un", 
+        "dEQP-GLES31.functional.texture.format.un",
         "sized.rgba_unsigned_byte_cube_array_npot");

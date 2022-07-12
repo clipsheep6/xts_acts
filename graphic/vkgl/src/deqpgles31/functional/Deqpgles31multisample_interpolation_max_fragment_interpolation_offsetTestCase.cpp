@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016138,
-        "dEQP-GLES31.functional.state_query.multisample_interp", 
+        "dEQP-GLES31.functional.state_query.multisample_interp",
         "olation.max_fragment_interpolation_offset.get_boolean");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016139,
-        "dEQP-GLES31.functional.state_query.multisample_interp", 
+        "dEQP-GLES31.functional.state_query.multisample_interp",
         "olation.max_fragment_interpolation_offset.get_integer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016140,
-        "dEQP-GLES31.functional.state_query.multisample_inter", 
+        "dEQP-GLES31.functional.state_query.multisample_inter",
         "polation.max_fragment_interpolation_offset.get_float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016141,
-        "dEQP-GLES31.functional.state_query.multisample_interpo", 
+        "dEQP-GLES31.functional.state_query.multisample_interpo",
         "lation.max_fragment_interpolation_offset.get_integer64");

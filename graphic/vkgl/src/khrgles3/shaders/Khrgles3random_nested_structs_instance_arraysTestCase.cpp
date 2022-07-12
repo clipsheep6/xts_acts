@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002243,
-        "KHR-GLES3.shaders.uniform_block.ran", 
+        "KHR-GLES3.shaders.uniform_block.ran",
         "dom.nested_structs_instance_arrays.0");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002244,
-        "KHR-GLES3.shaders.uniform_block.ran", 
+        "KHR-GLES3.shaders.uniform_block.ran",
         "dom.nested_structs_instance_arrays.1");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002245,
-        "KHR-GLES3.shaders.uniform_block.ran", 
+        "KHR-GLES3.shaders.uniform_block.ran",
         "dom.nested_structs_instance_arrays.2");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002246,
-        "KHR-GLES3.shaders.uniform_block.ran", 
+        "KHR-GLES3.shaders.uniform_block.ran",
         "dom.nested_structs_instance_arrays.3");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002247,
-        "KHR-GLES3.shaders.uniform_block.ran", 
+        "KHR-GLES3.shaders.uniform_block.ran",
         "dom.nested_structs_instance_arrays.4");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002248,
-        "KHR-GLES3.shaders.uniform_block.ran", 
+        "KHR-GLES3.shaders.uniform_block.ran",
         "dom.nested_structs_instance_arrays.5");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002249,
-        "KHR-GLES3.shaders.uniform_block.ran", 
+        "KHR-GLES3.shaders.uniform_block.ran",
         "dom.nested_structs_instance_arrays.6");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002250,
-        "KHR-GLES3.shaders.uniform_block.ran", 
+        "KHR-GLES3.shaders.uniform_block.ran",
         "dom.nested_structs_instance_arrays.7");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002251,
-        "KHR-GLES3.shaders.uniform_block.ran", 
+        "KHR-GLES3.shaders.uniform_block.ran",
         "dom.nested_structs_instance_arrays.8");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002252,
-        "KHR-GLES3.shaders.uniform_block.ran", 
+        "KHR-GLES3.shaders.uniform_block.ran",
         "dom.nested_structs_instance_arrays.9");

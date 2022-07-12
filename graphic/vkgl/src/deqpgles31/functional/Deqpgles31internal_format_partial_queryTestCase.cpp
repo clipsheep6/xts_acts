@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016108,
-        "dEQP-GLES31.functional.state_query.intern", 
+        "dEQP-GLES31.functional.state_query.intern",
         "al_format.partial_query.num_sample_counts");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016109,
-        "dEQP-GLES31.functional.state_query.i", 
+        "dEQP-GLES31.functional.state_query.i",
         "nternal_format.partial_query.samples");

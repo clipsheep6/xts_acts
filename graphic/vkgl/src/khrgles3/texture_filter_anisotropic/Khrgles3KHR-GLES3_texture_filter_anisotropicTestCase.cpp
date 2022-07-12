@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002974,
-        "KHR-GLES3.texture_filt", 
+        "KHR-GLES3.texture_filt",
         "er_anisotropic.queries");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002975,
-        "KHR-GLES3.texture_filt", 
+        "KHR-GLES3.texture_filt",
         "er_anisotropic.drawing");

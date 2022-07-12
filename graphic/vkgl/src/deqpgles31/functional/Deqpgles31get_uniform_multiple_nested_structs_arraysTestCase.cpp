@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016843,
-        "dEQP-GLES31.functional.program_uniform.by_pointer", 
+        "dEQP-GLES31.functional.program_uniform.by_pointer",
         ".get_uniform.multiple_nested_structs_arrays.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016844,
-        "dEQP-GLES31.functional.program_uniform.by_pointer.", 
+        "dEQP-GLES31.functional.program_uniform.by_pointer.",
         "get_uniform.multiple_nested_structs_arrays.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_016845,
-        "dEQP-GLES31.functional.program_uniform.by_pointe", 
+        "dEQP-GLES31.functional.program_uniform.by_pointe",
         "r.get_uniform.multiple_nested_structs_arrays.both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_017287,
-        "dEQP-GLES31.functional.program_uniform.by_value.", 
+        "dEQP-GLES31.functional.program_uniform.by_value.",
         "get_uniform.multiple_nested_structs_arrays.vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_017288,
-        "dEQP-GLES31.functional.program_uniform.by_value.g", 
+        "dEQP-GLES31.functional.program_uniform.by_value.g",
         "et_uniform.multiple_nested_structs_arrays.fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310017TestSuite, TestCase_017289,
-        "dEQP-GLES31.functional.program_uniform.by_value", 
+        "dEQP-GLES31.functional.program_uniform.by_value",
         ".get_uniform.multiple_nested_structs_arrays.both");

@@ -24,45 +24,45 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013863,
-        "dEQP-GLES2.functional.negative", 
+        "dEQP-GLES2.functional.negative",
         "_api.vertex_array.vertex_attrib");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013864,
-        "dEQP-GLES2.functional.negative_", 
+        "dEQP-GLES2.functional.negative_",
         "api.vertex_array.vertex_attribv");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013865,
-        "dEQP-GLES2.functional.negative_api", 
+        "dEQP-GLES2.functional.negative_api",
         ".vertex_array.vertex_attrib_pointer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013866,
-        "dEQP-GLES2.functional.negative_api.ve", 
+        "dEQP-GLES2.functional.negative_api.ve",
         "rtex_array.enable_vertex_attrib_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013867,
-        "dEQP-GLES2.functional.negative_api.ve", 
+        "dEQP-GLES2.functional.negative_api.ve",
         "rtex_array.disable_vertex_attrib_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013868,
-        "dEQP-GLES2.functional.negativ", 
+        "dEQP-GLES2.functional.negativ",
         "e_api.vertex_array.draw_arrays");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013869,
-        "dEQP-GLES2.functional.negative_api.ve", 
+        "dEQP-GLES2.functional.negative_api.ve",
         "rtex_array.draw_arrays_invalid_program");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013870,
-        "dEQP-GLES2.functional.negative_api.verte", 
+        "dEQP-GLES2.functional.negative_api.verte",
         "x_array.draw_arrays_incomplete_primitive");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013871,
-        "dEQP-GLES2.functional.negative", 
+        "dEQP-GLES2.functional.negative",
         "_api.vertex_array.draw_elements");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013872,
-        "dEQP-GLES2.functional.negative_api.ver", 
+        "dEQP-GLES2.functional.negative_api.ver",
         "tex_array.draw_elements_invalid_program");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20014TestSuite, TestCase_013873,
-        "dEQP-GLES2.functional.negative_api.vertex", 
+        "dEQP-GLES2.functional.negative_api.vertex",
         "_array.draw_elements_incomplete_primitive");

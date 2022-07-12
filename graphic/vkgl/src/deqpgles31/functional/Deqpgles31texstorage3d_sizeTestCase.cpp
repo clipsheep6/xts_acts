@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012902,
-        "dEQP-GLES31.functional.texture.specification", 
+        "dEQP-GLES31.functional.texture.specification",
         ".texstorage3d.size.cube_array_1x1x6_1_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012903,
-        "dEQP-GLES31.functional.texture.specification", 
+        "dEQP-GLES31.functional.texture.specification",
         ".texstorage3d.size.cube_array_2x2x6_2_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012904,
-        "dEQP-GLES31.functional.texture.specification.", 
+        "dEQP-GLES31.functional.texture.specification.",
         "texstorage3d.size.cube_array_32x32x6_3_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012905,
-        "dEQP-GLES31.functional.texture.specification.", 
+        "dEQP-GLES31.functional.texture.specification.",
         "texstorage3d.size.cube_array_64x64x6_4_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012906,
-        "dEQP-GLES31.functional.texture.specification.", 
+        "dEQP-GLES31.functional.texture.specification.",
         "texstorage3d.size.cube_array_57x57x12_1_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012907,
-        "dEQP-GLES31.functional.texture.specification.", 
+        "dEQP-GLES31.functional.texture.specification.",
         "texstorage3d.size.cube_array_57x57x12_2_levels");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012908,
-        "dEQP-GLES31.functional.texture.specification.", 
+        "dEQP-GLES31.functional.texture.specification.",
         "texstorage3d.size.cube_array_57x57x12_6_levels");

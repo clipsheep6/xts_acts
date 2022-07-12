@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004610,
-        "dEQP-GLES31.functional.shaders.linkage.es31.tessellat", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.tessellat",
         "ion.layout_declarations.rules.primitive_mode_mismatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004611,
-        "dEQP-GLES31.functional.shaders.linkage.es31.tessella", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.tessella",
         "tion.layout_declarations.rules.spacing_mode_mismatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004612,
-        "dEQP-GLES31.functional.shaders.linkage.es31.tessella", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.tessella",
         "tion.layout_declarations.rules.vertex_order_mismatch");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004613,
-        "dEQP-GLES31.functional.shaders.linkage.es31.tessella", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.tessella",
         "tion.layout_declarations.rules.vertex_count_mismatch");

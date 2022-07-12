@@ -24,85 +24,85 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000769,
-        "KHR-GLES31.core.layout_binding.sampler", 
+        "KHR-GLES31.core.layout_binding.sampler",
         "2D_layout_binding_texture_ComputeShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000770,
-        "KHR-GLES31.core.layout_binding.sampler", 
+        "KHR-GLES31.core.layout_binding.sampler",
         "3D_layout_binding_texture_ComputeShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000771,
-        "KHR-GLES31.core.layout_binding.sampler2DA", 
+        "KHR-GLES31.core.layout_binding.sampler2DA",
         "rray_layout_binding_texture_ComputeShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000772,
-        "KHR-GLES31.core.layout_binding.image2D", 
+        "KHR-GLES31.core.layout_binding.image2D",
         "_layout_binding_imageLoad_ComputeShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000773,
-        "KHR-GLES31.core.layout_binding.atomic_u", 
+        "KHR-GLES31.core.layout_binding.atomic_u",
         "int_layout_binding_atomic_ComputeShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000774,
-        "KHR-GLES31.core.layout_binding.bloc", 
+        "KHR-GLES31.core.layout_binding.bloc",
         "k_layout_binding_block_ComputeShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000775,
-        "KHR-GLES31.core.layout_binding.buffer_", 
+        "KHR-GLES31.core.layout_binding.buffer_",
         "layout_binding_atomicAdd_ComputeShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000776,
-        "KHR-GLES31.core.layout_binding.sampler2", 
+        "KHR-GLES31.core.layout_binding.sampler2",
         "D_layout_binding_texture_FragmentShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000777,
-        "KHR-GLES31.core.layout_binding.sampler3", 
+        "KHR-GLES31.core.layout_binding.sampler3",
         "D_layout_binding_texture_FragmentShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000778,
-        "KHR-GLES31.core.layout_binding.sampler2DA", 
+        "KHR-GLES31.core.layout_binding.sampler2DA",
         "rray_layout_binding_texture_FragmentShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000779,
-        "KHR-GLES31.core.layout_binding.image2D_", 
+        "KHR-GLES31.core.layout_binding.image2D_",
         "layout_binding_imageLoad_FragmentShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000780,
-        "KHR-GLES31.core.layout_binding.atomic_u", 
+        "KHR-GLES31.core.layout_binding.atomic_u",
         "int_layout_binding_atomic_FragmentShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000781,
-        "KHR-GLES31.core.layout_binding.block", 
+        "KHR-GLES31.core.layout_binding.block",
         "_layout_binding_block_FragmentShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000782,
-        "KHR-GLES31.core.layout_binding.buffer_", 
+        "KHR-GLES31.core.layout_binding.buffer_",
         "layout_binding_atomicAdd_FragmentShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000783,
-        "KHR-GLES31.core.layout_binding.sampler", 
+        "KHR-GLES31.core.layout_binding.sampler",
         "2D_layout_binding_texture_VertexShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000784,
-        "KHR-GLES31.core.layout_binding.sampler", 
+        "KHR-GLES31.core.layout_binding.sampler",
         "3D_layout_binding_texture_VertexShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000785,
-        "KHR-GLES31.core.layout_binding.sampler2D", 
+        "KHR-GLES31.core.layout_binding.sampler2D",
         "Array_layout_binding_texture_VertexShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000786,
-        "KHR-GLES31.core.layout_binding.image2D", 
+        "KHR-GLES31.core.layout_binding.image2D",
         "_layout_binding_imageLoad_VertexShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000787,
-        "KHR-GLES31.core.layout_binding.atomic_", 
+        "KHR-GLES31.core.layout_binding.atomic_",
         "uint_layout_binding_atomic_VertexShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000788,
-        "KHR-GLES31.core.layout_binding.bloc", 
+        "KHR-GLES31.core.layout_binding.bloc",
         "k_layout_binding_block_VertexShader");
 
 static SHRINK_HWTEST_F(ActsKhrgles310001TestSuite, TestCase_000789,
-        "KHR-GLES31.core.layout_binding.buffer", 
+        "KHR-GLES31.core.layout_binding.buffer",
         "_layout_binding_atomicAdd_VertexShader");

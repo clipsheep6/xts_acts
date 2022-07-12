@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003041,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_",
         "mask_in.bits_unique_per_two_samples.singlesample_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003042,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_m", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_m",
         "ask_in.bits_unique_per_two_samples.multisample_texture_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003043,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_m", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_m",
         "ask_in.bits_unique_per_two_samples.multisample_texture_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003044,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_m", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_m",
         "ask_in.bits_unique_per_two_samples.multisample_texture_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003045,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_m", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_m",
         "ask_in.bits_unique_per_two_samples.multisample_texture_8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003046,
-        "dEQP-GLES31.functional.shaders.sample_variables.sample_m", 
+        "dEQP-GLES31.functional.shaders.sample_variables.sample_m",
         "ask_in.bits_unique_per_two_samples.multisample_texture_16");

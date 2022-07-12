@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031405,
-        "dEQP-GLES3.functional.fbo.c", 
+        "dEQP-GLES3.functional.fbo.c",
         "ompleteness.layer.2darr_1_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031406,
-        "dEQP-GLES3.functional.fbo.c", 
+        "dEQP-GLES3.functional.fbo.c",
         "ompleteness.layer.2darr_1_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031407,
-        "dEQP-GLES3.functional.fbo.c", 
+        "dEQP-GLES3.functional.fbo.c",
         "ompleteness.layer.2darr_4_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031408,
-        "dEQP-GLES3.functional.fbo.c", 
+        "dEQP-GLES3.functional.fbo.c",
         "ompleteness.layer.2darr_4_15");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031409,
-        "dEQP-GLES3.functional.fbo", 
+        "dEQP-GLES3.functional.fbo",
         ".completeness.layer.3d_1_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031410,
-        "dEQP-GLES3.functional.fbo.", 
+        "dEQP-GLES3.functional.fbo.",
         "completeness.layer.3d_1_15");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031411,
-        "dEQP-GLES3.functional.fbo.", 
+        "dEQP-GLES3.functional.fbo.",
         "completeness.layer.3d_4_15");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30032TestSuite, TestCase_031412,
-        "dEQP-GLES3.functional.fbo.", 
+        "dEQP-GLES3.functional.fbo.",
         "completeness.layer.3d_64_15");

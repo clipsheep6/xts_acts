@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039807,
-        "dEQP-GLES3.functional.raster", 
+        "dEQP-GLES3.functional.raster",
         "ization.flatshading.triangles");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039808,
-        "dEQP-GLES3.functional.rasteriza", 
+        "dEQP-GLES3.functional.rasteriza",
         "tion.flatshading.triangle_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039809,
-        "dEQP-GLES3.functional.rasteriz", 
+        "dEQP-GLES3.functional.rasteriz",
         "ation.flatshading.triangle_fan");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039810,
-        "dEQP-GLES3.functional.rast", 
+        "dEQP-GLES3.functional.rast",
         "erization.flatshading.lines");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039811,
-        "dEQP-GLES3.functional.rasteri", 
+        "dEQP-GLES3.functional.rasteri",
         "zation.flatshading.line_strip");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039812,
-        "dEQP-GLES3.functional.raster", 
+        "dEQP-GLES3.functional.raster",
         "ization.flatshading.line_loop");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039813,
-        "dEQP-GLES3.functional.rasteri", 
+        "dEQP-GLES3.functional.rasteri",
         "zation.flatshading.lines_wide");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039814,
-        "dEQP-GLES3.functional.rasteriza", 
+        "dEQP-GLES3.functional.rasteriza",
         "tion.flatshading.line_strip_wide");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30040TestSuite, TestCase_039815,
-        "dEQP-GLES3.functional.rasteriza", 
+        "dEQP-GLES3.functional.rasteriza",
         "tion.flatshading.line_loop_wide");

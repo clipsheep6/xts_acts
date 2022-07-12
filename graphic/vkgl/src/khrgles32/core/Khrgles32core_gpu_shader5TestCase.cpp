@@ -24,85 +24,85 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000165,
-        "KHR-GLES32.core.gpu_shade", 
+        "KHR-GLES32.core.gpu_shade",
         "r5.sampler_array_indexing");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000166,
-        "KHR-GLES32.core.gpu_shad", 
+        "KHR-GLES32.core.gpu_shad",
         "er5.images_array_indexing");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000167,
-        "KHR-GLES32.core.gpu_shader5.a", 
+        "KHR-GLES32.core.gpu_shader5.a",
         "tomic_counters_array_indexing");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000168,
-        "KHR-GLES32.core.gpu_shader5.", 
+        "KHR-GLES32.core.gpu_shader5.",
         "uniform_blocks_array_indexing");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000169,
-        "KHR-GLES32.core.gpu_sh", 
+        "KHR-GLES32.core.gpu_sh",
         "ader5.precise_qualifier");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000170,
-        "KHR-GLES32.core.gpu_", 
+        "KHR-GLES32.core.gpu_",
         "shader5.fma_accuracy");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000171,
-        "KHR-GLES32.core.gpu_sha", 
+        "KHR-GLES32.core.gpu_sha",
         "der5.fma_precision_float");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000172,
-        "KHR-GLES32.core.gpu_sha", 
+        "KHR-GLES32.core.gpu_sha",
         "der5.fma_precision_vec2");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000173,
-        "KHR-GLES32.core.gpu_sha", 
+        "KHR-GLES32.core.gpu_sha",
         "der5.fma_precision_vec3");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000174,
-        "KHR-GLES32.core.gpu_sha", 
+        "KHR-GLES32.core.gpu_sha",
         "der5.fma_precision_vec4");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000175,
-        "KHR-GLES32.core.gpu_shader5.tex", 
+        "KHR-GLES32.core.gpu_shader5.tex",
         "ture_gather_offset_color_repeat");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000176,
-        "KHR-GLES32.core.gpu_shader5.te", 
+        "KHR-GLES32.core.gpu_shader5.te",
         "xture_gather_offset_color_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000177,
-        "KHR-GLES32.core.gpu_shader5.", 
+        "KHR-GLES32.core.gpu_shader5.",
         "texture_gather_offsets_color");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000178,
-        "KHR-GLES32.core.gpu_shader5.tex", 
+        "KHR-GLES32.core.gpu_shader5.tex",
         "ture_gather_offset_depth_repeat");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000179,
-        "KHR-GLES32.core.gpu_shader5.text", 
+        "KHR-GLES32.core.gpu_shader5.text",
         "ure_gather_offset_depth_repeat_y");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000180,
-        "KHR-GLES32.core.gpu_shader5.te", 
+        "KHR-GLES32.core.gpu_shader5.te",
         "xture_gather_offset_depth_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000181,
-        "KHR-GLES32.core.gpu_shader5.", 
+        "KHR-GLES32.core.gpu_shader5.",
         "texture_gather_offsets_depth");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000182,
-        "KHR-GLES32.core.gpu_shader5.texture", 
+        "KHR-GLES32.core.gpu_shader5.texture",
         "_gather_offset_color_clamp_to_border");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000183,
-        "KHR-GLES32.core.gpu_shader5.textur", 
+        "KHR-GLES32.core.gpu_shader5.textur",
         "e_gather_offset_color_clamp_to_edge");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000184,
-        "KHR-GLES32.core.gpu_shader5.textur", 
+        "KHR-GLES32.core.gpu_shader5.textur",
         "e_gather_offset_depth_clamp_border");
 
 static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000185,
-        "KHR-GLES32.core.gpu_shader5.textu", 
+        "KHR-GLES32.core.gpu_shader5.textu",
         "re_gather_offset_depth_clamp_edge");

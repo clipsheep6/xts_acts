@@ -24,125 +24,125 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004414,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declarations", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declarations",
         ".unspecified_precision.float_partially_specified_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004415,
-        "dEQP-GLES31.functional.shaders.linkage.es31.de", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.de",
         "clarations.unspecified_precision.float_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004416,
-        "dEQP-GLES31.functional.shaders.linkage.es31.de", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.de",
         "clarations.unspecified_precision.vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004417,
-        "dEQP-GLES31.functional.shaders.linkage.es31.de", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.de",
         "clarations.unspecified_precision.vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004418,
-        "dEQP-GLES31.functional.shaders.linkage.es31.de", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.de",
         "clarations.unspecified_precision.vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004419,
-        "dEQP-GLES31.functional.shaders.linkage.es31.dec", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.dec",
         "larations.unspecified_precision.sampler3D_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004420,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decl", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decl",
         "arations.unspecified_precision.sampler3D_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004421,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declara", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declara",
         "tions.unspecified_precision.samplerCubeShadow_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004422,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declarat", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declarat",
         "ions.unspecified_precision.samplerCubeShadow_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004423,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declar", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declar",
         "ations.unspecified_precision.sampler2DShadow_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004424,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declara", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declara",
         "tions.unspecified_precision.sampler2DShadow_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004425,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declar", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declar",
         "ations.unspecified_precision.sampler2DArray_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004426,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declara", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declara",
         "tions.unspecified_precision.sampler2DArray_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004427,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declarati", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declarati",
         "ons.unspecified_precision.sampler2DArrayShadow_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004428,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declaratio", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declaratio",
         "ns.unspecified_precision.sampler2DArrayShadow_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004429,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decl", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decl",
         "arations.unspecified_precision.isampler2D_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004430,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decla", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decla",
         "rations.unspecified_precision.isampler2D_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004431,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decl", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decl",
         "arations.unspecified_precision.isampler3D_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004432,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decla", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decla",
         "rations.unspecified_precision.isampler3D_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004433,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decla", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decla",
         "rations.unspecified_precision.isamplerCube_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004434,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declar", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declar",
         "ations.unspecified_precision.isamplerCube_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004435,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declar", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declar",
         "ations.unspecified_precision.isampler2DArray_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004436,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declara", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declara",
         "tions.unspecified_precision.isampler2DArray_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004437,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decl", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decl",
         "arations.unspecified_precision.usampler2D_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004438,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decla", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decla",
         "rations.unspecified_precision.usampler2D_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004439,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decl", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decl",
         "arations.unspecified_precision.usampler3D_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004440,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decla", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decla",
         "rations.unspecified_precision.usampler3D_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004441,
-        "dEQP-GLES31.functional.shaders.linkage.es31.decla", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.decla",
         "rations.unspecified_precision.usamplerCube_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004442,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declar", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declar",
         "ations.unspecified_precision.usamplerCube_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004443,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declar", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declar",
         "ations.unspecified_precision.usampler2DArray_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310005TestSuite, TestCase_004444,
-        "dEQP-GLES31.functional.shaders.linkage.es31.declara", 
+        "dEQP-GLES31.functional.shaders.linkage.es31.declara",
         "tions.unspecified_precision.usampler2DArray_fragment");

@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017497,
-        "dEQP-GLES3.functional.shaders.de", 
+        "dEQP-GLES3.functional.shaders.de",
         "rivate.dfdx.fbo_float.float_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017498,
-        "dEQP-GLES3.functional.shaders.der", 
+        "dEQP-GLES3.functional.shaders.der",
         "ivate.dfdx.fbo_float.float_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017499,
-        "dEQP-GLES3.functional.shaders.der", 
+        "dEQP-GLES3.functional.shaders.der",
         "ivate.dfdx.fbo_float.vec2_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017500,
-        "dEQP-GLES3.functional.shaders.d", 
+        "dEQP-GLES3.functional.shaders.d",
         "erivate.dfdx.fbo_float.vec3_lowp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017501,
-        "dEQP-GLES3.functional.shaders.der", 
+        "dEQP-GLES3.functional.shaders.der",
         "ivate.dfdx.fbo_float.vec3_mediump");

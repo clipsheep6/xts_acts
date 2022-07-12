@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001726,
-        "KHR-GLES31.core.blend_equati", 
+        "KHR-GLES31.core.blend_equati",
         "on_advanced.preprocessor.none");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001727,
-        "KHR-GLES31.core.blend_equation", 
+        "KHR-GLES31.core.blend_equation",
         "_advanced.preprocessor.require");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001728,
-        "KHR-GLES31.core.blend_equatio", 
+        "KHR-GLES31.core.blend_equatio",
         "n_advanced.preprocessor.enable");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001729,
-        "KHR-GLES31.core.blend_equati", 
+        "KHR-GLES31.core.blend_equati",
         "on_advanced.preprocessor.warn");
 
 static SHRINK_HWTEST_F(ActsKhrgles310002TestSuite, TestCase_001730,
-        "KHR-GLES31.core.blend_equation", 
+        "KHR-GLES31.core.blend_equation",
         "_advanced.preprocessor.disable");

@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020449,
-        "dEQP-GLES31.functional.program_interface_query.uni", 
+        "dEQP-GLES31.functional.program_interface_query.uni",
         "form.atomic_counter_buffer_index.named_block.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020450,
-        "dEQP-GLES31.functional.program_interface_query.un", 
+        "dEQP-GLES31.functional.program_interface_query.un",
         "iform.atomic_counter_buffer_index.named_block.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020451,
-        "dEQP-GLES31.functional.program_interface_query.un", 
+        "dEQP-GLES31.functional.program_interface_query.un",
         "iform.atomic_counter_buffer_index.named_block.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020452,
-        "dEQP-GLES31.functional.program_interface_query.un", 
+        "dEQP-GLES31.functional.program_interface_query.un",
         "iform.atomic_counter_buffer_index.named_block.bool");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020453,
-        "dEQP-GLES31.functional.program_interface_query.un", 
+        "dEQP-GLES31.functional.program_interface_query.un",
         "iform.atomic_counter_buffer_index.named_block.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020454,
-        "dEQP-GLES31.functional.program_interface_query.un", 
+        "dEQP-GLES31.functional.program_interface_query.un",
         "iform.atomic_counter_buffer_index.named_block.vec4");

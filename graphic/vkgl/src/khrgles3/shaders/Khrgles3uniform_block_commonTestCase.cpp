@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002303,
-        "KHR-GLES3.shaders.uniform_bl", 
+        "KHR-GLES3.shaders.uniform_bl",
         "ock.common.precision_matching");
 
 static SHRINK_HWTEST_F(ActsKhrgles30003TestSuite, TestCase_002304,
-        "KHR-GLES3.shaders.uniform_", 
+        "KHR-GLES3.shaders.uniform_",
         "block.common.name_matching");

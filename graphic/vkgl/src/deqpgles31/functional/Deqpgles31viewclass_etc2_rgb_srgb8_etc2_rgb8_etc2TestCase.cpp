@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033123,
-        "dEQP-GLES31.functional.copy_image.compressed.viewclas", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewclas",
         "s_etc2_rgb.srgb8_etc2_rgb8_etc2.texture2d_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033124,
-        "dEQP-GLES31.functional.copy_image.compressed.viewcla", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewcla",
         "ss_etc2_rgb.srgb8_etc2_rgb8_etc2.texture2d_to_cubemap");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033125,
-        "dEQP-GLES31.functional.copy_image.compressed.viewcla", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewcla",
         "ss_etc2_rgb.srgb8_etc2_rgb8_etc2.cubemap_to_texture2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310034TestSuite, TestCase_033126,
-        "dEQP-GLES31.functional.copy_image.compressed.viewcl", 
+        "dEQP-GLES31.functional.copy_image.compressed.viewcl",
         "ass_etc2_rgb.srgb8_etc2_rgb8_etc2.cubemap_to_cubemap");

@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023192,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.vertex_geo_fragment.basic_type.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023193,
-        "dEQP-GLES31.functional.program_interface_query.transform", 
+        "dEQP-GLES31.functional.program_interface_query.transform",
         "_feedback_varying.type.vertex_geo_fragment.basic_type.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023194,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.vertex_geo_fragment.basic_type.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023195,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.vertex_geo_fragment.basic_type.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023196,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.vertex_geo_fragment.basic_type.ivec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023197,
-        "dEQP-GLES31.functional.program_interface_query.transform_", 
+        "dEQP-GLES31.functional.program_interface_query.transform_",
         "feedback_varying.type.vertex_geo_fragment.basic_type.uvec2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310024TestSuite, TestCase_023198,
-        "dEQP-GLES31.functional.program_interface_query.transform_f", 
+        "dEQP-GLES31.functional.program_interface_query.transform_f",
         "eedback_varying.type.vertex_geo_fragment.basic_type.mat3x4");

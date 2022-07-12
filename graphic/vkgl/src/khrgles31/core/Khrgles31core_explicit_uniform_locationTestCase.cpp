@@ -24,101 +24,101 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002131,
-        "KHR-GLES31.core.explicit_u", 
+        "KHR-GLES31.core.explicit_u",
         "niform_location.uniform-loc");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002132,
-        "KHR-GLES31.core.explicit_uniform", 
+        "KHR-GLES31.core.explicit_uniform",
         "_location.uniform-loc-nondecimal");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002133,
-        "KHR-GLES31.core.explicit_uniform", 
+        "KHR-GLES31.core.explicit_uniform",
         "_location.uniform-loc-all-stages");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002134,
-        "KHR-GLES31.core.explicit_uniform_lo", 
+        "KHR-GLES31.core.explicit_uniform_lo",
         "cation.uniform-loc-multiple-uniforms");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002135,
-        "KHR-GLES31.core.explicit_unifor", 
+        "KHR-GLES31.core.explicit_unifor",
         "m_location.uniform-loc-types-mix");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002136,
-        "KHR-GLES31.core.explicit_unifor", 
+        "KHR-GLES31.core.explicit_unifor",
         "m_location.uniform-loc-types-mat");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002137,
-        "KHR-GLES31.core.explicit_uniform_", 
+        "KHR-GLES31.core.explicit_uniform_",
         "location.uniform-loc-types-structs");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002138,
-        "KHR-GLES31.core.explicit_uniform_l", 
+        "KHR-GLES31.core.explicit_uniform_l",
         "ocation.uniform-loc-types-samplers");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002139,
-        "KHR-GLES31.core.explicit_uniform_lo", 
+        "KHR-GLES31.core.explicit_uniform_lo",
         "cation.uniform-loc-arrays-nonspaced");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002140,
-        "KHR-GLES31.core.explicit_uniform_", 
+        "KHR-GLES31.core.explicit_uniform_",
         "location.uniform-loc-arrays-spaced");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002141,
-        "KHR-GLES31.core.explicit_uniform_lo", 
+        "KHR-GLES31.core.explicit_uniform_lo",
         "cation.uniform-loc-arrays-of-arrays");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002142,
-        "KHR-GLES31.core.explicit_uniform_lo", 
+        "KHR-GLES31.core.explicit_uniform_lo",
         "cation.uniform-loc-mix-with-implicit");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002143,
-        "KHR-GLES31.core.explicit_uniform_loc", 
+        "KHR-GLES31.core.explicit_uniform_loc",
         "ation.uniform-loc-mix-with-implicit2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002144,
-        "KHR-GLES31.core.explicit_uniform_loc", 
+        "KHR-GLES31.core.explicit_uniform_loc",
         "ation.uniform-loc-mix-with-implicit3");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002145,
-        "KHR-GLES31.core.explicit_uniform_loca", 
+        "KHR-GLES31.core.explicit_uniform_loca",
         "tion.uniform-loc-mix-with-implicit-max");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002146,
-        "KHR-GLES31.core.explicit_uniform_locatio", 
+        "KHR-GLES31.core.explicit_uniform_locatio",
         "n.uniform-loc-mix-with-implicit-max-array");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002147,
-        "KHR-GLES31.core.explicit_uniform_locat", 
+        "KHR-GLES31.core.explicit_uniform_locat",
         "ion.uniform-loc-implicit-in-some-stages");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002148,
-        "KHR-GLES31.core.explicit_uniform_locati", 
+        "KHR-GLES31.core.explicit_uniform_locati",
         "on.uniform-loc-implicit-in-some-stages2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002149,
-        "KHR-GLES31.core.explicit_uniform_locati", 
+        "KHR-GLES31.core.explicit_uniform_locati",
         "on.uniform-loc-implicit-in-some-stages3");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002150,
-        "KHR-GLES31.core.explicit_uniform_location.un", 
+        "KHR-GLES31.core.explicit_uniform_location.un",
         "iform-loc-negative-compile-non-number-literal");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002151,
-        "KHR-GLES31.core.explicit_uniform_location", 
+        "KHR-GLES31.core.explicit_uniform_location",
         ".uniform-loc-negative-compile-nonconst-loc");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002152,
-        "KHR-GLES31.core.explicit_uniform_location.", 
+        "KHR-GLES31.core.explicit_uniform_location.",
         "uniform-loc-negative-link-location-reused1");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002153,
-        "KHR-GLES31.core.explicit_uniform_location.", 
+        "KHR-GLES31.core.explicit_uniform_location.",
         "uniform-loc-negative-link-location-reused2");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002154,
-        "KHR-GLES31.core.explicit_uniform_locatio", 
+        "KHR-GLES31.core.explicit_uniform_locatio",
         "n.uniform-loc-negative-link-max-location");
 
 static SHRINK_HWTEST_F(ActsKhrgles310003TestSuite, TestCase_002155,
-        "KHR-GLES31.core.explicit_uniform_location.un", 
+        "KHR-GLES31.core.explicit_uniform_location.un",
         "iform-loc-negative-link-max-num-of-locations");

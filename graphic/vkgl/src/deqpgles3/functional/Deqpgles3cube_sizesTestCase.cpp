@@ -24,121 +24,121 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024187,
-        "dEQP-GLES3.functional.texture.f", 
+        "dEQP-GLES3.functional.texture.f",
         "iltering.cube.sizes.8x8_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024188,
-        "dEQP-GLES3.functional.texture.", 
+        "dEQP-GLES3.functional.texture.",
         "filtering.cube.sizes.8x8_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024189,
-        "dEQP-GLES3.functional.texture.filterin", 
+        "dEQP-GLES3.functional.texture.filterin",
         "g.cube.sizes.8x8_nearest_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024190,
-        "dEQP-GLES3.functional.texture.filterin", 
+        "dEQP-GLES3.functional.texture.filterin",
         "g.cube.sizes.8x8_linear_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024191,
-        "dEQP-GLES3.functional.texture.filterin", 
+        "dEQP-GLES3.functional.texture.filterin",
         "g.cube.sizes.8x8_nearest_mipmap_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024192,
-        "dEQP-GLES3.functional.texture.filteri", 
+        "dEQP-GLES3.functional.texture.filteri",
         "ng.cube.sizes.8x8_linear_mipmap_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024193,
-        "dEQP-GLES3.functional.texture.fi", 
+        "dEQP-GLES3.functional.texture.fi",
         "ltering.cube.sizes.64x64_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024194,
-        "dEQP-GLES3.functional.texture.f", 
+        "dEQP-GLES3.functional.texture.f",
         "iltering.cube.sizes.64x64_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024195,
-        "dEQP-GLES3.functional.texture.filtering", 
+        "dEQP-GLES3.functional.texture.filtering",
         ".cube.sizes.64x64_nearest_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024196,
-        "dEQP-GLES3.functional.texture.filtering", 
+        "dEQP-GLES3.functional.texture.filtering",
         ".cube.sizes.64x64_linear_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024197,
-        "dEQP-GLES3.functional.texture.filtering", 
+        "dEQP-GLES3.functional.texture.filtering",
         ".cube.sizes.64x64_nearest_mipmap_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024198,
-        "dEQP-GLES3.functional.texture.filterin", 
+        "dEQP-GLES3.functional.texture.filterin",
         "g.cube.sizes.64x64_linear_mipmap_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024199,
-        "dEQP-GLES3.functional.texture.fil", 
+        "dEQP-GLES3.functional.texture.fil",
         "tering.cube.sizes.128x128_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024200,
-        "dEQP-GLES3.functional.texture.fi", 
+        "dEQP-GLES3.functional.texture.fi",
         "ltering.cube.sizes.128x128_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024201,
-        "dEQP-GLES3.functional.texture.filtering.", 
+        "dEQP-GLES3.functional.texture.filtering.",
         "cube.sizes.128x128_nearest_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024202,
-        "dEQP-GLES3.functional.texture.filtering.", 
+        "dEQP-GLES3.functional.texture.filtering.",
         "cube.sizes.128x128_linear_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024203,
-        "dEQP-GLES3.functional.texture.filtering.", 
+        "dEQP-GLES3.functional.texture.filtering.",
         "cube.sizes.128x128_nearest_mipmap_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024204,
-        "dEQP-GLES3.functional.texture.filtering", 
+        "dEQP-GLES3.functional.texture.filtering",
         ".cube.sizes.128x128_linear_mipmap_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024205,
-        "dEQP-GLES3.functional.texture.f", 
+        "dEQP-GLES3.functional.texture.f",
         "iltering.cube.sizes.7x7_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024206,
-        "dEQP-GLES3.functional.texture.", 
+        "dEQP-GLES3.functional.texture.",
         "filtering.cube.sizes.7x7_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024207,
-        "dEQP-GLES3.functional.texture.filterin", 
+        "dEQP-GLES3.functional.texture.filterin",
         "g.cube.sizes.7x7_nearest_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024208,
-        "dEQP-GLES3.functional.texture.filterin", 
+        "dEQP-GLES3.functional.texture.filterin",
         "g.cube.sizes.7x7_linear_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024209,
-        "dEQP-GLES3.functional.texture.filterin", 
+        "dEQP-GLES3.functional.texture.filterin",
         "g.cube.sizes.7x7_nearest_mipmap_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024210,
-        "dEQP-GLES3.functional.texture.filteri", 
+        "dEQP-GLES3.functional.texture.filteri",
         "ng.cube.sizes.7x7_linear_mipmap_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024211,
-        "dEQP-GLES3.functional.texture.fi", 
+        "dEQP-GLES3.functional.texture.fi",
         "ltering.cube.sizes.63x63_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024212,
-        "dEQP-GLES3.functional.texture.f", 
+        "dEQP-GLES3.functional.texture.f",
         "iltering.cube.sizes.63x63_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024213,
-        "dEQP-GLES3.functional.texture.filtering", 
+        "dEQP-GLES3.functional.texture.filtering",
         ".cube.sizes.63x63_nearest_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024214,
-        "dEQP-GLES3.functional.texture.filtering", 
+        "dEQP-GLES3.functional.texture.filtering",
         ".cube.sizes.63x63_linear_mipmap_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024215,
-        "dEQP-GLES3.functional.texture.filtering", 
+        "dEQP-GLES3.functional.texture.filtering",
         ".cube.sizes.63x63_nearest_mipmap_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30025TestSuite, TestCase_024216,
-        "dEQP-GLES3.functional.texture.filterin", 
+        "dEQP-GLES3.functional.texture.filterin",
         "g.cube.sizes.63x63_linear_mipmap_linear");

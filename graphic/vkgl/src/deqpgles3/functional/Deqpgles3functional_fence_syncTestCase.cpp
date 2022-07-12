@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041856,
-        "dEQP-GLES3.functional.fenc", 
+        "dEQP-GLES3.functional.fenc",
         "e_sync.wait_sync_smalldraw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041857,
-        "dEQP-GLES3.functional.fenc", 
+        "dEQP-GLES3.functional.fenc",
         "e_sync.wait_sync_largedraw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041858,
-        "dEQP-GLES3.functional.fence_s", 
+        "dEQP-GLES3.functional.fence_s",
         "ync.client_wait_sync_smalldraw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041859,
-        "dEQP-GLES3.functional.fence_s", 
+        "dEQP-GLES3.functional.fence_s",
         "ync.client_wait_sync_largedraw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041860,
-        "dEQP-GLES3.functional.fence_sync.", 
+        "dEQP-GLES3.functional.fence_sync.",
         "client_wait_sync_timeout_smalldraw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041861,
-        "dEQP-GLES3.functional.fence_sync.", 
+        "dEQP-GLES3.functional.fence_sync.",
         "client_wait_sync_timeout_largedraw");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041862,
-        "dEQP-GLES3.functional.fence_sy", 
+        "dEQP-GLES3.functional.fence_sy",
         "nc.client_wait_sync_flush_auto");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041863,
-        "dEQP-GLES3.functional.fence_syn", 
+        "dEQP-GLES3.functional.fence_syn",
         "c.client_wait_sync_flush_manual");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041864,
-        "dEQP-GLES3.functional.fence_", 
+        "dEQP-GLES3.functional.fence_",
         "sync.client_wait_sync_noflush");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30042TestSuite, TestCase_041865,
-        "dEQP-GLES3.functional.fence_", 
+        "dEQP-GLES3.functional.fence_",
         "sync.client_wait_sync_finish");

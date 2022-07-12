@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001083,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.matrix_to_matrix.mat4_to_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001084,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.matrix_to_matrix.mat4_to_mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001085,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.matrix_to_matrix.mat4_to_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001086,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.matrix_to_matrix.mat4_to_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001087,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.matrix_to_matrix.mat4_to_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001088,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.matrix_to_matrix.mat4_to_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001089,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.matrix_to_matrix.mat3_to_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001090,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.matrix_to_matrix.mat3_to_mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001091,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.matrix_to_matrix.mat3_to_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001092,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.matrix_to_matrix.mat3_to_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001093,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.matrix_to_matrix.mat3_to_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001094,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.matrix_to_matrix.mat3_to_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001095,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.matrix_to_matrix.mat2_to_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001096,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.matrix_to_matrix.mat2_to_mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001097,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.matrix_to_matrix.mat2_to_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001098,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.matrix_to_matrix.mat2_to_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001099,
-        "dEQP-GLES2.functional.shaders.conversio", 
+        "dEQP-GLES2.functional.shaders.conversio",
         "ns.matrix_to_matrix.mat2_to_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20002TestSuite, TestCase_001100,
-        "dEQP-GLES2.functional.shaders.conversion", 
+        "dEQP-GLES2.functional.shaders.conversion",
         "s.matrix_to_matrix.mat2_to_mat2_fragment");

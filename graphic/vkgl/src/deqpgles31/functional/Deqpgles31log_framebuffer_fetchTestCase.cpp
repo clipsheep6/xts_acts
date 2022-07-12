@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019344,
-        "dEQP-GLES31.functional.debug.negative_coverage.", 
+        "dEQP-GLES31.functional.debug.negative_coverage.",
         "log.framebuffer_fetch.last_frag_data_not_defined");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019345,
-        "dEQP-GLES31.functional.debug.negative_coverage", 
+        "dEQP-GLES31.functional.debug.negative_coverage",
         ".log.framebuffer_fetch.last_frag_data_readonly");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019346,
-        "dEQP-GLES31.functional.debug.negative_coverag", 
+        "dEQP-GLES31.functional.debug.negative_coverag",
         "e.log.framebuffer_fetch.invalid_inout_version");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019347,
-        "dEQP-GLES31.functional.debug.negative_coverage.l", 
+        "dEQP-GLES31.functional.debug.negative_coverage.l",
         "og.framebuffer_fetch.invalid_redeclaration_inout");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019348,
-        "dEQP-GLES31.functional.debug.negative_covera", 
+        "dEQP-GLES31.functional.debug.negative_covera",
         "ge.log.framebuffer_fetch.invalid_vertex_inout");

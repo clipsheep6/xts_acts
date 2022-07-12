@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043957,
-        "dEQP-GLES3.functional.draw.draw_element", 
+        "dEQP-GLES3.functional.draw.draw_element",
         "s.indices.unaligned_user_ptr.index_short");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_043958,
-        "dEQP-GLES3.functional.draw.draw_elemen", 
+        "dEQP-GLES3.functional.draw.draw_elemen",
         "ts.indices.unaligned_user_ptr.index_int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_044024,
-        "dEQP-GLES3.functional.draw.draw_elements_ins", 
+        "dEQP-GLES3.functional.draw.draw_elements_ins",
         "tanced.indices.unaligned_user_ptr.index_short");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30044TestSuite, TestCase_044025,
-        "dEQP-GLES3.functional.draw.draw_elements_in", 
+        "dEQP-GLES3.functional.draw.draw_elements_in",
         "stanced.indices.unaligned_user_ptr.index_int");

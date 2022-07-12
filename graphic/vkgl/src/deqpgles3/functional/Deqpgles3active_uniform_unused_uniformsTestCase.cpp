@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036433,
-        "dEQP-GLES3.functional.uniform_api.info_query.a", 
+        "dEQP-GLES3.functional.uniform_api.info_query.a",
         "ctive_uniform.unused_uniforms.float_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036434,
-        "dEQP-GLES3.functional.uniform_api.info_query.ac", 
+        "dEQP-GLES3.functional.uniform_api.info_query.ac",
         "tive_uniform.unused_uniforms.float_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036435,
-        "dEQP-GLES3.functional.uniform_api.info_query.", 
+        "dEQP-GLES3.functional.uniform_api.info_query.",
         "active_uniform.unused_uniforms.float_vec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036436,
-        "dEQP-GLES3.functional.uniform_api.info_query.a", 
+        "dEQP-GLES3.functional.uniform_api.info_query.a",
         "ctive_uniform.unused_uniforms.mat4_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036437,
-        "dEQP-GLES3.functional.uniform_api.info_query.ac", 
+        "dEQP-GLES3.functional.uniform_api.info_query.ac",
         "tive_uniform.unused_uniforms.mat4_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036438,
-        "dEQP-GLES3.functional.uniform_api.info_query.", 
+        "dEQP-GLES3.functional.uniform_api.info_query.",
         "active_uniform.unused_uniforms.mat4_mat2_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036439,
-        "dEQP-GLES3.functional.uniform_api.info_query.a", 
+        "dEQP-GLES3.functional.uniform_api.info_query.a",
         "ctive_uniform.unused_uniforms.int_ivec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036440,
-        "dEQP-GLES3.functional.uniform_api.info_query.ac", 
+        "dEQP-GLES3.functional.uniform_api.info_query.ac",
         "tive_uniform.unused_uniforms.int_ivec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036441,
-        "dEQP-GLES3.functional.uniform_api.info_query.", 
+        "dEQP-GLES3.functional.uniform_api.info_query.",
         "active_uniform.unused_uniforms.int_ivec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036442,
-        "dEQP-GLES3.functional.uniform_api.info_query.a", 
+        "dEQP-GLES3.functional.uniform_api.info_query.a",
         "ctive_uniform.unused_uniforms.uint_uvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036443,
-        "dEQP-GLES3.functional.uniform_api.info_query.ac", 
+        "dEQP-GLES3.functional.uniform_api.info_query.ac",
         "tive_uniform.unused_uniforms.uint_uvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036444,
-        "dEQP-GLES3.functional.uniform_api.info_query.", 
+        "dEQP-GLES3.functional.uniform_api.info_query.",
         "active_uniform.unused_uniforms.uint_uvec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036445,
-        "dEQP-GLES3.functional.uniform_api.info_query.a", 
+        "dEQP-GLES3.functional.uniform_api.info_query.a",
         "ctive_uniform.unused_uniforms.bool_bvec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036446,
-        "dEQP-GLES3.functional.uniform_api.info_query.ac", 
+        "dEQP-GLES3.functional.uniform_api.info_query.ac",
         "tive_uniform.unused_uniforms.bool_bvec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036447,
-        "dEQP-GLES3.functional.uniform_api.info_query.", 
+        "dEQP-GLES3.functional.uniform_api.info_query.",
         "active_uniform.unused_uniforms.bool_bvec4_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036448,
-        "dEQP-GLES3.functional.uniform_api.info_query.active_", 
+        "dEQP-GLES3.functional.uniform_api.info_query.active_",
         "uniform.unused_uniforms.sampler2D_samplerCube_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036449,
-        "dEQP-GLES3.functional.uniform_api.info_query.active_u", 
+        "dEQP-GLES3.functional.uniform_api.info_query.active_u",
         "niform.unused_uniforms.sampler2D_samplerCube_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30037TestSuite, TestCase_036450,
-        "dEQP-GLES3.functional.uniform_api.info_query.active", 
+        "dEQP-GLES3.functional.uniform_api.info_query.active",
         "_uniform.unused_uniforms.sampler2D_samplerCube_both");

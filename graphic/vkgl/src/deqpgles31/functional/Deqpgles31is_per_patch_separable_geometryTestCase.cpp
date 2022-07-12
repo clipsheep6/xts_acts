@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022323,
-        "dEQP-GLES31.functional.program_interface_query.p", 
+        "dEQP-GLES31.functional.program_interface_query.p",
         "rogram_input.is_per_patch.separable_geometry.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022945,
-        "dEQP-GLES31.functional.program_interface_query.p", 
+        "dEQP-GLES31.functional.program_interface_query.p",
         "rogram_output.is_per_patch.separable_geometry.var");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022946,
-        "dEQP-GLES31.functional.program_interface_query.progr", 
+        "dEQP-GLES31.functional.program_interface_query.progr",
         "am_output.is_per_patch.separable_geometry.var_struct");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310023TestSuite, TestCase_022947,
-        "dEQP-GLES31.functional.program_interface_query.prog", 
+        "dEQP-GLES31.functional.program_interface_query.prog",
         "ram_output.is_per_patch.separable_geometry.var_array");

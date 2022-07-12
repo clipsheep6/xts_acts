@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001995,
-        "KHR-GLES3.shaders.uniform_block.single_ne", 
+        "KHR-GLES3.shaders.uniform_block.single_ne",
         "sted_struct_array.per_block_buffer_shared");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001996,
-        "KHR-GLES3.shaders.uniform_block.single_nested_st", 
+        "KHR-GLES3.shaders.uniform_block.single_nested_st",
         "ruct_array.per_block_buffer_shared_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001997,
-        "KHR-GLES3.shaders.uniform_block.single_ne", 
+        "KHR-GLES3.shaders.uniform_block.single_ne",
         "sted_struct_array.per_block_buffer_packed");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001998,
-        "KHR-GLES3.shaders.uniform_block.single_nested_st", 
+        "KHR-GLES3.shaders.uniform_block.single_nested_st",
         "ruct_array.per_block_buffer_packed_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_001999,
-        "KHR-GLES3.shaders.uniform_block.single_ne", 
+        "KHR-GLES3.shaders.uniform_block.single_ne",
         "sted_struct_array.per_block_buffer_std140");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_002000,
-        "KHR-GLES3.shaders.uniform_block.single_nested_st", 
+        "KHR-GLES3.shaders.uniform_block.single_nested_st",
         "ruct_array.per_block_buffer_std140_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_002001,
-        "KHR-GLES3.shaders.uniform_block.single_nested_s", 
+        "KHR-GLES3.shaders.uniform_block.single_nested_s",
         "truct_array.single_buffer_shared_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_002002,
-        "KHR-GLES3.shaders.uniform_block.single_nested_s", 
+        "KHR-GLES3.shaders.uniform_block.single_nested_s",
         "truct_array.single_buffer_packed_instance_array");
 
 static SHRINK_HWTEST_F(ActsKhrgles30002TestSuite, TestCase_002003,
-        "KHR-GLES3.shaders.uniform_block.single_nested_s", 
+        "KHR-GLES3.shaders.uniform_block.single_nested_s",
         "truct_array.single_buffer_std140_instance_array");

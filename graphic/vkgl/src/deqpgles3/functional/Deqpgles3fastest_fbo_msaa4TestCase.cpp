@@ -24,97 +24,97 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017509,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.dfdx.fastest.fbo_msaa4.float_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017510,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.dfdx.fastest.fbo_msaa4.float_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017511,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.dfdx.fastest.fbo_msaa4.vec2_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017512,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.dfdx.fastest.fbo_msaa4.vec2_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017513,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.dfdx.fastest.fbo_msaa4.vec3_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017514,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.dfdx.fastest.fbo_msaa4.vec3_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017515,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.dfdx.fastest.fbo_msaa4.vec4_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017516,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.dfdx.fastest.fbo_msaa4.vec4_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017684,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.dfdy.fastest.fbo_msaa4.float_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017685,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.dfdy.fastest.fbo_msaa4.float_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017686,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.dfdy.fastest.fbo_msaa4.vec2_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017687,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.dfdy.fastest.fbo_msaa4.vec2_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017688,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.dfdy.fastest.fbo_msaa4.vec3_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017689,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.dfdy.fastest.fbo_msaa4.vec3_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017690,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.dfdy.fastest.fbo_msaa4.vec4_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017691,
-        "dEQP-GLES3.functional.shaders.deriva", 
+        "dEQP-GLES3.functional.shaders.deriva",
         "te.dfdy.fastest.fbo_msaa4.vec4_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017879,
-        "dEQP-GLES3.functional.shaders.derivate", 
+        "dEQP-GLES3.functional.shaders.derivate",
         ".fwidth.fastest.fbo_msaa4.float_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017880,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.fwidth.fastest.fbo_msaa4.float_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017881,
-        "dEQP-GLES3.functional.shaders.derivate", 
+        "dEQP-GLES3.functional.shaders.derivate",
         ".fwidth.fastest.fbo_msaa4.vec2_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017882,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.fwidth.fastest.fbo_msaa4.vec2_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017883,
-        "dEQP-GLES3.functional.shaders.derivate", 
+        "dEQP-GLES3.functional.shaders.derivate",
         ".fwidth.fastest.fbo_msaa4.vec3_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017884,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.fwidth.fastest.fbo_msaa4.vec3_highp");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017885,
-        "dEQP-GLES3.functional.shaders.derivate", 
+        "dEQP-GLES3.functional.shaders.derivate",
         ".fwidth.fastest.fbo_msaa4.vec4_mediump");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30018TestSuite, TestCase_017886,
-        "dEQP-GLES3.functional.shaders.derivat", 
+        "dEQP-GLES3.functional.shaders.derivat",
         "e.fwidth.fastest.fbo_msaa4.vec4_highp");

@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310038TestSuite, TestCase_037719,
-        "dEQP-GLES31.functional.default_verte", 
+        "dEQP-GLES31.functional.default_verte",
         "x_array_object.vertex_attrib_divisor");

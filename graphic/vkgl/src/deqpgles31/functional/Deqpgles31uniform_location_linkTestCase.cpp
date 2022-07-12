@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018234,
-        "dEQP-GLES31.functional.un", 
+        "dEQP-GLES31.functional.un",
         "iform_location.link.case_0");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018235,
-        "dEQP-GLES31.functional.un", 
+        "dEQP-GLES31.functional.un",
         "iform_location.link.case_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018236,
-        "dEQP-GLES31.functional.un", 
+        "dEQP-GLES31.functional.un",
         "iform_location.link.case_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018237,
-        "dEQP-GLES31.functional.un", 
+        "dEQP-GLES31.functional.un",
         "iform_location.link.case_3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018238,
-        "dEQP-GLES31.functional.un", 
+        "dEQP-GLES31.functional.un",
         "iform_location.link.case_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018239,
-        "dEQP-GLES31.functional.un", 
+        "dEQP-GLES31.functional.un",
         "iform_location.link.case_5");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018240,
-        "dEQP-GLES31.functional.un", 
+        "dEQP-GLES31.functional.un",
         "iform_location.link.case_6");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018241,
-        "dEQP-GLES31.functional.un", 
+        "dEQP-GLES31.functional.un",
         "iform_location.link.case_7");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018242,
-        "dEQP-GLES31.functional.un", 
+        "dEQP-GLES31.functional.un",
         "iform_location.link.case_8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310019TestSuite, TestCase_018243,
-        "dEQP-GLES31.functional.un", 
+        "dEQP-GLES31.functional.un",
         "iform_location.link.case_9");

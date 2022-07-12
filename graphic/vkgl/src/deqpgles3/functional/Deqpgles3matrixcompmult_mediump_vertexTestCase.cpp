@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019450,
-        "dEQP-GLES3.functional.shaders.builtin_function", 
+        "dEQP-GLES3.functional.shaders.builtin_function",
         "s.precision.matrixcompmult.mediump_vertex.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019451,
-        "dEQP-GLES3.functional.shaders.builtin_functions", 
+        "dEQP-GLES3.functional.shaders.builtin_functions",
         ".precision.matrixcompmult.mediump_vertex.mat2x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019452,
-        "dEQP-GLES3.functional.shaders.builtin_functions", 
+        "dEQP-GLES3.functional.shaders.builtin_functions",
         ".precision.matrixcompmult.mediump_vertex.mat2x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019453,
-        "dEQP-GLES3.functional.shaders.builtin_functions", 
+        "dEQP-GLES3.functional.shaders.builtin_functions",
         ".precision.matrixcompmult.mediump_vertex.mat3x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019454,
-        "dEQP-GLES3.functional.shaders.builtin_function", 
+        "dEQP-GLES3.functional.shaders.builtin_function",
         "s.precision.matrixcompmult.mediump_vertex.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019455,
-        "dEQP-GLES3.functional.shaders.builtin_functions", 
+        "dEQP-GLES3.functional.shaders.builtin_functions",
         ".precision.matrixcompmult.mediump_vertex.mat3x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019456,
-        "dEQP-GLES3.functional.shaders.builtin_functions", 
+        "dEQP-GLES3.functional.shaders.builtin_functions",
         ".precision.matrixcompmult.mediump_vertex.mat4x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019457,
-        "dEQP-GLES3.functional.shaders.builtin_functions", 
+        "dEQP-GLES3.functional.shaders.builtin_functions",
         ".precision.matrixcompmult.mediump_vertex.mat4x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30020TestSuite, TestCase_019458,
-        "dEQP-GLES3.functional.shaders.builtin_function", 
+        "dEQP-GLES3.functional.shaders.builtin_function",
         "s.precision.matrixcompmult.mediump_vertex.mat4");

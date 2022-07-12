@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025228,
-        "dEQP-GLES31.functional.android_extension_pack.shaders.es31", 
+        "dEQP-GLES31.functional.android_extension_pack.shaders.es31",
         ".implementation_limits.max_fragment_atomic_counter_buffers");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025229,
-        "dEQP-GLES31.functional.android_extension_pack.shaders.", 
+        "dEQP-GLES31.functional.android_extension_pack.shaders.",
         "es31.implementation_limits.max_fragment_atomic_counters");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025230,
-        "dEQP-GLES31.functional.android_extension_pack.shaders.", 
+        "dEQP-GLES31.functional.android_extension_pack.shaders.",
         "es31.implementation_limits.max_fragment_image_uniforms");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310026TestSuite, TestCase_025231,
-        "dEQP-GLES31.functional.android_extension_pack.shaders.es3", 
+        "dEQP-GLES31.functional.android_extension_pack.shaders.es3",
         "1.implementation_limits.max_fragment_shader_storage_blocks");

@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006546,
-        "dEQP-GLES2.functional.shaders.operator.fl", 
+        "dEQP-GLES2.functional.shaders.operator.fl",
         "oat_compare.lessThanEqual.lowp_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006547,
-        "dEQP-GLES2.functional.shaders.operator.flo", 
+        "dEQP-GLES2.functional.shaders.operator.flo",
         "at_compare.lessThanEqual.lowp_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006548,
-        "dEQP-GLES2.functional.shaders.operator.floa", 
+        "dEQP-GLES2.functional.shaders.operator.floa",
         "t_compare.lessThanEqual.mediump_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006549,
-        "dEQP-GLES2.functional.shaders.operator.float", 
+        "dEQP-GLES2.functional.shaders.operator.float",
         "_compare.lessThanEqual.mediump_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006550,
-        "dEQP-GLES2.functional.shaders.operator.flo", 
+        "dEQP-GLES2.functional.shaders.operator.flo",
         "at_compare.lessThanEqual.highp_vec2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006551,
-        "dEQP-GLES2.functional.shaders.operator.floa", 
+        "dEQP-GLES2.functional.shaders.operator.floa",
         "t_compare.lessThanEqual.highp_vec2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006552,
-        "dEQP-GLES2.functional.shaders.operator.fl", 
+        "dEQP-GLES2.functional.shaders.operator.fl",
         "oat_compare.lessThanEqual.lowp_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006553,
-        "dEQP-GLES2.functional.shaders.operator.flo", 
+        "dEQP-GLES2.functional.shaders.operator.flo",
         "at_compare.lessThanEqual.lowp_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006554,
-        "dEQP-GLES2.functional.shaders.operator.floa", 
+        "dEQP-GLES2.functional.shaders.operator.floa",
         "t_compare.lessThanEqual.mediump_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006555,
-        "dEQP-GLES2.functional.shaders.operator.float", 
+        "dEQP-GLES2.functional.shaders.operator.float",
         "_compare.lessThanEqual.mediump_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006556,
-        "dEQP-GLES2.functional.shaders.operator.flo", 
+        "dEQP-GLES2.functional.shaders.operator.flo",
         "at_compare.lessThanEqual.highp_vec3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006557,
-        "dEQP-GLES2.functional.shaders.operator.floa", 
+        "dEQP-GLES2.functional.shaders.operator.floa",
         "t_compare.lessThanEqual.highp_vec3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006558,
-        "dEQP-GLES2.functional.shaders.operator.fl", 
+        "dEQP-GLES2.functional.shaders.operator.fl",
         "oat_compare.lessThanEqual.lowp_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006559,
-        "dEQP-GLES2.functional.shaders.operator.flo", 
+        "dEQP-GLES2.functional.shaders.operator.flo",
         "at_compare.lessThanEqual.lowp_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006560,
-        "dEQP-GLES2.functional.shaders.operator.floa", 
+        "dEQP-GLES2.functional.shaders.operator.floa",
         "t_compare.lessThanEqual.mediump_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006561,
-        "dEQP-GLES2.functional.shaders.operator.float", 
+        "dEQP-GLES2.functional.shaders.operator.float",
         "_compare.lessThanEqual.mediump_vec4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006562,
-        "dEQP-GLES2.functional.shaders.operator.flo", 
+        "dEQP-GLES2.functional.shaders.operator.flo",
         "at_compare.lessThanEqual.highp_vec4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20007TestSuite, TestCase_006563,
-        "dEQP-GLES2.functional.shaders.operator.floa", 
+        "dEQP-GLES2.functional.shaders.operator.floa",
         "t_compare.lessThanEqual.highp_vec4_fragment");

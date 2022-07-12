@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007963,
-        "dEQP-GLES31.functional.tessellatio", 
+        "dEQP-GLES31.functional.tessellatio",
         "n.tesscoord.triangles_equal_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007964,
-        "dEQP-GLES31.functional.tessellation.tes", 
+        "dEQP-GLES31.functional.tessellation.tes",
         "scoord.triangles_fractional_odd_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007965,
-        "dEQP-GLES31.functional.tessellation.tes", 
+        "dEQP-GLES31.functional.tessellation.tes",
         "scoord.triangles_fractional_even_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007966,
-        "dEQP-GLES31.functional.tessellat", 
+        "dEQP-GLES31.functional.tessellat",
         "ion.tesscoord.quads_equal_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007967,
-        "dEQP-GLES31.functional.tessellation.t", 
+        "dEQP-GLES31.functional.tessellation.t",
         "esscoord.quads_fractional_odd_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007968,
-        "dEQP-GLES31.functional.tessellation.t", 
+        "dEQP-GLES31.functional.tessellation.t",
         "esscoord.quads_fractional_even_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007969,
-        "dEQP-GLES31.functional.tessellatio", 
+        "dEQP-GLES31.functional.tessellatio",
         "n.tesscoord.isolines_equal_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007970,
-        "dEQP-GLES31.functional.tessellation.te", 
+        "dEQP-GLES31.functional.tessellation.te",
         "sscoord.isolines_fractional_odd_spacing");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007971,
-        "dEQP-GLES31.functional.tessellation.tes", 
+        "dEQP-GLES31.functional.tessellation.tes",
         "scoord.isolines_fractional_even_spacing");

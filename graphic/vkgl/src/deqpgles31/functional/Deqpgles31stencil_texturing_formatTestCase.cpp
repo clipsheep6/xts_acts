@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012264,
-        "dEQP-GLES31.functional.stencil_tex", 
+        "dEQP-GLES31.functional.stencil_tex",
         "turing.format.depth32f_stencil8_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012265,
-        "dEQP-GLES31.functional.stencil_textur", 
+        "dEQP-GLES31.functional.stencil_textur",
         "ing.format.depth32f_stencil8_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012266,
-        "dEQP-GLES31.functional.stencil_text", 
+        "dEQP-GLES31.functional.stencil_text",
         "uring.format.depth32f_stencil8_cube");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012267,
-        "dEQP-GLES31.functional.stencil_te", 
+        "dEQP-GLES31.functional.stencil_te",
         "xturing.format.depth24_stencil8_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012268,
-        "dEQP-GLES31.functional.stencil_textu", 
+        "dEQP-GLES31.functional.stencil_textu",
         "ring.format.depth24_stencil8_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012269,
-        "dEQP-GLES31.functional.stencil_tex", 
+        "dEQP-GLES31.functional.stencil_tex",
         "turing.format.depth24_stencil8_cube");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012270,
-        "dEQP-GLES31.functional.stencil_t", 
+        "dEQP-GLES31.functional.stencil_t",
         "exturing.format.stencil_index8_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012271,
-        "dEQP-GLES31.functional.stencil_text", 
+        "dEQP-GLES31.functional.stencil_text",
         "uring.format.stencil_index8_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310013TestSuite, TestCase_012272,
-        "dEQP-GLES31.functional.stencil_te", 
+        "dEQP-GLES31.functional.stencil_te",
         "xturing.format.stencil_index8_cube");

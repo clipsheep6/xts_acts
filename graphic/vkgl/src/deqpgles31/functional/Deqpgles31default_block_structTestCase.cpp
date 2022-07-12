@@ -24,41 +24,41 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021487,
-        "dEQP-GLES31.functional.program_interface_qu", 
+        "dEQP-GLES31.functional.program_interface_qu",
         "ery.uniform.type.default_block.struct.float");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021488,
-        "dEQP-GLES31.functional.program_interface_q", 
+        "dEQP-GLES31.functional.program_interface_q",
         "uery.uniform.type.default_block.struct.int");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021489,
-        "dEQP-GLES31.functional.program_interface_q", 
+        "dEQP-GLES31.functional.program_interface_q",
         "uery.uniform.type.default_block.struct.uint");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021490,
-        "dEQP-GLES31.functional.program_interface_q", 
+        "dEQP-GLES31.functional.program_interface_q",
         "uery.uniform.type.default_block.struct.bool");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021491,
-        "dEQP-GLES31.functional.program_interface_q", 
+        "dEQP-GLES31.functional.program_interface_q",
         "uery.uniform.type.default_block.struct.vec3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021492,
-        "dEQP-GLES31.functional.program_interface_q", 
+        "dEQP-GLES31.functional.program_interface_q",
         "uery.uniform.type.default_block.struct.vec4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021493,
-        "dEQP-GLES31.functional.program_interface_quer", 
+        "dEQP-GLES31.functional.program_interface_quer",
         "y.uniform.type.default_block.struct.sampler_2d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021494,
-        "dEQP-GLES31.functional.program_interface_query.u", 
+        "dEQP-GLES31.functional.program_interface_query.u",
         "niform.type.default_block.struct.sampler_2d_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021495,
-        "dEQP-GLES31.functional.program_interface_quer", 
+        "dEQP-GLES31.functional.program_interface_quer",
         "y.uniform.type.default_block.struct.sampler_3d");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310022TestSuite, TestCase_021496,
-        "dEQP-GLES31.functional.program_interface_query", 
+        "dEQP-GLES31.functional.program_interface_query",
         ".uniform.type.default_block.struct.isampler_2d");

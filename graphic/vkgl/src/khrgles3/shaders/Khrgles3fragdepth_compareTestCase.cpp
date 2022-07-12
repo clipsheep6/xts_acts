@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000020,
-        "KHR-GLES3.shaders.frag", 
+        "KHR-GLES3.shaders.frag",
         "depth.compare.no_write");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000021,
-        "KHR-GLES3.shaders.fr", 
+        "KHR-GLES3.shaders.fr",
         "agdepth.compare.const");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000022,
-        "KHR-GLES3.shaders.fra", 
+        "KHR-GLES3.shaders.fra",
         "gdepth.compare.uniform");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000023,
-        "KHR-GLES3.shaders.fra", 
+        "KHR-GLES3.shaders.fra",
         "gdepth.compare.dynamic");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000024,
-        "KHR-GLES3.shaders.fragd", 
+        "KHR-GLES3.shaders.fragd",
         "epth.compare.fragcoord_z");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000025,
-        "KHR-GLES3.shaders.fragdepth.co", 
+        "KHR-GLES3.shaders.fragdepth.co",
         "mpare.uniform_conditional_write");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000026,
-        "KHR-GLES3.shaders.fragdepth.co", 
+        "KHR-GLES3.shaders.fragdepth.co",
         "mpare.dynamic_conditional_write");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000027,
-        "KHR-GLES3.shaders.fragdepth", 
+        "KHR-GLES3.shaders.fragdepth",
         ".compare.uniform_loop_write");
 
 static SHRINK_HWTEST_F(ActsKhrgles30001TestSuite, TestCase_000028,
-        "KHR-GLES3.shaders.fragdept", 
+        "KHR-GLES3.shaders.fragdept",
         "h.compare.write_in_function");

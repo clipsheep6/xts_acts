@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017685,
-        "dEQP-GLES31.functional.separate_shader.", 
+        "dEQP-GLES31.functional.separate_shader.",
         "create_shader_program.separate_programs");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017686,
-        "dEQP-GLES31.functional.separate_shader.create", 
+        "dEQP-GLES31.functional.separate_shader.create",
         "_shader_program.separate_programs_add_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017687,
-        "dEQP-GLES31.functional.separate_shader.creat", 
+        "dEQP-GLES31.functional.separate_shader.creat",
         "e_shader_program.separate_programs_add_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017688,
-        "dEQP-GLES31.functional.separate_shader.crea", 
+        "dEQP-GLES31.functional.separate_shader.crea",
         "te_shader_program.separate_programs_add_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310018TestSuite, TestCase_017689,
-        "dEQP-GLES31.functional.separate_shader.cre", 
+        "dEQP-GLES31.functional.separate_shader.cre",
         "ate_shader_program.single_program_add_both");

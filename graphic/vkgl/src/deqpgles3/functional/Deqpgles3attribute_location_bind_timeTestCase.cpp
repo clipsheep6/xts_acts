@@ -24,21 +24,21 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038518,
-        "dEQP-GLES3.functional.attribut", 
+        "dEQP-GLES3.functional.attribut",
         "e_location.bind_time.pre_attach");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038519,
-        "dEQP-GLES3.functional.attribu", 
+        "dEQP-GLES3.functional.attribu",
         "te_location.bind_time.pre_link");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038520,
-        "dEQP-GLES3.functional.attribut", 
+        "dEQP-GLES3.functional.attribut",
         "e_location.bind_time.post_link");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038521,
-        "dEQP-GLES3.functional.attrib", 
+        "dEQP-GLES3.functional.attrib",
         "ute_location.bind_time.relink");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30039TestSuite, TestCase_038522,
-        "dEQP-GLES3.functional.attribu", 
+        "dEQP-GLES3.functional.attribu",
         "te_location.bind_time.reattach");

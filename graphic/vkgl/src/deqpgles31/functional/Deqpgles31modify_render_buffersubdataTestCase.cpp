@@ -24,61 +24,61 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014124,
-        "dEQP-GLES31.functional.texture.texture_buffe", 
+        "dEQP-GLES31.functional.texture.texture_buffe",
         "r.modify_render.buffersubdata.as_vertex_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014125,
-        "dEQP-GLES31.functional.texture.texture_buffe", 
+        "dEQP-GLES31.functional.texture.texture_buffe",
         "r.modify_render.buffersubdata.as_index_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014126,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify",
         "_render.buffersubdata.as_vertex_array_as_index_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014127,
-        "dEQP-GLES31.functional.texture.texture_buffer", 
+        "dEQP-GLES31.functional.texture.texture_buffer",
         ".modify_render.buffersubdata.as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014128,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_",
         "render.buffersubdata.as_vertex_array_as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014129,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_",
         "render.buffersubdata.as_index_array_as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014130,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.b", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.b",
         "uffersubdata.as_vertex_array_as_index_array_as_vertex_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014131,
-        "dEQP-GLES31.functional.texture.texture_buffer.", 
+        "dEQP-GLES31.functional.texture.texture_buffer.",
         "modify_render.buffersubdata.as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014132,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_r", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_r",
         "ender.buffersubdata.as_vertex_array_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014133,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_r", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_r",
         "ender.buffersubdata.as_index_array_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014134,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.bu", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.bu",
         "ffersubdata.as_vertex_array_as_index_array_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014135,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_re", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_re",
         "nder.buffersubdata.as_vertex_texture_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014136,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.buf", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.buf",
         "fersubdata.as_vertex_array_as_vertex_texture_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014137,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.buf", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.buf",
         "fersubdata.as_index_array_as_vertex_texture_as_fragment_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310015TestSuite, TestCase_014138,
-        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.buffersubda", 
+        "dEQP-GLES31.functional.texture.texture_buffer.modify_render.buffersubda",
         "ta.as_vertex_array_as_index_array_as_vertex_texture_as_fragment_texture");

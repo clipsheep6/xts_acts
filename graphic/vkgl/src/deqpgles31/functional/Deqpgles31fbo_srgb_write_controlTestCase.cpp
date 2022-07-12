@@ -24,25 +24,25 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020042,
-        "dEQP-GLES31.functional.fbo.srgb_wri", 
+        "dEQP-GLES31.functional.fbo.srgb_wri",
         "te_control.framebuffer_srgb_enabled");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020043,
-        "dEQP-GLES31.functional.fbo.srgb_write_co", 
+        "dEQP-GLES31.functional.fbo.srgb_write_co",
         "ntrol.framebuffer_srgb_enabled_col_attach");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020044,
-        "dEQP-GLES31.functional.fbo.srgb_write_", 
+        "dEQP-GLES31.functional.fbo.srgb_write_",
         "control.framebuffer_srgb_enabled_blend");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020045,
-        "dEQP-GLES31.functional.fbo.srgb_write_control", 
+        "dEQP-GLES31.functional.fbo.srgb_write_control",
         ".framebuffer_srgb_enabled_render_target_ignore");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020046,
-        "dEQP-GLES31.functional.fbo.srgb_write_cont", 
+        "dEQP-GLES31.functional.fbo.srgb_write_cont",
         "rol.framebuffer_srgb_enabled_copy_to_linear");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310021TestSuite, TestCase_020047,
-        "dEQP-GLES31.functional.fbo.srgb_write_c", 
+        "dEQP-GLES31.functional.fbo.srgb_write_c",
         "ontrol.framebuffer_srgb_unsupported_enum");

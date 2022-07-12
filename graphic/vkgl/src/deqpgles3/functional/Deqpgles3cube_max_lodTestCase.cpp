@@ -24,9 +24,9 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025119,
-        "dEQP-GLES3.functional.texture.mi", 
+        "dEQP-GLES3.functional.texture.mi",
         "pmap.cube.max_lod.nearest_nearest");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30026TestSuite, TestCase_025120,
-        "dEQP-GLES3.functional.texture.mi", 
+        "dEQP-GLES3.functional.texture.mi",
         "pmap.cube.max_lod.nearest_linear");

@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007457,
-        "dEQP-GLES2.functional.shaders.matri", 
+        "dEQP-GLES2.functional.shaders.matri",
         "x.negation.dynamic_lowp_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007458,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".negation.dynamic_lowp_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007459,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".negation.dynamic_mediump_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007460,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "negation.dynamic_mediump_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007461,
-        "dEQP-GLES2.functional.shaders.matri", 
+        "dEQP-GLES2.functional.shaders.matri",
         "x.negation.dynamic_highp_mat2_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007462,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".negation.dynamic_highp_mat2_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007463,
-        "dEQP-GLES2.functional.shaders.matri", 
+        "dEQP-GLES2.functional.shaders.matri",
         "x.negation.dynamic_lowp_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007464,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".negation.dynamic_lowp_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007465,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".negation.dynamic_mediump_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007466,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "negation.dynamic_mediump_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007467,
-        "dEQP-GLES2.functional.shaders.matri", 
+        "dEQP-GLES2.functional.shaders.matri",
         "x.negation.dynamic_highp_mat3_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007468,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".negation.dynamic_highp_mat3_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007469,
-        "dEQP-GLES2.functional.shaders.matri", 
+        "dEQP-GLES2.functional.shaders.matri",
         "x.negation.dynamic_lowp_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007470,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".negation.dynamic_lowp_mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007471,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".negation.dynamic_mediump_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007472,
-        "dEQP-GLES2.functional.shaders.matrix.", 
+        "dEQP-GLES2.functional.shaders.matrix.",
         "negation.dynamic_mediump_mat4_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007473,
-        "dEQP-GLES2.functional.shaders.matri", 
+        "dEQP-GLES2.functional.shaders.matri",
         "x.negation.dynamic_highp_mat4_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20008TestSuite, TestCase_007474,
-        "dEQP-GLES2.functional.shaders.matrix", 
+        "dEQP-GLES2.functional.shaders.matrix",
         ".negation.dynamic_highp_mat4_fragment");

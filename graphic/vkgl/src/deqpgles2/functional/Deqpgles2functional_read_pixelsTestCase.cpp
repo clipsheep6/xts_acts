@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015249,
-        "dEQP-GLES2.functional.read", 
+        "dEQP-GLES2.functional.read",
         "_pixels.rgba_ubyte_align_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015250,
-        "dEQP-GLES2.functional.read", 
+        "dEQP-GLES2.functional.read",
         "_pixels.rgba_ubyte_align_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015251,
-        "dEQP-GLES2.functional.read", 
+        "dEQP-GLES2.functional.read",
         "_pixels.rgba_ubyte_align_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015252,
-        "dEQP-GLES2.functional.read", 
+        "dEQP-GLES2.functional.read",
         "_pixels.rgba_ubyte_align_8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015253,
-        "dEQP-GLES2.functional.re", 
+        "dEQP-GLES2.functional.re",
         "ad_pixels.choose_align_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015254,
-        "dEQP-GLES2.functional.re", 
+        "dEQP-GLES2.functional.re",
         "ad_pixels.choose_align_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015255,
-        "dEQP-GLES2.functional.re", 
+        "dEQP-GLES2.functional.re",
         "ad_pixels.choose_align_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles20016TestSuite, TestCase_015256,
-        "dEQP-GLES2.functional.re", 
+        "dEQP-GLES2.functional.re",
         "ad_pixels.choose_align_8");

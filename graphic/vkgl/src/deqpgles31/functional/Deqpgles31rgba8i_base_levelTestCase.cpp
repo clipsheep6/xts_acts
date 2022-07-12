@@ -24,73 +24,73 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013114,
-        "dEQP-GLES31.functional.texture.gathe", 
+        "dEQP-GLES31.functional.texture.gathe",
         "r.basic.2d.rgba8i.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013115,
-        "dEQP-GLES31.functional.texture.gathe", 
+        "dEQP-GLES31.functional.texture.gathe",
         "r.basic.2d.rgba8i.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013183,
-        "dEQP-GLES31.functional.texture.gather.b", 
+        "dEQP-GLES31.functional.texture.gather.b",
         "asic.2d_array.rgba8i.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013184,
-        "dEQP-GLES31.functional.texture.gather.b", 
+        "dEQP-GLES31.functional.texture.gather.b",
         "asic.2d_array.rgba8i.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013270,
-        "dEQP-GLES31.functional.texture.gather", 
+        "dEQP-GLES31.functional.texture.gather",
         ".basic.cube.rgba8i.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013271,
-        "dEQP-GLES31.functional.texture.gather", 
+        "dEQP-GLES31.functional.texture.gather",
         ".basic.cube.rgba8i.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013392,
-        "dEQP-GLES31.functional.texture.gather.offset.im", 
+        "dEQP-GLES31.functional.texture.gather.offset.im",
         "plementation_offset.2d.rgba8i.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013393,
-        "dEQP-GLES31.functional.texture.gather.offset.im", 
+        "dEQP-GLES31.functional.texture.gather.offset.im",
         "plementation_offset.2d.rgba8i.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013461,
-        "dEQP-GLES31.functional.texture.gather.offset.imple", 
+        "dEQP-GLES31.functional.texture.gather.offset.imple",
         "mentation_offset.2d_array.rgba8i.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013462,
-        "dEQP-GLES31.functional.texture.gather.offset.imple", 
+        "dEQP-GLES31.functional.texture.gather.offset.imple",
         "mentation_offset.2d_array.rgba8i.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013590,
-        "dEQP-GLES31.functional.texture.gather.offset_dynami", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynami",
         "c.implementation_offset.2d.rgba8i.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013591,
-        "dEQP-GLES31.functional.texture.gather.offset_dynami", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynami",
         "c.implementation_offset.2d.rgba8i.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013659,
-        "dEQP-GLES31.functional.texture.gather.offset_dynamic.i", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynamic.i",
         "mplementation_offset.2d_array.rgba8i.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013660,
-        "dEQP-GLES31.functional.texture.gather.offset_dynamic.i", 
+        "dEQP-GLES31.functional.texture.gather.offset_dynamic.i",
         "mplementation_offset.2d_array.rgba8i.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013788,
-        "dEQP-GLES31.functional.texture.gather.offsets.im", 
+        "dEQP-GLES31.functional.texture.gather.offsets.im",
         "plementation_offset.2d.rgba8i.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013789,
-        "dEQP-GLES31.functional.texture.gather.offsets.im", 
+        "dEQP-GLES31.functional.texture.gather.offsets.im",
         "plementation_offset.2d.rgba8i.base_level.level_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013857,
-        "dEQP-GLES31.functional.texture.gather.offsets.imple", 
+        "dEQP-GLES31.functional.texture.gather.offsets.imple",
         "mentation_offset.2d_array.rgba8i.base_level.level_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310014TestSuite, TestCase_013858,
-        "dEQP-GLES31.functional.texture.gather.offsets.imple", 
+        "dEQP-GLES31.functional.texture.gather.offsets.imple",
         "mentation_offset.2d_array.rgba8i.base_level.level_2");

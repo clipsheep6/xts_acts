@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000184,
-        "KHR-GLESEXT.tessellation_shader.tessellation_", 
+        "KHR-GLESEXT.tessellation_shader.tessellation_",
         "shader_tc_barriers.barrier_guarded_read_calls");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000185,
-        "KHR-GLESEXT.tessellation_shader.tessellation_", 
+        "KHR-GLESEXT.tessellation_shader.tessellation_",
         "shader_tc_barriers.barrier_guarded_write_calls");
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000186,
-        "KHR-GLESEXT.tessellation_shader.tessellation_sha", 
+        "KHR-GLESEXT.tessellation_shader.tessellation_sha",
         "der_tc_barriers.barrier_guarded_read_write_calls");

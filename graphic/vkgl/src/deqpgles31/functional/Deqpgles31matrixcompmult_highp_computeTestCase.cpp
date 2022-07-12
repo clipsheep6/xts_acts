@@ -24,37 +24,37 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002741,
-        "dEQP-GLES31.functional.shaders.builtin_functio", 
+        "dEQP-GLES31.functional.shaders.builtin_functio",
         "ns.precision.matrixcompmult.highp_compute.mat2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002742,
-        "dEQP-GLES31.functional.shaders.builtin_function", 
+        "dEQP-GLES31.functional.shaders.builtin_function",
         "s.precision.matrixcompmult.highp_compute.mat2x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002743,
-        "dEQP-GLES31.functional.shaders.builtin_function", 
+        "dEQP-GLES31.functional.shaders.builtin_function",
         "s.precision.matrixcompmult.highp_compute.mat2x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002744,
-        "dEQP-GLES31.functional.shaders.builtin_function", 
+        "dEQP-GLES31.functional.shaders.builtin_function",
         "s.precision.matrixcompmult.highp_compute.mat3x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002745,
-        "dEQP-GLES31.functional.shaders.builtin_functio", 
+        "dEQP-GLES31.functional.shaders.builtin_functio",
         "ns.precision.matrixcompmult.highp_compute.mat3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002746,
-        "dEQP-GLES31.functional.shaders.builtin_function", 
+        "dEQP-GLES31.functional.shaders.builtin_function",
         "s.precision.matrixcompmult.highp_compute.mat3x4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002747,
-        "dEQP-GLES31.functional.shaders.builtin_function", 
+        "dEQP-GLES31.functional.shaders.builtin_function",
         "s.precision.matrixcompmult.highp_compute.mat4x2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002748,
-        "dEQP-GLES31.functional.shaders.builtin_function", 
+        "dEQP-GLES31.functional.shaders.builtin_function",
         "s.precision.matrixcompmult.highp_compute.mat4x3");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002749,
-        "dEQP-GLES31.functional.shaders.builtin_functio", 
+        "dEQP-GLES31.functional.shaders.builtin_functio",
         "ns.precision.matrixcompmult.highp_compute.mat4");

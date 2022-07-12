@@ -24,17 +24,17 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019845,
-        "dEQP-GLES31.functional.debug.extern", 
+        "dEQP-GLES31.functional.debug.extern",
         "ally_generated.application_messages");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019846,
-        "dEQP-GLES31.functional.debug.extern", 
+        "dEQP-GLES31.functional.debug.extern",
         "ally_generated.third_party_messages");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019847,
-        "dEQP-GLES31.functional.debug.ext", 
+        "dEQP-GLES31.functional.debug.ext",
         "ernally_generated.push_pop_stack");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310020TestSuite, TestCase_019848,
-        "dEQP-GLES31.functional.debug.extern", 
+        "dEQP-GLES31.functional.debug.extern",
         "ally_generated.push_pop_consistency");

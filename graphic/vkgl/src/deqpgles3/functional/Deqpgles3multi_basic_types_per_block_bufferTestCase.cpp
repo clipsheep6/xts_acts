@@ -24,89 +24,89 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035828,
-        "dEQP-GLES3.functional.ubo.multi_basic", 
+        "dEQP-GLES3.functional.ubo.multi_basic",
         "_types.per_block_buffer.shared_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035829,
-        "dEQP-GLES3.functional.ubo.multi_basic_", 
+        "dEQP-GLES3.functional.ubo.multi_basic_",
         "types.per_block_buffer.shared_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035830,
-        "dEQP-GLES3.functional.ubo.multi_basi", 
+        "dEQP-GLES3.functional.ubo.multi_basi",
         "c_types.per_block_buffer.shared_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035831,
-        "dEQP-GLES3.functional.ubo.multi_basi", 
+        "dEQP-GLES3.functional.ubo.multi_basi",
         "c_types.per_block_buffer.shared_mixed");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035832,
-        "dEQP-GLES3.functional.ubo.multi_basic_types.", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types.",
         "per_block_buffer.shared_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035833,
-        "dEQP-GLES3.functional.ubo.multi_basic_types.p", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types.p",
         "er_block_buffer.shared_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035834,
-        "dEQP-GLES3.functional.ubo.multi_basic_types", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types",
         ".per_block_buffer.shared_instance_array_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035835,
-        "dEQP-GLES3.functional.ubo.multi_basic_types.", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types.",
         "per_block_buffer.shared_instance_array_mixed");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035836,
-        "dEQP-GLES3.functional.ubo.multi_basic", 
+        "dEQP-GLES3.functional.ubo.multi_basic",
         "_types.per_block_buffer.packed_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035837,
-        "dEQP-GLES3.functional.ubo.multi_basic_", 
+        "dEQP-GLES3.functional.ubo.multi_basic_",
         "types.per_block_buffer.packed_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035838,
-        "dEQP-GLES3.functional.ubo.multi_basi", 
+        "dEQP-GLES3.functional.ubo.multi_basi",
         "c_types.per_block_buffer.packed_mixed");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035839,
-        "dEQP-GLES3.functional.ubo.multi_basic_types.", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types.",
         "per_block_buffer.packed_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035840,
-        "dEQP-GLES3.functional.ubo.multi_basic_types.p", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types.p",
         "er_block_buffer.packed_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035841,
-        "dEQP-GLES3.functional.ubo.multi_basic_types.", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types.",
         "per_block_buffer.packed_instance_array_mixed");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035842,
-        "dEQP-GLES3.functional.ubo.multi_basic", 
+        "dEQP-GLES3.functional.ubo.multi_basic",
         "_types.per_block_buffer.std140_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035843,
-        "dEQP-GLES3.functional.ubo.multi_basic_", 
+        "dEQP-GLES3.functional.ubo.multi_basic_",
         "types.per_block_buffer.std140_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035844,
-        "dEQP-GLES3.functional.ubo.multi_basi", 
+        "dEQP-GLES3.functional.ubo.multi_basi",
         "c_types.per_block_buffer.std140_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035845,
-        "dEQP-GLES3.functional.ubo.multi_basi", 
+        "dEQP-GLES3.functional.ubo.multi_basi",
         "c_types.per_block_buffer.std140_mixed");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035846,
-        "dEQP-GLES3.functional.ubo.multi_basic_types.", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types.",
         "per_block_buffer.std140_instance_array_vertex");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035847,
-        "dEQP-GLES3.functional.ubo.multi_basic_types.p", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types.p",
         "er_block_buffer.std140_instance_array_fragment");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035848,
-        "dEQP-GLES3.functional.ubo.multi_basic_types", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types",
         ".per_block_buffer.std140_instance_array_both");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30036TestSuite, TestCase_035849,
-        "dEQP-GLES3.functional.ubo.multi_basic_types.", 
+        "dEQP-GLES3.functional.ubo.multi_basic_types.",
         "per_block_buffer.std140_instance_array_mixed");

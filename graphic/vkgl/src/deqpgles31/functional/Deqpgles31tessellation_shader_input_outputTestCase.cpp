@@ -24,65 +24,65 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007976,
-        "dEQP-GLES31.functional.tessellation.shade", 
+        "dEQP-GLES31.functional.tessellation.shade",
         "r_input_output.patch_vertices_5_in_10_out");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007977,
-        "dEQP-GLES31.functional.tessellation.shade", 
+        "dEQP-GLES31.functional.tessellation.shade",
         "r_input_output.patch_vertices_10_in_5_out");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007978,
-        "dEQP-GLES31.functional.tessellation.", 
+        "dEQP-GLES31.functional.tessellation.",
         "shader_input_output.primitive_id_tcs");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007979,
-        "dEQP-GLES31.functional.tessellation.", 
+        "dEQP-GLES31.functional.tessellation.",
         "shader_input_output.primitive_id_tes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007980,
-        "dEQP-GLES31.functional.tessellation.sh", 
+        "dEQP-GLES31.functional.tessellation.sh",
         "ader_input_output.patch_vertices_in_tcs");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007981,
-        "dEQP-GLES31.functional.tessellation.sh", 
+        "dEQP-GLES31.functional.tessellation.sh",
         "ader_input_output.patch_vertices_in_tes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007982,
-        "dEQP-GLES31.functional.tessellation.sha", 
+        "dEQP-GLES31.functional.tessellation.sha",
         "der_input_output.tess_level_inner_0_tes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007983,
-        "dEQP-GLES31.functional.tessellation.sha", 
+        "dEQP-GLES31.functional.tessellation.sha",
         "der_input_output.tess_level_inner_1_tes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007984,
-        "dEQP-GLES31.functional.tessellation.sha", 
+        "dEQP-GLES31.functional.tessellation.sha",
         "der_input_output.tess_level_outer_0_tes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007985,
-        "dEQP-GLES31.functional.tessellation.sha", 
+        "dEQP-GLES31.functional.tessellation.sha",
         "der_input_output.tess_level_outer_1_tes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007986,
-        "dEQP-GLES31.functional.tessellation.sha", 
+        "dEQP-GLES31.functional.tessellation.sha",
         "der_input_output.tess_level_outer_2_tes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007987,
-        "dEQP-GLES31.functional.tessellation.sha", 
+        "dEQP-GLES31.functional.tessellation.sha",
         "der_input_output.tess_level_outer_3_tes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007988,
-        "dEQP-GLES31.functional.tessellation.sh", 
+        "dEQP-GLES31.functional.tessellation.sh",
         "ader_input_output.gl_position_vs_to_tcs");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007989,
-        "dEQP-GLES31.functional.tessellation.sha", 
+        "dEQP-GLES31.functional.tessellation.sha",
         "der_input_output.gl_position_tcs_to_tes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007990,
-        "dEQP-GLES31.functional.tessellation.shader", 
+        "dEQP-GLES31.functional.tessellation.shader",
         "_input_output.gl_position_vs_to_tcs_to_tes");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310008TestSuite, TestCase_007991,
-        "dEQP-GLES31.functional.tessella", 
+        "dEQP-GLES31.functional.tessella",
         "tion.shader_input_output.barrier");

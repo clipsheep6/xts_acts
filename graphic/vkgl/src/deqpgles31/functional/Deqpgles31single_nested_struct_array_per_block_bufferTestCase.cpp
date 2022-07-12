@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009712,
-        "dEQP-GLES31.functional.ssbo.layout.single_", 
+        "dEQP-GLES31.functional.ssbo.layout.single_",
         "nested_struct_array.per_block_buffer.shared");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009713,
-        "dEQP-GLES31.functional.ssbo.layout.single_nested_s", 
+        "dEQP-GLES31.functional.ssbo.layout.single_nested_s",
         "truct_array.per_block_buffer.shared_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009714,
-        "dEQP-GLES31.functional.ssbo.layout.single_", 
+        "dEQP-GLES31.functional.ssbo.layout.single_",
         "nested_struct_array.per_block_buffer.packed");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009715,
-        "dEQP-GLES31.functional.ssbo.layout.single_nested_s", 
+        "dEQP-GLES31.functional.ssbo.layout.single_nested_s",
         "truct_array.per_block_buffer.packed_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009716,
-        "dEQP-GLES31.functional.ssbo.layout.single_", 
+        "dEQP-GLES31.functional.ssbo.layout.single_",
         "nested_struct_array.per_block_buffer.std140");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009717,
-        "dEQP-GLES31.functional.ssbo.layout.single_nested_s", 
+        "dEQP-GLES31.functional.ssbo.layout.single_nested_s",
         "truct_array.per_block_buffer.std140_instance_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009718,
-        "dEQP-GLES31.functional.ssbo.layout.single_", 
+        "dEQP-GLES31.functional.ssbo.layout.single_",
         "nested_struct_array.per_block_buffer.std430");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310010TestSuite, TestCase_009719,
-        "dEQP-GLES31.functional.ssbo.layout.single_nested_s", 
+        "dEQP-GLES31.functional.ssbo.layout.single_nested_s",
         "truct_array.per_block_buffer.std430_instance_array");

@@ -24,33 +24,33 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044359,
-        "dEQP-GLES3.functional.lif", 
+        "dEQP-GLES3.functional.lif",
         "etime.delete_bound.buffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044360,
-        "dEQP-GLES3.functional.lif", 
+        "dEQP-GLES3.functional.lif",
         "etime.delete_bound.texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044361,
-        "dEQP-GLES3.functional.lifeti", 
+        "dEQP-GLES3.functional.lifeti",
         "me.delete_bound.renderbuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044362,
-        "dEQP-GLES3.functional.lifet", 
+        "dEQP-GLES3.functional.lifet",
         "ime.delete_bound.framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044363,
-        "dEQP-GLES3.functional.li", 
+        "dEQP-GLES3.functional.li",
         "fetime.delete_bound.query");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044364,
-        "dEQP-GLES3.functional.lifetime.", 
+        "dEQP-GLES3.functional.lifetime.",
         "delete_bound.transform_feedback");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044365,
-        "dEQP-GLES3.functional.lifeti", 
+        "dEQP-GLES3.functional.lifeti",
         "me.delete_bound.vertex_array");
 
 static SHRINK_HWTEST_F(ActsDeqpgles30045TestSuite, TestCase_044366,
-        "dEQP-GLES3.functional.lif", 
+        "dEQP-GLES3.functional.lif",
         "etime.delete_bound.sampler");

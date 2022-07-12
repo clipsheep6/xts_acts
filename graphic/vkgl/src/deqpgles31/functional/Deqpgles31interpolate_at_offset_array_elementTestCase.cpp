@@ -24,53 +24,53 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003270,
-        "dEQP-GLES31.functional.shaders.multisample_interpolation", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolation",
         ".interpolate_at_offset.array_element.default_framebuffer");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003271,
-        "dEQP-GLES31.functional.shaders.multisample_interpolation", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolation",
         ".interpolate_at_offset.array_element.singlesample_texture");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003272,
-        "dEQP-GLES31.functional.shaders.multisample_interpolation.", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolation.",
         "interpolate_at_offset.array_element.multisample_texture_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003273,
-        "dEQP-GLES31.functional.shaders.multisample_interpolation.", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolation.",
         "interpolate_at_offset.array_element.multisample_texture_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003274,
-        "dEQP-GLES31.functional.shaders.multisample_interpolation.", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolation.",
         "interpolate_at_offset.array_element.multisample_texture_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003275,
-        "dEQP-GLES31.functional.shaders.multisample_interpolation.", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolation.",
         "interpolate_at_offset.array_element.multisample_texture_8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003276,
-        "dEQP-GLES31.functional.shaders.multisample_interpolation.", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolation.",
         "interpolate_at_offset.array_element.multisample_texture_16");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003277,
-        "dEQP-GLES31.functional.shaders.multisample_interpolati", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolati",
         "on.interpolate_at_offset.array_element.singlesample_rbo");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003278,
-        "dEQP-GLES31.functional.shaders.multisample_interpolatio", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolatio",
         "n.interpolate_at_offset.array_element.multisample_rbo_1");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003279,
-        "dEQP-GLES31.functional.shaders.multisample_interpolatio", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolatio",
         "n.interpolate_at_offset.array_element.multisample_rbo_2");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003280,
-        "dEQP-GLES31.functional.shaders.multisample_interpolatio", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolatio",
         "n.interpolate_at_offset.array_element.multisample_rbo_4");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003281,
-        "dEQP-GLES31.functional.shaders.multisample_interpolatio", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolatio",
         "n.interpolate_at_offset.array_element.multisample_rbo_8");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310004TestSuite, TestCase_003282,
-        "dEQP-GLES31.functional.shaders.multisample_interpolatio", 
+        "dEQP-GLES31.functional.shaders.multisample_interpolatio",
         "n.interpolate_at_offset.array_element.multisample_rbo_16");

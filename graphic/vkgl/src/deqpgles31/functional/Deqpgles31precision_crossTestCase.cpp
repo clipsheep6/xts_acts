@@ -24,13 +24,13 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002672,
-        "dEQP-GLES31.functional.shaders.builtin", 
+        "dEQP-GLES31.functional.shaders.builtin",
         "_functions.precision.cross.lowp_compute");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002673,
-        "dEQP-GLES31.functional.shaders.builtin_f", 
+        "dEQP-GLES31.functional.shaders.builtin_f",
         "unctions.precision.cross.mediump_compute");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310003TestSuite, TestCase_002674,
-        "dEQP-GLES31.functional.shaders.builtin_", 
+        "dEQP-GLES31.functional.shaders.builtin_",
         "functions.precision.cross.highp_compute");

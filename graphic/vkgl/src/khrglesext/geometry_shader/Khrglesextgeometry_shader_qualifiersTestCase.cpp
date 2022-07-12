@@ -24,5 +24,5 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsKhrglesext0001TestSuite, TestCase_000128,
-        "KHR-GLESEXT.geometry_shader.", 
+        "KHR-GLESEXT.geometry_shader.",
         "qualifiers.flat_interpolation");

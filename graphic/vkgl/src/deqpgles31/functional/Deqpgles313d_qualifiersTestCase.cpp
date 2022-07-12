@@ -24,29 +24,29 @@ using namespace testing::ext;
 using namespace OHOS;
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011601,
-        "dEQP-GLES31.functional.image_load", 
+        "dEQP-GLES31.functional.image_load",
         "_store.3d.qualifiers.coherent_r32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011602,
-        "dEQP-GLES31.functional.image_load", 
+        "dEQP-GLES31.functional.image_load",
         "_store.3d.qualifiers.volatile_r32f");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011603,
-        "dEQP-GLES31.functional.image_load_", 
+        "dEQP-GLES31.functional.image_load_",
         "store.3d.qualifiers.coherent_r32ui");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011604,
-        "dEQP-GLES31.functional.image_load_", 
+        "dEQP-GLES31.functional.image_load_",
         "store.3d.qualifiers.volatile_r32ui");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011605,
-        "dEQP-GLES31.functional.image_load", 
+        "dEQP-GLES31.functional.image_load",
         "_store.3d.qualifiers.coherent_r32i");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011606,
-        "dEQP-GLES31.functional.image_load", 
+        "dEQP-GLES31.functional.image_load",
         "_store.3d.qualifiers.volatile_r32i");
 
 static SHRINK_HWTEST_F(ActsDeqpgles310012TestSuite, TestCase_011607,
-        "dEQP-GLES31.functional.image_lo", 
+        "dEQP-GLES31.functional.image_lo",
         "ad_store.3d.qualifiers.restrict");
