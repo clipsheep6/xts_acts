@@ -608,7 +608,7 @@ export class ElementTest {
 
     private async executeAttributeValuePromiseTriggerAction(caseName: string) {
         console.info('ElementTest executeAttributeValuePromiseTriggerAction ' + caseName + ' start');
-        let event = new accessibility.EventInfo();
+        let event = new accessibility.EventInfo({});
         event.type = 'click';
         event.bundleName = 'com.example.myapplication';
         event.triggerAction = 'click';
@@ -854,23 +854,24 @@ export class ElementTest {
 
     private async executeAttributeValueCallbackTriggerAction(caseName: string) {
         console.info('ElementTest executeAttributeValueCallbackTriggerAction ' + caseName + ' start');
-        let event = new accessibility.EventInfo();
+        let event = new accessibility.EventInfo({});
         event.type = 'click';
         event.bundleName = 'com.example.myapplication';
         event.triggerAction = 'click';
         await accessibility.sendEvent(event);
         console.info('ElementTest executeAttributeValueCallbackTriggerAction ' + caseName + ' sendEvent finish');
 
-        setTimeout(async () => {
+        setTimeout(() => {
             console.info('ElementTest executeAttributeValueCallbackTriggerAction ' + caseName + ' events.length: ' + this.events.length);
-            for (let e of this.events) {
-                let target = e.target;
+            for (let i = 0; i < this.events.length; i++) {
+                let target = this.events[i].target;
+                let eventType = this.events[i].eventType;
+                console.info('ElementTest executeAttributeValueCallbackTriggerAction ' + caseName + ' target: ' + JSON.stringify(target));
                 target.attributeValue('triggerAction', (err, value) => {
                     console.info('ElementTest executeAttributeValueCallbackTriggerAction ' + caseName + ' err: ' + JSON.stringify(err));
                     console.info('ElementTest executeAttributeValueCallbackTriggerAction ' + caseName + ' valueType: ' + typeof(value));
-                    if (err.code == 0 && e.eventType == 'click' && typeof(value) == 'string') {
+                    if (err.code == 0 && eventType == 'click' && typeof(value) == 'string') {
                         this.publishCaseResult(caseName, true);
-                        return;
                     }
                 });
             }

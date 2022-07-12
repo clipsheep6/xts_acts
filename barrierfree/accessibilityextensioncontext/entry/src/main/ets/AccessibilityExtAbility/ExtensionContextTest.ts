@@ -56,6 +56,10 @@ export class ExtensionContextTest {
         let bundleName: Array<string> = [];
         let windowId = -1;
         let displayId = -1;
+        let gesturePath = {};
+        let gesturePos1 = {};
+        let gesturePos2 = {};
+        let gesturePos3 = {};
 
         switch (caseName) {
             case 'AccessibilityExtensionContextTest_setEventTypeFilter_asyncCallback_0100':
@@ -230,6 +234,60 @@ export class ExtensionContextTest {
                 await this.clearAccessibilityFocus();
                 this.getFocusElementByTypePromise(caseName, false, false);
                 break;
+            case 'AccessibilityExtensionContextTest_gestureInject_asyncCallback_4500':
+                gesturePos1 = {positionX: 10, positionY: 10};
+                gesturePath = {points: [gesturePos1], durationTime: 100};
+                this.gestureInjectCallback(caseName, gesturePath);
+                break;
+            case 'AccessibilityExtensionContextTest_gestureInject_asyncCallback_4600':
+                gesturePos1 = {positionX: 50, positionY: 50};
+                gesturePath = {points: [gesturePos1], durationTime: 60000};
+                this.gestureInjectCallback(caseName, gesturePath);
+                break;
+            case 'AccessibilityExtensionContextTest_gestureInject_asyncCallback_4700':
+                gesturePos1 = {positionX: 200, positionY: 200};
+                gesturePos2 = {positionX: 100, positionY: 100};
+                gesturePath = {points: [gesturePos1, gesturePos2], durationTime: 1000};
+                this.gestureInjectCallback(caseName, gesturePath);
+                break;
+            case 'AccessibilityExtensionContextTest_gestureInject_asyncCallback_4800':
+                gesturePos1 = {positionX: 50, positionY: 50};
+                gesturePos2 = {positionX: 100, positionY: 100};
+                gesturePos3 = {positionX: 1000, positionY: 1000};
+                gesturePath = {points: [gesturePos1, gesturePos2, gesturePos3], durationTime: 60000};
+                this.gestureInjectCallback(caseName, gesturePath);
+                break;
+            case 'AccessibilityExtensionContextTest_gestureInject_asyncCallback_4900':
+                gesturePath = undefined;
+                this.gestureInjectCallback(caseName, gesturePath);
+                break;
+            case 'AccessibilityExtensionContextTest_gestureInject_asyncPromise_5000':
+                gesturePos1 = {positionX: 10, positionY: 10};
+                gesturePath = {points: [gesturePos1], durationTime: 100};
+                this.gestureInjectPromise(caseName, gesturePath);
+                break;
+            case 'AccessibilityExtensionContextTest_gestureInject_asyncPromise_5100':
+                gesturePos1 = {positionX: 50, positionY: 50};
+                gesturePath = {points: [gesturePos1], durationTime: 60000};
+                this.gestureInjectPromise(caseName, gesturePath);
+                break;
+            case 'AccessibilityExtensionContextTest_gestureInject_asyncPromise_5200':
+                gesturePos1 = {positionX: 200, positionY: 200};
+                gesturePos2 = {positionX: 100, positionY: 100};
+                gesturePath = {points: [gesturePos1, gesturePos2], durationTime: 1000};
+                this.gestureInjectPromise(caseName, gesturePath);
+                break;
+            case 'AccessibilityExtensionContextTest_gestureInject_asyncPromise_5300':
+                gesturePos1 = {positionX: 50, positionY: 50};
+                gesturePos2 = {positionX: 100, positionY: 100};
+                gesturePos3 = {positionX: 1000, positionY: 1000};
+                gesturePath = {points: [gesturePos1, gesturePos2, gesturePos3], durationTime: 60000};
+                this.gestureInjectPromise(caseName, gesturePath);
+                break;
+            case 'AccessibilityExtensionContextTest_gestureInject_asyncPromise_5400':
+                gesturePath = undefined;
+                this.gestureInjectPromise(caseName, gesturePath);
+                break;
             default:
                 console.warn('ExtensionContextTest processCase unknown!!!!!!!!!!');
                 break;
@@ -268,7 +326,7 @@ export class ExtensionContextTest {
             if (err.code != 0) {
                 console.error("getDisPlayId getDefaultDisplay error");
             } else {
-                console.info("getDisPlayId getDefaultDisplay data.id: " + JSON.stringify(data.id));  
+                console.info("getDisPlayId getDefaultDisplay data.id: " + JSON.stringify(data.id));
                 displayId = data.id;
             }
         });
@@ -510,7 +568,7 @@ export class ExtensionContextTest {
 
     private async getWindowsByIdCallback(caseName: string, displayId: number) {
         let result = false;
-        console.info(caseName + " displayId: " + JSON.stringify(displayId));  
+        console.info(caseName + " displayId: " + JSON.stringify(displayId));
         if (displayId == -1) {
             this.context.getWindows(displayId, (err, res) => {
                 console.info(caseName + " res: " + JSON.stringify(res));
@@ -538,7 +596,7 @@ export class ExtensionContextTest {
 
     private async getWindowsByIdPromise(caseName: string, displayId: number) {
         let result = false;
-        console.info(caseName + " displayId: " + JSON.stringify(displayId));  
+        console.info(caseName + " displayId: " + JSON.stringify(displayId));
         if (displayId == -1) {
             this.context.getWindows(-1, (err, res) => {
                 console.info(caseName + " res: " + JSON.stringify(res));
