@@ -29,17 +29,18 @@ namespace tcu {
 
 using std::string;
 
-/*--------------------------------------------------------------------*//*!
+/*
  *  Writes all packages found stdout without any
  *  separations. Recommended to be used with a single package
  *  only. It's possible to use test selectors for limiting the export
  *  to one package in a multipackage binary.
- *//*--------------------------------------------------------------------*/
+ */
 static void writeCaselistsToStdout (TestPackageRoot& root, TestContext& testCtx)
 {
-    DefaultHierarchyInflater            inflater        (testCtx);
-    de::MovePtr<const CaseListFilter>    caseListFilter    (testCtx.getCommandLine().createCaseListFilter(testCtx.getArchive()));
-    TestHierarchyIterator                iter            (root, inflater, *caseListFilter);
+    DefaultHierarchyInflater inflater(testCtx);
+    de::MovePtr<const CaseListFilter> caseListFilter(
+        testCtx.getCommandLine().createCaseListFilter(testCtx.getArchive()));
+    TestHierarchyIterator iter(root, inflater, *caseListFilter);
 
     while (iter.getState() != TestHierarchyIterator::STATE_FINISHED) {
         iter.next();
@@ -58,14 +59,15 @@ static void writeCaselistsToStdout (TestPackageRoot& root, TestContext& testCtx)
 }
 
 
-/*--------------------------------------------------------------------*//*!
+/*
  * Verifies that amber capability requirements in the .amber files
  * match with capabilities defined on the CTS C code.
- *//*--------------------------------------------------------------------*/
+ */
 static void verifyAmberCapabilityCoherency (TestPackageRoot& root, TestContext& testCtx)
 {
     DefaultHierarchyInflater            inflater(testCtx);
-    de::MovePtr<const CaseListFilter>    caseListFilter(testCtx.getCommandLine().createCaseListFilter(testCtx.getArchive()));
+    de::MovePtr<const CaseListFilter> caseListFilter(
+        testCtx.getCommandLine().createCaseListFilter(testCtx.getArchive()));
     TestHierarchyIterator                iter(root, inflater, *caseListFilter);
     int                                    count = 0;
     int                                    errorCount = 0;
@@ -78,7 +80,7 @@ static void verifyAmberCapabilityCoherency (TestPackageRoot& root, TestContext& 
             if (iter.getState() == TestHierarchyIterator::STATE_ENTER_NODE &&
                 isTestNodeTypeExecutable(iter.getNode()->getNodeType())) {
                 std::cout << iter.getNodePath() << "\n";
-                testCtx.getLog() << tcu::TestLog::Message << 
+                testCtx.getLog() << tcu::TestLog::Message <<
                     iter.getNodePath() << tcu::TestLog::EndMessage;
                 if (!iter.getNode()->validateRequirements()) {
                     ok = false;
@@ -99,22 +101,22 @@ static void verifyAmberCapabilityCoherency (TestPackageRoot& root, TestContext& 
     }
 }
 
-/*--------------------------------------------------------------------*//*!
+/*
  * \brief Construct test application
  *
  * If a fatal error occurs during initialization constructor will call
  * die() with debug information.
  *
  * \param platform Reference to platform implementation.
- *//*--------------------------------------------------------------------*/
+ */
 ActsApp::ActsApp (Platform& platform, Archive& archive, TestLog& log, const CommandLine& cmdLine)
-    : m_platform        (platform)
-    , m_watchDog        (DE_NULL)
-    , m_crashHandler    (DE_NULL)
-    , m_crashed            (false)
-    , m_testCtx            (DE_NULL)
-    , m_testRoot        (DE_NULL)
-    , m_testExecutor    (DE_NULL)
+    : m_platform(platform),
+    m_watchDog(DE_NULL),
+    m_crashHandler(DE_NULL),
+    m_crashed(false),
+    m_testCtx(DE_NULL),
+    m_testRoot(DE_NULL),
+    m_testExecutor(DE_NULL)
 {
     print("dEQP Core %s (0x%08x) starting..\n", qpGetReleaseName(), qpGetReleaseId());
     print("  target implementation = '%s'\n", qpGetTargetName());
@@ -127,7 +129,7 @@ ActsApp::ActsApp (Platform& platform, Archive& archive, TestLog& log, const Comm
 
         // Initialize watchdog
         if (cmdLine.isWatchDogEnabled()) {
-            TCU_CHECK_INTERNAL(m_watchDog = qpWatchDog_create(onWatchdogTimeout, 
+            TCU_CHECK_INTERNAL(m_watchDog = qpWatchDog_create(onWatchdogTimeout,
                 this, WATCHDOG_TOTAL_TIME_LIMIT_SECS, WATCHDOG_INTERVAL_TIME_LIMIT_SECS));
         }
         // Initialize crash handler.
@@ -180,11 +182,11 @@ void ActsApp::cleanup (void)
     }
 }
 
-/*--------------------------------------------------------------------*//*!
+/*
  * \brief Step forward test execution
  * \return true if application should call iterate() again and false
  *         if test execution session is complete.
- *//*--------------------------------------------------------------------*/
+ */
 bool ActsApp::iterate (void)
 {
     if (!m_testExecutor) {
@@ -233,7 +235,7 @@ void ActsApp::onWatchdogTimeout (qpTimeoutReason reason)
 
     m_crashed = true;
     m_testCtx->getLog().terminateCase(QP_TEST_RESULT_TIMEOUT);
-    die("Watchdog timer timeout for %s", 
+    die("Watchdog timer timeout for %s",
         (reason == QP_TIMEOUT_REASON_INTERVAL_LIMIT ? "touch interval" : "total time"));
 }
 

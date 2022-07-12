@@ -21,9 +21,7 @@
 #include "qpCrashHandler.h"
 #include "deMutex.hpp"
 
-namespace tcu
-{
-
+namespace tcu {
 class Archive;
 class Platform;
 class TestContext;
@@ -33,16 +31,14 @@ class TestLog;
 class TestPackageRoot;
 class TestRunStatus;
 
-enum
-{
+enum EWATCHDOG {
     WATCHDOG_TOTAL_TIME_LIMIT_SECS    = 300,
     WATCHDOG_INTERVAL_TIME_LIMIT_SECS    = 30
 };
 
-class ActsApp
-{
+class ActsApp {
 public:
-	ActsApp (Platform& platform, Archive& archive, TestLog& log, const CommandLine& cmdLine);
+    ActsApp (Platform& platform, Archive& archive, TestLog& log, const CommandLine& cmdLine);
     virtual ~ActsApp (void);
 
     bool iterate (void);
@@ -67,7 +63,5 @@ protected:
     TestPackageRoot* m_testRoot;
     TestSessionExecutor* m_testExecutor;
 };
-
 } // tcu
-
 #endif // _ACTSAPP_HPP
