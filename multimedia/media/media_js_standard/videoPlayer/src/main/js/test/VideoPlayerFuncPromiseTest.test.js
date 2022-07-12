@@ -807,4 +807,121 @@ describe('VideoPlayerFuncPromiseTest', function () {
         videoPlayer.videoScaleType = -1;
     })
 
+    /* *
+        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_AUDIOINTERRUPTMODE_0100
+        * @tc.name      : 001.test audioInterruptMode Function (promise)
+        * @tc.desc      : Video playback control test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
+    */
+    it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_AUDIOINTERRUPTMODE_0100', 0, async function (done) {
+        mediaTestBase.isFileOpen(fileDescriptor, done);
+        let audioFdnumber;
+        let audioFdPath;
+        await mediaTestBase.getFdRead('01.mp3', openFileFailed).then((testNumber) => {
+            audioFdnumber = testNumber;
+            audioFdPath = fdHead + '' + audioFdnumber;
+        })
+        let videoPlayer = null;
+        let audioPlayer = media.createAudioPlayer();
+
+        await media.createVideoPlayer().then((video) => {
+            if (typeof (video) != 'undefined') {
+                videoPlayer = video;
+                expect(videoPlayer.state).assertEqual('idle');
+            } else {
+                console.info('case createVideoPlayer is failed');
+                expect().assertFail();
+            }
+        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+
+        videoPlayer.on('audioInterrupt', async (info) => {
+            console.info('case audioInterrupt1 is called, info is :' + JSON.stringify(info));
+            audioPlayer.release();
+            await mediaTestBase.closeFdNumber(audioFdnumber);
+            await videoPlayer.release().then(() => {
+                console.info('case release called!!');
+                done();
+            }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+        });
+
+        videoPlayer.url = fdPath;
+        await videoPlayer.setDisplaySurface(surfaceID).then(() => {
+            expect(videoPlayer.state).assertEqual('idle');
+            console.info('case setDisplaySurface success');
+        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+
+        await videoPlayer.prepare().then(() => {
+            expect(videoPlayer.state).assertEqual('prepared');
+            console.info('case prepare called!!');
+        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+
+        videoPlayer.audioInterruptMode = audio.InterruptMode.INDEPENDENT_MODE; // 1
+
+        await videoPlayer.play().then(() => {
+            console.info('case play called!!');
+            expect(videoPlayer.state).assertEqual('playing');
+        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+
+        mediaTestBase.msleep(PLAY_TIME);
+        audioPlayer.on('dataLoad', () => {
+            console.info('case audioPlayer dataLoad called!!');
+            audioPlayer.play();
+        });
+
+        audioPlayer.on('play', () => {
+            console.info('case audioPlayer play called!!');
+        });
+
+        console.info('case audioPlayer src is :' + audioFdPath);
+        audioPlayer.src = audioFdPath;
+    })
+
+    /* *
+        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_AUDIOINTERRUPTMODE_0200
+        * @tc.name      : 001.test audioInterruptMode error mode Function (promise)
+        * @tc.desc      : Video playback control test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
+    */
+    it('SUB_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_AUDIOINTERRUPTMODE_0200', 0, async function (done) {
+        mediaTestBase.isFileOpen(fileDescriptor, done);
+        let videoPlayer = null;
+        await media.createVideoPlayer().then((video) => {
+            if (typeof (video) != 'undefined') {
+                videoPlayer = video;
+                expect(videoPlayer.state).assertEqual('idle');
+            } else {
+                console.info('case createVideoPlayer is failed');
+                expect().assertFail();
+            }
+        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+
+        videoPlayer.on('audioInterrupt', async (info) => {
+            console.info('case audioInterrupt1 is called, info is :' + JSON.stringify(info));
+        });
+
+        videoPlayer.on('error', async (error) => {
+            console.info('case error called,errMessage is :' + error.message);
+            await videoPlayer.release().then(() => {
+                console.info('case release called!!');
+                done();
+            }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+        });
+
+        videoPlayer.url = fdPath;
+        await videoPlayer.setDisplaySurface(surfaceID).then(() => {
+            expect(videoPlayer.state).assertEqual('idle');
+            console.info('case setDisplaySurface success');
+        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+
+        await videoPlayer.prepare().then(() => {
+            expect(videoPlayer.state).assertEqual('prepared');
+            console.info('case prepare called!!');
+        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+
+        videoPlayer.audioInterruptMode = -1;
+    })
 })
