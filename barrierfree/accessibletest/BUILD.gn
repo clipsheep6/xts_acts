@@ -1,0 +1,57 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos_var.gni")
+
+group("actsaccessibletest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "actsaccessibleeventtest:ActsAccessibleEventTest",
+      "actswindowinfotest:ActsWindowinfoTest",
+      "actsassistapptest:ActsAssistAppTest",
+      "actscaptionconfigurationtest:ActsCaptionConfigurationTest",
+      "actsdfxtest:ActsDfxTest",
+      "actsreportnodeinfotest:ActsReportNodeInfoTest",
+      "actstouchintercepttest:ActsTouchInterceptTest",
+      "sceneProject/accessibilityWindowInfo:accessibilityWindowInfo",
+      "sceneProject/accessibilityDfx:accessibilityDfx",
+      "sceneProject/accessibilityGesture2D:accessibilityGesture2D",
+      "sceneProject/accessibilityGestureD:accessibilityGestureD",
+      "sceneProject/accessibilityTouchGuide:accessibilityTouchGuide",
+      "sceneProject/assistAppA:assistAppA",
+      "sceneProject/assistAppB:assistAppB",
+    
+      "actscheckabilitytest:ActsCheckAbilityTest",
+      "actsabilitylisttest:ActsAbilityListTest",
+      "actsactioninitiationtest:ActsActionInitiationTest",
+      "actsgesturesimulationtest:ActsGestureSimulationTest",
+      "actsaccesscontroltest:ActsAccessControlTest",
+      "sceneProject/accessibilityBaseAbility:accessibilityBaseAbility",
+      "sceneProject/accessibilityCheckAbility:accessibilityCheckAbility",
+      "sceneProject/accessibilityAudibleAbility:accessibilityAudibleAbility",
+      "sceneProject/accessibilityGenericAbility:accessibilityGenericAbility",
+      "sceneProject/accessibilityHapticAbility:accessibilityHapticAbility",
+      "sceneProject/accessibilitySpokenAbility:accessibilitySpokenAbility",
+      "sceneProject/accessibilityVisualAbility:accessibilityVisualAbility",
+
+      "actsregistertest:ActsAccessibleRegisterTest",
+      "actsrootelementtest:ActsAccessibleRootElementTest",
+      "actsfocusquerytest:ActsAccessibleFocusQueryTest",
+      "actsreceiveeventstest:ActsAccessibleReceiveEventsTest",
+      "sceneProject/accessibilityRegister:accessibilityRegister",
+      "sceneProject/accessibilityReceiveEvents:accessibilityReceiveEvents",
+      "sceneProject/accessibilityReceiveEventOther:accessibilityReceiveEventOther",
+    ]
+  }
+}

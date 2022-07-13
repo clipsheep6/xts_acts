@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "CheckAbilityIsOpen entry"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "CheckAbilityIsOpen MainAbility"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "CheckAbility"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "string": [
+    {
+      "name": "MainAbility_label",
+      "value": "assistAppB"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "assistAppB"
+    },
+    {
+      "name": "entry_desc",
+      "value": "assistAppB"
+    },
+    {
+      "name": "form_description",
+      "value": "assistAppB"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "assistAppB"
+    },
+    {
+      "name": "description_application",
+      "value": "assistAppB"
+    },
+    {
+      "name": "app_name",
+      "value": "assistAppB"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "assistAppB"
+    },
+    {
+      "name": "description_mainability",
+      "value": "assistAppB"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "assistAppB"
+    }
+
+  ]
+}

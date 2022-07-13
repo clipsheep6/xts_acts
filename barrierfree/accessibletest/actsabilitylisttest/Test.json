@@ -1,0 +1,34 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "280000",
+        "package": "com.example.abilitylisttest",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+        "test-file-name": [
+            "ActsAbilityListTest.hap",
+            "accessibilityAudibleAbility.hap",
+            "accessibilityGenericAbility.hap",
+            "accessibilityHapticAbility.hap",
+            "accessibilitySpokenAbility.hap",
+            "accessibilityVisualAbility.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+        },        
+        {
+        "type": "ShellKit",
+        "teardown-command":[
+            "bm uninstall -n com.example.abilitylisttest",
+            "bm uninstall -n com.example.accessibleaudibleability.hmservice",
+            "bm uninstall -n com.example.accessiblegenericability.hmservice",
+            "bm uninstall -n com.example.accessiblehapticability.hmservice",
+            "bm uninstall -n com.example.accessiblespokenability.hmservice",
+            "bm uninstall -n com.example.accessiblevisualability.hmservice"
+        ]
+        }
+    ]
+}

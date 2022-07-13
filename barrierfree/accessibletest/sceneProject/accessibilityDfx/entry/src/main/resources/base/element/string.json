@@ -1,0 +1,45 @@
+{
+  "string": [
+    {
+      "name": "MainAbility_label",
+      "value": "DFX"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "DFX"
+    },
+    {
+      "name": "entry_desc",
+      "value": "DFX"
+    },
+    {
+      "name": "form_description",
+      "value": "DFX"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "DFX"
+    },
+    {
+      "name": "description_application",
+      "value": "DFX"
+    },
+    {
+      "name": "app_name",
+      "value": "DFX"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "DFX"
+    },
+    {
+      "name": "description_mainability",
+      "value": "DFX"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "DFX"
+    }
+
+  ]
+}

@@ -22,6 +22,7 @@ group("barrierfree") {
       "accessiblecheckability:ActsAccessibleCheckAbilityTest",
       "accessibleregisterstate:ActsAccessibleRegisterStateTest",
       "accessiblesendevent:ActsAccessibleSendEventTest",
+      "accessibletest:actsaccessibletest"
     ]
   }
 }

@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "AllAbility"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "AllAbility"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "AllAbility"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "AllAbility"
+    },
+    {
+      "name": "form_description",
+      "value": "AllAbility"
+    }
+  ]
+}
