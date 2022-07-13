@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+#include <climits>
 #include <gtest/gtest.h>
 #include <ctime>
 #include "Deqpgles2BaseFunc.h"
@@ -22,14 +23,14 @@ namespace OHOS {
     using namespace std;
     using namespace testing::ext;
 
-    time_t ActsDeqpgles20011TestSuite::starttime;
-    time_t ActsDeqpgles20011TestSuite::endtime;
+    time_t ActsDeqpgles20011TestSuite::startTime;
+    time_t ActsDeqpgles20011TestSuite::endTime;
     FuncRunResult ActsDeqpgles20011TestSuite::runResult;
 
     // Preset action of the test suite, which is executed before the first test case
     void ActsDeqpgles20011TestSuite::SetUpTestCase(void)
     {
-        time(&starttime);
+        time(&startTime);
         RegistPackage();
         runResult.numPassed = 0;
         runResult.numFailed = 0;
@@ -40,20 +41,20 @@ namespace OHOS {
     // Test suite cleanup action, which is executed after the last test case
     void ActsDeqpgles20011TestSuite::TearDownTestCase(void)
     {
-        time(&endtime);
+        time(&endTime);
         printf("Test run totals --- Passed[%d]\n", runResult.numPassed);
         printf("Test run totals --- Failed[%d]\n", runResult.numFailed);
         printf("Test run totals --- Notsupport[%d]\n", runResult.numNotSupported);
         printf("Test run totals --- Warnings[%d]\n", runResult.numWarnings);
         printf("Test run totals --- Waved[%d]\n", runResult.numWaived);
-        printf("testmain end --- COST TIME[%lld]\n", (endtime-starttime));
+        printf("testmain end --- COST TIME[%lld]\n", (endTime-startTime));
     }
     // Preset action of the test case
-    void ActsDeqpgles20011TestSuite::SetUp()
+    void ActsDeqpgles20011TestSuite::SetUp(void)
     {
     }
     // Cleanup action of the test case
-    void ActsDeqpgles20011TestSuite::TearDown()
+    void ActsDeqpgles20011TestSuite::TearDown(void)
     {
     }
 }

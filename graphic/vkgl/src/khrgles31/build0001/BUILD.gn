@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//test/xts/acts/graphic/vkglcts/comm.gni")
+import("//test/xts/acts/graphic/vkgl/comm.gni")
 
 config("deqp_platform_ohos_config") {
   cflags_cc = deqp_common_cflags_cc
@@ -41,8 +41,6 @@ ohos_static_library("libkhrgles31func0001") {
     "hilog_native:libhilog",
     "multimedia_image_standard:image_native",
   ]
-  lib_dirs = [ "//third_party/VK-GL-CTS/outlibs" ]
-  libs = [ "png" ]
   configs = [ ":deqp_platform_ohos_config" ]
   public_deps = [ "//foundation/ace/ace_engine/build/external_config/flutter/skia:ace_skia_ohos" ]
 }
@@ -59,18 +57,6 @@ ohos_moduletest_suite("ActsKhrgles31TestSuite0001") {
     "../core/Khrgles31centroid_rgba8iTestCase.cpp",
     "../core/Khrgles31centroid_rgba8uiTestCase.cpp",
     "../core/Khrgles31core_constant_expressionsTestCase.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase1.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase10.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase11.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase12.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase2.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase3.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase4.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase5.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase6.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase7.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase8.cpp",
-    "../core/Khrgles31core_constant_expressionsTestCase9.cpp",
     "../core/Khrgles31core_layout_bindingTestCase.cpp",
     "../core/Khrgles31core_sepshaderobjsTestCase.cpp",
     "../core/Khrgles31core_shader_atomic_countersTestCase.cpp",
@@ -159,7 +145,7 @@ ohos_moduletest_suite("ActsKhrgles31TestSuite0001") {
     "../core/Khrgles31texture_storage_multisample_GLCoverageTestCase.cpp",
   ]
 
-  include_dirs = [ "//test/xts/acts/graphic/vkglcts/src" ]
+  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 
   deps = [ ":libkhrgles31func0001" ]
 
