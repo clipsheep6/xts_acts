@@ -11,7 +11,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 import("//test/xts/tools/build/suite.gni")
 
 ohos_js_hap_suite("assistAppA") {
@@ -40,9 +39,3 @@ ohos_resources("accessible_resources") {
   deps = [ ":accessible_app_profile" ]
   hap_profile = "entry/src/main/module.json"
 }
-
-
-
-
-
-
