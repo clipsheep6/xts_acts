@@ -17,7 +17,7 @@ import testsuite from '../test/List.test'
 import file from '@system.file';
 import commonEvent from '@ohos.commonEvent'
 import accessibility from '@ohos.accessibility';
-import config from '@ohos.accessibility.config';
+
 export { };
 const LOG: string = "[xtsLog]";
 
