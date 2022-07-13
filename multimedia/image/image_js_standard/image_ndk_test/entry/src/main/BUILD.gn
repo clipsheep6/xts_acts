@@ -38,13 +38,13 @@ ohos_shared_library("imagePixelmap") {
   } else {
     libs = []
   }
-  include_dirs = [ 
+  include_dirs = [
     "//test/xts/acts/multimedia/image/image_js_standard/image_test/entry/src/main/cpp",
     "//foundation/multimedia/image_standard/interfaces/kits/native/include",
   ]
   configs = [ ":config" ]
 
-  deps = [ 
+  deps = [
     "//foundation/arkui/napi:ace_napi",
     "//foundation/multimedia/image_standard/frameworks/kits/js/common/pixelmap_ndk:pixelmap_ndk",
   ]
