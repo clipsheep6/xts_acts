@@ -901,5 +901,41 @@ describe('AccessibleCaptionConfiguration', function () {
     done();
   })
 
+    /*
+    * @tc.number  AccessibleCaptionConfigurationTest_getCaptionsManager_asyncCallback_0490
+    * @tc.name    AccessibleCaptionConfigurationTest_getCaptionsManager_asyncCallback_0490
+    * @tc.desc    Test captionManager.enabled function by assigning true.
+    *             captionManager.enabled will be true
+    * @tc.size    SmallTest
+    * @tc.type    User
+    */
+    it('AccessibleCaptionConfigurationTest_getCaptionsManager_asyncCallback_0490', 0, async function (done) {
+      console.info('AccessibleCaptionConfigurationTest_getCaptionsManager_asyncCallback_4900');
+      let captionManager = accessibility.getCaptionsManager();
+      let enabled = true;
+      captionManager.enabled = enabled;
+      let value = captionManager.enabled;
+      expect(value).assertEqual(enabled);
+      done();
+    })
+
+    /*
+    * @tc.number  AccessibleCaptionConfigurationTest_getCaptionsManager_asyncCallback_0500
+    * @tc.name    AccessibleCaptionConfigurationTest_getCaptionsManager_asyncCallback_0500
+    * @tc.desc    Test captionManager.enabled function by assigning false.
+    *             captionManager.enabled will be false
+    * @tc.size    SmallTest
+    * @tc.type    User
+    */
+      it('AccessibleCaptionConfigurationTest_getCaptionsManager_asyncCallback_0500', 0, async function (done) {
+        console.info('AccessibleCaptionConfigurationTest_getCaptionsManager_asyncCallback_0500');
+        let captionManager = accessibility.getCaptionsManager();
+        let enabled = false;
+        captionManager.enabled = enabled;
+        let value = captionManager.enabled;
+        expect(value).assertEqual(enabled);
+        done();
+      })
+
 
 })
