@@ -121,7 +121,7 @@ void AdecAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCo
     // std::shared_ptr<ADecEncSignal> signalDec_ = static_cast<ADecEncSignal *>(userData);
     ADecEncSignal* signalDec_ = static_cast<ADecEncSignal *>(userData);
     cout << "DEC OutputAvailable, index = " << index << endl;
-    unique_lock<mutex> lock(signalDec_->inMutexDec_);
+    unique_lock<mutex> lock(signalDec_->outMutexDec_);
     signalDec_->outQueueDec_.push(index);
     cout << "DEC outQueueDec_.size() is " << signalDec_->outQueueDec_.size() << endl;
     signalDec_->sizeQueueDec_.push(attr->size);
