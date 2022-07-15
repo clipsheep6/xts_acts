@@ -71,9 +71,9 @@ describe('ACTS_WifiTest', function() {
 
 
     /**
-     * @tc.number     open_0001
-     * @tc.name       SUB_Communication_WiFi_Sta_Open_0001
-     * @tc.desc       Test wifi.isWifiEnable API functionality.
+     * @tc.number open_0001
+     * @tc.name SUB_Communication_WiFi_Sta_Open_0001
+     * @tc.desc Test wifi.isWifiEnable API functionality.
      */
     it('SUB_Communication_WiFi_Sta_Open_0001', 0,  function() {
         console.info("[wifi_test] check the state of wifi, if it's close, open it.");
@@ -83,9 +83,9 @@ describe('ACTS_WifiTest', function() {
     })
 
     /**
-     * @tc.number     Scan_0001
-     * @tc.name       SUB_Communication_WiFi_Sta_Scan_0001
-     * @tc.desc       Test get ScanInfos callback API functionality.
+     * @tc.number Scan_0001
+     * @tc.name SUB_Communication_WiFi_Sta_Scan_0001
+     * @tc.desc Test get ScanInfos callback API functionality.
      */
     it('SUB_Communication_WiFi_Sta_Scan_0001', 0, async function(done) { 
         let scan = wifi.scan();
@@ -123,9 +123,9 @@ describe('ACTS_WifiTest', function() {
     })
 
     /**
-     * @tc.number     Scan_0004
-     * @tc.name       SUB_Communication_WiFi_Sta_Scan_0004
-     * @tc.desc       Test wifi.getSignalLevel API functionality.
+     * @tc.number Scan_0004
+     * @tc.name SUB_Communication_WiFi_Sta_Scan_0004
+     * @tc.desc Test wifi.getSignalLevel API functionality.
      */
     it('SUB_Communication_WiFi_Sta_Scan_0004', 0,  function() {
         console.info("[wifi_test] check the 2.4G rssi assgined to level test.");
@@ -223,9 +223,9 @@ describe('ACTS_WifiTest', function() {
     })
  
     /**
-     * @tc.number     conn_Config_0002
-     * @tc.name       SUB_Communication_WiFi_Sta_Conn_Info_0002
-     * @tc.desc       Test getLinkedInfo information
+     * @tc.number conn_Config_0002
+     * @tc.name SUB_Communication_WiFi_Sta_Conn_Info_0002
+     * @tc.desc Test getLinkedInfo information
      */
     it('SUB_Communication_WiFi_Sta_Conn_Info_0002', 0, async function(done) {
         console.info("[wifi_test]isConnected : " + wifi.isConnected());
@@ -242,9 +242,9 @@ describe('ACTS_WifiTest', function() {
     })
 
     /**
-     * @tc.number     conn_Config_0003
-     * @tc.name       SUB_Communication_WiFi_Sta_Conn_Info_0003
-     * @tc.desc       Test getLinkedInfo callback information
+     * @tc.number conn_Config_0003
+     * @tc.name SUB_Communication_WiFi_Sta_Conn_Info_0003
+     * @tc.desc Test getLinkedInfo callback information
      */
     it('SUB_Communication_WiFi_Sta_Conn_Info_0003', 0, async function(done) {
         console.info("[wifi_test]isConnected : " + wifi.isConnected());
@@ -269,9 +269,9 @@ describe('ACTS_WifiTest', function() {
     })
 
     /**
-    * @tc.number     Conn_Info_0001
-    * @tc.name       SUB_Communication_WiFi_Sta_Conn_Info_0001
-    * @tc.desc       Test get IpInfo information
+    * @tc.number Conn_Info_0001
+    * @tc.name SUB_Communication_WiFi_Sta_Conn_Info_0001
+    * @tc.desc Test get IpInfo information
     */
     it('SUB_Communication_WiFi_Sta_Conn_Info_0001', 0,  function () {
         let isConnected= wifi.isConnected();
@@ -286,9 +286,9 @@ describe('ACTS_WifiTest', function() {
     })
 
    /**
-    * @tc.number     wifiStateChange_0001
-    * @tc.name       SUB_Communication_WiFi_Sta_wifiStateChange_0001
-    * @tc.desc       Test wifiStateChange callback
+    * @tc.number wifiStateChange_0001
+    * @tc.name SUB_Communication_WiFi_Sta_wifiStateChange_0001
+    * @tc.desc Test wifiStateChange callback
     */
     it('SUB_Communication_WiFi_Sta_wifiStateChange_0001', 0, async function (done) {
         wifi.on('wifiStateChange', async result => {
@@ -307,9 +307,9 @@ describe('ACTS_WifiTest', function() {
     })
 
   /**
-    * @tc.number     wifiConnectionChange_0002
-    * @tc.name       SUB_Communication_WiFi_Sta_wifiConnectionChange_0002
-    * @tc.desc       Test wifiStateChange callback
+    * @tc.number wifiConnectionChange_0002
+    * @tc.name SUB_Communication_WiFi_Sta_wifiConnectionChange_0002
+    * @tc.desc Test wifiStateChange callback
     */
     it('SUB_Communication_WiFi_Sta_wifiConnectionChange_0002', 0, async function (done) {
         wifi.on('wifiConnectionChange', async result => {
@@ -329,9 +329,9 @@ describe('ACTS_WifiTest', function() {
     })
 
    /**
-    * @tc.number     wifiScanStateChange_0003
-    * @tc.name       SUB_Communication_WiFi_Sta_wifiScanStateChange_0003
-    * @tc.desc       Test wifiScanStateChange callback
+    * @tc.number wifiScanStateChange_0003
+    * @tc.name SUB_Communication_WiFi_Sta_wifiScanStateChange_0003
+    * @tc.desc Test wifiScanStateChange callback
     */
     it('SUB_Communication_WiFi_Sta_wifiScanStateChange_0003', 0, async function (done) {
         wifi.on('wifiScanStateChange', async result => {
@@ -354,9 +354,9 @@ describe('ACTS_WifiTest', function() {
     })
  
    /**
-    * @tc.number     wifiRssiChange_0004
-    * @tc.name       SUB_Communication_WiFi_Sta_wifiRssiChange_0004
-    * @tc.desc       Test wifiRssiChange callback
+    * @tc.number wifiRssiChange_0004
+    * @tc.name SUB_Communication_WiFi_Sta_wifiRssiChange_0004
+    * @tc.desc Test wifiRssiChange callback
     */
    it('SUB_Communication_WiFi_Sta_wifiRssiChange_0004', 0, async function (done) {
         wifi.on('wifiRssiChange', async result => {
