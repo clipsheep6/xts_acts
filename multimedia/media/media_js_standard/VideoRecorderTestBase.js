@@ -115,10 +115,12 @@ export async function checkVideos(playFdPath, duration, trackArray, playerSurfac
     }
     await videoPlayer.prepare().then(() => {
         expect(videoPlayer.state).assertEqual('prepared');
-        expect(videoPlayer.duration).assertClose(duration, DELTA_TIME);
+		if (duration > 0) {
+		    expect(videoPlayer.duration).assertClose(duration, DELTA_TIME);
+		}
         console.info('case prepare called!!');
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-
+    console.info('yf----2222');
     await videoPlayer.getTrackDescription().then((arrayList) => {
         console.info('case getTrackDescription called!!');
         if (typeof (arrayList) != 'undefined') {
@@ -128,7 +130,7 @@ export async function checkVideos(playFdPath, duration, trackArray, playerSurfac
             expect().assertFail();
         }
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-    
+    console.info('yf----3333');
     let startTime = videoPlayer.currentTime;
     await videoPlayer.play().then(() => {
         console.info('case play called!!');
@@ -137,18 +139,21 @@ export async function checkVideos(playFdPath, duration, trackArray, playerSurfac
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
     let endTime = videoPlayer.currentTime;
     expect(endTime - startTime).assertClose(PLAY_TIME, DELTA_TIME);
-
+    console.info('yf----4444');
     await videoPlayer.stop().then(() => {
         console.info('case stop called!!');
         expect(videoPlayer.state).assertEqual('stopped');
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-
+    console.info('yf----5555');
     await videoPlayer.release().then(() => {
         console.info('case release called!!');
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-
+    console.info('yf----6666');
     expect(arrayDescription.length).assertEqual(trackArray.length);
+    console.info('arrayDescription: ' + JSON.stringify(arrayDescription));
+    console.info('trackArray: ' + JSON.stringify(trackArray));
     for (let i = 0; i < arrayDescription.length; i++) {
         checkDescription(arrayDescription[i], tarckType[i], trackArray[i]);
     }
+    console.info('yf----7777');
 }

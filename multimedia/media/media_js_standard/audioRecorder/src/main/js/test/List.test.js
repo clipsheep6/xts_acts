@@ -13,6 +13,10 @@
  * limitations under the License.
  */
 
-require('./RecorderLocalTestAudioFUNC.test.js')
-require('./RecorderLocalTestAudioAPI.test.js')
-require('./AudioRecorderEnumTest.test.js')
+require('./AudioRecorderSpliterTest.test.js')
+require('./AudioRecorderSpliterAbnormalTest.test.js')
+require('./AudioRecorderSpliterStabilityTest.test.js')
+//require('./RecorderLocalTestAudioFUNC.test.js')
+//require('./RecorderLocalTestAudioAPI.test.js')
+//require('./AudioRecorderEnumTest.test.js')
+

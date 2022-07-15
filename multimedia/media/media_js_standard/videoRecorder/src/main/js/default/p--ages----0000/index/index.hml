@@ -15,12 +15,6 @@
 
 <div class="container">
     <text class="title">
-        VideoRecorder Test
+        {{ $t('strings.hello') }} {{ title }}
     </text>
-
-    <Xcomponent id = 'XcomponentId3'
-                type = 'surface'
-                onload = 'LoadXcomponent3'
-                style = "width:720px;height:480px;border-color:red;border-width:5px">
-    </Xcomponent>
 </div>

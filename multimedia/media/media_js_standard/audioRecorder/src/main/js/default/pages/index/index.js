@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import * as mediaTestBase from '../../../../../../../MediaTestBase.js';
+
 import {Core, ExpectExtend} from 'deccjsunit/index'
 
 export default {
@@ -22,16 +22,8 @@ export default {
     onInit() {
         this.title = this.$t('strings.world');
     },
-    async onShow() {
+    onShow() {
         console.info('onShow finish')
-        let applictionName = 'ohos.acts.multimedia.audio.audiorecorder';
-        let permissionName1 = 'ohos.permission.MICROPHONE';
-        let permissionName2 = 'ohos.permission.MEDIA_LOCATION';
-        let permissionName3 = 'ohos.permission.READ_MEDIA';
-        let permissionName4 = 'ohos.permission.WRITE_MEDIA';
-        let permissionNames = new Array(permissionName1, permissionName2, permissionName3,
-                                        permissionName4);
-        await mediaTestBase.applyPermission(applictionName, permissionNames);
         const core = Core.getInstance()
         const expectExtend = new ExpectExtend({
             'id': 'extend'
@@ -39,7 +31,7 @@ export default {
         core.addService('expect', expectExtend)
         core.init()
         const configService = core.getDefaultService('config')
-        this.timeout = 60000
+        this.timeout = 7200000
         configService.setConfig(this)
         require('../../../test/List.test')
         core.execute()
