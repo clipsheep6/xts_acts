@@ -12,7 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import XmlTest from './convertxml.test.js'
-export default function testsuite() {
-XmlTest()
+
+import app from '@system.app'
+import device from '@system.device'
+import router from '@system.router'
+
+export default {
+    data: {
+        title: ''
+    },
+    onInit() {
+        this.title = this.$t('strings.world');
+    },
+    onShow() {
+        console.info('onShow finish')
+    },
+    onReady() {
+    },
 }

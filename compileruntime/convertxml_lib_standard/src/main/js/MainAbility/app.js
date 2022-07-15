@@ -12,7 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import XmlTest from './convertxml.test.js'
-export default function testsuite() {
-XmlTest()
-}
+
+export default {
+    onCreate() {
+        console.info('AceApplication onCreate');
+    },
+    onDestroy() {
+        console.info('AceApplication onDestroy');
+    }
+};
