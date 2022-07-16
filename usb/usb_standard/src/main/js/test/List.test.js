@@ -31,7 +31,7 @@ UsbDevicePipeJsFunctionsTest()
 UsbDevicePipeJsFunctionsTestEx()
 UsbFunctionsJsFunctionsTest()
 UsbFunctionsJsFunctionsTestEx()
-UsbPortAndFunctionsJsFunctionsTest()
+//UsbPortAndFunctionsJsFunctionsTest()
 UsbPortJsFunctionsTest()
 UsbPortJsFunctionsTestEx()
 }
