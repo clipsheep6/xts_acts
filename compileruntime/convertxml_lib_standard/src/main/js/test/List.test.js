@@ -12,5 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-require('./convertxml.test.js')
+import XmlTest from './convertxml.test.js'
+export default function testsuite() {
+XmlTest()
+}
