@@ -12,28 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
-/* host test case */
-import UsbAutoJsunit from './UsbCoreJsunit.test.js'
-import UsbCoreJsFunctionsTest from './UsbCoreJsunitEx.test.js'
-import UsbCoreJsFunctionsTestEx from './UsbDevicePipeJsunit.test.js'
-import UsbDevicePipeJsFunctionsTest from './UsbDevicePipeJsunitEx.test.js'
-import UsbDevicePipeJsFunctionsTestEx from './UsbFunctionsJsunit.test.js'
-import UsbDevicePipeJsFunctionsTest from './UsbFunctionsJsunitEx.test.js'
-import UsbFunctionsJsFunctionsTest from './UsbPortJsunit.test.js'
-import UsbFunctionsJsFunctionsTestEx from './UsbPortJsunitEx.test.js'
+import UsbAutoJsunit from './UsbAutoJsunit.test.js'
 import UsbPortAndFunctionsJsFunctionsTest from './UsbPortAndFunctionJsunit.test.js'
-import UsbPortJsFunctionsTest from './UsbAutoJsunit.test.js'
+import UsbPortJsFunctionsTest from './UsbPortJsunit.test.js'
+import UsbPortJsFunctionsTestEx from './UsbPortJsunitEx.test.js'
+import UsbFunctionsJsFunctionsTestEx from './UsbFunctionsJsunitEx.test.js'
+import UsbFunctionsJsFunctionsTest from './UsbFunctionsJsunit.test.js'
+import UsbDevicePipeJsFunctionsTest from './UsbDevicePipeJsunit.test.js'
+import UsbDevicePipeJsFunctionsTestEx from './UsbDevicePipeJsunitEx.test.js'
+import UsbCoreJsFunctionsTest from './UsbCoreJsunit.test.js'
+import UsbCoreJsFunctionsTestEx from './UsbCoreJsunitEx.test.js'
+/* host test case */
 export default function testsuite() {
 UsbAutoJsunit()
 UsbCoreJsFunctionsTest()
 UsbCoreJsFunctionsTestEx()
 UsbDevicePipeJsFunctionsTest()
 UsbDevicePipeJsFunctionsTestEx()
-UsbDevicePipeJsFunctionsTest()
 UsbFunctionsJsFunctionsTest()
 UsbFunctionsJsFunctionsTestEx()
 UsbPortAndFunctionsJsFunctionsTest()
 UsbPortJsFunctionsTest()
+UsbPortJsFunctionsTestEx()
 }
