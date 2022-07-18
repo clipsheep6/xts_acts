@@ -1,0 +1,21 @@
+{
+    "kits": [
+        {
+            "push": [
+                "nativehook_test->/data/local/tmp/nativehook_test"
+            ],
+            "type": "PushKit",
+            "post-push": [
+                "chmod -R 777 /data/local/tmp/*"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "nativehook_test",
+        "runtime-hint": "1s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "description": "Configuration for nativehook_test Tests"
+}

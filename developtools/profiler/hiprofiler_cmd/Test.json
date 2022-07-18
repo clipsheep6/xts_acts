@@ -2,7 +2,7 @@
     "kits": [
         {
             "push": [
-                "hipluginmoduleapitest->/data/local/tmp/hipluginmoduleapitest"
+                "hiprofiler_cmd_test->/data/local/tmp/hiprofiler_cmd_test"
             ],
             "type": "PushKit",
             "post-push": [
@@ -13,9 +13,9 @@
     "driver": {
         "native-test-timeout": "120000",
         "type": "CppTest",
-        "module-name": "hipluginmoduleapitest",
+        "module-name": "hiprofiler_cmd_test",
         "runtime-hint": "1s",
         "native-test-device-path": "/data/local/tmp"
     },
-    "description": "Configuration for hipluginmoduleapitest Tests"
+    "description": "Configuration for hiprofiler_cmd_test Tests"
 }

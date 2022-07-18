@@ -12,39 +12,39 @@
 # limitations under the License.
 
 import("//build/test.gni")
+import("//developtools/profiler/device/base/config.gni")
 import("//test/xts/tools/build/suite.gni")
-import("../../../../../developtools/profiler/device/base/config.gni")
 
-###############################################################################
 config("module_private_config") {
   visibility = [ ":*" ]
+  if (current_toolchain != host_toolchain) {
+    defines = [ "HAVE_HILOG" ]
+  }
 }
 
-ohos_moduletest_suite("hipluginmoduleapitest") {
-  deps = [
-    "${OHOS_PROFILER_DIR}/device/plugins/memory_plugin:memdataplugin",
-    "${OHOS_PROFILER_DIR}/protos/types/plugins/memory_data:memory_data_cpp",
-    "//third_party/googletest:gtest",
-  ]
+ohos_moduletest_suite("hiprofiler_cmd_test") {
+  sources = [ "src/hiprofiler_cmd_test.cpp" ]
+
   include_dirs = [
-    "${OHOS_PROFILER_DIR}/interfaces/kits/",
-    "${OHOS_PROFILER_DIR}/device/plugins/memory_plugin/include",
-    "${OHOS_PROFILER_DIR}/device/plugins/api/include",
-    "${OHOS_PROFILER_DIR}/device/plugins/api/src",
-    "${OHOS_PROFILER_DIR}/device/base/include/",
+    "${OHOS_PROFILER_DIR}/device/base/include",
+    "//third_party/boringssl/src/include",
     "//third_party/googletest/googletest/include/gtest",
+    "//utils/native/base/include",
   ]
-  sources = [
-    "${OHOS_PROFILER_DIR}/device/plugins/memory_plugin/test/unittest/buffer_splitter_unittest.cpp",
-    "${OHOS_PROFILER_DIR}/device/plugins/memory_plugin/test/unittest/memory_data_plugin_unittest.cpp",
-    "hipluginmoduleapitest.cpp",
+
+  deps = [
+    "//third_party/boringssl:crypto",
+    "//third_party/googletest:gtest_main",
+    "//utils/native/base:utilsecurec",
   ]
+
   cflags = [
-    "-pthread",
     "-Wno-inconsistent-missing-override",
     "-Dprivate=public",  #allow test code access private members
   ]
+
   external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
+  configs = [ ":module_private_config" ]
   subsystem_name = "${OHOS_PROFILER_SUBSYS_NAME}"
-  defines = [ "HAVE_HILOG" ]
+  part_name = "${OHOS_PROFILER_PART_NAME}"
 }
