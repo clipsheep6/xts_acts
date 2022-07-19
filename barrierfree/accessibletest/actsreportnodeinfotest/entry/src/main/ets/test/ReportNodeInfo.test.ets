@@ -62,8 +62,8 @@ export default function ReportNodeInfoTest(abilityContext) {
         }
       });
 
-      config.enableAbility(bundleName, capabilityArray).then((result) => {
-        console.info(LOG + 'ActsReportNodeInfoTest beforeAll enableAbility: result = ' + result);
+      config.enableAbility(bundleName, capabilityArray).then(() => {
+        console.info(LOG + 'ActsReportNodeInfoTest beforeAll enableAbility ' );
       });
       setTimeout(done(), START_TIMEOUT);
     });
@@ -72,8 +72,8 @@ export default function ReportNodeInfoTest(abilityContext) {
       console.info(LOG + 'AccessibleEventTest: afterAll');
       setTimeout(function () {
         commonEvent.unsubscribe(subScriber);
-        config.disableAbility(bundleName).then((result) => {
-          console.info(LOG + 'ActsReportNodeInfoTest afterAll disableAbility: result = ' + result);
+        config.disableAbility(bundleName).then(() => {
+          console.info(LOG + 'ActsReportNodeInfoTest afterAll disableAbility ' );
         });
       }, 10000);
       done();

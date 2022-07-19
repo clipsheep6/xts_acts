@@ -34,6 +34,7 @@ class ServiceExtAbilityAllAbility extends AccessibilityExtensionAbility {
             switch (data.data) {
                 case "RootElementGet_0070":
                     getWindowRootElementCallback_0070(context, data.data);
+                    break;
                 case "RootElementGet_0090":
                     getWindowRootElementCallback(context, data.data);
                     break;
@@ -118,7 +119,6 @@ class ServiceExtAbilityAllAbility extends AccessibilityExtensionAbility {
                 case "RootElementGet_0152":
                 case "RootElementGet_0153":
                 case "RootElementGet_0154":
-                case "RootElementGet_0155":
                 case "RootElementGet_0156":
                 case "RootElementGet_0157":
                 case "RootElementGet_0158":
@@ -126,6 +126,9 @@ class ServiceExtAbilityAllAbility extends AccessibilityExtensionAbility {
                 case "RootElementGet_0160":
                 case "RootElementGet_0161":
                     getWindowRootElement_AttributeValues(context, data.data);
+                    break;
+                case "RootElementGet_0155":
+                    getWindowElement_AttributeValues(context, data.data);
                     break;
                 case "RootElementGet_0162":
                     getWindowRootElement_AttributeValuesCallBack(context, data.data);
@@ -1106,6 +1109,38 @@ const getWindowRootElement_AttributeValuesCallBack = (context, description) => {
             }
         })
     })
+}
+
+const getWindowElement_AttributeValues = (context, description) => {
+    const logTag = log + description;
+    context.getWindows().then((res) => {
+        let index = res.length - 1
+        printElements(logTag, res[index])
+        res[index].attributeValue("isActive").then((ElementAttributeValues) => {
+            console.info(logTag + " attributeValue isActive res=" + JSON.stringify(ElementAttributeValues));
+            var commonEventPublishData;
+            if (JSON.stringify(ElementAttributeValues) != undefined) {
+                commonEventPublishData = {
+                    data: "on_assist_change_extra_success"
+                }
+            }
+            else {
+                commonEventPublishData = {
+                    data: "on_assist_change_extra_undefined"
+                }
+            }
+
+            commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+
+            function publishCallback(err) {
+                console.info("====>on_assist_change_extra getWindowRootElement publish call back result:" + JSON.stringify(err));
+            }
+        }).catch((err) => {
+            console.info(logTag + " attributeValue winddowId err=" + JSON.stringify(err));
+        });
+    }).catch((err) => {
+        console.info(logTag + " getWindows err=" + JSON.stringify(err));
+    });
 }
 
 const getWindowRootElement_AttributeValues = (context, description) => {

@@ -57,13 +57,12 @@ export default function abilityComplexTest(abilityContext) {
             }
         });
 
-        config.enableAbility('com.example.myapplication/ServiceExtAbility', 
-                  ["retrieve"]).then((result) => {
-          console.info('ActsAccessibleComplexEventTest beforeAll enableAbility myapplication: result = ' + result);
+        config.enableAbility('com.example.myapplication/ServiceExtAbility', ["retrieve"]).then(() => {
+          console.info('ActsAccessibleComplexEventTest beforeAll enableAbility myapplication');
         });
         config.enableAbility('com.example.accessibilitytouchguide.hmservice/ServiceExtAbility', 
                   ["retrieve", "touchGuide", "gesture"]).then((result) => {
-          console.info('ActsAccessibleComplexEventTest beforeAll enableAbility accessibilitytouchguide: result = ' + result);
+          console.info('ActsAccessibleComplexEventTest beforeAll enableAbility accessibilitytouchguide');
         });
         setTimeout(done, 3000);
       })
@@ -72,11 +71,11 @@ export default function abilityComplexTest(abilityContext) {
         console.info('ActsAccessibleComplexEventTest: afterAll');
         commonEvent.unsubscribe(subScriber);
 
-        config.disableAbility("com.example.myapplication/ServiceExtAbility").then((result) => {
-          console.info('ActsAccessibleComplexEventTest afterAll disableAbility myapplication: result = ' + result);
+        config.disableAbility("com.example.myapplication/ServiceExtAbility").then(() => {
+          console.info('ActsAccessibleComplexEventTest afterAll disableAbility myapplication');
         });
-        config.disableAbility("com.example.accessibilitytouchguide.hmservice/ServiceExtAbility").then((result) => {
-          console.info('ActsAccessibleComplexEventTest afterAll disableAbility accessibilitytouchguide: result = ' + result);
+        config.disableAbility("com.example.accessibilitytouchguide.hmservice/ServiceExtAbility").then(() => {
+          console.info('ActsAccessibleComplexEventTest afterAll disableAbility accessibilitytouchguide');
         });
         setTimeout(done, 3000);
       })

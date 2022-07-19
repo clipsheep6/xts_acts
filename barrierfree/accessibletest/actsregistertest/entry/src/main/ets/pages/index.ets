@@ -55,11 +55,11 @@ const setExtentionEnabled = (logTag, name) => {
     default:
       break;
   }
-  config.enableAbility(name, capability, (err, res) => {
+  config.enableAbility(name, capability, (err) => {
     if (err?.code) {
       console.info(logTag + " extentionEnabled err=" + JSON.stringify(err));
     } else {
-      console.info(logTag + " extentionEnabled res=" + res);
+      console.info(logTag + " extentionEnabled success");
       var commonEventPublishData = {
         data: "on_target_change_extra_success"
       }
@@ -83,11 +83,11 @@ const setExtentionEnabledRegisterState = (logTag, name) => {
     default:
       break;
   }
-  config.enableAbility(name, capability, (err, res) => {
+  config.enableAbility(name, capability, (err) => {
     if (err?.code) {
       console.info(logTag + " extentionEnabled err=" + JSON.stringify(err));
     } else {
-      console.info(logTag + " extentionEnabled res=" + res);
+      console.info(logTag + " extentionEnabled success");
     }
   });
 }
@@ -102,22 +102,22 @@ const setExtentionEnabledRegisterStateTouch = (logTag, name) => {
     default:
       break;
   }
-  config.enableAbility(name, capability, (err, res) => {
+  config.enableAbility(name, capability, (err) => {
     if (err?.code) {
       console.info(logTag + " extentionEnabled err=" + JSON.stringify(err));
     } else {
-      console.info(logTag + " extentionEnabled res=" + res);
+      console.info(logTag + " extentionEnabled success");
     }
   });
 }
 
 const setExtentionDisabled = (logTag, bundleNameArr) => {
   for (var i = 0; i < bundleNameArr.length; i++) {
-    config.disableAbility(bundleNameArr[i], (err, res) => {
+    config.disableAbility(bundleNameArr[i], (err) => {
       if (err?.code) {
         console.info(logTag + "extentionDisabled err=" + JSON.stringify(err));
       } else {
-        console.info(logTag + "extentionDisabled res=" + res);
+        console.info(logTag + "extentionDisabled success");
       }
     });
   }

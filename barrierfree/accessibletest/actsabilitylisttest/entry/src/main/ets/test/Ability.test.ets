@@ -74,12 +74,12 @@ export default function abilityTest(abilityContext) {
       disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
       setTimeout(() => {
         accessibility.getAbilityLists('spoken', 'install').then((data) => {
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         }).catch((err) => {
-          console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
         })
       }, TIME_OUT)
     })
@@ -95,11 +95,11 @@ export default function abilityTest(abilityContext) {
       setTimeout(() => {
         accessibility.getAbilityLists('audible', 'install', (err, data) => {
           if (err.code != 0) {
-            console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+            console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
             return
           }
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         })
@@ -116,12 +116,12 @@ export default function abilityTest(abilityContext) {
       disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
       setTimeout(() => {
         accessibility.getAbilityLists('audible', 'install').then((data) => {
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         }).catch((err) => {
-          console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
         })
       }, TIME_OUT)
     })
@@ -137,11 +137,11 @@ export default function abilityTest(abilityContext) {
       setTimeout(() => {
         accessibility.getAbilityLists('visual', 'install', (err, data) => {
           if (err.code != 0) {
-            console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+            console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
             return
           }
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         })
@@ -158,12 +158,12 @@ export default function abilityTest(abilityContext) {
       disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
       setTimeout(() => {
         accessibility.getAbilityLists('visual', 'install').then((data) => {
-          console.error(LOG_PREFIX + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(LOG_PREFIX + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         }).catch((err) => {
-          console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
         })
       }, TIME_OUT)
     })
@@ -179,11 +179,11 @@ export default function abilityTest(abilityContext) {
       setTimeout(() => {
         accessibility.getAbilityLists('haptic', 'install', (err, data) => {
           if (err.code != 0) {
-            console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+            console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
             return
           }
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         })
@@ -200,12 +200,12 @@ export default function abilityTest(abilityContext) {
       disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
       setTimeout(() => {
         accessibility.getAbilityLists('haptic', 'install').then((data) => {
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         }).catch((err) => {
-          console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
         })
       }, TIME_OUT)
     })
@@ -221,11 +221,11 @@ export default function abilityTest(abilityContext) {
       setTimeout(() => {
         accessibility.getAbilityLists('generic', 'install', (err, data) => {
           if (err.code != 0) {
-            console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+            console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
             return
           }
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         })
@@ -242,12 +242,12 @@ export default function abilityTest(abilityContext) {
       disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
       setTimeout(() => {
         accessibility.getAbilityLists('generic', 'install').then((data) => {
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         }).catch((err) => {
-          console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
         })
       }, TIME_OUT)
     })
@@ -263,11 +263,11 @@ export default function abilityTest(abilityContext) {
       setTimeout(() => {
         accessibility.getAbilityLists('all', 'enable', (err, data) => {
           if (err.code != 0) {
-            console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+            console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
             return
           }
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         })
@@ -284,12 +284,12 @@ export default function abilityTest(abilityContext) {
       disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
       setTimeout(() => {
         accessibility.getAbilityLists('all', 'enable').then((data) => {
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         }).catch((err) => {
-          console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
         })
       }, TIME_OUT)
     })
@@ -305,11 +305,11 @@ export default function abilityTest(abilityContext) {
       setTimeout(() => {
         accessibility.getAbilityLists('all', 'disable', (err, data) => {
           if (err.code != 0) {
-            console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+            console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
             return
           }
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         })
@@ -326,12 +326,12 @@ export default function abilityTest(abilityContext) {
       disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
       setTimeout(() => {
         accessibility.getAbilityLists('all', 'disable').then((data) => {
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         }).catch((err) => {
-          console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
         })
       }, TIME_OUT)
     })
@@ -347,11 +347,11 @@ export default function abilityTest(abilityContext) {
       setTimeout(() => {
         accessibility.getAbilityLists('all', 'disable', (err, data) => {
           if (err.code != 0) {
-            console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+            console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
             return
           }
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         })
@@ -368,12 +368,12 @@ export default function abilityTest(abilityContext) {
       disableAbility(logTag, [AUDIBLE_BUNDLE_NAME])
       setTimeout(() => {
         accessibility.getAbilityLists('all', 'disable').then((data) => {
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLarger(0)
           done()
         }).catch((err) => {
-          console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
         })
       }, TIME_OUT)
     })
@@ -387,12 +387,12 @@ export default function abilityTest(abilityContext) {
       enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, VISUAL_BUNDLE_NAME])
       setTimeout(() => {
         accessibility.getAbilityLists('', '').then((data) => {
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLess(1)
           done()
         }).catch((err) => {
-          console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
         })
       }, TIME_OUT)
     })
@@ -406,12 +406,12 @@ export default function abilityTest(abilityContext) {
       enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, VISUAL_BUNDLE_NAME])
       setTimeout(() => {
         accessibility.getAbilityLists('', '').then((data) => {
-          console.error(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
-          console.error(logTag + 'data.length : ' + JSON.stringify(data.length))
+          console.info(logTag + 'success data:getAbilityLists : ' + JSON.stringify(data))
+          console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
           expect(data.length).assertLess(1)
           done()
         }).catch((err) => {
-          console.error(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
         })
       }, TIME_OUT)
     })
@@ -419,10 +419,10 @@ export default function abilityTest(abilityContext) {
 
   function enableAbility(logTag, bundleNameArr) {
     for (let bundleName of bundleNameArr) {
-      config.enableAbility(bundleName, ['retrieve']).then((data) => {
-        console.error(logTag + 'enableAbility ' + bundleName + ' success. data: ' + JSON.stringify(data))
+      config.enableAbility(bundleName, ['retrieve']).then(() => {
+        console.info(logTag + 'enableAbility ' + bundleName + ' success.')
       }).catch((error) => {
-        console.error(logTag + 'enableAbility ' + bundleName + ' failed. Cause: ' + JSON.stringify(error))
+        console.info(logTag + 'enableAbility ' + bundleName + ' failed. Cause: ' + JSON.stringify(error))
         return
       })
     }
@@ -430,10 +430,10 @@ export default function abilityTest(abilityContext) {
 
   function disableAbility(logTag, bundleNameArr) {
     for (let bundleName of bundleNameArr) {
-      config.disableAbility(bundleName).then((data) => {
-        console.error(logTag + 'disableAbility ' + bundleName + ' success. data: ' + JSON.stringify(data))
+      config.disableAbility(bundleName).then(() => {
+        console.info(logTag + 'disableAbility ' + bundleName + ' success.')
       }).catch((error) => {
-        console.error(logTag + 'disableAbility ' + bundleName + ' failed. Cause: ' + JSON.stringify(error))
+        console.info(logTag + 'disableAbility ' + bundleName + ' failed. Cause: ' + JSON.stringify(error))
         return
       })
     }

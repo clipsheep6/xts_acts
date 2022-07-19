@@ -43,29 +43,20 @@ const capabilityArray2 = [
 ]
 
 const setEnabledAndDisabledTimes = (caseName, logTag, bundleNameAndabilityName, times) => {
-  config.enableAbility(bundleNameAndabilityName, capabilityArray, (err, res) => {
-    if (err?.code) {
-      console.info(logTag + caseName + "  times:" + times + " extentionEnabled err=" + JSON.stringify(err));
-    } else {
-      console.info(logTag + caseName + "  times:" + times + " extentionEnabled res=" + res);
-      config.disableAbility(bundleNameAndabilityName, (err, res) => {
-        if (err?.code) {
-          console.info(logTag + caseName + "  times:" + times + " extentionDisabled err=" + JSON.stringify(err));
-        } else {
-          console.info(logTag + caseName + "  times:" + times + " extentionDisabled res=" + res);
-        }
-      });
-    }
+  config.enableAbility(bundleNameAndabilityName, capabilityArray).then(() => {
+    console.info(logTag + caseName + "  times:" + times + " extentionEnabled" )
+    config.disableAbility(bundleNameAndabilityName).then(() => {
+      console.info(logTag + caseName + "  times:" + times + " extentionDisabled " );
+    });
   });
 }
 
 const onAndOffAccessibility = (times, logTag) => {
   config.on('enableAbilityListsStateChanged', (err, res) => {
     if (err?.code) {
-      console.info(logTag + " times: " + times + "    onAccessibility err=" + JSON.stringify(err));
+      console.info(logTag + " times: " + times + "   onAccessibility err=" + JSON.stringify(err));
     } else {
       console.info(logTag + " times: " + times + "   onAccessibility res=" + res);
-      sleep(10)
       config.off('enableAbilityListsStateChanged', (err, res) => {
         if (err?.code) {
           console.info(logTag + " times: " + times + "    offAccessibility err=" + JSON.stringify(err));
@@ -84,23 +75,6 @@ const onehundredTimesOnAndOffAccessibility = (caseName, logF, thisBundleName) =>
     times++;
     if (times > 100) {
       clearInterval(id)
-      setTimeout(() => {
-        setEnabledAndnDisabledAndPublishOnTargetChange(caseName, logF, thisBundleName);
-      }, 3000)
-    }
-  }, 50);
-};
-
-const onehundredTimesOnAndOffAccessibility2 = (caseName, logF, thisBundleName) => {
-  let times = 1;
-  let id = setInterval(() => {
-    onAndOffAccessibility(times, logF);
-    times++;
-    if (times > 100) {
-      clearInterval(id)
-      setTimeout(() => {
-        setEnabledAndnDisabledAndPublishOnTargetChange2(caseName, logF, thisBundleName);
-      }, 3000)
     }
   }, 50);
 };
@@ -118,60 +92,37 @@ const commonEventPublishOnTargetChangeExtra = (caseName) => {
 }
 
 const setExtentionDfxEnabled = (caseName, logTag, bundleNameAndabilityName) => {
-  config.enableAbility(bundleNameAndabilityName, capabilityArray, (err, res) => {
-    if (err?.code) {
-      console.info(logTag + bundleNameAndabilityName + "  setExtentionDfxEnabled err=" + JSON.stringify(err));
-    } else {
-      console.info(logTag + bundleNameAndabilityName + "  setExtentionDfxEnabled res=" + res);
-
-    }
+  config.enableAbility(bundleNameAndabilityName, capabilityArray).then(() => {
+    console.info(logTag + caseName + bundleNameAndabilityName + "  setExtentionDfxEnabled ");
   });
 }
 
 const setExtentionDfxEnabled2 = (caseName, logTag, bundleNameAndabilityName) => {
-  config.enableAbility(bundleNameAndabilityName, capabilityArray2, (err, res) => {
-    if (err?.code) {
-      console.info(logTag + bundleNameAndabilityName + "  setExtentionDfxEnabled err=" + JSON.stringify(err));
-    } else {
-      console.info(logTag + bundleNameAndabilityName + "  setExtentionDfxEnabled res=" + res);
-
-    }
+  config.enableAbility(bundleNameAndabilityName, capabilityArray2).then(() => {
+    console.info(logTag + caseName + bundleNameAndabilityName + "  setExtentionDfxEnabled ");
   });
 }
 const setEnabledAndnDisabledAndPublishOnTargetChange2 = (caseName, logTag, bundleNameAndabilityName) => {
-  config.enableAbility(bundleNameAndabilityName, capabilityArray2, (err, res) => {
-    if (err?.code) {
-      console.info(logTag + caseName + " extentionEnabled err=" + JSON.stringify(err));
-    } else {
-      console.info(logTag + caseName + " extentionEnabled res=" + res);
-      config.disableAbility(bundleNameAndabilityName, (err, res) => {
-        if (err?.code) {
-          console.info(logTag + caseName + " extentionDisabled err=" + JSON.stringify(err));
-        } else {
-          console.info(logTag + caseName + " extentionDisabled res=" + res);
-          commonEventPublishOnTargetChangeExtra(caseName)
-        }
-      });
-    }
+  config.enableAbility(bundleNameAndabilityName, capabilityArray2).then(() => {
+    console.info(logTag + caseName + " extentionEnabled ");
+    config.disableAbility(bundleNameAndabilityName).then(() => {
+      console.info(logTag + caseName + " extentionDisabled ");
+      commonEventPublishOnTargetChangeExtra(caseName)
+    });
   });
 }
+
 const setEnabledAndnDisabledAndPublishOnTargetChange = (caseName, logTag, bundleNameAndabilityName) => {
-  config.enableAbility(bundleNameAndabilityName, capabilityArray, (err, res) => {
-    if (err?.code) {
-      console.info(logTag + caseName + " extentionEnabled err=" + JSON.stringify(err));
-    } else {
-      console.info(logTag + caseName + " extentionEnabled res=" + res);
-      config.disableAbility(bundleNameAndabilityName, (err, res) => {
-        if (err?.code) {
-          console.info(logTag + caseName + " extentionDisabled err=" + JSON.stringify(err));
-        } else {
-          console.info(logTag + caseName + " extentionDisabled res=" + res);
-          commonEventPublishOnTargetChangeExtra(caseName)
-        }
-      });
-    }
+  config.enableAbility(bundleNameAndabilityName, capabilityArray).then(() => {
+    console.info(logTag + caseName + " extentionEnabled ");
+    config.disableAbility(bundleNameAndabilityName).then(() => {
+      console.info(logTag + caseName + " extentionDisabled ");
+      commonEventPublishOnTargetChangeExtra(caseName)
+    });
   });
+
 }
+
 const commonEventPublishExecuteAccessibilityEvent = (caseName) => {
 
   function publishCallback(err) {
@@ -185,13 +136,9 @@ const commonEventPublishExecuteAccessibilityEvent = (caseName) => {
 }
 
 const setExtentionDisabled = (logTag, bundleNameAndabilityName) => {
-  config.disableAbility(bundleNameAndabilityName, (err, res) => {
-    if (err?.code) {
-      console.info(logTag + bundleNameAndabilityName + "extentionDisabled err=" + JSON.stringify(err));
-    } else {
-      console.info(logTag + bundleNameAndabilityName + "extentionDisabled res=" + res);
-    }
-  });
+  config.disableAbility(bundleNameAndabilityName).then(() => {
+    console.info(logTag  + bundleNameAndabilityName + " extentionDisabled ");
+  })
 }
 
 export default function PerformanceTest(abilityContext) {
@@ -217,9 +164,6 @@ export default function PerformanceTest(abilityContext) {
           backList.push(data.data)
         }
       });
-      config.enableAbility(bundleName, capabilityArray).then((result) => {
-        console.info(LOG + 'ActsDfxTest beforeAll enableAbility: result = ' + result);
-      });
       setTimeout(done(), 3000);
     });
 
@@ -227,57 +171,94 @@ export default function PerformanceTest(abilityContext) {
       setTimeout(function () {
         console.info(LOG + 'ActsDfxTest: afterAll');
         commonEvent.unsubscribe(subScriber);
-        config.disableAbility(bundleName).then((result) => {
-          console.info(LOG + 'ActsDfxTest afterAll disableAbility: result = ' + result);
+        config.disableAbility(bundleName).then(() => {
+          console.info(LOG + 'ActsDfxTest afterAll disableAbility ' );
         });
         done();
       }, 25000);
     });
-  /**
-  * @tc.number: Dfx_0050
-  * @tc.name: Call api:on() to subscribe to the barrier free state change event, call api:off() to unsubscribe from the barrier free state change event, and call it repeatedly for 100 times
-  * @tc.desc: Call api:on() to subscribe to the barrier free state change event, call api:off() to unsubscribe from the barrier free state change event, and call it repeatedly for 100 times
-  */   
+    /**
+    * @tc.number: Dfx_0050
+    * @tc.name: Call api:on() to subscribe to the barrier free state change event, call api:off() to unsubscribe from the barrier free state change event, and call it repeatedly for 100 times
+    * @tc.desc: Call api:on() to subscribe to the barrier free state change event, call api:off() to unsubscribe from the barrier free state change event, and call it repeatedly for 100 times
+    */
     it('Dfx_0050', 4, async function (done) {
       const caseName = 'Dfx_0050';
       const logF = LOG + caseName;
+      var onBackIsSucceed: boolean = false;
+      var isSucceedTarget: boolean = false;
       onehundredTimesOnAndOffAccessibility(caseName, logF, bundleName);
       setTimeout(() => {
-        var isSucceedTarget: boolean = false;
-        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
-          isSucceedTarget = true;
-        }
-        expect(isSucceedTarget).assertEqual(true);
-        console.info(logF + ' isSucceed : ' + (isSucceedTarget));
-        done();
-      }, 15000);
+        config.on('enableAbilityListsStateChanged', (err) => {
+          if (err?.code) {
+            console.info(logF + "   onAccessibility err=" + JSON.stringify(err));
+          } else {
+            onBackIsSucceed = true
+            config.off('enableAbilityListsStateChanged', (err) => {
+              if (err?.code) {
+                console.info(logF +"    offAccessibility err=" + JSON.stringify(err));
+              }
+            });
+          }
+        });
+        setTimeout(() => {
+          setEnabledAndnDisabledAndPublishOnTargetChange(caseName, logF, bundleName);
+          setTimeout(() => {
+            if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+              isSucceedTarget = true;
+            }
+            expect(isSucceedTarget && onBackIsSucceed).assertEqual(true);
+            console.info(logF + ' isSucceed : ' + (isSucceedTarget && onBackIsSucceed));
+            done();
+          }, 3000);
+        }, 2000)
+      }, 6000);
     });
 
-  /**
-  * @tc.number: Dfx_0060
-  * @tc.name: Call api:on() to subscribe to the barrier free state change event, call api:off() to unsubscribe from the barrier free state change event, and call it repeatedly for 100 times
-  * @tc.desc: Call api:on() to subscribe to the barrier free state change event, call api:off() to unsubscribe from the barrier free state change event, and call it repeatedly for 100 times
-  */     
+
+    /**
+    * @tc.number: Dfx_0060
+    * @tc.name: Call api:on() to subscribe to the barrier free state change event, call api:off() to unsubscribe from the barrier free state change event, and call it repeatedly for 100 times
+    * @tc.desc: Call api:on() to subscribe to the barrier free state change event, call api:off() to unsubscribe from the barrier free state change event, and call it repeatedly for 100 times
+    */
     it('Dfx_0060', 4, async function (done) {
       const caseName = 'Dfx_0060';
       const logF = LOG + caseName;
-      onehundredTimesOnAndOffAccessibility2(caseName, logF, bundleName);
+      var onBackIsSucceed: boolean = false;
+      var isSucceedTarget: boolean = false;
+      onehundredTimesOnAndOffAccessibility(caseName, logF, bundleName);
       setTimeout(() => {
-        var isSucceedTarget: boolean = false;
-        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
-          isSucceedTarget = true;
-        }
-        expect(isSucceedTarget).assertEqual(true);
-        console.info(logF + ' isSucceed : ' + (isSucceedTarget));
-        done();
-      }, 15000);
+        config.on('enableAbilityListsStateChanged', (err) => {
+          if (err?.code) {
+            console.info(logF + "   onAccessibility err=" + JSON.stringify(err));
+          } else {
+            onBackIsSucceed = true
+            config.off('enableAbilityListsStateChanged', (err) => {
+              if (err?.code) {
+                console.info(logF +"    offAccessibility err=" + JSON.stringify(err));
+              }
+            });
+          }
+        });
+        setTimeout(() => {
+          setEnabledAndnDisabledAndPublishOnTargetChange2(caseName, logF, bundleName);
+          setTimeout(() => {
+            if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+              isSucceedTarget = true;
+            }
+            expect(isSucceedTarget && onBackIsSucceed).assertEqual(true);
+            console.info(logF + ' isSucceed : ' + (isSucceedTarget && onBackIsSucceed));
+            done();
+          }, 3000);
+        }, 2000)
+      }, 6000);
     });
 
-  /**
-  * @tc.number: Dfx_0070
-  * @tc.name: Callback. Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times
-  * @tc.desc: Callback. Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times
-  */  
+    /**
+    * @tc.number: Dfx_0070
+    * @tc.name: Callback. Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times
+    * @tc.desc: Callback. Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times
+    */
     it('Dfx_0070', 4, async function (done) {
       const caseName = 'Dfx_0070';
       const logF = LOG + caseName;
@@ -296,11 +277,11 @@ export default function PerformanceTest(abilityContext) {
       }, 15000);
     });
 
-  /**
-  * @tc.number: Dfx_0080
-  * @tc.name: Promise. Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times
-  * @tc.desc: Promise. Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times
-  */  
+    /**
+    * @tc.number: Dfx_0080
+    * @tc.name: Promise. Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times
+    * @tc.desc: Promise. Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times
+    */
     it('Dfx_0080', 4, async function (done) {
       const caseName = 'Dfx_0080';
       const logF = LOG + caseName;
@@ -319,11 +300,11 @@ export default function PerformanceTest(abilityContext) {
       }, 15000);
     });
 
-  /**
-  * @tc.number: Dfx_0090
-  * @tc.name: Callback. Call the barrier free API: "getwindow()" to obtain the information of the active window node, and call it repeatedly for 100 times
-  * @tc.desc: Callback. Call the barrier free API: "getwindow()" to obtain the information of the active window node, and call it repeatedly for 100 times
-  */  
+    /**
+    * @tc.number: Dfx_0090
+    * @tc.name: Callback. Call the barrier free API: "getwindow()" to obtain the information of the active window node, and call it repeatedly for 100 times
+    * @tc.desc: Callback. Call the barrier free API: "getwindow()" to obtain the information of the active window node, and call it repeatedly for 100 times
+    */
     it('Dfx_0090', 4, async function (done) {
       const caseName = 'Dfx_0090';
       const logF = LOG + caseName;
@@ -342,11 +323,11 @@ export default function PerformanceTest(abilityContext) {
       }, 15000);
     });
 
-  /**
-  * @tc.number: Dfx_0100
-  * @tc.name: Promise. Call the barrier free API: "getwindow()" to obtain the information of the active window node, and call it repeatedly for 100 times
-  * @tc.desc: Promise. Call the barrier free API: "getwindow()" to obtain the information of the active window node, and call it repeatedly for 100 times
-  */  
+    /**
+    * @tc.number: Dfx_0100
+    * @tc.name: Promise. Call the barrier free API: "getwindow()" to obtain the information of the active window node, and call it repeatedly for 100 times
+    * @tc.desc: Promise. Call the barrier free API: "getwindow()" to obtain the information of the active window node, and call it repeatedly for 100 times
+    */
     it('Dfx_0100', 4, async function (done) {
       const caseName = 'Dfx_0100';
       const logF = LOG + caseName;
@@ -365,11 +346,11 @@ export default function PerformanceTest(abilityContext) {
       }, 15000);
     });
 
-  /**
-  * @tc.number: Dfx_0130
-  * @tc.name: Callback. Call the accessibility API: "disableability()" close the auxiliary application and call it for 100 times
-  * @tc.desc: Callback. Call the accessibility API: "disableability()" close the auxiliary application and call it for 100 times
-  */  
+    /**
+    * @tc.number: Dfx_0130
+    * @tc.name: Callback. Call the accessibility API: "disableability()" close the auxiliary application and call it for 100 times
+    * @tc.desc: Callback. Call the accessibility API: "disableability()" close the auxiliary application and call it for 100 times
+    */
     it('Dfx_0130', 4, async function (done) {
       const caseName = 'Dfx_0130';
       const logF = LOG + caseName;
@@ -404,11 +385,11 @@ export default function PerformanceTest(abilityContext) {
         }
       }, 50);
     });
-  /**
-  * @tc.number: Dfx_0140
-  * @tc.name: Promise. Call the accessibility API: "disableability()" close the auxiliary application and call it for 100 times
-  * @tc.desc: Promise. Call the accessibility API: "disableability()" close the auxiliary application and call it for 100 times
-  */  
+    /**
+    * @tc.number: Dfx_0140
+    * @tc.name: Promise. Call the accessibility API: "disableability()" close the auxiliary application and call it for 100 times
+    * @tc.desc: Promise. Call the accessibility API: "disableability()" close the auxiliary application and call it for 100 times
+    */
     it('Dfx_0140', 4, async function (done) {
       const caseName = 'Dfx_0140';
       const logF = LOG + caseName;
@@ -442,11 +423,11 @@ export default function PerformanceTest(abilityContext) {
       }, 50);
     });
 
-  /**
-  * @tc.number: Dfx_0150
-  * @tc.name: Call the accessibility api: "enableability()" to start the accessibility auxiliary application, call the accessibility api: "disableability()" to close the auxiliary application, and call it repeatedly for 100 times
-  * @tc.desc: Call the accessibility api: "enableability()" to start the accessibility auxiliary application, call the accessibility api: "disableability()" to close the auxiliary application, and call it repeatedly for 100 times
-  */  
+    /**
+    * @tc.number: Dfx_0150
+    * @tc.name: Call the accessibility api: "enableability()" to start the accessibility auxiliary application, call the accessibility api: "disableability()" to close the auxiliary application, and call it repeatedly for 100 times
+    * @tc.desc: Call the accessibility api: "enableability()" to start the accessibility auxiliary application, call the accessibility api: "disableability()" to close the auxiliary application, and call it repeatedly for 100 times
+    */
     it('Dfx_0150', 4, async function (done) {
       const caseName = 'Dfx_0150';
       const logF = LOG + caseName;
@@ -481,11 +462,11 @@ export default function PerformanceTest(abilityContext) {
         done();
       }, 15000);
     });
-  /**
-  * @tc.number: Dfx_0160
-  * @tc.name: Call the accessibility api: "enableability()" to start the accessibility auxiliary application, call the accessibility api: "disableability()" to close the auxiliary application, and call it repeatedly for 100 times
-  * @tc.desc: Call the accessibility api: "enableability()" to start the accessibility auxiliary application, call the accessibility api: "disableability()" to close the auxiliary application, and call it repeatedly for 100 times
-  */  
+    /**
+    * @tc.number: Dfx_0160
+    * @tc.name: Call the accessibility api: "enableability()" to start the accessibility auxiliary application, call the accessibility api: "disableability()" to close the auxiliary application, and call it repeatedly for 100 times
+    * @tc.desc: Call the accessibility api: "enableability()" to start the accessibility auxiliary application, call the accessibility api: "disableability()" to close the auxiliary application, and call it repeatedly for 100 times
+    */
     it('Dfx_0160', 4, async function (done) {
       const caseName = 'Dfx_0160';
       const logF = LOG + caseName;
@@ -518,11 +499,11 @@ export default function PerformanceTest(abilityContext) {
         done();
       }, 15000);
     });
-  /**
-  * @tc.number: Dfx_0180
-  * @tc.name: Call the barrier free API: "gestureinject()" set and send the click gesture coordinate point and path, and execute the cycle 100 times.
-  * @tc.desc: Call the barrier free API: "gestureinject()" set and send the click gesture coordinate point and path, and execute the cycle 100 times.
-  */  
+    /**
+    * @tc.number: Dfx_0180
+    * @tc.name: Call the barrier free API: "gestureinject()" set and send the click gesture coordinate point and path, and execute the cycle 100 times.
+    * @tc.desc: Call the barrier free API: "gestureinject()" set and send the click gesture coordinate point and path, and execute the cycle 100 times.
+    */
     it('Dfx_0180', 4, async function (done) {
       const caseName = 'Dfx_0180';
       const logF = LOG + caseName;
@@ -540,11 +521,11 @@ export default function PerformanceTest(abilityContext) {
         done();
       }, 15000);
     });
-  /**
-  * @tc.number: Dfx_0190
-  * @tc.name: Call the barrier free API: "gestureinject()" set and send the click gesture coordinate point and path, and execute the cycle 100 times.
-  * @tc.desc: Call the barrier free API: "gestureinject()" set and send the click gesture coordinate point and path, and execute the cycle 100 times.
-  */  
+    /**
+    * @tc.number: Dfx_0190
+    * @tc.name: Call the barrier free API: "gestureinject()" set and send the click gesture coordinate point and path, and execute the cycle 100 times.
+    * @tc.desc: Call the barrier free API: "gestureinject()" set and send the click gesture coordinate point and path, and execute the cycle 100 times.
+    */
     it('Dfx_0190', 4, async function (done) {
       const caseName = 'Dfx_0190';
       const logF = LOG + caseName;
@@ -562,11 +543,11 @@ export default function PerformanceTest(abilityContext) {
         done();
       }, 15000);
     });
-  /**
-  * @tc.number: Dfx_0110
-  * @tc.name: Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times.
-  * @tc.desc: Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times.
-  */  
+    /**
+    * @tc.number: Dfx_0110
+    * @tc.name: Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times.
+    * @tc.desc: Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times.
+    */
     it('Dfx_0110', 4, async function (done) {
       const caseName = 'Dfx_0110';
       const logF = LOG + caseName;
@@ -589,11 +570,11 @@ export default function PerformanceTest(abilityContext) {
         }, 1000);
       }, 1000);
     });
-  /**
-  * @tc.number: Dfx_0120
-  * @tc.name: Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times.
-  * @tc.desc: Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times.
-  */  
+    /**
+    * @tc.number: Dfx_0120
+    * @tc.name: Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times.
+    * @tc.desc: Call the barrier free API: "getwindowrootelement()" to obtain the barrier free root node information, and call it repeatedly for 100 times.
+    */
     it('Dfx_0120', 4, async function (done) {
       const caseName = 'Dfx_0120';
       const logF = LOG + caseName;
@@ -611,11 +592,11 @@ export default function PerformanceTest(abilityContext) {
         done();
       }, 15000);
     });
-  /**
-  * @tc.number: Dfx_0170
-  * @tc.name: Call the accessibility API: "performaction()" specify the action actionname= "accessibilityfocus", and execute the control operation 100 times.
-  * @tc.desc: Call the accessibility API: "performaction()" specify the action actionname= "accessibilityfocus", and execute the control operation 100 times.
-  */  
+    /**
+    * @tc.number: Dfx_0170
+    * @tc.name: Call the accessibility API: "performaction()" specify the action actionname= "accessibilityfocus", and execute the control operation 100 times.
+    * @tc.desc: Call the accessibility API: "performaction()" specify the action actionname= "accessibilityfocus", and execute the control operation 100 times.
+    */
     it('Dfx_0170', 4, async function (done) {
       const caseName = 'Dfx_0170';
       const logF = LOG + caseName;

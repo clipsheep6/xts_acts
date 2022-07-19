@@ -794,8 +794,8 @@ export default function abilityTest(abilityContext) {
   })
 
   function enableAbility(logTag, bundleName) {
-    config.enableAbility(bundleName, ['retrieve']).then((data) => {
-      console.info(logTag + 'enableAbility success. data: ' + JSON.stringify(data))
+    config.enableAbility(bundleName, ['retrieve']).then(() => {
+      console.info(logTag + 'enableAbility success.')
     }).catch((error) => {
       console.info(logTag + 'enableAbility failed. Cause: ' + JSON.stringify(error))
       return
@@ -803,8 +803,8 @@ export default function abilityTest(abilityContext) {
   }
 
   function disableAbility(logTag, bundleName) {
-    config.disableAbility(bundleName).then((data) => {
-      console.info(logTag + 'disableAbility success. data: ' + JSON.stringify(data))
+    config.disableAbility(bundleName).then(() => {
+      console.info(logTag + 'disableAbility success.')
     }).catch((error) => {
       console.info(logTag + 'disableAbility failed. Cause: ' + JSON.stringify(error))
       return

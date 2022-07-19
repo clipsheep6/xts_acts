@@ -59,8 +59,8 @@ export default function abilityElementTest(abilityContext) {
             }
         });
 
-        config.enableAbility('com.example.myapplication/ServiceExtAbility', ["retrieve"]).then((result) => {
-          console.info('ActsAccessibleEventElementTest beforeAll enableAbility: result = ' + result);
+        config.enableAbility('com.example.myapplication/ServiceExtAbility', ["retrieve"]).then(() => {
+          console.info('ActsAccessibleEventElementTest beforeAll enableAbility');
         });
         setTimeout(done, 3000);
       })
@@ -69,8 +69,8 @@ export default function abilityElementTest(abilityContext) {
         console.info('ActsAccessibleEventElementTest: afterAll');
         commonEvent.unsubscribe(subScriber);
 
-        config.disableAbility("com.example.myapplication/ServiceExtAbility").then((result) => {
-          console.info('ActsAccessibleEventElementTest afterAll disableAbility: result = ' + result);
+        config.disableAbility("com.example.myapplication/ServiceExtAbility").then(() => {
+          console.info('ActsAccessibleEventElementTest afterAll disableAbility');
         });
         done();
       })

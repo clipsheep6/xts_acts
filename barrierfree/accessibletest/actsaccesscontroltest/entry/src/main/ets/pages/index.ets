@@ -34,8 +34,8 @@ const TIME_OUT = 1000
 
 function disableAbility(logTag, bundleName) {
   config.disableAbility(bundleName)
-    .then((data) => {
-      console.info(logTag + 'disableAbility success. data: ' + JSON.stringify(data))
+    .then(() => {
+      console.info(logTag + 'disableAbility success.')
     })
     .catch((error) => {
       console.info(logTag + 'disableAbility failed. Cause: ' + JSON.stringify(error))
@@ -179,8 +179,8 @@ struct Index {
 
   getAbility(logTag, capability) {
     config.enableAbility(ASSIST_BUNDLE_NAME, capability)
-      .then((data) => {
-        console.info(logTag + 'enableAbility success. data: ' + JSON.stringify(data))
+      .then(() => {
+        console.info(logTag + 'enableAbility success.')
       })
       .catch((error) => {
         console.info(logTag + 'enableAbility failed. Cause: ' + JSON.stringify(error))
@@ -284,7 +284,7 @@ struct Index {
       case 'AccessControlAccessibility':
         this.accessibilityIsOn = res
         if(this.accessibilityIsOn){
-          console.error(LOG_PREFIX + ' Accessibility start success:' + this.caseCode)
+          console.info(LOG_PREFIX + ' Accessibility start success:' + this.caseCode)
           let commonEventPublishData = { data: this.caseCode }
           publishEvent(ASSIST_EVENT_NAME, commonEventPublishData)
         }
@@ -304,7 +304,7 @@ struct Index {
         }
       })
       .catch((error) => {
-        console.error(logTag + ' getAbilityLists error ' + JSON.stringify(error))
+        console.info(logTag + ' getAbilityLists error ' + JSON.stringify(error))
         return
       })
   }
@@ -316,8 +316,8 @@ struct Index {
           this.message = '请授权辅助应用能力：' + JSON.stringify(res[0].capabilities)
           this.fontColor = Color.Green
           config.enableAbility(ASSIST_BUNDLE_NAME, capability)
-            .then((data) => {
-              console.info(logTag + 'enableAbility success. data: ' + JSON.stringify(data))
+            .then(() => {
+              console.info(logTag + 'enableAbility success.')
             })
             .catch((error) => {
               console.info(logTag + 'enableAbility failed. Cause: ' + JSON.stringify(error))
@@ -345,7 +345,7 @@ struct Index {
           }
         })
         .catch((error) => {
-          console.error(logTag + ' getAbilityLists error ' + JSON.stringify(error))
+          console.info(logTag + ' getAbilityLists error ' + JSON.stringify(error))
           return
         })
     }, TIME_OUT)
@@ -455,7 +455,7 @@ struct Index {
 
   AccessControl_0081(caseCode) {
     let logTag = LOG_PREFIX + ' AccessControl_0081 '
-    console.error(logTag + ' send event ')
+    console.info(logTag + ' send event ')
     let commonEventPublishData = { data: caseCode }
     publishEvent(ASSIST_EVENT_NAME, commonEventPublishData)
   }

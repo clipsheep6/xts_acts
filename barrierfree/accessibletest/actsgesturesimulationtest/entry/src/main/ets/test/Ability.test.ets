@@ -187,8 +187,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0090'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0090 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -202,8 +204,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0100'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0100 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -217,8 +221,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0110'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0110 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -232,8 +238,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0120'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0120 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -247,8 +255,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0130'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0130 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -262,8 +272,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0140'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0140 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -277,8 +289,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0150'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0150 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -292,8 +306,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0160'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0160 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -307,8 +323,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0170'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0170 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -322,8 +340,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0180'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0180 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -337,8 +357,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0190'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0190 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -352,8 +374,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0200'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0200 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -367,8 +391,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0210'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0210 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -382,8 +408,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0220'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0220 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -397,8 +425,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0230'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0230 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -412,10 +442,12 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0240'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0240 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
         disableAbility(LOG_PREFIX, ASSIST_BUNDLE_NAME)
         setTimeout(()=>enableAbility(LOG_PREFIX, ASSIST_BUNDLE_NAME, ['gesture']), 600)
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -429,8 +461,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0250'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0250 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -444,8 +478,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0260'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0260 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -459,8 +495,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0270'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0270 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -474,8 +512,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0280'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0280 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -489,8 +529,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0290'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0290 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -504,8 +546,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0300'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0300 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -519,8 +563,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0310'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0310 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -534,8 +580,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0320'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0320 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -549,8 +597,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0330'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0330 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -564,8 +614,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0340'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0340 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -579,8 +631,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0350'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0350 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -594,8 +648,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0360'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0360 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -609,8 +665,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0370'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0370 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -624,8 +682,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0380'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0380 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -639,8 +699,10 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0390'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0390 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -654,10 +716,12 @@ export default function abilityTest(abilityContext) {
       var caseCode = 'GestureSimulation_0400'
       publish(caseCode)
       setTimeout(()=>{
+        let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
-        console.info(LOG_PREFIX + 'GestureSimulation_0400 assData: ' + assData + ' expect assertTrue')
+        console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
         disableAbility(LOG_PREFIX, ASSIST_BUNDLE_NAME)
         setTimeout(()=>enableAbility(LOG_PREFIX, ASSIST_BUNDLE_NAME, ['retrieve']), 600)
+        expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
       }, TIME_OUT)
@@ -696,8 +760,8 @@ export default function abilityTest(abilityContext) {
   })
 
    function enableAbility(logTag, bundleName, capability) {
-     config.enableAbility(bundleName, capability).then((data) => {
-      console.info(logTag + 'enableAbility success. data: ' + JSON.stringify(data))
+     config.enableAbility(bundleName, capability).then(() => {
+      console.info(logTag + 'enableAbility success.')
     }).catch((error) => {
       console.info(logTag + 'enableAbility failed. Cause: ' + JSON.stringify(error))
       return
@@ -705,8 +769,8 @@ export default function abilityTest(abilityContext) {
   }
 
    function disableAbility(logTag, bundleName) {
-     config.disableAbility(bundleName).then((data) => {
-      console.info(logTag + 'disableAbility success. data: ' + JSON.stringify(data))
+     config.disableAbility(bundleName).then(() => {
+      console.info(logTag + 'disableAbility success.')
     }).catch((error) => {
       console.info(logTag + 'disableAbility failed. Cause: ' + JSON.stringify(error))
       return

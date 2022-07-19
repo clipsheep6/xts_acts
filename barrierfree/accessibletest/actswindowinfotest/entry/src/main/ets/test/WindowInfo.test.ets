@@ -73,12 +73,12 @@ export default function WindowInfoTest(abilityContext) {
           backList.push(data.data)
         }
       });
-      config.enableAbility(bundleName, CapabilityArray).then((result) => {
-        console.info(LOG + 'ActsWindowinfoTest beforeAll enableAbility: result = ' + result);
+      config.enableAbility(bundleName, CapabilityArray).then(() => {
+        console.info(LOG + 'ActsWindowinfoTest beforeAll enableAbility ' );
       });
 
-      config.enableAbility(bundleNameAllD, CapabilityArray).then((result) => {
-        console.info(LOG + 'ActsWindowinfoTest beforeAll enableAbility: result = ' + result);
+      config.enableAbility(bundleNameAllD, CapabilityArray).then(() => {
+        console.info(LOG + 'ActsWindowinfoTest beforeAll enableAbility ' );
       });
       setTimeout(done(), 3000);
     });
@@ -87,11 +87,11 @@ export default function WindowInfoTest(abilityContext) {
       setTimeout(function () {
         console.info(LOG + 'ActsWindowinfoTest: afterAll');
         commonEvent.unsubscribe(subScriber);
-        config.disableAbility(bundleName).then((result) => {
-          console.info(LOG + 'ActsWindowinfoTest afterAll disableAbility: result = ' + result);
+        config.disableAbility(bundleName).then(() => {
+          console.info(LOG + 'ActsWindowinfoTest afterAll disableAbility: ' );
         });
-        config.disableAbility(bundleNameAllD).then((result) => {
-          console.info(LOG + 'ActsWindowinfoTest afterAll disableAbility: result = ' + result);
+        config.disableAbility(bundleNameAllD).then(() => {
+          console.info(LOG + 'ActsWindowinfoTest afterAll disableAbility: '  );
         });
         done();
       }, 20000);

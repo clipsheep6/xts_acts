@@ -54,9 +54,8 @@ export default function abilityTouchTest(abilityContext) {
         });
 
         config.enableAbility('com.example.myapplication/ServiceExtAbility', 
-                  ["retrieve", "touchGuide", "gesture"]).then((result) => {
-          console.info('ActsAccessibleTouchEventTest beforeAll enableAbility: result = ' + result);
-          this.isEnable = true;
+                  ["retrieve", "touchGuide", "gesture"]).then(() => {
+          console.info('ActsAccessibleTouchEventTest beforeAll enableAbility');
         });
         setTimeout(done, 3000);
       })
@@ -65,9 +64,8 @@ export default function abilityTouchTest(abilityContext) {
         console.info('ActsAccessibleTouchEventTest: afterAll');
         commonEvent.unsubscribe(subScriber);
 
-        config.disableAbility("com.example.myapplication/ServiceExtAbility").then((result) => {
-          console.info('ActsAccessibleTouchEventTest afterAll disableAbility: result = ' + result);
-          this.isEnable = false;
+        config.disableAbility("com.example.myapplication/ServiceExtAbility").then(() => {
+          console.info('ActsAccessibleTouchEventTest afterAll disableAbility');
         });
         done();
       })

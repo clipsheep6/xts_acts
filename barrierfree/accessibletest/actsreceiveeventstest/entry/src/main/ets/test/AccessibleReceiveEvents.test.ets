@@ -33,22 +33,22 @@ const setExtentionEnabled = async (logTag, name) => {
     default:
       break;
   }
-  await config.enableAbility(name, capability, (err, res) => {
+  await config.enableAbility(name, capability, (err) => {
     if (err?.code) {
       console.info(logTag + " extentionEnabled err=" + JSON.stringify(err));
     } else {
-      console.info(logTag + " extentionEnabled res=" + res);
+      console.info(logTag + " extentionEnabled success");
     }
   });
 }
 
 const setExtentionDisabled = async (logTag, bundleNameArr) => {
   for (var i = 0; i < bundleNameArr.length; i++) {
-    await config.disableAbility(bundleNameArr[i], (err, res) => {
+    await config.disableAbility(bundleNameArr[i], (err) => {
       if (err?.code) {
         console.info(logTag + " extentionDisabled err=" + JSON.stringify(err));
       } else {
-        console.info(logTag + " extentionDisabled res=" + res);
+        console.info(logTag + " extentionDisabled success");
       }
     });
   }
@@ -110,8 +110,8 @@ export default function AccessibleReceiveEventsTest(abilityContext) {
         }
       });
       config.enableAbility('com.example.myapplicationxtsd/ServiceExtAbilityAllAbility',
-        ['retrieve', 'keyEventObserver', 'gesture']).then((result) => {
-        console.info('AccessibleReceiveEventsTest beforeAll enableAbility: result = ' + result);
+        ['retrieve', 'keyEventObserver', 'gesture']).then(() => {
+        console.info('AccessibleReceiveEventsTest beforeAll enableAbility success' );
         this.isEnable = true;
       });
       setTimeout(done(), START_TIMEOUT);
@@ -120,12 +120,12 @@ export default function AccessibleReceiveEventsTest(abilityContext) {
     afterAll(async function (done) {
       console.info('AccessibleReceiveEventsTest: afterAll');
       commonEvent.unsubscribe(subScriber);
-      config.disableAbility("com.example.myapplicationxtsd/ServiceExtAbilityAllAbility").then((result) => {
-        console.info('AccessibleReceiveEventsTest afterAll disableAbility: result = ' + result);
+      config.disableAbility("com.example.myapplicationxtsd/ServiceExtAbilityAllAbility").then(() => {
+        console.info('AccessibleReceiveEventsTest afterAll disableAbility success' );
         this.isEnable = false;
       });
-      config.disableAbility("com.example.accessibilityall2.hmservice/ServiceExtAbilityAllAbility2").then((result) => {
-        console.info('AccessibleReceiveEventsTest afterAll disableAbility: result = ' + result);
+      config.disableAbility("com.example.accessibilityall2.hmservice/ServiceExtAbilityAllAbility2").then(() => {
+        console.info('AccessibleReceiveEventsTest afterAll disableAbility success' );
         this.isEnable = false;
       });
       done();

@@ -322,7 +322,7 @@ class ServiceExtAbilityFocusQuery extends AccessibilityExtensionAbility {
                 case "FocusQuery_0312":
                     excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
                     setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'parentId');
+                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'checked');
                     }, 1000);
                     break;
                 case "FocusQuery_0313":

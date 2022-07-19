@@ -318,11 +318,11 @@ export default function abilityTest(abilityContext) {
 
   function disableAbility(logTag, bundleName) {
     config.disableAbility(bundleName)
-      .then((data) => {
-        console.error(logTag + 'disableAbility success. data: ' + JSON.stringify(data))
+      .then(() => {
+        console.info(logTag + 'disableAbility success.')
       })
       .catch((error) => {
-        console.error(logTag + 'disableAbility failed. Cause: ' + JSON.stringify(error))
+        console.info(logTag + 'disableAbility failed. Cause: ' + JSON.stringify(error))
         return
       })
   }

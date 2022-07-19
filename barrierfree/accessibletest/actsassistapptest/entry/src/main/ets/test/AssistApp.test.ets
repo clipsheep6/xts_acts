@@ -39,41 +39,20 @@ const excuteCase = async (caseNamePara) => {
     data: caseNamePara + "_on_assist_change_success"
   }
   commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
-
 }
 
 const setExtentionEnabled = (logTag, bundleNameAndabilityName) => {
-  config.enableAbility(bundleNameAndabilityName, CapabilityArray, (err, res) => {
-    if (err?.code) {
-      console.info(logTag + "extentionEnabled err=" + JSON.stringify(err));
-    } else {
-      console.info(logTag + "extentionEnabled res=" + res);
-    }
+  config.enableAbility(bundleNameAndabilityName, CapabilityArray).then(() => {
+    console.info(logTag  + bundleNameAndabilityName + "  setExtentionDfxEnabled ");
   });
 }
 
 const setExtentionDisabled = (logTag, bundleNameAndabilityName) => {
-  config.disableAbility(bundleNameAndabilityName, (err, res) => {
-    if (err?.code) {
-      console.info(logTag + "extentionDisabled err=" + JSON.stringify(err));
-    } else {
-      console.info(logTag + "extentionDisabled res=" + res);
-    }
+  config.disableAbility(bundleNameAndabilityName).then(() => {
+    console.info(logTag  + bundleNameAndabilityName + " extentionDisabled ");
   });
 }
 
-function expectSetExtentionDisabled(logTag, bundleNameAndabilityName) {
-  config.disableAbility(bundleNameAndabilityName, (err, res) => {
-    if (err?.code) {
-      console.info(logTag + "extentionDisabled err=" + JSON.stringify(err));
-      return false;
-    } else {
-      console.info(logTag + "extentionDisabled res=" + res);
-      return !res;
-    }
-  });
-  return false;
-}
 
 export default function AssistAppTest(abilityContext) {
   describe('ActsAssistAppTest', function () {
@@ -135,16 +114,21 @@ export default function AssistAppTest(abilityContext) {
     it('AssistApp_0020', 1, async function (done) {
       const caseName = "AssistApp_0020";
       const logF = logTag + caseName;
+      let isSucceed = false;
       setTimeout(() => {
         setExtentionEnabled(logF, AssistAppA_bundleNameAndAbilityName)
         setTimeout(() => {
-          let flag = expectSetExtentionDisabled(logF, AssistAppA_bundleNameAndAbilityName)
+          config.disableAbility(AssistAppA_bundleNameAndAbilityName).then(() => {
+            console.info(logTag + caseName + AssistAppA_bundleNameAndAbilityName + " extentionDisabled ");
+            isSucceed = true;
+          }).catch((err) => {
+            isSucceed = false;
+          });
           setTimeout(() => {
-            let isSucceed = !flag;
             expect(isSucceed).assertEqual(true);
             console.info(logF + ' isSucceed : ' + isSucceed);
             done();
-          }, 2000);
+          }, 3000);
         }, 2000);
       }, 2000);
     });
@@ -220,19 +204,31 @@ export default function AssistAppTest(abilityContext) {
     it('AssistApp_0050', 1, async function (done) {
       const caseName = "AssistApp_0050";
       const logF = logTag + caseName;
+      let flagA = false
+      let flagB = false
       setTimeout(() => {
         setExtentionEnabled(logF, AssistAppA_bundleNameAndAbilityName)
         setExtentionEnabled(logF, AssistAppB_bundleNameAndAbilityName)
         setTimeout(() => {
           setTimeout(() => {
-            let flagA = expectSetExtentionDisabled(logF, AssistAppA_bundleNameAndAbilityName)
-            let flagB = expectSetExtentionDisabled(logF, AssistAppB_bundleNameAndAbilityName)
+            config.disableAbility(AssistAppA_bundleNameAndAbilityName).then(() => {
+              console.info(logTag + caseName + AssistAppA_bundleNameAndAbilityName + " extentionDisabled ");
+              flagA = true;
+            }).catch((err) => {
+              flagA = false;
+            });
+            config.disableAbility(AssistAppB_bundleNameAndAbilityName).then(() => {
+              console.info(logTag + caseName + AssistAppB_bundleNameAndAbilityName + " extentionDisabled ");
+              flagB = true;
+            }).catch((err) => {
+              flagB = false;
+            });
             setTimeout(() => {
-              let isSucceed = (!flagA) && (!flagB);
+              let isSucceed = (flagA) && (flagB);
               expect(isSucceed).assertEqual(true);
               console.info(logF + ' isSucceed : ' + isSucceed);
               done();
-            }, 2000);
+            }, 4000);
           }, 5000);
         }, 2000);
       }, 2000);
@@ -282,20 +278,18 @@ export default function AssistAppTest(abilityContext) {
       setTimeout(() => {
         setExtentionDisabled(logF, AssistAppA_bundleNameAndAbilityName)
         setTimeout(() => {
-          config.disableAbility(AssistAppA_bundleNameAndAbilityName, (err, res) => {
-            if (err?.code) {
-              console.info(logF + "extentionDisabled2 err=" + JSON.stringify(err));
-              isSucceed = false;
-            } else {
-              console.info(logF + "extentionDisabled2 res=" + JSON.stringify(res));
-              isSucceed = !res;
-            }
+          config.disableAbility(AssistAppA_bundleNameAndAbilityName).then(() => {
+            console.info(logF + caseName + AssistAppA_bundleNameAndAbilityName + " extentionDisabled2 ");
+            isSucceed = false;
+          }).catch((err) => {
+            console.info(logF + caseName + AssistAppA_bundleNameAndAbilityName + " extentionDisabled2 err=" +JSON.stringify(err));
+            isSucceed = true;
           });
           setTimeout(() => {
             expect(isSucceed).assertEqual(true);
             console.info(logF + ' isSucceed : ' + isSucceed);
             done()
-          }, 3000)
+          }, 4000)
         }, 2000);
       }, 3000);
     });

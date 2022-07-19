@@ -89,6 +89,7 @@ struct Index {
             this.pathInfoArray[this.pathInfoArray.length-1].commands += `L${x} ${y}`
             console.info(LOG_PREFIX + ' paths: ' + JSON.stringify(this.paths))
             this.paths.length = 0
+	    this.publishEvent()
             break
         }
       })

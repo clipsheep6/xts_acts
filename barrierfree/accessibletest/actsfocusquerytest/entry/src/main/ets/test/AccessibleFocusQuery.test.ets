@@ -29,22 +29,22 @@ const setExtentionEnabled = async (logTag, name) => {
     default:
       break;
   }
-  await config.enableAbility(name, capability, (err, res) => {
+  await config.enableAbility(name, capability, (err) => {
     if (err?.code) {
       console.info(logTag + " extentionEnabled err=" + JSON.stringify(err));
     } else {
-      console.info(logTag + " extentionEnabled res=" + res);
+      console.info(logTag + " extentionEnabled success");
     }
   });
 }
 
 const setExtentionDisabled = (logTag, bundleNameArr) => {
   for (var i = 0; i < bundleNameArr.length; i++) {
-    config.disableAbility(bundleNameArr[i], (err, res) => {
+    config.disableAbility(bundleNameArr[i], (err) => {
       if (err?.code) {
         console.info(logTag + " extentionDisabled err=" + JSON.stringify(err));
       } else {
-        console.info(logTag + " extentionDisabled res=" + res);
+        console.info(logTag + " extentionDisabled success");
       }
     });
   }
@@ -98,8 +98,8 @@ export default function AccessibleFocusQueryTest(abilityContext) {
         }
       });
       config.enableAbility('com.example.myapplicationxtsd/ServiceExtAbilityFocusQuery',
-        ['retrieve', 'keyEventObserver', 'gesture']).then((result) => {
-        console.info('ActsAccessibleFocusQueryTest beforeAll enableAbility: result = ' + result);
+        ['retrieve', 'keyEventObserver', 'gesture']).then(() => {
+        console.info('ActsAccessibleFocusQueryTest beforeAll enableAbility success ');
         this.isEnable = true;
       });
       setTimeout(done(), START_TIMEOUT);
@@ -108,8 +108,8 @@ export default function AccessibleFocusQueryTest(abilityContext) {
     afterAll(async function (done) {
       console.info('AccessibleFocusQueryTest: afterAll');
       commonEvent.unsubscribe(subScriber);
-      config.disableAbility("com.example.myapplication/ServiceExtAbilityFocusQuery").then((result) => {
-        console.info('ActsAccessibleFocusQueryTest afterAll disableAbility: result = ' + result);
+      config.disableAbility("com.example.myapplication/ServiceExtAbilityFocusQuery").then(() => {
+        console.info('ActsAccessibleFocusQueryTest afterAll disableAbility success');
         this.isEnable = false;
       });
       done();
@@ -799,8 +799,8 @@ export default function AccessibleFocusQueryTest(abilityContext) {
     })
     /**
      * @tc.number: FocusQuery_0312
-     * @tc.name: getFocusElement() then attributeValue("parentId") in the call back mode for accessibilityFocus.
-     * @tc.desc: getFocusElement() then attributeValue("parentId") in the call back mode for accessibilityFocus.
+     * @tc.name: getFocusElement() then attributeValue("checked") in the call back mode for accessibilityFocus.
+     * @tc.desc: getFocusElement() then attributeValue("checked") in the call back mode for accessibilityFocus.
      */
     it('FocusQuery_0312', 1, async function (done) {
       caseName = "FocusQuery_0312";

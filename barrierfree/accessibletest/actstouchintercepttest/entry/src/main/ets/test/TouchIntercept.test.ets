@@ -68,11 +68,11 @@ export default function TouchInterceptTest(abilityContext) {
 
       });
 
-      config.enableAbility(bundleNameA, capabilityArray).then((result) => {
-        console.info(LOG + 'ActsTouchInterceptTest beforeAll enableAbility: result = ' + result);
+      config.enableAbility(bundleNameA, capabilityArray).then(() => {
+        console.info(LOG + 'ActsTouchInterceptTest beforeAll enableAbility ' );
       });
-      config.enableAbility(bundleNameB, capabilityArray).then((result) => {
-        console.info(LOG + 'ActsTouchInterceptTest beforeAll enableAbility: result = ' + result);
+      config.enableAbility(bundleNameB, capabilityArray).then(() => {
+        console.info(LOG + 'ActsTouchInterceptTest beforeAll enableAbility ' );
       });
       setTimeout(done(), 3000);
     });
@@ -81,11 +81,11 @@ export default function TouchInterceptTest(abilityContext) {
       setTimeout(function () {
         console.info(LOG + 'ActsTouchInterceptTest: afterAll');
         commonEvent.unsubscribe(subScriber);
-        config.disableAbility(bundleNameA).then((result) => {
-          console.info(LOG + 'ActsTouchInterceptTest afterAll disableAbility: result = ' + result);
+        config.disableAbility(bundleNameA).then(() => {
+          console.info(LOG + 'ActsTouchInterceptTest afterAll disableAbility ' );
         });
-        config.disableAbility(bundleNameB).then((result) => {
-          console.info(LOG + 'ActsTouchInterceptTest afterAll disableAbility: result = ' + result);
+        config.disableAbility(bundleNameB).then(() => {
+          console.info(LOG + 'ActsTouchInterceptTest afterAll disableAbility ' );
         });
         done();
       }, 10000);

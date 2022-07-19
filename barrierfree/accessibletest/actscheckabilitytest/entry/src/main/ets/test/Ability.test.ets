@@ -253,8 +253,8 @@ export default function abilityTest(abilityContext) {
 
   function enableAbility(logTag, bundleName, capability) {
     accessibilityConfig.enableAbility(bundleName, capability)
-      .then((data) => {
-        console.info(logTag + 'enableAbility success. data: ' + JSON.stringify(data))
+      .then(() => {
+        console.info(logTag + 'enableAbility success.')
       })
       .catch((error) => {
         console.info(logTag + 'enableAbility failed. Cause: ' + JSON.stringify(error))
@@ -265,8 +265,8 @@ export default function abilityTest(abilityContext) {
   function disableAbility(logTag, bundleNameArr) {
     for (let bundleName of bundleNameArr) {
       accessibilityConfig.disableAbility(bundleName)
-        .then((data) => {
-          console.info(logTag + 'disableAbility success. data: ' + JSON.stringify(data))
+        .then(() => {
+          console.info(logTag + 'disableAbility success.')
         })
         .catch((error) => {
           console.info(logTag + 'disableAbility failed. Cause: ' + JSON.stringify(error))
