@@ -128,10 +128,10 @@ export default {
         this.showPropTrue = this.$element("showPropTrue").getInspector()
         this.showPropFalse = this.$element("showPropFalse").getInspector()
         this.showPropNone = this.$element("showPropNone").getInspector()
-        this.pickerViewViewText = this.$element("pickerViewText").getInspector()
-        this.pickerViewViewDate = this.$element("pickerViewDate").getInspector()
-        this.pickerViewViewTime = this.$element("pickerViewTime").getInspector()
-        this.pickerViewViewDatetime = this.$element("pickerViewDatetime").getInspector()
-        this.pickerViewViewMultiText = this.$element("pickerViewMultiText").getInspector()
+        this.pickerViewText = this.$element("pickerViewText").getInspector()
+        this.pickerViewDate = this.$element("pickerViewDate").getInspector()
+        this.pickerViewTime = this.$element("pickerViewTime").getInspector()
+        this.pickerViewDatetime = this.$element("pickerViewDatetime").getInspector()
+        this.pickerViewMultiText = this.$element("pickerViewMultiText").getInspector()
     }
 }
