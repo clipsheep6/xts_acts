@@ -25,6 +25,7 @@ group("netmanager_base") {
       "register:ActsRegisterTest",
       "socket:ActsSocketTest",
       "system_fetch:ActsSystemFetchTest",
+	   "system_fetch:ActsSystemFetchTest",
     ]
   }
 }
