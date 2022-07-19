@@ -72,9 +72,6 @@ export class ElementTest {
             case 'AccessibilityElementTest_attributeValue_asyncPromise_0300':
                 result = await this.executeAttributeValuePromise(caseName, 'pageId', 'number');
                 break;
-            case 'AccessibilityElementTest_attributeValue_asyncPromise_0400':
-                result = await this.executeAttributeValuePromise(caseName, 'parentId', 'number');
-                break;
             case 'AccessibilityElementTest_attributeValue_asyncPromise_0500':
                 result = await this.executeAttributeValuePromise(caseName, 'inspectorKey', 'string');
                 break;
@@ -308,9 +305,6 @@ export class ElementTest {
                 return;
             case 'AccessibilityElementTest_attributeValue_asyncCallback_0300':
                 await this.executeAttributeValueCallback(caseName, 'pageId', 'number');
-                return;
-            case 'AccessibilityElementTest_attributeValue_asyncCallback_0400':
-                await this.executeAttributeValueCallback(caseName, 'parentId', 'number');
                 return;
             case 'AccessibilityElementTest_attributeValue_asyncCallback_0500':
                 await this.executeAttributeValueCallback(caseName, 'inspectorKey', 'string');

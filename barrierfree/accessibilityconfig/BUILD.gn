@@ -14,18 +14,27 @@
 import("//test/xts/tools/build/suite.gni")
 
 ohos_js_hap_suite("ActsAccessibilityConfigTest") {
-  hap_profile = "./entry/src/main/config.json"
+  hap_profile = "entry/src/main/module.json"
   deps = [
-    ":hjs_demo_js_assets",
-    ":hjs_demo_resources",
+    ":accessibilityconfig_js_assets",
+    ":accessibilityconfig_resources",
   ]
-  certificate_profile = "./signature/openharmony_sx.p7b"
+  ets2abc = true
+  certificate_profile = "signature/openharmony_sx.p7b"
   hap_name = "ActsAccessibilityConfigTest"
 }
-ohos_js_assets("hjs_demo_js_assets") {
-  source_dir = "./entry/src/main/js/default"
+
+ohos_app_scope("accessibilityconfig_app_profile") {
+  app_profile = "AppScope/app.json"
+  sources = [ "AppScope/resources" ]
 }
-ohos_resources("hjs_demo_resources") {
-  sources = [ "./entry/src/main/js/resources" ]
-  hap_profile = "./entry/src/main/config.json"
+
+ohos_js_assets("accessibilityconfig_js_assets") {
+  source_dir = "entry/src/main/ets"
+}
+
+ohos_resources("accessibilityconfig_resources") {
+  sources = [ "entry/src/main/resources" ]
+  deps = [ ":accessibilityconfig_app_profile" ]
+  hap_profile = "entry/src/main/module.json"
 }

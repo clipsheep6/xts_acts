@@ -136,35 +136,6 @@ export default function abilityTest(abilityContext) {
             }
         })
 
-        /*
-         * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_0400
-         * @tc.name    AccessibilityElementTest_attributeValue_asyncPromise_0400
-         * @tc.desc    Test attributeValue() when input is 'parentId', should return a number type.
-         * @tc.size    SmallTest
-         * @tc.type    User
-         */
-        it('AccessibilityElementTest_attributeValue_asyncPromise_0400', 0, async function (done) {
-            let caseName = 'AccessibilityElementTest_attributeValue_asyncPromise_0400';
-            console.info(caseName + ' start');
-            if (isConnect) {
-                publishCaseExecute(caseName);
-
-                setTimeout(() => {
-                    if (caseResult != undefined) {
-                        expect(passStr).assertEqual(caseResult.data);
-                        expect(caseName).assertEqual(caseResult.parameters.case);
-                    } else {
-                        console.info(caseName + ': fail, for no caseResult');
-                        expect(null).assertFail();
-                    }
-                    done();
-                }, 2000);
-            } else {
-                console.error(caseName + ': extension not connected');
-                expect(null).assertFail();
-                done();
-            }
-        })
 
         /*
          * @tc.number  AccessibilityElementTest_attributeValue_asyncPromise_0500
@@ -2296,35 +2267,6 @@ export default function abilityTest(abilityContext) {
             }
         })
 
-        /*
-         * @tc.number  AccessibilityElementTest_attributeValue_asyncCallback_0400
-         * @tc.name    AccessibilityElementTest_attributeValue_asyncCallback_0400
-         * @tc.desc    Test attributeValue() when input is 'parentId', should return a number type.
-         * @tc.size    SmallTest
-         * @tc.type    User
-         */
-        it('AccessibilityElementTest_attributeValue_asyncCallback_0400', 0, async function (done) {
-            let caseName = 'AccessibilityElementTest_attributeValue_asyncCallback_0400';
-            console.info(caseName + ' start');
-            if (isConnect) {
-                publishCaseExecute(caseName);
-
-                setTimeout(() => {
-                    if (caseResult != undefined) {
-                        expect(passStr).assertEqual(caseResult.data);
-                        expect(caseName).assertEqual(caseResult.parameters.case);
-                    } else {
-                        console.info(caseName + ': fail, for no caseResult');
-                        expect(null).assertFail();
-                    }
-                    done();
-                }, 2000);
-            } else {
-                console.error(caseName + ': extension not connected');
-                expect(null).assertFail();
-                done();
-            }
-        })
 
         /*
          * @tc.number  AccessibilityElementTest_attributeValue_asyncCallback_0500
