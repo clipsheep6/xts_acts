@@ -412,11 +412,11 @@ describe('webgl1Test_webgl7', function() {
 		//initContext();
 		console.info("webgltest into blendColor");
 
-		gl.blendColor(0, 0.5, -1, 1);
+		gl.blendColor(0, 0.5, 0, 1);
 		const blendColorValue = gl.getParameter(gl.BLEND_COLOR);
 		console.info("blendColor --> getParameter: " + blendColorValue);
 
-		var blendColorArr = new Float32Array([0, 0.5, -1, 1]);
+		var blendColorArr = new Float32Array([0, 0.5, 0, 1]);
 
 		// expect(blendColorValue).assertEqual(blendColorArr);
 
@@ -439,11 +439,11 @@ describe('webgl1Test_webgl7', function() {
 		//initContext();
 		console.info("webgltest into blendColor");
 
-		gl.blendColor(1, 1, 1, -1);
+		gl.blendColor(1, 1, 1, 0.5);
 		const blendColorValue = gl.getParameter(gl.BLEND_COLOR);
 		console.info("blendColor --> getParameter: " + blendColorValue);
 
-		var blendColorArr = new Float32Array([1, 1, 1, -1]);
+		var blendColorArr = new Float32Array([1, 1, 1, 0.5]);
 
 		// expect(blendColorValue).assertEqual(blendColorArr);
 
