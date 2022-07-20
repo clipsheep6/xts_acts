@@ -23,7 +23,7 @@ group("communication") {
       "dsoftbus/rpc:ActsRpcJsTest",
       "wifi_p2p:ActsP2PJSTest",
       "wifi_standard:ActsWifiJSTest",
-      'nfc_Controller:ActsNFCJSTest',
+      "nfc_Controller:ActsNFCJSTest",
 	  
     ]
   } else {
