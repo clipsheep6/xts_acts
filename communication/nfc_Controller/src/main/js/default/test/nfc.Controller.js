@@ -32,7 +32,7 @@ function sleep(delay){
 
 describe('ACTS_nfccontroller', function () {
     beforeAll(function () {
-		console.info(beforeAll called);
+		console.info('beforeAll called');
 		if(controller.isNfcOpen()){
 			console.info("[nfc_js] test/enable3 nfc:" + controller.closeNfc());
 			sleep(3000);
@@ -62,7 +62,7 @@ describe('ACTS_nfccontroller', function () {
 		let nfcisavailable = controller.isNfcAvailable();
 		expect(nfcisAvailable).assertTrue();
 		console.info('[nfc_js] NfcAvailavle :' + JSON.stringify(nfcisAvailavle));
-	}
+	})
 	
 	/**
 	* @tc.number SUB_COMMUNACATION_NFC_Cont_0200

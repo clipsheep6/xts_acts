@@ -28,5 +28,5 @@ ohos_js_assets("NFC_js_assets") {
 ohos_resources("NFC_resources") {
   sources = [ "./src/main/resources" ]
   hap_profile = "./src/main/config.json"
-ls
+}
 
