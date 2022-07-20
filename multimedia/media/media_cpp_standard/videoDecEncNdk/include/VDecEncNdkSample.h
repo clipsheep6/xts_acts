@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef AUDIODECENC_NDK_SAMPLE_H
-#define AUDIODECENC_NDK_SAMPLE_H
+#ifndef VIDEODECENC_NDK_SAMPLE_H
+#define VIDEODECENC_NDK_SAMPLE_H
 
 #include <iostream>
 #include <stdio.h>
@@ -29,13 +29,14 @@
 #include "ndk_av_codec.h"
 #include "nocopyable.h"
 #include "ndktest_log.h"
+#include "ndk_av_magic.h"
 
 
 
 namespace OHOS {
 namespace Media {
 
-class ADecEncSignal {
+class VDecEncSignal {
 public:
     std::mutex inMutexDec_;
     // std::mutex outMutexDec_;
@@ -59,17 +60,18 @@ public:
 };
 
 
-class ADecEncNdkSample : public NoCopyable {
+class VDecEncNdkSample : public NoCopyable {
 public:
-    ADecEncNdkSample() = default;
-    ~ADecEncNdkSample();
-    // std::shared_ptr<AVCodec> adec_ = nullptr;
+    VDecEncNdkSample() = default;
+    ~VDecEncNdkSample();
+    // std::shared_ptr<AVCodec> vdec_ = nullptr;
 
     // explicit ADecNdkSample();
     // ~ADecNdkSample();
 
-    struct AVCodec* CreateAudioDecoder(void);
+    struct AVCodec* CreateVideoDecoder(void);
     int32_t ConfigureDec(struct AVFormat *format);
+    int32_t GetSurface();
     int32_t PrepareDec();
     int32_t StartDec();
     int32_t StopDec();
@@ -77,7 +79,7 @@ public:
     int32_t ResetDec();
     int32_t ReleaseDec();
 
-    struct AVCodec* CreateAudioEncoder(void);
+    struct AVCodec* CreateVideoEncoder(void);
     int32_t ConfigureEnc(struct AVFormat *format);
     int32_t PrepareEnc();
     int32_t StartEnc();
@@ -85,11 +87,12 @@ public:
     int32_t FlushEnc();
     int32_t ResetEnc();
     int32_t ReleaseEnc();
-    ADecEncSignal* acodecSignal_ = nullptr;
+    VDecEncSignal* vcodecSignal_ = nullptr;
 
 
 private:
-    struct AVCodec* adec_;
+    sptr<Surface> surface_ = nullptr;
+    struct AVCodec* vdec_;
     void InputFuncDec();
     // void OutputFuncDec();
     std::atomic<bool> isDecRunning_ = false;
@@ -97,15 +100,15 @@ private:
     // std::unique_ptr<std::ifstream> outFile_;
     std::unique_ptr<std::thread> inputLoopDec_;
     std::unique_ptr<std::thread> outputLoopDec_;
-    // std::shared_ptr<ADecEncSignal> signal_ = nullptr;
+    // std::shared_ptr<VDecEncSignal> signal_ = nullptr;
     // std::shared_ptr<ADecNdkSampleCallback> cb_;
     struct AVCodecOnAsyncCallback cbDec_;
     // bool isFirstFrame_ = true;
     int64_t timeStampDec_ = 0;
     uint32_t frameCountDec_ = 0;
-    // ADecEncSignal* signalDec_ = nullptr;
+    // VDecEncSignal* signalDec_ = nullptr;
 
-    struct AVCodec* aenc_;
+    struct AVCodec* venc_;
     void InputFuncEnc();
     void OutputFuncEnc();
     std::atomic<bool> isEncRunning_ = false;
@@ -113,16 +116,16 @@ private:
     // std::unique_ptr<std::ifstream> outFile_;
     std::unique_ptr<std::thread> inputLoopEnc_;
     std::unique_ptr<std::thread> outputLoopEnc_;
-    // std::shared_ptr<ADecEncSignal> signal_ = nullptr;
+    // std::shared_ptr<VDecEncSignal> signal_ = nullptr;
     // std::shared_ptr<AEncNdkSampleCallback> cb_;
     struct AVCodecOnAsyncCallback cbEnc_;
     // bool isFirstFrame_ = true;
     int64_t timeStampEnc_ = 0;
     uint32_t frameCountEnc_ = 0;
-    // ADecEncSignal* signalEnc_ = nullptr;
+    // VDecEncSignal* signalEnc_ = nullptr;
 
 };
 
 }
 }
-#endif // AUDIODECENC_NDK_SAMPLE_H
+#endif // VIDEODECENC_NDK_SAMPLE_H

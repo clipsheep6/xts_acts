@@ -107,26 +107,26 @@ void AdecAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
 }
 void AdecAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void *userData)
 {
-    // std::shared_ptr<ADecEncSignal> signalDec_ = static_cast<std::shared_ptr<ADecEncSignal>>(userData);
-    ADecEncSignal* signalDec_ = static_cast<ADecEncSignal *>(userData);
+    // std::shared_ptr<ADecEncSignal> acodecSignal_ = static_cast<std::shared_ptr<ADecEncSignal>>(userData);
+    ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     cout << "DEC InputAvailable, index = " << index << endl;
-    unique_lock<mutex> lock(signalDec_->inMutexDec_);
-    signalDec_->inQueueDec_.push(index);
-    signalDec_->inBufferQueueDec_.push(data);
-    signalDec_->inCondDec_.notify_all();
+    unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
+    acodecSignal_->inQueueDec_.push(index);
+    acodecSignal_->inBufferQueueDec_.push(data);
+    acodecSignal_->inCondDec_.notify_all();
 }
 
 void AdecAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCodecBufferAttr *attr, void *userData)
 {
-    // std::shared_ptr<ADecEncSignal> signalDec_ = static_cast<ADecEncSignal *>(userData);
-    ADecEncSignal* signalDec_ = static_cast<ADecEncSignal *>(userData);
+    // std::shared_ptr<ADecEncSignal> acodecSignal_ = static_cast<ADecEncSignal *>(userData);
+    ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     cout << "DEC OutputAvailable, index = " << index << endl;
-    unique_lock<mutex> lock(signalDec_->outMutexDec_);
-    signalDec_->outQueueDec_.push(index);
-    cout << "DEC outQueueDec_.size() is " << signalDec_->outQueueDec_.size() << endl;
-    signalDec_->sizeQueueDec_.push(attr->size);
-    signalDec_->outBufferQueueDec_.push(data);
-    signalDec_->outCondDec_.notify_all();
+    unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
+    acodecSignal_->outQueueDec_.push(index);
+    cout << "DEC outQueueDec_.size() is " << acodecSignal_->outQueueDec_.size() << endl;
+    acodecSignal_->sizeQueueDec_.push(attr->size);
+    acodecSignal_->outBufferQueueDec_.push(data);
+    acodecSignal_->inCondEnc_.notify_all();
 }
 
 
@@ -142,26 +142,26 @@ void AencAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
 
 void AencAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void *userData)
 {
-    // std::shared_ptr<ADecEncSignal> signalEnc_ = static_cast<std::shared_ptr<ADecEncSignal>>(userData);
-    ADecEncSignal* signalEnc_ = static_cast<ADecEncSignal *>(userData);
+    // std::shared_ptr<ADecEncSignal> acodecSignal_ = static_cast<std::shared_ptr<ADecEncSignal>>(userData);
+    ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     cout << "ENC InputAvailable, index = " << index << endl;
-    unique_lock<mutex> lock(signalEnc_->inMutexEnc_);
-    signalEnc_->inQueueEnc_.push(index);
-    cout << "ENC inQueueEnc_.size() is " << signalEnc_->inQueueEnc_.size() << endl;
-    signalEnc_->inBufferQueueEnc_.push(data);
-    signalEnc_->inCondEnc_.notify_all();
+    unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
+    acodecSignal_->inQueueEnc_.push(index);
+    cout << "ENC inQueueEnc_.size() is " << acodecSignal_->inQueueEnc_.size() << endl;
+    acodecSignal_->inBufferQueueEnc_.push(data);
+    acodecSignal_->inCondEnc_.notify_all();
 }
 
 void AencAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCodecBufferAttr *attr, void *userData)
 {
-    // std::shared_ptr<ADecEncSignal> signalEnc_ = static_cast<ADecEncSignal *>(userData);
-    ADecEncSignal* signalEnc_ = static_cast<ADecEncSignal *>(userData);
+    // std::shared_ptr<ADecEncSignal> acodecSignal_ = static_cast<ADecEncSignal *>(userData);
+    ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     cout << "ENC OutputAvailable, index = " << index << endl;
-    unique_lock<mutex> lock(signalEnc_->outMutexEnc_);
-    signalEnc_->outQueueEnc_.push(index);
-    signalEnc_->sizeQueueEnc_.push(attr->size);
-    signalEnc_->outBufferQueueEnc_.push(data);
-    signalEnc_->outCondEnc_.notify_all();
+    unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
+    acodecSignal_->outQueueEnc_.push(index);
+    acodecSignal_->sizeQueueEnc_.push(attr->size);
+    acodecSignal_->outBufferQueueEnc_.push(data);
+    acodecSignal_->outCondEnc_.notify_all();
 }
 
 
@@ -170,11 +170,11 @@ ADecEncNdkSample::~ADecEncNdkSample()
     OH_AVCODEC_DestroyAudioDecoder(adec_);
     OH_AVCODEC_DestroyAudioDecoder(aenc_);
 
-    delete signalDec_;
-    signalDec_ = nullptr;
+    delete acodecSignal_;
+    acodecSignal_ = nullptr;
 
-    delete signalEnc_;
-    signalEnc_ = nullptr;
+    // delete acodecSignal_;
+    // acodecSignal_ = nullptr;
 }
 
 struct AVCodec* ADecEncNdkSample::CreateAudioDecoder()
@@ -185,14 +185,14 @@ struct AVCodec* ADecEncNdkSample::CreateAudioDecoder()
     //     return false;
     // }
     
-    signalDec_ = new ADecEncSignal();
-    NDK_CHECK_AND_RETURN_RET_LOG(signalDec_ != nullptr, nullptr, "Fatal: No Memory");
+    acodecSignal_ = new ADecEncSignal();
+    NDK_CHECK_AND_RETURN_RET_LOG(acodecSignal_ != nullptr, nullptr, "Fatal: No Memory");
 
     cbDec_.onAsyncError = AdecAsyncError;
     cbDec_.onAsyncStreamChanged = AdecAsyncStreamChanged;
     cbDec_.onAsyncNeedInputData = AdecAsyncNeedInputData;
     cbDec_.onAsyncNewOutputData = AdecAsyncNewOutputData;
-    int32_t ret = OH_AVCODEC_AudioDecoderSetCallback(adec_, cbDec_, static_cast<void *>(signalDec_));
+    int32_t ret = OH_AVCODEC_AudioDecoderSetCallback(adec_, cbDec_, static_cast<void *>(acodecSignal_));
     NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AVCODEC_AudioDecoderSetCallback");
     // return codec;
     return adec_;
@@ -232,18 +232,18 @@ int32_t ADecEncNdkSample::StopDec()
     isDecRunning_.store(false);
 
     if (inputLoopDec_ != nullptr && inputLoopDec_->joinable()) {
-        unique_lock<mutex> lock(signalDec_->inMutexDec_);
-        signalDec_->inQueueDec_.push(10000);
-        signalDec_->inCondDec_.notify_all();
+        unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
+        acodecSignal_->inQueueDec_.push(10000);
+        acodecSignal_->inCondDec_.notify_all();
         lock.unlock();
         inputLoopDec_->join();
         inputLoopDec_.reset();
     }
 
     // if (outputLoopDec_ != nullptr && outputLoopDec_->joinable()) {
-    //     unique_lock<mutex> lock(signalDec_->inMutexDec_);
-    //     signalDec_->outQueueDec_.push(10000);
-    //     signalDec_->outCondDec_.notify_all();
+    //     unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
+    //     acodecSignal_->outQueueDec_.push(10000);
+    //     acodecSignal_->outCondDec_.notify_all();
     //     lock.unlock();
     //     outputLoopDec_->join();
     //     outputLoopDec_.reset();
@@ -277,15 +277,15 @@ void ADecEncNdkSample::InputFuncDec()
             break;
         }
 
-        unique_lock<mutex> lock(signalDec_->inMutexDec_);
-        signalDec_->inCondDec_.wait(lock, [this](){ return signalDec_->inQueueDec_.size() > 0; });
+        unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
+        acodecSignal_->inCondDec_.wait(lock, [this](){ return acodecSignal_->inQueueDec_.size() > 0; });
 
         if (!isDecRunning_.load()) {
             break;
         }
 
-        uint32_t index = signalDec_->inQueueDec_.front();
-        AVMemory *buffer = reinterpret_cast<AVMemory *>(signalDec_->inBufferQueueDec_.front());
+        uint32_t index = acodecSignal_->inQueueDec_.front();
+        AVMemory *buffer = reinterpret_cast<AVMemory *>(acodecSignal_->inBufferQueueDec_.front());
         NDK_CHECK_AND_RETURN_LOG(buffer != nullptr, "Fatal: GetInputBuffer fail");
         NDK_CHECK_AND_RETURN_LOG(testFile_ != nullptr && testFile_->is_open(), "Fatal: open file fail");
 
@@ -330,8 +330,8 @@ void ADecEncNdkSample::InputFuncDec()
         free(fileBuffer);
         timeStampDec_ += SAMPLE_DURATION_US;
         frameCountDec_ ++;
-        signalDec_->inQueueDec_.pop();
-        signalDec_->inBufferQueueDec_.pop();
+        acodecSignal_->inQueueDec_.pop();
+        acodecSignal_->inBufferQueueDec_.pop();
         if (ret != AV_ERR_OK) {
             cout << "Fatal error, exit" << endl;
             break;
@@ -346,19 +346,19 @@ void ADecEncNdkSample::InputFuncDec()
 //             break;
 //         }
 
-//         unique_lock<mutex> lock(signalDec_->inMutexDec_);
-//         signalDec_->outCondDec_.wait(lock, [this](){ return signalDec_->outQueueDec_.size() > 0; });
+//         unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
+//         acodecSignal_->outCondDec_.wait(lock, [this](){ return acodecSignal_->outQueueDec_.size() > 0; });
 
 //         if (!isDecRunning_.load()) {
 //             break;
 //         }
 
-//         uint32_t index = signalDec_->outQueueDec_.front();
-//         auto buffer = signalDec_->outBufferQueueDec_.front();
+//         uint32_t index = acodecSignal_->outQueueDec_.front();
+//         auto buffer = acodecSignal_->outBufferQueueDec_.front();
 //         if (buffer == nullptr) {
 //             cout << "getOutPut Buffer fail" << endl;
 //         }
-//         uint32_t size = signalDec_->sizeQueueDec_.front();
+//         uint32_t size = acodecSignal_->sizeQueueDec_.front();
 //         cout << "GetOutputBuffer size : " << size << " frameCountDec_ =  " << frameCountDec_ << endl;
 
 //         if (NEED_DUMP) {
@@ -377,9 +377,9 @@ void ADecEncNdkSample::InputFuncDec()
 //             break;
 //         }
 
-//         signalDec_->outQueueDec_.pop();
-//         signalDec_->sizeQueueDec_.pop();
-//         signalDec_->outBufferQueueDec_.pop();
+//         acodecSignal_->outQueueDec_.pop();
+//         acodecSignal_->sizeQueueDec_.pop();
+//         acodecSignal_->outBufferQueueDec_.pop();
 //     }
 // }
 
@@ -387,8 +387,8 @@ void ADecEncNdkSample::InputFuncDec()
 // ADecEncNdkSample::~ADecEncNdkSample()
 // {
 //     OH_AVCODEC_DestroyAudioEncoder(aenc_);
-//     delete signalEnc_;
-//     signalEnc_ = nullptr;
+//     delete acodecSignal_;
+//     acodecSignal_ = nullptr;
 // }
 
 struct AVCodec* ADecEncNdkSample::CreateAudioEncoder(void)
@@ -396,15 +396,15 @@ struct AVCodec* ADecEncNdkSample::CreateAudioEncoder(void)
     aenc_ = OH_AVCODEC_CreateAudioEncoderByMime(MIME_TYPE.c_str());
     NDK_CHECK_AND_RETURN_RET_LOG(aenc_ != nullptr, nullptr, "Fatal: OH_AVCODEC_CreateAudioEncoderByMime");
     
-    // signalEnc_ = make_shared<ADecEncSignal>();
-    signalEnc_ = new ADecEncSignal();
-    NDK_CHECK_AND_RETURN_RET_LOG(signalEnc_ != nullptr, nullptr, "Fatal: No Memory");
+    // acodecSignal_ = make_shared<ADecEncSignal>();
+    // acodecSignal_ = new ADecEncSignal();
+    // NDK_CHECK_AND_RETURN_RET_LOG(acodecSignal_ != nullptr, nullptr, "Fatal: No Memory");
 
     cbEnc_.onAsyncError = AencAsyncError;
     cbEnc_.onAsyncStreamChanged = AencAsyncStreamChanged;
     cbEnc_.onAsyncNeedInputData = AencAsyncNeedInputData;
     cbEnc_.onAsyncNewOutputData = AencAsyncNewOutputData;
-    int32_t ret = OH_AVCODEC_AudioEncoderSetCallback(aenc_, cbEnc_, static_cast<void *>(signalEnc_));
+    int32_t ret = OH_AVCODEC_AudioEncoderSetCallback(aenc_, cbEnc_, static_cast<void *>(acodecSignal_));
     NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AVCODEC_AudioEncoderSetCallback");
     return aenc_;
 }
@@ -438,18 +438,18 @@ int32_t ADecEncNdkSample::StopEnc()
     isEncRunning_.store(false);
 
     if (inputLoopEnc_ != nullptr && inputLoopEnc_->joinable()) {
-        unique_lock<mutex> lock(signalEnc_->inMutexEnc_);
-        signalEnc_->inQueueEnc_.push(10000);
-        signalEnc_->inCondEnc_.notify_all();
+        unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
+        acodecSignal_->inQueueEnc_.push(10000);
+        acodecSignal_->inCondEnc_.notify_all();
         lock.unlock();
         inputLoopEnc_->join();
         inputLoopEnc_.reset();
     }
 
     if (outputLoopEnc_ != nullptr && outputLoopEnc_->joinable()) {
-        unique_lock<mutex> lock(signalEnc_->outMutexEnc_);
-        signalEnc_->outQueueEnc_.push(10000);
-        signalEnc_->outCondEnc_.notify_all();
+        unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
+        acodecSignal_->outQueueEnc_.push(10000);
+        acodecSignal_->outCondEnc_.notify_all();
         lock.unlock();
         outputLoopEnc_->join();
         outputLoopEnc_.reset();
@@ -483,21 +483,23 @@ void ADecEncNdkSample::InputFuncEnc()
             break;
         }
 
-        unique_lock<mutex> lock(signalEnc_->inMutexEnc_);
-        signalEnc_->inCondEnc_.wait(lock, [this](){ return signalEnc_->inQueueEnc_.size() > 0; });
-        signalEnc_->inCondEnc_.wait(lock, [this](){ return signalDec_->outQueueDec_.size() > 0; });
+        unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
+        acodecSignal_->inCondEnc_.wait(lock, [this](){ return acodecSignal_->inQueueEnc_.size() > 0; });
+        acodecSignal_->inCondEnc_.wait(lock, [this](){ return acodecSignal_->outQueueDec_.size() > 0; });
 
         if (!isEncRunning_.load()) {
             break;
         }
 
-        uint32_t indexEnc = signalEnc_->inQueueEnc_.front();
-        AVMemory *bufferEnc = reinterpret_cast<AVMemory *>(signalEnc_->inBufferQueueEnc_.front());
+        cout << "start get buffer from decoder into encoder " << endl;
+
+        uint32_t indexEnc = acodecSignal_->inQueueEnc_.front();
+        AVMemory *bufferEnc = reinterpret_cast<AVMemory *>(acodecSignal_->inBufferQueueEnc_.front());
         NDK_CHECK_AND_RETURN_LOG(bufferEnc != nullptr, "Fatal: GetEncInputBuffer fail");
 
-        uint32_t indexDec = signalDec_->outQueueDec_.front();
-        AVMemory * bufferDec = signalDec_->outBufferQueueDec_.front();
-        uint32_t sizeDecOut = signalDec_->sizeQueueDec_.front();
+        uint32_t indexDec = acodecSignal_->outQueueDec_.front();
+        AVMemory * bufferDec = acodecSignal_->outBufferQueueDec_.front();
+        uint32_t sizeDecOut = acodecSignal_->sizeQueueDec_.front();
         cout << "GetDecOutputBuffer size : " << sizeDecOut << endl;
 
         // char *fileBuffer = (char *)malloc(sizeof(char) * SAMPLE_SIZE + 1);
@@ -522,9 +524,9 @@ void ADecEncNdkSample::InputFuncEnc()
             cout << "Fatal: ReleaseDecOutputBuffer fail" << endl;
             break;
         }
-        signalDec_->outQueueDec_.pop();
-        signalDec_->sizeQueueDec_.pop();
-        signalDec_->outBufferQueueDec_.pop();
+        acodecSignal_->outQueueDec_.pop();
+        acodecSignal_->sizeQueueDec_.pop();
+        acodecSignal_->outBufferQueueDec_.pop();
 
         AVErrCode ret = OH_AVCODEC_AudioEncoderPushInputData(aenc_, indexEnc, attr);
         if (ret != AV_ERR_OK) {
@@ -533,8 +535,8 @@ void ADecEncNdkSample::InputFuncEnc()
         }
         timeStampEnc_ += SAMPLE_DURATION_US;
         frameCountEnc_ ++;
-        signalEnc_->inQueueEnc_.pop();
-        signalEnc_->inBufferQueueEnc_.pop();
+        acodecSignal_->inQueueEnc_.pop();
+        acodecSignal_->inBufferQueueEnc_.pop();
     }
 }
 
@@ -545,19 +547,19 @@ void ADecEncNdkSample::OutputFuncEnc()
             break;
         }
 
-        unique_lock<mutex> lock(signalEnc_->outMutexEnc_);
-        signalEnc_->outCondEnc_.wait(lock, [this](){ return signalEnc_->outQueueEnc_.size() > 0; });
+        unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
+        acodecSignal_->outCondEnc_.wait(lock, [this](){ return acodecSignal_->outQueueEnc_.size() > 0; });
 
         if (!isEncRunning_.load()) {
             break;
         }
 
-        uint32_t index = signalEnc_->outQueueEnc_.front();
-        auto buffer = signalEnc_->outBufferQueueEnc_.front();
+        uint32_t index = acodecSignal_->outQueueEnc_.front();
+        auto buffer = acodecSignal_->outBufferQueueEnc_.front();
         if (buffer == nullptr) {
             cout << "getOutPut Buffer fail" << endl;
         }
-        uint32_t size = signalEnc_->sizeQueueEnc_.front();
+        uint32_t size = acodecSignal_->sizeQueueEnc_.front();
         cout << "GetOutputBuffer size : " << size << " frameCountEnc_ =  " << frameCountEnc_ << endl;
         if (NEED_DUMP) {
             FILE *outFile;
@@ -575,8 +577,8 @@ void ADecEncNdkSample::OutputFuncEnc()
             break;
         }
 
-        signalEnc_->outQueueEnc_.pop();
-        signalEnc_->sizeQueueEnc_.pop();
-        signalEnc_->outBufferQueueEnc_.pop();
+        acodecSignal_->outQueueEnc_.pop();
+        acodecSignal_->sizeQueueEnc_.pop();
+        acodecSignal_->outBufferQueueEnc_.pop();
     }
 }
