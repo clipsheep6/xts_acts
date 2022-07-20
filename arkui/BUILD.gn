@@ -22,6 +22,8 @@ group("arkui") {
     "ace_ets_standard:ActsAceEtsStTest",
     "ace_ets_test:ActsAceEtsTest",
     "ace_ets_third_test:ActsAceEtsThirdTest",
+    "ace_ets_xcomponent:ActsAceXComponentEtsTest",
+    "ace_napi_test:ActsAceNapiEtsTest",
     "ace_standard:ActsAceStandardTest",
     "ace_standard_video:ActsAceStandardVideoTest",
   ]
