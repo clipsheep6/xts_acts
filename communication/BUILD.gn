@@ -24,7 +24,6 @@ group("communication") {
       "wifi_p2p:ActsP2PJSTest",
       "wifi_standard:ActsWifiJSTest",
       "nfc_Controller:ActsNFCJSTest",
-	  
     ]
   } else {
     deps = [ "wifi_standard:ActsWifiJSTest" ]
