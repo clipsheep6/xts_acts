@@ -1,0 +1,54 @@
+{
+    "description": "Configuration for AVMuxer Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "7200000",
+        "package": "ohos.acts.multimedia.video.AVMuxer",
+        "shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.video.AVMuxer/haps/entry/files/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.video.AVMuxer/haps/entry/files/",
+                "rm -rf /storage/media/100/local/files/Videos/*",
+                "rm -rf /storage/media/100/local/files/Audios/*"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsVideoAvmuxerJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+
+
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "./resource/audio/test.h264 ->/data/app/el2/100/base/ohos.acts.multimedia.video.AVMuxer/haps/entry/files/",
+                "./resource/audio/test.mp3 ->/data/app/el2/100/base/ohos.acts.multimedia.video.AVMuxer/haps/entry/files/",
+                "./resource/audio/test.mpeg4 ->/data/app/el2/100/base/ohos.acts.multimedia.video.AVMuxer/haps/entry/files/",
+                "./resource/audio/test.aac ->/data/app/el2/100/base/ohos.acts.multimedia.video.AVMuxer/haps/entry/files/",
+                "./resource/audio/test.mpeg2 ->/data/app/el2/100/base/ohos.acts.multimedia.video.AVMuxer/haps/entry/files/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.video.AVMuxer/haps/entry/files/*"
+            ],
+            "teardown-command":[
+            ]
+        }
+
+
+    ]
+}
