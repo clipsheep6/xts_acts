@@ -1,0 +1,47 @@
+{
+    "description": "Configuration for audioPlayer Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "600000",
+        "package": "ohos.acts.multimedia.audio.audioplayer",
+		"shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioTrackSwitchingJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile",
+				"mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files",
+				"chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "./resource/audio/muliaudio_aac_3trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/",
+                "./resource/audio/muliaudio_mp3_3trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/",
+				"./resource/audio/muliaudio_aac_16trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/",
+                "./resource/audio/muliaudio_aac_2trk_mp3_1trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/"
+            ]
+        },
+		{
+            "type": "ShellKit",
+            "run-command": [
+				"chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files/*"
+            ],
+            "teardown-command":[
+            ]
+        }
+    ]
+}
