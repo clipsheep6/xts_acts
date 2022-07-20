@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for videoEncoder Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "2000000",
+        "package": "ohos.acts.multimedia.video.videoencoder",
+        "shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsVideoEncoderJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                "chmod 777 -R  /storage/media/100/local/files/",
+                "chmod 777 /storage/media/100/local/files/*",
+                "killall com.ohos.medialibrary.MediaScannerAbilityA",
+                "aa start  -a MediaScannerAbility -b com.ohos.medialibrary.MediaScannerAbilityA"
+            ],
+            "teardown-command":[
+            ]
+        }
+    ]
+}
