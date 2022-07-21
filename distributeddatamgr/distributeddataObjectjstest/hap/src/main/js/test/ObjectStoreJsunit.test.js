@@ -66,7 +66,7 @@ var tokenID = undefined;
 const TIMEOUT = 2000;
 const PERMISSION_USER_SET = 1;
 const PERMISSION_USER_NAME = "ohos.permission.DISTRIBUTED_DATASYNC";
-
+export default function objectStoreTest() {
 describe('objectStoreTest', function () {
     beforeAll(async function (done) {
         console.info("====>beforeAll start====");
@@ -775,3 +775,4 @@ describe('objectStoreTest', function () {
     })
     console.info(TAG + "*************Unit Test End*************");
 })
+}
