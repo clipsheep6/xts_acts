@@ -49,18 +49,16 @@ describe('RecorderLocalTestAudioFUNC', function () {
         uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',
         location : { latitude : 1, longitude : 1 },
     }
-
     let userId ;
     async function getUserId () {
-        await account.getAccountManager().getOsAccountLocalIdFromProcess().then(account => {
-            console.info("case getOsAccountLocalIdFromProcess userid  ==========" + account);
-            userId = account;
-        }).catch(err=>{
-            console.info("case getOsAccountLocalIdFromProcess err ==========" + JSON.stringify(err));
-        })
-    }
+            await account.getAccountManager().getOsAccountLocalIdFromProcess().then(account => {
+                console.info("getOsAccountLocalIdFromProcess userid  ==========" + account);
+                userId = account;
+              }).catch(err=>{
+                console.info("getOsAccountLocalIdFromProcess err ==========" + JSON.stringify(err));
+              })
+        }
     console.info('case userId :' + userId);
-
     function sleep(time) {
         for(let t = Date.now();Date.now() - t <= time;);
     }

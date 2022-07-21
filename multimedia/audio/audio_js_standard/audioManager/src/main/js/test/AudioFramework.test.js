@@ -17,12 +17,11 @@ import audio from '@ohos.multimedia.audio';
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
-describe('audioManger_audio2', function () {
+describe('audioFramework', function () {
     console.info('AudioFrameworkTest: Create AudioManger Object JS Framework');
     const audioManager = audio.getAudioManager();
     var deviceRoleValue = null;
     var deviceTypeValue = null;
-    var volErrorMesg = 'Error, Operation not supported or Failed';
     var audioMedia = 3;
     var audioRingtone = 2;
     var minVol = 0;
@@ -4216,6 +4215,34 @@ describe('audioManger_audio2', function () {
         expect(audio.InterruptHint.INTERRUPT_HINT_UNDUCK).assertEqual(5);
         await sleep(50);
         done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_InterruptActionType_001
+                * @tc.name      : InterruptActionType - TYPE_ACTIVATED 
+                * @tc.desc      : InterruptActionType - TYPE_ACTIVATED 
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_InterruptActionType_001', 0, async function (done) {
+		expect(audio.InterruptActionType.TYPE_ACTIVATED).assertEqual(0);
+		await sleep(50);
+		done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_InterruptActionType_002
+                * @tc.name      : InterruptActionType - TYPE_INTERRUPT
+                * @tc.desc      : InterruptActionType - TYPE_INTERRUPT
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_InterruptActionType_002', 0, async function (done) {  
+		expect(audio.InterruptActionType.TYPE_INTERRUPT).assertEqual(1);
+		await sleep(50);
+		done();
     })
 
 })
