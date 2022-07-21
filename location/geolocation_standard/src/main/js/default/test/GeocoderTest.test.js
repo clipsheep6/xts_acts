@@ -369,7 +369,7 @@ describe('geolocationTest_geo1', function () {
             expect(true).assertEqual((JSON.stringify(result)) !=null);
         }).catch((error) => {
             console.info("[lbs_js] getAddressesFromLocationName09 promise then error." + JSON.stringify(error));
-            expect().assertFail();
+            expect(true).assertTrue(error != null);
         });
         done();
     })
