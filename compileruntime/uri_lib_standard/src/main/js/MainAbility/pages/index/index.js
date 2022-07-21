@@ -12,11 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import { Hypium } from '@ohos/hypium'
+import testsuite from '../../../test/List.test'
 import app from '@system.app'
 import device from '@system.device'
 import router from '@system.router'
-import {Core} from 'deccjsunit/index'
+
 
 export default {
     data: {
@@ -27,10 +29,10 @@ export default {
     },
     onShow() {
         console.info('onShow finish')
-        const core = Core.getInstance()
-        core.init()
-        require('../../../test/List.test')
-        core.execute()
+        var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+        var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+        console.info('start run testcase!!!')
+        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
     },
     onReady() {
     },
