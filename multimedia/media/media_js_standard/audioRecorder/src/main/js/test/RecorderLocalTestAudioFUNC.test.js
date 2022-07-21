@@ -20,7 +20,7 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 import account from '@ohos.account.osAccount'
 
-describe('RecorderLocalTestAudioFUNC', async function () {
+describe('RecorderLocalTestAudioFUNC', function () {
     let audioRecorder = media.createAudioRecorder();
     const END_STATE = 0;
     const PRE_STATE = 1;
@@ -49,21 +49,32 @@ describe('RecorderLocalTestAudioFUNC', async function () {
         uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',
         location : { latitude : 1, longitude : 1 },
     }
-    let userId = await account.getAccountManager().getOsAccountLocalldFromProcess();
-    console.info('userId :' + userId);
+
+    let userId ;
+    async function getUserId () {
+        await account.getAccountManager().getOsAccountLocalIdFromProcess().then(account => {
+            console.info("case getOsAccountLocalIdFromProcess userid  ==========" + account);
+            userId = account;
+        }).catch(err=>{
+            console.info("case getOsAccountLocalIdFromProcess err ==========" + JSON.stringify(err));
+        })
+    }
+    console.info('case userId :' + userId);
+
     function sleep(time) {
         for(let t = Date.now();Date.now() - t <= time;);
     }
 
     function initAudioRecorder() {
-        if (typeof (audioRecorder) != 'undefined') {
+        if (audioRecorder != null) {
             audioRecorder.release();
-            audioRecorder = undefined;
+            audioRecorder = null;
         }
         audioRecorder = media.createAudioRecorder();
     }
 
     beforeAll(async function () {
+        await getUserId();
         await applyPermission();
         console.info('beforeAll case');
     })
@@ -182,7 +193,7 @@ describe('RecorderLocalTestAudioFUNC', async function () {
             case RELEASE_STATE:
                 console.info('case to release');
                 audioRecorder.release();
-                audioRecorder = undefined;
+                audioRecorder = null;
                 break;
             case ERROR_STATE:
                 console.info('case to wait error callback');
@@ -237,9 +248,7 @@ describe('RecorderLocalTestAudioFUNC', async function () {
             nextStep(mySteps,done);
         });
         audioRecorder.on('error', (err) => {
-            console.info(`case error called,errName is ${err.name}`);
             console.info(`case error called,errCode is ${err.code}`);
-            console.info(`case error called,errMessage is ${err.message}`);
             mySteps.shift();
             expect(mySteps[0]).assertEqual(ERROR_STATE);
             mySteps.shift();

@@ -88,12 +88,12 @@ describe('PlayerLocalTestAudioFUNC', function () {
     }
 
     function initAudioPlayer() {
-        if (typeof (audioPlayer) != 'undefined') {
+        if (audioPlayer != null) {
             audioPlayer.release();
-            audioPlayer = undefined;
+            audioPlayer = null;
         }
         audioPlayer = media.createAudioPlayer();
-        if (typeof (audioPlayer) == 'undefined') {
+        if (audioPlayer == null) {
             console.info('case create player is faild');
             expect().assertFail();
         }
@@ -138,7 +138,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
                 console.info(`case to release`);
                 mySteps.shift();
                 audioPlayer.release();
-                audioPlayer = undefined;
+                audioPlayer = null;
                 break;
             case LOOP_STATE:
                 audioPlayer.loop = mySteps[SECOND_INDEX];
@@ -162,7 +162,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
             console.info(`case dataLoad called`);
             expect(audioPlayer.currentTime).assertEqual(0);
             expect(audioPlayer.duration).assertEqual(DURATION_TIME);
-            expect(audioPlayer.state).assertEqual('paused');
+            expect(audioPlayer.state).assertEqual('idle');
             nextStep(mySteps,done);
         });
         audioPlayer.on('play', () => {
@@ -205,7 +205,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
             nextStep(mySteps,done);
         });
         audioPlayer.on('timeUpdate', (seekDoneTime) => {
-            if (typeof (seekDoneTime) == 'undefined') {
+            if (seekDoneTime == null) {
                 console.info(`case seek filed,errcode is ${seekDoneTime}`);
                 return;
             }
@@ -243,9 +243,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
             nextStep(mySteps,done);
         });
         audioPlayer.on('error', (err) => {
-            console.info(`case error called,errName is ${err.name}`);
             console.info(`case error called,errCode is ${err.code}`);
-            console.info(`case error called,errMessage is ${err.message}`);
             if ((mySteps[0] == SEEK_STATE) || (mySteps[0] == VOLUME_STATE)) {
                 mySteps.shift();
                 mySteps.shift();
@@ -767,7 +765,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
         testAudioPlayer.on('dataLoad', () => {
             expect(testAudioPlayer.currentTime).assertEqual(0);
             expect(testAudioPlayer.duration).assertEqual(DURATION_TIME);
-            expect(testAudioPlayer.state).assertEqual('paused');
+            expect(testAudioPlayer.state).assertEqual('idle');
             testAudioPlayer.loop = true;
             testAudioPlayer.play();
         });
@@ -783,7 +781,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
             testAudioPlayer.seek(DURATION_TIME);
         });
         testAudioPlayer.on('timeUpdate', (seekDoneTime) => {
-            if (typeof (seekDoneTime) == 'undefined') {
+            if (seekDoneTime == null) {
                 console.info(`case seek filed,errcode is ${seekDoneTime}`);
                 return;
             }

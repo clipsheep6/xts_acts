@@ -74,7 +74,7 @@ describe('PlayerLocalTestAudioFormat', function () {
         await getFd(audioSource);
         audioPlayer.on('dataLoad', () => {
             console.info('case set source success');
-            expect(audioPlayer.state).assertEqual('paused');
+            expect(audioPlayer.state).assertEqual('idle');
             expect(audioPlayer.currentTime).assertEqual(0);
             audioPlayer.play();
         });
@@ -102,11 +102,11 @@ describe('PlayerLocalTestAudioFormat', function () {
             console.info('case reset success');
             expect(audioPlayer.state).assertEqual('idle');
             audioPlayer.release();
-            audioPlayer = undefined;
+            audioPlayer = null;
             done();
         });
         audioPlayer.on('timeUpdate', (seekDoneTime) => {
-            if (typeof (seekDoneTime) == "undefined") {
+            if (seekDoneTime == null) {
                 console.info(`case seek filed,errcode is ${seekDoneTime}`);
                 audioPlayer.release();
                 expect().assertFail();
@@ -134,9 +134,7 @@ describe('PlayerLocalTestAudioFormat', function () {
             audioPlayer.stop();
         });
         audioPlayer.on('error', (err) => {
-            console.info(`case error called,errName is ${err.name}`);
             console.info(`case error called,errCode is ${err.code}`);
-            console.info(`case error called,errMessage is ${err.message}`);
             audioPlayer.release();
             expect().assertFail();
             done();
