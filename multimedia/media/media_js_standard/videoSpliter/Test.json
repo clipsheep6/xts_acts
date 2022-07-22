@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for videoRecorder Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "360000000",
+        "package": "ohos.acts.multimedia.video.videoSpliter",
+        "shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+			
+				"rm -rf /storage/media/100/local/files/Videos/*"
+            ],
+            "teardown-command":[
+            ]
+        },
+
+        {
+            "test-file-name": [
+                "ActsVideoSpliterJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
