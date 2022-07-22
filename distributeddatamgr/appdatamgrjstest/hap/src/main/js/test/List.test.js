@@ -15,22 +15,21 @@
 import dataAbilityPredicatesTest from './DataAbilityPredicatesJsunit.test.js'
 import rdbStoreBackupRestoreWithFAContextTest from './RdbstoreBackupRestoreWithFAContextJsunit.test.js'
 import rdbstoreChangeEncryptKeyTest from './RdbstoreChangeEncryptKeyJsunit.test.js'
-import storageHelperTest from './StorageHelperJsunit.test.js'
-import storagePromiseTest from './StoragePromiseJsunit.test.js'
-import storageCallBackTest from './StorageCallBackJsunit.test.js'
-import storageSyncTest from './StorageSyncJsunit.test.js'
-import rdbstoreInsertTest from './RdbstoreInsertJsunit.test.js'
+import rdbStoreDataSharePredicatesTest from './RdbStoreDataShareJsunit.test.js'
 import rdbStoreDeleteTest from './RdbstoreDeleteJsunit.test.js'
-import rdbResultSetTest from './RdbStoreResultSetJsunit.test.js'
+import rdbStoreDistributedTest from './RdbStoreDistributedJsunit.test.js'
+import rdbstoreInsertTest from './RdbstoreInsertJsunit.test.js'
+import rdbStorePredicatesJoinTest from './RdbstorePredicatesJoinJsunit.test.js'
 import rdbPredicatesTest from './RdbstorePredicatesJsunit.test.js'
 import rdbStoreTest from './RdbstoreRdbstoreJsunit.test.js'
-import storeExcuteSqlJsunit from './RdbstoreStoreExcuteSqlJsunit.test.js'
-import rdbStoreUpdateTest from './RdbstoreUpdateJsunit.test.js'
+import rdbResultSetTest from './RdbStoreResultSetJsunit.test.js'
+import rdbstoreStoreExcuteSqlTest from './RdbstoreStoreExcuteSqlJsunit.test.js'
 import rdbstoreTransactionTest from './RdbstoreTransactionJsunit.test.js'
-import rdbStorePredicatesJoinTest from './RdbstorePredicatesJoinJsunit.test.js'
-import rdbStoreDistributedTest from './RdbStoreDistributedJsunit.test.js'
-import rdbStoreDataSharePredicatesTest from './RdbStoreDataShareJsunit.test.js'
-
+import rdbStoreUpdateTest from './RdbstoreUpdateJsunit.test.js'
+import storageCallBackTest from './StorageCallBackJsunit.test.js'
+import storageHelperTest from './StorageHelperJsunit.test.js'
+import storagePromiseTest from './StoragePromiseJsunit.test.js'
+import storageSyncTest from './StorageSyncJsunit.test.js'
 export default function testsuite() {
 dataAbilityPredicatesTest()
 rdbStoreBackupRestoreWithFAContextTest()
@@ -50,5 +49,4 @@ storageCallBackTest()
 storageHelperTest()
 storagePromiseTest()
 storageSyncTest()
-storeExcuteSqlJsunit()
 }
