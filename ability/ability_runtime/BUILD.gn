@@ -17,16 +17,18 @@ group("ability_runtime") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "aacommand:aacommand",
       "abilitymanager:actsabilitymanagertest",
+      "abilitymontior:AbilityMonitorTest",
       "abilitymultiinstance:abilitymultiinstance",
       "actsabilitydelegatorcase:ActsAbilityDelegatorCaseTest",
       "actsabilitylifecyclestatenew:ActsAbilityLifecycleStateNewTest",
       "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
-      "actsabilityusertest:ActsAbilityuserTest",
       "actscalltest:actscalltest",
       "actsfwkdataaccessortest:dataability",
+      "actsqueryfunctiontest:actsqueryfunctiontest",
       "actsserviceabilityclienttest:serviceability",
-      "actsstartrunnertest:ActsStartRunnerTest",
+      "actsshellcommandfunctionalitytest:actsshellcommandfunctionalitytest",
       "actsstserviceabilityclientcase:ActsStServiceAbilityClientCaseTest",
       "actsusers:actsusers",
       "amscontextualinforquery:amscontextualinforquery",
