@@ -24,7 +24,7 @@ import rdbStoreDeleteTest from './RdbstoreDeleteJsunit.test.js'
 import rdbResultSetTest from './RdbStoreResultSetJsunit.test.js'
 import rdbPredicatesTest from './RdbstorePredicatesJsunit.test.js'
 import rdbStoreTest from './RdbstoreRdbstoreJsunit.test.js'
-import rdbStoreInsertTest_test from './RdbstoreStoreExcuteSqlJsunit.test.js'
+import storeExcuteSqlJsunit from './RdbstoreStoreExcuteSqlJsunit.test.js'
 import rdbStoreUpdateTest from './RdbstoreUpdateJsunit.test.js'
 import rdbstoreTransactionTest from './RdbstoreTransactionJsunit.test.js'
 import rdbStorePredicatesJoinTest from './RdbstorePredicatesJoinJsunit.test.js'
@@ -50,5 +50,5 @@ storageCallBackTest()
 storageHelperTest()
 storagePromiseTest()
 storageSyncTest()
-rdbStoreInsertTest_test()
+storeExcuteSqlJsunit()
 }

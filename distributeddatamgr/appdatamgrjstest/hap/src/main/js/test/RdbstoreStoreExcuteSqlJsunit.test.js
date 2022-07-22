@@ -22,8 +22,8 @@ const STORE_CONFIG = {
     name: "ExcuteSqlTest.db",
 }
 var rdbStore = undefined;
-export default function rdbStoreInsertTest_test() {
-describe('rdbStoreInsertTest_test', function () {
+export default function storeExcuteSqlJsunit() {
+describe('storeExcuteSqlJsunit', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
         rdbStore = await dataRdb.getRdbStore(STORE_CONFIG, 1);
