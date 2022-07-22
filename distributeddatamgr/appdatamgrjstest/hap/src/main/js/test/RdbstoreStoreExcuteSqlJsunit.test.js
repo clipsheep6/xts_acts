@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.rdb';
 
 const TAG = "[RDB_JSKITS_TEST]"
@@ -22,8 +22,8 @@ const STORE_CONFIG = {
     name: "ExcuteSqlTest.db",
 }
 var rdbStore = undefined;
-
-describe('rdbStoreInsertTest', function () {
+export default function rdbStoreInsertTest_test() {
+describe('rdbStoreInsertTest_test', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
         rdbStore = await dataRdb.getRdbStore(STORE_CONFIG, 1);
@@ -363,3 +363,4 @@ describe('rdbStoreInsertTest', function () {
 
     console.info(TAG + "*************Unit Test End*************");
 })
+}
