@@ -466,4 +466,30 @@ describe('ActsOsAccountThirdPartyTest', function () {
         console.debug("====>ActsOsAccountGetCount_0200 end====");
         done();
     })
+
+    it('ActsOsAccountQueryActivedOsAccountIds_0100', 0, async function (done) {
+        console.debug("====>ActsOsAccountQueryActivedOsAccountIds_0100 start====");
+        var osAccountManager = osaccount.getAccountManager();
+        osAccountManager.queryActivatedOsAccountIds((err,dataArray)=>{
+            console.info("ActsOsAccountGQueryActicedOsAccountIds_0100 err :" + JSON.stringify(err));
+            expect(err.code).assertEqual(0)
+            console.info("ActsOsAccountGQueryActicedOsAccountIds_0100 dataArray" + dataArray.length);
+            done();
+        })
+    })
+
+    it('ActsOsAccountQueryActivedOsAccountIds_0200', 0, async function (done) {
+        console.debug("====>ActsOsAccountQueryActivedOsAccountIds_0200 start====");
+        var osAccountManager = osaccount.getAccountManager(); 
+        osAccountManager.queryActivatedOsAccountIds().catch((err)=>{
+            console.info("====>ActsOsAccountQueryActivedOsAccountIds_0200 err " + JSON.stringify(err));
+            expect(err.code).assertEqual(0)
+            done();
+        }).then((data)=>{
+            console.debug("====>ActsOsAccountQueryActivedOsAccountIds_0200 data" + JSON.stringify(data))
+            done();
+        });
+    })
+
+
 })
