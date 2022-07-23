@@ -45,7 +45,7 @@ hcpptest_suite("ActsPMSTest") {
   deps = [
     "${appexecfwk_lite_path}/frameworks/bundle_lite:bundle",
     "//base/security/permission/services/permission_lite:permission_lite",
-    "//build/lite/config/component/cJSON:cjson_shared",
+    "//build/hb/config/component/cJSON:cjson_shared",
     "//foundation/distributedschedule/samgr_lite/communication/broadcast",
     "//foundation/distributedschedule/samgr_lite/samgr:samgr",
     "//third_party/bounds_checking_function:libsec_shared",
