@@ -37,6 +37,10 @@ describe('ActsOsAccountSystemTest', function () {
             console.debug("====>createOsAccount err:" + JSON.stringify(err));
             console.debug("====>createOsAccount osAccountInfo:" + JSON.stringify(osAccountInfo));
             createIocalId = osAccountInfo.localId;
+            expect(osAccountInfo.type.NORMAL).assertEqual(1);
+            expect(osAccountInfo.constraints.length > 0).assertEqual(true);
+            expect(osAccountInfo.isVerified).assertEqual(false);
+            expect(osAccountInfo.distributedInfo.name != null).assertEqual(true);
             createIdStr = createIocalId.toString();
             expect(err.code).assertEqual(0);
             expect(osAccountInfo.localName).assertEqual("osAccountNameCreateA");

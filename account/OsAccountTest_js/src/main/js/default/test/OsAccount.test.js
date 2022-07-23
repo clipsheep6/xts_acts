@@ -84,7 +84,9 @@ describe('AccountTest', function () {
     it('account_queryOsAccountDistributedInfo_test002', 0, function () {
         const accountAbility = account.getDistributedAccountAbility()
         accountAbility.queryOsAccountDistributedInfo(function (data) {
+            console.debug("====>account_queryOsAccountDistributedInfo_test002 data:" + JSON.stringify(data))
             expect(data.name).assertEqual('anonymous')
+            expect(data.scalableData).assertEqual(null)
         });
     })
 

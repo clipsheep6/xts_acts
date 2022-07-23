@@ -26,24 +26,29 @@ describe('ActsOsAccountSystemTest', function () {
         console.debug("====>ActsOsAccountDomainTest_0100 start====");
         var osAccountManager = account.getAccountManager();
         console.debug("====>createosAccountFormDomain start====");
-	 var osAccountInfo = await osAccountManager.createOsAccountForDomain(0,{
-	     domain: "abc",
-	     accountName: "abcdef",
-	 });
-	 var localId = osAccountInfo.localId;
-	 console.debug("====>OsAccountInfo" + JSON.stringify(osAccountInfo));
-	 expect(osAccountInfo.localName).assertEqual("abc/abcdef");
-	 console.debug("====>createosAccountFromDomain end====");
-	 console.debug("====>getOsAccountLocalIdFromDomain start====");
-	 var Number = await osAccountManager.getOsAccountLocalIdFromDomain({
-	     domain: "abc",
-	     accountName: "abcdef",
-	 });
-	 expect(Number).assertEqual(localId);
-	 console.debug("====>getOsAccountLocalIdFromDomain end====");
-	 osAccountManager.removeOsAccount(localId);
-        console.debug("====>ActsOsAccountDomainTest_0100 end====");
-        done();
+		var osAccountInfo = await osAccountManager.createOsAccountForDomain(0,{
+			domain: "abc",
+			accountName: "abcdef",
+		});
+		var localId = osAccountInfo.localId;
+		console.debug("====>OsAccountInfo" + JSON.stringify(osAccountInfo));
+		var domain_info = osAccountInfo.domainInfo.domain
+		var accountName_info = osAccountInfo.domainInfo.accountName
+		console.debug("====>" + osAccountInfo.domainInfo.domain)
+		expect(domain_info).assertEqual("abc");
+		expect(accountName_info).assertEqual("abcdef");
+		expect(osAccountInfo.localName).assertEqual("abc/abcdef");
+		console.debug("====>createosAccountFromDomain end====");
+		console.debug("====>getOsAccountLocalIdFromDomain start====");
+		var Number = await osAccountManager.getOsAccountLocalIdFromDomain({
+			domain: "abc",
+			accountName: "abcdef",
+		});
+		expect(Number).assertEqual(localId);
+		console.debug("====>getOsAccountLocalIdFromDomain end====");
+		osAccountManager.removeOsAccount(localId);
+			console.debug("====>ActsOsAccountDomainTest_0100 end====");
+			done();
     });
 
     /**
@@ -55,32 +60,32 @@ describe('ActsOsAccountSystemTest', function () {
         console.debug("====>ActsOsAccountDomainTest_0200 start====");
         var osAccountManager = account.getAccountManager();
         console.debug("====>createosAccountFormDomain start====");
-	 osAccountManager.createOsAccountForDomain(0,{
-	     domain: "def",
-	     accountName: "abcdef",
-	 }, (err, osAccountInfo)=>{
-	     console.debug("====>err" + JSON.stringify(err));
-	     console.debug("====>OsAccountInfo" + JSON.stringify(osAccountInfo));
-	     expect(err.code).assertEqual(0);
-	     expect(osAccountInfo.localName).assertEqual("def/abcdef");
-	     var localId = osAccountInfo.localId;
-	     console.debug("====>createosAccountFormDomain end====");
-	     console.debug("====>createosAccountFormDomain repeat start====");
-	     osAccountManager.createOsAccountForDomain(0,{
-	         domain: "def",
-		  accountName: "abcdef",
-	     }, (err,OsAccountInfo)=>{
-	         console.debug("====>createOsAccountFormDomain repeat err : " + JSON.stringify(err));
-		  expect(err.code).assertEqual(ERR_OSACCOUNT_SERVICE_INNER_DOMAIN_ALREADY_BIND_ERROR);
-		  console.debug("====>createosAccountFormDomain repeat end====");		
-		  osAccountManager.removeOsAccount(localId, (err)=>{
-		      console.debug("====>removeOsAccount err:" + JSON.stringify(err));
-		      expect(err.code).assertEqual(0);
-		      console.debug("====>ActsOsAccountDomainTest_0200 end====");
-		      done();
-	             })	
-	         });
-	     });
-	});	
+		osAccountManager.createOsAccountForDomain(0,{
+			domain: "def",
+			accountName: "abcdef",
+		}, (err, osAccountInfo)=>{
+			console.debug("====>err" + JSON.stringify(err));
+			console.debug("====>OsAccountInfo" + JSON.stringify(osAccountInfo));
+			expect(err.code).assertEqual(0);
+			expect(osAccountInfo.localName).assertEqual("def/abcdef");
+			var localId = osAccountInfo.localId;
+			console.debug("====>createosAccountFormDomain end====");
+			console.debug("====>createosAccountFormDomain repeat start====");
+			osAccountManager.createOsAccountForDomain(0,{
+				domain: "def",
+			accountName: "abcdef",
+			}, (err,OsAccountInfo)=>{
+				console.debug("====>createOsAccountFormDomain repeat err : " + JSON.stringify(err));
+			expect(err.code).assertEqual(ERR_OSACCOUNT_SERVICE_INNER_DOMAIN_ALREADY_BIND_ERROR);
+			console.debug("====>createosAccountFormDomain repeat end====");		
+			osAccountManager.removeOsAccount(localId, (err)=>{
+				console.debug("====>removeOsAccount err:" + JSON.stringify(err));
+				expect(err.code).assertEqual(0);
+				console.debug("====>ActsOsAccountDomainTest_0200 end====");
+				done();
+					})	
+				});
+			});
+		});	
 });
    
