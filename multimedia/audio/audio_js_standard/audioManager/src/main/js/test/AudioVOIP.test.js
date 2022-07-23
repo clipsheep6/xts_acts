@@ -24,28 +24,10 @@ import featureAbility from '@ohos.ability.featureAbility'
 import resourceManager from '@ohos.resourceManager';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
-describe('audioVOIP', function () {
+describe('audioVoip', function () {
     var mediaDir;
     let fdRead;
     let readpath;
-    /*async function getPathName(){
-        var path1 = '/data/app/el1/bundle/public/';
-        var packageName;
-        var context = ability_featureAbility.getContext();
-        await context.getBundleName()
-            .then((data) => {
-                console.info('AudioFrameworkRenderLog: Cache directory obtained. Data: ' + data);
-                packageName = data;
-            }).catch((error) => {
-                console.error('AudioFrameworkRenderLog: Failed to obtain the cache directory. Cause:' + error.message);
-            });
-        await sleep(200);
-        var mediaDirTemp = path1 + packageName + '/ohos.acts.multimedia.audio.audiomanager.filedescriptor/assets/entry/resources/rawfile';
-        //var mediaDirTemp = path1+packageName+'/files'
-        console.info('AudioFrameworkRenderLog: Resource DIR Path : '+mediaDirTemp);
-        return mediaDirTemp;
-    }*/
-
     const audioManager = audio.getAudioManager();
     console.info('AudioFrameworkRenderLog: Create AudioManger Object JS Framework');
 
@@ -462,7 +444,7 @@ describe('audioVOIP', function () {
         }
 
         var AudioCapturerInfo = {
-            source: audio.SourceType.SOURCE_TYPE_MIC,
+            source: audio.SourceType.SOURCE_TYPE_VOICE_COMMUNICATION,
             capturerFlags: 1
         }
 
@@ -496,7 +478,7 @@ describe('audioVOIP', function () {
         }
 
         var AudioCapturerInfo = {
-            source: audio.SourceType.SOURCE_TYPE_MIC,
+            source: audio.SourceType.SOURCE_TYPE_VOICE_COMMUNICATION,
             capturerFlags: 1
         }
 
