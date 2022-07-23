@@ -1987,7 +1987,8 @@ describe('webgl1Test_webgl7', function() {
 			.PIXEL_UNPACK_BUFFER, view);
 		const compressedTexSubImage2DError = gl.getError();
 		console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
-		expect(compressedTexSubImage2DError).assertEqual(gl.INVALID_VALUE);
+		expect(compressedTexSubImage2DError).assertLarger(gl.NO_ERROR);
+		for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
 		done();
 	})
 
@@ -2009,7 +2010,8 @@ describe('webgl1Test_webgl7', function() {
 			view);
 		const compressedTexSubImage2DError = gl.getError();
 		console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
-		expect(compressedTexSubImage2DError).assertEqual(gl.INVALID_VALUE);
+		expect(compressedTexSubImage2DError).assertLarger(gl.NO_ERROR);
+		for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
 		done();
 	})
 
@@ -2066,7 +2068,8 @@ describe('webgl1Test_webgl7', function() {
 			view);
 		const texImage2DError = gl.getError();
 		console.info("texImage2DError: " + texImage2DError);
-		expect(texImage2DError).assertEqual(gl.INVALID_VALUE);
+		expect(texImage2DError).assertLarger(gl.NO_ERROR);
+		for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
 		done();
 	})
 
@@ -2085,7 +2088,8 @@ describe('webgl1Test_webgl7', function() {
 			view);
 		const texImage2DError = gl.getError();
 		console.info("texImage2DError: " + texImage2DError);
-		expect(texImage2DError).assertEqual(gl.INVALID_VALUE);
+		expect(texImage2DError).assertLarger(gl.NO_ERROR);
+		for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
 		done();
 	})
 
@@ -2138,7 +2142,8 @@ describe('webgl1Test_webgl7', function() {
 			.NEAREST);
 		const blitFramebufferError = gl.getError();
 		console.info("blitFramebufferError: " + blitFramebufferError);
-		expect(blitFramebufferError).assertEqual(gl.INVALID_ENUM);
+		expect(blitFramebufferError).assertLarger(gl.NO_ERROR);
+		for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
 		done();
 	})
 
@@ -2154,7 +2159,8 @@ describe('webgl1Test_webgl7', function() {
 			-gl2.COLOR_BUFFER_BIT, -gl2.NEAREST);
 		const blitFramebufferError = gl.getError();
 		console.info("blitFramebufferError: " + blitFramebufferError);
-		expect(blitFramebufferError).assertEqual(gl.INVALID_ENUM);
+		expect(blitFramebufferError).assertLarger(gl.NO_ERROR);
+		for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
 		done();
 	})
 })
