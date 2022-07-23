@@ -12,13 +12,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require('./AddAccount.test.js')
-require('./DeleteAccount.test.js')
-require('./AppAccess.test.js')
-require('./ExtraInfo.test.js')
-require('./AssociatedData.test.js')
-require('./Credential.test.js')
-require('./OAuthToken.test.js')
-require('./CreatManager.test.js')
-require('./NoPermission.test.js')
-require('./OnOff.js')
+import ActsAccountAddAccount from './AddAccount.test.js'
+import ActsAccountDeleteAccount from './DeleteAccount.test.js'
+import ActsAccountAppAccess from './AppAccess.test.js'
+import ActsAccountAssociatedData from './AssociatedData.test.js'
+import ActsAccountSetGetExtraInfo from './ExtraInfo.test.js'
+import ActsAccountCredential from './Credential.test.js'
+import ActsAccountOAuthToken from './OAuthToken.test.js'
+import ActsCreatAppAccountManager from './CreatManager.test.js'
+import ActsAccountNoPermission from './NoPermission.test.js'
+import ActsAccountChangeOnOff from './OnOff.js'
+import ActsAccountAuthenticator from './Authenticator.test.js'
+export default function testsuite() {
+    ActsAccountAddAccount()
+    ActsAccountAppAccess()
+    ActsAccountAssociatedData()
+    ActsCreatAppAccountManager()
+    ActsAccountCredential()
+    ActsAccountDeleteAccount()
+    ActsAccountSetGetExtraInfo()
+    ActsAccountNoPermission()
+    ActsAccountOAuthToken()
+    ActsAccountChangeOnOff()
+    ActsAccountAuthenticator()
+}
