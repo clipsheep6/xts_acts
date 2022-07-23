@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+require('./audioPlayerCacheLimitFun.test.js')
+require('./audioPlayerCacheLimitReliability.test.js')
+
 require('./PlayerLocalTestAudioFUNC.test.js')
 require('./PlayerLocalTestAudioFormat.test.js')
 require('./PlayerLocalTestAudioAPI.test.js')

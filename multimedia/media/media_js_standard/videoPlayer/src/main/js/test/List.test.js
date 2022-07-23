@@ -13,7 +13,11 @@
  * limitations under the License.
  */
 
+require('./videoPlayerCacheLimitFunTest.test.js')
+require('./videoPlayerCacheLimitReliabilityTest.test.js')
+
 require('./VideoPlayerFuncCallbackTest.test.js')
 require('./VideoPlayerFuncPromiseTest.test.js')
 require('./VideoPlayerAPICallbackTest.test.js')
 require('./VideoPlayerEnumTest.test.js')
+
