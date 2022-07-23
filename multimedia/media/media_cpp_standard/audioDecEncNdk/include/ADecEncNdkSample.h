@@ -89,6 +89,9 @@ public:
     int32_t ResetEnc();
     int32_t ReleaseEnc();
     int32_t CalcuError();
+    void SetSavePath(std::string filepath);
+    void ReRead();
+    void ResetParam();
     ADecEncSignal* acodecSignal_ = nullptr;
 
 
@@ -106,8 +109,8 @@ private:
     struct AVCodecOnAsyncCallback cbDec_;
     // bool isFirstFrame_ = true;
     int64_t timeStampDec_ = 0;
-    uint32_t decInCnt = 0;
-    uint32_t decOutCnt = 0;
+    uint32_t decInCnt_ = 0;
+    uint32_t decOutCnt_ = 0;
     // ADecEncSignal* signalDec_ = nullptr;
 
     struct AVCodec* aenc_;
@@ -123,12 +126,13 @@ private:
     struct AVCodecOnAsyncCallback cbEnc_;
     // bool isFirstFrame_ = true;
     int64_t timeStampEnc_ = 0;
-    uint32_t encInCnt = 0;
+    uint32_t encInCnt_ = 0;
     uint32_t encOutCnt_ = 0;
     bool isDecInputEOS = false;
     bool isEncInputEOS = false;
     bool isDecOutputEOS = false;
     bool isEncOutputEOS = false;
+    std::string outDir_ = "/data/media/out.aac";
 
     // ADecEncSignal* signalEnc_ = nullptr;
 

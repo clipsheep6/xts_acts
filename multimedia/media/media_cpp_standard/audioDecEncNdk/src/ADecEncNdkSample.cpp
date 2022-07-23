@@ -30,7 +30,7 @@ namespace {
     constexpr bool NEED_DUMP = true;
     const string MIME_TYPE = "audio/mp4a-latm";
     const char * INP_DIR = "/data/media/AAC_48000_32_1.aac";
-    const char * OUT_DIR = "/data/media/AAC_48000_32_1_out.aac";
+    // const char * OUT_DIR = "/data/media/AAC_48000_32_1_out.aac";
     constexpr uint32_t ES[] = {
              283, 336, 291, 405, 438, 411, 215, 215, 313, 270, 342, 641, 554, 545, 545, 546,
              541, 540, 542, 552, 537, 533, 498, 472, 445, 430, 445, 427, 414, 386, 413, 370, 380,
@@ -242,6 +242,23 @@ int32_t ADecEncNdkSample::StartDec()
     return OH_AVCODEC_AudioDecoderStart(adec_);
 }
 
+void ADecEncNdkSample::ReRead()
+{
+    // testFile_ = nullptr;
+    // NDK_CHECK_AND_RETURN_RET_LOG(testFile_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    testFile_->open(INP_DIR, std::ios::in | std::ios::binary);
+    decInCnt_ = 0;
+    timeStampDec_ = 0;
+}
+
+void ADecEncNdkSample::ResetParam()
+{
+    isDecInputEOS = false;
+    isEncInputEOS = false;
+    isDecOutputEOS = false;
+    isEncOutputEOS = false;
+}
+
 int32_t ADecEncNdkSample::StopDec()
 {
     cout << "enter STOP DEC" << endl;
@@ -273,9 +290,9 @@ void clearBufferqueue (std::queue<AVMemory *> q) {
 int32_t ADecEncNdkSample::FlushDec()
 {
     cout << "errorNum_ is :" << acodecSignal_->errorNum_ << endl;
-    cout << "decInCnt is :" << decInCnt << endl;
-    cout << "decOutCnt is :" << decOutCnt << endl;
-    cout << "encInCnt is :" << encInCnt << endl;
+    cout << "decInCnt_ is :" << decInCnt_ << endl;
+    cout << "decOutCnt_ is :" << decOutCnt_ << endl;
+    cout << "encInCnt_ is :" << encInCnt_ << endl;
     cout << "encOutCnt_ is :" << encOutCnt_ << endl;
     cout << "inQueueEnc_ is :" << acodecSignal_->inQueueEnc_.size() << endl;
     cout << "inQueueDec_ is :" << acodecSignal_->inQueueDec_.size() << endl;
@@ -353,8 +370,8 @@ void ADecEncNdkSample::InputFuncDec()
 
         uint32_t bufferSize = 0; // replace with the actual size
 
-        if (decInCnt < ES_LENGTH) {
-            bufferSize = ES[decInCnt];
+        if (decInCnt_ < ES_LENGTH) {
+            bufferSize = ES[decInCnt_];
             char *fileBuffer = (char *)malloc(sizeof(char) * bufferSize + 1);
             NDK_CHECK_AND_RETURN_LOG(fileBuffer != nullptr, "Fatal: malloc fail");
 
@@ -376,7 +393,7 @@ void ADecEncNdkSample::InputFuncDec()
         } 
 
         struct AVCodecBufferAttr attr;
-        if (decInCnt == ES_LENGTH) {
+        if (decInCnt_ == ES_LENGTH) {
             cout << "DEC input: set EOS" << endl;
             attr.flags = AVCODEC_BUFFER_FLAGS_EOS;
             attr.presentationTimeUs = 0;
@@ -388,7 +405,7 @@ void ADecEncNdkSample::InputFuncDec()
             attr.presentationTimeUs = timeStampDec_;
             attr.size = bufferSize;
             attr.offset = 0;
-            if (decInCnt == 0 && MIME_TYPE == "audio/vorbis") {
+            if (decInCnt_ == 0 && MIME_TYPE == "audio/vorbis") {
                 attr.flags = AVCODEC_BUFFER_FLAGS_CODEC_DATA;
             } else {
                 attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
@@ -402,7 +419,7 @@ void ADecEncNdkSample::InputFuncDec()
             break;
         }
         timeStampDec_ += SAMPLE_DURATION_US;
-        decInCnt ++;
+        decInCnt_ ++;
         acodecSignal_->inQueueDec_.pop();
         acodecSignal_->inBufferQueueDec_.pop();
     }
@@ -612,7 +629,7 @@ void ADecEncNdkSample::InputFuncEnc()
                 cout << "Fatal: DEC ReleaseDecOutputBuffer fail" << endl;
                 acodecSignal_->errorNum_ += 1;
             } else {
-                decOutCnt += 1;
+                decOutCnt_ += 1;
             }
         }
         acodecSignal_->outQueueDec_.pop();
@@ -627,11 +644,16 @@ void ADecEncNdkSample::InputFuncEnc()
             break;
         }
         timeStampEnc_ += SAMPLE_DURATION_US;
-        encInCnt ++;
-        // cout << "ENC input cnt: "<< encInCnt << endl;
+        encInCnt_ ++;
+        // cout << "ENC input cnt: "<< encInCnt_ << endl;
         acodecSignal_->inQueueEnc_.pop();
         acodecSignal_->inBufferQueueEnc_.pop();
     }
+}
+
+void ADecEncNdkSample::SetSavePath(std::string filepath)
+{
+    outDir_ = filepath;
 }
 
 void ADecEncNdkSample::OutputFuncEnc()
@@ -659,7 +681,8 @@ void ADecEncNdkSample::OutputFuncEnc()
         } else {
             if (NEED_DUMP) {
                 FILE *outFile;
-                outFile = fopen(OUT_DIR, "a");
+                const char * savepath = outDir_.c_str();
+                outFile = fopen(savepath, "a");
                 if (outFile == nullptr) {
                     cout << "dump data fail" << endl;
                 } else {
@@ -686,9 +709,9 @@ void ADecEncNdkSample::OutputFuncEnc()
 int32_t ADecEncNdkSample::CalcuError()
 {
     cout << "errorNum_ is :" << acodecSignal_->errorNum_ << endl;
-    cout << "decInCnt is :" << decInCnt << endl;
-    cout << "decOutCnt is :" << decOutCnt << endl;
-    cout << "encInCnt is :" << encInCnt << endl;
+    cout << "decInCnt_ is :" << decInCnt_ << endl;
+    cout << "decOutCnt_ is :" << decOutCnt_ << endl;
+    cout << "encInCnt_ is :" << encInCnt_ << endl;
     cout << "encOutCnt_ is :" << encOutCnt_ << endl;
 
     return acodecSignal_->errorNum_ ;
