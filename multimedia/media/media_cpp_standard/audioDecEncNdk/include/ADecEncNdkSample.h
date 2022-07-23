@@ -44,6 +44,7 @@ public:
     std::queue<uint32_t> inQueueDec_;
     std::queue<uint32_t> outQueueDec_;
     std::queue<uint32_t>  sizeQueueDec_;
+    std::queue<uint32_t>  flagQueueDec_;
     std::queue<AVMemory *> inBufferQueueDec_;
     std::queue<AVMemory *> outBufferQueueDec_;
 
@@ -54,8 +55,10 @@ public:
     std::queue<uint32_t> inQueueEnc_;
     std::queue<uint32_t> outQueueEnc_;
     std::queue<uint32_t>  sizeQueueEnc_;
+    std::queue<uint32_t>  flagQueueEnc_;
     std::queue<AVMemory *> inBufferQueueEnc_;
     std::queue<AVMemory *> outBufferQueueEnc_;
+    int32_t errorNum_ = 0;
 };
 
 
@@ -85,6 +88,7 @@ public:
     int32_t FlushEnc();
     int32_t ResetEnc();
     int32_t ReleaseEnc();
+    int32_t CalcuError();
     ADecEncSignal* acodecSignal_ = nullptr;
 
 
@@ -102,7 +106,8 @@ private:
     struct AVCodecOnAsyncCallback cbDec_;
     // bool isFirstFrame_ = true;
     int64_t timeStampDec_ = 0;
-    uint32_t frameCountDec_ = 0;
+    uint32_t decInCnt = 0;
+    uint32_t decOutCnt = 0;
     // ADecEncSignal* signalDec_ = nullptr;
 
     struct AVCodec* aenc_;
@@ -118,7 +123,13 @@ private:
     struct AVCodecOnAsyncCallback cbEnc_;
     // bool isFirstFrame_ = true;
     int64_t timeStampEnc_ = 0;
-    uint32_t frameCountEnc_ = 0;
+    uint32_t encInCnt = 0;
+    uint32_t encOutCnt_ = 0;
+    bool isDecInputEOS = false;
+    bool isEncInputEOS = false;
+    bool isDecOutputEOS = false;
+    bool isEncOutputEOS = false;
+
     // ADecEncSignal* signalEnc_ = nullptr;
 
 };
