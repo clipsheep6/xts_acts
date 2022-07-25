@@ -31,7 +31,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -56,7 +56,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -81,7 +81,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -106,7 +106,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -135,7 +135,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -160,7 +160,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -185,7 +185,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -210,7 +210,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -239,7 +239,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -264,7 +264,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -289,7 +289,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -314,7 +314,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -343,7 +343,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -368,7 +368,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
@@ -393,7 +393,7 @@ struct Index {
             request: WebResourceRequest,
             error: WebResourceError
           }) => {
-            console.log("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
+            console.error("onErrorReceive: errCode -- " + event.error.getErrorCode() +";errInfo -- " + event.error.getErrorInfo())
           })
           .onHttpErrorReceive((event?: {
             request: WebResourceRequest,
