@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 import app from '@system.app'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import window from '@ohos.window'
 import display from '@ohos.display'
 
+export default function display_test() {
 describe('display_test', function () {
 
     beforeAll(function () {
@@ -43,11 +44,11 @@ describe('display_test', function () {
             expect(dsp.height != null).assertTrue();
             expect(dsp.rotation != null).assertTrue();
             expect(dsp.densityDPI != null).assertTrue();
-            expect(dsp.name).assertEqual(undefined);
+            expect(dsp.name != null).assertTrue();
             expect(dsp.alive).assertEqual(undefined);
             expect(dsp.state).assertEqual(undefined);
-            expect(dsp.densityPixels).assertEqual(undefined);
-            expect(dsp.scaledDensity).assertEqual(undefined);
+            expect(dsp.densityPixels != null).assertTrue();
+            expect(dsp.scaledDensity !=null).assertTrue();
             expect(dsp.xDPI).assertEqual(undefined);
             expect(dsp.yDPI).assertEqual(undefined);
             done();
@@ -78,11 +79,11 @@ describe('display_test', function () {
                 expect(data.height != null).assertTrue();
                 expect(data.rotation != null).assertTrue();
                 expect(data.densityDPI != null).assertTrue();
-                expect(data.name).assertEqual(undefined);
+                expect(data.name != null).assertTrue();
                 expect(data.alive).assertEqual(undefined);
                 expect(data.state).assertEqual(undefined);
-                expect(data.densityPixels).assertEqual(undefined);
-                expect(data.scaledDensity).assertEqual(undefined);
+                expect(data.densityPixels != null).assertTrue();
+                expect(data.scaledDensity !=null).assertTrue();
                 expect(data.xDPI).assertEqual(undefined);
                 expect(data.yDPI).assertEqual(undefined);
                 done();
@@ -105,11 +106,11 @@ describe('display_test', function () {
             expect(dsp[0].height != null).assertTrue();
             expect(dsp[0].rotation != null).assertTrue();
             expect(dsp[0].densityDPI != null).assertTrue();
-            expect(dsp[0].name).assertEqual(undefined);
+            expect(dsp[0].name != null).assertTrue();
             expect(dsp[0].alive).assertEqual(undefined);
             expect(dsp[0].state).assertEqual(undefined);
-            expect(dsp[0].densityPixels).assertEqual(undefined);
-            expect(dsp[0].scaledDensity).assertEqual(undefined);
+            expect(dsp[0].densityPixels != null).assertTrue();
+            expect(dsp[0].scaledDensity !=null).assertTrue();
             expect(dsp[0].xDPI).assertEqual(undefined);
             expect(dsp[0].yDPI).assertEqual(undefined);
             done();
@@ -139,11 +140,11 @@ describe('display_test', function () {
                 expect(data[0].height != null).assertTrue();
                 expect(data[0].rotation != null).assertTrue();
                 expect(data[0].densityDPI != null).assertTrue();
-                expect(data[0].name).assertEqual(undefined);
+                expect(data[0].name != null).assertTrue();
                 expect(data[0].alive).assertEqual(undefined);
                 expect(data[0].state).assertEqual(undefined);
-                expect(data[0].densityPixels).assertEqual(undefined);
-                expect(data[0].scaledDensity).assertEqual(undefined);
+                expect(data[0].densityPixels != null).assertTrue();
+                expect(data[0].scaledDensity !=null).assertTrue();
                 expect(data[0].xDPI).assertEqual(undefined);
                 expect(data[0].yDPI).assertEqual(undefined);
                 done();
@@ -151,6 +152,36 @@ describe('display_test', function () {
         })
     })
 
+    /**
+     * @tc.number		SUB_WMS_GETDEFALUTDISPLAYSYNC_JSAPI_001
+     * @tc.name			Test getDefaultDisplaySYNC_Test_001
+     * @tc.desc			To test the sync function of obtaining the default display
+     */
+    it('getDefaultDisplaySync_Test_001', 0, async function (done) {
+        console.info('displayTest getDefaultDisplaySyncTest1 begin');
+        try {
+            var dsp = display.getDefaultDisplaySync();
+            console.info('displayTest getDefaultDisplaySyncTest1: ' + JSON.stringify(dsp));
+            expect(dsp.id != null).assertTrue();
+            expect(dsp.refreshRate != null).assertTrue();
+            expect(dsp.width != null).assertTrue();
+            expect(dsp.height != null).assertTrue();
+            expect(dsp.rotation != null).assertTrue();
+            expect(dsp.densityDPI != null).assertTrue();
+            expect(dsp.name != null).assertTrue();
+            expect(dsp.alive).assertEqual(undefined);
+            expect(dsp.state).assertEqual(undefined);
+            expect(dsp.densityPixels != null).assertTrue();
+            expect(dsp.scaledDensity !=null).assertTrue();
+            expect(dsp.xDPI).assertEqual(undefined);
+            expect(dsp.yDPI).assertEqual(undefined);
+            done();
+        } catch (err) {
+            console.error('getDefaultDisplaySyncTest1 error ' + JSON.stringify(err));
+            expect.assertFail();
+            done();
+        }
+    })
 
     /**
      * @tc.number	SUB_WMS_ENUM_WINDOWDisplayState_JSAPI_001
@@ -176,3 +207,4 @@ describe('display_test', function () {
     })
 
 })
+}
