@@ -65,9 +65,7 @@ describe('ConnectAbilityTest', function () {
     */
     it("SUB_AA_JsApi_StartAbility_0300", 0, async function (done) {
         let parameter = {
-            'StartAbilityParameter': {
-                'want': {}
-            }
+            'want': {}
         }
         await featureAbility.startAbility(parameter).then((data) => {
             console.log('testAbility0300 data: ' + JSON.stringify(data))
@@ -86,9 +84,7 @@ describe('ConnectAbilityTest', function () {
     */
     it("SUB_AA_JsApi_StartAbility_0400", 0, async function (done) {
         let parameter = {
-            'StartAbilityParameter': {
-                'want': {}
-            }
+            'want': {}
         }
         featureAbility.startAbility((parameter), (error, data) => {
             console.log('testAbility0400 data: ' + JSON.stringify(data))
@@ -193,12 +189,9 @@ describe('ConnectAbilityTest', function () {
     */
     it("SUB_AA_JsApi_Ability_0900", 0, async function (done) {
         let parameter = {
-            'startAbilityParameter': {
-                'want': {
-                    'bundleName': bundleName,
-                    'abilityName': mainAbilityName
-                }
-
+            'want': {
+                'bundleName': bundleName,
+                'abilityName': mainAbilityName
             }
         }
         await featureAbility.startAbility(parameter).then((data) => {
@@ -218,12 +211,9 @@ describe('ConnectAbilityTest', function () {
     */
     it("SUB_AA_JsApi_Ability_1000", 0, async function (done) {
         let parameter = {
-            'startAbilityParameter': {
-                'want': {
-                    'bundleName': bundleName,
-                    'abilityName': mainAbilityName
-                }
-
+            'want': {
+                'bundleName': bundleName,
+                'abilityName': mainAbilityName
             }
         }
         featureAbility.startAbility((parameter), (error, data) => {
@@ -246,7 +236,7 @@ describe('ConnectAbilityTest', function () {
             expect().assertFail()
         }).catch((error) => {
             console.log('testAblity1100 error: ' + JSON.stringify(error))
-            expect(errCode).assertEqual(error.code)
+            expect(202).assertEqual(error.code)
         })
         done()
     })
@@ -261,7 +251,7 @@ describe('ConnectAbilityTest', function () {
         featureAbility.startAbility(parameter, (error, data) => {
             console.log('testAblity1200 data: ' + JSON.stringify(data))
             console.log('testAblity1200 error: ' + JSON.stringify(error))
-            expect(errCode).assertEqual(error.code)
+            expect(202).assertEqual(error.code)
             done();
         })
     })
@@ -277,7 +267,7 @@ describe('ConnectAbilityTest', function () {
             expect().assertFail()
         }).catch((error) => {
             console.log('testAblity1300 error: ' + JSON.stringify(error))
-            expect(errCode).assertEqual(error.code)
+            expect(202).assertEqual(error.code)
         })
         done()
     })
@@ -291,7 +281,7 @@ describe('ConnectAbilityTest', function () {
         featureAbility.startAbility(undefined, (error, data) => {
             console.log('testAblity1400 data: ' + JSON.stringify(data))
             console.log('testAblity1400 error: ' + JSON.stringify(error))
-            expect(errCode).assertEqual(error.code)
+            expect(202).assertEqual(error.code)
             done();
         })
     })
@@ -308,7 +298,7 @@ describe('ConnectAbilityTest', function () {
             expect.assertFail()
         }).catch((error) => {
             console.log('testAblity1500' + JSON.stringify(error));
-            expect(errCode).assertEqual(error.code)
+            expect(202).assertEqual(error.code)
         })
         done()
     })
@@ -323,7 +313,7 @@ describe('ConnectAbilityTest', function () {
         featureAbility.startAbilityForResult(parameter, (error, data) => {
             console.log('testAblity1600 data: ' + JSON.stringify(data))
             console.log('testAblity1600 error: ' + JSON.stringify(error))
-            expect(errCode).assertEqual(error.code)
+            expect(202).assertEqual(error.code)
             console.log('testAblity1600-1 error: ' + JSON.stringify(error))
             done();
         })
@@ -340,7 +330,7 @@ describe('ConnectAbilityTest', function () {
             expect.assertFail()
         }).catch((error) => {
             console.log('testAblity1700' + JSON.stringify(error));
-            expect(errCode).assertEqual(error.code)
+            expect(202).assertEqual(error.code)
         })
         done()
     })
@@ -353,7 +343,7 @@ describe('ConnectAbilityTest', function () {
     it("SUB_AA_JsApi_Ability_1800", 0, async function (done) {
         featureAbility.startAbilityForResult(undefined, (error) => {
             console.log('testAblity1800' + JSON.stringify(error));
-            expect(errCode).assertEqual(error.code)
+            expect(202).assertEqual(error.code)
             done()
         })
     })
@@ -365,14 +355,12 @@ describe('ConnectAbilityTest', function () {
     */
     it("SUB_AA_JsApi_Ability_1900", 0, async function (done) {
         let parameter = {
-            'StartAbilityParameter': {
-                'want': {
-                    'bundleName': bundleName,
-                    'abilityName': mainAbilityName,
-                    'parameters': {
-                        'key': resultCode,
-                        'terminate': true
-                    }
+            'want': {
+                'bundleName': bundleName,
+                'abilityName': mainAbilityName,
+                'parameters': {
+                    'key': resultCode,
+                    'terminate': true
                 }
             }
         }
@@ -393,14 +381,12 @@ describe('ConnectAbilityTest', function () {
     */
     it("SUB_AA_JsApi_Ability_2000", 0, async function (done) {
         let parameter = {
-            'StartAbilityParameter': {
-                'want': {
-                    'bundleName': bundleName,
-                    'abilityName': mainAbilityName,
-                    'parameters': {
-                        'key': resultCode,
-                        'terminate': true
-                    }
+            'want': {
+                'bundleName': bundleName,
+                'abilityName': mainAbilityName,
+                'parameters': {
+                    'key': resultCode,
+                    'terminate': true
                 }
             }
         }
