@@ -3,7 +3,7 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "600000",
-        "bundle-name": "com.example.abilitymonitortest",
+        "bundle-name": "com.example.testapi",
         "module-name": "entry",
         "shell-timeout": "600000",
         "testcase-timeout":"30000"
@@ -11,15 +11,9 @@
     "kits": [
         {
             "test-file-name": [
-                "AbilityMonitorTest.hap"
+                "Testapi.hap"
             ],
             "type": "AppInstallKit",
-            "run-command": [
-                " hilog -Q pidoff",
-                 "hilog -Q domainoff",
-                 "hilog -b D",
-                 "hilog -r"
-             ],
             "cleanup-apps": true
         }
     ]
