@@ -3729,7 +3729,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -3815,7 +3817,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -3903,7 +3907,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -3992,7 +3998,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     
@@ -4082,7 +4090,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -4170,7 +4180,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -4258,7 +4270,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -4346,7 +4360,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -4434,7 +4450,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -4522,7 +4540,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -4610,7 +4630,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -4698,7 +4720,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -4786,7 +4810,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -4874,7 +4900,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -4962,7 +4990,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -5050,7 +5080,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -5138,7 +5170,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -5226,7 +5260,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -5314,7 +5350,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -5402,7 +5440,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -5490,7 +5530,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -5578,7 +5620,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -5666,7 +5710,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -5755,7 +5801,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
     await audioRen.getRendererInfo().then(async function (audioParamsGet) {
@@ -6345,7 +6393,9 @@ describe('audioRenderer', function () {
      console.log("isPass:" + isPass);
      if (isPass) {
          resultFlag = true;
-         return resultFlag;
+         expect(resultFlag).assertTrue();
+         done();
+         return;
      }
 
      if (audioRen.state==audio.AudioState.STATE_PREPARED) {
@@ -6415,7 +6465,9 @@ describe('audioRenderer', function () {
      console.log("isPass:" + isPass);
      if (isPass) {
          resultFlag = true;
-         return resultFlag;
+         expect(resultFlag).assertTrue();
+         done();
+         return;
      }
 
      await audioRen.start().then(async function () {
@@ -6500,7 +6552,9 @@ describe('audioRenderer', function () {
      console.log("isPass:" + isPass);
      if (isPass) {
          resultFlag = true;
-         return resultFlag;
+         expect(resultFlag).assertTrue();
+         done();
+         return;
      }
 
      await audioRen.start().then(async function () {
@@ -6587,7 +6641,9 @@ describe('audioRenderer', function () {
      console.log("isPass:" + isPass);
      if (isPass) {
          resultFlag = true;
-         return resultFlag;
+         expect(resultFlag).assertTrue();
+         done();
+         return;
      }
 
      await audioRen.start().then(async function () {
@@ -6675,7 +6731,9 @@ describe('audioRenderer', function () {
      console.log("isPass:" + isPass);
      if (isPass) {
          resultFlag = true;
-         return resultFlag;
+         expect(resultFlag).assertTrue();
+         done();
+         return;
      }
 
      await audioRen.start().then(async function () {
@@ -6779,7 +6837,9 @@ describe('audioRenderer', function () {
      console.log("isPass:" + isPass);
      if (isPass) {
          resultFlag = true;
-         return resultFlag;
+         expect(resultFlag).assertTrue();
+         done();
+         return;
      }
 
      console.info('AudioFrameworkRenderLog: AudioRenderer : Path : '+readpath);
@@ -6956,7 +7016,9 @@ describe('audioRenderer', function () {
     console.log("isPass:" + isPass);
     if (isPass) {
         resultFlag = true;
-        return resultFlag;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
     }
 
      console.info('AudioFrameworkRenderLog: AudioRenderer : Path : '+readpath);
@@ -7288,7 +7350,9 @@ describe('audioRenderer', function () {
      console.log("isPass:" + isPass);
      if (isPass) {
          resultFlag = true;
-         return resultFlag;
+         expect(resultFlag).assertTrue();
+         done();
+         return;
      }
 
      console.info('AudioFrameworkRenderLog: AudioRenderer : Path : '+readpath);
@@ -7497,7 +7561,9 @@ describe('audioRenderer', function () {
         console.log("isPass:" + isPass);
         if (isPass) {
             resultFlag = true;
-            return resultFlag;
+            expect(resultFlag).assertTrue();
+            done();
+            return;
         }
 
         await audioRen.getAudioTime().then(async function (data) {
@@ -7579,9 +7645,10 @@ describe('audioRenderer', function () {
         console.log("isPass:" + isPass);
         if (isPass) {
             resultFlag = true;
-            return resultFlag;
+            expect(resultFlag).assertTrue();
+            done();
+            return;
         }
-
         audioRen.on('stateChange',(AudioState) => {
 
             console.log('AudioFrameworkTest: Volume Change Event is called');
@@ -7656,7 +7723,9 @@ describe('audioRenderer', function () {
         console.log("isPass:" + isPass);
         if (isPass) {
             resultFlag = true;
-            return resultFlag;
+            expect(resultFlag).assertTrue();
+            done();
+            return;
         }
 
         audioRen.on('stateChange',(AudioState) => {
@@ -7749,7 +7818,9 @@ describe('audioRenderer', function () {
         console.log("isPass:" + isPass);
         if (isPass) {
             resultFlag = true;
-            return resultFlag;
+            expect(resultFlag).assertTrue();
+            done();
+            return;
         }
 
         audioRen.on('stateChange',(AudioState) => {
@@ -7844,7 +7915,9 @@ describe('audioRenderer', function () {
         console.log("isPass:" + isPass);
         if (isPass) {
             resultFlag = true;
-            return resultFlag;
+            expect(resultFlag).assertTrue();
+            done();
+            return;
         }
 
         audioRen.on('stateChange',(AudioState) => {
@@ -7939,7 +8012,9 @@ describe('audioRenderer', function () {
         console.log("isPass:" + isPass);
         if (isPass) {
             resultFlag = true;
-            return resultFlag;
+            expect(resultFlag).assertTrue();
+            done();
+            return;
         }
         audioRen.on('stateChange',(AudioState) => {
 
@@ -8099,7 +8174,9 @@ describe('audioRenderer', function () {
         console.log("isPass:" + isPass);
         if (isPass) {
             resultFlag = true;
-            return resultFlag;
+            expect(resultFlag).assertTrue();
+            done();
+            return;
         }
         audioRen.on('stateChange',(AudioState) => {
 
