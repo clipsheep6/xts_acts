@@ -25,29 +25,29 @@ let videoType = mediaLibrary.MediaType.VIDEO;
 let audioType = mediaLibrary.MediaType.AUDIO;
 
 let imagesfetchOp = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [imageType.toString()],
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: ['Pictures/Dynamic01/', imageType.toString()],
 };
 let videosfetchOp = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [videoType.toString()],
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: ['Videos/Dynamic01/', videoType.toString()],
 };
 let audiosfetchOp = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [audioType.toString()],
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: ['Audios/Dynamic01/', audioType.toString()],
 };
 let filesfetchOp = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [fileType.toString()],
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: ['Documents/Dynamic01/', fileType.toString()],
 };
 
 function checkAssetAttr(done, attr, testNum, asset, checkType) {
     if (checkType && asset[attr] != checkType) {
-        console.info(`ASSET_PROMISE getFileAssets ${testNum} failed`);
+        console.info(`ASSET_CALLBACK getFileAssets ${testNum} failed`);
         expect(false).assertTrue();
         done();
     } else if (asset[attr] == undefined) {
-        console.info(`ASSET_PROMISE getFileAssets ${testNum} failed`);
+        console.info(`ASSET_CALLBACK getFileAssets ${testNum} failed`);
         expect(false).assertTrue();
         done();
     }
@@ -59,9 +59,8 @@ let displayName;
 let id;
 let mediaType;
 let orientation = 0;
-
-export default function fileTestPromiseTest(abilityContext){
-    describe('fileTestPromiseTest', function () {
+export default function fileTestCallBackTest(abilityContext){
+    describe('fileTestCallBackTest', function () {
         var context = featureAbility.getContext();
         console.info('getMediaLibrary IN');
         var media = mediaLibrary.getMediaLibrary(abilityContext);
@@ -80,58 +79,65 @@ export default function fileTestPromiseTest(abilityContext){
 
         // ------------------------------- image type start ----------------------------
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_01
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_01
          * @tc.name      : createAsset
          * @tc.desc      : Insert two database records, read a unique identifier, expectations are not equal
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_01', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_01', 0, async function (done) {
             try {
                 path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE);
                 const fileAssets = await media.getFileAssets(imagesfetchOp);
                 const dataList = await fileAssets.getAllObject();
                 const asset1 = dataList[0];
                 presetAsset = asset1;
-                const creatAsset1 = await media.createAsset(
+                media.createAsset(
                     imageType,
                     `${new Date().getTime()}.jpg`,
-                    path
+                    path,
+                    async (err, creatAsset1) => {
+                        if (creatAsset1 == undefined) {
+                            expect(false).assertTrue();
+                            done();
+                        } else {
+                            const fd1 = await asset1.open('r');
+                            const creatAssetFd1 = await creatAsset1.open('rw');
+                            await copyFile(fd1, creatAssetFd1);
+                            await creatAsset1.close(creatAssetFd1);
+                            await asset1.close(fd1);
+                            displayName = `${new Date().getTime()}.jpg`;
+                            const asset2 = dataList[1];
+                            const creatAsset2 = await media.createAsset(imageType, displayName, path);
+                            const fd2 = await asset2.open('r');
+                            const creatAssetFd2 = await creatAsset2.open('rw');
+                            await copyFile(fd2, creatAssetFd2);
+                            await creatAsset2.close(creatAssetFd2);
+                            await asset2.close(fd2);
+                            id = creatAsset2.id;
+                            mediaType = imageType;
+                            expect(creatAsset1.id != creatAsset2.id).assertTrue();
+                            done();
+                        }
+                    }
                 );
-                const fd1 = await asset1.open('rw');
-                const creatAssetFd1 = await creatAsset1.open('rw');
-                await copyFile(fd1, creatAssetFd1);
-                await creatAsset1.close(creatAssetFd1);
-                await asset1.close(fd1);
-                displayName = `${new Date().getTime()}.jpg`;
-                const asset2 = dataList[1];
-                const creatAsset2 = await media.createAsset(imageType, displayName, path);
-                const fd2 = await asset2.open('rw');
-                const creatAssetFd2 = await creatAsset2.open('rw');
-                await copyFile(fd2, creatAssetFd2);
-                await creatAsset2.close(creatAssetFd2);
-                await asset2.close(fd2);
-                id = creatAsset2.id;
-                mediaType = imageType;
-                expect(creatAsset1.id != creatAsset2.id).assertTrue();
-                done();
             } catch (error) {
-                console.info('ASSET_PROMISE createAsset 001_01 failed, message = ' + error);
+                console.info('ASSET_CALLBACK createAsset 001_01 failed, message = ' + error);
                 expect(false).assertTrue();
                 done();
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_02
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_02
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file displayName and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_02', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_02', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -140,19 +146,19 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.displayName == displayName).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 001_02 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 001_02 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_03
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_03
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file relativePath  and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_03', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_03', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -160,64 +166,65 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.relativePath == path).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 001_03 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 001_03 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_07
-         * @tc.name      : getFileAssets
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_07
+         * @tc.name      : commitModify
          * @tc.desc      : Access to the file dateModified and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_07', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_07', 0, async function (done) {
             try {
                 const fileAssets = await media.getFileAssets(imagesfetchOp);
                 const dataList = await fileAssets.getAllObject();
                 const asset = dataList[0];
                 asset.title = `title_${new Date().getTime()}`;
-                await asset.commitModify();
-                const id = asset.id;
-                const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
-                const newAssets = await media.getFileAssets(idOP);
-                const newdataList = await newAssets.getAllObject();
-                const newAsset = newdataList[0];
+                asset.commitModify(async () => {
+                    const id = asset.id;
+                    const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+                    const newAssets = await media.getFileAssets(idOP);
+                    const newdataList = await newAssets.getAllObject();
+                    const newAsset = newdataList[0];
 
-                if (asset.dateModified != undefined) {
-                    if (newAsset.dateModified != asset.dateModified) {
-                        console.info('ASSET_PROMISE getFileAssets 001_07 passed');
+                    if (asset.dateModified != undefined) {
+                        if (newAsset.dateModified != asset.dateModified) {
+                            console.info('ASSET_CALLBACK getFileAssets 001_07 passed');
+                            expect(true).assertTrue();
+                            done();
+                        } else {
+                            console.info('ASSET_CALLBACK getFileAssets 001_07 failed');
+                            expect(false).assertTrue();
+                            done();
+                        }
+                    } else if (newAsset.dateModified != undefined) {
+                        console.info('ASSET_CALLBACK getFileAssets 001_07 passed');
                         expect(true).assertTrue();
                         done();
                     } else {
-                        console.info('ASSET_PROMISE getFileAssets 001_07 failed');
+                        console.info('ASSET_CALLBACK getFileAssets 001_07 failed');
                         expect(false).assertTrue();
                         done();
                     }
-                } else if (newAsset.dateModified != undefined) {
-                    console.info('ASSET_PROMISE getFileAssets 001_07 passed');
-                    expect(true).assertTrue();
-                    done();
-                } else {
-                    console.info('ASSET_PROMISE getFileAssets 001_07 failed');
-                    expect(false).assertTrue();
-                    done();
-                }
+                });
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 001_07 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 001_07 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_08
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_08
          * @tc.name      : createAsset
          * @tc.desc      : Insert a picture record, the retrieve attributes for images
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_08', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_08', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -225,19 +232,19 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.mediaType == mediaType).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE createAsset 001_08 failed, message = ' + error);
+                console.info('ASSET_CALLBACK createAsset 001_08 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_11
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_11
          * @tc.name      : createAsset
          * @tc.desc      : Get the orientaion attribute
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_11', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_001_11', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -245,7 +252,7 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.orientation == orientation).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE createAsset 001_11 failed, message = ' + error);
+                console.info('ASSET_CALLBACK createAsset 001_11 failed, message = ' + error);
             }
         });
 
@@ -253,58 +260,65 @@ export default function fileTestPromiseTest(abilityContext){
 
         // ------------------------------- video type start ----------------------------
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_01
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_01
          * @tc.name      : createAsset
          * @tc.desc      : Insert two database records, read a unique identifier, expectations are not equal
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_01', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_01', 0, async function (done) {
             try {
                 path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
                 const fileAssets = await media.getFileAssets(videosfetchOp);
                 const dataList = await fileAssets.getAllObject();
                 const asset1 = dataList[0];
-                const creatAsset1 = await media.createAsset(
+                media.createAsset(
                     videoType,
                     `${new Date().getTime()}.mp4`,
-                    path
-                );
-                const fd1 = await asset1.open('rw');
-                const creatAssetFd1 = await creatAsset1.open('rw');
-                await copyFile(fd1, creatAssetFd1);
-                await creatAsset1.close(creatAssetFd1);
-                await asset1.close(fd1);
-                displayName = `${new Date().getTime()}.mp4`;
-                const asset2 = dataList[0];
-                const creatAsset2 = await media.createAsset(videoType, displayName, path);
-                const fd2 = await asset2.open('rw');
-                const creatAssetFd2 = await creatAsset2.open('rw');
-                await copyFile(fd2, creatAssetFd2);
-                await creatAsset2.close(creatAssetFd2);
-                await asset2.close(fd2);
-                id = creatAsset2.id;
-                mediaType = videoType;
+                    path,
+                    async (err, creatAsset1) => {
+                        if (creatAsset1 == undefined) {
+                            expect(false).assertTrue();
+                            done();
+                        } else {
+                            const fd1 = await asset1.open('r');
+                            const creatAssetFd1 = await creatAsset1.open('rw');
+                            await copyFile(fd1, creatAssetFd1);
+                            await creatAsset1.close(creatAssetFd1);
+                            await asset1.close(fd1);
+                            displayName = `${new Date().getTime()}.mp4`;
+                            const asset2 = dataList[0];
+                            const creatAsset2 = await media.createAsset(videoType, displayName, path);
+                            const fd2 = await asset2.open('r');
+                            const creatAssetFd2 = await creatAsset2.open('rw');
+                            await copyFile(fd2, creatAssetFd2);
+                            await creatAsset2.close(creatAssetFd2);
+                            await asset2.close(fd2);
+                            id = creatAsset2.id;
+                            mediaType = videoType;
 
-                expect(creatAsset1.id != creatAsset2.id).assertTrue();
-                done();
+                            expect(creatAsset1.id != creatAsset2.id).assertTrue();
+                            done();
+                        }
+                    }
+                );
             } catch (error) {
-                console.info('ASSET_PROMISE createAsset 002_01 failed' + error);
+                console.info('ASSET_CALLBACK createAsset 002_01 failed' + error);
                 expect(false).assertTrue();
                 done();
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_02
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_02
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file displayName and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_02', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_02', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -313,19 +327,19 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.displayName == displayName).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 002_02 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 002_02 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_03
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_03
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file relativePath  and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_03', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_03', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -334,64 +348,65 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.relativePath == path).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 002_03 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 002_03 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_07
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_07
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file dateModified and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_07', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_07', 0, async function (done) {
             try {
                 const fileAssets = await media.getFileAssets(videosfetchOp);
                 const dataList = await fileAssets.getAllObject();
                 const asset = dataList[0];
                 asset.title = `title_${new Date().getTime()}`;
-                await asset.commitModify();
-                const id = asset.id;
-                const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
-                const newAssets = await media.getFileAssets(idOP);
-                const newdataList = await newAssets.getAllObject();
-                const newAsset = newdataList[0];
+                asset.commitModify(async () => {
+                    const id = asset.id;
+                    const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+                    const newAssets = await media.getFileAssets(idOP);
+                    const newdataList = await newAssets.getAllObject();
+                    const newAsset = newdataList[0];
 
-                if (asset.dateModified != undefined) {
-                    if (newAsset.dateModified != asset.dateModified) {
-                        console.info('ASSET_PROMISE getFileAssets 002_07 passed');
+                    if (asset.dateModified != undefined) {
+                        if (newAsset.dateModified != asset.dateModified) {
+                            console.info('ASSET_CALLBACK getFileAssets 002_07 passed');
+                            expect(true).assertTrue();
+                            done();
+                        } else {
+                            console.info('ASSET_CALLBACK getFileAssets 002_07 failed');
+                            expect(false).assertTrue();
+                            done();
+                        }
+                    } else if (newAsset.dateModified != undefined) {
+                        console.info('ASSET_CALLBACK getFileAssets 002_07 passed');
                         expect(true).assertTrue();
                         done();
                     } else {
-                        console.info('ASSET_PROMISE getFileAssets 002_07 failed');
+                        console.info('ASSET_CALLBACK getFileAssets 002_07 failed');
                         expect(false).assertTrue();
                         done();
                     }
-                } else if (newAsset.dateModified != undefined) {
-                    console.info('ASSET_PROMISE getFileAssets 002_07 passed');
-                    expect(true).assertTrue();
-                    done();
-                } else {
-                    console.info('ASSET_PROMISE getFileAssets 002_07 failed');
-                    expect(false).assertTrue();
-                    done();
-                }
+                });
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 002_07 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 002_07 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_08
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_08
          * @tc.name      : createAsset
          * @tc.desc      : Insert a picture record, the retrieve attributes for images
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_08', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_08', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -399,19 +414,19 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.mediaType == mediaType).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE createAsset 002_08 failed, message = ' + error);
+                console.info('ASSET_CALLBACK createAsset 002_08 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_11
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_11
          * @tc.name      : createAsset
          * @tc.desc      : Get the orientaion attribute
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_11', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_002_11', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -419,64 +434,67 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.orientation == orientation).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE createAsset 002_11 failed, message = ' + error);
+                console.info('ASSET_CALLBACK createAsset 002_11 failed, message = ' + error);
             }
         });
         // -------------------------------  video type end -----------------------------
 
         // ------------------------------- audio type start ----------------------------
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_01
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_01
          * @tc.name      : createAsset
          * @tc.desc      : Insert two database records, read a unique identifier, expectations are not equal
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_01', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_01', 0, async function (done) {
             try {
                 path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
                 const fileAssets = await media.getFileAssets(audiosfetchOp);
                 const dataList = await fileAssets.getAllObject();
                 const asset1 = dataList[0];
-                const creatAsset1 = await media.createAsset(
+                media.createAsset(
                     audioType,
                     `${new Date().getTime()}.mp3`,
-                    path
+                    path,
+                    async (err, creatAsset1) => {
+                        const fd1 = await asset1.open('r');
+                        const creatAssetFd1 = await creatAsset1.open('rw');
+                        await copyFile(fd1, creatAssetFd1);
+                        await creatAsset1.close(creatAssetFd1);
+                        await asset1.close(fd1);
+                        displayName = `${new Date().getTime()}.mp3`;
+                        const asset2 = dataList[0];
+                        const creatAsset2 = await media.createAsset(audioType, displayName, path);
+                        const fd2 = await asset2.open('r');
+                        const creatAssetFd2 = await creatAsset2.open('rw');
+                        await copyFile(fd2, creatAssetFd2);
+                        await creatAsset2.close(creatAssetFd2);
+                        await asset2.close(fd2);
+                        id = creatAsset2.id;
+                        mediaType = audioType;
+                        expect(creatAsset1.id != creatAsset2.id).assertTrue();
+                        done();
+                    }
                 );
-                const fd1 = await asset1.open('rw');
-                const creatAssetFd1 = await creatAsset1.open('rw');
-                await copyFile(fd1, creatAssetFd1);
-                await creatAsset1.close(creatAssetFd1);
-                await asset1.close(fd1);
-                displayName = `${new Date().getTime()}.mp3`;
-                const asset2 = dataList[0];
-                const creatAsset2 = await media.createAsset(audioType, displayName, path);
-                const fd2 = await asset2.open('rw');
-                const creatAssetFd2 = await creatAsset2.open('rw');
-                await copyFile(fd2, creatAssetFd2);
-                await creatAsset2.close(creatAssetFd2);
-                await asset2.close(fd2);
-                id = creatAsset2.id;
-                mediaType = audioType;
-                expect(creatAsset1.id != creatAsset2.id).assertTrue();
-                done();
+
             } catch (error) {
-                console.info('ASSET_PROMISE createAsset 003_01 failed');
+                console.info('ASSET_CALLBACK createAsset 003_01 failed');
                 expect(false).assertTrue();
                 done();
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_02
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_02
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file name and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_02', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_02', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -485,19 +503,19 @@ export default function fileTestPromiseTest(abilityContext){
 
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 003_02 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 003_02 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_03
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_03
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file relativePath  and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_03', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_03', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -505,53 +523,53 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.relativePath == path).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 003_03 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 003_03 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_07
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_07
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file dateModified and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_07', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_07', 0, async function (done) {
             try {
                 const fileAssets = await media.getFileAssets(audiosfetchOp);
                 const dataList = await fileAssets.getAllObject();
                 const asset = dataList[0];
                 asset.title = `title_${new Date().getTime()}`;
-                await asset.commitModify();
+                asset.commitModify(async () => {
+                    const id = asset.id;
+                    const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+                    const newAssets = await media.getFileAssets(idOP);
+                    const newdataList = await newAssets.getAllObject();
+                    const newAsset = newdataList[0];
 
-                const id = asset.id;
-                const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
-                const newAssets = await media.getFileAssets(idOP);
-                const newdataList = await newAssets.getAllObject();
-                const newAsset = newdataList[0];
-
-                if (asset.dateModified != undefined) {
-                    expect(newAsset.dateModified != asset.dateModified).assertTrue()
-                    done();
-                } else {
-                    expect(newAsset.dateModified != undefined).assertTrue();
-                    done();
-                }
+                    if (asset.dateModified != undefined) {
+                        expect(newAsset.dateModified != asset.dateModified).assertTrue()
+                        done();
+                    } else {
+                        expect(newAsset.dateModified != undefined).assertTrue();
+                        done();
+                    }
+                });
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 003_07 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 003_07 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_08
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_08
          * @tc.name      : createAsset
          * @tc.desc      : Insert a picture record, the retrieve attributes for images
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_08', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_003_08', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -559,7 +577,7 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.mediaType == mediaType).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE createAsset 003_08 failed, message = ' + error);
+                console.info('ASSET_CALLBACK createAsset 003_08 failed, message = ' + error);
             }
         });
 
@@ -567,57 +585,59 @@ export default function fileTestPromiseTest(abilityContext){
 
         // ------------------------------ file type start ----------------------------
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_01
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_01
          * @tc.name      : createAsset
          * @tc.desc      : Insert two database records, read a unique identifier, expectations are not equal
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_01', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_01', 0, async function (done) {
             try {
                 path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_DOWNLOAD);
                 const fileAssets = await media.getFileAssets(filesfetchOp);
                 const dataList = await fileAssets.getAllObject();
                 const asset1 = dataList[0];
-                const creatAsset1 = await media.createAsset(
+                media.createAsset(
                     fileType,
                     `${new Date().getTime()}.bat`,
-                    path
+                    path,
+                    async (err, creatAsset1) => {
+                        const fd1 = await asset1.open('r');
+                        const creatAssetFd1 = await creatAsset1.open('rw');
+                        await copyFile(fd1, creatAssetFd1);
+                        await creatAsset1.close(creatAssetFd1);
+                        await asset1.close(fd1);
+                        displayName = `${new Date().getTime()}.bat`;
+                        const asset2 = dataList[0];
+                        const creatAsset2 = await media.createAsset(fileType, displayName, path);
+                        const fd2 = await asset2.open('r');
+                        const creatAssetFd2 = await creatAsset2.open('rw');
+                        await copyFile(fd2, creatAssetFd2);
+                        await creatAsset2.close(creatAssetFd2);
+                        await asset2.close(fd2);
+                        id = creatAsset2.id;
+                        mediaType = fileType;
+                        expect(creatAsset1.id != creatAsset2.id).assertTrue();
+                        done();
+                    }
                 );
-                const fd1 = await asset1.open('rw');
-                const creatAssetFd1 = await creatAsset1.open('rw');
-                await copyFile(fd1, creatAssetFd1);
-                await creatAsset1.close(creatAssetFd1);
-                await asset1.close(fd1);
-                displayName = `${new Date().getTime()}.bat`;
-                const asset2 = dataList[0];
-                const creatAsset2 = await media.createAsset(fileType, displayName, path);
-                const fd2 = await asset2.open('rw');
-                const creatAssetFd2 = await creatAsset2.open('rw');
-                await copyFile(fd2, creatAssetFd2);
-                await creatAsset2.close(creatAssetFd2);
-                await asset2.close(fd2);
-                id = creatAsset2.id;
-                mediaType = fileType;
-                expect(creatAsset1.id != creatAsset2.id).assertTrue();
-                done();
             } catch (error) {
-                console.info('ASSET_PROMISE createAsset 004_01 failed' + error);
+                console.info('ASSET_CALLBACK createAsset 004_01 failed' + error);
                 expect(false).assertTrue();
                 done();
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_02
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_02
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file name and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_02', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_02', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -625,19 +645,19 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.displayName == displayName).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 004_02 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 004_02 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_03
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_03
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file relativePath  and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_03', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_03', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -645,64 +665,65 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.relativePath == path).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 004_03 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 004_03 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_07
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_07
          * @tc.name      : getFileAssets
          * @tc.desc      : Access to the file dateModified and validation is not undefined
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_07', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_07', 0, async function (done) {
             try {
                 const fileAssets = await media.getFileAssets(filesfetchOp);
                 const dataList = await fileAssets.getAllObject();
                 const asset = dataList[0];
                 asset.title = `title_${new Date().getTime()}`;
-                await asset.commitModify();
-                const id = asset.id;
-                const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
-                const newAssets = await media.getFileAssets(idOP);
-                const newdataList = await newAssets.getAllObject();
-                const newAsset = newdataList[0];
+                asset.commitModify(async () => {
+                    const id = asset.id;
+                    const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
+                    const newAssets = await media.getFileAssets(idOP);
+                    const newdataList = await newAssets.getAllObject();
+                    const newAsset = newdataList[0];
 
-                if (asset.dateModified != undefined) {
-                    if (newAsset.dateModified != asset.dateModified) {
-                        console.info('ASSET_PROMISE getFileAssets 004_07 passed');
+                    if (asset.dateModified != undefined) {
+                        if (newAsset.dateModified != asset.dateModified) {
+                            console.info('ASSET_CALLBACK getFileAssets 004_07 passed');
+                            expect(true).assertTrue();
+                            done();
+                        } else {
+                            console.info('ASSET_CALLBACK getFileAssets 004_07 failed');
+                            expect(false).assertTrue();
+                            done();
+                        }
+                    } else if (newAsset.dateModified != undefined) {
+                        console.info('ASSET_CALLBACK getFileAssets 004_07 passed');
                         expect(true).assertTrue();
                         done();
                     } else {
-                        console.info('ASSET_PROMISE getFileAssets 004_07 failed');
+                        console.info('ASSET_CALLBACK getFileAssets 004_07 failed');
                         expect(false).assertTrue();
                         done();
                     }
-                } else if (newAsset.dateModified != undefined) {
-                    console.info('ASSET_PROMISE getFileAssets 004_07 passed');
-                    expect(true).assertTrue();
-                    done();
-                } else {
-                    console.info('ASSET_PROMISE getFileAssets 004_07 failed');
-                    expect(false).assertTrue();
-                    done();
-                }
+                });
             } catch (error) {
-                console.info('ASSET_PROMISE getFileAssets 004_07 failed, message = ' + error);
+                console.info('ASSET_CALLBACK getFileAssets 004_07 failed, message = ' + error);
             }
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_08
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_08
          * @tc.name      : createAsset
          * @tc.desc      : Insert a picture record, the retrieve attributes for images
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_08', 0, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_CALLBACK_004_08', 0, async function (done) {
             try {
                 const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
                 const fileAssets = await media.getFileAssets(idOP);
@@ -710,7 +731,7 @@ export default function fileTestPromiseTest(abilityContext){
                 expect(asset.mediaType == mediaType).assertTrue();
                 done();
             } catch (error) {
-                console.info('ASSET_PROMISE createAsset 004_08 failed, message = ' + error);
+                console.info('ASSET_CALLBACK createAsset 004_08 failed, message = ' + error);
             }
         });
 
