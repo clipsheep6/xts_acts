@@ -1073,11 +1073,11 @@ export default function Image_test() {
                             console.info("imageInfo height :" + imageInfo.size.height + "width : " + imageInfo.size.width);
                         })
                         if (err) {
-                            console.info('TC_068-10 fail ');
+                            console.info('TC_050-10 fail ');
                             expect(false).assertTrue();
                             done();
                         } else {
-                            console.info('TC_068-10 success ');
+                            console.info('TC_050-10 success ');
                             expect(pixelmap != undefined).assertTrue();
                             done();
                         }
