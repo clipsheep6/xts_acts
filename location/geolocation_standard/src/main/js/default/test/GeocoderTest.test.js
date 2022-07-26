@@ -42,12 +42,11 @@ async function changedLocationMode(){
                 expect(result).assertTrue();
             }).catch((error) => {
                 console.info("[lbs_js] promise then error." + JSON.stringify(error));
-                expect().assertFail();
             });
         }
     });
     await geolocation.isLocationEnabled().then(async(result) => {
-        console.info('[lbs_js] getLocationSwitchState result: ' + JSON.stringify(result));
+        console.info('[lbs_js] check LocationSwitchState result: ' + JSON.stringify(result));
     });
 }
 
