@@ -1,0 +1,199 @@
+diff --git a/multimedia/medialibrary/mediaLibrary_js_standard/Test.json b/multimedia/medialibrary/mediaLibrary_js_standard/Test.json
+index 9dddf5fea0335a2468203a8605fa2676ba41bd42..066028036000d49d056b7ad6f172ceb58fa79261 100644
+--- a/multimedia/medialibrary/mediaLibrary_js_standard/Test.json
++++ b/multimedia/medialibrary/mediaLibrary_js_standard/Test.json
+@@ -32,10 +32,10 @@
+         {
+             "type": "ShellKit",
+             "run-command": [
+-                "mkdir -pv /storage/media/100/local/files/{Audios/{Static,Static01,Album/Static,Dynamic,Dynamic01,Dynamic02,DeleteCb01,AblumInfo,DeletePro01,Delete01}}",
+-                "mkdir -pv /storage/media/100/local/files/{Documents/{Static,Static01,Album/Static,Dynamic,Dynamic01,Dynamic02,DeleteCb01,AblumInfo,DeletePro01,Delete01}}",
+-                "mkdir -pv /storage/media/100/local/files/{Videos/{Static,Static01,Album/Static,Dynamic,Dynamic01,Dynamic02,DeleteCb01,AblumInfo,DeletePro01,Delete01}}",
+-                "mkdir -pv /storage/media/100/local/files/{Pictures/{Static,Static01,Album/Static,Dynamic,Dynamic01,Dynamic02,Dynamic022,DeleteCb01,AblumInfo,DeletePro01,Delete01}}",
++                "mkdir -pv /storage/media/100/local/files/Pictures/{Static,Static01,Album/Static,Dynamic,Dynamic01,Dynamic022,DeleteCb01,AblumInfo,DeletePro01,Dynamic03,Temp}",
++                "mkdir -pv /storage/media/100/local/files/Videos/{Static,Static01,Album/Static,Dynamic,Dynamic01,Dynamic02,DeleteCb01,AblumInfo,DeletePro01,Dynamic03}",
++                "mkdir -pv /storage/media/100/local/files/Audios/{Static,Static01,Album/Static,Dynamic,Dynamic01,Dynamic02,DeleteCb01,AblumInfo,DeletePro01,Dynamic03}",
++                "mkdir -pv /storage/media/100/local/files/Documents/{Static,Static01,Album/Static,Dynamic,Dynamic01,Dynamic02,DeleteCb01,AblumInfo,DeletePro01}",
+                 "for d in Static Album/Static Dynamic Dynamic01 Dynamic022 AblumInfo; do for i in $$(seq 3); do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata/01.jpg /storage/media/100/local/files/Pictures/$$d/0$$i.jpg; done;done;",
+                 "for d in Static Album/Static Dynamic Dynamic01 Dynamic02 AblumInfo; do for i in $$(seq 3); do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata/01.mp3 /storage/media/100/local/files/Audios/$$d/0$$i.mp3; done;done;",
+                 "for d in Static Album/Static Dynamic Dynamic01 Dynamic02 AblumInfo; do for i in $$(seq 3); do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata/01.mp4 /storage/media/100/local/files/Videos/$$d/0$$i.mp4; done;done;",
+@@ -50,6 +50,7 @@
+                 "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*",
+                 "hilog -Q pidoff",
+                 "hilog -p off",
++                "hilog -b D",
+                 "aa start -a com.ohos.photos.MainAbility -b com.ohos.photos",
+                 "sleep 60",
+                 "sleep 60",
+diff --git a/multimedia/medialibrary/mediaLibrary_js_standard/entry/src/main/ets/test/mediaLibraryTestCallBack.test.ets b/multimedia/medialibrary/mediaLibrary_js_standard/entry/src/main/ets/test/mediaLibraryTestCallBack.test.ets
+index 6144355c4889b4f9867af09e82a2e53f88a81cb0..64fea34e5e1e5d889b39b53524869662c4a536bc 100644
+--- a/multimedia/medialibrary/mediaLibrary_js_standard/entry/src/main/ets/test/mediaLibraryTestCallBack.test.ets
++++ b/multimedia/medialibrary/mediaLibrary_js_standard/entry/src/main/ets/test/mediaLibraryTestCallBack.test.ets
+@@ -100,7 +100,7 @@ const props = {
+         displayName: '01.jpg',
+         relativePath: 'Pictures/Static01/',
+         size: '348113',
+-        mediaType: '3',
++        mediaType: imageType.toString(),
+         title: '01',
+         dateTaken: '0',
+         width: '1279',
+@@ -108,28 +108,26 @@ const props = {
+         orientation: '0',
+         duration: '0',
+         albumId: '1118',
+-        albumName: 'Static01'
+     },
+     video: {
+         mimeType: 'video/mp4',
+         displayName: '01.mp4',
+         relativePath: 'Videos/Static01/',
+         size: '4853005',
+-        mediaType: '4',
++        mediaType: videoType.toString(),
+         title: '01',
+         dateTaken: '0',
+         width: '1280',
+         height: '720',
+         orientation: '0',
+         duration: '10100',
+-        albumName: 'Static01'
+     },
+     audio: {
+         mimeType: 'audio/mpeg',
+         displayName: '01.mp3',
+         relativePath: 'Audios/Static01/',
+         size: '1958311',
+-        mediaType: '5',
++        mediaType: audioType.toString(),
+         title: '01',
+         dateTaken: '0',
+         artist: '元数据测试',
+@@ -137,21 +135,19 @@ const props = {
+         height: '0',
+         orientation: '0',
+         duration: '219600',
+-        albumName: 'Static01'
+     },
+     file: {
+         mimeType: 'file/*',
+         displayName: '01.dat',
+         relativePath: 'Documents/Static01/',
+         size: '10',
+-        mediaType: '1',
++        mediaType: fileType.toString(),
+         title: '01',
+         dateTaken: '0',
+         width: '0',
+         height: '0',
+         orientation: '0',
+         duration: '0',
+-        albumName: 'Static01'
+     }
+ 
+ }
+@@ -184,8 +180,7 @@ async function checkFileAssetAttr(done, fetchFileResult, type, count, typesArr)
+         asset.width != props[type].width ||
+         asset.height != props[type].height ||
+         asset.orientation != props[type].orientation ||
+-        asset.duration != props[type].duration ||
+-        asset.albumName != props[type].albumName
++        asset.duration != props[type].duration 
+     ) {
+         expect(false).assertTrue();
+         done();
+@@ -898,7 +893,7 @@ export default function mediaLibraryTestCallBackTest(abilityContext){
+         it('SUB__MEDIA_MIDIALIBRARY_CALLBACK_CREATEASSET_007', 0, async function (done) {
+             try {
+                 const fileName = new Date().getTime() + '.bat';
+-                const path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_DOWNLOAD);
++                const path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_DOCUMENTS);
+                 const fileAssets = await media.getFileAssets(filesfetchOp);
+                 const asset1 = await fileAssets.getFirstObject();
+                 media.createAsset(fileType, fileName, path, async (err, creatAsset1) => {
+@@ -941,7 +936,7 @@ export default function mediaLibraryTestCallBackTest(abilityContext){
+         it('SUB__MEDIA_MIDIALIBRARY_CALLBACK_CREATEASSET_008', 0, async function (done) {
+             try {
+                 const fileName = new Date().getTime() + '.bat';
+-                const path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_DOWNLOAD);
++                const path = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_DOCUMENTS);
+                 const fileAssets = await media.getFileAssets(filesfetchOp);
+                 const asset1 = await fileAssets.getFirstObject();
+                 media.createAsset(fileType, fileName, path, async (err, creatAsset1) => {
+diff --git a/multimedia/medialibrary/mediaLibrary_js_standard/entry/src/main/ets/test/mediaLibraryTestPromise.test.ets b/multimedia/medialibrary/mediaLibrary_js_standard/entry/src/main/ets/test/mediaLibraryTestPromise.test.ets
+index d879aa2ddee8b84073e347650f5e15bb356288a4..aacc6d262a37c7d168fa8a924c9c15b730a71852 100644
+--- a/multimedia/medialibrary/mediaLibrary_js_standard/entry/src/main/ets/test/mediaLibraryTestPromise.test.ets
++++ b/multimedia/medialibrary/mediaLibrary_js_standard/entry/src/main/ets/test/mediaLibraryTestPromise.test.ets
+@@ -100,7 +100,7 @@ const props = {
+         displayName: '01.jpg',
+         relativePath: 'Pictures/Static01/',
+         size: '348113',
+-        mediaType: '3',
++        mediaType: imageType.toString(),
+         title: '01',
+         dateTaken: '0',
+         width: '1279',
+@@ -108,28 +108,26 @@ const props = {
+         orientation: '0',
+         duration: '0',
+         albumId: '1118',
+-        albumName: 'Static01'
+     },
+     video: {
+         mimeType: 'video/mp4',
+         displayName: '01.mp4',
+         relativePath: 'Videos/Static01/',
+         size: '4853005',
+-        mediaType: '4',
++        mediaType: videoType.toString(),
+         title: '01',
+         dateTaken: '0',
+         width: '1280',
+         height: '720',
+         orientation: '0',
+         duration: '10100',
+-        albumName: 'Static01'
+     },
+     audio: {
+         mimeType: 'audio/mpeg',
+         displayName: '01.mp3',
+         relativePath: 'Audios/Static01/',
+         size: '1958311',
+-        mediaType: '5',
++        mediaType: audioType.toString(),
+         title: '01',
+         dateTaken: '0',
+         artist: '元数据测试',
+@@ -137,21 +135,19 @@ const props = {
+         height: '0',
+         orientation: '0',
+         duration: '219600',
+-        albumName: 'Static01'
+     },
+     file: {
+         mimeType: 'file/*',
+         displayName: '01.dat',
+         relativePath: 'Documents/Static01/',
+         size: '10',
+-        mediaType: '1',
++        mediaType: fileType.toString(),
+         title: '01',
+         dateTaken: '0',
+         width: '0',
+         height: '0',
+         orientation: '0',
+         duration: '0',
+-        albumName: 'Static01'
+     }
+ 
+ }
+@@ -185,8 +181,7 @@ async function checkFileAssetAttr(done, fetchFileResult, type, count, typesArr)
+         asset.width != props[type].width ||
+         asset.height != props[type].height ||
+         asset.orientation != props[type].orientation ||
+-        asset.duration != props[type].duration ||
+-        asset.albumName != props[type].albumName
++        asset.duration != props[type].duration 
+     ) {
+         expect(false).assertTrue();
+         done();
