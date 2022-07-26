@@ -55,7 +55,7 @@
         },
         {
             "test-file-name": [
-                "ActsMediaLibraryJsTest.hap"
+                "ActsMediaLibraryBasic.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
