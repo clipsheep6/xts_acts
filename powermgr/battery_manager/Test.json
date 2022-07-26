@@ -1,10 +1,12 @@
 {
     "description": "Configuration for powermgr battery Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
+        "bundle-name": "com.example.mybatteryapp",
+        "package-name": "com.example.mybatteryapp",
         "test-timeout": "90000",
-        "package": "com.example.mybatteryapp",
-        "shell-timeout": "90000"
+        "shell-timeout": "90000",
+        "testcase-timeout": 60000
     },
     "kits": [
         {
