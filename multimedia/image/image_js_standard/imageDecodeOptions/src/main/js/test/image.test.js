@@ -1068,18 +1068,21 @@ export default function Image_test() {
                         index: 0
                     };
                     imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
-                        globalpixelmap = pixelmap;
-                        pixelmap.getImageInfo().then((imageInfo) => {
-                            console.info("imageInfo height :" + imageInfo.size.height + "width : " + imageInfo.size.width);
-                        })
                         if (err) {
                             console.info('TC_050-10 fail ');
                             expect(false).assertTrue();
                             done();
                         } else {
-                            console.info('TC_050-10 success ');
-                            expect(pixelmap != undefined).assertTrue();
-                            done();
+                            globalpixelmap = pixelmap;
+                            pixelmap.getImageInfo().then((imageInfo) => {
+                                expect(imageInfo.size.height == 2).assertTrue();
+                                expect(imageInfo.size.width == 1).assertTrue();
+                                console.info('TC_050-10 success ');
+                                console.info("imageInfo height :" + imageInfo.size.height + "width : " + imageInfo.size.width);
+                                done();
+                            }).catch((err) => {
+                                console.info('TC_050-10 getimageInfo err ' + JSON.stringify(err));
+                            })
                         }
                     })
                 }
@@ -1735,19 +1738,21 @@ export default function Image_test() {
                     index: 0
                 };
                 imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
-                    globalpixelmap = pixelmap;
-
-                    pixelmap.getImageInfo().then((imageInfo) => {
-                        console.info("imageInfo height :" + imageInfo.size.height + "width : " + imageInfo.size.width);
-                    })
                     if (err) {
                         console.info('TC_067-10 fail ');
                         expect(false).assertTrue();
                         done();
                     } else {
-                        console.info('TC_067-10 success ');
-                        expect(pixelmap != undefined).assertTrue();
-                        done();
+                        globalpixelmap = pixelmap;
+                        pixelmap.getImageInfo().then((imageInfo) => {
+                            expect(imageInfo.size.height == 2).assertTrue();
+                            expect(imageInfo.size.width == 1).assertTrue();
+                            console.info('TC_067-10 success ');
+                            console.info("imageInfo height :" + imageInfo.size.height + "width : " + imageInfo.size.width);
+                            done();
+                        }).catch((err) => {
+                            console.info('TC_067-10 getimageInfo err ' + JSON.stringify(err));
+                        })
                     }
                 })
             }
@@ -2376,21 +2381,23 @@ export default function Image_test() {
                     desiredRegion: { size: { height: 10000, width: 10000 }, x: 0, y: 0 },
                     index: 0
                 };
-            
-                imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
-                    globalpixelmap = pixelmap;
 
-                    pixelmap.getImageInfo().then((imageInfo) => {
-                        console.info("imageInfo height :" + imageInfo.size.height + "width : " + imageInfo.size.width);
-                    })
+                imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
                     if (err) {
                         console.info('TC_068-10 fail ');
                         expect(false).assertTrue();
                         done();
                     } else {
-                        console.info('TC_068-10 success ');
-                        expect(pixelmap != undefined).assertTrue();
-                        done();
+                        globalpixelmap = pixelmap;
+                        pixelmap.getImageInfo().then((imageInfo) => {
+                            expect(imageInfo.size.height == 2).assertTrue();
+                            expect(imageInfo.size.width == 1).assertTrue();
+                            console.info('TC_068-10 success ');
+                            console.info("imageInfo height :" + imageInfo.size.height + "width : " + imageInfo.size.width);
+                            done();
+                        }).catch((err) => {
+                            console.info('TC_068-10 getimageInfo err ' + JSON.stringify(err));
+                        })
                     }
                 })
             }
@@ -2963,18 +2970,21 @@ export default function Image_test() {
                     index: 0
                 };
                 imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
-                    globalpixelmap = pixelmap;
-                    pixelmap.getImageInfo().then((imageInfo) => {
-                        console.info("imageInfo height :" + imageInfo.size.height + "width : " + imageInfo.size.width);
-                    })
                     if (err) {
                         console.info('TC_163-10 fail ');
                         expect(false).assertTrue();
                         done();
                     } else {
-                        console.info('TC_163-10 success ');
-                        expect(pixelmap != undefined).assertTrue();
-                        done();
+                        globalpixelmap = pixelmap;
+                        pixelmap.getImageInfo().then((imageInfo) => {
+                            expect(imageInfo.size.height == 2).assertTrue();
+                            expect(imageInfo.size.width == 1).assertTrue();
+                            console.info('TC_163-10 success ');
+                            console.info("imageInfo height :" + imageInfo.size.height + "width : " + imageInfo.size.width);
+                            done();
+                        }).catch((err) => {
+                            console.info('TC_163-10 getimageInfo err ' + JSON.stringify(err));
+                        })
                     }
                 })
             }
