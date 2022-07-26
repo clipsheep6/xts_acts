@@ -14,9 +14,8 @@
  */
 
 // @ts-nocheck
-
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import sensor from '@ohos.sensor'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 
 function sleep(NumberMillis) {
     let now = new Date()
@@ -45,60 +44,33 @@ describe('SystemParameterTest', function () {
     afterEach(function () {
         console.info('afterEach caled')
     })
-
-    let testSensorId = 0;
+	
     let testNullSensorId = -1;
+	
+	let errMessages = ['SubscribeSensor failed'];
 
-
-    /**
-     * @tc.number SUB_SENSORS_Sensor_JSTest_0010
-     * @tc.name   testRegisterSensortest001
-     * @tc.desc   test get sensor data by sensor id.
-     */
-    it('SUB_SENSORS_Sensor_JSTest_0010', FUNCTION|MEDIUMTEST|LEVEL0, async function (done) {
-        console.info('SUB_SENSORS_Sensor_JSTest_0010 start');
-        try {
-            sensor.on(testSensorId, function (data) {
-                if (data) {
-                    console.info('testRegisterSensortest001  on success');
-                    expect(data.x).assertInstanceOf('Number');
-                    expect(data.timestamp).assertInstanceOf('Number');
-                    done();
-                } else {
-                    console.info('testRegisterSensortest001  on error');
-                    expect(false).assertTrue();
-                    done();
-                }
-            });
-        } catch (error) {
-            console.info(error);
-            expect(true).assertTrue();
-            done();
-        }
-        console.info('SUB_SENSORS_Sensor_JSTest_0010 end');
-    })
+    let errMessage;
 
    /**
-   * @tc.number SUB_SENSORS_Sensor_JSTest_0020
-   * @tc.name   testRegisterSensortest002
+   * @tc.number SUB_SENSORS_Sensor_JSTest_0010
+   * @tc.name   testRegisterSensortest001
    * @tc.desc   test get sensor data by wrong sensor id.
    */
-    it('SUB_SENSORS_Sensor_JSTest_0020', FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('SUB_SENSORS_Sensor_JSTest_0020 start');
-
+    it('testRegisterSensortest001', FUNCTION|MEDIUMTEST|LEVEL0, async function (done) {
+        console.info('testRegisterSensortest001 start');
         function onSensorCallback(data) {
-            console.info('SensorJsTest002  on error');
+            console.info('testRegisterSensortest001 on error');
             expect(false).assertTrue();
             done();
         }
-
         try {
             sensor.on(testNullSensorId, onSensorCallback);
         } catch (error) {
-            console.info(error);
-            expect(true).assertTrue();
+            console.info('testRegisterSensortest001 error' +error);
+            errMessage = error.toString().slice(12, 34);
+            expect(errMessage).assertEqual(errMessages[0]);
             done();
         }
-        console.info('SUB_SENSORS_Sensor_JSTest_0020 end');
+        console.info('testRegisterSensortest001 end');
     })
 })

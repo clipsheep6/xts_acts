@@ -2,7 +2,7 @@
     "description": "Configuration for sensor js api Tests",
     "driver": {
         "type": "JSUnitTest",
-        "test-timeout": "160000",
+        "test-timeout": "320000",
         "package": "ohos.acts.sensors.sensor.function",
         "shell-timeout": "60000"
     },

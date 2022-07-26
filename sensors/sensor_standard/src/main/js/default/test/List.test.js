@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
-require('./SensorOnOffTest.test.js')
-require('./SensorGeomagneticTest.test.js')
 require('./SensorGeneralalgorithm.test.js')
+require('./SensorGeomagneticTest.test.js')
+require('./SensorOnOffTest.test.js')
+require('./SensorOnOffTest_GetSensorInfoList_test.js') 

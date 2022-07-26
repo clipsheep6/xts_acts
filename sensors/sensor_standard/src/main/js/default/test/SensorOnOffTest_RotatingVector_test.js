@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 import sensor from '@ohos.sensor'
-
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe("SensorJsTest_sensor_20", function () {
@@ -76,7 +76,7 @@ describe("SensorJsTest_sensor_20", function () {
      * @tc.number:SUB_SensorSystem_ROTATION_VECTOR_JsTest_0010
      */
     it("rotatingvector_SensorJsTest001", FUNCTION|MEDIUMTEST|LEVEL0, async function (done) {
-        console.info('----------------------rotatingvector_SensorJsTest001---------------------------');
+        console.info('----------------------rotatingvector_SensorJsTest001-----------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
         setTimeout(()=>{
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR);
@@ -90,12 +90,12 @@ describe("SensorJsTest_sensor_20", function () {
      * @tc.number:SUB_SensorSystem_ROTATION_VECTOR_JsTest_0020
      */
     it("rotatingvector_SensorJsTest002", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------rotatingvector_SensorJsTest002---------------------------');
+        console.info('----------------------rotatingvector_SensorJsTest002-----------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------rotatingvector_SensorJsTest002 off in---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest002 off in-----------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR);
-            console.info('----------------------rotatingvector_SensorJsTest002 off end---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest002 off end-----------');
             done();
         }, 500);
     })
@@ -106,14 +106,15 @@ describe("SensorJsTest_sensor_20", function () {
      * @tc.number:SUB_SensorSystem_ROTATION_VECTOR_JsTest_0030
      */
     it("rotatingvector_SensorJsTest003", FUNCTION|MEDIUMTEST|LEVEL3, function (done) {
-        console.info('----------------------rotatingvector_SensorJsTest003---------------------------');
+        console.info('----------------------rotatingvector_SensorJsTest003-----------');
         function onSensorCallback(data) {
             console.info('rotatingvector_SensorJsTest003  on error');
             expect(false).assertTrue();
             done();
         }
         try {
-            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, onSensorCallback, {'interval': 100000000}, 5);
+            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, 
+			onSensorCallback, {'interval': 100000000}, 5);
         } catch (error) {
             console.info('rotatingvector_SensorJsTest003 error' +error);
             errMessage = error.toString().slice(12, 49);
@@ -147,7 +148,8 @@ describe("SensorJsTest_sensor_20", function () {
             done();
         }
         try{
-            sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, onceSensorCallback, 5);
+            sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, 
+			onceSensorCallback, 5);
         } catch (error) {
             console.info('rotatingvector_SensorJsTest005 error' +error);
             errMessage = error.toString().slice(14, 51);
@@ -221,9 +223,9 @@ describe("SensorJsTest_sensor_20", function () {
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback2);
         setTimeout(()=>{
-            console.info('----------------------rotatingvector_SensorJsTest009 off in---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest009 off in-----------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR);
-            console.info('----------------------rotatingvector_SensorJsTest009 off end---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest009 off end-----------');
             done();
         }, 1000);
     })
@@ -237,14 +239,14 @@ describe("SensorJsTest_sensor_20", function () {
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback2);
         setTimeout(()=>{
-            console.info('----------------------rotatingvector_SensorJsTest010 off in---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest010 off in-----------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
-            console.info('----------------------rotatingvector_SensorJsTest010 off end---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest010 off end-----------');
         }, 500);
         setTimeout(()=>{
-            console.info('----------------------rotatingvector_SensorJsTest010 off in---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest010 off in-----------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback2);
-            console.info('----------------------rotatingvector_SensorJsTest010 off end---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest010 off end-----------');
             done();
         }, 1000);
     })
@@ -255,13 +257,13 @@ describe("SensorJsTest_sensor_20", function () {
      * @tc.number:SUB_SensorSystem_ROTATION_VECTOR_JsTest_0110
      */
     it("rotatingvector_SensorJsTest011", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------rotatingvector_SensorJsTest011---------------------------');
+        console.info('----------------------rotatingvector_SensorJsTest011-----------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback, {'interval': 100000000});
         sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback2);
         setTimeout(()=>{
-            console.info('----------------------rotatingvector_SensorJsTest011 off in---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest011 off in-----------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR);
-            console.info('----------------------rotatingvector_SensorJsTest011 off end---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest011 off end-----------');
             done();
         }, 1000);
     })
@@ -272,18 +274,18 @@ describe("SensorJsTest_sensor_20", function () {
      * @tc.number:SUB_SensorSystem_ROTATION_VECTOR_JsTest_0120
      */
     it("rotatingvector_SensorJsTest012", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------rotatingvector_SensorJsTest012---------------------------');
+        console.info('----------------------rotatingvector_SensorJsTest012-----------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback, {'interval': 100000000});
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback2, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------rotatingvector_SensorJsTest012 off in---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest012 off in-----------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
-            console.info('----------------------rotatingvector_SensorJsTest012 off end---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest012 off end-----------');
         }, 500);
         setTimeout(()=>{
-            console.info('----------------------rotatingvector_SensorJsTest012 off in---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest012 off in-----------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback2);
-            console.info('----------------------rotatingvector_SensorJsTest012 off end---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest012 off end-----------');
             done();
         }, 1000);
     })
@@ -294,13 +296,13 @@ describe("SensorJsTest_sensor_20", function () {
      * @tc.number:SUB_SensorSystem_ROTATION_VECTOR_JsTest_0130
      */
     it("rotatingvector_SensorJsTest013", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------rotatingvector_SensorJsTest013---------------------------');
+        console.info('----------------------rotatingvector_SensorJsTest013-----------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback, {'interval': 100000000});
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback2, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------rotatingvector_SensorJsTest013 off in---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest013 off in-----------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR);
-            console.info('----------------------rotatingvector_SensorJsTest013 off end---------------------------');
+            console.info('----------------------rotatingvector_SensorJsTest013 off end-----------');
             done();
         }, 1000);
     })

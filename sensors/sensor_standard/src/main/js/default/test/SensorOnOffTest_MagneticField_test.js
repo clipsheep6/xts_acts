@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 import sensor from '@ohos.sensor'
-
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe("SensorJsTest_sensor_15", function () {
@@ -74,7 +74,7 @@ describe("SensorJsTest_sensor_15", function () {
      * @tc.number:SUB_SensorSystem_MAGNETIC_FIELD_JsTest_0010
      */
     it("magnetic_SensorJsTest001", FUNCTION|MEDIUMTEST|LEVEL0, async function (done) {
-        console.info('----------------------magnetic_SensorJsTest001---------------------------');
+        console.info('-----------------magnetic_SensorJsTest001-----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
         setTimeout(()=>{
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD);
@@ -88,12 +88,13 @@ describe("SensorJsTest_sensor_15", function () {
      * @tc.number:SUB_SensorSystem_MAGNETIC_FIELD_JsTest_0020
      */
     it("magnetic_SensorJsTest002", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------magnetic_SensorJsTest002---------------------------');
-        sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback, {'interval': 100000000});
+        console.info('-----------------magnetic_SensorJsTest002-----------------');
+        sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, 
+		callback, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------magnetic_SensorJsTest002 off in---------------------------');
+            console.info('-----------------magnetic_SensorJsTest002 off in-----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD);
-            console.info('----------------------magnetic_SensorJsTest002 off end---------------------------');
+            console.info('-----------------magnetic_SensorJsTest002 off end-----------------');
             done();
         }, 500);
     })
@@ -104,14 +105,15 @@ describe("SensorJsTest_sensor_15", function () {
      * @tc.number:SUB_SensorSystem_MAGNETIC_FIELD_JsTest_0030
      */
     it("magnetic_SensorJsTest003", FUNCTION|MEDIUMTEST|LEVEL3, function (done) {
-        console.info('----------------------magnetic_SensorJsTest003---------------------------');
+        console.info('-----------------magnetic_SensorJsTest003-----------------');
         function onSensorCallback(data) {
             console.info('magnetic_SensorJsTest003  on error');
             expect(false).assertTrue();
             done();
         }
         try {
-            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, onSensorCallback, {'interval': 100000000}, 5);
+            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, 
+			onSensorCallback, {'interval': 100000000}, 5);
         } catch (error) {
 			console.info('magnetic_SensorJsTest003 error' +error);
             errMessage = error.toString().slice(12, 49);
@@ -219,9 +221,9 @@ describe("SensorJsTest_sensor_15", function () {
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback2);
         setTimeout(()=>{
-            console.info('----------------------magnetic_SensorJsTest009 off in---------------------------');
+            console.info('-----------------magnetic_SensorJsTest009 off in-----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD);
-            console.info('----------------------magnetic_SensorJsTest009 off end---------------------------');
+            console.info('-----------------magnetic_SensorJsTest009 off end-----------------');
             done();
         }, 1000);
     })
@@ -235,14 +237,14 @@ describe("SensorJsTest_sensor_15", function () {
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback2);
         setTimeout(()=>{
-            console.info('----------------------magnetic_SensorJsTest010 off in---------------------------');
+            console.info('-----------------magnetic_SensorJsTest010 off in-----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
-            console.info('----------------------magnetic_SensorJsTest010 off end---------------------------');
+            console.info('-----------------magnetic_SensorJsTest010 off end-----------------');
         }, 500);
         setTimeout(()=>{
-            console.info('----------------------magnetic_SensorJsTest010 off in---------------------------');
+            console.info('-----------------magnetic_SensorJsTest010 off in-----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback2);
-            console.info('----------------------magnetic_SensorJsTest010 off end---------------------------');
+            console.info('-----------------magnetic_SensorJsTest010 off end-----------------');
             done();
         }, 1000);
     })
@@ -253,13 +255,13 @@ describe("SensorJsTest_sensor_15", function () {
      * @tc.number:SUB_SensorSystem_MAGNETIC_FIELD_JsTest_0110
      */
     it("magnetic_SensorJsTest011", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------magnetic_SensorJsTest011---------------------------');
+        console.info('-----------------magnetic_SensorJsTest011-----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback, {'interval': 100000000});
         sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback2);
         setTimeout(()=>{
-            console.info('----------------------magnetic_SensorJsTest011 off in---------------------------');
+            console.info('-----------------magnetic_SensorJsTest011 off in-----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD);
-            console.info('----------------------magnetic_SensorJsTest011 off end---------------------------');
+            console.info('-----------------magnetic_SensorJsTest011 off end-----------------');
             done();
         }, 1000);
     })
@@ -270,18 +272,18 @@ describe("SensorJsTest_sensor_15", function () {
      * @tc.number:SUB_SensorSystem_MAGNETIC_FIELD_JsTest_0120
      */
     it("magnetic_SensorJsTest012", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------magnetic_SensorJsTest012---------------------------');
+        console.info('-----------------magnetic_SensorJsTest012-----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback, {'interval': 100000000});
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback2, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------magnetic_SensorJsTest012 off in---------------------------');
+            console.info('-----------------magnetic_SensorJsTest012 off in-----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
-            console.info('----------------------magnetic_SensorJsTest012 off end---------------------------');
+            console.info('-----------------magnetic_SensorJsTest012 off end-----------------');
         }, 500);
         setTimeout(()=>{
-            console.info('----------------------magnetic_SensorJsTest012 off in---------------------------');
+            console.info('-----------------magnetic_SensorJsTest012 off in-----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback2);
-            console.info('----------------------magnetic_SensorJsTest012 off end---------------------------');
+            console.info('-----------------magnetic_SensorJsTest012 off end-----------------');
             done();
         }, 1000);
     })
@@ -292,13 +294,13 @@ describe("SensorJsTest_sensor_15", function () {
      * @tc.number:SUB_SensorSystem_MAGNETIC_FIELD_JsTest_0130
      */
     it("magnetic_SensorJsTest013", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------magnetic_SensorJsTest013---------------------------');
+        console.info('-----------------magnetic_SensorJsTest013-----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback, {'interval': 100000000});
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback2, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------magnetic_SensorJsTest013 off in---------------------------');
+            console.info('-----------------magnetic_SensorJsTest013 off in-----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD);
-            console.info('----------------------magnetic_SensorJsTest013 off end---------------------------');
+            console.info('-----------------magnetic_SensorJsTest013 off end-----------------');
             done();
         }, 1000);
     })
