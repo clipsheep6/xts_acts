@@ -42,7 +42,7 @@ describe('ActsOsAccountThirdPartyTest_third_1', function () {
             AccountManager.getDistributedVirtualDeviceId((err, id)=>{
                 console.debug("====>getDistributedVirtualDeviceId err:" + JSON.stringify(err));
                 console.debug("====>getDistributedVirtualDeviceId deviceId:" + id);
-                expect(err.code).assertEqual(0);
+                expect(err).assertEqual(undefined);
                 expect(id).assertEqual(deviceId);
                 console.debug("====>ActsOsAccountDeviceId_0100 end====");
                 done();
@@ -89,7 +89,7 @@ describe('ActsOsAccountThirdPartyTest_third_1', function () {
         AccountManager.isOsAccountActived(0, (err, isActived)=>{
             console.debug("====>isOsAccountActived err:" + JSON.stringify(err));
             console.debug("====>isOsAccountActived isActived:" + isActived);
-            expect(err.code).assertEqual(0);
+            expect(err).assertEqual(undefined);
             expect(isActived).assertEqual(true);
             console.debug("====>ActsOsAccountIsActived_0100 end");
             done();
@@ -250,7 +250,7 @@ describe('ActsOsAccountThirdPartyTest_third_1', function () {
         AccountManager.isMultiOsAccountEnable((err, data)=>{
             console.debug("====>isMultiOsAccountEnable err:" + JSON.stringify(err));
             console.debug("====>isMultiOsAccountEnable data:" + data);
-            expect(err.code).assertEqual(0);
+            expect(err).assertEqual(undefined);
             expect(data).assertEqual(true);
             console.debug("====>ActsOsAccountIsMulty_0100 end====");
             done();
@@ -292,7 +292,7 @@ describe('ActsOsAccountThirdPartyTest_third_1', function () {
         AccountManager.isOsAccountVerified((err, data)=>{
             console.debug("====>isOsAccountVerified err:" + JSON.stringify(err));
             console.debug("====>isOsAccountVerified data:" + data);
-            expect(err.code).assertEqual(0);
+            expect(err).assertEqual(undefined);
             expect(data).assertEqual(false);
             console.debug("====>ActsOsAccountVerified_0100 end====");
             done();
@@ -326,7 +326,7 @@ describe('ActsOsAccountThirdPartyTest_third_1', function () {
         console.debug("====>get os AccountManager finish====");
         AccountManager.isOsAccountVerified(0, (err, data)=>{
             console.debug("====>isOsAccountVerified err:" + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
+            expect(err).assertEqual(undefined);
             expect(data).assertFalse();
             console.debug("====>ActsOsAccountIsVerified_0300 end====");
             done();
@@ -481,7 +481,7 @@ describe('ActsOsAccountThirdPartyTest_third_1', function () {
         AccountManager.isTestOsAccount((err, data)=>{
             console.debug("====>isTestOsAccount err:" + JSON.stringify(err));
             console.debug("====>isTestOsAccount data:" + JSON.stringify(data));
-            expect(err.code).assertEqual(0);
+            expect(err).assertEqual(undefined);
             expect(data).assertEqual(false);
             console.debug("====>ActsOsAccountIsTest_0100 end====");
             done();
