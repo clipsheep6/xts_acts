@@ -792,6 +792,7 @@ describe("SensorJsTest_sensor_1", function () {
             }
             done()
         })
+		    console.info("SensorJsTest_098 end");
     })
 
    /*

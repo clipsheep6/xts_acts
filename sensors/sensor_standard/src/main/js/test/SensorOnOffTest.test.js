@@ -47,19 +47,18 @@ describe('SystemParameterTest', function () {
         console.info('afterEach caled')
     })
 
-    let testSensorId = 0;
     let testNullSensorId = -1;
 
    /**
    * @tc.number SUB_SENSORS_Sensor_JSTest_0020
-   * @tc.name   testRegisterSensortest002
+   * @tc.name   testRegisterSensortest001
    * @tc.desc   test get sensor data by wrong sensor id.
    */
-    it('SUB_SENSORS_Sensor_JSTest_0020', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('SUB_SENSORS_Sensor_JSTest_0020 start');
+    it('testRegisterSensortest001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('testRegisterSensortest001 start');
 
         function onSensorCallback(data) {
-            console.info('SensorJsTest002  on error');
+            console.info('testRegisterSensortest001  on error');
             expect(false).assertTrue();
             done();
         }
@@ -71,6 +70,6 @@ describe('SystemParameterTest', function () {
             expect(true).assertTrue();
             done();
         }
-        console.info('SUB_SENSORS_Sensor_JSTest_0020 end');
+        console.info('testRegisterSensortest001 end');
     })
 })}
