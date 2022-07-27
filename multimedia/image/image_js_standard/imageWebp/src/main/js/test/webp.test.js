@@ -102,7 +102,7 @@ describe('Image', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
+            imageSourceApi.createPixelMap(arg, (err, pixelmap) => {
                 if (err) {
                     console.info(`${testNum} - fail `);
                     expect(false).assertTrue();
