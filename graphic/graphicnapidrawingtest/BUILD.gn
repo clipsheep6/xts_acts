@@ -19,23 +19,23 @@ module_output_path = "hit/GraphicNapiDrawingTest"
 
 ohos_moduletest_suite("GraphicNapiDrawingTest") {
   module_out_path = module_output_path
-  
+
   sources = [
     "NativeDrawingBitmapTest.cpp",
     "NativeDrawingBrushTest.cpp",
     "NativeDrawingCanvasTest.cpp",
     "NativeDrawingColorTest.cpp",
-    "OH_Drawing_FontCollectionTest.cpp",
     "NativeDrawingPathTest.cpp",
     "NativeDrawingPenTest.cpp",
+    "OH_Drawing_FontCollectionTest.cpp",
     "OH_Drawing_TypographyTest.cpp",
   ]
 
-  cflags= [
-     "-Wall",
-     "-Werror",
+  cflags = [
+    "-Wall",
+    "-Werror",
   ]
-  
+
   include_dirs = [
     "//foundation/graphic/graphic_2d/rosen/modules/2d_engine",
     "//foundation/graphic/graphic_2d/rosen/modules/2d_graphics/include",
