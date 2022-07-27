@@ -32,7 +32,7 @@ export default function settingUiJsunit() {
     it('inputmethoh_test_002', 0, async function (done) {
       let inputMethodSetting = inputMethod.getInputMethodSetting();
       console.info("inputmethoh_test_002 result:" + JSON.stringify(inputMethodSetting));
-      let promise = inputMethodSetting.listInputMethod();
+      let promise = await inputMethodSetting.listInputMethod();
       console.info("inputmethoh_test_002 listInputMethod result---" + JSON.stringify(promise));
       if (promise.length > 0){
         let obj = promise[0]
@@ -41,7 +41,7 @@ export default function settingUiJsunit() {
         expect(obj.methodId != null).assertTrue();
       }else{
         console.info("inputmethoh_test_002 listInputMethod is null");
-        except().assertFail()
+        expect().assertFail()
       }
       done();
     });
@@ -58,7 +58,7 @@ export default function settingUiJsunit() {
     it('inputmethoh_test_004', 0, async function (done) {
       let inputMethodSetting = inputMethod.getInputMethodSetting();
       console.info("inputmethoh_test_004 result:" + JSON.stringify(inputMethodSetting));
-      let promise = inputMethodSetting.displayOptionalInputMethod();
+      let promise = await inputMethodSetting.displayOptionalInputMethod();
       console.info("inputmethoh_test_004 displayOptionalInputMethod result---" + JSON.stringify(promise));
       expect(promise).assertEqual(undefined)
       done();
@@ -76,7 +76,7 @@ export default function settingUiJsunit() {
     it('inputmethoh_test_006', 0, async function (done) {
       let inputMethodCtrl = inputMethod.getInputMethodController();
       console.info("inputmethoh_test_006 result:" + JSON.stringify(inputMethodCtrl));
-      let promise = inputMethodCtrl.stopInput();
+      let promise = await inputMethodCtrl.stopInput();
       console.info("inputmethoh_test_006 inputMethodCtrl stopInput result---" + JSON.stringify(promise));
       expect(promise).assertEqual(true)
       done();
