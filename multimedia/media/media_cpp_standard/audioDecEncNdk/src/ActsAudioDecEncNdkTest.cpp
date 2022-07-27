@@ -61,18 +61,18 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest000, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    // do work 
-    sleep(1);
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopDec());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopEnc());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
+    // // do work 
+    // sleep(1);
+    // ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopDec());
+    // ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopEnc());
+    // ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 
     
-    aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out_2.aac");
-    aDecEncSample->ReRead();
-    aDecEncSample->ResetParam();
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
+    // aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out_2.aac");
+    // aDecEncSample->ReRead();
+    // aDecEncSample->ResetParam();
+    // ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
+    // ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
     sleep(10);
     // stop work and release codecs
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopDec());

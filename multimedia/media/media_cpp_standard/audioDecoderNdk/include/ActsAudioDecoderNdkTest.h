@@ -1,34 +1,34 @@
-#ifndef ACTSVIDEODECENC_NDK_FUNC_TEST_H
-#define ACTSVIDEODECENC_NDK_FUNC_TEST_H
+#ifndef ACTSAUDIODECODER_NDK_FUNC_TEST_H
+#define ACTSAUDIODECODER_NDK_FUNC_TEST_H
 
 #include "gtest/gtest.h"
-#include "VDecEncNdkSample.h"
+#include "ADecNdkSample.h"
 
 namespace OHOS {
 namespace Media {
-class ActsVideoDecEncNdkTest : public testing::Test {
+class ActsAudioDecoderNdkTest : public testing::Test {
 public:
     // Preset action of the test suite, which is executed before the first test case
     static void SetUpTestCase(void)
     {
-        printf("ActsVideoDecEncNdkTest::SetUpTestCase");
+        printf("ActsAudioDecoderNdkTest::SetUpTestCase");
     }
     // Test suite cleanup action, which is executed after the last test case
     static void TearDownTestCase(void)
     {
-        printf("ActsVideoDecEncNdkTest::TearDownTestCase");
+        printf("ActsAudioDecoderNdkTest::TearDownTestCase");
     }
     // Preset action of the test case
     void SetUp(void)
     {
         // testInfo_ = ::testing::UnitTest::GetInstance()->current_test_info();
-        printf("ActsVideoDecEncNdkTest::SetUp");
+        printf("ActsAudioDecoderNdkTest::SetUp");
     }
     // Cleanup action of the test case
     virtual void TearDown(void)
     {
         // testInfo_ = ::testing::UnitTest::GetInstance()->current_test_info();
-        printf("ActsVideoDecEncNdkTest::TearDown");
+        printf("ActsAudioDecoderNdkTest::TearDown");
     }
     // const ::testing::TestInfo *testInfo_ = nullptr;
 };

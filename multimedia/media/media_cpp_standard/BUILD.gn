@@ -12,19 +12,21 @@
 # limitations under the License.
 
 import("//test/xts/tools/build/suite.gni")
-module_output_path = "hits/ActsAvcodecNdkTest"
 
+module_output_path = "hits/ActsAvcodecNdkTest"
 
 ohos_moduletest_suite("ActsAvcodecNdkTest") {
   module_out_path = module_output_path
-  sources = [ 
-    "audioDecEncNdk/src/ActsAudioDecEncNdkTest.cpp",
-    "audioDecEncNdk/src/ADecEncNdkSample.cpp",
+  sources = [
+    "videoDecEncNdk/src/ActsVideoDecEncNdkTest.cpp",
+    "videoDecEncNdk/src/VDecEncNdkSample.cpp",
   ]
   include_dirs = [
     "include",
-    "audioDecEncNdk/include",
-    "//foundation/multimedia/media_standard/interfaces/inner_api/ndk",
+    "videoDecEncNdk/include",
+    "//foundation/multimedia/player_framework/interfaces/kits/ndk",
+    "//foundation/multimedia/audio_framework/interfaces/inner_api/native/audiocommon/include",
+    "//utils/native/base/include",
   ]
 
   cflags = [
@@ -44,12 +46,13 @@ ohos_moduletest_suite("ActsAvcodecNdkTest") {
     "-Wdate-time",
     "",
   ]
-  
-  deps = [ 
-    "//foundation/multimedia/media_standard/interfaces/inner_api/ndk:media_ndk",
+
+  deps = [
+    "//foundation/graphic/graphic_2d/frameworks/surface:surface",
+    "//foundation/multimedia/player_framework/interfaces/kits/ndk:media_ndk",
     "//utils/native/base:utils",
   ]
-  
-  part_name = "multimedia_media_standard"
+
   subsystem_name = "multimedia"
+  part_name = "multimedia_player_framework"
 }

@@ -17,7 +17,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include "gtest/gtest.h"
-#include "ActsAudioDecEncNdkTest.h"
+#include "ActsVideoDecEncNdkTest.h"
 #include "ndk_av_codec.h"
 #include "ndk_av_format.h"
 
@@ -27,55 +27,242 @@ using namespace testing::ext;
 using namespace OHOS;
 using namespace OHOS::Media;
 
+const string MIME_TYPE_DEC = "video/avc";
+const string MIME_TYPE_ENC = "video/mp4v-es";
 
 /**
- * @tc.number    : ActsAudioDecEncNdkTest001
- * @tc.name      : Test basic audio decode function
+ * @tc.number    : ActsVideoDecEncNdkTest001
+ * @tc.name      : test stop at end of stream
  * @tc.desc      : Basic function test
  */
-HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest000, Function | MediumTest | Level1)
+HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest001, Function | MediumTest | Level1)
 {
-    // create and configure audio decoder
-    ADecEncNdkSample *aDecEncSample = new ADecEncNdkSample();
-    struct AVCodec* audDec = aDecEncSample->CreateAudioDecoder();
-    ASSERT_NE(nullptr, audDec);
-    AVFormat *AudioDecFormat = OH_AV_CreateFormat();
-    ASSERT_NE(nullptr, AudioDecFormat);
-    OH_AV_FormatPutIntValue(AudioDecFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioDecFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioDecFormat, "audio_sample_format", 1); 
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureDec(AudioDecFormat));
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareDec());
+    // create and configure video decoder
+    VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
-    // create and configure audio encoder
-    // AEncNdkSample *aDecEncSample = new AEncNdkSample();
-    struct AVCodec* audEnc = aDecEncSample->CreateAudioEncoder();
-    ASSERT_NE(nullptr, audEnc);
-    AVFormat *AudioEncFormat = OH_AV_CreateFormat();
-    ASSERT_NE(nullptr, AudioEncFormat);
-    OH_AV_FormatPutIntValue(AudioEncFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioEncFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioEncFormat, "audio_sample_format", 1); 
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioEncFormat));
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
+    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    ASSERT_NE(nullptr, videoDec);
+    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    ASSERT_NE(nullptr, videoEnc);
+    vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
+    vDecEncSample->SetSavePath("/data/media/video_001.es");
+    
+    AVFormat *VideoFormat = OH_AV_CreateFormat();
+    ASSERT_NE(nullptr, VideoFormat);
+    OH_AV_FormatPutIntValue(VideoFormat, "width", 320);
+    OH_AV_FormatPutIntValue(VideoFormat, "height", 240);
+    OH_AV_FormatPutIntValue(VideoFormat, "pixel_format", 3);
+    OH_AV_FormatPutIntValue(VideoFormat, "frame_rate", 60); 
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureDec(VideoFormat));
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureEnc(VideoFormat));
 
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->GetSurface());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->SetOutputSurface());
 
-    // start audio encoder and decoder
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->PrepareEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->PrepareDec());
+
+    // start video encoder and decoder
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
     // do work 
     sleep(10);
 
     // stop work and release codecs
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopDec());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
-    audDec = nullptr;
-    OH_AV_DestroyFormat(AudioDecFormat);
-    AudioDecFormat = nullptr;
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopEnc());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseEnc());
-    audEnc = nullptr;
-    OH_AV_DestroyFormat(AudioEncFormat);
-    AudioEncFormat = nullptr;
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopDec());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
+    videoDec = nullptr;
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseEnc());
+    videoEnc = nullptr;
+
+    OH_AV_DestroyFormat(VideoFormat);
+    VideoFormat = nullptr;
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
+}
+
+/**
+ * @tc.number    : ActsVideoDecEncNdkTest002
+ * @tc.name      : test flush at running state
+ * @tc.desc      : Basic function test
+ */
+HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest002, Function | MediumTest | Level1)
+{
+    // create and configure video decoder
+    VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
+
+    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    ASSERT_NE(nullptr, videoDec);
+    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    ASSERT_NE(nullptr, videoEnc);
+    vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
+    vDecEncSample->SetSavePath("/data/media/video_002.es");
+
+    AVFormat *VideoFormat = OH_AV_CreateFormat();
+    ASSERT_NE(nullptr, VideoFormat);
+    OH_AV_FormatPutIntValue(VideoFormat, "width", 320);
+    OH_AV_FormatPutIntValue(VideoFormat, "height", 240);
+    OH_AV_FormatPutIntValue(VideoFormat, "pixel_format", 3);
+    OH_AV_FormatPutIntValue(VideoFormat, "frame_rate", 60); 
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureDec(VideoFormat));
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureEnc(VideoFormat));
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->GetSurface());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->SetOutputSurface());
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->PrepareEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->PrepareDec());
+
+    // start video encoder and decoder
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
+
+    // do work 
+    sleep(1);
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->FlushDec());
+
+    sleep(10);
+
+    // stop work and release codecs
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopDec());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
+    videoDec = nullptr;
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseEnc());
+    videoEnc = nullptr;
+
+    OH_AV_DestroyFormat(VideoFormat);
+    VideoFormat = nullptr;
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
+}
+
+/**
+ * @tc.number    : ActsVideoDecEncNdkTest003
+ * @tc.name      : test flush at EOS state
+ * @tc.desc      : Basic function test
+ */
+HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest003, Function | MediumTest | Level1)
+{
+    // create and configure video decoder
+    VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
+
+    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    ASSERT_NE(nullptr, videoDec);
+    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    ASSERT_NE(nullptr, videoEnc);
+    vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
+    vDecEncSample->SetSavePath("/data/media/video_003.es");
+
+    AVFormat *VideoFormat = OH_AV_CreateFormat();
+    ASSERT_NE(nullptr, VideoFormat);
+    OH_AV_FormatPutIntValue(VideoFormat, "width", 320);
+    OH_AV_FormatPutIntValue(VideoFormat, "height", 240);
+    OH_AV_FormatPutIntValue(VideoFormat, "pixel_format", 3);
+    OH_AV_FormatPutIntValue(VideoFormat, "frame_rate", 60); 
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureDec(VideoFormat));
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureEnc(VideoFormat));
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->GetSurface());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->SetOutputSurface());
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->PrepareEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->PrepareDec());
+
+    // start video encoder and decoder
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
+
+    // do work 
+    sleep(10);
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->FlushDec());
+    vDecEncSample->ReRead();
+    vDecEncSample->ResetParam();
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
+
+
+    sleep(10);
+
+    // stop work and release codecs
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopDec());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
+    videoDec = nullptr;
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseEnc());
+    videoEnc = nullptr;
+
+    OH_AV_DestroyFormat(VideoFormat);
+    VideoFormat = nullptr;
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
+}
+
+/**
+ * @tc.number    : ActsVideoDecEncNdkTest004
+ * @tc.name      : test stop and restart
+ * @tc.desc      : Basic function test
+ */
+HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest004, Function | MediumTest | Level1)
+{
+    // create and configure video decoder
+    VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
+
+    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    ASSERT_NE(nullptr, videoDec);
+    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    ASSERT_NE(nullptr, videoEnc);
+    vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
+    vDecEncSample->SetSavePath("/data/media/video_004.es");
+
+    AVFormat *VideoFormat = OH_AV_CreateFormat();
+    ASSERT_NE(nullptr, VideoFormat);
+    OH_AV_FormatPutIntValue(VideoFormat, "width", 320);
+    OH_AV_FormatPutIntValue(VideoFormat, "height", 240);
+    OH_AV_FormatPutIntValue(VideoFormat, "pixel_format", 3);
+    OH_AV_FormatPutIntValue(VideoFormat, "frame_rate", 60); 
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureDec(VideoFormat));
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureEnc(VideoFormat));
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->GetSurface());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->SetOutputSurface());
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->PrepareEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->PrepareDec());
+
+    // start video encoder and decoder
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
+
+    // do work 
+    sleep(10);
+
+    // stop work and release codecs
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopDec());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
+    sleep(5);
+    vDecEncSample->ReRead();
+    vDecEncSample->ResetParam();
+    vDecEncSample->SetSavePath("/data/media/video_004_2.es");
+
+    // start video encoder and decoder
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
+
+    sleep(10);
+
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
+    videoDec = nullptr;
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseEnc());
+    videoEnc = nullptr;
+
+    OH_AV_DestroyFormat(VideoFormat);
+    VideoFormat = nullptr;
+    ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
 }

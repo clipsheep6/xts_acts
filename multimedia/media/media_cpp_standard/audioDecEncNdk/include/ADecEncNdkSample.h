@@ -133,11 +133,11 @@ private:
     bool isDecOutputEOS = false;
     bool isEncOutputEOS = false;
     std::string outDir_ = "/data/media/out.aac";
+    bool flushFlag = false;
 
     // ADecEncSignal* signalEnc_ = nullptr;
 
 };
-
 }
 }
 #endif // AUDIODECENC_NDK_SAMPLE_H

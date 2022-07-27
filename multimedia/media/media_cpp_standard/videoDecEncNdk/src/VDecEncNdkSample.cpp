@@ -14,76 +14,48 @@
  */
 
 #include "VDecEncNdkSample.h"
-// #include "audio_info.h"
-
 #include "ndk_av_memory.h"
+#include "audio_info.h"
+#include "av_common.h"
+#include "avcodec_video_encoder.h"
+#include "avcodec_video_decoder.h"
+
 
 using namespace OHOS;
 using namespace OHOS::Media;
 using namespace std;
 
 namespace {
-    // constexpr uint32_t DEFAULT_SAMPLE_RATE = 44100;
-    // constexpr uint32_t DEFAULT_CHANNELS = 2;
     constexpr uint32_t SAMPLE_DURATION_US = 23000;
     constexpr bool NEED_DUMP = true;
-    const string MIME_TYPE = "audio/mp4a-latm";
-    const char * INP_DIR = "/data/media/AAC_48000_32_1.aac";
-    const char * OUT_DIR = "/data/media/AAC_48000_32_1_out.aac";
+    // const char * INP_DIR = "/data/media/out_320_240_10s.h264";
+    // const char * OUT_DIR = "/data/media/out_320_240_10s.mpeg4";
     constexpr uint32_t ES[] = {
-        11895, 8109, 1578, 1616, 1313, 572, 805, 837, 755, 706, 952, 879, 13193, 422, 389, 509, 725, 465, 479, 959, 
-        677, 364, 541, 696, 9306, 322, 318, 767, 590, 422, 530, 403, 505, 566, 445, 508, 7783, 460, 405, 343, 451,
-        608, 431, 411, 543, 487, 527, 400, 6287, 385, 418, 391, 592, 434, 412, 398, 504, 492, 479, 561, 5413, 317,
-        355, 422, 467, 452, 476, 460, 490, 492, 485, 451, 5036, 312, 408, 460, 432, 502, 388, 475, 407, 544, 401,
-        487, 4404, 362, 378, 427, 416, 426, 456, 414, 438, 424, 442, 444, 4310, 362, 388, 393, 390, 441, 398, 423,
-        369, 443, 406, 392, 4231, 343, 363, 355, 390, 459, 371, 378, 381, 405, 392, 426, 3975, 387, 337, 393, 439,
-        378, 355, 374, 484, 381, 373, 423, 3869, 312, 350, 400, 345, 356, 320, 473, 431, 386, 338, 431, 3426, 268,
-        315, 416, 383, 373, 381, 354, 383, 328, 348, 418, 3715, 324, 361, 331, 350, 302, 409, 377, 359, 384, 334,
-        326, 3439, 266, 324, 329, 353, 405, 303, 357, 332, 292, 361, 333, 3542, 294, 284, 247, 331, 306, 322, 287,
-        367, 341, 276, 258, 3980, 246, 245, 259, 309, 333, 250, 275, 334, 281, 253, 371, 3640, 213, 231, 301, 302,
-        228, 289, 290, 281, 201, 284, 277, 4242, 205, 328, 237, 283, 295, 266, 230, 321, 348, 212, 308, 4103, 259,
-        238, 245, 298, 330, 265, 271, 287, 267, 286, 290, 3856, 269, 242, 209, 314, 267, 278, 280, 314, 250, 433,
-        238, 3654, 195, 246, 301, 298, 250, 270, 320, 269, 305, 258, 368, 3810, 231, 212, 279, 289, 252, 303, 287,
-        295, 206, 264, 349, 4071, 242, 296, 271, 231, 307, 265, 254, 267, 317, 232, 348, 4077, 259, 222, 268, 235,
-        324, 266, 256, 312, 246, 248, 325, 4000, 266, 201, 230, 293, 264, 265, 273, 301, 304, 253, 266, 3978, 228,
-        232, 250, 248, 281, 219, 243, 293, 287, 253, 328, 3719}; // replace of self frame length
+        2106, 11465, 321, 72, 472, 68, 76, 79, 509, 90, 677, 88, 956, 99, 347, 77, 452, 681, 81, 1263, 94, 106, 97,
+        998, 97, 797, 93, 1343, 150, 116, 117, 926, 1198, 128, 110, 78, 1582, 158, 135, 112, 1588, 165, 132,
+        128, 1697, 168, 149, 117, 1938, 170, 141, 142, 1830, 106, 161, 122, 1623, 160, 154, 156, 1998, 230,
+        177, 139, 1650, 186, 128, 134, 1214, 122, 1411, 120, 1184, 128, 1591, 195, 145, 105, 1587, 169, 140,
+        118, 1952, 177, 150, 161, 1437, 159, 123, 1758, 180, 165, 144, 1936, 214, 191, 175, 2122, 180, 179,
+        160, 1927, 161, 184, 119, 1973, 218, 210, 129, 1962, 196, 127, 154, 2308, 173, 127, 1572, 142, 122,
+        2065, 262, 159, 206, 2251, 269, 179, 170, 2056, 308, 168, 191, 2090, 303, 191, 110, 1932, 272, 162,
+        122, 1877, 245, 167, 141, 1908, 294, 162, 118, 1493, 132, 1782, 273, 184, 133, 1958, 274, 180, 149,
+        2070, 216, 169, 143, 1882, 224, 149, 139, 1749, 277, 184, 139, 2141, 197, 170, 140, 2002, 269, 162,
+        140, 1862, 202, 179, 131, 1868, 214, 164, 140, 1546, 226, 150, 130, 1707, 162, 146, 1824, 181, 147,
+        130, 1898, 209, 143, 131, 1805, 180, 148, 106, 1776, 147, 141, 1572, 177, 130, 105, 1776, 178, 144,
+        122, 1557, 142, 124, 114, 1436, 143, 126, 1326, 127, 1755, 169, 127, 105, 1807, 177, 131, 134, 1613,
+        187, 137, 136, 1314, 134, 118, 2005, 194, 129, 147, 1566, 185, 132, 131, 1236, 174, 137, 106, 11049,
+        574, 126, 1242, 188, 130, 119, 1450, 187, 137, 141, 1116, 124, 1848, 138, 122, 1605, 186, 127, 140,
+        1798, 170, 124, 121, 1666, 157, 128, 130, 1678, 135, 118, 1804, 169, 135, 125, 1837, 168, 124, 124}; // replace of self frame length
     constexpr uint32_t ES_LENGTH = sizeof(ES) / sizeof(uint32_t);
-    constexpr uint32_t DEFAULT_WIDTH = 480;
-    constexpr uint32_t DEFAULT_HEIGHT = 360;
-    constexpr uint32_t DEFAULT_FRAME_RATE = 60;
-    constexpr uint32_t YUV_BUFFER_SIZE = 259200; // 480 * 360 * 3 / 2
-    constexpr uint32_t STRIDE_ALIGN = 8;
-    constexpr uint32_t DEFAULT_FRAME_COUNT = 50;
-    const string MIME_TYPE = "video/mp4v-es";
-    constexpr bool NEED_DUMP = true;
-    const char * OUT_DIR = "/data/media/venc_out.es";
-
-    // constexpr uint32_t SAMPLE_SIZE = 4096; // 23ms， aac编码需要1024个采样点
-    // constexpr uint32_t ES_LENGTH_ENC = 1500;
+    // const string MIME_TYPE_DEC = "video/avc";
+    // const string MIME_TYPE_ENC = "video/mp4v-es";
 }
-
-static BufferFlushConfig g_flushConfig = {
-    .damage = {
-        .x = 0,
-        .y = 0,
-        .w = DEFAULT_WIDTH,
-        .h = DEFAULT_HEIGHT
-    },
-    .timestamp = 0
-};
-
-static BufferRequestConfig g_request = {
-    .width = DEFAULT_WIDTH,
-    .height = DEFAULT_HEIGHT,
-    .strideAlignment = STRIDE_ALIGN,
-    .format = PIXEL_FMT_YCRCB_420_SP,
-    .usage = HBM_USE_CPU_READ | HBM_USE_CPU_WRITE | HBM_USE_MEM_DMA,
-    .timeout = 0
-};
 
 void VdecAsyncError(AVCodec *codec, int32_t errorCode, void *userData)
 {
     cout << "DEC Error errorCode=" << errorCode << endl;
+    VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
+    vcodecSignal_->errorNum_ += 1;
 }
 
 void VdecAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
@@ -92,9 +64,8 @@ void VdecAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
 }
 void VdecAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void *userData)
 {
-    // std::shared_ptr<VDecEncSignal> vcodecSignal_ = static_cast<std::shared_ptr<VDecEncSignal>>(userData);
     VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
-    cout << "DEC InputAvailable, index = " << index << endl;
+    // cout << "DEC InputAvailable, index = " << index << endl;
     unique_lock<mutex> lock(vcodecSignal_->inMutexDec_);
     vcodecSignal_->inQueueDec_.push(index);
     vcodecSignal_->inBufferQueueDec_.push(data);
@@ -103,21 +74,22 @@ void VdecAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void
 
 void VdecAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCodecBufferAttr *attr, void *userData)
 {
-    // std::shared_ptr<VDecEncSignal> vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
     VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
-    cout << "DEC OutputAvailable, index = " << index << endl;
-    unique_lock<mutex> lock(vcodecSignal_->inMutexEnc_);
+    // cout << "DEC OutputAvailable, index = " << index << endl;
+    unique_lock<mutex> lock(vcodecSignal_->outMutexDec_);
     vcodecSignal_->outQueueDec_.push(index);
-    cout << "DEC outQueueDec_.size() is " << vcodecSignal_->outQueueDec_.size() << endl;
-    vcodecSignal_->sizeQueueDec_.push(attr->size);
-    vcodecSignal_->outBufferQueueDec_.push(data);
-    vcodecSignal_->inCondEnc_.notify_all();
+    // cout << "DEC outQueueDec_.size() is " << vcodecSignal_->outQueueDec_.size() << endl;
+    vcodecSignal_->flagQueueDec_.push(attr->flags);
+    // vcodecSignal_->outBufferQueueDec_.push(data);
+    vcodecSignal_->outCondDec_.notify_all();
 }
 
 
 void VencAsyncError(AVCodec *codec, int32_t errorCode, void *userData)
 {
     cout << "ENC Error errorCode=" << errorCode << endl;
+    VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
+    vcodecSignal_->errorNum_ += 1;
 }
 
 void VencAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
@@ -125,29 +97,28 @@ void VencAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
     cout << "ENC Format Changed" << endl;
 }
 
-void VencAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void *userData)
-{
-    // std::shared_ptr<VDecEncSignal> vcodecSignal_ = static_cast<std::shared_ptr<VDecEncSignal>>(userData);
-    VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
-    cout << "ENC InputAvailable, index = " << index << endl;
-    unique_lock<mutex> lock(vcodecSignal_->inMutexEnc_);
-    vcodecSignal_->inQueueEnc_.push(index);
-    cout << "ENC inQueueEnc_.size() is " << vcodecSignal_->inQueueEnc_.size() << endl;
-    vcodecSignal_->inBufferQueueEnc_.push(data);
-    vcodecSignal_->inCondEnc_.notify_all();
-}
-
 void VencAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCodecBufferAttr *attr, void *userData)
 {
-    // std::shared_ptr<VDecEncSignal> vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
     VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
-    cout << "ENC OutputAvailable, index = " << index << endl;
+    // cout << "ENC OutputAvailable, index = " << index << endl;
     unique_lock<mutex> lock(vcodecSignal_->outMutexEnc_);
     vcodecSignal_->outQueueEnc_.push(index);
     vcodecSignal_->sizeQueueEnc_.push(attr->size);
     vcodecSignal_->outBufferQueueEnc_.push(data);
     vcodecSignal_->outCondEnc_.notify_all();
 }
+
+
+void clearIntqueue (std::queue<uint32_t>& q) {
+    std::queue<uint32_t> empty;
+    swap(empty, q);
+}
+
+void clearBufferqueue (std::queue<AVMemory *>& q) {
+    std::queue<AVMemory *> empty;
+    swap(empty, q);
+}
+
 
 
 VDecEncNdkSample::~VDecEncNdkSample()
@@ -158,21 +129,80 @@ VDecEncNdkSample::~VDecEncNdkSample()
     delete vcodecSignal_;
     vcodecSignal_ = nullptr;
 
-    // delete vcodecSignal_;
-    // vcodecSignal_ = nullptr;
 }
 
-struct AVCodec* VDecEncNdkSample::CreateVideoDecoder()
+void VDecEncNdkSample::SetReadPath(std::string filepath)
 {
-    vdec_ = OH_AVCODEC_CreateVideoDecoderByMime(MIME_TYPE.c_str());
-    NDK_CHECK_AND_RETURN_RET_LOG(vdec_ != nullptr, nullptr, "Fatal: OH_AVCODEC_CreateVideoDecoderByMime");
-    // if (vdec_ == nullptr) {
-    //     return false;
-    // }
-    
-    vcodecSignal_ = new VDecEncSignal();
-    NDK_CHECK_AND_RETURN_RET_LOG(vcodecSignal_ != nullptr, nullptr, "Fatal: No Memory");
+    inFile_ = filepath;
+    testFile_ = std::make_unique<std::ifstream>();
+    if (testFile_ != nullptr) {
+        cout << "create testFile_ Fail" << endl;
+    }
+    testFile_->open(inFile_, std::ios::in | std::ios::binary);
+}
 
+void VDecEncNdkSample::SetSavePath(std::string filepath)
+{
+    outFile_ = filepath;
+}
+
+void VDecEncNdkSample::ReRead()
+{
+    // testFile_ = nullptr;
+    // NDK_CHECK_AND_RETURN_RET_LOG(testFile_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    if (testFile_ != nullptr) {
+        testFile_->close();
+        cout << "ReRead close before file success "<< endl;
+    }
+    cout << "ReRead inFile is " << inFile_ << endl;
+    testFile_->open(inFile_, std::ios::in | std::ios::binary);
+    if (testFile_ != nullptr) {
+        cout << "testFile open success" << endl;
+    }
+    decInCnt_ = 0;
+    // timeStampDec_ = 0;
+}
+
+void VDecEncNdkSample::ResetParam()
+{
+    decInCnt_ = 0;
+    decOutCnt_ = 0;
+    encOutCnt_ = 0;
+    flushFlag = true;
+    unique_lock<mutex> lock(vcodecSignal_->inMutexDec_);
+    clearIntqueue(vcodecSignal_->inQueueDec_);
+    clearBufferqueue(vcodecSignal_->inBufferQueueDec_);
+    vcodecSignal_->inCondDec_.notify_all();
+    lock.unlock();
+    unique_lock<mutex> lock2(vcodecSignal_->outMutexDec_);
+    clearIntqueue(vcodecSignal_->outQueueDec_);
+    clearIntqueue(vcodecSignal_->flagQueueDec_);
+    clearBufferqueue(vcodecSignal_->outBufferQueueDec_);
+    vcodecSignal_->outCondDec_.notify_all();
+    lock2.unlock();
+    unique_lock<mutex> lock3(vcodecSignal_->outMutexEnc_);
+    clearIntqueue(vcodecSignal_->outQueueEnc_);
+    clearIntqueue(vcodecSignal_->sizeQueueEnc_);
+    clearBufferqueue(vcodecSignal_->outBufferQueueEnc_);
+    vcodecSignal_->outCondEnc_.notify_all();
+    lock3.unlock();
+    flushFlag = false;
+    isDecRunning_.store(true);
+    cout << "isDecRunning_.load() is " << isDecRunning_.load() << endl;
+    isEncRunning_.store(true);
+    cout << "isEncRunning_.load() is " << isEncRunning_.load() << endl;
+}
+
+
+struct AVCodec* VDecEncNdkSample::CreateVideoDecoder(std::string mimetype)
+{
+    vdec_ = OH_AVCODEC_CreateVideoDecoderByMime(mimetype.c_str());
+    NDK_CHECK_AND_RETURN_RET_LOG(vdec_ != nullptr, nullptr, "Fatal: OH_AVCODEC_CreateVideoDecoderByMime");
+    
+    if (vcodecSignal_ == nullptr) {
+        vcodecSignal_ = new VDecEncSignal();
+        NDK_CHECK_AND_RETURN_RET_LOG(vcodecSignal_ != nullptr, nullptr, "Fatal: No Memory");
+    }
     cbDec_.onAsyncError = VdecAsyncError;
     cbDec_.onAsyncStreamChanged = VdecAsyncStreamChanged;
     cbDec_.onAsyncNeedInputData = VdecAsyncNeedInputData;
@@ -184,12 +214,10 @@ struct AVCodec* VDecEncNdkSample::CreateVideoDecoder()
 }
 
 
-
 int32_t VDecEncNdkSample::ConfigureDec(struct AVFormat *format)
 {
     return OH_AVCODEC_VideoDecoderConfigure(vdec_, format);
 }
-
 
 
 int32_t VDecEncNdkSample::PrepareDec()
@@ -201,15 +229,11 @@ int32_t VDecEncNdkSample::StartDec()
 {
     isDecRunning_.store(true);
 
-    testFile_ = std::make_unique<std::ifstream>();
-    NDK_CHECK_AND_RETURN_RET_LOG(testFile_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
-    testFile_->open(INP_DIR, std::ios::in | std::ios::binary);
-
     inputLoopDec_ = make_unique<thread>(&VDecEncNdkSample::InputFuncDec, this);
     NDK_CHECK_AND_RETURN_RET_LOG(inputLoopDec_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
 
-    // outputLoopDec_ = make_unique<thread>(&VDecEncNdkSample::OutputFuncDec, this);
-    // NDK_CHECK_AND_RETURN_RET_LOG(outputLoopDec_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    outputLoopDec_ = make_unique<thread>(&VDecEncNdkSample::OutputFuncDec, this);
+    NDK_CHECK_AND_RETURN_RET_LOG(outputLoopDec_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
 
     return OH_AVCODEC_VideoDecoderStart(vdec_);
 }
@@ -228,7 +252,7 @@ int32_t VDecEncNdkSample::StopDec()
     }
 
     if (outputLoopDec_ != nullptr && outputLoopDec_->joinable()) {
-        unique_lock<mutex> lock(vcodecSignal_->inMutexDec_);
+        unique_lock<mutex> lock(vcodecSignal_->outMutexDec_);
         vcodecSignal_->outQueueDec_.push(10000);
         vcodecSignal_->outCondDec_.notify_all();
         lock.unlock();
@@ -240,8 +264,24 @@ int32_t VDecEncNdkSample::StopDec()
 }
 
 int32_t VDecEncNdkSample::FlushDec()
-{
-    return OH_AVCODEC_VideoDecoderFlush(vdec_);
+{   
+    cout << "ENTER DEC FLUSH" << endl;
+    flushFlag = true;
+    int32_t ret =  OH_AVCODEC_VideoDecoderFlush(vdec_);
+    unique_lock<mutex> lock(vcodecSignal_->inMutexDec_);
+    clearIntqueue(vcodecSignal_->inQueueDec_);
+    clearBufferqueue(vcodecSignal_->inBufferQueueDec_);
+    vcodecSignal_->inCondDec_.notify_all();
+    lock.unlock();
+    unique_lock<mutex> lock2(vcodecSignal_->outMutexDec_);
+    clearIntqueue(vcodecSignal_->outQueueDec_);
+    clearIntqueue(vcodecSignal_->flagQueueDec_);
+    clearBufferqueue(vcodecSignal_->outBufferQueueDec_);
+    vcodecSignal_->outCondDec_.notify_all();
+    lock2.unlock();
+    flushFlag = false;
+    cout << "EXIT DEC FLUSH" << endl;
+    return ret;
 }
 
 int32_t VDecEncNdkSample::ResetDec()
@@ -260,6 +300,7 @@ int32_t VDecEncNdkSample::ReleaseDec()
 void VDecEncNdkSample::InputFuncDec()
 {
     while (true) {
+        cout << "ENTER DEC IN" << endl;
         if (!isDecRunning_.load()) {
             break;
         }
@@ -276,53 +317,60 @@ void VDecEncNdkSample::InputFuncDec()
         NDK_CHECK_AND_RETURN_LOG(buffer != nullptr, "Fatal: GetInputBuffer fail");
         NDK_CHECK_AND_RETURN_LOG(testFile_ != nullptr && testFile_->is_open(), "Fatal: open file fail");
 
-        uint32_t bufferSize = ES[frameCountDec_]; // replace with the actual size
-        char *fileBuffer = (char *)malloc(sizeof(char) * bufferSize + 1);
-        NDK_CHECK_AND_RETURN_LOG(fileBuffer != nullptr, "Fatal: malloc fail");
-
-        (void)testFile_->read(fileBuffer, bufferSize);
-        if (testFile_->eof()) {
+        uint32_t bufferSize = 0;
+        if (decInCnt_ < ES_LENGTH) {
+            bufferSize = ES[decInCnt_];
+            char *fileBuffer = (char *)malloc(sizeof(char) * bufferSize + 1);
+            NDK_CHECK_AND_RETURN_LOG(fileBuffer != nullptr, "Fatal: malloc fail");
+            (void)testFile_->read(fileBuffer, bufferSize);
+            if (testFile_->eof()) {
+                free(fileBuffer);
+                cout << "Finish" << endl;
+                break;
+            }
+            if (buffer == nullptr) {
+                cout << "1 buffer == nullptr" << endl;
+            }
+            if (memcpy_s(OH_AV_MemoryGetAddr(buffer), OH_AV_MemoryGetSize(buffer), fileBuffer, bufferSize) != EOK) {
+                free(fileBuffer);
+                cout << "Fatal: memcpy fail" << endl;
+                break;
+            }
             free(fileBuffer);
-            cout << "Finish" << endl;
-            break;
-        }
 
-        if (memcpy_s(OH_AV_MemoryGetAddr(buffer), OH_AV_MemoryGetSize(buffer), fileBuffer, bufferSize) != EOK) {
-            free(fileBuffer);
-            cout << "Fatal: memcpy fail" << endl;
-            break;
-        }
-
+        } 
         struct AVCodecBufferAttr attr;
-        if (frameCountDec_ == ES_LENGTH + 1) {
+        attr.offset = 0;
+        if (decInCnt_ == ES_LENGTH) {
             attr.flags = AVCODEC_BUFFER_FLAGS_EOS;
             attr.presentationTimeUs = 0;
             attr.size = 0;
-            attr.offset = 0;
+            cout << "EOS Frame, frameCount = " << decInCnt_ << endl;
             isDecRunning_.store(false);
-        } else {
+        }
+        else {
             attr.presentationTimeUs = timeStampDec_;
             attr.size = bufferSize;
-            attr.offset = 0;
-            if (frameCountDec_ == 0 && MIME_TYPE == "audio/vorbis") {
+            if (isFirstDecFrame_) {
                 attr.flags = AVCODEC_BUFFER_FLAGS_CODEC_DATA;
+                isFirstDecFrame_ = false;
             } else {
                 attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
             }
         }
 
-        AVErrCode ret = OH_AVCODEC_VideoDecoderPushInputData(vdec_, index, attr);
-        cout << "DEC framecount is " <<  frameCountDec_ << endl;
+        if (OH_AVCODEC_VideoDecoderPushInputData(vdec_, index, attr) != AV_ERR_OK) {
+            cout << "Fatal: OH_AVCODEC_VideoDecoderPushInputData fail, exit" << endl;
+            vcodecSignal_->errorNum_ += 1;
 
-        free(fileBuffer);
+        } else {
+            cout << "OH_AVCODEC_VideoDecoderPushInputData , decInCnt_ = " << decInCnt_ << endl;
+        }
+
         timeStampDec_ += SAMPLE_DURATION_US;
-        frameCountDec_ ++;
+        decInCnt_ ++;
         vcodecSignal_->inQueueDec_.pop();
         vcodecSignal_->inBufferQueueDec_.pop();
-        if (ret != AV_ERR_OK) {
-            cout << "Fatal error, exit" << endl;
-            break;
-        }
     }
 }
 
@@ -333,63 +381,49 @@ void VDecEncNdkSample::OutputFuncDec()
             break;
         }
 
-        unique_lock<mutex> lock(vcodecSignal_->inMutexDec_);
+        unique_lock<mutex> lock(vcodecSignal_->outMutexDec_);
         vcodecSignal_->outCondDec_.wait(lock, [this](){ return vcodecSignal_->outQueueDec_.size() > 0; });
+        // cout << "DEC outQueueDec_.size() is" << vcodecSignal_->outQueueDec_.size() << endl;
 
         if (!isDecRunning_.load()) {
             break;
         }
 
         uint32_t index = vcodecSignal_->outQueueDec_.front();
-        auto buffer = vcodecSignal_->outBufferQueueDec_.front();
-        if (buffer == nullptr) {
-            cout << "getOutPut Buffer fail" << endl;
-        }
-        uint32_t size = vcodecSignal_->sizeQueueDec_.front();
-        cout << "GetOutputBuffer size : " << size << " frameCountDec_ =  " << frameCountDec_ << endl;
-
-        if (NEED_DUMP) {
-            FILE *outFile;
-            outFile = fopen(OUT_DIR, "a");
-            if (outFile == nullptr) {
-                cout << "dump data fail" << endl;
+        uint32_t outflag = vcodecSignal_->flagQueueDec_.front();
+        // cout << "DEC OUT. index is : " << index << endl;
+        if (outflag == 0 && !flushFlag) {
+            // cout << "DEC OUT. : flag is 0" << endl;
+            uint32_t ret = OH_AVCODEC_VideoDecoderRenderOutputData(vdec_, index);
+            if (ret == 0) {
+                decOutCnt_ += 1;
+                cout << "DEC OUT.: render output success, decOutCnt_ is " << decOutCnt_ << endl;
             } else {
-                fwrite(OH_AV_MemoryGetAddr(buffer), 1, size, outFile);
+                cout << "DEC OUT. Fatal: ReleaseOutputBuffer fail" << endl;
+                vcodecSignal_->errorNum_ += 1;
+                break;
             }
-            fclose(outFile);
+        } else {
+            cout << "DEC OUT.: output EOS" << endl;
+            //notifyEOS
         }
-
-        if (OH_AVCODEC_VideoDecoderFreeOutputData(vdec_, index) != AV_ERR_OK) {
-            cout << "Fatal: ReleaseOutputBuffer fail" << endl;
-            break;
-        }
-
         vcodecSignal_->outQueueDec_.pop();
-        vcodecSignal_->sizeQueueDec_.pop();
-        vcodecSignal_->outBufferQueueDec_.pop();
+        vcodecSignal_->flagQueueDec_.pop();
     }
 }
 
 
-VDecEncNdkSample::~VDecEncNdkSample()
+struct AVCodec* VDecEncNdkSample::CreateVideoEncoder(std::string mimetype)
 {
-    OH_AVCODEC_DestroyVideoEncoder(venc_);
-    delete vcodecSignal_;
-    vcodecSignal_ = nullptr;
-}
-
-struct AVCodec* VDecEncNdkSample::CreateVideoEncoder(void)
-{
-    venc_ = OH_AVCODEC_CreateVideoEncoderByMime(MIME_TYPE.c_str());
+    venc_ = OH_AVCODEC_CreateVideoEncoderByMime(mimetype.c_str());
     NDK_CHECK_AND_RETURN_RET_LOG(venc_ != nullptr, nullptr, "Fatal: OH_AVCODEC_CreateVideoEncoderByMime");
     
-    // vcodecSignal_ = make_shared<VDecEncSignal>();
-    // vcodecSignal_ = new VDecEncSignal();
-    // NDK_CHECK_AND_RETURN_RET_LOG(vcodecSignal_ != nullptr, nullptr, "Fatal: No Memory");
-
+    if (vcodecSignal_ == nullptr) {
+        vcodecSignal_ = new VDecEncSignal();
+        NDK_CHECK_AND_RETURN_RET_LOG(vcodecSignal_ != nullptr, nullptr, "Fatal: No Memory");
+    }
     cbEnc_.onAsyncError = VencAsyncError;
     cbEnc_.onAsyncStreamChanged = VencAsyncStreamChanged;
-    cbEnc_.onAsyncNeedInputData = VencAsyncNeedInputData;
     cbEnc_.onAsyncNewOutputData = VencAsyncNewOutputData;
     int32_t ret = OH_AVCODEC_VideoEncoderSetCallback(venc_, cbEnc_, static_cast<void *>(vcodecSignal_));
     NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AVCODEC_VideoEncoderSetCallback");
@@ -409,7 +443,7 @@ struct VEncObject : public AVCodec {
     const std::shared_ptr<AVCodecVideoEncoder> videoEncoder_;
 };
 
-int32_t VEncNdkSample::GetSurface()
+int32_t VDecEncNdkSample::GetSurface()
 {
     struct VEncObject *videoEncObj = reinterpret_cast<VEncObject *>(venc_);
     NDK_CHECK_AND_RETURN_RET_LOG(videoEncObj->videoEncoder_ != nullptr, AV_ERR_INVALID_VAL, "context videoEncoder is nullptr!");
@@ -420,6 +454,26 @@ int32_t VEncNdkSample::GetSurface()
     // return OH_VideoEncoder_GetInputSurface(venc_, window);
 }
 
+struct VDecObject : public AVCodec {
+    explicit VDecObject(const std::shared_ptr<AVCodecVideoDecoder> &decoder)
+        : AVCodec(AVMagic::MEDIA_MAGIC_VIDEO_DECODER), videoDecoder_(decoder) {}
+    ~VDecObject() = default;
+
+    const std::shared_ptr<AVCodecVideoDecoder> videoDecoder_;
+};
+
+int32_t VDecEncNdkSample::SetOutputSurface()
+{
+    struct VDecObject *videoDecObj = reinterpret_cast<VDecObject *>(vdec_);
+    NDK_CHECK_AND_RETURN_RET_LOG(videoDecObj->videoDecoder_ != nullptr, AV_ERR_INVALID_VAL, "context videoDecoder is nullptr!");
+
+    int32_t ret = videoDecObj->videoDecoder_->SetOutputSurface(surface_);
+    NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AV_ERR_OPERATE_NOT_PERMIT, "videoDecoder SetOutputSurface failed!");
+    return ret;
+}
+
+
+
 int32_t VDecEncNdkSample::PrepareEnc()
 {
     return OH_AVCODEC_VideoEncoderPrepare(venc_);
@@ -429,8 +483,8 @@ int32_t VDecEncNdkSample::StartEnc()
 {
     isEncRunning_.store(true);
 
-    inputLoopEnc_ = make_unique<thread>(&VDecEncNdkSample::InputFuncEnc, this);
-    NDK_CHECK_AND_RETURN_RET_LOG(inputLoopEnc_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    // inputLoopEnc_ = make_unique<thread>(&VDecEncNdkSample::InputFuncEnc, this);
+    // NDK_CHECK_AND_RETURN_RET_LOG(inputLoopEnc_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
 
     outputLoopEnc_ = make_unique<thread>(&VDecEncNdkSample::OutputFuncEnc, this);
     NDK_CHECK_AND_RETURN_RET_LOG(outputLoopEnc_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
@@ -441,15 +495,6 @@ int32_t VDecEncNdkSample::StartEnc()
 int32_t VDecEncNdkSample::StopEnc()
 {
     isEncRunning_.store(false);
-
-    if (inputLoopEnc_ != nullptr && inputLoopEnc_->joinable()) {
-        unique_lock<mutex> lock(vcodecSignal_->inMutexEnc_);
-        vcodecSignal_->inQueueEnc_.push(10000);
-        vcodecSignal_->inCondEnc_.notify_all();
-        lock.unlock();
-        inputLoopEnc_->join();
-        inputLoopEnc_.reset();
-    }
 
     if (outputLoopEnc_ != nullptr && outputLoopEnc_->joinable()) {
         unique_lock<mutex> lock(vcodecSignal_->outMutexEnc_);
@@ -465,7 +510,24 @@ int32_t VDecEncNdkSample::StopEnc()
 
 int32_t VDecEncNdkSample::FlushEnc()
 {
-    return OH_AVCODEC_VideoEncoderFlush(venc_);
+    cout << "ENTER ENC FLUSH" << endl;
+    flushFlag = true;
+    int32_t ret =  OH_AVCODEC_VideoEncoderFlush(venc_);
+    unique_lock<mutex> lock(vcodecSignal_->outMutexEnc_);
+    clearIntqueue(vcodecSignal_->outQueueEnc_);
+    clearIntqueue(vcodecSignal_->sizeQueueEnc_);
+    clearBufferqueue(vcodecSignal_->outBufferQueueEnc_);
+    vcodecSignal_->outCondEnc_.notify_all();
+    lock.unlock();
+    unique_lock<mutex> lock2(vcodecSignal_->outMutexDec_);
+    clearIntqueue(vcodecSignal_->outQueueDec_);
+    clearIntqueue(vcodecSignal_->flagQueueDec_);
+    clearBufferqueue(vcodecSignal_->outBufferQueueDec_);
+    vcodecSignal_->outCondDec_.notify_all();
+    lock2.unlock();
+    flushFlag = false;
+    cout << "EXIT ENC FLUSH" << endl;
+    return ret;
 }
 
 int32_t VDecEncNdkSample::ResetEnc()
@@ -478,71 +540,6 @@ int32_t VDecEncNdkSample::ReleaseEnc()
 
     OH_AVCODEC_DestroyVideoEncoder(venc_);
     return AV_ERR_OK;
-}
-
-
-void VDecEncNdkSample::InputFuncEnc()
-{
-    while (true) {
-        if (!isEncRunning_.load()) {
-            break;
-        }
-
-        unique_lock<mutex> lock(vcodecSignal_->inMutexEnc_);
-        vcodecSignal_->inCondEnc_.wait(lock, [this](){ return vcodecSignal_->inQueueEnc_.size() > 0; });
-        vcodecSignal_->inCondEnc_.wait(lock, [this](){ return vcodecSignal_->outQueueDec_.size() > 0; });
-
-        if (!isEncRunning_.load()) {
-            break;
-        }
-
-        cout << "start get buffer from decoder into encoder " << endl;
-
-        uint32_t indexEnc = vcodecSignal_->inQueueEnc_.front();
-        AVMemory *bufferEnc = reinterpret_cast<AVMemory *>(vcodecSignal_->inBufferQueueEnc_.front());
-        NDK_CHECK_AND_RETURN_LOG(bufferEnc != nullptr, "Fatal: GetEncInputBuffer fail");
-
-        uint32_t indexDec = vcodecSignal_->outQueueDec_.front();
-        AVMemory * bufferDec = vcodecSignal_->outBufferQueueDec_.front();
-        uint32_t sizeDecOut = vcodecSignal_->sizeQueueDec_.front();
-        cout << "GetDecOutputBuffer size : " << sizeDecOut << endl;
-
-        // char *fileBuffer = (char *)malloc(sizeof(char) * SAMPLE_SIZE + 1);
-        // NDK_CHECK_AND_RETURN_LOG(fileBuffer != nullptr, "Fatal: malloc fail");
-
-
-        if (memcpy_s(OH_AV_MemoryGetAddr(bufferEnc), OH_AV_MemoryGetSize(bufferEnc), OH_AV_MemoryGetAddr(bufferDec), sizeDecOut) != EOK) {
-            cout << "Fatal: memcpy fail" << endl;
-            break;
-        }
-
-        cout << "DEC-ENC: get buffer from Dec to ENC success" << endl;
-
-
-        struct AVCodecBufferAttr attr;
-        attr.offset = 0;
-        attr.size = sizeDecOut;
-        attr.presentationTimeUs = timeStampEnc_;
-        attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
-        
-        if (OH_AVCODEC_VideoDecoderFreeOutputData(vdec_, indexDec) != AV_ERR_OK) {
-            cout << "Fatal: ReleaseDecOutputBuffer fail" << endl;
-            break;
-        }
-        vcodecSignal_->outQueueDec_.pop();
-        vcodecSignal_->sizeQueueDec_.pop();
-        vcodecSignal_->outBufferQueueDec_.pop();
-
-        AVErrCode ret = OH_AVCODEC_VideoEncoderPushInputData(venc_, indexEnc, attr);
-        if (ret != AV_ERR_OK) {
-            cout << "Fatal error, exit" << endl;
-            break;
-        }
-        timeStampEnc_ += SAMPLE_DURATION_US;
-        frameCountEnc_ ++;
-        vcodecSignal_->inQueueEnc_.pop();
-        vcodecSignal_->inBufferQueueEnc_.pop();
-    }
 }
 
 void VDecEncNdkSample::OutputFuncEnc()
@@ -565,10 +562,11 @@ void VDecEncNdkSample::OutputFuncEnc()
             cout << "getOutPut Buffer fail" << endl;
         }
         uint32_t size = vcodecSignal_->sizeQueueEnc_.front();
-        cout << "GetOutputBuffer size : " << size << " frameCountEnc_ =  " << frameCountEnc_ << endl;
+        // cout << "GetOutputBuffer size : " << size << " frameCountEnc_ =  " << frameCountEnc_ << endl;
         if (NEED_DUMP) {
             FILE *outFile;
-            outFile = fopen(OUT_DIR, "a");
+            const char * savepath = outFile_.c_str();
+            outFile = fopen(savepath, "a");
             if (outFile == nullptr) {
                 cout << "dump data fail" << endl;
             } else {
@@ -577,13 +575,32 @@ void VDecEncNdkSample::OutputFuncEnc()
             fclose(outFile);
         }
 
-        if (OH_AVCODEC_VideoEncoderFreeOutputData(venc_, index) != AV_ERR_OK) {
-            cout << "Fatal: ReleaseOutputBuffer fail" << endl;
-            break;
-        }
+        if (!flushFlag) {
+            uint32_t ret = OH_AVCODEC_VideoEncoderFreeOutputData(venc_, index);
+            if (ret != 0) {
+                cout << "Fatal: ReleaseOutputBuffer fail" << endl;
+                vcodecSignal_->errorNum_ += 1;
 
+            } else {
+                encOutCnt_ += 1;
+                cout << "ENC OUT.: output success, encOutCnt_ is " << encOutCnt_ << endl;
+            }
+        }
         vcodecSignal_->outQueueEnc_.pop();
         vcodecSignal_->sizeQueueEnc_.pop();
         vcodecSignal_->outBufferQueueEnc_.pop();
     }
+}
+
+int32_t VDecEncNdkSample::CalcuError()
+{
+    cout << "errorNum_ is :" << vcodecSignal_->errorNum_ << endl;
+    cout << "decInCnt_ is :" << decInCnt_ << endl;
+    cout << "decOutCnt_ is :" << decOutCnt_ << endl;
+    cout << "encOutCnt_ is :" << encOutCnt_ << endl;
+    cout << "DEC inQueueDec_.size() is " << vcodecSignal_->inQueueDec_.size() << endl;
+    cout << "DEC outQueueDec_.size() is " << vcodecSignal_->outQueueDec_.size() << endl;
+    cout << "DEC outBufferQueueDec_.size() is " << vcodecSignal_->outBufferQueueDec_.size() << endl;
+    cout << "DEC outQueueEnc_.size() is " << vcodecSignal_->outQueueEnc_.size() << endl;
+    return vcodecSignal_->errorNum_ ;
 }
