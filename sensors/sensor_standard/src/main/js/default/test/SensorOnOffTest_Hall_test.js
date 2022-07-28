@@ -69,7 +69,7 @@ describe("SensorJsTest_sensor_7", function () {
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      */
     it("Hall_SensorJsTest001", FUNCTION|MEDIUMTEST|LEVEL0, async function (done) {
-        console.info('----------------------Hall_SensorJsTest001---------------------------');
+        console.info('--------Hall_SensorJsTest001-------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
         setTimeout(() => {
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL);
@@ -83,12 +83,12 @@ describe("SensorJsTest_sensor_7", function () {
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      */
     it("Hall_SensorJsTest002", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------Hall_SensorJsTest002---------------------------');
+        console.info('--------Hall_SensorJsTest002-------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback, { 'interval': 100000000 });
         setTimeout(() => {
-            console.info('----------------------Hall_SensorJsTest002 off in---------------------------');
+            console.info('--------Hall_SensorJsTest002 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL);
-            console.info('----------------------Hall_SensorJsTest002 off end---------------------------');
+            console.info('--------Hall_SensorJsTest002 off end-------------');
             done();
         }, 500);
     })
@@ -99,7 +99,7 @@ describe("SensorJsTest_sensor_7", function () {
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      */
     it("Hall_SensorJsTest003", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------Hall_SensorJsTest003---------------------------');
+        console.info('--------Hall_SensorJsTest003-------------');
         function onSensorCallback(data) {
             console.info('Hall_SensorJsTest003  on error');
             expect(false).assertTrue();
@@ -214,9 +214,9 @@ describe("SensorJsTest_sensor_7", function () {
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback2);
         setTimeout(() => {
-            console.info('----------------------Hall_SensorJsTest009 off in---------------------------');
+            console.info('--------Hall_SensorJsTest009 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL);
-            console.info('----------------------Hall_SensorJsTest009 off end---------------------------');
+            console.info('--------Hall_SensorJsTest009 off end-------------');
             done();
         }, 1000);
     })
@@ -230,14 +230,14 @@ describe("SensorJsTest_sensor_7", function () {
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback2);
         setTimeout(() => {
-            console.info('----------------------Hall_SensorJsTest010 off in---------------------------');
+            console.info('--------Hall_SensorJsTest010 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
-            console.info('----------------------Hall_SensorJsTest010 off end---------------------------');
+            console.info('--------Hall_SensorJsTest010 off end-------------');
         }, 500);
         setTimeout(() => {
-            console.info('----------------------Hall_SensorJsTest010 off in---------------------------');
+            console.info('--------Hall_SensorJsTest010 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback2);
-            console.info('----------------------Hall_SensorJsTest010 off end---------------------------');
+            console.info('--------Hall_SensorJsTest010 off end-------------');
             done();
         }, 1000);
     })
@@ -248,13 +248,13 @@ describe("SensorJsTest_sensor_7", function () {
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      */
     it("Hall_SensorJsTest011", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------Hall_SensorJsTest011---------------------------');
+        console.info('--------Hall_SensorJsTest011-------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback, { 'interval': 100000000 });
         sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback2);
         setTimeout(() => {
-            console.info('----------------------Hall_SensorJsTest011 off in---------------------------');
+            console.info('--------Hall_SensorJsTest011 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL);
-            console.info('----------------------Hall_SensorJsTest011 off end---------------------------');
+            console.info('--------Hall_SensorJsTest011 off end-------------');
             done();
         }, 1000);
     })
@@ -265,18 +265,18 @@ describe("SensorJsTest_sensor_7", function () {
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      */
     it("Hall_SensorJsTest012", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------Hall_SensorJsTest012---------------------------');
+        console.info('--------Hall_SensorJsTest012-------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback, { 'interval': 100000000 });
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback2, { 'interval': 100000000 });
         setTimeout(() => {
-            console.info('----------------------Hall_SensorJsTest012 off in---------------------------');
+            console.info('--------Hall_SensorJsTest012 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
-            console.info('----------------------Hall_SensorJsTest012 off end---------------------------');
+            console.info('--------Hall_SensorJsTest012 off end-------------');
         }, 500);
         setTimeout(() => {
-            console.info('----------------------Hall_SensorJsTest012 off in---------------------------');
+            console.info('--------Hall_SensorJsTest012 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback2);
-            console.info('----------------------Hall_SensorJsTest012 off end---------------------------');
+            console.info('--------Hall_SensorJsTest012 off end-------------');
             done();
         }, 1000);
     })
@@ -287,13 +287,13 @@ describe("SensorJsTest_sensor_7", function () {
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      */
     it("Hall_SensorJsTest013", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------Hall_SensorJsTest013---------------------------');
+        console.info('--------Hall_SensorJsTest013-------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback, { 'interval': 100000000 });
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback2, { 'interval': 100000000 });
         setTimeout(() => {
-            console.info('----------------------Hall_SensorJsTest013 off in---------------------------');
+            console.info('--------Hall_SensorJsTest013 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL);
-            console.info('----------------------Hall_SensorJsTest013 off end---------------------------');
+            console.info('--------Hall_SensorJsTest013 off end-------------');
             done();
         }, 1000);
     })

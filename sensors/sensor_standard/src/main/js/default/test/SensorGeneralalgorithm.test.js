@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 import sensor from '@ohos.sensor'
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 
 describe("SensorJsTest_sensor_1", function () {
@@ -791,7 +791,7 @@ describe("SensorJsTest_sensor_1", function () {
             }
             done()
         })
-        console.info(LABEL + "SensorJsTest_098 end");
+        console.info("SensorJsTest_098 end");
     })
 
    /*

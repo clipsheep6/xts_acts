@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 import sensor from '@ohos.sensor'
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 
 describe("SensorJsTest_sensor_9", function () {
@@ -74,7 +74,7 @@ describe("SensorJsTest_sensor_9", function () {
      * @tc.number:SUB_SensorsSystem_GRAVITY_JsTest_0010
      */
     it("gravity_SensorJsTest001", FUNCTION|MEDIUMTEST|LEVEL0, async function (done) {
-        console.info('----------------------gravity_SensorJsTest001---------------------------');
+        console.info('--------gravity_SensorJsTest001-------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
         setTimeout(()=>{
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY);
@@ -88,12 +88,12 @@ describe("SensorJsTest_sensor_9", function () {
      * @tc.number:SUB_SensorsSystem_GRAVITY_JsTest_0020
      */
     it("gravity_SensorJsTest002", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------gravity_SensorJsTest002---------------------------');
+        console.info('--------gravity_SensorJsTest002-------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------gravity_SensorJsTest002 off in---------------------------');
+            console.info('--------gravity_SensorJsTest002 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY);
-            console.info('----------------------gravity_SensorJsTest002 off end---------------------------');
+            console.info('--------gravity_SensorJsTest002 off end-------------');
             done();
         }, 500);
     })
@@ -104,7 +104,7 @@ describe("SensorJsTest_sensor_9", function () {
      * @tc.number:SUB_SensorsSystem_GRAVITY_JsTest_0030
      */
     it("gravity_SensorJsTest003", FUNCTION|MEDIUMTEST|LEVEL3, function (done) {
-        console.info('----------------------gravity_SensorJsTest003---------------------------');
+        console.info('--------gravity_SensorJsTest003-------------');
         function onSensorCallback(data) {
             console.info('gravity_SensorJsTest003  on error');
             expect(false).assertTrue();
@@ -219,9 +219,9 @@ describe("SensorJsTest_sensor_9", function () {
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback2);
         setTimeout(()=>{
-            console.info('----------------------gravity_SensorJsTest009 off in---------------------------');
+            console.info('--------gravity_SensorJsTest009 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY);
-            console.info('----------------------gravity_SensorJsTest009 off end---------------------------');
+            console.info('--------gravity_SensorJsTest009 off end-------------');
             done();
         }, 1000);
     })
@@ -235,14 +235,14 @@ describe("SensorJsTest_sensor_9", function () {
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback2);
         setTimeout(()=>{
-            console.info('----------------------gravity_SensorJsTest010 off in---------------------------');
+            console.info('--------gravity_SensorJsTest010 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
-            console.info('----------------------gravity_SensorJsTest010 off end---------------------------');
+            console.info('--------gravity_SensorJsTest010 off end-------------');
         }, 500);
         setTimeout(()=>{
-            console.info('----------------------gravity_SensorJsTest010 off in---------------------------');
+            console.info('--------gravity_SensorJsTest010 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback2);
-            console.info('----------------------gravity_SensorJsTest010 off end---------------------------');
+            console.info('--------gravity_SensorJsTest010 off end-------------');
             done();
         }, 1000);
     })
@@ -253,13 +253,13 @@ describe("SensorJsTest_sensor_9", function () {
      * @tc.number:SUB_SensorsSystem_GRAVITY_JsTest_0110
      */
     it("gravity_SensorJsTest011", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------gravity_SensorJsTest011---------------------------');
+        console.info('--------gravity_SensorJsTest011-------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback, {'interval': 100000000});
         sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback2);
         setTimeout(()=>{
-            console.info('----------------------gravity_SensorJsTest011 off in---------------------------');
+            console.info('--------gravity_SensorJsTest011 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY);
-            console.info('----------------------gravity_SensorJsTest011 off end---------------------------');
+            console.info('--------gravity_SensorJsTest011 off end-------------');
             done();
         }, 1000);
     })
@@ -270,18 +270,18 @@ describe("SensorJsTest_sensor_9", function () {
      * @tc.number:SUB_SensorsSystem_GRAVITY_JsTest_0120
      */
     it("gravity_SensorJsTest012", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------gravity_SensorJsTest012---------------------------');
+        console.info('--------gravity_SensorJsTest012-------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback, {'interval': 100000000});
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback2, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------gravity_SensorJsTest012 off in---------------------------');
+            console.info('--------gravity_SensorJsTest012 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
-            console.info('----------------------gravity_SensorJsTest012 off end---------------------------');
+            console.info('--------gravity_SensorJsTest012 off end-------------');
         }, 500);
         setTimeout(()=>{
-            console.info('----------------------gravity_SensorJsTest012 off in---------------------------');
+            console.info('--------gravity_SensorJsTest012 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback2);
-            console.info('----------------------gravity_SensorJsTest012 off end---------------------------');
+            console.info('--------gravity_SensorJsTest012 off end-------------');
             done();
         }, 1000);
     })
@@ -292,13 +292,13 @@ describe("SensorJsTest_sensor_9", function () {
      * @tc.number:SUB_SensorsSystem_GRAVITY_JsTest_0130
      */
     it("gravity_SensorJsTest013", FUNCTION|MEDIUMTEST|LEVEL3, async function (done) {
-        console.info('----------------------gravity_SensorJsTest013---------------------------');
+        console.info('--------gravity_SensorJsTest013-------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback, {'interval': 100000000});
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback2, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------gravity_SensorJsTest013 off in---------------------------');
+            console.info('--------gravity_SensorJsTest013 off in-------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY);
-            console.info('----------------------gravity_SensorJsTest013 off end---------------------------');
+            console.info('--------gravity_SensorJsTest013 off end-------------');
             done();
         }, 1000);
     })
