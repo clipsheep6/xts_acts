@@ -27,9 +27,11 @@ group("ability_runtime") {
       "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
       "actsabilityusertest:ActsAbilityuserTest",
       "actscalltest:actscalltest",
-      "actsfwkdataaccessortest:dataability",
+
+      #"actsfwkdataaccessortest:dataability",
       "actsqueryfunctiontest:actsqueryfunctiontest",
-      "actsserviceabilityclienttest:serviceability",
+
+      #"actsserviceabilityclienttest:serviceability",
       "actsshellcommandfunctionalitytest:actsshellcommandfunctionalitytest",
       "actsstartrunnertest:ActsStartRunnerTest",
       "actsstserviceabilityclientcase:ActsStServiceAbilityClientCaseTest",
