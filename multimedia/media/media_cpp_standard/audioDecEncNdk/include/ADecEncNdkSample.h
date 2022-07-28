@@ -71,7 +71,7 @@ public:
     // explicit ADecNdkSample();
     // ~ADecNdkSample();
 
-    struct AVCodec* CreateAudioDecoder(void);
+    struct AVCodec* CreateAudioDecoder(std::string mimetype);
     int32_t ConfigureDec(struct AVFormat *format);
     int32_t PrepareDec();
     int32_t StartDec();
@@ -80,7 +80,7 @@ public:
     int32_t ResetDec();
     int32_t ReleaseDec();
 
-    struct AVCodec* CreateAudioEncoder(void);
+    struct AVCodec* CreateAudioEncoder(std::string mimetype);
     int32_t ConfigureEnc(struct AVFormat *format);
     int32_t PrepareEnc();
     int32_t StartEnc();
@@ -89,7 +89,8 @@ public:
     int32_t ResetEnc();
     int32_t ReleaseEnc();
     int32_t CalcuError();
-    void SetSavePath(std::string filepath);
+    void SetReadPath(const char * inp_path, uint32_t es[], uint32_t length);
+    void SetSavePath(const char * outp_path);
     void ReRead();
     void ResetParam();
     ADecEncSignal* acodecSignal_ = nullptr;
@@ -134,7 +135,10 @@ private:
     bool isEncOutputEOS = false;
     std::string outDir_ = "/data/media/out.aac";
     bool flushFlag = false;
-
+    const char * INP_FILE;
+    const char * OUT_FILE;
+    uint32_t* ES;
+    uint32_t ES_LENGTH = 0;
     // ADecEncSignal* signalEnc_ = nullptr;
 
 };
