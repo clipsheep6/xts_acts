@@ -1123,7 +1123,7 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFormatTest017, Function | M
     };
 
     audioDecoderProcess(AudioEncParam017,"/data/media/S16LE_2_44100_out.aac",
-                     "/data/media/S16LE_2_12000.pcm", 4096, 1000);
+                     "/data/media/S16LE_2_44100.pcm", 4096, 1000);
 }
 
 /**

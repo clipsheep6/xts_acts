@@ -2170,7 +2170,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFormatTest015, Function | M
     };
 
     audioDecoderProcess(AudioDecParam015, "/data/media/LC_AAC_1_12000_out.es", LC_AAC_1_12000,
-                     ES_LEN_LC_AAC_1_12000, "/data/media/LLC_AAC_1_12000.aac");
+                     ES_LEN_LC_AAC_1_12000, "/data/media/LC_AAC_1_12000.aac");
 }
 
 /**
