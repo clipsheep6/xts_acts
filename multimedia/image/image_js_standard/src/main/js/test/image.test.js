@@ -4546,38 +4546,6 @@ describe('Image', function () {
     })
 
     /**
-     * @tc.number    : TC_167
-     * @tc.name      : createPixelMap-unsupported image format
-     * @tc.desc      : 1.create imagesource
-     *                 2.set index and DecodeOptions
-     *                 3.create PixelMap
-     *                 4.callback return undefined
-     * @tc.size      : MEDIUM 
-     * @tc.type      : Functional
-     * @tc.level     : Level 1
-     */
-    it('TC_167', 0, async function (done) {
-        await getAbilityInfo('test.tiff');
-        let fdTiff = fileio.openSync(filePath);
-        const imageSourceApi = image.createImageSource(fdTiff);
-        let decodingOptions = {
-            sampleSize: 1,
-            editable: true,
-            desiredSize: { width: 1, height: 2 },
-            rotate: 10,
-            desiredPixelFormat: 3,
-            desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-            index: 0
-        };
-        imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
-            globalpixelmap = pixelmap;
-            console.info('TC_167 success ');
-            expect(pixelmap == undefined).assertTrue();
-            done();
-        })
-    })
-
-    /**
      * @tc.number    : TC_168
      * @tc.name      : isEditable
      * @tc.desc      : 1.create pixelmap
