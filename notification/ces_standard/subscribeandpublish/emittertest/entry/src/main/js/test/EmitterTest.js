@@ -228,6 +228,37 @@ describe('EmitterTest', function () {
         })
     })
 
+    it('commonEvent_subscriberInfo_001', 0, async function (done){
+        let CommonEventSubscribeInfo = {
+            events: ['event'],
+            publisherPermission: '',
+            publisherDeviceId: '',
+            userId: 100,
+            priority: 1000
+        }
+
+        let CommonEventSubscriber = await commonEvent.createSubscriber(CommonEventSubscribeInfo)
+        if (CommonEventSubscriber == undefined) {
+            console.info(TAG + ': createSubscriber failed! Err.message ===> ' + JSON.stringify(CommonEventSubscriber))
+            expect(false).assertTrue()
+        } else {
+            console.info(TAG + ': createSubscriber successd! ===> ' + JSON.stringify(CommonEventSubscriber))
+            expect(true).assertTrue()
+        }
+
+        await CommonEventSubscriber.getSubscribeInfo((err, CommonEventSubscribeInfo)=>{
+            if (err.code) {
+                console.info(TAG + ': getSubscribeInfo failed! Err.code ===> ' + JSON.stringify(err.code))
+                console.info(TAG + ': getSubscribeInfo failed! Err.message ===> ' + JSON.stringify(err.message))
+                expect(false).assertTrue()
+                done()
+            } else {
+                console.info(TAG + ': getSubscribeInfo successd! CommonEventSubscribeInfo ===> ' + JSON.stringify(CommonEventSubscribeInfo))
+                expect(true).assertTrue()
+                done()
+            }
+        })
+    })
 
     it('notification_publish_001', 0, async function (done){
         await notification.isNotificationEnabled(bundlel, (err, data) => {
@@ -324,34 +355,5 @@ describe('EmitterTest', function () {
             }
         })
     })
-
-
-    it('commonEvent_subscriberInfo_001', 0, async function (done){
-        let CommonEventSubscribeInfo = {
-            events: ['event'],
-            publisherPermission: '',
-            publisherDeviceId: '',
-            userId: 100,
-            priority: 1000
-        }
-
-        let CommonEventSubscriber = await commonEvent.createSubscriber(CommonEventSubscribeInfo)
-        if (CommonEventSubscriber == undefined) {
-            console.info(TAG + ': createSubscriber failed! Err.message ===> ' + JSON.stringify(CommonEventSubscriber))
-            expect(false).assertTrue()
-        }
-
-        await CommonEventSubscriber.getSubscribeInfo((err, CommonEventSubscribeInfo)=>{
-            if (err.code) {
-                console.info(TAG + ': getSubscribeInfo failed! Err.code ===> ' + JSON.stringify(err.code))
-                console.info(TAG + ': getSubscribeInfo failed! Err.message ===> ' + JSON.stringify(err.message))
-                expect(false).assertTrue()
-                done()
-            } else {
-                console.info(TAG + ': getSubscribeInfo successd! CommonEventSubscribeInfo ===> ' + JSON.stringify(CommonEventSubscribeInfo))
-                done()
-            }
-        })
-    })
-    })
+})
 
