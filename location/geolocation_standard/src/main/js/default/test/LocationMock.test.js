@@ -70,6 +70,13 @@ async function applyPermission() {
     }
 }
 
+let CountryCodeType = {
+        COUNTRY_CODE_FROM_LOCALE : 1,
+        COUNTRY_CODE_FROM_SIM:2,
+        COUNTRY_CODE_FROM_LOCATION:3,
+        COUNTRY_CODE_FROM_NETWORK:4,
+    }
+
 describe('geolocationTest_4', function () {
     beforeAll(async function (done) {
         console.info('beforeAll case');
@@ -150,6 +157,10 @@ describe('geolocationTest_4', function () {
             console.info("[lbs_js] getCountryCode promise result: " + JSON.stringify(result));
             console.info("[lbs_js] country :" + JSON.stringify(result).country);
             console.info("[lbs_js] type: " + JSON.stringify(result).type);
+            expect(true).assertTrue(JSON.stringify(result)==CountryCodeType.COUNTRY_CODE_FROM_LOCALE);
+            expect(true).assertTrue(JSON.stringify(result)!=CountryCodeType.COUNTRY_CODE_FROM_SIM);
+            expect(true).assertTrue(JSON.stringify(result)!=CountryCodeType.COUNTRY_CODE_FROM_LOCATION);
+            expect(true).assertTrue(JSON.stringify(result)!=CountryCodeType.COUNTRY_CODE_FROM_NETWORK);
             expect(true).assertTrue(JSON.stringify(result)!=null);
         }).catch((error) => {
             console.info("[lbs_js] getCountryCode promise then error."  + JSON.stringify(error));
