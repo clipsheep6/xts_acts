@@ -1184,7 +1184,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest002, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
@@ -1210,7 +1210,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest003, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
@@ -1250,7 +1250,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest005, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1279,7 +1279,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest006, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1306,7 +1306,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest007, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1332,7 +1332,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest008, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
@@ -1364,7 +1364,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest009, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1397,7 +1397,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest010, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1427,7 +1427,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest011, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1458,7 +1458,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest012, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1524,7 +1524,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest014, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1558,7 +1558,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest015, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1591,7 +1591,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest016, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1624,7 +1624,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest017, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1655,7 +1655,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest018, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1686,7 +1686,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest019, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1722,7 +1722,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest020, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1754,7 +1754,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest021, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1786,7 +1786,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest022, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1818,7 +1818,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest023, Function | Med
     ASSERT_NE(nullptr, AudioFormat);
     OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
     OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1); 
+    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -2466,7 +2466,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest004, Function
 
 /**
  * @tc.number    : ActsAudioDecoderNdkReliablityTest005
- * @tc.name      : test audioDecorder reset -> configErr -> config
+ * @tc.name      : test audioDecorder reset -> configErr -> prepareErr
  * @tc.desc      : ActsAudioDecoderNdkReliablityTest005
  */
 HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest005, Function | MediumTest | Level2)
@@ -2485,11 +2485,8 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest005, Function
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
-    ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Configure(AudioDecErrFormat));
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
-    while(aDecSample->GetFrameCount() < 500){};
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioDecErrFormat));
+    ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
     OH_AV_DestroyFormat(AudioFormat);
@@ -2529,7 +2526,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest006, Function
 
 /**
  * @tc.number    : ActsAudioDecoderNdkReliablityTest007
- * @tc.name      : test audioDecorder configErr -> config
+ * @tc.name      : test audioDecorder config -> configErr
  * @tc.desc      : ActsAudioDecoderNdkReliablityTest007
  */
 HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest007, Function | MediumTest | Level2)
@@ -2540,16 +2537,11 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest007, Function
     ASSERT_NE(nullptr, audDec);
 
     AVFormat *AudioFormat = OH_AV_CreateFormat();
-    AVFormat *AudioDecErrFormat = OH_AV_CreateFormat();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
-    aDecSample->SetFormat(AudioDecErrFormat, AudioDecErrParam);
 
-    ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Configure(AudioDecErrFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
-    while(aDecSample->GetFrameCount() < 500){};
+    ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
     OH_AV_DestroyFormat(AudioFormat);
