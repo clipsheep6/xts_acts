@@ -76,7 +76,6 @@ class ServiceExtAbilityAllAbility extends AccessibilityExtensionAbility {
                     break;
                 case "RootElementGet_0110":
                 case "RootElementGet_0111":
-                case "RootElementGet_0112":
                 case "RootElementGet_0113":
                 case "RootElementGet_0114":
                 case "RootElementGet_0115":
@@ -85,7 +84,6 @@ class ServiceExtAbilityAllAbility extends AccessibilityExtensionAbility {
                 case "RootElementGet_0118":
                 case "RootElementGet_0119":
                 case "RootElementGet_0120":
-                case "RootElementGet_0121":
                 case "RootElementGet_0122":
                 case "RootElementGet_0123":
                 case "RootElementGet_0124":
@@ -99,36 +97,22 @@ class ServiceExtAbilityAllAbility extends AccessibilityExtensionAbility {
                 case "RootElementGet_0132":
                 case "RootElementGet_0133":
                 case "RootElementGet_0134":
-                case "RootElementGet_0135":
                 case "RootElementGet_0136":
-                case "RootElementGet_0137":
                 case "RootElementGet_0138":
-                case "RootElementGet_0139":
                 case "RootElementGet_0140":
                 case "RootElementGet_0141":
                 case "RootElementGet_0142":
                 case "RootElementGet_0143":
-                case "RootElementGet_0144":
-                case "RootElementGet_0145":
-                case "RootElementGet_0146":
-                case "RootElementGet_0147":
-                case "RootElementGet_0148":
                 case "RootElementGet_0149":
-                case "RootElementGet_0150":
-                case "RootElementGet_0151":
-                case "RootElementGet_0152":
                 case "RootElementGet_0153":
                 case "RootElementGet_0154":
-                case "RootElementGet_0156":
-                case "RootElementGet_0157":
-                case "RootElementGet_0158":
-                case "RootElementGet_0159":
+                case "RootElementGet_0155":
                 case "RootElementGet_0160":
                 case "RootElementGet_0161":
+                case "RootElementGet_0163":
+                case "RootElementGet_0164":
+                case "RootElementGet_0165":
                     getWindowRootElement_AttributeValues(context, data.data);
-                    break;
-                case "RootElementGet_0155":
-                    getWindowElement_AttributeValues(context, data.data);
                     break;
                 case "RootElementGet_0162":
                     getWindowRootElement_AttributeValuesCallBack(context, data.data);
@@ -301,9 +285,7 @@ class ServiceExtAbilityAllAbility extends AccessibilityExtensionAbility {
     }
 
     onDisconnect() {
-        console.info("Accessibility330 AccessibilityAll onAbilityDisconnected");
-        console.info("Accessibility330-FP-0003 AccessibilityAll onAbilityDisConnected");
-        console.info("Accessibility330-FP-0004 AccessibilityAll onAbilityDisConnected");
+        console.info( log + "AccessibilityAll onDisconnected");
     }
 
     onAccessibilityEvent(accessibilityEvent) {
@@ -477,11 +459,11 @@ const setEventTypeFilterPromise = (context, eventTypeArr, description) => {
 
 const setTargetBundleName = (context, targetNamesArr, description) => {
     const logTag = log + "targetNamesArr " + JSON.stringify(targetNamesArr) + description;
-    context.setTargetBundleName(targetNamesArr, (err, result) => {
+    context.setTargetBundleName(targetNamesArr, (err) => {
         if (err?.code) {
             console.info(logTag + " setTargetBundleName err=" + JSON.stringify(err));
         } else {
-            console.info(logTag + " setTargetBundleName res=" + result);
+            console.info(logTag + " setTargetBundleName success");
         }
     });
 }
@@ -795,14 +777,9 @@ const getWindowRootElementCallback_Parent = (context, description) => {
             printElements(logTag + " parent info", ElementAttributeValues);
             let parent = ElementAttributeValues;
             var commonEventPublishData;
-            if (JSON.stringify(parent) != undefined) {
+            if (parent) {
                 commonEventPublishData = {
                     data: "on_assist_change_extra_success"
-                }
-            }
-            else {
-                commonEventPublishData = {
-                    data: "on_assist_change_extra_undefined"
                 }
             }
             commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
@@ -832,16 +809,12 @@ const getWindowRootElementCallback2_Parent = (context, description) => {
                 elements.attributeValue("parent").then((eles) => {
                     printElements(logTag, eles);
                     var commonEventPublishData;
-                    if (JSON.stringify(eles) != undefined) {
+                    if (eles) {
                         commonEventPublishData = {
                             data: "on_assist_change_extra_success"
                         }
                     }
-                    else {
-                        commonEventPublishData = {
-                            data: "on_assist_change_extra_undefined"
-                        }
-                    }
+
                     commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
 
                     function publishCallback(err) {
@@ -1027,17 +1000,11 @@ const getWindowRootElementPromise_Parent = (context, description) => {
                 elements.attributeValue("parent").then((eles) => {
                     printElements(logTag, eles);
                     var commonEventPublishData;
-                    if (JSON.stringify(eles) != undefined) {
+                    if (eles) {
                         commonEventPublishData = {
                             data: "on_assist_change_extra_success"
                         }
                     }
-                    else {
-                        commonEventPublishData = {
-                            data: "on_assist_change_extra_undefined"
-                        }
-                    }
-
                     commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
 
                     function publishCallback(err) {
@@ -1111,38 +1078,6 @@ const getWindowRootElement_AttributeValuesCallBack = (context, description) => {
     })
 }
 
-const getWindowElement_AttributeValues = (context, description) => {
-    const logTag = log + description;
-    context.getWindows().then((res) => {
-        let index = res.length - 1
-        printElements(logTag, res[index])
-        res[index].attributeValue("isActive").then((ElementAttributeValues) => {
-            console.info(logTag + " attributeValue isActive res=" + JSON.stringify(ElementAttributeValues));
-            var commonEventPublishData;
-            if (JSON.stringify(ElementAttributeValues) != undefined) {
-                commonEventPublishData = {
-                    data: "on_assist_change_extra_success"
-                }
-            }
-            else {
-                commonEventPublishData = {
-                    data: "on_assist_change_extra_undefined"
-                }
-            }
-
-            commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-
-            function publishCallback(err) {
-                console.info("====>on_assist_change_extra getWindowRootElement publish call back result:" + JSON.stringify(err));
-            }
-        }).catch((err) => {
-            console.info(logTag + " attributeValue winddowId err=" + JSON.stringify(err));
-        });
-    }).catch((err) => {
-        console.info(logTag + " getWindows err=" + JSON.stringify(err));
-    });
-}
-
 const getWindowRootElement_AttributeValues = (context, description) => {
     const logTag = log + description;
     context.getWindowRootElement((err, res) => {
@@ -1159,9 +1094,6 @@ const getWindowRootElement_AttributeValues = (context, description) => {
                 break;
             case "RootElementGet_0111":
                 attributeName = "pageId";
-                break;
-            case "RootElementGet_0112":
-                attributeName = "parentId";
                 break;
             case "RootElementGet_0113":
                 attributeName = "inspectorKey";
@@ -1186,9 +1118,6 @@ const getWindowRootElement_AttributeValues = (context, description) => {
                 break;
             case "RootElementGet_0120":
                 attributeName = "resourceName";
-                break;
-            case "RootElementGet_0121":
-                attributeName = "childNodeIds";
                 break;
             case "RootElementGet_0122":
                 attributeName = "textLengthLimit";
@@ -1229,20 +1158,11 @@ const getWindowRootElement_AttributeValues = (context, description) => {
             case "RootElementGet_0134":
                 attributeName = "editable";
                 break;
-            case "RootElementGet_0135":
-                attributeName = "popupSupported";
-                break;
             case "RootElementGet_0136":
                 attributeName = "pluralLineSupported";
                 break;
-            case "RootElementGet_0137":
-                attributeName = "deleteable";
-                break;
             case "RootElementGet_0138":
                 attributeName = "isHint";
-                break;
-            case "RootElementGet_0139":
-                attributeName = "isEssential";
                 break;
             case "RootElementGet_0140":
                 attributeName = "itemCount";
@@ -1256,59 +1176,32 @@ const getWindowRootElement_AttributeValues = (context, description) => {
             case "RootElementGet_0143":
                 attributeName = "endIndex";
                 break;
-            case "RootElementGet_0144":
-                attributeName = "rangeInfo";
-                break;
-            case "RootElementGet_0145":
-                attributeName = "grid";
-                break;
-            case "RootElementGet_0146":
-                attributeName = "gridItem";
-                break;
-            case "RootElementGet_0147":
-                attributeName = "activeRegion";
-                break;
-            case "RootElementGet_0148":
-                attributeName = "isContentInvalid";
-                break;
             case "RootElementGet_0149":
                 attributeName = "error";
-                break;
-            case "RootElementGet_0150":
-                attributeName = "label";
-                break;
-            case "RootElementGet_0151":
-                attributeName = "beginSelected";
-                break;
-            case "RootElementGet_0152":
-                attributeName = "endSelected";
                 break;
             case "RootElementGet_0153":
                 attributeName = "textMoveUnit";
                 break;
             case "RootElementGet_0154":
-                attributeName = "childs";
+                attributeName = "children";
                 break;
             case "RootElementGet_0155":
-                attributeName = "isActive";
-                break;
-            case "RootElementGet_0156":
-                attributeName = "screenRect";
-                break;
-            case "RootElementGet_0157":
-                attributeName = "layer";
-                break;
-            case "RootElementGet_0158":
-                attributeName = "type";
-                break;
-            case "RootElementGet_0159":
-                attributeName = "anchor";
+                attributeName = "checked";
                 break;
             case "RootElementGet_0160":
                 attributeName = "isFocused";
                 break;
             case "RootElementGet_0161":
                 attributeName = "componentId";
+                break;
+            case "RootElementGet_0163":
+                attributeName = "valueMax";
+                break;
+            case "RootElementGet_0164":
+                attributeName = "valueMin";
+                break;
+            case "RootElementGet_0165":
+                attributeName = "valueNow";
                 break;
             default:
                 break;

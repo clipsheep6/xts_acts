@@ -19,31 +19,25 @@ const logTag = "[xtsLog]"
 
 class ServiceExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
-        const context = this.context;
-        setEventTypeFilterCallback(context);
         console.info(logTag + "AccessibilityAll onAbilityConnected");
         var commonEventSubscribeInfo = {
             events: ["on_assist_change", "execute_accessibility_event"]
         }
-
         function subscriberCallback(err, data) {
             console.info(logTag + "AccessibilityALLD receive event err:" + JSON.stringify(err));
             console.info(logTag + "AccessibilityALLD receive event data:" + JSON.stringify(data));
         }
-
         var subscriber
         commonEvent.createSubscriber(commonEventSubscribeInfo).then(function (data) {
             console.info(logTag + " AccessibilityALLD createSubscriber Start")
             subscriber = data;
             commonEvent.subscribe(subscriber, subscriberCallback);
         })
-
     }
 
     onAccessibilityEvent(accessibilityEvent) {
         printAccessibilityEvent(accessibilityEvent);
         return true;
-
     }
 
     onKeyEvent(keyEvent) {
@@ -53,25 +47,10 @@ class ServiceExtAbility extends AccessibilityExtensionAbility {
     }
 }
 
-
 const printAccessibilityEvent = (accessibilityEvent) => {
     console.info(logTag + "AccessibilityAllD onAccessibilityEvent Start");
     console.info(logTag + "AccessibilityAllD onAccessibilityEvent accessibilityEvent=" + JSON.stringify(accessibilityEvent));
     console.info(logTag + "AccessibilityAllD onAccessibilityEvent End");
-}
-
-const setEventTypeFilterCallback = (context) => {
-    console.info(logTag + "Accessibility setEventTypeFilterCallback  Start");
-    const eventType = ['accessibilityFocus', 'accessibilityFocusClear', 'click', 'longClick', 'focus', 'select', 'hoverEnter', 'hoverExit',
-    'textUpdate', 'textSelectionUpdate', 'scroll'];
-    context.setEventTypeFilter(eventType, ((err, res) => {
-        if (err?.code) {
-            console.info(logTag + "err=" + JSON.stringify(err));
-            return;
-        }
-        console.info(logTag + "res=" + JSON.stringify(res));
-    }));
-    console.info(logTag + "End");
 }
 
 export default ServiceExtAbility

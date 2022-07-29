@@ -17,6 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import commonEvent from '@ohos.commonEvent'
 import prompt from '@ohos.prompt'
 import config from '@ohos.accessibility.config'
+import accessibility from '@ohos.accessibility'
 
 
 const ASSIST_BUNDLE_NAME = 'com.example.accesscontroltest/ServiceExtAbility'
@@ -51,6 +52,28 @@ export default function abilityTest(abilityContext) {
         } catch (e) {
           console.info(LOG_PREFIX + 'subscribe failed. Cause:' + JSON.stringify(e))
         }
+        accessibility.getAbilityLists('all', 'enable')
+          .then((res) => {
+            console.info(LOG_PREFIX + ' getAbilityLists res: ' + JSON.stringify(res))
+            if (res.length > 0) {
+              res.forEach((item)=>{
+                console.info(LOG_PREFIX + ' item: ' + JSON.stringify(item))
+                var bundleName = item.id
+                config.disableAbility(bundleName)
+                  .then(() => {
+                    console.info(LOG_PREFIX + 'disableAbility success: ' + bundleName)
+                  })
+                  .catch((error) => {
+                    console.info(LOG_PREFIX + 'disableAbility failed. Cause: ' + JSON.stringify(error))
+                    return
+                  })
+              })
+            }
+          })
+          .catch((error) => {
+            console.info(LOG_PREFIX + ' getAbilityLists error ' + JSON.stringify(error))
+            return
+          })
         setTimeout(() => done(), 1000)
       } catch (e) {
         console.info(LOG_PREFIX + '[StartTargetApp]  error' + e.message)

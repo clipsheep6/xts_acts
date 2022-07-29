@@ -27,6 +27,34 @@ const TIME_OUT = 3000
 export default function abilityTest(abilityContext) {
 
   describe('ActsCheckAbilityTest', function () {
+    beforeAll(async function (done) {
+      console.error(LOG_PREFIX + 'beforeAll start')
+      accessibility.getAbilityLists('all', 'enable')
+        .then((res) => {
+          console.error(LOG_PREFIX + ' getAbilityLists res: ' + JSON.stringify(res))
+          if (res.length > 0) {
+            res.forEach((item)=>{
+              console.error(LOG_PREFIX + ' item: ' + JSON.stringify(item))
+              var bundleName = item.id
+              accessibilityConfig.disableAbility(bundleName)
+                .then(() => {
+                  console.error(LOG_PREFIX + 'disableAbility success: ' + bundleName)
+                })
+                .catch((error) => {
+                  console.error(LOG_PREFIX + 'disableAbility failed. Cause: ' + JSON.stringify(error))
+                  return
+                })
+            })
+          }
+        })
+        .catch((error) => {
+          console.error(LOG_PREFIX + ' getAbilityLists error ' + JSON.stringify(error))
+          return
+        })
+      setTimeout(() => {
+        done()
+      }, TIME_OUT)
+    })
     afterEach(async function (done) {
       disableAll(LOG_PREFIX + ' disableAll ')
       setTimeout(() => {

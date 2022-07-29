@@ -19,14 +19,12 @@ const logTag = "[xtsLog]"
 
 function gestureInjectCallback(logTag, caseName, context, gesturePathDefineList) {
     const log = logTag + caseName
-    context.gestureInject(gesturePathDefineList, (result) => {
-        console.info(log + "gestureInject Callback listener res=" + JSON.stringify(result));
-    }, (err, res) => {
+    context.injectGesture(gesturePathDefineList, (err) => {
         if (err?.code) {
-            console.info(log + "gestureInject Callback err=" + JSON.stringify(err));
+            console.info(log + "injectGesture Callback err=" + JSON.stringify(err));
             return;
         }
-        console.info(log + "gestureInject Callback res=" + JSON.stringify(res));
+        console.info(log + "injectGesture Callback success" );
     });
 }
 
@@ -442,20 +440,10 @@ const TouchIntercept_0230 = (context, caseName) => {
         }, 500)
     }, 500)
 }
+
 const TouchIntercept_0240 = (context, caseName) => {
-    let EventTypeArray = ['click']
-    const log = logTag + caseName
-    context.setEventTypeFilter(EventTypeArray, (err, res) => {
-        if (err?.code) {
-            console.info(log + "setEventTypeFilter Callback err=" + JSON.stringify(err));
-            return;
-        }
-        console.info(log + "setEventTypeFilter Callback res=" + JSON.stringify(res));
-        TouchIntercept_0010(context, caseName)
-    });
-
+    TouchIntercept_0010(context, caseName)
 }
-
 
 const excuteMethod = (context, data) => {
 
@@ -535,29 +523,14 @@ const excuteMethod = (context, data) => {
                 break;
             default:
                 break;
-
         }
     }
-}
-const setEventTypeFilterCallback = (context) => {
-    console.info(logTag + "Accessibility setEventTypeFilterCallback  Start");
-    const eventType = ['accessibilityFocus', 'accessibilityFocusClear', 'click', 'longClick', 'focus', 'select', 'hoverEnter', 'hoverExit',
-        'textUpdate', 'textSelectionUpdate', 'scroll'];
-    context.setEventTypeFilter(eventType, ((err, res) => {
-        if (err?.code) {
-            console.info(logTag + " setEventTypeFilterCallback err=" + JSON.stringify(err));
-            return;
-        }
-        console.info(logTag + " setEventTypeFilterCallback res=" + JSON.stringify(res));
-    }));
-    console.info(logTag + " Accessibility setEventTypeFilterCallback End");
 }
 
 class ServiceExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
         console.info(logTag + " GestureD onAbilityConnected");
         let context = this.context;
-        setEventTypeFilterCallback(context);
         var commonEventSubscribeInfo = {
             events: ["on_assist_change"]
         }
@@ -679,7 +652,6 @@ class ServiceExtAbility extends AccessibilityExtensionAbility {
     }
 }
 
-
 const commonEventPublishOnAssistChange = (caseName) => {
 
     function publishCallback(err) {
@@ -707,6 +679,5 @@ const printAccessibilityEvent = (accessibilityEvent) => {
     console.info(logTag + "GestureD onAccessibilityEvent accessibilityEvent=" + JSON.stringify(accessibilityEvent));
     console.info(logTag + "GestureD onAccessibilityEvent End");
 }
-
 
 export default ServiceExtAbility

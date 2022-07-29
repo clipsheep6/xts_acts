@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterAll, it, expect } from 'deccjsunit/index'
 import commonEvent from '@ohos.commonEvent'
 import accessibility from '@ohos.accessibility';
-
+import config from '@ohos.accessibility.config';
 const LOG = "[xtsLog]"
 const START_TIMEOUT = 5000;
 
@@ -43,6 +43,41 @@ const CaptionConfigurationOff = (logTag, captionType) => {
   });
 }
 
+const captionOn = (logTag, caseName) => {
+  config.captions.on((res) => {
+    console.info(logTag + " captionOn  res =  " + JSON.stringify(res));
+    console.info(logTag + "_on_success");
+    onbackList.push(caseName + "_on_success")
+  });
+}
+
+const captionUndefinedOn = (logTag, caseName) => {
+  config.undefined.on((res) => {
+    console.info(logTag + " captionUndefinedOn  res =  " + JSON.stringify(res));
+    console.info(logTag + "_on_success");
+    onbackList.push(caseName + "_on_success")
+  });
+}
+
+const captionOff = (logTag, captionType) => {
+  config.captions.off(captionType, (res) => {
+    console.info(logTag + " caption off " + captionType + " res: " + JSON.stringify(res));
+  });
+}
+
+const captionStyleOn = (logTag, caseName) => {
+  config.captionsStyle.on((res) => {
+    console.info(logTag + " captionsStyle On  res =  " + JSON.stringify(res));
+    console.info(logTag + "_on_success");
+    onbackList.push(caseName + "_on_success")
+  });
+}
+
+const captionStyleOff = (logTag, captionType) => {
+  config.captionsStyle.off(captionType, (res) => {
+    console.info(logTag + " captionsStyle off " + captionType + " res: " + JSON.stringify(res));
+  });
+}
 
 const excuteCase = (caseNamePara) => {
   console.info(LOG + 'AccessibleEventTest excuteCase: ' + caseNamePara);
@@ -89,15 +124,15 @@ export default function CaptionConfigurationTest(abilityContext) {
       console.info(LOG + 'ActsCaptionConfigurationTest: afterAll');
       setTimeout(function () {
         commonEvent.unsubscribe(subScriber);
+        done();
       }, 10000);
-      done();
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0010
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */      
+    /**
+    * @tc.number: CaptionConfiguration_0010
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0010', 1, async function (done) {
       const caseName = "CaptionConfiguration_0010";
       const logF = LOG + caseName;
@@ -119,14 +154,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget && isSucceedOnBack).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget && isSucceedOnBack));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0020
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */      
+    /**
+    * @tc.number: CaptionConfiguration_0020
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0020', 1, async function (done) {
       const caseName = "CaptionConfiguration_0020";
       const logF = LOG + caseName;
@@ -146,14 +181,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget && isSucceedOnBack).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget && isSucceedOnBack));
         done();
-      }, 12000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0030
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */  
+    /**
+    * @tc.number: CaptionConfiguration_0030
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0030', 1, async function (done) {
       const caseName = "CaptionConfiguration_0030";
       const logF = LOG + caseName;
@@ -178,14 +213,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget && isSucceedOnBack).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget && isSucceedOnBack));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0040
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */      
+    /**
+    * @tc.number: CaptionConfiguration_0040
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0040', 1, async function (done) {
       const caseName = "CaptionConfiguration_0040";
       const logF = LOG + caseName;
@@ -210,14 +245,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget && isSucceedOnBack).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget && isSucceedOnBack));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0050
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */      
+    /**
+    * @tc.number: CaptionConfiguration_0050
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0050', 1, async function (done) {
       const caseName = "CaptionConfiguration_0050";
       const logF = LOG + caseName;
@@ -232,14 +267,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0060
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */  
+    /**
+    * @tc.number: CaptionConfiguration_0060
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0060', 1, async function (done) {
       const caseName = "CaptionConfiguration_0060";
       const logF = LOG + caseName;
@@ -254,14 +289,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0070
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */      
+    /**
+    * @tc.number: CaptionConfiguration_0070
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0070', 1, async function (done) {
       const caseName = "CaptionConfiguration_0070";
       const logF = LOG + caseName;
@@ -276,14 +311,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0080
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */  
+    /**
+    * @tc.number: CaptionConfiguration_0080
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0080', 1, async function (done) {
       const caseName = "CaptionConfiguration_0080";
       const logF = LOG + caseName;
@@ -298,14 +333,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0090
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */  
+    /**
+    * @tc.number: CaptionConfiguration_0090
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0090', 1, async function (done) {
       const caseName = "CaptionConfiguration_0090";
       const logF = LOG + caseName;
@@ -320,14 +355,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0100
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */      
+    /**
+    * @tc.number: CaptionConfiguration_0100
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0100', 1, async function (done) {
       const caseName = "CaptionConfiguration_0100";
       const logF = LOG + caseName;
@@ -342,14 +377,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0110
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */      
+    /**
+    * @tc.number: CaptionConfiguration_0110
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0110', 1, async function (done) {
       const caseName = "CaptionConfiguration_0110";
       const logF = LOG + caseName;
@@ -364,14 +399,14 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0120
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */  
+    /**
+    * @tc.number: CaptionConfiguration_0120
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0120', 1, async function (done) {
       const caseName = "CaptionConfiguration_0120";
       const logF = LOG + caseName;
@@ -384,23 +419,23 @@ export default function CaptionConfigurationTest(abilityContext) {
       setTimeout(() => {
         var isSucceedTarget: boolean = false;
         var isSucceedOnBack: boolean = false;
-        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') == -1) {
           isSucceedTarget = true;
         }
-        if (onbackList.indexOf(caseName + '_on_success') !== -1) {
+        if (onbackList.indexOf(caseName + '_on_success') == -1) {
           isSucceedOnBack = true;
         }
-        expect(isSucceedTarget && isSucceedOnBack).assertEqual(false);
+        expect(isSucceedTarget && isSucceedOnBack).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget && isSucceedOnBack));
         done();
-      }, 10000);
+      }, 8000);
     });
 
-  /**
-  * @tc.number: CaptionConfiguration_0130
-  * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
-  * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
-  */  
+    /**
+    * @tc.number: CaptionConfiguration_0130
+    * @tc.name: Call api:getcaptionsmanager() to set the caption parameter.
+    * @tc.desc: Call api:getcaptionsmanager() to set the caption parameter.
+    */
     it('CaptionConfiguration_0130', 1, async function (done) {
       const caseName = "CaptionConfiguration_0130";
       const logF = LOG + caseName;
@@ -415,8 +450,330 @@ export default function CaptionConfigurationTest(abilityContext) {
         expect(isSucceedTarget).assertEqual(true);
         console.info(logF + ' isSucceed : ' + (isSucceedTarget));
         done();
-      }, 10000);
+      }, 8000);
     });
+
+    /**
+    * @tc.number: CaptionConfiguration_0140
+    * @tc.name: Call api:config to set the captions parameter.
+    * @tc.desc: Call api:config to set the captions parameter.
+    */
+    it('CaptionConfiguration_0140', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0140";
+      const logF = LOG + caseName;
+      setTimeout(() => {
+        captionOn(logF, caseName)
+      }, 1000);
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 3000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        var isSucceedOnBack: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        if (onbackList.indexOf(caseName + '_on_success') !== -1) {
+          isSucceedOnBack = true;
+        }
+        expect(isSucceedTarget && isSucceedOnBack).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget && isSucceedOnBack));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0150
+    * @tc.name: Call api:config to set the captionsStyle parameter.
+    * @tc.desc: Call api:config to set the captionsStyle parameter.
+    */
+    it('CaptionConfiguration_0150', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0150";
+      const logF = LOG + caseName;
+      captionStyleOn(logF, caseName)
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 3000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        var isSucceedOnBack: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        if (onbackList.indexOf(caseName + '_on_success') !== -1) {
+          isSucceedOnBack = true;
+        }
+        expect(isSucceedTarget && isSucceedOnBack).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget && isSucceedOnBack));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0160
+    * @tc.name: Call api:config to set the captions parameter.
+    * @tc.desc: Call api:config to set the captions parameter.
+    */    
+    it('CaptionConfiguration_0160', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0160";
+      const logF = LOG + caseName;
+      setTimeout(() => {
+        captionOn(logF, caseName)
+      }, 1000);
+      setTimeout(() => {
+        captionOff(logF, caseName)
+      }, 2000);
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 3000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        var isSucceedOnBack: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        if (onbackList.indexOf(caseName + '_on_success') == -1) {
+          isSucceedOnBack = true;
+        }
+        expect(isSucceedTarget && isSucceedOnBack).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget && isSucceedOnBack));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0170
+    * @tc.name: Call api:config to set the captionsStyle parameter.
+    * @tc.desc: Call api:config to set the captionsStyle parameter.
+    */    
+    it('CaptionConfiguration_0170', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0170";
+      const logF = LOG + caseName;
+      setTimeout(() => {
+        captionStyleOn(logF, caseName);
+      }, 1000);
+      setTimeout(() => {
+        captionStyleOff(logF, caseName)
+      }, 2000);
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 3000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        var isSucceedOnBack: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        if (onbackList.indexOf(caseName + '_on_success') == -1) {
+          isSucceedOnBack = true;
+        }
+        expect(isSucceedTarget && isSucceedOnBack).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget && isSucceedOnBack));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0180
+    * @tc.name: Call api:config to set the captionsStyle parameter.
+    * @tc.desc: Call api:config to set the captionsStyle parameter.
+    */    
+    it('CaptionConfiguration_0180', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0180";
+      const logF = LOG + caseName;
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 2000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        expect(isSucceedTarget).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0190
+    * @tc.name: Call api:config to set the captionsStyle parameter.
+    * @tc.desc: Call api:config to set the captionsStyle parameter.
+    */    
+    it('CaptionConfiguration_0190', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0190";
+      const logF = LOG + caseName;
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 2000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        expect(isSucceedTarget).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0200
+    * @tc.name: Call api:config to set the captionsStyle parameter.
+    * @tc.desc: Call api:config to set the captionsStyle parameter.
+    */    
+    it('CaptionConfiguration_0200', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0200";
+      const logF = LOG + caseName;
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 2000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        expect(isSucceedTarget).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0210
+    * @tc.name: Call api:config to set the captionsStyle parameter.
+    * @tc.desc: Call api:config to set the captionsStyle parameter.
+    */    
+    it('CaptionConfiguration_0210', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0210";
+      const logF = LOG + caseName;
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 2000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        expect(isSucceedTarget).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0220
+    * @tc.name: Call api:config to set the captionsStyle parameter.
+    * @tc.desc: Call api:config to set the captionsStyle parameter.
+    */    
+    it('CaptionConfiguration_0220', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0220";
+      const logF = LOG + caseName;
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 2000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        expect(isSucceedTarget).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0230
+    * @tc.name: Call api:config to set the captionsStyle parameter.
+    * @tc.desc: Call api:config to set the captionsStyle parameter.
+    */    
+    it('CaptionConfiguration_0230', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0230";
+      const logF = LOG + caseName;
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 2000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        expect(isSucceedTarget).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0240
+    * @tc.name: Call api:config to set the captionsStyle parameter.
+    * @tc.desc: Call api:config to set the captionsStyle parameter.
+    */    
+    it('CaptionConfiguration_0240', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0240";
+      const logF = LOG + caseName;
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 2000);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        expect(isSucceedTarget).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0250
+    * @tc.name: Call api:config to set the captions parameter.
+    * @tc.desc: Call api:config to set the captions parameter.
+    */    
+    it('CaptionConfiguration_0250', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0250";
+      const logF = LOG + caseName;
+      try {
+        captionUndefinedOn(logF, caseName)
+      } catch (err) {
+        console.info(logF + ' captionUndefinedOn : err' + JSON.stringify(err));
+      }
+      setTimeout(() => {
+        excuteCase(caseName);
+      }, 3000);
+      setTimeout(() => {
+        var isSucceedOnBack: boolean = false;
+        if (onbackList.indexOf(caseName + '_on_success') == -1) {
+          isSucceedOnBack = true;
+        }
+        expect(isSucceedOnBack).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedOnBack));
+        done();
+      }, 8000);
+    });
+
+    /**
+    * @tc.number: CaptionConfiguration_0260
+    * @tc.name: Call api:config to set the captionsStyle parameter.
+    * @tc.desc: Call api:config to set the captionsStyle parameter.
+    */
+    it('CaptionConfiguration_0260', 1, async function (done) {
+      const caseName = "CaptionConfiguration_0260";
+      const logF = LOG + caseName;
+      excuteCase(caseName);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        expect(isSucceedTarget).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget));
+        done();
+      }, 8000);
+    });
+
 
   })
 }

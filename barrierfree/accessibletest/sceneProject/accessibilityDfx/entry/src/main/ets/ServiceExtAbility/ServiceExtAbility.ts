@@ -65,7 +65,6 @@ const getWindowsByIdPromise = (context, displayId, caseName) => {
             }, 1000)
         }
     }, 50);
-
 }
 
 const getWindowRootElementCallback = (context, caseName) => {
@@ -118,7 +117,6 @@ const getWindowRootElementPromise = (context, caseName) => {
             console.info(Log + " times: " + times + +JSON.stringify(err));
         });
         times++;
-
     }, 50);
 }
 
@@ -129,7 +127,6 @@ function executePerformActionPromiseAndGetFocusElementCallBack(caseName, logTag,
             console.info(logTag + "  getWindowRootElement err=" + JSON.stringify(err));
             return;
         }
-
         printLongText(logTag + "  getWindowRootElement ", res);
         if (res) {
             res.findElement('content', searchText).then((AccessibilityElementArray) => {
@@ -139,7 +136,7 @@ function executePerformActionPromiseAndGetFocusElementCallBack(caseName, logTag,
                         console.info(logTag + caseName + "  performActionBack Promise success=" + JSON.stringify(performActionBack));
                         let times = 1
                         let id = setInterval(() => {
-                            context.getFocusElement((err, res) => {
+                            context.getFocusElement(true,(err, res) => {
                                 if (err?.code) {
                                     console.info(logTag + " times: " + times + "  FocusElement CallBack err=" + JSON.stringify(err));
                                     return;
@@ -162,7 +159,6 @@ function executePerformActionPromiseAndGetFocusElementCallBack(caseName, logTag,
                     } else {
                         console.info(logTag + "  performActionBack Promise err=");
                     }
-
                 }).catch((actionNamesErr) => {
                     console.info(logTag + "  performActionBack Promise err=" + JSON.stringify(actionNamesErr));
                 });
@@ -207,7 +203,6 @@ function executePerformActionPromise(caseName, logTag, context, searchText, acti
                         } else {
                             console.info(logTag + times + "  accessibilityFocus performActionBack Promise err=");
                         }
-
                     }).catch((actionNamesErr) => {
                         console.info(logTag + " times: " + times + " accessibilityFocus  performActionBack Promise err=" + JSON.stringify(actionNamesErr));
                     });
@@ -225,7 +220,6 @@ function executePerformActionPromise(caseName, logTag, context, searchText, acti
             }).catch((AccessibilityElementArrayErr) => {
                 console.info(logTag + "  AccessibilityElementArray Promise err=" + JSON.stringify(AccessibilityElementArrayErr));
             });
-
         }
     })
 }
@@ -237,7 +231,6 @@ function executePerformActionPromiseAndGetFocusElementPromise(caseName, logTag, 
             console.info(logTag + "  getWindowRootElement err=" + JSON.stringify(err));
             return;
         }
-
         printLongText(logTag + "getWindowRootElement ", res);
         if (res) {
             res.findElement('content', searchText).then((AccessibilityElementArray) => {
@@ -247,7 +240,7 @@ function executePerformActionPromiseAndGetFocusElementPromise(caseName, logTag, 
                         console.info(logTag + "  performActionBack Promise success=" + JSON.stringify(performActionBack));
                         let times = 1
                         let id = setInterval(() => {
-                            context.getFocusElement().then((FocusElement) => {
+                            context.getFocusElement(true).then((FocusElement) => {
                                 if (FocusElement) {
                                     console.info(logTag + " times: " + times + "  FocusElement Promise success=" + JSON.stringify(FocusElement));
                                     success++
@@ -259,7 +252,6 @@ function executePerformActionPromiseAndGetFocusElementPromise(caseName, logTag, 
                             }).catch((actionNamesErr) => {
                                 console.info(logTag + " times: " + times + "  performActionBack Promise err=" + JSON.stringify(actionNamesErr));
                             });
-
                             times++;
                             if (times > 100) {
                                 clearInterval(id)
@@ -271,12 +263,9 @@ function executePerformActionPromiseAndGetFocusElementPromise(caseName, logTag, 
                                 }, 1000)
                             }
                         }, 50);
-
-
                     } else {
                         console.info(logTag + "  performActionBack Promise err=");
                     }
-
                 }).catch((actionNamesErr) => {
                     console.info(logTag + "  performActionBack Promise err=" + JSON.stringify(actionNamesErr));
                 });
@@ -284,7 +273,6 @@ function executePerformActionPromiseAndGetFocusElementPromise(caseName, logTag, 
             }).catch((AccessibilityElementArrayErr) => {
                 console.info(logTag + "  AccessibilityElementArray Promise err=" + JSON.stringify(AccessibilityElementArrayErr));
             });
-
         }
     })
 }
@@ -294,14 +282,12 @@ function gestureInjectCallback(logTag, caseName, context, gesturePathDefineList)
     let success = 0;
     let times = 1
     let id = setInterval(() => {
-        context.gestureInject(gesturePathDefineList, (result) => {
-            console.info(log + "times: " + times + " gestureInject Callback listener res=" + JSON.stringify(result));
-        }, (err, res) => {
+        context.injectGesture(gesturePathDefineList,(err) => {
             if (err?.code) {
                 console.info(log + "times: " + times + " gestureInject Callback err=" + JSON.stringify(err));
             }
             success++
-            console.info(log + "times: " + times + " gestureInject Callback res=" + JSON.stringify(res));
+            console.info(log + "times: " + times + " gestureInject success");
         });
         times++;
         if (times > 100) {
@@ -314,27 +300,18 @@ function gestureInjectCallback(logTag, caseName, context, gesturePathDefineList)
             }, 1000)
         }
     }, 50);
-
-
 }
-
 function gestureInjectPromise(logTag, caseName, context, gesturePathDefineList) {
     const log = logTag + caseName
     let success = 0;
     let times = 1
     let id = setInterval(() => {
-        context.gestureInject(gesturePathDefineList, (result) => {
-            console.info(log + " times: " + times + " gestureInject Promise listener res=" + JSON.stringify(result));
-        }).then((res) => {
+        context.injectGesture(gesturePathDefineList).then((res) => {
+            success++
             console.info(log + " times: " + times + " gestureInject Promise res=" + JSON.stringify(res));
-            if (res) {
-                success++
-                console.info(logTag + " success: " + success);
-            }
             if (times > 100) {
                 clearInterval(id)
                 setTimeout(() => {
-                    console.info(logTag + " success: " + success);
                     if (success >= 100) {
                         commonEventPublishOnAssistChange(caseName);
                     }
@@ -344,7 +321,6 @@ function gestureInjectPromise(logTag, caseName, context, gesturePathDefineList) 
             console.info(log + "times: " + times + " gestureInject Promise err=" + JSON.stringify(err));
         });
         times++;
-
     }, 50);
 }
 
@@ -385,7 +361,6 @@ const excuteMethod = (context, data) => {
 
 const Dfx_0070 = (context, caseName) => {
     getWindowRootElementCallback(context, caseName);
-
 }
 
 const Dfx_0080 = (context, caseName) => {
@@ -436,7 +411,6 @@ const Dfx_0180 = (context, caseName) => {
         durationTime: 300
     }
     gestureInjectCallback(logTag, caseName, context, GesturePath);
-
 }
 const Dfx_0190 = (context, caseName) => {
     let GesturePath = {
@@ -456,7 +430,6 @@ class ServiceExtAbility extends AccessibilityExtensionAbility {
         var commonEventSubscribeInfo = {
             events: ["execute_accessibility_event"]
         }
-
         function subscriberCallback(err, data) {
             console.info(logTag + "====>AccessibilityDfx subscriberCallback start");
             console.info(logTag + "====>AccessibilityDfx receive event err:" + JSON.stringify(err));
@@ -464,7 +437,6 @@ class ServiceExtAbility extends AccessibilityExtensionAbility {
             excuteMethod(context, data.data);
             console.info(logTag + "====>AccessibilityDfx subscriberCallback end");
         }
-
         var subscriber
         commonEvent.createSubscriber(commonEventSubscribeInfo).then(function (data) {
             console.info(logTag + "====> AccessibilityDfx createSubscriber Start====")
@@ -473,8 +445,6 @@ class ServiceExtAbility extends AccessibilityExtensionAbility {
             console.info(logTag + "====> AccessibilityDfx createSubscriber End====")
         })
         console.info(logTag + "====> AccessibilityDfx onConnect End====")
-
-
     }
 
     onDisconnect() {
@@ -503,7 +473,6 @@ const commonEventPublishOnAssistChange = (caseName) => {
     commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
 }
 
-
 function printLongText(logTag, res) {
     let resJson = JSON.stringify(res);
     if (resJson && resJson.length > 1000) {
@@ -516,7 +485,6 @@ function printLongText(logTag, res) {
         console.info(logTag + "res=" + resJson);
     }
 }
-
 
 export default ServiceExtAbility
 

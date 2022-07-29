@@ -20,7 +20,6 @@ const logTag = "[xtsLog]"
 class ServiceExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
         const context = this.context;
-        setEventTypeFilterCallback(context);
         console.info(logTag + "AccessibilityAll onAbilityConnected");
         var commonEventSubscribeInfo = {
             events: ["on_assist_change", "execute_accessibility_event"]
@@ -57,20 +56,6 @@ const printAccessibilityEvent = (accessibilityEvent) => {
     console.info(logTag + "AccessibilityAllD onAccessibilityEvent Start");
     console.info(logTag + "AccessibilityAllD onAccessibilityEvent accessibilityEvent=" + JSON.stringify(accessibilityEvent));
     console.info(logTag + "AccessibilityAllD onAccessibilityEvent End");
-}
-
-const setEventTypeFilterCallback = (context) => {
-    console.info(logTag + "Accessibility setEventTypeFilterCallback  Start");
-    const eventType = ['accessibilityFocus', 'accessibilityFocusClear', 'click', 'longClick', 'focus', 'select', 'hoverEnter', 'hoverExit',
-    'textUpdate', 'textSelectionUpdate', 'scroll'];
-    context.setEventTypeFilter(eventType, ((err, res) => {
-        if (err?.code) {
-            console.info(logTag + "err=" + JSON.stringify(err));
-            return;
-        }
-        console.info(logTag + "res=" + JSON.stringify(res));
-    }));
-    console.info(logTag + "End");
 }
 
 export default ServiceExtAbility

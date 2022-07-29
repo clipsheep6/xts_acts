@@ -18,16 +18,11 @@ import commonEvent from '@ohos.commonEvent'
 class ServiceExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
         console.info(" Accessibility touchGuide onAbilityConnected");
-        setEventTypeFilterCallback(this.context);
     }
 
     onAccessibilityEvent(accessibilityEvent) {
         const logTag = "AccessibilityAll touchGuide onAccessibilityEvent: ";
         console.info(logTag + JSON.stringify(accessibilityEvent));
-        if (accessibilityEvent.eventType) {
-
-
-        }
         switch (accessibilityEvent.eventType) {
             case "hoverEnter":
                 accessibilityEvent?.target.attributeValue('text')?.then((vales) => {
@@ -52,19 +47,6 @@ const commonEventPublishOnAssistChange = (caseName) => {
         data: 'true',
     }
     commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-}
-
-const setEventTypeFilterCallback = (context) => {
-    console.info("Accessibility setEventTypeFilterCallback  Start");
-    const eventType = ['accessibilityFocus', 'accessibilityFocusClear', 'click', 'longClick', 'focus', 'select', 'hoverEnter', 'hoverExit',
-        'textUpdate', 'textSelectionUpdate', 'scroll'];
-    context.setEventTypeFilter(eventType, ((err, res) => {
-        if (err?.code) {
-            console.info("setEventTypeFilter err=" + JSON.stringify(err));
-            return;
-        }
-        console.info("setEventTypeFilter res=" + JSON.stringify(res));
-    }));
 }
 
 export default ServiceExtAbility

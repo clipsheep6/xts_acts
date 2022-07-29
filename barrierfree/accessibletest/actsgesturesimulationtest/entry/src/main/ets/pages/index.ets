@@ -46,7 +46,7 @@ struct Index {
   @State paintSize: number= 5
   @State paintColor: Color = Color.Orange
   @State pathInfoArray: PathInfo[]= new Array()
-  @State paths: string[]= new Array()
+  private subScriber = undefined
 
   aboutToAppear() {
     this.createSubscriber()
@@ -68,6 +68,12 @@ struct Index {
     core.execute()
   }
 
+  aboutToDisappear() {
+    console.info('TargetApp aboutToDisappear')
+    commonEvent.unsubscribe(this.subScriber)
+    this.subScriber = undefined
+  }
+
   @Builder
   Canvas() {
     ForEach(this.pathInfoArray, (pathInfo) => OnePath({ pathInfo: pathInfo }))
@@ -77,7 +83,6 @@ struct Index {
       .onTouch((event: TouchEvent) => {
         let x = vp2px(event.touches[0].x)
         let y = vp2px(event.touches[0].y)
-        this.paths.push(`${x},${y}`)
         switch (event.type) {
           case TouchType.Down:
             this.pathInfoArray.push(new PathInfo(`M${x} ${y}`, this.paintSize, this.paintColor))
@@ -86,10 +91,10 @@ struct Index {
             this.pathInfoArray[this.pathInfoArray.length-1].commands += `L${x} ${y}`
             break
           case TouchType.Up:
-            this.pathInfoArray[this.pathInfoArray.length-1].commands += `L${x} ${y}`
-            console.info(LOG_PREFIX + ' paths: ' + JSON.stringify(this.paths))
-            this.paths.length = 0
-	    this.publishEvent()
+            this.publishEvent()
+            setTimeout(()=>{
+              this.pathInfoArray.length = 0
+            }, 1500)
             break
         }
       })
@@ -102,7 +107,7 @@ struct Index {
         Row() {
           Button('clear').onClick(() => this.pathInfoArray.length = 0)
         }.margin(5)
-      }.height('70%').width('100%')
+      }.height(545).width('100%')
 
       Button('Test1', {stateEffect: true})
         .fontSize(20)
@@ -199,6 +204,7 @@ struct Index {
 
   createSubscriber(){
     commonEvent.createSubscriber(CommonEventSubscribeInfo).then((subscriber) => {
+      this.subScriber = subscriber
       commonEvent.subscribe(subscriber, (error, commonEventData) => {
         if (error.code != 0) {
           console.info(LOG_PREFIX + 'subscribe failed. Cause:' + JSON.stringify(error))
@@ -206,7 +212,6 @@ struct Index {
         }
         console.info(LOG_PREFIX + 'subscribeTest callback : ' + JSON.stringify(commonEventData))
         this.caseCode = commonEventData.data
-        this.pathInfoArray.length = 0
         if(commonEventData.data === 'GestureSimulation_0090'){
           this.notEnd = false
         }

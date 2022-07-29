@@ -289,20 +289,20 @@ const sendWindowUpdateType = (caseName, expectValue) => {
 const sendEventErrorEvCallback = () => {
   const caseName = "SendEventErrorEv_0010";
   console.info('TargetApp sendEventCallback: undefined');
-  accessibility.sendEvent(undefined, (err, result) => {
+  accessibility.sendEvent(undefined, (err) => {
     if (err?.code) {
       console.info(caseName + " sendEvent Callback err=" + JSON.stringify(err));
       publishCommonEvent(COMMON_EVENT, caseName + "_on_target_change_extra_success");
       return;
     }
-    console.info(caseName + " sendEvent Callback res=" + result);
+    console.info(caseName + " sendEvent Callback success.");
   });
 }
 const sendEventErrorEvPromise = () => {
   const caseName = "SendEventErrorEv_0020";
   console.info('TargetApp sendEventPromise: undefined');
-  accessibility.sendEvent(undefined).then((result) => {
-    console.info(caseName + " sendEvent Promise res=" + result);
+  accessibility.sendEvent(undefined).then(() => {
+    console.info(caseName + " sendEvent Promise success.");
   }).catch((err) => {
     console.info(caseName +" sendEvent Promise err=" + JSON.stringify(err));
     publishCommonEvent(COMMON_EVENT, caseName + "_on_target_change_extra_success");
@@ -467,20 +467,20 @@ function createEventInfo(caseName, eventName, action) {
 const sendEventCallback = (caseName, eventName, action) => {
   console.info('TargetApp sendEventCallback: ' + eventName);
   let sendInfo = createEventInfo(caseName, eventName, action);
-  accessibility.sendEvent(sendInfo, (err, result) => {
+  accessibility.sendEvent(sendInfo, (err) => {
     if (err?.code) {
       console.info(caseName +JSON.stringify(sendInfo) +"sendEvent Callback err=" + JSON.stringify(err));
       return;
     }
-    console.info(caseName + JSON.stringify(sendInfo) +"sendEvent Callback res=" + result);
+    console.info(caseName + JSON.stringify(sendInfo) +"sendEvent Callback success.");
     publishCommonEvent(COMMON_EVENT, caseName + "_on_target_change_extra_success");
   });
 };
 const sendEventPromise = (caseName, eventName, action) => {
   console.info('TargetApp sendEventPromise: ' + eventName);
   let sendInfo = createEventInfo(caseName, eventName, action);
-  accessibility.sendEvent(sendInfo).then((result) => {
-    console.info(caseName + JSON.stringify(sendInfo) +"sendEvent Promise res=" + result);
+  accessibility.sendEvent(sendInfo).then(() => {
+    console.info(caseName + JSON.stringify(sendInfo) +"sendEvent Promise success.");
     publishCommonEvent(COMMON_EVENT, caseName + "_on_target_change_extra_success");
   }).catch((err) => {
     console.info(caseName +JSON.stringify(sendInfo) +"sendEvent Promise err=" + JSON.stringify(err));
@@ -497,8 +497,8 @@ function createEventInfoForElement(caseName) {
 }
 const sendEventElement = (caseName, eventInfo, value) => {
   console.info('TargetApp sendEventElement: ' + caseName);
-  accessibility.sendEvent(eventInfo).then((result) => {
-    console.info(caseName + JSON.stringify(eventInfo) +"sendEvent Promise res=" + result);
+  accessibility.sendEvent(eventInfo).then(() => {
+    console.info(caseName + JSON.stringify(eventInfo) +"sendEvent Promise success.");
     let commonEventPublishData = {
       code: COMMON_CODE,
       data: caseName + value

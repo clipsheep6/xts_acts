@@ -28,11 +28,13 @@ let CommonEventSubscribeInfo = {
     events: [EVENT_NAME]
 }
 
+var subscriber
 class ServiceExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
         console.info(LOG_PREFIX + " onConnect")
         let context = this.context
-        commonEvent.createSubscriber(CommonEventSubscribeInfo).then((subscriber) => {
+        commonEvent.createSubscriber(CommonEventSubscribeInfo).then((data) => {
+            subscriber = data
             commonEvent.subscribe(subscriber, (error, commonEventData) => {
                 if (error.code != 0) {
                     console.info(LOG_PREFIX + 'subscribe failed. Cause:' + JSON.stringify(error))
@@ -49,6 +51,7 @@ class ServiceExtAbility extends AccessibilityExtensionAbility {
 
     onDisconnect() {
         console.info(LOG_PREFIX + " onDisconnect")
+        commonEvent.unsubscribe(subscriber)
     }
 
     onAccessibilityEvent(accessibilityEvent) {
@@ -530,36 +533,32 @@ function GestureSimulation_0420(context, caseCode) {
 
 function gestureInjectCallback1(logTag, context, gesturePath, caseCode) {
     try {
-        context.gestureInject(gesturePath, (result) => {
-            console.info(logTag + "gestureInject Callback listener res=" + JSON.stringify(result))
-            var commonEventPublishData = { data: caseCode, parameters: {res: result} }
+        context.injectGesture(gesturePath, (data) => {
+            console.info(logTag + "injectGesture Callback res: " + JSON.stringify(data))
+            var commonEventPublishData = { data: caseCode, parameters: { res: data.code === 0 } }
             publishEvent(commonEventPublishData)
-        }, (err, res) => {
-            if (err?.code) {
-                console.info(logTag + "gestureInject Callback err=" + JSON.stringify(err))
-                return
-            }
-            console.info(logTag + "gestureInject Callback res=" + JSON.stringify(res))
         })
     } catch (e) {
-        console.info(logTag + " gestureInject Callback Exception: " + JSON.stringify(e.message))
+        console.info(logTag + " injectGesture Callback Exception: " + JSON.stringify(e.message))
         return
     }
 }
 
 function gestureInjectPromise1(logTag, context, gesturePath, caseCode) {
     try {
-        context.gestureInject(gesturePath, (result) => {
-            console.info(logTag + "gestureInject Promise listener res=" + JSON.stringify(result))
-            var commonEventPublishData = { data: caseCode, parameters: {res: result} }
-            publishEvent(commonEventPublishData)
-        }).then((res) => {
-            console.info(logTag + "gestureInject Promise res=" + JSON.stringify(res))
-        }).catch((err) => {
-            console.info(logTag + "gestureInject Promise err=" + JSON.stringify(err))
-        })
+        context.injectGesture(gesturePath)
+            .then(() => {
+                console.info(logTag + "injectGesture Promise success")
+                var commonEventPublishData = { data: caseCode, parameters: { res: true } }
+                publishEvent(commonEventPublishData)
+            })
+            .catch((err) => {
+                console.info(logTag + "injectGesture Promise err=" + JSON.stringify(err))
+                var commonEventPublishData = { data: caseCode, parameters: { res: false } }
+                publishEvent(commonEventPublishData)
+            })
     } catch (e) {
-        console.info(LOG_PREFIX + " gestureInject Promise Exception: " + JSON.stringify(e.message))
+        console.info(LOG_PREFIX + " injectGesture Promise Exception: " + JSON.stringify(e.message))
         return
     }
 }

@@ -17,30 +17,10 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 import commonEvent from '@ohos.commonEvent'
 const logTag = "[xtsLog]"
 
-const setEventTypeFilterCallback = (context) => {
-    console.info(logTag + "Accessibility setEventTypeFilterCallback  Start");
-    const eventType =  ['accessibilityFocus', 'accessibilityFocusClear', 'click', 'longClick', 'focus', 'select', 'hoverEnter', 'hoverExit',
-    'textUpdate', 'textSelectionUpdate', 'scroll'];
-    context.setEventTypeFilter(eventType,((err, res) => {
-        if (err?.code) {
-            console.info(logTag + " setEventTypeFilterCallback err=" + JSON.stringify(err));
-            return;
-        }
-        console.info(logTag + " setEventTypeFilterCallback res=" + JSON.stringify(res));
-    }));
-    console.info(logTag + " Accessibility setEventTypeFilterCallback End");
-}
-
-
 class ServiceExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
         console.info(logTag +" Gesture2D onAbilityConnected");
-
-        let context = this.context;
-        setEventTypeFilterCallback(context);
-
         console.info(logTag + "Gesture2D onShow End====")
-
     }
 
     onAccessibilityEvent(accessibilityEvent) {

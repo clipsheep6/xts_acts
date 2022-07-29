@@ -68,6 +68,7 @@ struct Index {
   @State capability: Array<accessibility.Capability> = new Array()
   @State caseCode: string = ''
   @State accessibilityIsOn: boolean = false
+  private subScriber = undefined
 
   aboutToAppear() {
     this.createSubscriber()
@@ -87,6 +88,12 @@ struct Index {
     configService.setConfig(globalThis.abilityWant.parameters)
     testsuite(globalThis.abilityContext)
     core.execute()
+  }
+
+  aboutToDisappear() {
+    console.info('TargetApp aboutToDisappear')
+    commonEvent.unsubscribe(this.subScriber)
+    this.subScriber = undefined
   }
 
   build() {
@@ -204,6 +211,7 @@ struct Index {
   createSubscriber() {
     commonEvent.createSubscriber(CommonEventSubscribeInfo).then((subscriber) => {
       console.info(LOG_PREFIX + 'createSubscriber success')
+      this.subScriber = subscriber
       commonEvent.subscribe(subscriber, (error, commonEventData) => {
         console.info(LOG_PREFIX + 'subscribeTest error : ' + JSON.stringify(error) + 'data' + JSON.stringify(commonEventData))
         if (error.code != 0) {

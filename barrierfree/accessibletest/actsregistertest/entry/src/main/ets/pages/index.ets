@@ -127,17 +127,13 @@ const RegisterStateOnOff_Init = (callback) => {
   const logTag = Log +"RegisterStateOnOff_Init ";
   setExtentionDisabled(logTag, [accessibility_registerState_Name, accessibility_register_Name]);
   ThreadSleep(3000).then(() => {
-    accessibility.isOpenAccessibility().then((result) => {
-      if (!result) {
-        accessibility.off(onAccessibilityStateChange, (result) => {
-          console.info(logTag + "accessibility off res=" + JSON.stringify(result));
-        });
-        accessibility.off(onTouchGuideStateChange, (result) => {
-          console.info(logTag + "touchGuide off res=" + JSON.stringify(result));
-        });
-        callback();
-      }
-    })
+    accessibility.off(onAccessibilityStateChange, (result) => {
+      console.info(logTag + "accessibility off res=" + JSON.stringify(result));
+    });
+    accessibility.off(onTouchGuideStateChange, (result) => {
+      console.info(logTag + "touchGuide off res=" + JSON.stringify(result));
+    });
+    callback();
   })
 };
 
@@ -1657,7 +1653,6 @@ const executeAbility = (data) => {
     case "RootElementGet_0097":
     case "RootElementGet_0110":
     case "RootElementGet_0111":
-    case "RootElementGet_0112":
     case "RootElementGet_0113":
     case "RootElementGet_0114":
     case "RootElementGet_0115":
@@ -1666,7 +1661,6 @@ const executeAbility = (data) => {
     case "RootElementGet_0118":
     case "RootElementGet_0119":
     case "RootElementGet_0120":
-    case "RootElementGet_0121":
     case "RootElementGet_0122":
     case "RootElementGet_0123":
     case "RootElementGet_0124":
@@ -1680,34 +1674,22 @@ const executeAbility = (data) => {
     case "RootElementGet_0132":
     case "RootElementGet_0133":
     case "RootElementGet_0134":
-    case "RootElementGet_0135":
     case "RootElementGet_0136":
-    case "RootElementGet_0137":
     case "RootElementGet_0138":
-    case "RootElementGet_0139":
     case "RootElementGet_0140":
     case "RootElementGet_0141":
     case "RootElementGet_0142":
     case "RootElementGet_0143":
-    case "RootElementGet_0144":
-    case "RootElementGet_0145":
-    case "RootElementGet_0146":
-    case "RootElementGet_0147":
-    case "RootElementGet_0148":
     case "RootElementGet_0149":
-    case "RootElementGet_0150":
-    case "RootElementGet_0151":
-    case "RootElementGet_0152":
     case "RootElementGet_0153":
     case "RootElementGet_0154":
     case "RootElementGet_0155":
-    case "RootElementGet_0156":
-    case "RootElementGet_0157":
-    case "RootElementGet_0158":
-    case "RootElementGet_0159":
     case "RootElementGet_0160":
     case "RootElementGet_0161":
     case "RootElementGet_0162":
+    case "RootElementGet_0163":
+    case "RootElementGet_0164":
+    case "RootElementGet_0165":
     case "RootElementGet_0050":
     case "RootElementGet_0051":
     case "RootElementGet_0060":
@@ -1850,7 +1832,6 @@ const executeAbility = (data) => {
     case "FocusQuery_0031":
     case "FocusQuery_0040":
     case "FocusQuery_0041":
-    case "FocusQuery_0050":
     case "FocusQuery_0060":
     case "FocusQuery_0061":
     case "FocusQuery_0070":
@@ -1861,7 +1842,6 @@ const executeAbility = (data) => {
     case "FocusQuery_0092":
     case "FocusQuery_0100":
     case "FocusQuery_0101":
-    case "FocusQuery_0110":
     case "FocusQuery_0120":
     case "FocusQuery_0121":
     case "FocusQuery_0139":
@@ -1884,7 +1864,6 @@ const executeAbility = (data) => {
     case "FocusQuery_0232":
     case "FocusQuery_0240":
     case "FocusQuery_0241":
-    case "FocusQuery_0250":
     case "FocusQuery_0260":
     case "FocusQuery_0261":
     case "FocusQuery_0279":
@@ -1902,7 +1881,6 @@ const executeAbility = (data) => {
     case "FocusQuery_0318":
     case "FocusQuery_0319":
     case "FocusQuery_0320":
-    case "FocusQuery_0321":
     case "FocusQuery_0322":
     case "FocusQuery_0323":
     case "FocusQuery_0324":
@@ -1916,25 +1894,17 @@ const executeAbility = (data) => {
     case "FocusQuery_0332":
     case "FocusQuery_0333":
     case "FocusQuery_0334":
-    case "FocusQuery_0335":
     case "FocusQuery_0336":
-    case "FocusQuery_0337":
     case "FocusQuery_0338":
-    case "FocusQuery_0339":
     case "FocusQuery_0340":
     case "FocusQuery_0341":
     case "FocusQuery_0342":
     case "FocusQuery_0343":
-    case "FocusQuery_0344":
-    case "FocusQuery_0345":
-    case "FocusQuery_0346":
-    case "FocusQuery_0347":
-    case "FocusQuery_0348":
     case "FocusQuery_0349":
-    case "FocusQuery_0350":
-    case "FocusQuery_0351":
-    case "FocusQuery_0352":
     case "FocusQuery_0353":
+    case "FocusQuery_0354":
+    case "FocusQuery_0355":
+    case "FocusQuery_0356":
         FocusQueryCallBack();
         break;
     default:
@@ -2060,6 +2030,12 @@ struct Index {
         TextInput({text: 'input1'})
           .type(InputType.Password)
           .width(200)
+          .margin(5)
+
+        Slider({value:50, min: 10, max:100})
+          .focusable(true)
+          .showSteps(true)
+          .width(300)
           .margin(5)
       }
       .width('100%')

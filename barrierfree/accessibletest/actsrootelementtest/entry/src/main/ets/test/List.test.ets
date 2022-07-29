@@ -15,7 +15,9 @@
 
 
 import AccessibleRootElementTest from './AccessibleRootElement.test'
+import AccessibleRootElementClockTest from './AccessibleRootElementClock.test'
 
 export default function testsuite(abilityContext) {
   AccessibleRootElementTest(abilityContext)
+  AccessibleRootElementClockTest(abilityContext)
 }

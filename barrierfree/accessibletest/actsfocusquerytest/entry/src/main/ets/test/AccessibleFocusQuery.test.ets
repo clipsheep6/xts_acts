@@ -64,7 +64,7 @@ const excuteCase = async (caseNamePara) => {
   console.info(logTag+'AccessibleFocusQueryTest excuteCase: ' + caseNamePara);
 
   function publishCallback(err) {
-    console.error(logTag+caseNamePara + " publish call back result:" + JSON.stringify(err));
+    console.info(logTag+caseNamePara + " publish call back result:" + JSON.stringify(err));
   }
   var commonEventPublishData = {
     data: caseNamePara
@@ -81,12 +81,12 @@ export default function AccessibleFocusQueryTest(abilityContext) {
 
   describe('ActsAccessibleFocusQueryTest', function () {
     beforeAll(async function (done) {
-      console.error(logTag+'AccessibleFocusQueryTest: beforeAll');
+      console.info(logTag+'AccessibleFocusQueryTest: beforeAll');
       subScriber = await commonEvent.createSubscriber(subscriberInfo);
       commonEvent.subscribe(subScriber, (err, data) => {
-        console.error(logTag+'AccessibleFocusQueryTest beforeAll subscribe data:' + JSON.stringify(data) );
+        console.info(logTag+'AccessibleFocusQueryTest beforeAll subscribe data:' + JSON.stringify(data) );
         if (data.data) {
-          console.error(logTag+ data.data );
+          console.info(logTag+ data.data );
           switch (data.data) {
             case "on_target_change_extra_success":
               target =true;
@@ -228,21 +228,6 @@ export default function AccessibleFocusQueryTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
-     * @tc.number: FocusQuery_0050
-     * @tc.name: getFocusElement() then attributeValue("rootElement") in the call back mode.
-     * @tc.desc: getFocusElement() then attributeValue("rootElement") in the call back mode.
-     */
-    it('FocusQuery_0050', 1, async function (done) {
-      caseName = "FocusQuery_0050";
-      excuteCase(caseName)
-      setTimeout(() => {
-        isSucceed = target && assist_success;
-        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
-        expect(isSucceed).assertEqual(true);
-        done();
-      }, EXPECT_TIMEOUT);
-    })
-    /**
      * @tc.number: FocusQuery_0060
      * @tc.name: findElement('focusDirection','down') in the promise mode.
      * @tc.desc: findElement('focusDirection','down') in the promise mode.
@@ -273,7 +258,7 @@ export default function AccessibleFocusQueryTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
-     * @tc.number: FocusQuery_0050
+     * @tc.number: FocusQuery_0070
      * @tc.name: getFocusElement() then attributeValue("parent") in the call back mode.
      * @tc.desc: getFocusElement() then attributeValue("parent") in the call back mode.
      */
@@ -319,8 +304,8 @@ export default function AccessibleFocusQueryTest(abilityContext) {
     })
     /**
     * @tc.number: FocusQuery_0090
-    * @tc.name: getFocusElement() then attributeValue("childs") in the call back mode.
-    * @tc.desc: getFocusElement() then attributeValue("childs") in the call back mode.
+    * @tc.name: getFocusElement() then attributeValue("children") in the call back mode.
+    * @tc.desc: getFocusElement() then attributeValue("children") in the call back mode.
     */
     it('FocusQuery_0090', 1, async function (done) {
       caseName = "FocusQuery_0090";
@@ -384,21 +369,6 @@ export default function AccessibleFocusQueryTest(abilityContext) {
     */
     it('FocusQuery_0101', 1, async function (done) {
       caseName = "FocusQuery_0101";
-      excuteCase(caseName)
-      setTimeout(() => {
-        isSucceed = target && assist_success;
-        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
-        expect(isSucceed).assertEqual(true);
-        done();
-      }, EXPECT_TIMEOUT);
-    })
-    /**
-    * @tc.number: FocusQuery_0110
-    * @tc.name: getFocusElement() then attributeValue("anchor") in the call back mode.
-    * @tc.desc: getFocusElement() then attributeValue("anchor") in the call back mode.
-    */
-    it('FocusQuery_0110', 1, async function (done) {
-      caseName = "FocusQuery_0110";
       excuteCase(caseName)
       setTimeout(() => {
         isSucceed = target && assist_success;
@@ -648,6 +618,21 @@ export default function AccessibleFocusQueryTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
+    * @tc.number: FocusQuery_0230
+     * @tc.name: getFocusElement() then attributeValue("children") in the call back mode for accessibilityFocus.
+     * @tc.desc: getFocusElement() then attributeValue("children") in the call back mode for accessibilityFocus.
+    */
+    it('FocusQuery_0230', 1, async function (done) {
+      caseName = "FocusQuery_0230";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
     * @tc.number: FocusQuery_0231
     * @tc.name: getFocusElement() then actionNames() in the promise mode for accessibilityFocus.
     * @tc.desc: getFocusElement() then actionNames() in the promise mode for accessibilityFocus.
@@ -792,6 +777,36 @@ export default function AccessibleFocusQueryTest(abilityContext) {
       excuteCase(caseName)
       setTimeout(() => {
         isSucceed = target && !assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: FocusQuery_0310
+     * @tc.name: getFocusElement() then attributeValue("windowId") in the call back mode for accessibilityFocus.
+     * @tc.desc: getFocusElement() then attributeValue("windowId") in the call back mode for accessibilityFocus.
+     */
+    it('FocusQuery_0310', 1, async function (done) {
+      caseName = "FocusQuery_0310";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: FocusQuery_0311
+     * @tc.name: getFocusElement() then attributeValue("pageId") in the call back mode for accessibilityFocus.
+     * @tc.desc: getFocusElement() then attributeValue("pageId") in the call back mode for accessibilityFocus.
+     */
+    it('FocusQuery_0311', 1, async function (done) {
+      caseName = "FocusQuery_0311";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
         console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
         expect(isSucceed).assertEqual(true);
         done();
@@ -1008,6 +1023,21 @@ export default function AccessibleFocusQueryTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
+    * @tc.number: FocusQuery_0327
+    * @tc.name: getFocusElement() then attributeValue("accessibilityFocused") in the call back mode for accessibilityFocus.
+    * @tc.desc: getFocusElement() then attributeValue("accessibilityFocused") in the call back mode for accessibilityFocus.
+    */
+    it('FocusQuery_0327', 1, async function (done) {
+      caseName = "FocusQuery_0327";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
     * @tc.number: FocusQuery_0328
     * @tc.name: getFocusElement() then attributeValue("selected") in the call back mode for accessibilityFocus.
     * @tc.desc: getFocusElement() then attributeValue("selected") in the call back mode for accessibilityFocus.
@@ -1128,6 +1158,21 @@ export default function AccessibleFocusQueryTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
+    * @tc.number: FocusQuery_0338
+    * @tc.name: getFocusElement() then attributeValue("isHint") in the call back mode for accessibilityFocus.
+    * @tc.desc: getFocusElement() then attributeValue("isHint") in the call back mode for accessibilityFocus.
+    */
+    it('FocusQuery_0338', 1, async function (done) {
+      caseName = "FocusQuery_0338";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
     * @tc.number: FocusQuery_0340
     * @tc.name: getFocusElement() then attributeValue("itemCount") in the call back mode for accessibilityFocus.
     * @tc.desc: getFocusElement() then attributeValue("itemCount") in the call back mode for accessibilityFocus.
@@ -1188,12 +1233,72 @@ export default function AccessibleFocusQueryTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
+    * @tc.number: FocusQuery_0349
+    * @tc.name: getFocusElement() then attributeValue("error") in the call back mode for accessibilityFocus.
+    * @tc.desc: getFocusElement() then attributeValue("error") in the call back mode for accessibilityFocus.
+    */
+    it('FocusQuery_0349', 1, async function (done) {
+      caseName = "FocusQuery_0349";;
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
     * @tc.number: FocusQuery_0353
     * @tc.name: getFocusElement() then attributeValue("textMoveUnit") in the call back mode for accessibilityFocus.
     * @tc.desc: getFocusElement() then attributeValue("textMoveUnit") in the call back mode for accessibilityFocus.
     */
     it('FocusQuery_0353', 1, async function (done) {
       caseName = "FocusQuery_0353";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+    * @tc.number: FocusQuery_0354
+    * @tc.name: getFocusElement() then attributeValue("valueMax") in the call back mode for accessibilityFocus.
+    * @tc.desc: getFocusElement() then attributeValue("valueMax") in the call back mode for accessibilityFocus.
+    */
+    it('FocusQuery_0354', 1, async function (done) {
+      caseName = "FocusQuery_0354";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+   * @tc.number: FocusQuery_0355
+   * @tc.name: getFocusElement() then attributeValue("valueMin") in the call back mode for accessibilityFocus.
+   * @tc.desc: getFocusElement() then attributeValue("valueMin") in the call back mode for accessibilityFocus.
+   */
+    it('FocusQuery_0355', 1, async function (done) {
+      caseName = "FocusQuery_0355";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+    * @tc.number: FocusQuery_0356
+    * @tc.name: getFocusElement() then attributeValue("valueNow") in the call back mode for accessibilityFocus.
+    * @tc.desc: getFocusElement() then attributeValue("valueNow") in the call back mode for accessibilityFocus.
+    */
+    it('FocusQuery_0356', 1, async function (done) {
+      caseName = "FocusQuery_0356";
       excuteCase(caseName)
       setTimeout(() => {
         isSucceed = target && assist_success;
@@ -1216,18 +1321,13 @@ export default function AccessibleFocusQueryTest(abilityContext) {
         console.info(logTag + "startAbility " + JSON.stringify(error) + ", " + JSON.stringify(data));
         setExtentionDisabled(caseName, [accessibility_focusQuery_Name]);
         setTimeout(() => {
-          accessibility.isOpenAccessibility().then((result) => {
-            console.info(logTag + "isOpenAccessibility result:" + result);
-            if (!result) {
-              setExtentionEnabled(caseName, accessibility_focusQuery_Name);
-              setTimeout(() => {
-                excuteCase(caseName)
-              }, 1000);
-            }
-          })
+          setExtentionEnabled(caseName, accessibility_focusQuery_Name);
+          setTimeout(() => {
+            excuteCase(caseName)
+          }, 1000);
         }, 3000);
         setTimeout(() => {
-          isSucceed = target && assist_success;
+          isSucceed = assist_success;
           console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
           expect(isSucceed).assertEqual(true);
           done();
@@ -1265,21 +1365,6 @@ export default function AccessibleFocusQueryTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
-     * @tc.number: FocusQuery_0143
-     * @tc.name: getFocusElement() then attributeValue("rootElement") in the call back mode.
-     * @tc.desc: getFocusElement() then attributeValue("rootElement") in the call back mode.
-     */
-    it('FocusQuery_0143', 1, async function (done) {
-      caseName = "FocusQuery_0143";
-      excuteCase(caseName)
-      setTimeout(() => {
-        isSucceed = assist_success;
-        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
-        expect(isSucceed).assertEqual(true);
-        done();
-      }, EXPECT_TIMEOUT);
-    })
-    /**
      * @tc.number: FocusQuery_0144
      * @tc.name: getFocusElement() then attributeValue("parent") in the call back mode.
      * @tc.desc: getFocusElement() then attributeValue("parent") in the call back mode.
@@ -1296,26 +1381,11 @@ export default function AccessibleFocusQueryTest(abilityContext) {
     })
     /**
      * @tc.number: FocusQuery_0145
-     * @tc.name: getFocusElement() then attributeValue("childs") in the call back mode.
-     * @tc.desc: getFocusElement() then attributeValue("childs") in the call back mode.
+     * @tc.name: getFocusElement() then attributeValue("children") in the call back mode.
+     * @tc.desc: getFocusElement() then attributeValue("children") in the call back mode.
      */
     it('FocusQuery_0145', 1, async function (done) {
       caseName = "FocusQuery_0145";
-      excuteCase(caseName)
-      setTimeout(() => {
-        isSucceed = assist_success;
-        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
-        expect(isSucceed).assertEqual(true);
-        done();
-      }, EXPECT_TIMEOUT);
-    })
-    /**
-     * @tc.number: FocusQuery_0146
-     * @tc.name: getFocusElement() then attributeValue("anchor") in the call back mode.
-     * @tc.desc: getFocusElement() then attributeValue("anchor") in the call back mode.
-     */
-    it('FocusQuery_0146', 1, async function (done) {
-      caseName = "FocusQuery_0146";
       excuteCase(caseName)
       setTimeout(() => {
         isSucceed = assist_success;
@@ -1338,15 +1408,21 @@ export default function AccessibleFocusQueryTest(abilityContext) {
         console.info(logTag + "startAbility " + JSON.stringify(error) + ", " + JSON.stringify(data));
         setExtentionDisabled(caseName, [accessibility_focusQuery_Name]);
         setTimeout(() => {
-          accessibility.isOpenAccessibility().then((result) => {
-            console.info(logTag + "isOpenAccessibility result:" + result);
-            if (!result) {
-              setExtentionEnabled(caseName, accessibility_focusQuery_Name);
-              setTimeout(() => {
-                excuteCase(caseName)
-              }, 1000);
-            }
-          })
+          accessibility.getAbilityLists('all', 'enable')
+            .then((res) => {
+              for (let i = 0; i < res.length; i++) {
+                console.info(logTag + "getAbilityLists res=" + JSON.stringify(res[i]))
+              }
+            })
+            .catch((error) => {
+              console.info(logTag + ' getAbilityLists error ' + JSON.stringify(error))
+            })
+          setTimeout(() => {
+            setExtentionEnabled(caseName, accessibility_focusQuery_Name);
+            setTimeout(() => {
+              excuteCase(caseName)
+            }, 1000);
+          }, 1000);
         }, 3000);
         setTimeout(() => {
           isSucceed = assist_success;
@@ -1358,8 +1434,8 @@ export default function AccessibleFocusQueryTest(abilityContext) {
     })
     /**
      * @tc.number: FocusQuery_0281
-     * @tc.name: getFocusElement(false) in the call back mode for accessibilityFocus.
-     * @tc.desc: getFocusElement(false) in the call back mode for accessibilityFocus.
+     * @tc.name: getFocusElement(true) in the call back mode for accessibilityFocus.
+     * @tc.desc: getFocusElement(true) in the call back mode for accessibilityFocus.
      */
     it('FocusQuery_0281', 1, async function (done) {
       caseName = "FocusQuery_0281";
@@ -1373,8 +1449,8 @@ export default function AccessibleFocusQueryTest(abilityContext) {
     })
     /**
      * @tc.number: FocusQuery_0282
-     * @tc.name: getFocusElement(false) in the promise mode for accessibilityFocus.
-     * @tc.desc: getFocusElement(false) in the promise mode for accessibilityFocus.
+     * @tc.name: getFocusElement(true) in the promise mode for accessibilityFocus.
+     * @tc.desc: getFocusElement(true) in the promise mode for accessibilityFocus.
      */
     it('FocusQuery_0282', 1, async function (done) {
       caseName = "FocusQuery_0282";
@@ -1393,6 +1469,21 @@ export default function AccessibleFocusQueryTest(abilityContext) {
      */
     it('FocusQuery_0284', 1, async function (done) {
       caseName = "FocusQuery_0284";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: FocusQuery_0285
+     * @tc.name: getFocusElement() then attributeValue("children") in the call back mode for accessibilityFocus.
+     * @tc.desc: getFocusElement() then attributeValue("children") in the call back mode for accessibilityFocus.
+     */
+    it('FocusQuery_0285', 1, async function (done) {
+      caseName = "FocusQuery_0285";
       excuteCase(caseName)
       setTimeout(() => {
         isSucceed = assist_success;

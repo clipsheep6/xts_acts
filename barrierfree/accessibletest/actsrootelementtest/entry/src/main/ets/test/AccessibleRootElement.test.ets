@@ -16,39 +16,6 @@
 import { describe, beforeAll, beforeEach, afterAll, it, expect } from 'deccjsunit/index'
 import commonEvent from '@ohos.commonEvent'
 import config from '@ohos.accessibility.config';
-import accessibility from '@ohos.accessibility'
-
-const accessibility_rootElement_Name = 'com.example.myapplicationxtsd/ServiceExtAbilityAllAbility';
-
-const setExtentionEnabled = async (logTag, name) => {
-  var capability = [];
-  switch (name) {
-    case accessibility_rootElement_Name:
-      capability = ['retrieve', 'keyEventObserver', 'gesture'];
-      break;
-    default:
-      break;
-  }
-  await config.enableAbility(name, capability, (err) => {
-    if (err?.code) {
-      console.info(logTag + " extentionEnabled err=" + JSON.stringify(err));
-    } else {
-      console.info(logTag + " extentionEnabled success");
-    }
-  });
-}
-
-const setExtentionDisabled = (logTag, bundleNameArr) => {
-  for (var i = 0; i < bundleNameArr.length; i++) {
-    config.disableAbility(bundleNameArr[i], (err) => {
-      if (err?.code) {
-        console.info(logTag + " extentionDisabled err=" + JSON.stringify(err));
-      } else {
-        console.info(logTag + " extentionDisabled success");
-      }
-    });
-  }
-}
 
 const EXPECT_TIMEOUT = 6000;
 const START_TIMEOUT = 5000;
@@ -67,7 +34,7 @@ const excuteCase = async (caseNamePara) => {
   console.info(logTag+'AccessibleRootElementTest excuteCase: ' + caseNamePara);
 
   function publishCallback(err) {
-    console.error(logTag+caseNamePara + " publish call back result:" + JSON.stringify(err));
+    console.info(logTag+caseNamePara + " publish call back result:" + JSON.stringify(err));
   }
   var commonEventPublishData = {
     data: caseNamePara
@@ -84,12 +51,12 @@ export default function AccessibleRootElementTest(abilityContext) {
 
   describe('ActsAccessibleRootElementTest', function () {
     beforeAll(async function (done) {
-      console.error(logTag+'AccessibleRootElementTest: beforeAll');
+      console.info(logTag+'AccessibleRootElementTest: beforeAll');
       subScriber = await commonEvent.createSubscriber(subscriberInfo);
       commonEvent.subscribe(subScriber, (err, data) => {
-        console.error(logTag+'AccessibleRootElementTest beforeAll subscribe data:' + JSON.stringify(data) );
+        console.info(logTag+'AccessibleRootElementTest beforeAll subscribe data:' + JSON.stringify(data) );
         if (data.data) {
-          console.error(logTag+ data.data );
+          console.info(logTag+ data.data );
           switch (data.data) {
             case "on_target_change_extra_success":
               target =true;
@@ -105,7 +72,7 @@ export default function AccessibleRootElementTest(abilityContext) {
       });
       config.enableAbility('com.example.myapplicationxtsd/ServiceExtAbilityAllAbility',
         ['retrieve', 'keyEventObserver', 'gesture']).then(() => {
-        console.info('ActsAccessibleRootElementTest beforeAll enableAbility success ');
+        console.info('ActsAccessibleRootElementTest beforeAll enableAbility success');
         this.isEnable = true;
       });
       setTimeout(done(), START_TIMEOUT);
@@ -116,7 +83,7 @@ export default function AccessibleRootElementTest(abilityContext) {
       commonEvent.unsubscribe(subScriber);
 
       config.disableAbility("com.example.myapplicationxtsd/ServiceExtAbilityAllAbility").then(() => {
-        console.info('ActsAccessibleRootElementTest afterAll disableAbility success ');
+        console.info('ActsAccessibleRootElementTest afterAll disableAbility success');
         this.isEnable = false;
       });
       done();
@@ -146,6 +113,36 @@ export default function AccessibleRootElementTest(abilityContext) {
         }, EXPECT_TIMEOUT);
     })
     /**
+     * @tc.number: RootElementGet_0071
+     * @tc.name: Get system application's window root element.
+     * @tc.desc: Get system application's window root element.
+     */
+    it('RootElementGet_0071', 1, async function (done) {
+      caseName = "RootElementGet_0071";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0080
+     * @tc.name: Get system application's window root element.
+     * @tc.desc: Get system application's window root element.
+     */
+    it('RootElementGet_0080', 1, async function (done) {
+      caseName = "RootElementGet_0080";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
      * @tc.number: RootElementGet_0010
      * @tc.name: Get target application's window root element.
      * @tc.desc: Get target application's window root element.
@@ -161,7 +158,36 @@ export default function AccessibleRootElementTest(abilityContext) {
         done();
       }, EXPECT_TIMEOUT);
     })
-
+    /**
+     * @tc.number: RootElementGet_0011
+     * @tc.name: Get target application's window root element.
+     * @tc.desc: Get target application's window root element.
+     */
+    it('RootElementGet_0011', 1, async function (done) {
+      caseName = "RootElementGet_0011";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0020
+     * @tc.name: Get target application's window root element.
+     * @tc.desc: Get target application's window root element.
+     */
+    it('RootElementGet_0020', 1, async function (done) {
+      caseName = "RootElementGet_0020";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
     /**
      * @tc.number: RootElementGet_0092
      * @tc.name: Get root element, then get rootElement attribute.
@@ -169,6 +195,36 @@ export default function AccessibleRootElementTest(abilityContext) {
      */
     it('RootElementGet_0092', 1, async function (done) {
       caseName = "RootElementGet_0092";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && !assist_undefined;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0093
+     * @tc.name: Get root element, then get rootElement attribute.
+     * @tc.desc: Get root element, then get rootElement attribute.
+     */
+    it('RootElementGet_0093', 1, async function (done) {
+      caseName = "RootElementGet_0093";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && !assist_undefined;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0094
+     * @tc.name: Get root element, then get rootElement attribute.
+     * @tc.desc: Get root element, then get rootElement attribute.
+     */
+    it('RootElementGet_0094', 1, async function (done) {
+      caseName = "RootElementGet_0094";
       excuteCase(caseName)
       setTimeout(() => {
         isSucceed = target && !assist_undefined;
@@ -186,19 +242,64 @@ export default function AccessibleRootElementTest(abilityContext) {
       caseName = "RootElementGet_0095";
       excuteCase(caseName)
       setTimeout(() => {
-        isSucceed = target && assist_undefined;
+        isSucceed = target && !assist_success;
         console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
         expect(isSucceed).assertEqual(true);
         done();
       }, EXPECT_TIMEOUT);
     })
     /**
-     * @tc.number: RootElementGet_0155
-     * @tc.name: Get root element, then get isActive attribute.
-     * @tc.desc: Get root element, then get isActive attribute.
+     * @tc.number: RootElementGet_0096
+     * @tc.name: Get root element, then get parent attribute.
+     * @tc.desc: Get root element, then get parent attribute.
      */
-    it('RootElementGet_0155', 1, async function (done) {
-      caseName = "RootElementGet_0155";
+    it('RootElementGet_0096', 1, async function (done) {
+      caseName = "RootElementGet_0096";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && !assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0097
+     * @tc.name: Get root element, then get parent attribute.
+     * @tc.desc: Get root element, then get parent attribute.
+     */
+    it('RootElementGet_0097', 1, async function (done) {
+      caseName = "RootElementGet_0097";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && !assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0110
+     * @tc.name: Get root element, then get windowId attribute.
+     * @tc.desc: Get root element, then get windowId attribute.
+     */
+    it('RootElementGet_0110', 1, async function (done) {
+      caseName = "RootElementGet_0110";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0111
+     * @tc.name: Get root element, then get pageId attribute.
+     * @tc.desc: Get root element, then get pageId attribute.
+     */
+    it('RootElementGet_0111', 1, async function (done) {
+      caseName = "RootElementGet_0111";
       excuteCase(caseName)
       setTimeout(() => {
         isSucceed = target && assist_success;
@@ -403,6 +504,21 @@ export default function AccessibleRootElementTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
+     * @tc.number: RootElementGet_0127
+     * @tc.name: Get root element, then get accessibilityFocused attribute.
+     * @tc.desc: Get root element, then get accessibilityFocused attribute.
+     */
+    it('RootElementGet_0127', 1, async function (done) {
+      caseName = "RootElementGet_0127";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
      * @tc.number: RootElementGet_0128
      * @tc.name: Get root element, then get selected attribute.
      * @tc.desc: Get root element, then get selected attribute.
@@ -523,6 +639,21 @@ export default function AccessibleRootElementTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
+     * @tc.number: RootElementGet_0138
+     * @tc.name: Get root element, then get pluralLineSupported attribute.
+     * @tc.desc: Get root element, then get pluralLineSupported attribute.
+     */
+    it('RootElementGet_0138', 1, async function (done) {
+      caseName = "RootElementGet_0138";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
      * @tc.number: RootElementGet_0140
      * @tc.name: Get root element, then get itemCount attribute.
      * @tc.desc: Get root element, then get itemCount attribute.
@@ -583,12 +714,57 @@ export default function AccessibleRootElementTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
+     * @tc.number: RootElementGet_0149
+     * @tc.name: Get root element, then get error attribute.
+     * @tc.desc: Get root element, then get error attribute.
+     */
+    it('RootElementGet_0149', 1, async function (done) {
+      caseName = "RootElementGet_0149";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
      * @tc.number: RootElementGet_0153
      * @tc.name: Get root element, then get textMoveUnit attribute.
      * @tc.desc: Get root element, then get textMoveUnit attribute.
      */
     it('RootElementGet_0153', 1, async function (done) {
       caseName = "RootElementGet_0153";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0154
+     * @tc.name: Get root element, then get children attribute.
+     * @tc.desc: Get root element, then get children attribute.
+     */
+    it('RootElementGet_0154', 1, async function (done) {
+      caseName = "RootElementGet_0154";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0155
+     * @tc.name: Get root element, then get checked attribute.
+     * @tc.desc: Get root element, then get checked attribute.
+     */
+    it('RootElementGet_0155', 1, async function (done) {
+      caseName = "RootElementGet_0155";
       excuteCase(caseName)
       setTimeout(() => {
         isSucceed = target && assist_success;
@@ -643,12 +819,88 @@ export default function AccessibleRootElementTest(abilityContext) {
       }, EXPECT_TIMEOUT);
     })
     /**
+    * @tc.number: RootElementGet_0163
+    * @tc.name: Get root element, then get valueMax attribute.
+    * @tc.desc: Get root element, then get valueMax attribute.
+    */
+    it('RootElementGet_0163', 1, async function (done) {
+      caseName = "RootElementGet_0163";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+    * @tc.number: RootElementGet_0164
+    * @tc.name: Get root element, then get valueMin attribute.
+    * @tc.desc: Get root element, then get valueMin attribute.
+    */
+    it('RootElementGet_0164', 1, async function (done) {
+      caseName = "RootElementGet_0164";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+    * @tc.number: RootElementGet_0165
+    * @tc.name: Get root element, then get valueNow attribute.
+    * @tc.desc: Get root element, then get valueNow attribute.
+    */
+    it('RootElementGet_0165', 1, async function (done) {
+      caseName = "RootElementGet_0165";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+
+    /**
      * @tc.number: RootElementGet_0030
      * @tc.name: Get target application's window root element.
      * @tc.desc: Get target application's window root element.
      */
     it('RootElementGet_0030', 1, async function (done) {
       caseName = "RootElementGet_0030";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0031
+     * @tc.name: Get target application's window root element.
+     * @tc.desc: Get target application's window root element.
+     */
+    it('RootElementGet_0031', 1, async function (done) {
+      caseName = "RootElementGet_0031";
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = target && assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+    })
+    /**
+     * @tc.number: RootElementGet_0040
+     * @tc.name: Get target application's window root element.
+     * @tc.desc: Get target application's window root element.
+     */
+    it('RootElementGet_0040', 1, async function (done) {
+      caseName = "RootElementGet_0040";
       excuteCase(caseName)
       setTimeout(() => {
         isSucceed = target && assist_success;

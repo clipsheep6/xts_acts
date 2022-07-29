@@ -41,10 +41,10 @@ const excuteCase = async (caseNamePara) => {
 export default function AccessibleRegisterTest(abilityContext) {
   describe('ActsAccessibleRegisterTest', function () {
     beforeAll(async function (done) {
-      console.error('AccessibleRegisterTest: beforeAll');
+      console.info('AccessibleRegisterTest: beforeAll');
       subScriber = await commonEvent.createSubscriber(subscriberInfo);
       commonEvent.subscribe(subScriber, (err, data) => {
-        console.error('AccessibleRegisterTest beforeAll subscribe data:' + JSON.stringify(data) );
+        console.info('AccessibleRegisterTest beforeAll subscribe data:' + JSON.stringify(data) );
         if (data.data) {
           switch (data.data) {
             case "on_target_change_extra_success":

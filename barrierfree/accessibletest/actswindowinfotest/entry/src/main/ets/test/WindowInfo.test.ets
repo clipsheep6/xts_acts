@@ -241,6 +241,29 @@ export default function WindowInfoTest(abilityContext) {
     });
 
  /**
+  * @tc.number: WindowInfoGet_0301
+  * @tc.name: Promise form call call accessibility API: "getwindows()" get the  windowId
+  * @tc.desc: Promise form call call accessibility API: "getwindows()" get the  windowId 
+  */
+    it('WindowInfoGet_0301', 1, async function (done) {
+      const caseName = 'WindowInfoGet_0301';
+      const logF = LOG + caseName;
+      excuteCase(caseName);
+      setTimeout(() => {
+        var isSucceedTarget: boolean = false;
+        var isSucceedAssist: boolean = false;
+        if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+          isSucceedTarget = true;
+        }
+        if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {
+          isSucceedAssist = true;
+        }
+        expect(isSucceedTarget && isSucceedAssist).assertEqual(true);
+        console.info(logF + ' isSucceed : ' + (isSucceedTarget && isSucceedAssist));
+        done();
+      }, 10000);
+    });
+ /**
   * @tc.number: WindowInfoGet_0302
   * @tc.name: Promise form call call accessibility API: "getwindows()" get the default window barrier free point information
   * @tc.desc: Promise form call call accessibility API: "getwindows()" get the default window barrier free point information

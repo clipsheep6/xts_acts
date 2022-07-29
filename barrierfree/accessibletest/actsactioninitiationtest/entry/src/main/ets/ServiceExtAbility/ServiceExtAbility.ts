@@ -23,13 +23,14 @@ let CommonEventSubscribeInfo = {
     events: [EVENT_NAME]
 }
 
-
+var subscriber
 class ServiceExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
         console.info(LOG_PREFIX + " onConnect")
         let context = this.context
-        commonEvent.createSubscriber(CommonEventSubscribeInfo).then((subscriber) => {
+        commonEvent.createSubscriber(CommonEventSubscribeInfo).then((data) => {
             console.info(LOG_PREFIX + 'createSubscriber success')
+            subscriber = data
             commonEvent.subscribe(subscriber, (error, commonEventData) => {
                 console.info(LOG_PREFIX + 'subscribeTest error : ' + JSON.stringify(error) + 'data' + JSON.stringify(commonEventData))
                 if (error.code != 0) {
@@ -47,6 +48,7 @@ class ServiceExtAbility extends AccessibilityExtensionAbility {
 
     onDisconnect() {
         console.info(LOG_PREFIX + " onDisconnect")
+        commonEvent.unsubscribe(subscriber)
     }
 
     onAccessibilityEvent(accessibilityEvent) {
@@ -214,8 +216,11 @@ function getRootElement(context, caseName, index, actionName, args?){
         if (err?.code) {
             console.info(logTag + " getWindowRootElement error: " + JSON.stringify(err))
         }
+        printElementsLength(logTag + " getWindowRootElement elements length: ", elements)
         elements.attributeValue("children").then((res) => {
+            console.info(logTag + " attributeValue 0 children: " + JSON.stringify(res))
             res[0].attributeValue("children").then((res) => {
+                console.info(logTag + " attributeValue 1 children: " + JSON.stringify(res))
                 res[index].performAction(actionName, args)
                     .then((res) => {
                         console.info(logTag + " performAction data: " + JSON.stringify(res))
@@ -243,8 +248,11 @@ function getRootElementCallBack1(context, caseName, index, actionName){
         if (err?.code) {
             console.info(logTag + " getWindowRootElement error: " + JSON.stringify(err))
         }
+        printElementsLength(logTag + " getWindowRootElement elements length: ", elements)
         elements.attributeValue("children").then((res) => {
+            console.info(logTag + " attributeValue 0 children: " + JSON.stringify(res))
             res[0].attributeValue("children").then((res) => {
+                console.info(logTag + " attributeValue 1 children: " + JSON.stringify(res))
                 res[index].performAction(actionName, (err, res) => {
                     if (err?.code) {
                         console.info(logTag + " performAction failed. Cause: " + JSON.stringify(err))
@@ -270,8 +278,11 @@ function getRootElementCallBack2(context, caseName, index, actionName, args?){
         if (err?.code) {
             console.info(logTag + " getWindowRootElement error: " + JSON.stringify(err))
         }
+        printElementsLength(logTag + " getWindowRootElement elements length: ", elements)
         elements.attributeValue("children").then((res) => {
+            console.info(logTag + " attributeValue 0 children: " + JSON.stringify(res))
             res[0].attributeValue("children").then((res) => {
+                console.info(logTag + " attributeValue 1 children: " + JSON.stringify(res))
                 res[index].performAction(actionName, args, (err, res) => {
                     if (err?.code) {
                         console.info(logTag + " performAction failed. Cause: " + JSON.stringify(err))

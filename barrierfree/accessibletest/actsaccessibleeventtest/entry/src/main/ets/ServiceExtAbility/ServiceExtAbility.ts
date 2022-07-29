@@ -116,7 +116,6 @@ class ServiceExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
         console.info("AccessibilityAll onConnect");
         const context = this.context;
-        setEventTypeFilterCallback(context);
 
         commonEvent.createSubscriber({events: ['on_assist_change']}).then(function (data) {
             console.info("AccessibilityAll createSubscriber")
@@ -384,19 +383,6 @@ function executePerformActionPromise(logTag, context, searchText, action, args?:
             });
         }
     })
-}
-
-const setEventTypeFilterCallback = (context) => {
-    console.info("Accessibility setEventTypeFilterCallback");
-    const eventType = ['accessibilityFocus', 'accessibilityFocusClear', 'click', 'longClick', 'focus', 'select', 'hoverEnter', 'hoverExit',
-    'textUpdate', 'textSelectionUpdate', 'scroll'];
-    context.setEventTypeFilter(eventType,((err, res) => {
-        if (err?.code) {
-            console.info("setEventTypeFilter err=" + JSON.stringify(err));
-            return;
-        }
-        console.info("setEventTypeFilter res=" + JSON.stringify(res));
-    }));
 }
 
 export default ServiceExtAbility

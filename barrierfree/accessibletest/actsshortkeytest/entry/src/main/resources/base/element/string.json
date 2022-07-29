@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "accessibilityConfigPart entry"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "accessibilityConfigPart MainAbility"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "accessibilityConfigPart"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "accessibilityConfigPart后台服务"
+    }
+  ]
+}

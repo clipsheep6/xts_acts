@@ -47,61 +47,55 @@ class ServiceExtAbilityFocusQuery extends AccessibilityExtensionAbility {
                     AccessibleFocusQueryFindElementCallBack(context, 'Test7', data.data, 'focus', 'normal');
                     break;
                 case "FocusQuery_0040":
-                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'focus', 'up');
+                    AccessibleFocusQueryPromiseDirectionFocus(context, 'Test7', data.data, 'focus', 'up');
                     break;
                 case "FocusQuery_0041":
-                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'focus', 'up');
-                    break;
-                case "FocusQuery_0050":
-                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'focus', 'rootElement');
+                    AccessibleFocusQueryPromiseDirectionCallBackFocus(context, 'Test7', data.data, 'focus', 'up');
                     break;
                 case "FocusQuery_0060":
-                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'focus', 'down');
+                    AccessibleFocusQueryPromiseDirectionFocus(context, 'Test7', data.data, 'focus', 'down');
                     break;
                 case "FocusQuery_0061":
-                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'focus', 'down');
+                    AccessibleFocusQueryPromiseDirectionCallBackFocus(context, 'Test7', data.data, 'focus', 'down');
                     break;
                 case "FocusQuery_0070":
-                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'focus', 'parent');
+                    AccessibleFocusQueryCallBackGetElementFocus(context, 'Test7', data.data, 'focus', 'parent');
                     break;
                 case "FocusQuery_0080":
-                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'focus', 'left');
+                    AccessibleFocusQueryPromiseDirectionFocus(context, 'Test7', data.data, 'focus', 'left');
                     break;
                 case "FocusQuery_0081":
-                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'focus', 'left');
+                    AccessibleFocusQueryPromiseDirectionCallBackFocus(context, 'Test7', data.data, 'focus', 'left');
                     break;
                 case "FocusQuery_0090":
-                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'focus', 'childs');
+                    AccessibleFocusQueryCallBackGetElementFocus(context, 'Test7', data.data, 'focus', 'children');
                     break;
                 case "FocusQuery_0091":
-                    AccessibleFocusQueryActionNames(context, 'Test7', data.data, 'focus');
+                    AccessibleFocusQueryActionNamesFocus(context, 'Test7', data.data, 'focus');
                     break;
                 case "FocusQuery_0092":
-                    AccessibleFocusQueryActionNamesCallBack(context, 'Test7', data.data, 'focus');
+                    AccessibleFocusQueryActionNamesCallBackFocus(context, 'Test7', data.data, 'focus');
                     break;
                 case "FocusQuery_0100":
-                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'focus', 'right');
+                    AccessibleFocusQueryPromiseDirectionFocus(context, 'Test7', data.data, 'focus', 'right');
                     break;
                 case "FocusQuery_0101":
-                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'focus', 'right');
-                    break;
-                case "FocusQuery_0110":
-                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'focus', 'anchor');
+                    AccessibleFocusQueryPromiseDirectionCallBackFocus(context, 'Test7', data.data, 'focus', 'right');
                     break;
                 case "FocusQuery_0120":
-                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'focus', 'forward');
+                    AccessibleFocusQueryPromiseDirectionFocus(context, 'Test7', data.data, 'focus', 'forward');
                     break;
                 case "FocusQuery_0121":
-                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'focus', 'forward');
+                    AccessibleFocusQueryPromiseDirectionCallBackFocus(context, 'Test7', data.data, 'focus', 'forward');
                     break;
                 case "FocusQuery_0130":
                     AccessibleFocusQueryCallBack1(context, '历史记录', data.data, 'focus');
                     break;
                 case "FocusQuery_0139":
-                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'focus', 'backward');
+                    AccessibleFocusQueryPromiseDirectionCallBackFocus(context, 'Test7', data.data, 'focus', 'backward');
                     break;
                 case "FocusQuery_0140":
-                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'focus', 'backward');
+                    AccessibleFocusQueryPromiseDirectionFocus(context, 'Test7', data.data, 'focus', 'backward');
                     break;
                 case "FocusQuery_0141":
                     AccessibleFocusQueryIsAccessibilityFocus(context, '历史记录', data.data, 'focus', false);
@@ -109,467 +103,203 @@ class ServiceExtAbilityFocusQuery extends AccessibilityExtensionAbility {
                 case "FocusQuery_0142":
                     AccessibleFocusQueryPromiseIsAccessibilityFocus(context, '历史记录', data.data, 'focus', false);
                     break;
-                case "FocusQuery_0143":
-                    AccessibleFocusQueryCallBackGetElement(context, '历史记录', data.data, 'focus', 'rootElement');
-                    break;
                 case "FocusQuery_0144":
-                    AccessibleFocusQueryCallBackGetElement(context, '历史记录', data.data, 'focus', 'parent');
+                    AccessibleFocusQueryCallBackGetElementFocus(context, '历史记录', data.data, 'focus', 'parent');
                     break;
                 case "FocusQuery_0145":
-                    AccessibleFocusQueryCallBackGetElement(context, '历史记录', data.data, 'focus', 'childs');
-                    break;
-                case "FocusQuery_0146":
-                    AccessibleFocusQueryCallBackGetElement(context, '历史记录', data.data, 'focus', 'anchor');
+                    AccessibleFocusQueryCallBackGetElementFocus(context, '历史记录', data.data, 'focus', 'children');
                     break;
                 case "FocusQuery_0150":
-                    AccessibleFocusQueryCallBack1(context, 'Test7', data.data, 'accessibilityFocus');
+                    AccessibleFocusQueryCallBackAccessibilityFocus(context, 'Test7', data.data, 'accessibilityFocus');
                     break;
                 case "FocusQuery_0151":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryIsAccessibilityFocus(context, 'Test7', data.data, 'accessibilityFocus', true);
-                    }, 1000);
+                    AccessibleFocusQueryIsAccessibilityFocus(context, 'Test7', data.data, 'accessibilityFocus', true);
                     break;
                 case "FocusQuery_0160":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseIsAccessibilityFocus(context, 'Test7', data.data, 'accessibilityFocus', true);
-                    }, 1000);
+                    AccessibleFocusQueryPromiseIsAccessibilityFocus(context, 'Test7', data.data, 'accessibilityFocus', true);
                     break;
                 case "FocusQuery_0170":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromise2(context, 'Test7', data.data, 'accessibilityFocus', 'accessibility');
-                    }, 1000);
+                    AccessibleFocusQueryPromise2(context, 'Test7', data.data, 'accessibilityFocus', 'accessibility');
                     break;
                 case "FocusQuery_0171":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryFindElementCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'accessibility');
-                    }, 1000);
+                    AccessibleFocusQueryFindElementCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'accessibility');
                     break;
                 case "FocusQuery_0180":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'up');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'up');
                     break;
                 case "FocusQuery_0181":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'up');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'up');
                     break;
                 case "FocusQuery_0190":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'rootElement');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'rootElement');
                     break;
                 case "FocusQuery_0200":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'down');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'down');
                     break;
                 case "FocusQuery_0201":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'down');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'down');
                     break;
                 case "FocusQuery_0210":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'parent');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'parent');
                     break;
                 case "FocusQuery_0220":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'left');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'left');
                     break;
                 case "FocusQuery_0221":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'left');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'left');
                     break;
                 case "FocusQuery_0230":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'childs');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'children');
                     break;
                 case "FocusQuery_0231":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryActionNames(context, 'Test7', data.data, 'accessibilityFocus');
-                    }, 1000);
+                    AccessibleFocusQueryActionNames(context, 'Test7', data.data, 'accessibilityFocus');
                     break;
                 case "FocusQuery_0232":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryActionNamesCallBack(context, 'Test7', data.data, 'accessibilityFocus');
-                    }, 1000);
+                    AccessibleFocusQueryActionNamesCallBack(context, 'Test7', data.data, 'accessibilityFocus');
                     break;
                 case "FocusQuery_0240":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'right');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'right');
                     break;
                 case "FocusQuery_0241":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'right');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0250":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'anchor');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'right');
                     break;
                 case "FocusQuery_0260":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'forward');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'forward');
                     break;
                 case "FocusQuery_0261":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'forward');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'forward');
                     break;
                 case "FocusQuery_0270":
-                    AccessibleFocusQueryCallBack1(context, '历史记录', data.data, 'accessibilityFocus');
+                    AccessibleFocusQueryCallBackAccessibilityFocus(context, '历史记录', data.data, 'accessibilityFocus');
                     break;
                 case "FocusQuery_0279":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'backward');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirectionCallBack(context, 'Test7', data.data, 'accessibilityFocus', 'backward');
                     break;
                 case "FocusQuery_0280":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'backward');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', 'backward');
                     break;
                 case "FocusQuery_0281":
-                    excuteClearAccessibilityFocus(context, '历史记录', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryIsAccessibilityFocus(context, '历史记录', data.data, 'accessibilityFocus', true);
-                    }, 1000);
+                    AccessibleFocusQueryIsAccessibilityFocus(context, '历史记录', data.data, 'accessibilityFocus', true);
                     break;
                 case "FocusQuery_0282":
-                    excuteClearAccessibilityFocus(context, '历史记录', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseIsAccessibilityFocus(context, '历史记录', data.data, 'accessibilityFocus', true);
-                    }, 1000);
-                    break;
-                case "FocusQuery_0283":
-                    excuteClearAccessibilityFocus(context, '历史记录', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, '历史记录', data.data, 'accessibilityFocus', 'rootElement');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseIsAccessibilityFocus(context, '历史记录', data.data, 'accessibilityFocus', true);
                     break;
                 case "FocusQuery_0284":
-                    excuteClearAccessibilityFocus(context, '历史记录', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, '历史记录', data.data, 'accessibilityFocus', 'parent');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, '历史记录', data.data, 'accessibilityFocus', 'parent');
                     break;
                 case "FocusQuery_0285":
-                    excuteClearAccessibilityFocus(context, '历史记录', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, '历史记录', data.data, 'accessibilityFocus', 'childs');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0286":
-                    excuteClearAccessibilityFocus(context, '历史记录', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, '历史记录', data.data, 'accessibilityFocus', 'anchor');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, '历史记录', data.data, 'accessibilityFocus', 'children');
                     break;
                 case "FocusQuery_0290":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQuery_0290(context, 'Test7', data.data, 'accessibilityFocus');
-                    }, 1000);
+                    AccessibleFocusQuery_0290(context, 'Test7', data.data, 'accessibilityFocus');
                     break;
                 case "FocusQuery_0300":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', '');
-                    }, 1000);
+                    AccessibleFocusQueryPromiseDirection(context, 'Test7', data.data, 'accessibilityFocus', '');
                     break;
                 case "FocusQuery_0310":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'windowId');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'windowId');
                     break;
                 case "FocusQuery_0311":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'pageId');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'pageId');
                     break;
                 case "FocusQuery_0312":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'checked');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'checked');
                     break;
                 case "FocusQuery_0313":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'inspectorKey');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'inspectorKey');
                     break;
                 case "FocusQuery_0314":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'bundleName');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'bundleName');
                     break;
                 case "FocusQuery_0315":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'componentType');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'componentType');
                     break;
                 case "FocusQuery_0316":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'inputType');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'inputType');
                     break;
                 case "FocusQuery_0317":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'text');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'text');
                     break;
                 case "FocusQuery_0318":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'hintText');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'hintText');
                     break;
                 case "FocusQuery_0319":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'description');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'description');
                     break;
                 case "FocusQuery_0320":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'resourceName');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0321":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'childNodeIds');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'resourceName');
                     break;
                 case "FocusQuery_0322":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'textLengthLimit');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'textLengthLimit');
                     break;
                 case "FocusQuery_0323":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'rect');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'rect');
                     break;
                 case "FocusQuery_0324":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'checkable');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'checkable');
                     break;
                 case "FocusQuery_0325":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'focusable');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'focusable');
                     break;
                 case "FocusQuery_0326":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'isVisible');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'isVisible');
                     break;
                 case "FocusQuery_0327":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'accessibilityFocused');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'accessibilityFocused');
                     break;
                 case "FocusQuery_0328":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'selected');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'selected'); ;
                     break;
                 case "FocusQuery_0329":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'clickable');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'clickable');
                     break;
                 case "FocusQuery_0330":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'longClickable');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'longClickable');
                     break;
                 case "FocusQuery_0331":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'isEnable');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'isEnable');
                     break;
                 case "FocusQuery_0332":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'isPassword');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'isPassword');
                     break;
                 case "FocusQuery_0333":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'scrollable');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'scrollable');
                     break;
                 case "FocusQuery_0334":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'editable');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0335":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'popupSupported');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'editable');
                     break;
                 case "FocusQuery_0336":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'pluralLineSupported');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0337":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'deleteable');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'pluralLineSupported');
                     break;
                 case "FocusQuery_0338":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'isHint');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0339":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'isEssential');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'isHint');
                     break;
                 case "FocusQuery_0340":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'itemCount');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'itemCount');
                     break;
                 case "FocusQuery_0341":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'currentIndex');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'currentIndex');
                     break;
                 case "FocusQuery_0342":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'startIndex');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'startIndex');
                     break;
                 case "FocusQuery_0343":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'endIndex');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0344":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'rangeInfo');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0345":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'grid');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0346":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'gridItem');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0347":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'activeRegion');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0348":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'isContentInvalid');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'endIndex');
                     break;
                 case "FocusQuery_0349":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'error');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0350":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'label');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0351":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'beginSelected');
-                    }, 1000);
-                    break;
-                case "FocusQuery_0352":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'endSelected');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'error');
                     break;
                 case "FocusQuery_0353":
-                    excuteClearAccessibilityFocus(context, 'Test7', data.data, 'clearAccessibilityFocus');
-                    setTimeout(() => {
-                        AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'textMoveUnit');
-                    }, 1000);
+                    AccessibleFocusQueryCallBackGetElement(context, 'Test7', data.data, 'accessibilityFocus', 'textMoveUnit');
+                    break;
+                case "FocusQuery_0354":
+                    AccessibleFocusQueryCallBackGetSlider(context, data.data, 'accessibilityFocus', 'valueMax');
+                    break;
+                case "FocusQuery_0355":
+                    AccessibleFocusQueryCallBackGetSlider(context, data.data, 'accessibilityFocus', 'valueMin');
+                    break;
+                case "FocusQuery_0356":
+                    AccessibleFocusQueryCallBackGetSlider(context, data.data, 'accessibilityFocus', 'valueNow');
                     break;
                 default:
                     break;
@@ -645,19 +375,60 @@ const AccessibleFocusQueryCallBack1 = (context, searchText, description, focusTy
                 let ele = AccessibilityElement[0];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
-                    context.getFocusElement((err, res) => {
-                        if (err?.code) {
-                            console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
-                            return;
-                        }
-                        printElements(logTag, res)
-                        if (res) {
-                            var commonEventPublishData = {
-                                data: "on_assist_change_extra_success"
+                    setTimeout(() => {
+                        context.getFocusElement((err, res) => {
+                            if (err?.code) {
+                                console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
+                                return;
                             }
-                            commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-                        }
-                    })
+                            printElements(logTag, res)
+                            if (res) {
+                                var commonEventPublishData = {
+                                    data: "on_assist_change_extra_success"
+                                }
+                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                excuteClearAccessibilityFocus(context, searchText, description, 'clearFocus');
+                            }
+                        })
+                    }, 2000);
+                }).catch((err) => {
+                    console.info(logTag + " performAction execute err=" + JSON.stringify(err));
+                });
+            }
+        }).catch((err) => {
+            console.info(logTag + " findElement execute err=" + JSON.stringify(err));
+        });
+    });
+}
+
+const AccessibleFocusQueryCallBackAccessibilityFocus = (context, searchText, description, focusType) => {
+    const logTag = log + description;
+    context.getWindowRootElement((err, res) => {
+        if (err?.code) {
+            console.info(logTag + " getWindowRootElement execute err=" + JSON.stringify(err));
+            return;
+        }
+        res.findElement('content',searchText).then((AccessibilityElement) => {
+            if (AccessibilityElement.length > 0) {
+                let ele = AccessibilityElement[0];
+                ele.performAction(focusType).then((res) => {
+                    console.info(logTag + " performAction accessibilityFocus res:" + res);
+                    setTimeout(() => {
+                        context.getFocusElement(true, (err, res) => {
+                            if (err?.code) {
+                                console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
+                                return;
+                            }
+                            printElements(logTag, res)
+                            if (res) {
+                                var commonEventPublishData = {
+                                    data: "on_assist_change_extra_success"
+                                }
+                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
+                            }
+                        })
+                    }, 2000);
                 }).catch((err) => {
                     console.info(logTag + " performAction execute err=" + JSON.stringify(err));
                 });
@@ -680,19 +451,27 @@ const AccessibleFocusQueryIsAccessibilityFocus = (context, searchText, descripti
                 let ele = AccessibilityElement[0];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
-                    context.getFocusElement(isAccessibilityFocus, (err, res) => {
-                        if (err?.code) {
-                            console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
-                            return;
-                        }
-                        printElements(logTag, res)
-                        if (res) {
-                            var commonEventPublishData = {
-                                data: "on_assist_change_extra_success"
+                    setTimeout(() => {
+                        context.getFocusElement(isAccessibilityFocus, (err, res) => {
+                            if (err?.code) {
+                                console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
+                                return;
                             }
-                            commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-                        }
-                    })
+                            printElements(logTag, res)
+                            if (res) {
+                                var commonEventPublishData = {
+                                    data: "on_assist_change_extra_success"
+                                }
+                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                if (isAccessibilityFocus == false) {
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearFocus');
+                                }
+                                else {
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
+                                }
+                            }
+                        })
+                    }, 2000);
                 }).catch((err) => {
                     console.info(logTag + " performAction execute err=" + JSON.stringify(err));
                 });
@@ -715,15 +494,23 @@ const AccessibleFocusQueryPromiseIsAccessibilityFocus = (context, searchText, de
                 let ele = AccessibilityElement[0];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
-                    context.getFocusElement(isAccessibilityFocus).then((res) => {
-                        printElements(logTag, res)
-                        if (res) {
-                            var commonEventPublishData = {
-                                data: "on_assist_change_extra_success"
+                    setTimeout(() => {
+                        context.getFocusElement(isAccessibilityFocus).then((res) => {
+                            printElements(logTag, res)
+                            if (res) {
+                                var commonEventPublishData = {
+                                    data: "on_assist_change_extra_success"
+                                }
+                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                if (isAccessibilityFocus == false) {
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearFocus');
+                                }
+                                else {
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
+                                }
                             }
-                            commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-                        }
-                    })
+                        })
+                    }, 2000);
                 }).catch((err) => {
                     console.info(logTag + " performAction execute err=" + JSON.stringify(err));
                 });
@@ -746,17 +533,25 @@ const AccessibleFocusQueryPromise2 = (context, searchText, description, focus, f
                 let ele = AccessibilityElement[0];
                 ele.performAction(focus).then((eles) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + eles);
-                    ele.findElement('focusType',focusType).then((element) => {
-                        printElements(logTag, element)
-                        if (element) {
-                            var commonEventPublishData = {
-                                data: "on_assist_change_extra_success"
+                    setTimeout(() => {
+                        ele.findElement('focusType',focusType).then((element) => {
+                            printElements(logTag, element)
+                            if (element) {
+                                var commonEventPublishData = {
+                                    data: "on_assist_change_extra_success"
+                                }
+                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                if (focus == 'focus') {
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearFocus');
+                                }
+                                else {
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
+                                }
                             }
-                            commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-                        }
-                    }).catch((err) => {
-                        console.info(logTag + "findElement err=" + JSON.stringify(err));
-                    });
+                        }).catch((err) => {
+                            console.info(logTag + "findElement err=" + JSON.stringify(err));
+                        });
+                    }, 2000);
                 }).catch((err) => {
                     console.info(logTag + " performAction execute err=" + JSON.stringify(err));
                 });
@@ -778,19 +573,27 @@ const AccessibleFocusQueryFindElementCallBack = (context, searchText, descriptio
                 let ele = AccessibilityElement[0];
                 ele.performAction(focus).then((eles) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + eles);
-                    ele.findElement('focusType',focusType, (err, result) => {
-                        if (err?.code) {
-                            console.info(logTag + " findElement execute err=" + JSON.stringify(err));
-                            return;
-                        }
-                        printElements(logTag, result)
-                        if (result) {
-                            var commonEventPublishData = {
-                                data: "on_assist_change_extra_success"
+                    setTimeout(() => {
+                        ele.findElement('focusType',focusType, (err, result) => {
+                            if (err?.code) {
+                                console.info(logTag + " findElement execute err=" + JSON.stringify(err));
+                                return;
                             }
-                            commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-                        }
-                    })
+                            printElements(logTag, result)
+                            if (result) {
+                                var commonEventPublishData = {
+                                    data: "on_assist_change_extra_success"
+                                }
+                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                if (focus == 'focus') {
+                                    excuteClearAccessibilityFocus(context, searchText,description, 'clearFocus');
+                                }
+                                else {
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
+                                }
+                            }
+                        })
+                    }, 2000);
                 }).catch((err) => {
                     console.info(logTag + " performAction execute err=" + JSON.stringify(err));
                 });
@@ -813,19 +616,61 @@ const AccessibleFocusQuery_0290 = (context, searchText, description, focusType) 
                 let ele = AccessibilityElement[0];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
-                    context.getFocusElement(true).then((res) => {
-                        res.findElement('focusType','').then((element) => {
-                            printElements(logTag, element)
-                            if (element) {
-                                var commonEventPublishData = {
-                                    data: "on_assist_change_extra_success"
+                    setTimeout(() => {
+                        context.getFocusElement(true).then((res) => {
+                            res.findElement('focusType','').then((element) => {
+                                printElements(logTag, element)
+                                if (element) {
+                                    var commonEventPublishData = {
+                                        data: "on_assist_change_extra_success"
+                                    }
+                                    commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
                                 }
-                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-                            }
-                        }).catch((err) => {
-                            console.info(logTag + "findElement err=" + JSON.stringify(err));
-                        });
-                    })
+                            }).catch((err) => {
+                                console.info(logTag + "findElement err=" + JSON.stringify(err));
+                            });
+                        })
+                    }, 2000);
+                }).catch((err) => {
+                    console.info(logTag + " performAction execute err=" + JSON.stringify(err));
+                });
+            }
+        }).catch((err) => {
+            console.info(logTag + " findElement execute err=" + JSON.stringify(err));
+        });
+    });
+}
+
+const AccessibleFocusQueryPromiseDirectionFocus = (context, searchText, description, focusType, direction) => {
+    const logTag = log + description;
+    context.getWindowRootElement((err, res) => {
+        if (err?.code) {
+            console.info(logTag + " getWindowRootElement execute err=" + JSON.stringify(err));
+            return;
+        }
+        res.findElement('content',searchText).then((AccessibilityElement) => {
+            if (AccessibilityElement.length > 0) {
+                let ele = AccessibilityElement[0];
+                ele.performAction(focusType).then((res) => {
+                    console.info(logTag + " performAction accessibilityFocus res:" + res);
+                    setTimeout(() => {
+                        context.getFocusElement().then((ele) => {
+                            console.info(logTag + " focusDirection:" + direction);
+                            ele.findElement('focusDirection', direction).then((element) => {
+                                printElements(logTag, element)
+                                if (element) {
+                                    var commonEventPublishData = {
+                                        data: "on_assist_change_extra_success"
+                                    }
+                                    commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearFocus');
+                                }
+                            }).catch((err) => {
+                                console.info(logTag + " findElement focusDirection execute err=" + JSON.stringify(err));
+                            });
+                        })
+                    }, 2000);
                 }).catch((err) => {
                     console.info(logTag + " performAction execute err=" + JSON.stringify(err));
                 });
@@ -848,20 +693,23 @@ const AccessibleFocusQueryPromiseDirection = (context, searchText, description, 
                 let ele = AccessibilityElement[0];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
-                    context.getFocusElement(true).then((ele) => {
-                        console.info(logTag + " focusDirection:" + direction);
-                        ele.findElement('focusDirection', direction).then((element) => {
-                            printElements(logTag, element)
-                            if (element) {
-                                var commonEventPublishData = {
-                                    data: "on_assist_change_extra_success"
+                    setTimeout(() => {
+                        context.getFocusElement(true).then((ele) => {
+                            console.info(logTag + " focusDirection:" + direction);
+                            ele.findElement('focusDirection', direction).then((element) => {
+                                printElements(logTag, element)
+                                if (element) {
+                                    var commonEventPublishData = {
+                                        data: "on_assist_change_extra_success"
+                                    }
+                                    commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
                                 }
-                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-                            }
-                        }).catch((err) => {
-                            console.info(logTag + " findElement focusDirection execute err=" + JSON.stringify(err));
-                        });
-                    })
+                            }).catch((err) => {
+                                console.info(logTag + " findElement focusDirection execute err=" + JSON.stringify(err));
+                            });
+                        })
+                    }, 2000);
                 }).catch((err) => {
                     console.info(logTag + " performAction execute err=" + JSON.stringify(err));
                 });
@@ -871,6 +719,48 @@ const AccessibleFocusQueryPromiseDirection = (context, searchText, description, 
         });
     });
 }
+
+const AccessibleFocusQueryPromiseDirectionCallBackFocus = (context, searchText, description, focusType, direction) => {
+    const logTag = log + description;
+    context.getWindowRootElement((err, res) => {
+        if (err?.code) {
+            console.info(logTag + " getWindowRootElement execute err=" + JSON.stringify(err));
+            return;
+        }
+        res.findElement('content',searchText).then((AccessibilityElement) => {
+            if (AccessibilityElement.length > 0) {
+                let ele = AccessibilityElement[0];
+                ele.performAction(focusType).then((res) => {
+                    console.info(logTag + " performAction accessibilityFocus res:" + res);
+                    setTimeout(() => {
+                        context.getFocusElement().then((ele) => {
+                            console.info(logTag + " focusDirection:" + direction);
+                            ele.findElement('focusDirection', direction, (err, result) => {
+                                if (err?.code) {
+                                    console.info(logTag + " findElement execute err=" + JSON.stringify(err));
+                                    return;
+                                }
+                                printElements(logTag, result)
+                                if (result) {
+                                    var commonEventPublishData = {
+                                        data: "on_assist_change_extra_success"
+                                    }
+                                    commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearFocus');
+                                }
+                            });
+                        })
+                    }, 2000);
+                }).catch((err) => {
+                    console.info(logTag + " performAction execute err=" + JSON.stringify(err));
+                });
+            }
+        }).catch((err) => {
+            console.info(logTag + " findElement execute err=" + JSON.stringify(err));
+        });
+    });
+}
+
 const AccessibleFocusQueryPromiseDirectionCallBack = (context, searchText, description, focusType, direction) => {
     const logTag = log + description;
     context.getWindowRootElement((err, res) => {
@@ -883,22 +773,73 @@ const AccessibleFocusQueryPromiseDirectionCallBack = (context, searchText, descr
                 let ele = AccessibilityElement[0];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
-                    context.getFocusElement(true).then((ele) => {
-                        console.info(logTag + " focusDirection:" + direction);
-                        ele.findElement('focusDirection', direction, (err, result) => {
+                    setTimeout(() => {
+                        context.getFocusElement(true).then((ele) => {
+                            console.info(logTag + " focusDirection:" + direction);
+                            ele.findElement('focusDirection', direction, (err, result) => {
+                                if (err?.code) {
+                                    console.info(logTag + " findElement execute err=" + JSON.stringify(err));
+                                    return;
+                                }
+                                printElements(logTag, result)
+                                if (result) {
+                                    var commonEventPublishData = {
+                                        data: "on_assist_change_extra_success"
+                                    }
+                                    commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
+                                }
+                            });
+                        })
+                    }, 2000);
+                }).catch((err) => {
+                    console.info(logTag + " performAction execute err=" + JSON.stringify(err));
+                });
+            }
+        }).catch((err) => {
+            console.info(logTag + " findElement execute err=" + JSON.stringify(err));
+        });
+    });
+}
+
+const AccessibleFocusQueryCallBackGetElementFocus = (context, searchText, description, focusType, attributeName) => {
+    const logTag = log + description;
+    context.getWindowRootElement((err, res) => {
+        if (err?.code) {
+            console.info(logTag + " getWindowRootElement execute err=" + JSON.stringify(err));
+            return;
+        }
+        res.findElement('content',searchText).then((AccessibilityElement) => {
+            if (AccessibilityElement.length > 0) {
+                let ele = AccessibilityElement[0];
+                ele.performAction(focusType).then((res) => {
+                    console.info(logTag + " performAction accessibilityFocus res:" + res);
+                    setTimeout(() => {
+                        context.getFocusElement((err, ele) => {
                             if (err?.code) {
-                                console.info(logTag + " findElement execute err=" + JSON.stringify(err));
+                                console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
                                 return;
                             }
-                            printElements(logTag, result)
-                            if (result) {
-                                var commonEventPublishData = {
-                                    data: "on_assist_change_extra_success"
+                            printElements(logTag, ele)
+                            ele.attributeValue(attributeName).then((element) => {
+                                if (description == 'FocusQuery_0210' || description == 'FocusQuery_0284') {
+                                    printElements(logTag, element)
                                 }
-                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-                            }
-                        });
-                    })
+                                else {
+                                    console.info(logTag + " " + attributeName + ":" + JSON.stringify(element))
+                                }
+                                if (JSON.stringify(element) != undefined) {
+                                    var commonEventPublishData = {
+                                        data: "on_assist_change_extra_success"
+                                    }
+                                    commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearFocus');
+                                }
+                            }).catch((err) => {
+                                console.info(logTag + " attributeValue err=" + JSON.stringify(err));
+                            })
+                        })
+                    }, 2000);
                 }).catch((err) => {
                     console.info(logTag + " performAction execute err=" + JSON.stringify(err));
                 });
@@ -921,29 +862,32 @@ const AccessibleFocusQueryCallBackGetElement = (context, searchText, description
                 let ele = AccessibilityElement[0];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
-                    context.getFocusElement((err, ele) => {
-                        if (err?.code) {
-                            console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
-                            return;
-                        }
-                        printElements(logTag, ele)
-                        ele.attributeValue(attributeName).then((element) => {
-                            if (description == 'FocusQuery_0210' || description == 'FocusQuery_0284') {
-                                printElements(logTag, element)
+                    setTimeout(() => {
+                        context.getFocusElement(true,(err, ele) => {
+                            if (err?.code) {
+                                console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
+                                return;
                             }
-                            else {
-                                console.info(logTag + " " + attributeName + ":" + JSON.stringify(element))
-                            }
-                            if (JSON.stringify(element) != undefined) {
-                                var commonEventPublishData = {
-                                    data: "on_assist_change_extra_success"
+                            printElements(logTag, ele)
+                            ele.attributeValue(attributeName).then((element) => {
+                                if (description == 'FocusQuery_0210' || description == 'FocusQuery_0284') {
+                                    printElements(logTag, element)
                                 }
-                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-                            }
-                        }).catch((err) => {
-                            console.info(logTag + " attributeValue err=" + JSON.stringify(err));
+                                else {
+                                    console.info(logTag + " " + attributeName + ":" + JSON.stringify(element))
+                                }
+                                if (JSON.stringify(element) != undefined) {
+                                    var commonEventPublishData = {
+                                        data: "on_assist_change_extra_success"
+                                    }
+                                    commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                    excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
+                                }
+                            }).catch((err) => {
+                                console.info(logTag + " attributeValue err=" + JSON.stringify(err));
+                            })
                         })
-                    })
+                    }, 2000);
                 }).catch((err) => {
                     console.info(logTag + " performAction execute err=" + JSON.stringify(err));
                 });
@@ -952,6 +896,98 @@ const AccessibleFocusQueryCallBackGetElement = (context, searchText, description
             console.info(logTag + " findElement execute err=" + JSON.stringify(err));
         });
     });
+}
+
+const AccessibleFocusQueryCallBackGetSlider = (context, description, focusType, attributeName) => {
+    const logTag = log + description;
+    context.getWindowRootElement((err, res) => {
+        if (err?.code) {
+            console.info(logTag + " getWindowRootElement execute err=" + JSON.stringify(err));
+            return;
+        }
+        res.attributeValue("children").then((values) => {
+            values[0].attributeValue("children").then((values1) => {
+                values1[0].attributeValue("children").then((values2) => {
+                    console.info(logTag + " children length:" + values2.length)
+                    values2[values2.length-1].attributeValue("componentType").then((componentType) => {
+                        if (componentType == 'Slider') {
+                            values2[values2.length-1].performAction(focusType).then((res) => {
+                                console.info(logTag + " performAction accessibilityFocus res:" + res);
+                                setTimeout(() => {
+                                    context.getFocusElement(true, (err, ele) => {
+                                        if (err?.code) {
+                                            console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
+                                            return;
+                                        }
+                                        ele.attributeValue(attributeName).then((element) => {
+                                            console.info(logTag + " attributeValue " + attributeName + ":" + JSON.stringify(element))
+                                            if (element == 10 || element == 50 || element == 100) {
+                                                var commonEventPublishData = {
+                                                    data: "on_assist_change_extra_success"
+                                                }
+                                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                            }
+                                        }).catch((err) => {
+                                            console.info(logTag + " attributeValue " + attributeName + " err=" + JSON.stringify(err));
+                                        })
+                                        ele.performAction('clearAccessibilityFocus').then((performActionBack) => {
+                                            console.info(logTag + " performActionBack Promise success=" + JSON.stringify(performActionBack));
+                                        }).catch((actionNamesErr) => {
+                                            console.info(logTag + " performActionBack Promise err=" + JSON.stringify(actionNamesErr));
+                                        });
+                                    })
+                                }, 2000);
+                            }).catch((err) => {
+                                console.info(logTag + " performAction execute err=" + JSON.stringify(err));
+                            });
+                        }
+                    }).catch((err) => {
+                        console.info(logTag + " attributeValue componentType err=" + JSON.stringify(err));
+                    });
+                })
+            })
+
+        })
+    });
+}
+
+const AccessibleFocusQueryActionNamesFocus = (context, searchText, description, focusType) => {
+    const logTag = log + description;
+    context.getWindowRootElement((err, res) => {
+        if (err?.code) {
+            console.info(logTag + " getWindowRootElement execute err=" + JSON.stringify(err));
+            return;
+        }
+        res.findElement('content',searchText).then((ele) => {
+            ele[0].performAction(focusType).then((element) => {
+                console.info(logTag + " accessibilityFocus execute res=" + JSON.stringify(element));
+                setTimeout(() => {
+                    context.getFocusElement((err, ele) => {
+                        if (err?.code) {
+                            console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
+                            return;
+                        }
+                        ele.actionNames().then((value) => {
+                            console.info(logTag + " actionNames execute res=" + JSON.stringify(value));
+                            if (value.length > 0) {
+                                var commonEventPublishData = {
+                                    data: "on_assist_change_extra_success"
+                                }
+                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                excuteClearAccessibilityFocus(context, searchText, description, 'clearFocus');
+                            }
+                        }).catch((err) => {
+                            console.info(logTag + " actionNames execute err=" + JSON.stringify(err));
+                        });
+                    })
+                }, 2000);
+            }).catch((err) => {
+                console.info(logTag + " accessibilityFocus err:" + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.info(logTag + " findElement err:" + JSON.stringify(err));
+        })
+    })
 }
 
 const AccessibleFocusQueryActionNames = (context, searchText, description, focusType) => {
@@ -964,23 +1000,67 @@ const AccessibleFocusQueryActionNames = (context, searchText, description, focus
         res.findElement('content',searchText).then((ele) => {
             ele[0].performAction(focusType).then((element) => {
                 console.info(logTag + " accessibilityFocus execute res=" + JSON.stringify(element));
-                context.getFocusElement((err, ele) => {
-                    if (err?.code) {
-                        console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
-                        return;
-                    }
-                    ele.actionNames().then((value) => {
-                        console.info(logTag + " actionNames execute res=" + JSON.stringify(value));
-                        if (value.length > 0) {
-                            var commonEventPublishData = {
-                                data: "on_assist_change_extra_success"
-                            }
-                            commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                setTimeout(() => {
+                    context.getFocusElement(true, (err, ele) => {
+                        if (err?.code) {
+                            console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
+                            return;
                         }
-                    }).catch((err) => {
-                        console.info(logTag + " actionNames execute err=" + JSON.stringify(err));
-                    });
-                })
+                        ele.actionNames().then((value) => {
+                            console.info(logTag + " actionNames execute res=" + JSON.stringify(value));
+                            if (value.length > 0) {
+                                var commonEventPublishData = {
+                                    data: "on_assist_change_extra_success"
+                                }
+                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
+                            }
+                        }).catch((err) => {
+                            console.info(logTag + " actionNames execute err=" + JSON.stringify(err));
+                        });
+                    })
+                }, 2000);
+            }).catch((err) => {
+                console.info(logTag + " accessibilityFocus err:" + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.info(logTag + " findElement err:" + JSON.stringify(err));
+        })
+    })
+}
+
+const AccessibleFocusQueryActionNamesCallBackFocus = (context, searchText, description, focusType) => {
+    const logTag = log + description;
+    context.getWindowRootElement((err, res) => {
+        if (err?.code) {
+            console.info(logTag + " getWindowRootElement execute err=" + JSON.stringify(err));
+            return;
+        }
+        res.findElement('content',searchText).then((ele) => {
+            ele[0].performAction(focusType).then((element) => {
+                console.info(logTag + " accessibilityFocus execute res=" + JSON.stringify(element));
+                setTimeout(() => {
+                    context.getFocusElement((err, ele) => {
+                        if (err?.code) {
+                            console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
+                            return;
+                        }
+                        ele.actionNames((err, result) => {
+                            if (err?.code) {
+                                console.info(logTag + " actionNames execute err=" + JSON.stringify(err));
+                                return;
+                            }
+                            console.info(logTag + " actionNames execute res=" + JSON.stringify(result));
+                            if (result.length > 0) {
+                                var commonEventPublishData = {
+                                    data: "on_assist_change_extra_success"
+                                }
+                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                excuteClearAccessibilityFocus(context, searchText, description, 'clearFocus');
+                            }
+                        });
+                    })
+                }, 2000);
             }).catch((err) => {
                 console.info(logTag + " accessibilityFocus err:" + JSON.stringify(err));
             });
@@ -1000,25 +1080,28 @@ const AccessibleFocusQueryActionNamesCallBack = (context, searchText, descriptio
         res.findElement('content',searchText).then((ele) => {
             ele[0].performAction(focusType).then((element) => {
                 console.info(logTag + " accessibilityFocus execute res=" + JSON.stringify(element));
-                context.getFocusElement((err, ele) => {
-                    if (err?.code) {
-                        console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
-                        return;
-                    }
-                    ele.actionNames((err, result) => {
+                setTimeout(() => {
+                    context.getFocusElement(true, (err, ele) => {
                         if (err?.code) {
-                            console.info(logTag + " actionNames execute err=" + JSON.stringify(err));
+                            console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
                             return;
                         }
-                        console.info(logTag + " actionNames execute res=" + JSON.stringify(result));
-                        if (result.length > 0) {
-                            var commonEventPublishData = {
-                                data: "on_assist_change_extra_success"
+                        ele.actionNames((err, result) => {
+                            if (err?.code) {
+                                console.info(logTag + " actionNames execute err=" + JSON.stringify(err));
+                                return;
                             }
-                            commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
-                        }
-                    });
-                })
+                            console.info(logTag + " actionNames execute res=" + JSON.stringify(result));
+                            if (result.length > 0) {
+                                var commonEventPublishData = {
+                                    data: "on_assist_change_extra_success"
+                                }
+                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                excuteClearAccessibilityFocus(context, searchText, description, 'clearAccessibilityFocus');
+                            }
+                        });
+                    })
+                }, 2000);
             }).catch((err) => {
                 console.info(logTag + " accessibilityFocus err:" + JSON.stringify(err));
             });

@@ -445,8 +445,6 @@ export default function abilityTest(abilityContext) {
         let tarData = tarResult.get(caseCode)
         let assData = assResult.get(caseCode)
         console.info(LOG_PREFIX + caseCode + ' tarData: ' + tarData + ' assData: ' + assData + ' expect assertTrue')
-        disableAbility(LOG_PREFIX, ASSIST_BUNDLE_NAME)
-        setTimeout(()=>enableAbility(LOG_PREFIX, ASSIST_BUNDLE_NAME, ['gesture']), 600)
         expect(tarData).assertTrue()
         expect(assData).assertTrue()
         done()
