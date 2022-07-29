@@ -13,36 +13,36 @@
  * limitations under the License.
  */
 
-import file from '@system.file';
-import {Core, ExpectExtend, InstrumentLog, ReportExtend} from "deccjsunit/index.ets";
-import testsuite from "../test/List.test.ets";
-import featureAbility from "@ohos.ability.featureAbility";
+import file from '@system.file'
+import {Core, ExpectExtend, InstrumentLog, ReportExtend} from "deccjsunit/index.ets"
+import testsuite from "../test/List.test.ets"
+import featureAbility from "@ohos.ability.featureAbility"
 
 @Entry
 @Component
 struct MyComponent {
   aboutToAppear() {
-    console.info("start run testcase!!!!")
+    console.info('start run testcase!!!!')
     featureAbility.getWant()
-      .then((Want) => {
-        const core = Core.getInstance();
+      .then(Want => {
+        const core = Core.getInstance()
         const expectExtend = new ExpectExtend({
           'id': 'extend'
-        });
-        core.addService('expect', expectExtend);
-        const reportExtend = new ReportExtend(file);
-        core.addService('report', reportExtend);
-        core.init();
-        core.subscribeEvent('task', reportExtend);
-        const configService = core.getDefaultService('config');
-        console.info('parameters---->' + JSON.stringify(Want.parameters));
-        configService.setConfig(Want.parameters);
-        testsuite();
-        core.execute();
-        console.info('Operation successful. Data: ' + JSON.stringify(Want));
+        })
+        core.addService('expect', expectExtend)
+        const reportExtend = new ReportExtend(file)
+        core.addService('report', reportExtend)
+        core.init()
+        core.subscribeEvent('task', reportExtend)
+        const configService = core.getDefaultService('config')
+        console.info('parameters---->' + JSON.stringify(Want.parameters))
+        configService.setConfig(Want.parameters)
+        testsuite()
+        core.execute()
+        console.info('Operation successful. Data: ' + JSON.stringify(Want))
       })
-      .catch((error) => {
-        console.error('Operation failed. Cause: ' + JSON.stringify(error));
+      .catch(error => {
+        console.error('Operation failed. Cause: ' + JSON.stringify(error))
       })
   }
 
