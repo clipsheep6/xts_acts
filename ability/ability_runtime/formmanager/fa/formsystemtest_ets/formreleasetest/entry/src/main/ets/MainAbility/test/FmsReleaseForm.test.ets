@@ -15,7 +15,7 @@
 
 import featureAbility from "@ohos.ability.featureAbility";
 import commonEvent from '@ohos.commonEvent';
-import { beforeAll, beforeEach, describe, expect, it } from "deccjsunit/index";
+import { beforeAll, beforeEach, afterEach, describe, expect, it } from "deccjsunit/index";
 
 var onAcquiredForm_Event = {
     events: ["FMS_FormOnAcquired_commonEvent"],
@@ -28,10 +28,16 @@ var onReleasedFormEvent = {
 };
 var deleteForm_Event = "FMS_FormDelete_commonEvent";
 
+const unsubscribeCallback = (tcNumber) => {
+    console.info(`====>${tcNumber} unsubscribeCallback====>`);
+}
+
 var subscriberOnAcquired;
 var subscriberOnDeleted;
 var subscriberOnReleased;
-
+function sleep(time) {
+  return new Promise((resolve)=>setTimeout(resolve,time));
+}
 export default function test() {
     describe(`FmsReleaseFormTest`, () => {
 
@@ -43,6 +49,14 @@ export default function test() {
             subscriberOnAcquired = await commonEvent.createSubscriber(onAcquiredForm_Event);
             subscriberOnDeleted = await commonEvent.createSubscriber(onDeletedFormEvent);
             subscriberOnReleased = await commonEvent.createSubscriber(onReleasedFormEvent);
+            await sleep(1000);
+        })
+
+        afterEach(async() => {
+            commonEvent.unsubscribe(subscriberOnAcquired, () => unsubscribeCallback("afterEach unsubscribe subscriberOnAcquired"));
+            commonEvent.unsubscribe(subscriberOnDeleted, () => unsubscribeCallback("afterEach unsubscribe subscriberOnDeleted"));
+            commonEvent.unsubscribe(subscriberOnReleased, () => unsubscribeCallback("afterEach unsubscribe subscriberOnReleased"));
+            await sleep(1000);
         })
 
         /**
@@ -437,12 +451,12 @@ export default function test() {
                     }
                 }
             }
-            function releaseForms() {
+            async function releaseForms() {
                 console.debug("====>FMS_releaseForm_1300 releaseForms====>");
                 commonEvent.subscribe(subscriberOnReleased, onReleasedCallBack);
                 for(var iIndex = 0; iIndex < formIdList.length; iIndex++) {
                     console.log(`FMS_releaseForm_1300 featureAbility.startAbility start`);
-                    featureAbility.startAbility({
+                    await featureAbility.startAbility({
                         want: {
                             bundleName: "com.ohos.st.formsystemhostc",
                             abilityName: "com.ohos.st.formsystemhostc.MainAbility",
@@ -465,6 +479,7 @@ export default function test() {
                         expect().assertFail();
                         done();
                     });
+                    await sleep(1000)
                     console.log(`FMS_releaseForm_1300 featureAbility.startAbility end`);
                 }
             }

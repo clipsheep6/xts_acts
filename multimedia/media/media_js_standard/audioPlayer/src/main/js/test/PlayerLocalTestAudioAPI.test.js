@@ -15,8 +15,9 @@
 
 import media from '@ohos.multimedia.media'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export default function PlayerLocalTestAudioAPI() {
 describe('PlayerLocalTestAudioAPI', function () {
     let audioPlayer = media.createAudioPlayer();
     let loopValue = false;
@@ -147,7 +148,7 @@ describe('PlayerLocalTestAudioAPI', function () {
             console.info(`case dataLoad called`);
             expect(audioPlayer.currentTime).assertEqual(0);
             expect(audioPlayer.duration).assertEqual(DURATION_TIME);
-            expect(audioPlayer.state).assertEqual('paused');
+            expect(audioPlayer.state).assertEqual('idle');
             nextStep(mySteps,done);
         });
         audioPlayer.on('play', () => {
@@ -736,8 +737,9 @@ describe('PlayerLocalTestAudioAPI', function () {
         expect(audioPlayer.src).assertEqual(fdHead + fileDescriptor.fd);
         expect(audioPlayer.currentTime).assertEqual(0);
         expect(audioPlayer.duration).assertEqual(DURATION_TIME);
-        expect(audioPlayer.state).assertEqual('paused');
+        expect(audioPlayer.state).assertEqual('idle');
         expect(audioPlayer.loop).assertEqual(false);
         done();
     })
 })
+}

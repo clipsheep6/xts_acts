@@ -17,8 +17,9 @@ import media from '@ohos.multimedia.media'
 import audio from '@ohos.multimedia.audio'
 import {playAudioSource} from '../../../../../AudioPlayerTestBase.js';
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export default function PlayerLocalTestAudioFUNC() {
 describe('PlayerLocalTestAudioFUNC', function () {
     let audioPlayer = media.createAudioPlayer();
     const AUDIO_SOURCE = '01.mp3';
@@ -193,7 +194,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
             console.info(`case dataLoad called`);
             expect(audioPlayer.currentTime).assertEqual(0);
             expect(audioPlayer.duration).assertEqual(DURATION_TIME);
-            expect(audioPlayer.state).assertEqual('paused');
+            expect(audioPlayer.state).assertEqual('idle');
             nextStep(mySteps, done);
         });
         audioPlayer.on('play', () => {
@@ -341,7 +342,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
 
         testAudioPlayer.on('dataLoad', () => {
             expect(testAudioPlayer.duration).assertEqual(DURATION_TIME);
-            expect(testAudioPlayer.state).assertEqual('paused');
+            expect(testAudioPlayer.state).assertEqual('idle');
             testAudioPlayer.play();
         });
         testAudioPlayer.on('play', () => {
@@ -450,3 +451,4 @@ describe('PlayerLocalTestAudioFUNC', function () {
         playAudioSource(fdPath, DURATION_TIME, PLAY_TIME, true, done);
     })
 })
+}

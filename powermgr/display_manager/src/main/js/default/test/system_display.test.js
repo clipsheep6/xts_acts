@@ -17,12 +17,8 @@ import brightness from '@system.brightness';
 import { describe } from 'deccjsunit/index';
 
 const INPUT_ERROR_CODE_CODE = 202;
-const SET_VALUE_MSG = "setValue: value is not an available number";
-const SET_MODE_MSG = "setMode: value is not an available number";
-
-function isNotSupported(data) {
-    return data === "setMode: Auto adjusting brightness is not supported";
-}
+const SET_VALUE_MSG = "value is not an available number";
+const SET_MODE_MSG = "value is not an available number";
 
 function sleep(time){
     return new Promise((resolve) => setTimeout(resolve, time));
@@ -37,8 +33,6 @@ describe('appInfoTest_display', function () {
      * @tc.desc Get brightness success
      */
     it('get_value_success', 0, function () {
-        let execSucc = false;
-        let execComplete = false;
         let currValue = 100;
         let setValue = 120;
         brightness.getValue({
@@ -53,7 +47,6 @@ describe('appInfoTest_display', function () {
         });
         brightness.getValue({
             success: (data) => {
-                execSucc = true;
                 expect(setValue === data.value).assertTrue();
             },
             fail: (data, code) => {
@@ -61,12 +54,9 @@ describe('appInfoTest_display', function () {
                 expect().assertFail();
             },
             complete: () => {
-                execComplete = true;
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-        expect(execSucc).assertTrue();
-        expect(execComplete).assertTrue();
 
         brightness.setValue({
             value: currValue
@@ -79,18 +69,15 @@ describe('appInfoTest_display', function () {
      * @tc.desc Get brightness
      */
      it('get_status_test_success_not_must', 0, function () {
-        let execComplete = false;
         brightness.getValue({
             fail: (data, code) => {
                 console.log("get_status_test_success_not_must, data: " + data + ", code: " + code);
                 expect().assertFail();
             },
             complete: () => {
-                execComplete = true;
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-        expect(execComplete).assertTrue();
     })
 
     /**
@@ -99,14 +86,11 @@ describe('appInfoTest_display', function () {
      * @tc.desc Get brightness
      */
     it('get_value_fail_not_must_test', 0, function () {
-        let execComplete = false;
         brightness.getValue({
             complete: () => {
-                execComplete = true;
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-        expect(execComplete).assertTrue();
     });
 
     /**
@@ -125,8 +109,6 @@ describe('appInfoTest_display', function () {
      * @tc.desc Set brightness success
      */
     it('set_value_success_all', 0, function () {
-        let execSucc = false;
-        let execComplete = false;
         let setValue = 200;
         let currValue = 100;
         brightness.getValue({
@@ -138,7 +120,6 @@ describe('appInfoTest_display', function () {
         brightness.setValue({
             value: setValue,
             success: () => {
-                execSucc = true;
                 brightness.getValue({
                     success: (data) => {
                         expect(data.value === setValue).assertTrue();
@@ -150,12 +131,9 @@ describe('appInfoTest_display', function () {
                 expect().assertFail();
             },
             complete: () => {
-                execComplete = true;
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-        expect(execSucc).assertTrue();
-        expect(execComplete).assertTrue();
 
         brightness.setValue({
             value: currValue
@@ -212,8 +190,6 @@ describe('appInfoTest_display', function () {
      * @tc.desc Get mode success
      */
     it('get_mode_success', 0, function () {
-        let execSucc = false;
-        let execComplete = false;
         let modeVal = 0;
         let exec = true;
         brightness.getMode({
@@ -226,7 +202,7 @@ describe('appInfoTest_display', function () {
             mode: modeVal ? 0 : 1,
             fail: (data, code) => {
                 console.log("get_mode_success, data: " + data + ", code: " + code);
-                exec = isNotSupported(data) ? false : true;
+                exec = false;
             }
         })
         if (!exec) {
@@ -234,7 +210,6 @@ describe('appInfoTest_display', function () {
         }
         brightness.getMode({
             success: (data) => {
-                execSucc = true;
                 expect(data.mode === (modeVal ? 0 : 1)).assertTrue();   
             },
             fail: (data, code) => {
@@ -242,12 +217,9 @@ describe('appInfoTest_display', function () {
                 expect().assertFail();
             },
             complete: () => {
-                execComplete = true;
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-        expect(execSucc).assertTrue();
-        expect(execComplete).assertTrue();
 
         brightness.setMode({ mode: modeVal });
     })
@@ -258,18 +230,15 @@ describe('appInfoTest_display', function () {
      * @tc.desc Get mode success is null
      */
     it('get_mode_success_null', 0, function () {
-        let execComplete = false;
         brightness.getMode({
             fail: (data, code) => {
                 console.log("get_mode_success_null, data: " + data + ", code: " + code);
                 expect().assertFail();
             },
             complete: () => {
-                execComplete = true;
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-        expect(execComplete).assertTrue();
     });
 
     /**
@@ -278,8 +247,6 @@ describe('appInfoTest_display', function () {
      * @tc.desc set mode success
      */
     it('set_mode_success', 0, function () {
-        let execSucc = false;
-        let execComplete = false;
         let modeVal = 0;
         brightness.getMode({
             success: (data) => {
@@ -290,7 +257,6 @@ describe('appInfoTest_display', function () {
         brightness.setMode({
             mode: modeVal ? 0 : 1,
             success: () => {
-                execSucc = true;
                 console.log("set_mode_success success");
                 brightness.getMode({
                     success: (data) => {
@@ -299,23 +265,10 @@ describe('appInfoTest_display', function () {
                     }
                 });
             },
-            fail: (data, code) => {
-                if (!isNotSupported(data)) {
-                    console.log("set_mode_success, data: " + data + ", code: " + code);
-                    expect().assertFail();
-                } else {
-                    console.log("set_mode_success not supported");
-                    execSucc = true;
-                    expect(isNotSupported(data)).assertTrue();
-                }
-            },
             complete: () => {
-                execComplete = true;
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-        expect(execSucc).assertTrue();
-        expect(execComplete).assertTrue();
 
         brightness.setMode({ mode: modeVal });
     });
@@ -326,7 +279,6 @@ describe('appInfoTest_display', function () {
      * @tc.desc set mode fail
      */
     it('set_mode_fail', 0, function () {
-        let execComplete = false;
         brightness.setMode({
             mode: "0",
             success: () => {
@@ -338,11 +290,9 @@ describe('appInfoTest_display', function () {
                 expect(data === SET_MODE_MSG).assertTrue();
             },
             complete: () => {
-                execComplete = true;
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-        expect(execComplete).assertTrue();
     });
 
     /**
@@ -351,25 +301,17 @@ describe('appInfoTest_display', function () {
      * @tc.desc set keep screen on true
      */
     it('set_keep_screen_on_true', 0, async function () {
-        let execSucc = false;
-        let execComplete = false;
         let sleepTime = 35 * 1000;
         brightness.setKeepScreenOn({
             keepScreenOn: true,
-            success: () => {
-                execSucc = true;
-            },
             fail: (data, code) => {
                 console.log("set_keep_screen_on, data: " + data + ", code: " + code);
                 expect().assertFail();
             },
             complete: () => {
-                execComplete = true;
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-        expect(execSucc).assertTrue();
-        expect(execComplete).assertTrue();
 
         await sleep(sleepTime);
         power.isScreenOn().then(screenOn => {
@@ -386,14 +328,9 @@ describe('appInfoTest_display', function () {
      * @tc.desc set keep screen on false
      */
     it('set_keep_screen_on_false', 0, async function () {
-        let execSucc = false;
-        let execComplete = false;
         let sleepTime = 35 * 1000;
         brightness.setKeepScreenOn({
             keepScreenOn: false,
-            success: () => {
-                execSucc = true;
-            },
             fail: (data, code) => {
                 console.log("set_keep_screen_on_false, data: " + data + ", code: " + code);
                 expect().assertFail();
@@ -403,8 +340,6 @@ describe('appInfoTest_display', function () {
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-        expect(execSucc).assertTrue();
-        expect(execComplete).assertTrue();
 
         await sleep(sleepTime);
         power.isScreenOn().then(screenOn => {
