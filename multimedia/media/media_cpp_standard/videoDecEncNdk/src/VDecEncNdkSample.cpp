@@ -362,13 +362,12 @@ void VDecEncNdkSample::InputFuncDec()
         if (OH_AVCODEC_VideoDecoderPushInputData(vdec_, index, attr) != AV_ERR_OK) {
             cout << "Fatal: OH_AVCODEC_VideoDecoderPushInputData fail, exit" << endl;
             vcodecSignal_->errorNum_ += 1;
-
         } else {
+            decInCnt_ ++;
             cout << "OH_AVCODEC_VideoDecoderPushInputData , decInCnt_ = " << decInCnt_ << endl;
         }
 
         timeStampDec_ += SAMPLE_DURATION_US;
-        decInCnt_ ++;
         vcodecSignal_->inQueueDec_.pop();
         vcodecSignal_->inBufferQueueDec_.pop();
     }

@@ -26,10 +26,11 @@
 #include <queue>
 #include <string>
 #include "securec.h"
-#include "ndk_av_codec.h"
+#include "native_avcodec_base.h"
+#include "native_avcodec_audiodecoder.h"
+#include "native_avcodec_audioencoder.h"
 #include "nocopyable.h"
 #include "ndktest_log.h"
-
 
 
 namespace OHOS {
@@ -59,6 +60,8 @@ public:
     std::queue<AVMemory *> inBufferQueueEnc_;
     std::queue<AVMemory *> outBufferQueueEnc_;
     int32_t errorNum_ = 0;
+    std::atomic<bool> isDecFlushing_ = false;
+    std::atomic<bool> isEncFlushing_ = false;
 };
 
 
@@ -92,9 +95,19 @@ public:
     void SetReadPath(const char * inp_path, uint32_t es[], uint32_t length);
     void SetSavePath(const char * outp_path);
     void ReRead();
-    void ResetParam();
+    void ResetDecParam();
+    void ResetEncParam();
+    int32_t GetFrameCount();
+    bool GetEosState();
     ADecEncSignal* acodecSignal_ = nullptr;
-
+    uint32_t decInCnt_ = 0;
+    uint32_t decOutCnt_ = 0;
+    uint32_t encInCnt_ = 0;
+    uint32_t encOutCnt_ = 0;
+    bool isDecInputEOS = false;
+    bool isEncInputEOS = false;
+    bool isDecOutputEOS = false;
+    bool isEncOutputEOS = false;
 
 private:
     struct AVCodec* adec_;
@@ -107,11 +120,10 @@ private:
     std::unique_ptr<std::thread> outputLoopDec_;
     // std::shared_ptr<ADecEncSignal> signal_ = nullptr;
     // std::shared_ptr<ADecNdkSampleCallback> cb_;
-    struct AVCodecOnAsyncCallback cbDec_;
+    struct AVCodecAsyncCallback cbDec_;
     // bool isFirstFrame_ = true;
     int64_t timeStampDec_ = 0;
-    uint32_t decInCnt_ = 0;
-    uint32_t decOutCnt_ = 0;
+
     // ADecEncSignal* signalDec_ = nullptr;
 
     struct AVCodec* aenc_;
@@ -124,17 +136,11 @@ private:
     std::unique_ptr<std::thread> outputLoopEnc_;
     // std::shared_ptr<ADecEncSignal> signal_ = nullptr;
     // std::shared_ptr<AEncNdkSampleCallback> cb_;
-    struct AVCodecOnAsyncCallback cbEnc_;
+    struct AVCodecAsyncCallback cbEnc_;
     // bool isFirstFrame_ = true;
     int64_t timeStampEnc_ = 0;
-    uint32_t encInCnt_ = 0;
-    uint32_t encOutCnt_ = 0;
-    bool isDecInputEOS = false;
-    bool isEncInputEOS = false;
-    bool isDecOutputEOS = false;
-    bool isEncOutputEOS = false;
+
     std::string outDir_ = "/data/media/out.aac";
-    bool flushFlag = false;
     const char * INP_FILE;
     const char * OUT_FILE;
     uint32_t* ES;
