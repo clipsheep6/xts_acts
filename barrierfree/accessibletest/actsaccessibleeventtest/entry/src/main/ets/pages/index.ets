@@ -457,7 +457,7 @@ const publishCommonEvent = (event, caseName) => {
 
 function createEventInfo(caseName, eventName, action) {
   console.info("TargetApp new accessibility.EventInfo: " + eventName);
-  let eventInfo = new accessibility.EventInfo(this);
+  let eventInfo = new accessibility.EventInfo({});
   eventInfo.type = eventName;
   eventInfo.bundleName = 'com.example.myapplication';
   eventInfo.triggerAction = action;
@@ -488,7 +488,7 @@ const sendEventPromise = (caseName, eventName, action) => {
 };
 function createEventInfoForElement(caseName) {
   console.info("TargetApp new accessibility.EventInfo: click");
-  let eventInfo = new accessibility.EventInfo(this);
+  let eventInfo = new accessibility.EventInfo({});
   eventInfo.type = 'click';
   eventInfo.bundleName = 'com.example.myapplication';
   eventInfo.triggerAction = 'click';

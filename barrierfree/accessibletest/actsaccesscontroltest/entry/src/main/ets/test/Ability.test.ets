@@ -151,7 +151,7 @@ export default function abilityTest(abilityContext) {
         expect(tarData).assertTrue()
         disableAbility(logTag, ASSIST_BUNDLE_NAME)
         done()
-      }, TIMEOUT_L)
+      }, TIMEOUT_L + TIMEOUT)
     })
     /**
      * @tc.number: AccessControl_0050
