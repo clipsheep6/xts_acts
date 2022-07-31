@@ -1,0 +1,53 @@
+{
+    "description": "Configuration for audioPlayer Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "2000000",
+        "package": "ohos.acts.multimedia.audio.audioplayer",
+		"shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioPlayerDatasrcJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile",
+				"mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files",
+				"chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "./resource/audio/01.mp3 ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/",
+                "./resource/audio/01.m4a ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/",
+                "./resource/audio/AAC_48000_32_1.aac ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/",
+                "./resource/audio/OGG_48000_1.ogg ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/",
+                "./resource/audio/FLAC_48000_32_1.flac ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/",
+                "./resource/audio/vorbis_48000_32_1.wav ->/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/",
+				"./resource/audio/01.m4a ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files/",
+                "./resource/audio/01.mp3 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files/",
+                "./resource/audio/59.m4a ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files/",
+                "./resource/media/vorbis_48000_32_1.wav ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files/"
+            ]
+        },
+		{
+            "type": "ShellKit",
+            "run-command": [
+				"chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files/*"
+            ],
+            "teardown-command":[
+            ]
+        }
+    ]
+}
