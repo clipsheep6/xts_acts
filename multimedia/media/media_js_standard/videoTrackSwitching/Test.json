@@ -1,0 +1,55 @@
+{
+    "description": "Configuration for videoplayer Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "1100000",
+        "package": "ohos.acts.multimedia.video.videoplayer",
+		"shell-timeout": "60000"
+    },
+    "kits": [
+        {
+          "test-file-name": [
+            "ActsVideoTrackSwitchingJsTest.hap"
+          ],
+          "type": "AppInstallKit",
+          "cleanup-apps": true
+        },
+        {
+          "type": "ShellKit",
+          "run-command": [
+            "mkdir -p /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile",
+            "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.video.videoplayer/haps/entry/files",
+            "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.video.videoplayer/haps/entry/files"
+          ],
+          "teardown-command":[
+          ]
+        },
+        {
+          "type": "PushKit",
+          "pre-push": [
+          ],
+          "push": [
+            "./resource/media/muliaudio_h263_1trk_aac_1trk_mp3_1trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_h263_1trk_aac_2trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_h263_1trk_aac_16trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_h263_1trk_mp3_2trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_h264_1trk_aac_2trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_h264_1trk_mp3_2trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_mpeg2_1trk_aac_2trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_mpeg2_1trk_mp3_2trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_mpeg4_1trk_aac_2trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_mpeg4_1trk_mp3_2trk.mkv ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_h263_1trk_aac_2trk.ts ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/",
+            "./resource/media/muliaudio_h263_1trk_mp3_2trk.ts ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/"
+          ]
+        },
+	    {
+          "type": "ShellKit",
+          "run-command": [
+			"chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.video.videoplayer/haps/entry/files/*"
+          ],
+          "teardown-command":[
+          ]
+        }
+    ]
+}
