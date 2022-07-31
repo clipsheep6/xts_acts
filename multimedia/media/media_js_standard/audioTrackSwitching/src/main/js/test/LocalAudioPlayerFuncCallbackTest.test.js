@@ -1,0 +1,1341 @@
+// @ts-nocheck
+/*
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License');
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
+import * as trackSwitchingBase from './TrackSwitchingBase.js';
+import * as mediaTestBase from '../../../../../MediaTestBase.js';
+
+describe('LocalAudioPlayerFuncCallbackTest', function () {
+
+    let audioPlayer = trackSwitchingBase.audioPlayer;
+    let allDescription = null;
+    let allDescriptionIndex = [];
+    let currentDescription = [];
+    let currentDescriptionIndex = [];
+    let differentTracks = [];
+    let selectTrackData = 0;
+    const TIMEOUT = 2000;
+
+    afterEach(async function () {
+        console.info('afterEach start');
+        await mediaTestBase.closeFileDescriptor(trackSwitchingBase.AAC_3TRK_TS);
+        audioPlayer.release();
+        console.info('afterEach end');
+    })
+
+    function getTrackDescriptionData(audioPlayer, flag, done) {
+        audioPlayer.getTrackDescription((err, allList) => {
+            allDescription = null;
+            allDescriptionIndex = [];
+            allDescription = allList;
+            console.info('getTrackDescription err :' + err + ', allDescription : ' + JSON.stringify(allDescription));
+            if (allDescription.length != 0) {
+                if (flag == trackSwitchingBase.FLAG1) {
+                    expect(true).assertTrue();
+                    audioPlayer.play();
+                    done();
+                } else if (flag == trackSwitchingBase.FLAG2) {
+                    for (let i = 0; i < allDescription.length; i++) {
+                        allDescriptionIndex.push(i);
+                    }
+                    console.info('allDescriptionIndex is : ' + allDescriptionIndex);
+                    expect(true).assertTrue();
+                    return allDescriptionIndex;
+                } else if (flag == trackSwitchingBase.FLAG3) {
+                    expect(true).assertTrue();
+                    done();
+                }
+            } else {
+                console.info('getTrackDescription is failed' + err);
+                expect().assertFail();
+                done();
+            }
+        })
+    }
+
+    function getSelectedTracksData(audioPlayer, flag, done) {
+        audioPlayer.getSelectedTracks((err, currentList) => {
+            if (typeof (currentList) != 'undefined') {
+                currentDescription = currentList;
+                if (flag == trackSwitchingBase.FLAG1) {
+                    console.info('getSelectedTracks is success, currentDescription is: ' + currentDescription);
+                    expect(true).assertTrue();
+                    audioPlayer.play();
+                    done();
+                } else {
+                    console.info('getSelectedTracks is success, currentDescription is: ' + currentDescription);
+                    expect(true).assertTrue();
+                    done();
+                }
+            } else {
+                console.info('getSelectedTracks is failed' + err);
+                expect().assertFail();
+                done();
+            }
+        })
+    }
+
+    function getDifferentTracks(allDescriptionIndex, currentDescriptionIndex) {
+        let differentTrackArr = [];
+        for (let i = 0; i < allDescriptionIndex.length; i++) {
+            if (currentDescriptionIndex != allDescriptionIndex[i]) {
+                differentTrackArr.push(allDescriptionIndex[i]);
+            }
+        }
+        console.info('differentTracks is : ' + differentTrackArr);
+        return differentTrackArr;
+    }
+
+    function selectTrack(audioPlayer, index) {
+        audioPlayer.selectTrack(index, (err, data) => {
+            selectTrackData = data;
+            console.info('track switching err is :' + err + ', selectTrackData is : ' + selectTrackData);
+            expect(data == 0).assertTrue();
+        })
+    }
+
+    function getDescriptionBeforePlaying(audioPlayer, done) {
+        audioPlayer.on('dataLoad', () => {
+            console.info('dataLoad state.');
+            getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG1, done);
+        })
+    }
+
+    function getSelectedTracksBeforePlaying(audioPlayer, done) {
+        audioPlayer.on('dataLoad', () => {
+            console.info('dataLoad state.');
+            getSelectedTracksData(audioPlayer, trackSwitchingBase.FLAG1, done);
+        })
+    }
+
+    function selectedTracksBeforePlaying(audioPlayer, step, done) {
+        audioPlayer.on('dataLoad', () => {
+            console.info('dataLoad state.');
+            allDescriptionIndex = getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG2, done);
+
+            audioPlayer.getSelectedTracks((err, currentList) => {
+                currentDescription = currentList;
+                console.info('getSelectedTracks err is : ' + err + ', currentDescription is : ' + currentDescription);
+                currentDescriptionIndex = currentDescription[0];
+                switch (step) {
+                    case 'SAME_AND_DIFFERENT_TRACKS_TWICE':
+                        console.info('step is SAME_AND_DIFFERENT_TRACKS_TWICE');
+                        differentTracks = [];
+                        differentTracks = getDifferentTracks(allDescriptionIndex, currentDescriptionIndex);
+                        selectTrack(audioPlayer, currentDescriptionIndex);
+                        selectTrack(audioPlayer, currentDescriptionIndex);
+                        selectTrack(audioPlayer, differentTracks[0]);
+                        selectTrack(audioPlayer, differentTracks[1]);
+                        setTimeout(function () {
+                            audioPlayer.play();
+                            done();
+                        }, TIMEOUT)
+                        break;
+                    case 'SAME_DIFFERENT_TRACKS':
+                        console.info('step is SAME_DIFFERENT_TRACKS');
+                        differentTracks = [];
+                        differentTracks = getDifferentTracks(allDescriptionIndex, currentDescriptionIndex);
+                        selectTrack(audioPlayer, currentDescriptionIndex);
+                        selectTrack(audioPlayer, differentTracks[0]);
+                        setTimeout(function () {
+                            audioPlayer.play();
+                            done();
+                        }, TIMEOUT)
+                        break;
+                    case 'DIFFERENT_TRACKS':
+                        console.info('step is DIFFERENT_TRACKS');
+                        differentTracks = [];
+                        differentTracks = getDifferentTracks(allDescriptionIndex, currentDescriptionIndex);
+                        selectTrack(audioPlayer, differentTracks[0]);
+                        setTimeout(function () {
+                            audioPlayer.play();
+                            done();
+                        }, TIMEOUT)
+                        break;
+                    default:
+                        console.info('step is BOUNDARY_TRACKS');
+                        selectTrack(audioPlayer, allDescriptionIndex[0]);
+                        selectTrack(audioPlayer, allDescriptionIndex[allDescriptionIndex.length-1]);
+                        setTimeout(function () {
+                            audioPlayer.play();
+                            done();
+                        }, TIMEOUT)
+                        break;
+                }
+            })
+        })
+    }
+
+    function getDescriptionAfterPlaying(audioPlayer, step, done) {
+        audioPlayer.on('dataLoad', () => {
+            console.info('dataLoad state.');
+            audioPlayer.play();
+        })
+        switch (step) {
+            case 'PLAY':
+                console.info('step is PLAY')
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG3, done);
+                });
+                break;
+            case 'PAUSE':
+                console.info('step is PAUSE');
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.pause();
+                })
+                audioPlayer.on('pause', () => {
+                    console.info('pause state.');
+                    getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG3, done);
+                })
+                break;
+            case 'STOP':
+                console.info('step is STOP')
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.stop();
+                })
+                audioPlayer.on('stop', () => {
+                    console.info('stop state.');
+                    getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG3, done);
+                })
+                break;
+            case 'SEEK_50':
+                console.info('step is SEEK_50')
+                audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                    console.info('timeUpdate state.');
+                    if (typeof (seekDoneTime) == 'undefined') {
+                        console.info(`case seek filed, errcode is ${seekDoneTime}`);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG3, done);
+                    }
+                })
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                    console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                })
+                break;
+            case 'SEEK_50_0':
+                console.info('step is SEEK_50_0');
+                audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                    console.info('timeUpdate state.');
+                    if (typeof (seekDoneTime) == 'undefined') {
+                        console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                            console.info('timeUpdate2 state.');
+                            if (typeof (seekDoneTime2) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG3, done);
+                            }
+                            ;
+                        });
+                        audioPlayer.seek(0);
+                        console.info('audioPlayer seek 0% is : ' + 0);
+                    }
+                })
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                    console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                })
+                break;
+            case 'SEEK_50_30':
+                console.info('step is SEEK_50_30');
+                audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                    console.info('timeUpdate state.');
+                    if (typeof (seekDoneTime) == 'undefined') {
+                        console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                            console.info('timeUpdate2 state.');
+                            if (typeof (seekDoneTime2) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG3, done);
+                            }
+                        })
+                        audioPlayer.seek(Math.floor(audioPlayer.duration / 10 * 3));
+                        console.info('audioPlayer seek 30% is : ' + Math.floor(audioPlayer.duration / 10 * 3));
+                    }
+                })
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                    console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                })
+                break;
+            case 'SEEK_50_80':
+                console.info('step is SEEK_50_80')
+                audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                    console.info('timeUpdate state.');
+                    if (typeof (seekDoneTime) == 'undefined') {
+                        console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                            console.info('timeUpdate2 state.');
+                            if (typeof (seekDoneTime2) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG3, done);
+                            }
+                        })
+                        audioPlayer.seek(Math.floor(audioPlayer.duration / 10 * 8));
+                        console.info('audioPlayer seek 80% is : ' + Math.floor(audioPlayer.duration / 10 * 8));
+                    }
+                })
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                    console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                })
+                break;
+            default:
+                console.info('step is SEEK_50_100');
+                audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                    console.info('timeUpdate state.');
+                    if (typeof (seekDoneTime) == 'undefined') {
+                        console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                            console.info('timeUpdate2 state.');
+                            if (typeof (seekDoneTime2) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG3, done);
+                            }
+                        })
+                        audioPlayer.seek(Math.floor(audioPlayer.duration));
+                        console.info('audioPlayer seek 100% is : ' + Math.floor(audioPlayer.duration));
+                    }
+                })
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                    console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                })
+                break;
+        }
+    }
+
+    function getSelectedTracksAfterPlaying(audioPlayer, step, done) {
+        audioPlayer.on('dataLoad', () => {
+            console.info('dataLoad start.');
+            audioPlayer.play();
+        })
+        switch (step) {
+            case 'PLAY':
+                console.info('step is PLAY');
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    getSelectedTracksData(audioPlayer, trackSwitchingBase.FLAG2, done);
+                })
+                break;
+            case 'PAUSE':
+                console.info('step is PAUSE');
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.pause();
+                })
+                audioPlayer.on('pause', () => {
+                    console.info('pause state.');
+                    getSelectedTracksData(audioPlayer, trackSwitchingBase.FLAG2, done);
+                })
+                break;
+            case 'STOP':
+                console.info('step is STOP');
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.stop();
+                })
+                audioPlayer.on('stop', () => {
+                    console.info('stop state.');
+                    getSelectedTracksData(audioPlayer, trackSwitchingBase.FLAG2, done);
+                })
+                break;
+            case 'SEEK_50':
+                console.info('step is SEEK_50');
+                audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                    console.info('timeUpdate state.');
+                    if (typeof (seekDoneTime) == 'undefined') {
+                        console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        getSelectedTracksData(audioPlayer, trackSwitchingBase.FLAG2, done);
+                    }
+                })
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                    console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                })
+                break;
+            case 'SEEK_50_0':
+                console.info('step is SEEK_50_0')
+                audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                    console.info('timeUpdate state.');
+                    if (typeof (seekDoneTime) == 'undefined') {
+                        console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                            console.info('timeUpdate2 state.');
+                            if (typeof (seekDoneTime2) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                getSelectedTracksData(audioPlayer, trackSwitchingBase.FLAG2, done);
+                            }
+                        })
+                        audioPlayer.seek(0);
+                        console.info('audioPlayer seek 0% is : ' + 0);
+                    }
+                })
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                    console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                })
+                break;
+            case 'SEEK_50_30':
+                console.info('step is SEEK_50_30');
+                audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                    console.info('timeUpdate state.');
+                    if (typeof (seekDoneTime) == 'undefined') {
+                        console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                            console.info('timeUpdate2 state.');
+                            if (typeof (seekDoneTime2) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                getSelectedTracksData(audioPlayer, trackSwitchingBase.FLAG2, done);
+                            }
+                        })
+                        audioPlayer.seek(Math.floor(audioPlayer.duration / 10 * 3));
+                        console.info('audioPlayer seek 30% is : ' + Math.floor(audioPlayer.duration / 10 * 3));
+                    }
+                })
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                    console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                })
+                break;
+            case 'SEEK_50_80':
+                console.info('step is SEEK_50_80');
+                audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                    console.info('timeUpdate state.');
+                    if (typeof (seekDoneTime) == 'undefined') {
+                        console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                            console.info('timeUpdate2 state.');
+                            if (typeof (seekDoneTime2) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                getSelectedTracksData(audioPlayer, trackSwitchingBase.FLAG2, done);
+                            }
+                        })
+                        audioPlayer.seek(Math.floor(audioPlayer.duration / 10 * 8));
+                        console.info('audioPlayer seek 80%  is : ' + Math.floor(audioPlayer.duration / 10 * 8));
+                    }
+                })
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                    console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                })
+                break;
+            default:
+                console.info('step is SEEK_50_100');
+                audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                    console.info('timeUpdate state.');
+                    if (typeof (seekDoneTime) == 'undefined') {
+                        console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                        expect().assertFail();
+                        done();
+                    } else {
+                        audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                            console.info('timeUpdate2 state.');
+                            if (typeof (seekDoneTime2) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                getSelectedTracksData(audioPlayer, trackSwitchingBase.FLAG2, done);
+                            }
+                        })
+                        console.info('seek2 state.');
+                        audioPlayer.seek(Math.floor(audioPlayer.duration));
+                        console.info('audioPlayer seek 100%  is : ' + Math.floor(audioPlayer.duration));
+                    }
+                })
+                audioPlayer.on('play', () => {
+                    console.info('play state.');
+                    audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                    console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                })
+                break;
+        }
+    }
+
+    function selectedTracksAfterPlaying(audioPlayer, step, done) {
+        audioPlayer.on('dataLoad', () => {
+            console.info('dataLoad state.');
+            audioPlayer.play();
+        })
+        audioPlayer.on('play', () => {
+            console.info('play state.');
+            allDescriptionIndex = [];
+            allDescriptionIndex = getTrackDescriptionData(audioPlayer, trackSwitchingBase.FLAG2, done);
+
+            audioPlayer.getSelectedTracks((err, currentList) => {
+                console.info('getSelectedTracks err : ' + err + ', currentList : ' + currentList);
+                currentDescriptionIndex = currentList[0];
+                switch (step) {
+                    case 'PLAY_SAME_AND_DIFFERENT_TRACKS_TWICE':
+                        console.info('step is PLAY_SAME_AND_DIFFERENT_TRACKS_TWICE');
+                        differentTracks = [];
+                        differentTracks = getDifferentTracks(allDescriptionIndex, currentDescriptionIndex);
+                        selectTrack(audioPlayer, currentDescriptionIndex);
+                        selectTrack(audioPlayer, currentDescriptionIndex);
+                        selectTrack(audioPlayer, differentTracks[0]);
+                        selectTrack(audioPlayer, differentTracks[1]);
+                        setTimeout(function () {
+                            done()
+                        }, TIMEOUT)
+                        break;
+                    case 'PLAY_DIFFERENT_TRACKS':
+                        console.info('step is PLAY_DIFFERENT_TRACKS');
+                        differentTracks = [];
+                        differentTracks = getDifferentTracks(allDescriptionIndex, currentDescriptionIndex);
+                        selectTrack(audioPlayer, differentTracks[0]);
+                        setTimeout(function () {
+                            done();
+                        }, TIMEOUT)
+                        break;
+                    case 'PAUSE_DIFFERENT_TRACKS':
+                        console.info('step is PAUSE_DIFFERENT_TRACKS');
+                        audioPlayer.pause();
+                        audioPlayer.on('pause', () => {
+                            console.info('pause state.');
+                            differentTracks = [];
+                            differentTracks = getDifferentTracks(allDescriptionIndex, currentDescriptionIndex);
+                            selectTrack(audioPlayer, differentTracks[0]);
+                            setTimeout(function () {
+                                done();
+                            }, TIMEOUT)
+                        })
+                        break;
+                    case 'SEEK_50_DIFFERENT_TRACKS':
+                        console.info('step is SEEK_50_DIFFERENT_TRACKS')
+                        audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                            console.info('timeUpdate state.');
+                            if (typeof (seekDoneTime) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                differentTracks = []
+                                differentTracks = getDifferentTracks(allDescriptionIndex, currentDescriptionIndex);
+                                selectTrack(audioPlayer, differentTracks[0]);
+                                setTimeout(function () {
+                                    done();
+                                }, TIMEOUT)
+                            }
+                        })
+                        console.info('play state.');
+                        audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                        console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                        break;
+                    case 'SEEK_50_0_DIFFERENT_TRACKS':
+                        console.info('step is SEEK_50_0_DIFFERENT_TRACKS');
+                        audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                            console.info('timeUpdate state.');
+                            if (typeof (seekDoneTime) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                                    console.info('timeUpdate2 state.');
+                                    if (typeof (seekDoneTime2) == 'undefined') {
+                                        console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                        expect().assertFail();
+                                        done();
+                                    } else {
+                                        differentTracks = [];
+                                        differentTracks = getDifferentTracks
+                                        (allDescriptionIndex, currentDescriptionIndex);
+                                        selectTrack(audioPlayer, differentTracks[0]);
+                                        setTimeout(function () {
+                                            done();
+                                        }, TIMEOUT)
+                                    }
+                                })
+                                audioPlayer.seek(0);
+                                console.info('audioPlayer seek 0% is :' + 0);
+                            }
+                        })
+                        console.info('play state.');
+                        audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                        console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                        break;
+                    case 'SEEK_50_30_DIFFERENT_TRACKS':
+                        console.info('step is SEEK_50_30_DIFFERENT_TRACKS');
+                        audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                            console.info('timeUpdate state.');
+                            if (typeof (seekDoneTime) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                                    console.info('timeUpdate2 state.');
+                                    if (typeof (seekDoneTime2) == 'undefined') {
+                                        console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                        expect().assertFail();
+                                        done();
+                                    } else {
+                                        differentTracks = [];
+                                        differentTracks = getDifferentTracks
+                                        (allDescriptionIndex, currentDescriptionIndex);
+                                        selectTrack(audioPlayer, differentTracks[0]);
+                                        setTimeout(function () {
+                                            done();
+                                        }, TIMEOUT)
+                                    }
+                                })
+                                audioPlayer.seek(Math.floor(audioPlayer.duration / 10 * 3));
+                                console.info('audioPlayer seek 30% is : ' + Math.floor(audioPlayer.duration / 10 * 3));
+                            }
+                        })
+                        console.info('play state.');
+                        audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                        console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                        break;
+                    case 'SEEK_50_80_DIFFERENT_TRACKS':
+                        console.info('step is SEEK_50_80_DIFFERENT_TRACKS')
+                        audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                            console.info('timeUpdate state.');
+                            if (typeof (seekDoneTime) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                                    console.info('timeUpdate2 state.');
+                                    if (typeof (seekDoneTime2) == 'undefined') {
+                                        console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                        expect().assertFail();
+                                        done();
+                                    } else {
+                                        differentTracks = [];
+                                        differentTracks = getDifferentTracks
+                                        (allDescriptionIndex, currentDescriptionIndex);
+                                        selectTrack(audioPlayer, differentTracks[0]);
+                                        setTimeout(function () {
+                                            done();
+                                        }, TIMEOUT)
+                                    }
+                                })
+                                audioPlayer.seek(Math.floor(audioPlayer.duration / 10 * 8));
+                                console.info('audioPlayer seek 80% is : ' + Math.floor(audioPlayer.duration / 10 * 8));
+                            }
+                        })
+                        console.info('play state.');
+                        audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                        console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                        break;
+                    case 'SEEK_50_100_DIFFERENT_TRACKS':
+                        console.info('step is SEEK_50_100_DIFFERENT_TRACKS');
+                        audioPlayer.on('timeUpdate', (seekDoneTime) => {
+                            console.info('timeUpdate state.');
+                            if (typeof (seekDoneTime) == 'undefined') {
+                                console.info(`case seek filed,errcode is ${seekDoneTime}`);
+                                expect().assertFail();
+                                done();
+                            } else {
+                                audioPlayer.on('timeUpdate', (seekDoneTime2) => {
+                                    console.info('timeUpdate2 state.');
+                                    if (typeof (seekDoneTime2) == 'undefined') {
+                                        console.info(`case seek filed,errcode is ${seekDoneTime2}`);
+                                        expect().assertFail();
+                                        done();
+                                    } else {
+                                        differentTracks = [];
+                                        differentTracks = getDifferentTracks
+                                        (allDescriptionIndex, currentDescriptionIndex);
+                                        selectTrack(audioPlayer, differentTracks[0]);
+                                        setTimeout(function () {
+                                            done();
+                                        }, TIMEOUT)
+                                    }
+                                })
+                                audioPlayer.seek(Math.floor(audioPlayer.duration));
+                                console.info('audioPlayer seek 100% is : ' + Math.floor(audioPlayer.duration));
+                            }
+                        })
+                        console.info('play state.');
+                        audioPlayer.seek(Math.floor(audioPlayer.duration / 2));
+                        console.info('audioPlayer seek 50% is : ' + Math.floor(audioPlayer.duration / 2));
+                        break;
+                    default:
+                        console.info('step is PLAY_BOUNDARY_TRACKS');
+                        selectTrack(audioPlayer, allDescriptionIndex[0]);
+                        selectTrack(audioPlayer, allDescriptionIndex[allDescriptionIndex.length-1]);
+                        setTimeout(function () {
+                            done();
+                        }, TIMEOUT)
+                        break;
+                }
+            })
+        })
+    }
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0100
+       * @tc.name      : Get all audio track information before audio play
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level0
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0100', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0100 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getDescriptionBeforePlaying(audioPlayer, done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0100 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0200
+       * @tc.name      : Obtain the current audio track information before audio playback
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level0
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0200', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0200 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getSelectedTracksBeforePlaying(audioPlayer, done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0200 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0300
+       * @tc.name      : Before audio playback, switch tracks that are consistent with and inconsistent with
+                         the current track index for many times
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0300', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0300 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksBeforePlaying(audioPlayer, 'SAME_AND_DIFFERENT_TRACKS_TWICE', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0300 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0400
+       * @tc.name      : Before audio playback, input the track index according to the
+                         boundary value for track switching
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level2
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0400', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0400 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksBeforePlaying(audioPlayer, 'BOUNDARY_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0400 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0500
+       * @tc.name      : Audio track switching of different encoding and decoding formats before audio playback
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level2
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0500', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0500 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksBeforePlaying(audioPlayer, 'DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_2TRK_MP3_1TRK_MKV);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0500 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0600
+       * @tc.name      : Before audio playback, track switching of audio files in AAC format
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level2
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0600', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0600 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksBeforePlaying(audioPlayer, 'SAME_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_MKV);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0600 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0700
+       * @tc.name      : Audio track switching of MP3 format audio file before audio playback
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level2
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0700', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0700 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksBeforePlaying(audioPlayer, 'SAME_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.MP3_3TRK_MKV);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0700 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0800
+       * @tc.name      : Before audio playback, audio files with 16 tracks are switched
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level2
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0800', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0800 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksBeforePlaying(audioPlayer, 'SAME_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_16TRK_MKV);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0800 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0900
+       * @tc.name      : Obtain all audio track information after audio playback
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level0
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0900', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0900 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getDescriptionAfterPlaying(audioPlayer, 'PLAY', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_0900 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1000
+       * @tc.name      : Pause playback after audio playback, test gettrackdescription
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1000', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1000 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getDescriptionAfterPlaying(audioPlayer, 'PAUSE', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1000 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1100
+       * @tc.name      : Stop playing after audio playing, test gettrackdescription
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1100', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1100 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getDescriptionAfterPlaying(audioPlayer, 'STOP', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1100 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1200
+       * @tc.name      : After audio playback, seek to 50% of the progress bar to obtain all audio track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1200', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1200 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getDescriptionAfterPlaying(audioPlayer, 'SEEK_50', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1200 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1300
+       * @tc.name      : After audio playback, seek to 50% of the progress bar, and then seek to 0% of the progress bar
+                         to obtain all audio track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1300', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1300 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getDescriptionAfterPlaying(audioPlayer, 'SEEK_50_0', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1300 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1400
+       * @tc.name      : After audio playback, seek to 50% of the progress bar, and then seek to 30% of the progress
+                         bar to obtain all audio track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1400', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1400 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getDescriptionAfterPlaying(audioPlayer, 'SEEK_50_30', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1400 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1500
+       * @tc.name      : After audio playback, seek to 50% of the progress bar, and then seek to 80% of the progress
+                         bar to obtain all audio track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1500', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1500 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getDescriptionAfterPlaying(audioPlayer, 'SEEK_50_80', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1500 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1600
+       * @tc.name      : After audio playback, seek to 50% of the progress bar, and then seek to 100% of the progress
+                         bar to obtain all audio track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1600', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1600 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getDescriptionAfterPlaying(audioPlayer, 'SEEK_50_100', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1600 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1700
+       * @tc.name      : Test getselectedtracks after audio playback
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level0
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1700', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1700 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getSelectedTracksAfterPlaying(audioPlayer, 'PLAY', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1700 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1800
+       * @tc.name      : Pause the playback after audio playback to obtain the current track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1800', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1800 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getSelectedTracksAfterPlaying(audioPlayer, 'PAUSE', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1800 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1900
+       * @tc.name      : Stop playing after the audio is played to obtain the current track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1900', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1900 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getSelectedTracksAfterPlaying(audioPlayer, 'STOP', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_1900 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2000
+       * @tc.name      : After the audio is played, seek to 50% of the progress bar to obtain
+                         the current track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2000', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2000 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getSelectedTracksAfterPlaying(audioPlayer, 'SEEK_50', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2000 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2100
+       * @tc.name      : After the audio is played, seek to 50% of the progress bar, and then seek to 0% of the
+                         progress bar to obtain the current track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2100', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2100 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getSelectedTracksAfterPlaying(audioPlayer, 'SEEK_50_0', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2100 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2200
+       * @tc.name      : After the audio is played, seek to 50% of the progress bar, and then seek to 30% of the
+                         progress bar to obtain the current track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2200', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2200 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getSelectedTracksAfterPlaying(audioPlayer, 'SEEK_50_30', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2200 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2300
+       * @tc.name      : After the audio is played, seek to 50% of the progress bar, and then seek to 80% of the
+                         progress bar to obtain the current track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2300', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2300 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getSelectedTracksAfterPlaying(audioPlayer, 'SEEK_50_80', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2300 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2400
+       * @tc.name      : After the audio is played, seek to 50% of the progress bar, and then seek to 100% of the
+                         progress bar to obtain the current track information
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2400', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2400 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        getSelectedTracksAfterPlaying(audioPlayer, 'SEEK_50_100', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2400 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2500
+       * @tc.name      : After audio playback, switch tracks that are consistent with and inconsistent with the
+                         current track index for many times
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2500', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2500 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'PLAY_SAME_AND_DIFFERENT_TRACKS_TWICE', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2500 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2600
+       * @tc.name      : Pause playback after audio playback, test selecttrack, and pass in the track index that is
+                         inconsistent with the current track
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2600', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2600 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'PAUSE_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2600 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2700
+       * @tc.name      : After the audio is played, it will be played to 50% of the progress bar, and the track index
+                         inconsistent with the current track will be passed in for track switching
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2700', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2700 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'SEEK_50_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2700 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2800
+       * @tc.name      : After the audio is played, seek to 50% of the progress bar, and then seek to 0% of the
+                         progress bar. Pass in the track index that is inconsistent with the current
+                         track for track switching
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2800', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2800 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'SEEK_50_0_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2800 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2900
+       * @tc.name      : After the audio is played, seek to 50% of the progress bar, and then seek to 30% of the
+                         progress bar. Input the track index that is inconsistent with the current track
+                         for track switching
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2900', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2900 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'SEEK_50_30_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_2900 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3000
+       * @tc.name      : After the audio is played, seek to 50% of the progress bar, and then seek to 80% of the
+                         progress bar. Pass in the track index that is inconsistent with the current track
+                         for track switching
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3000', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3000 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'SEEK_50_80_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3000 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3100
+       * @tc.name      : After the audio is played, seek to 50% of the progress bar, and then seek to 100% of the
+                         progress bar. Pass in the track index that is inconsistent with the current track
+                         for track switching
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level1
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3100', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3100 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'SEEK_50_100_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3100 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3200
+       * @tc.name      : After audio playback, input the track index according to the boundary value
+                         for track switching
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level2
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3200', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3200 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'PLAY_BOUNDARY_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_TS);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3200 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3300
+       * @tc.name      : After audio playback, audio track switching of different encoding and decoding formats
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level2
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3300', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3300 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'PLAY_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_2TRK_MP3_1TRK_MKV);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3300 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3400
+       * @tc.name      : After the audio is played, the audio track of the AAC format audio file is switched
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level2
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3400', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3400 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'PLAY_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_3TRK_MKV);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3400 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3500
+       * @tc.name      : After the audio is played, the audio track of MP3 format audio file is switched
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level2
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3500', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3500 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'PLAY_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.MP3_3TRK_MKV);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3500 is end--------------')
+    })
+
+    /* *
+       * @tc.number    : SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3600
+       * @tc.name      : After the audio is played, the audio files with 16 audio tracks are switched
+       * @tc.desc      : Audio track switching
+       * @tc.size      : MediumTest
+       * @tc.type      : Function test
+       * @tc.level     : Level2
+    */
+    it('SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3600', 0, async function (done) {
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3600 is start--------------')
+        audioPlayer = await trackSwitchingBase.initAudioPlayer();
+        selectedTracksAfterPlaying(audioPlayer, 'PLAY_DIFFERENT_TRACKS', done);
+        await trackSwitchingBase.getInputFilesFd(audioPlayer, trackSwitchingBase.AAC_16TRK_MKV);
+        console.info('-----------SUB_MEDIA_LOCAL_AUDIO_PLAYER_FUNCTION_CALLBACK_3600 is end--------------')
+    })
+
+})
