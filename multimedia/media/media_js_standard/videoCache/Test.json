@@ -1,0 +1,49 @@
+{
+    "description": "Configuration for videoplayer Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "2000000",
+        "package": "ohos.acts.multimedia.video.videocache",
+		"shell-timeout": "200000"
+    },
+    "kits": [
+        {
+          "test-file-name": [
+            "ActsVideoCacheJsTest.hap"
+          ],
+          "type": "AppInstallKit",
+          "cleanup-apps": true
+        },
+        {
+          "type": "ShellKit",
+          "run-command": [
+            "mkdir -p /data/app/el1/bundle/public/ohos.acts.multimedia.video.videocache/ohos.acts.multimedia.video.videocache/assets/entry/resources/rawfile",
+			"mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.video.videocache/haps/entry/files",
+			"chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.video.videocache/haps/entry/files"
+          ],
+          "teardown-command":[
+          ]
+        },
+        {
+          "type": "PushKit",
+          "pre-push": [
+          ],
+          "push": [
+            "./resource/audio/H264_AAC.mp4 ->/data/media/",
+			"./resource/audio/H264_AAC.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.video.videocache/haps/entry/files/",
+            "./resource/media/H264_MP3.mp4 ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videocache/ohos.acts.multimedia.video.videocache/assets/entry/resources/rawfile/",
+            "./resource/media/mpeg4_aac_720p_30r.ts ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videocache/ohos.acts.multimedia.video.videocache/assets/entry/resources/rawfile/",
+            "./resource/media/vp8_vorbis_720p_30r.webm ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videocache/ohos.acts.multimedia.video.videocache/assets/entry/resources/rawfile/",
+			"./resource/audio/H264_AAC.mp4 ->/data/app/el1/bundle/public/ohos.acts.multimedia.video.videocache/ohos.acts.multimedia.video.videocache/assets/entry/resources/rawfile/"
+          ]
+        },
+	    {
+          "type": "ShellKit",
+          "run-command": [
+			"chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.video.videocache/haps/entry/files/*"
+          ],
+          "teardown-command":[
+          ]
+        }
+    ]
+}
