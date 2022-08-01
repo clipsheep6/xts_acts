@@ -1321,7 +1321,6 @@ describe('webgl1Test_webgl5', function() {
 	 * @tc.desc Test uniformMatrix2fv.
 	 */
 	it('testUniformMatrix2fv_03', 0, async function(done) {
-		//initContext();
 		console.info('jsWebGL testUniformMatrix2fv_03 test start ...66');
 		const buffer = gl.createBuffer();
 		const uniformlocationObj = gl.getUniformLocation(buffer, "a_Position");
