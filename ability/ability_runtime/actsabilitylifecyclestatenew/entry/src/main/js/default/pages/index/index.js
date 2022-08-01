@@ -24,20 +24,20 @@ export default {
         this.title = this.$t('strings.world');
     },
     onShow() {
-        console.info('====onShow finish====<')
-        const core = Core.getInstance()
+        console.info('====onShow finish====<');
+        const core = Core.getInstance();
         const expectExtend = new ExpectExtend({
             'id': 'extend'
         })
-        const reportExtend = new ReportExtend(file)
-        core.addService('expect', expectExtend)
-        core.addService('report', reportExtend)
-        core.init()
-        const configService = core.getDefaultService('config')
-        configService.setConfig(this)
+        const reportExtend = new ReportExtend(file);
+        core.addService('expect', expectExtend);
+        core.addService('report', reportExtend);
+        core.init();
+        const configService = core.getDefaultService('config');
+        configService.setConfig(this);
 
-        require('../../../test/List.test')
-        core.execute()
+        require('../../../test/List.test');
+        core.execute();
     },
     onReady() {
     },
