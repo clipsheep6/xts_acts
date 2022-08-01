@@ -2034,10 +2034,11 @@ function createCommonEventIVIActiveSubscriber() {
         .then(subscriber => {
             console.info('createCommonEventIVIActiveSubscriber success');
             var mySubscriber = subscriber;
-            console.log(subscriber);
+            console.info("createSubscriber subscriber:" + JSON.stringify(subscriber));
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {

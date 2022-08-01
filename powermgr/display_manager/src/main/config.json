@@ -14,8 +14,6 @@
   "deviceConfig": {},
   "module": {
     "package": "com.example.mypowerdisplayapp",
-    "name": ".entry",
-    "MainAbility":".MainAbility",
     "srcPath":"",
     "deviceType": [
       "phone"
@@ -88,6 +86,8 @@
     "testRunner": {
       "name": "OpenHarmonyTestRunner",
       "srcPath": "TestRunner"
-    }
+    },
+    "name": ".entry",
+    "mainAbility":".MainAbility"
   }
 }
