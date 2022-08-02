@@ -1118,7 +1118,6 @@ describe('Image_test', function () {
                 };
                 imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
                     globalpixelmap = pixelmap;
-
                     if (pixelmap == undefined) {
                         console.info('TC_050-11 success ');
                         expect(true).assertTrue();
@@ -1167,12 +1166,12 @@ describe('Image_test', function () {
                 };
                 imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
                     globalpixelmap = pixelmap;
-
                     if (pixelmap == undefined) {
                         console.info('TC_050-12 success ');
                         expect(true).assertTrue();
                         done();
                     } else {
+                        console.info('TC_050-12 createPixelMap err: ' + err);
                         expect(false).assertTrue();
                         done();
                     }
@@ -1776,12 +1775,12 @@ describe('Image_test', function () {
             };
             imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
-
                 if (pixelmap == undefined) {
                     console.info('TC_067-11 success ');
                     expect(true).assertTrue();
                     done();
                 } else {
+                    console.info('TC_067-11 createPixelMap err:' + err);
                     expect(false).assertTrue();
                     done();
                 }
@@ -2414,12 +2413,12 @@ describe('Image_test', function () {
             };
             imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
-
                 if (pixelmap == undefined) {
                     console.info('TC_068-11 success ');
                     expect(true).assertTrue();
                     done();
                 } else {
+                    console.info('TC_068-11 createPixelMap err: ' + err);
                     expect(false).assertTrue();
                     done();
                 }
@@ -2996,12 +2995,12 @@ describe('Image_test', function () {
             };
             imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
-
                 if (pixelmap == undefined) {
                     console.info('TC_163-11 success ');
                     expect(true).assertTrue();
                     done();
                 } else {
+                    console.info('TC_163-11 createPixelMap err: ' + err);
                     expect(false).assertTrue();
                     done();
                 }
@@ -3172,6 +3171,116 @@ describe('Image_test', function () {
                 })
             })
         }
+    })
+
+    /**
+     * @tc.number    : editable_001
+     * @tc.name      : create pixelmap-callback (editable: true, pixelFormat: ARGB_8888, size: { height: 4, width: 6 },bytes = buffer)
+     * @tc.desc      : 1.create InitializationOptions object
+     *                 2.set editable,pixelFormat,size
+     *                 3.using color and opts create newPixelMap
+     *                 4.return newpixelmap not empty
+     * @tc.size      : MEDIUM
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+     it('editable_001', 0, async function (done) {
+        const Color = new ArrayBuffer(96);
+        let edit = true;
+        let opts = { editable: true, pixelFormat: 1, size: { height: 4, width: 6 } }
+        image.createPixelMap(Color, opts, (err, pixelmap) => {
+            expect(pixelmap != undefined).assertTrue();
+            console.info('editable_001 editable: ' + pixelmap.isEditable);
+            expect(pixelmap.isEditable == opts.editable).assertTrue();
+            console.info('editable_001 edit: ' + edit);
+            expect(pixelmap.isEditable == edit).assertTrue();
+            done();
+        })
+    })
+
+    /**
+     * @tc.number    : editable_002
+     * @tc.name      : create pixelmap-callback (editable: false, pixelFormat: ARGB_8888, size: { height: 4, width: 6 },bytes = buffer)
+     * @tc.desc      : 1.create InitializationOptions object
+     *                 2.set editable,pixelFormat,size
+     *                 3.using color and opts create newPixelMap
+     *                 4.return newpixelmap not empty
+     * @tc.size      : MEDIUM
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it('editable_002', 0, async function (done) {
+        const Color = new ArrayBuffer(96);
+        let edit = false;
+        let opts = { editable: false, pixelFormat: 1, size: { height: 4, width: 6 } }
+        image.createPixelMap(Color, opts, (err, pixelmap) => {
+            expect(pixelmap != undefined).assertTrue();
+            console.info('editable_002 editable: ' + pixelmap.isEditable);
+            expect(pixelmap.isEditable == opts.editable).assertTrue();
+            console.info('editable_002 edit: ' + edit);
+            expect(pixelmap.isEditable == edit).assertTrue();
+            done();
+        })
+    })
+
+    /**
+     * @tc.number    : editable_003
+     * @tc.name      : create pixelmap-promise (editable: true, pixelFormat: RGB_565, size: { height: 4, width: 6 }, bytes = buffer)
+     * @tc.desc      : 1.create InitializationOptions object
+     *                 2.set editable,pixeFormat,size
+     *                 3.using color and opts create newPixelMap
+     *                 4.return newpixelmap not empty
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it('editable_003', 0, async function (done) {
+        const Color = new ArrayBuffer(96);
+        let edit = true;
+        let opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
+        image.createPixelMap(Color, opts)
+            .then(pixelmap => {
+                console.info('editable_003 editable: ' + pixelmap.isEditable);
+                expect(pixelmap != undefined).assertTrue();
+                expect(pixelmap.isEditable == opts.editable).assertTrue();
+                expect(pixelmap.isEditable == edit).assertTrue();
+                done();
+            })
+            .catch(error => {
+                console.log('editable_003 err' + error);
+                expect(false).assertTrue();
+                done();
+            })
+    })
+
+    /**
+     * @tc.number    : editable_004
+     * @tc.name      : create pixelmap-promise (editable: false, pixelFormat: RGB_565, size: { height: 4, width: 6 }, bytes = buffer)
+     * @tc.desc      : 1.create InitializationOptions object
+     *                 2.set editable,pixeFormat,size
+     *                 3.using color and opts create newPixelMap
+     *                 4.return newpixelmap not empty
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it('editable_004', 0, async function (done) {
+        const Color = new ArrayBuffer(96);
+        let edit = false;
+        let opts = { editable: false, pixelFormat: 2, size: { height: 4, width: 6 } }
+        image.createPixelMap(Color, opts)
+            .then(pixelmap => {
+                console.info('editable_004 editable: ' + pixelmap.isEditable);
+                expect(pixelmap != undefined).assertTrue();
+                expect(pixelmap.isEditable == opts.editable).assertTrue();
+                expect(pixelmap.isEditable == edit).assertTrue();
+                done();
+            })
+            .catch(error => {
+                console.log('editable_004 err' + error);
+                expect(false).assertTrue();
+                done();
+            })
     })
 })
 }
