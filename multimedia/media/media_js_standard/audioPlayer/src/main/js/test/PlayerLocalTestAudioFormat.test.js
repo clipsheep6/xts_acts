@@ -15,8 +15,9 @@
 
 import media from '@ohos.multimedia.media'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export default function PlayerLocalTestAudioFormat() {
 describe('PlayerLocalTestAudioFormat', function () {
     const MAX_VOLUME = 1;
     const PLAY_TIME = 3000;
@@ -78,11 +79,11 @@ describe('PlayerLocalTestAudioFormat', function () {
             console.info('case reset success');
             expect(audioPlayer.state).assertEqual('idle');
             audioPlayer.release();
-            audioPlayer = undefined;
+            audioPlayer = null;
             done();
         });
         audioPlayer.on('timeUpdate', (seekDoneTime) => {
-            if (typeof (seekDoneTime) == "undefined") {
+            if (seekDoneTime == null) {
                 console.info(`case seek filed,errcode is ${seekDoneTime}`);
                 audioPlayer.release();
                 expect().assertFail();
@@ -506,3 +507,4 @@ describe('PlayerLocalTestAudioFormat', function () {
         playSource('62.m4a', done);
     })
 })
+}
