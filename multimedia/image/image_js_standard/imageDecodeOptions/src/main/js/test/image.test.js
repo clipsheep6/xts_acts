@@ -3175,7 +3175,8 @@ describe('Image_test', function () {
 
     /**
      * @tc.number    : editable_001
-     * @tc.name      : create pixelmap-callback (editable: true, pixelFormat: ARGB_8888, size: { height: 4, width: 6 },bytes = buffer)
+     * @tc.name      : create pixelmap-callback (editable: true, pixelFormat: ARGB_8888,
+     *                 size: { height: 4, width: 6 },bytes = buffer)
      * @tc.desc      : 1.create InitializationOptions object
      *                 2.set editable,pixelFormat,size
      *                 3.using color and opts create newPixelMap
@@ -3200,7 +3201,8 @@ describe('Image_test', function () {
 
     /**
      * @tc.number    : editable_002
-     * @tc.name      : create pixelmap-callback (editable: false, pixelFormat: ARGB_8888, size: { height: 4, width: 6 },bytes = buffer)
+     * @tc.name      : create pixelmap-callback (editable: false, pixelFormat: ARGB_8888,
+     *                 size: { height: 4, width: 6 },bytes = buffer)
      * @tc.desc      : 1.create InitializationOptions object
      *                 2.set editable,pixelFormat,size
      *                 3.using color and opts create newPixelMap
@@ -3225,7 +3227,8 @@ describe('Image_test', function () {
 
     /**
      * @tc.number    : editable_003
-     * @tc.name      : create pixelmap-promise (editable: true, pixelFormat: RGB_565, size: { height: 4, width: 6 }, bytes = buffer)
+     * @tc.name      : create pixelmap-promise (editable: true, pixelFormat: RGB_565,
+     *                 size: { height: 4, width: 6 }, bytes = buffer)
      * @tc.desc      : 1.create InitializationOptions object
      *                 2.set editable,pixeFormat,size
      *                 3.using color and opts create newPixelMap
@@ -3255,7 +3258,8 @@ describe('Image_test', function () {
 
     /**
      * @tc.number    : editable_004
-     * @tc.name      : create pixelmap-promise (editable: false, pixelFormat: RGB_565, size: { height: 4, width: 6 }, bytes = buffer)
+     * @tc.name      : create pixelmap-promise (editable: false, pixelFormat: RGB_565,
+     *                 size: { height: 4, width: 6 }, bytes = buffer)
      * @tc.desc      : 1.create InitializationOptions object
      *                 2.set editable,pixeFormat,size
      *                 3.using color and opts create newPixelMap
