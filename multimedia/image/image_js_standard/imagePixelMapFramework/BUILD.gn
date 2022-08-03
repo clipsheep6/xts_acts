@@ -13,7 +13,7 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_js_hap_suite("image_pixelmapframework_js_hap") {
+ohos_hap_assist_suite("image_pixelmapframework_js_hap") {
   hap_profile = "./src/main/config.json"
   deps = [
     ":image_pixelmapframework_js_assets",
@@ -21,6 +21,8 @@ ohos_js_hap_suite("image_pixelmapframework_js_hap") {
   ]
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsImagePixelMapFrameworkJsTest"
+  subsystem_name = "multimedia"
+  part_name = "image"
 }
 ohos_js_assets("image_pixelmapframework_js_assets") {
   js2abc = true
