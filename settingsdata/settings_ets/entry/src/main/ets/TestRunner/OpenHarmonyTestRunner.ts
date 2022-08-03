@@ -24,7 +24,7 @@ function translateParamsToString(parameters) {
         '-s level', '-s testType', '-s size', '-s timeout',
         '-s package'
     ])
-    let targetParams = '';
+    let targetParams = ''
     for (const key in parameters) {
         if (keySet.has(key)) {
             targetParams += ' ' + key + ' ' + parameters[key]
@@ -34,7 +34,7 @@ function translateParamsToString(parameters) {
 }
 
 async function onAbilityCreateCallback() {
-    console.log('onAbilityCreateCallback');
+    console.log('onAbilityCreateCallback')
 }
 
 async function addAbilityMonitorCallback(err: any) {
@@ -57,7 +57,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
         let lMonitor = {
             abilityName: testAbilityName,
             onAbilityCreate: onAbilityCreateCallback,
-        };
+        }
         var testAbilityName = abilityDelegatorArguments.parameters['-p'] + '.TestAbility'
         abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
         var cmd = 'aa start -d 0 -a ' + testAbilityName + ' -b ' + abilityDelegatorArguments.bundleName
@@ -65,13 +65,13 @@ export default class OpenHarmonyTestRunner implements TestRunner {
         console.info('cmd : '+cmd)
         abilityDelegator.executeShellCommand(cmd,
             (err: any, d: any) => {
-                console.info('executeShellCommand : err : ' + JSON.stringify(err));
-                console.info('executeShellCommand : data : ' + d.stdResult);
-                console.info('executeShellCommand : data : ' + d.exitCode);
+                console.info('executeShellCommand : err : ' + JSON.stringify(err))
+                console.info('executeShellCommand : data : ' + d.stdResult)
+                console.info('executeShellCommand : data : ' + d.exitCode)
             })
         console.info('OpenHarmonyTestRunner onRun call abilityDelegator.getAppContext')
         var context = abilityDelegator.getAppContext()
         console.info('getAppContext : ' + JSON.stringify(context))
         console.info('OpenHarmonyTestRunner onRun end')
     }
-};
+}
