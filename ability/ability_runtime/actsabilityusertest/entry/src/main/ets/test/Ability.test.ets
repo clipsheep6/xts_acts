@@ -36,14 +36,14 @@ export default function abilityTest() {
                 expect(data.event == "ACTS_StartAbility_CommonEvent").assertTrue();
                 console.log("====>0100 Subscribe CallBack data:====>" + JSON.stringify(data));
                 if (data.event == "ACTS_StartAbility_CommonEvent") {
-                    startresult = true
+                    startresult = true;
                 }
                 commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
             }
 
             function UnSubscribeCallback() {
                 console.log("====>UnSubscribeCallback====>");
-                flag = false
+                flag = false;
                 expect(startresult).assertEqual(true);
                 done();
             }
@@ -116,7 +116,7 @@ export default function abilityTest() {
 
             function timeout() {
                 console.log('ACTS_StartAbility_Callback_Error_0200 - timeout');
-                commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
+                commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
             }
 
             setTimeout(timeout, START_ABILITY_TIMEOUT);
@@ -169,7 +169,7 @@ export default function abilityTest() {
                 if (flag == true) {
                     expect().assertFail();
                     console.log('ACTS_StartAbility_Promise_Successfully_0100 - timeout');
-                    commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
+                    commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
                 }
             }
 
@@ -216,7 +216,7 @@ export default function abilityTest() {
 
             function timeout() {
                 console.log('ACTS_StartAbility_Promise_Error_0200 - timeout');
-                commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
+                commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
             }
 
             setTimeout(timeout, START_ABILITY_TIMEOUT);
