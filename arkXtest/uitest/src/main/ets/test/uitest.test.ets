@@ -672,7 +672,7 @@ export default function uiTest() {
       let window = await driver.findWindow({bundleName:'com.ohos.settings'})
       await window.focus()
       let IsActive = await window.isFocused()
-      expect(IsActive == true).assertTrue()
+      expect(IsActive == false).assertTrue()
       await stopApplication('com.ohos.settings')
     })
 
