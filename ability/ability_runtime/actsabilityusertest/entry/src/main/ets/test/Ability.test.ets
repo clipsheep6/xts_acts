@@ -136,14 +136,14 @@ export default function abilityTest() {
                 expect(data.event == "ACTS_StartAbility_CommonEvent").assertTrue();
                 console.log("====>0100 Subscribe CallBack data:====>" + JSON.stringify(data));
                 if (data.event == "ACTS_StartAbility_CommonEvent") {
-                    startresult = true
+                    startresult = true;
                 }
                 commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
             }
 
             function UnSubscribeCallback() {
                 console.log("====>UnSubscribeCallback====>");
-                flag = false
+                flag = false;
                 expect(startresult).assertEqual(true);
                 done();
             }
