@@ -20,14 +20,14 @@ import router from '@system.router'
 struct button_testcase {
   @State stateEffect: boolean = true
   @State ButtonType: ButtonType = ButtonType.Circle
-  private content: string = "Button Page";
+  private content: string = 'Button Page'
 
   onPageShow() {
-    console.info('Button page show called');
+    console.info('Button page show called')
   }
 
   onBuildDone() {
-    console.info('Button page build done called');
+    console.info('Button page build done called')
   }
 
   build() {
@@ -48,7 +48,7 @@ struct button_testcase {
         })
         .padding(10)
       Button() {
-        Text("2.Capsule")
+        Text('2.Capsule')
       }
       .type(ButtonType.Capsule)
       .stateEffect(false)
@@ -57,7 +57,7 @@ struct button_testcase {
       .key('button1')
 
       Button() {
-        Text("3.Normal")
+        Text('3.Normal')
       }.type(ButtonType.Normal)
       .backgroundColor('#0D9FFB')
       .key('button2')
