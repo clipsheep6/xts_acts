@@ -15,12 +15,12 @@
  */
 
 export default class Utils {
-  static rect_left;
-  static rect_top;
-  static rect_right;
-  static rect_bottom;
-  static rect_value;
-  static notCheck = true;
+  static rect_left
+  static rect_top
+  static rect_right
+  static rect_bottom
+  static rect_value
+  static notCheck = true
 
   static sleep(time) {
     return new Promise((resolve, reject) => {
@@ -35,9 +35,9 @@ export default class Utils {
   static getComponentRect(key) {
     let strJson = getInspectorByKey(key);
     let obj = JSON.parse(strJson);
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
+    console.info('[getInspectorByKey] current component obj is: ' + JSON.stringify(obj))
     let rectInfo = JSON.parse('[' + obj.$rect + ']')
-    console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
+    console.info('[getInspectorByKey] rectInfo is: ' + rectInfo)
     this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
     this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
     this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
@@ -58,19 +58,19 @@ export default class Utils {
   }
 
   static async drags(downX, downY, upX, upY, steps, drag) {
-    var xStep;
-    var yStep;
-    var swipeSteps;
-    var ret;
-    xStep = 0;
-    yStep = 0;
-    ret = false;
-    swipeSteps = steps;
+    var xStep
+    var yStep
+    var swipeSteps
+    var ret
+    xStep = 0
+    yStep = 0
+    ret = false
+    swipeSteps = steps
     if (swipeSteps == 0) {
-      swipeSteps = 1;
+      swipeSteps = 1
     }
-    xStep = (upX - downX) / swipeSteps;
-    yStep = (upY - downY) / swipeSteps;
+    xStep = (upX - downX) / swipeSteps
+    yStep = (upY - downY) / swipeSteps
     console.info('move step is: ' + 'xStep: ' + xStep + '    yStep: ' + yStep)
     var downPonit: TouchObject = {
       id: 1,
@@ -79,7 +79,7 @@ export default class Utils {
       type: TouchType.Down,
     }
     console.info('down touch started: ' + JSON.stringify(downPonit))
-    sendTouchEvent(downPonit);
+    sendTouchEvent(downPonit)
     console.info('start to move')
     if (drag) {
       await this.sleep(500)
@@ -94,7 +94,7 @@ export default class Utils {
       console.info('move touch started: ' + JSON.stringify(movePoint))
       ret = sendTouchEvent(movePoint)
       if (ret == false) {
-        break;
+        break
       }
       await this.sleep(5)
     }

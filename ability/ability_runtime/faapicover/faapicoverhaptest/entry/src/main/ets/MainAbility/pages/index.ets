@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import file from '@system.file';
+import file from '@system.file'
 import {Core, ExpectExtend, InstrumentLog, ReportExtend} from "deccjsunit/index"
 import list from '../../test/ListTest'
 
@@ -22,20 +22,20 @@ struct Index {
   @State message: string = 'Hello World FA MainAbility'
 
   aboutToAppear() {
-    console.info("start run testcase!!!!")
-    const core = Core.getInstance();
+    console.info('start run testcase!!!!')
+    const core = Core.getInstance()
     const expectExtend = new ExpectExtend({
       'id': 'extend'
-    });
-    core.addService('expect', expectExtend);
-    const reportExtend = new ReportExtend(file);
-    core.addService('report', reportExtend);
-    core.init();
-    core.subscribeEvent('task', reportExtend);
-    const configService = core.getDefaultService('config');
+    })
+    core.addService('expect', expectExtend)
+    const reportExtend = new ReportExtend(file)
+    core.addService('report', reportExtend)
+    core.init()
+    core.subscribeEvent('task', reportExtend)
+    const configService = core.getDefaultService('config')
     configService.setConfig(this)
-    list();
-    core.execute();
+    list()
+    core.execute()
   }
 
   build() {
