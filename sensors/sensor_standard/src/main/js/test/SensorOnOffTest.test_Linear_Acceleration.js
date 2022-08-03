@@ -16,8 +16,8 @@ import sensor from '@ohos.sensor'
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
-export default function SensorJsTest_sensor_11() {
-describe("SensorJsTest_sensor_11", function () {
+export default function SensorJsTest_Sensor_13() {
+describe("SensorJsTest_Sensor_13", function () {
     beforeAll(function () {
 
         /*
@@ -51,24 +51,24 @@ describe("SensorJsTest_sensor_11", function () {
     })
 
     /*
-     * @tc.number: SUB_SensorsSystem_Heart_Rate_JSTest_0010
-     * @tc.name: SensorHeartRateJSTest001
+     * @tc.number: SUB_SensorsSystem_Linear_Acceleration_JSTest_0010
+     * @tc.name: SensorLinearAccelerationJSTest001
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SUB_SensorsSystem_Heart_Rate_JSTest_0010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        console.info('----------------------SUB_SensorsSystem_Heart_Rate_JSTest_0010---------------------------');
+    it("SUB_SensorsSystem_Linear_Acceleration_JSTest_0010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        console.info('---------------SUB_SensorsSystem_Linear_Acceleration_JSTest_0010-----------------');
         function offPromise() {
             return new Promise((resolve, reject) => {
-                sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, (error) => {
+                sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, (error) => {
                     if (error) {
-                        console.info('SensorHeartRateJSTest001  off error');
+                        console.info('SensorLinearAccelerationJSTest001  off error');
                         expect(false).assertTrue();
                         console.info('setTimeout ..start')
                         setTimeout((err) => {
                             reject(err);
                         }, 500);
                     } else {
-                        console.info('SensorHeartRateJSTest001  off success');
+                        console.info('SensorLinearAccelerationJSTest001  off success');
                         expect(true).assertTrue();
                         setTimeout(() => {
                             resolve();
@@ -79,16 +79,19 @@ describe("SensorJsTest_sensor_11", function () {
         }
 
         let promise = new Promise((resolve, reject) => {
-            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, function (error, data) {
+            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, function (error, data) {
                 if (error) {
-                    console.info('SensorHeartRateJSTest001  on error');
+                    console.info('SensorLinearAccelerationJSTest001  on error');
                     expect(false).assertTrue();
                     setTimeout((err) => {
                         reject(err);
                     }, 500);
                 } else {
-                    console.info('SensorHeartRateJSTest001  once success heartRate: ' + data.heartRate);
-                    expect(typeof (data.heartRate)).assertEqual("number");
+                    console.info('SensorLinearAccelerationJSTest001  on  success, x: ' + data.x + "y: " 
+                        + data.y + "z: " + data.z);
+                    expect(typeof (data.x)).assertEqual("number");
+                    expect(typeof (data.y)).assertEqual("number");
+                    expect(typeof (data.z)).assertEqual("number");
                     setTimeout(() => {
                         resolve();
                     }, 500);
@@ -99,30 +102,33 @@ describe("SensorJsTest_sensor_11", function () {
         await promise.then(() => {
             return offPromise();
         }, () => {
-            console.info("SensorHeartRateJSTest001 reject");
+            console.info("SensorLinearAccelerationJSTest001 reject");
         })
         done();
     })
 
     /*
-     * @tc.number: SUB_SensorsSystem_Heart_Rate_JSTest_0050
-     * @tc.name: SensorHeartRateJSTest005
+     * @tc.number: SUB_SensorsSystem_Linear_Acceleration_JSTest_0050
+     * @tc.name: SensorLinearAccelerationJSTest005
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SUB_SensorsSystem_Heart_Rate_JSTest_0050", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+    it("SUB_SensorsSystem_Linear_Acceleration_JSTest_0050", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         function onceSensorCallback(error, data) {
             if (error) {
-                console.info('SensorHeartRateJSTest005  once error');
+                console.info('SensorLinearAccelerationJSTest005  once error');
                 expect(false).assertTrue();
             } else {
-                console.info('SensorHeartRateJSTest005  once success heartRate: ' + data.heartRate);
-                expect(typeof (data.heartRate)).assertEqual("number");
+                console.info('SensorLinearAccelerationJSTest005  on  success, x: ' + data.x + "y: " 
+                    + data.y + "z: " + data.z);
+                expect(typeof (data.x)).assertEqual("number");
+                expect(typeof (data.y)).assertEqual("number");
+                expect(typeof (data.z)).assertEqual("number");
             }
             setTimeout(() => {
                 done();
             }, 500);
         }
-        sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, onceSensorCallback);
+        sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, onceSensorCallback);
     })
 })
 }

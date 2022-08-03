@@ -15,10 +15,10 @@
 import sensor from '@ohos.sensor'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
-export default function SensorJsTest_sensor_6() {
-describe("SensorJsTest_sensor_6", function () {
+export default function SensorJsTest_Sensor_6() {
+describe("SensorJsTest_Sensor_6", function () {
     function callback(data) {
-        console.info('SensorAccelerometerUncalibratedJSTest on  success, x: ' + data.x + "y: " 
+        console.info('AccelerometerUncalibratedJSTest on  success, x: ' + data.x + "y: " 
         + data.y + "z: " + data.z + "biasX:" + data.biasX + "biasY: " 
         + data.biasY + "biasZ: " + data.biasZ);
         expect(typeof (data.x)).assertEqual("number");
@@ -30,7 +30,7 @@ describe("SensorJsTest_sensor_6", function () {
     }
 
     function callback2(data) {
-        console.info('SensorAccelerometerUncalibratedJSTest on  success, x: ' + data.x + "y: " 
+        console.info('AccelerometerUncalibratedJSTest on  success, x: ' + data.x + "y: " 
         + data.y + "z: " + data.z + "biasX:" + data.biasX + "biasY: " 
         + data.biasY + "biasZ: " + data.biasZ);
         expect(typeof (data.x)).assertEqual("number");
@@ -80,11 +80,11 @@ describe("SensorJsTest_sensor_6", function () {
 
      /*
      * @tc.number:SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0010
-     * @tc.name: SensorAccelerometerUncalibratedJSTest001
+     * @tc.name: AccelerometerUncalibratedJSTest001
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest001----------------');
+    it("AccelerometerUncalibratedJSTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest001----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
         setTimeout(() => {
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED);
@@ -94,29 +94,29 @@ describe("SensorJsTest_sensor_6", function () {
 
     /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0020
-     * @tc.name: SensorAccelerometerUncalibratedJSTest002
+     * @tc.name: AccelerometerUncalibratedJSTest002
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest002----------------');
+    it("AccelerometerUncalibratedJSTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest002----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback, { 'interval': 100000000 });
         setTimeout(() => {
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest002 off in----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest002 off in----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED);
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest002 off end----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest002 off end----------------');
             done();
         }, 500);
     })
 
     /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0030
-     * @tc.name: SensorAccelerometerUncalibratedJSTest003
+     * @tc.name: AccelerometerUncalibratedJSTest003
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest003----------------');
+    it("AccelerometerUncalibratedJSTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest003----------------');
         function onSensorCallback(data) {
-            console.info('SensorAccelerometerUncalibratedJSTest003  on error');
+            console.info('AccelerometerUncalibratedJSTest003  on error');
             expect(false).assertTrue();
             done();
         }
@@ -124,7 +124,7 @@ describe("SensorJsTest_sensor_6", function () {
             sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,
 			onSensorCallback, { 'interval': 100000000 }, 5);
         } catch (error) {
-            console.info("SensorAccelerometerUncalibratedJSTest003 error:" + error);
+            console.info("AccelerometerUncalibratedJSTest003 error:" + error);
             errMessage = error.toString().slice(12, 49);
             expect(errMessage).assertEqual(errMessages[0]);
             done();
@@ -133,11 +133,11 @@ describe("SensorJsTest_sensor_6", function () {
 
     /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0040
-     * @tc.name: SensorAccelerometerUncalibratedJSTest004
+     * @tc.name: AccelerometerUncalibratedJSTest004
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest004----------------');
+    it("AccelerometerUncalibratedJSTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest004----------------');
         sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
         setTimeout(() => {
             expect(true).assertTrue();
@@ -147,20 +147,20 @@ describe("SensorJsTest_sensor_6", function () {
 
     /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0050
-     * @tc.name: SensorAccelerometerUncalibratedJSTest005
+     * @tc.name: AccelerometerUncalibratedJSTest005
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest005----------------');
+    it("AccelerometerUncalibratedJSTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest005----------------');
         function onceSensorCallback(data) {
-            console.info('SensorAccelerometerUncalibratedJSTest005  on error');
+            console.info('AccelerometerUncalibratedJSTest005  on error');
             expect(false).assertTrue();
             done();
         }
         try {
             sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, onceSensorCallback, 5);
         } catch (error) {
-            console.info("SensorAccelerometerUncalibratedJSTest005 error:" + error);
+            console.info("AccelerometerUncalibratedJSTest005 error:" + error);
             errMessage = error.toString().slice(14, 51);
             expect(errMessage).assertEqual(errMessages[0]);
             done();
@@ -169,15 +169,15 @@ describe("SensorJsTest_sensor_6", function () {
 
    /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0060
-     * @tc.name: SensorAccelerometerUncalibratedJSTest006
+     * @tc.name: AccelerometerUncalibratedJSTest006
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest006----------------');
+    it("AccelerometerUncalibratedJSTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest006----------------');
         try {
             sensor.off(string, "");
         } catch (error) {
-            console.info("SensorAccelerometerUncalibratedJSTest006 error:" + error);
+            console.info("AccelerometerUncalibratedJSTest006 error:" + error);
             errMessage = error.toString().slice(16, 40);
             expect(errMessage).assertEqual(errMessages[2]);
             done();
@@ -186,13 +186,13 @@ describe("SensorJsTest_sensor_6", function () {
 
    /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0070
-     * @tc.name: SensorAccelerometerUncalibratedJSTest007
+     * @tc.name: AccelerometerUncalibratedJSTest007
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest007----------------');
+    it("AccelerometerUncalibratedJSTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest007----------------');
         function onSensorCallback(data) {
-            console.info('SensorAccelerometerUncalibratedJSTest007  on error');
+            console.info('AccelerometerUncalibratedJSTest007  on error');
             expect(false).assertTrue();
             done();
         }
@@ -206,20 +206,20 @@ describe("SensorJsTest_sensor_6", function () {
 
     /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0080
-     * @tc.name: SensorAccelerometerUncalibratedJSTest008
+     * @tc.name: AccelerometerUncalibratedJSTest008
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest008----------------');
+    it("AccelerometerUncalibratedJSTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest008----------------');
         function onSensorCallback(data) {
-            console.info('SensorAccelerometerUncalibratedJSTest008  on error');
+            console.info('AccelerometerUncalibratedJSTest008  on error');
             expect(false).assertTrue();
             done();
         }
         try {
             sensor.off(1000000, onSensorCallback);
         } catch (error) {
-            console.info("SensorAccelerometerUncalibratedJSTest008 error:" + error);
+            console.info("AccelerometerUncalibratedJSTest008 error:" + error);
             errMessage = error.toString().slice(13, 35);
             expect(errMessage).assertEqual(errMessages[1]);
             done();
@@ -228,95 +228,95 @@ describe("SensorJsTest_sensor_6", function () {
 
     /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0090
-     * @tc.name: SensorAccelerometerUncalibratedJSTest009
+     * @tc.name: AccelerometerUncalibratedJSTest009
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest009----------------');
+    it("AccelerometerUncalibratedJSTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest009----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback2);
         setTimeout(() => {
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest009 off in----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest009 off in----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED);
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest009 off end----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest009 off end----------------');
             done();
         }, 1000);
     })
 
     /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0100
-     * @tc.name: SensorAccelerometerUncalibratedJSTest010
+     * @tc.name: AccelerometerUncalibratedJSTest010
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest010----------------');
+    it("AccelerometerUncalibratedJSTest010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest010----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback2);
         setTimeout(() => {
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest010 off in----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest010 off in----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest010 off end----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest010 off end----------------');
         }, 500);
         setTimeout(() => {
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest010 off in----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest010 off in----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback2);
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest010 off end----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest010 off end----------------');
             done();
         }, 1000);
     })
 
     /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0110
-     * @tc.name: SensorAccelerometerUncalibratedJSTest011
+     * @tc.name: AccelerometerUncalibratedJSTest011
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest011", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest011----------------');
+    it("AccelerometerUncalibratedJSTest011", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest011----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback, { 'interval': 100000000 });
         sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback2);
         setTimeout(() => {
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest011 off in----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest011 off in----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED);
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest011 off end----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest011 off end----------------');
             done();
         }, 1000);
     })
 
     /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0120
-     * @tc.name: SensorAccelerometerUncalibratedJSTest012
+     * @tc.name: AccelerometerUncalibratedJSTest012
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest012", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest012----------------');
+    it("AccelerometerUncalibratedJSTest012", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest012----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback, { 'interval': 100000000 });
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback2, { 'interval': 100000000 });
         setTimeout(() => {
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest012 off in----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest012 off in----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest012 off end----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest012 off end----------------');
         }, 500);
         setTimeout(() => {
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest012 off in----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest012 off in----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback2);
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest012 off end----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest012 off end----------------');
             done();
         }, 1000);
     })
 
     /*
      * @tc.number: SUB_SensorsSystem_Accelerometer_Uncalibrated_JSTest_0130
-     * @tc.name: SensorAccelerometerUncalibratedJSTest013
+     * @tc.name: AccelerometerUncalibratedJSTest013
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("SensorAccelerometerUncalibratedJSTest013", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorAccelerometerUncalibratedJSTest013----------------');
+    it("AccelerometerUncalibratedJSTest013", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------AccelerometerUncalibratedJSTest013----------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback, { 'interval': 100000000 });
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback2, { 'interval': 100000000 });
         setTimeout(() => {
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest013 off in----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest013 off in----------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED);
-            console.info('----------------------SensorAccelerometerUncalibratedJSTest013 off end----------------');
+            console.info('----------------------AccelerometerUncalibratedJSTest013 off end----------------');
             done();
         }, 1000);
     })

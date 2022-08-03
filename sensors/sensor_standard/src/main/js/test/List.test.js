@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 import SystemParameterTest from './SensorOnOffTest.test.js'
-import SensorJsTest_sensor_2 from './SensorGeomagneticTest.test.js'
-import SensorJsTest_sensor_1 from './SensorGeneralalgorithm.test.js'
+import SensorJsTest_Sensor_2 from './SensorGeomagneticTest.test.js'
+import SensorJsTest_Sensor_1 from './SensorGeneralalgorithm.test.js'
 export default function testsuite() {
-SensorJsTest_sensor_1()
-SensorJsTest_sensor_2()
+SensorJsTest_Sensor_1()
+SensorJsTest_Sensor_2()
 SystemParameterTest()
 }

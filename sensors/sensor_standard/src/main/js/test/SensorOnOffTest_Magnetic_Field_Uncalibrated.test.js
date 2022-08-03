@@ -16,8 +16,8 @@ import sensor from '@ohos.sensor'
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
-export default function SensorJsTest_sensor_14() {
-describe("SensorJsTest_sensor_14", function () {
+export default function SensorJsTest_Sensor_14() {
+describe("SensorJsTest_Sensor_14", function () {
     function callback(data) {
         console.info("callback" + JSON.stringify(data));
         expect(typeof (data.x)).assertEqual("number");
@@ -76,12 +76,12 @@ describe("SensorJsTest_sensor_14", function () {
     let errMessage;
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest001
+     * @tc.name:MagneticFieldUncalibratedJSTest001
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0010
      */
-    it("SensorMagneticFieldUncalibratedJSTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        console.info('----------------------SensorMagneticFieldUncalibratedJSTest001--------------');
+    it("MagneticFieldUncalibratedJSTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        console.info('----------------------MagneticFieldUncalibratedJSTest001--------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
         setTimeout(()=>{
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED);
@@ -90,30 +90,30 @@ describe("SensorJsTest_sensor_14", function () {
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest002
+     * @tc.name:MagneticFieldUncalibratedJSTest002
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0020
      */
-    it("SensorMagneticFieldUncalibratedJSTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorMagneticFieldUncalibratedJSTest002--------------');
+    it("MagneticFieldUncalibratedJSTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------MagneticFieldUncalibratedJSTest002--------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest002 off in--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest002 off in--------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED);
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest002 off end--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest002 off end--------------');
             done();
         }, 500);
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest003
+     * @tc.name:MagneticFieldUncalibratedJSTest003
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0030
      */
-    it("SensorMagneticFieldUncalibratedJSTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, function (done) {
-        console.info('----------------------SensorMagneticFieldUncalibratedJSTest003--------------');
+    it("MagneticFieldUncalibratedJSTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, function (done) {
+        console.info('----------------------MagneticFieldUncalibratedJSTest003--------------');
         function onSensorCallback(data) {
-            console.info('SensorMagneticFieldUncalibratedJSTest003  on error');
+            console.info('MagneticFieldUncalibratedJSTest003  on error');
             expect(false).assertTrue();
             done();
         }
@@ -121,7 +121,7 @@ describe("SensorJsTest_sensor_14", function () {
             sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,
 			onSensorCallback, {'interval': 100000000}, 5);
         } catch (error) {
-			console.info('SensorMagneticFieldUncalibratedJSTest003 error' +error);
+			console.info('MagneticFieldUncalibratedJSTest003 error' +error);
             errMessage = error.toString().slice(12, 49);
             expect(errMessage).assertEqual(errMessages[0]);
             done();
@@ -129,11 +129,11 @@ describe("SensorJsTest_sensor_14", function () {
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest004
+     * @tc.name:MagneticFieldUncalibratedJSTest004
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0040
      */
-    it("SensorMagneticFieldUncalibratedJSTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+    it("MagneticFieldUncalibratedJSTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
         setTimeout(()=>{
             expect(true).assertTrue();
@@ -142,20 +142,20 @@ describe("SensorJsTest_sensor_14", function () {
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest005
+     * @tc.name:MagneticFieldUncalibratedJSTest005
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0050
      */
-    it("SensorMagneticFieldUncalibratedJSTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, function (done) {
+    it("MagneticFieldUncalibratedJSTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, function (done) {
         function onceSensorCallback(data) {
-            console.info('SensorMagneticFieldUncalibratedJSTest005  on error');
+            console.info('MagneticFieldUncalibratedJSTest005  on error');
             expect(false).assertTrue();
             done();
         }
         try{
             sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, onceSensorCallback, 5);
         } catch (error) {
-            console.info('SensorMagneticFieldUncalibratedJSTest005 error' +error);
+            console.info('MagneticFieldUncalibratedJSTest005 error' +error);
             errMessage = error.toString().slice(14, 51);
             expect(errMessage).assertEqual(errMessages[0]);
             done();
@@ -163,15 +163,15 @@ describe("SensorJsTest_sensor_14", function () {
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest006
+     * @tc.name:MagneticFieldUncalibratedJSTest006
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0060
      */
-    it("SensorMagneticFieldUncalibratedJSTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+    it("MagneticFieldUncalibratedJSTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         try {
             sensor.off(string, "");
         } catch (error) {
-			console.info('SensorMagneticFieldUncalibratedJSTest006 error' + error);
+			console.info('MagneticFieldUncalibratedJSTest006 error' + error);
             errMessage = error.toString().slice(16, 40);
             expect(errMessage).assertEqual(errMessages[2]);
             done();
@@ -179,13 +179,13 @@ describe("SensorJsTest_sensor_14", function () {
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest007
+     * @tc.name:MagneticFieldUncalibratedJSTest007
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0070
      */
-    it("SensorMagneticFieldUncalibratedJSTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+    it("MagneticFieldUncalibratedJSTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         function onSensorCallback(data) {
-            console.info('SensorMagneticFieldUncalibratedJSTest007  on error');
+            console.info('MagneticFieldUncalibratedJSTest007  on error');
             expect(false).assertTrue();
             done();
         }
@@ -198,20 +198,20 @@ describe("SensorJsTest_sensor_14", function () {
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest008
+     * @tc.name:MagneticFieldUncalibratedJSTest008
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0080
      */
-    it("SensorMagneticFieldUncalibratedJSTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+    it("MagneticFieldUncalibratedJSTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         function onSensorCallback(data) {
-            console.info('SensorMagneticFieldUncalibratedJSTest008  on error');
+            console.info('MagneticFieldUncalibratedJSTest008  on error');
             expect(false).assertTrue();
             done();
         }
         try {
             sensor.off(1000000, onSensorCallback);
         } catch (error) {
-            console.info('SensorMagneticFieldUncalibratedJSTest008 error' + error);
+            console.info('MagneticFieldUncalibratedJSTest008 error' + error);
             errMessage = error.toString().slice(13, 35);
             expect(errMessage).assertEqual(errMessages[1]);
             done();
@@ -219,94 +219,94 @@ describe("SensorJsTest_sensor_14", function () {
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest009
+     * @tc.name:MagneticFieldUncalibratedJSTest009
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0090
      */
-    it("SensorMagneticFieldUncalibratedJSTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+    it("MagneticFieldUncalibratedJSTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback2);
         setTimeout(()=>{
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest009 off in--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest009 off in--------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED);
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest009 off end--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest009 off end--------------');
             done();
         }, 1000);
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest010
+     * @tc.name:MagneticFieldUncalibratedJSTest010
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0100
      */
-    it("SensorMagneticFieldUncalibratedJSTest010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+    it("MagneticFieldUncalibratedJSTest010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback2);
         setTimeout(()=>{
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest010 off in--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest010 off in--------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest010 off end--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest010 off end--------------');
         }, 500);
         setTimeout(()=>{
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest010 off in--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest010 off in--------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback2);
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest010 off end--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest010 off end--------------');
             done();
         }, 1000);
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest011
+     * @tc.name:MagneticFieldUncalibratedJSTest011
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0110
      */
-    it("SensorMagneticFieldUncalibratedJSTest011", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorMagneticFieldUncalibratedJSTest011--------------');
+    it("MagneticFieldUncalibratedJSTest011", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------MagneticFieldUncalibratedJSTest011--------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback, {'interval': 100000000});
         sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback2);
         setTimeout(()=>{
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest011 off in--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest011 off in--------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED);
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest011 off end--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest011 off end--------------');
             done();
         }, 1000);
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest012
+     * @tc.name:MagneticFieldUncalibratedJSTest012
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0120
      */
-    it("SensorMagneticFieldUncalibratedJSTest012", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorMagneticFieldUncalibratedJSTest012--------------');
+    it("MagneticFieldUncalibratedJSTest012", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------MagneticFieldUncalibratedJSTest012--------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback, {'interval': 100000000});
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback2, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest012 off in--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest012 off in--------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest012 off end--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest012 off end--------------');
         }, 500);
         setTimeout(()=>{
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest012 off in--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest012 off in--------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback2);
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest012 off end--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest012 off end--------------');
             done();
         }, 1000);
     })
 
     /*
-     * @tc.name:SensorMagneticFieldUncalibratedJSTest013
+     * @tc.name:MagneticFieldUncalibratedJSTest013
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      * @tc.number:SUB_SensorsSystem_Magnetic_Field_Uncalibrated_JSTest_0130
      */
-    it("SensorMagneticFieldUncalibratedJSTest013", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------SensorMagneticFieldUncalibratedJSTest013--------------');
+    it("MagneticFieldUncalibratedJSTest013", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------MagneticFieldUncalibratedJSTest013--------------');
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback, {'interval': 100000000});
         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback2, {'interval': 100000000});
         setTimeout(()=>{
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest013 off in--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest013 off in--------------');
             sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED);
-            console.info('----------------------SensorMagneticFieldUncalibratedJSTest013 off end--------------');
+            console.info('----------------------MagneticFieldUncalibratedJSTest013 off end--------------');
             done();
         }, 1000);
     })
