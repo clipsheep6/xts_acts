@@ -19,7 +19,7 @@ struct badge {
   @State counts: number = 33
   @State message: string = 'new'
   @State active: boolean = false
-  private content: string = "badge Page";
+  private content: string = "badge Page"
 
   onPageShow() {
     console.info('badge page show called');
