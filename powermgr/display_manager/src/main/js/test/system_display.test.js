@@ -302,7 +302,7 @@ describe('SystemDisplayTest', function () {
      * @tc.desc set keep screen on true
      */
     it('set_keep_screen_on_true', 0, async function () {
-        let sleepTime = 35 * 1000;
+        let sleepTime = 1000;
         brightness.setKeepScreenOn({
             keepScreenOn: true,
             fail: (data, code) => {
@@ -329,7 +329,7 @@ describe('SystemDisplayTest', function () {
      * @tc.desc set keep screen on false
      */
     it('set_keep_screen_on_false', 0, async function () {
-        let sleepTime = 35 * 1000;
+        let sleepTime = 1000;
         brightness.setKeepScreenOn({
             keepScreenOn: false,
             fail: (data, code) => {

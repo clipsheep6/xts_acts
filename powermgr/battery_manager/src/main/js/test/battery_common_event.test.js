@@ -1435,6 +1435,8 @@ function createCommonEventAirplaneModeChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1479,6 +1481,8 @@ function createCommonEventFoundationReadySubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1522,6 +1526,8 @@ function createCommonEventAccountDeletedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1565,6 +1571,8 @@ function createCommonEventVisibleAccountsUpdatedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1608,6 +1616,8 @@ function createCommonEventDickEjectSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1651,6 +1661,8 @@ function createCommonEventDickUnmoutableSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1694,6 +1706,8 @@ function createCommonEventDickNadRemovalSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1737,6 +1751,8 @@ function createCommonEventDickMountedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1780,6 +1796,8 @@ function createCommonEventDickUnmountedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1823,6 +1841,8 @@ function createCommonEventDickRemovedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1866,6 +1886,8 @@ function createCommonEventSUBAccessoryDetachedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1909,6 +1931,8 @@ function createCommonEventSUBAccessoryAttachedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1952,6 +1976,8 @@ function createCommonEventSUBDevidceDetachedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -1995,6 +2021,8 @@ function createCommonEventSUBDevidceAttachedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2038,6 +2066,7 @@ function createCommonEventIVIActiveSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
                 return;
             }
             mySubscriber.getCode()
@@ -2082,6 +2111,8 @@ function createCommonEventIVITempratureRecoverySubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2125,6 +2156,8 @@ function createCommonEventIVIVoltageRecoverySubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2168,6 +2201,8 @@ function createCommonEventIVITemperatureAbnormalSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2211,6 +2246,8 @@ function createCommonEventIVIExtremeTemperatureSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2254,6 +2291,8 @@ function createCommonEventIVIHightTemperatureSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2297,6 +2336,8 @@ function createCommonEventIVIVoltageAbnormalSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2340,6 +2381,8 @@ function createCommonEventIVILastmodeSaveSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2383,6 +2426,8 @@ function createCommonEventIVIStandBySubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2426,6 +2471,8 @@ function createCommonEventIVIPauseSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2469,6 +2516,8 @@ function createCommonEventIVISleepSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2512,6 +2561,8 @@ function createCommonEventLocationModeStateChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2555,6 +2606,8 @@ function createCommonEventAbilityUpdatedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2598,6 +2651,8 @@ function createCommonEventAbilityRemovedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2641,6 +2696,8 @@ function createCommonEventAbilityAddedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2684,6 +2741,8 @@ function createCommonEventUserRemovedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2727,6 +2786,8 @@ function createCommonEventUserAddedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2770,6 +2831,8 @@ function createCommonEventPowerSaveModeChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2813,6 +2876,8 @@ function createCommonEventDeviceIdleModeChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2856,6 +2921,8 @@ function createCommonEventNFCActionRFFieldOffDetectedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2899,6 +2966,8 @@ function createCommonEventNFCActionRFFieldOnDetectedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2942,6 +3011,8 @@ function createCommonEventNFCActionAdapterStateChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -2985,6 +3056,8 @@ function createCommonEventA2DPsinkAudioStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3028,6 +3101,8 @@ function createCommonEventA2DPsinkPlayingStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3071,6 +3146,8 @@ function createCommonEventHostStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3114,6 +3191,8 @@ function createCommonEventHostNameUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3157,6 +3236,8 @@ function createCommonEventHostDiscovetyFinishedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3200,6 +3281,8 @@ function createCommonEventHostDiscovetyStartedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3243,6 +3326,8 @@ function createCommonEventHostScanModeUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3286,6 +3371,8 @@ function createCommonEventHostReqDisableSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3329,6 +3416,8 @@ function createCommonEventHostReqEnableSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3372,6 +3461,8 @@ function createBluetoothHostReqDiscoverableSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3415,6 +3506,8 @@ function createBluetoothHostStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3458,6 +3551,8 @@ function createBluetoothHandsfreeunitAgCallStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3501,6 +3596,8 @@ function createBluetoothHandsfreeunitAgCommonEventSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3544,6 +3641,8 @@ function createBluetoothHandsfreeunitAudioStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3587,6 +3686,8 @@ function createBluetoothHandsfreeunitConntectStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3630,6 +3731,8 @@ function createBluetoothRemotedeviceConntectCancelSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3673,6 +3776,8 @@ function createBluetoothRemotedeviceConntectReplySubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3716,6 +3821,8 @@ function createBluetoothRemotedeviceConntectReqSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3759,6 +3866,8 @@ function createBluetoothRemotedevicePairingCancelSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3802,6 +3911,8 @@ function createBluetoothPairingReqSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3845,6 +3956,8 @@ function createBluetoothRemotedeviceUuidValueSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3888,6 +4001,8 @@ function createBluetoothRemotedeviceSdpResultSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3931,6 +4046,8 @@ function createBluetoothRemotedeviceBateryValueUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -3974,6 +4091,8 @@ function createBluetoothRemotedevicePairStateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4017,6 +4136,8 @@ function createBluetoothRemotedeviceNameUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4060,6 +4181,8 @@ function createBluetoothRemotedeviceAclDisconnectedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4103,6 +4226,8 @@ function createBluetoothRemotedeviceAclConnectedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4146,6 +4271,8 @@ function createBluetoothRemotedeviceClassValueUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4189,6 +4316,8 @@ function createBluetoothRemotedeviceDiscoveredSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4232,6 +4361,8 @@ function createBluetoothA2DPsourceCodecValueUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4275,6 +4406,8 @@ function createBluetoothA2DPsourceAvrcpConntectStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4318,6 +4451,8 @@ function createBluetoothA2DPsourcePlayingStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4361,6 +4496,8 @@ function createBluetoothA2DPsourceCurrentDeviceUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4404,6 +4541,8 @@ function createBluetoothA2DPsourceConnectStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4447,6 +4586,8 @@ function createBluetoothHandsfreeAgAudioStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4490,6 +4631,8 @@ function createBluetoothHandsfreeAgConntectDeviceUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4533,6 +4676,8 @@ function createBluetoothHandsfreeAgConntectStateUpdateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4576,6 +4721,8 @@ function createWifiP2PGroupStateChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4619,6 +4766,8 @@ function createWifiP2PCurrentDeviceStateChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4662,6 +4811,8 @@ function createWifiP2PPeersDiscoveryStateChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4705,6 +4856,8 @@ function createWifiP2PPeersStateChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4748,6 +4901,8 @@ function createWifiP2PStateChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4791,6 +4946,8 @@ function createWifiP2PConnStateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4834,6 +4991,8 @@ function createWifiMplinkStateChangeSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4877,6 +5036,8 @@ function createWifiApStaLeaveSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4920,6 +5081,8 @@ function createWifiApStaJoinSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -4963,6 +5126,8 @@ function createWifiHostpotStateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5006,6 +5171,8 @@ function createWifiConnStateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5049,6 +5216,8 @@ function createWifiRssiValueSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5092,6 +5261,8 @@ function createWifiScanFinishedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5135,6 +5306,8 @@ function createWifiPowerStateSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5178,6 +5351,8 @@ function createHwidLogOffSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5221,6 +5396,8 @@ function createHwidTokenInvalidSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5264,6 +5441,8 @@ function createHwidLogoutSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5307,6 +5486,8 @@ function createHwidLoginSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5350,6 +5531,8 @@ function createUserStoppedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5393,6 +5576,8 @@ function createUserStoppingSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5436,6 +5621,8 @@ function createUserUnlockedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5479,6 +5666,8 @@ function createUserStartingSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5522,6 +5711,8 @@ function createUserSwitchedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5565,6 +5756,8 @@ function createUserForgroundSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5608,6 +5801,8 @@ function createUserBackgroundSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5651,6 +5846,8 @@ function createUserStartedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5694,6 +5891,8 @@ function createOfficeModeSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5737,6 +5936,8 @@ function createHomeModeSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5780,6 +5981,8 @@ function createDriveModeSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5823,6 +6026,8 @@ function createManagePackageStorageSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5866,6 +6071,8 @@ function createLocateChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5909,6 +6116,8 @@ function createConfigurationChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5952,6 +6161,8 @@ function createExternalApplicationsUnAvailableSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -5995,6 +6206,8 @@ function createExternalApplicationsAvailableSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6038,6 +6251,8 @@ function createMyPackageNeedsVerificationSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6081,6 +6296,8 @@ function createMyPackageFirstLaunchSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6124,6 +6341,8 @@ function createMyPackageUnsuspendedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6167,6 +6386,8 @@ function createMyPackageSuspendedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6210,6 +6431,8 @@ function createPackagesUnsuspendedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6253,6 +6476,8 @@ function createPackageSuspendedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6296,6 +6521,8 @@ function createPackageDataClearedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6339,6 +6566,8 @@ function createPackageRestartedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6382,6 +6611,8 @@ function createPackageChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6425,6 +6656,8 @@ function createPackageFullyRemovedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6468,6 +6701,8 @@ function createBundleRemovedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6511,6 +6746,8 @@ function createPackageRemovedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6554,6 +6791,8 @@ function createMyPackageReplacedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6597,6 +6836,8 @@ function createPackageReplacedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6640,6 +6881,8 @@ function createPackageAddedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6683,6 +6926,8 @@ function createCloseSystemDialogsSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6726,6 +6971,8 @@ function createTimezoneChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6769,6 +7016,8 @@ function createDateChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6812,6 +7061,8 @@ function createTimeChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6855,6 +7106,8 @@ function createTimeTickSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6898,6 +7151,8 @@ function createUserPresentSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6941,6 +7196,8 @@ function createScreenOnSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -6984,6 +7241,8 @@ function createScreenOffSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -7027,6 +7286,8 @@ function createShutdownSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -7070,6 +7331,8 @@ function createLockedBootCompletedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -7113,6 +7376,8 @@ function createBootCompletedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -7156,6 +7421,8 @@ function createBatteryChangedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -7199,6 +7466,8 @@ function createBatteryOkaySubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -7242,6 +7511,8 @@ function createBatteryLowSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -7285,6 +7556,8 @@ function createBatteryPowerConnectedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -7328,6 +7601,8 @@ function createBatteryPowerDisconnectedSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -7371,6 +7646,8 @@ function createBatteryChargingSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
@@ -7414,6 +7691,8 @@ function createBatteryDischargingSubscriber() {
 
             if (subscriber == "" || subscriber == undefined || subscriber == null) {
                 console.info("createSubscriber failed");
+                expect(false).assertTrue();
+                return;
             }
             mySubscriber.getCode()
                 .then((data) => {
