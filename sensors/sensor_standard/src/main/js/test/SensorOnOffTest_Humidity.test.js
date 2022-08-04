@@ -16,16 +16,16 @@ import sensor from '@ohos.sensor'
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
-export default function SensorJsTest_Sensor_38() {
-describe("SensorJsTest_Sensor_38", function () {
+export default function SensorJsTest_Sensor_12() {
+describe("SensorJsTest_Sensor_12", function () {
     function callback(data) {
         console.info("callback" + JSON.stringify(data));
-		expect(typeof (data.heartRate)).assertEqual("number");
+		expect(typeof (data.humidity)).assertEqual("number");
     }
 
     function callback2(data) {
         console.info("callback2" + JSON.stringify(data));
-		expect(typeof (data.heartRate)).assertEqual("number");
+		expect(typeof (data.humidity)).assertEqual("number");
     }
 	
     beforeAll(function () {
@@ -69,17 +69,17 @@ describe("SensorJsTest_Sensor_38", function () {
 	
      /*
      * @tc.number:SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0010
-     * @tc.name: HeartBeatRate_SensorJsTest001
+     * @tc.name: SensorHumidityJSTest001
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest001--------');
+    it("SensorHumidityJSTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        console.info('--------SensorHumidityJSTest001--------');
 		try {
-            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, onSensorCallback);
+            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, onSensorCallback);
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest001 error:" + error);
+            console.info("SensorHumidityJSTest001 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest001 errMessage:" + errMessage);
+			console.info("SensorHumidityJSTest001 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[0]);
             done();
         }
@@ -91,18 +91,18 @@ describe("SensorJsTest_Sensor_38", function () {
 
     /*
      * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0010
-     * @tc.name: HeartBeatRate_SensorJsTest002
+     * @tc.name: SensorHumidityJSTest002
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest002--------');
+    it("SensorHumidityJSTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorHumidityJSTest002--------');
 		try {
-            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE,
+            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,
 			callback, { 'interval': 100000000 });
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest002 error:" + error);
+            console.info("SensorHumidityJSTest002 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest002 errMessage:" + errMessage);
+			console.info("SensorHumidityJSTest002 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[1]);
             done();
         }
@@ -110,20 +110,20 @@ describe("SensorJsTest_Sensor_38", function () {
 
     /*
      * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0030
-     * @tc.name: HeartBeatRate_SensorJsTest003
+     * @tc.name: SensorHumidityJSTest003
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest003--------');
+    it("SensorHumidityJSTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorHumidityJSTest003--------');
         function onSensorCallback(data) {
-            console.info('HeartBeatRate_SensorJsTest003  on error');
-            expect(typeof (data.heartRate)).assertEqual("number");
+            console.info('SensorHumidityJSTest003  on error');
+            expect(typeof (data.humidity)).assertEqual("number");
         }
         try {
-            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, 
+            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, 
 			onSensorCallback, { 'interval': 100000000 }, 5);
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest003 error:" + error);
+            console.info("SensorHumidityJSTest003 error:" + error);
             errMessage = error.toString();
             expect(errMessage).assertEqual(errMessages[2]);
             done();
@@ -132,17 +132,17 @@ describe("SensorJsTest_Sensor_38", function () {
 
     /*
      * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0040
-     * @tc.name: HeartBeatRate_SensorJsTest004
+     * @tc.name: SensorHumidityJSTest004
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest004--------');
+    it("SensorHumidityJSTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorHumidityJSTest004--------');
         try{
-		sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback);
+		sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
 		} catch (error) {
-            console.info("HeartBeatRate_SensorJsTest004 error:" + error);
+            console.info("SensorHumidityJSTest004 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest004 errMessage:" + errMessage);
+			console.info("SensorHumidityJSTest004 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[3]);
 			done();
         }
@@ -150,21 +150,21 @@ describe("SensorJsTest_Sensor_38", function () {
 
     /*
      * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0050
-     * @tc.name: HeartBeatRate_SensorJsTest005
+     * @tc.name: SensorHumidityJSTest005
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest005--------');
+    it("SensorHumidityJSTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorHumidityJSTest005--------');
         function onceSensorCallback(data) {
-            console.info('HeartBeatRate_SensorJsTest005 on error');
-            expect(typeof (data.heartRate)).assertEqual("number");
+            console.info('SensorHumidityJSTest005 on error');
+            expect(typeof (data.humidity)).assertEqual("number");
         }
         try {
-            sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, onceSensorCallback, 5);
+            sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, onceSensorCallback, 5);
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest005 error:" + error);
+            console.info("SensorHumidityJSTest005 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest005 errMessage:" + errMessage);
+			console.info("SensorHumidityJSTest005 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[4]);
             done();
         }
@@ -172,17 +172,17 @@ describe("SensorJsTest_Sensor_38", function () {
 
    /*
      * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0060
-     * @tc.name: HeartBeatRate_SensorJsTest006
+     * @tc.name: SensorHumidityJSTest006
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest006--------');
+    it("SensorHumidityJSTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorHumidityJSTest006--------');
         try {
             sensor.off(string, "");
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest006 error:" + error);
+            console.info("SensorHumidityJSTest006 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest006 errMessage:" + errMessage);
+			console.info("SensorHumidityJSTest006 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[5]);
             done();
         }
@@ -190,22 +190,22 @@ describe("SensorJsTest_Sensor_38", function () {
 
    /*
      * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0070
-     * @tc.name: HeartBeatRate_SensorJsTest007
+     * @tc.name: SensorHumidityJSTest007
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest007--------');
+    it("SensorHumidityJSTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorHumidityJSTest007--------');
         function onSensorCallback(data) {
-            console.info('HeartBeatRate_SensorJsTest007  on error');
-            expect(typeof (data.heartRate)).assertEqual("number");
+            console.info('SensorHumidityJSTest007  on error');
+            expect(typeof (data.humidity)).assertEqual("number");
         }
        try {
-		   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, onSensorCallback);
-           sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE);
+		   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, onSensorCallback);
+           sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY);
             } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest007 error:" + error);
+            console.info("SensorHumidityJSTest007 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest007 errMessage:" + errMessage);
+			console.info("SensorHumidityJSTest007 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[6]);
             done();
         }
@@ -213,21 +213,21 @@ describe("SensorJsTest_Sensor_38", function () {
 
     /*
      * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0080
-     * @tc.name: HeartBeatRate_SensorJsTest008
+     * @tc.name: SensorHumidityJSTest008
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest008--------');
+    it("SensorHumidityJSTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorHumidityJSTest008--------');
         function onSensorCallback(data) {
-            console.info('HeartBeatRate_SensorJsTest008  on error');
-            expect(typeof (data.heartRate)).assertEqual("number");
+            console.info('SensorHumidityJSTest008  on error');
+            expect(typeof (data.humidity)).assertEqual("number");
         }
         try {
             sensor.off(1000000, onSensorCallback);
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest008 error:" + error);
+            console.info("SensorHumidityJSTest008 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest008 errMessage:" + errMessage);
+			console.info("SensorHumidityJSTest008 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[7]);
             done();
         }

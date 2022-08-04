@@ -15,8 +15,8 @@
 import sensor from '@system.sensor'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
-export default function SensorJsTest_sensor_28() {
-describe("SensorJsTest_sensor_28", function () {
+export default function SensorJsTest_Sensor_28() {
+describe("SensorJsTest_Sensor_28", function () {
     beforeAll(function () {
 
         /*

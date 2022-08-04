@@ -16,16 +16,16 @@ import sensor from '@ohos.sensor'
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
-export default function SensorJsTest_Sensor_38() {
-describe("SensorJsTest_Sensor_38", function () {
+export default function SensorJsTest_Sensor_18() {
+describe("SensorJsTest_Sensor_18", function () {
     function callback(data) {
         console.info("callback" + JSON.stringify(data));
-		expect(typeof (data.heartRate)).assertEqual("number");
+		expect(typeof (data.steps)).assertEqual("number");
     }
 
     function callback2(data) {
         console.info("callback2" + JSON.stringify(data));
-		expect(typeof (data.heartRate)).assertEqual("number");
+		expect(typeof (data.steps)).assertEqual("number");
     }
 	
     beforeAll(function () {
@@ -68,18 +68,18 @@ describe("SensorJsTest_Sensor_38", function () {
     let errMessage;
 	
      /*
-     * @tc.number:SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0010
-     * @tc.name: HeartBeatRate_SensorJsTest001
+     * @tc.number:SUB_SensorsSystem_Pedometer_JSTest_0010
+     * @tc.name: SensorPedometerJSTest001
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest001--------');
+    it("SensorPedometerJSTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        console.info('--------SensorPedometerJSTest001--------');
 		try {
-            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, onSensorCallback);
+            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, onSensorCallback);
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest001 error:" + error);
+            console.info("SensorPedometerJSTest001 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest001 errMessage:" + errMessage);
+			console.info("SensorPedometerJSTest001 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[0]);
             done();
         }
@@ -90,40 +90,40 @@ describe("SensorJsTest_Sensor_38", function () {
     })
 
     /*
-     * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0010
-     * @tc.name: HeartBeatRate_SensorJsTest002
+     * @tc.number: SUB_SensorsSystem_Pedometer_JSTest_0010
+     * @tc.name: SensorPedometerJSTest002
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest002--------');
+    it("SensorPedometerJSTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorPedometerJSTest002--------');
 		try {
-            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE,
+            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER,
 			callback, { 'interval': 100000000 });
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest002 error:" + error);
+            console.info("SensorPedometerJSTest002 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest002 errMessage:" + errMessage);
+			console.info("SensorPedometerJSTest002 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[1]);
             done();
         }
     })
 
     /*
-     * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0030
-     * @tc.name: HeartBeatRate_SensorJsTest003
+     * @tc.number: SUB_SensorsSystem_Pedometer_JSTest_0030
+     * @tc.name: SensorPedometerJSTest003
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest003--------');
+    it("SensorPedometerJSTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorPedometerJSTest003--------');
         function onSensorCallback(data) {
-            console.info('HeartBeatRate_SensorJsTest003  on error');
-            expect(typeof (data.heartRate)).assertEqual("number");
+            console.info('SensorPedometerJSTest003  on error');
+            expect(typeof (data.steps)).assertEqual("number");
         }
         try {
-            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, 
+            sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, 
 			onSensorCallback, { 'interval': 100000000 }, 5);
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest003 error:" + error);
+            console.info("SensorPedometerJSTest003 error:" + error);
             errMessage = error.toString();
             expect(errMessage).assertEqual(errMessages[2]);
             done();
@@ -131,103 +131,103 @@ describe("SensorJsTest_Sensor_38", function () {
     })
 
     /*
-     * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0040
-     * @tc.name: HeartBeatRate_SensorJsTest004
+     * @tc.number: SUB_SensorsSystem_Pedometer_JSTest_0040
+     * @tc.name: SensorPedometerJSTest004
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest004--------');
+    it("SensorPedometerJSTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorPedometerJSTest004--------');
         try{
-		sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback);
+		sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback);
 		} catch (error) {
-            console.info("HeartBeatRate_SensorJsTest004 error:" + error);
+            console.info("SensorPedometerJSTest004 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest004 errMessage:" + errMessage);
+			console.info("SensorPedometerJSTest004 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[3]);
 			done();
         }
     })
 
     /*
-     * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0050
-     * @tc.name: HeartBeatRate_SensorJsTest005
+     * @tc.number: SUB_SensorsSystem_Pedometer_JSTest_0050
+     * @tc.name: SensorPedometerJSTest005
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest005--------');
+    it("SensorPedometerJSTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorPedometerJSTest005--------');
         function onceSensorCallback(data) {
-            console.info('HeartBeatRate_SensorJsTest005 on error');
-            expect(typeof (data.heartRate)).assertEqual("number");
+            console.info('SensorPedometerJSTest005 on error');
+            expect(typeof (data.steps)).assertEqual("number");
         }
         try {
-            sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, onceSensorCallback, 5);
+            sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, onceSensorCallback, 5);
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest005 error:" + error);
+            console.info("SensorPedometerJSTest005 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest005 errMessage:" + errMessage);
+			console.info("SensorPedometerJSTest005 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[4]);
             done();
         }
     })
 
    /*
-     * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0060
-     * @tc.name: HeartBeatRate_SensorJsTest006
+     * @tc.number: SUB_SensorsSystem_Pedometer_JSTest_0060
+     * @tc.name: SensorPedometerJSTest006
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest006--------');
+    it("SensorPedometerJSTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorPedometerJSTest006--------');
         try {
             sensor.off(string, "");
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest006 error:" + error);
+            console.info("SensorPedometerJSTest006 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest006 errMessage:" + errMessage);
+			console.info("SensorPedometerJSTest006 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[5]);
             done();
         }
     })
 
    /*
-     * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0070
-     * @tc.name: HeartBeatRate_SensorJsTest007
+     * @tc.number: SUB_SensorsSystem_Pedometer_JSTest_0070
+     * @tc.name: SensorPedometerJSTest007
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest007--------');
+    it("SensorPedometerJSTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorPedometerJSTest007--------');
         function onSensorCallback(data) {
-            console.info('HeartBeatRate_SensorJsTest007  on error');
-            expect(typeof (data.heartRate)).assertEqual("number");
+            console.info('SensorPedometerJSTest007  on error');
+            expect(typeof (data.steps)).assertEqual("number");
         }
        try {
-		   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, onSensorCallback);
-           sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE);
+		   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, onSensorCallback);
+           sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER);
             } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest007 error:" + error);
+            console.info("SensorPedometerJSTest007 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest007 errMessage:" + errMessage);
+			console.info("SensorPedometerJSTest007 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[6]);
             done();
         }
     })
 
     /*
-     * @tc.number: SUB_SensorsSystem_Heart_Beat_Rate_JSTest_0080
-     * @tc.name: HeartBeatRate_SensorJsTest008
+     * @tc.number: SUB_SensorsSystem_Pedometer_JSTest_0080
+     * @tc.name: SensorPedometerJSTest008
      * @tc.desc:Verification results of the incorrect parameters of the test interface
      */
-    it("HeartBeatRate_SensorJsTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('--------HeartBeatRate_SensorJsTest008--------');
+    it("SensorPedometerJSTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('--------SensorPedometerJSTest008--------');
         function onSensorCallback(data) {
-            console.info('HeartBeatRate_SensorJsTest008  on error');
-            expect(typeof (data.heartRate)).assertEqual("number");
+            console.info('SensorPedometerJSTest008  on error');
+            expect(typeof (data.steps)).assertEqual("number");
         }
         try {
             sensor.off(1000000, onSensorCallback);
         } catch (error) {
-            console.info("HeartBeatRate_SensorJsTest008 error:" + error);
+            console.info("SensorPedometerJSTest008 error:" + error);
             errMessage = error.toString();
-			console.info("HeartBeatRate_SensorJsTest008 errMessage:" + errMessage);
+			console.info("SensorPedometerJSTest008 errMessage:" + errMessage);
             expect(errMessage).assertEqual(errMessages[7]);
             done();
         }

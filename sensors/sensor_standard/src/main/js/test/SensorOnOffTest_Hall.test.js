@@ -15,8 +15,8 @@
 import sensor from '@ohos.sensor'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
-export default function SensorJsTest_sensor_7() {
-describe("SensorJsTest_sensor_7", function () {
+export default function SensorJsTest_Sensor_7() {
+describe("SensorJsTest_Sensor_7", function () {
     function callback(data) {
         console.info("callback" + JSON.stringify(data));
         expect(typeof (data.status)).assertEqual("number");
