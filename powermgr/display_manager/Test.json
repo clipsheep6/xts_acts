@@ -4,9 +4,8 @@
         "type": "OHJSUnitTest",
         "bundle-name": "com.example.mypowerdisplayapp",
         "package-name": "com.example.mypowerdisplayapp",
-        "testcase-timeout": 60000,
-        "test-timeout": "60000",
-        "shell-timeout": "60000"
+        "test-timeout": "90000",
+        "shell-timeout": "90000"
     },
     "kits": [
         {

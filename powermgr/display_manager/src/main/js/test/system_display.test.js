@@ -14,6 +14,7 @@
  */
 
 import brightness from '@system.brightness';
+import power from '@ohos.power';
 import { describe, it, expect } from '@ohos/hypium';
 
 const INPUT_ERROR_CODE_CODE = 202;
@@ -302,9 +303,11 @@ describe('SystemDisplayTest', function () {
      * @tc.desc set keep screen on true
      */
     it('set_keep_screen_on_true', 0, async function () {
-        let sleepTime = 1000;
         brightness.setKeepScreenOn({
             keepScreenOn: true,
+            success: () => {
+                expect().assertTrue();
+            },
             fail: (data, code) => {
                 console.log("set_keep_screen_on, data: " + data + ", code: " + code);
                 expect().assertFail();
@@ -313,15 +316,7 @@ describe('SystemDisplayTest', function () {
                 console.log("The device information is obtained successfully. Procedure");
             }
         });
-
-        await sleep(sleepTime);
-        power.isScreenOn().then(screenOn => {
-            console.info('The current screenOn is ' + screenOn);
-            expect(screenOn).assertTrue();
-        }).catch(error => {
-            console.log('isScreenOn error: ' + error);
-        })
-    })
+    });
 
     /**
      * @tc.number system_display_js_0501
@@ -329,25 +324,18 @@ describe('SystemDisplayTest', function () {
      * @tc.desc set keep screen on false
      */
     it('set_keep_screen_on_false', 0, async function () {
-        let sleepTime = 1000;
         brightness.setKeepScreenOn({
             keepScreenOn: false,
+            success: () => {
+                expect().assertTrue();
+            },
             fail: (data, code) => {
                 console.log("set_keep_screen_on_false, data: " + data + ", code: " + code);
                 expect().assertFail();
             },
             complete: () => {
-                execComplete = true;
                 console.log("The device information is obtained successfully. Procedure");
             }
-        });
-
-        await sleep(sleepTime);
-        power.isScreenOn().then(screenOn => {
-            console.info('set_keep_screen_on_false The current screenOn is ' + screenOn);
-            expect(screenOn).assertFalse();
-        }).catch(error => {
-            console.log('set_keep_screen_on_false isScreenOn error: ' + error);
         });
     });
 })
