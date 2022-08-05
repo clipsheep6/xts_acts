@@ -107,7 +107,7 @@ describe('ACTS_WifiTest', function() {
                           + "channelWidth: " + result[j].channelWidth);
                     }
                 }
-                done()
+                done();
             });
     })
 
