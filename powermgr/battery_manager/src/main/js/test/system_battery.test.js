@@ -14,7 +14,7 @@
  */
 
 import battery from '@system.battery';
-import batteryInfo from '@ohos.batteryInfo';
+import batteryInfo from '@ohos.batteryinfo';
 import { describe, it, expect } from '@ohos/hypium';
 
 function successFunc(data, tag) {
