@@ -13,7 +13,7 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_js_hap_suite("video_encoder_js_hap") {
+ohos_hap_assist_suite("video_encoder_js_hap") {
   hap_profile = "./src/main/config.json"
   js2abc = true
   deps = [
@@ -22,6 +22,8 @@ ohos_js_hap_suite("video_encoder_js_hap") {
   ]
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsVideoEncoderJsTest"
+  subsystem_name = "multimedia"
+  part_name = "media"
 }
 ohos_js_assets("video_encoder_js_assets") {
   source_dir = "./src/main/js/default"
