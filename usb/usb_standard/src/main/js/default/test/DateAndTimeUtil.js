@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-const twelve = 12;
+const TWELVE = 12;
 
 /*
  * date package tool class
@@ -83,7 +83,7 @@ export default class DateAndTimeUtil {
     const timeFlag = str.substr(0, 2);
     if (timeFlag == this.morning) {
       const h = str.substr(2).split(':')[0];
-      if (h == twelve) {
+      if (h == TWELVE) {
         const time = '0' + ':' + str.substr(2).split(':')[1];
         return time;
       } else {
@@ -91,8 +91,8 @@ export default class DateAndTimeUtil {
       }
     } else {
       const h = str.substr(2).split(':')[0];
-      const h1 = parseInt(h) + twelve;
-      if (h != twelve) {
+      const h1 = parseInt(h) + TWELVE;
+      if (h != TWELVE) {
         const time = h1 + ':' + str.substr(2).split(':')[1];
         return time;
       }
@@ -107,13 +107,13 @@ export default class DateAndTimeUtil {
   transform12(str) {
     const hours = str.substring(0, str.indexOf(':'));
     const minutes = str.split(':')[1];
-    if (hours < twelve) {
+    if (hours < TWELVE) {
       return this.morning.concat(`${hours}:${minutes}`);
     }
-    if (hours == twelve) {
+    if (hours == TWELVE) {
       return this.afternoon.concat(`${hours}:${minutes}`);
     } else {
-      const reduceHours = parseInt(hours) - twelve;
+      const reduceHours = parseInt(hours) - TWELVE;
       return this.afternoon.concat(`${reduceHours}:${minutes}`);
     }
   }
