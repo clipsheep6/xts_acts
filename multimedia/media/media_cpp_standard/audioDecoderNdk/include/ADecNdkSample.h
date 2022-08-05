@@ -27,10 +27,10 @@
 #include <string>
 #include <map>
 #include "securec.h"
-#include "ndk_av_codec.h"
+#include "native_avcodec_base.h"
+#include "native_avcodec_audiodecoder.h"
 #include "nocopyable.h"
-#include "ndktest_log.h"
-
+#include "native_sample_log.h"
 
 
 namespace OHOS {
@@ -44,28 +44,25 @@ public:
     std::condition_variable outCond_;
     std::queue<uint32_t> inQueue_;
     std::queue<uint32_t> outQueue_;
-    std::queue<uint32_t>  sizeQueue_;
+    std::queue<uint32_t>  outSizeQueue_;
     std::queue<AVMemory *> inBufferQueue_;
     std::queue<AVMemory *> outBufferQueue_;
-    
+    std::atomic<bool> isFlushing_ = false;
+    std::atomic<bool> isStop_ = false;
 };
-
-
 
 class ADecNdkSample : public NoCopyable {
 public:
     ADecNdkSample() = default;
     ~ADecNdkSample();
-    // std::shared_ptr<AVCodec> adec_ = nullptr;
+	void RunAudioDec();
 
-    // explicit ADecNdkSample();
-    // ~ADecNdkSample();
     void init(const char * out_dir, uint32_t es[], uint32_t es_length,
               const char * inp_dir="/data/media/AAC_48000_32_1.aac", uint32_t sample_duration_us=23000);
-//    struct AVCodec* CreateAudioDecoder(void);
     struct AVCodec* CreateAudioDecoder(uint32_t codecType=0);
 
     bool SetFormat(struct AVFormat *format, std::map<std::string, int> value);
+    int32_t SetParameter(AVFormat *format);
     int32_t Configure(struct AVFormat *format);
     int32_t Prepare();
     int32_t Start();
@@ -77,7 +74,6 @@ public:
 
     std::atomic<bool> isRunning_ = false;
     uint32_t SAMPLE_DURATION_US;
-//    uint32_t SAMPLE_SIZE;
     bool NEED_DUMP;
     std::string MIME_TYPE;
     const char * INP_DIR;
@@ -86,22 +82,21 @@ public:
     uint32_t ES_LENGTH;
 
 private:
-    struct AVCodec* adec_;
     void InputFunc();
     void OutputFunc();
-    // std::atomic<bool> isRunning_ = false;
+    struct AVFormat* CreateFormat(void);
+    void ClearIntQueue(std::queue<uint32_t> &q);
+    void ClearBufferQueue(std::queue<AVMemory *> &q);
+    void ClearAllQueue();
+    //std::atomic<bool> isRunning_ = false;
     std::unique_ptr<std::ifstream> testFile_;
-    // std::unique_ptr<std::ifstream> outFile_;
     std::unique_ptr<std::thread> inputLoop_;
     std::unique_ptr<std::thread> outputLoop_;
-    // std::shared_ptr<ADecSignal> signal_ = nullptr;
-    // std::shared_ptr<ADecNdkSampleCallback> cb_;
-    struct AVCodecOnAsyncCallback cb_;
-    // bool isFirstFrame_ = true;
+    struct AVCodec* adec_;
+    ADecSignal* signal_ ;
+    struct AVCodecAsyncCallback cb_;
     int64_t timeStamp_ = 0;
     uint32_t frameCount_ = 0;
-    ADecSignal* signal_ = nullptr;
-
 };
 }
 }

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef NDKTEST_LOG_H
-#define NDKTEST_LOG_H
+#ifndef NDK_LOG_H
+#define NDK_LOG_H
 
 #include <stdio.h>
 

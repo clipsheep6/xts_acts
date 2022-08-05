@@ -21,7 +21,7 @@ config("ActsAvcodecNdkTest_config") {
     "audioDecoderNdk/include",
     "audioEncoderNdk/include",
     "//foundation/multimedia/audio_framework/interfaces/inner_api/native/audiocommon/include",
-    "//foundation/multimedia/media_standard/interfaces/kits/ndk",
+    "//foundation/multimedia/player_framework/interfaces/kits/c",
     "//utils/native/base/include",
   ]
 }
@@ -37,8 +37,8 @@ ohos_moduletest_suite("ActsAvcodecNdkTest") {
   ]
 
 
-  deps = [ 
-    "//foundation/multimedia/media_standard/interfaces/kits/ndk:media_ndk",
+  deps = [
+    "//foundation/multimedia/player_framework/interfaces/kits/c:media_capi",
     "//utils/native/base:utils",
   ]
   

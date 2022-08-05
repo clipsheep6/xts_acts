@@ -14,12 +14,12 @@
  */
 
 #include <map>
-#include <cstring>
 #include <assert.h>
 #include "gtest/gtest.h"
 #include "AEncNdkSample.h"
+#include "audio_info.h"
 
-// #include "ndk_av_memory.h"
+// #include "native_avmemory.h"
 
 using namespace OHOS;
 using namespace OHOS::Media;
@@ -42,9 +42,7 @@ namespace {
 void AencAsyncError(AVCodec *codec, int32_t errorCode, void *userData)
 {
     cout << "Error errorCode=" << errorCode << endl;
-//    NDK_CHECK_AND_RETURN_LOG(false, "Fatal: AencAsyncError.");
     ASSERT_EQ(AV_ERR_OK, errorCode);
-//    exit(1);
 }
 
 void AencAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
@@ -54,10 +52,12 @@ void AencAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
 
 void AencAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void *userData)
 {
-    // std::shared_ptr<AEncSignal> signal_ = static_cast<std::shared_ptr<AEncSignal>>(userData);
     AEncSignal* signal_ = static_cast<AEncSignal *>(userData);
-    cout << "InputAvailable, index = " << index << endl;
     unique_lock<mutex> lock(signal_->inMutex_);
+    if (signal_->isFlushing_.load() || signal_->isStop_.load()) {
+        return;
+    }
+    cout << "InputAvailable, index = " << index << endl;
     signal_->inQueue_.push(index);
     signal_->inBufferQueue_.push(data);
     signal_->inCond_.notify_all();
@@ -65,25 +65,18 @@ void AencAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void
 
 void AencAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCodecBufferAttr *attr, void *userData)
 {
-    // std::shared_ptr<AEncSignal> signal_ = static_cast<AEncSignal *>(userData);
     AEncSignal* signal_ = static_cast<AEncSignal *>(userData);
-    cout << "OutputAvailable, index = " << index << endl;
     unique_lock<mutex> lock(signal_->outMutex_);
+    if (signal_->isFlushing_.load() || signal_->isStop_.load()) {
+        return;
+    }
+    cout << "OutputAvailable, index = " << index << endl;
     signal_->outQueue_.push(index);
-    signal_->sizeQueue_.push(attr->size);
+    signal_->outSizeQueue_.push(attr->size);
     signal_->outBufferQueue_.push(data);
     signal_->outCond_.notify_all();
 }
 
-//void clearIntQueue(queue<uint32_t>& q) {
-//    queue<uint32_t> empty;
-//    swap(empty, q);
-//}
-//
-//void clearBufferQueue(queue<AVMemory *>& q) {
-//    queue<AVMemory *> empty;
-//    swap(empty, q);
-//}
 
 void AEncNdkSample::init(const char * out_dir, const char * inp_dir, uint32_t sample_size,
                          uint32_t es_length, uint32_t sample_duration_us ){
@@ -105,7 +98,8 @@ void AEncNdkSample::init(const char * out_dir, const char * inp_dir, uint32_t sa
 
 AEncNdkSample::~AEncNdkSample()
 {
-    OH_AVCODEC_DestroyAudioEncoder(aenc_);
+    //OH_AVCODEC_DestroyAudioEncoder(aenc_);
+    Release();
     delete signal_;
     signal_ = nullptr;
 }
@@ -115,26 +109,26 @@ struct AVCodec* AEncNdkSample::CreateAudioEncoder(uint32_t codecType)
     cout << "codecType " << codecType << endl;
     switch(codecType){
         case 0:{
-            aenc_ = OH_AVCODEC_CreateAudioEncoderByMime("audio/mp4a-latm");
+            aenc_ = OH_AudioEncoder_CreateByMime("audio/mp4a-latm");
             break;
         }
         case 1:{
-            aenc_ = OH_AVCODEC_CreateAudioEncoderByName("avenc_aac");
+            aenc_ = OH_AudioEncoder_CreateByName("avenc_aac");
             break;
         }
     }
-    NDK_CHECK_AND_RETURN_RET_LOG(aenc_ != nullptr, nullptr, "Fatal: OH_AVCODEC_CreateAudioEncoderByMime");
+    NDK_CHECK_AND_RETURN_RET_LOG(aenc_ != nullptr, nullptr, "Fatal: OH_AudioEncoder_CreateByMime");
 
     signal_ = new AEncSignal();
     NDK_CHECK_AND_RETURN_RET_LOG(signal_ != nullptr, nullptr, "Fatal: No Memory");
 
-    cb_.onAsyncError = AencAsyncError;
-    cb_.onAsyncStreamChanged = AencAsyncStreamChanged;
-    cb_.onAsyncNeedInputData = AencAsyncNeedInputData;
-    cb_.onAsyncNewOutputData = AencAsyncNewOutputData;
-    int32_t ret = OH_AVCODEC_AudioEncoderSetCallback(aenc_, cb_, static_cast<void *>(signal_));
+    cb_.onError = AencAsyncError;
+    cb_.onStreamChanged = AencAsyncStreamChanged;
+    cb_.onNeedInputData = AencAsyncNeedInputData;
+    cb_.onNeedOutputData = AencAsyncNewOutputData;
+    int32_t ret = OH_AudioEncoder_SetCallback(aenc_, cb_, static_cast<void *>(signal_));
     cout << "OH_AVCODEC_AudioEncoderSetCallback ret:" << ret << endl;
-    NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AVCODEC_AudioEncoderSetCallback");
+    NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AudioEncoder_SetCallback");
     return aenc_;
 }
 
@@ -142,7 +136,7 @@ bool AEncNdkSample::SetFormat(struct AVFormat *format, map<string, int> value){
     const char *key;
     for(const auto& t: value){
         key = t.first.c_str();
-        if (not OH_AV_FormatPutIntValue(format, key, t.second)){
+        if (not OH_AVFormat_SetIntValue(format, key, t.second)){
             cout << "OH_AV_FormatPutIntValue Fail. format key: " << t.first
             << ", value: "<< t.second << endl;
             return false;
@@ -154,121 +148,136 @@ bool AEncNdkSample::SetFormat(struct AVFormat *format, map<string, int> value){
 int32_t AEncNdkSample::Configure(struct AVFormat *format)
 {
     cout << "->Configure" << endl;
-    return OH_AVCODEC_AudioEncoderConfigure(aenc_, format);
+    return OH_AudioEncoder_Configure(aenc_, format);
 }
 
 
 int32_t AEncNdkSample::Prepare()
 {
     cout << "->Prepare" << endl;
-    return OH_AVCODEC_AudioEncoderPrepare(aenc_);
+    return OH_AudioEncoder_Prepare(aenc_);
 }
 
 int32_t AEncNdkSample::Start()
 {
     cout << "->Start" << endl;
+    signal_->isStop_.store(false);
     this->isRunning_.store(true);
 
-    if (testFile_ == nullptr)
-    {
+    if(testFile_ == nullptr){
         testFile_ = std::make_unique<std::ifstream>();
         NDK_CHECK_AND_RETURN_RET_LOG(testFile_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
         testFile_->open(this->INP_DIR, std::ios::in | std::ios::binary);
     }
 
-    inputLoop_ = make_unique<thread>(&AEncNdkSample::InputFunc, this);
-    NDK_CHECK_AND_RETURN_RET_LOG(inputLoop_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    if (inputLoop_ == nullptr){
+        inputLoop_ = make_unique<thread>(&AEncNdkSample::InputFunc, this);
+        NDK_CHECK_AND_RETURN_RET_LOG(inputLoop_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    }
 
-    outputLoop_ = make_unique<thread>(&AEncNdkSample::OutputFunc, this);
-    NDK_CHECK_AND_RETURN_RET_LOG(outputLoop_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    if (outputLoop_ == nullptr){
+        outputLoop_ = make_unique<thread>(&AEncNdkSample::OutputFunc, this);
+        NDK_CHECK_AND_RETURN_RET_LOG(outputLoop_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    }
 
-    return OH_AVCODEC_AudioEncoderStart(aenc_);
+    return OH_AudioEncoder_Start(aenc_);
 }
 
 int32_t AEncNdkSample::Stop()
 {
-    cout << "->Stop" << endl;
-    this->isRunning_.store(false);
+    unique_lock<mutex> outLock0(signal_->outMutex_);
+    unique_lock<mutex> inLock0(signal_->inMutex_);
+    signal_->isStop_.store(true);
+    outLock0.unlock();
+    inLock0.unlock();
+    int32_t ret = OH_AudioEncoder_Stop(aenc_); // 不能上锁，否则会阻塞回调，导致执行结束后，阻塞的回调往队列里push无效的index
+    unique_lock<mutex> outLock(signal_->outMutex_);
+    unique_lock<mutex> inLock(signal_->inMutex_);
 
-    if (inputLoop_ != nullptr && inputLoop_->joinable()) {
-        unique_lock<mutex> lock(signal_->inMutex_);
-        signal_->inQueue_.push(10000);
-        signal_->inCond_.notify_all();
-        lock.unlock();
-        inputLoop_->join();
-        inputLoop_.reset();
-    }
+    cout << "stopping .."<< endl;
 
-    if (outputLoop_ != nullptr && outputLoop_->joinable()) {
-        unique_lock<mutex> lock(signal_->outMutex_);
-        signal_->outQueue_.push(10000);
-        signal_->outCond_.notify_all();
-        lock.unlock();
-        outputLoop_->join();
-        outputLoop_.reset();
-    }
+    ClearIntQueue(signal_->outQueue_);
+    ClearIntQueue(signal_->outSizeQueue_);
+    ClearBufferQueue(signal_->outBufferQueue_);
+    cout << "signal_->inQuoutQueue_eue_ size = " << signal_->outQueue_.size() << endl;
+    cout << "signal_->outSizeQueue_ size = " << signal_->outSizeQueue_.size() << endl;
+    cout << "signal_->outBufferQueue_ size = " << signal_->outBufferQueue_.size() << endl;
 
-    return OH_AVCODEC_AudioEncoderStop(aenc_);
+    ClearIntQueue(signal_->inQueue_);
+    ClearBufferQueue(signal_->inBufferQueue_);
+    cout << "signal_->inQueue_ size = " << signal_->inQueue_.size() << endl;
+    cout << "signal_->inBufferQueue_ size = " << signal_->inBufferQueue_.size() << endl;
+
+    signal_->isStop_.store(false);
+
+    return ret;
+}
+
+void AEncNdkSample::ClearAllQueue()
+{
+    unique_lock<mutex> outLock(signal_->outMutex_);
+    unique_lock<mutex> inLock(signal_->inMutex_);
+
+    ClearIntQueue(signal_->outQueue_);
+    ClearIntQueue(signal_->outSizeQueue_);
+    ClearBufferQueue(signal_->outBufferQueue_);
+    ClearIntQueue(signal_->inQueue_);
+    ClearBufferQueue(signal_->inBufferQueue_);
+    cout << "signal_->inQuoutQueue_eue_ size = " << signal_->outQueue_.size() << endl;
+    cout << "signal_->outSizeQueue_ size = " << signal_->outSizeQueue_.size() << endl;
+    cout << "signal_->outBufferQueue_ size = " << signal_->outBufferQueue_.size() << endl;
+    cout << "signal_->inQueue_ size = " << signal_->inQueue_.size() << endl;
+    cout << "signal_->inBufferQueue_ size = " << signal_->inBufferQueue_.size() << endl;
+}
+
+void AEncNdkSample::ClearIntQueue(std::queue<uint32_t> &q)
+{
+    std::queue<uint32_t> empty;
+    swap(empty, q);
+}
+
+void AEncNdkSample::ClearBufferQueue(std::queue<AVMemory *> &q)
+{
+    std::queue<AVMemory *> empty;
+    swap(empty, q);
 }
 
 int32_t AEncNdkSample::Flush()
 {
-    cout << "->Flush" << endl;
-    if (inputLoop_ != nullptr){
-        unique_lock<mutex> lock(signal_->inMutex_);
-//        clearIntQueue(signal_->inQueue_);
-//        clearBufferQueue(signal_->inBufferQueue_);
-        while(!signal_->inQueue_.empty()){signal_->inQueue_.pop();};
-        while(!signal_->inBufferQueue_.empty()){signal_->inBufferQueue_.pop();};
-        signal_->inCond_.notify_all();
-        lock.unlock();
-    }
+    unique_lock<mutex> outLock0(signal_->outMutex_);
+    unique_lock<mutex> inLock0(signal_->inMutex_);
+    signal_->isFlushing_.store(true);
+    outLock0.unlock();
+    inLock0.unlock();
+    int32_t ret = OH_AudioEncoder_Flush(aenc_); // 不能上锁，否则会阻塞回调，导致执行结束后，阻塞的回调往队列里push无效的index
+    cout << "flushing .."<< endl;
+    ClearAllQueue();
 
-    if(outputLoop_ != nullptr){
-        unique_lock<mutex> lock(signal_->outMutex_);
-//        clearIntQueue(signal_->outQueue_);
-//        clearIntQueue(signal_->sizeQueue_);
-//        clearBufferQueue(signal_->outBufferQueue_);
-        while(!signal_->outQueue_.empty()){signal_->outQueue_.pop();};
-        while(!signal_->sizeQueue_.empty()){signal_->sizeQueue_.pop();};
-        while(!signal_->outBufferQueue_.empty()){signal_->outBufferQueue_.pop();};
-        signal_->outCond_.notify_all();
-        lock.unlock();
-    }
+    signal_->isFlushing_.store(false);
 
-    return OH_AVCODEC_AudioEncoderFlush(aenc_);
+    return ret;
 }
 
 int32_t AEncNdkSample::Reset()
 {
     cout << "->Reset" << endl;
-        this->isRunning_.store(false);
+    unique_lock<mutex> outLock0(signal_->outMutex_);
+    unique_lock<mutex> inLock0(signal_->inMutex_);
+    signal_->isStop_.store(true);
+    outLock0.unlock();
+    inLock0.unlock();
+    int32_t ret = OH_AudioEncoder_Reset(aenc_);
+    cout << "reseting .."<< endl;
+    ClearAllQueue();
 
-    if (inputLoop_ != nullptr && inputLoop_->joinable()) {
-        unique_lock<mutex> lock(signal_->inMutex_);
-        signal_->inQueue_.push(10000);
-        signal_->inCond_.notify_all();
-        lock.unlock();
-        inputLoop_->join();
-        inputLoop_.reset();
-    }
-
-    if (outputLoop_ != nullptr && outputLoop_->joinable()) {
-        unique_lock<mutex> lock(signal_->outMutex_);
-        signal_->outQueue_.push(10000);
-        signal_->outCond_.notify_all();
-        lock.unlock();
-        outputLoop_->join();
-        outputLoop_.reset();
-    }
-    return OH_AVCODEC_AudioEncoderReset(aenc_);
+    return ret;
 }
 
 int32_t AEncNdkSample::Release()
 {
     cout << "->Release" << endl;
-        this->isRunning_.store(false);
-
+    signal_->isStop_.store(true);
+    this->isRunning_.store(false);
     if (inputLoop_ != nullptr && inputLoop_->joinable()) {
         unique_lock<mutex> lock(signal_->inMutex_);
         signal_->inQueue_.push(10000);
@@ -286,8 +295,21 @@ int32_t AEncNdkSample::Release()
         outputLoop_->join();
         outputLoop_.reset();
     }
-    OH_AVCODEC_DestroyAudioEncoder(aenc_);
-    return AV_ERR_OK;
+
+	AVErrCode ret = AV_ERR_OK;
+    if (aenc_ != nullptr) {
+	    ret = OHAudioEncoder_Destroy(aenc_);
+//	    if (testFile_ != nullptr && testFile_->is_open()){
+//            testFile_->close();
+//        }
+        aenc_ = (ret == AV_ERR_OK) ? nullptr : aenc_;
+    }
+	return ret;
+}
+
+int32_t AEncNdkSample::SetParameter(AVFormat *format)
+{
+    return OH_AudioEncoder_SetParameter(aenc_, format);
 }
 
 void AEncNdkSample::InputFunc()
@@ -299,33 +321,44 @@ void AEncNdkSample::InputFunc()
         }
 
         unique_lock<mutex> lock(signal_->inMutex_);
-        signal_->inCond_.wait(lock, [this](){ return signal_->inQueue_.size() > 0; });
+        signal_->inCond_.wait(lock, [this]() {
+            // return signal_->inQueue_.size() > 0 && !signal_->isFlushing_.load();
+            return signal_->inQueue_.size() > 0;
+        });
 
         if (!this->isRunning_.load()) {
             break;
         }
 
         uint32_t index = signal_->inQueue_.front();
+        if (signal_->isFlushing_.load() || signal_->isStop_.load() ) {
+            signal_->inQueue_.pop();
+            signal_->inBufferQueue_.pop();
+            cout << "isFlushing_ or isStop_, OutputFunc pop" << endl;
+            continue;
+        }
         AVMemory *buffer = reinterpret_cast<AVMemory *>(signal_->inBufferQueue_.front());
         NDK_CHECK_AND_RETURN_LOG(buffer != nullptr, "Fatal: GetInputBuffer fail");
 //        cout << "testFile_: " << testFile_ << endl;
 //        cout << "testFile_.isopen: " << testFile_->is_open() << endl;
         NDK_CHECK_AND_RETURN_LOG(testFile_ != nullptr && testFile_->is_open(), "Fatal: open file fail");
+        if (frameCount_ < ES_LENGTH) {
+		    char *fileBuffer = (char *)malloc(sizeof(char) * this->SAMPLE_SIZE + 1);
+		    NDK_CHECK_AND_RETURN_LOG(fileBuffer != nullptr, "Fatal: malloc fail");
 
-        char *fileBuffer = (char *)malloc(sizeof(char) * this->SAMPLE_SIZE + 1);
-        NDK_CHECK_AND_RETURN_LOG(fileBuffer != nullptr, "Fatal: malloc fail");
+		    (void)testFile_->read(fileBuffer, this->SAMPLE_SIZE);
+		    if (testFile_->eof()) {
+		        free(fileBuffer);
+		        cout << "Finish" << endl;
+		        break;
+		    }
 
-        (void)testFile_->read(fileBuffer, this->SAMPLE_SIZE);
-        if (testFile_->eof()) {
-            free(fileBuffer);
-            cout << "Finish" << endl;
-            break;
-        }
-
-        if (memcpy_s(OH_AV_MemoryGetAddr(buffer), OH_AV_MemoryGetSize(buffer), fileBuffer, this->SAMPLE_SIZE) != EOK) {
-            free(fileBuffer);
-            cout << "Fatal: memcpy fail" << endl;
-            break;
+		    if (memcpy_s(OH_AVMemory_GetAddr(buffer), OH_AVMemory_GetSize(buffer), fileBuffer, this->SAMPLE_SIZE) != EOK) {
+		        free(fileBuffer);
+		        cout << "Fatal: memcpy fail" << endl;
+		        break;
+		    }
+		    free(fileBuffer);
         }
 
         struct AVCodecBufferAttr attr;
@@ -333,17 +366,17 @@ void AEncNdkSample::InputFunc()
         if (frameCount_ == this->ES_LENGTH) {
             attr.flags = AVCODEC_BUFFER_FLAGS_EOS;
             attr.size = 0;
-            attr.presentationTimeUs = 0;
+            attr.pts = 0;
+            cout << "EOS Frame, frameCount = " << frameCount_ << endl;
             this->isRunning_.store(false);
         } else {
             attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
             attr.size = this->SAMPLE_SIZE;
-            attr.presentationTimeUs = timeStamp_;
+            attr.pts = timeStamp_;
         }
-        
-        AVErrCode ret = OH_AVCODEC_AudioEncoderPushInputData(aenc_, index, attr);
 
-        free(fileBuffer);
+        AVErrCode ret = OH_AudioEncoder_PushInputData(aenc_, index, attr);
+
         timeStamp_ += this->SAMPLE_DURATION_US;
         frameCount_ ++;
         signal_->inQueue_.pop();
@@ -351,9 +384,7 @@ void AEncNdkSample::InputFunc()
 
         if (ret != AV_ERR_OK) {
             cout << "Fatal PushInputData error, exit" << endl;
-//            NDK_CHECK_AND_RETURN_LOG(false, "Fatal: ReleaseOutputBuffer fail");
             ASSERT_EQ(AV_ERR_OK, ret);
-//            exit(1);
             break;
         }
     }
@@ -368,18 +399,28 @@ void AEncNdkSample::OutputFunc()
         }
 
         unique_lock<mutex> lock(signal_->outMutex_);
-        signal_->outCond_.wait(lock, [this](){ return signal_->outQueue_.size() > 0; });
+        signal_->outCond_.wait(lock, [this]() {
+            return signal_->outQueue_.size() > 0;
+            // return signal_->outQueue_.size() > 0 && !signal_->isFlushing_.load();
+            });
 
         if (!this->isRunning_.load()) {
             break;
         }
 
         uint32_t index = signal_->outQueue_.front();
+        if (signal_->isFlushing_.load() || signal_->isStop_.load()) {
+            signal_->outQueue_.pop();
+            signal_->outSizeQueue_.pop();
+            signal_->outBufferQueue_.pop();
+            cout << "isFlushing_ or isStop_, OutputFunc pop" << endl;
+            continue;
+        }
         auto buffer = signal_->outBufferQueue_.front();
         if (buffer == nullptr) {
             cout << "getOutPut Buffer fail" << endl;
         }
-        uint32_t size = signal_->sizeQueue_.front();
+        uint32_t size = signal_->outSizeQueue_.front();
         cout << "GetOutputBuffer size : " << size << " frameCount_ =  " << frameCount_ << endl;
         if (this->NEED_DUMP) {
             FILE *outFile;
@@ -387,12 +428,12 @@ void AEncNdkSample::OutputFunc()
             if (outFile == nullptr) {
                 cout << "dump data fail" << endl;
             } else {
-                fwrite(OH_AV_MemoryGetAddr(buffer), 1, size, outFile);
+                fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
             }
             fclose(outFile);
         }
 
-        AVErrCode ret = OH_AVCODEC_AudioEncoderFreeOutputData(aenc_, index);
+        AVErrCode ret = OH_AudioEncoder_FreeOutputData(aenc_, index);
         if ( ret != AV_ERR_OK) {
             cout << "Fatal: ReleaseOutputBuffer fail" << endl;
             ASSERT_EQ(AV_ERR_OK, ret);
@@ -400,7 +441,7 @@ void AEncNdkSample::OutputFunc()
         }
 
         signal_->outQueue_.pop();
-        signal_->sizeQueue_.pop();
+        signal_->outSizeQueue_.pop();
         signal_->outBufferQueue_.pop();
     }
 }

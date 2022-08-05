@@ -15,11 +15,9 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
 #include "gtest/gtest.h"
 #include "ActsAudioDecoderNdkTest.h"
-#include "ndk_av_codec.h"
-#include "ndk_av_format.h"
+#include "ADecNdkSample.h"
 
 
 using namespace std;
@@ -95,8 +93,8 @@ namespace {
     };
 
     map<string, int> AudioDecErrParam = {
-        {"channel_count", 96000},
-        {"sample_rate", 96000},
+        {"channel_count", 44100},
+        {"sample_rate", 44100},
         {"audio_sample_format", 1},
     };
 
@@ -1082,7 +1080,7 @@ namespace {
 }
 
 bool CheckDecDesc(map<string, int> BaseDesc, struct AVCodec* audDec){
-    AVFormat* OutDesc = OH_AVCODEC_AudioDecoderGetOutputMediaDescription(audDec);
+    AVFormat* OutDesc = OH_AudioDecoder_GetOutputDescription(audDec);
     cout << "OutDesc: " << OutDesc <<endl;
     if(OutDesc == nullptr){
         cout << "OH_AVCODEC_AudioDecoderGetOutputMediaDescription err. " <<endl;
@@ -1091,14 +1089,14 @@ bool CheckDecDesc(map<string, int> BaseDesc, struct AVCodec* audDec){
 
     int32_t out ;
     for(const auto& t: BaseDesc){
-         bool res = OH_AV_FormatGetIntValue(OutDesc, t.first.c_str(), &out);
+         bool res = OH_AVFormat_GetIntValue(OutDesc, t.first.c_str(), &out);
          cout << "key: " << t.first << "; out: " << out <<endl;
         if(!res){
-            cout << "OH_AV_FormatGetIntValue Fail. key:" << t.first << endl;
+            cout << "OH_AVFormat_GetIntValue Fail. key:" << t.first << endl;
             return false;
         }
         if(out != t.second){
-            cout << "OH_AV_FormatGetIntValue error. key: " << t.first
+            cout << "OH_AVFormat_GetIntValue error. key: " << t.first
             << "; expect: "<< t.second
             << ", actual: "<< out << endl;
             return false;
@@ -1115,7 +1113,7 @@ void audioDecoderProcess(map<string, int> AudioDecFormatParam, const char * out_
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecFormatParam);
 
@@ -1131,7 +1129,7 @@ void audioDecoderProcess(map<string, int> AudioDecFormatParam, const char * out_
     ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1147,12 +1145,12 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest001, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
-//    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-//    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-//    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+//    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+//    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+//    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1162,11 +1160,9 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest001, Function | Med
     ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
-
-
 
 /**
  * @tc.number    : ActsAudioDecoderNdkFuncTest002
@@ -1180,17 +1176,17 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest002, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1206,16 +1202,16 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest003, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1230,7 +1226,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest004, Function | Med
     aDecSample->init("/data/media/AAC_48000_32_1_out_004.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Destroy(audDec));
     audDec = nullptr;
 }
 
@@ -1246,20 +1242,19 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest005, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
     while(aDecSample->GetFrameCount() < 500){};
-    //while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1275,18 +1270,18 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest006, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1302,17 +1297,17 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest007, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1328,11 +1323,11 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest008, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
@@ -1344,7 +1339,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest008, Function | Med
     ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1360,11 +1355,11 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest009, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1377,7 +1372,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest009, Function | Med
     }
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1393,28 +1388,27 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest010, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
     while(aDecSample->GetFrameCount() < 500){};
-    //while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
 /**
  * @tc.number    : ActsAudioDecoderNdkFuncTest011
- * @tc.name      : test audioDecoder start -> flush
- * @tc.desc      : Basic function test: create - config - prepare - start - flush - release
+ * @tc.name      : test audioDecoder start -> flush - start
+ * @tc.desc      : Basic function test: create - config - prepare - start - flush - start - release
  */
 HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest011, Function | MediumTest | Level1)
 {
@@ -1423,22 +1417,22 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest011, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
-    while(aDecSample->GetFrameCount() < 500){};
-    //while(aDecSample->GetFrameCount() < 300){};
+    while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
-    //while(aDecSample->GetFrameCount() < 300){};
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
+    while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1454,11 +1448,11 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest012, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1470,7 +1464,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest012, Function | Med
     //while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1486,11 +1480,11 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest013, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1501,9 +1495,11 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest013, Function | Med
         }
     }
     ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
+    sleep(1);
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 
 }
@@ -1520,11 +1516,11 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest014, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1537,7 +1533,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest014, Function | Med
     ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1554,11 +1550,11 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest015, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1571,7 +1567,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest015, Function | Med
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1587,31 +1583,29 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest016, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
-    while(aDecSample->GetFrameCount() < 400){};
-    //while(aDecSample->GetFrameCount() < 300){};
+    while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
     while(aDecSample->GetFrameCount() < 500){};
-    //while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
 /**
  * @tc.number    : ActsAudioDecoderNdkFuncTest017
  * @tc.name      : test audioDecoder start - stop - reset
- * @tc.desc      : Basic function test: create - config - prepare - start - stop - reset - release
+ * @tc.desc      : Basic function test: create - config - prepare - start - stop - reset - config - prepare - start - release
  */
 HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest017, Function | MediumTest | Level1)
 {
@@ -1620,29 +1614,32 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest017, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
-    while(aDecSample->GetFrameCount() < 500){};
-    //while(aDecSample->GetFrameCount() < 300){};
+    while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
 /**
  * @tc.number    : ActsAudioDecoderNdkFuncTest018
  * @tc.name      : test audioDecoder start - reset - config
- * @tc.desc      : Basic function test: create - config - prepare - start - reset - config - release
+ * @tc.desc      : Basic function test: create - config - prepare - start - reset - config - prepare - start - release
  */
 HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest018, Function | MediumTest | Level1)
 {
@@ -1651,29 +1648,31 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest018, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
-    while(aDecSample->GetFrameCount() < 500){};
-    //while(aDecSample->GetFrameCount() < 300){};
+    while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    sleep(2);
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
 /**
  * @tc.number    : ActsAudioDecoderNdkFuncTest019
- * @tc.name      : test audioDecoder flush - eos
- * @tc.desc      : Basic function test: create - config - prepare - start - flush - eos - release
+ * @tc.name      : test audioDecoder flush - start - eos
+ * @tc.desc      : Basic function test: create - config - prepare - start - flush - start - eos - release
  */
 HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest019, Function | MediumTest | Level1)
 {
@@ -1682,18 +1681,18 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest019, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
     while(aDecSample->GetFrameCount() < 300){};
-    //while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
     while (true) {
         if (!aDecSample->isRunning_.load()) {
             break;
@@ -1701,7 +1700,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest019, Function | Med
     }
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1718,23 +1717,21 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest020, Function | Med
     cout << "audDec " << audDec << endl;
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
     while(aDecSample->GetFrameCount() < 500){};
-    //while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
-    //while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -1750,30 +1747,28 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest021, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
     while(aDecSample->GetFrameCount() < 500){};
-    //while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
-    //while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
 /**
  * @tc.number    : ActsAudioDecoderNdkFuncTest022
- * @tc.name      : test audioDecoder flush - flush
- * @tc.desc      : Basic function test: create - config - prepare - start - flush - flush - release
+ * @tc.name      : test audioDecoder flush - start - flush - start
+ * @tc.desc      : Basic function test: create - config - prepare - start - flush - start - flush - start - release
  */
 HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest022, Function | MediumTest | Level1)
 {
@@ -1782,77 +1777,175 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest022, Function | Med
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while(aDecSample->GetFrameCount() < 300){};
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
     while(aDecSample->GetFrameCount() < 500){};
-    //while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
-    //while(aDecSample->GetFrameCount() < 300){};
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
+    sleep(1);
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
 /**
  * @tc.number    : ActsAudioDecoderNdkFuncTest023
- * @tc.name      : test audioDecoder eos - stop - reset
- * @tc.desc      : Basic function test: create - config - prepare - start - eos - stop - reset - release
+ * @tc.name      : test audioDecoder flush - release
+ * @tc.desc      : Basic function test: create - config - prepare - start - flush - release
  */
 HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest023, Function | MediumTest | Level1)
 {
-    ADecNdkSample *aDecSample  = new ADecNdkSample();
+    ADecNdkSample *aDecSample = new ADecNdkSample();
     aDecSample->init("/data/media/AAC_48000_32_1_out_023.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
-    while (true) {
-        if (!aDecSample->isRunning_.load()) {
-            break;
-        }
-    }
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
+    while(aDecSample->GetFrameCount() < 500){};
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    sleep(1);
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
 /**
  * @tc.number    : ActsAudioDecoderNdkFuncTest024
- * @tc.name      : test audioDecoder createByName
- * @tc.desc      : Basic function test: create - config - prepare - start - eos - stop - reset - release
+ * @tc.name      : test audioDecoder flush - start - stop
+ * @tc.desc      : Basic function test: create - config - prepare - start - flush - start - stop - release
  */
 HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest024, Function | MediumTest | Level1)
 {
-    ADecNdkSample *aDecSample  = new ADecNdkSample();
+    ADecNdkSample *aDecSample = new ADecNdkSample();
     aDecSample->init("/data/media/AAC_48000_32_1_out_024.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
-    struct AVCodec* audDec = aDecSample->CreateAudioDecoder(1);
+    struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
-    OH_AV_FormatPutIntValue(AudioFormat, "channel_count", 2);
-    OH_AV_FormatPutIntValue(AudioFormat, "sample_rate", 44100);
-    OH_AV_FormatPutIntValue(AudioFormat, "audio_sample_format", 1);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1);
+
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while(aDecSample->GetFrameCount() < 500){};
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
+    sleep(1);
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
+    audDec = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+}
+
+/**
+ * @tc.number    : ActsAudioDecoderNdkFuncTest025
+ * @tc.name      : test audioDecoder flush - start - stop
+ * @tc.desc      : Basic function test: create - config - prepare - start - flush - start - stop - release
+ */
+HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest025, Function | MediumTest | Level1)
+{
+    ADecNdkSample *aDecSample = new ADecNdkSample();
+    aDecSample->init("/data/media/AAC_48000_32_1_out_025.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
+    struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
+    ASSERT_NE(nullptr, audDec);
+
+    AVFormat *AudioFormat = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, AudioFormat);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1);
+
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while(aDecSample->GetFrameCount() < 300){};
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
+    sleep(1);
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
+    sleep(1);
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
+    audDec = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+}
+
+/**
+ * @tc.number    : ActsAudioDecoderNdkFuncTest026
+ * @tc.name      : test audioDecoder flush - reset - config
+ * @tc.desc      : Basic function test: create - config - prepare - start - flush - reset - config - prepare - start - release
+ */
+HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest026, Function | MediumTest | Level1)
+{
+    ADecNdkSample *aDecSample = new ADecNdkSample();
+    aDecSample->init("/data/media/AAC_48000_32_1_out_026.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
+    struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
+    ASSERT_NE(nullptr, audDec);
+
+    AVFormat *AudioFormat = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, AudioFormat);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1);
+
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while(aDecSample->GetFrameCount() < 300){};
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    sleep(2);
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
+    audDec = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+}
+
+/**
+ * @tc.number    : ActsAudioDecoderNdkFuncTest027
+ * @tc.name      : test audioDecoder eos - stop - reset
+ * @tc.desc      : Basic function test: create - config - prepare - start - eos - stop - reset - release
+ */
+HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest027, Function | MediumTest | Level1)
+{
+    ADecNdkSample *aDecSample  = new ADecNdkSample();
+    aDecSample->init("/data/media/AAC_48000_32_1_out_027.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
+    struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
+    ASSERT_NE(nullptr, audDec);
+
+    AVFormat *AudioFormat = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, AudioFormat);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1); 
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
@@ -1866,25 +1959,130 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest024, Function | Med
     ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
 /**
- * @tc.number    : ActsAudioDecoderNdkFuncTest025
+ * @tc.number    : ActsAudioDecoderNdkFuncTest028
+ * @tc.name      : test audioDecoder eos - stop - start
+ * @tc.desc      : Basic function test: create - config - prepare - start - eos - stop - start - release
+ */
+HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest028, Function | MediumTest | Level1)
+{
+    ADecNdkSample *aDecSample  = new ADecNdkSample();
+    aDecSample->init("/data/media/AAC_48000_32_1_out_028.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
+    struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
+    ASSERT_NE(nullptr, audDec);
+
+    AVFormat *AudioFormat = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, AudioFormat);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1);
+
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while (true) {
+        if (!aDecSample->isRunning_.load()) {
+            break;
+        }
+    }
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    sleep(1);
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
+    audDec = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+}
+
+/**
+ * @tc.number    : ActsAudioDecoderNdkFuncTest029
+ * @tc.name      : test audioDecoder eos - flush - start
+ * @tc.desc      : Basic function test: create - config - prepare - start - eos - flush - start - release
+ */
+HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest029, Function | MediumTest | Level1)
+{
+    ADecNdkSample *aDecSample  = new ADecNdkSample();
+    aDecSample->init("/data/media/AAC_48000_32_1_out_029.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
+    struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
+    ASSERT_NE(nullptr, audDec);
+
+    AVFormat *AudioFormat = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, AudioFormat);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1);
+
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while (true) {
+        if (!aDecSample->isRunning_.load()) {
+            break;
+        }
+    }
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    sleep(1);
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
+    audDec = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+}
+
+/**
+ * @tc.number    : ActsAudioDecoderNdkFuncTest030
+ * @tc.name      : test audioDecoder createByName
+ * @tc.desc      : Basic function test: create - config - prepare - start - eos - stop - reset - release
+ */
+HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest030, Function | MediumTest | Level1)
+{
+    ADecNdkSample *aDecSample  = new ADecNdkSample();
+    aDecSample->init("/data/media/AAC_48000_32_1_out_030.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
+    struct AVCodec* audDec = aDecSample->CreateAudioDecoder(1);
+    ASSERT_NE(nullptr, audDec);
+
+    AVFormat *AudioFormat = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, AudioFormat);
+    OH_AVFormat_SetIntValue(AudioFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioFormat, "audio_sample_format", 1);
+
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while (true) {
+        if (!aDecSample->isRunning_.load()) {
+            break;
+        }
+    }
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Reset());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
+    audDec = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+}
+
+/**
+ * @tc.number    : ActsAudioDecoderNdkFuncTest031
  * @tc.name      : test audioDecoder get outputMediaDescription
  * @tc.desc      : Basic function test
  */
-HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest025, Function | MediumTest | Level1)
+HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest031, Function | MediumTest | Level1)
 {
-    cout << "ActsAudioDecoderNdkFuncTest025 " << endl;
     ADecNdkSample *aDecSample = new ADecNdkSample();
-    aDecSample->init("/data/media/AAC_48000_32_1_out_025.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
+    aDecSample->init("/data/media/AAC_48000_32_1_out_031.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     cout << "audDec " << audDec << endl;
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -1899,7 +2097,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest025, Function | Med
     ASSERT_EQ(true, CheckDecDesc(AudioDecParam, audDec));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2345,7 +2543,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFormatTest025, Function | M
     uint32_t ES_LEN_LC_AAC_2_96000= sizeof(LC_AAC_2_96000) / sizeof(uint32_t);
     map<string, int> AudioDecParam025 = {
         {"channel_count", 2},
-        {"sample_rate", 8000},
+        {"sample_rate", 96000},
         {"audio_sample_format", 1},
     };
 
@@ -2365,7 +2563,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest001, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2374,7 +2572,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest001, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2390,7 +2588,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest002, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2402,7 +2600,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest002, Function
     while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2418,7 +2616,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest003, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2427,12 +2625,13 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest003, Function
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
     while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
     while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Configure(AudioFormat));
     while(aDecSample->GetFrameCount() < 800){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2448,7 +2647,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest004, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2460,7 +2659,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest004, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2476,8 +2675,8 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest005, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
-    AVFormat *AudioDecErrFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
+    AVFormat *AudioDecErrFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
     aDecSample->SetFormat(AudioDecErrFormat, AudioDecErrParam);
@@ -2489,7 +2688,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest005, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2505,7 +2704,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest006, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2520,7 +2719,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest006, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2536,7 +2735,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest007, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2544,7 +2743,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest007, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2560,7 +2759,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest008, Function
        struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2571,7 +2770,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest008, Function
     while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2587,7 +2786,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest009, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2599,7 +2798,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest009, Function
     while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2615,7 +2814,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest010, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2624,11 +2823,12 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest010, Function
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
     while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Prepare());
     while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2644,7 +2844,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest011, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2659,7 +2859,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest011, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2675,7 +2875,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest012, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2687,7 +2887,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest012, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2703,7 +2903,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest013, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2715,7 +2915,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest013, Function
     while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2731,7 +2931,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest014, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2742,7 +2942,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest014, Function
     while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2775,7 +2975,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest016, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2797,7 +2997,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest017, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2805,7 +3005,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest017, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Start());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2821,17 +3021,17 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest018, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
-    ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, OH_AVCODEC_AudioDecoderStart(audDec));
+    ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, OH_AudioDecoder_Start(audDec));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2847,7 +3047,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest019, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2859,10 +3059,10 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest019, Function
             break;
         }
     }
-    ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, OH_AVCODEC_AudioDecoderStart(audDec));
+    ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, OH_AudioDecoder_Start(audDec));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2878,7 +3078,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest020, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2888,7 +3088,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest020, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Start());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2921,7 +3121,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest022, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2929,7 +3129,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest022, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Flush());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2945,7 +3145,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest023, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2954,7 +3154,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest023, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Flush());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -2970,7 +3170,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest024, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -2982,23 +3182,23 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest024, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Flush());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
 /**
- * @tc.number    : ActsAudioDecoderNdkReliablityTest026
+ * @tc.number    : ActsAudioDecoderNdkReliablityTest025
  * @tc.name      : test audioDecorder reset -> flushErr
- * @tc.desc      : ActsAudioDecoderNdkReliablityTest026
+ * @tc.desc      : ActsAudioDecoderNdkReliablityTest025
  */
-HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest026, Function | MediumTest | Level2)
+HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest025, Function | MediumTest | Level2)
 {
     ADecNdkSample *aDecSample = new ADecNdkSample();
-    aDecSample->init("/data/media/AAC_48000_32_1_rel_out026.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
+    aDecSample->init("/data/media/AAC_48000_32_1_rel_out025.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -3010,7 +3210,37 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest026, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Flush());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+}
+
+/**
+ * @tc.number    : ActsAudioDecoderNdkReliablityTest026
+ * @tc.name      : test audioDecorder flush -> flushErr
+ * @tc.desc      : ActsAudioDecoderNdkReliablityTest026
+ */
+HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest026, Function | MediumTest | Level2)
+{
+    ADecNdkSample *aDecSample = new ADecNdkSample();
+    aDecSample->init("/data/media/AAC_48000_32_1_rel_out026.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
+    struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
+    ASSERT_NE(nullptr, audDec);
+
+    AVFormat *AudioFormat = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, AudioFormat);
+    aDecSample->SetFormat(AudioFormat, AudioDecParam);
+
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while(aDecSample->GetFrameCount() < 300){};
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while(aDecSample->GetFrameCount() < 500){};
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
+    audDec = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -3043,7 +3273,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest028, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -3051,7 +3281,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest028, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -3067,7 +3297,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest029, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -3076,7 +3306,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest029, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -3092,7 +3322,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest030, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -3104,7 +3334,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest030, Function
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
 
@@ -3120,7 +3350,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest031, Function
     struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
     ASSERT_NE(nullptr, audDec);
 
-    AVFormat *AudioFormat = OH_AV_CreateFormat();
+    AVFormat *AudioFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, AudioFormat);
     aDecSample->SetFormat(AudioFormat, AudioDecParam);
 
@@ -3134,6 +3364,6 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest031, Function
     while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
-    OH_AV_DestroyFormat(AudioFormat);
+    OH_AVFormat_Destroy(AudioFormat);
     AudioFormat = nullptr;
 }
