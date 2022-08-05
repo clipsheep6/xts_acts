@@ -17,13 +17,11 @@ group("ability_runtime") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "TestApi:Testapi",
       "aacommand:aacommand",
       "abilitymanager:actsabilitymanagertest",
-      "abilitymontior:AbilityMonitorTest",
+      "abilitymontior:ActsAbilityMonitorTest",
       "abilitymultiinstance:abilitymultiinstance",
       "actsabilitydelegatorcase:ActsAbilityDelegatorCaseTest",
-      "actsabilitylifecyclestatenew:ActsAbilityLifecycleStateNewTest",
       "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
       "actsabilityusertest:ActsAbilityuserTest",
       "actscalltest:actscalltest",
@@ -39,6 +37,7 @@ group("ability_runtime") {
       "amsdisplayIdtest:amsdisplayIdtest",
       "amsgetabilityprocessinfo:amsgetabilityprocessinfo",
       "apicover:apicover",
+      "apitest:ActsApiTest",
       "context:context",
       "fa:fa",
       "faapicover:faapicover",
@@ -50,6 +49,7 @@ group("ability_runtime") {
       "non_concurrent:non_concurrent",
       "processmultiinstance:processmultiinstance",
       "stage:stage",
+      "supportfunctiontest:supportfunctiontest",
       "want:want",
       "workercontextcover:workercontextcover",
 

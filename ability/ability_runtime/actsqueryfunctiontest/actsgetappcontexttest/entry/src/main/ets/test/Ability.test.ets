@@ -13,8 +13,8 @@
 * limitations under the License.
 */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
-import commonEvent from '@ohos.commonevent'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import commonEvent from '@ohos.commonEvent'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 const START_ABILITY_TIMEOUT = 5000;
 var GetAppContext1 = {

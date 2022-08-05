@@ -13,8 +13,8 @@
 * limitations under the License.
 */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
-import appManager from '@ohos.application.AppManager';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import appManager from '@ohos.application.appManager';
 const DELAY = 3000
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 export default function abilityTest() {
