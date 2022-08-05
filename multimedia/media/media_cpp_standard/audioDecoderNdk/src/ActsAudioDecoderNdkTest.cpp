@@ -1594,7 +1594,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest016, Function | Med
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
     while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
     while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
@@ -1886,7 +1886,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest025, Function | Med
     ASSERT_EQ(AV_ERR_OK, aDecSample->Flush());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
     sleep(1);
-    ASSERT_EQ(AV_ERR_OK, OH_AudioDecoder_Start(audDec));
+    ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aDecSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());

@@ -546,7 +546,7 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest016, Function | Med
     ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Stop());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Release());
     audEnc = nullptr;
@@ -644,7 +644,8 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest019, Function | Med
     ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+//    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
     while (true) {
         if (!aEncSample->isRunning_.load()) {
             break;
@@ -838,7 +839,8 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest025, Function | Med
     ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
     ASSERT_EQ(AV_ERR_OK, aEncSample->Stop());
     sleep(1);
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+//    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Release());
     audEnc = nullptr;
@@ -917,13 +919,83 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest027, Function | Med
 
 /**
  * @tc.number    : ActsAudioEncoderNdkFuncTest028
- * @tc.name      : test audioEncoder createByName
- * @tc.desc      : Basic function test
+ * @tc.name      : test audioEncoder eos - stop - start
+ * @tc.desc      : Basic function test: create - config - prepare - start - eos - stop - start - release
  */
 HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest028, Function | MediumTest | Level1)
 {
-    AEncNdkSample *aEncSample = new AEncNdkSample();
+    AEncNdkSample *aEncSample  = new AEncNdkSample();
     aEncSample->init("/data/media/S16LE_out028.aac");
+    struct AVCodec* audEnc = aEncSample->CreateAudioEncoder();
+    ASSERT_NE(nullptr, audEnc);
+
+    AVFormat *AudioEncFormat = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, AudioEncFormat);
+    OH_AVFormat_SetIntValue(AudioEncFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioEncFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioEncFormat, "audio_sample_format", 1);
+
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Configure(AudioEncFormat));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+    while (true) {
+        if (!aEncSample->isRunning_.load()) {
+            break;
+        }
+    }
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Stop());
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+    sleep(1);
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Release());
+    audEnc = nullptr;
+    OH_AVFormat_Destroy(AudioEncFormat);
+    AudioEncFormat = nullptr;
+}
+
+/**
+ * @tc.number    : ActsAudioEncoderNdkFuncTest029
+ * @tc.name      : test audioEncoder eos - flush - start
+ * @tc.desc      : Basic function test: create - config - prepare - start - eos - flush - start - release
+ */
+HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest029, Function | MediumTest | Level1)
+{
+    AEncNdkSample *aEncSample  = new AEncNdkSample();
+    aEncSample->init("/data/media/S16LE_out029.aac");
+    struct AVCodec* audEnc = aEncSample->CreateAudioEncoder();
+    ASSERT_NE(nullptr, audEnc);
+
+    AVFormat *AudioEncFormat = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, AudioEncFormat);
+    OH_AVFormat_SetIntValue(AudioEncFormat, "channel_count", 2);
+    OH_AVFormat_SetIntValue(AudioEncFormat, "sample_rate", 44100);
+    OH_AVFormat_SetIntValue(AudioEncFormat, "audio_sample_format", 1);
+
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Configure(AudioEncFormat));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Prepare());
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+    while (true) {
+        if (!aEncSample->isRunning_.load()) {
+            break;
+        }
+    }
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+    sleep(1);
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Release());
+    audEnc = nullptr;
+    OH_AVFormat_Destroy(AudioEncFormat);
+    AudioEncFormat = nullptr;
+}
+
+/**
+ * @tc.number    : ActsAudioEncoderNdkFuncTest030
+ * @tc.name      : test audioEncoder createByName
+ * @tc.desc      : Basic function test
+ */
+HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest030, Function | MediumTest | Level1)
+{
+    AEncNdkSample *aEncSample = new AEncNdkSample();
+    aEncSample->init("/data/media/S16LE_out030.aac");
     struct AVCodec* audEnc = aEncSample->CreateAudioEncoder(1);
     cout << "audEnc " << audEnc << endl;
     ASSERT_NE(nullptr, audEnc);
@@ -944,14 +1016,14 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest028, Function | Med
 }
 
 /**
- * @tc.number    : ActsAudioEncoderNdkFuncTest029
+ * @tc.number    : ActsAudioEncoderNdkFuncTest031
  * @tc.name      : test audioEncoder get outputMediaDescription
  * @tc.desc      : Basic function test
  */
-HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest029, Function | MediumTest | Level1)
+HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest031, Function | MediumTest | Level1)
 {
     AEncNdkSample *aEncSample = new AEncNdkSample();
-    aEncSample->init("/data/media/S16LE_out029.aac");
+    aEncSample->init("/data/media/S16LE_out031.aac");
     struct AVCodec* audEnc = aEncSample->CreateAudioEncoder();
     cout << "audEnc " << audEnc << endl;
     ASSERT_NE(nullptr, audEnc);
