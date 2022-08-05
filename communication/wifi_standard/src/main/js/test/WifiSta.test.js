@@ -259,8 +259,8 @@ describe('ActsWifiTest', function() {
                 console.info("[wifi_test] get wifi link [promise] -> " + JSON.stringify(result));
                 expect(JSON.stringify(result)).assertContain('band');
                 done();
-            }).catch((error) => {
-                console.info("[wifi_test] promise then error." + JSON.stringify(error));
+            }).catch((err) => {
+                console.info("[wifi_test] promise then err." + JSON.stringify(err));
                 expect().assertFail();
             });
     })
