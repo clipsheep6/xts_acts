@@ -45,6 +45,7 @@ void AdecAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
 {
     cout << "Format Changed" << endl;
 }
+
 void AdecAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void *userData)
 {
     ADecSignal* signal_ = static_cast<ADecSignal *>(userData);
@@ -157,9 +158,11 @@ int32_t ADecNdkSample::Start()
     signal_->isStop_.store(false);
     this->isRunning_.store(true);
 
-    testFile_ = std::make_unique<std::ifstream>();
-    NDK_CHECK_AND_RETURN_RET_LOG(testFile_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
-    testFile_->open(this->INP_DIR, std::ios::in | std::ios::binary);
+    if(testFile_ == nullptr){
+        testFile_ = std::make_unique<std::ifstream>();
+        NDK_CHECK_AND_RETURN_RET_LOG(testFile_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+        testFile_->open(this->INP_DIR, std::ios::in | std::ios::binary);
+    }
 
     if (inputLoop_ == nullptr){
         inputLoop_ = make_unique<thread>(&ADecNdkSample::InputFunc, this);
