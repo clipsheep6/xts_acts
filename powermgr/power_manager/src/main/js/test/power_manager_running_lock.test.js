@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import runningLock from '@ohos.runninglock'
+import runningLock from '@ohos.runningLock'
 
 import { describe, it, expect } from '@ohos/hypium'
 
