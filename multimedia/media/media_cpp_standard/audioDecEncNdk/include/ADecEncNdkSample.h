@@ -60,8 +60,8 @@ public:
     std::queue<AVMemory *> inBufferQueueEnc_;
     std::queue<AVMemory *> outBufferQueueEnc_;
     int32_t errorNum_ = 0;
-    std::atomic<bool> isDecFlushing_ = false;
-    std::atomic<bool> isEncFlushing_ = false;
+    std::atomic<bool> isFlushing_ = false;
+    // std::atomic<bool> isEncFlushing_ = false;
 };
 
 
@@ -93,12 +93,14 @@ public:
     int32_t ReleaseEnc();
     int32_t CalcuError();
     void SetReadPath(const char * inp_path, uint32_t es[], uint32_t length);
+    void SetEosState(bool needSetEos);
     void SetSavePath(const char * outp_path);
     void ReRead();
     void ResetDecParam();
     void ResetEncParam();
     int32_t GetFrameCount();
-    bool GetEosState();
+    bool GetEncEosState();
+    bool GetDecEosState();
     ADecEncSignal* acodecSignal_ = nullptr;
     uint32_t decInCnt_ = 0;
     uint32_t decOutCnt_ = 0;
@@ -108,6 +110,7 @@ public:
     bool isEncInputEOS = false;
     bool isDecOutputEOS = false;
     bool isEncOutputEOS = false;
+    bool setEos = true;
 
 private:
     struct AVCodec* adec_;

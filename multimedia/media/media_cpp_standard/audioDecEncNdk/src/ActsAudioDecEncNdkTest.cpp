@@ -117,20 +117,23 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest001, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
     aDecEncSample->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(true);
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out1.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(!aDecEncSample->GetEncEosState()){};
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopDec());
+    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopEnc());
+
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
     audDec = nullptr;
-    OH_AVFormat_Destroy(AudioFormat);
-    AudioFormat = nullptr;
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseEnc());
     audEnc = nullptr;
+
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 }
 
@@ -158,21 +161,25 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest002, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
     aDecEncSample->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(true);
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out2.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(aDecEncSample->GetFrameCount() < 999){};
 
+    ASSERT_EQ(AV_ERR_OK, aDecEncSample->ResetEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ResetDec());
+
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
     audDec = nullptr;
-    OH_AVFormat_Destroy(AudioFormat);
-    AudioFormat = nullptr;
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->ResetEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseEnc());
     audEnc = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+    // ASSERT_EQ(AV_ERR_OK, aDecEncSample->ResetEnc());
+
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 }
 
@@ -200,18 +207,21 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest003, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
     aDecEncSample->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(true);
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out3.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(aDecEncSample->GetFrameCount() < 1000){};
+
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
     audDec = nullptr;
-    OH_AVFormat_Destroy(AudioFormat);
-    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseEnc());
     audEnc = nullptr;
+
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 }
 
@@ -239,6 +249,7 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest004, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
     aDecEncSample->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(true);
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out4.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
@@ -246,20 +257,22 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest004, Function | MediumTes
 
     while(aDecEncSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->FlushDec());
+    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(!aDecEncSample->GetEncEosState()){};
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
     audDec = nullptr;
-    OH_AVFormat_Destroy(AudioFormat);
-    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseEnc());
     audEnc = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 }
 
 /**
  * @tc.number    : ActsAudioDecEncNdkTest005
- * @tc.name      : flush at eos
+ * @tc.name      : flush dec at eos
  * @tc.desc      : Basic function test
  */
 HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest005, Function | MediumTest | Level1)
@@ -281,30 +294,38 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest005, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
     aDecEncSample->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(false);
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out5.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(!aDecEncSample->GetDecEosState()){};
+    cout << "aDecEncSample->GetDecEosState() is " << aDecEncSample->GetDecEosState() << endl;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
+    ASSERT_EQ(AV_ERR_OK, aDecEncSample->FlushDec());
+    ASSERT_EQ(AV_ERR_OK, aDecEncSample->FlushEnc());
     aDecEncSample->ReRead();
     aDecEncSample->ResetDecParam();
     aDecEncSample->ResetEncParam();
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out5_2.aac");
+    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
+    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
+    aDecEncSample->SetEosState(true);
+    sleep(2);
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->FlushEnc());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->FlushDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(!aDecEncSample->GetEncEosState()){};
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
     audDec = nullptr;
-    OH_AVFormat_Destroy(AudioFormat);
-    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseEnc());
     audEnc = nullptr;
+
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 }
+
 
 /**
  * @tc.number    : ActsAudioDecEncNdkTest006
@@ -330,6 +351,7 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest006, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
     aDecEncSample->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(true);
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out6.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
@@ -337,29 +359,24 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest006, Function | MediumTes
 
     while(aDecEncSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopDec());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopEnc());
+    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 
-    sleep(2);
-
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
-
-    while(!aDecEncSample->GetEosState()){};
+    while(!aDecEncSample->GetEncEosState()){};
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
     audDec = nullptr;
-    OH_AVFormat_Destroy(AudioFormat);
-    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseEnc());
     audEnc = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 }
 
 
 /**
  * @tc.number    : ActsAudioDecEncNdkTest007
- * @tc.name      : stop at eos and restart to eos
+ * @tc.name      : stop dec at eos and restart to eos
  * @tc.desc      : Basic function test
  */
 HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest007, Function | MediumTest | Level1)
@@ -381,33 +398,35 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest007, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
     aDecEncSample->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(false);
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out7.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(!aDecEncSample->GetDecEosState()){};
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopDec());
-    ASSERT_EQ(AV_ERR_OK, aDecEncSample->StopEnc());
+    ASSERT_EQ(AV_ERR_OK, aDecEncSample->FlushEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 
     aDecEncSample->ReRead();
     aDecEncSample->ResetDecParam();
     aDecEncSample->ResetEncParam();
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out7_2.aac");
-
+    aDecEncSample->SetEosState(true);
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(!aDecEncSample->GetEncEosState()){};
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
     audDec = nullptr;
-    OH_AVFormat_Destroy(AudioFormat);
-    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseEnc());
     audEnc = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 }
 
@@ -435,12 +454,13 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest008, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
     aDecEncSample->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(true);
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out8.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(!aDecEncSample->GetEncEosState()){};
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ResetDec());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ResetEnc());
@@ -455,25 +475,26 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest008, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
     aDecEncSample->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(true);
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out8_2.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(!aDecEncSample->GetEncEosState()){};
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
     audDec = nullptr;
-    OH_AVFormat_Destroy(AudioFormat);
-    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseEnc());
     audEnc = nullptr;
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->CalcuError());
 }
 
 /**
  * @tc.number    : ActsAudioDecEncNdkTest009
- * @tc.name      : reset at eos and restart to eos
+ * @tc.name      : release at eos and restart to eos
  * @tc.desc      : Basic function test
  */
 HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest009, Function | MediumTest | Level1)
@@ -495,12 +516,13 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest009, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->PrepareEnc());
     aDecEncSample->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(true);
     aDecEncSample->SetSavePath("/data/media/AAC_48000_32_1_out9.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
 
-    while(!aDecEncSample->GetEosState()){};
+    while(!aDecEncSample->GetEncEosState()){};
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
     audDec = nullptr;
@@ -524,18 +546,21 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest009, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, aDecEncSample2->ConfigureEnc(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecEncSample2->PrepareEnc());
     aDecEncSample2->SetReadPath("/data/media/AAC_48000_32_1.aac", ES_AAC_48000_32_1, ES_AAC_48000_32_1_Length);
+    aDecEncSample->SetEosState(true);
     aDecEncSample2->SetSavePath("/data/media/AAC_48000_32_1_out9_2.aac");
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample2->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample2->StartDec());
 
-    while(!aDecEncSample2->GetEosState()){};
+    while(!aDecEncSample2->GetEncEosState()){};
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample2->ReleaseDec());
     audDec2 = nullptr;
-    OH_AVFormat_Destroy(AudioFormat);
-    AudioFormat = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample2->ReleaseEnc());
     audEnc2 = nullptr;
+
+    OH_AVFormat_Destroy(AudioFormat);
+    AudioFormat = nullptr;
+
     ASSERT_EQ(AV_ERR_OK, aDecEncSample2->CalcuError());
 }

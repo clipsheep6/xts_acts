@@ -44,7 +44,7 @@ void AdecAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void
     ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     // cout << "DEC InputAvailable, index = " << index << endl;
     unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
-    if (acodecSignal_->isDecFlushing_.load()) {
+    if (acodecSignal_->isFlushing_.load()) {
         return;
     }
     acodecSignal_->inQueueDec_.push(index);
@@ -56,9 +56,10 @@ void AdecAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCo
 {
     // std::shared_ptr<ADecEncSignal> acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
-    // cout << "DEC OutputAvailable, index = " << index << endl;
+    cout << "DEC OutputAvailable, index = " << index << endl;
     unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
-    if (acodecSignal_->isDecFlushing_.load()) {
+    if (acodecSignal_->isFlushing_.load()) {
+        cout << "DEC OutputAvailable: isFlushing_.load() is true, return" << endl;
         return;
     }
     acodecSignal_->outQueueDec_.push(index);
@@ -89,7 +90,7 @@ void AencAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void
     ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     // cout << "ENC InputAvailable, index = " << index << endl;
     unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
-    if (acodecSignal_->isEncFlushing_.load()) {
+    if (acodecSignal_->isFlushing_.load()) {
         return;
     }
     acodecSignal_->inQueueEnc_.push(index);
@@ -107,7 +108,7 @@ void AencAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCo
     //     cout << "ENC output : get EOS"<< endl;
     // }
     unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
-    if (acodecSignal_->isEncFlushing_.load()) {
+    if (acodecSignal_->isFlushing_.load()) {
         return;
     }
     acodecSignal_->outQueueEnc_.push(index);
@@ -130,7 +131,7 @@ void clearBufferqueue (std::queue<AVMemory *>& q) {
 ADecEncNdkSample::~ADecEncNdkSample()
 {
     OH_AudioDecoder_Destroy(adec_);
-    OHAudioEncoder_Destroy(aenc_);
+    OH_AudioEncoder_Destroy(aenc_);
 
     delete acodecSignal_;
     acodecSignal_ = nullptr;
@@ -174,18 +175,19 @@ int32_t ADecEncNdkSample::PrepareDec()
 
 int32_t ADecEncNdkSample::StartDec()
 {
+    cout << "Enter start dec" << endl;
     isDecRunning_.store(true);
 
-    testFile_ = std::make_unique<std::ifstream>();
-    NDK_CHECK_AND_RETURN_RET_LOG(testFile_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
-    testFile_->open(INP_FILE, std::ios::in | std::ios::binary);
-
-    inputLoopDec_ = make_unique<thread>(&ADecEncNdkSample::InputFuncDec, this);
-    NDK_CHECK_AND_RETURN_RET_LOG(inputLoopDec_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
-
-    // outputLoopDec_ = make_unique<thread>(&ADecEncNdkSample::OutputFuncDec, this);
-    // NDK_CHECK_AND_RETURN_RET_LOG(outputLoopDec_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
-
+    if (testFile_ == nullptr) {
+        testFile_ = std::make_unique<std::ifstream>();
+        NDK_CHECK_AND_RETURN_RET_LOG(testFile_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+        testFile_->open(INP_FILE, std::ios::in | std::ios::binary);
+    }
+    if (inputLoopDec_ == nullptr) {
+        inputLoopDec_ = make_unique<thread>(&ADecEncNdkSample::InputFuncDec, this);
+        NDK_CHECK_AND_RETURN_RET_LOG(inputLoopDec_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    }
+    cout << "Exit start dec" << endl;
     return OH_AudioDecoder_Start(adec_);
 }
 
@@ -210,7 +212,7 @@ void ADecEncNdkSample::ResetDecParam()
     isDecOutputEOS = false;
     decInCnt_ = 0;
     decOutCnt_ = 0;
-    acodecSignal_->isDecFlushing_.store(true);
+    acodecSignal_->isFlushing_.store(true);
     unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
     clearIntqueue(acodecSignal_->inQueueDec_);
     clearBufferqueue(acodecSignal_->inBufferQueueDec_);
@@ -223,7 +225,7 @@ void ADecEncNdkSample::ResetDecParam()
     clearBufferqueue(acodecSignal_->outBufferQueueDec_);
     acodecSignal_->inCondEnc_.notify_all();
     lock2.unlock();
-    acodecSignal_->isDecFlushing_.store(false);
+    acodecSignal_->isFlushing_.store(false);
     isDecRunning_.store(true);
     cout << "isDecRunning_.load() is " << isDecRunning_.load() << endl;
 }
@@ -234,7 +236,7 @@ void ADecEncNdkSample::ResetEncParam()
     isEncOutputEOS = false;
     encInCnt_ = 0;
     encOutCnt_ = 0;
-    acodecSignal_->isEncFlushing_.store(true);
+    acodecSignal_->isFlushing_.store(true);
     unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
     clearIntqueue(acodecSignal_->inQueueEnc_);
     clearBufferqueue(acodecSignal_->inBufferQueueEnc_);
@@ -247,50 +249,34 @@ void ADecEncNdkSample::ResetEncParam()
     clearBufferqueue(acodecSignal_->outBufferQueueEnc_);
     acodecSignal_->outCondEnc_.notify_all();
     lock2.unlock();
-    acodecSignal_->isEncFlushing_.store(false);
+    acodecSignal_->isFlushing_.store(false);
     isEncRunning_.store(true);
     cout << "isEncRunning_.load() is " << isEncRunning_.load() << endl;
 }
 
 int32_t ADecEncNdkSample::StopDec()
 {
-    cout << "enter STOP DEC" << endl;
+    cout << "ENTER DEC STOP" << endl;
+    unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
+    unique_lock<mutex> lock2(acodecSignal_->inMutexEnc_);
+    acodecSignal_->isFlushing_.store(true);
+    lock.unlock();
+    lock2.unlock();
+    int32_t ret = OH_AudioDecoder_Stop(adec_);
     unique_lock<mutex> lockIn(acodecSignal_->inMutexDec_);
-    unique_lock<mutex> lockOut(acodecSignal_->inMutexEnc_);
-    acodecSignal_->isDecFlushing_.store(true);
-    if (inputLoopDec_ != nullptr && inputLoopDec_->joinable()) {
-        unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
-        acodecSignal_->inQueueDec_.push(10000);
-        acodecSignal_->inCondDec_.notify_all();
-        lock.unlock();
-        inputLoopDec_->join();
-        inputLoopDec_.reset();
-    }
-    if (inputLoopEnc_ != nullptr && inputLoopEnc_->joinable()) {
-        cout << "enter inputLoopEnc_ set function" << endl;
-        unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
-        acodecSignal_->outQueueDec_.push(10000);
-        acodecSignal_->inCondEnc_.notify_all();
-        lock.unlock();
-        inputLoopEnc_->join();
-        inputLoopEnc_.reset();
-    }
     clearIntqueue(acodecSignal_->inQueueDec_);
     clearBufferqueue(acodecSignal_->inBufferQueueDec_);
     acodecSignal_->inCondDec_.notify_all();
+    unique_lock<mutex> lockOut(acodecSignal_->inMutexEnc_);
     clearIntqueue(acodecSignal_->outQueueDec_);
     clearIntqueue(acodecSignal_->sizeQueueDec_);
     clearIntqueue(acodecSignal_->flagQueueDec_);
     clearBufferqueue(acodecSignal_->outBufferQueueDec_);
     acodecSignal_->inCondEnc_.notify_all();
-    acodecSignal_->isDecFlushing_.store(false);
-
+    acodecSignal_->isFlushing_.store(false);
     lockIn.unlock();
     lockOut.unlock();
-    isDecRunning_.store(false);
-    int32_t ret = OH_AudioDecoder_Stop(adec_);
-    cout << "isDecRunning_ set false" << endl;
-    cout << "exit STOP DEC" << endl;
+    cout << "EXIT DEC STOP" << endl;
     return ret;
 }
 
@@ -299,7 +285,7 @@ int32_t ADecEncNdkSample::FlushDec()
     cout << "ENTER DEC FLUSH" << endl;
     unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
     unique_lock<mutex> lock2(acodecSignal_->inMutexEnc_);
-    acodecSignal_->isDecFlushing_.store(true);
+    acodecSignal_->isFlushing_.store(true);
     lock.unlock();
     lock2.unlock();
     int32_t ret = OH_AudioDecoder_Flush(adec_);
@@ -313,15 +299,10 @@ int32_t ADecEncNdkSample::FlushDec()
     clearIntqueue(acodecSignal_->flagQueueDec_);
     clearBufferqueue(acodecSignal_->outBufferQueueDec_);
     acodecSignal_->inCondEnc_.notify_all();
-    acodecSignal_->isDecFlushing_.store(false);
+    acodecSignal_->isFlushing_.store(false);
     lockIn.unlock();
     lockOut.unlock();
     cout << "EXIT DEC FLUSH" << endl;
-    int32_t ret2 = OH_AudioDecoder_Start(adec_);
-    if (ret2 != AV_ERR_OK) {
-        cout << "IN DEC FLUSH : restart Failed" << endl;
-        acodecSignal_->errorNum_ += 1;
-    }
     return ret;
 }
 
@@ -331,14 +312,23 @@ int32_t ADecEncNdkSample::ResetDec()
     isDecRunning_.store(false);
     cout << "isDecRunning_ set false" << endl;
 
-    if (inputLoopDec_ != nullptr && inputLoopDec_->joinable()) {
-        unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
-        acodecSignal_->inQueueDec_.push(10000);
-        acodecSignal_->inCondDec_.notify_all();
-        lock.unlock();
-        inputLoopDec_->join();
-        inputLoopDec_.reset();
-    }
+    // if (inputLoopDec_ != nullptr && inputLoopDec_->joinable()) {
+    //     unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
+    //     acodecSignal_->inQueueDec_.push(10000);
+    //     acodecSignal_->inCondDec_.notify_all();
+    //     lock.unlock();
+    //     inputLoopDec_->join();
+    //     inputLoopDec_.reset();
+    // }
+    // if (inputLoopEnc_ != nullptr && inputLoopEnc_->joinable()) {
+    //     cout << "enter inputLoopEnc_ set function" << endl;
+    //     unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
+    //     acodecSignal_->outQueueDec_.push(10000);
+    //     acodecSignal_->inCondEnc_.notify_all();
+    //     lock.unlock();
+    //     inputLoopEnc_->join();
+    //     inputLoopEnc_.reset();
+    // }
     cout << "exit Reset DEC" << endl;
     return OH_AudioDecoder_Reset(adec_);
 }
@@ -348,6 +338,8 @@ int32_t ADecEncNdkSample::ReleaseDec()
 
     cout << "enter Release DEC" << endl;
     isDecRunning_.store(false);
+    isEncRunning_.store(false);
+
     cout << "isDecRunning_ set false" << endl;
 
     if (inputLoopDec_ != nullptr && inputLoopDec_->joinable()) {
@@ -358,6 +350,15 @@ int32_t ADecEncNdkSample::ReleaseDec()
         inputLoopDec_->join();
         inputLoopDec_.reset();
     }
+    // if (inputLoopEnc_ != nullptr && inputLoopEnc_->joinable()) {
+    //     cout << "enter inputLoopEnc_ set function" << endl;
+    //     unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
+    //     acodecSignal_->outQueueDec_.push(10000);
+    //     acodecSignal_->inCondEnc_.notify_all();
+    //     lock.unlock();
+    //     inputLoopEnc_->join();
+    //     inputLoopEnc_.reset();
+    // }
     OH_AudioDecoder_Destroy(adec_);
     cout << "exit Release DEC" << endl;
     return AV_ERR_OK;
@@ -366,19 +367,21 @@ int32_t ADecEncNdkSample::ReleaseDec()
 
 void ADecEncNdkSample::InputFuncDec()
 {
-    while (!isDecInputEOS) {
+    while (true) {
+        cout << "DEC enter InputFuncDec()" << endl;
         if (!isDecRunning_.load()) {
             break;
         }
 
         unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
         acodecSignal_->inCondDec_.wait(lock, [this](){return acodecSignal_->inQueueDec_.size() > 0;});
+        cout << "DEC inQueueDec_.size() is " << acodecSignal_->inQueueDec_.size() << endl;
 
         if (!isDecRunning_.load()) {
             break;
         }
         uint32_t index = acodecSignal_->inQueueDec_.front();
-        if (acodecSignal_->isDecFlushing_.load()) {
+        if (acodecSignal_->isFlushing_.load() || isDecInputEOS) {
             acodecSignal_->inQueueDec_.pop();
             acodecSignal_->inBufferQueueDec_.pop();
             continue;
@@ -402,7 +405,8 @@ void ADecEncNdkSample::InputFuncDec()
             if (memcpy_s(OH_AVMemory_GetAddr(buffer), OH_AVMemory_GetSize(buffer), fileBuffer, bufferSize) != EOK) {
                 free(fileBuffer);
                 cout << "DEC input Fatal: memcpy fail" << endl;
-                acodecSignal_->errorNum_ += 1;
+                acodecSignal_->inQueueDec_.pop();
+                acodecSignal_->inBufferQueueDec_.pop();
                 break;
             }
             free(fileBuffer);
@@ -410,17 +414,16 @@ void ADecEncNdkSample::InputFuncDec()
 
         struct AVCodecBufferAttr attr;
         attr.offset = 0;
+        attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
         if (decInCnt_ == ES_LENGTH) {
             cout << "DEC input: set EOS" << endl;
             attr.flags = AVCODEC_BUFFER_FLAGS_EOS;
             attr.pts = 0;
             attr.size = 0;
             isDecInputEOS = true;
-            isDecRunning_.store(false);
         } else {
             attr.pts = timeStampDec_;
             attr.size = bufferSize;
-            attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
         }
         AVErrCode ret = OH_AudioDecoder_PushInputData(adec_, index, attr);
         if (ret != AV_ERR_OK) {
@@ -434,6 +437,8 @@ void ADecEncNdkSample::InputFuncDec()
         acodecSignal_->inQueueDec_.pop();
         acodecSignal_->inBufferQueueDec_.pop();
     }
+    cout << "DEC InputFuncDec: exit while(true)" << endl;
+
 }
 
 struct AVCodec* ADecEncNdkSample::CreateAudioEncoder(std::string mimetype)
@@ -468,59 +473,41 @@ int32_t ADecEncNdkSample::PrepareEnc()
 int32_t ADecEncNdkSample::StartEnc()
 {
     isEncRunning_.store(true);
+    if (inputLoopEnc_ == nullptr) {
+        inputLoopEnc_ = make_unique<thread>(&ADecEncNdkSample::InputFuncEnc, this);
+        NDK_CHECK_AND_RETURN_RET_LOG(inputLoopEnc_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    }
 
-    inputLoopEnc_ = make_unique<thread>(&ADecEncNdkSample::InputFuncEnc, this);
-    NDK_CHECK_AND_RETURN_RET_LOG(inputLoopEnc_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
-
-    outputLoopEnc_ = make_unique<thread>(&ADecEncNdkSample::OutputFuncEnc, this);
-    NDK_CHECK_AND_RETURN_RET_LOG(outputLoopEnc_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
-
+    if (outputLoopEnc_ == nullptr) {
+        outputLoopEnc_ = make_unique<thread>(&ADecEncNdkSample::OutputFuncEnc, this);
+        NDK_CHECK_AND_RETURN_RET_LOG(outputLoopEnc_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
+    }
     return OH_AudioEncoder_Start(aenc_);
 }
 
 int32_t ADecEncNdkSample::StopEnc()
 {
-    cout << "enter STOP ENC" << endl;
-
-
+    cout << "ENTER ENC STOP" << endl;
+    unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
+    unique_lock<mutex> lock2(acodecSignal_->inMutexEnc_);
+    acodecSignal_->isFlushing_.store(true);
+    lock.unlock();
+    lock2.unlock();
+    int32_t ret = OH_AudioEncoder_Stop(aenc_);
     unique_lock<mutex> lockIn(acodecSignal_->outMutexEnc_);
-    unique_lock<mutex> lockOut(acodecSignal_->inMutexEnc_);
-
-    if (inputLoopEnc_ != nullptr && inputLoopEnc_->joinable()) {
-        cout << "enter inputLoopEnc_ set function" << endl;
-        unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
-        acodecSignal_->inQueueEnc_.push(10000);
-        acodecSignal_->inCondEnc_.notify_all();
-        lock.unlock();
-        inputLoopEnc_->join();
-        inputLoopEnc_.reset();
-    }
-    cout << "set inputLoopEnc_ stop success" << endl;
-
-    if (outputLoopEnc_ != nullptr && outputLoopEnc_->joinable()) {
-        unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
-        acodecSignal_->outQueueEnc_.push(10000);
-        acodecSignal_->outCondEnc_.notify_all();
-        lock.unlock();
-        outputLoopEnc_->join();
-        outputLoopEnc_.reset();
-    }
-    cout << "exit STOP ENC" << endl;
     clearIntqueue(acodecSignal_->outQueueEnc_);
     clearIntqueue(acodecSignal_->sizeQueueEnc_);
     clearIntqueue(acodecSignal_->flagQueueEnc_);
     clearBufferqueue(acodecSignal_->outBufferQueueEnc_);
     acodecSignal_->outCondEnc_.notify_all();
+    unique_lock<mutex> lockOut(acodecSignal_->inMutexEnc_);
     clearIntqueue(acodecSignal_->inQueueEnc_);
     clearBufferqueue(acodecSignal_->inBufferQueueEnc_);
     acodecSignal_->inCondEnc_.notify_all();
-    acodecSignal_->isEncFlushing_.store(false);
-
+    acodecSignal_->isFlushing_.store(false);
     lockIn.unlock();
     lockOut.unlock();
-    isEncRunning_.store(false);
-    int32_t ret = OH_AudioEncoder_Stop(aenc_);
-    
+    cout << "EXIT ENC STOP" << endl;
     return ret;
 }
 
@@ -529,7 +516,7 @@ int32_t ADecEncNdkSample::FlushEnc()
     cout << "ENTER ENC FLUSH" << endl;
     unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
     unique_lock<mutex> lock2(acodecSignal_->inMutexEnc_);
-    acodecSignal_->isEncFlushing_.store(true);
+    acodecSignal_->isFlushing_.store(true);
     lock.unlock();
     lock2.unlock();
     int32_t ret = OH_AudioEncoder_Flush(aenc_);
@@ -543,15 +530,10 @@ int32_t ADecEncNdkSample::FlushEnc()
     clearIntqueue(acodecSignal_->inQueueEnc_);
     clearBufferqueue(acodecSignal_->inBufferQueueEnc_);
     acodecSignal_->inCondEnc_.notify_all();
-    acodecSignal_->isEncFlushing_.store(false);
+    acodecSignal_->isFlushing_.store(false);
     lockIn.unlock();
     lockOut.unlock();
     cout << "EXIT ENC FLUSH" << endl;
-    int32_t ret2 = OH_AudioEncoder_Start(aenc_);
-    if (ret2 != AV_ERR_OK) {
-        cout << "IN ENC FLUSH : restart Failed" << endl;
-        acodecSignal_->errorNum_ += 1;
-    }
     return ret;
 }
 
@@ -560,24 +542,24 @@ int32_t ADecEncNdkSample::ResetEnc()
     cout << "enter Reset ENC" << endl;
     isEncRunning_.store(false);
     cout << "set isEncRunning_ false success" << endl;
-    if (inputLoopEnc_ != nullptr && inputLoopEnc_->joinable()) {
-        cout << "enter inputLoopEnc_ set function" << endl;
-        unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
-        acodecSignal_->inQueueEnc_.push(10000);
-        acodecSignal_->inCondEnc_.notify_all();
-        lock.unlock();
-        inputLoopEnc_->join();
-        inputLoopEnc_.reset();
-    }
-    cout << "set inputLoopEnc_ reset success" << endl;
-    if (outputLoopEnc_ != nullptr && outputLoopEnc_->joinable()) {
-        unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
-        acodecSignal_->outQueueEnc_.push(10000);
-        acodecSignal_->outCondEnc_.notify_all();
-        lock.unlock();
-        outputLoopEnc_->join();
-        outputLoopEnc_.reset();
-    }
+    // if (inputLoopEnc_ != nullptr && inputLoopEnc_->joinable()) {
+    //     cout << "enter inputLoopEnc_ set function" << endl;
+    //     unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
+    //     acodecSignal_->inQueueEnc_.push(10000);
+    //     acodecSignal_->inCondEnc_.notify_all();
+    //     lock.unlock();
+    //     inputLoopEnc_->join();
+    //     inputLoopEnc_.reset();
+    // }
+    // cout << "set inputLoopEnc_ reset success" << endl;
+    // if (outputLoopEnc_ != nullptr && outputLoopEnc_->joinable()) {
+    //     unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
+    //     acodecSignal_->outQueueEnc_.push(10000);
+    //     acodecSignal_->outCondEnc_.notify_all();
+    //     lock.unlock();
+    //     outputLoopEnc_->join();
+    //     outputLoopEnc_.reset();
+    // }
     cout << "exit Reset ENC" << endl;
     return OH_AudioEncoder_Reset(aenc_);
 }
@@ -588,8 +570,9 @@ int32_t ADecEncNdkSample::ReleaseEnc()
     isEncRunning_.store(false);
     cout << "set isEncRunning_ false success" << endl;
     if (inputLoopEnc_ != nullptr && inputLoopEnc_->joinable()) {
-        cout << "enter inputLoopEnc_ set function" << endl;
+        cout << "enter inputLoopEnc_ set function " << endl;
         unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
+        acodecSignal_->outQueueDec_.push(10000);
         acodecSignal_->inQueueEnc_.push(10000);
         acodecSignal_->inCondEnc_.notify_all();
         lock.unlock();
@@ -605,7 +588,7 @@ int32_t ADecEncNdkSample::ReleaseEnc()
         outputLoopEnc_->join();
         outputLoopEnc_.reset();
     }
-    OHAudioEncoder_Destroy(aenc_);
+    OH_AudioEncoder_Destroy(aenc_);
     cout << "exit RELEASE ENC" << endl;
     return AV_ERR_OK;
 }
@@ -613,7 +596,8 @@ int32_t ADecEncNdkSample::ReleaseEnc()
 
 void ADecEncNdkSample::InputFuncEnc()
 {
-    while (!isEncInputEOS) {
+    while (true) {
+        cout << "DEC enter InputFuncEnc()" << endl;
         if (!isEncRunning_.load()) {
             break;
         }
@@ -624,7 +608,7 @@ void ADecEncNdkSample::InputFuncEnc()
         if (!isEncRunning_.load()) {
             break;
         }
-        if (acodecSignal_->isDecFlushing_.load() || acodecSignal_->isEncFlushing_.load()) {
+        if (acodecSignal_->isFlushing_.load() || isDecOutputEOS) {
             acodecSignal_->outQueueDec_.pop();
             acodecSignal_->sizeQueueDec_.pop();
             acodecSignal_->flagQueueDec_.pop();
@@ -648,15 +632,18 @@ void ADecEncNdkSample::InputFuncEnc()
         attr.offset = 0;
         attr.size = sizeDecOut;
         attr.pts = timeStampEnc_;
-        attr.flags = flagDecOut;
+        attr.flags = 0;
         if (flagDecOut == 1) {
             cout << "DEC output EOS " << endl;
             isDecOutputEOS = true;
-            isEncInputEOS = true;
+            cout << "set isDecOutputEOS = true " << endl;
+            if (setEos) {
+                isEncInputEOS = true;
+                attr.flags = 1;
+            }
         } else {
             if (memcpy_s(OH_AVMemory_GetAddr(bufferEnc), OH_AVMemory_GetSize(bufferEnc), OH_AVMemory_GetAddr(bufferDec), sizeDecOut) != EOK) {
                 cout << "ENC input Fatal: memcpy fail" << endl;
-                acodecSignal_->errorNum_ += 1;
                 acodecSignal_->outQueueDec_.pop();
                 acodecSignal_->sizeQueueDec_.pop();
                 acodecSignal_->flagQueueDec_.pop();
@@ -691,6 +678,8 @@ void ADecEncNdkSample::InputFuncEnc()
         acodecSignal_->inQueueEnc_.pop();
         acodecSignal_->inBufferQueueEnc_.pop();
     }
+    cout << "DEC-ENC InputFuncEnc: exit while(true)" << endl;
+
 }
 
 void ADecEncNdkSample::SetReadPath(const char * inp_path, uint32_t es[], uint32_t length)
@@ -700,6 +689,11 @@ void ADecEncNdkSample::SetReadPath(const char * inp_path, uint32_t es[], uint32_
     ES_LENGTH = length;
 }
 
+void ADecEncNdkSample::SetEosState(bool needSetEos)
+{
+    setEos = needSetEos;
+}
+
 void ADecEncNdkSample::SetSavePath(const char * outp_path)
 {
     OUT_FILE = outp_path;
@@ -707,7 +701,9 @@ void ADecEncNdkSample::SetSavePath(const char * outp_path)
 
 void ADecEncNdkSample::OutputFuncEnc()
 {
-    while (!isEncOutputEOS) {
+    while (true) {
+        cout << "ENC enter OutputFuncEnc()" << endl;
+
         if (!isEncRunning_.load()) {
             break;
         }
@@ -718,7 +714,7 @@ void ADecEncNdkSample::OutputFuncEnc()
         if (!isEncRunning_.load()) {
             break;
         }
-        if (acodecSignal_->isEncFlushing_.load()) {
+        if (acodecSignal_->isFlushing_.load() || isEncOutputEOS) {
             acodecSignal_->outQueueEnc_.pop();
             acodecSignal_->sizeQueueEnc_.pop();        
             acodecSignal_->flagQueueEnc_.pop();
@@ -750,7 +746,7 @@ void ADecEncNdkSample::OutputFuncEnc()
                 acodecSignal_->errorNum_ += 1;
             } else {
                 encOutCnt_ += 1;
-            // cout << "ENC output cnt: "<< encOutCnt_ << endl;
+                cout << "ENC output cnt: "<< encOutCnt_ << endl;
             }
         }
         acodecSignal_->outQueueEnc_.pop();
@@ -758,6 +754,7 @@ void ADecEncNdkSample::OutputFuncEnc()
         acodecSignal_->flagQueueEnc_.pop();
         acodecSignal_->outBufferQueueEnc_.pop();
     }
+    cout << "ENC OutputFuncEnc: exit while(true)" << endl;
 }
 
 int32_t ADecEncNdkSample::CalcuError()
@@ -782,8 +779,14 @@ int32_t ADecEncNdkSample::GetFrameCount()
     return encOutCnt_;
 }
 
-bool ADecEncNdkSample::GetEosState()
+bool ADecEncNdkSample::GetEncEosState()
 {
     return isEncOutputEOS;
 }
+
+bool ADecEncNdkSample::GetDecEosState()
+{
+    return isDecOutputEOS;
+}
+
 
