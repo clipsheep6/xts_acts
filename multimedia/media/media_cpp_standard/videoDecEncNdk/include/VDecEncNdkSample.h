@@ -26,12 +26,12 @@
 #include <queue>
 #include <string>
 #include "securec.h"
-#include "ndk_av_codec.h"
 #include "nocopyable.h"
 #include "ndktest_log.h"
-#include "ndk_av_magic.h"
+#include "native_avmagic.h"
 #include "surface.h"
-
+#include "native_avcodec_videodecoder.h"
+#include "native_avcodec_videoencoder.h"
 
 namespace OHOS {
 namespace Media {
@@ -44,7 +44,7 @@ public:
     std::condition_variable outCondDec_;
     std::queue<uint32_t> inQueueDec_;
     std::queue<uint32_t> outQueueDec_;
-    std::queue<uint32_t>  flagQueueDec_;
+    std::queue<uint32_t> flagQueueDec_;
     std::queue<AVMemory *> inBufferQueueDec_;
     std::queue<AVMemory *> outBufferQueueDec_;
 
@@ -54,10 +54,13 @@ public:
     std::condition_variable outCondEnc_;
     std::queue<uint32_t> inQueueEnc_;
     std::queue<uint32_t> outQueueEnc_;
-    std::queue<uint32_t>  sizeQueueEnc_;
+    std::queue<uint32_t> sizeQueueEnc_;
+    std::queue<uint32_t> flagQueueEnc_;
     std::queue<AVMemory *> inBufferQueueEnc_;
     std::queue<AVMemory *> outBufferQueueEnc_;
     int32_t errorNum_ = 0;
+    std::atomic<bool> isVdecFlushing_ = false;
+    std::atomic<bool> isVencFlushing_ = false;
 
 };
 
@@ -70,7 +73,7 @@ public:
 
     // explicit ADecNdkSample();
     // ~ADecNdkSample();
-
+    void SetEosState(bool needSetEos);
     struct AVCodec* CreateVideoDecoder(std::string mimetype);
     int32_t ConfigureDec(struct AVFormat *format);
     int32_t SetOutputSurface();
@@ -94,8 +97,18 @@ public:
     void SetReadPath(std::string filepath);
     void SetSavePath(std::string filepath);
     void ReRead();
-    void ResetParam();
+    void ResetDecParam();
+    void ResetEncParam();
+    int32_t GetFrameCount();
+    bool GetEncEosState();
+    bool GetDecEosState();
     VDecEncSignal* vcodecSignal_ = nullptr;
+    bool isDecInputEOS = false;
+    bool isEncInputEOS = false;
+    bool isDecOutputEOS = false;
+    bool isEncOutputEOS = false;
+    bool setEos = true;
+
 
 
 private:
@@ -110,7 +123,7 @@ private:
     std::unique_ptr<std::thread> outputLoopDec_;
     // std::shared_ptr<VDecEncSignal> signal_ = nullptr;
     // std::shared_ptr<ADecNdkSampleCallback> cb_;
-    struct AVCodecOnAsyncCallback cbDec_;
+    struct AVCodecAsyncCallback cbDec_;
     // bool isFirstFrame_ = true;
     int64_t timeStampDec_ = 0;
     uint32_t decInCnt_ = 0;
@@ -124,11 +137,11 @@ private:
     std::atomic<bool> isEncRunning_ = false;
     // std::unique_ptr<std::ifstream> testFileEnc_;
     // std::unique_ptr<std::ifstream> outFile_;
-    std::unique_ptr<std::thread> inputLoopEnc_;
+    // std::unique_ptr<std::thread> inputLoopEnc_;
     std::unique_ptr<std::thread> outputLoopEnc_;
     // std::shared_ptr<VDecEncSignal> signal_ = nullptr;
     // std::shared_ptr<AEncNdkSampleCallback> cb_;
-    struct AVCodecOnAsyncCallback cbEnc_;
+    struct AVCodecAsyncCallback cbEnc_;
     // bool isFirstFrame_ = true;
     // int64_t timeStampEnc_ = 0;
     // uint32_t frameCountEnc_ = 0;
@@ -137,7 +150,6 @@ private:
     uint32_t encOutCnt_ = 0;
     std::string inFile_ = "/data/media/out_320_240_10s.h264";
     std::string outFile_ = "/data/media/video_out.es";
-    bool flushFlag = false;
 
 
 };
