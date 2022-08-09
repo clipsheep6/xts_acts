@@ -19,12 +19,12 @@ export default {
         title: ""
     },
     onInit() {
-        this.title = this.$t('strings.world');
+        this.title = this.$t('strings.world')
     },
     onShow() {
         console.info('====onShow start====<')
     },
     onReady() {
-        console.info('onReady');
+        console.info('onReady')
     },
 }
