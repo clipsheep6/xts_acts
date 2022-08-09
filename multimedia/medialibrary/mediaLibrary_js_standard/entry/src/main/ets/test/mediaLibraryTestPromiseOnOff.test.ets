@@ -32,20 +32,20 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext){
         let fileType = mediaLibrary.MediaType.FILE;
 
         let imagesfetchOp = {
-            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
-            selectionArgs: ['Pictures/Dynamic01/', imageType.toString()],
+            selections: fileKeyObj.MEDIA_TYPE + '= ?',
+            selectionArgs: [imageType.toString()],
         };
         let videosfetchOp = {
-            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
-            selectionArgs: ['Videos/Dynamic01/', videoType.toString()],
+            selections: fileKeyObj.MEDIA_TYPE + '= ?',
+            selectionArgs: [videoType.toString()],
         };
         let audiosfetchOp = {
-            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
-            selectionArgs: ['Audios/Dynamic01/', audioType.toString()],
+            selections: fileKeyObj.MEDIA_TYPE + '= ?',
+            selectionArgs: [audioType.toString()],
         };
         let filesfetchOp = {
-            selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.MEDIA_TYPE + '= ?',
-            selectionArgs: ['Documents/Dynamic01/', fileType.toString()],
+            selections: fileKeyObj.MEDIA_TYPE + '= ?',
+            selectionArgs: [fileType.toString()],
         };
 
         /**

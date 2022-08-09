@@ -59,7 +59,7 @@
         },
         {
             "test-file-name": [
-                "ActsMediaLibraryEnhance.hap"
+                "ActsMediaLibraryJsTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
