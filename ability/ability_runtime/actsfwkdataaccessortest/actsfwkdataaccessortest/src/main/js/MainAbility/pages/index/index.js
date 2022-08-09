@@ -20,7 +20,7 @@ export default {
         title: ""
     },
     onInit() {
-        this.title = this.$t('strings.world');
+        this.title = this.$t('strings.world')
     },
     onShow() {
         console.info('====onShow finish====<')
