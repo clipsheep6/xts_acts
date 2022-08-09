@@ -22,7 +22,7 @@ export default {
         this.title = this.$t('strings.world');
     },
     onShow() {
-        console.info('====onShow start====<')
+        console.info('====onShow start====<');
     },
     onReady() {
         console.info('onReady');
