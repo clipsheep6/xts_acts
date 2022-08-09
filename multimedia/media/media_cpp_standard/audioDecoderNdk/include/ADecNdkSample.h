@@ -49,6 +49,7 @@ public:
     std::queue<AVMemory *> outBufferQueue_;
     std::atomic<bool> isFlushing_ = false;
     std::atomic<bool> isStop_ = false;
+    std::atomic<bool> isEOS_ = false;
 };
 
 class ADecNdkSample : public NoCopyable {
@@ -68,9 +69,11 @@ public:
     int32_t Start();
     int32_t Stop();
     int32_t Flush();
+    void WaitEOS();
     int32_t Reset();
     int32_t Release();
     uint32_t GetFrameCount();
+    void resetFrameCount();
 
     std::atomic<bool> isRunning_ = false;
     uint32_t SAMPLE_DURATION_US;
@@ -88,7 +91,7 @@ private:
     void ClearIntQueue(std::queue<uint32_t> &q);
     void ClearBufferQueue(std::queue<AVMemory *> &q);
     void ClearAllQueue();
-    //std::atomic<bool> isRunning_ = false;
+//    std::atomic<bool> isRunning_ = false;
     std::unique_ptr<std::ifstream> testFile_;
     std::unique_ptr<std::thread> inputLoop_;
     std::unique_ptr<std::thread> outputLoop_;

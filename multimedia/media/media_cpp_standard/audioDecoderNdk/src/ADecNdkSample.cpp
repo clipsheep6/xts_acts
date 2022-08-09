@@ -50,7 +50,7 @@ void AdecAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void
 {
     ADecSignal* signal_ = static_cast<ADecSignal *>(userData);
     unique_lock<mutex> lock(signal_->inMutex_);
-    if (signal_->isFlushing_.load() || signal_->isStop_.load()) {
+    if (signal_->isFlushing_.load() || signal_->isStop_.load() || signal_->isEOS_.load()) {
         return;
     }
     cout << "InputAvailable, index = " << index << endl;
@@ -64,7 +64,7 @@ void AdecAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCo
 {
     ADecSignal* signal_ = static_cast<ADecSignal *>(userData);
     unique_lock<mutex> lock(signal_->outMutex_);
-    if (signal_->isFlushing_.load() || signal_->isStop_.load()) {
+    if (signal_->isFlushing_.load() || signal_->isStop_.load() || signal_->isEOS_.load()) {
         return;
     }
     cout << "OutputAvailable, index = " << index << endl;
@@ -155,10 +155,17 @@ int32_t ADecNdkSample::Prepare()
 int32_t ADecNdkSample::Start()
 {
     cout << "->Start" << endl;
+    unique_lock<mutex> outLock0(signal_->outMutex_);
+    unique_lock<mutex> inLock0(signal_->inMutex_);
     signal_->isStop_.store(false);
+    signal_->isEOS_.store(false);
+    signal_->isFlushing_.store(false);
     this->isRunning_.store(true);
+    outLock0.unlock();
+    inLock0.unlock();
 
     if(testFile_ == nullptr){
+        cout << "open testFile_" << endl;
         testFile_ = std::make_unique<std::ifstream>();
         NDK_CHECK_AND_RETURN_RET_LOG(testFile_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
         testFile_->open(this->INP_DIR, std::ios::in | std::ios::binary);
@@ -185,22 +192,8 @@ int32_t ADecNdkSample::Stop()
     outLock0.unlock();
     inLock0.unlock();
     cout << "stopping .."<< endl;
-    int32_t ret = OH_AudioDecoder_Stop(adec_); // ²»ÄÜ¸øËüÉÏËø£¬·ñÔò»á×èÈû»Øµ÷£¬µ¼ÖÂÖ´ÐÐ½áÊøºó£¬×èÈûµÄ»Øµ÷Íù¶ÓÁÐÀïpushÎÞÐ§µÄindex
-
-    unique_lock<mutex> outLock(signal_->outMutex_);
-    unique_lock<mutex> inLock(signal_->inMutex_);
-
-    ClearIntQueue(signal_->outQueue_);
-    ClearIntQueue(signal_->outSizeQueue_);
-    ClearBufferQueue(signal_->outBufferQueue_);
-    ClearIntQueue(signal_->inQueue_);
-    ClearBufferQueue(signal_->inBufferQueue_);
-    cout << "signal_->inQuoutQueue_eue_ size = " << signal_->outQueue_.size() << endl;
-    cout << "signal_->outSizeQueue_ size = " << signal_->outSizeQueue_.size() << endl;
-    cout << "signal_->outBufferQueue_ size = " << signal_->outBufferQueue_.size() << endl;
-    cout << "signal_->inQueue_ size = " << signal_->inQueue_.size() << endl;
-    cout << "signal_->inBufferQueue_ size = " << signal_->inBufferQueue_.size() << endl;
-    signal_->isStop_.store(false);
+    int32_t ret = OH_AudioDecoder_Stop(adec_);
+    ClearAllQueue();
 
     return ret;
 }
@@ -244,9 +237,22 @@ int32_t ADecNdkSample::Flush()
     cout << "flushing .."<< endl;
     int32_t ret = OH_AudioDecoder_Flush(adec_);
     ClearAllQueue();
-    signal_->isFlushing_.store(false);
 
     return ret;
+}
+
+void ADecNdkSample::WaitEOS()
+{
+    while(!signal_->isEOS_.load()){};
+}
+
+void ADecNdkSample::resetFrameCount()
+{
+    unique_lock<mutex> outLock0(signal_->outMutex_);
+    unique_lock<mutex> inLock0(signal_->inMutex_);
+    frameCount_ = 0;
+    outLock0.unlock();
+    inLock0.unlock();
 }
 
 int32_t ADecNdkSample::Reset()
@@ -292,9 +298,11 @@ int32_t ADecNdkSample::Release()
         ret = OH_AudioDecoder_Destroy(adec_);
         if (testFile_ != nullptr && testFile_->is_open()){
             testFile_->close();
+            if (testFile_ != nullptr){
+                testFile_ = nullptr;
+            }
         }
-        adec_ = nullptr;
-//        adec_ = (ret == AV_ERR_OK) ? nullptr : adec_;
+        adec_ = (ret == AV_ERR_OK) ? nullptr : adec_;
     }
 	 return ret;
 }
@@ -326,7 +334,7 @@ void ADecNdkSample::InputFunc()
         }
 
         uint32_t index = signal_->inQueue_.front();
-        if (signal_->isFlushing_.load() || signal_->isStop_.load()) {
+        if (signal_->isFlushing_.load() || signal_->isStop_.load() || signal_->isEOS_.load()) {
             signal_->inQueue_.pop();
             signal_->inBufferQueue_.pop();
             continue;
@@ -364,7 +372,14 @@ void ADecNdkSample::InputFunc()
             attr.size = 0;
             attr.offset = 0;
             cout << "EOS Frame, frameCount = " << frameCount_ << endl;
-            this->isRunning_.store(false);
+            signal_->isEOS_.store(true);
+            if (testFile_ != nullptr && testFile_->is_open()){
+                testFile_->close();
+                if (testFile_ != nullptr){
+                    testFile_ = nullptr;
+                }
+            }
+//            this->isRunning_.store(false);
         } else {
             attr.pts = timeStamp_;
             attr.size = bufferSize;
@@ -388,6 +403,7 @@ void ADecNdkSample::InputFunc()
             break;
         }
     }
+    cout << "out inputFuncLoop" << endl;
 }
 
 void ADecNdkSample::OutputFunc()
@@ -409,16 +425,17 @@ void ADecNdkSample::OutputFunc()
         }
 
         uint32_t index = signal_->outQueue_.front();
-        if (signal_->isFlushing_.load() || signal_->isStop_.load()) {
+        auto buffer = signal_->outBufferQueue_.front();
+        if (signal_->isFlushing_.load() || signal_->isStop_.load() || signal_->isEOS_.load() || buffer == nullptr) {
             signal_->outQueue_.pop();
             signal_->outSizeQueue_.pop();
             signal_->outBufferQueue_.pop();
             continue;
         }
-        auto buffer = signal_->outBufferQueue_.front();
         if (buffer == nullptr) {
             cout << "getOutPut Buffer fail" << endl;
         }
+
         uint32_t size = signal_->outSizeQueue_.front();
         cout << "GetOutputBuffer size : " << size << " frameCount_ =  " << frameCount_ << endl;
 
@@ -444,4 +461,5 @@ void ADecNdkSample::OutputFunc()
         signal_->outSizeQueue_.pop();
         signal_->outBufferQueue_.pop();
     }
+    cout << "out OutputFuncLoop" << endl;
 }

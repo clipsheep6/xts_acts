@@ -162,6 +162,7 @@ int32_t AEncNdkSample::Start()
 {
     cout << "->Start" << endl;
     signal_->isStop_.store(false);
+    signal_->isFlushing_.store(false);
     this->isRunning_.store(true);
 
     if(testFile_ == nullptr){
@@ -208,7 +209,7 @@ int32_t AEncNdkSample::Stop()
     cout << "signal_->inQueue_ size = " << signal_->inQueue_.size() << endl;
     cout << "signal_->inBufferQueue_ size = " << signal_->inBufferQueue_.size() << endl;
 
-    signal_->isStop_.store(false);
+//    signal_->isStop_.store(false);
 
     return ret;
 }
@@ -252,8 +253,7 @@ int32_t AEncNdkSample::Flush()
     int32_t ret = OH_AudioEncoder_Flush(aenc_); // 不能上锁，否则会阻塞回调，导致执行结束后，阻塞的回调往队列里push无效的index
     cout << "flushing .."<< endl;
     ClearAllQueue();
-
-    signal_->isFlushing_.store(false);
+//    signal_->isFlushing_.store(false);
 
     return ret;
 }
@@ -299,9 +299,12 @@ int32_t AEncNdkSample::Release()
 	AVErrCode ret = AV_ERR_OK;
     if (aenc_ != nullptr) {
 	    ret = OHAudioEncoder_Destroy(aenc_);
-//	    if (testFile_ != nullptr && testFile_->is_open()){
-//            testFile_->close();
-//        }
+	    if (testFile_ != nullptr && testFile_->is_open()){
+            testFile_->close();
+            if (testFile_ != nullptr){
+                testFile_ = nullptr;
+            }
+        }
         aenc_ = (ret == AV_ERR_OK) ? nullptr : aenc_;
     }
 	return ret;
@@ -388,6 +391,7 @@ void AEncNdkSample::InputFunc()
             break;
         }
     }
+    cout << "out inputFuncLoop" << endl;
 }
 
 void AEncNdkSample::OutputFunc()
@@ -444,4 +448,5 @@ void AEncNdkSample::OutputFunc()
         signal_->outSizeQueue_.pop();
         signal_->outBufferQueue_.pop();
     }
+    cout << "out OutputFuncLoop" << endl;
 }

@@ -382,7 +382,8 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest011, Function | Med
     ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+//    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Release());
     audEnc = nullptr;
@@ -448,7 +449,6 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest013, Function | Med
         }
     }
     ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Release());
     audEnc = nullptr;
@@ -681,7 +681,8 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest020, Function | Med
     ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+//    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aEncSample->Release());
@@ -743,9 +744,11 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest022, Function | Med
     ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+//    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
     ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+//    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Release());
     audEnc = nullptr;
@@ -805,7 +808,8 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest024, Function | Med
     ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+//    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Stop());
     ASSERT_EQ(AV_ERR_OK, aEncSample->Release());
@@ -1495,7 +1499,8 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkReliablityTest003, Function
     ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+//    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
     sleep(1);
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aEncSample->Configure(AudioEncFormat));
     sleep(1);
@@ -1693,7 +1698,8 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkReliablityTest010, Function
     ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Flush());
-    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
+    ASSERT_EQ(AV_ERR_OK, aEncSample->Start());
+//    ASSERT_EQ(AV_ERR_OK, OH_AudioEncoder_Start(audEnc));
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aEncSample->Prepare());
     sleep(1);
     ASSERT_EQ(AV_ERR_OK, aEncSample->Release());
