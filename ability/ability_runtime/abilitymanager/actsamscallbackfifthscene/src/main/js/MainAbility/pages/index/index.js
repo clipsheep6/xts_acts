@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-const injectRef = Object.getPrototypeOf(global) || global
-injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
-let once = true
+const injectRef = Object.getPrototypeOf(global) || global;
+injectRef.regeneratorRuntime = require('@babel/runtime/regenerator');
+let once = true;
 export default {
     data: {
         title: ''
@@ -25,8 +25,8 @@ export default {
     },
     onShow() {
         if (once) {
-            once = false
-            console.info('onShow finish')
+            once = false;
+            console.info('onShow finish');
         }
     },
     onReady() {

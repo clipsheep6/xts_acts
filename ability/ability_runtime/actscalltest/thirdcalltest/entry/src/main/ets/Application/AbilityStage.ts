@@ -18,6 +18,6 @@ var onAcceptWantCalledSeq;
 
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
-        console.log("SystemCallTest MyAbilityStage onCreate")
+        console.log("SystemCallTest MyAbilityStage onCreate");
     }
 }

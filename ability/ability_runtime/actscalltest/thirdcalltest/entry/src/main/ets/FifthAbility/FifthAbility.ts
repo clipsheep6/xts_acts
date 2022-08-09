@@ -88,18 +88,18 @@ export default class FifthAbility extends Ability {
 
     onDestroy() {
         // Ability is destroying, release resources for this ability
-        console.log("SystemCallTest FifthAbility onDestroy")
+        console.log("SystemCallTest FifthAbility onDestroy");
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-        console.log("SystemCallTest FifthAbility onWindowStageCreate")
-        windowStage.setUIContent(this.context, "MainAbility/pages/second/second", null)
+        console.log("SystemCallTest FifthAbility onWindowStageCreate");
+        windowStage.setUIContent(this.context, "MainAbility/pages/second/second", null);
     }
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("SystemCallTest FifthAbility onWindowStageDestroy")
+        console.log("SystemCallTest FifthAbility onWindowStageDestroy");
     }
 
     onForeground() {
@@ -119,6 +119,6 @@ export default class FifthAbility extends Ability {
 
     onBackground() {
         // Ability has back to background
-        console.log("SystemCallTest FifthAbility onBackground")
+        console.log("SystemCallTest FifthAbility onBackground");
     }
 };
