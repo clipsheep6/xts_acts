@@ -71,13 +71,22 @@ let WifiChannelWidth = {
 
 export default function ActsWifiTest() {
 describe('ActsWifiTest', function() {
+  beforeAll(function () {
+    console.info("*************[wifi_test] WiFiSta test start*************");
+  })
 
-    beforeEach(function() {
-        checkWifiPowerOn();
-    })
+  beforeEach(function () {
+    console.info("beforeEach start");
+    checkWifiPowerOn();
+  })
 
-    afterEach(function() {})
+  afterEach(function () {
+    console.info('afterEach start');
+  })
 
+  afterAll(function () {
+    console.info("*************[wifi_test] WiFiSta test end*************");
+  })
 
     /**
      * @tc.number     open_0001
