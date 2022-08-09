@@ -11,12 +11,51 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import("//build/ohos_var.gni")
+import("//foundation/arkui//ace_engine/ace_config.gni")
 import("//test/xts/tools/build/suite.gni")
+
+config("auth_widget_test_config") {
+  include_dirs = [
+    "//utils/native/base/include",
+    "//third_party/jsoncpp/include",
+    "//test/xts/acts/useriam/auth_widget/common",
+    "//foundation/window/window_manager/interfaces/innerkits/dm/",
+  ]
+
+  configs = [
+    "//base/useriam/user_auth_framework/common:iam_log_config",
+    "//foundation/ability/ability_runtime/frameworks/native/ability/native:ability_public_config",
+    "//foundation/systemabilitymgr/safwk/interfaces/innerkits/safwk:system_ability_config",
+    "//foundation/arkui/ace_engine/interfaces/inner_api/ui_service_manager:uiservice_manager_public_config",
+  ]
+}
 
 group("useriam") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "auth_widget/face_auth_failed_test:ActsFaceAuthFailedTest",
+      "auth_widget/face_auth_success_test:ActsFaceAuthSuccessTest",
+      "auth_widget/face_pin_mixed_auth_test:ActsFacePinMixedAuthTest",
+      "auth_widget/face_pin_mixed_freeze_auth_test:ActsFacePinMixedFreezeAuthTest",
+      "auth_widget/face_pin_number_auth_test:ActsFacePinNumberAuthTest",
+      "auth_widget/face_pin_number_freeze_auth_test:ActsFacePinNumberFreezeAuthTest",
+      "auth_widget/face_pin_six_auth_test:ActsFacePinSixAuthTest",
+      "auth_widget/face_pin_six_freeze_auth_test:ActsFacePinSixFreezeAuthTest",
+      "auth_widget/fingerprint_auth_failed_test:ActsFingerprintAuthFailedTest",
+      "auth_widget/fingerprint_auth_success_test:ActsFingerprintAuthSuccessTest",
+      "auth_widget/fingerprint_pin_mixed_auth_test:ActsFingerprintPinMixedAuthTest",
+      "auth_widget/fingerprint_pin_mixed_freeze_auth_test:ActsFingerprintPinMixedFreezeAuthTest",
+      "auth_widget/fingerprint_pin_number_auth_test:ActsFingerprintPinNumberAuthTest",
+      "auth_widget/fingerprint_pin_number_freeze_auth_test:ActsFingerprintPinNumberFreezeAuthTest",
+      "auth_widget/fingerprint_pin_six_auth_test:ActsFingerprintPinSixAuthTest",
+      "auth_widget/fingerprint_pin_six_freeze_auth_test:ActsFingerprintPinSixFreezeAuthTest",
+      "auth_widget/pin_mixed_auth_test:ActsPinMixedAuthTest",
+      "auth_widget/pin_mixed_freeze_auth_test:ActsPinMixedFreezeAuthTest",
+      "auth_widget/pin_number_auth_test:ActsPinNumberAuthTest",
+      "auth_widget/pin_number_freeze_auth_test:ActsPinNumberFreezeAuthTest",
+      "auth_widget/pin_six_auth_test:ActsPinSixAuthTest",
+      "auth_widget/pin_six_freeze_auth_test:ActsPinSixFreezeAuthTest",
       "face_auth/js_api_test/function_test/userauth:ActsUserauthTest",
       "face_auth/js_api_test/function_test/userauthpart2:ActsUserauthTwoTest",
     ]
