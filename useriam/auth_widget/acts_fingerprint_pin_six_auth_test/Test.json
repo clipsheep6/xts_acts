@@ -1,0 +1,18 @@
+{
+    "kits": [
+        {
+            "push": [
+                "ActsFingerprintPinSixAuthTest->/data/local/tmp/ActsFingerprintPinSixAuthTest"
+            ],
+            "type": "PushKit"
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "ActsFingerprintPinSixAuthTest",
+        "runtime-hint": "1s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "description": "Configuration for auth_widget Tests"
+}
