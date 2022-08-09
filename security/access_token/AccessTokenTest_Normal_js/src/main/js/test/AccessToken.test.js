@@ -34,10 +34,6 @@ const PermStateChangeType = {
     PERMISSION_GRANTED_OPER: 1
 };
 
-let tokenIDList = []
-let permissionNameList = []
-let permissionNameList0 = []
-let permissionNameList1 = []
 var type = 'permissionStateChange'
 const RESULT_SUCCESS = 0
 const RESULT_FAIL = -1
@@ -226,31 +222,29 @@ describe('AccessTokenTest', function () {
     /**
      * @tc.number on_001
      * @tc.name on_001.
-     * @tc.desc Test on,Permission granted to monitor
+     * @tc.desc Test on,Permission granted to monitor.
      */
      it('on_001', 0, async function(done){
         console.info("on_001 start");
 
         var atManager = abilityAccessCtrl.createAtManager();
-        tokenIDList[0] = tokenID;
-        permissionNameList[0] = 'ohos.permission.CAMERA';
-        console.info("on_001 tokenIDList[0] = " + tokenIDList[0] + "   " + "permissionNameList[0] = " + permissionNameList[0] );
+        var tokenIDList = [tokenID]
+        var permissionNameList = [
+            'ohos.permission.CAMERA'
+        ]
 
         atManager.on(type, tokenIDList, permissionNameList, PermStateChangeCallback => {
             expect(PermStateChangeCallback.permissionName).assertEqual('ohos.permission.CAMERA');
             expect(PermStateChangeCallback.change).assertEqual(PermStateChangeType.PERMISSION_GRANTED_OPER);
             atManager.off(type, tokenIDList, permissionNameList)
-            atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList[0], PermissionFlag.PERMISSION_USER_SET);
+            atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+                PermissionFlag.PERMISSION_USER_SET);
             done();
         })
 
-        var resg = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0], PermissionFlag.PERMISSION_USER_SET);
-        console.info("on_001 resg = " + resg)
-        expect(resg).assertEqual(RESULT_SUCCESS);
-        var result = await atManager.verifyAccessToken(tokenID, permissionNameList[0]);
-        console.info("on_001 tokenID = " + tokenID + "result = " + result)
-        expect(result).assertEqual(GrantStatus.PERMISSION_GRANTED);
-        
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+            PermissionFlag.PERMISSION_USER_SET);
+        console.info("on_001 result = " + result)
     })
 
      /**
@@ -260,34 +254,44 @@ describe('AccessTokenTest', function () {
      */
     it('on_002', 0, async function(done){
         console.info("on_002 start");
-        var type1 = 'permissionStateChange'
+        var tokenIDList = [tokenID]
+        var permissionNameList = [
+            'ohos.permission.WRITE_CALENDAR'
+        ]
         var atManager = abilityAccessCtrl.createAtManager();
-        tokenIDList[0] = tokenID;
-        permissionNameList[0] = 'ohos.permission.WRITE_CALENDAR';
-        console.info("on_002 tokenIDList[0] = " + tokenIDList[0] + "   " + "permissionNameList[0] = " + permissionNameList[0] );
 
-        function permissChangeCallback(data1){
-            console.info("on_002: change:" + data1.change +"   tokenID:" + data1.tokenID + "   permissionName:" + data1.permissionName);
-            if(data1.change == 0) {
+        function permissChangeCallback(dataOnTwo){
+            console.info("==>on_002: change:" + dataOnTwo.change
+                + "==>tokenID:"+ dataOnTwo.tokenID
+                + "==>permissionName:" + dataOnTwo.permissionName);
+            var dataType = typeof dataOnTwo.change
+            var change = dataOnTwo.change
+            console.info("type of data.change " + dataType)
+            if(change === 0){
+                console.info("change = " + change)
+                expect(0).assertEqual(change);
+                console.info("on_002 success!!!");
                 done();
             }
            
         }
         try {
-            atManager.on(type1, tokenIDList, permissionNameList, permissChangeCallback);
+            atManager.on(type, tokenIDList, permissionNameList, permissChangeCallback);
         }
         catch(err) {
-            console.error("====>on on_002 err:" + JSON.stringify(err));
+            console.error("==>on on_002 err:" + JSON.stringify(err));
             expect().assertFail();
             done();
         }
 
-        var resg = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0], PermissionFlag.PERMISSION_USER_SET);
-        console.info("on_002 resg = " + resg)
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+            PermissionFlag.PERMISSION_USER_SET);
+        console.info("on_002 result grant= " + result)
         sleep(5000);
-        var resr = await atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList[0], PermissionFlag.PERMISSION_USER_SET);
-        console.info("on_002 resr = " + resr)
-        expect(resr).assertEqual(RESULT_SUCCESS);
+        var result = await atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+            PermissionFlag.PERMISSION_USER_SET);
+        console.info("on_002 result revoke = " + result)
+        expect(result).assertEqual(RESULT_SUCCESS);
     })
 
      /**
@@ -298,18 +302,23 @@ describe('AccessTokenTest', function () {
       it('on_003', 0, async function(done){
         console.info("on_003 start");
         var atManager = abilityAccessCtrl.createAtManager();
-        tokenIDList[0] = tokenID;
-        permissionNameList[0] = 'ohos.permission.MICROPHONE';
-        permissionNameList[1] = 'ohos.permission.READ_MEDIA';
-        console.info("on_003 tokenIDList = " + tokenIDList[0] + tokenIDList[1] + "   " + "permissionNameList[0] = " + permissionNameList[0] + permissionNameList[1] );
+        var tokenIDList = [tokenID]
+        var permissionNameList = [
+            'ohos.permission.MICROPHONE',
+            'ohos.permission.READ_MEDIA'
+        ]
 
         function permissChangeCallback(data){
-            console.info("on_003: change:" + data.change + "   tokenID:" + data.tokenID + "   permissionName:" + data.permissionName);
+            console.info("==>on_003: change:" + data.change +
+                "==>tokenID:" + data.tokenID +
+                "==>permissionName:" + data.permissionName);
             if(data.permissionName == permissionNameList[1]){
                 expect(data.change).assertEqual(PermStateChangeType.PERMISSION_GRANTED_OPER);
                 atManager.off(type, tokenIDList, permissionNameList)
-                atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList[0], PermissionFlag.PERMISSION_USER_SET);
-                atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList[1], PermissionFlag.PERMISSION_USER_SET);
+                atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+                    PermissionFlag.PERMISSION_USER_SET);
+                atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList[1],
+                    PermissionFlag.PERMISSION_USER_SET);
                 done();
             }
         }
@@ -318,19 +327,21 @@ describe('AccessTokenTest', function () {
             atManager.on(type, tokenIDList, permissionNameList, permissChangeCallback);
         }
         catch(err) {
-            console.error("====>on on_003 err:" + JSON.stringify(err));
+            console.error("==>on on_003 err:" + JSON.stringify(err));
             expect().assertFail();
             done();
         }
-        var resg_1 = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0], PermissionFlag.PERMISSION_USER_SET);
-        console.info("on_003 resg_1 = " + resg_1)
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+            PermissionFlag.PERMISSION_USER_SET);
+        console.info("on_003 result001 = " + result)
         var result = await atManager.verifyAccessToken(tokenIDList[0], permissionNameList[0]);
-        console.info("on_003 tokenID = " + tokenIDList[0] + "result = " + result)
+        console.info("on_003 tokenID001 = " + tokenIDList[0] + "result = " + result)
 
-        var resg_2 = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[1], PermissionFlag.PERMISSION_USER_SET);
-        console.info("on_003 resg_2 = " + resg_2)
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[1],
+            PermissionFlag.PERMISSION_USER_SET);
+        console.info("on_003 result002 = " + result)
         var result = await atManager.verifyAccessToken(tokenIDList[0], permissionNameList[1]);
-        console.info("on_003 tokenID = " + tokenIDList[0] + "result = " + result)
+        console.info("on_003 tokenID002 = " + tokenIDList[0] + "result = " + result)
 
     })
 
@@ -341,22 +352,26 @@ describe('AccessTokenTest', function () {
      */
     it('on_004', 0, async function(done){
         console.info("on_004 start");
-
         var atManager = abilityAccessCtrl.createAtManager();
-        tokenIDList[0] = 536927002;
-        tokenIDList[1] = tokenID;
-        permissionNameList[0] = 'ohos.permission.MEDIA_LOCATION';
-        permissionNameList[1] = 'ohos.permission.READ_HEALTH_DATA';
+        var tokenIDList = [
+            536927002,
+            tokenID
+        ]
+        var permissionNameList = [
+            'ohos.permission.MEDIA_LOCATION',
+            'ohos.permission.READ_HEALTH_DATA'
+        ]
 
         function permissChangeCallback(data){
-            console.info("on_004: change:" + data.change + "   tokenID:" + data.tokenID + "   permissionName:" + data.permissionName);
+            console.info("==>on_004: change:" + data.change
+                + "==>tokenID:" + data.tokenID
+                + "==>permissionName:" + data.permissionName);
             if(data.tokenID == tokenIDList[1] && data.permissionName == permissionNameList[1]) {
                 console.info("on_004 success!!!");
                 expect(data.change).assertEqual(PermStateChangeType.PERMISSION_GRANTED_OPER);
                 done();
             }
         }
-
         try {
             atManager.on(type, tokenIDList, permissionNameList, permissChangeCallback);
         }
@@ -366,30 +381,24 @@ describe('AccessTokenTest', function () {
             done();
         }
         sleep(500);
-        var resg_A = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0], PermissionFlag.PERMISSION_USER_SET);
-        console.info("on_004 res1 = " + resg_A)
-        expect(resg_A).assertEqual(RESULT_SUCCESS);
-        var result = await atManager.verifyAccessToken(tokenID, permissionNameList[0]);
-        console.info("on_004 tokenID1 = " + tokenID + "result = " + result)
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+            PermissionFlag.PERMISSION_USER_SET);
+        expect(result).assertEqual(RESULT_SUCCESS);
         sleep(500);
-        var resg_B = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[1], PermissionFlag.PERMISSION_USER_SET);
-        console.info("on_004 res2 = " + resg_B)
-        expect(resg_B).assertEqual(RESULT_SUCCESS);
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[1],
+            PermissionFlag.PERMISSION_USER_SET);
+        expect(result).assertEqual(RESULT_SUCCESS);
+        sleep(500);
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[1], permissionNameList[0],
+            PermissionFlag.PERMISSION_USER_SET);
+        expect(result).assertEqual(RESULT_SUCCESS);
+        sleep(500);
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[1], permissionNameList[1],
+            PermissionFlag.PERMISSION_USER_SET);
+        console.info("on_004  result = " + result);
+        expect(result).assertEqual(RESULT_SUCCESS);
         var result = await atManager.verifyAccessToken(tokenID, permissionNameList[1]);
-        console.info("on_004 tokenID2 = " + result + "tokenid = " + tokenID)
-        sleep(500);
-        var resg_C = await atManager.grantUserGrantedPermission(tokenIDList[1], permissionNameList[0], PermissionFlag.PERMISSION_USER_SET);
-        console.info("on_004 res3 = " + resg_C)
-        expect(resg_C).assertEqual(RESULT_SUCCESS);
-        var result = await atManager.verifyAccessToken(tokenID, permissionNameList[0]);
-        console.info("on_004 tokenID3 = " + tokenID + "result = " + result)
-        sleep(500);
-        var resg_D = await atManager.grantUserGrantedPermission(tokenIDList[1], permissionNameList[1], PermissionFlag.PERMISSION_USER_SET);
-        console.info("on_004  res4 = " + resg_D)
-        expect(resg_D).assertEqual(RESULT_SUCCESS);
-        var result = await atManager.verifyAccessToken(tokenID, permissionNameList[1]);
-        console.info("on_004 tokenID4 = "  + result + "tokenid = " + tokenID)
-
+        console.info("on_004 tokenID = "  + result + "tokenid = " + tokenID);
     })
 
     /**
@@ -400,20 +409,26 @@ describe('AccessTokenTest', function () {
     it('off_001', 0, async function(done){
         console.info("off_001 start");
         var atManager = abilityAccessCtrl.createAtManager();
-        tokenIDList[0] = tokenID;
-        permissionNameList0[0] = 'ohos.permission.CAMERA';
+        var tokenIDList = [tokenID]
+        var permissionNameList = [
+            'ohos.permission.CAMERA'
+        ]
 
-        atManager.on(type, tokenIDList, permissionNameList1, PermStateChangeCallback => {
-            console.info("off_001: change:" + PermStateChangeCallback.change + "tokenID:" + PermStateChangeCallback.tokenID + "permissionName:" + PermStateChangeCallback.permissionName);
-            atManager.off(type, tokenIDList, permissionNameList0)
+        atManager.on(type, tokenIDList, permissionNameList, PermStateChangeCallback => {
+            console.info("==>off_001: change:" + PermStateChangeCallback.change
+                + "==>tokenID:" + PermStateChangeCallback.tokenID
+                + "==>permissionName:" + PermStateChangeCallback.permissionName);
+            atManager.off(type, tokenIDList, permissionNameList)
             done();
         })
 
-        var resg = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList0[0], PermissionFlag.PERMISSION_USER_SET);
-        console.info("off_001 resg = " + resg)
-        var result = await atManager.verifyAccessToken(tokenIDList[0], permissionNameList0[0]);
-        console.info("off_001 tokenID1 = " + tokenIDList[0] + "result = " + result)
-        await atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList0[0], PermissionFlag.PERMISSION_USER_SET);
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+            PermissionFlag.PERMISSION_USER_SET);
+        console.info("off_001 result = " + result)
+        var result = await atManager.verifyAccessToken(tokenIDList[0], permissionNameList[0]);
+        console.info("off_001 tokenID = " + tokenIDList[0] + "result = " + result)
+        await atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+            PermissionFlag.PERMISSION_USER_SET);
     })
 
     /**
@@ -424,20 +439,25 @@ describe('AccessTokenTest', function () {
     it('off_002', 0, async function(done){
         console.info("off_002 start");
         var atManager = abilityAccessCtrl.createAtManager();
-        tokenIDList[0] = tokenID;
-        permissionNameList1[0] = 'ohos.permission.READ_MEDIA';
+        var tokenIDList = [tokenID]
+        var permissionNameList = [
+            'ohos.permission.READ_MEDIA'
+        ]
 
-        atManager.on(type, tokenIDList, permissionNameList1, PermStateChangeCallback => {
-            console.info("off_002: change:" + PermStateChangeCallback.change + "tokenID:" + PermStateChangeCallback.tokenID + "permissionName:" + PermStateChangeCallback.permissionName);
-            atManager.off(type, tokenIDList, permissionNameList1, data => {})
+        atManager.on(type, tokenIDList, permissionNameList, PermStateChangeCallback => {
+            console.info("==>off_001: change:" + PermStateChangeCallback.change
+                + "==>tokenID:" + PermStateChangeCallback.tokenID
+                + "==>permissionName:" + PermStateChangeCallback.permissionName);
+            atManager.off(type, tokenIDList, permissionNameList, data => {})
             done();
             
         })
 
-        var resg = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList1[0], PermissionFlag.PERMISSION_USER_SET);
-        console.info("off_002 res = " + resg)
-        var result = await atManager.verifyAccessToken(tokenIDList[0], permissionNameList1[0]);
-        console.info("off_002 tokenID1 = " + tokenIDList[0] + "result = " + result)
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+            PermissionFlag.PERMISSION_USER_SET);
+        console.info("off_002 result = " + result)
+        var result = await atManager.verifyAccessToken(tokenIDList[0], permissionNameList[0]);
+        console.info("off_002 tokenID = " + tokenIDList[0] + "result = " + result)
 
     })
 
@@ -449,22 +469,28 @@ describe('AccessTokenTest', function () {
     it('off_003', 0, async function(done){
         console.info("off_003 start");
         var atManager = abilityAccessCtrl.createAtManager();
-        tokenIDList[0] = tokenID;
-        permissionNameList1[0] = 'ohos.permission.MICROPHONE';
-        permissionNameList1[1] = 'ohos.permission.CAMERA';
-        permissionNameList1[2] = 'ohos.permission.LOCATION';
+        var tokenIDList = [tokenID]
+        var permissionNameList = [
+            'ohos.permission.MICROPHONE',
+            'ohos.permission.CAMERA',
+            'ohos.permission.LOCATION'
+        ]
 
-        atManager.on(type, tokenIDList, permissionNameList1, PermStateChangeCallback => {
-            console.info("off_003: change:" + PermStateChangeCallback.change + "tokenID:" + PermStateChangeCallback.tokenID + "permissionName:" + PermStateChangeCallback.permissionName);
-            atManager.off(type, tokenIDList, permissionNameList1)
-            atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList1[0], PermissionFlag.PERMISSION_USER_SET);
+        atManager.on(type, tokenIDList, permissionNameList, PermStateChangeCallback => {
+            console.info("==>off_001: change:" + PermStateChangeCallback.change
+                + "==>tokenID:" + PermStateChangeCallback.tokenID
+                + "==>permissionName:" + PermStateChangeCallback.permissionName);
+            atManager.off(type, tokenIDList, permissionNameList)
+            atManager.revokeUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+                PermissionFlag.PERMISSION_USER_SET);
 
             done();
         })
 
-        var resg = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList1[0], PermissionFlag.PERMISSION_USER_SET);
-        console.info("off_003 res = " + resg)
-        var result = await atManager.verifyAccessToken(tokenIDList[0], permissionNameList1[0]);
+        var result = await atManager.grantUserGrantedPermission(tokenIDList[0], permissionNameList[0],
+            PermissionFlag.PERMISSION_USER_SET);
+        console.info("off_003 result = " + result)
+        var result = await atManager.verifyAccessToken(tokenIDList[0], permissionNameList[0]);
         console.info("off_003 tokenID1 = " + tokenIDList[0] + "result = " + result)
 
     })
