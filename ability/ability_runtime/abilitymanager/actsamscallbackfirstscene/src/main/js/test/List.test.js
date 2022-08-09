@@ -15,5 +15,5 @@
 import ActsAmsCallBackFirstScene from './MangerAbilityJsunit.test.js'
 
 export default function testsuite() {
-    ActsAmsCallBackFirstScene()
+    ActsAmsCallBackFirstScene();
 }

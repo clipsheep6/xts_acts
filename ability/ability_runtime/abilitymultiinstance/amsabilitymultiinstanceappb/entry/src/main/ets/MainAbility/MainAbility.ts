@@ -101,37 +101,37 @@ async function onShowProcess() {
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         // Ability is creating, initialize resources for this ability
-        console.log("AbilityMultiInstanceAppB MainAbility onCreate")
+        console.log("AbilityMultiInstanceAppB MainAbility onCreate");
         callBackSeq += "onCreate";
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
         // Ability is destroying, release resources for this ability
-        console.log("AbilityMultiInstanceAppB MainAbility onDestroy")
+        console.log("AbilityMultiInstanceAppB MainAbility onDestroy");
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-        console.log("AbilityMultiInstanceAppB MainAbility onWindowStageCreate")
-        globalThis.abilityContext = this.context
-        windowStage.setUIContent(this.context, "pages/index/index", null)
+        console.log("AbilityMultiInstanceAppB MainAbility onWindowStageCreate");
+        globalThis.abilityContext = this.context;
+        windowStage.setUIContent(this.context, "pages/index/index", null);
     }
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("AbilityMultiInstanceAppB MainAbility onWindowStageDestroy")
+        console.log("AbilityMultiInstanceAppB MainAbility onWindowStageDestroy");
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("AbilityMultiInstanceAppB MainAbility onForeground")
+        console.log("AbilityMultiInstanceAppB MainAbility onForeground");
         callBackSeq += "onForeground";
         onShowProcess();
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("AbilityMultiInstanceAppB MainAbility onBackground")
+        console.log("AbilityMultiInstanceAppB MainAbility onBackground");
     }
 };
