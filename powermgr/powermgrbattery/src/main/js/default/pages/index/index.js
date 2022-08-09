@@ -22,7 +22,7 @@ export default {
         title: ""
     },
     onInit() {
-        this.title = this.$t('strings.world');
+        this.title = this.$t('strings.world')
     },
     onShow() {
         console.info('onShow finish')
@@ -31,11 +31,7 @@ export default {
             'id': 'extend'
         })
         core.addService('expect', expectExtend)
-//        core.addService('report', instrumentLog)
         core.init()
-//        core.subscribeEvent('spec', instrumentLog)
-//        core.subscribeEvent('suite', instrumentLog)
-//        core.subscribeEvent('task', instrumentLog)
 
         const configService = core.getDefaultService('config')
         configService.setConfig(this)
