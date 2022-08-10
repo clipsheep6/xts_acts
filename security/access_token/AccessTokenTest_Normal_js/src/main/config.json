@@ -54,6 +54,38 @@
                 "reason": "use ohos.permission.BETA"
             },
             {
+                "name": "ohos.permission.CAMERA",
+                "reason": "use ohos.permission.CAMERA"
+            },
+            {
+                "name": "ohos.permission.LOCATION",
+                "reason": "use ohos.permission.LOCATION"
+            },
+            {
+                "name": "ohos.permission.MICROPHONE",
+                "reason": "use ohos.permission.MICROPHONE"
+            },
+            {
+                "name": "ohos.permission.WRITE_CALENDAR",
+                "reason": "use ohos.permission.WRITE_CALENDAR"
+            },
+            {
+                "name": "ohos.permission.READ_MEDIA",
+                "reason": "use ohos.permission.READ_MEDIA"
+            },
+            {
+                "name": "ohos.permission.WRITE_MEDIA",
+                "reason": "use ohos.permission.WRITE_MEDIA"
+            },
+            {
+                "name": "ohos.permission.READ_HEALTH_DATA",
+                "reason": "use ohos.permission.READ_HEALTH_DATA"
+            },
+            {
+                "name": "ohos.permission.MEDIA_LOCATION",
+                "reason": "use ohos.permission.MEDIA_LOCATION"
+            },
+            {
                 "name": "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",
                 "reason": "use ohos.permission.GRANT_SENSITIVE_PERMISSIONS"
             },
