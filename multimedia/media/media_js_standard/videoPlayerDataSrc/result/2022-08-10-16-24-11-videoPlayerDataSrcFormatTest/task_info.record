@@ -1,0 +1,11 @@
+{
+  "command": "run -l ActsVideoPlayerDatasrcJsTest",
+  "session_id": "2022-08-10-16-24-11",
+  "report_path": "/home/out/rk3568/suites/acts/reports/2022-08-10-16-24-11",
+  "unsuccessful_params": {
+    "ActsVideoPlayerDatasrcJsTest": []
+  },
+  "data_reports": {
+    "ActsVideoPlayerDatasrcJsTest": "/home/out/rk3568/suites/acts/reports/2022-08-10-16-24-11/result/ActsVideoPlayerDatasrcJsTest.xml"
+  }
+}
