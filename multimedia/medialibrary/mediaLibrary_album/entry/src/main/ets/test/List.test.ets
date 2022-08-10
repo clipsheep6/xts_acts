@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 import albumGetFileAssetsCallbackTest from './albumGetFileAssetsCallback.test.ets'
+import albumGetFileAssetsPromiseTest from './albumGetFileAssetsPromise.test.ets'
 import albumTestCallBackTest from './albumTestCallBack.test.ets'
 import albumTestPromiseTest from './albumTestPromise.test.ets'
 export default function testsuite(abilityContext) {
   albumGetFileAssetsCallbackTest(abilityContext)
+  albumGetFileAssetsPromiseTest(abilityContext)
   albumTestPromiseTest(abilityContext)
   albumTestCallBackTest(abilityContext)
 }

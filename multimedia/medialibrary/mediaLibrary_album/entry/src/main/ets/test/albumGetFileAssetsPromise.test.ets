@@ -40,7 +40,7 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
             await sleep()
         });
         afterAll(function () { });
-        
+
         // Exception request
         const abnormalFetchOp = {
             selections: 'date_added < 0',
@@ -59,7 +59,9 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
                 // one asset type
                 if (expectAlbumCount == 1) {
                     const album = albumList[0];
-                    let fetchFileResult = await album.getFileAssets(allFetchOp({ order: `date_added DESC LIMIT 0,${expectAssetsCount}` }));
+                    let op:mediaLibrary.MediaFetchOptions =
+                        allFetchOp({ order: `date_added DESC LIMIT 0,${expectAssetsCount}` })
+                    let fetchFileResult = await album.getFileAssets(op);
                     if (fetchFileResult == undefined) {
                         console.info(`${testNum} fetchFileResult undefined`)
                         expect(false).assertTrue();
@@ -74,7 +76,9 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
                     // more asset type
                     let count = 0;
                     for (const album of albumList) {
-                        let fetchFileResult = await album.getFileAssets(allFetchOp({ order: `date_added DESC LIMIT 0,${expectAssetsCount}` }));
+                        let op:mediaLibrary.MediaFetchOptions =
+                            allFetchOp({ order: `date_added DESC LIMIT 0,${expectAssetsCount}` })
+                        let fetchFileResult = await album.getFileAssets(op);
                         if (fetchFileResult == undefined) {
                             console.info(`${testNum} fetchFileResult undefined`)
                             expect(false).assertTrue();
@@ -214,7 +218,7 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
             await checkAlbumAssetsCount(done, testNum, currentFetchOp, assetsCount, albumCount)
         });
 
-        /** 
+        /**
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_07
          * @tc.name      : getFileAssets
          * @tc.desc      : Pictures Videos Audios types album get 3 resources
@@ -323,7 +327,7 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
             await checkAlbumAssetsCount(done, testNum, currentFetchOp, assetsCount, albumCount)
         });
 
-        /** 
+        /**
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_002_07
          * @tc.name      : getFileAssets
          * @tc.desc      : Pictures Videos Audios types album get 1 resources
