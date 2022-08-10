@@ -32,12 +32,12 @@ function translateParamsToString(parameters) {
 
  export default {
     onPrepare() {
-        console.info('OpenHarmonyTestRunner OnPrepare')
+        console.info('OpenHarmonyTestRunner OnPrepare');
     },
     onRun() {
-        console.log('OpenHarmonyTestRunner onRun run')
-        var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+        console.log('OpenHarmonyTestRunner onRun run');
+        var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+        var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
         var testAbilityName = abilityDelegatorArguments.parameters['-p'] + '.TestAbility'
 
