@@ -40,7 +40,7 @@ const allFetchOp = function (others = {}) {
     return {
         selections: '',
         selectionArgs: [],
-        ...others,
+        ...others
     };
 }
 
@@ -48,7 +48,7 @@ const fetchOps = function (path, type, others = {}) {
     return {
         selections: FILEKEY.RELATIVE_PATH + '= ? AND ' + FILEKEY.MEDIA_TYPE + '=?',
         selectionArgs: [path, type.toString()],
-        ...others,
+        ...others
     };
 }
 const nameFetchOps = function (path, title, type) {

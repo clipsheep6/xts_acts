@@ -57,9 +57,12 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
                 const albumCountPass = await checkAlbumsCount(done, testNum, albumList, expectAlbumCount);
                 if (!albumCountPass) return;
                 // one asset type
+                let op:mediaLibrary.MediaFetchOptions =
+                    allFetchOp({ order: `date_added DESC LIMIT 0,${expectAssetsCount}` })
                 if (expectAlbumCount == 1) {
                     const album = albumList[0];
-                    let fetchFileResult = await album.getFileAssets(allFetchOp({ order: `date_added DESC LIMIT 0,${expectAssetsCount}` }));
+                    
+                    let fetchFileResult = await album.getFileAssets(op);
                     if (fetchFileResult == undefined) {
                         console.info(`${testNum} fetchFileResult undefined`)
                         expect(false).assertTrue();
@@ -74,7 +77,7 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
                     // more asset type
                     let count = 0;
                     for (const album of albumList) {
-                        let fetchFileResult = await album.getFileAssets(allFetchOp({ order: `date_added DESC LIMIT 0,${expectAssetsCount}` }));
+                        let fetchFileResult = await album.getFileAssets(op);
                         if (fetchFileResult == undefined) {
                             console.info(`${testNum} fetchFileResult undefined`)
                             expect(false).assertTrue();

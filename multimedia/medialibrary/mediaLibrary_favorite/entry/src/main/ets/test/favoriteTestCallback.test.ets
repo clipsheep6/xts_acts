@@ -69,7 +69,13 @@ export default function favoriteTestCallbackTest(abilityContext) {
                 let checkAssetCountPass = await checkAssetsCount(done, testNum, fetchFileResult, 1);
                 if (!checkAssetCountPass) return;
                 const asset = await fetchFileResult.getFirstObject();
-                asset.favorite(true, async () => {
+                asset.favorite(true, async (err) => {
+                    if(err) {
+                        console.info(`${testNum} failed err: ${err}`)
+                        expect(false).assertTrue();
+                        done();
+                        return;
+                    }
                     let isFavorite = await asset.isFavorite();
                     expect(isFavorite).assertEqual(true);
                     await fetchFileResult.close();
@@ -90,7 +96,13 @@ export default function favoriteTestCallbackTest(abilityContext) {
                 if (!checkAssetCountPass) return;
                 const asset = await fetchFileResult.getFirstObject();
                 await asset.favorite(true);
-                asset.favorite(false, async () => {
+                asset.favorite(false, async (err) => {
+                    if(err) {
+                        console.info(`${testNum} failed err: ${err}`)
+                        expect(false).assertTrue();
+                        done();
+                        return;
+                    }
                     let isFavorite = await asset.isFavorite();
                     expect(isFavorite).assertEqual(false);
                     await fetchFileResult.close();

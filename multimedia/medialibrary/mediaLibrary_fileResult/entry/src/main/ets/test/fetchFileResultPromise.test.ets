@@ -33,7 +33,6 @@ export default function fetchFileResultPromiseTest(abilityContext) {
     describe('fetchFileResultPromiseTest', function () {
         const media = mediaLibrary.getMediaLibrary(abilityContext);
         beforeAll(async function () {
-            await createAsset()
             await checkPresetsAssets(media, 'ActsMediaLibraryAlbumFileResultPro');
         });
         beforeEach(function () { });
@@ -41,18 +40,6 @@ export default function fetchFileResultPromiseTest(abilityContext) {
             sleep()
         });
         afterAll(function () { });
-
-        async function createAsset() {
-            await media.createAsset(IMAGE_TYPE, '01.jpg', 'Pictures/fileResultTempPro/');
-            await sleep(1000)
-            await media.createAsset(IMAGE_TYPE, '02.jpg', 'Pictures/fileResultTempPro/');
-            await sleep(1000)
-            await media.createAsset(IMAGE_TYPE, '03.jpg', 'Pictures/fileResultTempPro/');
-            await sleep(1000)
-            await media.createAsset(IMAGE_TYPE, '04.jpg', 'Pictures/fileResultTempPro/');
-            await sleep(1000)
-            await media.createAsset(IMAGE_TYPE, '05.jpg', 'Pictures/fileResultTempPro/');
-        }
 
         const checkAssetCount = async function (done, testNum, fetchOp, expectCount) {
             try {
@@ -69,17 +56,18 @@ export default function fetchFileResultPromiseTest(abilityContext) {
             }
         }
 
-        const checkGetPositionObject = async function (done, testNum, pos, val) {
+        const checkGetPositionObject = async function (done, testNum, pos) {
             try {
-                let currentFetchOp = fetchOps('Pictures/fileResultTempPro/', IMAGE_TYPE, { order: FILEKEY.DATE_ADDED + " DESC" })
+                let currentFetchOp = fetchOps('Pictures/Static/', IMAGE_TYPE, { order: FILEKEY.DATE_ADDED + " DESC" })
                 console.info(`${testNum} currentFetchOp ${currentFetchOp} `)
 
                 let fetchFileResult = await media.getFileAssets(currentFetchOp);
-                let expectCount = 5;
+                let expectCount = 4;
                 let checkAssetCountPass = await checkAssetsCount(done, testNum, fetchFileResult, expectCount);
                 if (!checkAssetCountPass) return;
+                let assetList = await fetchFileResult.getAllObject();
                 let targetObject = await fetchFileResult.getPositionObject(pos);
-                expect(targetObject.displayName).assertEqual(val);
+                expect(targetObject.displayName).assertEqual(assetList[pos].displayName);
                 fetchFileResult.close();
                 done();
             } catch (error) {
@@ -268,14 +256,15 @@ export default function fetchFileResultPromiseTest(abilityContext) {
         it('SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETFIRSTOBJECT_PROMISE_004', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETFIRSTOBJECT_PROMISE_004'
             try {
-                let currentFetchOp = fetchOps('Pictures/fileResultTempPro/', IMAGE_TYPE, { order: FILEKEY.DATE_ADDED + " DESC" })
+                let currentFetchOp = fetchOps('Pictures/Static/', IMAGE_TYPE, { order: FILEKEY.DATE_ADDED + " DESC" })
                 console.info(`${testNum} currentFetchOp ${JSON.stringify(currentFetchOp)} `)
                 let fetchFileResult = await media.getFileAssets(currentFetchOp);
-                let expectCount = 5;
+                let expectCount = 4;
                 let checkAssetCountPass = await checkAssetsCount(done, testNum, fetchFileResult, expectCount);
                 if (!checkAssetCountPass) return;
+                let assetList = await fetchFileResult.getAllObject();
                 let firstObject = await fetchFileResult.getFirstObject();
-                expect(firstObject.displayName).assertEqual('05.jpg');
+                expect(firstObject.displayName).assertEqual(assetList[0].displayName);
                 fetchFileResult.close();
                 done();
             } catch (error) {
@@ -299,17 +288,19 @@ export default function fetchFileResultPromiseTest(abilityContext) {
         it('SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETNEXTOBJECT_PROMISE_005', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETNEXTOBJECT_PROMISE_005'
             try {
-                let currentFetchOp = fetchOps('Pictures/fileResultTempPro/', IMAGE_TYPE, { order: FILEKEY.DATE_ADDED + " DESC" })
+                let currentFetchOp = fetchOps('Pictures/Static/', IMAGE_TYPE, { order: FILEKEY.DATE_ADDED + " DESC" })
                 console.info(`${testNum} currentFetchOp ${JSON.stringify(currentFetchOp)} `)
 
                 let fetchFileResult = await media.getFileAssets(currentFetchOp);
-                let expectCount = 5;
+                let expectCount = 4;
                 let checkAssetCountPass = await checkAssetsCount(done, testNum, fetchFileResult, expectCount);
                 if (!checkAssetCountPass) return;
                 let firstObject = await fetchFileResult.getFirstObject();
-                expect(firstObject.displayName).assertEqual('05.jpg');
                 let nextObject = await fetchFileResult.getNextObject();
-                expect(nextObject.displayName).assertEqual('04.jpg');
+                let assetList = await fetchFileResult.getAllObject();
+                expect(firstObject.displayName).assertEqual(assetList[0].displayName);
+
+                expect(nextObject.displayName).assertEqual(assetList[1].displayName);
                 fetchFileResult.close();
                 done();
             } catch (error) {
@@ -332,15 +323,16 @@ export default function fetchFileResultPromiseTest(abilityContext) {
         it('SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETLASTOBJECT_PROMISE_006', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETLASTOBJECT_PROMISE_006'
             try {
-                let currentFetchOp = fetchOps('Pictures/fileResultTempPro/', IMAGE_TYPE, { order: FILEKEY.DATE_ADDED + " DESC" })
+                let currentFetchOp = fetchOps('Pictures/Static/', IMAGE_TYPE, { order: FILEKEY.DATE_ADDED + " DESC" })
                 console.info(`${testNum} currentFetchOp ${JSON.stringify(currentFetchOp)} `)
 
                 let fetchFileResult = await media.getFileAssets(currentFetchOp);
-                let expectCount = 5;
+                let expectCount = 4;
                 let checkAssetCountPass = await checkAssetsCount(done, testNum, fetchFileResult, expectCount);
                 if (!checkAssetCountPass) return;
+                let assetList = await fetchFileResult.getAllObject();
                 let firstObject = await fetchFileResult.getLastObject();
-                expect(firstObject.displayName).assertEqual('01.jpg');
+                expect(firstObject.displayName).assertEqual(assetList[assetList.length - 1].displayName);
                 fetchFileResult.close();
                 done();
             } catch (error) {
@@ -363,8 +355,7 @@ export default function fetchFileResultPromiseTest(abilityContext) {
         it('SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETPOSITIONOBJECT_PROMISE_007_01', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETPOSITIONOBJECT_PROMISE_007_01';
             let pos = 0;
-            let val = '05.jpg'
-            await checkGetPositionObject(done, testNum, pos, val)
+            await checkGetPositionObject(done, testNum, pos)
         });
 
         /**
@@ -378,8 +369,7 @@ export default function fetchFileResultPromiseTest(abilityContext) {
         it('SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETPOSITIONOBJECT_PROMISE_007_02', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETPOSITIONOBJECT_PROMISE_007_02';
             let pos = 1;
-            let val = '04.jpg'
-            await checkGetPositionObject(done, testNum, pos, val)
+            await checkGetPositionObject(done, testNum, pos)
         });
 
         /**
@@ -392,9 +382,8 @@ export default function fetchFileResultPromiseTest(abilityContext) {
          */
         it('SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETPOSITIONOBJECT_PROMISE_007_03', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETPOSITIONOBJECT_PROMISE_007_03';
-            let pos = 4;
-            let val = '01.jpg'
-            await checkGetPositionObject(done, testNum, pos, val)
+            let pos = 3;
+            await checkGetPositionObject(done, testNum, pos)
         });
 
         /**
@@ -408,11 +397,11 @@ export default function fetchFileResultPromiseTest(abilityContext) {
         it('SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETPOSITIONOBJECT_PROMISE_007_04', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_FETCHRESULT_GETPOSITIONOBJECT_PROMISE_007_04'
             try {
-                let currentFetchOp = fetchOps('Pictures/fileResultTempPro/', IMAGE_TYPE, { order: FILEKEY.DATE_ADDED + " DESC" })
+                let currentFetchOp = fetchOps('Pictures/Static/', IMAGE_TYPE, { order: FILEKEY.DATE_ADDED + " DESC" })
                 console.info(`${testNum} currentFetchOp ${currentFetchOp} `)
 
                 let fetchFileResult = await media.getFileAssets(currentFetchOp);
-                let expectCount = 5;
+                let expectCount = 4;
                 let checkAssetCountPass = await checkAssetsCount(done, testNum, fetchFileResult, expectCount);
                 if (!checkAssetCountPass) return;
                 try {
