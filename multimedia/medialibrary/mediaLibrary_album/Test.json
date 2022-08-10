@@ -14,7 +14,7 @@
             "run-command": [
                 "rm -rf /storage/media/100/local/files/*",
                 "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
-                "mkdir -pv /storage/media/100/local/files/{Pictures,Videos,Audios,Documents}",
+                "mkdir -pv /storage/media/100/local/files/{Pictures,Videos,Audios}",
                 "mkdir -p /data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata"
             ]
         },
@@ -25,8 +25,7 @@
             "push": [
                 "./resource/medialibrary/01.jpg ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata",
                 "./resource/medialibrary/01.mp3 ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata",
-                "./resource/medialibrary/01.mp4 ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata",
-                "./resource/medialibrary/01.dat ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata"
+                "./resource/medialibrary/01.mp4 ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata"
             ]
         },
         {
