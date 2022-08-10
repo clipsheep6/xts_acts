@@ -75,7 +75,8 @@
           "pages/index",
           "pages/second",
           "pages/third",
-          "pages/fourth"
+          "pages/fourth",
+          "pages/screen"
         ],
         "name": ".MainAbility",
         "window": {

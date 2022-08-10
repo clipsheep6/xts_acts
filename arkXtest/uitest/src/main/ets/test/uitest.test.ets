@@ -14,7 +14,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-import { UiDriver, BY, ResizeDirection, MatchPattern, WindowMode } from '@ohos.uitest'
+import { UiDriver, BY, ResizeDirection, MatchPattern, WindowMode, DisplayRotation, PointerMatrix } from '@ohos.uitest'
 import ability_featureAbility from '@ohos.ability.featureAbility';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -387,6 +387,21 @@ export default function uiTest() {
       expect(await button_ori.getText() == 'next page').assertTrue()
     })
 
+    it('triggerCombineKeys', 0, async function () {
+      let driver = UiDriver.create()
+      await driver.delayMs(2000)
+      let text = await driver.findComponent(BY.type('TextInput'))
+      let center = await text.getBoundsCenter()
+      await text.inputText('123')
+      await driver.click(center.X, center.Y)
+      await driver.delayMs(waitUiReadyMs)
+      await driver.triggerCombineKeys(2072, 2017)
+      await driver.delayMs(waitUiReadyMs)
+      await driver.triggerKey(2055)
+      let text2 = await driver.findComponent(BY.type('TextInput'))
+      expect(await text2.getText() == '').assertTrue()
+    })
+
     /*
      * @tc.number: uiTest_2400
      * @tc.name: testGetUiComponentBounds
@@ -490,7 +505,18 @@ export default function uiTest() {
       await driver.swipe(300,600,300,300)
       let text = await driver.findComponent(BY.text('next page'))
       expect(text == null).assertTrue()
-      await driver.swipe(300,300,300,600)
+      let scrollBar = await driver.findComponent(BY.type('Scroll'))
+      await scrollBar.scrollToTop()
+    })
+
+    it('testFling', 0, async function () {
+      let driver = UiDriver.create()
+      await driver.delayMs(waitUiReadyMs)
+      await driver.fling({X:300, Y:600},{X:300, Y:300}, 20, 600)
+      let text = await driver.findComponent(BY.text('next page'))
+      expect(text == null).assertTrue()
+      let scrollBar = await driver.findComponent(BY.type('Scroll'))
+      await scrollBar.scrollToTop()
     })
 
     /*
@@ -540,6 +566,73 @@ export default function uiTest() {
 
     /*
      * @tc.number: uiTest_3500
+     * @tc.name: testPinch
+     * @tc.desc: pinch enlarge this UiComponent to the target scale.
+     */
+    it('testPinch', 0, async function () {
+      let driver = UiDriver.create()
+      await driver.delayMs(waitUiReadyMs)
+      let button = await driver.findComponent(BY.text('jump'))
+      await button.click()
+      let image1 = await driver.findComponent(BY.type('Image'))
+      let bounds1 = await image1.getBounds()
+      await image1.pinchIn(0.5);
+      await driver.delayMs(waitUiReadyMs)
+      let image2 = await driver.findComponent(BY.type('Image'))
+      let bounds2 = await image2.getBounds()
+      expect(bounds2 != bounds1).assertTrue()
+      await image2.pinchOut(1.2);
+      let image3 = await driver.findComponent(BY.type('Image'))
+      let bounds3 = await image3.getBounds()
+      expect(bounds3 != bounds2).assertTrue()
+      await driver.pressBack()
+    })
+
+    /*
+     * @tc.number: uiTest_3600
+     * @tc.name: testInjectMultiPointerAction
+     * @tc.desc: inject multi-pointer action on the device display.
+     */
+    it('testInjectMultiPointerAction', 0, async function () {
+      let driver = UiDriver.create()
+      await driver.delayMs(waitUiReadyMs)
+      let button = await driver.findComponent(BY.text('jump'))
+      await button.click()
+      let image1 = await driver.findComponent(BY.type('Image'))
+      let bounds1 = await image1.getBounds()
+      let pointer = PointerMatrix.create(2,11)
+      await driver.delayMs(300)
+      pointer.setPoint(0,0,{X:245,Y:480})
+      pointer.setPoint(0,1,{X:250,Y:480})
+      pointer.setPoint(0,2,{X:255,Y:480})
+      pointer.setPoint(0,3,{X:260,Y:480})
+      pointer.setPoint(0,4,{X:265,Y:480})
+      pointer.setPoint(0,5,{X:270,Y:480})
+      pointer.setPoint(0,6,{X:275,Y:480})
+      pointer.setPoint(0,7,{X:280,Y:480})
+      pointer.setPoint(0,8,{X:285,Y:480})
+      pointer.setPoint(0,9,{X:290,Y:480})
+      pointer.setPoint(0,10,{X:295,Y:480})
+      pointer.setPoint(1,0,{X:505,Y:480})
+      pointer.setPoint(1,1,{X:500,Y:480})
+      pointer.setPoint(1,2,{X:495,Y:480})
+      pointer.setPoint(1,3,{X:490,Y:480})
+      pointer.setPoint(1,4,{X:485,Y:480})
+      pointer.setPoint(1,5,{X:480,Y:480})
+      pointer.setPoint(1,6,{X:475,Y:480})
+      pointer.setPoint(1,7,{X:470,Y:480})
+      pointer.setPoint(1,8,{X:465,Y:480})
+      pointer.setPoint(1,9,{X:460,Y:480})
+      pointer.setPoint(1,10,{X:455,Y:480})
+      await driver.injectMultiPointerAction(pointer, 600)
+      let image2 = await driver.findComponent(BY.type('Image'))
+      let bounds2= await image1.getBounds()
+      expect(bounds2 != bounds1).assertTrue()
+      await driver.pressBack()
+    })
+
+    /*
+     * @tc.number: uiTest_3700
      * @tc.name: testGetWindowMode
      * @tc.desc: get the window mode of this UiWindow.
      */
@@ -559,7 +652,7 @@ export default function uiTest() {
     })
 
     /*
-     * @tc.number: uiTest_3600
+     * @tc.number: uiTest_3800
      * @tc.name: testGetBundleName
      * @tc.desc: get the bundleName of this UiWindow.
      */
@@ -574,7 +667,7 @@ export default function uiTest() {
     })
 
     /*
-     * @tc.number: uiTest_3700
+     * @tc.number: uiTest_3900
      * @tc.name: testGetTitle
      * @tc.desc: get the title of this UiWindow.
      */
@@ -589,7 +682,7 @@ export default function uiTest() {
     })
 
     /*
-     * @tc.number: uiTest_3800
+     * @tc.number: uiTest_4000
      * @tc.name: testWindowMoveTo
      * @tc.desc: move this UiWindow to the specified points.
      */
@@ -611,7 +704,7 @@ export default function uiTest() {
     })
 
     /*
-     * @tc.number: uiTest_3900
+     * @tc.number: uiTest_4100
      * @tc.name: testWindowResize
      * @tc.desc: resize this UiWindow to the specified size for the specified direction.
      */
@@ -661,7 +754,7 @@ export default function uiTest() {
     })
 
     /*
-     * @tc.number: uiTest_4000
+     * @tc.number: uiTest_4200
      * @tc.name: testWindowFocus
      * @tc.desc: set the focused status of this UiWindow.
      */
@@ -672,12 +765,12 @@ export default function uiTest() {
       let window = await driver.findWindow({bundleName:'com.ohos.settings'})
       await window.focus()
       let IsActive = await window.isFocused()
-      expect(IsActive == false).assertTrue()
+      expect(IsActive == true).assertTrue()
       await stopApplication('com.ohos.settings')
     })
 
     /*
-     * @tc.number: uiTest_4100
+     * @tc.number: uiTest_4300
      * @tc.name: testWindowMaximize
      * @tc.desc: maximize this UiWindow.
      */
@@ -697,7 +790,7 @@ export default function uiTest() {
     })
 
     /*
-     * @tc.number: uiTest_4200
+     * @tc.number: uiTest_4400
      * @tc.name: testWindowMinimize
      * @tc.desc: minimize this UiWindow.
      */
@@ -714,7 +807,7 @@ export default function uiTest() {
     })
 
     /*
-     * @tc.number: uiTest_4300
+     * @tc.number: uiTest_4500
      * @tc.name: testWindowClose
      * @tc.desc: close this UiWindow.
      */
@@ -729,6 +822,116 @@ export default function uiTest() {
       expect(window1 == null).assertTrue()
     })
 
-  })
+    /*
+     * @tc.number: uiTest_4600
+     * @tc.name: testGetDisplaySize
+     * @tc.desc: get the size of the device display.
+     */
+    it('testGetDisplaySize', 0, async function () {
+      let driver = UiDriver.create()
+      await driver.delayMs(waitUiReadyMs)
+      let s = await driver.getDisplaySize()
+      expect(s.X != 0).assertTrue()
+      expect(s.Y != 0).assertTrue()
+    })
 
+    /*
+     * @tc.number: uiTest_4700
+     * @tc.name: testGetDisplayDensity
+     * @tc.desc: get the density of the device display.
+     */
+    it('testGetDisplayDensity', 0, async function () {
+      let driver = UiDriver.create()
+      await driver.delayMs(waitUiReadyMs)
+      let s = await driver.getDisplayDensity()
+      expect(s.X != 0).assertTrue()
+      expect(s.Y != 0).assertTrue()
+    })
+
+    /*
+     * @tc.number: uiTest_4800
+     * @tc.name: testDisplayRotation
+     * @tc.desc: get the rotation of the device display and set it.
+     */
+    it('testDisplayRotation', 0, async function () {
+      let driver = UiDriver.create()
+      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(waitUiReadyMs)
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
+      let rotation1 = await driver.getDisplayRotation()
+      expect(rotation1 == DisplayRotation.ROTATION_90).assertTrue()
+      await driver.delayMs(waitUiReadyMs)
+
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_180)
+      let rotation2 = await driver.getDisplayRotation()
+      expect(rotation2 == DisplayRotation.ROTATION_180).assertTrue()
+      await driver.delayMs(waitUiReadyMs)
+
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_270)
+      let rotation3 = await driver.getDisplayRotation()
+      expect(rotation3 == DisplayRotation.ROTATION_270).assertTrue()
+      await driver.delayMs(waitUiReadyMs)
+
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
+      let rotation4 = await driver.getDisplayRotation()
+      expect(rotation4== DisplayRotation.ROTATION_0).assertTrue()
+    })
+
+    /*
+     * @tc.number: uiTest_4900
+     * @tc.name: testSetDisplayRotationEnabled
+     * @tc.desc: enable/disable the rotation of device display.
+     */
+    it('testSetDisplayRotationEnabled', 0, async function () {
+      let driver = UiDriver.create()
+      await driver.setDisplayRotationEnabled(false)
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_180)
+      await driver.delayMs(waitUiReadyMs)
+      let rotation3 = await driver.getDisplayRotation()
+      await driver.setDisplayRotationEnabled(true)
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
+      let rotation2 = await driver.getDisplayRotation()
+      expect(rotation2 == DisplayRotation.ROTATION_90).assertTrue()
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
+    })
+
+    /*
+     * @tc.number: uiTest_5000
+     * @tc.name: testWakeUpDisplay
+     * @tc.desc: wake up the device display.
+     */
+    it('testWakeUpDisplay', 0, async function () {
+      let driver = UiDriver.create()
+      await driver.delayMs(waitUiReadyMs)
+      await driver.wakeUpDisplay()
+    })
+
+    /*
+     * @tc.number: uiTest_5100
+     * @tc.name: testPressHome
+     * @tc.desc: press the home key.
+     */
+    it('testPressHome', 0, async function () {
+      await startAbility('com.ohos.settings', 'com.ohos.settings.MainAbility')
+      let driver = UiDriver.create()
+      await driver.delayMs(waitUiReadyMs)
+      await driver.pressHome()
+      let window1 = await driver.findWindow({bundleName:'com.ohos.settings'})
+      expect(window1 == null).assertTrue()
+      await stopApplication('com.ohos.settings')
+    })
+
+    /*
+     * @tc.number: uiTest_5200
+     * @tc.name: testWaitForIdle
+     * @tc.desc: wait for the UI become idle.
+     */
+    it('testWaitForIdle', 0, async function () {
+      await startAbility('com.ohos.settings', 'com.ohos.settings.MainAbility')
+      let driver = UiDriver.create()
+      await driver.delayMs(2000)
+      let idled = await driver.waitForIdle(4000,5000)
+      expect(idled = true).assertTrue()
+    })
+  })
 }
