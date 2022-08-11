@@ -315,6 +315,11 @@ int32_t AEncNdkSample::SetParameter(AVFormat *format)
     return OH_AudioEncoder_SetParameter(aenc_, format);
 }
 
+uint32_t AEncNdkSample::GetFrameCount()
+{
+    return frameCount_;
+}
+
 void AEncNdkSample::InputFunc()
 {
     cout << "->InputFunc" << endl;

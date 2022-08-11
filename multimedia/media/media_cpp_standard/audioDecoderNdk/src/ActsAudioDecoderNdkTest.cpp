@@ -2939,30 +2939,6 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest016, Function
 }
 
 /**
- * @tc.number    : ActsAudioDecoderNdkReliablityTest017
- * @tc.name      : test audioDecorder prepare -> startErr
- * @tc.desc      : ActsAudioDecoderNdkReliablityTest017
- */
-HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest017, Function | MediumTest | Level2)
-{
-    ADecNdkSample *aDecSample = new ADecNdkSample();
-    aDecSample->init("/data/media/AAC_48000_32_1_rel_out017.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
-    struct AVCodec* audDec = aDecSample->CreateAudioDecoder();
-    ASSERT_NE(nullptr, audDec);
-
-    AVFormat *AudioFormat = OH_AVFormat_Create();
-    ASSERT_NE(nullptr, AudioFormat);
-    aDecSample->SetFormat(AudioFormat, AudioDecParam);
-
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
-    ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Start());
-    ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
-    audDec = nullptr;
-    OH_AVFormat_Destroy(AudioFormat);
-    AudioFormat = nullptr;
-}
-
-/**
  * @tc.number    : ActsAudioDecoderNdkReliablityTest018
  * @tc.name      : test audioDecorder start -> startErr
  * @tc.desc      : ActsAudioDecoderNdkReliablityTest018
@@ -2981,7 +2957,9 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkReliablityTest018, Function
     ASSERT_EQ(AV_ERR_OK, aDecSample->Configure(AudioFormat));
     ASSERT_EQ(AV_ERR_OK, aDecSample->Prepare());
     ASSERT_EQ(AV_ERR_OK, aDecSample->Start());
+    while(aDecSample->GetFrameCount() < 300){};
     ASSERT_EQ(AV_ERR_OPERATE_NOT_PERMIT, aDecSample->Start());
+    while(aDecSample->GetFrameCount() < 500){};
     ASSERT_EQ(AV_ERR_OK, aDecSample->Release());
     audDec = nullptr;
     OH_AVFormat_Destroy(AudioFormat);

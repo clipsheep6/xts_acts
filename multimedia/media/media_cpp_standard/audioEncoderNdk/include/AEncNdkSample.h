@@ -69,6 +69,7 @@ public:
     int32_t Flush();
     int32_t Reset();
     int32_t Release();
+    uint32_t GetFrameCount();
 
     std::atomic<bool> isRunning_ = false;
     uint32_t SAMPLE_DURATION_US;
