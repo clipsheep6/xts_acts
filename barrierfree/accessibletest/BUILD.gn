@@ -1,0 +1,65 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos_var.gni")
+
+group("actsaccessibletest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "actsabilitylisttest:ActsAbilityListTest",
+      "actsaccesscontroltest:ActsAccessControlTest",
+      "actsaccessibleeventtest:ActsAccessibleEventTest",
+      "actsactioninitiationtest:ActsActionInitiationTest",
+      "actsanimationofftest:ActsAnimationOffTest",
+      "actsassistapptest:ActsAssistAppTest",
+      #"actsaudiobalancetest:ActsAudioBalanceTest",
+      #"actsaudiomonotest:ActsAudioMonoTest",
+      "actsbrightnessdiscounttest:ActsBrightnessDiscountTest",
+      "actscaptionconfigurationtest:ActsCaptionConfigurationTest",
+      "actscheckabilitytest:ActsCheckAbilityTest",
+      "actscontenttimeouttest:ActsContentTimeoutTest",
+      "actsdaltonizationcolorfilterfest:ActsDaltonizationColorFilterTest",
+      "actsdfxtest:ActsDfxTest",
+      "actsfocusquerytest:ActsAccessibleFocusQueryTest",
+      "actsgesturesimulationtest:ActsGestureSimulationTest",
+      "actshighcontrasttexttest:ActsHighContrastTextTest",
+      "actsinvertcolortest:ActsInvertColorTest",
+      "actsmouseautoclicktest:ActsMouseAutoClickTest",
+      "actsmousekeytest:ActsMouseKeyTest",
+      "actsregistertest:ActsAccessibleRegisterTest",
+      "actsreportnodeinfotest:ActsReportNodeInfoTest",
+      "actsrootelementtest:ActsAccessibleRootElementTest",
+      #"actsscreenmagnifiertest:ActsScreenMagnifierTest",
+      "actsshortkeytargettest:ActsShortkeyTargetTest",
+      "actsshortkeytest:ActsShortkeyTest",
+      "actstouchintercepttest:ActsTouchInterceptTest",
+      "actswindowinfotest:ActsWindowinfoTest",
+      "sceneProject/accessibilityAudibleAbility:accessibilityAudibleAbility",
+      "sceneProject/accessibilityBaseAbility:accessibilityBaseAbility",
+      "sceneProject/accessibilityCheckAbility:accessibilityCheckAbility",
+      "sceneProject/accessibilityDfx:accessibilityDfx",
+      "sceneProject/accessibilityGenericAbility:accessibilityGenericAbility",
+      "sceneProject/accessibilityGesture2D:accessibilityGesture2D",
+      "sceneProject/accessibilityGestureD:accessibilityGestureD",
+      "sceneProject/accessibilityHapticAbility:accessibilityHapticAbility",
+      "sceneProject/accessibilityRegister:accessibilityRegister",
+      "sceneProject/accessibilitySpokenAbility:accessibilitySpokenAbility",
+      "sceneProject/accessibilityTouchGuide:accessibilityTouchGuide",
+      "sceneProject/accessibilityVisualAbility:accessibilityVisualAbility",
+      "sceneProject/accessibilityWindowInfo:accessibilityWindowInfo",
+      "sceneProject/assistAppA:assistAppA",
+      "sceneProject/assistAppB:assistAppB",
+    ]
+  }
+}
