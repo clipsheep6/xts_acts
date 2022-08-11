@@ -17,7 +17,7 @@
     "package": "com.example.actsbmshapmoduletest",
     "name": ".MyApplication",
     "deviceType": [
-      "phone"
+      "default"
     ],
     "distro": {
       "deliveryWithInstall": true,
