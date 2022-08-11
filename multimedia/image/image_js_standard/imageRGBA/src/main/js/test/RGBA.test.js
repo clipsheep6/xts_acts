@@ -23,7 +23,6 @@ describe('Image', function () {
     })
 
     beforeEach(function () {
-        isTimeOut = false;
         console.info('beforeEach case');
     })
 
@@ -289,17 +288,16 @@ describe('Image', function () {
     })
 
     /**
-         * @tc.number    : RGBA_011
-         * @tc.name      : create pixelmap-callback(editable: true, pixelFormat: unkonwn,
-         *                                          size: { height: -1, width: 8 })
-         * @tc.desc      : 1.create InitializationOptions object
-         *                 2.set editable,pixeFormat,size
-         *                 3.using color and opts create newPixelMap
-         *                 4.return newpixelmap empty
-         * @tc.size      : MEDIUM
-         * @tc.type      : Functional
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : RGBA_011
+     * @tc.name      : create pixelmap-callback(editable: true, pixelFormat: unkonwn, size: { height: -1, width: 8 })
+     * @tc.desc      : 1.create InitializationOptions object
+     *                 2.set editable,pixeFormat,size
+     *                 3.using color and opts create newPixelMap
+     *                 4.return newpixelmap empty
+     * @tc.size      : MEDIUM
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
     it('RGBA_011', 0, async function (done) {
         const Color = new ArrayBuffer(96);
         let opts = { editable: true, pixelFormat: 0, size: { height: -1, width: 8 } }
@@ -367,7 +365,7 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
          */
-     it('RGBA_014', 0, async function (done) {
+    it('RGBA_014', 0, async function (done) {
         const Color = new ArrayBuffer(96);
         let opts = { editable: true, pixelFormat: 0, size: { height: 6, width: -1 } }
         image.createPixelMap(Color, opts).then(pixelmap => {
@@ -381,4 +379,53 @@ describe('Image', function () {
         })
     })
 
+    /**
+     * @tc.number    : RGBA_015
+     * @tc.name      : create pixelmap-promise (editable: true, pixelFormat: 4, size: { height: 4, width: 6 }, bytes = buffer)
+     * @tc.desc      : 1.create InitializationOptions object
+     *                 2.set editable,pixeFormat,size
+     *                 3.using color and opts create newPixelMap
+     *                 4.return newpixelmap not empty
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+     it('RGBA_015', 0, async function (done) {
+        const Color = new ArrayBuffer(96);
+        let opts = { editable: true, pixelFormat: 4, size: { height: 4, width: 6 } }
+        image.createPixelMap(Color, opts)
+            .then(pixelmap => {
+                console.log('RGBA_015 pixelFormat: 4');
+                expect(pixelmap != undefined).assertTrue();
+                expect(pixelmap.isEditable == opts.editable).assertTrue();
+                done();
+            })
+            .catch(error => {
+                console.log('RGBA_015 err' + error);
+                expect().assertFail();
+                done();
+            })
+    })
+
+    /**
+     * @tc.number    : RGBA_016
+     * @tc.name      : create pixelmap-callback (editable: true, pixelFormat: 4, size: { height: 4, width: 6 },bytes = buffer)
+     * @tc.desc      : 1.create InitializationOptions object
+     *                 2.set editable,pixelFormat,size
+     *                 3.using color and opts create newPixelMap
+     *                 4.return newpixelmap not empty
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+    */
+    it('RGBA_016', 0, async function (done) {
+        const Color = new ArrayBuffer(96);
+        let opts = { editable: true, pixelFormat: 4, size: { height: 4, width: 6 } }
+        image.createPixelMap(Color, opts, (err, pixelmap) => {
+            console.log('RGBA_016 pixelFormat: 4');
+            expect(pixelmap != undefined).assertTrue();
+            expect(pixelmap.isEditable == opts.editable).assertTrue();
+            done();
+        })
+    })
 })
