@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for aceJsOne Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1000000",
+        "shell-timeout": "1000000",
+        "bundle-name": "com.example.aceJsOne",
+        "package-name": "com.example.aceJsOne"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAceJsAttributeOneTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for aceJsThree Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1000000",
+        "shell-timeout": "1000000",
+        "bundle-name": "com.example.aceJsThree",
+        "package-name": "com.example.aceJsThree"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAceJsAttributeThreeTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
