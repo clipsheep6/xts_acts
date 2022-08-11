@@ -381,7 +381,8 @@ describe('Image', function () {
 
     /**
      * @tc.number    : RGBA_015
-     * @tc.name      : create pixelmap-promise (editable: true, pixelFormat: 4, size: { height: 4, width: 6 }, bytes = buffer)
+     * @tc.name      : create pixelmap-promise (editable: true, pixelFormat: 4,
+     *                                          size: { height: 4, width: 6 }, bytes = buffer)
      * @tc.desc      : 1.create InitializationOptions object
      *                 2.set editable,pixeFormat,size
      *                 3.using color and opts create newPixelMap
@@ -409,7 +410,8 @@ describe('Image', function () {
 
     /**
      * @tc.number    : RGBA_016
-     * @tc.name      : create pixelmap-callback (editable: true, pixelFormat: 4, size: { height: 4, width: 6 },bytes = buffer)
+     * @tc.name      : create pixelmap-callback (editable: true, pixelFormat: 4,
+     *                                           size: { height: 4, width: 6 },bytes = buffer)
      * @tc.desc      : 1.create InitializationOptions object
      *                 2.set editable,pixelFormat,size
      *                 3.using color and opts create newPixelMap
