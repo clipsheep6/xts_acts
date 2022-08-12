@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import commonEvent from '@ohos.commonevent'
+import commonEvent from '@ohos.commonEvent'
 let formId;
 let commonEventData = {
   parameters: {

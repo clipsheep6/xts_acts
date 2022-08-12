@@ -15,7 +15,7 @@
 // @ts-nocheck
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
 import formHost from '@ohos.application.formHost';
-import commonEvent from '@ohos.commonevent'
+import commonEvent from '@ohos.commonEvent'
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 var ACTS_SHARE_FROM = {
   events: ["ACTS_SHARE_FROM_CommonEvent"]

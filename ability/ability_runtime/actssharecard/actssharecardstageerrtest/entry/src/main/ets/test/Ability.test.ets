@@ -15,7 +15,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
 import formHost from '@ohos.application.formHost';
-import commonEvent from '@ohos.commonevent'
+import commonEvent from '@ohos.commonEvent'
 const CASE_TIMEOUT = 5000;
 let cardFormId;
 var ACTS_SHARE_FROM = {
