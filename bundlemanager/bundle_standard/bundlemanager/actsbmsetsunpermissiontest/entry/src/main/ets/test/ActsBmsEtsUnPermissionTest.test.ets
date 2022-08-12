@@ -237,7 +237,7 @@ export default function actsBmsJsUnPermissionTest() {
             expect(data.description).assertEqual("$string:description_mainability");
             expect(data.icon).assertEqual("$media:icon");
             expect(data.isVisible).assertEqual(true);
-            expect(data.deviceTypes[0]).assertEqual("phone");
+            expect(data.deviceTypes[0]).assertEqual("default");
             expect(data.process).assertEqual("com.example.actsbmsetsunpermissiontest");
             expect(data.uri).assertEqual("");
             expect(data.moduleName).assertEqual("entry");

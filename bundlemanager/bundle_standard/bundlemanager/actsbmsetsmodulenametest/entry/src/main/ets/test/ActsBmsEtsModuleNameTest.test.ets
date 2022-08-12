@@ -485,7 +485,7 @@ export default function actsBmsJsModuleNameTest() {
             expect(data.icon).assertEqual("$media:icon");
             expect(typeof (data.icon)).assertEqual("string");
             expect(data.isVisible).assertEqual(false);
-            expect(data.deviceTypes[0]).assertEqual("phone");
+            expect(data.deviceTypes[0]).assertEqual("default");
             expect(typeof (data.process)).assertEqual("string");
             expect(data.process).assertEqual("com.example.bmsmodulename");
             expect(typeof (data.uri)).assertEqual("string");
