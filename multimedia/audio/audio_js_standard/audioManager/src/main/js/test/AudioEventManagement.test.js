@@ -16,50 +16,50 @@
 import audio from '@ohos.multimedia.audio';
 
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
 describe('audioEventManger', function () {
     console.info('AudioFrameworkTest: Create AudioManger Object JS Framework');
     const audioManager = audio.getAudioManager();
     var deviceRoleValue = null;
     var deviceTypeValue = null;
-    function sleep (ms) {
+    function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     function displayDeviceProp(value, index, array) {
         var devRoleName;
         var devTypeName;
-        if (value.deviceRole==1) {
+        if (value.deviceRole == 1) {
             devRoleName = 'INPUT_DEVICE';
         }
-        else if (value.deviceRole==2) {
+        else if (value.deviceRole == 2) {
             devRoleName = 'OUTPUT_DEVICE ';
         }
         else {
-            devRoleName = 'ERROR : UNKNOWN : '+value.deviceRole;
+            devRoleName = 'ERROR : UNKNOWN : ' + value.deviceRole;
         }
 
         if (value.deviceType == 1) {
             devTypeName = 'EARPIECE';
         }
-        else if (value.deviceType == 2){
+        else if (value.deviceType == 2) {
             devTypeName = 'SPEAKER';
         }
-        else if (value.deviceType == 3){
+        else if (value.deviceType == 3) {
             devTypeName = 'WIRED_HEADSET';
         }
-        else if (value.deviceType == 7){
+        else if (value.deviceType == 7) {
             devTypeName = 'BLUETOOTH_SCO';
         }
-        else if (value.deviceType == 8){
+        else if (value.deviceType == 8) {
             devTypeName = 'BLUETOOTH_A2DP';
         }
-        else if (value.deviceType == 15){
+        else if (value.deviceType == 15) {
             devTypeName = 'MIC';
         }
         else {
-            devTypeName = 'ERROR : UNKNOWN :'+value.deviceType;
+            devTypeName = 'ERROR : UNKNOWN :' + value.deviceType;
         }
 
         console.info(`AudioFrameworkTest: device role: ${devRoleName}`);
@@ -97,11 +97,11 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioManger_001', 0, function (done) {
-        if(audioManager!=null){
+        if (audioManager != null) {
             console.info('AudioFrameworkTest: getAudioManger : PASS');
             expect(true).assertTrue();
         }
-        else{
+        else {
             console.info('AudioFrameworkTest: getAudioManger : FAIL');
             expect(false).assertTrue();
         }
@@ -125,11 +125,11 @@ describe('audioEventManger', function () {
 
             console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
             value.forEach(displayDeviceProp);
-            if (deviceTypeValue != null && deviceRoleValue != null){
+            if (deviceTypeValue != null && deviceRoleValue != null) {
                 console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
                 expect(true).assertTrue();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
                 expect(false).assertTrue();
             }
@@ -154,11 +154,11 @@ describe('audioEventManger', function () {
 
             console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
             value.forEach(displayDeviceProp);
-            if (deviceTypeValue != null && deviceRoleValue != null){
+            if (deviceTypeValue != null && deviceRoleValue != null) {
                 console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
                 expect(true).assertTrue();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
                 expect(false).assertTrue();
             }
@@ -182,11 +182,11 @@ describe('audioEventManger', function () {
         promise.then(function (value) {
             console.info('AudioFrameworkTest: Promise: getDevices INPUT_DEVICES_FLAG');
             value.forEach(displayDeviceProp);
-            if (deviceTypeValue != null && deviceRoleValue != null){
+            if (deviceTypeValue != null && deviceRoleValue != null) {
                 console.info('AudioFrameworkTest: Promise: getDevices : INPUT_DEVICES_FLAG :  PASS');
                 expect(true).assertTrue();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Promise: getDevices : INPUT_DEVICES_FLAG :  FAIL');
                 expect(false).assertTrue();
             }
@@ -211,11 +211,11 @@ describe('audioEventManger', function () {
             console.info('AudioFrameworkTest: Promise: getDevices INPUT_DEVICES_FLAG');
             value.forEach(displayDeviceProp);
 
-            if (deviceTypeValue != null && deviceRoleValue != null){
+            if (deviceTypeValue != null && deviceRoleValue != null) {
                 console.info('AudioFrameworkTest: Promise: getDevices : INPUT_DEVICES_FLAG :  PASS');
                 expect(true).assertTrue();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Promise: getDevices : INPUT_DEVICES_FLAG :  FAIL');
                 expect(false).assertTrue();
             }
@@ -240,11 +240,11 @@ describe('audioEventManger', function () {
             console.info('AudioFrameworkTest: Promise: getDevices ALL_DEVICES_FLAG');
             value.forEach(displayDeviceProp);
 
-            if (deviceTypeValue != null && deviceRoleValue != null){
+            if (deviceTypeValue != null && deviceRoleValue != null) {
                 console.info('AudioFrameworkTest: Promise: getDevices : ALL_DEVICES_FLAG :  PASS');
                 expect(true).assertTrue();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Promise: getDevices : ALL_DEVICES_FLAG :  FAIL');
                 expect(false).assertTrue();
             }
@@ -269,11 +269,11 @@ describe('audioEventManger', function () {
             console.info('AudioFrameworkTest: Promise: getDevices ALL_DEVICES_FLAG');
             value.forEach(displayDeviceProp);
 
-            if (deviceTypeValue != null && deviceRoleValue != null){
+            if (deviceTypeValue != null && deviceRoleValue != null) {
                 console.info('AudioFrameworkTest: Promise: getDevices : ALL_DEVICES_FLAG :  PASS');
                 expect(true).assertTrue();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Promise: getDevices : ALL_DEVICES_FLAG :  FAIL');
                 expect(false).assertTrue();
             }
@@ -299,14 +299,14 @@ describe('audioEventManger', function () {
                 console.error(`AudioFrameworkTest: Callback: OUTPUT_DEVICES_FLAG: failed to get devices ${err.message}`);
                 expect().assertFail();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Callback: getDevices OUTPUT_DEVICES_FLAG');
                 value.forEach(displayDeviceProp);
-                if (deviceTypeValue != null && deviceRoleValue != null){
+                if (deviceTypeValue != null && deviceRoleValue != null) {
                     console.info('AudioFrameworkTest: Callback: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
                     expect(true).assertTrue();
                 }
-                else{
+                else {
                     console.info('AudioFrameworkTest: Callback: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
                     expect(false).assertTrue();
                 }
@@ -332,14 +332,14 @@ describe('audioEventManger', function () {
                 console.error(`AudioFrameworkTest: Callback: OUTPUT_DEVICES_FLAG: failed to get devices ${err.message}`);
                 expect().assertFail();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Callback: getDevices OUTPUT_DEVICES_FLAG');
                 value.forEach(displayDeviceProp);
-                if (deviceTypeValue != null && deviceRoleValue != null){
+                if (deviceTypeValue != null && deviceRoleValue != null) {
                     console.info('AudioFrameworkTest: Callback: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
                     expect(true).assertTrue();
                 }
-                else{
+                else {
                     console.info('AudioFrameworkTest: Callback: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
                     expect(false).assertTrue();
                 }
@@ -365,15 +365,15 @@ describe('audioEventManger', function () {
                 console.error(`AudioFrameworkTest: Callback: INPUT_DEVICES_FLAG: failed to get devices ${err.message}`);
                 expect().assertFail();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Callback: getDevices INPUT_DEVICES_FLAG');
                 value.forEach(displayDeviceProp);
 
-                if (deviceTypeValue != null && deviceRoleValue != null){
+                if (deviceTypeValue != null && deviceRoleValue != null) {
                     console.info('AudioFrameworkTest: Callback: getDevices : INPUT_DEVICES_FLAG:  PASS');
                     expect(true).assertTrue();
                 }
-                else{
+                else {
                     console.info('AudioFrameworkTest: Callback: getDevices : INPUT_DEVICES_FLAG:  FAIL');
                     expect(false).assertTrue();
                 }
@@ -399,15 +399,15 @@ describe('audioEventManger', function () {
                 console.error(`AudioFrameworkTest: Callback: INPUT_DEVICES_FLAG: failed to get devices ${err.message}`);
                 expect().assertFail();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Callback: getDevices INPUT_DEVICES_FLAG');
                 value.forEach(displayDeviceProp);
 
-                if (deviceTypeValue != null && deviceRoleValue != null){
+                if (deviceTypeValue != null && deviceRoleValue != null) {
                     console.info('AudioFrameworkTest: Callback: getDevices : INPUT_DEVICES_FLAG:  PASS');
                     expect(true).assertTrue();
                 }
-                else{
+                else {
                     console.info('AudioFrameworkTest: Callback: getDevices : INPUT_DEVICES_FLAG:  FAIL');
                     expect(false).assertTrue();
                 }
@@ -433,14 +433,14 @@ describe('audioEventManger', function () {
                 console.error(`AudioFrameworkTest: Callback: ALL_DEVICES_FLAG: failed to get devices ${err.message}`);
                 expect().assertFail();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Callback: getDevices ALL_DEVICES_FLAG');
                 value.forEach(displayDeviceProp);
-                if (deviceTypeValue != null && deviceRoleValue != null){
+                if (deviceTypeValue != null && deviceRoleValue != null) {
                     console.info('AudioFrameworkTest: Callback: getDevices : ALL_DEVICES_FLAG:  PASS');
                     expect(true).assertTrue();
                 }
-                else{
+                else {
                     console.info('AudioFrameworkTest: Callback: getDevices : ALL_DEVICES_FLAG:  FAIL');
                     expect(false).assertTrue();
                 }
@@ -466,14 +466,14 @@ describe('audioEventManger', function () {
                 console.error(`AudioFrameworkTest: Callback: ALL_DEVICES_FLAG: failed to get devices ${err.message}`);
                 expect().assertFail();
             }
-            else{
+            else {
                 console.info('AudioFrameworkTest: Callback: getDevices ALL_DEVICES_FLAG');
                 value.forEach(displayDeviceProp);
-                if (deviceTypeValue != null && deviceRoleValue != null){
+                if (deviceTypeValue != null && deviceRoleValue != null) {
                     console.info('AudioFrameworkTest: Callback: getDevices : ALL_DEVICES_FLAG:  PASS');
                     expect(true).assertTrue();
                 }
-                else{
+                else {
                     console.info('AudioFrameworkTest: Callback: getDevices : ALL_DEVICES_FLAG:  FAIL');
                     expect(false).assertTrue();
                 }
@@ -491,15 +491,15 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_PR_Activate_013', 0, async function (done) {
-        await audioManager.setDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO,true).then(function (){
+        await audioManager.setDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO, true).then(function () {
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : BLUETOOTH_SCO: Activate');
-            audioManager.isDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO).then(function (value){
-                if(value==true){
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Activate : PASS :' +value);
+            audioManager.isDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO).then(function (value) {
+                if (value == true) {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Activate : PASS :' + value);
                     expect(true).assertTrue();
                 }
-                else{
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Activate : FAIL :' +value);
+                else {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Activate : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -519,15 +519,15 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_PR_Activate_ENUM_014', 0, async function (done) {
-        await audioManager.setDeviceActive(7,true).then(function (){
+        await audioManager.setDeviceActive(7, true).then(function () {
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : BLUETOOTH_SCO: Activate');
-            audioManager.isDeviceActive(7).then(function (value){
-                if(value==true){
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Activate : PASS :' +value);
+            audioManager.isDeviceActive(7).then(function (value) {
+                if (value == true) {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Activate : PASS :' + value);
                     expect(true).assertTrue();
                 }
-                else{
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Activate : FAIL :' +value);
+                else {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Activate : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -547,16 +547,16 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_PR_Deactivate_015', 0, async function (done) {
-        await audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER,false).then(function (){
+        await audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, false).then(function () {
             // Setting device active ENUM 2 = SPEAKER
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : SPEAKER: Deactivate');
-            audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then(function (value){
-                if(value==false){
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Deactivate : PASS :' +value);
+            audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then(function (value) {
+                if (value == false) {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Deactivate : PASS :' + value);
                     expect(true).assertTrue();
                 }
-                else{
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Deactivate : FAIL :' +value);
+                else {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Deactivate : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -576,19 +576,19 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_PR_Deactivate_ENUM_016', 0, async function (done) {
-        await audioManager.setDeviceActive(2,true).then(function (){
+        await audioManager.setDeviceActive(2, true).then(function () {
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : SPEAKER: Active');
         });
-        await audioManager.setDeviceActive(2,false).then(function (){
+        await audioManager.setDeviceActive(2, false).then(function () {
             // Setting device active ENUM 2 = SPEAKER
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : SPEAKER: Deactivate');
-            audioManager.isDeviceActive(2).then(function (value){
-                if(value==false){
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Deactivate : PASS :' +value);
+            audioManager.isDeviceActive(2).then(function (value) {
+                if (value == false) {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Deactivate : PASS :' + value);
                     expect(true).assertTrue();
                 }
-                else{
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Deactivate : FAIL :' +value);
+                else {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Deactivate : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -608,15 +608,15 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_PR_Activate_017', 0, async function (done) {
-        await audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER,true).then(function (){
+        await audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(function () {
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : SPEAKER: Activate');
-            audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then(function (value){
-                if(value==true){
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Activate : PASS :' +value);
+            audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then(function (value) {
+                if (value == true) {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Activate : PASS :' + value);
                     expect(true).assertTrue();
                 }
-                else{
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Activate : FAIL :' +value);
+                else {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Activate : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -636,15 +636,15 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_PR_Activate_ENUM_018', 0, async function (done) {
-        await audioManager.setDeviceActive(2,true).then(function (){
+        await audioManager.setDeviceActive(2, true).then(function () {
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : SPEAKER: Activate');
-            audioManager.isDeviceActive(2).then(function (value){
-                if(value==true){
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Activate : PASS :' +value);
+            audioManager.isDeviceActive(2).then(function (value) {
+                if (value == true) {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Activate : PASS :' + value);
                     expect(true).assertTrue();
                 }
-                else{
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Activate : FAIL :' +value);
+                else {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Activate : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -664,16 +664,16 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_PR_Deactivate_019', 0, async function (done) {
-        await audioManager.setDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO,false).then(function (){
+        await audioManager.setDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO, false).then(function () {
             // Setting device active ENUM 3 = BLUETOOTH_SCO
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : BLUETOOTH_SCO: Deactivate');
-            audioManager.isDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO).then(function (value){
-                if(value==false){
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Deactivate : PASS :' +value);
+            audioManager.isDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO).then(function (value) {
+                if (value == false) {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Deactivate : PASS :' + value);
                     expect(true).assertTrue();
                 }
-                else{
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Deactivate : FAIL :' +value);
+                else {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Deactivate : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -693,19 +693,19 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_PR_Deactivate_ENUM_020', 0, async function (done) {
-        await audioManager.setDeviceActive(7,true).then(function (){
+        await audioManager.setDeviceActive(7, true).then(function () {
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : BLUETOOTH_SCO: Active');
         });
-        await audioManager.setDeviceActive(7,false).then(function (){
+        await audioManager.setDeviceActive(7, false).then(function () {
             // Setting device active ENUM 3 = BLUETOOTH_SCO
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : BLUETOOTH_SCO: Deactivate');
-            audioManager.isDeviceActive(7).then(function (value){
-                if(value==false){
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Deactivate : PASS :' +value);
+            audioManager.isDeviceActive(7).then(function (value) {
+                if (value == false) {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Deactivate : PASS :' + value);
                     expect(true).assertTrue();
                 }
-                else{
-                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Deactivate : FAIL :' +value);
+                else {
+                    console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : BLUETOOTH_SCO: Deactivate : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -725,24 +725,24 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_CB_Activate_021', 0, async function (done) {
-        audioManager.setDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO,true, (err) => {
+        audioManager.setDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO, true, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Device Test: Callback : setDeviceActive : BLUETOOTH_SCO: Active: Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: Device Test: Callback : setDeviceActive : BLUETOOTH_SCO: Active');
-                audioManager.isDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO,(err, value) => {
+                audioManager.isDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO, (err, value) => {
                     if (err) {
                         console.error(`AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Active: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
-                    else if(value==true){
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Active : PASS :' +value);
+                    else if (value == true) {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Active : PASS :' + value);
                         expect(true).assertTrue();
                     }
-                    else{
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Active : FAIL :' +value);
+                    else {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Active : FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -761,24 +761,24 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_CB_Activate_ENUM_022', 0, async function (done) {
-        audioManager.setDeviceActive(7,true, (err) => {
+        audioManager.setDeviceActive(7, true, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Device Test: Callback : setDeviceActive : BLUETOOTH_SCO: Active: Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: Device Test: Callback : setDeviceActive : BLUETOOTH_SCO: Active');
-                audioManager.isDeviceActive(7,(err, value) => {
+                audioManager.isDeviceActive(7, (err, value) => {
                     if (err) {
                         console.error(`AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Active: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
-                    else if(value==true){
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Active : PASS :' +value);
+                    else if (value == true) {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Active : PASS :' + value);
                         expect(true).assertTrue();
                     }
-                    else{
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Active : FAIL :' +value);
+                    else {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Active : FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -797,24 +797,24 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_CB_DEACTIVATE_023', 0, async function (done) {
-        audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER,false, (err) => {
+        audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, false, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Device Test: Callback : setDeviceActive : SPEAKER: Deactivate: Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: Device Test: Callback : setDeviceActive : SPEAKER: Active');
-                audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER,(err, value) => {
+                audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
                     if (err) {
                         console.error(`AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
-                    else if(value==false){
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : PASS :' +value);
+                    else if (value == false) {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : PASS :' + value);
                         expect(true).assertTrue();
                     }
-                    else{
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : FAIL :' +value);
+                    else {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -833,27 +833,27 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_CB_DEACTIVATE_ENUM_024', 0, async function (done) {
-        await audioManager.setDeviceActive(2,true).then(function (){
+        await audioManager.setDeviceActive(2, true).then(function () {
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : SPEAKER : Active');
         });
-        audioManager.setDeviceActive(2,false, (err) => {
+        audioManager.setDeviceActive(2, false, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Device Test: Callback : setDeviceActive : SPEAKER: Deactivate: Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: Device Test: Callback : setDeviceActive : SPEAKER: Active');
-                audioManager.isDeviceActive(2,(err, value) => {
+                audioManager.isDeviceActive(2, (err, value) => {
                     if (err) {
                         console.error(`AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
-                    else if(value==false){
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : PASS :' +value);
+                    else if (value == false) {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : PASS :' + value);
                         expect(true).assertTrue();
                     }
-                    else{
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : FAIL :' +value);
+                    else {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -873,24 +873,24 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_CB_ACTIVATE_025', 0, async function (done) {
-        audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER,true, (err) => {
+        audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Device Test: Callback : setDeviceActive : SPEAKER: Active: Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: Device Test: Callback : setDeviceActive : SPEAKER: Active');
-                audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER,(err, value) => {
+                audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
                     if (err) {
                         console.error(`AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Active: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
-                    else if(value==true){
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Active : PASS :' +value);
+                    else if (value == true) {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Active : PASS :' + value);
                         expect(true).assertTrue();
                     }
-                    else{
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Active : FAIL :' +value);
+                    else {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Active : FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -909,24 +909,24 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_CB_ACTIVATE_ENUM_026  ', 0, async function (done) {
-        audioManager.setDeviceActive(2,true, (err) => {
+        audioManager.setDeviceActive(2, true, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Device Test: Callback : setDeviceActive : SPEAKER: Active: Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: Device Test: Callback : setDeviceActive : SPEAKER: Active');
-                audioManager.isDeviceActive(2,(err, value) => {
+                audioManager.isDeviceActive(2, (err, value) => {
                     if (err) {
                         console.error(`AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Active: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
-                    else if(value==true){
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Active : PASS :' +value);
+                    else if (value == true) {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Active : PASS :' + value);
                         expect(true).assertTrue();
                     }
-                    else{
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Active : FAIL :' +value);
+                    else {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Active : FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -945,24 +945,24 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_DEACTIVATE_027', 0, async function (done) {
-        audioManager.setDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO,false, (err) => {
+        audioManager.setDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO, false, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Device Test: Callback : setDeviceActive : BLUETOOTH_SCO: Deactivate: Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: Device Test: Callback : setDeviceActive : BLUETOOTH_SCO: Active');
-                audioManager.isDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO,(err, value) => {
+                audioManager.isDeviceActive(audio.ActiveDeviceType.BLUETOOTH_SCO, (err, value) => {
                     if (err) {
                         console.error(`AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Deactivate: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
-                    else if(value==false){
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Deactivate : PASS :' +value);
+                    else if (value == false) {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Deactivate : PASS :' + value);
                         expect(true).assertTrue();
                     }
-                    else{
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Deactivate : FAIL :' +value);
+                    else {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Deactivate : FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -981,27 +981,27 @@ describe('audioEventManger', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setDeviceActive_DEACTIVATE_ENUM_028', 0, async function (done) {
-        await audioManager.setDeviceActive(7,true).then(function (){
+        await audioManager.setDeviceActive(7, true).then(function () {
             console.info('AudioFrameworkTest: Device Test: Promise : setDeviceActive : BLUETOOTH_SCO : Active');
         });
-        audioManager.setDeviceActive(7,false, (err) => {
+        audioManager.setDeviceActive(7, false, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Device Test: Callback : setDeviceActive : BLUETOOTH_SCO: Deactivate: Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: Device Test: Callback : setDeviceActive : BLUETOOTH_SCO: Active');
-                audioManager.isDeviceActive(7,async(err, value) => {
+                audioManager.isDeviceActive(7, async (err, value) => {
                     if (err) {
                         console.error(`AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Deactivate: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
-                    else if(value==false){
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Deactivate : PASS :' +value);
+                    else if (value == false) {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Deactivate : PASS :' + value);
                         expect(true).assertTrue();
                     }
-                    else{
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Deactivate : FAIL :' +value);
+                    else {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : BLUETOOTH_SCO: Deactivate : FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -1042,7 +1042,7 @@ describe('audioEventManger', function () {
         await sleep(50);
         done();
     })
-	
+
     /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_DeviceType_003
                 * @tc.name      : DeviceType - USB_HEADSET
@@ -1054,13 +1054,27 @@ describe('audioEventManger', function () {
     it('SUB_AUDIO_MANAGER_DeviceType_003', 0, async function (done) {
         var resultflag = false;
         if (audio.DeviceType.USB_HEADSET == 22 || audio.DeviceType.USB_HEADSET == undefined)
-        resultflag = true;
+            resultflag = true;
         expect(resultflag).assertTrue();
         await sleep(50);
         done();
     })
 
-	/* *
+    /* *
+               * @tc.number    : SUB_AUDIO_MANAGER_DeviceType_004
+               * @tc.name      : DeviceType - WIRED_HEADPHONES
+               * @tc.desc      : DeviceType - WIRED_HEADPHONES
+               * @tc.size      : MEDIUM
+               * @tc.type      : Function
+               * @tc.level     : Level 0
+           */
+    it('SUB_AUDIO_MANAGER_DeviceType_004', 0, async function (done) {
+        expect(audio.DeviceType.WIRED_HEADPHONES).assertEqual(4);
+        await sleep(50);
+        done();
+    })
+
+    /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_DeviceChangeType_001
                 * @tc.name      : DeviceChangeType - CONNECT  
                 * @tc.desc      : DeviceChangeType - CONNECT  
@@ -1073,8 +1087,8 @@ describe('audioEventManger', function () {
         await sleep(50);
         done();
     })
-	
-	/* *
+
+    /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_DeviceChangeType_002
                 * @tc.name      : DeviceChangeType - DISCONNECT   
                 * @tc.desc      : DeviceChangeType - DISCONNECT   
