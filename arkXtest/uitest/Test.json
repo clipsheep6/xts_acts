@@ -18,20 +18,17 @@
         {
             "type": "PushKit",
             "push": [
-                "resource/arkXtest/arkXtest_windowsTest.hap -> /data/local/tmp/arkXtest_windowsTest.hap",
                 "resource/arkXtest/window_manager_config.xml -> /system/etc/window/resources/window_manager_config.xml"
             ]
         },
         {
             "type": "ShellKit",
             "run-command": [
+	        "param set persist.ace.testmode.enabled 1",
+	        "reboot",
                 "power-shell wakeup",
                 "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
-                "power-shell setmode 602",
-                "bm install -p /data/local/tmp/arkXtest_windowsTest.hap"
-            ],
-            "teardown-command": [
-                "bm uninstall -n com.example.windows"
+                "power-shell setmode 602"
             ]
         }
     ]
