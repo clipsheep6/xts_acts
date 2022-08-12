@@ -47,9 +47,9 @@ struct alphabetIndexer {
         .popupFont({ size: 30, weight: FontWeight.Bolder, style: FontStyle.Normal })
         .itemSize(28)
         .alignStyle(IndexerAlign.Left)
-        .onSelect((index: number) => {
-          console.info(this.value[index] + 'on onSelect')
-        })
+//        .onSelect((index: number) => {
+//          console.info(this.value[index] + 'on onSelect')
+//        })
         .onPopupSelect((index: number) => {
           console.info(this.value[index] + 'on onPopupSelect')
         })
