@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for aceEtsOne Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.open.harmony.aceEtsOne",
+        "package-name": "com.open.harmony.aceEtsOne",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAceEtsAttributeOneTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

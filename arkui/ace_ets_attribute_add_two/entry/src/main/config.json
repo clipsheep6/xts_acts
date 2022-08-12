@@ -72,8 +72,7 @@
         },
         "pages": [
           "pages/index",
-          "pages/onFrame",
-          "pages/"
+          "pages/onFrame"
         ],
         "name": ".MainAbility",
         "window": {

@@ -61,13 +61,18 @@ struct ColumnExample {
 
       Column() {
         Row() {
-          Button('play').borderRadius(8).backgroundColor(0x317aff).width(90).onClick(() => {
-            this.animation.onframe((value) => {
-              this.divWidth = value
-              this.divHeight = value
+          Button('play')
+            .borderRadius(8)
+            .backgroundColor(0x317aff)
+            .width(90)
+            .key("button1")
+            .onClick(() => {
+              this.animation.onframe((value) => {
+                this.divWidth = value
+                this.divHeight = value
+              });
+              this.animation.play();
             });
-            this.animation.play();
-          });
           Button('update').borderRadius(8).backgroundColor(0x317aff).width(90).onClick(() => {
             var newoptions = {
               duration: 5000,
@@ -104,7 +109,9 @@ struct ColumnExample {
         }.margin({ top: 5 })
 
         Row() {
-          Button('onframe').borderRadius(8).value("play").backgroundColor(0x317aff).width(90).onClick(() => {
+          Button('onframe')
+            .key("button1")
+            .borderRadius(8).value("play").backgroundColor(0x317aff).width(90).onClick(() => {
             this.playAnimation()
           });
         }.margin({ top: 5 })
