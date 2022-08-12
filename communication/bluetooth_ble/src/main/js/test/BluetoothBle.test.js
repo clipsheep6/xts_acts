@@ -71,20 +71,20 @@ describe('bluetoothhostTest', function() {
         }
     }
     beforeAll(function () {
-        console.info('beforeAll called')
+        console.info('beforeAll called');
         gattServer = bluetooth.BLE.createGattServer();
         gattClient = bluetooth.BLE.createGattClientDevice("00:00:00:00:00:00");
     })
     beforeEach(async function(done) {
-        console.info('beforeEach called')
+        console.info('beforeEach called');
         await tryToEnableBt()
         done()
     })
     afterEach(function () {
-        console.info('afterEach called')
+        console.info('afterEach called');
     })
     afterAll(function () {
-        console.info('afterAll called')
+        console.info('afterAll called');
     })
     
     /**
