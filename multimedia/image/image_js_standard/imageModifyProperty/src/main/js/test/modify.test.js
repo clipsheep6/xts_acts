@@ -255,7 +255,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == 'Top-right').assertTrue();
         }
-        modifyPromise(done, 'modify_01_001', 'buffer', "Orientation", "2", checkProps);
+        modifyPromise(done, 'modify_01_001', 'buffer', image.PropertyKey.ORIENTATION, "2", checkProps);
     }) 
 
     /**
@@ -272,7 +272,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("38") != -1).assertTrue();
         }
-        modifyPromise(done, 'modify_01_002', 'buffer', "GPSLatitude", "114,3", checkProps);
+        modifyPromise(done, 'modify_01_002', 'buffer', image.PropertyKey.GPS_LATITUDE, "114,3", checkProps);
     })
 
     /**
@@ -289,7 +289,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("9") != -1).assertTrue();
         }
-        modifyPromise(done, 'modify_01_003', 'buffer', "GPSLongitude", "18,2", checkProps);
+        modifyPromise(done, 'modify_01_003', 'buffer', image.PropertyKey.GPS_LONGITUDE, "18,2", checkProps);
     })
 
     /**
@@ -306,7 +306,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == 'N').assertTrue();
         }
-        modifyPromise(done, 'modify_01_004', 'buffer', "GPSLatitudeRef", "N", checkProps);
+        modifyPromise(done, 'modify_01_004', 'buffer', image.PropertyKey.GPS_LATITUDE_REF, "N", checkProps);
     })
 
     /**
@@ -323,7 +323,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == 'W').assertTrue();
         }
-        modifyPromise(done, 'modify_01_005', 'buffer', "GPSLongitudeRef", "W", checkProps);
+        modifyPromise(done, 'modify_01_005', 'buffer', image.PropertyKey.GPS_LONGITUDE_REF, "W", checkProps);
     })
 
     /**
@@ -340,7 +340,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == 'Top-right').assertTrue();
         }
-        modifyPromise(done, 'modify_01_006', 'fd', "Orientation", "2", checkProps)
+        modifyPromise(done, 'modify_01_006', 'fd', image.PropertyKey.ORIENTATION, "2", checkProps)
     })   
 
     /**
@@ -357,7 +357,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("38") != -1).assertTrue();
         }
-        modifyPromise(done, 'modify_01_007', 'fd', "GPSLatitude", "114,3", checkProps);
+        modifyPromise(done, 'modify_01_007', 'fd', image.PropertyKey.GPS_LATITUDE, "114,3", checkProps);
     })
 
     /**
@@ -374,7 +374,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("9") != -1).assertTrue();
         }
-        modifyPromise(done, 'modify_01_008', 'fd', "GPSLongitude", "18,2", checkProps);
+        modifyPromise(done, 'modify_01_008', 'fd', image.PropertyKey.GPS_LONGITUDE, "18,2", checkProps);
     })
 
     /**
@@ -391,7 +391,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == 'N').assertTrue();
         }
-        modifyPromise(done, 'modify_01_009', 'fd', "GPSLatitudeRef", "N", checkProps);
+        modifyPromise(done, 'modify_01_009', 'fd', image.PropertyKey.GPS_LATITUDE_REF, "N", checkProps);
     })
 
     /**
@@ -408,7 +408,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == 'W').assertTrue();
         }
-        modifyPromise(done, 'modify_01_010', 'fd', "GPSLongitudeRef", "W", checkProps);
+        modifyPromise(done, 'modify_01_010', 'fd', image.PropertyKey.GPS_LONGITUDE_REF, "W", checkProps);
     }) 
     
     /**
@@ -425,7 +425,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == 'Top-right').assertTrue();
         }
-        modifyCb(done, 'modify_02_001', 'buffer', "Orientation", "2", checkProps);
+        modifyCb(done, 'modify_02_001', 'buffer', image.PropertyKey.ORIENTATION, "2", checkProps);
     })
 
     /**
@@ -442,7 +442,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("38") != -1).assertTrue();
         }
-        modifyCb(done, 'modify_02_002', 'buffer', "GPSLatitude", "114,3", checkProps);
+        modifyCb(done, 'modify_02_002', 'buffer', image.PropertyKey.GPS_LATITUDE, "114,3", checkProps);
     })
 
     /**
@@ -459,7 +459,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("9") != -1).assertTrue();
         }
-        modifyCb(done, 'modify_02_003', 'buffer', "GPSLongitude", "18,2", checkProps);
+        modifyCb(done, 'modify_02_003', 'buffer', image.PropertyKey.GPS_LONGITUDE, "18,2", checkProps);
     })
 
     /**
@@ -476,7 +476,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == "N").assertTrue();
         }
-        modifyCb(done, 'modify_02_004', 'buffer', "GPSLatitudeRef", "N", checkProps);
+        modifyCb(done, 'modify_02_004', 'buffer', image.PropertyKey.GPS_LATITUDE_REF, "N", checkProps);
     })
 
     /**
@@ -493,7 +493,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == "W").assertTrue();
         }
-        modifyCb(done, 'modify_02_005', 'buffer', "GPSLongitudeRef", "W", checkProps);
+        modifyCb(done, 'modify_02_005', 'buffer', image.PropertyKey.GPS_LONGITUDE_REF, "W", checkProps);
     })
 
     /**
@@ -510,7 +510,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == 'Top-right').assertTrue();
         }
-        modifyCb(done, 'modify_02_006', 'fd', "Orientation", "2", checkProps);
+        modifyCb(done, 'modify_02_006', 'fd', image.PropertyKey.ORIENTATION, "2", checkProps);
     })
 
     /**
@@ -527,7 +527,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("38") != -1).assertTrue();
         }
-        modifyCb(done, 'modify_02_007', 'fd', "GPSLatitude", "114,3", checkProps);
+        modifyCb(done, 'modify_02_007', 'fd', image.PropertyKey.GPS_LATITUDE, "114,3", checkProps);
     })
 
     /**
@@ -544,7 +544,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("9") != -1).assertTrue();
         }
-        modifyCb(done, 'modify_02_008', 'fd', "GPSLongitude", "18,2", checkProps);
+        modifyCb(done, 'modify_02_008', 'fd', image.PropertyKey.GPS_LONGITUDE, "18,2", checkProps);
     })
 
     /**
@@ -561,7 +561,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == "N").assertTrue();
         }
-        modifyCb(done, 'modify_02_009', 'fd', "GPSLatitudeRef", "N", checkProps);
+        modifyCb(done, 'modify_02_009', 'fd', image.PropertyKey.GPS_LATITUDE_REF, "N", checkProps);
     })
 
     /**
@@ -578,7 +578,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == "W").assertTrue();
         }
-        modifyCb(done, 'modify_02_010', 'fd', "GPSLongitudeRef", "W", checkProps);
+        modifyCb(done, 'modify_02_010', 'fd', image.PropertyKey.GPS_LONGITUDE_REF	, "W", checkProps);
     })
    
     /**
@@ -595,7 +595,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == 'Top-right').assertTrue();
         }
-        modifyCb1(done, 'modify_03_001', 'buffer', "Orientation", "2", checkProps);
+        modifyCb1(done, 'modify_03_001', 'buffer', image.PropertyKey.ORIENTATION, "2", checkProps);
     })
 
     /**
@@ -612,7 +612,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("38") != -1).assertTrue();
         }
-        modifyCb1(done, 'modify_03_002', 'buffer', "GPSLatitude", "114,3", checkProps);
+        modifyCb1(done, 'modify_03_002', 'buffer', image.PropertyKey.GPS_LATITUDE, "114,3", checkProps);
     })
 
     /**
@@ -629,7 +629,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("9") != -1).assertTrue();
         }
-        modifyCb1(done, 'modify_03_003', 'buffer', "GPSLongitude", "18,2", checkProps);
+        modifyCb1(done, 'modify_03_003', 'buffer', image.PropertyKey.GPS_LONGITUDE, "18,2", checkProps);
     })
 
     /**
@@ -646,7 +646,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == "N").assertTrue();
         }
-        modifyCb1(done, 'modify_03_004', 'buffer', "GPSLatitudeRef", "N", checkProps);
+        modifyCb1(done, 'modify_03_004', 'buffer', image.PropertyKey.GPS_LATITUDE_REF, "N", checkProps);
     })
 
     /**
@@ -663,7 +663,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == "W").assertTrue();
         }
-        modifyCb1(done, 'modify_03_005', 'buffer', "GPSLongitudeRef", "W", checkProps);
+        modifyCb1(done, 'modify_03_005', 'buffer', image.PropertyKey.GPS_LONGITUDE_REF, "W", checkProps);
     }) 
 
     /**
@@ -680,7 +680,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == 'Top-right').assertTrue();
         }
-        modifyCb1(done, 'modify_03_006', 'fd', "Orientation", "2", checkProps);
+        modifyCb1(done, 'modify_03_006', 'fd', image.PropertyKey.ORIENTATION, "2", checkProps);
     })
 
     /**
@@ -697,7 +697,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("38") != -1).assertTrue();
         }
-        modifyCb1(done, 'modify_03_007', 'fd', "GPSLatitude", "114,3", checkProps);
+        modifyCb1(done, 'modify_03_007', 'fd', image.PropertyKey.GPS_LATITUDE, "114,3", checkProps);
     })
 
     /**
@@ -714,7 +714,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result.search("9") != -1).assertTrue();
         }
-        modifyCb1(done, 'modify_03_008', 'fd', "GPSLongitude", "18,2", checkProps);
+        modifyCb1(done, 'modify_03_008', 'fd', image.PropertyKey.GPS_LONGITUDE, "18,2", checkProps);
     })
 
     /**
@@ -731,7 +731,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == "N").assertTrue();
         }
-        modifyCb1(done, 'modify_03_009', 'fd', "GPSLatitudeRef", "N", checkProps);
+        modifyCb1(done, 'modify_03_009', 'fd', image.PropertyKey.GPS_LATITUDE_REF, "N", checkProps);
     })
 
     /**
@@ -748,7 +748,7 @@ describe('imageModifyProperty', function () {
         function checkProps(result){
             expect(result == "W").assertTrue();
         }
-        modifyCb1(done, 'modify_03_010', 'fd', "GPSLongitudeRef", "W", checkProps);
+        modifyCb1(done, 'modify_03_010', 'fd', image.PropertyKey.GPS_LONGITUDE_REF, "W", checkProps);
     })
 
     /**
@@ -762,7 +762,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_01_011', 0, async function (done) {
-        modifyImageErrPromise(done, 'modify_01_011', 'fd', "Orientation", "abcdef")
+        modifyImageErrPromise(done, 'modify_01_011', 'fd', image.PropertyKey.ORIENTATION, "abcdef")
     })
 
     /**
@@ -776,7 +776,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_01_012', 0, async function (done) {
-        modifyImageErrPromise(done, 'modify_01_012', 'fd', "GPSLatitude", "abc,3")
+        modifyImageErrPromise(done, 'modify_01_012', 'fd', image.PropertyKey.GPS_LATITUDE, "abc,3")
     })
 
     /**
@@ -790,7 +790,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_01_013', 0, async function (done) {
-        modifyImageErrPromise(done, 'modify_01_013', 'fd', "GPSLongitude", "abc,2")
+        modifyImageErrPromise(done, 'modify_01_013', 'fd', image.PropertyKey.GPS_LONGITUDE, "abc,2")
     })
 
     /**
@@ -804,7 +804,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_01_014', 0, async function (done) {
-        modifyImageErrPromise(done, 'modify_01_014', 'fd', "GPSLatitudeRef", "456")
+        modifyImageErrPromise(done, 'modify_01_014', 'fd', image.PropertyKey.GPS_LATITUDE_REF, "456")
     })
 
     /**
@@ -818,7 +818,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_01_015', 0, async function (done) {
-        modifyImageErrPromise(done, 'modify_01_015', 'fd', "GPSLongitudeRef", "1234")
+        modifyImageErrPromise(done, 'modify_01_015', 'fd', image.PropertyKey.GPS_LONGITUDE_REF, "1234")
     })
 
     /**
@@ -832,7 +832,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_01_016', 0, async function (done) {
-        modifyImageErrPromise(done, "modify_01_016", "buffer", "Orientation", "abcdef")
+        modifyImageErrPromise(done, "modify_01_016", "buffer", image.PropertyKey.ORIENTATION, "abcdef")
     })
 
     /**
@@ -846,7 +846,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_01_017', 0, async function (done) {
-        modifyImageErrPromise(done, "modify_01_017", "buffer", "GPSLatitude", "abc,3")
+        modifyImageErrPromise(done, "modify_01_017", "buffer", image.PropertyKey.GPS_LATITUDE, "abc,3")
     })
 
     /**
@@ -860,7 +860,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_01_018', 0, async function (done) {
-        modifyImageErrPromise(done, "modify_01_018", "buffer", "GPSLongitude", "abc,2")
+        modifyImageErrPromise(done, "modify_01_018", "buffer", image.PropertyKey.GPS_LONGITUDE, "abc,2")
     })
 
     /**
@@ -874,7 +874,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_01_019', 0, async function (done) {
-        modifyImageErrPromise(done, "modify_01_019", "buffer", "GPSLatitudeRef", "456")
+        modifyImageErrPromise(done, "modify_01_019", "buffer", image.PropertyKey.GPS_LATITUDE_REF, "456")
     })
 
     /**
@@ -888,7 +888,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_01_020', 0, async function (done) {
-        modifyImageErrPromise(done, "modify_01_020", "buffer", "GPSLongitudeRef", "1234")
+        modifyImageErrPromise(done, "modify_01_020", "buffer", image.PropertyKey.GPS_LONGITUDE_REF, "1234")
     })
 
     /**
@@ -902,7 +902,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_02_011', 0, async function (done) {
-        modifyErrCb(done, "modify_02_011", "fd", "Orientation", "abcdef")
+        modifyErrCb(done, "modify_02_011", "fd", image.PropertyKey.ORIENTATION, "abcdef")
     })
 
     /**
@@ -916,7 +916,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_02_012', 0, async function (done) {
-        modifyErrCb(done, "modify_02_012", "fd", "GPSLatitude", "abc,3")
+        modifyErrCb(done, "modify_02_012", "fd", image.PropertyKey.GPS_LATITUDE, "abc,3")
     })
 
     /**
@@ -930,7 +930,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_02_013', 0, async function (done) {
-        modifyErrCb(done, "modify_02_013", "fd", "GPSLongitude", "abc,2")
+        modifyErrCb(done, "modify_02_013", "fd", image.PropertyKey.GPS_LONGITUDE, "abc,2")
     })
 
     /**
@@ -944,7 +944,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_02_014', 0, async function (done) {
-        modifyErrCb(done, "modify_02_014", "fd", "GPSLongitudeRef", "1234")
+        modifyErrCb(done, "modify_02_014", "fd", image.PropertyKey.GPS_LONGITUDE_REF, "1234")
     })
 
     /**
@@ -958,7 +958,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_02_015', 0, async function (done) {
-        modifyErrCb(done, "modify_02_015", "fd", "GPSLatitudeRef", "456")
+        modifyErrCb(done, "modify_02_015", "fd", image.PropertyKey.GPS_LATITUDE_REF, "456")
     })
 
     /**
@@ -972,7 +972,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_02_016', 0, async function (done) {
-        modifyErrCb(done, "modify_02_016", "buffer", "Orientation", "abcdef")
+        modifyErrCb(done, "modify_02_016", "buffer", image.PropertyKey.ORIENTATION, "abcdef")
     })
 
     /**
@@ -986,7 +986,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_02_017', 0, async function (done) {
-        modifyErrCb(done, "modify_02_017", "buffer", "GPSLatitude", "abc,3")
+        modifyErrCb(done, "modify_02_017", "buffer", image.PropertyKey.GPS_LATITUDE, "abc,3")
     })
 
     /**
@@ -1000,7 +1000,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_02_018', 0, async function (done) {
-        modifyErrCb(done, "modify_02_018", "buffer", "GPSLongitude", "abc,2")
+        modifyErrCb(done, "modify_02_018", "buffer", image.PropertyKey.GPS_LONGITUDE, "abc,2")
     })
 
     /**
@@ -1014,7 +1014,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_02_019', 0, async function (done) {
-        modifyErrCb(done, "modify_02_019", "buffer", "GPSLongitudeRef", "1234")
+        modifyErrCb(done, "modify_02_019", "buffer", image.PropertyKey.GPS_LONGITUDE_REF, "1234")
     })
 
     /**
@@ -1028,7 +1028,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_02_020', 0, async function (done) {
-        modifyErrCb(done, "modify_02_020", "buffer", "GPSLatitudeRef", "456")
+        modifyErrCb(done, "modify_02_020", "buffer", image.PropertyKey.GPS_LATITUDE_REF, "456")
     })
     
     /**
@@ -1042,7 +1042,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_03_011', 0, async function (done) {
-        modifyErrCb1(done, "modify_03_011", "fd", "Orientation", "abcdef")
+        modifyErrCb1(done, "modify_03_011", "fd", image.PropertyKey.ORIENTATION, "abcdef")
     })
 
     /**
@@ -1056,7 +1056,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_03_012', 0, async function (done) {
-        modifyErrCb1(done, "modify_03_012", "fd", "GPSLatitude", "abc,3")
+        modifyErrCb1(done, "modify_03_012", "fd", image.PropertyKey.GPS_LATITUDE, "abc,3")
     })
 
     /**
@@ -1070,7 +1070,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_03_013', 0, async function (done) {
-        modifyErrCb1(done, "modify_03_013", "fd", "GPSLongitude", "abc,2")
+        modifyErrCb1(done, "modify_03_013", "fd", image.PropertyKey.GPS_LONGITUDE, "abc,2")
     })
 
     /**
@@ -1084,7 +1084,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_03_014', 0, async function (done) {
-        modifyErrCb1(done, "modify_03_014", "fd", "GPSLatitudeRef", "1234")
+        modifyErrCb1(done, "modify_03_014", "fd", image.PropertyKey.GPS_LATITUDE_REF, "1234")
     })
 
     /**
@@ -1098,7 +1098,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_03_015', 0, async function (done) {
-        modifyErrCb1(done, "modify_03_015", "fd", "GPSLongitudeRef", "567")
+        modifyErrCb1(done, "modify_03_015", "fd", image.PropertyKey.GPS_LONGITUDE_REF, "567")
     })
 
     /**
@@ -1112,7 +1112,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_03_016', 0, async function (done) {
-        modifyErrCb1(done, "modify_03_016", "buffer", "Orientation", "abcef")
+        modifyErrCb1(done, "modify_03_016", "buffer", image.PropertyKey.ORIENTATION, "abcef")
     })
 
     /**
@@ -1126,7 +1126,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_03_017', 0, async function (done) {
-        modifyErrCb1(done, "modify_03_017", "buffer", "GPSLatitude", "abc,3")
+        modifyErrCb1(done, "modify_03_017", "buffer", image.PropertyKey.GPS_LATITUDE, "abc,3")
     })
 
     /**
@@ -1140,7 +1140,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_03_018', 0, async function (done) {
-        modifyErrCb1(done, "modify_03_018", "buffer", "GPSLongitude", "abc,2")
+        modifyErrCb1(done, "modify_03_018", "buffer", image.PropertyKey.GPS_LONGITUDE, "abc,2")
     })
 
     /**
@@ -1154,7 +1154,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_03_019', 0, async function (done) {
-        modifyErrCb1(done, "modify_03_019", "buffer", "GPSLatitudeRef", "456")
+        modifyErrCb1(done, "modify_03_019", "buffer", image.PropertyKey.GPS_LATITUDE_REF, "456")
     })
 
     /**
@@ -1168,6 +1168,6 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('modify_03_020', 0, async function (done) {
-        modifyErrCb1(done, "modify_03_020", "buffer", "GPSLongitudeRef", "1234")
+        modifyErrCb1(done, "modify_03_020", "buffer", image.PropertyKey.GPS_LONGITUDE_REF, "1234")
     })
 })}

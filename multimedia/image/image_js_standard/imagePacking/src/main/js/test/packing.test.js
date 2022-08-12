@@ -58,9 +58,9 @@ export default function imagePacking() {
             let opts;
             const Color = new ArrayBuffer(96);
             if (pixFormat == 2) {
-                opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
+                opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 4, width: 6 } }
             } else {
-                opts = { editable: true, pixelFormat: 5, size: { height: 4, width: 6 } }
+                opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_888, size: { height: 4, width: 6 } }
             }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
@@ -104,9 +104,9 @@ export default function imagePacking() {
             let opts;
             const Color = new ArrayBuffer(96);
             if (pixFormat == 2) {
-                opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
+                opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 4, width: 6 } }
             } else {
-                opts = { editable: true, pixelFormat: 5, size: { height: 4, width: 6 } }
+                opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_888, size: { height: 4, width: 6 } }
             }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
@@ -149,9 +149,9 @@ export default function imagePacking() {
         function packingCbFail(done, testNum, pixFormat, arg) {
             const Color = new ArrayBuffer(96);
             if (pixFormat == 2) {
-                var opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
+                var opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 4, width: 6 } }
             } else {
-                var opts = { editable: true, pixelFormat: 5, size: { height: 4, width: 6 } }
+                var opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_888, size: { height: 4, width: 6 } }
             }
 
             image.createPixelMap(Color, opts)
@@ -182,9 +182,9 @@ export default function imagePacking() {
         function packingPromiseFail(done, testNum, pixFormat, arg) {
             const Color = new ArrayBuffer(96);
             if (pixFormat == 2) {
-                var opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
+                var opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 4, width: 6 } }
             } else {
-                var opts = { editable: true, pixelFormat: 5, size: { height: 4, width: 6 } }
+                var opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_888, size: { height: 4, width: 6 } }
             }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
@@ -228,7 +228,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packing_P_001', 0, async function (done) {
             let packOpts = { format: "image/jpeg", quality: 99 }
-            packingPromise(done, 'SUB_IMAGE_packing_P_001', 2, packOpts)
+            packingPromise(done, 'SUB_IMAGE_packing_P_001', image.PixelMapFormat.RGB_565, packOpts)
         })
 
         /**
@@ -243,7 +243,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packing_P_002', 0, async function (done) {
             let packOpts = { format: "image/jpeg", quality: 123 }
-            packingPromiseFail(done, 'SUB_IMAGE_packing_P_002', 2, packOpts)
+            packingPromiseFail(done, 'SUB_IMAGE_packing_P_002', image.PixelMapFormat.RGB_565, packOpts)
         })
 
         /**
@@ -258,7 +258,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packing_P_003', 0, async function (done) {
             let packOpts = { format: "image/jpeg" }
-            packingPromiseFail(done, 'SUB_IMAGE_packing_P_003', 2, packOpts)
+            packingPromiseFail(done, 'SUB_IMAGE_packing_P_003', image.PixelMapFormat.RGB_565, packOpts)
         })
 
         /**
@@ -273,7 +273,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packing_P_004', 0, async function (done) {
             let packOpts = { quality: 99 }
-            packingPromiseFail(done, 'SUB_IMAGE_packing_P_004', 2, packOpts)
+            packingPromiseFail(done, 'SUB_IMAGE_packing_P_004', image.PixelMapFormat.RGB_565, packOpts)
         })
 
         /**
@@ -288,7 +288,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packing_P_005', 0, async function (done) {
             let packOpts = { format: "image/png", quality: 99 }
-            packingPromiseFail(done, 'SUB_IMAGE_packing_P_005', 2, packOpts)
+            packingPromiseFail(done, 'SUB_IMAGE_packing_P_005', image.PixelMapFormat.RGB_565, packOpts)
         })
 
         /**
@@ -303,7 +303,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packing_P_006', 0, async function (done) {
             let packOpts = { format: "image/jpeg", quality: 50 }
-            packingPromise(done, 'SUB_IMAGE_packing_P_006', 5, packOpts)
+            packingPromise(done, 'SUB_IMAGE_packing_P_006', image.PixelMapFormat.RGB_888, packOpts)
         })
 
         /**
@@ -318,7 +318,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packing_P_007', 0, async function (done) {
             let packOpts = { format: "image/jpeg", quality: 123 }
-            packingPromiseFail(done, 'SUB_IMAGE_packing_P_007', 5, packOpts)
+            packingPromiseFail(done, 'SUB_IMAGE_packing_P_007', image.PixelMapFormat.RGB_888, packOpts)
         })
 
         /**
@@ -333,7 +333,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packing_P_008', 0, async function (done) {
             let packOpts = { format: "image/jpeg" }
-            packingPromiseFail(done, 'SUB_IMAGE_packing_P_008', 5, packOpts)
+            packingPromiseFail(done, 'SUB_IMAGE_packing_P_008', image.PixelMapFormat.RGB_888, packOpts)
         })
 
         /**
@@ -348,7 +348,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packing_P_009', 0, async function (done) {
             let packOpts = { quality: 99 }
-            packingPromiseFail(done, 'SUB_IMAGE_packing_P_009', 5, packOpts)
+            packingPromiseFail(done, 'SUB_IMAGE_packing_P_009', image.PixelMapFormat.RGB_888, packOpts)
         })
 
         /**
@@ -363,7 +363,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packing_P_010', 0, async function (done) {
             let packOpts = { format: "image/png", quality: 99 }
-            packingPromiseFail(done, 'SUB_IMAGE_packing_P_010', 5, packOpts)
+            packingPromiseFail(done, 'SUB_IMAGE_packing_P_010', image.PixelMapFormat.RGB_888, packOpts)
         })
 
         /**
@@ -378,7 +378,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packingCb_001', 0, async function (done) {
             let packOpts = { format: "image/jpeg", quality: 99 }
-            packingCb(done, 'SUB_IMAGE_packingCb_001', 2, packOpts)
+            packingCb(done, 'SUB_IMAGE_packingCb_001', image.PixelMapFormat.RGB_565, packOpts)
         })
 
         /**
@@ -393,7 +393,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packingCb_002', 0, async function (done) {
             let packOpts = { format: "image/jpeg", quality: 123 }
-            packingCbFail(done, 'SUB_IMAGE_packingCb_002', 2, packOpts)
+            packingCbFail(done, 'SUB_IMAGE_packingCb_002', image.PixelMapFormat.RGB_565, packOpts)
 
         })
 
@@ -409,7 +409,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packingCb_003', 0, async function (done) {
             let packOpts = { format: "image/jpeg" }
-            packingCbFail(done, 'SUB_IMAGE_packingCb_003', 2, packOpts)
+            packingCbFail(done, 'SUB_IMAGE_packingCb_003', image.PixelMapFormat.RGB_565, packOpts)
         })
 
         /**
@@ -424,7 +424,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packingCb_004', 0, async function (done) {
             let packOpts = { quality: 99 }
-            packingCbFail(done, 'SUB_IMAGE_packingCb_004', 2, packOpts)
+            packingCbFail(done, 'SUB_IMAGE_packingCb_004', image.PixelMapFormat.RGB_565, packOpts)
         })
 
         /**
@@ -439,7 +439,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packingCb_005', 0, async function (done) {
             let packOpts = { format: "image/png", quality: 99 }
-            packingCbFail(done, 'SUB_IMAGE_packingCb_005', 2, packOpts)
+            packingCbFail(done, 'SUB_IMAGE_packingCb_005', image.PixelMapFormat.RGB_565, packOpts)
         })
 
         /**
@@ -454,7 +454,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packingCb_006', 0, async function (done) {
             let packOpts = { format: "image/jpeg", quality: 50 }
-            packingCb(done, 'SUB_IMAGE_packingCb_006', 5, packOpts)
+            packingCb(done, 'SUB_IMAGE_packingCb_006', image.PixelMapFormat.RGB_888, packOpts)
         })
 
         /**
@@ -469,7 +469,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packingCb_007', 0, async function (done) {
             let packOpts = { format: "image/jpeg", quality: 123 }
-            packingCbFail(done, 'SUB_IMAGE_packingCb_007', 5, packOpts)
+            packingCbFail(done, 'SUB_IMAGE_packingCb_007', image.PixelMapFormat.RGB_888, packOpts)
 
         })
 
@@ -485,7 +485,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packingCb_008', 0, async function (done) {
             let packOpts = { format: "image/jpeg" }
-            packingCbFail(done, 'SUB_IMAGE_packingCb_008', 5, packOpts)
+            packingCbFail(done, 'SUB_IMAGE_packingCb_008', image.PixelMapFormat.RGB_888, packOpts)
         })
 
         /**
@@ -500,7 +500,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packingCb_009', 0, async function (done) {
             let packOpts = { quality: 99 }
-            packingCbFail(done, 'SUB_IMAGE_packingCb_009', 5, packOpts)
+            packingCbFail(done, 'SUB_IMAGE_packingCb_009', image.PixelMapFormat.RGB_888, packOpts)
         })
 
         /**
@@ -515,7 +515,7 @@ export default function imagePacking() {
          */
         it('SUB_IMAGE_packingCb_010', 0, async function (done) {
             let packOpts = { format: "image/png", quality: 99 }
-            packingCbFail(done, 'SUB_IMAGE_packingCb_010', 5, packOpts)
+            packingCbFail(done, 'SUB_IMAGE_packingCb_010', image.PixelMapFormat.RGB_888, packOpts)
         })
 
         /**

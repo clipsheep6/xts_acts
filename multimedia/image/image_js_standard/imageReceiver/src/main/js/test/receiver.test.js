@@ -704,7 +704,7 @@ describe('ImageReceiver', function () {
      * @tc.level     : Level 0
      */
     it('Receiver_010', 0, async function (done) {
-        getComponentP(done, 'Receiver_010', JPEG)
+        getComponentP(done, 'Receiver_010', FORMATJPEG)
     })
 
     /**
@@ -764,7 +764,7 @@ describe('ImageReceiver', function () {
      * @tc.level     : Level 0
      */
     it('Receiver_010_4', 0, async function (done) {
-        getComponentCb(done, 'Receiver_010_4', JPEG)
+        getComponentCb(done, 'Receiver_010_4', FORMATJPEG)
     })
 	
     /**

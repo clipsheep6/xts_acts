@@ -80,7 +80,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("BitsPerSample")
+            imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE)
                 .then(data => {
                     console.info('TC_171 BitsPerSample ' + data);
                     expect(data != undefined && data != '').assertTrue();
@@ -113,7 +113,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("Orientation")
+            imageSourceApi.getImageProperty(image.PropertyKey.ORIENTATION)
                 .then(data => {
                     console.info('TC_171-1 Orientation ' + data);
                     expect(data != undefined && data != '').assertTrue();
@@ -146,7 +146,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("ImageLength")
+            imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_LENGTH)
                 .then(data => {
                     console.info('TC_171-2 ImageLength ' + data);
                     expect(data != undefined && data != '').assertTrue();
@@ -179,7 +179,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("ImageWidth")
+            imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH)
                 .then(data => {
                     console.info('TC_171-3 ImageWidth ' + data);
                     expect(data != undefined && data != '').assertTrue();
@@ -212,7 +212,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("GPSLatitude")
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LATITUDE)
                 .then(data => {
                     console.info('TC_171-4 GPSLatitude ' + data);
                     expect(data != undefined && data != '').assertTrue();
@@ -245,7 +245,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("GPSLongitude")
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LONGITUDE)
                 .then(data => {
                     console.info('TC_171-5 GPSLongitude ' + data);
                     expect(data != undefined && data != '').assertTrue();
@@ -278,7 +278,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("GPSLatitudeRef")
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LATITUDE_REF)
                 .then(data => {
                     console.info('TC_171-6 GPSLatitudeRef ' + data);
                     expect(data != undefined && data != '').assertTrue();
@@ -311,7 +311,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("GPSLongitudeRef")
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LONGITUDE_REF)
                 .then(data => {
                     console.info('TC_171-7 GPSLongitudeRef ' + data);
                     expect(data != undefined && data != '').assertTrue();
@@ -344,7 +344,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("DateTimeOriginal")
+            imageSourceApi.getImageProperty(image.PropertyKey.DATE_TIME_ORIGINAL)
                 .then(data => {
                     console.info('TC_171-8 DateTimeOriginal ' + data);
                     expect(data != undefined && data != '').assertTrue();
@@ -376,7 +376,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("BitsPerSample", (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, (error, data) => {
                 if (error) {
                     console.info('TC_172 getImageProperty BitsPerSample error');
                     expect(false).assertTrue();
@@ -408,7 +408,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("Orientation", (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.ORIENTATION, (error, data) => {
                 if (error) {
                     console.info('TC_172-1 getImageProperty Orientation error');
                     expect(false).assertTrue();
@@ -440,7 +440,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("ImageLength", (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_LENGTH, (error, data) => {
                 if (error) {
                     console.info('TC_172-2 getImageProperty ImageLength error');
                     expect(false).assertTrue();
@@ -472,7 +472,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("ImageWidth", (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH, (error, data) => {
                 if (error) {
                     console.info('TC_172-3 getImageProperty ImageWidth error');
                     expect(false).assertTrue();
@@ -504,7 +504,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("GPSLatitude", (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LATITUDE, (error, data) => {
                 if (error) {
                     console.info('TC_172-4 getImageProperty GPSLatitude error');
                     expect(false).assertTrue();
@@ -536,7 +536,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("GPSLongitude", (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LONGITUDE, (error, data) => {
                 if (error) {
                     console.info('TC_172-5 getImageProperty GPSLongitude error');
                     expect(false).assertTrue();
@@ -568,7 +568,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("GPSLatitudeRef", (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LATITUDE_REF, (error, data) => {
                 if (error) {
                     console.info('TC_172-6 getImageProperty GPSLatitudeRef error');
                     expect(false).assertTrue();
@@ -600,7 +600,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("GPSLongitudeRef", (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LONGITUDE_REF, (error, data) => {
                 if (error) {
                     console.info('TC_172-7 getImageProperty GPSLongitudeRef error');
                     expect(false).assertTrue();
@@ -632,7 +632,7 @@ describe('imageExif', function () {
             expect(false).assertTrue();
             done();
         } else {
-            imageSourceApi.getImageProperty("DateTimeOriginal", (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.DATE_TIME_ORIGINAL, (error, data) => {
                 if (error) {
                     console.info('TC_172-8 getImageProperty DateTimeOriginal error');
                     expect(false).assertTrue();
@@ -666,7 +666,7 @@ describe('imageExif', function () {
             done();
         } else {
             let property = { index: 0, defaultValue: '9999' }
-            imageSourceApi.getImageProperty("BitsPerSample", property, (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, property, (error, data) => {
                 if (error) {
                     console.info('TC_173 getImageProperty BitsPerSample error');
                     expect(false).assertTrue();
@@ -700,7 +700,7 @@ describe('imageExif', function () {
             done();
         } else {
             let property = { index: 0, defaultValue: '9999' }
-            imageSourceApi.getImageProperty("Orientation", property, (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.ORIENTATION, property, (error, data) => {
                 if (error) {
                     console.info('TC_173-1 getImageProperty Orientation error');
                     expect(false).assertTrue();
@@ -734,7 +734,7 @@ describe('imageExif', function () {
             done();
         } else {
             let property = { index: 0, defaultValue: '9999' }
-            imageSourceApi.getImageProperty("ImageLength", property, (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_LENGTH, property, (error, data) => {
                 if (error) {
                     console.info('TC_173-2 getImageProperty ImageLength error');
                     expect(false).assertTrue();
@@ -768,7 +768,7 @@ describe('imageExif', function () {
             done();
         } else {
             let property = { index: 0, defaultValue: '9999' }
-            imageSourceApi.getImageProperty("ImageWidth", property, (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH, property, (error, data) => {
                 if (error) {
                     console.info('TC_173-3 getImageProperty ImageWidth error');
                     expect(false).assertTrue();
@@ -802,7 +802,7 @@ describe('imageExif', function () {
             done();
         } else {
             let property = { index: 0, defaultValue: '9999' }
-            imageSourceApi.getImageProperty("GPSLatitude", property, (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LATITUDE, property, (error, data) => {
                 if (error) {
                     console.info('TC_173-4 getImageProperty GPSLatitude error');
                     expect(false).assertTrue();
@@ -836,7 +836,7 @@ describe('imageExif', function () {
             done();
         } else {
             let property = { index: 0, defaultValue: '9999' }
-            imageSourceApi.getImageProperty("GPSLongitude", property, (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LONGITUDE, property, (error, data) => {
                 if (error) {
                     console.info('TC_173-5 getImageProperty GPSLongitude error');
                     expect(false).assertTrue();
@@ -870,7 +870,7 @@ describe('imageExif', function () {
             done();
         } else {
             let property = { index: 0, defaultValue: '9999' }
-            imageSourceApi.getImageProperty("GPSLatitudeRef", property, (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LATITUDE_REF, property, (error, data) => {
                 if (error) {
                     console.info('TC_173-6 getImageProperty GPSLatitudeRef error');
                     expect(false).assertTrue();
@@ -904,7 +904,7 @@ describe('imageExif', function () {
             done();
         } else {
             let property = { index: 0, defaultValue: '9999' }
-            imageSourceApi.getImageProperty("GPSLongitudeRef", property, (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.GPS_LONGITUDE_REF, property, (error, data) => {
                 if (error) {
                     console.info('TC_173-7 getImageProperty GPSLongitudeRef error');
                     expect(false).assertTrue();
@@ -938,7 +938,7 @@ describe('imageExif', function () {
             done();
         } else {
             let property = { index: 0, defaultValue: '9999' }
-            imageSourceApi.getImageProperty("DateTimeOriginal", property, (error, data) => {
+            imageSourceApi.getImageProperty(image.PropertyKey.DATE_TIME_ORIGINAL, property, (error, data) => {
                 if (error) {
                     console.info('TC_173-8 getImageProperty DateTimeOriginal error');
                     expect(false).assertTrue();

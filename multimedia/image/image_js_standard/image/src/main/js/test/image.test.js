@@ -77,7 +77,7 @@ export default function imageJsTest() {
              */
         it('TC_001', 0, async function (done) {
             const Color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
                     globalpixelmap = pixelmap;
@@ -105,7 +105,7 @@ export default function imageJsTest() {
         */
         it('TC_001-1', 0, async function (done) {
             const Color = new ArrayBuffer(96);
-            let opts = { editable: false, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: false, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(Color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 expect(pixelmap != undefined).assertTrue();
@@ -127,7 +127,7 @@ export default function imageJsTest() {
          */
         it('TC_001-2', 0, async function (done) {
             const Color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 6, width: 8 } }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
                     globalpixelmap = pixelmap;
@@ -155,7 +155,7 @@ export default function imageJsTest() {
          */
         it('TC_001-3', 0, async function (done) {
             const Color = new ArrayBuffer(96);
-            let opts = { editable: false, pixelFormat: 2, size: { height: 6, width: 8 } }
+            let opts = { editable: false, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 6, width: 8 } }
             image.createPixelMap(Color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 expect(pixelmap != undefined).assertTrue();
@@ -167,7 +167,7 @@ export default function imageJsTest() {
 
         /**
          * @tc.number    : TC_001-4
-         * @tc.name      : createpixelmap-promise(editable: true, pixelFormat: unkonwn, size: { height: 6, width: 8 })
+         * @tc.name      : createpixelmap-promise(editable: true, pixelFormat: unknown, size: { height: 6, width: 8 })
          * @tc.desc      : 1.create InitializationOptions object
          *                 2.set editable,pixelFormat,size
          *                 3.using colorand opts create newPixelMap
@@ -178,7 +178,7 @@ export default function imageJsTest() {
          */
         it('TC_001-4', 0, async function (done) {
             const Color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 0, size: { height: 6, width: 8 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.UNKNOWN, size: { height: 6, width: 8 } }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
                     globalpixelmap = pixelmap;
@@ -195,7 +195,7 @@ export default function imageJsTest() {
 
         /**
          * @tc.number    : TC_001-5
-         * @tc.name      : create pixelmap-callback(editable: false, pixelFormat: unkonwn, size: { height: 6, width: 8 })
+         * @tc.name      : create pixelmap-callback(editable: false, pixelFormat: unknown, size: { height: 6, width: 8 })
          * @tc.desc      : 1.create InitializationOptions object
          *                 2.set editable,pixelFormat,size
          *                 3.using colorand opts create newPixelMap
@@ -206,7 +206,7 @@ export default function imageJsTest() {
          */
         it('TC_001-5', 0, async function (done) {
             const Color = new ArrayBuffer(96);
-            let opts = { editable: false, pixelFormat: 0, size: { height: 6, width: 8 } }
+            let opts = { editable: false, pixelFormat: image.PixelMapFormat.UNKNOWN, size: { height: 6, width: 8 } }
             image.createPixelMap(Color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 expect(pixelmap != undefined).assertTrue();
@@ -228,7 +228,7 @@ export default function imageJsTest() {
          */
         it('TC_001-6', 0, async function (done) {
             const Color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 3, size: { height: 6, width: 8 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 6, width: 8 } }
             image.createPixelMap(Color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 expect(pixelmap != undefined).assertTrue();
@@ -250,7 +250,7 @@ export default function imageJsTest() {
          */
         it('TC_001-7', 0, async function (done) {
             const Color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 2, size: { height: 2, width: 3 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 2, width: 3 } }
             image.createPixelMap(Color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 expect(pixelmap != undefined).assertTrue();
@@ -261,7 +261,7 @@ export default function imageJsTest() {
 
         /**
          * @tc.number    : TC_001-8
-         * @tc.name      : create pixelmap-callback(editable: true, pixelFormat: unkonwn, size: { height: -1, width: -1 })
+         * @tc.name      : create pixelmap-callback(editable: true, pixelFormat: unknown, size: { height: -1, width: -1 })
          * @tc.desc      : 1.create InitializationOptions object
          *                 2.set editable,pixeFormat,size
          *                 3.using color and opts create newPixelMap
@@ -272,7 +272,7 @@ export default function imageJsTest() {
          */
         it('TC_001-8', 0, async function (done) {
             const Color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 0, size: { height: -1, width: -1 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.UNKNOWN, size: { height: -1, width: -1 } }
             image.createPixelMap(Color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 expect(pixelmap == undefined).assertTrue();
@@ -322,7 +322,7 @@ export default function imageJsTest() {
                 bufferArr[i] = i + 1;
             }
 
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts)
                 .then(pixelmap => {
                     globalpixelmap = pixelmap;
@@ -381,7 +381,7 @@ export default function imageJsTest() {
                 bufferArr[i] = i + 1;
             }
 
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -431,7 +431,7 @@ export default function imageJsTest() {
                 bufferArr[i] = i + 1;
             }
 
-            let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 6, width: 8 } }
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -479,7 +479,7 @@ export default function imageJsTest() {
             for (var i = 0; i < bufferArr.length; i++) {
                 bufferArr[i] = i + 1;
             }
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts)
                 .then(pixelmap => {
                     globalpixelmap = pixelmap;
@@ -537,7 +537,7 @@ export default function imageJsTest() {
             for (var i = 0; i < bufferArr.length; i++) {
                 bufferArr[i] = i + 1;
             }
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -591,7 +591,7 @@ export default function imageJsTest() {
             for (var i = 0; i < bufferArr.length; i++) {
                 bufferArr[i] = i + 1;
             }
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -635,7 +635,7 @@ export default function imageJsTest() {
             for (var i = 0; i < bufferArr.length; i++) {
                 bufferArr[i] = i + 1;
             }
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -679,7 +679,7 @@ export default function imageJsTest() {
             for (var i = 0; i < bufferArr.length; i++) {
                 bufferArr[i] = i + 1;
             }
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -722,7 +722,7 @@ export default function imageJsTest() {
             for (var i = 0; i < bufferArr.length; i++) {
                 bufferArr[i] = i + 1;
             }
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -761,7 +761,7 @@ export default function imageJsTest() {
          */
         it('TC_022', 0, async function (done) {
             const color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts)
                 .then(pixelmap => {
                     globalpixelmap = pixelmap;
@@ -831,7 +831,7 @@ export default function imageJsTest() {
         it('TC_022-1', 0, async function (done) {
             try {
                 const color = new ArrayBuffer(96);
-                let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+                let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
                 image.createPixelMap(color, opts, (err, pixelmap) => {
                     globalpixelmap = pixelmap;
                     if (pixelmap == undefined) {
@@ -896,7 +896,7 @@ export default function imageJsTest() {
          */
         it('TC_023', 0, async function (done) {
             const color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts)
                 .then(pixelmap => {
                     globalpixelmap = pixelmap;
@@ -957,7 +957,7 @@ export default function imageJsTest() {
             for (var i = 0; i < bufferArr.length; i++) {
                 bufferArr[i] = i + 1;
             }
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts).then(pixelmap => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -1005,7 +1005,7 @@ export default function imageJsTest() {
          */
         it('TC_024', 0, async function (done) {
             const color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 6, width: 8 } }
             image.createPixelMap(color, opts)
                 .then(pixelmap => {
                     globalpixelmap = pixelmap;
@@ -1053,7 +1053,7 @@ export default function imageJsTest() {
          */
         it('TC_024-1', 0, async function (done) {
             const color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 if (pixelmap == undefined) {
                     globalpixelmap = pixelmap;
@@ -1091,7 +1091,7 @@ export default function imageJsTest() {
          */
         it('TC_025-1', 0, async function (done) {
             const color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             const expectNum = 4 * opts.size.width;
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
@@ -1127,7 +1127,7 @@ export default function imageJsTest() {
          */
         it('TC_026-1', 0, async function (done) {
             const color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             const expectNum = 4 * opts.size.width * opts.size.height;
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
@@ -1162,7 +1162,7 @@ export default function imageJsTest() {
          */
         it('TC_027', 0, async function (done) {
             const color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts).then(pixelmap => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -1199,7 +1199,7 @@ export default function imageJsTest() {
          */
         it('TC_027-1', 0, async function (done) {
             const color = new ArrayBuffer(96);
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -2888,7 +2888,7 @@ export default function imageJsTest() {
         it('editable_003', 0, async function (done) {
             const Color = new ArrayBuffer(96);
             let edit = true;
-            let opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 4, width: 6 } }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
                     console.info('editable_003 editable: ' + pixelmap.isEditable);
@@ -2919,7 +2919,7 @@ export default function imageJsTest() {
         it('editable_004', 0, async function (done) {
             const Color = new ArrayBuffer(96);
             let edit = false;
-            let opts = { editable: false, pixelFormat: 2, size: { height: 4, width: 6 } }
+            let opts = { editable: false, pixelFormat: image.PixelMapFormat.RGB_565, size: { height: 4, width: 6 } }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
                     console.info('editable_004 editable: ' + pixelmap.isEditable);

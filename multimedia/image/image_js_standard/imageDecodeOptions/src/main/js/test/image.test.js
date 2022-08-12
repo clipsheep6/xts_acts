@@ -90,7 +90,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
-                        desiredPixelFormat: 3,
+                        desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                         index: 0
                     };
@@ -139,7 +139,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
-                        desiredPixelFormat: 2,
+                        desiredPixelFormat: image.PixelMapFormat.RGB_565,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                         index: 0
                     };
@@ -188,7 +188,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
-                        desiredPixelFormat: 0,
+                        desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                         index: 0
                     };
@@ -237,7 +237,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
-                        desiredPixelFormat: 0,
+                        desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                         index: 1
                     };
@@ -286,7 +286,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
-                        desiredPixelFormat: 0,
+                        desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                         index: -1
                     };
@@ -335,7 +335,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
-                        desiredPixelFormat: 0,
+                        desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                         index: 0
                     };
@@ -384,7 +384,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: -10,
-                        desiredPixelFormat: 2,
+                        desiredPixelFormat: image.PixelMapFormat.RGB_565,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                         index: 0
                     };
@@ -482,7 +482,7 @@ export default function imageDecodeOptions() {
                         editable: false,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
-                        desiredPixelFormat: 2,
+                        desiredPixelFormat: image.PixelMapFormat.RGB_565,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                         index: 0
                     };
@@ -531,7 +531,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 10000, height: 10000 },
                         rotate: 10,
-                        desiredPixelFormat: 2,
+                        desiredPixelFormat: image.PixelMapFormat.RGB_565,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                         index: 0
                     };
@@ -580,7 +580,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
-                        desiredPixelFormat: 2,
+                        desiredPixelFormat: image.PixelMapFormat.RGB_565,
                         desiredRegion: { size: { height: 10000, width: 10000 }, x: 0, y: 0 },
                         index: 0
                     };
@@ -636,7 +636,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
-                        desiredPixelFormat: 2,
+                        desiredPixelFormat: image.PixelMapFormat.RGB_565,
                         desiredRegion: { size: { height: 1, width: 2 }, x: -1, y: -1 },
                         index: 0
                     };
@@ -685,7 +685,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
-                        desiredPixelFormat: 2,
+                        desiredPixelFormat: image.PixelMapFormat.RGB_565,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 10000, y: 10000 },
                         index: 0
                     };
@@ -734,7 +734,7 @@ export default function imageDecodeOptions() {
                         editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 500,
-                        desiredPixelFormat: 2,
+                        desiredPixelFormat: image.PixelMapFormat.RGB_565,
                         desiredRegion: { size: { height: 1, width: 2 }, x: 1, y: 2 },
                         index: 0
                     };
@@ -854,7 +854,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 3,
+                    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -897,7 +897,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -940,7 +940,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -983,7 +983,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 1
                 };
@@ -1026,7 +1026,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: -1
                 };
@@ -1069,7 +1069,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1112,7 +1112,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: -10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1198,7 +1198,7 @@ export default function imageDecodeOptions() {
                     editable: false,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1241,7 +1241,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 10000, height: 10000 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1284,7 +1284,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 10000, width: 10000 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1334,7 +1334,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: -1, y: -1 },
                     index: 0
                 };
@@ -1377,7 +1377,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 10000, y: 10000 },
                     index: 0
                 };
@@ -1420,7 +1420,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 500,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 1, y: 2 },
                     index: 0
                 };
@@ -1523,7 +1523,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 3,
+                    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1566,7 +1566,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1609,7 +1609,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1652,7 +1652,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 1
                 };
@@ -1695,7 +1695,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: -1
                 };
@@ -1738,7 +1738,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1781,7 +1781,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: -10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1867,7 +1867,7 @@ export default function imageDecodeOptions() {
                     editable: false,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1910,7 +1910,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1500, height: 1500 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -1953,7 +1953,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 10000, width: 10000 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -2004,7 +2004,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: -1, y: -1 },
                     index: 0
                 };
@@ -2047,7 +2047,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 10000, y: 10000 },
                     index: 0
                 };
@@ -2090,7 +2090,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 500,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 1, y: 2 },
                     index: 0
                 };
@@ -2133,7 +2133,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 3,
+                    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -2176,7 +2176,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -2219,7 +2219,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -2262,7 +2262,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 1
                 };
@@ -2306,7 +2306,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: -1
                 };
@@ -2350,7 +2350,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 0,
+                    desiredPixelFormat: image.PixelMapFormat.UNKNOWN,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -2394,7 +2394,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: -10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -2482,7 +2482,7 @@ export default function imageDecodeOptions() {
                     editable: false,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -2526,7 +2526,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1500, height: 1500 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -2570,7 +2570,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 10000, width: 10000 }, x: 0, y: 0 },
                     index: 0
                 };
@@ -2621,7 +2621,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: -1, y: -1 },
                     index: 0
                 };
@@ -2665,7 +2665,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 10000, y: 10000 },
                     index: 0
                 };
@@ -2708,7 +2708,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 500,
-                    desiredPixelFormat: 2,
+                    desiredPixelFormat: image.PixelMapFormat.RGB_565,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 1, y: 2 },
                     index: 0
                 };
@@ -2746,7 +2746,7 @@ export default function imageDecodeOptions() {
                 editable: true,
                 desiredSize: { width: 1, height: 2 },
                 rotate: 10,
-                desiredPixelFormat: 3,
+                desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
                 desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                 index: 0
             };
@@ -2790,7 +2790,7 @@ export default function imageDecodeOptions() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 90,
-                    desiredPixelFormat: 3,
+                    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0
                 };

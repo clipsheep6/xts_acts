@@ -198,7 +198,7 @@ describe('imageWebp', function () {
             }
         }
 
-        let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+        let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
         image.createPixelMap(color, opts)
             .then(pixelmap => {
                 if (pixelmap == undefined) {
@@ -279,7 +279,7 @@ describe('imageWebp', function () {
             }
         }
 
-        let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+        let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
         image.createPixelMap(color, opts)
             .then(pixelmap => {
                 if (pixelmap == undefined) {
