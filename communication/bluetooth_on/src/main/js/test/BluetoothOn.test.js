@@ -126,19 +126,19 @@ describe('bluetoothhostTest', function() {
     let gattServer = null;
     let gattClient = null;
     beforeAll(function () {
-        console.info('beforeAll called')
+        console.info('beforeAll called');
         gattServer = bluetooth.BLE.createGattServer();
         gattClient = bluetooth.BLE.createGattClientDevice("00:00:00:00:00:00");
     })
     beforeEach(function () {
-        console.info('beforeEach called')
+        console.info('beforeEach called');
 
     })
     afterEach(function () {
-        console.info('afterEach called')
+        console.info('afterEach called');
     })
     afterAll(function () {
-        console.info('afterAll called')
+        console.info('afterAll called');
     })
 
     function sleep(delay) {
