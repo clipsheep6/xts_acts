@@ -222,5 +222,108 @@ describe('statfs_test', function () {
         done();
       }
     });
+	
+	/**
+     * @tc.number SUB_DF_STATFS_GET_AVAILABLE_BYTES_0000
+     * @tc.name statfs_test_get_available_bytes_async_000
+     * @tc.desc Test getAvailableBytes() interfaces, When the path is a sandbox path, promise way back.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+    */
+     it('statfs_test_get_available_bytes_async_000', 0, async function (done) {
+      try {
+        let context = featureAbility.getContext();
+        let data = await context.getFilesDir();
+        let number = await statfs.getAvailableBytes(data);
+        console.info("getAvailableBytesNumber GetFilesDir====>:" + (number / 1024));
+        expect(isIntNum(number)).assertTrue();
+        done();
+      } catch (e) {
+        console.info('statfs_test_get_available_bytes_async_000 has failed for ' + e);
+        expect(null).assertFail();
+      }
+    });
+  
+    /**
+     * @tc.number SUB_DF_STATFS_GET_AVAILABLE_BYTES_0010
+     * @tc.name statfs_test_get_available_bytes_async_001
+     * @tc.desc Test getAvailableBytes() interfaces, When the path is dev, callback way back.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+    */
+    it('statfs_test_get_available_bytes_async_001', 0, async function (done) {
+      try {
+        statfs.getAvailableBytes("/dev",(err,number)=>{
+          console.info("getAvailableBytesNumber dev===>:" + (number / 1024));
+          expect(isIntNum(number)).assertTrue();
+          done();
+        });
+      } catch (e) {
+        console.info('statfs_test_get_available_bytes_async_001 has failed for ' + e);
+        expect(null).assertFail();
+      }
+    });
+  
+    /**
+     * @tc.number SUB_DF_STATFS_GET_AVAILABLE_BYTES_0020
+     * @tc.name statfs_test_get_available_bytes_async_002
+     * @tc.desc Test getAvailableBytes() interfaces, When the parameter type is wrong.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+    */
+    it('statfs_test_get_available_bytes_async_002', 0, async function (done) {
+      try {
+        await statfs.getAvailableBytes(1);
+      } catch (err) {
+        console.info('statfs_test_get_available_bytes_async_002 has failed for ' + err);
+        expect(err.message == "Invalid path").assertTrue();
+        done();
+      }
+    });
+  
+    /**
+     * @tc.number SUB_DF_STATFS_GET_AVAILABLE_BYTES_0030
+     * @tc.name statfs_test_get_available_bytes_async_003
+     * @tc.desc Test getAvailableBytes() interfaces, When there are no parameters.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+    */
+    it('statfs_test_get_available_bytes_async_003', 0, async function (done) {
+      try {
+        await statfs.getAvailableBytes();
+      } catch (err) {
+        console.info('statfs_test_get_available_bytes_async_003 has failed for ' + err);
+        expect(err.message == "Number of arguments unmatched").assertTrue();
+        done();
+      }
+    });
+  
+    /**
+     * @tc.number SUB_DF_STATFS_GET_AVAILABLE_BYTES_0040
+     * @tc.name statfs_test_get_available_bytes_async_004
+     * @tc.desc Test getAvailableBytes() interfaces, When the path is empty.
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+    */
+    it('statfs_test_get_available_bytes_async_004', 0, async function (done) {
+      try {
+        await statfs.getAvailableBytes("");
+      } catch (err) {
+        console.info('statfs_test_get_available_bytes_async_004 has failed for ' + err);
+        expect(err.message == "No such file or directory").assertTrue();
+        done();
+      }
+    });
+	
 });
 }
