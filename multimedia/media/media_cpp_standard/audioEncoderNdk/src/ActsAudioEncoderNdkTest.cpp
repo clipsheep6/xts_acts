@@ -41,9 +41,9 @@ namespace {
 
 bool CheckEncDesc(map<string, int> BaseDesc, struct OH_AVCodec* audEnc){
     OH_AVFormat* OutDesc = OH_AudioEncoder_GetOutputDescription(audEnc);
-    cout<<"OutDesc: "<<OutDesc<<endl;
+    cout << "OutDesc: " << OutDesc << endl;
     if(OutDesc == nullptr){
-        cout<<"OH_AVCODEC_AudioEncoderGetOutputMediaDescription err. "<<endl;
+        cout << "OH_AVCODEC_AudioEncoderGetOutputMediaDescription err. " << endl;
         return false;
     }
 
@@ -51,13 +51,13 @@ bool CheckEncDesc(map<string, int> BaseDesc, struct OH_AVCodec* audEnc){
     for(const auto& t: BaseDesc){
         bool res = OH_AVFormat_GetIntValue(OutDesc, t.first.c_str(), &out);
         if(!res){
-            cout<<"OH_AVFormat_GetIntValue Fail. key:"<<t.first<<endl;
+            cout << "OH_AVFormat_GetIntValue Fail. key:" << t.first << endl;
             return false;
         }
         if(out != t.second){
-            cout<<"OH_AVFormat_GetIntValue error. key: "<<t.first
-           <<"; expect: "<<t.second
-           <<", actual: "<<out<<endl;
+            cout << "OH_AVFormat_GetIntValue error. key: " << t.first
+            << "; expect: " << t.second
+            << ", actual: " << out << endl;
             return false;
         }
         out = 0;
@@ -96,11 +96,11 @@ void audioDecoderProcess(map<string, int> AudioEncFormatParam, const char * out_
  */
 HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest001, Function | MediumTest | Level0)
 {
-    cout<<"ActsAudioEncoderNdkFuncTest001 "<<endl;
+    cout << "ActsAudioEncoderNdkFuncTest001 " << endl;
     AEncNdkSample *aEncSample = new AEncNdkSample();
     aEncSample->init("/data/media/S16LE_out001.aac");
     struct OH_AVCodec* audEnc = aEncSample->CreateAudioEncoder();
-    cout<<"audEnc "<<audEnc<<endl;
+    cout << "audEnc " << audEnc << endl;
     ASSERT_NE(nullptr, audEnc);
 
     OH_AVFormat *AudioEncFormat = OH_AVFormat_Create();
@@ -676,7 +676,7 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest020, Function | Med
     AEncNdkSample *aEncSample  = new AEncNdkSample();
     aEncSample->init("/data/media/S16LE_out020.aac");
     struct OH_AVCodec* audEnc = aEncSample->CreateAudioEncoder();
-    cout<<"audEnc "<<audEnc<<endl;
+    cout << "audEnc " << audEnc << endl;
     ASSERT_NE(nullptr, audEnc);
 
     OH_AVFormat *AudioEncFormat = OH_AVFormat_Create();
@@ -1020,7 +1020,7 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest030, Function | Med
     AEncNdkSample *aEncSample = new AEncNdkSample();
     aEncSample->init("/data/media/S16LE_out030.aac");
     struct OH_AVCodec* audEnc = aEncSample->CreateAudioEncoder(1);
-    cout<<"audEnc "<<audEnc<<endl;
+    cout << "audEnc " << audEnc << endl;
     ASSERT_NE(nullptr, audEnc);
 
     OH_AVFormat *AudioEncFormat = OH_AVFormat_Create();
@@ -1048,7 +1048,7 @@ HWTEST_F(ActsAudioEncoderNdkTest, ActsAudioEncoderNdkFuncTest031, Function | Med
     AEncNdkSample *aEncSample = new AEncNdkSample();
     aEncSample->init("/data/media/S16LE_out031.aac");
     struct OH_AVCodec* audEnc = aEncSample->CreateAudioEncoder();
-    cout<<"audEnc "<<audEnc<<endl;
+    cout << "audEnc " << audEnc << endl;
     ASSERT_NE(nullptr, audEnc);
 
     OH_AVFormat *AudioEncFormat = OH_AVFormat_Create();

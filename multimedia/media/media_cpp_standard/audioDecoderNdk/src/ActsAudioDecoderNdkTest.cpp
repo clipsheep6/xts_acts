@@ -1081,24 +1081,24 @@ namespace {
 
 bool CheckDecDesc(map<string, int> BaseDesc, struct OH_AVCodec* audDec){
     OH_AVFormat* OutDesc = OH_AudioDecoder_GetOutputDescription(audDec);
-    cout<<"OutDesc: "<<OutDesc<<endl;
+    cout << "OutDesc: " << OutDesc << endl;
     if(OutDesc == nullptr){
-        cout<<"OH_AVCODEC_AudioDecoderGetOutputMediaDescription err. "<<endl;
+        cout << "OH_AVCODEC_AudioDecoderGetOutputMediaDescription err. " << endl;
         return false;
     }
 
     int32_t out ;
     for(const auto& t: BaseDesc){
          bool res = OH_AVFormat_GetIntValue(OutDesc, t.first.c_str(), &out);
-         cout<<"key: "<<t.first<<"; out: "<<out<<endl;
+         cout << "key: " << t.first << "; out: " << out << endl;
         if(!res){
-            cout<<"OH_AVFormat_GetIntValue Fail. key:"<<t.first<<endl;
+            cout << "OH_AVFormat_GetIntValue Fail. key:" << t.first << endl;
             return false;
         }
         if(out != t.second){
-            cout<<"OH_AVFormat_GetIntValue error. key: "<<t.first
-           <<"; expect: "<<t.second
-           <<", actual: "<<out<<endl;
+            cout << "OH_AVFormat_GetIntValue error. key: " << t.first
+            << "; expect: " << t.second
+            << ", actual: " << out << endl;
             return false;
         }
         out = 0;
@@ -1688,7 +1688,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest020, Function | Med
     ADecNdkSample *aDecSample  = new ADecNdkSample();
     aDecSample->init("/data/media/AAC_48000_32_1_out_020.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
     struct OH_AVCodec* audDec = aDecSample->CreateAudioDecoder();
-    cout<<"audDec "<<audDec<<endl;
+    cout << "audDec " << audDec << endl;
     ASSERT_NE(nullptr, audDec);
 
     OH_AVFormat *AudioFormat = OH_AVFormat_Create();
@@ -2039,7 +2039,7 @@ HWTEST_F(ActsAudioDecoderNdkTest, ActsAudioDecoderNdkFuncTest031, Function | Med
     ADecNdkSample *aDecSample = new ADecNdkSample();
     aDecSample->init("/data/media/AAC_48000_32_1_out_031.es", ES_AAC_48000_32_1, ES_LEN_AAC_48000_32_1);
     struct OH_AVCodec* audDec = aDecSample->CreateAudioDecoder();
-    cout<<"audDec "<<audDec<<endl;
+    cout << "audDec " << audDec << endl;
     ASSERT_NE(nullptr, audDec);
 
     OH_AVFormat *AudioFormat = OH_AVFormat_Create();
