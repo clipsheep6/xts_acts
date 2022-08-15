@@ -815,5 +815,792 @@ describe('audioEM', function () {
         done();
     })
 
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_GetRoutingManager_001
+        * @tc.name      : getRoutingManager - Promise
+        * @tc.desc      : getRoutingManager
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_GetRoutingManager_001', 0, async function (done) {
+        const promise = audioManager.getRoutingManager();
+        promise.then(function (){
+            console.info('AudioFrameworkTest: Promise: getRoutingManager :  PASS');
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.error(`AudioFrameworkTest: Promise: failed to get audio routing manager ${err.message}`);
+            expect(false).assertTrue();
+        })
+        await promise;
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_GetRoutingManager_002
+        * @tc.name      : getRoutingManager - callback
+        * @tc.desc      : getRoutingManager
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_GetRoutingManager_002', 0, async function (done) {
+        audioManager.getRoutingManager((err) => {
+            console.info('AudioFrameworkTest: Callback: getRoutingManager');
+            if (err) {
+                console.error(`AudioFrameworkTest: Callback: failed to get audio routing manager ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else
+            {
+                console.info('AudioFrameworkTest: Callback: getRoutingManager : PASS');
+                expect(true).assertTrue();
+            }
+            done();
+        });
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDevice_001
+        * @tc.name      : selectOutputDevice - Output device - Promise
+        * @tc.desc      : selectOutputDevice - deviceType to INVALID
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_SelectOutputDevice_001', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.INVALID,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let routingManager = await audioManager.getRoutingManager();
+        await routingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(async function () {
+            console.info('AudioFrameworkTest: Promise: selectOutputDevice DEVICES_TYPE: PASS');
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: selectOutputDevice DEVICES_TYPE: ERROR: ' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDevice_002
+        * @tc.name      : selectOutputDevice - Output device - Promise
+        * @tc.desc      : selectOutputDevice - deviceType to EARPIECE
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_SelectOutputDevice_002', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.EARPIECE,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let routingManager = await audioManager.getRoutingManager();
+        await routingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(async function () {
+            console.info('AudioFrameworkTest: Promise: selectOutputDevice DEVICES_TYPE: PASS');
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: selectOutputDevice DEVICES_TYPE: ERROR: ' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDevice_003
+        * @tc.name      : selectOutputDevice - Output device - Promise
+        * @tc.desc      : selectOutputDevice - deviceType to SPEAKER
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_SelectOutputDevice_003', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.SPEAKER,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let routingManager = await audioManager.getRoutingManager();
+        await routingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(async function () {
+            console.info('AudioFrameworkTest: Promise: selectOutputDevice DEVICES_TYPE: PASS');
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: selectOutputDevice DEVICES_TYPE: ERROR: ' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDevice_004
+        * @tc.name      : selectOutputDevice - Output device - Promise
+        * @tc.desc      : selectOutputDevice - deviceType to WIRED_HEADSET
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_SelectOutputDevice_004', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.WIRED_HEADSET,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let routingManager = await audioManager.getRoutingManager();
+        await routingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(async function () {
+            console.info('AudioFrameworkTest: Promise: selectOutputDevice DEVICES_TYPE: PASS');
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: selectOutputDevice DEVICES_TYPE: ERROR: ' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDevice_005
+        * @tc.name      : selectOutputDevice - Output device - Promise
+        * @tc.desc      : selectOutputDevice - deviceType to WIRED_HEADPHONES
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_SelectOutputDevice_005', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.WIRED_HEADPHONES,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let routingManager = await audioManager.getRoutingManager();
+        await routingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(async function () {
+            console.info('AudioFrameworkTest: Promise: selectOutputDevice DEVICES_TYPE: PASS');
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: selectOutputDevice DEVICES_TYPE: ERROR: ' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDevice_006
+                * @tc.name      : selectOutputDevice - Output device - Callback
+                * @tc.desc      : selectOutputDevice - deviceType to BLUETOOTH_SCO
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDevice_006', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.BLUETOOTH_SCO,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: selectOutputDevice: DEVICES_TYPE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: selectOutputDevice: DEVICES_TYPE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDevice_007
+                * @tc.name      : selectOutputDevice - Output device - Callback
+                * @tc.desc      : selectOutputDevice - deviceType to BLUETOOTH_A2DP
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDevice_007', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.BLUETOOTH_A2DP,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: selectOutputDevice: DEVICES_TYPE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: selectOutputDevice: DEVICES_TYPE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDevice_008
+                * @tc.name      : selectOutputDevice - Output device - Callback
+                * @tc.desc      : selectOutputDevice - deviceType to MIC
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDevice_008', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.MIC,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: selectOutputDevice: DEVICES_TYPE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: selectOutputDevice: DEVICES_TYPE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDevice_009
+                * @tc.name      : selectOutputDevice - Output device - Callback
+                * @tc.desc      : selectOutputDevice - deviceType to USB_HEADSET
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDevice_009', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.USB_HEADSET,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: selectOutputDevice: DEVICES_TYPE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: selectOutputDevice: DEVICES_TYPE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDevice_010
+                * @tc.name      : selectOutputDevice - Output device - Callback
+                * @tc.desc      : selectOutputDevice - deviceType to DEFAULT
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDevice_010', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.DEFAULT,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: selectOutputDevice: DEVICES_TYPE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: selectOutputDevice: DEVICES_TYPE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_001
+        * @tc.name      : selectOutputDeviceByFilter - Output device by filter - Promise
+        * @tc.desc      : selectOutputDeviceByFilter - deviceType to EARPIECE,
+        * contentType to CONTENT_TYPE_SPEECH, streamUsage to STREAM_USAGE_MEDIA
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_001', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.EARPIECE,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let outputAudioRendererFilter =
+            {
+                "uid":1,
+                "rendererInfo":
+                {
+                    "contentType":audio.ContentType.CONTENT_TYPE_SPEECH,
+                    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
+                    "rendererFlags":0
+                },
+                "rendererId":2
+            };
+        let routingManager = await audioManager.getRoutingManager();
+        await routingManager.selectOutputDeviceByFilter(outputAudioRendererFilter,
+            outputAudioDeviceDescriptor).then(async function () {
+            console.info('AudioFrameworkTest: Promise: selectOutputDeviceByFilter DEVICES_TYPE,\
+            CONTENTTYPE, STREAMUSAGE: PASS');
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: selectOutputDeviceByFilter DEVICES_TYPE,\
+            CONTENTTYPE, STREAMUSAGE: ERROR: ' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_002
+        * @tc.name      : selectOutputDeviceByFilter - Output device by filter - Promise
+        * @tc.desc      : selectOutputDeviceByFilter - deviceType to SPEAKER, contentType to
+        * CONTENT_TYPE_MUSIC, streamUsage to STREAM_USAGE_MEDIA
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_002', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.SPEAKER,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let outputAudioRendererFilter =
+            {
+                "uid":1,
+                "rendererInfo":
+                {
+                    "contentType":audio.ContentType.CONTENT_TYPE_MUSIC,
+                    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
+                    "rendererFlags":0
+                },
+                "rendererId":2
+            };
+        let routingManager = await audioManager.getRoutingManager();
+        await routingManager.selectOutputDeviceByFilter(outputAudioRendererFilter,
+            outputAudioDeviceDescriptor).then(async function () {
+            console.info('AudioFrameworkTest: Promise: selectOutputDeviceByFilter DEVICES_TYPE,\
+            CONTENTTYPE, STREAMUSAGE: PASS');
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: selectOutputDeviceByFilter DEVICES_TYPE,\
+            CONTENTTYPE, STREAMUSAGE: ERROR: ' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_003
+        * @tc.name      : selectOutputDeviceByFilter - Output device by filter - Promise
+        * @tc.desc      : selectOutputDeviceByFilter - deviceType to WIRED_HEADSET, contentType to
+        * CONTENT_TYPE_SPEECH, streamUsage to STREAM_USAGE_VOICE_COMMUNICATION
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_003', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.WIRED_HEADSET,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let outputAudioRendererFilter =
+            {
+                "uid":1,
+                "rendererInfo":
+                {
+                    "contentType":audio.ContentType.CONTENT_TYPE_SPEECH,
+                    "streamUsage":audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+                    "rendererFlags":0
+                },
+                "rendererId":2
+            };
+        let routingManager = await audioManager.getRoutingManager();
+        await routingManager.selectOutputDeviceByFilter(outputAudioRendererFilter,
+            outputAudioDeviceDescriptor).then(async function () {
+            console.info('AudioFrameworkTest: Promise: selectOutputDeviceByFilter DEVICES_TYPE,\
+            CONTENTTYPE, STREAMUSAGE: PASS');
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: selectOutputDeviceByFilter DEVICES_TYPE,\
+            CONTENTTYPE, STREAMUSAGE: ERROR: ' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_004
+        * @tc.name      : selectOutputDeviceByFilter - Output device by filter - Promise
+        * @tc.desc      : selectOutputDeviceByFilter - deviceType to WIRED_HEADPHONES, contentType to
+        *  CONTENT_TYPE_SONIFICATION, streamUsage to STREAM_USAGE_NOTIFICATION_RINGTONE
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_004', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.WIRED_HEADPHONES,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let outputAudioRendererFilter =
+            {
+                "uid":1,
+                "rendererInfo":
+                {
+                    "contentType":audio.ContentType.CONTENT_TYPE_SONIFICATION,
+                    "streamUsage":audio.StreamUsage.STREAM_USAGE_NOTIFICATION_RINGTONE,
+                    "rendererFlags":0
+                },
+                "rendererId":2
+            };
+        let routingManager = await audioManager.getRoutingManager();
+        await routingManager.selectOutputDeviceByFilter(outputAudioRendererFilter,
+            outputAudioDeviceDescriptor).then(async function () {
+            console.info('AudioFrameworkTest: Promise: selectOutputDeviceByFilter DEVICES_TYPE,\
+            CONTENTTYPE, STREAMUSAGE: PASS');
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: selectOutputDeviceByFilter DEVICES_TYPE,\
+            CONTENTTYPE, STREAMUSAGE: ERROR: ' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_005
+                * @tc.name      : selectOutputDeviceByFilter - Output device by filter - Callback
+                * @tc.desc      : selectOutputDeviceByFilter - deviceType to BLUETOOTH_SCO, contentType to
+                * CONTENT_TYPE_UNKNOWN, streamUsage to STREAM_USAGE_UNKNOWN
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_005', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.BLUETOOTH_SCO,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let outputAudioRendererFilter =
+            {
+                "uid":1,
+                "rendererInfo":
+                {
+                    "contentType":audio.ContentType.CONTENT_TYPE_UNKNOWN,
+                    "streamUsage":audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+                    "rendererFlags":0
+                },
+                "rendererId":2
+            };
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDeviceByFilter(outputAudioRendererFilter,
+            outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_006
+                * @tc.name      : selectOutputDeviceByFilter - Output device by filter - Callback
+                * @tc.desc      : selectOutputDeviceByFilter - deviceType to BLUETOOTH_A2DP, contentType to
+                * CONTENT_TYPE_SPEECH, streamUsage to STREAM_USAGE_MEDIA
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_006', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.BLUETOOTH_A2DP,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let outputAudioRendererFilter =
+            {
+                "uid":1,
+                "rendererInfo":
+                {
+                    "contentType":audio.ContentType.CONTENT_TYPE_SPEECH,
+                    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
+                    "rendererFlags":0
+                },
+                "rendererId":2
+            };
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDeviceByFilter(outputAudioRendererFilter,
+            outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_007
+                * @tc.name      : selectOutputDeviceByFilter - Output device by filter - Callback
+                * @tc.desc      : selectOutputDeviceByFilter - deviceType to MIC, contentType to
+                * CONTENT_TYPE_MUSIC, streamUsage to STREAM_USAGE_VOICE_COMMUNICATION
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_007', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.MIC,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let outputAudioRendererFilter =
+            {
+                "uid":1,
+                "rendererInfo":
+                {
+                    "contentType":audio.ContentType.CONTENT_TYPE_MUSIC,
+                    "streamUsage":audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+                    "rendererFlags":0
+                },
+                "rendererId":2
+            };
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDeviceByFilter(outputAudioRendererFilter,
+            outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_008
+                * @tc.name      : selectOutputDeviceByFilter - Output device by filter - Callback
+                * @tc.desc      : selectOutputDeviceByFilter - deviceType to USB_HEADSET, contentType to
+                * CONTENT_TYPE_MOVIE, streamUsage to STREAM_USAGE_NOTIFICATION_RINGTONE
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_008', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.USB_HEADSET,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let outputAudioRendererFilter =
+            {
+                "uid":1,
+                "rendererInfo":
+                {
+                    "contentType":audio.ContentType.CONTENT_TYPE_MOVIE,
+                    "streamUsage":audio.StreamUsage.STREAM_USAGE_NOTIFICATION_RINGTONE,
+                    "rendererFlags":0
+                },
+                "rendererId":2
+            };
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDeviceByFilter(outputAudioRendererFilter,
+            outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_009
+                * @tc.name      : selectOutputDeviceByFilter - Output device by filter - Callback
+                * @tc.desc      : selectOutputDeviceByFilter - deviceType to INVALID, contentType to
+                * CONTENT_TYPE_SONIFICATION, streamUsage to STREAM_USAGE_UNKNOWN
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_009', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.INVALID,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let outputAudioRendererFilter =
+            {
+                "uid":1,
+                "rendererInfo":
+                {
+                    "contentType":audio.ContentType.CONTENT_TYPE_SONIFICATION,
+                    "streamUsage":audio.StreamUsage.STREAM_USAGE_UNKNOWN,
+                    "rendererFlags":0
+                },
+                "rendererId":2
+            };
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDeviceByFilter(outputAudioRendererFilter,
+            outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_010
+                * @tc.name      : selectOutputDeviceByFilter - Output device by filter - Callback
+                * @tc.desc      : selectOutputDeviceByFilter - deviceType to EARPIECE, contentType to
+                * CONTENT_TYPE_RINGTONE, streamUsage to STREAM_USAGE_MEDIA
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_SelectOutputDeviceByFilter_010', 0, async function (done) {
+        let outputAudioDeviceDescriptor =
+            [{
+                "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+                "deviceType":audio.DeviceType.EARPIECE,
+                "networkId":"LocalDevice",
+                "interruptGroupId":1,
+                "volumeGroupId":1
+            }];
+        let outputAudioRendererFilter =
+            {
+                "uid":1,
+                "rendererInfo":
+                {
+                    "contentType":audio.ContentType.CONTENT_TYPE_RINGTONE,
+                    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
+                    "rendererFlags":0
+                },
+                "rendererId":2
+            };
+        let routingManager = await audioManager.getRoutingManager();
+        routingManager.selectOutputDeviceByFilter(outputAudioRendererFilter,
+            outputAudioDeviceDescriptor, (err) => {
+            if (err) {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: ERROR: ' + err.message);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info('AudioFrameworkTest: Callback: selectOutputDeviceByFilter:\
+                DEVICES_TYPE, CONTENTTYPE, STREAMUSAGE: PASS');
+                expect(true).assertTrue();
+            }
+        });
+        done();
+    })
 
 })
