@@ -123,6 +123,36 @@ export default function killProcessWithAccountTest() {
     })
 
     /**
+     * @tc.number: ACTS_KillProcessWithAccount_0200
+     * @tc.name: Provide the system interface of the specified user management application.
+     * @tc.desc: Validates the ability to stop the specified process for the specified user.
+     */
+    it('ACTS_KillProcessWithAccount_0200', 0, async function (done) {
+      console.debug("====>ACTS_KillProcessWithAccount_0200 start startAbility====>");
+
+      var procrssinfo = await appManager.getProcessRunningInformation()
+      console.log('ACTS_KillProcessWithAccount_0200 ==1== getProcessRunningInformation ======> '
+      + JSON.stringify(procrssinfo));
+      var infores = checkRunningProcess('com.acts.killprocesswithaccountpackage', procrssinfo)
+      console.log("====>ACTS_KillProcessWithAccount_0200====>infores = " + infores)
+      expect(infores).assertEqual(true);
+
+      appManager.killProcessWithAccount(BUNDLE_NAME, ACCOUNT_ID).then(() => {
+          console.log('ACTS_KillProcessWithAccount_0200  ======> ');
+      })
+
+      setTimeout(async() => {
+        var copyprocrssinfo = await appManager.getProcessRunningInformation()
+        console.log('ACTS_KillProcessWithAccount_0200 getProcessRunningInformation ======> '
+        + JSON.stringify(copyprocrssinfo));
+        var outcopy = checkRunningProcess('com.acts.killprocesswithaccountpackage', copyprocrssinfo)
+        console.log("====>ACTS_KillProcessWithAccount_0200====>outcopy = " + outcopy)
+        expect(outcopy).assertEqual(false);
+        done();
+      }, SETVALUE)
+    })
+
+    /**
      * @tc.number: ACTS_KillProcessWithAccount_0300
      * @tc.name: Provide the system interface of the specified user management application.
      * @tc.desc: Authentication cannot stop the specified process for the specified user.
@@ -157,6 +187,47 @@ export default function killProcessWithAccountTest() {
           + JSON.stringify(copyprocrssinfo));
           var outcopy = checkRunningProcess('com.acts.killprocesswithaccountpackage', copyprocrssinfo)
           console.log("====>ACTS_KillProcessWithAccount_0300====> outcopy = " + outcopy)
+          expect(outcopy).assertEqual(false);
+          done();
+        })
+      }, SETVALUECOPY)
+    })
+
+    /**
+     * @tc.number: ACTS_KillProcessWithAccount_0900
+     * @tc.name: Provide the system interface of the specified user management application.
+     * @tc.desc: Authentication cannot stop the specified process for the specified user.
+     */
+    it('ACTS_KillProcessWithAccount_0900', 0, async function (done) {
+      console.debug("====>ACTS_KillProcessWithAccount_0900 start startAbility====>");
+
+      var getinfo = await appManager.getProcessRunningInformation()
+      console.log('ACTS_KillProcessWithAccount_0900 getProcessRunningInformation =1= ======> '
+      + JSON.stringify(getinfo));
+      var res = checkRunningProcess('com.acts.killprocesswithaccountpackage', getinfo)
+      console.log("====>ACTS_KillProcessWithAccount_0900====>res = " + res)
+      expect(res).assertEqual(true);
+
+      appManager.killProcessWithAccount(NULL_BUNDLE_NAME, ACCOUNT_ID).then(() => {
+        console.log('ACTS_KillProcessWithAccount_0900  ======> ');
+      })
+
+      setTimeout(async() => {
+        var procrssinfo = await appManager.getProcessRunningInformation()
+        console.log('ACTS_KillProcessWithAccount_0900 ==1== getProcessRunningInformation ======> '
+        + JSON.stringify(procrssinfo));
+        var infores = checkRunningProcess('com.acts.killprocesswithaccountpackage', procrssinfo)
+        console.log("====>ACTS_KillProcessWithAccount_0900====>infores = " + infores)
+        expect(infores).assertEqual(true);
+
+        await appManager.killProcessWithAccount(BUNDLE_NAME, ACCOUNT_ID).then(async() => {
+          console.log('ACTS_KillProcessWithAccount_0900 killProcess ======> start');
+          sleep(SLEEPVALUE)
+          var copyprocrssinfo = await appManager.getProcessRunningInformation()
+          console.log('ACTS_KillProcessWithAccount_0900 getProcessRunningInformation ======> '
+          + JSON.stringify(copyprocrssinfo));
+          var outcopy = checkRunningProcess('com.acts.killprocesswithaccountpackage', copyprocrssinfo)
+          console.log("====>ACTS_KillProcessWithAccount_0900====> outcopy = " + outcopy)
           expect(outcopy).assertEqual(false);
           done();
         })
@@ -204,6 +275,47 @@ export default function killProcessWithAccountTest() {
       }, SETVALUECOPY)
     })
 
+        /**
+     * @tc.number: ACTS_KillProcessWithAccount_1000
+     * @tc.name: Provide the system interface of the specified user management application.
+     * @tc.desc: Authentication cannot stop the specified process for the specified user.
+     */
+    it('ACTS_KillProcessWithAccount_1000', 0, async function (done) {
+      console.debug("====>ACTS_KillProcessWithAccount_1000 start startAbility====>");
+
+      var getinfo = await appManager.getProcessRunningInformation()
+      console.log('ACTS_KillProcessWithAccount_1000 getProcessRunningInformation =1= ======> ' + JSON.stringify(getinfo));
+      var res = checkRunningProcess('com.acts.killprocesswithaccountpackage', getinfo)
+      console.log("====>ACTS_KillProcessWithAccount_1000====>res = " + res)
+      expect(res).assertEqual(true);
+
+      appManager.killProcessWithAccount(BUNDLE_NAME, NULL_ACCOUNT_ID).then(() => {
+        console.log('ACTS_KillProcessWithAccount_1000 killProcess ======> start');
+      })
+
+      setTimeout(async() => {
+        var procrssinfo = await appManager.getProcessRunningInformation()
+        console.log('ACTS_KillProcessWithAccount_1000 ==1== getProcessRunningInformation ======> '
+        + JSON.stringify(procrssinfo));
+        var infores = checkRunningProcess('com.acts.killprocesswithaccountpackage', procrssinfo)
+        console.log("====>ACTS_KillProcessWithAccount_1000====>infores = " + infores)
+        expect(infores).assertEqual(true);
+
+        appManager.killProcessWithAccount(BUNDLE_NAME, ACCOUNT_ID).then(async() => {
+          console.log('ACTS_KillProcessWithAccount_1000 killProcess2 ======> start');
+
+        sleep(SLEEPVALUE)
+        var copyprocrssinfo = await appManager.getProcessRunningInformation()
+        console.log('ACTS_KillProcessWithAccount_1000 ==2== getProcessRunningInformation ======> '
+        + JSON.stringify(copyprocrssinfo));
+        var out = checkRunningProcess('com.acts.killprocesswithaccountpackage', copyprocrssinfo)
+        console.log("====>ACTS_KillProcessWithAccount_1000====>infores = " + out)
+        expect(out).assertEqual(false);
+        done();
+        })
+      }, SETVALUECOPY)
+    })
+
     /**
      * @tc.number: ACTS_KillProcessWithAccount_0500
      * @tc.name: Provide the system interface of the specified user management application.
@@ -229,6 +341,36 @@ export default function killProcessWithAccountTest() {
         + JSON.stringify(copyprocrssinfo));
         var outcopy = checkRunningProcess('com.acts.killprocesswithaccountpackage', copyprocrssinfo)
         console.log("====>ACTS_KillProcessWithAccount_0500====>outcopy = " + outcopy)
+        expect(outcopy).assertEqual(false);
+        done();
+      }, SETVALUE)
+    })
+
+    /**
+     * @tc.number: ACTS_KillProcessWithAccount_1100
+     * @tc.name: Provide the system interface of the specified user management application.
+     * @tc.desc: Validates the ability to stop the specified process for the specified user.
+     */
+    it('ACTS_KillProcessWithAccount_1100', 0, async function (done) {
+      console.debug("====>ACTS_KillProcessWithAccount_1100 start startAbility====>");
+
+      var procrssinfo = await appManager.getProcessRunningInformation()
+      console.log('ACTS_KillProcessWithAccount_1100 ==1== getProcessRunningInformation ======> '
+      + JSON.stringify(procrssinfo));
+      var infores = checkRunningProcess('com.acts.killprocesswithaccountpackage', procrssinfo)
+      console.log("====>ACTS_KillProcessWithAccount_1100====>infores = " + infores)
+      expect(infores).assertEqual(true);
+
+      await appManager.killProcessWithAccount(BUNDLE_NAME, ACCOUNT_ID,(async() => {
+        console.log('ACTS_KillProcessWithAccount_1100 killProcess ======> start');
+      }))
+
+      setTimeout(async() => {
+        var copyprocrssinfo = await appManager.getProcessRunningInformation()
+        console.log('ACTS_KillProcessWithAccount_1100 getProcessRunningInformation ======> '
+        + JSON.stringify(copyprocrssinfo));
+        var outcopy = checkRunningProcess('com.acts.killprocesswithaccountpackage', copyprocrssinfo)
+        console.log("====>ACTS_KillProcessWithAccount_1100====>outcopy = " + outcopy)
         expect(outcopy).assertEqual(false);
         done();
       }, SETVALUE)
@@ -276,6 +418,47 @@ export default function killProcessWithAccountTest() {
     })
 
     /**
+     * @tc.number: ACTS_KillProcessWithAccount_1200
+     * @tc.name: Provide the system interface of the specified user management application.
+     * @tc.desc: Authentication cannot stop the specified process for the specified user.
+     */
+    it('ACTS_KillProcessWithAccount_1200', 0, async function (done) {
+      console.debug("====>ACTS_KillProcessWithAccount_1200 start startAbility====>");
+
+      var getinfo = await appManager.getProcessRunningInformation()
+      console.log('ACTS_KillProcessWithAccount_1200 getProcessRunningInformation =1= ======> '
+      + JSON.stringify(getinfo));
+      var res = checkRunningProcess('com.acts.killprocesswithaccountpackage', getinfo)
+      console.log("====>ACTS_KillProcessWithAccount_1200====>res = " + res)
+      expect(res).assertEqual(true);
+
+      appManager.killProcessWithAccount(NULL_BUNDLE_NAME,ACCOUNT_ID,(() => {
+        console.log('ACTS_KillProcessWithAccount_1200 killProcess ======> start');
+      }))
+
+      setTimeout(async() => {
+        var procrssinfo = await appManager.getProcessRunningInformation()
+        console.log('ACTS_KillProcessWithAccount_1200 ==1== getProcessRunningInformation ======> '
+        + JSON.stringify(procrssinfo));
+        var infores = checkRunningProcess('com.acts.killprocesswithaccountpackage', procrssinfo)
+        console.log("====>ACTS_KillProcessWithAccount_1200====>infores = " + infores)
+        expect(infores).assertEqual(true);
+
+        await appManager.killProcessWithAccount(BUNDLE_NAME, ACCOUNT_ID).then(async() => {
+          console.log('ACTS_KillProcessWithAccount_1200 killProcess ======> start');
+          sleep(SLEEPVALUE)
+          var copyprocrssinfo = await appManager.getProcessRunningInformation()
+          console.log('ACTS_KillProcessWithAccount_1200 getProcessRunningInformation ======> '
+          + JSON.stringify(copyprocrssinfo));
+          var outcopy = checkRunningProcess('com.acts.killprocesswithaccountpackage', copyprocrssinfo)
+          console.log("====>ACTS_KillProcessWithAccount_1200====> outcopy = " + outcopy)
+          expect(outcopy).assertEqual(false);
+          done();
+        })
+      }, SETVALUECOPY)
+    })
+
+    /**
      * @tc.number: ACTS_KillProcessWithAccount_0800
      * @tc.name: Provide the system interface of the specified user management application.
      * @tc.desc: Authentication cannot stop the specified process for the specified user.
@@ -310,6 +493,47 @@ export default function killProcessWithAccountTest() {
           + JSON.stringify(copyprocrssinfo));
           var outcopy = checkRunningProcess('com.acts.killprocesswithaccountpackage', copyprocrssinfo)
           console.log("====>ACTS_KillProcessWithAccount_0800====> outcopy = " + outcopy)
+          expect(outcopy).assertEqual(false);
+          done();
+        })
+      }, SETVALUECOPY)
+    })
+
+    /**
+     * @tc.number: ACTS_KillProcessWithAccount_1300
+     * @tc.name: Provide the system interface of the specified user management application.
+     * @tc.desc: Authentication cannot stop the specified process for the specified user.
+     */
+    it('ACTS_KillProcessWithAccount_1300', 0, async function (done) {
+      console.debug("====>ACTS_KillProcessWithAccount_1300 start startAbility====>");
+
+      var getinfo = await appManager.getProcessRunningInformation()
+      console.log('ACTS_KillProcessWithAccount_1300 getProcessRunningInformation =1= ======> '
+      + JSON.stringify(getinfo));
+      var res = checkRunningProcess('com.acts.killprocesswithaccountpackage', getinfo)
+      console.log("====>ACTS_KillProcessWithAccount_1300====>res = " + res)
+      expect(res).assertEqual(true);
+
+      appManager.killProcessWithAccount(BUNDLE_NAME, NULL_ACCOUNT_ID,(() => {
+        console.log('ACTS_KillProcessWithAccount_1300 killProcess ======> start');
+      }))
+
+      setTimeout(async() => {
+        var procrssinfo = await appManager.getProcessRunningInformation()
+        console.log('ACTS_KillProcessWithAccount_1300 ==1== getProcessRunningInformation ======> '
+        + JSON.stringify(procrssinfo));
+        var infores = checkRunningProcess('com.acts.killprocesswithaccountpackage', procrssinfo)
+        console.log("====>ACTS_KillProcessWithAccount_1300====>infores = " + infores)
+        expect(infores).assertEqual(true);
+
+        await appManager.killProcessWithAccount(BUNDLE_NAME, ACCOUNT_ID).then(async() => {
+          console.log('ACTS_KillProcessWithAccount_1300 killProcess ======> start');
+          sleep(SLEEPVALUE)
+          var copyprocrssinfo = await appManager.getProcessRunningInformation()
+          console.log('ACTS_KillProcessWithAccount_1300 getProcessRunningInformation ======> '
+          + JSON.stringify(copyprocrssinfo));
+          var outcopy = checkRunningProcess('com.acts.killprocesswithaccountpackage', copyprocrssinfo)
+          console.log("====>ACTS_KillProcessWithAccount_1300====> outcopy = " + outcopy)
           expect(outcopy).assertEqual(false);
           done();
         })
