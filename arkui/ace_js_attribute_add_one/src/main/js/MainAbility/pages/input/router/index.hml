@@ -1,0 +1,17 @@
+<div class="container">
+    <div id="testDiv" class="testDiv">
+
+    </div>
+    <input id="function1" class="title" onclick="functionTest1">
+        Element setStyle
+    </input>
+    <input id="function2" class="title" onclick="functionTest2">
+        Element setAttribute
+    </input>
+    <input id="function3" class="title" onclick="functionTest3">
+        Element addChild
+    </input>
+    <input id="function4" class="title" onclick="functionTest4">
+        Element rotation
+    </input>
+</div>

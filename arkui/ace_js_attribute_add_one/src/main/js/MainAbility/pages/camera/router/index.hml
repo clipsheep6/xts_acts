@@ -1,0 +1,14 @@
+<div class="container">
+    <text id="function1" class="title" on:click="functionTest1">
+        Camera takePhoto high
+    </text>
+    <text id="function2" class="title" on:click="functionTest2">
+        Camera takePhoto normal
+    </text>
+    <text id="function3" class="title" on:click="functionTest3">
+        Camera takePhoto low
+    </text>
+    <camera id="camera1" flash="on" deviceposition="back" @error="cameraError">
+
+    </camera>
+</div>

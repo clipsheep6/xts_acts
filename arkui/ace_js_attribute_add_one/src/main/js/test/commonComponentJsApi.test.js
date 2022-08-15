@@ -81,7 +81,43 @@ describe('aceJsTest', function () {
         done();
     });
 
-    it('testVideoComponent', 0, async function (done) {
+    it('testAnimateComponent', 0, async function (done) {
+        let result;
+        let options = {
+            uri: 'pages/animate/router/index'
+        }
+        try {
+            result = router.push(options)
+            console.info("push animate page success " + JSON.stringify(result));
+        } catch (err) {
+            console.error("push animate page error " + JSON.stringify(result));
+        }
+        await sleep(5000)
+        let pages = router.getState();
+        console.info("[router.animate] getState" + JSON.stringify(pages));
+        expect("pages/animate/router/").assertEqual(pages.path);
+        done();
+    });
+
+    it('testCameraComponent', 0, async function (done) {
+        let result;
+        let options = {
+            uri: 'pages/camera/router/index'
+        }
+        try {
+            result = router.push(options)
+            console.info("push camera page success " + JSON.stringify(result));
+        } catch (err) {
+            console.error("push camera page error " + JSON.stringify(result));
+        }
+        await sleep(5000)
+        let pages = router.getState();
+        console.info("[router.camera] getState" + JSON.stringify(pages));
+        expect("pages/camera/router/").assertEqual(pages.path);
+        done();
+    });
+
+    it('testCanvasComponent', 0, async function (done) {
         let result;
         let options = {
             uri: 'pages/canvas/router/index'
@@ -96,6 +132,42 @@ describe('aceJsTest', function () {
         let pages = router.getState();
         console.info("[router.canvas] getState" + JSON.stringify(pages));
         expect("pages/canvas/router/").assertEqual(pages.path);
+        done();
+    });
+
+    it('testDivComponent', 0, async function (done) {
+        let result;
+        let options = {
+            uri: 'pages/div/router/index'
+        }
+        try {
+            result = router.push(options)
+            console.info("push div page success " + JSON.stringify(result));
+        } catch (err) {
+            console.error("push div page error " + JSON.stringify(result));
+        }
+        await sleep(5000)
+        let pages = router.getState();
+        console.info("[router.div] getState" + JSON.stringify(pages));
+        expect("pages/div/router/").assertEqual(pages.path);
+        done();
+    });
+
+    it('testInputComponent', 0, async function (done) {
+        let result;
+        let options = {
+            uri: 'pages/input/router/index'
+        }
+        try {
+            result = router.push(options)
+            console.info("push input page success " + JSON.stringify(result));
+        } catch (err) {
+            console.error("push input page error " + JSON.stringify(result));
+        }
+        await sleep(5000)
+        let pages = router.getState();
+        console.info("[router.input] getState" + JSON.stringify(pages));
+        expect("pages/input/router/").assertEqual(pages.path);
         done();
     });
 });

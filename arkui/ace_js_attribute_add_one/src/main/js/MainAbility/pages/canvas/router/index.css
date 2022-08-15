@@ -1,0 +1,30 @@
+.container{
+    flex-direction: column;
+    background-color: #F1F3F5;
+    align-items: center;
+    width: 100%;
+}
+canvas{
+    margin-top: 300px;
+    width: 600px;
+    height: 500px;
+    background-color: #fdfdfd;
+    border: 5px solid red;
+}
+.content{
+    width: 80%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+text{
+    width: 200px;
+    height: 80px;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #6060e7;
+    margin-bottom: 30px;
+}

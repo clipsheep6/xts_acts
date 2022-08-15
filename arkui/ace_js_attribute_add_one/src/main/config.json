@@ -69,7 +69,12 @@
                     "pages/index/index",
                     "pages/routerPush/index",
                     "pages/routerReplace/index",
-                    "pages/video/router/index"
+                    "pages/video/router/index",
+                    "pages/animate/router/index",
+                    "pages/camera/router/index",
+                    "pages/canvas/router/index",
+                    "pages/div/router/index",
+                    "pages/input/router/index"
                 ],
                 "name": "default",
                 "window": {

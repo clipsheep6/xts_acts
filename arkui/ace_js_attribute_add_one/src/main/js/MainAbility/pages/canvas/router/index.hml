@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="content">
+        <canvas ref="canvas"></canvas>
+    </div>
+    <div class="content">
+        <text onclick="save">save</text>
+        <text onclick="clear">clear</text>
+        <text onclick="restore">restore</text>
+        <text onclick="getLineDash">getLineDash</text>
+    </div>
+</div>
