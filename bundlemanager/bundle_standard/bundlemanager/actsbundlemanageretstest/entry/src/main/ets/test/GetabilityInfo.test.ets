@@ -262,7 +262,7 @@ export default function GetabilityInfo() {
             expect(info.label).assertEqual("$string:entry_MainAbility");
             expect(typeof (info.labelId)).assertEqual("number");
             expect(info.labelId > 0).assertTrue();
-            expect(info.systemApp).assertEqual(true);
+            expect(info.systemApp).assertEqual(false);
             expect(typeof (info.entryDir)).assertEqual("string");
             expect(info.entryDir).assertEqual("/data/app/el1/bundle/public/com.open.harmony.packagemag/com.open.harmony.packagemag");
             expect(typeof (info.supportedModes)).assertEqual("number");

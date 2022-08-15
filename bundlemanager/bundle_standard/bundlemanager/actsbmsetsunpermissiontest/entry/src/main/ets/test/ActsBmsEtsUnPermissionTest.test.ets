@@ -271,7 +271,7 @@ export default function actsBmsJsUnPermissionTest() {
             expect(info.iconId > 0).assertTrue();
             expect(info.label).assertEqual("$string:entry_MainAbility");
             expect(info.labelId > 0).assertTrue();
-            expect(info.systemApp).assertEqual(true);
+            expect(info.systemApp).assertEqual(false);
             expect(info.entryDir).assertEqual("/data/app/el1/bundle/public/com.example.actsbmsetsunpermissiontest/com.example.actsbmsetsunpermissiontest");
             expect(info.supportedModes).assertEqual(0);
             expect(info.process).assertEqual("com.example.actsbmsetsunpermissiontest");

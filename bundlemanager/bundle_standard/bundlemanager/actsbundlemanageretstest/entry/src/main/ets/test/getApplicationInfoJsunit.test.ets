@@ -461,7 +461,7 @@ export default function applicationBundleJsunit() {
             expect(data.uid > 0).assertEqual(true);
             expect(data.label).assertEqual('$string:entry_MainAbility');
             expect(data.labelId > 0).assertEqual(true);
-            expect(data.systemApp).assertEqual(true);
+            expect(data.systemApp).assertEqual(false);
             expect(data.supportedModes).assertEqual(0);
             expect(data.process).assertEqual(BUNDLE_NAME);
             expect(data.entryDir).assertEqual(PATH + '/' + BUNDLE_NAME + '/' + BUNDLE_NAME);
@@ -487,7 +487,7 @@ export default function applicationBundleJsunit() {
             expect(data.iconId).assertLarger(0);
             expect(data.label).assertEqual('$string:entry_MainAbility');
             expect(data.labelId).assertLarger(0);
-            expect(data.systemApp).assertTrue();
+            expect(data.systemApp).assertFalse();
             expect(data.supportedModes).assertEqual(0);
             expect(data.process).assertEqual(BUNDLE_NAME);
             expect(data.entryDir).assertEqual(PATH + '/' + BUNDLE_NAME + '/' + BUNDLE_NAME);

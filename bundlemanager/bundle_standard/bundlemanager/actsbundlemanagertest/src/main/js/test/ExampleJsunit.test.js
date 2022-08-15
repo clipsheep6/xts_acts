@@ -73,7 +73,7 @@ describe('ActsBundleManagerTest', function () {
         expect(datainfo.appInfo.iconId >= 0).assertTrue();
         expect(datainfo.appInfo.label).assertEqual("$string:app_name");
         expect(datainfo.appInfo.labelId >= 0).assertTrue();
-        expect(datainfo.appInfo.systemApp).assertEqual(true);
+        expect(datainfo.appInfo.systemApp).assertEqual(false);
         expect(datainfo.appInfo.supportedModes).assertEqual(0);
         expect(datainfo.installTime).assertLarger(0);
         expect(datainfo.updateTime).assertLarger(0);
@@ -137,7 +137,7 @@ describe('ActsBundleManagerTest', function () {
         expect(datainfo.appInfo.iconId >= 0).assertTrue();
         expect(datainfo.appInfo.label).assertEqual("$string:app_name");
         expect(datainfo.appInfo.labelId >= 0).assertTrue();
-        expect(datainfo.appInfo.systemApp).assertEqual(true);
+        expect(datainfo.appInfo.systemApp).assertEqual(false);
         expect(datainfo.appInfo.supportedModes).assertEqual(0);
         expect(datainfo.installTime).assertLarger(0);
         expect(datainfo.updateTime).assertLarger(0);
@@ -185,7 +185,7 @@ describe('ActsBundleManagerTest', function () {
         expect(datainfo.appInfo.iconId >= 0).assertTrue();
         expect(datainfo.appInfo.label).assertEqual("$string:app_name");
         expect(datainfo.appInfo.labelId >= 0).assertTrue();
-        expect(datainfo.appInfo.systemApp).assertEqual(true);
+        expect(datainfo.appInfo.systemApp).assertEqual(false);
         done();
     })
 
@@ -210,7 +210,7 @@ describe('ActsBundleManagerTest', function () {
             expect(datainfo.appInfo.iconId >= 0).assertTrue();
             expect(datainfo.appInfo.label).assertEqual("$string:app_name");
             expect(datainfo.appInfo.labelId >= 0).assertTrue();
-            expect(datainfo.appInfo.systemApp).assertEqual(true);
+            expect(datainfo.appInfo.systemApp).assertEqual(false);
             done();
         }
     })
@@ -248,7 +248,7 @@ describe('ActsBundleManagerTest', function () {
         expect(datainfo.appInfo.iconId >= 0).assertTrue();
         expect(datainfo.appInfo.label).assertEqual("$string:app_name");
         expect(datainfo.appInfo.labelId >= 0).assertTrue();
-        expect(datainfo.appInfo.systemApp).assertEqual(true);
+        expect(datainfo.appInfo.systemApp).assertEqual(false);
         expect(datainfo.appInfo.supportedModes).assertEqual(0);
         for (let j = 0; j < datainfo.appInfo.moduleInfos.length; j++) {
             expect(datainfo.appInfo.moduleInfos[j].moduleName).assertEqual("entry");
@@ -293,7 +293,7 @@ describe('ActsBundleManagerTest', function () {
             expect(datainfo.appInfo.iconId >= 0).assertTrue();
             expect(datainfo.appInfo.label).assertEqual("$string:app_name");
             expect(datainfo.appInfo.labelId >= 0).assertTrue();
-            expect(datainfo.appInfo.systemApp).assertEqual(true);
+            expect(datainfo.appInfo.systemApp).assertEqual(false);
             expect(datainfo.appInfo.supportedModes).assertEqual(0);
             for (let j = 0; j < datainfo.appInfo.moduleInfos.length; j++) {
                 expect(datainfo.appInfo.moduleInfos[j].moduleName).assertEqual("entry");
@@ -398,7 +398,7 @@ describe('ActsBundleManagerTest', function () {
         expect(datainfo.appInfo.iconId >= 0).assertTrue();
         expect(datainfo.appInfo.label).assertEqual("$string:app_name");
         expect(datainfo.appInfo.labelId >= 0).assertTrue();
-        expect(datainfo.appInfo.systemApp).assertEqual(true);
+        expect(datainfo.appInfo.systemApp).assertEqual(false);
         expect(datainfo.appInfo.supportedModes).assertEqual(0);
         expect(datainfo.appInfo.enabled).assertEqual(true);
         done();
@@ -425,7 +425,7 @@ describe('ActsBundleManagerTest', function () {
             expect(datainfo.appInfo.iconId >= 0).assertTrue();
             expect(datainfo.appInfo.label).assertEqual("$string:app_name");
             expect(datainfo.appInfo.labelId >= 0).assertTrue();
-            expect(datainfo.appInfo.systemApp).assertEqual(true);
+            expect(datainfo.appInfo.systemApp).assertEqual(false);
             expect(datainfo.appInfo.supportedModes).assertEqual(0);
             for (let j = 0; j < datainfo.appInfo.moduleInfos.length; j++) {
                 expect(datainfo.appInfo.moduleInfos[j].moduleName).assertEqual("entry");
@@ -460,7 +460,7 @@ describe('ActsBundleManagerTest', function () {
                 expect(datainfo.versionName.length).assertLarger(0);
                 expect(datainfo.uid).assertLarger(2099);
                 expect(datainfo.appInfo.name).assertEqual(NAME1);
-                expect(datainfo.appInfo.systemApp).assertEqual(true);
+                expect(datainfo.appInfo.systemApp).assertEqual(false);
                 expect(datainfo.appInfo.supportedModes).assertEqual(0);
                 expect(datainfo.appInfo.moduleInfos.length).assertLarger(0);
                 expect(datainfo.appInfo.enabled).assertEqual(true);
@@ -492,7 +492,7 @@ describe('ActsBundleManagerTest', function () {
         expect(dataInfo.appInfo.iconId >= 0).assertTrue();
         expect(dataInfo.appInfo.label).assertEqual("$string:app_name");
         expect(dataInfo.appInfo.labelId >= 0).assertTrue();
-        expect(dataInfo.appInfo.systemApp).assertEqual(true);
+        expect(dataInfo.appInfo.systemApp).assertEqual(false);
         expect(dataInfo.appInfo.supportedModes).assertEqual(0);
         expect(dataInfo.updateTime).assertLarger(0);
         expect(dataInfo.reqPermissions.length).assertEqual(0);
@@ -541,7 +541,7 @@ describe('ActsBundleManagerTest', function () {
             expect(dataInfo.appInfo.iconId >= 0).assertTrue();
             expect(dataInfo.appInfo.label).assertEqual("$string:app_name");
             expect(dataInfo.appInfo.labelId >= 0).assertTrue();
-            expect(dataInfo.appInfo.systemApp).assertEqual(true);
+            expect(dataInfo.appInfo.systemApp).assertEqual(false);
             expect(dataInfo.appInfo.supportedModes).assertEqual(0);
             expect(dataInfo.updateTime).assertLarger(0);
             expect(dataInfo.reqPermissions.length).assertEqual(0);
@@ -703,7 +703,7 @@ describe('ActsBundleManagerTest', function () {
                 expect(datainfo.description).assertEqual(APPLICATION_DESCRIPTION);
                 expect(datainfo.icon).assertEqual("$media:icon");
                 expect(datainfo.label).assertEqual("$string:app_name");
-                expect(datainfo.systemApp).assertEqual(true);
+                expect(datainfo.systemApp).assertEqual(false);
                 expect(datainfo.descriptionId).assertLarger(0);
                 expect(parseInt(datainfo.iconId)).assertLarger(0);
                 expect(parseInt(datainfo.labelId)).assertLarger(0);
@@ -749,7 +749,7 @@ describe('ActsBundleManagerTest', function () {
                 expect(datainfo.description).assertEqual(APPLICATION_DESCRIPTION);
                 expect(datainfo.icon).assertEqual("$media:icon");
                 expect(datainfo.label).assertEqual("$string:app_name");
-                expect(datainfo.systemApp).assertEqual(true);
+                expect(datainfo.systemApp).assertEqual(false);
                 expect(datainfo.descriptionId).assertLarger(0);
                 expect(parseInt(datainfo.iconId)).assertLarger(0);
                 expect(parseInt(datainfo.labelId)).assertLarger(0);
@@ -788,7 +788,7 @@ describe('ActsBundleManagerTest', function () {
         expect(datainfo.description).assertEqual(APPLICATION_DESCRIPTION);
         expect(datainfo.icon).assertEqual("$media:icon");
         expect(datainfo.label).assertEqual("$string:app_name");
-        expect(datainfo.systemApp).assertEqual(true);
+        expect(datainfo.systemApp).assertEqual(false);
         expect(datainfo.descriptionId >= 0).assertTrue();
         expect(datainfo.iconId >= 0).assertTrue();
         expect(datainfo.labelId >= 0).assertTrue();
@@ -823,7 +823,7 @@ describe('ActsBundleManagerTest', function () {
                 expect(datainfo.description).assertEqual(APPLICATION_DESCRIPTION);
                 expect(datainfo.icon).assertEqual("$media:icon");
                 expect(datainfo.label).assertEqual("$string:app_name");
-                expect(datainfo.systemApp).assertEqual(true);
+                expect(datainfo.systemApp).assertEqual(false);
                 expect(datainfo.descriptionId >= 0).assertTrue();
                 expect(datainfo.iconId >= 0).assertTrue();
                 expect(datainfo.labelId >= 0).assertTrue();
@@ -858,7 +858,7 @@ describe('ActsBundleManagerTest', function () {
         expect(datainfo.iconId >= 0).assertTrue();
         expect(datainfo.label).assertEqual("$string:app_name");
         expect(datainfo.labelId >= 0).assertTrue();
-        expect(datainfo.systemApp).assertEqual(true);
+        expect(datainfo.systemApp).assertEqual(false);
         expect(datainfo.supportedModes).assertEqual(0);
         done();
     })
@@ -882,7 +882,7 @@ describe('ActsBundleManagerTest', function () {
                 expect(datainfo.iconId >= 0).assertTrue();
                 expect(datainfo.label).assertEqual("$string:app_name");
                 expect(datainfo.labelId >= 0).assertTrue();
-                expect(datainfo.systemApp).assertEqual(true);
+                expect(datainfo.systemApp).assertEqual(false);
                 expect(datainfo.supportedModes).assertEqual(0);
                 done();
             })
@@ -980,7 +980,7 @@ describe('ActsBundleManagerTest', function () {
             expect(datainfo.descriptionId).assertLarger(0);
             expect(parseInt(datainfo.iconId)).assertLarger(0);
             expect(parseInt(datainfo.labelId)).assertLarger(0);
-            expect(datainfo.systemApp).assertEqual(true);
+            expect(datainfo.systemApp).assertEqual(false);
             expect(datainfo.supportedModes).assertEqual(0);
             done();
         }).catch(err => {
@@ -1012,7 +1012,7 @@ describe('ActsBundleManagerTest', function () {
             expect(datainfo.descriptionId).assertLarger(0);
             expect(parseInt(datainfo.iconId)).assertLarger(0);
             expect(parseInt(datainfo.labelId)).assertLarger(0);
-            expect(datainfo.systemApp).assertEqual(true);
+            expect(datainfo.systemApp).assertEqual(false);
             expect(datainfo.supportedModes).assertEqual(0);
             done();
         })
@@ -1035,7 +1035,7 @@ describe('ActsBundleManagerTest', function () {
                 expect(datainfo.descriptionId >= 0).assertTrue();
                 expect(parseInt(datainfo.iconId)).assertLarger(0);
                 expect(parseInt(datainfo.labelId)).assertLarger(0);
-                expect(datainfo.systemApp).assertEqual(true);
+                expect(datainfo.systemApp).assertEqual(false);
                 expect(datainfo.supportedModes).assertEqual(0);
                 expect(datainfo.enabled).assertEqual(true);
                 for (let j = 0; j < datainfo.moduleInfos.length; j++) {
@@ -1073,7 +1073,7 @@ describe('ActsBundleManagerTest', function () {
                 expect(datainfo.descriptionId >= 0).assertTrue();
                 expect(parseInt(datainfo.iconId)).assertLarger(0);
                 expect(parseInt(datainfo.labelId)).assertLarger(0);
-                expect(datainfo.systemApp).assertEqual(true);
+                expect(datainfo.systemApp).assertEqual(false);
                 expect(datainfo.supportedModes).assertEqual(0);
                 expect(datainfo.enabled).assertEqual(true);
                 for (let j = 0; j < datainfo.moduleInfos.length; j++) {
@@ -1413,7 +1413,7 @@ describe('ActsBundleManagerTest', function () {
                     expect(datainfo.applicationInfo.iconId >= 0).assertTrue();
                     expect(datainfo.applicationInfo.label).assertEqual("$string:app_name");
                     expect(datainfo.applicationInfo.labelId >= 0).assertTrue();
-                    expect(datainfo.applicationInfo.systemApp).assertEqual(true);
+                    expect(datainfo.applicationInfo.systemApp).assertEqual(false);
                     expect(datainfo.applicationInfo.supportedModes).assertEqual(0);
                     expect(datainfo.applicationInfo.enabled).assertEqual(true);
                     expect(datainfo.metaData.length).assertLarger(0);
@@ -1472,7 +1472,7 @@ describe('ActsBundleManagerTest', function () {
                     expect(datainfo.applicationInfo.iconId >= 0).assertTrue();
                     expect(datainfo.applicationInfo.label).assertEqual("$string:app_name");
                     expect(datainfo.applicationInfo.labelId >= 0).assertTrue();
-                    expect(datainfo.applicationInfo.systemApp).assertEqual(true);
+                    expect(datainfo.applicationInfo.systemApp).assertEqual(false);
                     expect(datainfo.applicationInfo.supportedModes).assertEqual(0);
                     expect(datainfo.applicationInfo.enabled).assertEqual(true);
                     expect(datainfo.metaData.length).assertLarger(0);
@@ -1515,7 +1515,7 @@ describe('ActsBundleManagerTest', function () {
             expect(datainfo.applicationInfo.iconId >= 0).assertTrue();
             expect(datainfo.applicationInfo.label).assertEqual("$string:app_name");
             expect(datainfo.applicationInfo.labelId >= 0).assertTrue();
-            expect(datainfo.applicationInfo.systemApp).assertEqual(true);
+            expect(datainfo.applicationInfo.systemApp).assertEqual(false);
             expect(datainfo.applicationInfo.supportedModes).assertEqual(0);
             expect(datainfo.applicationInfo.enabled).assertEqual(true);
             expect(datainfo.applicationInfo.moduleInfos[0].moduleName).assertEqual("entry");
@@ -1556,7 +1556,7 @@ describe('ActsBundleManagerTest', function () {
                     expect(datainfo.applicationInfo.iconId >= 0).assertTrue();
                     expect(datainfo.applicationInfo.label).assertEqual("$string:app_name");
                     expect(datainfo.applicationInfo.labelId >= 0).assertTrue();
-                    expect(datainfo.applicationInfo.systemApp).assertEqual(true);
+                    expect(datainfo.applicationInfo.systemApp).assertEqual(false);
                     expect(datainfo.applicationInfo.supportedModes).assertEqual(0);
                     expect(datainfo.applicationInfo.enabled).assertEqual(true);
                     expect(datainfo.applicationInfo.moduleInfos[0].moduleName).assertEqual("entry");
@@ -1606,7 +1606,7 @@ describe('ActsBundleManagerTest', function () {
                 expect(datainfo.applicationInfo.iconId >= 0).assertTrue();
                 expect(datainfo.applicationInfo.label).assertEqual("$string:app_name");
                 expect(datainfo.applicationInfo.labelId >= 0).assertTrue();
-                expect(datainfo.applicationInfo.systemApp).assertEqual(true);
+                expect(datainfo.applicationInfo.systemApp).assertEqual(false);
                 expect(datainfo.applicationInfo.supportedModes).assertEqual(0);
                 expect(datainfo.orientation).assertEqual(demo.DisplayOrientation.PORTRAIT);
                 expect(datainfo.orientation).assertEqual(2);
@@ -1674,7 +1674,7 @@ describe('ActsBundleManagerTest', function () {
                 expect(datainfo.applicationInfo.iconId >= 0).assertTrue();
                 expect(datainfo.applicationInfo.label).assertEqual("$string:app_name");
                 expect(datainfo.applicationInfo.labelId >= 0).assertTrue();
-                expect(datainfo.applicationInfo.systemApp).assertEqual(true);
+                expect(datainfo.applicationInfo.systemApp).assertEqual(false);
                 expect(datainfo.applicationInfo.supportedModes).assertEqual(0);
                 expect(datainfo.orientation).assertEqual(2);
                 expect(datainfo.applicationInfo.enabled).assertEqual(true);

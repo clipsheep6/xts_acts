@@ -513,7 +513,7 @@ export default function actsBmsJsModuleNameTest() {
             expect(info.label).assertEqual("$string:app_name");
             expect(typeof (info.labelId)).assertEqual("number");
             expect(info.labelId > 0).assertTrue();
-            expect(info.systemApp).assertEqual(true);
+            expect(info.systemApp).assertEqual(false);
             expect(typeof (info.entryDir)).assertEqual("string");
             expect(info.entryDir).assertEqual("/data/app/el1/bundle/public/com.example.bmsmodulename/com.example.bmsmodulenamedentry");
             expect(typeof (info.process)).assertEqual("string");
