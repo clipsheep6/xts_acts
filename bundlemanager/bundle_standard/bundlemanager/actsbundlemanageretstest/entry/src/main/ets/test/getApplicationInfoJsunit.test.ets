@@ -432,8 +432,12 @@ export default function applicationBundleJsunit() {
             expect(typeof (data.descriptionId)).assertEqual('number');
             expect(typeof (data.icon)).assertEqual('string');
             expect(typeof (data.iconId)).assertEqual('number');
+            expect(typeof (data.iconIndex)).assertEqual('number');
+            expect(data.iconIndex).assertEqual(data.iconId);
             expect(typeof (data.label)).assertEqual('string');
             expect(typeof (data.labelId)).assertEqual('number');
+            expect(typeof (data.labelIndex)).assertEqual('number');
+            expect(data.labelIndex).assertEqual(data.labelId);
             expect(typeof (data.systemApp)).assertEqual('boolean')
             expect(typeof (data.supportedModes)).assertEqual('number');
             expect(typeof (data.process)).assertEqual('string');
@@ -458,6 +462,8 @@ export default function applicationBundleJsunit() {
             expect(data.descriptionId > 0).assertEqual(true);
             expect(data.icon).assertEqual('$media:icon');
             expect(data.iconId > 0).assertEqual(true);
+            expect(data.iconIndex > 0).assertEqual(true);
+            expect(data.iconIndex).assertEqual(data.iconId);
             expect(data.uid > 0).assertEqual(true);
             expect(data.label).assertEqual('$string:entry_MainAbility');
             expect(data.labelId > 0).assertEqual(true);
@@ -485,6 +491,8 @@ export default function applicationBundleJsunit() {
             expect(data.descriptionId).assertLarger(0);
             expect(data.icon).assertEqual('$media:icon');
             expect(data.iconId).assertLarger(0);
+            expect(data.iconIndex).assertLarger(0);
+            expect(data.iconIndex).assertEqual(data.iconId);
             expect(data.label).assertEqual('$string:entry_MainAbility');
             expect(data.labelId).assertLarger(0);
             expect(data.systemApp).assertFalse();
@@ -516,8 +524,12 @@ export default function applicationBundleJsunit() {
           expect(data.descriptionId).assertLarger(0);
           expect(data.icon).assertEqual('$media:icon');
           expect(data.iconId).assertLarger(0);
+          expect(data.iconIndex).assertLarger(0);
+          expect(data.iconIndex).assertEqual(data.iconId);
           expect(data.label).assertEqual('$string:app_name');
           expect(data.labelId).assertLarger(0);
+          expect(data.labelIndex).assertLarger(0);
+          expect(data.labelIndex).assertEqual(data.labelId);
           expect(data.systemApp).assertFalse();
           expect(data.supportedModes).assertEqual(0);
           expect(data.process).assertEqual(BUNDLE_OTHER);

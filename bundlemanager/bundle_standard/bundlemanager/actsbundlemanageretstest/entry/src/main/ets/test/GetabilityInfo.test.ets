@@ -258,6 +258,9 @@ export default function GetabilityInfo() {
             expect(info.icon).assertEqual("$media:icon");
             expect(typeof (info.iconId)).assertEqual("number");
             expect(info.iconId > 0).assertTrue();
+            expect(typeof (info.iconIndex)).assertEqual("number");
+            expect(info.iconIndex > 0).assertTrue();
+            expect(info.iconIndex).assertEqual(info.iconId);
             expect(typeof (info.label)).assertEqual("string");
             expect(info.label).assertEqual("$string:entry_MainAbility");
             expect(typeof (info.labelId)).assertEqual("number");

@@ -269,6 +269,8 @@ export default function actsBmsJsUnPermissionTest() {
             expect(info.descriptionId).assertEqual(0);
             expect(info.icon).assertEqual("$media:icon");
             expect(info.iconId > 0).assertTrue();
+            expect(info.iconIndex > 0).assertTrue();
+            expect(info.iconIndex).assertEqual(info.iconId);
             expect(info.label).assertEqual("$string:entry_MainAbility");
             expect(info.labelId > 0).assertTrue();
             expect(info.systemApp).assertEqual(false);
