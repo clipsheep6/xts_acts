@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import onFrameTest from './OnFrameJsunit.test';
+import onFrameJsunit from './OnFrameJsunit.test.ets';
 
 export default function testsuite() {
-  onFrameTest()
+  onFrameJsunit()
 }
