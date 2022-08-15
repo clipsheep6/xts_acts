@@ -74,7 +74,8 @@
                     "pages/camera/router/index",
                     "pages/canvas/router/index",
                     "pages/div/router/index",
-                    "pages/input/router/index"
+                    "pages/input/router/index",
+                    "pages/text/router/index"
                 ],
                 "name": "default",
                 "window": {
