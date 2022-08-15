@@ -75,7 +75,10 @@
                     "pages/canvas/router/index",
                     "pages/div/router/index",
                     "pages/input/router/index",
-                    "pages/text/router/index"
+                    "pages/text/router/index",
+                    "pages/viewModel/child/child",
+                    "pages/viewModel/parent/parent",
+                    "pages/viewModel/root/root"
                 ],
                 "name": "default",
                 "window": {
