@@ -12,18 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 export default {
-    data: {
-        showsome: false,
-        text: 'I am child component!',
+    props: {
+        title: {
+            default: 'title',
+        },
+        showObject: {},
+    },
+    data() {
+        return {
+            showObj: this.showObject,
+        };
     },
     childClicked () {
-        this.showsome = !this.showsome;
-        console.info('child component get parent text');
-        console.info(this.$parent().text);
-        console.info('child component get root text');
-        console.info(this.$root().text);
-        return "childClicked fuction return something"
+        this.$emit('eventType1', {text: '收到子组件参数'});
+        this.showObj = !this.showObj;
     },
 }

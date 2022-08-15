@@ -17,4 +17,7 @@
     <input id="function5" class="title" onclick="functionTest5">
         watch test
     </input>
+    <input id="function6" class="title" onclick="functionTest6">
+        set/delete test
+    </input>
 </div>

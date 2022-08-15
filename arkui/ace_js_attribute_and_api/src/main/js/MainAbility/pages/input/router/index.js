@@ -1,7 +1,8 @@
 export default {
     data: {
         title: "",
-        watchVal:"123"
+        watchVal:"123",
+        Version:"1.0"
     },
     onInit() {
         this.$watch("watchVal", "onwatch")
@@ -27,6 +28,13 @@ export default {
     functionTest5() {
         //将watchVal从123改为456，触发onwatch事件
         this.watchVal = "456"
+    },
+    functionTest6() {
+        this.$set('Version', '2.0');
+        console.info("Version = " + this.Version);
+        this.$delete('Version');
+        // log print:Version = undefined
+        console.info("Version = " + this.Version);
     },
     onwatch(newVal, oldVal) {
         console.log("watch newVal = " + newVal + ",oldVal =" + oldVal)

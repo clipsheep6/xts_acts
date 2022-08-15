@@ -78,7 +78,9 @@
                     "pages/text/router/index",
                     "pages/viewModel/child/child",
                     "pages/viewModel/parent/parent",
-                    "pages/viewModel/root/root"
+                    "pages/viewModel/root/root",
+                    "pages/viewModel1/index/index",
+                    "pages/viewModel1/comp/comp"
                 ],
                 "name": "default",
                 "window": {
