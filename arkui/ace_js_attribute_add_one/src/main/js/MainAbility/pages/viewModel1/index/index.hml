@@ -1,4 +1,4 @@
-/**
+<!--/**
  * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -11,19 +11,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-
-export default {
-    data: {
-        showsome: false,
-        text: 'I am child component!',
-    },
-    childClicked () {
-        this.showsome = !this.showsome;
-        console.info('child component get parent text');
-        console.info(this.$parent().text);
-        console.info('child component get root text');
-        console.info(this.$root().text);
-        return "childClicked fuction return something"
-    },
-}
+ */-->
+<element name='comp' src='../comp/comp.hml'></element>
+<div class="container">
+    <text>父组件：{{text}}</text>
+    <comp title="自定义组件" show-object="{{isShow}}" @event-type1="textClicked"></comp>
+</div>
