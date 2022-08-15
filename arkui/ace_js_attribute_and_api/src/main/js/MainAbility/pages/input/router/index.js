@@ -1,9 +1,10 @@
 export default {
     data: {
-        title: ""
+        title: "",
+        watchVal:"123"
     },
     onInit() {
-
+        this.$watch("watchVal", "onwatch")
     },
     functionTest1() {
         var function1 = this.$element('function1');
@@ -23,6 +24,13 @@ export default {
             focus: true
         })
     },
+    functionTest5() {
+        //将watchVal从123改为456，触发onwatch事件
+        this.watchVal = "456"
+    },
+    onwatch(newVal, oldVal) {
+        console.log("watch newVal = " + newVal + ",oldVal =" + oldVal)
+    }
 }
 
 

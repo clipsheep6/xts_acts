@@ -14,4 +14,7 @@
     <input id="function4" class="title" onclick="functionTest4">
         Element rotation
     </input>
+    <input id="function5" class="title" onclick="functionTest5">
+        watch test
+    </input>
 </div>
