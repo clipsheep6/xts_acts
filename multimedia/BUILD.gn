@@ -44,6 +44,7 @@ group("multimedia") {
       "medialibrary/mediaLibrary_fileKey:mediaLibrary_fileKey_hap",
       "medialibrary/mediaLibrary_fileResult:mediaLibrary_fileResult_hap",
       "medialibrary/mediaLibrary_getThumbnail:mediaLibrary_getThumbnail_hap",
+      "medialibrary/userfile_manager:userfile_manager_hap",
     ]
   } else {
     deps = [
