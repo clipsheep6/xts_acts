@@ -1,0 +1,29 @@
+// @ts-nocheck
+/**
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@Entry
+@Component
+struct GaugeExample {
+  build() {
+    Column() {
+      Gauge({ value: 50, min: 0, max: 100 })
+        .startAngle(210).endAngle(150)
+        .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1], [0xD94838, 1]])
+        .strokeWidth(20)
+        .width(200).height(200)
+    }.width('100%').margin({ top: 5 })
+  }
+}
