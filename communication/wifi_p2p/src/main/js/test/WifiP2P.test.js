@@ -35,14 +35,22 @@ let GroupOwnerBand = {
 }
 export default function ActsWifiTest() {
 describe('ActsWifiTest', function () {
-    beforeEach(function () {
-        console.info("beforeEach start");
-        checkWifiPowerOn();
-    })
+  beforeAll(function () {
+    console.info("*************[wifi_test] WiFiP2P test start*************");
+  })
 
-    afterEach(async function () {
-        console.info("afterEach start");
-    })
+  beforeEach(function () {
+    console.info("beforeEach start");
+    checkWifiPowerOn();
+  })
+
+  afterEach(function () {
+    console.info('afterEach start');
+  })
+
+  afterAll(function () {
+    console.info("*************[wifi_test] WiFiP2P test end*************");
+  })
 
     /**
     * @tc.number     config_0001
