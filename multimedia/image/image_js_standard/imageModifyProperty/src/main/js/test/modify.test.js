@@ -38,6 +38,22 @@ describe('imageModifyProperty', function () {
             console.info("image case open fd err " + err);
         })
     }
+
+    let buf = new ArrayBuffer(90960);
+    let opt = {
+        position: 0,
+        length: 90000
+    }
+    try {
+        let readOut = await fileio.readSync(fdNumber, buf, opt)
+        console.info("rhw, readLengthBefore = " + JSON.stringify(readOut));
+        console.info("rhw, buf = " + JSON.stringify(buf));
+        let view = new Uint32Array(buf);
+        console.info("rhw, view = " + JSON.stringify(view));
+    } catch(e) {
+        console.info("rhw, e = " + JSON.stringify(e));
+    }
+
     beforeAll(async function () {
         console.info('beforeAll case');
     })
