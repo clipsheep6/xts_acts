@@ -49,7 +49,7 @@ ohos_moduletest_suite("ActsAvcodecNdkTest") {
   ]
 
   deps = [
-    "//foundation/multimedia/player_framework/interfaces/kits/c:media_capi",
+    "//foundation/multimedia/player_framework/interfaces/kits/c:native_media",
     "//foundation/graphic/graphic_2d/frameworks/surface:surface",
     "//utils/native/base:utils",
   ]

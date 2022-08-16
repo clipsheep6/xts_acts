@@ -25,18 +25,18 @@ namespace {
     constexpr bool NEED_DUMP = true;
 }
 
-void AdecAsyncError(AVCodec *codec, int32_t errorCode, void *userData)
+void AdecAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
 {
     ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     cout << "DEC Error errorCode=" << errorCode << endl;
     acodecSignal_->errorNum_ += 1;
 }
 
-void AdecAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
+void AdecAsyncStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
 {
     cout << "DEC Format Changed" << endl;
 }
-void AdecAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void *userData)
+void AdecAsyncNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
 {
     ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
@@ -48,7 +48,7 @@ void AdecAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void
     acodecSignal_->inCondDec_.notify_all();
 }
 
-void AdecAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCodecBufferAttr *attr, void *userData)
+void AdecAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr, void *userData)
 {
     ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     cout << "DEC OutputAvailable, index = " << index << endl;
@@ -65,17 +65,17 @@ void AdecAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCo
 }
 
 
-void AencAsyncError(AVCodec *codec, int32_t errorCode, void *userData)
+void AencAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
 {
     cout << "ENC Error errorCode=" << errorCode << endl;
 }
 
-void AencAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
+void AencAsyncStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
 {
     cout << "ENC Format Changed" << endl;
 }
 
-void AencAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void *userData)
+void AencAsyncNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
 {
     ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
@@ -87,7 +87,7 @@ void AencAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void
     acodecSignal_->inCondEnc_.notify_all();
 }
 
-void AencAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCodecBufferAttr *attr, void *userData)
+void AencAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr, void *userData)
 {
     ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
@@ -106,8 +106,8 @@ void clearIntqueue (std::queue<uint32_t>& q) {
     swap(empty, q);
 }
 
-void clearBufferqueue (std::queue<AVMemory *>& q) {
-    std::queue<AVMemory *> empty;
+void clearBufferqueue (std::queue<OH_AVMemory *>& q) {
+    std::queue<OH_AVMemory *> empty;
     swap(empty, q);
 }
 
@@ -123,7 +123,7 @@ ADecEncNdkSample::~ADecEncNdkSample()
     // acodecSignal_ = nullptr;
 }
 
-struct AVCodec* ADecEncNdkSample::CreateAudioDecoder(std::string mimetype)
+struct OH_AVCodec* ADecEncNdkSample::CreateAudioDecoder(std::string mimetype)
 {
     adec_ = OH_AudioDecoder_CreateByMime(mimetype.c_str());
     NDK_CHECK_AND_RETURN_RET_LOG(adec_ != nullptr, nullptr, "Fatal: OH_AudioDecoder_CreateByMime");
@@ -142,7 +142,7 @@ struct AVCodec* ADecEncNdkSample::CreateAudioDecoder(std::string mimetype)
 }
 
 
-int32_t ADecEncNdkSample::ConfigureDec(struct AVFormat *format)
+int32_t ADecEncNdkSample::ConfigureDec(struct OH_AVFormat *format)
 {
     return OH_AudioDecoder_Configure(adec_, format);
 }
@@ -354,7 +354,7 @@ void ADecEncNdkSample::InputFuncDec()
         }
 
         uint32_t index = acodecSignal_->inQueueDec_.front();
-        AVMemory *buffer = reinterpret_cast<AVMemory *>(acodecSignal_->inBufferQueueDec_.front());
+        OH_AVMemory *buffer = reinterpret_cast<OH_AVMemory *>(acodecSignal_->inBufferQueueDec_.front());
         if (buffer == nullptr) {
             cout << "DEC input Fatal: GetInputBuffer fail" << endl;
             acodecSignal_->inQueueDec_.pop();
@@ -383,7 +383,7 @@ void ADecEncNdkSample::InputFuncDec()
             }
             free(fileBuffer);
         } 
-        struct AVCodecBufferAttr attr;
+        struct OH_AVCodecBufferAttr attr;
         attr.offset = 0;
         attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
         if (decInCnt_ == ES_LENGTH) {
@@ -396,7 +396,7 @@ void ADecEncNdkSample::InputFuncDec()
             attr.pts = timeStampDec_;
             attr.size = bufferSize;
         }
-        AVErrCode ret = OH_AudioDecoder_PushInputData(adec_, index, attr);
+        OH_AVErrCode ret = OH_AudioDecoder_PushInputData(adec_, index, attr);
         if (ret != AV_ERR_OK) {
             cout << "Fatal: OH_AudioDecoder_PushInputData fail" << endl;
             acodecSignal_->errorNum_ += 1;
@@ -412,7 +412,7 @@ void ADecEncNdkSample::InputFuncDec()
 
 }
 
-struct AVCodec* ADecEncNdkSample::CreateAudioEncoder(std::string mimetype)
+struct OH_AVCodec* ADecEncNdkSample::CreateAudioEncoder(std::string mimetype)
 {
     aenc_ = OH_AudioEncoder_CreateByMime(mimetype.c_str());
     NDK_CHECK_AND_RETURN_RET_LOG(aenc_ != nullptr, nullptr, "Fatal: OH_AudioEncoder_CreateByMime");
@@ -425,7 +425,7 @@ struct AVCodec* ADecEncNdkSample::CreateAudioEncoder(std::string mimetype)
     return aenc_;
 }
 
-int32_t ADecEncNdkSample::ConfigureEnc(struct AVFormat *format)
+int32_t ADecEncNdkSample::ConfigureEnc(struct OH_AVFormat *format)
 {
     return OH_AudioEncoder_Configure(aenc_, format);
 }
@@ -584,15 +584,15 @@ void ADecEncNdkSample::InputFuncEnc()
         }
 
         uint32_t indexEnc = acodecSignal_->inQueueEnc_.front();
-        AVMemory *bufferEnc = reinterpret_cast<AVMemory *>(acodecSignal_->inBufferQueueEnc_.front());
+        OH_AVMemory *bufferEnc = reinterpret_cast<OH_AVMemory *>(acodecSignal_->inBufferQueueEnc_.front());
         NDK_CHECK_AND_RETURN_LOG(bufferEnc != nullptr, "Fatal: GetEncInputBuffer fail");
 
         uint32_t indexDec = acodecSignal_->outQueueDec_.front();
-        AVMemory * bufferDec = acodecSignal_->outBufferQueueDec_.front();
+        OH_AVMemory * bufferDec = acodecSignal_->outBufferQueueDec_.front();
         uint32_t sizeDecOut = acodecSignal_->sizeQueueDec_.front();
         uint32_t flagDecOut = acodecSignal_->flagQueueDec_.front();
 
-        struct AVCodecBufferAttr attr;
+        struct OH_AVCodecBufferAttr attr;
         attr.offset = 0;
         attr.size = sizeDecOut;
         attr.pts = timeStampEnc_;
@@ -628,7 +628,7 @@ void ADecEncNdkSample::InputFuncEnc()
         acodecSignal_->flagQueueDec_.pop();
         acodecSignal_->outBufferQueueDec_.pop();
 
-        AVErrCode ret = OH_AudioEncoder_PushInputData(aenc_, indexEnc, attr);
+        OH_AVErrCode ret = OH_AudioEncoder_PushInputData(aenc_, indexEnc, attr);
         if (ret != AV_ERR_OK) {
             cout << "Fatal error, exit" << endl;
             acodecSignal_->errorNum_ += 1;

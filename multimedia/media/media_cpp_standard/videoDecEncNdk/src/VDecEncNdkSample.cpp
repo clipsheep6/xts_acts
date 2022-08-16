@@ -46,18 +46,18 @@ namespace {
     constexpr uint32_t ES_LENGTH = sizeof(ES) / sizeof(uint32_t);
 }
 
-void VdecAsyncError(AVCodec *codec, int32_t errorCode, void *userData)
+void VdecAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
 {
     cout << "DEC Error errorCode=" << errorCode << endl;
     VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
     vcodecSignal_->errorNum_ += 1;
 }
 
-void VdecAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
+void VdecAsyncStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
 {
     cout << "DEC Format Changed" << endl;
 }
-void VdecAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void *userData)
+void VdecAsyncNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
 {
     VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
     unique_lock<mutex> lock(vcodecSignal_->inMutexDec_);
@@ -70,7 +70,7 @@ void VdecAsyncNeedInputData(AVCodec *codec, uint32_t index, AVMemory *data, void
     vcodecSignal_->inCondDec_.notify_all();
 }
 
-void VdecAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCodecBufferAttr *attr, void *userData)
+void VdecAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr, void *userData)
 {
     VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
     unique_lock<mutex> lock(vcodecSignal_->outMutexDec_);
@@ -84,19 +84,19 @@ void VdecAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCo
 }
 
 
-void VencAsyncError(AVCodec *codec, int32_t errorCode, void *userData)
+void VencAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
 {
     cout << "ENC Error errorCode=" << errorCode << endl;
     VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
     vcodecSignal_->errorNum_ += 1;
 }
 
-void VencAsyncStreamChanged(AVCodec *codec, AVFormat *format, void *userData)
+void VencAsyncStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
 {
     cout << "ENC Format Changed" << endl;
 }
 
-void VencAsyncNewOutputData(AVCodec *codec, uint32_t index, AVMemory *data, AVCodecBufferAttr *attr, void *userData)
+void VencAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr, void *userData)
 {
     VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
     unique_lock<mutex> lock(vcodecSignal_->outMutexEnc_);
@@ -116,8 +116,8 @@ void clearIntqueue (std::queue<uint32_t>& q) {
     swap(empty, q);
 }
 
-void clearBufferqueue (std::queue<AVMemory *>& q) {
-    std::queue<AVMemory *> empty;
+void clearBufferqueue (std::queue<OH_AVMemory *>& q) {
+    std::queue<OH_AVMemory *> empty;
     swap(empty, q);
 }
 
@@ -199,7 +199,7 @@ void VDecEncNdkSample::ResetEncParam()
     cout << "isEncRunning_.load() is " << isEncRunning_.load() << endl;
 }
 
-struct AVCodec* VDecEncNdkSample::CreateVideoDecoder(std::string mimetype)
+struct OH_AVCodec* VDecEncNdkSample::CreateVideoDecoder(std::string mimetype)
 {
     vdec_ = OH_VideoDecoder_CreateByMime(mimetype.c_str());
     NDK_CHECK_AND_RETURN_RET_LOG(vdec_ != nullptr, nullptr, "Fatal: OH_VideoDecoder_CreateByMime");
@@ -218,7 +218,7 @@ struct AVCodec* VDecEncNdkSample::CreateVideoDecoder(std::string mimetype)
 }
 
 
-int32_t VDecEncNdkSample::ConfigureDec(struct AVFormat *format)
+int32_t VDecEncNdkSample::ConfigureDec(struct OH_AVFormat *format)
 {
     return OH_VideoDecoder_Configure(vdec_, format);
 }
@@ -363,7 +363,7 @@ void VDecEncNdkSample::InputFuncDec()
         }
 
         uint32_t index = vcodecSignal_->inQueueDec_.front();
-        AVMemory *buffer = reinterpret_cast<AVMemory *>(vcodecSignal_->inBufferQueueDec_.front());
+        OH_AVMemory *buffer = reinterpret_cast<OH_AVMemory *>(vcodecSignal_->inBufferQueueDec_.front());
         if (vcodecSignal_->isVdecFlushing_.load() || isDecInputEOS || buffer == nullptr) {
             vcodecSignal_->inQueueDec_.pop();
             vcodecSignal_->inBufferQueueDec_.pop();
@@ -397,7 +397,7 @@ void VDecEncNdkSample::InputFuncDec()
             free(fileBuffer);
 
         } 
-        struct AVCodecBufferAttr attr;
+        struct OH_AVCodecBufferAttr attr;
         attr.offset = 0;
         if (decInCnt_ == ES_LENGTH) {
             attr.flags = AVCODEC_BUFFER_FLAGS_EOS;
@@ -481,7 +481,7 @@ void VDecEncNdkSample::OutputFuncDec()
     }
 }
 
-struct AVCodec* VDecEncNdkSample::CreateVideoEncoder(std::string mimetype)
+struct OH_AVCodec* VDecEncNdkSample::CreateVideoEncoder(std::string mimetype)
 {
     venc_ = OH_VideoEncoder_CreateByMime(mimetype.c_str());
     NDK_CHECK_AND_RETURN_RET_LOG(venc_ != nullptr, nullptr, "Fatal: OH_VideoEncoder_CreateByMime");
@@ -498,14 +498,14 @@ struct AVCodec* VDecEncNdkSample::CreateVideoEncoder(std::string mimetype)
     return venc_;
 }
 
-int32_t VDecEncNdkSample::ConfigureEnc(struct AVFormat *format)
+int32_t VDecEncNdkSample::ConfigureEnc(struct OH_AVFormat *format)
 {
     return OH_VideoEncoder_Configure(venc_, format);
 }
 
-struct VEncObject : public AVCodec {
+struct VEncObject : public OH_AVCodec {
     explicit VEncObject(const std::shared_ptr<AVCodecVideoEncoder> &encoder)
-        : AVCodec(AVMagic::MEDIA_MAGIC_VIDEO_ENCODER), videoEncoder_(encoder) {}
+        : OH_AVCodec(AVMagic::MEDIA_MAGIC_VIDEO_ENCODER), videoEncoder_(encoder) {}
     ~VEncObject() = default;
 
     const std::shared_ptr<AVCodecVideoEncoder> videoEncoder_;
@@ -522,9 +522,9 @@ int32_t VDecEncNdkSample::GetSurface()
     // return OH_VideoEncoder_GetInputSurface(venc_, window);
 }
 
-struct VDecObject : public AVCodec {
+struct VDecObject : public OH_AVCodec {
     explicit VDecObject(const std::shared_ptr<AVCodecVideoDecoder> &decoder)
-        : AVCodec(AVMagic::MEDIA_MAGIC_VIDEO_DECODER), videoDecoder_(decoder) {}
+        : OH_AVCodec(AVMagic::MEDIA_MAGIC_VIDEO_DECODER), videoDecoder_(decoder) {}
     ~VDecObject() = default;
 
     const std::shared_ptr<AVCodecVideoDecoder> videoDecoder_;

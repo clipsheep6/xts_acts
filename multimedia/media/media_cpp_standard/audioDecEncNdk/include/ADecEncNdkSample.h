@@ -44,8 +44,8 @@ public:
     std::queue<uint32_t> outQueueDec_;
     std::queue<uint32_t>  sizeQueueDec_;
     std::queue<uint32_t>  flagQueueDec_;
-    std::queue<AVMemory *> inBufferQueueDec_;
-    std::queue<AVMemory *> outBufferQueueDec_;
+    std::queue<OH_AVMemory *> inBufferQueueDec_;
+    std::queue<OH_AVMemory *> outBufferQueueDec_;
 
     std::mutex inMutexEnc_;
     std::mutex outMutexEnc_;
@@ -55,8 +55,8 @@ public:
     std::queue<uint32_t> outQueueEnc_;
     std::queue<uint32_t>  sizeQueueEnc_;
     std::queue<uint32_t>  flagQueueEnc_;
-    std::queue<AVMemory *> inBufferQueueEnc_;
-    std::queue<AVMemory *> outBufferQueueEnc_;
+    std::queue<OH_AVMemory *> inBufferQueueEnc_;
+    std::queue<OH_AVMemory *> outBufferQueueEnc_;
     int32_t errorNum_ = 0;
     std::atomic<bool> isFlushing_ = false;
 };
@@ -67,8 +67,8 @@ public:
     ADecEncNdkSample() = default;
     ~ADecEncNdkSample();
 
-    struct AVCodec* CreateAudioDecoder(std::string mimetype);
-    int32_t ConfigureDec(struct AVFormat *format);
+    struct OH_AVCodec* CreateAudioDecoder(std::string mimetype);
+    int32_t ConfigureDec(struct OH_AVFormat *format);
     int32_t PrepareDec();
     int32_t StartDec();
     int32_t StopDec();
@@ -76,8 +76,8 @@ public:
     int32_t ResetDec();
     int32_t ReleaseDec();
 
-    struct AVCodec* CreateAudioEncoder(std::string mimetype);
-    int32_t ConfigureEnc(struct AVFormat *format);
+    struct OH_AVCodec* CreateAudioEncoder(std::string mimetype);
+    int32_t ConfigureEnc(struct OH_AVFormat *format);
     int32_t PrepareEnc();
     int32_t StartEnc();
     int32_t StopEnc();
@@ -106,21 +106,21 @@ public:
     bool setEos = true;
 
 private:
-    struct AVCodec* adec_;
+    struct OH_AVCodec* adec_;
     void InputFuncDec();
     std::atomic<bool> isDecRunning_ = false;
     std::unique_ptr<std::ifstream> testFile_;
     std::unique_ptr<std::thread> inputLoopDec_;
     std::unique_ptr<std::thread> outputLoopDec_;
-    struct AVCodecAsyncCallback cbDec_;
+    struct OH_AVCodecAsyncCallback cbDec_;
     int64_t timeStampDec_ = 0;
-    struct AVCodec* aenc_;
+    struct OH_AVCodec* aenc_;
     void InputFuncEnc();
     void OutputFuncEnc();
     std::atomic<bool> isEncRunning_ = false;
     std::unique_ptr<std::thread> inputLoopEnc_;
     std::unique_ptr<std::thread> outputLoopEnc_;
-    struct AVCodecAsyncCallback cbEnc_;
+    struct OH_AVCodecAsyncCallback cbEnc_;
     int64_t timeStampEnc_ = 0;
     std::string outDir_ = "/data/media/out.aac";
     const char * INP_FILE;

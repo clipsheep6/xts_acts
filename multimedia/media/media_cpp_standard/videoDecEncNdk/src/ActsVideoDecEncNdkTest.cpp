@@ -31,7 +31,7 @@ using namespace OHOS::Media;
 const string MIME_TYPE_DEC = "video/avc";
 const string MIME_TYPE_ENC = "video/mp4v-es";
 
-bool CheckDecDesc(map<string, int> InDesc, AVFormat* OutDesc){
+bool CheckDecDesc(map<string, int> InDesc, OH_AVFormat* OutDesc){
     int32_t out ;
     for(const auto& t: InDesc){
          bool res = OH_AVFormat_GetIntValue(OutDesc, t.first.c_str(), &out);
@@ -51,7 +51,7 @@ bool CheckDecDesc(map<string, int> InDesc, AVFormat* OutDesc){
     return true;
 }
 
-bool SetFormat(struct AVFormat *format, map<string, int> mediaDescription){
+bool SetFormat(struct OH_AVFormat *format, map<string, int> mediaDescription){
     const char *key;
     for(const auto& t: mediaDescription){
         key = t.first.c_str();
@@ -73,15 +73,15 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest001, Function | MediumTes
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
-    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    struct OH_AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
     ASSERT_NE(nullptr, videoDec);
-    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
     vDecEncSample->SetEosState(true);
     vDecEncSample->SetSavePath("/data/media/video_001.es");
     
-    AVFormat *VideoFormat = OH_AVFormat_Create();
+    OH_AVFormat *VideoFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, VideoFormat);
     map<string, int> VideoParam = {
         {"width", 320},
@@ -91,12 +91,12 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest001, Function | MediumTes
     };
     ASSERT_EQ(true, SetFormat(VideoFormat, VideoParam));
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureDec(VideoFormat));
-    AVFormat *OutDescDec = OH_VideoDecoder_GetOutputDescription(videoDec);
+    OH_AVFormat *OutDescDec = OH_VideoDecoder_GetOutputDescription(videoDec);
     ASSERT_NE(nullptr, OutDescDec);
     ASSERT_EQ(true, CheckDecDesc(VideoParam, OutDescDec));
 
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureEnc(VideoFormat));
-    AVFormat *OutDescEnc = OH_VideoEncoder_GetOutputDescription(videoEnc);
+    OH_AVFormat *OutDescEnc = OH_VideoEncoder_GetOutputDescription(videoEnc);
     ASSERT_NE(nullptr, OutDescEnc);
     ASSERT_EQ(true, CheckDecDesc(VideoParam, OutDescEnc));
 
@@ -133,15 +133,15 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest001, Function | MediumTes
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
-    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    struct OH_AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
     ASSERT_NE(nullptr, videoDec);
-    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
     vDecEncSample->SetEosState(true);
     vDecEncSample->SetSavePath("/data/media/video_002.es");
     
-    AVFormat *VideoFormat = OH_AVFormat_Create();
+    OH_AVFormat *VideoFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, VideoFormat);
     OH_AVFormat_SetIntValue(VideoFormat, "width", 320);
     OH_AVFormat_SetIntValue(VideoFormat, "height", 240);
@@ -184,15 +184,15 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest003, Function | MediumTes
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
-    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    struct OH_AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
     ASSERT_NE(nullptr, videoDec);
-    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
     vDecEncSample->SetEosState(true);
     vDecEncSample->SetSavePath("/data/media/video_003.es");
     
-    AVFormat *VideoFormat = OH_AVFormat_Create();
+    OH_AVFormat *VideoFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, VideoFormat);
     OH_AVFormat_SetIntValue(VideoFormat, "width", 320);
     OH_AVFormat_SetIntValue(VideoFormat, "height", 240);
@@ -232,15 +232,15 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest003, Function | MediumTes
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
-    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    struct OH_AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
     ASSERT_NE(nullptr, videoDec);
-    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
     vDecEncSample->SetEosState(false);
     vDecEncSample->SetSavePath("/data/media/video_004.es");
     
-    AVFormat *VideoFormat = OH_AVFormat_Create();
+    OH_AVFormat *VideoFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, VideoFormat);
     OH_AVFormat_SetIntValue(VideoFormat, "width", 320);
     OH_AVFormat_SetIntValue(VideoFormat, "height", 240);
@@ -294,15 +294,15 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest005, Function | MediumTes
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
-    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    struct OH_AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
     ASSERT_NE(nullptr, videoDec);
-    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
     vDecEncSample->SetEosState(false);
     vDecEncSample->SetSavePath("/data/media/video_005.es");
     
-    AVFormat *VideoFormat = OH_AVFormat_Create();
+    OH_AVFormat *VideoFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, VideoFormat);
     OH_AVFormat_SetIntValue(VideoFormat, "width", 320);
     OH_AVFormat_SetIntValue(VideoFormat, "height", 240);
@@ -356,15 +356,15 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest005, Function | MediumTes
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
-    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    struct OH_AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
     ASSERT_NE(nullptr, videoDec);
-    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
     vDecEncSample->SetEosState(false);
     vDecEncSample->SetSavePath("/data/media/video_006.es");
     
-    AVFormat *VideoFormat = OH_AVFormat_Create();
+    OH_AVFormat *VideoFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, VideoFormat);
     OH_AVFormat_SetIntValue(VideoFormat, "width", 320);
     OH_AVFormat_SetIntValue(VideoFormat, "height", 240);
@@ -420,15 +420,15 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest007, Function | MediumTes
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
-    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    struct OH_AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
     ASSERT_NE(nullptr, videoDec);
-    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
     vDecEncSample->SetEosState(false);
     vDecEncSample->SetSavePath("/data/media/video_007.es");
     
-    AVFormat *VideoFormat = OH_AVFormat_Create();
+    OH_AVFormat *VideoFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, VideoFormat);
     OH_AVFormat_SetIntValue(VideoFormat, "width", 320);
     OH_AVFormat_SetIntValue(VideoFormat, "height", 240);
@@ -486,15 +486,15 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
-    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    struct OH_AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
     ASSERT_NE(nullptr, videoDec);
-    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
     vDecEncSample->SetEosState(true);
     vDecEncSample->SetSavePath("/data/media/video_008.es");
     
-    AVFormat *VideoFormat = OH_AVFormat_Create();
+    OH_AVFormat *VideoFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, VideoFormat);
     OH_AVFormat_SetIntValue(VideoFormat, "width", 320);
     OH_AVFormat_SetIntValue(VideoFormat, "height", 240);
@@ -561,15 +561,15 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
-    struct AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
+    struct OH_AVCodec* videoDec = vDecEncSample->CreateVideoDecoder(MIME_TYPE_DEC);
     ASSERT_NE(nullptr, videoDec);
-    struct AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
+    struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath("/data/media/out_320_240_10s.h264");
     vDecEncSample->SetEosState(true);
     vDecEncSample->SetSavePath("/data/media/video_009.es");
     
-    AVFormat *VideoFormat = OH_AVFormat_Create();
+    OH_AVFormat *VideoFormat = OH_AVFormat_Create();
     ASSERT_NE(nullptr, VideoFormat);
     OH_AVFormat_SetIntValue(VideoFormat, "width", 320);
     OH_AVFormat_SetIntValue(VideoFormat, "height", 240);
@@ -602,9 +602,9 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
 
     VDecEncNdkSample *vDecEncSample2 = new VDecEncNdkSample();
 
-    struct AVCodec* videoDec2 = vDecEncSample2->CreateVideoDecoder(MIME_TYPE_DEC);
+    struct OH_AVCodec* videoDec2 = vDecEncSample2->CreateVideoDecoder(MIME_TYPE_DEC);
     ASSERT_NE(nullptr, videoDec2);
-    struct AVCodec* videoEnc2 = vDecEncSample2->CreateVideoEncoder(MIME_TYPE_ENC);
+    struct OH_AVCodec* videoEnc2 = vDecEncSample2->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc2);
     vDecEncSample2->SetReadPath("/data/media/out_320_240_10s.h264");
     vDecEncSample->SetEosState(true);

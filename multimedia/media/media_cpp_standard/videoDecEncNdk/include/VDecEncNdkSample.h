@@ -45,8 +45,8 @@ public:
     std::queue<uint32_t> inQueueDec_;
     std::queue<uint32_t> outQueueDec_;
     std::queue<uint32_t> flagQueueDec_;
-    std::queue<AVMemory *> inBufferQueueDec_;
-    std::queue<AVMemory *> outBufferQueueDec_;
+    std::queue<OH_AVMemory *> inBufferQueueDec_;
+    std::queue<OH_AVMemory *> outBufferQueueDec_;
 
     std::mutex outMutexEnc_;
     std::condition_variable outCondEnc_;
@@ -54,8 +54,8 @@ public:
     std::queue<uint32_t> outQueueEnc_;
     std::queue<uint32_t> sizeQueueEnc_;
     std::queue<uint32_t> flagQueueEnc_;
-    std::queue<AVMemory *> inBufferQueueEnc_;
-    std::queue<AVMemory *> outBufferQueueEnc_;
+    std::queue<OH_AVMemory *> inBufferQueueEnc_;
+    std::queue<OH_AVMemory *> outBufferQueueEnc_;
     int32_t errorNum_ = 0;
     std::atomic<bool> isVdecFlushing_ = false;
     std::atomic<bool> isVencFlushing_ = false;
@@ -69,8 +69,8 @@ public:
     ~VDecEncNdkSample();
 
     void SetEosState(bool needSetEos);
-    struct AVCodec* CreateVideoDecoder(std::string mimetype);
-    int32_t ConfigureDec(struct AVFormat *format);
+    struct OH_AVCodec* CreateVideoDecoder(std::string mimetype);
+    int32_t ConfigureDec(struct OH_AVFormat *format);
     int32_t SetOutputSurface();
     int32_t PrepareDec();
     int32_t StartDec();
@@ -79,8 +79,8 @@ public:
     int32_t ResetDec();
     int32_t ReleaseDec();
 
-    struct AVCodec* CreateVideoEncoder(std::string mimetype);
-    int32_t ConfigureEnc(struct AVFormat *format);
+    struct OH_AVCodec* CreateVideoEncoder(std::string mimetype);
+    int32_t ConfigureEnc(struct OH_AVFormat *format);
     int32_t GetSurface();
     int32_t PrepareEnc();
     int32_t StartEnc();
@@ -106,23 +106,23 @@ public:
 
 private:
     sptr<Surface> surface_ = nullptr;
-    struct AVCodec* vdec_;
+    struct OH_AVCodec* vdec_;
     void InputFuncDec();
     void OutputFuncDec();
     std::atomic<bool> isDecRunning_ = false;
     std::unique_ptr<std::ifstream> testFile_;
     std::unique_ptr<std::thread> inputLoopDec_;
     std::unique_ptr<std::thread> outputLoopDec_;
-    struct AVCodecAsyncCallback cbDec_;
+    struct OH_AVCodecAsyncCallback cbDec_;
     int64_t timeStampDec_ = 0;
     uint32_t decInCnt_ = 0;
     uint32_t decOutCnt_ = 0;
 
-    struct AVCodec* venc_;
+    struct OH_AVCodec* venc_;
     void OutputFuncEnc();
     std::atomic<bool> isEncRunning_ = false;
     std::unique_ptr<std::thread> outputLoopEnc_;
-    struct AVCodecAsyncCallback cbEnc_;
+    struct OH_AVCodecAsyncCallback cbEnc_;
     bool isFirstDecFrame_ = true;
     uint32_t encOutCnt_ = 0;
     std::string inFile_ = "/data/media/out_320_240_10s.h264";
