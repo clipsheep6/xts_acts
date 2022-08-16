@@ -21,7 +21,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
+}
 
 async function changedLocationMode(){
     await geolocation.isLocationEnabled().then(async(result) => {
@@ -82,45 +82,45 @@ describe('geolocationTest_geo2', function () {
     afterEach(function () {
     })
 
-   /**
-     * @tc.number LocationSystem_0001
-     * @tc.name SUB_HSS_LocationSystem_0001
-     * @tc.desc Test getSupportedCoordTypes api .
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
+    /**
+      * @tc.number LocationSystem_0001
+      * @tc.name SUB_HSS_LocationSystem_0001
+      * @tc.desc Test getSupportedCoordTypes api .
+      * @tc.size MEDIUM
+      * @tc.type Function
+      * @tc.level Level 2
+      */
     it('SUB_HSS_LocationSystem_0001', 0,  function () {
         let types = geolocations.getSupportedCoordTypes();
         console.info('[lbs_js] getSupportedCoordTypes result: ' + JSON.stringify(types));
-        expect(true).assertEqual(types.length !=0);   
-       
+        expect(true).assertEqual(types.length !=0);
+
     })
 
-   /**
-     * @tc.number LocationSystem_0002
-     * @tc.name SUB_HSS_LocationSystem_0002
-     * @tc.desc Test getLocationType api .
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('SUB_HSS_LocationSystem_0002', 0,  async function (done) {		
-        geolocations.getLocationType({            
-            success: function(data) {                
-              console.log('success get location type:' + JSON.stringify(data)); 
-              expect(true).assertEqual(data.types.length !=0);
-              done()             
-            },            
-            fail: function(data, code) {                
-              console.log('fail to get location. code:' + code + ', data:' + JSON.stringify(data));            
-              expect().assertFail();
-              done()
-             }, 
-            complete: function(result) {                
-              console.log('get location end' + JSON.stringify(result));            
-             },        
-           });    
+    /**
+      * @tc.number LocationSystem_0002
+      * @tc.name SUB_HSS_LocationSystem_0002
+      * @tc.desc Test getLocationType api .
+      * @tc.size MEDIUM
+      * @tc.type Function
+      * @tc.level Level 2
+      */
+    it('SUB_HSS_LocationSystem_0002', 0,  async function (done) {
+        geolocations.getLocationType({
+            success: function(data) {
+                console.log('success get location type:' + JSON.stringify(data));
+                expect(true).assertEqual(data.types.length !=0);
+                done()
+            },
+            fail: function(data, code) {
+                console.log('fail to get location. code:' + code + ', data:' + JSON.stringify(data));
+                expect().assertFail();
+                done()
+            },
+            complete: function(result) {
+                console.log('get location end' + JSON.stringify(result));
+            },
+        });
     })
 
     /**
@@ -131,7 +131,7 @@ describe('geolocationTest_geo2', function () {
      * @tc.type Function
      * @tc.level Level 2
     */
-    it('SUB_HSS_LocationSystem_0003', 0, async function (done) {	
+    it('SUB_HSS_LocationSystem_0003', 0, async function (done) {
         geolocations.getLocation({
             timeout:30000,
             coordType:'wgs84',
@@ -160,13 +160,13 @@ describe('geolocationTest_geo2', function () {
                         console.info("该次调用结果未返回前接口又被重新调用/该次调用失败返回错误码: "+ err);
                         break;
                     default:
-                        console.log('lbs_js [GetLocation-fail] data:' + data + ', code:' + code);  
+                        console.log('lbs_js [GetLocation-fail] data:' + data + ', code:' + code);
                 }
             },
         });
         done();
     })
-   		
+
     /**
      * @tc.number LocationSystem_0004
      * @tc.name SUB_HSS_LocationSystem_0004
@@ -175,7 +175,7 @@ describe('geolocationTest_geo2', function () {
      * @tc.type Function
      * @tc.level Level 2
     */
-     it('SUB_HSS_LocationSystem_0004', 0,  async function (done) {	
+    it('SUB_HSS_LocationSystem_0004', 0,  async function (done) {
         geolocations.subscribe({
             coordType:'wgs84',
             success: function(data) {
@@ -198,13 +198,14 @@ describe('geolocationTest_geo2', function () {
      * @tc.type Function
      * @tc.level Level 2
     */
-     it('SUB_HSS_LocationSystem_0005', 0,  async function (done) {	
+    it('SUB_HSS_LocationSystem_0005', 0,  async function (done) {
         geolocation.unsubscribe();
         console.info("[lbs_js] unsubscribe called")
         done();
     })
-    
+
 })
+
 
 
 
