@@ -72,7 +72,7 @@ export default function addImage() {
          * @tc.level     : Level 0
          */
         it('add_01_001', 0, async function (done) {
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 }, scaleMode: 1, alphaType: 0 }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }, scaleMode: image.ScaleMode.CENTER_CROP, alphaType: image.AlphaType.UNKNOWN }
             createPixMapPromise(done, 'add_01_001', opts);
         })
 
@@ -88,7 +88,7 @@ export default function addImage() {
          * @tc.level     : Level 0
          */
         it('add_01_002', 0, async function (done) {
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 }, scaleMode: 1, alphaType: 1 }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }, scaleMode: image.ScaleMode.CENTER_CROP, alphaType: image.AlphaType.OPAQUE }
             createPixMapPromise(done, 'add_01_002', opts);
         })
 
@@ -104,7 +104,7 @@ export default function addImage() {
          * @tc.level     : Level 0
          */
         it('add_01_003', 0, async function (done) {
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 }, scaleMode: 0, alphaType: 2 }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }, scaleMode: image.ScaleMode.FIT_TARGET_SIZE, alphaType: image.AlphaType.PREMUL }
             createPixMapPromise(done, 'add_01_003', opts);
         })
 
@@ -120,7 +120,7 @@ export default function addImage() {
          * @tc.level     : Level 0
          */
         it('add_01_004', 0, async function (done) {
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 }, scaleMode: 0, alphaType: 3 }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }, scaleMode: image.ScaleMode.FIT_TARGET_SIZE, alphaType: image.AlphaType.UNPREMUL }
             createPixMapPromise(done, 'add_01_004', opts);
         })
 
@@ -136,7 +136,7 @@ export default function addImage() {
          * @tc.level     : Level 0
          */
         it('add_02_001', 0, async function (done) {
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 }, scaleMode: 0, alphaType: 0 }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }, scaleMode: image.ScaleMode.FIT_TARGET_SIZE, alphaType: image.AlphaType.UNKNOWN }
             createPixMapCb(done, 'add_02_001', opts);
         })
 
@@ -152,7 +152,7 @@ export default function addImage() {
          * @tc.level     : Level 0
          */
         it('add_02_002', 0, async function (done) {
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 }, scaleMode: 0, alphaType: 1 }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }, scaleMode: image.ScaleMode.FIT_TARGET_SIZE, alphaType: image.AlphaType.OPAQUE }
             createPixMapCb(done, 'add_02_002', opts);
         })
 
@@ -168,7 +168,7 @@ export default function addImage() {
          * @tc.level     : Level 0
          */
         it('add_02_003', 0, async function (done) {
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 }, scaleMode: 1, alphaType: 2 }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }, scaleMode: image.ScaleMode.CENTER_CROP, alphaType: image.AlphaType.PREMUL }
             createPixMapCb(done, 'add_02_003', opts);
         })
 
@@ -184,7 +184,7 @@ export default function addImage() {
          * @tc.level     : Level 0
          */
         it('add_02_004', 0, async function (done) {
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 }, scaleMode: 1, alphaType: 3 }
+            let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }, scaleMode: image.ScaleMode.CENTER_CROP, alphaType: image.AlphaType.UNPREMUL }
             createPixMapCb(done, 'add_02_004', opts);
         })
 

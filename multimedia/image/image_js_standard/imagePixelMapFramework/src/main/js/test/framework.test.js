@@ -47,7 +47,7 @@ describe('imagePixelMapFramework', function () {
             bufferArr[i] = i + 1;
         }
 
-        let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+        let opts = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
         return image.createPixelMap(color, opts);
     }
 
@@ -133,7 +133,7 @@ describe('imagePixelMapFramework', function () {
         if (alphaPixelMap != undefined) {
             var imageInfo = await alphaPixelMap.getImageInfo();
             logger.log("AlphaPixelMap pixelformat " + imageInfo.pixelFormat);
-            expect(imageInfo.pixelFormat == 6).assertTrue();
+            expect(imageInfo.pixelFormat == image.PixelMapFormat.ALPHA_8).assertTrue();
             done();
         } else {
             logger.log('creat alphaPixelMap failed');

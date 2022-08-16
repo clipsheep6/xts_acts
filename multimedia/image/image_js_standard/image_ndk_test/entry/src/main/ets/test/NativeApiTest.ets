@@ -49,7 +49,7 @@ export default function nativeApiImageJsunit() {
 
         it('TC_001', 0, async function (done) {
             const color = new ArrayBuffer(96);
-            let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
+            let opts = { alphaType: 0, editable: true, pixelFormat: image.PixelMapFormat.BGRA_8888, scaleMode: image.ScaleMode.CENTER_CROP, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts)
                 .then( pixelmap => {
                     if (pixelmap == null) {
