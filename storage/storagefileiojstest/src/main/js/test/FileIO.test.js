@@ -917,7 +917,7 @@ export default function fileIOTest() {
       } 
       catch (err) {
         console.info('fileio_test_open_038 has failed for ' + err);
-        expect(err.message == 'Filename too long').assertTrue();
+        expect(err.message == 'Filename too long' || err.message == 'File name too long').assertTrue();
       }
     });
   
@@ -1076,7 +1076,7 @@ export default function fileIOTest() {
       } 
       catch (err) {
         console.info('fileio_test_open_sync_008 has failed for ' + err);
-        expect(err.message == "Filename too long").assertTrue();
+        expect(err.message == 'Filename too long' || err.message == 'File name too long').assertTrue();
       }
     });
   
@@ -2347,7 +2347,7 @@ export default function fileIOTest() {
       catch (err) {
         fileio.unlinkSync(fpath);
         console.info('fileio_test_copy_file_sync_009 has failed for ' + err);
-        expect(err.message == 'Filename too long').assertTrue();
+        expect(err.message == 'Filename too long' || err.message == 'File name too long').assertTrue();
       }
     });
   
